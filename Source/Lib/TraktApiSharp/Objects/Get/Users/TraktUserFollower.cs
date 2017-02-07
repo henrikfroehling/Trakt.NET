@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users
 {
-    using Attributes;
     using Newtonsoft.Json;
     using System;
 
@@ -17,7 +16,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "user")]
-        [Nullable]
         public TraktUser User { get; set; }
     }
 }

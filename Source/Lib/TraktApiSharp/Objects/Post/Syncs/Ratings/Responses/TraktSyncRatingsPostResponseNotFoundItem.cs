@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings.Responses
 {
-    using Attributes;
     using Newtonsoft.Json;
 
     /// <summary>Represents a rated Trakt object, which was not found.</summary>
@@ -13,7 +12,6 @@
 
         /// <summary>Gets or sets the ids of the Trakt object, which was not found.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "ids")]
-        [Nullable]
         public T Ids { get; set; }
     }
 }

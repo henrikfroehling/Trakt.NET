@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Modules
 {
-    using Attributes;
     using Enums;
     using Exceptions;
     using Objects.Basic;
@@ -45,8 +44,7 @@
         /// <returns>An <see cref="TraktShow" /> instance with the queried show's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktResponse<TraktShow>> GetShowAsync([NotNull] string showIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktResponse<TraktShow>> GetShowAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -69,7 +67,6 @@
         /// <returns>A list of <see cref="TraktShow" /> instances with the data of each queried show.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given show ids is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktResponse<TraktShow>>> GetMultipleShowsAsync(TraktMultipleObjectsQueryParams showsQueryParams)
         {
             if (showsQueryParams == null || showsQueryParams.Count <= 0)
@@ -98,8 +95,7 @@
         /// <returns>A list of <see cref="TraktShowAlias" /> instances, each containing a title and country code.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktListResponse<TraktShowAlias>> GetShowAliasesAsync([NotNull] string showIdOrSlug)
+        public async Task<TraktListResponse<TraktShowAlias>> GetShowAliasesAsync(string showIdOrSlug)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktShowAliasesRequest { Id = showIdOrSlug });
@@ -118,8 +114,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given languageCode is shorter or longer than two characters.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktListResponse<TraktShowTranslation>> GetShowTranslationsAsync([NotNull] string showIdOrSlug, string languageCode = null)
+        public async Task<TraktListResponse<TraktShowTranslation>> GetShowTranslationsAsync(string showIdOrSlug, string languageCode = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktShowTranslationsRequest { Id = showIdOrSlug, LanguageCode = languageCode });
@@ -145,8 +140,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPagedResponse<TraktComment>> GetShowCommentsAsync([NotNull] string showIdOrSlug,
+        public async Task<TraktPagedResponse<TraktComment>> GetShowCommentsAsync(string showIdOrSlug,
                                                                                  TraktCommentSortOrder commentSortOrder = null,
                                                                                  int? page = null, int? limitPerPage = null)
         {
@@ -182,8 +176,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPagedResponse<TraktList>> GetShowListsAsync([NotNull] string showIdOrSlug, TraktListType listType = null,
+        public async Task<TraktPagedResponse<TraktList>> GetShowListsAsync(string showIdOrSlug, TraktListType listType = null,
                                                                            TraktListSortOrder listSortOrder = null,
                                                                            int? page = null, int? limitPerPage = null)
         {
@@ -214,8 +207,7 @@
         /// <returns>An <see cref="TraktCastAndCrew" /> instance, containing the cast and crew for a show with the given showIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktResponse<TraktCastAndCrew>> GetShowPeopleAsync([NotNull] string showIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktResponse<TraktCastAndCrew>> GetShowPeopleAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -237,8 +229,7 @@
         /// <returns>An <see cref="TraktRating" /> instance, containing the ratings for a show with the given showIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktResponse<TraktRating>> GetShowRatingsAsync([NotNull] string showIdOrSlug)
+        public async Task<TraktResponse<TraktRating>> GetShowRatingsAsync(string showIdOrSlug)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteSingleItemRequestAsync(new TraktShowRatingsRequest { Id = showIdOrSlug });
@@ -267,8 +258,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPagedResponse<TraktShow>> GetShowRelatedShowsAsync([NotNull] string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
+        public async Task<TraktPagedResponse<TraktShow>> GetShowRelatedShowsAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                                   int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -293,8 +283,7 @@
         /// <returns>An <see cref="TraktStatistics" /> instance, containing the statistics for a show with the given showIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktResponse<TraktStatistics>> GetShowStatisticsAsync([NotNull] string showIdOrSlug)
+        public async Task<TraktResponse<TraktStatistics>> GetShowStatisticsAsync(string showIdOrSlug)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteSingleItemRequestAsync(new TraktShowStatisticsRequest { Id = showIdOrSlug });
@@ -315,8 +304,7 @@
         /// <returns>A list of <see cref="TraktUser" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktListResponse<TraktUser>> GetShowWatchingUsersAsync([NotNull] string showIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktListResponse<TraktUser>> GetShowWatchingUsersAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktShowWatchingUsersRequest { Id = showIdOrSlug, ExtendedInfo = extendedInfo });
@@ -336,8 +324,7 @@
         /// <returns>An <see cref="TraktShowCollectionProgress" /> instance, containing the collection progress for a show with the given showIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktShowCollectionProgress>> GetShowCollectionProgressAsync([NotNull] string showIdOrSlug, bool? includingHiddenSeasons = null,
+        public async Task<TraktResponse<TraktShowCollectionProgress>> GetShowCollectionProgressAsync(string showIdOrSlug, bool? includingHiddenSeasons = null,
                                                                                                      bool? includingSpecialSeasons = null,
                                                                                                      bool? countSpecialSeasons = null)
         {
@@ -366,8 +353,7 @@
         /// <returns>An <see cref="TraktShowWatchedProgress" /> instance, containing the watched progress for a show with the given showIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktShowWatchedProgress>> GetShowWatchedProgressAsync([NotNull] string showIdOrSlug, bool? includingHiddenSeasons = null,
+        public async Task<TraktResponse<TraktShowWatchedProgress>> GetShowWatchedProgressAsync(string showIdOrSlug, bool? includingHiddenSeasons = null,
                                                                                                bool? includingSpecialSeasons = null,
                                                                                                bool? countSpecialSeasons = null)
         {
@@ -397,8 +383,7 @@
         /// <returns>An <see cref="TraktEpisode" /> instance with the queried episode's data or null, if there is no scheduled to air episode.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktResponse<TraktEpisode>> GetShowNextEpisodeAsync([NotNull] string showIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktResponse<TraktEpisode>> GetShowNextEpisodeAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -424,8 +409,7 @@
         /// <returns>An <see cref="TraktEpisode" /> instance with the queried episode's data or null, if there is no most recently aired episode.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktResponse<TraktEpisode>> GetShowLastEpisodeAsync([NotNull] string showIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktResponse<TraktEpisode>> GetShowLastEpisodeAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -458,7 +442,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPagedResponse<TraktTrendingShow>> GetTrendingShowsAsync(TraktExtendedInfo extendedInfo = null,
                                                                                        TraktShowFilter filter = null,
                                                                                        int? page = null, int? limitPerPage = null)
@@ -496,7 +479,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPagedResponse<TraktShow>> GetPopularShowsAsync(TraktExtendedInfo extendedInfo = null,
                                                                               TraktShowFilter filter = null,
                                                                               int? page = null, int? limitPerPage = null)
@@ -535,7 +517,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPagedResponse<TraktMostPlayedShow>> GetMostPlayedShowsAsync(TraktTimePeriod period = null,
                                                                                            TraktExtendedInfo extendedInfo = null,
                                                                                            TraktShowFilter filter = null,
@@ -576,7 +557,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPagedResponse<TraktMostWatchedShow>> GetMostWatchedShowsAsync(TraktTimePeriod period = null,
                                                                                              TraktExtendedInfo extendedInfo = null,
                                                                                              TraktShowFilter filter = null,
@@ -617,7 +597,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPagedResponse<TraktMostCollectedShow>> GetMostCollectedShowsAsync(TraktTimePeriod period = null,
                                                                                                  TraktExtendedInfo extendedInfo = null,
                                                                                                  TraktShowFilter filter = null,
@@ -657,7 +636,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPagedResponse<TraktMostAnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedInfo extendedInfo = null,
                                                                                                      TraktShowFilter filter = null,
                                                                                                      int? page = null, int? limitPerPage = null)
@@ -695,7 +673,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPagedResponse<TraktRecentlyUpdatedShow>> GetRecentlyUpdatedShowsAsync(DateTime? startDate = null,
                                                                                                      TraktExtendedInfo extendedInfo = null,
                                                                                                      int? page = null, int? limitPerPage = null)

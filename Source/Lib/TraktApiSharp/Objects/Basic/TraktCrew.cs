@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Basic
 {
-    using Attributes;
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
@@ -12,7 +11,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "production")]
-        [Nullable]
         public IEnumerable<TraktCrewMember> Production { get; set; }
 
         /// <summary>
@@ -20,7 +18,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "art")]
-        [Nullable]
         public IEnumerable<TraktCrewMember> Art { get; set; }
 
         /// <summary>
@@ -28,7 +25,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "crew")]
-        [Nullable]
         public IEnumerable<TraktCrewMember> Crew { get; set; }
 
         /// <summary>
@@ -36,7 +32,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "costume & make-up")]
-        [Nullable]
         public IEnumerable<TraktCrewMember> CostumeAndMakeup { get; set; }
 
         /// <summary>
@@ -44,7 +39,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "directing")]
-        [Nullable]
         public IEnumerable<TraktCrewMember> Directing { get; set; }
 
         /// <summary>
@@ -52,7 +46,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "writing")]
-        [Nullable]
         public IEnumerable<TraktCrewMember> Writing { get; set; }
 
         /// <summary>
@@ -60,7 +53,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "sound")]
-        [Nullable]
         public IEnumerable<TraktCrewMember> Sound { get; set; }
 
         /// <summary>
@@ -68,7 +60,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "camera")]
-        [Nullable]
         public IEnumerable<TraktCrewMember> Camera { get; set; }
 
         /// <summary>
@@ -76,7 +67,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "lighting")]
-        [Nullable]
         public IEnumerable<TraktCrewMember> Lighting { get; set; }
 
         /// <summary>
@@ -84,7 +74,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "visual effects")]
-        [Nullable]
         public IEnumerable<TraktCrewMember> VisualEffects { get; set; }
 
         /// <summary>
@@ -92,7 +81,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "editing")]
-        [Nullable]
         public IEnumerable<TraktCrewMember> Editing { get; set; }
     }
 }

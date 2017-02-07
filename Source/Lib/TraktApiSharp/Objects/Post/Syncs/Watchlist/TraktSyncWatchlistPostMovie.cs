@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist
 {
-    using Attributes;
     using Get.Movies;
     using Newtonsoft.Json;
 
@@ -9,7 +8,6 @@
     {
         /// <summary>Gets or sets the optional title of the Trakt movie.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "title")]
-        [Nullable]
         public string Title { get; set; }
 
         /// <summary>Gets or sets the optional year of the Trakt movie.</summary>

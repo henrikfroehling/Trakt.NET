@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist
 {
-    using Attributes;
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
@@ -19,7 +18,6 @@
         /// </para>
         /// </summary>
         [JsonProperty(PropertyName = "episodes")]
-        [Nullable]
         public IEnumerable<TraktSyncWatchlistPostShowEpisode> Episodes { get; set; }
     }
 }

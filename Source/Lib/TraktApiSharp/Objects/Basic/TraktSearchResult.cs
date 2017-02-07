@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Basic
 {
-    using Attributes;
     using Enums;
     using Get.Movies;
     using Get.People;
@@ -15,7 +14,6 @@
         /// <summary>Gets or sets the result type. See also <seealso cref="TraktSearchResultType" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "type")]
         [JsonConverter(typeof(TraktEnumerationConverter<TraktSearchResultType>))]
-        [Nullable]
         public TraktSearchResultType Type { get; set; }
 
         /// <summary>Gets or sets the result score.</summary>
@@ -28,7 +26,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "movie")]
-        [Nullable]
         public TraktMovie Movie { get; set; }
 
         /// <summary>
@@ -37,7 +34,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "show")]
-        [Nullable]
         public TraktShow Show { get; set; }
 
         /// <summary>
@@ -46,7 +42,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "episode")]
-        [Nullable]
         public TraktEpisode Episode { get; set; }
 
         /// <summary>
@@ -55,7 +50,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "person")]
-        [Nullable]
         public TraktPerson Person { get; set; }
 
         /// <summary>
@@ -64,7 +58,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "list")]
-        [Nullable]
         public TraktList List { get; set; }
     }
 }

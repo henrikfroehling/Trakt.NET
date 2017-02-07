@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Collection
 {
-    using Attributes;
     using Basic;
     using Newtonsoft.Json;
     using System;
@@ -21,7 +20,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "metadata")]
-        [Nullable]
         public TraktMetadata Metadata { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Collection
 {
-    using Attributes;
     using Basic;
     using Movies;
     using Newtonsoft.Json;
@@ -18,7 +17,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "movie")]
-        [Nullable]
         public TraktMovie Movie { get; set; }
 
         /// <summary>
@@ -26,7 +24,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "metadata")]
-        [Nullable]
         public TraktMetadata Metadata { get; set; }
     }
 }

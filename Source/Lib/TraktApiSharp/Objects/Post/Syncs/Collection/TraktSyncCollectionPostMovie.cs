@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection
 {
-    using Attributes;
     using Basic;
     using Get.Movies;
     using Newtonsoft.Json;
@@ -18,7 +17,6 @@
 
         /// <summary>Gets or sets the optional title of the Trakt movie.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "title")]
-        [Nullable]
         public string Title { get; set; }
 
         /// <summary>Gets or sets the optional year of the Trakt movie.</summary>
@@ -34,7 +32,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "metadata")]
-        [Nullable]
         public TraktMetadata Metadata { get; set; }
     }
 }

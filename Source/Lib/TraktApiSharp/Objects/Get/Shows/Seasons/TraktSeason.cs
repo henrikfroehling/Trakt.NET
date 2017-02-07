@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Shows.Seasons
 {
-    using Attributes;
     using Episodes;
     using Modules;
     using Newtonsoft.Json;
@@ -21,7 +20,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "ids")]
-        [Nullable]
         public TraktSeasonIds Ids { get; set; }
 
         /// <summary>
@@ -30,7 +28,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "images")]
-        [Nullable]
         public TraktSeasonImages Images { get; set; }
 
         /// <summary>Gets or sets the average user rating of the season.</summary>
@@ -51,7 +48,6 @@
 
         /// <summary>Gets or sets the synopsis of the season.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "overview")]
-        [Nullable]
         public string Overview { get; set; }
 
         /// <summary>Gets or sets the UTC datetime when the season was first aired.</summary>
@@ -67,7 +63,6 @@
         /// <see cref="TraktExtendedInfo.Episodes" /> set to true.
         /// </remarks>
         [JsonProperty(PropertyName = "episodes")]
-        [Nullable]
         public IEnumerable<TraktEpisode> Episodes { get; set; }
     }
 }

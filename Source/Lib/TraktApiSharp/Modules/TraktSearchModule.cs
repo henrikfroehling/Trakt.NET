@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Modules
 {
-    using Attributes;
     using Enums;
     using Exceptions;
     using Objects.Basic;
@@ -54,8 +53,7 @@
         /// Thrown, if the given searchResultType is unspecified.
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given searchResultType is null</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPagedResponse<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultTypes, [NotNull] string searchQuery,
+        public async Task<TraktPagedResponse<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultTypes, string searchQuery,
                                                                                           TraktSearchField searchFields = null, TraktSearchFilter filter = null,
                                                                                           TraktExtendedInfo extendedInfo = null,
                                                                                           int? page = null, int? limitPerPage = null)
@@ -103,8 +101,7 @@
         /// Thrown, if the given searchIdType is unspecified.
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given searchIdType is null.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPagedResponse<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, [NotNull] string lookupId,
+        public async Task<TraktPagedResponse<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, string lookupId,
                                                                                          TraktSearchResultType searchResultTypes = null,
                                                                                          TraktExtendedInfo extendedInfo = null,
                                                                                          int? page = null, int? limitPerPage = null)

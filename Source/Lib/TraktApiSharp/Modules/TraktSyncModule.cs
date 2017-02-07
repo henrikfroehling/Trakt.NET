@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Modules
 {
-    using Attributes;
     using Enums;
     using Exceptions;
     using Objects.Basic;
@@ -46,7 +45,6 @@
         /// </summary>
         /// <returns>An <see cref="TraktSyncLastActivities" /> instance with the queried last activities.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired]
         public async Task<TraktResponse<TraktSyncLastActivities>> GetLastActivitiesAsync()
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -64,7 +62,6 @@
         /// <param name="limit">Determines, how many progress items should be queried. By default, all items will be returned</param>
         /// <returns>A list of <see cref="TraktSyncPlaybackProgressItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired]
         public async Task<TraktListResponse<TraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null, int? limit = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -86,7 +83,6 @@
         /// <param name="playbackId">The id of the playback progress item, which should be removed.</param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given playback progress id is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired]
         public async Task<TraktNoContentResponse> RemovePlaybackItemAsync(uint playbackId)
         {
             if (playbackId == 0)
@@ -109,7 +105,6 @@
         /// </param>
         /// <returns>A list of <see cref="TraktCollectionMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired]
         public async Task<TraktListResponse<TraktCollectionMovie>> GetCollectionMoviesAsync(TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -129,7 +124,6 @@
         /// </param>
         /// <returns>A list of <see cref="TraktCollectionShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired]
         public async Task<TraktListResponse<TraktCollectionShow>> GetCollectionShowsAsync(TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -153,8 +147,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given collection post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given collection post is empty.</exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktSyncCollectionPostResponse>> AddCollectionItemsAsync([NotNull] TraktSyncCollectionPost collectionPost)
+        public async Task<TraktResponse<TraktSyncCollectionPostResponse>> AddCollectionItemsAsync(TraktSyncCollectionPost collectionPost)
         {
             ValidateCollectionPost(collectionPost);
             var requestHandler = new TraktRequestHandler(Client);
@@ -178,8 +171,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given collection remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given collection remove post is empty.</exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktSyncCollectionRemovePostResponse>> RemoveCollectionItemsAsync([NotNull] TraktSyncCollectionPost collectionRemovePost)
+        public async Task<TraktResponse<TraktSyncCollectionRemovePostResponse>> RemoveCollectionItemsAsync(TraktSyncCollectionPost collectionRemovePost)
         {
             ValidateCollectionPost(collectionRemovePost);
             var requestHandler = new TraktRequestHandler(Client);
@@ -199,7 +191,6 @@
         /// </param>
         /// <returns>A list of <see cref="TraktWatchedMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired]
         public async Task<TraktListResponse<TraktWatchedMovie>> GetWatchedMoviesAsync(TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -219,7 +210,6 @@
         /// </param>
         /// <returns>A list of <see cref="TraktWatchedShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired]
         public async Task<TraktListResponse<TraktWatchedShow>> GetWatchedShowsAsync(TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -251,7 +241,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired]
         public async Task<TraktPagedResponse<TraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType historyItemType = null, uint? itemId = null,
                                                                                        DateTime? startAt = null, DateTime? endAt = null,
                                                                                        TraktExtendedInfo extendedInfo = null,
@@ -288,8 +277,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given history post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given history post is empty.</exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktSyncHistoryPostResponse>> AddWatchedHistoryItemsAsync([NotNull] TraktSyncHistoryPost historyPost)
+        public async Task<TraktResponse<TraktSyncHistoryPostResponse>> AddWatchedHistoryItemsAsync(TraktSyncHistoryPost historyPost)
         {
             ValidateHistoryPost(historyPost);
             var requestHandler = new TraktRequestHandler(Client);
@@ -313,8 +301,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given history remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given history remove post is empty.</exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktSyncHistoryRemovePostResponse>> RemoveWatchedHistoryItemsAsync([NotNull] TraktSyncHistoryRemovePost historyRemovePost)
+        public async Task<TraktResponse<TraktSyncHistoryRemovePostResponse>> RemoveWatchedHistoryItemsAsync(TraktSyncHistoryRemovePost historyRemovePost)
         {
             ValidateHistoryPost(historyRemovePost);
             var requestHandler = new TraktRequestHandler(Client);
@@ -340,7 +327,6 @@
         /// </param>
         /// <returns>A list of <see cref="TraktRatingsItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired]
         public async Task<TraktListResponse<TraktRatingsItem>> GetRatingsAsync(TraktRatingsItemType ratingsItemType = null,
                                                                                int[] ratingsFilter = null,
                                                                                TraktExtendedInfo extendedInfo = null)
@@ -372,8 +358,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given ratings post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given ratings post is empty.</exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktSyncRatingsPostResponse>> AddRatingsAsync([NotNull] TraktSyncRatingsPost ratingsPost)
+        public async Task<TraktResponse<TraktSyncRatingsPostResponse>> AddRatingsAsync(TraktSyncRatingsPost ratingsPost)
         {
             ValidateRatingsPost(ratingsPost);
             var requestHandler = new TraktRequestHandler(Client);
@@ -397,8 +382,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given ratings remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given ratings remove post is empty.</exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktSyncRatingsRemovePostResponse>> RemoveRatingsAsync([NotNull] TraktSyncRatingsPost ratingsRemovePost)
+        public async Task<TraktResponse<TraktSyncRatingsRemovePostResponse>> RemoveRatingsAsync(TraktSyncRatingsPost ratingsRemovePost)
         {
             ValidateRatingsPost(ratingsRemovePost);
             var requestHandler = new TraktRequestHandler(Client);
@@ -427,7 +411,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired]
         public async Task<TraktPagedResponse<TraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType watchlistItemType = null,
                                                                                     TraktExtendedInfo extendedInfo = null,
                                                                                     int? page = null, int? limitPerPage = null)
@@ -460,8 +443,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given watchlist post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given watchlist post is empty.</exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktSyncWatchlistPostResponse>> AddWatchlistItemsAsync([NotNull] TraktSyncWatchlistPost watchlistPost)
+        public async Task<TraktResponse<TraktSyncWatchlistPostResponse>> AddWatchlistItemsAsync(TraktSyncWatchlistPost watchlistPost)
         {
             ValidateWatchlistPost(watchlistPost);
             var requestHandler = new TraktRequestHandler(Client);
@@ -485,8 +467,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given watchlist remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given watchlist remove post is empty.</exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktSyncWatchlistRemovePostResponse>> RemoveWatchlistItemsAsync([NotNull] TraktSyncWatchlistPost watchlistRemovePost)
+        public async Task<TraktResponse<TraktSyncWatchlistRemovePostResponse>> RemoveWatchlistItemsAsync(TraktSyncWatchlistPost watchlistRemovePost)
         {
             ValidateWatchlistPost(watchlistRemovePost);
             var requestHandler = new TraktRequestHandler(Client);

@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users.Lists
 {
-    using Attributes;
     using Enums;
     using Movies;
     using Newtonsoft.Json;
@@ -15,7 +14,6 @@
     {
         /// <summary>Gets or sets the ranking number of the list item.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "rank")]
-        [Nullable]
         public string Rank { get; set; }
 
         /// <summary>Gets or sets the UTC datetime, when the list item was added to a list.</summary>
@@ -25,7 +23,6 @@
         /// <summary>Gets or sets the list item type. See also <seealso cref="TraktListItemType" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "type")]
         [JsonConverter(typeof(TraktEnumerationConverter<TraktListItemType>))]
-        [Nullable]
         public TraktListItemType Type { get; set; }
 
         /// <summary>
@@ -34,7 +31,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "movie")]
-        [Nullable]
         public TraktMovie Movie { get; set; }
 
         /// <summary>
@@ -43,7 +39,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "show")]
-        [Nullable]
         public TraktShow Show { get; set; }
 
         /// <summary>
@@ -52,7 +47,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "season")]
-        [Nullable]
         public TraktSeason Season { get; set; }
 
         /// <summary>
@@ -61,7 +55,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "episode")]
-        [Nullable]
         public TraktEpisode Episode { get; set; }
 
         /// <summary>
@@ -70,7 +63,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "person")]
-        [Nullable]
         public TraktPerson Person { get; set; }
     }
 }

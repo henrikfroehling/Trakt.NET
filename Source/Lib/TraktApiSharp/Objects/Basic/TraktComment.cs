@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Basic
 {
-    using Attributes;
     using Get.Users;
     using Newtonsoft.Json;
     using System;
@@ -26,7 +25,6 @@
 
         /// <summary>Gets or sets the comment's content.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "comment")]
-        [Nullable]
         public string Comment { get; set; }
 
         /// <summary>Gets or sets, whether the comment contains spoiler.</summary>
@@ -51,7 +49,6 @@
 
         /// <summary>Gets or sets the user, which has written the comment. See also <seealso cref="TraktUser" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "user")]
-        [Nullable]
         public TraktUser User { get; set; }
     }
 }

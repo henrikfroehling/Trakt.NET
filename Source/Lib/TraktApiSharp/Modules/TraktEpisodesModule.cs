@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Modules
 {
-    using Attributes;
     using Enums;
     using Exceptions;
     using Objects.Basic;
@@ -49,8 +48,7 @@
         /// Thrown, if the given season-number is below zero.
         /// Thrown, if the given episode-number is below one.
         /// </exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktResponse<TraktEpisode>> GetEpisodeAsync([NotNull] string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+        public async Task<TraktResponse<TraktEpisode>> GetEpisodeAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                        TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -80,7 +78,6 @@
         /// Thrown, if the given season-number is below zero.
         /// Thrown, if the given episode-number is below one.
         /// </exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktResponse<TraktEpisode>>> GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams episodesQueryParams)
         {
             if (episodesQueryParams == null || episodesQueryParams.Count <= 0)
@@ -125,8 +122,7 @@
         /// Thrown, if the given season-number is below zero.
         /// Thrown, if the given episode-number is below one.
         /// </exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPagedResponse<TraktComment>> GetEpisodeCommentsAsync([NotNull] string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+        public async Task<TraktPagedResponse<TraktComment>> GetEpisodeCommentsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                                     TraktCommentSortOrder commentSortOrder = null,
                                                                                     int? page = null, int? limitPerPage = null)
         {
@@ -170,8 +166,7 @@
         /// Thrown, if the given season-number is below zero.
         /// Thrown, if the given episode-number is below one.
         /// </exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPagedResponse<TraktList>> GetEpisodeListsAsync([NotNull] string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+        public async Task<TraktPagedResponse<TraktList>> GetEpisodeListsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                               TraktListType listType = null, TraktListSortOrder listSortOrder = null,
                                                                               int? page = null, int? limitPerPage = null)
         {
@@ -206,8 +201,7 @@
         /// Thrown, if the given season-number is below zero.
         /// Thrown, if the given episode-number is below one.
         /// </exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktResponse<TraktRating>> GetEpisodeRatingsAsync([NotNull] string showIdOrSlug, uint seasonNumber, uint episodeNumber)
+        public async Task<TraktResponse<TraktRating>> GetEpisodeRatingsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -236,8 +230,7 @@
         /// Thrown, if the given season-number is below zero.
         /// Thrown, if the given episode-number is below one.
         /// </exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktResponse<TraktStatistics>> GetEpisodeStatisticsAsync([NotNull] string showIdOrSlug, uint seasonNumber, uint episodeNumber)
+        public async Task<TraktResponse<TraktStatistics>> GetEpisodeStatisticsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -268,8 +261,7 @@
         /// Thrown, if the given episode-number is below one.
         /// Thrown, if the given languageCode is shorter or longer than two characters.
         /// </exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktListResponse<TraktEpisodeTranslation>> GetEpisodeTranslationsAsync([NotNull] string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+        public async Task<TraktListResponse<TraktEpisodeTranslation>> GetEpisodeTranslationsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                                                   string languageCode = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -304,8 +296,7 @@
         /// Thrown, if the given season-number is below zero.
         /// Thrown, if the given episode-number is below one.
         /// </exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktListResponse<TraktUser>> GetEpisodeWatchingUsersAsync([NotNull] string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+        public async Task<TraktListResponse<TraktUser>> GetEpisodeWatchingUsersAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                                      TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);

@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Checkins.Responses
 {
-    using Attributes;
     using Basic;
     using Newtonsoft.Json;
     using System;
@@ -21,7 +20,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "sharing")]
-        [Nullable]
         public TraktSharing Sharing { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Watched
 {
-    using Attributes;
     using Newtonsoft.Json;
     using Shows;
     using System;
@@ -19,7 +18,6 @@
 
         /// <summary>Gets or sets the Trakt show. See also <seealso cref="TraktShow" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "show")]
-        [Nullable]
         public TraktShow Show { get; set; }
 
         /// <summary>
@@ -28,7 +26,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "seasons")]
-        [Nullable]
         public IEnumerable<TraktWatchedShowSeason> Seasons { get; set; }
     }
 }

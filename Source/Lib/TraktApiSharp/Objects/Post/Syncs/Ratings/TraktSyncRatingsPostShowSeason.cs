@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings
 {
-    using Attributes;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
@@ -31,7 +30,6 @@
         /// </para>
         /// </summary>
         [JsonProperty(PropertyName = "episodes")]
-        [Nullable]
         public IEnumerable<TraktSyncRatingsPostShowEpisode> Episodes { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users.Statistics
 {
-    using Attributes;
     using Newtonsoft.Json;
 
     /// <summary>A collection of Trakt user statistics.</summary>
@@ -12,7 +11,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "movies")]
-        [Nullable]
         public TraktUserMoviesStatistics Movies { get; set; }
 
         /// <summary>
@@ -21,7 +19,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "shows")]
-        [Nullable]
         public TraktUserShowsStatistics Shows { get; set; }
 
         /// <summary>
@@ -30,7 +27,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "seasons")]
-        [Nullable]
         public TraktUserSeasonsStatistics Seasons { get; set; }
 
         /// <summary>
@@ -39,7 +35,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "episodes")]
-        [Nullable]
         public TraktUserEpisodesStatistics Episodes { get; set; }
 
         /// <summary>
@@ -48,7 +43,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "network")]
-        [Nullable]
         public TraktUserNetworkStatistics Network { get; set; }
 
         /// <summary>
@@ -57,7 +51,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "ratings")]
-        [Nullable]
         public TraktUserRatingsStatistics Ratings { get; set; }
     }
 }

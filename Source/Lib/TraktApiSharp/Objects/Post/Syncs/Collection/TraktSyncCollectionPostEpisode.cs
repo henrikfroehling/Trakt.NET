@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection
 {
-    using Attributes;
     using Basic;
     using Get.Shows.Episodes;
     using Newtonsoft.Json;
@@ -25,7 +24,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "metadata")]
-        [Nullable]
         public TraktMetadata Metadata { get; set; }
     }
 }

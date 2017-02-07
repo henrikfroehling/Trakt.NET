@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Checkins.Responses
 {
-    using Attributes;
     using Get.Shows;
     using Get.Shows.Episodes;
     using Newtonsoft.Json;
@@ -14,7 +13,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "episode")]
-        [Nullable]
         public TraktEpisode Episode { get; set; }
 
         /// <summary>
@@ -23,7 +21,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "show")]
-        [Nullable]
         public TraktShow Show { get; set; }
     }
 }

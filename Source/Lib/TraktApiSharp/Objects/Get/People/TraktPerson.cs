@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.People
 {
-    using Attributes;
     using Extensions;
     using Newtonsoft.Json;
     using System;
@@ -10,7 +9,6 @@
     {
         /// <summary>Gets or sets the person name.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "name")]
-        [Nullable]
         public string Name { get; set; }
 
         /// <summary>
@@ -19,7 +17,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "ids")]
-        [Nullable]
         public TraktPersonIds Ids { get; set; }
 
         /// <summary>
@@ -28,12 +25,10 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "images")]
-        [Nullable]
         public TraktPersonImages Images { get; set; }
 
         /// <summary>Gets or sets the biography of the person.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "biography")]
-        [Nullable]
         public string Biography { get; set; }
 
         /// <summary>Gets or sets the UTC datetime when the person was born.</summary>
@@ -49,12 +44,10 @@
 
         /// <summary>Gets or sets the birthplace of the person.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "birthplace")]
-        [Nullable]
         public string Birthplace { get; set; }
 
         /// <summary>Gets or sets the web address of the homepage of the person.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "homepage")]
-        [Nullable]
         public string Homepage { get; set; }
     }
 }

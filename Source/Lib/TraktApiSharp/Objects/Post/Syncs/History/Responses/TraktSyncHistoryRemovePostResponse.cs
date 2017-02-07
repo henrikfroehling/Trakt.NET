@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Responses
 {
-    using Attributes;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -14,7 +13,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "deleted")]
-        [Nullable]
         public TraktSyncHistoryRemovePostResponseGroup Deleted { get; set; }
 
         /// <summary>
@@ -22,7 +20,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "not_found")]
-        [Nullable]
         public TraktSyncHistoryRemovePostResponseNotFound NotFound { get; set; }
     }
 }

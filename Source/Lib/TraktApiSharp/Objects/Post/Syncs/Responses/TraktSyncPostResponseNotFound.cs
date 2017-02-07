@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Responses
 {
-    using Attributes;
     using Get.Movies;
     using Get.Shows;
     using Get.Shows.Episodes;
@@ -16,7 +15,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "movies")]
-        [Nullable]
         public IEnumerable<TraktSyncPostResponseNotFoundItem<TraktMovieIds>> Movies { get; set; }
 
         /// <summary>
@@ -24,7 +22,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "shows")]
-        [Nullable]
         public IEnumerable<TraktSyncPostResponseNotFoundItem<TraktShowIds>> Shows { get; set; }
 
         /// <summary>
@@ -32,7 +29,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "seasons")]
-        [Nullable]
         public IEnumerable<TraktSyncPostResponseNotFoundItem<TraktSeasonIds>> Seasons { get; set; }
 
         /// <summary>
@@ -40,7 +36,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "episodes")]
-        [Nullable]
         public IEnumerable<TraktSyncPostResponseNotFoundItem<TraktEpisodeIds>> Episodes { get; set; }
     }
 }

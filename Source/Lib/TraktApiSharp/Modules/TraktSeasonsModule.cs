@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Modules
 {
-    using Attributes;
     using Enums;
     using Exceptions;
     using Objects.Basic;
@@ -50,8 +49,7 @@
         /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown, if the given translationLanguageCode is shorter or longer than two characters, if it is not set to "all".
         /// </exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktListResponse<TraktSeason>> GetAllSeasonsAsync([NotNull] string showIdOrSlug,
+        public async Task<TraktListResponse<TraktSeason>> GetAllSeasonsAsync(string showIdOrSlug,
                                                                              TraktExtendedInfo extendedInfo = null,
                                                                              string translationLanguageCode = null)
         {
@@ -90,8 +88,7 @@
         /// Thrown, if the given season number is below zero.
         /// Thrown, if the given translationLanguageCode is shorter or longer than two characters, if it is not set to "all".
         /// </exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktListResponse<TraktEpisode>> GetSeasonAsync([NotNull] string showIdOrSlug, uint seasonNumber,
+        public async Task<TraktListResponse<TraktEpisode>> GetSeasonAsync(string showIdOrSlug, uint seasonNumber,
                                                                           TraktExtendedInfo extendedInfo = null,
                                                                           string translationLanguageCode = null)
         {
@@ -119,7 +116,6 @@
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given show ids is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if one of the given season numbers is below zero.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktListResponse<TraktEpisode>>> GetMultipleSeasonsAsync(TraktMultipleSeasonsQueryParams seasonsQueryParams)
         {
             if (seasonsQueryParams == null || seasonsQueryParams.Count <= 0)
@@ -162,8 +158,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPagedResponse<TraktComment>> GetSeasonCommentsAsync([NotNull] string showIdOrSlug, uint seasonNumber,
+        public async Task<TraktPagedResponse<TraktComment>> GetSeasonCommentsAsync(string showIdOrSlug, uint seasonNumber,
                                                                                    TraktCommentSortOrder commentSortOrder = null,
                                                                                    int? page = null, int? limitPerPage = null)
         {
@@ -202,8 +197,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPagedResponse<TraktList>> GetSeasonListsAsync([NotNull] string showIdOrSlug, uint seasonNumber,
+        public async Task<TraktPagedResponse<TraktList>> GetSeasonListsAsync(string showIdOrSlug, uint seasonNumber,
                                                                              TraktListType listType = null, TraktListSortOrder listSortOrder = null,
                                                                              int? page = null, int? limitPerPage = null)
         {
@@ -233,8 +227,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktResponse<TraktRating>> GetSeasonRatingsAsync([NotNull] string showIdOrSlug, uint seasonNumber)
+        public async Task<TraktResponse<TraktRating>> GetSeasonRatingsAsync(string showIdOrSlug, uint seasonNumber)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -258,8 +251,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktResponse<TraktStatistics>> GetSeasonStatisticsAsync([NotNull] string showIdOrSlug, uint seasonNumber)
+        public async Task<TraktResponse<TraktStatistics>> GetSeasonStatisticsAsync(string showIdOrSlug, uint seasonNumber)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -287,8 +279,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktListResponse<TraktUser>> GetSeasonWatchingUsersAsync([NotNull] string showIdOrSlug, uint seasonNumber,
+        public async Task<TraktListResponse<TraktUser>> GetSeasonWatchingUsersAsync(string showIdOrSlug, uint seasonNumber,
                                                                                     TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);

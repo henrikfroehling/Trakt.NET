@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings
 {
-    using Attributes;
     using Get.Shows;
     using Newtonsoft.Json;
     using System;
@@ -23,7 +22,6 @@
 
         /// <summary>Gets or sets the optional title of the Trakt show.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "title")]
-        [Nullable]
         public string Title { get; set; }
 
         /// <summary>Gets or sets the optional year of the Trakt show.</summary>
@@ -42,7 +40,6 @@
         /// </para>
         /// </summary>
         [JsonProperty(PropertyName = "seasons")]
-        [Nullable]
         public IEnumerable<TraktSyncRatingsPostShowSeason> Seasons { get; set; }
     }
 }

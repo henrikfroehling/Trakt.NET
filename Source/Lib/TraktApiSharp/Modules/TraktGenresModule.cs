@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Modules
 {
-    using Attributes;
     using Enums;
     using Exceptions;
     using Objects.Basic;
@@ -28,7 +27,6 @@
         /// </summary>
         /// <returns>A list of <see cref="TraktGenre" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<TraktListResponse<TraktGenre>> GetMovieGenresAsync()
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -52,7 +50,6 @@
         /// </summary>
         /// <returns>A list of <see cref="TraktGenre" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<TraktListResponse<TraktGenre>> GetShowGenresAsync()
         {
             var requestHandler = new TraktRequestHandler(Client);

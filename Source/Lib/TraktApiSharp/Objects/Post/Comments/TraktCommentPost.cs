@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Comments
 {
-    using Attributes;
     using Basic;
     using Newtonsoft.Json;
 
@@ -20,7 +19,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "sharing")]
-        [Nullable]
         public TraktSharing Sharing { get; set; }
     }
 }

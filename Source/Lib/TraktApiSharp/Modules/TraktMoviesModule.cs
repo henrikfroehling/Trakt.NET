@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Modules
 {
-    using Attributes;
     using Enums;
     using Exceptions;
     using Objects.Basic;
@@ -43,8 +42,7 @@
         /// <returns>An <see cref="TraktMovie" /> instance with the queried movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktResponse<TraktMovie>> GetMovieAsync([NotNull] string movieIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktResponse<TraktMovie>> GetMovieAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -67,7 +65,6 @@
         /// <returns>A list of <see cref="TraktMovie" /> instances with the data of each queried movie.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given movie ids is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<IEnumerable<TraktResponse<TraktMovie>>> GetMultipleMoviesAsync(TraktMultipleObjectsQueryParams moviesQueryParams)
         {
             if (moviesQueryParams == null || moviesQueryParams.Count <= 0)
@@ -96,8 +93,7 @@
         /// <returns>A list of <see cref="TraktMovieAlias" /> instances, each containing a title and country code.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktListResponse<TraktMovieAlias>> GetMovieAliasesAsync([NotNull] string movieIdOrSlug)
+        public async Task<TraktListResponse<TraktMovieAlias>> GetMovieAliasesAsync(string movieIdOrSlug)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktMovieAliasesRequest { Id = movieIdOrSlug });
@@ -116,8 +112,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given countryCode is shorter or longer than two characters.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktListResponse<TraktMovieRelease>> GetMovieReleasesAsync([NotNull] string movieIdOrSlug, string countryCode = null)
+        public async Task<TraktListResponse<TraktMovieRelease>> GetMovieReleasesAsync(string movieIdOrSlug, string countryCode = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktMovieReleasesRequest { Id = movieIdOrSlug, CountryCode = countryCode });
@@ -136,8 +131,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given languageCode is shorter or longer than two characters.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktListResponse<TraktMovieTranslation>> GetMovieTranslationsAsync([NotNull] string movieIdOrSlug, string languageCode = null)
+        public async Task<TraktListResponse<TraktMovieTranslation>> GetMovieTranslationsAsync(string movieIdOrSlug, string languageCode = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktMovieTranslationsRequest { Id = movieIdOrSlug, LanguageCode = languageCode });
@@ -163,8 +157,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPagedResponse<TraktComment>> GetMovieCommentsAsync([NotNull] string movieIdOrSlug,
+        public async Task<TraktPagedResponse<TraktComment>> GetMovieCommentsAsync(string movieIdOrSlug,
                                                                                   TraktCommentSortOrder commentSortOrder = null,
                                                                                   int? page = null, int? limitPerPage = null)
         {
@@ -200,8 +193,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPagedResponse<TraktList>> GetMovieListsAsync([NotNull] string movieIdOrSlug, TraktListType listType = null,
+        public async Task<TraktPagedResponse<TraktList>> GetMovieListsAsync(string movieIdOrSlug, TraktListType listType = null,
                                                                             TraktListSortOrder listSortOrder = null,
                                                                             int? page = null, int? limitPerPage = null)
         {
@@ -232,8 +224,7 @@
         /// <returns>An <see cref="TraktCastAndCrew" /> instance, containing the cast and crew for a movie with the given movieIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktResponse<TraktCastAndCrew>> GetMoviePeopleAsync([NotNull] string movieIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktResponse<TraktCastAndCrew>> GetMoviePeopleAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteSingleItemRequestAsync(new TraktMoviePeopleRequest { Id = movieIdOrSlug, ExtendedInfo = extendedInfo });
@@ -250,8 +241,7 @@
         /// <returns>An <see cref="TraktRating" /> instance, containing the ratings for a movie with the given movieIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktResponse<TraktRating>> GetMovieRatingsAsync([NotNull] string movieIdOrSlug)
+        public async Task<TraktResponse<TraktRating>> GetMovieRatingsAsync(string movieIdOrSlug)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteSingleItemRequestAsync(new TraktMovieRatingsRequest { Id = movieIdOrSlug });
@@ -280,8 +270,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktPagedResponse<TraktMovie>> GetMovieRelatedMoviesAsync([NotNull] string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
+        public async Task<TraktPagedResponse<TraktMovie>> GetMovieRelatedMoviesAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                                      int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -306,8 +295,7 @@
         /// <returns>An <see cref="TraktStatistics" /> instance, containing the statistics for a movie with the given movieIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktResponse<TraktStatistics>> GetMovieStatisticsAsync([NotNull] string movieIdOrSlug)
+        public async Task<TraktResponse<TraktStatistics>> GetMovieStatisticsAsync(string movieIdOrSlug)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteSingleItemRequestAsync(new TraktMovieStatisticsRequest { Id = movieIdOrSlug });
@@ -328,8 +316,7 @@
         /// <returns>A list of <see cref="TraktUser" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired(false)]
-        public async Task<TraktListResponse<TraktUser>> GetMovieWatchingUsersAsync([NotNull] string movieIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktListResponse<TraktUser>> GetMovieWatchingUsersAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktMovieWatchingUsersRequest { Id = movieIdOrSlug, ExtendedInfo = extendedInfo });
@@ -357,7 +344,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPagedResponse<TraktTrendingMovie>> GetTrendingMoviesAsync(TraktExtendedInfo extendedInfo = null,
                                                                                          TraktMovieFilter filter = null,
                                                                                          int? page = null, int? limitPerPage = null)
@@ -395,7 +381,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPagedResponse<TraktMovie>> GetPopularMoviesAsync(TraktExtendedInfo extendedInfo = null,
                                                                                 TraktMovieFilter filter = null,
                                                                                 int? page = null, int? limitPerPage = null)
@@ -434,7 +419,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPagedResponse<TraktMostPlayedMovie>> GetMostPlayedMoviesAsync(TraktTimePeriod period = null,
                                                                                              TraktExtendedInfo extendedInfo = null,
                                                                                              TraktMovieFilter filter = null,
@@ -475,7 +459,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPagedResponse<TraktMostWatchedMovie>> GetMostWatchedMoviesAsync(TraktTimePeriod period = null,
                                                                                                TraktExtendedInfo extendedInfo = null,
                                                                                                TraktMovieFilter filter = null,
@@ -516,7 +499,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPagedResponse<TraktMostCollectedMovie>> GetMostCollectedMoviesAsync(TraktTimePeriod period = null,
                                                                                                    TraktExtendedInfo extendedInfo = null,
                                                                                                    TraktMovieFilter filter = null,
@@ -556,7 +538,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPagedResponse<TraktMostAnticipatedMovie>> GetMostAnticipatedMoviesAsync(TraktExtendedInfo extendedInfo = null,
                                                                                                        TraktMovieFilter filter = null,
                                                                                                        int? page = null, int? limitPerPage = null)
@@ -585,7 +566,6 @@
         /// </param>
         /// <returns>A list of <see cref="TraktBoxOfficeMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<TraktListResponse<TraktBoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -614,7 +594,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired(false)]
         public async Task<TraktPagedResponse<TraktRecentlyUpdatedMovie>> GetRecentlyUpdatedMoviesAsync(DateTime? startDate = null,
                                                                                                        TraktExtendedInfo extendedInfo = null,
                                                                                                        int? page = null, int? limitPerPage = null)

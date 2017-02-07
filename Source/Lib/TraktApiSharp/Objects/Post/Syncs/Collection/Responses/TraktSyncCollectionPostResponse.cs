@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection.Responses
 {
-    using Attributes;
     using Newtonsoft.Json;
     using Syncs.Responses;
 
@@ -15,7 +14,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "added")]
-        [Nullable]
         public TraktSyncPostResponseGroup Added { get; set; }
 
         /// <summary>
@@ -23,7 +21,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "updated")]
-        [Nullable]
         public TraktSyncPostResponseGroup Updated { get; set; }
 
         /// <summary>
@@ -31,7 +28,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "existing")]
-        [Nullable]
         public TraktSyncPostResponseGroup Existing { get; set; }
 
         /// <summary>
@@ -39,7 +35,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "not_found")]
-        [Nullable]
         public TraktSyncPostResponseNotFound NotFound { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users
 {
-    using Attributes;
     using Basic;
     using Newtonsoft.Json;
 
@@ -13,7 +12,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "user")]
-        [Nullable]
         public TraktUser User { get; set; }
 
         /// <summary>
@@ -22,7 +20,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "account")]
-        [Nullable]
         public TraktAccountSettings Account { get; set; }
 
         /// <summary>
@@ -31,7 +28,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "connections")]
-        [Nullable]
         public TraktSharing Connections { get; set; }
 
         /// <summary>
@@ -40,7 +36,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "sharing_text")]
-        [Nullable]
         public TraktSharingText SharingText { get; set; }
     }
 }

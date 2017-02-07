@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.People.Credits
 {
-    using Attributes;
     using Movies;
     using Newtonsoft.Json;
 
@@ -9,7 +8,6 @@
     {
         /// <summary>Gets or sets the character name of the cast position.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "character")]
-        [Nullable]
         public string Character { get; set; }
 
         /// <summary>
@@ -17,7 +15,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "movie")]
-        [Nullable]
         public TraktMovie Movie { get; set; }
     }
 }

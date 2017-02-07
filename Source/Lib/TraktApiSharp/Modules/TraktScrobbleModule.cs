@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Modules
 {
-    using Attributes;
     using Exceptions;
     using Extensions;
     using Objects.Get.Movies;
@@ -40,8 +39,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktMovieScrobblePostResponse>> StartMovieAsync([NotNull] TraktMovie movie, float progress,
+        public async Task<TraktResponse<TraktMovieScrobblePostResponse>> StartMovieAsync(TraktMovie movie, float progress,
                                                                                          string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -67,8 +65,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktMovieScrobblePostResponse>> PauseMovieAsync([NotNull] TraktMovie movie, float progress,
+        public async Task<TraktResponse<TraktMovieScrobblePostResponse>> PauseMovieAsync(TraktMovie movie, float progress,
                                                                                          string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -94,8 +91,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktMovieScrobblePostResponse>> StopMovieAsync([NotNull] TraktMovie movie, float progress,
+        public async Task<TraktResponse<TraktMovieScrobblePostResponse>> StopMovieAsync(TraktMovie movie, float progress,
                                                                                         string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -125,8 +121,7 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> StartEpisodeAsync([NotNull] TraktEpisode episode, float progress,
+        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> StartEpisodeAsync(TraktEpisode episode, float progress,
                                                                                              string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -156,8 +151,7 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> PauseEpisodeAsync([NotNull] TraktEpisode episode, float progress,
+        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> PauseEpisodeAsync(TraktEpisode episode, float progress,
                                                                                              string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -187,8 +181,7 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> StopEpisodeAsync([NotNull] TraktEpisode episode, float progress,
+        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> StopEpisodeAsync(TraktEpisode episode, float progress,
                                                                                             string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -218,8 +211,7 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> StartEpisodeWithShowAsync([NotNull] TraktEpisode episode, TraktShow show, float progress,
+        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> StartEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
                                                                                                      string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -249,8 +241,7 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> PauseEpisodeWithShowAsync([NotNull] TraktEpisode episode, TraktShow show, float progress,
+        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> PauseEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
                                                                                                      string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -280,8 +271,7 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> StopEpisodeWithShowAsync([NotNull] TraktEpisode episode, TraktShow show, float progress,
+        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> StopEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
                                                                                                     string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);

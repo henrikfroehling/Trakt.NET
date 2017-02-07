@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Checkins.Responses
 {
-    using Attributes;
     using Get.Movies;
     using Newtonsoft.Json;
 
@@ -13,7 +12,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "movie")]
-        [Nullable]
         public TraktMovie Movie { get; set; }
     }
 }

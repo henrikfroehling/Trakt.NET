@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Shows
 {
-    using Attributes;
     using Episodes;
     using Newtonsoft.Json;
     using Seasons;
@@ -22,7 +21,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "hidden_seasons")]
-        [Nullable]
         public IEnumerable<TraktSeason> HiddenSeasons { get; set; }
 
         /// <summary>
@@ -31,7 +29,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "next_episode")]
-        [Nullable]
         public TraktEpisode NextEpisode { get; set; }
     }
 }

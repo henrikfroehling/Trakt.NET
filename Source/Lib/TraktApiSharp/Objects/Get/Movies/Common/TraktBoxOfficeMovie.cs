@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Movies.Common
 {
-    using Attributes;
     using Newtonsoft.Json;
 
     /// <summary>A Trakt box office movie.</summary>
@@ -12,7 +11,6 @@
 
         /// <summary>Gets or sets the Trakt movie. See also <seealso cref="TraktMovie" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "movie")]
-        [Nullable]
         public TraktMovie Movie { get; set; }
     }
 }

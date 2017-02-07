@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Modules
 {
-    using Attributes;
     using Exceptions;
     using Objects.Basic;
     using Objects.Get.Movies;
@@ -42,7 +41,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired]
         public async Task<TraktPagedResponse<TraktMovie>> GetMovieRecommendationsAsync(uint? limit = null,
                                                                                        TraktExtendedInfo extendedInfo = null)
         {
@@ -65,8 +63,7 @@
         /// <param name="movieIdOrSlug">The Trakt-Id or -Slug or an IMDB-Id of the movie, which should be hidden from recommendations.</param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktNoContentResponse> HideMovieRecommendationAsync([NotNull] string movieIdOrSlug)
+        public async Task<TraktNoContentResponse> HideMovieRecommendationAsync(string movieIdOrSlug)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteNoContentRequestAsync(new TraktUserRecommendationHideMovieRequest { Id = movieIdOrSlug });
@@ -92,7 +89,6 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        [OAuthAuthorizationRequired]
         public async Task<TraktPagedResponse<TraktShow>> GetShowRecommendationsAsync(uint? limit = null,
                                                                                      TraktExtendedInfo extendedInfo = null)
         {
@@ -115,8 +111,7 @@
         /// <param name="showIdOrSlug">The Trakt-Id or -Slug or an IMDB-Id of the show, which should be hidden from recommendations.</param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        [OAuthAuthorizationRequired]
-        public async Task<TraktNoContentResponse> HideShowRecommendationAsync([NotNull] string showIdOrSlug)
+        public async Task<TraktNoContentResponse> HideShowRecommendationAsync(string showIdOrSlug)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteNoContentRequestAsync(new TraktUserRecommendationHideShowRequest { Id = showIdOrSlug });

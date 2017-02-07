@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Syncs.Playback
 {
-    using Attributes;
     using Enums;
     using Movies;
     using Newtonsoft.Json;
@@ -33,7 +32,6 @@
         /// </summary>
         [JsonProperty(PropertyName = "type")]
         [JsonConverter(typeof(TraktEnumerationConverter<TraktSyncType>))]
-        [Nullable]
         public TraktSyncType Type { get; set; }
 
         /// <summary>
@@ -42,7 +40,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "movie")]
-        [Nullable]
         public TraktMovie Movie { get; set; }
 
         /// <summary>
@@ -51,7 +48,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "episode")]
-        [Nullable]
         public TraktEpisode Episode { get; set; }
 
         /// <summary>
@@ -60,7 +56,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "show")]
-        [Nullable]
         public TraktShow Show { get; set; }
     }
 }

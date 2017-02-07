@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users.Statistics
 {
-    using Attributes;
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
@@ -16,7 +15,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "distribution")]
-        [Nullable]
         public Dictionary<string, int> Distribution { get; set; }
     }
 }

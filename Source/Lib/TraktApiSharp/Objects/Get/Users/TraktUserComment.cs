@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users
 {
-    using Attributes;
     using Basic;
     using Enums;
     using Lists;
@@ -20,12 +19,10 @@
         /// </summary>
         [JsonProperty(PropertyName = "type")]
         [JsonConverter(typeof(TraktEnumerationConverter<TraktObjectType>))]
-        [Nullable]
         public TraktObjectType Type { get; set; }
 
         /// <summary>Gets or sets the comment's content.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "comment")]
-        [Nullable]
         public TraktComment Comment { get; set; }
 
         /// <summary>
@@ -34,7 +31,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "movie")]
-        [Nullable]
         public TraktMovie Movie { get; set; }
 
         /// <summary>
@@ -43,7 +39,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "show")]
-        [Nullable]
         public TraktShow Show { get; set; }
 
         /// <summary>
@@ -52,7 +47,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "season")]
-        [Nullable]
         public TraktSeason Season { get; set; }
 
         /// <summary>
@@ -61,7 +55,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "episode")]
-        [Nullable]
         public TraktEpisode Episode { get; set; }
 
         /// <summary>
@@ -70,7 +63,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "list")]
-        [Nullable]
         public TraktList List { get; set; }
     }
 }

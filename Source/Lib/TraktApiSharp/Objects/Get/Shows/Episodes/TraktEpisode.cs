@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Shows.Episodes
 {
-    using Attributes;
     using Modules;
     using Newtonsoft.Json;
     using Requests.Parameters;
@@ -21,7 +20,6 @@
 
         /// <summary>Gets or sets the episode title.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "title")]
-        [Nullable]
         public string Title { get; set; }
 
         /// <summary>
@@ -30,7 +28,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "ids")]
-        [Nullable]
         public TraktEpisodeIds Ids { get; set; }
 
         /// <summary>
@@ -39,7 +36,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "images")]
-        [Nullable]
         public TraktEpisodeImages Images { get; set; }
 
         /// <summary>Gets or sets the absolute episode number of all episodes in all seasons.</summary>
@@ -48,7 +44,6 @@
 
         /// <summary>Gets or sets the synopsis of the episode.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "overview")]
-        [Nullable]
         public string Overview { get; set; }
 
         /// <summary>Gets or sets the runtime of the episode.</summary>
@@ -73,7 +68,6 @@
 
         /// <summary>Gets or sets the list of translation language codes (two letters) for the episode.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "available_translations")]
-        [Nullable]
         public IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
 
         /// <summary>Gets or sets the list of <see cref="TraktEpisodeTranslation" />s for the episode.<para>Nullable</para></summary>
@@ -89,7 +83,6 @@
         /// and a translation language code was specified.
         /// </remarks>
         [JsonProperty(PropertyName = "translations")]
-        [Nullable]
         public IEnumerable<TraktEpisodeTranslation> Translations { get; set; }
     }
 }

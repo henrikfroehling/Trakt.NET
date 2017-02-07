@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Syncs.Activities
 {
-    using Attributes;
     using Newtonsoft.Json;
     using System;
 
@@ -17,7 +16,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "movies")]
-        [Nullable]
         public TraktSyncMoviesLastActivities Movies { get; set; }
 
         /// <summary>
@@ -26,7 +24,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "episodes")]
-        [Nullable]
         public TraktSyncEpisodesLastActivities Episodes { get; set; }
 
         /// <summary>
@@ -35,7 +32,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "shows")]
-        [Nullable]
         public TraktSyncShowsLastActivities Shows { get; set; }
 
         /// <summary>
@@ -44,7 +40,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "seasons")]
-        [Nullable]
         public TraktSyncSeasonsLastActivities Seasons { get; set; }
 
         /// <summary>
@@ -53,7 +48,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "comments")]
-        [Nullable]
         public TraktSyncCommentsLastActivities Comments { get; set; }
 
         /// <summary>
@@ -62,7 +56,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "lists")]
-        [Nullable]
         public TraktSyncListsLastActivities Lists { get; set; }
     }
 }

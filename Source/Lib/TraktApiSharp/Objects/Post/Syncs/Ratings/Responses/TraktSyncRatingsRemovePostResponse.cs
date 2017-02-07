@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings.Responses
 {
-    using Attributes;
     using Newtonsoft.Json;
     using Syncs.Responses;
 
@@ -15,7 +14,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "deleted")]
-        [Nullable]
         public TraktSyncPostResponseGroup Deleted { get; set; }
 
         /// <summary>
@@ -23,7 +21,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "not_found")]
-        [Nullable]
         public TraktSyncPostResponseNotFound NotFound { get; set; }
     }
 }

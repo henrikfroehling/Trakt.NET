@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users
 {
-    using Attributes;
     using Enums;
     using Newtonsoft.Json;
 
@@ -13,7 +12,6 @@
 
         /// <summary>Gets or sets the optional description of the custom list.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "description")]
-        [Nullable]
         public string Description { get; set; }
 
         /// <summary>
@@ -23,7 +21,6 @@
         /// </summary>
         [JsonProperty(PropertyName = "privacy")]
         [JsonConverter(typeof(TraktEnumerationConverter<TraktAccessScope>))]
-        [Nullable]
         public TraktAccessScope Privacy { get; set; }
 
         /// <summary>Gets or sets, whether the custom list should display numbers.</summary>

@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Responses
 {
-    using Attributes;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -14,7 +13,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "added")]
-        [Nullable]
         public TraktUserCustomListItemsPostResponseGroup Added { get; set; }
 
         /// <summary>
@@ -22,7 +20,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "existing")]
-        [Nullable]
         public TraktUserCustomListItemsPostResponseGroup Existing { get; set; }
 
         /// <summary>
@@ -30,7 +27,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "not_found")]
-        [Nullable]
         public TraktUserCustomListItemsPostResponseNotFound NotFound { get; set; }
     }
 }

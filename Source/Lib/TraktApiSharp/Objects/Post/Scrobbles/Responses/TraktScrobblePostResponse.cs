@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Scrobbles.Responses
 {
-    using Attributes;
     using Basic;
     using Enums;
     using Newtonsoft.Json;
@@ -18,7 +17,6 @@
         /// </summary>
         [JsonProperty(PropertyName = "action")]
         [JsonConverter(typeof(TraktEnumerationConverter<TraktScrobbleActionType>))]
-        [Nullable]
         public TraktScrobbleActionType Action { get; set; }
 
         /// <summary>Gets or sets the progress for the scrobble response.</summary>
@@ -31,7 +29,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "sharing")]
-        [Nullable]
         public TraktSharing Sharing { get; set; }
     }
 }
