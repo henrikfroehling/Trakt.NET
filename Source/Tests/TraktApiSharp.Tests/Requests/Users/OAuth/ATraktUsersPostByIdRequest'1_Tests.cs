@@ -17,7 +17,7 @@
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
 
-            public override TraktRequestObjectType RequestObjectType => throw new NotImplementedException();
+            public override TraktRequestObjectType RequestObjectType { get { throw new NotImplementedException(); } }
         }
 
         [Fact]

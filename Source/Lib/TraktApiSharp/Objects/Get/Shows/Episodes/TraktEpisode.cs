@@ -85,7 +85,7 @@
         /// <see cref="TraktSeasonsModule.GetAllSeasonsAsync(string, TraktExtendedInfo, string)" />
         /// and a translation language code was specified.
         /// This property is also set automatically if this episode is in
-        /// a collection returned by <see cref="TraktSeasonsModule.GetSeasonAsync(string, int, TraktExtendedInfo, string)" />
+        /// a collection returned by <see cref="TraktSeasonsModule.GetSeasonAsync(string, uint, TraktExtendedInfo, string)" />
         /// and a translation language code was specified.
         /// </remarks>
         [JsonProperty(PropertyName = "translations")]
