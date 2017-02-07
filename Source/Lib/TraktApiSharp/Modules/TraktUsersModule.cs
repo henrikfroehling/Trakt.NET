@@ -3,9 +3,6 @@
     using Attributes;
     using Enums;
     using Exceptions;
-    using Experimental.Requests.Handler;
-    using Experimental.Requests.Users;
-    using Experimental.Requests.Users.OAuth;
     using Objects.Basic;
     using Objects.Get.Collection;
     using Objects.Get.History;
@@ -19,7 +16,10 @@
     using Objects.Post.Users.CustomListItems;
     using Objects.Post.Users.CustomListItems.Responses;
     using Objects.Post.Users.Responses;
-    using Requests.Params;
+    using Requests.Handler;
+    using Requests.Parameters;
+    using Requests.Users;
+    using Requests.Users.OAuth;
     using Responses;
     using System;
     using System.Collections.Generic;

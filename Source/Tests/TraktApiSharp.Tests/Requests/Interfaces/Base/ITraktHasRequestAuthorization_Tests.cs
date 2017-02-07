@@ -2,9 +2,9 @@
 {
     using FluentAssertions;
     using System.Linq;
-    using TraktApiSharp.Experimental.Requests.Interfaces.Base;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Tests.Traits;
+    using Traits;
+    using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Interfaces.Base;
     using Xunit;
 
     [Category("Requests.Interfaces.Base")]

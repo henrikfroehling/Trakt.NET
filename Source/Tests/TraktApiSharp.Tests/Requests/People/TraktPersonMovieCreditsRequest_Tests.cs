@@ -3,11 +3,11 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Experimental.Requests.People;
+    using Traits;
     using TraktApiSharp.Objects.Get.People.Credits;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Requests.Params;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Parameters;
+    using TraktApiSharp.Requests.People;
     using Xunit;
 
     [Category("Requests.People")]

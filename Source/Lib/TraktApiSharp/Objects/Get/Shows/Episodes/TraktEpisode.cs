@@ -3,7 +3,7 @@
     using Attributes;
     using Modules;
     using Newtonsoft.Json;
-    using Requests.Params;
+    using Requests.Parameters;
     using Shows.Seasons;
     using System;
     using System.Collections.Generic;

@@ -5,9 +5,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using TraktApiSharp.Experimental.Requests.Episodes;
+    using Traits;
     using TraktApiSharp.Objects.Get.Shows.Episodes;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Episodes;
     using Xunit;
 
     [Category("Requests.Episodes")]

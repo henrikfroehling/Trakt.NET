@@ -6,11 +6,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Experimental.Requests.Movies;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Requests.Params;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Movies;
+    using TraktApiSharp.Requests.Parameters;
     using Xunit;
 
     [Category("Requests.Movies.Lists")]

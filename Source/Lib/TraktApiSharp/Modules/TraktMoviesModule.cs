@@ -3,14 +3,14 @@
     using Attributes;
     using Enums;
     using Exceptions;
-    using Experimental.Requests.Handler;
-    using Experimental.Requests.Movies;
     using Objects.Basic;
     using Objects.Get.Movies;
     using Objects.Get.Movies.Common;
     using Objects.Get.Users;
     using Objects.Get.Users.Lists;
-    using Requests.Params;
+    using Requests.Handler;
+    using Requests.Movies;
+    using Requests.Parameters;
     using Responses;
     using System;
     using System.Collections.Generic;

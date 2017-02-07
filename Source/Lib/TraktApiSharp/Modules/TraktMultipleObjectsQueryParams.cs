@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
-    using Requests.Params;
+    using Requests.Parameters;
 
     /// <summary>
     /// Collection containing multiple different combinations of ids and extended infos.

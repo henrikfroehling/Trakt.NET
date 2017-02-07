@@ -1,10 +1,9 @@
 ﻿namespace TraktApiSharp.Tests.Requests.Checkins.OAuth
 {
     using FluentAssertions;
-    using TraktApiSharp.Experimental.Requests.Base;
-    using TraktApiSharp.Experimental.Requests.Checkins.OAuth;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Tests.Traits;
+    using Traits;
+    using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Checkins.OAuth;
     using Xunit;
 
     [Category("Requests.Checkins.OAuth")]

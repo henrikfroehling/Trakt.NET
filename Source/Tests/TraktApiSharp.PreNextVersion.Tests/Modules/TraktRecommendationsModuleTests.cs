@@ -9,7 +9,7 @@
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Requests.Params;
+    using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Utils;
 

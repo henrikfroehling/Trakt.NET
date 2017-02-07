@@ -3,11 +3,10 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Experimental.Requests.Base;
-    using TraktApiSharp.Experimental.Requests.Comments.OAuth;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Tests.Traits;
+    using Traits;
+    using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Comments.OAuth;
+    using TraktApiSharp.Requests.Interfaces;
     using Xunit;
 
     [Category("Requests.Comments.OAuth")]

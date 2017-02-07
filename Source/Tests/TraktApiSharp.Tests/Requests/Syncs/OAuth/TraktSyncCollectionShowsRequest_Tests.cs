@@ -2,11 +2,11 @@
 {
     using FluentAssertions;
     using System.Collections.Generic;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
-    using TraktApiSharp.Experimental.Requests.Syncs.OAuth;
+    using Traits;
     using TraktApiSharp.Objects.Get.Collection;
-    using TraktApiSharp.Requests.Params;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Interfaces;
+    using TraktApiSharp.Requests.Parameters;
+    using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;
 
     [Category("Requests.Syncs.OAuth")]

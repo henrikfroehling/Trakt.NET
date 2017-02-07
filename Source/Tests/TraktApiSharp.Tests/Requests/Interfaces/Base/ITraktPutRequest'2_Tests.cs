@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Tests.Requests.Interfaces.Base
 {
     using FluentAssertions;
-    using TraktApiSharp.Experimental.Requests.Interfaces.Base;
-    using TraktApiSharp.Tests.Traits;
+    using Traits;
+    using TraktApiSharp.Requests.Interfaces.Base;
     using Xunit;
 
     [Category("Requests.Interfaces.Base")]

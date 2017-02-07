@@ -6,7 +6,7 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Requests.Params;
+    using TraktApiSharp.Requests.Parameters;
 
     class GetSingleShow
     {

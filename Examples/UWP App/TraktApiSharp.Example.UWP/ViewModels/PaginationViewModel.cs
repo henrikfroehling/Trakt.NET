@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Example.UWP.ViewModels
 {
     using Models;
-    using Requests.Params;
+    using Requests.Parameters;
     using System.Threading.Tasks;
     using Template10.Mvvm;
 

@@ -4,10 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Experimental.Requests.Syncs.OAuth;
     using TraktApiSharp.Objects.Get.Syncs.Playback;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;
 
     [Category("Requests.Syncs.OAuth")]

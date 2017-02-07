@@ -1,10 +1,9 @@
 ﻿namespace TraktApiSharp.Tests.Requests.Scrobbles.OAuth
 {
     using FluentAssertions;
-    using TraktApiSharp.Experimental.Requests.Base;
-    using TraktApiSharp.Experimental.Requests.Scrobbles.OAuth;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Tests.Traits;
+    using Traits;
+    using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Scrobbles.OAuth;
     using Xunit;
 
     [Category("Requests.Scrobbles.OAuth")]

@@ -6,11 +6,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
-    using TraktApiSharp.Experimental.Requests.Shows;
     using TraktApiSharp.Objects.Get.Users.Lists;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Interfaces;
+    using TraktApiSharp.Requests.Shows;
     using Xunit;
 
     [Category("Requests.Shows")]

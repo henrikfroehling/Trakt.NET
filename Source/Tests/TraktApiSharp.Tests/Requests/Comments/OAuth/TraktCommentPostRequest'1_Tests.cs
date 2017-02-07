@@ -2,12 +2,11 @@
 {
     using FluentAssertions;
     using System;
-    using TraktApiSharp.Experimental.Requests.Base;
-    using TraktApiSharp.Experimental.Requests.Comments.OAuth;
+    using Traits;
     using TraktApiSharp.Objects.Post.Comments;
     using TraktApiSharp.Objects.Post.Comments.Responses;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Comments.OAuth;
     using Xunit;
 
     [Category("Requests.Comments.OAuth")]

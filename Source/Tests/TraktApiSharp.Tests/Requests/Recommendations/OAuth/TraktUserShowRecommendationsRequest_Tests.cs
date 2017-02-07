@@ -2,11 +2,11 @@
 {
     using FluentAssertions;
     using System.Collections.Generic;
-    using TraktApiSharp.Experimental.Requests.Recommendations.OAuth;
+    using Traits;
     using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Requests.Params;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Parameters;
+    using TraktApiSharp.Requests.Recommendations.OAuth;
     using Xunit;
 
     [Category("Requests.Recommendations.OAuth")]

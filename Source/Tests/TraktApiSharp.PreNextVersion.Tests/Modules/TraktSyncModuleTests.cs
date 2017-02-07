@@ -29,7 +29,7 @@
     using TraktApiSharp.Objects.Post.Syncs.Ratings.Responses;
     using TraktApiSharp.Objects.Post.Syncs.Watchlist;
     using TraktApiSharp.Objects.Post.Syncs.Watchlist.Responses;
-    using TraktApiSharp.Requests.Params;
+    using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Utils;
 

@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Example.UWP.ViewModels.Movies
 {
     using Models.Movies;
-    using Requests.Params;
+    using Requests.Parameters;
     using Services.TraktService;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;

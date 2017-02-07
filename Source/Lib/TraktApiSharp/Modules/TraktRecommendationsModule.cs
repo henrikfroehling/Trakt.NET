@@ -2,12 +2,12 @@
 {
     using Attributes;
     using Exceptions;
-    using Experimental.Requests.Handler;
-    using Experimental.Requests.Recommendations.OAuth;
     using Objects.Basic;
     using Objects.Get.Movies;
     using Objects.Get.Shows;
-    using Requests.Params;
+    using Requests.Handler;
+    using Requests.Parameters;
+    using Requests.Recommendations.OAuth;
     using Responses;
     using System;
     using System.Threading.Tasks;

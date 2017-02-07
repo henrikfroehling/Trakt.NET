@@ -2,11 +2,11 @@
 {
     using Attributes;
     using Exceptions;
-    using Experimental.Requests.Calendars;
-    using Experimental.Requests.Calendars.OAuth;
-    using Experimental.Requests.Handler;
     using Objects.Get.Calendars;
-    using Requests.Params;
+    using Requests.Calendars;
+    using Requests.Calendars.OAuth;
+    using Requests.Handler;
+    using Requests.Parameters;
     using Responses;
     using System;
     using System.Threading.Tasks;

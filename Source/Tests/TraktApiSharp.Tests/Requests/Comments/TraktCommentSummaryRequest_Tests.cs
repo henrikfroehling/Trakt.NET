@@ -3,12 +3,11 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Experimental.Requests.Base;
-    using TraktApiSharp.Experimental.Requests.Comments;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
+    using Traits;
     using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Comments;
+    using TraktApiSharp.Requests.Interfaces;
     using Xunit;
 
     [Category("Requests.Comments")]

@@ -3,11 +3,11 @@
     using FluentAssertions;
     using System.Collections;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Experimental.Requests.Movies;
     using TraktApiSharp.Objects.Get.Movies.Common;
-    using TraktApiSharp.Requests.Params;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Movies;
+    using TraktApiSharp.Requests.Parameters;
     using Xunit;
 
     [Category("Requests.Movies.Lists")]

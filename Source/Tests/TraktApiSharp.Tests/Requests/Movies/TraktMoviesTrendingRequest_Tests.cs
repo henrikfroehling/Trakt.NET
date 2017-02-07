@@ -3,10 +3,10 @@
     using FluentAssertions;
     using System.Collections;
     using System.Collections.Generic;
-    using TraktApiSharp.Experimental.Requests.Movies;
+    using Traits;
     using TraktApiSharp.Objects.Get.Movies.Common;
-    using TraktApiSharp.Requests.Params;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Movies;
+    using TraktApiSharp.Requests.Parameters;
     using Xunit;
 
     [Category("Requests.Movies.Lists")]

@@ -3,9 +3,9 @@
     using Attributes;
     using Enums;
     using Exceptions;
-    using Experimental.Requests.Genres;
-    using Experimental.Requests.Handler;
     using Objects.Basic;
+    using Requests.Genres;
+    using Requests.Handler;
     using Responses;
     using System.Threading.Tasks;
 

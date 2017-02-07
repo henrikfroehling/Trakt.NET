@@ -3,9 +3,9 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Experimental.Requests.Episodes;
+    using Traits;
     using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Episodes;
     using Xunit;
 
     [Category("Requests.Episodes")]

@@ -11,7 +11,7 @@
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.People;
     using TraktApiSharp.Objects.Get.People.Credits;
-    using TraktApiSharp.Requests.Params;
+    using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Utils;
 

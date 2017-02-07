@@ -12,7 +12,7 @@
     using System.Reflection;
     using System.Text;
     using TraktApiSharp.Authentication;
-    using TraktApiSharp.Experimental.Requests.Handler;
+    using TraktApiSharp.Requests.Handler;
 
     public static class TestUtility
     {

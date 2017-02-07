@@ -3,9 +3,9 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Experimental.Requests.Movies;
+    using Traits;
     using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Movies;
     using Xunit;
 
     [Category("Requests.Movies")]

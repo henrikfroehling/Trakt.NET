@@ -3,9 +3,9 @@
     using FluentAssertions;
     using System.Collections;
     using System.Collections.Generic;
-    using TraktApiSharp.Experimental.Requests.Shows.OAuth;
+    using Traits;
     using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Shows.OAuth;
     using Xunit;
 
     [Category("Requests.Shows.OAuth")]

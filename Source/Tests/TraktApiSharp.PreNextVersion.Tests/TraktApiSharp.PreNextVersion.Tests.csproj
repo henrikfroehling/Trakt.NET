@@ -137,8 +137,8 @@
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostBuilderTests.cs" />
     <Compile Include="Enums\TraktCommentSortOrderTests.cs" />
     <Compile Include="Enums\TraktCommentTypeTests.cs" />
-    <Compile Include="Requests\Params\TraktCalendarFilterTests.cs" />
-    <Compile Include="Requests\Params\TraktExtendedInfoTests.cs" />
+    <Compile Include="Requests\Parameters\TraktCalendarFilterTests.cs" />
+    <Compile Include="Requests\Parameters\TraktExtendedInfoTests.cs" />
     <Compile Include="Enums\TraktGenreTypeTests.cs" />
     <Compile Include="Enums\TraktHiddenItemsSectionTests.cs" />
     <Compile Include="Enums\TraktHiddenItemTypeTests.cs" />
@@ -147,7 +147,7 @@
     <Compile Include="Enums\TraktMediaAudioTests.cs" />
     <Compile Include="Enums\TraktMediaResolutionTests.cs" />
     <Compile Include="Enums\TraktMediaTypeTests.cs" />
-    <Compile Include="Requests\Params\TraktMovieFilterTests.cs" />
+    <Compile Include="Requests\Parameters\TraktMovieFilterTests.cs" />
     <Compile Include="Enums\TraktObjectTypeTests.cs" />
     <Compile Include="Enums\TraktTimePeriodTests.cs" />
     <Compile Include="Enums\TraktReleaseTypeTests.cs" />
@@ -299,8 +299,8 @@
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostTests.cs" />
     <Compile Include="Objects\Post\Users\Responses\TraktUserFollowUserPostResponseTests.cs" />
     <Compile Include="Objects\Post\Users\TraktUserCustomListPostTests.cs" />
-    <Compile Include="Requests\Params\TraktSearchFilterTests.cs" />
-    <Compile Include="Requests\Params\TraktShowFilterTests.cs" />
+    <Compile Include="Requests\Parameters\TraktSearchFilterTests.cs" />
+    <Compile Include="Requests\Parameters\TraktShowFilterTests.cs" />
     <Compile Include="Services\TraktLanguageServiceTests.cs" />
     <Compile Include="Services\TraktSerializationServiceTests.cs" />
     <Compile Include="TraktClientTests.cs" />

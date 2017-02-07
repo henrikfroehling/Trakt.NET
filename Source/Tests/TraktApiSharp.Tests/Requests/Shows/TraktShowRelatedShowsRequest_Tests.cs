@@ -4,11 +4,11 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
-    using TraktApiSharp.Experimental.Requests.Shows;
+    using Traits;
     using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Requests.Params;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Interfaces;
+    using TraktApiSharp.Requests.Parameters;
+    using TraktApiSharp.Requests.Shows;
     using Xunit;
 
     [Category("Requests.Shows")]

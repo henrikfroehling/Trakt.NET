@@ -4,10 +4,10 @@
     using System;
     using System.Linq;
     using System.Reflection;
-    using TraktApiSharp.Experimental.Requests.Base;
-    using TraktApiSharp.Experimental.Requests.Calendars;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
-    using TraktApiSharp.Tests.Traits;
+    using Traits;
+    using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Calendars;
+    using TraktApiSharp.Requests.Interfaces;
     using Xunit;
 
     [Category("Requests.Calendars")]

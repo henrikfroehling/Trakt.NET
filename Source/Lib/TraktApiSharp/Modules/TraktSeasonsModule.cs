@@ -3,15 +3,15 @@
     using Attributes;
     using Enums;
     using Exceptions;
-    using Experimental.Requests.Handler;
-    using Experimental.Requests.Seasons;
     using Objects.Basic;
     using Objects.Get.Shows;
     using Objects.Get.Shows.Episodes;
     using Objects.Get.Shows.Seasons;
     using Objects.Get.Users;
     using Objects.Get.Users.Lists;
-    using Requests.Params;
+    using Requests.Handler;
+    using Requests.Parameters;
+    using Requests.Seasons;
     using Responses;
     using System;
     using System.Collections.Generic;

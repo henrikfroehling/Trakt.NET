@@ -4,9 +4,9 @@
     using System.Linq;
     using System.Net.Http;
     using System.Reflection;
-    using TraktApiSharp.Experimental.Requests.Handler;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Tests.Traits;
+    using Traits;
+    using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Handler;
     using Xunit;
 
     [Category("Requests.Handler")]

@@ -1,11 +1,10 @@
 ﻿namespace TraktApiSharp.Tests.Requests.Users.OAuth
 {
     using FluentAssertions;
-    using TraktApiSharp.Experimental.Requests.Base;
-    using TraktApiSharp.Experimental.Requests.Users.OAuth;
+    using Traits;
     using TraktApiSharp.Objects.Get.Users;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
 
     [Category("Requests.Users.OAuth")]

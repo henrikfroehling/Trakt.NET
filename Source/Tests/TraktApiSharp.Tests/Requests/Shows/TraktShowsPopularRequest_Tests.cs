@@ -3,10 +3,10 @@
     using FluentAssertions;
     using System.Collections;
     using System.Collections.Generic;
-    using TraktApiSharp.Experimental.Requests.Shows;
+    using Traits;
     using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Requests.Params;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Parameters;
+    using TraktApiSharp.Requests.Shows;
     using Xunit;
 
     [Category("Requests.Shows.Lists")]

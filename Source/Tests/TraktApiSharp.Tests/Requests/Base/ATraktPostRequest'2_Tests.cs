@@ -5,10 +5,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Net.Http;
-    using TraktApiSharp.Experimental.Requests.Base;
-    using TraktApiSharp.Experimental.Requests.Interfaces.Base;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Tests.Traits;
+    using Traits;
+    using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Interfaces.Base;
     using Xunit;
 
     [Category("Requests.Base")]

@@ -5,7 +5,7 @@
     using Models.ModelConverter;
     using Models.Shows;
     using Objects.Get.Shows;
-    using Requests.Params;
+    using Requests.Parameters;
     using System;
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;

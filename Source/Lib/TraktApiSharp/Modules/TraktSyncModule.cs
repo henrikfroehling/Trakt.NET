@@ -3,8 +3,6 @@
     using Attributes;
     using Enums;
     using Exceptions;
-    using Experimental.Requests.Handler;
-    using Experimental.Requests.Syncs.OAuth;
     using Objects.Basic;
     using Objects.Get.Collection;
     using Objects.Get.History;
@@ -21,7 +19,9 @@
     using Objects.Post.Syncs.Ratings.Responses;
     using Objects.Post.Syncs.Watchlist;
     using Objects.Post.Syncs.Watchlist.Responses;
-    using Requests.Params;
+    using Requests.Handler;
+    using Requests.Parameters;
+    using Requests.Syncs.OAuth;
     using Responses;
     using System;
     using System.Linq;

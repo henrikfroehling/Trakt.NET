@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Tests.Requests.Syncs.OAuth
 {
     using FluentAssertions;
-    using TraktApiSharp.Experimental.Requests.Syncs.OAuth;
+    using Traits;
     using TraktApiSharp.Objects.Post.Syncs.Collection;
     using TraktApiSharp.Objects.Post.Syncs.Collection.Responses;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;
 
     [Category("Requests.Syncs.OAuth")]

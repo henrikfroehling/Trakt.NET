@@ -5,11 +5,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using TraktApiSharp.Experimental.Requests.Users.OAuth;
+    using Traits;
     using TraktApiSharp.Objects.Post.Users.CustomListItems;
     using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
 
     [Category("Requests.Users.OAuth")]

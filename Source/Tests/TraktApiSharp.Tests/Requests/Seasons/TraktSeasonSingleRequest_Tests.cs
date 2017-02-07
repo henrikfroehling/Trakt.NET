@@ -6,11 +6,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
-    using TraktApiSharp.Experimental.Requests.Seasons;
+    using Traits;
     using TraktApiSharp.Objects.Get.Shows.Episodes;
-    using TraktApiSharp.Requests.Params;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Interfaces;
+    using TraktApiSharp.Requests.Parameters;
+    using TraktApiSharp.Requests.Seasons;
     using Xunit;
 
     [Category("Requests.Seasons")]

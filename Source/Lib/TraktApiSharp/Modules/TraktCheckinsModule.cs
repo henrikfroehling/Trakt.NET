@@ -2,8 +2,6 @@
 {
     using Attributes;
     using Exceptions;
-    using Experimental.Requests.Checkins.OAuth;
-    using Experimental.Requests.Handler;
     using Extensions;
     using Objects.Basic;
     using Objects.Get.Movies;
@@ -11,6 +9,8 @@
     using Objects.Get.Shows.Episodes;
     using Objects.Post.Checkins;
     using Objects.Post.Checkins.Responses;
+    using Requests.Checkins.OAuth;
+    using Requests.Handler;
     using Responses;
     using System;
     using System.Threading.Tasks;

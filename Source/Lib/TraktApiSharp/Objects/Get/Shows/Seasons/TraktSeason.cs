@@ -4,7 +4,7 @@
     using Episodes;
     using Modules;
     using Newtonsoft.Json;
-    using Requests.Params;
+    using Requests.Parameters;
     using System;
     using System.Collections.Generic;
 

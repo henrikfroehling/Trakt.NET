@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Tests.Requests.Calendars.OAuth
 {
     using FluentAssertions;
-    using TraktApiSharp.Experimental.Requests.Calendars;
-    using TraktApiSharp.Experimental.Requests.Calendars.OAuth;
-    using TraktApiSharp.Tests.Traits;
+    using Traits;
+    using TraktApiSharp.Requests.Calendars;
+    using TraktApiSharp.Requests.Calendars.OAuth;
     using Xunit;
 
     [Category("Requests.Calendars.OAuth")]

@@ -6,14 +6,13 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using TraktApiSharp.Experimental.Requests.Base;
-    using TraktApiSharp.Experimental.Requests.Interfaces;
-    using TraktApiSharp.Experimental.Requests.Movies;
+    using Traits;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.Movies.Common;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Requests.Params;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Interfaces;
+    using TraktApiSharp.Requests.Movies;
+    using TraktApiSharp.Requests.Parameters;
     using Xunit;
 
     [Category("Requests.Movies.Lists")]

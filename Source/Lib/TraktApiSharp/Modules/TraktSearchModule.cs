@@ -3,10 +3,10 @@
     using Attributes;
     using Enums;
     using Exceptions;
-    using Experimental.Requests.Handler;
-    using Experimental.Requests.Search;
     using Objects.Basic;
-    using Requests.Params;
+    using Requests.Handler;
+    using Requests.Parameters;
+    using Requests.Search;
     using Responses;
     using System;
     using System.Threading.Tasks;

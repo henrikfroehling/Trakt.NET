@@ -1,11 +1,10 @@
 ﻿namespace TraktApiSharp.Tests.Requests.Genres
 {
     using FluentAssertions;
-    using TraktApiSharp.Experimental.Requests.Base;
-    using TraktApiSharp.Experimental.Requests.Genres;
+    using Traits;
     using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Genres;
     using Xunit;
 
     [Category("Requests.Genres")]

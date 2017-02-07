@@ -4,12 +4,12 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using TraktApiSharp.Experimental.Requests.Calendars.OAuth;
+    using Traits;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.Calendars;
-    using TraktApiSharp.Requests;
-    using TraktApiSharp.Requests.Params;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Calendars.OAuth;
+    using TraktApiSharp.Requests.Parameters;
     using Xunit;
 
     [Category("Requests.Calendars.OAuth.Shows")]

@@ -5,9 +5,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using TraktApiSharp.Experimental.Requests.Movies;
+    using Traits;
     using TraktApiSharp.Objects.Get.Movies;
-    using TraktApiSharp.Tests.Traits;
+    using TraktApiSharp.Requests.Movies;
     using Xunit;
 
     [Category("Requests.Movies")]
