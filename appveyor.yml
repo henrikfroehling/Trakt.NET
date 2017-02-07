@@ -52,6 +52,60 @@
       on:
         appveyor_repo_tag: true
 
+# configuration for "next-version" branch
+# build in Release mode
+-
+  environment:
+    packageVersion: 1.0.0-alpha1
+
+  version: '{branch}-v1.0.0-alpha1-{build}'
+  image: Visual Studio 2015
+
+  install:
+    - cmd: appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+
+  cache:
+    - packages -> **\packages.config
+
+  pull_requests:
+    do_not_increment_build_number: true
+
+  skip_branch_with_pr: true
+
+  before_build:
+    - cmd: nuget restore
+
+  after_test:
+    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%-v1.0.0-alpha1.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release
+    - ps: Get-ChildItem .\Build\Lib\Release\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+
+  build:
+    verbosity: minimal
+
+  branches:
+    only:
+      - next-version
+
+  configuration: Release
+
+  artifacts:
+    - path: Build\Lib\Release\TraktApiSharp.dll
+      name: Assembly
+    - path: Build\Lib\Release\TraktApiSharp.pdb
+      name: AssemblyPDB
+    - path: Build\Lib\Release\TraktApiSharp.xml
+      name: DocumentationXML
+
+  deploy:
+    - provider: NuGet
+      api_key:
+        secure: SN3+YTcNTLpLVVD+/VA9UV2r6EWhR60wVcmZlKOhQwpS98bqSymIA+gDT+yYYnKA
+      skip_symbols: true
+      symbol_server:
+      artifact: TraktApiSharp.$(packageVersion).nupkg
+      on:
+        appveyor_repo_tag: true
+
 # configuration for all branches starting from "dev-"
 # build in Debug mode
 -
