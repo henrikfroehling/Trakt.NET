@@ -8,7 +8,7 @@
     using System.Collections.Generic;
     using TraktApiSharp.Requests;
 
-    internal sealed class TraktUserCustomListItemsRequest : ATraktUsersGetRequest<TraktListItem>, ITraktHasId
+    internal sealed class TraktUserCustomListItemsRequest : ATraktUsersPagedGetRequest<TraktListItem>, ITraktHasId
     {
         internal string Username { get; set; }
 
@@ -18,7 +18,7 @@
 
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
 
-        public override string UriTemplate => "users/{username}/lists/{id}/items{/type}{?extended}";
+        public override string UriTemplate => "users/{username}/lists/{id}/items{/type}{?extended,page,limit}";
 
         public override IDictionary<string, object> GetUriPathParameters()
         {

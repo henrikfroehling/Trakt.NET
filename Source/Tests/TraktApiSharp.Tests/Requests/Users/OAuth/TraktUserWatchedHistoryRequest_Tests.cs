@@ -7,6 +7,7 @@
     using System.Linq;
     using System.Reflection;
     using TraktApiSharp.Enums;
+    using TraktApiSharp.Experimental.Requests.Interfaces;
     using TraktApiSharp.Experimental.Requests.Users.OAuth;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.History;
@@ -34,6 +35,12 @@
         public void Test_TraktUserWatchedHistoryRequest_Inherits_ATraktUsersPagedGetRequest_1()
         {
             typeof(TraktUserWatchedHistoryRequest).IsSubclassOf(typeof(ATraktUsersPagedGetRequest<TraktHistoryItem>)).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Test_TraktUserWatchedHistoryRequest_Implements_ITraktHasId_Interface()
+        {
+            typeof(TraktUserWatchedHistoryRequest).GetInterfaces().Should().Contain(typeof(ITraktHasId));
         }
 
         [Fact]

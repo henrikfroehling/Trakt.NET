@@ -2,11 +2,13 @@
 {
     using Enums;
     using Extensions;
+    using Interfaces;
     using Objects.Get.History;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Requests;
 
-    internal sealed class TraktUserWatchedHistoryRequest : ATraktUsersPagedGetRequest<TraktHistoryItem>
+    internal sealed class TraktUserWatchedHistoryRequest : ATraktUsersPagedGetRequest<TraktHistoryItem>, ITraktHasId
     {
         internal string Username { get; set; }
 
@@ -17,6 +19,10 @@
         internal DateTime? StartAt { get; set; }
 
         internal DateTime? EndAt { get; set; }
+
+        public string Id { get; set; }
+
+        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Unspecified;
 
         public override string UriTemplate => "users/{username}/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}";
 
@@ -32,7 +38,11 @@
                 uriParams.Add("type", Type.UriName);
 
             if (isTypeSetAndValid && ItemId.HasValue && ItemId.Value > 0)
-                uriParams.Add("item_id", ItemId.ToString());
+            {
+                var strItemId = ItemId.ToString();
+                uriParams.Add("item_id", strItemId);
+                Id = strItemId;
+            }
 
             if (StartAt.HasValue)
                 uriParams.Add("start_at", StartAt.Value.ToTraktLongDateTimeString());

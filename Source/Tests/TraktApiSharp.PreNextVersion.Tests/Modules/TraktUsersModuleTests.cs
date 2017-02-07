@@ -9,6 +9,7 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
+    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
@@ -73,34 +74,40 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetSettingsAsync().Result;
 
             response.Should().NotBeNull();
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("justin");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Justin Nemeth");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
-            response.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            response.User.Location.Should().Be("San Diego, CA");
-            response.User.About.Should().Be("Co-founder of trakt.");
-            response.User.Gender.Should().Be("male");
-            response.User.Age.Should().Be(32);
-            response.User.Images.Should().NotBeNull();
-            response.User.Images.Avatar.Should().NotBeNull();
-            response.User.Images.Avatar.Full.Should().Be("https://secure.gravatar.com/avatar/30c2f0dfbc39e48656f40498aa871e33?r=pg&s=256");
-            response.Account.Should().NotBeNull();
-            response.Account.TimeZoneId.Should().Be("America/Los_Angeles");
-            response.Account.Time24Hr.Should().BeFalse();
-            response.Account.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
-            response.Connections.Should().NotBeNull();
-            response.Connections.Facebook.Should().BeTrue();
-            response.Connections.Twitter.Should().BeTrue();
-            response.Connections.Google.Should().BeTrue();
-            response.Connections.Tumblr.Should().BeFalse();
-            response.Connections.Medium.Should().BeFalse();
-            response.Connections.Slack.Should().BeFalse();
-            response.SharingText.Should().NotBeNull();
-            response.SharingText.Watching.Should().Be("I'm watching [item]");
-            response.SharingText.Watched.Should().Be("I just watched [item]");
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("justin");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Justin Nemeth");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            responseValue.User.Location.Should().Be("San Diego, CA");
+            responseValue.User.About.Should().Be("Co-founder of trakt.");
+            responseValue.User.Gender.Should().Be("male");
+            responseValue.User.Age.Should().Be(32);
+            responseValue.User.Images.Should().NotBeNull();
+            responseValue.User.Images.Avatar.Should().NotBeNull();
+            responseValue.User.Images.Avatar.Full.Should().Be("https://secure.gravatar.com/avatar/30c2f0dfbc39e48656f40498aa871e33?r=pg&s=256");
+            responseValue.Account.Should().NotBeNull();
+            responseValue.Account.TimeZoneId.Should().Be("America/Los_Angeles");
+            responseValue.Account.Time24Hr.Should().BeFalse();
+            responseValue.Account.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
+            responseValue.Connections.Should().NotBeNull();
+            responseValue.Connections.Facebook.Should().BeTrue();
+            responseValue.Connections.Twitter.Should().BeTrue();
+            responseValue.Connections.Google.Should().BeTrue();
+            responseValue.Connections.Tumblr.Should().BeFalse();
+            responseValue.Connections.Medium.Should().BeFalse();
+            responseValue.Connections.Slack.Should().BeFalse();
+            responseValue.SharingText.Should().NotBeNull();
+            responseValue.SharingText.Watching.Should().Be("I'm watching [item]");
+            responseValue.SharingText.Watched.Should().Be("I just watched [item]");
         }
 
         [TestMethod]
@@ -110,7 +117,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktUserSettings>> act =
+            Func<Task<TraktResponse<TraktUserSettings>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetSettingsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -192,7 +199,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowRequestsAsync().Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -211,7 +221,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowRequestsAsync(extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -221,7 +234,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<IEnumerable<TraktUserFollowRequest>>> act =
+            Func<Task<TraktListResponse<TraktUserFollowRequest>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFollowRequestsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -308,7 +321,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -331,7 +346,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -361,7 +378,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -385,7 +404,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -409,7 +430,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -434,7 +457,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -462,7 +487,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -492,7 +519,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -522,7 +551,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -553,7 +584,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -576,7 +609,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -599,7 +634,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -623,7 +660,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -655,7 +694,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -670,7 +711,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktPaginationListResult<TraktUserHiddenItem>>> act =
+            Func<Task<TraktPagedResponse<TraktUserHiddenItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -747,8 +788,11 @@
             TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}",
                                                              hiddenItems, 1, 10, 1, itemCount);
 
-            Func<Task<TraktPaginationListResult<TraktUserHiddenItem>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section);
+            Func<Task<TraktPagedResponse<TraktUserHiddenItem>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(null);
+            act.ShouldThrow<ArgumentNullException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -772,7 +816,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync().Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -793,7 +839,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(type).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -816,7 +864,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(type, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -839,7 +889,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(type, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -860,7 +912,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -881,7 +935,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -903,7 +959,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -927,7 +985,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(type, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -942,7 +1002,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktPaginationListResult<TraktUserLikeItem>>> act =
+            Func<Task<TraktPagedResponse<TraktUserLikeItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(type);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1027,17 +1087,23 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserProfileAsync(username).Result;
 
             response.Should().NotBeNull();
-            response.Username.Should().Be("sean");
-            response.Private.Should().BeFalse();
-            response.Name.Should().Be("Sean Rudford");
-            response.VIP.Should().BeTrue();
-            response.VIP_EP.Should().BeTrue();
-            response.JoinedAt.Should().NotHaveValue();
-            response.Location.Should().BeNullOrEmpty();
-            response.About.Should().BeNullOrEmpty();
-            response.Gender.Should().BeNullOrEmpty();
-            response.Age.Should().NotHaveValue();
-            response.Images.Should().BeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Username.Should().Be("sean");
+            responseValue.Private.Should().BeFalse();
+            responseValue.Name.Should().Be("Sean Rudford");
+            responseValue.VIP.Should().BeTrue();
+            responseValue.VIP_EP.Should().BeTrue();
+            responseValue.JoinedAt.Should().NotHaveValue();
+            responseValue.Location.Should().BeNullOrEmpty();
+            responseValue.About.Should().BeNullOrEmpty();
+            responseValue.Gender.Should().BeNullOrEmpty();
+            responseValue.Age.Should().NotHaveValue();
+            responseValue.Images.Should().BeNull();
         }
 
         [TestMethod]
@@ -1059,17 +1125,23 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserProfileAsync(username, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Username.Should().Be("sean");
-            response.Private.Should().BeFalse();
-            response.Name.Should().Be("Sean Rudford");
-            response.VIP.Should().BeTrue();
-            response.VIP_EP.Should().BeTrue();
-            response.JoinedAt.Should().NotHaveValue();
-            response.Location.Should().BeNullOrEmpty();
-            response.About.Should().BeNullOrEmpty();
-            response.Gender.Should().BeNullOrEmpty();
-            response.Age.Should().NotHaveValue();
-            response.Images.Should().BeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Username.Should().Be("sean");
+            responseValue.Private.Should().BeFalse();
+            responseValue.Name.Should().Be("Sean Rudford");
+            responseValue.VIP.Should().BeTrue();
+            responseValue.VIP_EP.Should().BeTrue();
+            responseValue.JoinedAt.Should().NotHaveValue();
+            responseValue.Location.Should().BeNullOrEmpty();
+            responseValue.About.Should().BeNullOrEmpty();
+            responseValue.Gender.Should().BeNullOrEmpty();
+            responseValue.Age.Should().NotHaveValue();
+            responseValue.Images.Should().BeNull();
         }
 
         [TestMethod]
@@ -1086,17 +1158,23 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserProfileAsync(username).Result;
 
             response.Should().NotBeNull();
-            response.Username.Should().Be("sean");
-            response.Private.Should().BeFalse();
-            response.Name.Should().Be("Sean Rudford");
-            response.VIP.Should().BeTrue();
-            response.VIP_EP.Should().BeTrue();
-            response.JoinedAt.Should().NotHaveValue();
-            response.Location.Should().BeNullOrEmpty();
-            response.About.Should().BeNullOrEmpty();
-            response.Gender.Should().BeNullOrEmpty();
-            response.Age.Should().NotHaveValue();
-            response.Images.Should().BeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Username.Should().Be("sean");
+            responseValue.Private.Should().BeFalse();
+            responseValue.Name.Should().Be("Sean Rudford");
+            responseValue.VIP.Should().BeTrue();
+            responseValue.VIP_EP.Should().BeTrue();
+            responseValue.JoinedAt.Should().NotHaveValue();
+            responseValue.Location.Should().BeNullOrEmpty();
+            responseValue.About.Should().BeNullOrEmpty();
+            responseValue.Gender.Should().BeNullOrEmpty();
+            responseValue.Age.Should().NotHaveValue();
+            responseValue.Images.Should().BeNull();
         }
 
         [TestMethod]
@@ -1107,7 +1185,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktUser>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserProfileAsync(username);
+            Func<Task<TraktResponse<TraktUser>>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserProfileAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
@@ -1174,8 +1252,8 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserProfileArgumentExceptions()
         {
-            Func<Task<TraktUser>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserProfileAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            Func<Task<TraktResponse<TraktUser>>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserProfileAsync(null);
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserProfileAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -1203,7 +1281,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionMoviesAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1219,7 +1300,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionMoviesAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1241,7 +1325,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionMoviesAsync(username, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1252,7 +1339,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<IEnumerable<TraktCollectionMovie>>> act =
+            Func<Task<TraktListResponse<TraktCollectionMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionMoviesAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -1320,9 +1407,9 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserCollectionMoviesArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktCollectionMovie>>> act =
+            Func<Task<TraktListResponse<TraktCollectionMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionMoviesAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionMoviesAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -1350,7 +1437,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionShowsAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1366,7 +1456,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionShowsAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1388,7 +1481,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionShowsAsync(username, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -1399,7 +1495,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<IEnumerable<TraktCollectionShow>>> act =
+            Func<Task<TraktListResponse<TraktCollectionShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionShowsAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -1467,9 +1563,9 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserCollectionShowsArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktCollectionShow>>> act =
+            Func<Task<TraktListResponse<TraktCollectionShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionShowsAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCollectionShowsAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -1499,7 +1595,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1521,7 +1619,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1544,7 +1644,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1569,7 +1671,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1601,7 +1705,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1627,7 +1733,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1653,7 +1761,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1680,7 +1790,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1710,7 +1822,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1741,7 +1855,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1772,7 +1888,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1804,7 +1922,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1828,7 +1948,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1852,7 +1974,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1877,7 +2001,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1900,7 +2026,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1930,7 +2058,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -1961,7 +2091,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -1992,7 +2124,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2024,7 +2158,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2048,7 +2184,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2072,7 +2210,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2097,7 +2237,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2126,7 +2268,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2156,7 +2300,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2186,7 +2332,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2217,7 +2365,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2240,7 +2390,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2263,7 +2415,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -2287,7 +2441,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2321,7 +2477,9 @@
                                                                                    extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -2336,7 +2494,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPaginationListResult<TraktUserComment>>> act =
+            Func<Task<TraktPagedResponse<TraktUserComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -2404,9 +2562,9 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserCommentsArgumentExceptions()
         {
-            Func<Task<TraktPaginationListResult<TraktUserComment>>> act =
+            Func<Task<TraktPagedResponse<TraktUserComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -2434,7 +2592,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListsAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2450,7 +2611,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListsAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -2461,7 +2625,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<IEnumerable<TraktList>>> act =
+            Func<Task<TraktListResponse<TraktList>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListsAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -2529,9 +2693,9 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserCustomListsArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktList>>> act =
+            Func<Task<TraktListResponse<TraktList>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListsAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListsAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -2561,22 +2725,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomSingleListAsync(username, listId).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -2594,22 +2764,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomSingleListAsync(username, listId).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -2621,7 +2797,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktList>> act =
+            Func<Task<TraktResponse<TraktList>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomSingleListAsync(username, listId);
             act.ShouldThrow<TraktListNotFoundException>();
 
@@ -2692,9 +2868,9 @@
             var username = "sean";
             var listId = "55";
 
-            Func<Task<TraktList>> act =
+            Func<Task<TraktResponse<TraktList>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomSingleListAsync(null, listId);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomSingleListAsync(string.Empty, listId);
             act.ShouldThrow<ArgumentException>();
@@ -2703,7 +2879,7 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomSingleListAsync(username, null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomSingleListAsync(username, string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -2725,7 +2901,7 @@
             var username = "sean";
             var listId = "55";
 
-            Func<Task<IEnumerable<TraktList>>> act =
+            Func<Task<IEnumerable<TraktResponse<TraktList>>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(null);
             act.ShouldNotThrow();
 
@@ -2735,7 +2911,7 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(
                 new TraktMultipleUserListsQueryParams { { null, listId } });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(
                 new TraktMultipleUserListsQueryParams { { string.Empty, listId } });
@@ -2747,7 +2923,7 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(
                 new TraktMultipleUserListsQueryParams { { username, null } });
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetMultipleCustomListsAsync(
                 new TraktMultipleUserListsQueryParams { { username, string.Empty } });
@@ -2778,7 +2954,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId).Result;
 
-            response.Should().NotBeNull().And.HaveCount(5);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(5);
         }
 
         [TestMethod]
@@ -2795,7 +2974,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId).Result;
 
-            response.Should().NotBeNull().And.HaveCount(5);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(5);
         }
 
         [TestMethod]
@@ -2813,7 +2995,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId, type).Result;
 
-            response.Should().NotBeNull().And.HaveCount(5);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(5);
         }
 
         [TestMethod]
@@ -2836,7 +3021,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(5);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(5);
         }
 
         [TestMethod]
@@ -2861,7 +3049,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId, type, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(5);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(5);
         }
 
         [TestMethod]
@@ -2873,7 +3064,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<IEnumerable<TraktListItem>>> act =
+            Func<Task<TraktPagedResponse<TraktListItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId);
             act.ShouldThrow<TraktListNotFoundException>();
 
@@ -2944,9 +3135,9 @@
             var username = "sean";
             var listId = "55";
 
-            Func<Task<IEnumerable<TraktListItem>>> act =
+            Func<Task<TraktPagedResponse<TraktListItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(null, listId);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(string.Empty, listId);
             act.ShouldThrow<ArgumentException>();
@@ -2955,7 +3146,7 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -2993,22 +3184,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.CreateCustomListAsync(username, listName).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3035,22 +3232,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.CreateCustomListAsync(username, listName, description).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3079,22 +3282,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.CreateCustomListAsync(username, listName, description, privacy).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3126,22 +3335,28 @@
                                                                                     displayNumbers).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3173,22 +3388,28 @@
                                                                                     null, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3217,22 +3438,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.CreateCustomListAsync(username, listName, description, null, displayNumbers).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3262,22 +3489,28 @@
                                                                                     null, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3309,22 +3542,28 @@
                                                                                     displayNumbers, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3351,22 +3590,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.CreateCustomListAsync(username, listName, null, privacy).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3395,22 +3640,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.CreateCustomListAsync(username, listName, null, privacy, displayNumbers).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3439,22 +3690,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.CreateCustomListAsync(username, listName, null, privacy, null, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3486,22 +3743,28 @@
                                                                                     displayNumbers, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3528,22 +3791,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.CreateCustomListAsync(username, listName, null, null, displayNumbers).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3571,22 +3840,28 @@
                                                                                     null, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3616,22 +3891,28 @@
                                                                                     displayNumbers, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3665,22 +3946,28 @@
                                                                                     displayNumbers, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3693,7 +3980,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktList>> act =
+            Func<Task<TraktResponse<TraktList>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.CreateCustomListAsync(username, listName);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -3764,9 +4051,9 @@
             var username = "sean";
             var listName = "new list";
 
-            Func<Task<TraktList>> act =
+            Func<Task<TraktResponse<TraktList>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.CreateCustomListAsync(null, listName);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.CreateCustomListAsync(string.Empty, listName);
             act.ShouldThrow<ArgumentException>();
@@ -3775,7 +4062,7 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.CreateCustomListAsync(username, null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.CreateCustomListAsync(username, string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -3811,22 +4098,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, listName).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3854,22 +4147,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, listName, description).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3899,22 +4198,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, listName, description, privacy).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3947,22 +4252,28 @@
                                                                                     displayNumbers).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -3995,22 +4306,28 @@
                                                                                     null, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4041,22 +4358,28 @@
                                                                                     displayNumbers).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4087,22 +4410,28 @@
                                                                                     null, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4135,22 +4464,28 @@
                                                                                     displayNumbers, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4176,22 +4511,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, description).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4219,22 +4560,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, description, privacy).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4265,22 +4612,28 @@
                                                                                     displayNumbers).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4311,22 +4664,28 @@
                                                                                     null, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4355,22 +4714,28 @@
                                                                                     displayNumbers).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4399,22 +4764,28 @@
                                                                                     null, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4445,22 +4816,28 @@
                                                                                     displayNumbers, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4486,22 +4863,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, null, privacy).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4529,22 +4912,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, null, privacy, displayNumbers).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4573,22 +4962,28 @@
                                                                                     null, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4619,22 +5014,28 @@
                                                                                     displayNumbers, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4660,22 +5061,28 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, null, null, null, displayNumbers).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4702,22 +5109,28 @@
                                                                                     null, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4746,22 +5159,28 @@
                                                                                     displayNumbers, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4796,22 +5215,28 @@
                                                                                     displayNumbers, allowComments).Result;
 
             response.Should().NotBeNull();
-            response.Name.Should().Be("Star Wars in machete order");
-            response.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            response.Privacy.Should().Be(TraktAccessScope.Public);
-            response.DisplayNumbers.Should().BeTrue();
-            response.AllowComments.Should().BeFalse();
-            response.SortBy.Should().Be("rank");
-            response.SortHow.Should().Be("asc");
-            response.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            response.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            response.ItemCount.Should().Be(5);
-            response.CommentCount.Should().Be(1);
-            response.Likes.Should().Be(2);
-            response.Ids.Should().NotBeNull();
-            response.Ids.Trakt.Should().Be(55);
-            response.Ids.Slug.Should().Be("star-wars-in-machete-order");
-            response.User.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
         }
 
         [TestMethod]
@@ -4825,7 +5250,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktList>> act =
+            Func<Task<TraktResponse<TraktList>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId, listName);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -4897,22 +5322,22 @@
             var listId = "55";
 
             Func<Task<TraktList>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(null, listId);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(null, listId, "list name");
+            act.ShouldThrow<ArgumentNullException>();
+
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(string.Empty, listId, "list name");
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(string.Empty, listId);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync("user name", listId, "list name");
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync("user name", listId);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, null, "list name");
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, null);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, string.Empty, "list name");
             act.ShouldThrow<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, string.Empty);
-            act.ShouldThrow<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, "list id");
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, "list id", "list name");
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UpdateCustomListAsync(username, listId);
@@ -4962,8 +5387,10 @@
 
             TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", HttpStatusCode.NoContent);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DeleteCustomListAsync(username, listId);
-            act.ShouldNotThrow();
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.DeleteCustomListAsync(username, listId).Result;
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
         }
 
         [TestMethod]
@@ -4976,7 +5403,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DeleteCustomListAsync(username, listId);
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DeleteCustomListAsync(username, listId);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -5046,8 +5473,8 @@
             var username = "sean";
             var listId = "55";
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DeleteCustomListAsync(null, listId);
-            act.ShouldThrow<ArgumentException>();
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DeleteCustomListAsync(null, listId);
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DeleteCustomListAsync(string.Empty, listId);
             act.ShouldThrow<ArgumentException>();
@@ -5056,7 +5483,7 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DeleteCustomListAsync(username, null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DeleteCustomListAsync(username, string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -5159,25 +5586,30 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(username, listId, customListItems).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.Added.Should().NotBeNull();
-            response.Added.Movies.Should().Be(1);
-            response.Added.Shows.Should().Be(1);
-            response.Added.Seasons.Should().Be(1);
-            response.Added.Episodes.Should().Be(2);
-            response.Added.People.Should().Be(1);
+            var responseValue = response.Value;
 
-            response.Existing.Should().NotBeNull();
-            response.Existing.Movies.Should().Be(0);
-            response.Existing.Shows.Should().Be(0);
-            response.Existing.Seasons.Should().Be(0);
-            response.Existing.Episodes.Should().Be(0);
-            response.Existing.People.Should().Be(0);
+            responseValue.Added.Should().NotBeNull();
+            responseValue.Added.Movies.Should().Be(1);
+            responseValue.Added.Shows.Should().Be(1);
+            responseValue.Added.Seasons.Should().Be(1);
+            responseValue.Added.Episodes.Should().Be(2);
+            responseValue.Added.People.Should().Be(1);
 
-            response.NotFound.Should().NotBeNull();
-            response.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Existing.Should().NotBeNull();
+            responseValue.Existing.Movies.Should().Be(0);
+            responseValue.Existing.Shows.Should().Be(0);
+            responseValue.Existing.Seasons.Should().Be(0);
+            responseValue.Existing.Episodes.Should().Be(0);
+            responseValue.Existing.People.Should().Be(0);
 
-            var movies = response.NotFound.Movies.ToArray();
+            responseValue.NotFound.Should().NotBeNull();
+            responseValue.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+
+            var movies = responseValue.NotFound.Movies.ToArray();
 
             movies[0].Ids.Should().NotBeNull();
             movies[0].Ids.Trakt.Should().Be(0);
@@ -5185,10 +5617,10 @@
             movies[0].Ids.Imdb.Should().Be("tt0000111");
             movies[0].Ids.Tmdb.Should().BeNull();
 
-            response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.People.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.People.Should().NotBeNull().And.BeEmpty();
         }
 
         [TestMethod]
@@ -5280,25 +5712,30 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(username, listId, customListItems, type).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.Added.Should().NotBeNull();
-            response.Added.Movies.Should().Be(1);
-            response.Added.Shows.Should().Be(1);
-            response.Added.Seasons.Should().Be(1);
-            response.Added.Episodes.Should().Be(2);
-            response.Added.People.Should().Be(1);
+            var responseValue = response.Value;
 
-            response.Existing.Should().NotBeNull();
-            response.Existing.Movies.Should().Be(0);
-            response.Existing.Shows.Should().Be(0);
-            response.Existing.Seasons.Should().Be(0);
-            response.Existing.Episodes.Should().Be(0);
-            response.Existing.People.Should().Be(0);
+            responseValue.Added.Should().NotBeNull();
+            responseValue.Added.Movies.Should().Be(1);
+            responseValue.Added.Shows.Should().Be(1);
+            responseValue.Added.Seasons.Should().Be(1);
+            responseValue.Added.Episodes.Should().Be(2);
+            responseValue.Added.People.Should().Be(1);
 
-            response.NotFound.Should().NotBeNull();
-            response.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Existing.Should().NotBeNull();
+            responseValue.Existing.Movies.Should().Be(0);
+            responseValue.Existing.Shows.Should().Be(0);
+            responseValue.Existing.Seasons.Should().Be(0);
+            responseValue.Existing.Episodes.Should().Be(0);
+            responseValue.Existing.People.Should().Be(0);
 
-            var movies = response.NotFound.Movies.ToArray();
+            responseValue.NotFound.Should().NotBeNull();
+            responseValue.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+
+            var movies = responseValue.NotFound.Movies.ToArray();
 
             movies[0].Ids.Should().NotBeNull();
             movies[0].Ids.Trakt.Should().Be(0);
@@ -5306,10 +5743,10 @@
             movies[0].Ids.Imdb.Should().Be("tt0000111");
             movies[0].Ids.Tmdb.Should().BeNull();
 
-            response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.People.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.People.Should().NotBeNull().And.BeEmpty();
         }
 
         [TestMethod]
@@ -5392,7 +5829,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktUserCustomListItemsPostResponse>> act =
+            Func<Task<TraktResponse<TraktUserCustomListItemsPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(username, listId, customListItems);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -5496,9 +5933,9 @@
                 }
             };
 
-            Func<Task<TraktUserCustomListItemsPostResponse>> act =
+            Func<Task<TraktResponse<TraktUserCustomListItemsPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(null, listId, customListItems);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(string.Empty, listId, customListItems);
             act.ShouldThrow<ArgumentException>();
@@ -5507,7 +5944,7 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(username, null, customListItems);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(username, string.Empty, customListItems);
             act.ShouldThrow<ArgumentException>();
@@ -5626,18 +6063,23 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.RemoveCustomListItemsAsync(username, listId, customListItems).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.Deleted.Should().NotBeNull();
-            response.Deleted.Movies.Should().Be(1);
-            response.Deleted.Shows.Should().Be(1);
-            response.Deleted.Seasons.Should().Be(1);
-            response.Deleted.Episodes.Should().Be(2);
-            response.Deleted.People.Should().Be(1);
+            var responseValue = response.Value;
 
-            response.NotFound.Should().NotBeNull();
-            response.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+            responseValue.Deleted.Should().NotBeNull();
+            responseValue.Deleted.Movies.Should().Be(1);
+            responseValue.Deleted.Shows.Should().Be(1);
+            responseValue.Deleted.Seasons.Should().Be(1);
+            responseValue.Deleted.Episodes.Should().Be(2);
+            responseValue.Deleted.People.Should().Be(1);
 
-            var movies = response.NotFound.Movies.ToArray();
+            responseValue.NotFound.Should().NotBeNull();
+            responseValue.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
+
+            var movies = responseValue.NotFound.Movies.ToArray();
 
             movies[0].Ids.Should().NotBeNull();
             movies[0].Ids.Trakt.Should().Be(0);
@@ -5645,10 +6087,10 @@
             movies[0].Ids.Imdb.Should().Be("tt0000111");
             movies[0].Ids.Tmdb.Should().BeNull();
 
-            response.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
-            response.NotFound.People.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
+            responseValue.NotFound.People.Should().NotBeNull().And.BeEmpty();
         }
 
         [TestMethod]
@@ -5731,7 +6173,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktUserCustomListItemsRemovePostResponse>> act =
+            Func<Task<TraktResponse<TraktUserCustomListItemsRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.RemoveCustomListItemsAsync(username, listId, customListItems);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -5835,9 +6277,9 @@
                 }
             };
 
-            Func<Task<TraktUserCustomListItemsRemovePostResponse>> act =
+            Func<Task<TraktResponse<TraktUserCustomListItemsRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.RemoveCustomListItemsAsync(null, listId, customListItems);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.RemoveCustomListItemsAsync(string.Empty, listId, customListItems);
             act.ShouldThrow<ArgumentException>();
@@ -5846,7 +6288,7 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.RemoveCustomListItemsAsync(username, null, customListItems);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.RemoveCustomListItemsAsync(username, string.Empty, customListItems);
             act.ShouldThrow<ArgumentException>();
@@ -5894,7 +6336,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -5918,7 +6362,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -5942,7 +6388,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -5968,7 +6416,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -5992,7 +6442,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -6018,7 +6470,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -6044,7 +6498,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -6071,7 +6527,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -6087,7 +6545,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPaginationListResult<TraktComment>>> act =
+            Func<Task<TraktPagedResponse<TraktComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId);
             act.ShouldThrow<TraktListNotFoundException>();
 
@@ -6158,9 +6616,9 @@
             var username = "sean";
             var listId = "55";
 
-            Func<Task<TraktPaginationListResult<TraktComment>>> act =
+            Func<Task<TraktPagedResponse<TraktComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(null, listId);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(string.Empty, listId);
             act.ShouldThrow<ArgumentException>();
@@ -6169,7 +6627,7 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -6193,8 +6651,10 @@
 
             TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}/like", HttpStatusCode.NoContent);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(username, listId);
-            act.ShouldNotThrow();
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(username, listId).Result;
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
         }
 
         [TestMethod]
@@ -6207,7 +6667,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(username, listId);
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(username, listId);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -6277,8 +6737,8 @@
             var username = "sean";
             var listId = "55";
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(null, listId);
-            act.ShouldThrow<ArgumentException>();
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(null, listId);
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(string.Empty, listId);
             act.ShouldThrow<ArgumentException>();
@@ -6287,7 +6747,7 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(username, null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(username, string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -6311,8 +6771,10 @@
 
             TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}/like", HttpStatusCode.NoContent);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnlikeListAsync(username, listId);
-            act.ShouldNotThrow();
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UnlikeListAsync(username, listId).Result;
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
         }
 
         [TestMethod]
@@ -6325,7 +6787,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnlikeListAsync(username, listId);
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnlikeListAsync(username, listId);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -6395,8 +6857,8 @@
             var username = "sean";
             var listId = "55";
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnlikeListAsync(null, listId);
-            act.ShouldThrow<ArgumentException>();
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnlikeListAsync(null, listId);
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnlikeListAsync(string.Empty, listId);
             act.ShouldThrow<ArgumentException>();
@@ -6405,7 +6867,7 @@
             act.ShouldThrow<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnlikeListAsync(username, null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnlikeListAsync(username, string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -6433,7 +6895,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowersAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6455,7 +6920,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowersAsync(username, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6471,7 +6939,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowersAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6483,7 +6954,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<IEnumerable<TraktUserFollower>>> act =
+            Func<Task<TraktListResponse<TraktUserFollower>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFollowersAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -6551,9 +7022,9 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserFollowersArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktUserFollower>>> act =
+            Func<Task<TraktListResponse<TraktUserFollower>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFollowersAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFollowersAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -6581,7 +7052,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowingAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6603,7 +7077,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowingAsync(username, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6619,7 +7096,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFollowingAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6631,7 +7111,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<IEnumerable<TraktUserFollower>>> act =
+            Func<Task<TraktListResponse<TraktUserFollower>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFollowingAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -6699,9 +7179,9 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserFollowingArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktUserFollower>>> act =
+            Func<Task<TraktListResponse<TraktUserFollower>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFollowingAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFollowingAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -6729,7 +7209,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6751,7 +7234,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(username, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6767,7 +7253,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -6779,7 +7268,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<IEnumerable<TraktUserFriend>>> act =
+            Func<Task<TraktListResponse<TraktUserFriend>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -6847,9 +7336,9 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserFriendsArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktUserFriend>>> act =
+            Func<Task<TraktListResponse<TraktUserFriend>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -6878,13 +7367,19 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.FollowUserAsync(username).Result;
 
             response.Should().NotBeNull();
-            response.ApprovedAt.Should().Be(DateTime.Parse("2014-11-15T09:41:34.704Z").ToUniversalTime());
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.ApprovedAt.Should().Be(DateTime.Parse("2014-11-15T09:41:34.704Z").ToUniversalTime());
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
         }
 
         [TestMethod]
@@ -6896,7 +7391,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktUserFollowUserPostResponse>> act =
+            Func<Task<TraktResponse<TraktUserFollowUserPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.FollowUserAsync(username);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -6964,9 +7459,9 @@
         [TestMethod]
         public void TestTraktUsersModuleFollowUserArgumentExceptions()
         {
-            Func<Task<TraktUserFollowUserPostResponse>> act =
+            Func<Task<TraktResponse<TraktUserFollowUserPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.FollowUserAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.FollowUserAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -6989,8 +7484,10 @@
 
             TestUtility.SetupMockResponseWithOAuth($"users/{username}/follow", HttpStatusCode.NoContent);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnfollowUserAsync(username);
-            act.ShouldNotThrow();
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.UnfollowUserAsync(username).Result;
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
         }
 
         [TestMethod]
@@ -7002,7 +7499,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task> act =
+            Func<Task<TraktNoContentResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnfollowUserAsync(username);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -7070,9 +7567,9 @@
         [TestMethod]
         public void TestTraktUsersModuleUnfollowUserArgumentExceptions()
         {
-            Func<Task> act =
+            Func<Task<TraktNoContentResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnfollowUserAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnfollowUserAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -7101,13 +7598,19 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.ApproveFollowRequestAsync(requestId).Result;
 
             response.Should().NotBeNull();
-            response.FollowedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            response.User.Should().NotBeNull();
-            response.User.Username.Should().Be("sean");
-            response.User.Private.Should().BeFalse();
-            response.User.Name.Should().Be("Sean Rudford");
-            response.User.VIP.Should().BeTrue();
-            response.User.VIP_EP.Should().BeFalse();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.FollowedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.VIP.Should().BeTrue();
+            responseValue.User.VIP_EP.Should().BeFalse();
         }
 
         [TestMethod]
@@ -7119,7 +7622,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktUserFollower>> act =
+            Func<Task<TraktResponse<TraktUserFollower>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.ApproveFollowRequestAsync(requestId);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -7187,9 +7690,9 @@
         [TestMethod]
         public void TestTraktUsersModuleApproveFollowerArgumentExceptions()
         {
-            Func<Task<TraktUserFollower>> act =
+            Func<Task<TraktResponse<TraktUserFollower>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.ApproveFollowRequestAsync(0);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
@@ -7206,8 +7709,10 @@
 
             TestUtility.SetupMockResponseWithOAuth($"users/requests/{requestId}", HttpStatusCode.NoContent);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DenyFollowRequestAsync(requestId);
-            act.ShouldNotThrow();
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.DenyFollowRequestAsync(requestId).Result;
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
         }
 
         [TestMethod]
@@ -7219,7 +7724,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DenyFollowRequestAsync(requestId);
+            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DenyFollowRequestAsync(requestId);
             act.ShouldThrow<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -7286,9 +7791,9 @@
         [TestMethod]
         public void TestTraktUsersModuleDenyFollowerArgumentExceptions()
         {
-            Func<Task> act =
+            Func<Task<TraktNoContentResponse>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.DenyFollowRequestAsync(0);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         #endregion
@@ -7312,7 +7817,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -7334,7 +7841,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -7357,7 +7866,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -7381,7 +7892,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -7407,7 +7920,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -7435,7 +7950,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, endAt).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -7471,7 +7988,9 @@
                                                                                      extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -7508,7 +8027,9 @@
                                                                                      extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -7545,7 +8066,9 @@
                                                                                      extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -7579,7 +8102,9 @@
                                                                                      extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -7614,7 +8139,9 @@
                                                                                      extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -7649,7 +8176,9 @@
                                                                                      extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -7686,7 +8215,9 @@
                                                                                      extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -7714,7 +8245,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -7742,7 +8275,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -7771,7 +8306,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -7805,7 +8342,9 @@
                                                                                      extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -7840,7 +8379,9 @@
                                                                                      extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -7875,7 +8416,9 @@
                                                                                      extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -7911,7 +8454,9 @@
                                                                                      extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -7939,7 +8484,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -7967,7 +8514,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -7996,7 +8545,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -8029,7 +8580,9 @@
                                                                                      extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -8063,7 +8616,9 @@
                                                                                      extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -8097,7 +8652,9 @@
                                                                                      extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -8133,7 +8690,9 @@
                                                                                      extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -8158,7 +8717,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -8185,7 +8746,9 @@
                                                                                      null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -8212,7 +8775,9 @@
                                                                                      null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -8240,7 +8805,9 @@
                                                                                      null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -8275,7 +8842,9 @@
                                                                                      extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -8311,7 +8880,9 @@
                                                                                      extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -8347,7 +8918,9 @@
                                                                                      extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -8384,7 +8957,9 @@
                                                                                      extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -8411,7 +8986,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -8439,7 +9016,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -8467,7 +9046,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -8496,7 +9077,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -8529,7 +9112,9 @@
                                                                                      extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -8563,7 +9148,9 @@
                                                                                      extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -8597,7 +9184,9 @@
                                                                                      extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -8632,7 +9221,9 @@
                                                                                      extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -8657,7 +9248,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -8683,7 +9276,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -8709,7 +9304,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -8736,7 +9333,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -8767,7 +9366,9 @@
                                                                                      extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -8799,7 +9400,9 @@
                                                                                      extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -8831,7 +9434,9 @@
                                                                                      extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -8864,7 +9469,9 @@
                                                                                      extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -8888,7 +9495,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -8912,7 +9521,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -8937,7 +9548,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -8969,7 +9582,9 @@
                                                                                      extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -9002,7 +9617,9 @@
                                                                                      extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -9035,7 +9652,9 @@
                                                                                      extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -9069,7 +9688,9 @@
                                                                                      extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -9094,7 +9715,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -9127,7 +9750,9 @@
                                                                                      extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -9161,7 +9786,9 @@
                                                                                      extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -9195,7 +9822,9 @@
                                                                                      extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -9230,7 +9859,9 @@
                                                                                      extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -9256,7 +9887,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -9283,7 +9916,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -9310,7 +9945,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -9338,7 +9975,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -9364,7 +10003,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -9390,7 +10031,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -9417,7 +10060,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -9448,7 +10093,9 @@
                                                                                      extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -9481,7 +10128,9 @@
                                                                                      extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -9514,7 +10163,9 @@
                                                                                      extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -9548,7 +10199,9 @@
                                                                                      extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -9573,7 +10226,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -9599,7 +10254,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -9625,7 +10282,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -9652,7 +10311,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -9682,7 +10343,9 @@
                                                                                      extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -9713,7 +10376,9 @@
                                                                                      extendedInfo, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -9744,7 +10409,9 @@
                                                                                      extendedInfo, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -9776,7 +10443,9 @@
                                                                                      extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -9801,7 +10470,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -9826,7 +10497,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null, null, null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -9852,7 +10525,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null, null, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -9890,7 +10565,9 @@
                                                                                      extendedInfo, page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -9905,7 +10582,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPaginationListResult<TraktHistoryItem>>> act =
+            Func<Task<TraktPagedResponse<TraktHistoryItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username);
             act.ShouldThrow<TraktObjectNotFoundException>();
 
@@ -9973,9 +10650,9 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedHistoryArgumentExceptions()
         {
-            Func<Task<TraktPaginationListResult<TraktHistoryItem>>> act =
+            Func<Task<TraktPagedResponse<TraktHistoryItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -10003,7 +10680,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10019,7 +10699,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10035,7 +10718,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10055,7 +10741,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10075,7 +10764,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10095,7 +10787,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10115,7 +10810,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10135,7 +10833,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10155,7 +10856,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10175,7 +10879,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10195,7 +10902,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10215,7 +10925,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10235,7 +10948,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10252,7 +10968,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10269,7 +10988,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10286,7 +11008,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10303,7 +11028,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10319,7 +11047,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, null, ratingsFilter).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10342,7 +11073,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10364,7 +11098,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, null, null, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10392,7 +11129,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username, type, ratingsFilter, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(4);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
         [TestMethod]
@@ -10403,7 +11143,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<IEnumerable<TraktRatingsItem>>> act =
+            Func<Task<TraktListResponse<TraktRatingsItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -10471,9 +11211,9 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserRatingsArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktRatingsItem>>> act =
+            Func<Task<TraktListResponse<TraktRatingsItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetRatingsAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -10506,7 +11246,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -10534,7 +11276,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -10562,7 +11306,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -10596,7 +11342,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -10632,7 +11380,9 @@
                                                                                 page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -10668,7 +11418,9 @@
                                                                                 null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -10701,7 +11453,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(1);
@@ -10736,7 +11490,9 @@
                                                                                 page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -10771,7 +11527,9 @@
                                                                                 null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -10807,7 +11565,9 @@
                                                                                 page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -10835,7 +11595,9 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, null, page).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(10);
             response.Page.Should().HaveValue().And.Be(page);
@@ -10864,7 +11626,9 @@
                                                                                 null, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(1);
@@ -10894,7 +11658,9 @@
                                                                                 page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -10932,7 +11698,9 @@
                                                                                 page, limit).Result;
 
             response.Should().NotBeNull();
-            response.Items.Should().NotBeNull().And.HaveCount(itemCount);
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
             response.Limit.Should().HaveValue().And.Be(limit);
             response.Page.Should().HaveValue().And.Be(page);
@@ -10949,7 +11717,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<IEnumerable<TraktWatchlistItem>>> act =
+            Func<Task<TraktPagedResponse<TraktWatchlistItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -11017,9 +11785,9 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchlistArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktWatchlistItem>>> act =
+            Func<Task<TraktPagedResponse<TraktWatchlistItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -11048,20 +11816,26 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchingAsync(username).Result;
 
             response.Should().NotBeNull();
-            response.ExpiresAt.Should().Be(DateTime.Parse("2014-10-23T08:36:02.000Z").ToUniversalTime());
-            response.StartedAt.Should().Be(DateTime.Parse("2014-10-23T06:44:02.000Z").ToUniversalTime());
-            response.Action.Should().Be(TraktHistoryActionType.Checkin);
-            response.Type.Should().Be(TraktSyncType.Movie);
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Super 8");
-            response.Movie.Year.Should().Be(2011);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(2U);
-            response.Movie.Ids.Slug.Should().Be("super-8-2011");
-            response.Movie.Ids.Imdb.Should().Be("tt1650062");
-            response.Movie.Ids.Tmdb.Should().Be(37686U);
-            response.Show.Should().BeNull();
-            response.Episode.Should().BeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.ExpiresAt.Should().Be(DateTime.Parse("2014-10-23T08:36:02.000Z").ToUniversalTime());
+            responseValue.StartedAt.Should().Be(DateTime.Parse("2014-10-23T06:44:02.000Z").ToUniversalTime());
+            responseValue.Action.Should().Be(TraktHistoryActionType.Checkin);
+            responseValue.Type.Should().Be(TraktSyncType.Movie);
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Super 8");
+            responseValue.Movie.Year.Should().Be(2011);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(2U);
+            responseValue.Movie.Ids.Slug.Should().Be("super-8-2011");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt1650062");
+            responseValue.Movie.Ids.Tmdb.Should().Be(37686U);
+            responseValue.Show.Should().BeNull();
+            responseValue.Episode.Should().BeNull();
         }
 
         [TestMethod]
@@ -11078,20 +11852,26 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchingAsync(username).Result;
 
             response.Should().NotBeNull();
-            response.ExpiresAt.Should().Be(DateTime.Parse("2014-10-23T08:36:02.000Z").ToUniversalTime());
-            response.StartedAt.Should().Be(DateTime.Parse("2014-10-23T06:44:02.000Z").ToUniversalTime());
-            response.Action.Should().Be(TraktHistoryActionType.Checkin);
-            response.Type.Should().Be(TraktSyncType.Movie);
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Super 8");
-            response.Movie.Year.Should().Be(2011);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(2U);
-            response.Movie.Ids.Slug.Should().Be("super-8-2011");
-            response.Movie.Ids.Imdb.Should().Be("tt1650062");
-            response.Movie.Ids.Tmdb.Should().Be(37686U);
-            response.Show.Should().BeNull();
-            response.Episode.Should().BeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.ExpiresAt.Should().Be(DateTime.Parse("2014-10-23T08:36:02.000Z").ToUniversalTime());
+            responseValue.StartedAt.Should().Be(DateTime.Parse("2014-10-23T06:44:02.000Z").ToUniversalTime());
+            responseValue.Action.Should().Be(TraktHistoryActionType.Checkin);
+            responseValue.Type.Should().Be(TraktSyncType.Movie);
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Super 8");
+            responseValue.Movie.Year.Should().Be(2011);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(2U);
+            responseValue.Movie.Ids.Slug.Should().Be("super-8-2011");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt1650062");
+            responseValue.Movie.Ids.Tmdb.Should().Be(37686U);
+            responseValue.Show.Should().BeNull();
+            responseValue.Episode.Should().BeNull();
         }
 
         [TestMethod]
@@ -11113,20 +11893,26 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchingAsync(username, extendedInfo).Result;
 
             response.Should().NotBeNull();
-            response.ExpiresAt.Should().Be(DateTime.Parse("2014-10-23T08:36:02.000Z").ToUniversalTime());
-            response.StartedAt.Should().Be(DateTime.Parse("2014-10-23T06:44:02.000Z").ToUniversalTime());
-            response.Action.Should().Be(TraktHistoryActionType.Checkin);
-            response.Type.Should().Be(TraktSyncType.Movie);
-            response.Movie.Should().NotBeNull();
-            response.Movie.Title.Should().Be("Super 8");
-            response.Movie.Year.Should().Be(2011);
-            response.Movie.Ids.Should().NotBeNull();
-            response.Movie.Ids.Trakt.Should().Be(2U);
-            response.Movie.Ids.Slug.Should().Be("super-8-2011");
-            response.Movie.Ids.Imdb.Should().Be("tt1650062");
-            response.Movie.Ids.Tmdb.Should().Be(37686U);
-            response.Show.Should().BeNull();
-            response.Episode.Should().BeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            var responseValue = response.Value;
+
+            responseValue.ExpiresAt.Should().Be(DateTime.Parse("2014-10-23T08:36:02.000Z").ToUniversalTime());
+            responseValue.StartedAt.Should().Be(DateTime.Parse("2014-10-23T06:44:02.000Z").ToUniversalTime());
+            responseValue.Action.Should().Be(TraktHistoryActionType.Checkin);
+            responseValue.Type.Should().Be(TraktSyncType.Movie);
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Super 8");
+            responseValue.Movie.Year.Should().Be(2011);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(2U);
+            responseValue.Movie.Ids.Slug.Should().Be("super-8-2011");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt1650062");
+            responseValue.Movie.Ids.Tmdb.Should().Be(37686U);
+            responseValue.Show.Should().BeNull();
+            responseValue.Episode.Should().BeNull();
         }
 
         [TestMethod]
@@ -11137,7 +11923,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktUserWatchingItem>> act =
+            Func<Task<TraktResponse<TraktUserWatchingItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchingAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -11205,9 +11991,9 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchingArgumentExceptions()
         {
-            Func<Task<TraktUserWatchingItem>> act =
+            Func<Task<TraktResponse<TraktUserWatchingItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchingAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchingAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -11235,7 +12021,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedMoviesAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -11251,7 +12040,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedMoviesAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -11272,7 +12064,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedMoviesAsync(username, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -11283,7 +12078,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<IEnumerable<TraktWatchedMovie>>> act =
+            Func<Task<TraktListResponse<TraktWatchedMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedMoviesAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -11351,9 +12146,9 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedMoviesArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktWatchedMovie>>> act =
+            Func<Task<TraktListResponse<TraktWatchedMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedMoviesAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedMoviesAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -11381,7 +12176,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedShowsAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -11397,7 +12195,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedShowsAsync(username).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -11418,7 +12219,10 @@
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedShowsAsync(username, extendedInfo).Result;
 
-            response.Should().NotBeNull().And.HaveCount(2);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
         [TestMethod]
@@ -11429,7 +12233,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<IEnumerable<TraktWatchedShow>>> act =
+            Func<Task<TraktListResponse<TraktWatchedShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedShowsAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -11497,9 +12301,9 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserWatchedShowsArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktWatchedShow>>> act =
+            Func<Task<TraktListResponse<TraktWatchedShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedShowsAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedShowsAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
@@ -11528,40 +12332,45 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetStatisticsAsync(username).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.Movies.Should().NotBeNull();
-            response.Movies.Plays.Should().Be(155);
-            response.Movies.Watched.Should().Be(114);
-            response.Movies.Minutes.Should().Be(15650);
-            response.Movies.Collected.Should().Be(933);
-            response.Movies.Ratings.Should().Be(256);
-            response.Movies.Comments.Should().Be(28);
+            var responseValue = response.Value;
 
-            response.Shows.Should().NotBeNull();
-            response.Shows.Watched.Should().Be(16);
-            response.Shows.Collected.Should().Be(7);
-            response.Shows.Ratings.Should().Be(63);
-            response.Shows.Comments.Should().Be(20);
+            responseValue.Movies.Should().NotBeNull();
+            responseValue.Movies.Plays.Should().Be(155);
+            responseValue.Movies.Watched.Should().Be(114);
+            responseValue.Movies.Minutes.Should().Be(15650);
+            responseValue.Movies.Collected.Should().Be(933);
+            responseValue.Movies.Ratings.Should().Be(256);
+            responseValue.Movies.Comments.Should().Be(28);
 
-            response.Seasons.Should().NotBeNull();
-            response.Seasons.Ratings.Should().Be(6);
-            response.Seasons.Comments.Should().Be(1);
+            responseValue.Shows.Should().NotBeNull();
+            responseValue.Shows.Watched.Should().Be(16);
+            responseValue.Shows.Collected.Should().Be(7);
+            responseValue.Shows.Ratings.Should().Be(63);
+            responseValue.Shows.Comments.Should().Be(20);
 
-            response.Episodes.Should().NotBeNull();
-            response.Episodes.Plays.Should().Be(552);
-            response.Episodes.Watched.Should().Be(534);
-            response.Episodes.Minutes.Should().Be(17330);
-            response.Episodes.Collected.Should().Be(117);
-            response.Episodes.Ratings.Should().Be(64);
-            response.Episodes.Comments.Should().Be(14);
+            responseValue.Seasons.Should().NotBeNull();
+            responseValue.Seasons.Ratings.Should().Be(6);
+            responseValue.Seasons.Comments.Should().Be(1);
 
-            response.Network.Should().NotBeNull();
-            response.Network.Friends.Should().Be(1);
-            response.Network.Followers.Should().Be(4);
-            response.Network.Following.Should().Be(11);
+            responseValue.Episodes.Should().NotBeNull();
+            responseValue.Episodes.Plays.Should().Be(552);
+            responseValue.Episodes.Watched.Should().Be(534);
+            responseValue.Episodes.Minutes.Should().Be(17330);
+            responseValue.Episodes.Collected.Should().Be(117);
+            responseValue.Episodes.Ratings.Should().Be(64);
+            responseValue.Episodes.Comments.Should().Be(14);
 
-            response.Ratings.Should().NotBeNull();
-            response.Ratings.Total.Should().Be(389);
+            responseValue.Network.Should().NotBeNull();
+            responseValue.Network.Friends.Should().Be(1);
+            responseValue.Network.Followers.Should().Be(4);
+            responseValue.Network.Following.Should().Be(11);
+
+            responseValue.Ratings.Should().NotBeNull();
+            responseValue.Ratings.Total.Should().Be(389);
 
             var distribution = new Dictionary<string, int>()
             {
@@ -11569,7 +12378,7 @@
                 { "6",  9 }, { "7", 37 }, { "8", 37 }, { "9", 57 }, { "10", 215 }
             };
 
-            response.Ratings.Distribution.Should().NotBeNull().And.HaveCount(10).And.Contain(distribution);
+            responseValue.Ratings.Distribution.Should().NotBeNull().And.HaveCount(10).And.Contain(distribution);
         }
 
         [TestMethod]
@@ -11586,40 +12395,45 @@
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetStatisticsAsync(username).Result;
 
             response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
-            response.Movies.Should().NotBeNull();
-            response.Movies.Plays.Should().Be(155);
-            response.Movies.Watched.Should().Be(114);
-            response.Movies.Minutes.Should().Be(15650);
-            response.Movies.Collected.Should().Be(933);
-            response.Movies.Ratings.Should().Be(256);
-            response.Movies.Comments.Should().Be(28);
+            var responseValue = response.Value;
 
-            response.Shows.Should().NotBeNull();
-            response.Shows.Watched.Should().Be(16);
-            response.Shows.Collected.Should().Be(7);
-            response.Shows.Ratings.Should().Be(63);
-            response.Shows.Comments.Should().Be(20);
+            responseValue.Movies.Should().NotBeNull();
+            responseValue.Movies.Plays.Should().Be(155);
+            responseValue.Movies.Watched.Should().Be(114);
+            responseValue.Movies.Minutes.Should().Be(15650);
+            responseValue.Movies.Collected.Should().Be(933);
+            responseValue.Movies.Ratings.Should().Be(256);
+            responseValue.Movies.Comments.Should().Be(28);
 
-            response.Seasons.Should().NotBeNull();
-            response.Seasons.Ratings.Should().Be(6);
-            response.Seasons.Comments.Should().Be(1);
+            responseValue.Shows.Should().NotBeNull();
+            responseValue.Shows.Watched.Should().Be(16);
+            responseValue.Shows.Collected.Should().Be(7);
+            responseValue.Shows.Ratings.Should().Be(63);
+            responseValue.Shows.Comments.Should().Be(20);
 
-            response.Episodes.Should().NotBeNull();
-            response.Episodes.Plays.Should().Be(552);
-            response.Episodes.Watched.Should().Be(534);
-            response.Episodes.Minutes.Should().Be(17330);
-            response.Episodes.Collected.Should().Be(117);
-            response.Episodes.Ratings.Should().Be(64);
-            response.Episodes.Comments.Should().Be(14);
+            responseValue.Seasons.Should().NotBeNull();
+            responseValue.Seasons.Ratings.Should().Be(6);
+            responseValue.Seasons.Comments.Should().Be(1);
 
-            response.Network.Should().NotBeNull();
-            response.Network.Friends.Should().Be(1);
-            response.Network.Followers.Should().Be(4);
-            response.Network.Following.Should().Be(11);
+            responseValue.Episodes.Should().NotBeNull();
+            responseValue.Episodes.Plays.Should().Be(552);
+            responseValue.Episodes.Watched.Should().Be(534);
+            responseValue.Episodes.Minutes.Should().Be(17330);
+            responseValue.Episodes.Collected.Should().Be(117);
+            responseValue.Episodes.Ratings.Should().Be(64);
+            responseValue.Episodes.Comments.Should().Be(14);
 
-            response.Ratings.Should().NotBeNull();
-            response.Ratings.Total.Should().Be(389);
+            responseValue.Network.Should().NotBeNull();
+            responseValue.Network.Friends.Should().Be(1);
+            responseValue.Network.Followers.Should().Be(4);
+            responseValue.Network.Following.Should().Be(11);
+
+            responseValue.Ratings.Should().NotBeNull();
+            responseValue.Ratings.Total.Should().Be(389);
 
             var distribution = new Dictionary<string, int>()
             {
@@ -11627,7 +12441,7 @@
                 { "6",  9 }, { "7", 37 }, { "8", 37 }, { "9", 57 }, { "10", 215 }
             };
 
-            response.Ratings.Distribution.Should().NotBeNull().And.HaveCount(10).And.Contain(distribution);
+            responseValue.Ratings.Distribution.Should().NotBeNull().And.HaveCount(10).And.Contain(distribution);
         }
 
         [TestMethod]
@@ -11638,7 +12452,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktUserStatistics>> act =
+            Func<Task<TraktResponse<TraktUserStatistics>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetStatisticsAsync(username);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -11706,9 +12520,9 @@
         [TestMethod]
         public void TestTraktUsersModuleGetUserStatisticsArgumentExceptions()
         {
-            Func<Task<TraktUserStatistics>> act =
+            Func<Task<TraktResponse<TraktUserStatistics>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetStatisticsAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.ShouldThrow<ArgumentNullException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetStatisticsAsync(string.Empty);
             act.ShouldThrow<ArgumentException>();
