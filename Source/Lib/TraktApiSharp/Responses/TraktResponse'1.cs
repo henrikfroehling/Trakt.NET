@@ -44,7 +44,7 @@
 
         public static implicit operator TContentType(TraktResponse<TContentType> response) => response.Value;
 
-        public static implicit operator TraktResponse<TContentType>(TContentType value) => new TraktResponse<TContentType> { Value = value };
+        public static implicit operator TraktResponse<TContentType>(TContentType value) => new TraktResponse<TContentType> { Value = value, HasValue = value != null, IsSuccess = value != null };
 
         public static implicit operator bool(TraktResponse<TContentType> response) => response.IsSuccess && response.HasValue;
     }
