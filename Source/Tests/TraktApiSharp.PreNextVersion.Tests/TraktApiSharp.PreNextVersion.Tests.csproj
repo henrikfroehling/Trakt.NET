@@ -135,17 +135,6 @@
     <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostBuilderTests.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostBuilderTests.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostBuilderTests.cs" />
-    <Compile Include="Requests\Base\Delete\TraktDeleteByIdRequestTests.cs" />
-    <Compile Include="Requests\Base\Delete\TraktDeleteRequestTests.cs" />
-    <Compile Include="Requests\Base\Get\TraktGetByIdRequestTests.cs" />
-    <Compile Include="Requests\Base\Get\TraktGetRequestTests.cs" />
-    <Compile Include="Requests\Base\Post\TraktBodylessPostByIdRequestTests.cs" />
-    <Compile Include="Requests\Base\Post\TraktBodylessPostRequestTests.cs" />
-    <Compile Include="Requests\Base\Post\TraktPostByIdRequestTests.cs" />
-    <Compile Include="Requests\Base\Post\TraktPostRequestTests.cs" />
-    <Compile Include="Requests\Base\Put\TraktPutByIdRequestTests.cs" />
-    <Compile Include="Requests\Base\Put\TraktPutRequestTests.cs" />
-    <Compile Include="Requests\Base\TraktAuthorizationRequirementTests.cs" />
     <Compile Include="Enums\TraktCommentSortOrderTests.cs" />
     <Compile Include="Enums\TraktCommentTypeTests.cs" />
     <Compile Include="Requests\Params\TraktCalendarFilterTests.cs" />
@@ -162,7 +151,6 @@
     <Compile Include="Enums\TraktObjectTypeTests.cs" />
     <Compile Include="Enums\TraktTimePeriodTests.cs" />
     <Compile Include="Enums\TraktReleaseTypeTests.cs" />
-    <Compile Include="Requests\Base\TraktRequestObjectTypeTests.cs" />
     <Compile Include="Enums\TraktScrobbleActionTypeTests.cs" />
     <Compile Include="Enums\TraktSearchResultTypeTests.cs" />
     <Compile Include="Enums\TraktShowStatusTests.cs" />
@@ -311,9 +299,6 @@
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostTests.cs" />
     <Compile Include="Objects\Post\Users\Responses\TraktUserFollowUserPostResponseTests.cs" />
     <Compile Include="Objects\Post\Users\TraktUserCustomListPostTests.cs" />
-    <Compile Include="Requests\Base\ITraktRequestTests.cs" />
-    <Compile Include="Requests\Base\TraktPaginationOptionsTests.cs" />
-    <Compile Include="Requests\Base\TraktRequestTests.cs" />
     <Compile Include="Requests\Params\TraktSearchFilterTests.cs" />
     <Compile Include="Requests\Params\TraktShowFilterTests.cs" />
     <Compile Include="Services\TraktLanguageServiceTests.cs" />
