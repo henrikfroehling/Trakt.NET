@@ -56,14 +56,14 @@
         [Fact]
         public void Test_TraktSyncWatchlistRequest_Has_Type_Property()
         {
-            var sortingPropertyInfo = typeof(TraktSyncWatchlistRequest)
+            var propertyInfo = typeof(TraktSyncWatchlistRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktSyncItemType));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktSyncItemType));
         }
 
         [Theory, ClassData(typeof(TraktSyncWatchlistRequest_TestData))]

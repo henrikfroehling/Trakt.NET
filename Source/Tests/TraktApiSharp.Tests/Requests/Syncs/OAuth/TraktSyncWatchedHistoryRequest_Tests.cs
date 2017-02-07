@@ -58,53 +58,53 @@
         [Fact]
         public void Test_TraktSyncWatchedHistoryRequest_Has_Type_Property()
         {
-            var sortingPropertyInfo = typeof(TraktSyncWatchedHistoryRequest)
+            var propertyInfo = typeof(TraktSyncWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktSyncItemType));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktSyncItemType));
         }
 
         [Fact]
         public void Test_TraktSyncWatchedHistoryRequest_Has_ItemId_Property()
         {
-            var sortingPropertyInfo = typeof(TraktSyncWatchedHistoryRequest)
+            var propertyInfo = typeof(TraktSyncWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "ItemId")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(uint?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(uint?));
         }
 
         [Fact]
         public void Test_TraktSyncWatchedHistoryRequest_Has_StartAt_Property()
         {
-            var sortingPropertyInfo = typeof(TraktSyncWatchedHistoryRequest)
+            var propertyInfo = typeof(TraktSyncWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "StartAt")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(DateTime?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(DateTime?));
         }
 
         [Fact]
         public void Test_TraktSyncWatchedHistoryRequest_Has_EndAt_Property()
         {
-            var sortingPropertyInfo = typeof(TraktSyncWatchedHistoryRequest)
+            var propertyInfo = typeof(TraktSyncWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "EndAt")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(DateTime?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(DateTime?));
         }
 
         [Theory, ClassData(typeof(TraktSyncWatchedHistoryRequest_TestData))]

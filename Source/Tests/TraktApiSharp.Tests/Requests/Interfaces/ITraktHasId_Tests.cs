@@ -24,13 +24,13 @@
         [Fact]
         public void Test_ITraktHasId_Has_Id_Property()
         {
-            var idPropertyInfo = typeof(ITraktHasId).GetProperties()
-                                                    .Where(p => p.Name == "Id")
-                                                    .FirstOrDefault();
+            var propertyInfo = typeof(ITraktHasId).GetProperties()
+                                                  .Where(p => p.Name == "Id")
+                                                  .FirstOrDefault();
 
-            idPropertyInfo.CanRead.Should().BeTrue();
-            idPropertyInfo.CanWrite.Should().BeTrue();
-            idPropertyInfo.PropertyType.Should().Be(typeof(string));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
     }
 }

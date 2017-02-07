@@ -38,27 +38,27 @@
         [Fact]
         public void Test_TraktUserHiddenItemsRequest_Has_Section_Property()
         {
-            var sortingPropertyInfo = typeof(TraktUserHiddenItemsRequest)
+            var propertyInfo = typeof(TraktUserHiddenItemsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Section")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktHiddenItemsSection));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktHiddenItemsSection));
         }
 
         [Fact]
         public void Test_TraktUserHiddenItemsRequest_Has_Type_Property()
         {
-            var sortingPropertyInfo = typeof(TraktUserHiddenItemsRequest)
+            var propertyInfo = typeof(TraktUserHiddenItemsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktHiddenItemType));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktHiddenItemType));
         }
 
         [Fact]

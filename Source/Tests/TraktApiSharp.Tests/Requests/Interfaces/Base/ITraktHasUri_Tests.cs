@@ -24,13 +24,13 @@
         [Fact]
         public void Test_ITraktHasUri_Has_UriTemplate_Property()
         {
-            var uriTemplatePropertyInfo = typeof(ITraktHasUri).GetProperties()
-                                                              .Where(p => p.Name == "UriTemplate")
-                                                              .FirstOrDefault();
+            var propertyInfo = typeof(ITraktHasUri).GetProperties()
+                                                   .Where(p => p.Name == "UriTemplate")
+                                                   .FirstOrDefault();
 
-            uriTemplatePropertyInfo.CanRead.Should().BeTrue();
-            uriTemplatePropertyInfo.CanWrite.Should().BeFalse();
-            uriTemplatePropertyInfo.PropertyType.Should().Be(typeof(string));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeFalse();
+            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
     }
 }

@@ -18,25 +18,25 @@
         [Fact]
         public void Test_ITraktSupportsPagination_Has_Page_Property()
         {
-            var paginationOptionsPropertyInfo = typeof(ITraktSupportsPagination).GetProperties()
-                                                                                .Where(p => p.Name == "Page")
-                                                                                .FirstOrDefault();
+            var propertyInfo = typeof(ITraktSupportsPagination).GetProperties()
+                                                               .Where(p => p.Name == "Page")
+                                                               .FirstOrDefault();
 
-            paginationOptionsPropertyInfo.CanRead.Should().BeTrue();
-            paginationOptionsPropertyInfo.CanWrite.Should().BeTrue();
-            paginationOptionsPropertyInfo.PropertyType.Should().Be(typeof(int?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(int?));
         }
 
         [Fact]
         public void Test_ITraktSupportsPagination_Has_Limit_Property()
         {
-            var paginationOptionsPropertyInfo = typeof(ITraktSupportsPagination).GetProperties()
-                                                                                .Where(p => p.Name == "Limit")
-                                                                                .FirstOrDefault();
+            var propertyInfo = typeof(ITraktSupportsPagination).GetProperties()
+                                                               .Where(p => p.Name == "Limit")
+                                                               .FirstOrDefault();
 
-            paginationOptionsPropertyInfo.CanRead.Should().BeTrue();
-            paginationOptionsPropertyInfo.CanWrite.Should().BeTrue();
-            paginationOptionsPropertyInfo.PropertyType.Should().Be(typeof(int?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(int?));
         }
     }
 }

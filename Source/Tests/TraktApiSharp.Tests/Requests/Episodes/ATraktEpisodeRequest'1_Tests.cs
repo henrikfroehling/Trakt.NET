@@ -62,27 +62,27 @@
         [Fact]
         public void Test_ATraktEpisodeRequest_1_Has_SeasonNumber_Property()
         {
-            var sortingPropertyInfo = typeof(ATraktEpisodeRequest<>)
+            var propertyInfo = typeof(ATraktEpisodeRequest<>)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "SeasonNumber")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(uint));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(uint));
         }
 
         [Fact]
         public void Test_ATraktEpisodeRequest_1_Has_EpisodeNumber_Property()
         {
-            var sortingPropertyInfo = typeof(ATraktEpisodeRequest<>)
+            var propertyInfo = typeof(ATraktEpisodeRequest<>)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "EpisodeNumber")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(uint));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(uint));
         }
 
         [Fact]

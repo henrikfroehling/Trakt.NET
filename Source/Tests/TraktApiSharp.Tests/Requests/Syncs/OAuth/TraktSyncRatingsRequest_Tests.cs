@@ -50,27 +50,27 @@
         [Fact]
         public void Test_TraktSyncRatingsRequest_Has_Type_Property()
         {
-            var sortingPropertyInfo = typeof(TraktSyncRatingsRequest)
+            var propertyInfo = typeof(TraktSyncRatingsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktRatingsItemType));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktRatingsItemType));
         }
 
         [Fact]
         public void Test_TraktSyncRatingsRequest_Has_RatingFilter_Property()
         {
-            var sortingPropertyInfo = typeof(TraktSyncRatingsRequest)
+            var propertyInfo = typeof(TraktSyncRatingsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "RatingFilter")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(int[]));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(int[]));
         }
 
         [Theory, ClassData(typeof(TraktSyncRatingsRequest_TestData))]

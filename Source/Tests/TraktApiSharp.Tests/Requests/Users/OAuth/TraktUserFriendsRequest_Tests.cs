@@ -36,14 +36,14 @@
         [Fact]
         public void Test_TraktUserFriendsRequest_Has_Username_Property()
         {
-            var sortingPropertyInfo = typeof(TraktUserFriendsRequest)
+            var propertyInfo = typeof(TraktUserFriendsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]

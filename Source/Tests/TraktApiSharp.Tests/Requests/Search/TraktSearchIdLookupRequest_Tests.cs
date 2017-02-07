@@ -51,27 +51,27 @@
         [Fact]
         public void Test_TraktSearchIdLookupRequest_Has_IdType_Property()
         {
-            var startDatePropertyInfo = typeof(TraktSearchIdLookupRequest)
+            var propertyInfo = typeof(TraktSearchIdLookupRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "IdType")
                     .FirstOrDefault();
 
-            startDatePropertyInfo.CanRead.Should().BeTrue();
-            startDatePropertyInfo.CanWrite.Should().BeTrue();
-            startDatePropertyInfo.PropertyType.Should().Be(typeof(TraktSearchIdType));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktSearchIdType));
         }
 
         [Fact]
         public void Test_TraktSearchIdLookupRequest_Has_LookupId_Property()
         {
-            var startDatePropertyInfo = typeof(TraktSearchIdLookupRequest)
+            var propertyInfo = typeof(TraktSearchIdLookupRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "LookupId")
                     .FirstOrDefault();
 
-            startDatePropertyInfo.CanRead.Should().BeTrue();
-            startDatePropertyInfo.CanWrite.Should().BeTrue();
-            startDatePropertyInfo.PropertyType.Should().Be(typeof(string));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]

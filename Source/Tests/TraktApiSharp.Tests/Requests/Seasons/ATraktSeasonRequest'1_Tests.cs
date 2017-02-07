@@ -62,14 +62,14 @@
         [Fact]
         public void Test_ATraktSeasonRequest_1_Has_SeasonNumber_Property()
         {
-            var sortingPropertyInfo = typeof(ATraktSeasonRequest<>)
+            var propertyInfo = typeof(ATraktSeasonRequest<>)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "SeasonNumber")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(uint));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(uint));
         }
 
         [Fact]

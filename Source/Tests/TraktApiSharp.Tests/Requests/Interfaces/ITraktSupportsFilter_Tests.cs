@@ -19,13 +19,13 @@
         [Fact]
         public void Test_ITraktSupportsFilter_Has_Filter_Property()
         {
-            var filterPropertyInfo = typeof(ITraktSupportsFilter).GetProperties()
-                                                                 .Where(p => p.Name == "Filter")
-                                                                 .FirstOrDefault();
+            var propertyInfo = typeof(ITraktSupportsFilter).GetProperties()
+                                                           .Where(p => p.Name == "Filter")
+                                                           .FirstOrDefault();
 
-            filterPropertyInfo.CanRead.Should().BeTrue();
-            filterPropertyInfo.CanWrite.Should().BeTrue();
-            filterPropertyInfo.PropertyType.Should().Be(typeof(TraktCommonFilter));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktCommonFilter));
         }
     }
 }

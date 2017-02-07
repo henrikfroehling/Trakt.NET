@@ -48,14 +48,14 @@
         [Fact]
         public void Test_ATraktShowsMostPWCRequest_1_Has_Period_Property()
         {
-            var periodPropertyInfo = typeof(ATraktShowsMostPWCRequest<>)
+            var propertyInfo = typeof(ATraktShowsMostPWCRequest<>)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Period")
                     .FirstOrDefault();
 
-            periodPropertyInfo.CanRead.Should().BeTrue();
-            periodPropertyInfo.CanWrite.Should().BeTrue();
-            periodPropertyInfo.PropertyType.Should().Be(typeof(TraktTimePeriod));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktTimePeriod));
         }
 
         [Fact]

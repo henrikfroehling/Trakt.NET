@@ -44,14 +44,14 @@
         [Fact]
         public void Test_TraktUserLikesRequest_Has_Type_Property()
         {
-            var sortingPropertyInfo = typeof(TraktUserLikesRequest)
+            var propertyInfo = typeof(TraktUserLikesRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktUserLikeType));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktUserLikeType));
         }
 
         [Fact]

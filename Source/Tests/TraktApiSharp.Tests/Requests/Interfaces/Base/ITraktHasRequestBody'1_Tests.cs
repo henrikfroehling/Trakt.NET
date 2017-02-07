@@ -25,13 +25,13 @@
         [Fact]
         public void Test_ITraktHasRequestBody_1_Has_RequestBody_Property()
         {
-            var requestBodyContentPropertyInfo = typeof(ITraktHasRequestBody<int>).GetProperties()
-                                                                                  .Where(p => p.Name == "RequestBody")
-                                                                                  .FirstOrDefault();
+            var propertyInfo = typeof(ITraktHasRequestBody<int>).GetProperties()
+                                                                .Where(p => p.Name == "RequestBody")
+                                                                .FirstOrDefault();
 
-            requestBodyContentPropertyInfo.CanRead.Should().BeTrue();
-            requestBodyContentPropertyInfo.CanWrite.Should().BeTrue();
-            requestBodyContentPropertyInfo.PropertyType.Should().Be(typeof(int));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(int));
         }
     }
 }

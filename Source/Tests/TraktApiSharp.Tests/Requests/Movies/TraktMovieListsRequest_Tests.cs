@@ -50,27 +50,27 @@
         [Fact]
         public void Test_TraktMovieListsRequest_Has_Type_Property()
         {
-            var sortingPropertyInfo = typeof(TraktMovieListsRequest)
+            var propertyInfo = typeof(TraktMovieListsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktListType));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktListType));
         }
 
         [Fact]
         public void Test_TraktMovieListsRequest_Has_SortOrder_Property()
         {
-            var sortingPropertyInfo = typeof(TraktMovieListsRequest)
+            var propertyInfo = typeof(TraktMovieListsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "SortOrder")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktListSortOrder));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktListSortOrder));
         }
 
         [Fact]

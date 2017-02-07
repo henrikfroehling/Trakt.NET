@@ -63,40 +63,40 @@
         [Fact]
         public void Test_ATraktShowProgressRequest_1_Has_Hidden_Property()
         {
-            var sortingPropertyInfo = typeof(ATraktShowProgressRequest<>)
+            var propertyInfo = typeof(ATraktShowProgressRequest<>)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Hidden")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(bool?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(bool?));
         }
 
         [Fact]
         public void Test_ATraktShowProgressRequest_1_Has_Specials_Property()
         {
-            var sortingPropertyInfo = typeof(ATraktShowProgressRequest<>)
+            var propertyInfo = typeof(ATraktShowProgressRequest<>)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Specials")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(bool?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(bool?));
         }
 
         [Fact]
         public void Test_ATraktShowProgressRequest_1_Has_CountSpecials_Property()
         {
-            var sortingPropertyInfo = typeof(ATraktShowProgressRequest<>)
+            var propertyInfo = typeof(ATraktShowProgressRequest<>)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "CountSpecials")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(bool?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(bool?));
         }
 
         [Fact]

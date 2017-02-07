@@ -19,13 +19,13 @@
         [Fact]
         public void Test_ITraktObjectRequest_Has_RequestObjectType_Property()
         {
-            var requestObjectTypePropertyInfo = typeof(ITraktObjectRequest).GetProperties()
-                                                                           .Where(p => p.Name == "RequestObjectType")
-                                                                           .FirstOrDefault();
+            var propertyInfo = typeof(ITraktObjectRequest).GetProperties()
+                                                          .Where(p => p.Name == "RequestObjectType")
+                                                          .FirstOrDefault();
 
-            requestObjectTypePropertyInfo.CanRead.Should().BeTrue();
-            requestObjectTypePropertyInfo.CanWrite.Should().BeFalse();
-            requestObjectTypePropertyInfo.PropertyType.Should().Be(typeof(TraktRequestObjectType));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeFalse();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktRequestObjectType));
         }
     }
 }

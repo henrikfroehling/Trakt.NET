@@ -44,27 +44,27 @@
         [Fact]
         public void Test_TraktUserCustomListItemsRequest_Has_Username_Property()
         {
-            var sortingPropertyInfo = typeof(TraktUserCustomListItemsRequest)
+            var propertyInfo = typeof(TraktUserCustomListItemsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]
         public void Test_TraktUserCustomListItemsRequest_Has_Type_Property()
         {
-            var sortingPropertyInfo = typeof(TraktUserCustomListItemsRequest)
+            var propertyInfo = typeof(TraktUserCustomListItemsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktListItemType));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktListItemType));
         }
 
         [Fact]

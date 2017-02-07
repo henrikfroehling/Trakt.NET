@@ -19,13 +19,13 @@
         [Fact]
         public void Test_ITraktSupportsExtendedInfo_Has_ExtendedInfo_Property()
         {
-            var extendedOptionPropertyInfo = typeof(ITraktSupportsExtendedInfo).GetProperties()
-                                                                               .Where(p => p.Name == "ExtendedInfo")
-                                                                               .FirstOrDefault();
+            var propertyInfo = typeof(ITraktSupportsExtendedInfo).GetProperties()
+                                                                 .Where(p => p.Name == "ExtendedInfo")
+                                                                 .FirstOrDefault();
 
-            extendedOptionPropertyInfo.CanRead.Should().BeTrue();
-            extendedOptionPropertyInfo.CanWrite.Should().BeTrue();
-            extendedOptionPropertyInfo.PropertyType.Should().Be(typeof(TraktExtendedInfo));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktExtendedInfo));
         }
     }
 }

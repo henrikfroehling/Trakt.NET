@@ -33,79 +33,79 @@
         [Fact]
         public void Test_TraktHttpRequestMessage_Has_ObjectId_Property()
         {
-            var sortingPropertyInfo = typeof(TraktHttpRequestMessage)
+            var propertyInfo = typeof(TraktHttpRequestMessage)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "ObjectId")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]
         public void Test_TraktHttpRequestMessage_Has_SeasonNumber_Property()
         {
-            var sortingPropertyInfo = typeof(TraktHttpRequestMessage)
+            var propertyInfo = typeof(TraktHttpRequestMessage)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "SeasonNumber")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(uint?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(uint?));
         }
 
         [Fact]
         public void Test_TraktHttpRequestMessage_Has_EpisodeNumber_Property()
         {
-            var sortingPropertyInfo = typeof(TraktHttpRequestMessage)
+            var propertyInfo = typeof(TraktHttpRequestMessage)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "EpisodeNumber")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(uint?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(uint?));
         }
 
         [Fact]
         public void Test_TraktHttpRequestMessage_Has_Url_Property()
         {
-            var sortingPropertyInfo = typeof(TraktHttpRequestMessage)
+            var propertyInfo = typeof(TraktHttpRequestMessage)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Url")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]
         public void Test_TraktHttpRequestMessage_Has_RequestObjectType_Property()
         {
-            var sortingPropertyInfo = typeof(TraktHttpRequestMessage)
+            var propertyInfo = typeof(TraktHttpRequestMessage)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "RequestObjectType")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktRequestObjectType?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktRequestObjectType?));
         }
 
         [Fact]
         public void Test_TraktHttpRequestMessage_Has_RequestBodyJson_Property()
         {
-            var sortingPropertyInfo = typeof(TraktHttpRequestMessage)
+            var propertyInfo = typeof(TraktHttpRequestMessage)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "RequestBodyJson")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
     }
 }

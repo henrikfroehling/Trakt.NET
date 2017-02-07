@@ -41,14 +41,14 @@
         [Fact]
         public void Test_TraktMovieTranslationsRequest_Has_LanguageCode_Property()
         {
-            var sortingPropertyInfo = typeof(TraktMovieTranslationsRequest)
+            var propertyInfo = typeof(TraktMovieTranslationsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "LanguageCode")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]

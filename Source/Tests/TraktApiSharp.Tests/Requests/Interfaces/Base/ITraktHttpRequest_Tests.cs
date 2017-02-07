@@ -19,13 +19,13 @@
         [Fact]
         public void Test_ITraktHttpRequest_Has_Method_Property()
         {
-            var methodPropertyInfo = typeof(ITraktHttpRequest).GetProperties()
-                                                              .Where(p => p.Name == "Method")
-                                                              .FirstOrDefault();
+            var propertyInfo = typeof(ITraktHttpRequest).GetProperties()
+                                                        .Where(p => p.Name == "Method")
+                                                        .FirstOrDefault();
 
-            methodPropertyInfo.CanRead.Should().BeTrue();
-            methodPropertyInfo.CanWrite.Should().BeFalse();
-            methodPropertyInfo.PropertyType.Should().Be(typeof(HttpMethod));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeFalse();
+            propertyInfo.PropertyType.Should().Be(typeof(HttpMethod));
         }
     }
 }

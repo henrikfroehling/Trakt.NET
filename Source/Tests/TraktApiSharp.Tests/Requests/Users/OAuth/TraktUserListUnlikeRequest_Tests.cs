@@ -34,14 +34,14 @@
         [Fact]
         public void Test_TraktUserListUnlikeRequest_Has_Username_Property()
         {
-            var sortingPropertyInfo = typeof(TraktUserListUnlikeRequest)
+            var propertyInfo = typeof(TraktUserListUnlikeRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]

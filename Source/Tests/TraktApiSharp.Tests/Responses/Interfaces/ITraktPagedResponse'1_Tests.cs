@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Responses.Interfaces.Base
 {
     using FluentAssertions;
-    using System;
     using TraktApiSharp.Experimental.Responses.Interfaces;
     using TraktApiSharp.Tests.Traits;
     using Xunit;

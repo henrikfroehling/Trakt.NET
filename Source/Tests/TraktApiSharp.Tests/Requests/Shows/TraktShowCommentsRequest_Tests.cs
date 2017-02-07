@@ -50,14 +50,14 @@
         [Fact]
         public void Test_TraktShowCommentsRequest_Has_SortOrder_Property()
         {
-            var sortingPropertyInfo = typeof(TraktShowCommentsRequest)
+            var propertyInfo = typeof(TraktShowCommentsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "SortOrder")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktCommentSortOrder));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktCommentSortOrder));
         }
 
         [Fact]

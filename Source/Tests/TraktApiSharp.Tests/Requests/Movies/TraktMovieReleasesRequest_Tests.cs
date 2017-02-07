@@ -41,14 +41,14 @@
         [Fact]
         public void Test_TraktMovieReleasesRequest_Has_CountryCode_Property()
         {
-            var sortingPropertyInfo = typeof(TraktMovieReleasesRequest)
+            var propertyInfo = typeof(TraktMovieReleasesRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "CountryCode")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]

@@ -52,27 +52,27 @@
         [Fact]
         public void Test_ATraktCalendarRequest_1_Has_StartDate_Property()
         {
-            var startDatePropertyInfo = typeof(ATraktCalendarRequest<>)
+            var propertyInfo = typeof(ATraktCalendarRequest<>)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "StartDate")
                     .FirstOrDefault();
 
-            startDatePropertyInfo.CanRead.Should().BeTrue();
-            startDatePropertyInfo.CanWrite.Should().BeTrue();
-            startDatePropertyInfo.PropertyType.Should().Be(typeof(DateTime?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(DateTime?));
         }
 
         [Fact]
         public void Test_ATraktCalendarRequest_1_Has_Days_Property()
         {
-            var daysPropertyInfo = typeof(ATraktCalendarRequest<>)
+            var propertyInfo = typeof(ATraktCalendarRequest<>)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Days")
                     .FirstOrDefault();
 
-            daysPropertyInfo.CanRead.Should().BeTrue();
-            daysPropertyInfo.CanWrite.Should().BeTrue();
-            daysPropertyInfo.PropertyType.Should().Be(typeof(int?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(int?));
         }
 
         [Fact]

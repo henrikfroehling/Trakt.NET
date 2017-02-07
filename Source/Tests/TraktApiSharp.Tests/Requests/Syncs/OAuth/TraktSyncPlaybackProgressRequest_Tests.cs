@@ -41,27 +41,27 @@
         [Fact]
         public void Test_TraktSyncPlaybackProgressRequest_Has_Type_Property()
         {
-            var sortingPropertyInfo = typeof(TraktSyncPlaybackProgressRequest)
+            var propertyInfo = typeof(TraktSyncPlaybackProgressRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktSyncType));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktSyncType));
         }
 
         [Fact]
         public void Test_TraktSyncPlaybackProgressRequest_Has_Limit_Property()
         {
-            var sortingPropertyInfo = typeof(TraktSyncPlaybackProgressRequest)
+            var propertyInfo = typeof(TraktSyncPlaybackProgressRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Limit")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(int?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(int?));
         }
 
         [Fact]

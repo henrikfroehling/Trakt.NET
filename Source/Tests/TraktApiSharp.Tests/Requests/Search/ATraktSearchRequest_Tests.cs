@@ -63,14 +63,14 @@
         [Fact]
         public void Test_ATraktSearchRequest_Has_ResultTypes_Property()
         {
-            var startDatePropertyInfo = typeof(ATraktSearchRequest)
+            var propertyInfo = typeof(ATraktSearchRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "ResultTypes")
                     .FirstOrDefault();
 
-            startDatePropertyInfo.CanRead.Should().BeTrue();
-            startDatePropertyInfo.CanWrite.Should().BeTrue();
-            startDatePropertyInfo.PropertyType.Should().Be(typeof(TraktSearchResultType));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktSearchResultType));
         }
         
         [Theory, ClassData(typeof(TraktSearchRequestMock_TestData))]

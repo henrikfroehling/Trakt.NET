@@ -58,27 +58,27 @@
         [Fact]
         public void Test_TraktSearchTextQueryRequest_Has_SearchFields_Property()
         {
-            var startDatePropertyInfo = typeof(TraktSearchTextQueryRequest)
+            var propertyInfo = typeof(TraktSearchTextQueryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "SearchFields")
                     .FirstOrDefault();
 
-            startDatePropertyInfo.CanRead.Should().BeTrue();
-            startDatePropertyInfo.CanWrite.Should().BeTrue();
-            startDatePropertyInfo.PropertyType.Should().Be(typeof(TraktSearchField));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktSearchField));
         }
 
         [Fact]
         public void Test_TraktSearchTextQueryRequest_Has_Query_Property()
         {
-            var startDatePropertyInfo = typeof(TraktSearchTextQueryRequest)
+            var propertyInfo = typeof(TraktSearchTextQueryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Query")
                     .FirstOrDefault();
 
-            startDatePropertyInfo.CanRead.Should().BeTrue();
-            startDatePropertyInfo.CanWrite.Should().BeTrue();
-            startDatePropertyInfo.PropertyType.Should().Be(typeof(string));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]

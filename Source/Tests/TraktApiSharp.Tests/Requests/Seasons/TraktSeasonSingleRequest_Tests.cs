@@ -50,14 +50,14 @@
         [Fact]
         public void Test_TraktSeasonSingleRequest_Has_TranslationLanguageCode_Property()
         {
-            var sortingPropertyInfo = typeof(TraktSeasonSingleRequest)
+            var propertyInfo = typeof(TraktSeasonSingleRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "TranslationLanguageCode")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]

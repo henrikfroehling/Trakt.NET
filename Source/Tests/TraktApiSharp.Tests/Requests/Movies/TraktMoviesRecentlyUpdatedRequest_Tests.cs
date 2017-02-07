@@ -66,14 +66,14 @@
         [Fact]
         public void Test_TraktMoviesRecentlyUpdatedRequest_Has_StartDate_Property()
         {
-            var periodPropertyInfo = typeof(TraktMoviesRecentlyUpdatedRequest)
+            var propertyInfo = typeof(TraktMoviesRecentlyUpdatedRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "StartDate")
                     .FirstOrDefault();
 
-            periodPropertyInfo.CanRead.Should().BeTrue();
-            periodPropertyInfo.CanWrite.Should().BeTrue();
-            periodPropertyInfo.PropertyType.Should().Be(typeof(DateTime?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(DateTime?));
         }
 
         [Theory, ClassData(typeof(TraktMoviesRecentlyUpdatedRequest_TestData))]

@@ -39,66 +39,66 @@
         [Fact]
         public void Test_TraktUserWatchedHistoryRequest_Has_Username_Property()
         {
-            var sortingPropertyInfo = typeof(TraktUserWatchedHistoryRequest)
+            var propertyInfo = typeof(TraktUserWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(string));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]
         public void Test_TraktUserWatchedHistoryRequest_Has_Type_Property()
         {
-            var sortingPropertyInfo = typeof(TraktUserWatchedHistoryRequest)
+            var propertyInfo = typeof(TraktUserWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(TraktSyncItemType));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(TraktSyncItemType));
         }
 
         [Fact]
         public void Test_TraktUserWatchedHistoryRequest_Has_ItemId_Property()
         {
-            var sortingPropertyInfo = typeof(TraktUserWatchedHistoryRequest)
+            var propertyInfo = typeof(TraktUserWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "ItemId")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(uint?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(uint?));
         }
 
         [Fact]
         public void Test_TraktUserWatchedHistoryRequest_Has_StartAt_Property()
         {
-            var sortingPropertyInfo = typeof(TraktUserWatchedHistoryRequest)
+            var propertyInfo = typeof(TraktUserWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "StartAt")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(DateTime?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(DateTime?));
         }
 
         [Fact]
         public void Test_TraktUserWatchedHistoryRequest_Has_EndAt_Property()
         {
-            var sortingPropertyInfo = typeof(TraktUserWatchedHistoryRequest)
+            var propertyInfo = typeof(TraktUserWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "EndAt")
                     .FirstOrDefault();
 
-            sortingPropertyInfo.CanRead.Should().BeTrue();
-            sortingPropertyInfo.CanWrite.Should().BeTrue();
-            sortingPropertyInfo.PropertyType.Should().Be(typeof(DateTime?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(DateTime?));
         }
 
         [Fact]

@@ -61,14 +61,14 @@
         [Fact]
         public void Test_ATraktUserRecommendationsRequest_1_Has_Limit_Property()
         {
-            var startDatePropertyInfo = typeof(ATraktUserRecommendationsRequest<>)
+            var propertyInfo = typeof(ATraktUserRecommendationsRequest<>)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Limit")
                     .FirstOrDefault();
 
-            startDatePropertyInfo.CanRead.Should().BeTrue();
-            startDatePropertyInfo.CanWrite.Should().BeTrue();
-            startDatePropertyInfo.PropertyType.Should().Be(typeof(uint?));
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(uint?));
         }
 
         [Fact]
