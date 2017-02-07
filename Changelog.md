@@ -13,7 +13,8 @@ Breaking Changes:
   - `TraktNoContentResponse` replaces all `Task` return types in `Modules`
   - `TraktResponse<TContentType>` replaces all `Task<TItem>` return types in `Modules`
   - `TraktListResponse<TContentType>` replaces all `Task<IEnumerable<TItem>>` return types in `Modules`
-  - `TraktPagedResponse<TContentType>` replaces all `Task<TraktPaginationResult<TItem>>` return types in `Modules`
+  - `TraktPagedResponse<TContentType>` replaces all `Task<TraktPaginationListResult<TItem>>` return types in `Modules`
+  - [More information](https://github.com/henrikfroehling/TraktApiSharp/wiki/00-Prereleases#v100-alpha1)
 
 Added:
 
