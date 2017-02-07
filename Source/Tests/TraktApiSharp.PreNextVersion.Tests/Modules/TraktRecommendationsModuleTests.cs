@@ -6,11 +6,11 @@
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Params;
+    using TraktApiSharp.Responses;
     using Utils;
 
     [TestClass]

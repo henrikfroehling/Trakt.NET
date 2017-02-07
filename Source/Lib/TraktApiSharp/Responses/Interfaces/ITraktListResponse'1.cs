@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Experimental.Responses.Interfaces
+﻿namespace TraktApiSharp.Responses.Interfaces
 {
     using System.Collections.Generic;
 

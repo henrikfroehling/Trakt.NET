@@ -7,7 +7,6 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Movies;
@@ -15,6 +14,7 @@
     using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Post.Scrobbles;
     using TraktApiSharp.Objects.Post.Scrobbles.Responses;
+    using TraktApiSharp.Responses;
     using Utils;
 
     [TestClass]

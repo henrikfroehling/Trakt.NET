@@ -8,9 +8,9 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Responses;
     using Utils;
 
     [TestClass]

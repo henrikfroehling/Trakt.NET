@@ -8,13 +8,13 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Requests.Params;
+    using TraktApiSharp.Responses;
     using Utils;
 
     [TestClass]

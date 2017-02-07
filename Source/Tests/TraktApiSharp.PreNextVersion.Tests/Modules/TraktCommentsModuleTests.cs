@@ -7,7 +7,6 @@
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Movies;
@@ -17,6 +16,7 @@
     using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Objects.Post.Comments;
     using TraktApiSharp.Objects.Post.Comments.Responses;
+    using TraktApiSharp.Responses;
     using Utils;
 
     [TestClass]

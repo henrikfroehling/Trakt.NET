@@ -9,7 +9,6 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
@@ -29,6 +28,7 @@
     using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
     using TraktApiSharp.Objects.Post.Users.Responses;
     using TraktApiSharp.Requests.Params;
+    using TraktApiSharp.Responses;
     using Utils;
 
     [TestClass]

@@ -4,11 +4,11 @@
     using Exceptions;
     using Experimental.Requests.Handler;
     using Experimental.Requests.Recommendations.OAuth;
-    using Experimental.Responses;
     using Objects.Basic;
     using Objects.Get.Movies;
     using Objects.Get.Shows;
     using Requests.Params;
+    using Responses;
     using System;
     using System.Threading.Tasks;
 

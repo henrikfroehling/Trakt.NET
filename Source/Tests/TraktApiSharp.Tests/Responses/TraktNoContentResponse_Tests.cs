@@ -2,9 +2,9 @@
 {
     using FluentAssertions;
     using System;
-    using TraktApiSharp.Experimental.Responses;
-    using TraktApiSharp.Experimental.Responses.Interfaces;
-    using TraktApiSharp.Tests.Traits;
+    using Traits;
+    using TraktApiSharp.Responses;
+    using TraktApiSharp.Responses.Interfaces;
     using Xunit;
 
     [Category("Responses")]

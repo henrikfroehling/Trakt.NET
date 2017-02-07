@@ -9,7 +9,6 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Collection;
@@ -31,6 +30,7 @@
     using TraktApiSharp.Objects.Post.Syncs.Watchlist;
     using TraktApiSharp.Objects.Post.Syncs.Watchlist.Responses;
     using TraktApiSharp.Requests.Params;
+    using TraktApiSharp.Responses;
     using Utils;
 
     [TestClass]

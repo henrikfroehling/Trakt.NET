@@ -6,11 +6,11 @@
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Calendars;
     using TraktApiSharp.Requests.Params;
+    using TraktApiSharp.Responses;
     using Utils;
 
     [TestClass]

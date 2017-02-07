@@ -3,8 +3,8 @@
     using FluentAssertions;
     using System;
     using System.Linq;
-    using TraktApiSharp.Experimental.Responses.Interfaces;
-    using TraktApiSharp.Tests.Traits;
+    using Traits;
+    using TraktApiSharp.Responses.Interfaces;
     using Xunit;
 
     [Category("Responses.Interfaces")]

@@ -4,13 +4,13 @@
     using Exceptions;
     using Experimental.Requests.Handler;
     using Experimental.Requests.Scrobbles.OAuth;
-    using Experimental.Responses;
     using Extensions;
     using Objects.Get.Movies;
     using Objects.Get.Shows;
     using Objects.Get.Shows.Episodes;
     using Objects.Post.Scrobbles;
     using Objects.Post.Scrobbles.Responses;
+    using Responses;
     using System;
     using System.Threading.Tasks;
 

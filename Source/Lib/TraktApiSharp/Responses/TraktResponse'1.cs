@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Experimental.Responses
+﻿namespace TraktApiSharp.Responses
 {
     using Interfaces;
     using System;

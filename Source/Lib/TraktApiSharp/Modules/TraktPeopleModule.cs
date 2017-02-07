@@ -4,10 +4,10 @@
     using Exceptions;
     using Experimental.Requests.Handler;
     using Experimental.Requests.People;
-    using Experimental.Responses;
     using Objects.Get.People;
     using Objects.Get.People.Credits;
     using Requests.Params;
+    using Responses;
     using System;
     using System.Collections.Generic;
     using System.Linq;

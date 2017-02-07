@@ -8,11 +8,11 @@
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.People;
     using TraktApiSharp.Objects.Get.People.Credits;
     using TraktApiSharp.Requests.Params;
+    using TraktApiSharp.Responses;
     using Utils;
 
     [TestClass]

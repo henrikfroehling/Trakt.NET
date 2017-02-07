@@ -6,7 +6,6 @@
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Experimental.Responses;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
@@ -15,6 +14,7 @@
     using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Post.Checkins;
     using TraktApiSharp.Objects.Post.Checkins.Responses;
+    using TraktApiSharp.Responses;
     using Utils;
 
     [TestClass]

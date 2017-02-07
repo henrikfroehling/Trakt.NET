@@ -5,9 +5,9 @@
     using Experimental.Requests.Calendars;
     using Experimental.Requests.Calendars.OAuth;
     using Experimental.Requests.Handler;
-    using Experimental.Responses;
     using Objects.Get.Calendars;
     using Requests.Params;
+    using Responses;
     using System;
     using System.Threading.Tasks;
 
