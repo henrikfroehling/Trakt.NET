@@ -16,6 +16,8 @@ Breaking Changes:
   - `TraktPagedResponse<TContentType>` replaces all `Task<TraktPaginationListResult<TItem>>` return types in `Modules`
   - [More information](https://github.com/henrikfroehling/TraktApiSharp/wiki/00-Prereleases#v100-alpha1)
 
+- .NET Standard 1.2 replaces PCL
+
 Added:
 
 - `bool ThrowResponseExceptions` in `TraktConfiguration`
