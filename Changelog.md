@@ -1,6 +1,31 @@
 Release notes
 =============
----
+
+Version 1.0.0
+===
+
+#### 1.0.0-alpha1
+(2017-02-07)
+
+Breaking Changes:
+
+- New response classes
+  - `TraktNoContentResponse` replaces all `Task` return types in `Modules`
+  - `TraktResponse<TContentType>` replaces all `Task<TItem>` return types in `Modules`
+  - `TraktListResponse<TContentType>` replaces all `Task<IEnumerable<TItem>>` return types in `Modules`
+  - `TraktPagedResponse<TContentType>` replaces all `Task<TraktPaginationResult<TItem>>` return types in `Modules`
+
+Added:
+
+- `bool ThrowResponseExceptions` in `TraktConfiguration`
+
+Removed:
+
+- Attributes
+
+Renamed:
+
+- namespace Requests.Params (-> Requests.Parameters)
 
 Version 0.9.0
 ===
