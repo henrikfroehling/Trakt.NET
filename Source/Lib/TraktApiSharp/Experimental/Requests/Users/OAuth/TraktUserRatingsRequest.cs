@@ -44,6 +44,8 @@
 
         public override void Validate()
         {
+            base.Validate();
+
             if (Username == null)
                 throw new ArgumentNullException(nameof(Username));
 

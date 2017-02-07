@@ -16,7 +16,7 @@
         public override IDictionary<string, object> GetUriPathParameters()
             => new Dictionary<string, object>
             {
-                { "id", Id }
+                ["id"] = Id
             };
 
         public override void Validate()

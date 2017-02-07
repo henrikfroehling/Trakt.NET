@@ -12,7 +12,7 @@
         public string Id { get; set; }
 
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Comments;
-        
+
         public override string UriTemplate => "comments/{id}";
 
         public override IDictionary<string, object> GetUriPathParameters() => new Dictionary<string, object> { ["id"] = Id };

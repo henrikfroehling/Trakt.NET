@@ -20,9 +20,9 @@
         public override IDictionary<string, object> GetUriPathParameters()
             => new Dictionary<string, object>
             {
-                { "id", Id },
-                { "season", SeasonNumber.ToString() },
-                { "episode", EpisodeNumber.ToString() }
+                ["id"] = Id,
+                ["season"] = SeasonNumber.ToString(),
+                ["episode"] = EpisodeNumber.ToString()
             };
 
         public override void Validate()

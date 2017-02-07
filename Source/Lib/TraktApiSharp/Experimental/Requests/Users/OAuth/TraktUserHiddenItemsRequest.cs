@@ -30,6 +30,8 @@
 
         public override void Validate()
         {
+            base.Validate();
+
             if (Section == null)
                 throw new ArgumentNullException(nameof(Section));
 
