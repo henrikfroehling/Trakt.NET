@@ -3,6 +3,7 @@ TraktApiSharp
 ##### This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).
 
 [![NuGet Package](https://img.shields.io/badge/NuGet-v0.9.0-brightgreen.svg?style=flat)](https://www.nuget.org/packages/TraktApiSharp)
+[![NuGet Package](https://img.shields.io/badge/NuGet-v1.0.0alpha1-orange.svg?style=flat)](https://www.nuget.org/packages/TraktApiSharp/1.0.0-alpha1)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![Zenhub Support](https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png)](https://www.zenhub.com/)
 
