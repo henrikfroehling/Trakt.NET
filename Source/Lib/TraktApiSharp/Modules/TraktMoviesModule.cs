@@ -149,10 +149,10 @@
         /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried movie comments and which also
+        /// An <see cref="TraktPagedResponse{TraktComment}"/> instance containing the queried movie comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktComment" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktComment" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -185,10 +185,10 @@
         /// <param name="page">The page of the <see cref="TraktList" /> list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of <see cref="TraktList" />s for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktList}"/> instance containing the queried movie lists and which also
+        /// An <see cref="TraktPagedResponse{TraktList}"/> instance containing the queried movie lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktList" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktList" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -262,10 +262,10 @@
         /// <param name="page">The page of the related movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of related movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktMovie}"/> instance containing the queried related movies and which also
+        /// An <see cref="TraktPagedResponse{TraktMovie}"/> instance containing the queried related movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="Objects.Get.Shows.TraktShow" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="Objects.Get.Shows.TraktShow" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -337,10 +337,10 @@
         /// <param name="page">The page of the trending movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of trending movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktTrendingMovie}"/> instance containing the queried trending movies and which also
+        /// An <see cref="TraktPagedResponse{TraktTrendingMovie}"/> instance containing the queried trending movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktTrendingMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktTrendingMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -374,10 +374,10 @@
         /// <param name="page">The page of the popular movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of popular movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktMovie}"/> instance containing the queried popular movies and which also
+        /// An <see cref="TraktPagedResponse{TraktMovie}"/> instance containing the queried popular movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -412,10 +412,10 @@
         /// <param name="page">The page of the most played movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of most played movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktMostPlayedMovie}"/> instance containing the queried most played movies and which also
+        /// An <see cref="TraktPagedResponse{TraktMostPlayedMovie}"/> instance containing the queried most played movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktMostPlayedMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostPlayedMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -452,10 +452,10 @@
         /// <param name="page">The page of the most watched movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of most watched movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktMostWatchedMovie}"/> instance containing the queried most watched movies and which also
+        /// An <see cref="TraktPagedResponse{TraktMostWatchedMovie}"/> instance containing the queried most watched movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktMostWatchedMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostWatchedMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -492,10 +492,10 @@
         /// <param name="page">The page of the most collected movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of most collected movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktMostCollectedMovie}"/> instance containing the queried most collected movies and which also
+        /// An <see cref="TraktPagedResponse{TraktMostCollectedMovie}"/> instance containing the queried most collected movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktMostCollectedMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostCollectedMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -531,10 +531,10 @@
         /// <param name="page">The page of the most anticipated movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of most anticipated movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktMostAnticipatedMovie}"/> instance containing the queried most anticipated movies and which also
+        /// An <see cref="TraktPagedResponse{TraktMostAnticipatedMovie}"/> instance containing the queried most anticipated movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktMostAnticipatedMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostAnticipatedMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -587,10 +587,10 @@
         /// <param name="page">The page of the updated movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of updated movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktRecentlyUpdatedMovie}"/> instance containing the queried updated movies and which also
+        /// An <see cref="TraktPagedResponse{TraktRecentlyUpdatedMovie}"/> instance containing the queried updated movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktRecentlyUpdatedMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktRecentlyUpdatedMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>

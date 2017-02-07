@@ -85,10 +85,10 @@
         /// <param name="page">The page of the hidden items list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of hidden items for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktUserHiddenItem}"/> instance containing the queried hidden items and which also
+        /// An <see cref="TraktPagedResponse{TraktUserHiddenItem}"/> instance containing the queried hidden items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktUserHiddenItem" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktUserHiddenItem" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -121,10 +121,10 @@
         /// <param name="page">The page of the like items list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of like items for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktUserLikeItem}"/> instance containing the queried like items and which also
+        /// An <see cref="TraktPagedResponse{TraktUserLikeItem}"/> instance containing the queried like items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktUserLikeItem" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktUserLikeItem" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -238,10 +238,10 @@
         /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktUserComment}"/> instance containing the queried comments and which also
+        /// An <see cref="TraktPagedResponse{TraktUserComment}"/> instance containing the queried comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktUserComment" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktUserComment" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -605,10 +605,10 @@
         /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried custom list comments and which also
+        /// An <see cref="TraktPagedResponse{TraktComment}"/> instance containing the queried custom list comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktComment" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktComment" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -835,10 +835,10 @@
         /// <param name="page">The page of the history items list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of history items for each page, that should be queried.</param>
         /// <returns>
-        /// A <see cref="TraktPaginationListResult{TraktHistoryItem}"/> instance containing the queried history items and which also
+        /// A <see cref="TraktPagedResponse{TraktHistoryItem}"/> instance containing the queried history items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktHistoryItem" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktHistoryItem" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -914,10 +914,10 @@
         /// <param name="page">The page of the watchlist items list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of watchlist items for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktWatchlistItem}"/> instance containing the queried watchlist items and which also
+        /// An <see cref="TraktPagedResponse{TraktWatchlistItem}"/> instance containing the queried watchlist items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktWatchlistItem" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktWatchlistItem" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>

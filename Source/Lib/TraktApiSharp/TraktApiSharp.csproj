@@ -337,8 +337,6 @@
     <Compile Include="Modules\TraktShowsModule.cs" />
     <Compile Include="Modules\TraktSyncModule.cs" />
     <Compile Include="Modules\TraktUsersModule.cs" />
-    <Compile Include="Objects\Basic\ITraktPaginationResultHeaders.cs" />
-    <Compile Include="Objects\Basic\ITraktResultHeaders.cs" />
     <Compile Include="Objects\Basic\TraktMetadata.cs" />
     <Compile Include="Objects\Basic\TraktTranslation.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarMovie.cs" />
@@ -444,7 +442,6 @@
     <Compile Include="Objects\Basic\TraktIds.cs" />
     <Compile Include="Objects\Basic\TraktImage.cs" />
     <Compile Include="Objects\Basic\TraktImageSet.cs" />
-    <Compile Include="Objects\Basic\TraktPaginationListResult.cs" />
     <Compile Include="Objects\Basic\TraktRating.cs" />
     <Compile Include="Objects\Basic\TraktSearchResult.cs" />
     <Compile Include="Objects\Basic\TraktSharing.cs" />

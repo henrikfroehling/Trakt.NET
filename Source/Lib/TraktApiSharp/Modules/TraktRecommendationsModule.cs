@@ -34,10 +34,10 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktMovie}"/> instance containing the queried movies and which also
+        /// An <see cref="TraktPagedResponse{TraktMovie}"/> instance containing the queried movies and which also
         /// contains the queried page number and the page's item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -82,10 +82,10 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktShow}"/> instance containing the queried shows and which also
+        /// An <see cref="TraktPagedResponse{TraktShow}"/> instance containing the queried shows and which also
         /// contains the queried page number and the page's item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktShow" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktShow" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>

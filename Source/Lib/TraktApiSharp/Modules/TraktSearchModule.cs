@@ -41,10 +41,10 @@
         /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of results for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
+        /// An <see cref="TraktPagedResponse{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktSearchResult" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktSearchResult" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -89,10 +89,10 @@
         /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of results for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
+        /// An <see cref="TraktPagedResponse{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktSearchResult" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktSearchResult" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>

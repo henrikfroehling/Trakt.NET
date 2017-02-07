@@ -418,10 +418,10 @@
         /// <param name="page">The page of the replies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of replies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPaginationListResult{TraktComment}"/> instance containing the queried replies and which also
+        /// An <see cref="TraktPagedResponse{TraktComment}"/> instance containing the queried replies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPaginationListResult{ListItem}" /> and <seealso cref="TraktComment" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktComment" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
