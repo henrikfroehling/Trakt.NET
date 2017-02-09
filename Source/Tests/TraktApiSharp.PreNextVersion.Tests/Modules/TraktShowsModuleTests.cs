@@ -56,7 +56,7 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShow()
         {
-            var show = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowSummaryFullAndImages.json");
+            var show = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowSummaryFull.json");
             show.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -86,7 +86,7 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowWithExtendedInfo()
         {
-            var show = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowSummaryFullAndImages.json");
+            var show = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowSummaryFull.json");
             show.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -118,17 +118,6 @@
             responseValue.Ids.Imdb.Should().Be("tt0944947");
             responseValue.Ids.Tmdb.Should().Be(1399U);
             responseValue.Ids.TvRage.Should().Be(24493U);
-            responseValue.Images.Should().NotBeNull();
-            responseValue.Images.FanArt.Full.Should().Be("https://walter.trakt.us/images/shows/000/001/390/fanarts/original/76d5df8aed.jpg");
-            responseValue.Images.FanArt.Medium.Should().Be("https://walter.trakt.us/images/shows/000/001/390/fanarts/medium/76d5df8aed.jpg");
-            responseValue.Images.FanArt.Thumb.Should().Be("https://walter.trakt.us/images/shows/000/001/390/fanarts/thumb/76d5df8aed.jpg");
-            responseValue.Images.Poster.Full.Should().Be("https://walter.trakt.us/images/shows/000/001/390/posters/original/93df9cd612.jpg");
-            responseValue.Images.Poster.Medium.Should().Be("https://walter.trakt.us/images/shows/000/001/390/posters/medium/93df9cd612.jpg");
-            responseValue.Images.Poster.Thumb.Should().Be("https://walter.trakt.us/images/shows/000/001/390/posters/thumb/93df9cd612.jpg");
-            responseValue.Images.Logo.Full.Should().Be("https://walter.trakt.us/images/shows/000/001/390/logos/original/13b614ad43.png");
-            responseValue.Images.ClearArt.Full.Should().Be("https://walter.trakt.us/images/shows/000/001/390/cleararts/original/5cbde9e647.png");
-            responseValue.Images.Banner.Full.Should().Be("https://walter.trakt.us/images/shows/000/001/390/banners/original/9fefff703d.jpg");
-            responseValue.Images.Thumb.Full.Should().Be("https://walter.trakt.us/images/shows/000/001/390/thumbs/original/7beccbd5a1.jpg");
             responseValue.Genres.Should().NotBeNull().And.HaveCount(5).And.Contain("drama", "fantasy", "science-fiction", "action", "adventure");
             responseValue.Seasons.Should().BeNull();
             responseValue.Overview.Should().Be("Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and the icy horrors beyond.");
@@ -223,7 +212,7 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowArgumentExceptions()
         {
-            var show = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowSummaryFullAndImages.json");
+            var show = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowSummaryFull.json");
             show.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -1695,7 +1684,7 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShows()
         {
-            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFull.json");
             showRelatedShows.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -1718,7 +1707,7 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShowsWithExtendedInfo()
         {
-            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFull.json");
             showRelatedShows.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -1744,7 +1733,7 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShowsWithPage()
         {
-            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFull.json");
             showRelatedShows.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -1768,7 +1757,7 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShowsWithExtendedInfoAndPage()
         {
-            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFull.json");
             showRelatedShows.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -1795,7 +1784,7 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShowsWithLimit()
         {
-            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFull.json");
             showRelatedShows.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -1819,7 +1808,7 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShowsWithExtendedInfoAndLimit()
         {
-            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFull.json");
             showRelatedShows.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -1846,7 +1835,7 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShowsWithPageAndLimit()
         {
-            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFull.json");
             showRelatedShows.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -1872,7 +1861,7 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShowsComplete()
         {
-            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFull.json");
             showRelatedShows.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -1973,7 +1962,7 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowRelatedShowsArgumentExceptions()
         {
-            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFullAndImages.json");
+            var showRelatedShows = TestUtility.ReadFileContents(@"Objects\Get\Shows\ShowRelatedShowsFull.json");
             showRelatedShows.Should().NotBeNullOrEmpty();
 
             var showId = "1390";

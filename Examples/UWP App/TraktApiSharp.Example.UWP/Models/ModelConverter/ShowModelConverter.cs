@@ -40,45 +40,7 @@
             show.Network = traktShow.Network ?? string.Empty;
             show.Status = traktShow.Status ?? TraktShowStatus.Unspecified;
 
-            show.Images = GetImages(traktShow);
-
             return show as T;
-        }
-
-        private static TraktShowImages GetImages(TraktShow traktShow)
-        {
-            var traktImages = traktShow.Images;
-            var images = new TraktShowImages();
-
-            if (traktImages != null)
-            {
-                if (traktImages.FanArt != null)
-                {
-                    images.FanArt = new TraktImageSet
-                    {
-                        Full = traktImages.FanArt.Full ?? DEFAULT_IMAGE,
-                        Medium = traktImages.FanArt.Medium ?? DEFAULT_IMAGE,
-                        Thumb = traktImages.FanArt.Thumb ?? DEFAULT_IMAGE
-                    };
-                }
-
-                if (traktImages.Poster != null)
-                {
-                    images.Poster = new TraktImageSet
-                    {
-                        Full = traktImages.Poster.Full ?? DEFAULT_IMAGE,
-                        Medium = traktImages.Poster.Medium ?? DEFAULT_IMAGE,
-                        Thumb = traktImages.Poster.Thumb ?? DEFAULT_IMAGE
-                    };
-                }
-            }
-            else
-            {
-                images.FanArt = new TraktImageSet { Full = DEFAULT_IMAGE, Medium = DEFAULT_IMAGE, Thumb = DEFAULT_IMAGE };
-                images.Poster = new TraktImageSet { Full = DEFAULT_IMAGE, Medium = DEFAULT_IMAGE, Thumb = DEFAULT_IMAGE };
-            }
-
-            return images;
         }
     }
 }

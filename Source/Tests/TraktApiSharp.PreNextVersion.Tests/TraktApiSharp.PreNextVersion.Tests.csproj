@@ -424,15 +424,11 @@
     <None Include="TestData\Objects\Get\Shows\ShowPeople.json" />
     <None Include="TestData\Objects\Get\Shows\ShowRatings.json" />
     <None Include="TestData\Objects\Get\Shows\ShowRelatedShowsFull.json" />
-    <None Include="TestData\Objects\Get\Shows\ShowRelatedShowsFullAndImages.json" />
-    <None Include="TestData\Objects\Get\Shows\ShowRelatedShowsImages.json" />
     <None Include="TestData\Objects\Get\Shows\ShowRelatedShowsMinimal.json" />
     <None Include="TestData\Objects\Get\Shows\ShowSingleAlias.json" />
     <None Include="TestData\Objects\Get\Shows\ShowSingleTranslation.json" />
     <None Include="TestData\Objects\Get\Shows\ShowStatistics.json" />
     <None Include="TestData\Objects\Get\Shows\ShowSummaryFull.json" />
-    <None Include="TestData\Objects\Get\Shows\ShowSummaryFullAndImages.json" />
-    <None Include="TestData\Objects\Get\Shows\ShowSummaryImages.json" />
     <None Include="TestData\Objects\Get\Shows\ShowSummaryMinimal.json" />
     <None Include="TestData\Objects\Get\Shows\ShowTranslations.json" />
     <None Include="TestData\Objects\Get\Shows\ShowWatchedProgress.json" />

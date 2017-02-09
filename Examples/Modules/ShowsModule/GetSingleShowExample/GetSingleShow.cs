@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
     using TraktApiSharp;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Parameters;
 
@@ -163,49 +162,6 @@
 
                 Console.WriteLine($"Trailer: {show.Trailer}");
                 Console.WriteLine($"Homepage: {show.Homepage}");
-            }
-        }
-
-        static void WriteShowFullWithImages(TraktShow show)
-        {
-            WriteShowFull(show);
-
-            if (show != null)
-            {
-                TraktShowImages images = show.Images;
-
-                if (images != null)
-                {
-                    TraktImageSet fanart = images.FanArt;
-
-                    if (fanart != null)
-                    {
-                        Console.WriteLine($"Fanart Full: {fanart.Full}");
-                        Console.WriteLine($"Fanart Medium: {fanart.Medium}");
-                        Console.WriteLine($"Fanart Thumb: {fanart.Thumb}");
-                    }
-
-                    TraktImageSet poster = images.Poster;
-
-                    if (poster != null)
-                    {
-                        Console.WriteLine($"Poster Full: {poster.Full}");
-                        Console.WriteLine($"Poster Medium: {poster.Medium}");
-                        Console.WriteLine($"Poster Thumb: {poster.Thumb}");
-                    }
-
-                    if (images.Banner != null)
-                        Console.WriteLine($"Banner: {images.Banner.Full}");
-
-                    if (images.Logo != null)
-                        Console.WriteLine($"Logo: {images.Logo.Full}");
-
-                    if (images.ClearArt != null)
-                        Console.WriteLine($"Clearart: {images.ClearArt.Full}");
-
-                    if (images.Thumb != null)
-                        Console.WriteLine($"Thumb: {images.Thumb.Full}");
-                }
             }
         }
     }
