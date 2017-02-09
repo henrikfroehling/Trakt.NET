@@ -378,8 +378,6 @@
     <None Include="TestData\Objects\Get\People\Credits\PersonMovieCredits.json" />
     <None Include="TestData\Objects\Get\People\Credits\PersonShowCredits.json" />
     <None Include="TestData\Objects\Get\People\PersonFull.json" />
-    <None Include="TestData\Objects\Get\People\PersonFullAndImages.json" />
-    <None Include="TestData\Objects\Get\People\PersonImages.json" />
     <None Include="TestData\Objects\Get\People\PersonMinimal.json" />
     <None Include="TestData\Objects\Get\Recommendations\MovieRecommendations.json" />
     <None Include="TestData\Objects\Get\Recommendations\MovieSingleRecommendation.json" />

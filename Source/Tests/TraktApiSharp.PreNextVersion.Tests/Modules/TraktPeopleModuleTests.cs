@@ -50,7 +50,7 @@
         [TestMethod]
         public void TestTraktPeopleModuleGetPerson()
         {
-            var person = TestUtility.ReadFileContents(@"Objects\Get\People\PersonFullAndImages.json");
+            var person = TestUtility.ReadFileContents(@"Objects\Get\People\PersonMinimal.json");
             person.Should().NotBeNullOrEmpty();
 
             var personId = "297737";
@@ -78,7 +78,7 @@
         [TestMethod]
         public void TestTraktPeopleModuleGetPersonWithExtendedInfo()
         {
-            var person = TestUtility.ReadFileContents(@"Objects\Get\People\PersonFullAndImages.json");
+            var person = TestUtility.ReadFileContents(@"Objects\Get\People\PersonFull.json");
             person.Should().NotBeNullOrEmpty();
 
             var personId = "297737";
@@ -103,15 +103,6 @@
             responseValue.Ids.Imdb.Should().Be("nm0186505");
             responseValue.Ids.Tmdb.Should().Be(17419U);
             responseValue.Ids.TvRage.Should().Be(1797U);
-            responseValue.Images.Should().NotBeNull();
-            responseValue.Images.Headshot.Should().NotBeNull();
-            responseValue.Images.Headshot.Full.Should().Be("https://walter.trakt.us/images/people/000/297/737/headshots/original/47aebaace9.jpg");
-            responseValue.Images.Headshot.Medium.Should().Be("https://walter.trakt.us/images/people/000/297/737/headshots/medium/47aebaace9.jpg");
-            responseValue.Images.Headshot.Thumb.Should().Be("https://walter.trakt.us/images/people/000/297/737/headshots/thumb/47aebaace9.jpg");
-            responseValue.Images.FanArt.Should().NotBeNull();
-            responseValue.Images.FanArt.Full.Should().Be("https://walter.trakt.us/images/people/000/297/737/fanarts/original/0e436db5dd.jpg");
-            responseValue.Images.FanArt.Medium.Should().Be("https://walter.trakt.us/images/people/000/297/737/fanarts/medium/0e436db5dd.jpg");
-            responseValue.Images.FanArt.Thumb.Should().Be("https://walter.trakt.us/images/people/000/297/737/fanarts/thumb/0e436db5dd.jpg");
             responseValue.Biography.Should().Be("Bryan Lee Cranston (born March 7, 1956) is an American actor, voice actor, writer and director.He is perhaps best known for his roles as Hal, the father in the Fox situation comedy \"Malcolm in the Middle\", and as Walter White in the AMC drama series Breaking Bad, for which he has won three consecutive Outstanding Lead Actor in a Drama Series Emmy Awards. Other notable roles include Dr. Tim Whatley on Seinfeld, Doug Heffernan's neighbor in The King of Queens, Astronaut Buzz Aldrin in From the Earth to the Moon, and Ted Mosby's boss on How I Met Your Mother. Description above from the Wikipedia article Bryan Cranston, licensed under CC-BY-SA, full list of contributors on Wikipedia.");
             responseValue.Birthday.Should().Be(DateTime.Parse("1956-03-07T00:00:00Z").ToUniversalTime());
             responseValue.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
@@ -196,7 +187,7 @@
         [TestMethod]
         public void TestTraktPeopleModuleGetPersonArgumentExceptions()
         {
-            var person = TestUtility.ReadFileContents(@"Objects\Get\People\PersonFullAndImages.json");
+            var person = TestUtility.ReadFileContents(@"Objects\Get\People\PersonFull.json");
             person.Should().NotBeNullOrEmpty();
 
             var personId = "297737";
