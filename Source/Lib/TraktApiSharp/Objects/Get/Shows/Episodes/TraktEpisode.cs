@@ -30,14 +30,6 @@
         [JsonProperty(PropertyName = "ids")]
         public TraktEpisodeIds Ids { get; set; }
 
-        /// <summary>
-        /// Gets or sets the collection of images for the episode.
-        /// See also <seealso cref="TraktEpisodeImages" />.
-        /// <para>Nullable</para>
-        /// </summary>
-        [JsonProperty(PropertyName = "images")]
-        public TraktEpisodeImages Images { get; set; }
-
         /// <summary>Gets or sets the absolute episode number of all episodes in all seasons.</summary>
         [JsonProperty(PropertyName = "number_abs")]
         public int? NumberAbsolute { get; set; }

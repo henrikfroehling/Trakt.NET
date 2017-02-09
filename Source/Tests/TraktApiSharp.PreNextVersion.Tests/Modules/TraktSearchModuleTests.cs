@@ -488,11 +488,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&{filter.ToString()}&extended={extendedInfo.ToString()}",
@@ -535,11 +531,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&{filter.ToString()}&extended={extendedInfo.ToString()}",
@@ -578,11 +570,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedInfo.ToString()}",
@@ -626,11 +614,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedInfo.ToString()}",
@@ -674,11 +658,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedInfo.ToString()}",
@@ -727,11 +707,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedInfo.ToString()}",
@@ -770,11 +746,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&{filter.ToString()}&extended={extendedInfo.ToString()}&page={page}",
@@ -818,11 +790,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&{filter.ToString()}&extended={extendedInfo.ToString()}&page={page}",
@@ -862,11 +830,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedInfo.ToString()}&page={page}",
@@ -911,11 +875,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedInfo.ToString()}&page={page}",
@@ -960,11 +920,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedInfo.ToString()}&page={page}",
@@ -1014,11 +970,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedInfo.ToString()}&page={page}",
@@ -1057,11 +1009,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&{filter.ToString()}&extended={extendedInfo.ToString()}&limit={limit}",
@@ -1105,11 +1053,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&{filter.ToString()}&extended={extendedInfo.ToString()}&limit={limit}",
@@ -1149,11 +1093,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedInfo.ToString()}&limit={limit}",
@@ -1198,11 +1138,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={field.UriName}&{filter.ToString()}&extended={extendedInfo.ToString()}&limit={limit}",
@@ -1247,11 +1183,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedInfo.ToString()}&limit={limit}",
@@ -1301,11 +1233,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&{filter.ToString()}&extended={extendedInfo.ToString()}&limit={limit}",
@@ -2090,11 +2018,7 @@
             var type = TraktSearchResultType.Movie;
             var query = "batman";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{type.UriName}?query={query}&extended={extendedInfo.ToString()}",
                                                                 searchResults, 1, 10, 1, itemCount);
@@ -2128,11 +2052,7 @@
 
             var query = "batman";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{typesEncoded}?query={query}&extended={extendedInfo.ToString()}",
                                                                 searchResults, 1, 10, 1, itemCount);
@@ -2162,11 +2082,7 @@
             var query = "batman";
             var field = TraktSearchField.Description;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={field.UriName}&extended={extendedInfo.ToString()}",
@@ -2202,11 +2118,7 @@
             var query = "batman";
             var field = TraktSearchField.Description;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={field.UriName}&extended={extendedInfo.ToString()}",
@@ -2242,11 +2154,7 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&extended={extendedInfo.ToString()}",
@@ -2287,11 +2195,7 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&extended={extendedInfo.ToString()}",
@@ -2322,11 +2226,7 @@
             var type = TraktSearchResultType.Movie;
             var query = "batman";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&extended={extendedInfo.ToString()}&page={page}",
@@ -2362,11 +2262,7 @@
 
             var query = "batman";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&extended={extendedInfo.ToString()}&page={page}",
@@ -2398,11 +2294,7 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={field.UriName}&extended={extendedInfo.ToString()}&page={page}",
@@ -2439,11 +2331,7 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={field.UriName}&extended={extendedInfo.ToString()}&page={page}",
@@ -2480,11 +2368,7 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&extended={extendedInfo.ToString()}&page={page}",
@@ -2526,11 +2410,7 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&extended={extendedInfo.ToString()}&page={page}",
@@ -2561,11 +2441,7 @@
             var type = TraktSearchResultType.Movie;
             var query = "batman";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&extended={extendedInfo.ToString()}&limit={limit}",
@@ -2601,11 +2477,7 @@
 
             var query = "batman";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&extended={extendedInfo.ToString()}&limit={limit}",
@@ -2637,11 +2509,7 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={field.UriName}&extended={extendedInfo.ToString()}&limit={limit}",
@@ -2678,11 +2546,7 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={field.UriName}&extended={extendedInfo.ToString()}&limit={limit}",
@@ -2719,11 +2583,7 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&extended={extendedInfo.ToString()}&limit={limit}",
@@ -2765,11 +2625,7 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&extended={extendedInfo.ToString()}&limit={limit}",
@@ -2801,11 +2657,7 @@
             var type = TraktSearchResultType.Movie;
             var query = "batman";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
@@ -2842,11 +2694,7 @@
 
             var query = "batman";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
@@ -2879,11 +2727,7 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={field.UriName}&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
@@ -2921,11 +2765,7 @@
             var query = "batman";
             var field = TraktSearchField.Title;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={field.UriName}&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
@@ -2963,11 +2803,7 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
@@ -3010,11 +2846,7 @@
             var fieldsUriNames = new string[] { titleField.UriName, overviewField.UriName };
             var fieldsEncoded = string.Join(ENCODED_COMMA, fieldsUriNames);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
@@ -3656,11 +3488,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={field.UriName}&{filter.ToString()}" +
@@ -3707,11 +3535,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={field.UriName}&{filter.ToString()}" +
@@ -3758,11 +3582,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{type.UriName}?query={query}&fields={fieldsEncoded}&{filter.ToString()}" +
@@ -3814,11 +3634,7 @@
                 .WithRuntimes(70, 140)
                 .WithRatings(70, 95);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{typesEncoded}?query={query}&fields={fieldsEncoded}&{filter.ToString()}" +
@@ -4011,11 +3827,7 @@
             var lookupId = "tt0848228";
             var resultType = TraktSearchResultType.Movie;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&extended={extendedInfo.ToString()}",
@@ -4047,11 +3859,7 @@
             var lookupId = "tt0848228";
             var resultType = TraktSearchResultType.Movie;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&extended={extendedInfo.ToString()}&page={page}",
@@ -4083,11 +3891,7 @@
             var lookupId = "tt0848228";
             var resultType = TraktSearchResultType.Movie;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&extended={extendedInfo.ToString()}&limit={limit}",
@@ -4205,11 +4009,7 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}?extended={extendedInfo.ToString()}",
                                                                 searchResults, 1, 10, 1, itemCount);
@@ -4239,11 +4039,7 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{idType.UriName}/{lookupId}?extended={extendedInfo.ToString()}&page={page}",
@@ -4274,11 +4070,7 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{idType.UriName}/{lookupId}?extended={extendedInfo.ToString()}&limit={limit}",
@@ -4310,11 +4102,7 @@
             var idType = TraktSearchIdType.ImDB;
             var lookupId = "tt0848228";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"search/{idType.UriName}/{lookupId}?extended={extendedInfo.ToString()}" +
                                                                 $"&page={page}&limit={limit}",
@@ -4432,11 +4220,7 @@
             var lookupId = "tt0848228";
             var resultType = TraktSearchResultType.Movie;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"search/{idType.UriName}/{lookupId}?type={resultType.UriName}&extended={extendedInfo.ToString()}" +

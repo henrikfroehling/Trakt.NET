@@ -291,10 +291,7 @@
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarShowsJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows?extended={extendedInfo.ToString()}",
@@ -318,10 +315,7 @@
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarShowsJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar show")
@@ -356,10 +350,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
@@ -385,10 +376,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar show")
@@ -424,10 +412,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -454,10 +439,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar show")
@@ -493,10 +475,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -523,10 +502,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar show")
@@ -878,10 +854,7 @@
             var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/new?extended={extendedInfo.ToString()}",
@@ -905,10 +878,7 @@
             var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar new show")
@@ -943,10 +913,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/new/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
@@ -972,10 +939,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar new show")
@@ -1012,10 +976,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/new/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -1042,10 +1003,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar new show")
@@ -1081,10 +1039,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/new/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -1111,10 +1066,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar new show")
@@ -1466,10 +1418,7 @@
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/premieres?extended={extendedInfo.ToString()}",
@@ -1493,10 +1442,7 @@
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar season premiere")
@@ -1531,10 +1477,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/premieres/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
@@ -1560,10 +1503,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar season premiere")
@@ -1600,10 +1540,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -1630,10 +1567,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar season premiere")
@@ -1669,10 +1603,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -1699,10 +1630,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar season premiere")
@@ -2054,10 +1982,7 @@
             var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
             calendarMoviesJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/movies?extended={extendedInfo.ToString()}",
@@ -2081,10 +2006,7 @@
             var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
             calendarMoviesJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
@@ -2119,10 +2041,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/movies/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
@@ -2148,10 +2067,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
@@ -2188,10 +2104,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/movies/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -2218,10 +2131,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
@@ -2257,10 +2167,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/movies/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -2287,10 +2194,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
@@ -2642,10 +2546,7 @@
             var calendarDVDMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarDVDMovies.json");
             calendarDVDMoviesJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/dvd?extended={extendedInfo.ToString()}",
@@ -2669,10 +2570,7 @@
             var calendarDVDMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarDVDMovies.json");
             calendarDVDMoviesJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
@@ -2707,10 +2605,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/dvd/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
@@ -2736,10 +2631,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
@@ -2776,10 +2668,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/dvd/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -2806,10 +2695,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
@@ -2845,10 +2731,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
                 $"calendars/all/dvd/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -2875,10 +2758,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar movie")
@@ -3230,10 +3110,7 @@
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarShowsJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows?extended={extendedInfo.ToString()}",
@@ -3257,10 +3134,7 @@
             var calendarShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarShowsJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user show")
@@ -3295,10 +3169,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
@@ -3324,10 +3195,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user show")
@@ -3363,10 +3231,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -3393,10 +3258,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user show")
@@ -3432,10 +3294,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -3462,10 +3321,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user show")
@@ -3816,10 +3672,7 @@
             var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/new?extended={extendedInfo.ToString()}",
@@ -3843,10 +3696,7 @@
             var calendarNewShowsJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarNewShowsJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user new show")
@@ -3881,10 +3731,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/new/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
@@ -3910,10 +3757,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user new show")
@@ -3949,10 +3793,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/new/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -3979,10 +3820,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user new show")
@@ -4018,10 +3856,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/new/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -4048,10 +3883,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user new show")
@@ -4403,10 +4235,7 @@
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/premieres?extended={extendedInfo.ToString()}",
@@ -4430,10 +4259,7 @@
             var calendarSeasonPremieresJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllShows.json");
             calendarSeasonPremieresJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user season premiere")
@@ -4468,10 +4294,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/premieres/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
@@ -4497,10 +4320,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user season premiere")
@@ -4537,10 +4357,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -4567,10 +4384,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user season premiere")
@@ -4606,10 +4420,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -4636,10 +4447,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user season premiere")
@@ -4991,10 +4799,7 @@
             var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
             calendarMoviesJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/movies?extended={extendedInfo.ToString()}",
@@ -5018,10 +4823,7 @@
             var calendarMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarAllMovies.json");
             calendarMoviesJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
@@ -5056,10 +4858,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/movies/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
@@ -5085,10 +4884,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
@@ -5125,10 +4921,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/movies/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -5155,10 +4948,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
@@ -5194,10 +4984,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/movies/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -5224,10 +5011,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
@@ -5579,10 +5363,7 @@
             var calendarDVDMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarDVDMovies.json");
             calendarDVDMoviesJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/dvd?extended={extendedInfo.ToString()}",
@@ -5606,10 +5387,7 @@
             var calendarDVDMoviesJson = TestUtility.ReadFileContents(@"Objects\Get\Calendars\CalendarDVDMovies.json");
             calendarDVDMoviesJson.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
@@ -5644,10 +5422,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/dvd/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
@@ -5673,10 +5448,7 @@
 
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
@@ -5713,10 +5485,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/dvd/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -5743,10 +5512,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")
@@ -5782,10 +5548,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
                 $"calendars/my/dvd/{today.ToTraktDateString()}/{days}?extended={extendedInfo.ToString()}",
@@ -5812,10 +5575,7 @@
             var today = DateTime.UtcNow;
             var days = 14;
 
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.Full = true;
-            extendedInfo.Images = true;
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
                 .WithQuery("calendar user movie")

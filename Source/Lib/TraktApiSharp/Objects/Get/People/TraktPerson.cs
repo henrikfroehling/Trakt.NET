@@ -19,14 +19,6 @@
         [JsonProperty(PropertyName = "ids")]
         public TraktPersonIds Ids { get; set; }
 
-        /// <summary>
-        /// Gets or sets the collection of images and image sets for the person.
-        /// See also <seealso cref="TraktPersonImages" />.
-        /// <para>Nullable</para>
-        /// </summary>
-        [JsonProperty(PropertyName = "images")]
-        public TraktPersonImages Images { get; set; }
-
         /// <summary>Gets or sets the biography of the person.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "biography")]
         public string Biography { get; set; }

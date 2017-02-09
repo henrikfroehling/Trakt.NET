@@ -1,33 +1,86 @@
 ﻿namespace TraktApiSharp.Tests.Requests.Parameters
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Linq;
+    using System.Reflection;
+    using Traits;
     using TraktApiSharp.Requests.Parameters;
+    using Xunit;
 
-    [TestClass]
-    public class TraktExtendedInfoTests
+    [Category("Requests.Parameters")]
+    public class TraktExtendedInfo_Tests
     {
-        [TestMethod]
-        public void TestTraktExtendedInfoDefaultConstructor()
+        [Fact]
+        public void Test_TraktExtendedInfo_Has_Metadata_Property()
+        {
+            var propertyInfo = typeof(TraktExtendedInfo)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "Metadata")
+                    .FirstOrDefault();
+
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(bool));
+        }
+
+        [Fact]
+        public void Test_TraktExtendedInfo_Has_Full_Property()
+        {
+            var propertyInfo = typeof(TraktExtendedInfo)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "Full")
+                    .FirstOrDefault();
+
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(bool));
+        }
+
+        [Fact]
+        public void Test_TraktExtendedInfo_Has_NoSeasons_Property()
+        {
+            var propertyInfo = typeof(TraktExtendedInfo)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "NoSeasons")
+                    .FirstOrDefault();
+
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(bool));
+        }
+
+        [Fact]
+        public void Test_TraktExtendedInfo_Has_Episodes_Property()
+        {
+            var propertyInfo = typeof(TraktExtendedInfo)
+                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
+                    .Where(p => p.Name == "Episodes")
+                    .FirstOrDefault();
+
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(bool));
+        }
+
+        [Fact]
+        public void Test_TraktExtendedInfo_Default_Constructor()
         {
             var extendedInfo = new TraktExtendedInfo();
 
             extendedInfo.Metadata.Should().BeFalse();
-            extendedInfo.Images.Should().BeFalse();
             extendedInfo.Full.Should().BeFalse();
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeFalse();
         }
 
-        [TestMethod]
-        public void TestTraktExtendedInfoSetMetadata()
+        [Fact]
+        public void Test_TraktExtendedInfo_SetMetadata()
         {
             var extendedInfo = new TraktExtendedInfo();
 
             extendedInfo.SetMetadata().Should().BeSameAs(extendedInfo);
 
             extendedInfo.Metadata.Should().BeTrue();
-            extendedInfo.Images.Should().BeFalse();
             extendedInfo.Full.Should().BeFalse();
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeFalse();
@@ -35,43 +88,19 @@
             extendedInfo.ResetMetadata().Should().BeSameAs(extendedInfo);
 
             extendedInfo.Metadata.Should().BeFalse();
-            extendedInfo.Images.Should().BeFalse();
             extendedInfo.Full.Should().BeFalse();
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeFalse();
         }
 
-        [TestMethod]
-        public void TestTraktExtendedInfoSetImages()
-        {
-            var extendedInfo = new TraktExtendedInfo();
-
-            extendedInfo.SetImages().Should().BeSameAs(extendedInfo);
-
-            extendedInfo.Metadata.Should().BeFalse();
-            extendedInfo.Images.Should().BeTrue();
-            extendedInfo.Full.Should().BeFalse();
-            extendedInfo.NoSeasons.Should().BeFalse();
-            extendedInfo.Episodes.Should().BeFalse();
-
-            extendedInfo.ResetImages().Should().BeSameAs(extendedInfo);
-
-            extendedInfo.Metadata.Should().BeFalse();
-            extendedInfo.Images.Should().BeFalse();
-            extendedInfo.Full.Should().BeFalse();
-            extendedInfo.NoSeasons.Should().BeFalse();
-            extendedInfo.Episodes.Should().BeFalse();
-        }
-
-        [TestMethod]
-        public void TestTraktExtendedInfoSetFull()
+        [Fact]
+        public void Test_TraktExtendedInfo_SetFull()
         {
             var extendedInfo = new TraktExtendedInfo();
 
             extendedInfo.SetFull().Should().BeSameAs(extendedInfo);
 
             extendedInfo.Metadata.Should().BeFalse();
-            extendedInfo.Images.Should().BeFalse();
             extendedInfo.Full.Should().BeTrue();
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeFalse();
@@ -79,21 +108,19 @@
             extendedInfo.ResetFull().Should().BeSameAs(extendedInfo);
 
             extendedInfo.Metadata.Should().BeFalse();
-            extendedInfo.Images.Should().BeFalse();
             extendedInfo.Full.Should().BeFalse();
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeFalse();
         }
 
-        [TestMethod]
-        public void TestTraktExtendedInfoSetNoSeasons()
+        [Fact]
+        public void Test_TraktExtendedInfo_SetNoSeasons()
         {
             var extendedInfo = new TraktExtendedInfo();
 
             extendedInfo.SetNoSeasons().Should().BeSameAs(extendedInfo);
 
             extendedInfo.Metadata.Should().BeFalse();
-            extendedInfo.Images.Should().BeFalse();
             extendedInfo.Full.Should().BeFalse();
             extendedInfo.NoSeasons.Should().BeTrue();
             extendedInfo.Episodes.Should().BeFalse();
@@ -101,21 +128,19 @@
             extendedInfo.ResetNoSeasons().Should().BeSameAs(extendedInfo);
 
             extendedInfo.Metadata.Should().BeFalse();
-            extendedInfo.Images.Should().BeFalse();
             extendedInfo.Full.Should().BeFalse();
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeFalse();
         }
 
-        [TestMethod]
-        public void TestTraktExtendedInfoSetEpisodes()
+        [Fact]
+        public void Test_TraktExtendedInfo_SetEpisodes()
         {
             var extendedInfo = new TraktExtendedInfo();
 
             extendedInfo.SetEpisodes().Should().BeSameAs(extendedInfo);
 
             extendedInfo.Metadata.Should().BeFalse();
-            extendedInfo.Images.Should().BeFalse();
             extendedInfo.Full.Should().BeFalse();
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeTrue();
@@ -123,24 +148,19 @@
             extendedInfo.ResetEpisodes().Should().BeSameAs(extendedInfo);
 
             extendedInfo.Metadata.Should().BeFalse();
-            extendedInfo.Images.Should().BeFalse();
             extendedInfo.Full.Should().BeFalse();
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeFalse();
         }
 
-        [TestMethod]
-        public void TestTraktExtendedInfoHasAnySet()
+        [Fact]
+        public void Test_TraktExtendedInfo_HasAnySet()
         {
             var extendedInfo = new TraktExtendedInfo();
 
             extendedInfo.HasAnySet.Should().BeFalse();
 
             extendedInfo.Metadata = true;
-            extendedInfo.HasAnySet.Should().BeTrue();
-
-            extendedInfo.Reset();
-            extendedInfo.Images = true;
             extendedInfo.HasAnySet.Should().BeTrue();
 
             extendedInfo.Reset();
@@ -156,8 +176,8 @@
             extendedInfo.HasAnySet.Should().BeTrue();
         }
 
-        [TestMethod]
-        public void TestTraktExtendedInfoResolve()
+        [Fact]
+        public void Test_TraktExtendedInfo_Resolve()
         {
             var extendedInfo = new TraktExtendedInfo();
 
@@ -166,21 +186,18 @@
             extendedInfo.SetMetadata();
             extendedInfo.Resolve().Should().NotBeNull().And.HaveCount(1).And.Contain("metadata");
 
-            extendedInfo.SetImages();
-            extendedInfo.Resolve().Should().NotBeNull().And.HaveCount(2).And.Contain("metadata", "images");
-
             extendedInfo.SetFull();
-            extendedInfo.Resolve().Should().NotBeNull().And.HaveCount(3).And.Contain("metadata", "images", "full");
+            extendedInfo.Resolve().Should().NotBeNull().And.HaveCount(2).And.Contain("metadata", "full");
 
             extendedInfo.SetNoSeasons();
-            extendedInfo.Resolve().Should().NotBeNull().And.HaveCount(4).And.Contain("metadata", "images", "full", "noseasons");
+            extendedInfo.Resolve().Should().NotBeNull().And.HaveCount(3).And.Contain("metadata", "full", "noseasons");
 
             extendedInfo.SetEpisodes();
-            extendedInfo.Resolve().Should().NotBeNull().And.HaveCount(5).And.Contain("metadata", "images", "full", "noseasons", "episodes");
+            extendedInfo.Resolve().Should().NotBeNull().And.HaveCount(4).And.Contain("metadata", "full", "noseasons", "episodes");
         }
 
-        [TestMethod]
-        public void TestTraktExtendedInfoToString()
+        [Fact]
+        public void Test_TraktExtendedInfo_ToString()
         {
             var extendedInfo = new TraktExtendedInfo();
 
@@ -189,17 +206,14 @@
             extendedInfo.SetMetadata();
             extendedInfo.ToString().Should().NotBeNull().And.Be("metadata");
 
-            extendedInfo.SetImages();
-            extendedInfo.ToString().Should().NotBeNull().And.Be("metadata,images");
-
             extendedInfo.SetFull();
-            extendedInfo.ToString().Should().NotBeNull().And.Be("metadata,images,full");
+            extendedInfo.ToString().Should().NotBeNull().And.Be("metadata,full");
 
             extendedInfo.SetNoSeasons();
-            extendedInfo.ToString().Should().NotBeNull().And.Be("metadata,images,full,noseasons");
+            extendedInfo.ToString().Should().NotBeNull().And.Be("metadata,full,noseasons");
 
             extendedInfo.SetEpisodes();
-            extendedInfo.ToString().Should().NotBeNull().And.Be("metadata,images,full,noseasons,episodes");
+            extendedInfo.ToString().Should().NotBeNull().And.Be("metadata,full,noseasons,episodes");
         }
     }
 }

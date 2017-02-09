@@ -52,7 +52,7 @@
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisode()
         {
-            var episode = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeSummaryFullAndImages.json");
+            var episode = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeSummaryFull.json");
             episode.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -85,29 +85,20 @@
             responseValue.Ids.Imdb.Should().Be("tt1480055");
             responseValue.Ids.Tmdb.Should().Be(63056U);
             responseValue.Ids.TvRage.Should().Be(1065008299U);
-            responseValue.Images.Should().NotBeNull();
-            responseValue.Images.Screenshot.Should().NotBeNull();
-            responseValue.Images.Screenshot.Full.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/original/dd3fc55725.jpg");
-            responseValue.Images.Screenshot.Medium.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/medium/dd3fc55725.jpg");
-            responseValue.Images.Screenshot.Thumb.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/thumb/dd3fc55725.jpg");
             responseValue.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(1);
         }
 
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeWithExtendedInfo()
         {
-            var episode = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeSummaryFullAndImages.json");
+            var episode = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeSummaryFull.json");
             episode.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
             var seasonNr = 1U;
             var episodeNr = 1U;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}?extended={extendedInfo.ToString()}",
                                                       episode);
@@ -136,11 +127,6 @@
             responseValue.Ids.Imdb.Should().Be("tt1480055");
             responseValue.Ids.Tmdb.Should().Be(63056U);
             responseValue.Ids.TvRage.Should().Be(1065008299U);
-            responseValue.Images.Should().NotBeNull();
-            responseValue.Images.Screenshot.Should().NotBeNull();
-            responseValue.Images.Screenshot.Full.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/original/dd3fc55725.jpg");
-            responseValue.Images.Screenshot.Medium.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/medium/dd3fc55725.jpg");
-            responseValue.Images.Screenshot.Thumb.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/thumb/dd3fc55725.jpg");
             responseValue.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(1);
         }
 
@@ -222,7 +208,7 @@
         [TestMethod]
         public void TestTraktEpisodesModuleGetEpisodeArgumentExceptions()
         {
-            var episode = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeSummaryFullAndImages.json");
+            var episode = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeSummaryFull.json");
             episode.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -1692,11 +1678,7 @@
             var seasonNr = 1U;
             var episodeNr = 1U;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/watching?extended={extendedInfo.ToString()}",
                                                       episodeWatchingUsers);

@@ -25,14 +25,6 @@
         [JsonProperty(PropertyName = "ids")]
         public TraktShowIds Ids { get; set; }
 
-        /// <summary>
-        /// Gets or sets the collection of images and image sets for the show.
-        /// See also <seealso cref="TraktShowImages" />.
-        /// <para>Nullable</para>
-        /// </summary>
-        [JsonProperty(PropertyName = "images")]
-        public TraktShowImages Images { get; set; }
-
         /// <summary>Gets or sets the synopsis of the show.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "overview")]
         public string Overview { get; set; }

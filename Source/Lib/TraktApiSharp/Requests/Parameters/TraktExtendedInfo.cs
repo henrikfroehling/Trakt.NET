@@ -17,7 +17,6 @@
         public TraktExtendedInfo()
         {
             Metadata = false;
-            Images = false;
             Full = false;
             NoSeasons = false;
             Episodes = false;
@@ -35,12 +34,6 @@
         /// <para>See also <see cref="SetMetadata()" /> and <see cref="ResetMetadata()" />.</para>
         /// </summary>
         public bool Metadata { get; set; }
-
-        /// <summary>
-        /// Gets or sets, whether images information should be retrieved.
-        /// <para>See also <see cref="SetImages()" /> and <see cref="ResetImages()" />.</para>
-        /// </summary>
-        public bool Images { get; set; }
 
         /// <summary>
         /// Gets or sets, whether full information should be retrieved.
@@ -70,7 +63,7 @@
         public bool Episodes { get; set; }
 
         /// <summary>Returns, whether any flag is enabled.</summary>
-        public bool HasAnySet => Metadata || Images || Full || NoSeasons || Episodes;
+        public bool HasAnySet => Metadata || Full || NoSeasons || Episodes;
 
         /// <summary>
         /// Enables the metadata information flag.
@@ -91,28 +84,6 @@
         public TraktExtendedInfo ResetMetadata()
         {
             Metadata = false;
-            return this;
-        }
-
-        /// <summary>
-        /// Enables the images information flag.
-        /// <para>See also <see cref="Images" />.</para>
-        /// </summary>
-        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
-        public TraktExtendedInfo SetImages()
-        {
-            Images = true;
-            return this;
-        }
-
-        /// <summary>
-        /// Disables the images information flag.
-        /// <para>See also <see cref="Images" />.</para>
-        /// </summary>
-        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
-        public TraktExtendedInfo ResetImages()
-        {
-            Images = false;
             return this;
         }
 
@@ -187,7 +158,6 @@
         public TraktExtendedInfo Reset()
         {
             Metadata = false;
-            Images = false;
             Full = false;
             NoSeasons = false;
             Episodes = false;
@@ -205,9 +175,6 @@
 
             if (Metadata)
                 options.Add("metadata");
-
-            if (Images)
-                options.Add("images");
 
             if (Full)
                 options.Add("full");
