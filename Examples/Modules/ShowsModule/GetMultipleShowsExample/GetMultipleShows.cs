@@ -69,7 +69,7 @@
             {
                 showIdOrSlug1,
                 { showIdOrSlug2, new TraktExtendedInfo { Full = true } },
-                { showIdOrSlug3, new TraktExtendedInfo { Full = true, Images = true } }
+                { showIdOrSlug3, new TraktExtendedInfo { Full = true } }
             };
 
             try

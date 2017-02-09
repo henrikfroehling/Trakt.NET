@@ -472,12 +472,7 @@
             var collectionMovies = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionMoviesMetadata.json");
             collectionMovies.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true,
-                Metadata = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuth($"sync/collection/movies?extended={extendedInfo.ToString()}",
                                                    collectionMovies);
@@ -591,12 +586,7 @@
             var collectionShows = TestUtility.ReadFileContents(@"Objects\Get\Collection\CollectionShowsMetadata.json");
             collectionShows.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true,
-                Metadata = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuth($"sync/collection/shows?extended={extendedInfo.ToString()}",
                                                    collectionShows);
@@ -1330,11 +1320,7 @@
             var watchedMovies = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedMovies.json");
             watchedMovies.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuth($"sync/watched/movies?extended={extendedInfo.ToString()}",
                                                    watchedMovies);
@@ -1448,11 +1434,7 @@
             var watchedShows = TestUtility.ReadFileContents(@"Objects\Get\Watched\WatchedShows.json");
             watchedShows.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuth($"sync/watched/shows?extended={extendedInfo.ToString()}",
                                                    watchedShows);
@@ -1683,11 +1665,7 @@
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
@@ -1721,11 +1699,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
@@ -1759,11 +1733,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
@@ -1795,11 +1765,7 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
@@ -1831,11 +1797,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
@@ -1867,11 +1829,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
@@ -1904,11 +1862,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
@@ -2026,11 +1980,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
@@ -2062,11 +2012,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
@@ -2099,11 +2045,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
@@ -2218,11 +2160,7 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}",
@@ -2252,11 +2190,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}" +
@@ -2287,11 +2221,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}" +
@@ -2323,11 +2253,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}" +
@@ -2384,11 +2310,7 @@
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
@@ -2420,11 +2342,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
@@ -2456,11 +2374,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
@@ -2493,11 +2407,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}" +
@@ -2644,11 +2554,7 @@
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}",
@@ -2678,11 +2584,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}" +
@@ -2713,11 +2615,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}&limit={limit}",
@@ -2748,11 +2646,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?end_at={endAt.ToTraktLongDateTimeString()}" +
                                                              $"&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
@@ -2887,11 +2781,7 @@
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?extended={extendedInfo.ToString()}",
                                                              watchedHistory, 1, 10, 1, itemCount);
@@ -2919,11 +2809,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?extended={extendedInfo.ToString()}&page={page}",
                                                              watchedHistory, page, 10, 1, itemCount);
@@ -2951,11 +2837,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"sync/history/{type.UriName}?extended={extendedInfo.ToString()}&limit={limit}",
                                                              watchedHistory, 1, limit, 1, itemCount);
@@ -2984,11 +2866,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
@@ -3092,11 +2970,7 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}",
@@ -3125,11 +2999,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}" +
@@ -3159,11 +3029,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}" +
@@ -3194,11 +3060,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo.ToString()}" +
@@ -3253,11 +3115,7 @@
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
@@ -3288,11 +3146,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
@@ -3323,11 +3177,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
@@ -3359,11 +3209,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
@@ -3583,11 +3429,7 @@
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?end_at={endAt.ToTraktLongDateTimeString()}" +
@@ -3617,11 +3459,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?end_at={endAt.ToTraktLongDateTimeString()}" +
@@ -3651,11 +3489,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?end_at={endAt.ToTraktLongDateTimeString()}" +
@@ -3686,11 +3520,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?end_at={endAt.ToTraktLongDateTimeString()}" +
@@ -3822,11 +3652,7 @@
 
             var itemCount = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?extended={extendedInfo.ToString()}",
@@ -3854,11 +3680,7 @@
             var itemCount = 4;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?extended={extendedInfo.ToString()}&page={page}",
@@ -3886,11 +3708,7 @@
             var itemCount = 4;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?extended={extendedInfo.ToString()}&limit={limit}",
@@ -3919,11 +3737,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
@@ -4029,11 +3843,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/history/{type.UriName}/{itemId}" +
@@ -5117,11 +4927,7 @@
 
             var type = TraktRatingsItemType.Movie;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}?extended={extendedInfo.ToString()}", ratings);
 
@@ -5139,11 +4945,7 @@
             var ratings = TestUtility.ReadFileContents(@"Objects\Get\Ratings\Ratings.json");
             ratings.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuth($"sync/ratings?extended={extendedInfo.ToString()}", ratings);
 
@@ -5167,11 +4969,7 @@
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var ratingsFilterString = string.Join(encodedComma, ratingsFilter);
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuth(
                 $"sync/ratings/{type.UriName}/{ratingsFilterString}?extended={extendedInfo.ToString()}",
@@ -5947,11 +5745,7 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"sync/watchlist/{type.UriName}?extended={extendedInfo.ToString()}",
                                                              watchlist, 1, 10, 1, itemCount, null, sortBy, sortHow);
@@ -5982,11 +5776,7 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/watchlist/{type.UriName}?extended={extendedInfo.ToString()}&page={page}",
@@ -6018,11 +5808,7 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/watchlist/{type.UriName}?extended={extendedInfo.ToString()}&limit={limit}",
@@ -6052,11 +5838,7 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"sync/watchlist?extended={extendedInfo.ToString()}",
                                                              watchlist, 1, 10, 1, itemCount, null, sortBy, sortHow);
@@ -6086,11 +5868,7 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/watchlist?extended={extendedInfo.ToString()}&page={page}",
@@ -6121,11 +5899,7 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/watchlist?extended={extendedInfo.ToString()}&limit={limit}",
@@ -6157,11 +5931,7 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/watchlist?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
@@ -6280,11 +6050,7 @@
             var sortBy = "rank";
             var sortHow = "asc";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"sync/watchlist/{type.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",

@@ -151,6 +151,7 @@
     <Compile Include="Requests\Movies\TraktMovieSummaryRequest_Tests.cs" />
     <Compile Include="Requests\Movies\TraktMovieTranslationsRequest_Tests.cs" />
     <Compile Include="Requests\Movies\TraktMovieWatchingUsersRequest_Tests.cs" />
+    <Compile Include="Requests\Parameters\TraktExtendedInfo_Tests.cs" />
     <Compile Include="Requests\People\ATraktPersonRequest%271_Tests.cs" />
     <Compile Include="Requests\People\TraktPersonMovieCreditsRequest_Tests.cs" />
     <Compile Include="Requests\People\TraktPersonShowCreditsRequest_Tests.cs" />

@@ -89,11 +89,7 @@
             var movies = TestUtility.ReadFileContents(@"Objects\Get\Recommendations\MovieRecommendations.json");
             movies.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"recommendations/movies?extended={extendedInfo.ToString()}",
                                                              movies, 1, 10);
@@ -116,11 +112,7 @@
 
             var limit = 4U;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"recommendations/movies?extended={extendedInfo.ToString()}&limit={limit}",
@@ -368,11 +360,7 @@
             var shows = TestUtility.ReadFileContents(@"Objects\Get\Recommendations\ShowRecommendations.json");
             shows.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"recommendations/shows?extended={extendedInfo.ToString()}",
                                                              shows, 1, 10);
@@ -395,11 +383,7 @@
 
             var limit = 4U;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"recommendations/shows?extended={extendedInfo.ToString()}&limit={limit}",

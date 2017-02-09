@@ -103,11 +103,7 @@
             var seasonNr = 1U;
             var episodeNr = 1U;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}?extended={extendedInfo.ToString()}",
                                                       episode);
@@ -1692,11 +1688,7 @@
             var seasonNr = 1U;
             var episodeNr = 1U;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/watching?extended={extendedInfo.ToString()}",
                                                       episodeWatchingUsers);

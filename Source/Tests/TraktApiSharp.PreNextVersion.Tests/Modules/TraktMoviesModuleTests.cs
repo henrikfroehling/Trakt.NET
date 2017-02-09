@@ -87,11 +87,7 @@
 
             var movieId = "94024";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}?extended={extendedInfo.ToString()}", movie);
 
@@ -1665,11 +1661,7 @@
 
             var movieId = "94024";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/people?extended={extendedInfo.ToString()}", moviePeople);
 
@@ -1962,11 +1954,7 @@
             var movieId = "94024";
             var itemCount = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?extended={extendedInfo.ToString()}",
                                                                 movieRelatedMovies, 1, 10, 1, itemCount);
@@ -2018,11 +2006,7 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?extended={extendedInfo.ToString()}&page={page}",
                                                                 movieRelatedMovies, page, 10, 1, itemCount);
@@ -2074,11 +2058,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 movieRelatedMovies, 1, limit, 1, itemCount);
@@ -2132,11 +2112,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 movieRelatedMovies, page, limit, 1, itemCount);
@@ -2408,11 +2384,7 @@
 
             var movieId = "94024";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/watching?extended={extendedInfo.ToString()}", movieWatchingUsers);
 
@@ -2593,11 +2565,7 @@
             var itemCount = 2;
             var userCount = 300;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedInfo.ToString()}",
                                                                 moviesTrending, 1, 10, 1, itemCount, userCount);
@@ -2624,11 +2592,7 @@
             var itemCount = 2;
             var userCount = 300;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -2727,11 +2691,7 @@
             var userCount = 300;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedInfo.ToString()}&page={page}",
                                                                 moviesTrending, page, 10, 1, itemCount, userCount);
@@ -2759,11 +2719,7 @@
             var userCount = 300;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -2863,11 +2819,7 @@
             var userCount = 300;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 moviesTrending, 1, limit, 1, itemCount, userCount);
@@ -2895,11 +2847,7 @@
             var userCount = 300;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -3003,11 +2951,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 moviesTrending, page, limit, 1, itemCount, userCount);
@@ -3036,11 +2980,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -3210,11 +3150,7 @@
 
             var itemCount = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedInfo.ToString()}",
                                                                 popularMovies, 1, 10, 1, itemCount);
@@ -3239,11 +3175,7 @@
 
             var itemCount = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -3336,11 +3268,7 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedInfo.ToString()}&page={page}",
                                                                 popularMovies, page, 10, 1, itemCount);
@@ -3366,11 +3294,7 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -3464,11 +3388,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 popularMovies, 1, limit, 1, itemCount);
@@ -3494,11 +3414,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -3596,11 +3512,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 popularMovies, page, limit, 1, itemCount);
@@ -3627,11 +3539,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -3858,11 +3766,7 @@
 
             var itemCount = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?extended={extendedInfo.ToString()}",
                                                                 mostPlayedMovies, 1, 10, 1, itemCount);
@@ -3887,11 +3791,7 @@
 
             var itemCount = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -4041,11 +3941,7 @@
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played/{period.UriName}?extended={extendedInfo.ToString()}",
                                                                 mostPlayedMovies, 1, 10, 1, itemCount);
@@ -4071,11 +3967,7 @@
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -4232,11 +4124,7 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?extended={extendedInfo.ToString()}&page={page}",
                                                                 mostPlayedMovies, page, 10, 1, itemCount);
@@ -4262,11 +4150,7 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -4303,11 +4187,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 mostPlayedMovies, 1, limit, 1, itemCount);
@@ -4333,11 +4213,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -4435,11 +4311,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 mostPlayedMovies, page, limit, 1, itemCount);
@@ -4466,11 +4338,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -4572,11 +4440,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"movies/played/{period.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
@@ -4605,11 +4469,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -4836,11 +4696,7 @@
 
             var itemCount = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedInfo.ToString()}",
                                                                 mostWatchedMovies, 1, 10, 1, itemCount);
@@ -4865,11 +4721,7 @@
 
             var itemCount = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -5020,11 +4872,7 @@
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.UriName}?extended={extendedInfo.ToString()}",
                                                                 mostWatchedMovies, 1, 10, 1, itemCount);
@@ -5050,11 +4898,7 @@
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -5211,11 +5055,7 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedInfo.ToString()}&page={page}",
                                                                 mostWatchedMovies, page, 10, 1, itemCount);
@@ -5241,11 +5081,7 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -5282,11 +5118,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 mostWatchedMovies, 1, limit, 1, itemCount);
@@ -5312,11 +5144,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -5415,11 +5243,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 mostWatchedMovies, page, limit, 1, itemCount);
@@ -5446,11 +5270,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -5552,11 +5372,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"movies/watched/{period.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
@@ -5585,11 +5401,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -5817,11 +5629,7 @@
 
             var itemCount = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedInfo.ToString()}",
                                                                 mostCollectedMovies, 1, 10, 1, itemCount);
@@ -5846,11 +5654,7 @@
 
             var itemCount = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -6001,11 +5805,7 @@
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.UriName}?extended={extendedInfo.ToString()}",
                                                                 mostCollectedMovies, 1, 10, 1, itemCount);
@@ -6031,11 +5831,7 @@
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -6192,11 +5988,7 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedInfo.ToString()}&page={page}",
                                                                 mostCollectedMovies, page, 10, 1, itemCount);
@@ -6222,11 +6014,7 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -6263,11 +6051,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 mostCollectedMovies, 1, limit, 1, itemCount);
@@ -6293,11 +6077,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -6396,11 +6176,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 mostCollectedMovies, page, limit, 1, itemCount);
@@ -6427,11 +6203,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -6533,11 +6305,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"movies/collected/{period.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
@@ -6566,11 +6334,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -6740,11 +6504,7 @@
 
             var itemCount = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedInfo.ToString()}",
                                                                 mostAnticipatedMovies, 1, 10, 1, itemCount);
@@ -6769,11 +6529,7 @@
 
             var itemCount = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -6867,11 +6623,7 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedInfo.ToString()}&page={page}",
                                                                 mostAnticipatedMovies, page, 10, 1, itemCount);
@@ -6897,11 +6649,7 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -6995,11 +6743,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 mostAnticipatedMovies, 1, limit, 1, itemCount);
@@ -7025,11 +6769,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -7128,11 +6868,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 mostAnticipatedMovies, page, limit, 1, itemCount);
@@ -7159,11 +6895,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -7292,11 +7024,7 @@
             var boxOfficeMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\Common\MoviesBoxOffice.json");
             boxOfficeMovies.Should().NotBeNullOrEmpty();
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"movies/boxoffice?extended={extendedInfo.ToString()}", boxOfficeMovies);
 
@@ -7441,11 +7169,7 @@
 
             var itemCount = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?extended={extendedInfo.ToString()}",
                                                                 recentlyUpdatedMovies, 1, 10, 1, itemCount);
@@ -7517,11 +7241,7 @@
             var itemCount = 2;
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"movies/updates/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}",
@@ -7598,11 +7318,7 @@
             var itemCount = 2;
             var page = 2;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?extended={extendedInfo.ToString()}&page={page}",
                                                                 recentlyUpdatedMovies, page, 10, 1, itemCount);
@@ -7628,11 +7344,7 @@
             var itemCount = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 recentlyUpdatedMovies, 1, limit, 1, itemCount);
@@ -7684,11 +7396,7 @@
             var page = 2;
             var limit = 4;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 recentlyUpdatedMovies, page, limit, 1, itemCount);
@@ -7742,11 +7450,7 @@
             var limit = 4;
             var today = DateTime.UtcNow;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"movies/updates/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",

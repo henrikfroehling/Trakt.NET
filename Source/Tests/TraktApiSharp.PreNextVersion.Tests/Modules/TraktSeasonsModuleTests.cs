@@ -76,11 +76,7 @@
 
             var showId = "1390";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons?extended={extendedInfo.ToString()}", seasons);
 
@@ -120,11 +116,7 @@
             var showId = "1390";
             var translationLanguageCode = "en";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons" +
                                                       $"?extended={extendedInfo.ToString()}" +
@@ -168,11 +160,7 @@
             var showId = "1390";
             var translationLanguageCode = "all";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons" +
                                                       $"?extended={extendedInfo.ToString()}" +
@@ -326,11 +314,7 @@
             var showId = "1390";
             var seasonNr = 1U;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true,
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}?extended={extendedInfo.ToString()}", season);
 
@@ -375,11 +359,7 @@
             var seasonNr = 1U;
             var translationLanguageCode = "en";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true,
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}" +
                                                       $"?extended={extendedInfo.ToString()}" +
@@ -428,11 +408,7 @@
             var seasonNr = 1U;
             var translationLanguageCode = "all";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true,
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}" +
                                                       $"?extended={extendedInfo.ToString()}" +
@@ -1691,11 +1667,7 @@
             var showId = "1390";
             var seasonNr = 1U;
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/watching?extended={extendedInfo.ToString()}",
                                                       seasonWatchingUsers);

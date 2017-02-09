@@ -83,11 +83,7 @@
 
             var personId = "297737";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}?extended={extendedInfo.ToString()}", person);
 
@@ -359,11 +355,7 @@
 
             var personId = "297737";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}/movies?extended={extendedInfo.ToString()}",
                                                       personMovieCredits);
@@ -638,11 +630,7 @@
 
             var personId = "297737";
 
-            var extendedInfo = new TraktExtendedInfo
-            {
-                Full = true,
-                Images = true
-            };
+            var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}/shows?extended={extendedInfo.ToString()}",
                                                       personShowCredits);

@@ -56,7 +56,6 @@
             {
                 await GetShowMinimal(showIdOrSlug);
                 await GetShowFull(showIdOrSlug);
-                await GetShowFullWithImages(showIdOrSlug);
             }
             catch (TraktException ex)
             {
@@ -96,16 +95,6 @@
             TraktShow show = await _client.Shows.GetShowAsync(showIdOrSlug, extendedInfo);
             WriteShowFull(show);
             Console.WriteLine("-------------------------------------------------------------");
-        }
-
-        static async Task GetShowFullWithImages(string showIdOrSlug)
-        {
-            var extendedInfo = new TraktExtendedInfo().SetFull().SetImages();
-
-            Console.WriteLine("------------------------- Show Full with Images -------------------------");
-            TraktShow show = await _client.Shows.GetShowAsync(showIdOrSlug, extendedInfo);
-            WriteShowFullWithImages(show);
-            Console.WriteLine("-------------------------------------------------------------------------");
         }
 
         static void WriteShowMinimal(TraktShow show)
