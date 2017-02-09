@@ -54,7 +54,7 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetSingleMovie()
         {
-            var movie = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieSummaryFullAndImages.json");
+            var movie = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieSummaryFull.json");
             movie.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
@@ -82,7 +82,7 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetSingleMovieWithExtendedInfo()
         {
-            var movie = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieSummaryFullAndImages.json");
+            var movie = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieSummaryFull.json");
             movie.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
@@ -107,17 +107,6 @@
             responseValue.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
             responseValue.Ids.Imdb.Should().Be("tt2488496");
             responseValue.Ids.Tmdb.Should().Be(140607U);
-            responseValue.Images.Should().NotBeNull();
-            responseValue.Images.FanArt.Full.Should().Be("https://walter.trakt.us/images/movies/000/094/024/fanarts/original/707a0ae2ab.jpg");
-            responseValue.Images.FanArt.Medium.Should().Be("https://walter.trakt.us/images/movies/000/094/024/fanarts/medium/707a0ae2ab.jpg");
-            responseValue.Images.FanArt.Thumb.Should().Be("https://walter.trakt.us/images/movies/000/094/024/fanarts/thumb/707a0ae2ab.jpg");
-            responseValue.Images.Poster.Full.Should().Be("https://walter.trakt.us/images/movies/000/094/024/posters/original/45feef2558.jpg");
-            responseValue.Images.Poster.Medium.Should().Be("https://walter.trakt.us/images/movies/000/094/024/posters/medium/45feef2558.jpg");
-            responseValue.Images.Poster.Thumb.Should().Be("https://walter.trakt.us/images/movies/000/094/024/posters/thumb/45feef2558.jpg");
-            responseValue.Images.Logo.Full.Should().Be("https://walter.trakt.us/images/movies/000/094/024/logos/original/077cc27594.png");
-            responseValue.Images.ClearArt.Full.Should().Be("https://walter.trakt.us/images/movies/000/094/024/cleararts/original/a31ab70d60.png");
-            responseValue.Images.Banner.Full.Should().Be("https://walter.trakt.us/images/movies/000/094/024/banners/original/b20b70cbf5.jpg");
-            responseValue.Images.Thumb.Full.Should().Be("https://walter.trakt.us/images/movies/000/094/024/thumbs/original/627810fb39.jpg");
             responseValue.Tagline.Should().Be("Every generation has a story.");
             responseValue.Overview.Should().Be("Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers.");
             responseValue.Released.Should().Be(DateTime.Parse("2015-12-18"));
@@ -209,7 +198,7 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetSingleMovieArgumentExceptions()
         {
-            var movie = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieSummaryFullAndImages.json");
+            var movie = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieSummaryFull.json");
             movie.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
@@ -1925,7 +1914,7 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieRelatedMovies()
         {
-            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFullAndImages.json");
+            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFull.json");
             movieRelatedMovies.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
@@ -1948,7 +1937,7 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieRelatedMoviesWithExtendedInfo()
         {
-            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFullAndImages.json");
+            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFull.json");
             movieRelatedMovies.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
@@ -1974,7 +1963,7 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieRelatedMoviesWithPage()
         {
-            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFullAndImages.json");
+            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFull.json");
             movieRelatedMovies.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
@@ -1999,7 +1988,7 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieRelatedMoviesWithExtendedInfoAndPage()
         {
-            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFullAndImages.json");
+            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFull.json");
             movieRelatedMovies.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
@@ -2026,7 +2015,7 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieRelatedMoviesWithLimit()
         {
-            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFullAndImages.json");
+            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFull.json");
             movieRelatedMovies.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
@@ -2051,7 +2040,7 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieRelatedMoviesWithExtendedInfoAndLimit()
         {
-            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFullAndImages.json");
+            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFull.json");
             movieRelatedMovies.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
@@ -2078,7 +2067,7 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieRelatedMoviesWithPageAndLimit()
         {
-            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFullAndImages.json");
+            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFull.json");
             movieRelatedMovies.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
@@ -2104,7 +2093,7 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieRelatedMoviesComplete()
         {
-            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFullAndImages.json");
+            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFull.json");
             movieRelatedMovies.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";
@@ -2205,7 +2194,7 @@
         [TestMethod]
         public void TestTraktMoviesModuleGetMovieRelatedMoviesArgumentExceptions()
         {
-            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFullAndImages.json");
+            var movieRelatedMovies = TestUtility.ReadFileContents(@"Objects\Get\Movies\MovieRelatedMoviesFull.json");
             movieRelatedMovies.Should().NotBeNullOrEmpty();
 
             var movieId = "94024";

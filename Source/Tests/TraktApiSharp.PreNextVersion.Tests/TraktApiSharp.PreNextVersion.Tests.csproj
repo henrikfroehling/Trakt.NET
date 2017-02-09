@@ -361,8 +361,6 @@
     <None Include="TestData\Objects\Get\Movies\MoviePeople.json" />
     <None Include="TestData\Objects\Get\Movies\MovieRatings.json" />
     <None Include="TestData\Objects\Get\Movies\MovieRelatedMoviesFull.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieRelatedMoviesFullAndImages.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieRelatedMoviesImages.json" />
     <None Include="TestData\Objects\Get\Movies\MovieRelatedMoviesMinimal.json" />
     <None Include="TestData\Objects\Get\Movies\MovieReleases.json" />
     <None Include="TestData\Objects\Get\Movies\MovieSingleAlias.json" />
@@ -370,8 +368,6 @@
     <None Include="TestData\Objects\Get\Movies\MovieSingleTranslation.json" />
     <None Include="TestData\Objects\Get\Movies\MovieStatistics.json" />
     <None Include="TestData\Objects\Get\Movies\MovieSummaryFull.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieSummaryFullAndImages.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieSummaryImages.json" />
     <None Include="TestData\Objects\Get\Movies\MovieSummaryMinimal.json" />
     <None Include="TestData\Objects\Get\Movies\MovieTranslations.json" />
     <None Include="TestData\Objects\Get\Movies\MovieWatchingUsers.json" />
