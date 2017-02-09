@@ -53,7 +53,7 @@
         [TestMethod]
         public void TestTraktSeasonsModuleGetAllSeasons()
         {
-            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json");
+            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\Full\SeasonsAllFull.json");
             seasons.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -71,7 +71,7 @@
         [TestMethod]
         public void TestTraktSeasonsModuleGetAllSeasonsWithExtendedInfo()
         {
-            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json");
+            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\Full\SeasonsAllFull.json");
             seasons.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -91,7 +91,7 @@
         [TestMethod]
         public void TestTraktSeasonsModuleGetAllSeasonsWithTranslations()
         {
-            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json");
+            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\Full\SeasonsAllFull.json");
             seasons.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -110,7 +110,7 @@
         [TestMethod]
         public void TestTraktSeasonsModuleGetAllSeasonsWithExtendedInfoAndTranslations()
         {
-            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json");
+            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\Full\SeasonsAllFull.json");
             seasons.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -135,7 +135,7 @@
         [TestMethod]
         public void TestTraktSeasonsModuleGetAllSeasonsWithAllTranslations()
         {
-            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json");
+            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\Full\SeasonsAllFull.json");
             seasons.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -154,7 +154,7 @@
         [TestMethod]
         public void TestTraktSeasonsModuleGetAllSeasonsWithExtendedInfoAndAllTranslations()
         {
-            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json");
+            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\Full\SeasonsAllFull.json");
             seasons.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -252,7 +252,7 @@
         [TestMethod]
         public void TestTraktSeasonsModuleGetAllSeasonsArgumentExceptions()
         {
-            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\FullAndImages\SeasonsAllFullAndImages.json");
+            var seasons = TestUtility.ReadFileContents(@"Objects\Get\Shows\Seasons\All\Full\SeasonsAllFull.json");
             seasons.Should().NotBeNullOrEmpty();
 
             var showId = "1390";

@@ -22,14 +22,6 @@
         [JsonProperty(PropertyName = "ids")]
         public TraktSeasonIds Ids { get; set; }
 
-        /// <summary>
-        /// Gets or sets the collection of images for the season.
-        /// See also <seealso cref="TraktSeasonImages" />.
-        /// <para>Nullable</para>
-        /// </summary>
-        [JsonProperty(PropertyName = "images")]
-        public TraktSeasonImages Images { get; set; }
-
         /// <summary>Gets or sets the average user rating of the season.</summary>
         [JsonProperty(PropertyName = "rating")]
         public float? Rating { get; set; }
