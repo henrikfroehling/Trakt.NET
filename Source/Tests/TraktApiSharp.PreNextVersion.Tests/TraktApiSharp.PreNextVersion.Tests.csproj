@@ -231,7 +231,6 @@
     <Compile Include="Objects\Basic\TraktErrorTests.cs" />
     <Compile Include="Objects\Basic\TraktGenreTests.cs" />
     <Compile Include="Objects\Basic\TraktIdsTests.cs" />
-    <Compile Include="Objects\Basic\TraktImageSetTests.cs" />
     <Compile Include="Objects\Basic\TraktImageTests.cs" />
     <Compile Include="Objects\Basic\TraktRatingTests.cs" />
     <Compile Include="Objects\Basic\TraktSearchResultTests.cs" />

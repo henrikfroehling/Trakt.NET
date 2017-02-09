@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Example.UWP.Models.ModelConverter
 {
     using Enums;
-    using Objects.Basic;
     using Objects.Get.Shows;
     using System;
     using System.Collections.Generic;

@@ -436,7 +436,6 @@
     <Compile Include="Objects\Basic\TraktGenre.cs" />
     <Compile Include="Objects\Basic\TraktIds.cs" />
     <Compile Include="Objects\Basic\TraktImage.cs" />
-    <Compile Include="Objects\Basic\TraktImageSet.cs" />
     <Compile Include="Objects\Basic\TraktRating.cs" />
     <Compile Include="Objects\Basic\TraktSearchResult.cs" />
     <Compile Include="Objects\Basic\TraktSharing.cs" />
