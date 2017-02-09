@@ -396,8 +396,6 @@
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSingleTranslation.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeStatistics.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryFull.json" />
-    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryFullAndImages.json" />
-    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryImages.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryMinimal.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryMinimalWithTranslations.json" />
     <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeTranslations.json" />

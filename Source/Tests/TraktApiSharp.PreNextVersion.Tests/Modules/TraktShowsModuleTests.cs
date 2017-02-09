@@ -3733,7 +3733,7 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowNextEpisodeWithExtendedInfo()
         {
-            var episode = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeSummaryFullAndImages.json");
+            var episode = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeSummaryFull.json");
             episode.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -3766,11 +3766,6 @@
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-08-29T23:16:39.000Z").ToUniversalTime());
             responseValue.Rating.Should().Be(9.0f);
             responseValue.Votes.Should().Be(111);
-            responseValue.Images.Should().NotBeNull();
-            responseValue.Images.Screenshot.Should().NotBeNull();
-            responseValue.Images.Screenshot.Full.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/original/dd3fc55725.jpg");
-            responseValue.Images.Screenshot.Medium.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/medium/dd3fc55725.jpg");
-            responseValue.Images.Screenshot.Thumb.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/thumb/dd3fc55725.jpg");
             responseValue.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(1);
         }
 
@@ -3908,7 +3903,7 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowLastEpisodeWithExtendedInfo()
         {
-            var episode = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeSummaryFullAndImages.json");
+            var episode = TestUtility.ReadFileContents(@"Objects\Get\Shows\Episodes\EpisodeSummaryFull.json");
             episode.Should().NotBeNullOrEmpty();
 
             var showId = "1390";
@@ -3941,11 +3936,6 @@
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-08-29T23:16:39.000Z").ToUniversalTime());
             responseValue.Rating.Should().Be(9.0f);
             responseValue.Votes.Should().Be(111);
-            responseValue.Images.Should().NotBeNull();
-            responseValue.Images.Screenshot.Should().NotBeNull();
-            responseValue.Images.Screenshot.Full.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/original/dd3fc55725.jpg");
-            responseValue.Images.Screenshot.Medium.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/medium/dd3fc55725.jpg");
-            responseValue.Images.Screenshot.Thumb.Should().Be("https://walter.trakt.us/images/episodes/000/073/640/screenshots/thumb/dd3fc55725.jpg");
             responseValue.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(1);
         }
 
