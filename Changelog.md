@@ -24,6 +24,8 @@ Added:
 
 Removed:
 
+- support for .NET Framework 4.5 (minimum is 4.5.1 now)
+- support for Windows 8 (minimum is Windows 8.1 now)
 - Attributes
 
 Renamed:
