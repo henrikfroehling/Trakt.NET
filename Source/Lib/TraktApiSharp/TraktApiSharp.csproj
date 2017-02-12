@@ -405,7 +405,7 @@
     <Compile Include="Objects\Post\Checkins\Responses\TraktCheckinPostErrorResponse.cs" />
     <Compile Include="Objects\Post\Checkins\TraktMovieCheckinPost.cs" />
     <Compile Include="Objects\Get\Movies\TraktBoxOfficeMovie.cs" />
-    <Compile Include="Objects\Get\Movies\Common\TraktMostAnticipatedMovie.cs" />
+    <Compile Include="Objects\Get\Movies\TraktMostAnticipatedMovie.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMostCollectedMovie.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMostPlayedMovie.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMostWatchedMovie.cs" />
