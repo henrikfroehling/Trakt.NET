@@ -118,6 +118,7 @@
     <Compile Include="Exceptions\TraktValidationException.cs" />
     <Compile Include="Objects\Get\Movies\ITraktBoxOfficeMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktMostAnticipatedMovie.cs" />
+    <Compile Include="Objects\Get\Movies\ITraktMostPWCMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktRecentlyUpdatedMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktTrendingMovie.cs" />
