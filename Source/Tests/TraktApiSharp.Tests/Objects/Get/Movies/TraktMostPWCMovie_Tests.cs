@@ -7,12 +7,12 @@
     using Xunit;
 
     [Category("Objects.Get.Movies")]
-    public class TraktMostPlayedMovie_Tests
+    public class TraktMostPWCMovie_Tests
     {
         [Fact]
-        public void Test_TraktMostPlayedMovie_Implements_ITraktMostPWCMovie_Interface()
+        public void Test_TraktMostPWCMovie_Implements_ITraktMostPWCMovie_Interface()
         {
-            typeof(TraktMostPlayedMovie).GetInterfaces().Should().Contain(typeof(ITraktMostPWCMovie));
+            typeof(TraktMostPWCMovie).GetInterfaces().Should().Contain(typeof(ITraktMostPWCMovie));
         }
     }
 }

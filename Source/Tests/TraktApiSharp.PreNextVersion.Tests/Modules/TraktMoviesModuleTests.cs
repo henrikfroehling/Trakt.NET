@@ -4493,7 +4493,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktMostPlayedMovie>>> act =
+            Func<Task<TraktPagedResponse<TraktMostPWCMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync();
             act.ShouldThrow<TraktNotFoundException>();
 

@@ -5,7 +5,7 @@
     using System.Collections.Generic;
 
     /// <summary>A played Trakt movie.</summary>
-    public class TraktMostPlayedMovie : ITraktMostPWCMovie
+    public class TraktMostPWCMovie : ITraktMostPWCMovie
     {
         /// <summary>Gets or sets the watcher count for the <see cref="Movie" />.</summary>
         [JsonProperty(PropertyName = "watcher_count")]

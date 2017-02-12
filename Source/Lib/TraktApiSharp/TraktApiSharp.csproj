@@ -407,7 +407,7 @@
     <Compile Include="Objects\Get\Movies\TraktBoxOfficeMovie.cs" />
     <Compile Include="Objects\Get\Movies\TraktMostAnticipatedMovie.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMostCollectedMovie.cs" />
-    <Compile Include="Objects\Get\Movies\Common\TraktMostPlayedMovie.cs" />
+    <Compile Include="Objects\Get\Movies\Common\TraktMostPWCMovie.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMostWatchedMovie.cs" />
     <Compile Include="Objects\Get\Movies\TraktRecentlyUpdatedMovie.cs" />
     <Compile Include="Objects\Get\Movies\TraktTrendingMovie.cs" />

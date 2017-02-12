@@ -69,7 +69,7 @@
     <Compile Include="Objects\Get\Movies\ITraktTrendingMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktBoxOfficeMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMostAnticipatedMovie_Tests.cs" />
-    <Compile Include="Objects\Get\Movies\TraktMostPlayedMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\TraktMostPWCMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktRecentlyUpdatedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktTrendingMovie_Tests.cs" />
