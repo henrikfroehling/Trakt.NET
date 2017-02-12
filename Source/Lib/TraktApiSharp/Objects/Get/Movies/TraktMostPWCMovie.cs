@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Movies.Common
+﻿namespace TraktApiSharp.Objects.Get.Movies
 {
     using Newtonsoft.Json;
     using System;

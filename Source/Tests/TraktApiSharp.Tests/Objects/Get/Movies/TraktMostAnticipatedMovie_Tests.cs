@@ -3,7 +3,6 @@
     using FluentAssertions;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
-    using TraktApiSharp.Objects.Get.Movies.Common;
     using Xunit;
 
     [Category("Objects.Get.Movies")]

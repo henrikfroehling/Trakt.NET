@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Movies
 {
-    using Objects.Get.Movies.Common;
+    using Objects.Get.Movies;
 
     internal sealed class TraktMoviesMostPlayedRequest : ATraktMoviesMostPWCRequest<TraktMostPWCMovie>
     {
