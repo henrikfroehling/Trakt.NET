@@ -64,10 +64,12 @@
     <Compile Include="Objects\Get\Movies\ITraktBoxOfficeMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\ITraktMostAnticipatedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\ITraktMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\ITraktRecentlyUpdatedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\ITraktTrendingMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktBoxOfficeMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMostAnticipatedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\TraktRecentlyUpdatedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktTrendingMovie_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest%271_Tests.cs" />
