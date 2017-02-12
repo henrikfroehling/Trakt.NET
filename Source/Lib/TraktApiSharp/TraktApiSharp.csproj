@@ -116,6 +116,7 @@
     <Compile Include="Exceptions\TraktServerUnavailableException.cs" />
     <Compile Include="Exceptions\TraktShowNotFoundException.cs" />
     <Compile Include="Exceptions\TraktValidationException.cs" />
+    <Compile Include="Objects\Get\Movies\ITraktBoxOfficeMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktTrendingMovie.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest%271.cs" />

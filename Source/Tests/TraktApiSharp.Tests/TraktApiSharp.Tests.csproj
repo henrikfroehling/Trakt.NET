@@ -61,8 +61,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Objects\Get\Movies\ITraktBoxOfficeMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\ITraktMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\ITraktTrendingMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\TraktBoxOfficeMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktTrendingMovie_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
