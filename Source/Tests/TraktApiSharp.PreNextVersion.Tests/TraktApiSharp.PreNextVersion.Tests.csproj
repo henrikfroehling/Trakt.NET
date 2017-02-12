@@ -190,7 +190,6 @@
     <Compile Include="Objects\Get\Calendars\TraktCalendarAllShowsTests.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesBoxOfficeTests.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesMostAnticipatedTests.cs" />
-    <Compile Include="Objects\Get\Movies\Common\TraktMoviesMostCollectedTests.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesMostPlayedTests.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesRecentlyUpdatedTests.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesTrendingTests.cs" />
@@ -348,9 +347,7 @@
     <None Include="TestData\Objects\Get\Calendars\CalendarAllShows.json" />
     <None Include="TestData\Objects\Get\Movies\Common\MoviesBoxOffice.json" />
     <None Include="TestData\Objects\Get\Movies\Common\MoviesMostAnticipated.json" />
-    <None Include="TestData\Objects\Get\Movies\Common\MoviesMostCollected.json" />
     <None Include="TestData\Objects\Get\Movies\Common\MoviesMostPlayed.json" />
-    <None Include="TestData\Objects\Get\Movies\Common\MoviesMostWatched.json" />
     <None Include="TestData\Objects\Get\Movies\Common\MoviesPopular.json" />
     <None Include="TestData\Objects\Get\Movies\Common\MoviesRecentlyUpdated.json" />
     <None Include="TestData\Objects\Get\Movies\Common\MoviesTrending.json" />

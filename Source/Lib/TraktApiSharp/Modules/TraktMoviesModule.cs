@@ -499,7 +499,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<TraktMostCollectedMovie>> GetMostCollectedMoviesAsync(TraktTimePeriod period = null,
+        public async Task<TraktPagedResponse<TraktMostPWCMovie>> GetMostCollectedMoviesAsync(TraktTimePeriod period = null,
                                                                                                    TraktExtendedInfo extendedInfo = null,
                                                                                                    TraktMovieFilter filter = null,
                                                                                                    int? page = null, int? limitPerPage = null)
