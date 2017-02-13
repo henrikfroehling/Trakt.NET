@@ -192,7 +192,6 @@
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesMostAnticipatedTests.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesMostPlayedTests.cs" />
     <Compile Include="Objects\Get\Movies\Common\TraktMoviesRecentlyUpdatedTests.cs" />
-    <Compile Include="Objects\Get\Movies\Common\TraktMoviesTrendingTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieAliasesTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieRelatedMoviesTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieReleasesTests.cs" />
