@@ -74,6 +74,7 @@
     <Compile Include="Objects\Get\Movies\TraktMostAnticipatedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMostPWCMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieAlias_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\TraktMovieIds_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieRelease_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieTranslation_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovie_Tests.cs" />
