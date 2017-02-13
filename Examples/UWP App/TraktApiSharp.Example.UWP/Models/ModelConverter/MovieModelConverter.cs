@@ -6,7 +6,7 @@
 
     public static class MovieModelConverter
     {
-        public static T Convert<T>(TraktMovie traktMovie) where T : TraktMovie, new()
+        public static T Convert<T>(ITraktMovie traktMovie) where T : TraktMovie, new()
         {
             if (traktMovie == null)
                 return null;

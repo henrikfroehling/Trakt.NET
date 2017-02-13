@@ -4,7 +4,6 @@
     using Exceptions;
     using Objects.Basic;
     using Objects.Get.Movies;
-    using Objects.Get.Movies.Common;
     using Objects.Get.Users;
     using Objects.Get.Users.Lists;
     using Requests.Handler;
