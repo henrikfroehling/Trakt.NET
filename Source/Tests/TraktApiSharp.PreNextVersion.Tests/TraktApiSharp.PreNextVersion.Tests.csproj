@@ -188,7 +188,6 @@
     <Compile Include="Extensions\StringExtensionsTests.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarAllMoviesTests.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarAllShowsTests.cs" />
-    <Compile Include="Objects\Get\Movies\Common\TraktMoviesMostPlayedTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieAliasesTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieRelatedMoviesTests.cs" />
     <Compile Include="Objects\Get\Movies\TraktMovieReleasesTests.cs" />
