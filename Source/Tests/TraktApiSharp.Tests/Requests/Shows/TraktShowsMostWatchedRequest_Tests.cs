@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktShowsMostWatchedRequest_Inherits_ATraktShowsMostPWCRequest_1()
         {
-            typeof(TraktShowsMostWatchedRequest).IsSubclassOf(typeof(ATraktShowsMostPWCRequest<TraktMostWatchedShow>)).Should().BeTrue();
+            typeof(TraktShowsMostWatchedRequest).IsSubclassOf(typeof(ATraktShowsMostPWCRequest<TraktMostPWCShow>)).Should().BeTrue();
         }
 
         [Fact]
