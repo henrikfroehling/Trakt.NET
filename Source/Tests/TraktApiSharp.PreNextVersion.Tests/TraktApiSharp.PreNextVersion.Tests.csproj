@@ -203,7 +203,6 @@
     <Compile Include="Objects\Get\Shows\TraktShowRelatedShowsTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowSingleAliasTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowSingleTranslationTests.cs" />
-    <Compile Include="Objects\Get\Shows\TraktShowTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowTranslationsTests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowWatchedProgressTests.cs" />
     <Compile Include="Objects\Basic\TraktCastAndCrewTests.cs" />
