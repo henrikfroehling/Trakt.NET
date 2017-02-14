@@ -114,7 +114,7 @@
             recentlyUpdatedMovie.Movie.Overview.Should().Be("Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers.");
             recentlyUpdatedMovie.Movie.Released.Should().Be(DateTime.Parse("2015-12-18"));
             recentlyUpdatedMovie.Movie.Runtime.Should().Be(136);
-            recentlyUpdatedMovie.Movie.UpdatedAt.Should().Be(DateTime.Parse("2016-03-31T09:01:59Z").ToUniversalTime());
+            recentlyUpdatedMovie.Movie.UpdatedAt.Should().Be(DateTime.Parse("2016-03-31T01:29:13Z").ToUniversalTime());
             recentlyUpdatedMovie.Movie.Trailer.Should().Be("http://youtube.com/watch?v=uwa7N0ShN2U");
             recentlyUpdatedMovie.Movie.Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vii");
             recentlyUpdatedMovie.Movie.Rating.Should().Be(8.31988f);
