@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Objects.Get.Shows.Common
 {
+    using Enums;
     using Newtonsoft.Json;
+    using Shows.Seasons;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Shows.Seasons;
 
     /// <summary>A trending Trakt show.</summary>
     public class TraktTrendingShow : ITraktTrendingShow
