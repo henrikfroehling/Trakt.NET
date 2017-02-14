@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Shows
 {
-    using Objects.Get.Shows.Common;
+    using Objects.Get.Shows;
 
     internal sealed class TraktShowsMostWatchedRequest : ATraktShowsMostPWCRequest<TraktMostPWCShow>
     {

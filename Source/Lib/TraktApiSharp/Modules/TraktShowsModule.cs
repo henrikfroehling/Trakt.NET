@@ -4,7 +4,6 @@
     using Exceptions;
     using Objects.Basic;
     using Objects.Get.Shows;
-    using Objects.Get.Shows.Common;
     using Objects.Get.Shows.Episodes;
     using Objects.Get.Users;
     using Objects.Get.Users.Lists;
@@ -518,9 +517,9 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public async Task<TraktPagedResponse<TraktMostPWCShow>> GetMostPlayedShowsAsync(TraktTimePeriod period = null,
-                                                                                           TraktExtendedInfo extendedInfo = null,
-                                                                                           TraktShowFilter filter = null,
-                                                                                           int? page = null, int? limitPerPage = null)
+                                                                                        TraktExtendedInfo extendedInfo = null,
+                                                                                        TraktShowFilter filter = null,
+                                                                                        int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 

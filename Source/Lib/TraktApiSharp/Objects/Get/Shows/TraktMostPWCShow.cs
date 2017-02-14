@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Shows.Common
+﻿namespace TraktApiSharp.Objects.Get.Shows
 {
     using Enums;
     using Newtonsoft.Json;
