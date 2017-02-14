@@ -88,6 +88,7 @@
     <Compile Include="Objects\Get\Shows\TraktMostAnticipatedShow_Tests.cs" />
     <Compile Include="Objects\Get\Shows\TraktMostPWCShow_Tests.cs" />
     <Compile Include="Objects\Get\Shows\TraktRecentlyUpdatedShow_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\TraktShowAlias_Tests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShow_Tests.cs" />
     <Compile Include="Objects\Get\Shows\TraktTrendingShow_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
