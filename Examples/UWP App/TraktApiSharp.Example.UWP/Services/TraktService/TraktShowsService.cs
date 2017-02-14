@@ -293,7 +293,7 @@
 
                 if (recentlyUpdatedShow != null)
                 {
-                    var updatedAt = traktRecentlyUpdatedShow.UpdatedAt;
+                    var updatedAt = traktRecentlyUpdatedShow.RecentlyUpdatedAt;
                     recentlyUpdatedShow.ShowUpdatedAt = updatedAt.HasValue ? updatedAt.ToString() : string.Empty;
                     results.Items.Add(recentlyUpdatedShow);
                 }

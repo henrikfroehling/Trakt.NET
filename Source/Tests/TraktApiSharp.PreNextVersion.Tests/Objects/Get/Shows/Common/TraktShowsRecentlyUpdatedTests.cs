@@ -17,7 +17,7 @@
         {
             var updatedShow = new TraktRecentlyUpdatedShow();
 
-            updatedShow.UpdatedAt.Should().NotHaveValue();
+            updatedShow.RecentlyUpdatedAt.Should().NotHaveValue();
             updatedShow.Show.Should().BeNull();
         }
 
@@ -34,10 +34,10 @@
 
             var shows = updatedShows.ToArray();
 
-            shows[0].UpdatedAt.Should().Be(DateTime.Parse("2016-04-07T15:24:24Z").ToUniversalTime());
+            shows[0].RecentlyUpdatedAt.Should().Be(DateTime.Parse("2016-04-07T15:24:24Z").ToUniversalTime());
             shows[0].Show.Should().NotBeNull();
 
-            shows[1].UpdatedAt.Should().Be(DateTime.Parse("2016-04-07T15:31:48Z").ToUniversalTime());
+            shows[1].RecentlyUpdatedAt.Should().Be(DateTime.Parse("2016-04-07T15:31:48Z").ToUniversalTime());
             shows[1].Show.Should().NotBeNull();
         }
     }
