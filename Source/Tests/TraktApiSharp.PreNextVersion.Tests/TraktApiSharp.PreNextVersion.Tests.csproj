@@ -192,7 +192,6 @@
     <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsTests.cs" />
     <Compile Include="Objects\Get\People\TraktPersonTests.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktShowsMostAnticipatedTests.cs" />
-    <Compile Include="Objects\Get\Shows\Common\TraktShowsMostCollectedTests.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktShowsMostPlayedTests.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktShowsMostWatchedTests.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktShowsRecentlyUpdatedTests.cs" />
@@ -362,7 +361,6 @@
     <None Include="TestData\Objects\Get\Recommendations\ShowRecommendations.json" />
     <None Include="TestData\Objects\Get\Recommendations\ShowSingleRecommendation.json" />
     <None Include="TestData\Objects\Get\Shows\Common\ShowsMostAnticipated.json" />
-    <None Include="TestData\Objects\Get\Shows\Common\ShowsMostCollected.json" />
     <None Include="TestData\Objects\Get\Shows\Common\ShowsMostPlayed.json" />
     <None Include="TestData\Objects\Get\Shows\Common\ShowsMostWatched.json" />
     <None Include="TestData\Objects\Get\Shows\Common\ShowsPopular.json" />

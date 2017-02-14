@@ -590,17 +590,17 @@
         /// <param name="page">The page of the most collected shows list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of most collected shows for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{TraktMostCollectedShow}"/> instance containing the queried most collected shows and which also
+        /// An <see cref="TraktPagedResponse{TraktMostPWCShow}"/> instance containing the queried most collected shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostCollectedShow" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostPWCShow" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<TraktMostCollectedShow>> GetMostCollectedShowsAsync(TraktTimePeriod period = null,
-                                                                                                 TraktExtendedInfo extendedInfo = null,
-                                                                                                 TraktShowFilter filter = null,
-                                                                                                 int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<TraktMostPWCShow>> GetMostCollectedShowsAsync(TraktTimePeriod period = null,
+                                                                                           TraktExtendedInfo extendedInfo = null,
+                                                                                           TraktShowFilter filter = null,
+                                                                                           int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
