@@ -1,8 +1,8 @@
-﻿namespace TraktApiSharp.Objects.Get.Shows.Common
+﻿namespace TraktApiSharp.Objects.Get.Shows
 {
     using Enums;
     using Newtonsoft.Json;
-    using Shows.Seasons;
+    using Seasons;
     using System;
     using System.Collections.Generic;
 

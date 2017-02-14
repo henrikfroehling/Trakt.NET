@@ -421,7 +421,7 @@
     <Compile Include="Objects\Get\Movies\TraktMovieTranslation.cs" />
     <Compile Include="Objects\Get\People\TraktPerson.cs" />
     <Compile Include="Objects\Get\People\TraktPersonIds.cs" />
-    <Compile Include="Objects\Get\Shows\Common\TraktMostAnticipatedShow.cs" />
+    <Compile Include="Objects\Get\Shows\TraktMostAnticipatedShow.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktMostCollectedShow.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktMostPlayedShow.cs" />
     <Compile Include="Objects\Get\Shows\Common\TraktMostWatchedShow.cs" />
