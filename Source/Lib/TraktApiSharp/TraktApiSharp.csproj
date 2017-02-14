@@ -122,6 +122,7 @@
     <Compile Include="Objects\Get\Movies\ITraktMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktRecentlyUpdatedMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktTrendingMovie.cs" />
+    <Compile Include="Objects\Get\Shows\ITraktMostAnticipatedShow.cs" />
     <Compile Include="Objects\Get\Shows\ITraktShow.cs" />
     <Compile Include="Objects\Get\Shows\ITraktTrendingShow.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest%271.cs" />

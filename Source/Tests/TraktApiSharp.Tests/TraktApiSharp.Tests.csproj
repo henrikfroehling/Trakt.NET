@@ -80,8 +80,10 @@
     <Compile Include="Objects\Get\Movies\TraktMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktRecentlyUpdatedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktTrendingMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\ITraktMostAnticipatedShow_Tests.cs" />
     <Compile Include="Objects\Get\Shows\ITraktShow_Tests.cs" />
     <Compile Include="Objects\Get\Shows\ITraktTrendingShow_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\TraktMostAnticipatedShow_Tests.cs" />
     <Compile Include="Objects\Get\Shows\TraktShow_Tests.cs" />
     <Compile Include="Objects\Get\Shows\TraktTrendingShow_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
