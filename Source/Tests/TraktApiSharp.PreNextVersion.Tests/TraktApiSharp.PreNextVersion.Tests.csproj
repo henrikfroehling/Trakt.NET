@@ -194,7 +194,6 @@
     <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeTests.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonsAllTests.cs" />
     <Compile Include="Objects\Get\Shows\Seasons\TraktSeasonTests.cs" />
-    <Compile Include="Objects\Get\Shows\TraktShowWatchedProgressTests.cs" />
     <Compile Include="Objects\Basic\TraktCastAndCrewTests.cs" />
     <Compile Include="Objects\Basic\TraktCastMemberTests.cs" />
     <Compile Include="Objects\Basic\TraktCommentTests.cs" />
