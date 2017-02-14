@@ -513,11 +513,11 @@
         /// An <see cref="TraktPagedResponse{TraktMostPlayedShow}"/> instance containing the queried most played shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostPlayedShow" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostPWCShow" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<TraktMostPlayedShow>> GetMostPlayedShowsAsync(TraktTimePeriod period = null,
+        public async Task<TraktPagedResponse<TraktMostPWCShow>> GetMostPlayedShowsAsync(TraktTimePeriod period = null,
                                                                                            TraktExtendedInfo extendedInfo = null,
                                                                                            TraktShowFilter filter = null,
                                                                                            int? page = null, int? limitPerPage = null)

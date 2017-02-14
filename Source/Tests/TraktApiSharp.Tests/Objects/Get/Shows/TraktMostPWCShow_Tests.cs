@@ -7,12 +7,12 @@
     using Xunit;
 
     [Category("Objects.Get.Shows")]
-    public class TraktMostPlayedShow_Tests
+    public class TraktMostPWCShow_Tests
     {
         [Fact]
-        public void Test_TraktMostPlayedShow_Implements_ITraktMostPWCShow_Interface()
+        public void Test_TraktMostPWCShow_Implements_ITraktMostPWCShow_Interface()
         {
-            typeof(TraktMostPlayedShow).GetInterfaces().Should().Contain(typeof(ITraktMostPWCShow));
+            typeof(TraktMostPWCShow).GetInterfaces().Should().Contain(typeof(ITraktMostPWCShow));
         }
     }
 }
