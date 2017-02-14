@@ -3,7 +3,6 @@
     using FluentAssertions;
     using Traits;
     using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Objects.Get.Shows.Common;
     using Xunit;
 
     [Category("Objects.Get.Shows")]
