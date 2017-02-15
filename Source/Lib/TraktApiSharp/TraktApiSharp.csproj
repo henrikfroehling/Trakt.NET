@@ -133,6 +133,7 @@
     <Compile Include="Objects\Get\Shows\ITraktShow.cs" />
     <Compile Include="Objects\Get\Shows\ITraktTrendingShow.cs" />
     <Compile Include="Objects\Get\Watched\ITraktWatchedMovie.cs" />
+    <Compile Include="Objects\Get\Watched\ITraktWatchedShow.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest%271.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest.cs" />
     <Compile Include="Requests\Base\ATraktDeleteRequest.cs" />
