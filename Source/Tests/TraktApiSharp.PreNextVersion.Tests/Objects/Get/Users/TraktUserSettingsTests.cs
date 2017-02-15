@@ -33,10 +33,10 @@
             userSettings.Should().NotBeNull();
             userSettings.User.Should().NotBeNull();
             userSettings.User.Username.Should().Be("justin");
-            userSettings.User.Private.Should().BeFalse();
+            userSettings.User.IsPrivate.Should().BeFalse();
             userSettings.User.Name.Should().Be("Justin Nemeth");
-            userSettings.User.VIP.Should().BeTrue();
-            userSettings.User.VIP_EP.Should().BeFalse();
+            userSettings.User.IsVIP.Should().BeTrue();
+            userSettings.User.IsVIP_EP.Should().BeFalse();
             userSettings.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
             userSettings.User.Location.Should().Be("San Diego, CA");
             userSettings.User.About.Should().Be("Co-founder of trakt.");

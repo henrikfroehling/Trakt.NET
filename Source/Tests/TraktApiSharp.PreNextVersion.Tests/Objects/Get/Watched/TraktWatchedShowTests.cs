@@ -52,7 +52,7 @@
             shows[0].Seasons.Should().NotBeNull();
             shows[0].Seasons.Should().HaveCount(2);
 
-            var show1Seasons = shows[0].Seasons.ToArray();
+            var show1Seasons = shows[0].WatchedSeasons.ToArray();
 
             show1Seasons[0].Number.Should().Be(1);
             show1Seasons[0].Episodes.Should().NotBeNull();
@@ -97,7 +97,7 @@
             shows[1].Seasons.Should().NotBeNull();
             shows[1].Seasons.Should().HaveCount(2);
 
-            var show2Seasons = shows[1].Seasons.ToArray();
+            var show2Seasons = shows[1].WatchedSeasons.ToArray();
 
             show2Seasons[0].Number.Should().Be(1);
             show2Seasons[0].Episodes.Should().NotBeNull();

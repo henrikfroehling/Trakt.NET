@@ -82,10 +82,10 @@
 
             responseValue.User.Should().NotBeNull();
             responseValue.User.Username.Should().Be("justin");
-            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.IsPrivate.Should().BeFalse();
             responseValue.User.Name.Should().Be("Justin Nemeth");
-            responseValue.User.VIP.Should().BeTrue();
-            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.User.IsVIP.Should().BeTrue();
+            responseValue.User.IsVIP_EP.Should().BeFalse();
             responseValue.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
             responseValue.User.Location.Should().Be("San Diego, CA");
             responseValue.User.About.Should().Be("Co-founder of trakt.");
@@ -1066,10 +1066,10 @@
             var responseValue = response.Value;
 
             responseValue.Username.Should().Be("sean");
-            responseValue.Private.Should().BeFalse();
+            responseValue.IsPrivate.Should().BeFalse();
             responseValue.Name.Should().Be("Sean Rudford");
-            responseValue.VIP.Should().BeTrue();
-            responseValue.VIP_EP.Should().BeTrue();
+            responseValue.IsVIP.Should().BeTrue();
+            responseValue.IsVIP_EP.Should().BeTrue();
             responseValue.JoinedAt.Should().NotHaveValue();
             responseValue.Location.Should().BeNullOrEmpty();
             responseValue.About.Should().BeNullOrEmpty();
@@ -1100,10 +1100,10 @@
             var responseValue = response.Value;
 
             responseValue.Username.Should().Be("sean");
-            responseValue.Private.Should().BeFalse();
+            responseValue.IsPrivate.Should().BeFalse();
             responseValue.Name.Should().Be("Sean Rudford");
-            responseValue.VIP.Should().BeTrue();
-            responseValue.VIP_EP.Should().BeTrue();
+            responseValue.IsVIP.Should().BeTrue();
+            responseValue.IsVIP_EP.Should().BeTrue();
             responseValue.JoinedAt.Should().NotHaveValue();
             responseValue.Location.Should().BeNullOrEmpty();
             responseValue.About.Should().BeNullOrEmpty();
@@ -1133,10 +1133,10 @@
             var responseValue = response.Value;
 
             responseValue.Username.Should().Be("sean");
-            responseValue.Private.Should().BeFalse();
+            responseValue.IsPrivate.Should().BeFalse();
             responseValue.Name.Should().Be("Sean Rudford");
-            responseValue.VIP.Should().BeTrue();
-            responseValue.VIP_EP.Should().BeTrue();
+            responseValue.IsVIP.Should().BeTrue();
+            responseValue.IsVIP_EP.Should().BeTrue();
             responseValue.JoinedAt.Should().NotHaveValue();
             responseValue.Location.Should().BeNullOrEmpty();
             responseValue.About.Should().BeNullOrEmpty();
@@ -7260,10 +7260,10 @@
             responseValue.ApprovedAt.Should().Be(DateTime.Parse("2014-11-15T09:41:34.704Z").ToUniversalTime());
             responseValue.User.Should().NotBeNull();
             responseValue.User.Username.Should().Be("sean");
-            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.IsPrivate.Should().BeFalse();
             responseValue.User.Name.Should().Be("Sean Rudford");
-            responseValue.User.VIP.Should().BeTrue();
-            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.User.IsVIP.Should().BeTrue();
+            responseValue.User.IsVIP_EP.Should().BeFalse();
         }
 
         [TestMethod]
@@ -7491,10 +7491,10 @@
             responseValue.FollowedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             responseValue.User.Should().NotBeNull();
             responseValue.User.Username.Should().Be("sean");
-            responseValue.User.Private.Should().BeFalse();
+            responseValue.User.IsPrivate.Should().BeFalse();
             responseValue.User.Name.Should().Be("Sean Rudford");
-            responseValue.User.VIP.Should().BeTrue();
-            responseValue.User.VIP_EP.Should().BeFalse();
+            responseValue.User.IsVIP.Should().BeTrue();
+            responseValue.User.IsVIP_EP.Should().BeFalse();
         }
 
         [TestMethod]

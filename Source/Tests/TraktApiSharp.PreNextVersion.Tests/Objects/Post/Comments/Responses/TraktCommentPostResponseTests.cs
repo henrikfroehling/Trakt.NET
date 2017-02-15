@@ -49,10 +49,10 @@
             commentPostResponse.UserRating.Should().NotHaveValue();
             commentPostResponse.User.Should().NotBeNull();
             commentPostResponse.User.Username.Should().Be("sean");
-            commentPostResponse.User.Private.Should().BeFalse();
+            commentPostResponse.User.IsPrivate.Should().BeFalse();
             commentPostResponse.User.Name.Should().Be("Sean Rudford");
-            commentPostResponse.User.VIP.Should().BeTrue();
-            commentPostResponse.User.VIP_EP.Should().BeFalse();
+            commentPostResponse.User.IsVIP.Should().BeTrue();
+            commentPostResponse.User.IsVIP_EP.Should().BeFalse();
             commentPostResponse.Sharing.Should().NotBeNull();
             commentPostResponse.Sharing.Facebook.Should().BeTrue();
             commentPostResponse.Sharing.Twitter.Should().BeTrue();

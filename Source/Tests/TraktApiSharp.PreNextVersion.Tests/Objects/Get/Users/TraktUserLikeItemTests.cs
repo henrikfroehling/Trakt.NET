@@ -47,10 +47,10 @@
             userLike.Comment.UserRating.Should().NotHaveValue();
             userLike.Comment.User.Should().NotBeNull();
             userLike.Comment.User.Username.Should().Be("sean");
-            userLike.Comment.User.Private.Should().BeFalse();
+            userLike.Comment.User.IsPrivate.Should().BeFalse();
             userLike.Comment.User.Name.Should().Be("Sean Rudford");
-            userLike.Comment.User.VIP.Should().BeTrue();
-            userLike.Comment.User.VIP_EP.Should().BeFalse();
+            userLike.Comment.User.IsVIP.Should().BeTrue();
+            userLike.Comment.User.IsVIP_EP.Should().BeFalse();
             userLike.List.Should().BeNull();
         }
 
@@ -83,10 +83,10 @@
             userLike.List.Ids.Slug.Should().Be("star-wars-in-machete-order");
             userLike.List.User.Should().NotBeNull();
             userLike.List.User.Username.Should().Be("sean");
-            userLike.List.User.Private.Should().BeFalse();
+            userLike.List.User.IsPrivate.Should().BeFalse();
             userLike.List.User.Name.Should().Be("Sean Rudford");
-            userLike.List.User.VIP.Should().BeTrue();
-            userLike.List.User.VIP_EP.Should().BeFalse();
+            userLike.List.User.IsVIP.Should().BeTrue();
+            userLike.List.User.IsVIP_EP.Should().BeFalse();
         }
     }
 }

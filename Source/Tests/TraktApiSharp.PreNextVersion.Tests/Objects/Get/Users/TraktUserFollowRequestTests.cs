@@ -35,10 +35,10 @@
             followRequest.RequestedAt.Should().Be(DateTime.Parse("2014-09-22T04:23:48.000Z").ToUniversalTime());
             followRequest.User.Should().NotBeNull();
             followRequest.User.Username.Should().Be("sean");
-            followRequest.User.Private.Should().BeFalse();
+            followRequest.User.IsPrivate.Should().BeFalse();
             followRequest.User.Name.Should().Be("Sean Rudford");
-            followRequest.User.VIP.Should().BeTrue();
-            followRequest.User.VIP_EP.Should().BeFalse();
+            followRequest.User.IsVIP.Should().BeTrue();
+            followRequest.User.IsVIP_EP.Should().BeFalse();
         }
     }
 }

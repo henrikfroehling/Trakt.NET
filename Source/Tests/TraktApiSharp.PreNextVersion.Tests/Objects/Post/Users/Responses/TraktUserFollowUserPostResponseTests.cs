@@ -32,10 +32,10 @@
             userFollowUserResponse.ApprovedAt.Should().Be(DateTime.Parse("2014-11-15T09:41:34.704Z").ToUniversalTime());
             userFollowUserResponse.User.Should().NotBeNull();
             userFollowUserResponse.User.Username.Should().Be("sean");
-            userFollowUserResponse.User.Private.Should().BeFalse();
+            userFollowUserResponse.User.IsPrivate.Should().BeFalse();
             userFollowUserResponse.User.Name.Should().Be("Sean Rudford");
-            userFollowUserResponse.User.VIP.Should().BeTrue();
-            userFollowUserResponse.User.VIP_EP.Should().BeFalse();
+            userFollowUserResponse.User.IsVIP.Should().BeTrue();
+            userFollowUserResponse.User.IsVIP_EP.Should().BeFalse();
         }
     }
 }
