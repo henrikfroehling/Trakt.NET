@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings
 {
-    using Get.Shows.Episodes;
+    using Get.Episodes;
     using Newtonsoft.Json;
     using System;
 

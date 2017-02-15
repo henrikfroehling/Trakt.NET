@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Objects.Get.Ratings
 {
     using Enums;
+    using Episodes;
     using Movies;
     using Newtonsoft.Json;
     using Seasons;
     using Shows;
-    using Shows.Episodes;
     using System;
 
     /// <summary>A Trakt rating item, containing a movie, show, season and / or episode and information about it.</summary>

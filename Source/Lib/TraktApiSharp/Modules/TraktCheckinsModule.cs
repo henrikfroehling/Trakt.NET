@@ -3,9 +3,9 @@
     using Exceptions;
     using Extensions;
     using Objects.Basic;
+    using Objects.Get.Episodes;
     using Objects.Get.Movies;
     using Objects.Get.Shows;
-    using Objects.Get.Shows.Episodes;
     using Objects.Post.Checkins;
     using Objects.Post.Checkins.Responses;
     using Requests.Checkins.OAuth;

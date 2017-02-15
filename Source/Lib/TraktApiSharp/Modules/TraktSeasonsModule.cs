@@ -3,9 +3,9 @@
     using Enums;
     using Exceptions;
     using Objects.Basic;
+    using Objects.Get.Episodes;
     using Objects.Get.Seasons;
     using Objects.Get.Shows;
-    using Objects.Get.Shows.Episodes;
     using Objects.Get.Users;
     using Objects.Get.Users.Lists;
     using Requests.Handler;

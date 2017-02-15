@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Shows.Episodes
+﻿namespace TraktApiSharp.Objects.Get.Episodes
 {
     using Newtonsoft.Json;
     using System;

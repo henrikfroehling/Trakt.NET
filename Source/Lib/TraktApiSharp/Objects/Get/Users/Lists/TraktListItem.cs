@@ -1,12 +1,12 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users.Lists
 {
     using Enums;
+    using Episodes;
     using Movies;
     using Newtonsoft.Json;
     using People;
     using Seasons;
     using Shows;
-    using Shows.Episodes;
     using System;
 
     /// <summary>Represents a Trakt user list item.</summary>

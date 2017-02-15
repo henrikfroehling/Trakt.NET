@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Objects.Get.Syncs.Playback
 {
     using Enums;
+    using Episodes;
     using Movies;
     using Newtonsoft.Json;
     using Shows;
-    using Shows.Episodes;
     using System;
 
     /// <summary>Contains information about a Trakt playback progress, including the corresponding movie or episode.</summary>

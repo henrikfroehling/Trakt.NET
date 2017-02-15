@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Responses
 {
+    using Get.Episodes;
     using Get.Movies;
     using Get.Seasons;
     using Get.Shows;
-    using Get.Shows.Episodes;
     using Newtonsoft.Json;
     using System.Collections.Generic;
 

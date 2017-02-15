@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist
 {
+    using Get.Episodes;
     using Get.Movies;
     using Get.Shows;
-    using Get.Shows.Episodes;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;

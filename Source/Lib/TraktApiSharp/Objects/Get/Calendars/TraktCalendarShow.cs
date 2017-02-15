@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Get.Calendars
 {
+    using Episodes;
     using Newtonsoft.Json;
     using Shows;
-    using Shows.Episodes;
     using System;
 
     /// <summary>A Trakt calendar show, containing episode and show information.</summary>

@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.Seasons
 {
+    using Episodes;
     using Newtonsoft.Json;
-    using Shows.Episodes;
     using System.Collections.Generic;
 
     /// <summary>Represents the collection progress of a Trakt season.</summary>
