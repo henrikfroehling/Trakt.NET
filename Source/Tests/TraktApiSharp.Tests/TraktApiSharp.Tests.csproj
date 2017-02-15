@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Objects\Get\Calendars\ITraktCalendarMovie_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Episodes\ITraktEpisode_Tests.cs" />
     <Compile Include="Objects\Get\Movies\ITraktBoxOfficeMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\ITraktMostAnticipatedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\ITraktMostPWCMovie_Tests.cs" />
