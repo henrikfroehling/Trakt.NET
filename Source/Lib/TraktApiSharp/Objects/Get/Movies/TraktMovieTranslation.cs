@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.Movies
 {
+    using Basic;
     using Newtonsoft.Json;
-    using Objects.Basic;
 
     /// <summary>A translation for a Trakt movie.</summary>
     public class TraktMovieTranslation : TraktTranslation

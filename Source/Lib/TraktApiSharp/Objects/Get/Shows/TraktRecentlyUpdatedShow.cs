@@ -2,7 +2,7 @@
 {
     using Enums;
     using Newtonsoft.Json;
-    using Shows.Seasons;
+    using Seasons;
     using System;
     using System.Collections.Generic;
 
