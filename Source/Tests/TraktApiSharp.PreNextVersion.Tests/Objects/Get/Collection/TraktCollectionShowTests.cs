@@ -20,7 +20,7 @@
 
             collectionShow.LastCollectedAt.Should().NotHaveValue();
             collectionShow.Show.Should().BeNull();
-            collectionShow.Seasons.Should().BeNull();
+            collectionShow.CollectionSeasons.Should().BeNull();
         }
 
         [TestMethod]
@@ -48,10 +48,10 @@
             shows[0].Show.Ids.Imdb.Should().Be("tt0903747");
             shows[0].Show.Ids.Tmdb.Should().Be(1396U);
             shows[0].Show.Ids.TvRage.Should().Be(18164U);
-            shows[0].Seasons.Should().NotBeNull();
-            shows[0].Seasons.Should().HaveCount(2);
+            shows[0].CollectionSeasons.Should().NotBeNull();
+            shows[0].CollectionSeasons.Should().HaveCount(2);
 
-            var seasons0 = shows[0].Seasons.ToArray();
+            var seasons0 = shows[0].CollectionSeasons.ToArray();
 
             // Season 1 of Show 1
             seasons0[0].Number.Should().Be(1);
@@ -99,10 +99,10 @@
             shows[1].Show.Ids.Imdb.Should().Be("tt1520211");
             shows[1].Show.Ids.Tmdb.Should().Be(1402U);
             shows[1].Show.Ids.TvRage.Should().BeNull();
-            shows[1].Seasons.Should().NotBeNull();
-            shows[1].Seasons.Should().HaveCount(2);
+            shows[1].CollectionSeasons.Should().NotBeNull();
+            shows[1].CollectionSeasons.Should().HaveCount(2);
 
-            var seasons1 = shows[1].Seasons.ToArray();
+            var seasons1 = shows[1].CollectionSeasons.ToArray();
 
             // Season 1 of Show 2
             seasons1[0].Number.Should().Be(1);
@@ -162,10 +162,10 @@
             shows[0].Show.Ids.Imdb.Should().Be("tt0903747");
             shows[0].Show.Ids.Tmdb.Should().Be(1396U);
             shows[0].Show.Ids.TvRage.Should().Be(18164U);
-            shows[0].Seasons.Should().NotBeNull();
-            shows[0].Seasons.Should().HaveCount(2);
+            shows[0].CollectionSeasons.Should().NotBeNull();
+            shows[0].CollectionSeasons.Should().HaveCount(2);
 
-            var seasons0 = shows[0].Seasons.ToArray();
+            var seasons0 = shows[0].CollectionSeasons.ToArray();
 
             // Season 1 of Show 1
             seasons0[0].Number.Should().Be(1);
@@ -233,10 +233,10 @@
             shows[1].Show.Ids.Imdb.Should().Be("tt1520211");
             shows[1].Show.Ids.Tmdb.Should().Be(1402U);
             shows[1].Show.Ids.TvRage.Should().BeNull();
-            shows[1].Seasons.Should().NotBeNull();
-            shows[1].Seasons.Should().HaveCount(2);
+            shows[1].CollectionSeasons.Should().NotBeNull();
+            shows[1].CollectionSeasons.Should().HaveCount(2);
 
-            var seasons1 = shows[1].Seasons.ToArray();
+            var seasons1 = shows[1].CollectionSeasons.ToArray();
 
             // Season 1 of Show 2
             seasons1[0].Number.Should().Be(1);

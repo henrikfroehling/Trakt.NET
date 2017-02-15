@@ -119,6 +119,7 @@
     <Compile Include="Objects\Get\Calendars\ITraktCalendarMovie.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarShow.cs" />
     <Compile Include="Objects\Get\Collection\ITraktCollectionMovie.cs" />
+    <Compile Include="Objects\Get\Collection\ITraktCollectionShow.cs" />
     <Compile Include="Objects\Get\Episodes\ITraktEpisode.cs" />
     <Compile Include="Objects\Get\Movies\ITraktBoxOfficeMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktMostAnticipatedMovie.cs" />
