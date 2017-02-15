@@ -4,9 +4,9 @@
     using Movies;
     using Newtonsoft.Json;
     using People;
+    using Seasons;
     using Shows;
     using Shows.Episodes;
-    using Shows.Seasons;
     using System;
 
     /// <summary>Represents a Trakt user list item.</summary>

@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Objects.Get.Shows.Seasons
+﻿namespace TraktApiSharp.Objects.Get.Seasons
 {
-    using Episodes;
     using Modules;
     using Newtonsoft.Json;
     using Requests.Parameters;
+    using Shows.Episodes;
     using System;
     using System.Collections.Generic;
 

@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktApiSharp.Objects.Get.Shows.Seasons;
+    using TraktApiSharp.Objects.Get.Seasons;
     using Utils;
 
     [TestClass]

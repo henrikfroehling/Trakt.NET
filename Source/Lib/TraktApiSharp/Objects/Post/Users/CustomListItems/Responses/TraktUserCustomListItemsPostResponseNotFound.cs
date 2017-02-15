@@ -2,9 +2,9 @@
 {
     using Get.Movies;
     using Get.People;
+    using Get.Seasons;
     using Get.Shows;
     using Get.Shows.Episodes;
-    using Get.Shows.Seasons;
     using Newtonsoft.Json;
     using Syncs.Responses;
     using System.Collections.Generic;

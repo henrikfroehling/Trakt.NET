@@ -3,9 +3,9 @@
     using Enums;
     using Movies;
     using Newtonsoft.Json;
+    using Seasons;
     using Shows;
     using Shows.Episodes;
-    using Shows.Seasons;
     using System;
 
     /// <summary>A Trakt history item, containing a movie, show, season and / or episode and information about it.</summary>

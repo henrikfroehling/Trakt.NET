@@ -6,8 +6,8 @@
     using System.Linq;
     using Traits;
     using TraktApiSharp.Enums;
+    using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Objects.Get.Shows.Seasons;
     using Xunit;
 
     [Category("Objects.Get.Shows")]
