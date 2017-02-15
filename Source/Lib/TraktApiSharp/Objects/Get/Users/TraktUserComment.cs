@@ -2,12 +2,12 @@
 {
     using Basic;
     using Enums;
+    using Episodes;
     using Lists;
     using Movies;
     using Newtonsoft.Json;
+    using Seasons;
     using Shows;
-    using Shows.Episodes;
-    using Shows.Seasons;
 
     /// <summary>A Trakt user comment.</summary>
     public class TraktUserComment

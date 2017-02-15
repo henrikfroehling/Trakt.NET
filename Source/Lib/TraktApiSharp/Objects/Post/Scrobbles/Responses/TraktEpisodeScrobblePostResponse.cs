@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Scrobbles.Responses
 {
+    using Get.Episodes;
     using Get.Shows;
-    using Get.Shows.Episodes;
     using Newtonsoft.Json;
 
     /// <summary>Represents an episode scrobble response.</summary>

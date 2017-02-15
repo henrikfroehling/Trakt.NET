@@ -6,7 +6,6 @@
     using System.IO;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Objects.Get.Shows.Common;
 
     public sealed class TrendingShowsReader
     {

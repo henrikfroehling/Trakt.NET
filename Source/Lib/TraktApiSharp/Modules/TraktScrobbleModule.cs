@@ -2,9 +2,9 @@
 {
     using Exceptions;
     using Extensions;
+    using Objects.Get.Episodes;
     using Objects.Get.Movies;
     using Objects.Get.Shows;
-    using Objects.Get.Shows.Episodes;
     using Objects.Post.Scrobbles;
     using Objects.Post.Scrobbles.Responses;
     using Requests.Handler;

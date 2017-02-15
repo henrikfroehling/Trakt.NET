@@ -12,9 +12,8 @@
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Objects.Get.Shows.Common;
-    using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Requests.Parameters;
@@ -6100,7 +6099,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktMostPlayedShow>>> act =
+            Func<Task<TraktPagedResponse<TraktMostPWCShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync();
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -7061,7 +7060,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktMostWatchedShow>>> act =
+            Func<Task<TraktPagedResponse<TraktMostPWCShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMostWatchedShowsAsync();
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -8022,7 +8021,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktMostCollectedShow>>> act =
+            Func<Task<TraktPagedResponse<TraktMostPWCShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync();
             act.ShouldThrow<TraktNotFoundException>();
 

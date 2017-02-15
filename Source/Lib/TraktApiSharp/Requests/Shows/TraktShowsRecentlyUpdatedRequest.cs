@@ -3,7 +3,7 @@
     using Base;
     using Extensions;
     using Interfaces;
-    using Objects.Get.Shows.Common;
+    using Objects.Get.Shows;
     using Parameters;
     using System;
     using System.Collections.Generic;

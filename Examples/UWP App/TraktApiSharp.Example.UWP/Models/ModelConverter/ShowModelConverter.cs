@@ -9,7 +9,7 @@
     {
         private const string DEFAULT_IMAGE = "ms-appx:///Assets/StoreLogo.jpg";
 
-        public static T Convert<T>(TraktShow traktShow) where T : TraktShow, new()
+        public static T Convert<T>(ITraktShow traktShow) where T : TraktShow, new()
         {
             if (traktShow == null)
                 return null;

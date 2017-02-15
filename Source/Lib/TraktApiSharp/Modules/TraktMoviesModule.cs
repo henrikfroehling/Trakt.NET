@@ -4,7 +4,6 @@
     using Exceptions;
     using Objects.Basic;
     using Objects.Get.Movies;
-    using Objects.Get.Movies.Common;
     using Objects.Get.Users;
     using Objects.Get.Users.Lists;
     using Requests.Handler;
@@ -415,11 +414,11 @@
         /// An <see cref="TraktPagedResponse{TraktMostPlayedMovie}"/> instance containing the queried most played movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostPlayedMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostPWCMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<TraktMostPlayedMovie>> GetMostPlayedMoviesAsync(TraktTimePeriod period = null,
+        public async Task<TraktPagedResponse<TraktMostPWCMovie>> GetMostPlayedMoviesAsync(TraktTimePeriod period = null,
                                                                                              TraktExtendedInfo extendedInfo = null,
                                                                                              TraktMovieFilter filter = null,
                                                                                              int? page = null, int? limitPerPage = null)
@@ -452,17 +451,17 @@
         /// <param name="page">The page of the most watched movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of most watched movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{TraktMostWatchedMovie}"/> instance containing the queried most watched movies and which also
+        /// An <see cref="TraktPagedResponse{TraktMostPWCMovie}"/> instance containing the queried most watched movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostWatchedMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostPWCMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<TraktMostWatchedMovie>> GetMostWatchedMoviesAsync(TraktTimePeriod period = null,
-                                                                                               TraktExtendedInfo extendedInfo = null,
-                                                                                               TraktMovieFilter filter = null,
-                                                                                               int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<TraktMostPWCMovie>> GetMostWatchedMoviesAsync(TraktTimePeriod period = null,
+                                                                                           TraktExtendedInfo extendedInfo = null,
+                                                                                           TraktMovieFilter filter = null,
+                                                                                           int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -492,17 +491,17 @@
         /// <param name="page">The page of the most collected movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of most collected movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{TraktMostCollectedMovie}"/> instance containing the queried most collected movies and which also
+        /// An <see cref="TraktPagedResponse{TraktMostPWCMovie}"/> instance containing the queried most collected movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostCollectedMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostPWCMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<TraktMostCollectedMovie>> GetMostCollectedMoviesAsync(TraktTimePeriod period = null,
-                                                                                                   TraktExtendedInfo extendedInfo = null,
-                                                                                                   TraktMovieFilter filter = null,
-                                                                                                   int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<TraktMostPWCMovie>> GetMostCollectedMoviesAsync(TraktTimePeriod period = null,
+                                                                                             TraktExtendedInfo extendedInfo = null,
+                                                                                             TraktMovieFilter filter = null,
+                                                                                             int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 

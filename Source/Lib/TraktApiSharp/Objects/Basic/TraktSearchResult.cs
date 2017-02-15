@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Objects.Basic
 {
     using Enums;
+    using Get.Episodes;
     using Get.Movies;
     using Get.People;
     using Get.Shows;
-    using Get.Shows.Episodes;
     using Get.Users.Lists;
     using Newtonsoft.Json;
 

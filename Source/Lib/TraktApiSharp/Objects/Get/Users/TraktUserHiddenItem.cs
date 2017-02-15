@@ -3,8 +3,8 @@
     using Enums;
     using Movies;
     using Newtonsoft.Json;
+    using Seasons;
     using Shows;
-    using Shows.Seasons;
     using System;
 
     /// <summary>Contains information about a Trakt user's hidden item, including the corresponding movie, show or season.</summary>

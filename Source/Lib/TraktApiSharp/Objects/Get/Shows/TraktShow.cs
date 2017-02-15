@@ -7,7 +7,7 @@
     using System.Collections.Generic;
 
     /// <summary>A Trakt show.</summary>
-    public class TraktShow
+    public class TraktShow : ITraktShow
     {
         /// <summary>Gets or sets the show title.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "title")]

@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Shows.Common;
+    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Shows;
     using Xunit;
@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktShowsMostCollectedRequest_Inherits_ATraktShowsMostPWCRequest_1()
         {
-            typeof(TraktShowsMostCollectedRequest).IsSubclassOf(typeof(ATraktShowsMostPWCRequest<TraktMostCollectedShow>)).Should().BeTrue();
+            typeof(TraktShowsMostCollectedRequest).IsSubclassOf(typeof(ATraktShowsMostPWCRequest<TraktMostPWCShow>)).Should().BeTrue();
         }
 
         [Fact]

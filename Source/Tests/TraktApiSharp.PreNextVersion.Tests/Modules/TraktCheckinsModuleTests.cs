@@ -9,9 +9,9 @@
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Post.Checkins;
     using TraktApiSharp.Objects.Post.Checkins.Responses;
     using TraktApiSharp.Responses;

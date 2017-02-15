@@ -8,7 +8,7 @@
     using System.Reflection;
     using Traits;
     using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.Shows.Common;
+    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;

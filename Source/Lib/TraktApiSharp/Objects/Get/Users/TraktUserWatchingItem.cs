@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users
 {
     using Enums;
+    using Episodes;
     using Movies;
     using Newtonsoft.Json;
     using Shows;
-    using Shows.Episodes;
     using System;
 
     /// <summary>Contains information about a movie or an episode a Trakt user is currently watching.</summary>

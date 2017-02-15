@@ -3,7 +3,7 @@
     using Base;
     using Extensions;
     using Interfaces;
-    using Objects.Get.Movies.Common;
+    using Objects.Get.Movies;
     using Parameters;
     using System;
     using System.Collections.Generic;

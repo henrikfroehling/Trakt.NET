@@ -3,7 +3,7 @@
     using Base;
     using Extensions;
     using Interfaces;
-    using Objects.Get.Shows.Seasons;
+    using Objects.Get.Seasons;
     using Parameters;
     using System;
     using System.Collections.Generic;

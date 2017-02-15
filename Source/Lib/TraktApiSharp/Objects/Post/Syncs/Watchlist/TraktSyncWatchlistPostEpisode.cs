@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist
 {
-    using Get.Shows.Episodes;
+    using Get.Episodes;
     using Newtonsoft.Json;
 
     /// <summary>A Trakt watchlist post episode, containing the required episode ids.</summary>

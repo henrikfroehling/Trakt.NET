@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Shows
 {
-    using Objects.Basic;
+    using Basic;
 
     /// <summary>A translation for a Trakt show.</summary>
     public class TraktShowTranslation : TraktTranslation

@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
-    using TraktApiSharp.Objects.Get.Shows.Common;
+    using TraktApiSharp.Objects.Get.Shows;
 
     class Program
     {

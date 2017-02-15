@@ -12,7 +12,6 @@
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Get.Movies;
-    using TraktApiSharp.Objects.Get.Movies.Common;
     using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Requests.Parameters;
@@ -4493,7 +4492,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktMostPlayedMovie>>> act =
+            Func<Task<TraktPagedResponse<TraktMostPWCMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync();
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -5425,7 +5424,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktMostWatchedMovie>>> act =
+            Func<Task<TraktPagedResponse<TraktMostPWCMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync();
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -6358,7 +6357,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktMostCollectedMovie>>> act =
+            Func<Task<TraktPagedResponse<TraktMostPWCMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync();
             act.ShouldThrow<TraktNotFoundException>();
 

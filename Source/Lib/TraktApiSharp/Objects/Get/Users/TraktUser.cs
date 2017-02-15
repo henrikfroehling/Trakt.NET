@@ -4,7 +4,7 @@
     using System;
 
     /// <summary>A Trakt user.</summary>
-    public class TraktUser
+    public class TraktUser : ITraktUser
     {
         /// <summary>Gets or sets the user's username.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "username")]
@@ -12,7 +12,7 @@
 
         /// <summary>Gets or sets the user's privacy status.</summary>
         [JsonProperty(PropertyName = "private")]
-        public bool? Private { get; set; }
+        public bool? IsPrivate { get; set; }
 
         /// <summary>Gets or sets the collection of ids for the user. See also <seealso cref="TraktUserIds" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "ids")]
@@ -24,11 +24,11 @@
 
         /// <summary>Gets or sets the user's VIP status.</summary>
         [JsonProperty(PropertyName = "vip")]
-        public bool? VIP { get; set; }
+        public bool? IsVIP { get; set; }
 
         /// <summary>Gets or sets the user's VIP EP status.</summary>
         [JsonProperty(PropertyName = "vip_ep")]
-        public bool? VIP_EP { get; set; }
+        public bool? IsVIP_EP { get; set; }
 
         /// <summary>Gets or sets the UTC datetime when the user joined Trakt.</summary>
         [JsonProperty(PropertyName = "joined_at")]

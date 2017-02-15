@@ -4,7 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Objects.Get.Shows.Seasons;
+    using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Objects.Post.Comments;
 
     [TestClass]

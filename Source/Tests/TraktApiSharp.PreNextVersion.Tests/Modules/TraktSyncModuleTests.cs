@@ -12,11 +12,11 @@
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Collection;
+    using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Ratings;
     using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Objects.Get.Shows.Episodes;
     using TraktApiSharp.Objects.Get.Syncs.Activities;
     using TraktApiSharp.Objects.Get.Syncs.Playback;
     using TraktApiSharp.Objects.Get.Watched;

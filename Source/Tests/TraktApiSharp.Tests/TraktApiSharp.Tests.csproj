@@ -33,11 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentAssertions, Version=4.18.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\FluentAssertions.4.18.0\lib\net45\FluentAssertions.dll</HintPath>
+    <Reference Include="FluentAssertions, Version=4.19.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\FluentAssertions.4.19.0\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
-    <Reference Include="FluentAssertions.Core, Version=4.18.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\FluentAssertions.4.18.0\lib\net45\FluentAssertions.Core.dll</HintPath>
+    <Reference Include="FluentAssertions.Core, Version=4.19.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\FluentAssertions.4.19.0\lib\net45\FluentAssertions.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,6 +64,57 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Objects\Get\Calendars\ITraktCalendarMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Calendars\ITraktCalendarShow_Tests.cs" />
+    <Compile Include="Objects\Get\Calendars\TraktCalendarMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Calendars\TraktCalendarShow_Tests.cs" />
+    <Compile Include="Objects\Get\Collection\ITraktCollectionMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Collection\ITraktCollectionShow_Tests.cs" />
+    <Compile Include="Objects\Get\Collection\TraktCollectionMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Collection\TraktCollectionShow_Tests.cs" />
+    <Compile Include="Objects\Get\Episodes\ITraktEpisode_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\ITraktBoxOfficeMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\ITraktMostAnticipatedMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\ITraktMostPWCMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\ITraktMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\ITraktRecentlyUpdatedMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\ITraktTrendingMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\TraktBoxOfficeMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\TraktMostAnticipatedMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\TraktMostPWCMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\TraktMovieAlias_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\TraktMovieIds_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\TraktMovieRelease_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\TraktMovieTranslation_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\TraktMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\TraktRecentlyUpdatedMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\TraktTrendingMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\ITraktMostAnticipatedShow_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\ITraktMostPWCShow_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\ITraktRecentlyUpdatedShow_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\ITraktShow_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\ITraktTrendingShow_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\TraktMostAnticipatedShow_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\TraktMostPWCShow_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\TraktRecentlyUpdatedShow_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\TraktShowAirs_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\TraktShowAlias_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\TraktShowCollectionProgress_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\TraktShowIds_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\TraktShowTranslation_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\TraktShowWatchedProgress_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\TraktShow_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\TraktTrendingShow_Tests.cs" />
+    <Compile Include="Objects\Get\Users\ITraktUserFollower_Tests.cs" />
+    <Compile Include="Objects\Get\Users\ITraktUserFriend_Tests.cs" />
+    <Compile Include="Objects\Get\Users\ITraktUser_Tests.cs" />
+    <Compile Include="Objects\Get\Users\TraktUserFollower_Tests.cs" />
+    <Compile Include="Objects\Get\Users\TraktUserFriend_Tests.cs" />
+    <Compile Include="Objects\Get\Users\TraktUser_Tests.cs" />
+    <Compile Include="Objects\Get\Watched\ITraktWatchedMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Watched\ITraktWatchedShow_Tests.cs" />
+    <Compile Include="Objects\Get\Watched\TraktWatchedMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Watched\TraktWatchedShow_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest%271_Tests.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest_Tests.cs" />
