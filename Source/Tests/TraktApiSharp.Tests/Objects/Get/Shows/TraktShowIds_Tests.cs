@@ -144,6 +144,7 @@
         {
             var showIds = JsonConvert.DeserializeObject<TraktShowIds>(JSON);
 
+            showIds.Should().NotBeNull();
             showIds.Trakt.Should().Be(1390);
             showIds.Slug.Should().Be("game-of-thrones");
             showIds.Tvdb.Should().Be(121361U);

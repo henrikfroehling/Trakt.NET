@@ -23,6 +23,7 @@
         {
             var movieAlias = JsonConvert.DeserializeObject<TraktMovieAlias>(JSON);
 
+            movieAlias.Should().NotBeNull();
             movieAlias.Title.Should().Be("Star Wars: The Force Awakens");
             movieAlias.CountryCode.Should().Be("us");
         }

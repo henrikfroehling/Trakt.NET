@@ -101,6 +101,7 @@
         {
             var movieIds = JsonConvert.DeserializeObject<TraktMovieIds>(JSON);
 
+            movieIds.Should().NotBeNull();
             movieIds.Trakt.Should().Be(94024);
             movieIds.Slug.Should().Be("star-wars-the-force-awakens-2015");
             movieIds.Imdb.Should().Be("tt2488496");

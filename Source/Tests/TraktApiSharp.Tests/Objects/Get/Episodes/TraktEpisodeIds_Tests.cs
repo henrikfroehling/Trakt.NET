@@ -122,6 +122,7 @@
         {
             var episodeIds = JsonConvert.DeserializeObject<TraktEpisodeIds>(JSON);
 
+            episodeIds.Should().NotBeNull();
             episodeIds.Trakt.Should().Be(73640);
             episodeIds.Tvdb.Should().Be(3254641U);
             episodeIds.Imdb.Should().Be("tt1480055");
