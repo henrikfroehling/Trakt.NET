@@ -72,7 +72,7 @@
     <Compile Include="Objects\Get\Collection\ITraktCollectionShow_Tests.cs" />
     <Compile Include="Objects\Get\Collection\TraktCollectionMovie_Tests.cs" />
     <Compile Include="Objects\Get\Collection\TraktCollectionShow_Tests.cs" />
-    <Compile Include="Objects\Get\Episodes\ITraktEpisode_Tests.cs" />
+    <Compile Include="Objects\Get\Calendars\ITraktCalendarEpisode_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\TraktEpisodeCollectionProgress_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\TraktEpisodeIds_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\TraktEpisodeTranslation_Tests.cs" />

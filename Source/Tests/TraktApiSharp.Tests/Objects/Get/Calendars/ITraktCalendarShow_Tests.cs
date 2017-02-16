@@ -25,9 +25,9 @@
         }
 
         [Fact]
-        public void Test_ITraktCalendarShow_Inherits_ITraktEpisode_Interface()
+        public void Test_ITraktCalendarShow_Inherits_ITraktCalendarEpisode_Interface()
         {
-            typeof(ITraktCalendarShow).GetInterfaces().Should().Contain(typeof(ITraktEpisode));
+            typeof(ITraktCalendarShow).GetInterfaces().Should().Contain(typeof(ITraktCalendarEpisode));
         }
 
         [Fact]
@@ -57,7 +57,7 @@
 
             propertyInfo.CanRead.Should().BeTrue();
             propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(ITraktEpisode));
+            propertyInfo.PropertyType.Should().Be(typeof(TraktEpisode));
         }
     }
 }

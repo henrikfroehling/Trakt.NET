@@ -1,9 +1,10 @@
-﻿namespace TraktApiSharp.Objects.Get.Episodes
+﻿namespace TraktApiSharp.Objects.Get.Calendars
 {
+    using Episodes;
     using System;
     using System.Collections.Generic;
 
-    public interface ITraktEpisode
+    public interface ITraktCalendarEpisode
     {
         int? SeasonNumber { get; set; }
 
