@@ -127,8 +127,6 @@
     <Compile Include="Modules\TraktShowsModuleTests.cs" />
     <Compile Include="Modules\TraktSyncModuleTests.cs" />
     <Compile Include="Modules\TraktUsersModuleTests.cs" />
-    <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeSingleTranslationTests.cs" />
-    <Compile Include="Objects\Get\Shows\Episodes\TraktEpisodeTranslationsTests.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionPostBuilderTests.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostBuilderTests.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryRemovePostBuilderTests.cs" />
