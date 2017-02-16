@@ -73,6 +73,7 @@
     <Compile Include="Objects\Get\Collection\TraktCollectionMovie_Tests.cs" />
     <Compile Include="Objects\Get\Collection\TraktCollectionShow_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\ITraktEpisode_Tests.cs" />
+    <Compile Include="Objects\Get\Episodes\TraktEpisodeIds_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\TraktEpisodeTranslation_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\TraktEpisode_Tests.cs" />
     <Compile Include="Objects\Get\Movies\ITraktBoxOfficeMovie_Tests.cs" />
