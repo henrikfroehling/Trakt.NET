@@ -189,7 +189,7 @@
         private const string MINIMAL_JSON =
             @"{
                 ""list_count"": 12805,
-                ""movie"": {
+                ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,
                   ""ids"": {
@@ -206,7 +206,7 @@
         private const string FULL_JSON =
             @"{
                 ""list_count"": 12805,
-                ""movie"": {
+                ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,
                   ""ids"": {

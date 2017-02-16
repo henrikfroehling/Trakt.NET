@@ -189,7 +189,7 @@
         private const string MINIMAL_JSON =
             @"{
                 ""watchers"": 35,
-                ""movie"": {
+                ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,
                   ""ids"": {
@@ -206,7 +206,7 @@
         private const string FULL_JSON =
             @"{
                 ""watchers"": 35,
-                ""movie"": {
+                ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,
                   ""ids"": {
