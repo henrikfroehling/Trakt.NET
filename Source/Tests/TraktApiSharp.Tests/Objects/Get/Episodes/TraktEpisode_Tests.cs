@@ -84,10 +84,12 @@
 
             var translations = episode.Translations.ToArray();
 
+            translations[0].Should().NotBeNull();
             translations[0].Title.Should().Be("Winter Is Coming");
             translations[0].Overview.Should().Be("Jon Arryn, the Hand of the King, is dead. King Robert Baratheon plans to ask his oldest friend, Eddard Stark, to take Jon's place. Across the sea, Viserys Targaryen plans to wed his sister to a nomadic warlord in exchange for an army.");
             translations[0].LanguageCode.Should().Be("en");
 
+            translations[1].Should().NotBeNull();
             translations[1].Title.Should().Be("Se acerca el invierno");
             translations[1].Overview.Should().Be("El Lord Ned Stark está preocupado por los perturbantes reportes de un desertor del Nights Watch; El Rey Robert y los Lannisters llegan a Winterfell; el exiliado Viserys Targaryen forja una nueva y poderosa alianza.");
             translations[1].LanguageCode.Should().Be("es");
