@@ -201,7 +201,6 @@
     <Compile Include="Objects\Basic\TraktSharingTests.cs" />
     <Compile Include="Objects\Basic\TraktStatisticsTests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncLastActivitiesTests.cs" />
-    <Compile Include="Objects\Get\History\TraktHistoryItemTests.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\TraktSyncPlaybackProgressItemTests.cs" />
     <Compile Include="Objects\Get\Ratings\TraktRatingsItemTests.cs" />
     <Compile Include="Objects\Get\Watched\TraktWatchedMovieTests.cs" />
