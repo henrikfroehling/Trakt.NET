@@ -202,7 +202,6 @@
     <Compile Include="Objects\Basic\TraktStatisticsTests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncLastActivitiesTests.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\TraktSyncPlaybackProgressItemTests.cs" />
-    <Compile Include="Objects\Get\Watched\TraktWatchedShowTests.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListItemTests.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListTests.cs" />
     <Compile Include="Objects\Get\Users\TraktAccountSettingsTests.cs" />
