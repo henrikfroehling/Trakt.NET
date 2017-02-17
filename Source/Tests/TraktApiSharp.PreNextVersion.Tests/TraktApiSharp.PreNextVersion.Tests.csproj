@@ -186,7 +186,6 @@
     <Compile Include="Extensions\StringExtensionsTests.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsTests.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsTests.cs" />
-    <Compile Include="Objects\Get\People\TraktPersonTests.cs" />
     <Compile Include="Objects\Basic\TraktCastAndCrewTests.cs" />
     <Compile Include="Objects\Basic\TraktCastMemberTests.cs" />
     <Compile Include="Objects\Basic\TraktCommentTests.cs" />
