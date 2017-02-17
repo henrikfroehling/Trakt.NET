@@ -101,6 +101,7 @@
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCredits_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsCastItem_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsCrewItem_Tests.cs" />
+    <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsCrew_Tests.cs" />
     <Compile Include="Objects\Get\People\TraktPersonIds_Tests.cs" />
     <Compile Include="Objects\Get\People\TraktPerson_Tests.cs" />
     <Compile Include="Objects\Get\Ratings\TraktRatingsItem_Tests.cs" />
