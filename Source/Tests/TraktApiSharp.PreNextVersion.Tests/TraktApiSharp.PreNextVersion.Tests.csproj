@@ -184,7 +184,6 @@
     <Compile Include="Exceptions\TraktValidationExceptionTests.cs" />
     <Compile Include="Extensions\DateTimeExtensionsTests.cs" />
     <Compile Include="Extensions\StringExtensionsTests.cs" />
-    <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsTests.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonShowCreditsTests.cs" />
     <Compile Include="Objects\Basic\TraktCastAndCrewTests.cs" />
     <Compile Include="Objects\Basic\TraktCastMemberTests.cs" />
