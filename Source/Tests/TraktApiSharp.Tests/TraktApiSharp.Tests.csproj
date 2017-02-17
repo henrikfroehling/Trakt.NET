@@ -95,6 +95,7 @@
     <Compile Include="Objects\Get\Movies\TraktMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktRecentlyUpdatedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktTrendingMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Ratings\TraktRatingsItem_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\TraktSeasonCollectionProgress_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\TraktSeasonIds_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\TraktSeasonWatchedProgress_Tests.cs" />
