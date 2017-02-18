@@ -6,6 +6,7 @@ TraktApiSharp
 [![NuGet Package](https://img.shields.io/badge/NuGet-v1.0.0alpha1-orange.svg?style=flat)](https://www.nuget.org/packages/TraktApiSharp/1.0.0-alpha1)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![Zenhub Support](https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png)](https://www.zenhub.com/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 ### Features
 - ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/full-support.png) Full Trakt.tv API Coverage
@@ -30,6 +31,10 @@ TraktApiSharp
 
 **[Or do you want to report a bug?](https://github.com/henrikfroehling/TraktApiSharp/issues)**
 
+### Contributions are welcome
+
+- [How to contribute](https://github.com/henrikfroehling/TraktApiSharp/blob/dev/CONTRIBUTING.md)
+
 ### Build Status
 | Branch | Status | Description |
 |---|---|---|
@@ -39,11 +44,11 @@ TraktApiSharp
 
 ### Getting Started
 
-Install the latest release by running the following command
+Install the latest release by running the following NuGet command
 ```ps
 PM> Install-Package TraktApiSharp
 ```
-or with the [Package Management](https://docs.nuget.org/consume/package-manager-dialog) in Visual Studio and search for "trakt".
+or with the [NuGet Package Management](https://docs.nuget.org/consume/package-manager-dialog) in Visual Studio and search for "trakt".
 
 Each release will also be published [here](https://henrikfroehling.github.io/TraktApiSharp/downloads/) and [here](https://github.com/henrikfroehling/TraktApiSharp/releases).
 
