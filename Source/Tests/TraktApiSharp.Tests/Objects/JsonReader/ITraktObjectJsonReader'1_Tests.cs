@@ -16,9 +16,9 @@
         }
 
         [Fact]
-        public void Test_ITraktObjectJsonReader_1_Has_Read_Method()
+        public void Test_ITraktObjectJsonReader_1_Has_ReadObject_Method()
         {
-            var methodInfo = typeof(ITraktObjectJsonReader<int>).GetMethods().FirstOrDefault(m => m.Name == "Read");
+            var methodInfo = typeof(ITraktObjectJsonReader<int>).GetMethods().FirstOrDefault(m => m.Name == "ReadObject");
 
             methodInfo.ReturnType.Should().Be(typeof(int));
             methodInfo.GetParameters().Should().NotBeEmpty().And.HaveCount(1);

@@ -2,6 +2,6 @@
 {
     internal interface ITraktObjectJsonReader<TReturnType>
     {
-        TReturnType Read(string json);
+        TReturnType ReadObject(string json);
     }
 }
