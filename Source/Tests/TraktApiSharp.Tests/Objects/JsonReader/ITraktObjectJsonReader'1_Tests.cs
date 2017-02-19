@@ -7,18 +7,18 @@
     using Xunit;
 
     [Category("Objects.JsonReader")]
-    public class ITraktJsonReader_1_Tests
+    public class ITraktObjectJsonReader_1_Tests
     {
         [Fact]
-        public void Test_ITraktJsonReader_1_Is_Interface()
+        public void Test_ITraktObjectJsonReader_1_Is_Interface()
         {
-            typeof(ITraktJsonReader<>).IsInterface.Should().BeTrue();
+            typeof(ITraktObjectJsonReader<>).IsInterface.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ITraktJsonReader_1_Has_Read_Method()
+        public void Test_ITraktObjectJsonReader_1_Has_Read_Method()
         {
-            var methodInfo = typeof(ITraktJsonReader<int>).GetMethods().FirstOrDefault(m => m.Name == "Read");
+            var methodInfo = typeof(ITraktObjectJsonReader<int>).GetMethods().FirstOrDefault(m => m.Name == "Read");
 
             methodInfo.ReturnType.Should().Be(typeof(int));
             methodInfo.GetParameters().Should().NotBeEmpty().And.HaveCount(1);

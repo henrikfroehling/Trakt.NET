@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.JsonReader
 {
-    internal interface ITraktJsonReader<TReturnType>
+    internal interface ITraktObjectJsonReader<TReturnType>
     {
         TReturnType Read(string json);
     }

@@ -137,7 +137,7 @@
     <Compile Include="Objects\Get\Watched\TraktWatchedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Watched\TraktWatchedShow_Tests.cs" />
     <Compile Include="Objects\Get\Watchlist\TraktWatchlistItem_Tests.cs" />
-    <Compile Include="Objects\JsonReader\ITraktJsonReader%271_Tests.cs" />
+    <Compile Include="Objects\JsonReader\ITraktObjectJsonReader%271_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest%271_Tests.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest_Tests.cs" />
