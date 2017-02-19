@@ -21,7 +21,7 @@
 
         /// <summary>Gets or sets the Trakt episode. See also <seealso cref="TraktEpisode" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "episode")]
-        public ITraktEpisode Episode { get; set; }
+        public TraktEpisode Episode { get; set; }
 
         [JsonIgnore]
         public string Title
@@ -275,6 +275,7 @@
             }
         }
 
+        [JsonIgnore]
         public int? SeasonNumber
         {
             get { return Episode?.SeasonNumber; }
@@ -286,135 +287,147 @@
             }
         }
 
+        [JsonIgnore]
         public int? EpisodeNumber
         {
-            get { return Episode?.EpisodeNumber; }
+            get { return Episode?.Number; }
 
             set
             {
                 if (Episode != null)
-                    Episode.EpisodeNumber = value;
+                    Episode.Number = value;
             }
         }
 
+        [JsonIgnore]
         public string EpisodeTitle
         {
-            get { return Episode?.EpisodeTitle; }
+            get { return Episode?.Title; }
 
             set
             {
                 if (Episode != null)
-                    Episode.EpisodeTitle = value;
+                    Episode.Title = value;
             }
         }
 
+        [JsonIgnore]
         public TraktEpisodeIds EpisodeIds
         {
-            get { return Episode?.EpisodeIds; }
+            get { return Episode?.Ids; }
 
             set
             {
                 if (Episode != null)
-                    Episode.EpisodeIds = value;
+                    Episode.Ids = value;
             }
         }
 
+        [JsonIgnore]
         public int? AbsoluteEpisodeNumber
         {
-            get { return Episode?.AbsoluteEpisodeNumber; }
+            get { return Episode?.NumberAbsolute; }
 
             set
             {
                 if (Episode != null)
-                    Episode.AbsoluteEpisodeNumber = value;
+                    Episode.NumberAbsolute = value;
             }
         }
 
+        [JsonIgnore]
         public string EpisodeOverview
         {
-            get { return Episode?.EpisodeOverview; }
+            get { return Episode?.Overview; }
 
             set
             {
                 if (Episode != null)
-                    Episode.EpisodeOverview = value;
+                    Episode.Overview = value;
             }
         }
 
+        [JsonIgnore]
         public int? EpisodeRuntime
         {
-            get { return Episode?.EpisodeRuntime; }
+            get { return Episode?.Runtime; }
 
             set
             {
                 if (Episode != null)
-                    Episode.EpisodeRuntime = value;
+                    Episode.Runtime = value;
             }
         }
 
+        [JsonIgnore]
         public float? EpisodeRating
         {
-            get { return Episode?.EpisodeRating; }
+            get { return Episode?.Rating; }
 
             set
             {
                 if (Episode != null)
-                    Episode.EpisodeRating = value;
+                    Episode.Rating = value;
             }
         }
 
+        [JsonIgnore]
         public int? EpisodeVotes
         {
-            get { return Episode?.EpisodeVotes; }
+            get { return Episode?.Votes; }
 
             set
             {
                 if (Episode != null)
-                    Episode.EpisodeVotes = value;
+                    Episode.Votes = value;
             }
         }
 
+        [JsonIgnore]
         public DateTime? EpisodeAiredFirstAt
         {
-            get { return Episode?.EpisodeAiredFirstAt; }
+            get { return Episode?.FirstAired; }
 
             set
             {
                 if (Episode != null)
-                    Episode.EpisodeAiredFirstAt = value;
+                    Episode.FirstAired = value;
             }
         }
 
+        [JsonIgnore]
         public DateTime? EpisodeUpdatedAt
         {
-            get { return Episode?.EpisodeUpdatedAt; }
+            get { return Episode?.UpdatedAt; }
 
             set
             {
                 if (Episode != null)
-                    Episode.EpisodeUpdatedAt = value;
+                    Episode.UpdatedAt = value;
             }
         }
 
+        [JsonIgnore]
         public IEnumerable<string> AvailableEpisodeTranslationLanguageCodes
         {
-            get { return Episode?.AvailableEpisodeTranslationLanguageCodes; }
+            get { return Episode?.AvailableTranslationLanguageCodes; }
 
             set
             {
                 if (Episode != null)
-                    Episode.AvailableEpisodeTranslationLanguageCodes = value;
+                    Episode.AvailableTranslationLanguageCodes = value;
             }
         }
 
+        [JsonIgnore]
         public IEnumerable<TraktEpisodeTranslation> EpisodeTranslations
         {
-            get { return Episode?.EpisodeTranslations; }
+            get { return Episode?.Translations; }
 
             set
             {
                 if (Episode != null)
-                    Episode.EpisodeTranslations = value;
+                    Episode.Translations = value;
             }
         }
     }

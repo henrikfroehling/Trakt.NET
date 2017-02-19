@@ -23,7 +23,7 @@
 
         /// <summary>Returns, whether any id has been set.</summary>
         [JsonIgnore]
-        public bool HasAnyId => Trakt > 0 || Tvdb > 0 || Tvdb > 0 || TvRage > 0;
+        public bool HasAnyId => Trakt > 0 || Tvdb > 0 || Tmdb > 0 || TvRage > 0;
 
         /// <summary>Gets the most reliable id from those that have been set.</summary>
         /// <returns>The id as a string or an empty string, if no id is set.</returns>

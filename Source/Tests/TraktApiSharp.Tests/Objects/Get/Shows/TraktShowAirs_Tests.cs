@@ -24,6 +24,7 @@
         {
             var showAirs = JsonConvert.DeserializeObject<TraktShowAirs>(JSON);
 
+            showAirs.Should().NotBeNull();
             showAirs.Day.Should().Be("Sunday");
             showAirs.Time.Should().Be("21:00");
             showAirs.TimeZoneId.Should().Be("America/New_York");

@@ -201,7 +201,7 @@
                 ""play_count"": 7100,
                 ""collected_count"": 1348,
                 ""collector_count"": 7964,
-                ""movie"": {
+                ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,
                   ""ids"": {
@@ -221,7 +221,7 @@
                 ""play_count"": 7100,
                 ""collected_count"": 1348,
                 ""collector_count"": 7964,
-                ""movie"": {
+                ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,
                   ""ids"": {

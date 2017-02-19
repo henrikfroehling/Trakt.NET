@@ -4,12 +4,12 @@
     using Shows;
     using System;
 
-    public interface ITraktCalendarShow : ITraktShow, ITraktEpisode
+    public interface ITraktCalendarShow : ITraktShow, ITraktCalendarEpisode
     {
         DateTime? FirstAiredInCalendar { get; set; }
 
         ITraktShow Show { get; set; }
 
-        ITraktEpisode Episode { get; set; }
+        TraktEpisode Episode { get; set; }
     }
 }

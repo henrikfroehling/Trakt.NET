@@ -23,6 +23,7 @@
         {
             var showAlias = JsonConvert.DeserializeObject<TraktShowAlias>(JSON);
 
+            showAlias.Should().NotBeNull();
             showAlias.Title.Should().Be("Game of Thrones- Das Lied von Eis und Feuer");
             showAlias.CountryCode.Should().Be("de");
         }
