@@ -137,6 +137,7 @@
     <Compile Include="Objects\Get\Users\ITraktUserFriend.cs" />
     <Compile Include="Objects\Get\Watched\ITraktWatchedMovie.cs" />
     <Compile Include="Objects\Get\Watched\ITraktWatchedShow.cs" />
+    <Compile Include="Objects\JsonReader\Basic\TraktErrorObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\ITraktArrayJsonReader%271.cs" />
     <Compile Include="Objects\JsonReader\ITraktObjectJsonReader%271.cs" />
     <Compile Include="Objects\JsonReader\TraktJsonReaderFactory%271.cs" />
