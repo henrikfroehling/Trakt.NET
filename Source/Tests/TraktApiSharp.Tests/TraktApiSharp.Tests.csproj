@@ -138,6 +138,7 @@
     <Compile Include="Objects\Get\Watched\TraktWatchedShow_Tests.cs" />
     <Compile Include="Objects\Get\Watchlist\TraktWatchlistItem_Tests.cs" />
     <Compile Include="Objects\JsonReader\Basic\TraktErrorObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\JsonReader\Basic\TraktGenreObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\JsonReader\ITraktArrayJsonReader%271_Tests.cs" />
     <Compile Include="Objects\JsonReader\ITraktObjectJsonReader%271_Tests.cs" />
     <Compile Include="Objects\JsonReader\TraktJsonReaderFactory%271_Tests.cs" />

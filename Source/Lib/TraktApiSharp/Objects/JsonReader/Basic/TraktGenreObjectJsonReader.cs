@@ -4,12 +4,12 @@
     using Objects.Basic;
     using System.IO;
 
-    internal class TraktErrorObjectJsonReader : ITraktObjectJsonReader<TraktError>
+    internal class TraktGenreObjectJsonReader : ITraktObjectJsonReader<TraktGenre>
     {
-        private const string PROPERTY_NAME_ERROR = "error";
-        private const string PROPERTY_NAME_ERROR_DESCRIPTION = "error_description";
+        private const string PROPERTY_NAME_NAME = "name";
+        private const string PROPERTY_NAME_SLUG = "slug";
 
-        public TraktError ReadObject(string json)
+        public TraktGenre ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -21,28 +21,28 @@
             }
         }
 
-        public TraktError ReadObject(JsonTextReader jsonReader)
+        public TraktGenre ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var traktError = new TraktError();
+                var traktGenre = new TraktGenre();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
-                    if (propertyName == PROPERTY_NAME_ERROR)
-                        traktError.Error = jsonReader.ReadAsString();
-                    else if (propertyName == PROPERTY_NAME_ERROR_DESCRIPTION)
-                        traktError.Description = jsonReader.ReadAsString();
+                    if (propertyName == PROPERTY_NAME_NAME)
+                        traktGenre.Name = jsonReader.ReadAsString();
+                    else if (propertyName == PROPERTY_NAME_SLUG)
+                        traktGenre.Slug = jsonReader.ReadAsString();
                     else
                         jsonReader.Read(); // read unmatched property value
                 }
 
-                return traktError;
+                return traktGenre;
             }
 
             return null;
