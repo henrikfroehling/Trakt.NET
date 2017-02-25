@@ -1,6 +1,8 @@
 ﻿namespace TraktApiSharp.Tests.Objects.JsonReader.Basic
 {
     using FluentAssertions;
+    using Newtonsoft.Json;
+    using System.IO;
     using Traits;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.JsonReader;
@@ -17,7 +19,7 @@
         }
 
         [Fact]
-        public void Test_TraktErrorObjectJsonReader_ReadObject_From_Json_Complete()
+        public void Test_TraktErrorObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
             var jsonReader = new TraktErrorObjectJsonReader();
 
@@ -29,7 +31,7 @@
         }
 
         [Fact]
-        public void Test_TraktErrorObjectJsonReader_ReadObject_From_Json_Incomplete_1()
+        public void Test_TraktErrorObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
             var jsonReader = new TraktErrorObjectJsonReader();
 
@@ -41,7 +43,7 @@
         }
 
         [Fact]
-        public void Test_TraktErrorObjectJsonReader_ReadObject_From_Json_Incomplete_2()
+        public void Test_TraktErrorObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
             var jsonReader = new TraktErrorObjectJsonReader();
 
@@ -53,7 +55,7 @@
         }
 
         [Fact]
-        public void Test_TraktErrorObjectJsonReader_ReadObject_From_Json_Not_Valid_1()
+        public void Test_TraktErrorObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
             var jsonReader = new TraktErrorObjectJsonReader();
 
@@ -65,7 +67,7 @@
         }
 
         [Fact]
-        public void Test_TraktErrorObjectJsonReader_ReadObject_From_Json_Not_Valid_2()
+        public void Test_TraktErrorObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
             var jsonReader = new TraktErrorObjectJsonReader();
 
@@ -77,7 +79,7 @@
         }
 
         [Fact]
-        public void Test_TraktErrorObjectJsonReader_ReadObject_From_Json_Not_Valid_3()
+        public void Test_TraktErrorObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
             var jsonReader = new TraktErrorObjectJsonReader();
 
@@ -104,6 +106,124 @@
 
             var traktError = jsonReader.ReadObject(string.Empty);
             traktError.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_TraktErrorObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        {
+            var traktJsonReader = new TraktErrorObjectJsonReader();
+
+            using (var reader = new StringReader(JSON_COMPLETE))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktError = traktJsonReader.ReadObject(jsonReader);
+
+                traktError.Should().NotBeNull();
+                traktError.Error.Should().Be("trakt error");
+                traktError.Description.Should().Be("trakt error description");
+            }
+        }
+
+        [Fact]
+        public void Test_TraktErrorObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
+        {
+            var traktJsonReader = new TraktErrorObjectJsonReader();
+
+            using (var reader = new StringReader(JSON_INCOMPLETE_1))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktError = traktJsonReader.ReadObject(jsonReader);
+
+                traktError.Should().NotBeNull();
+                traktError.Error.Should().Be("trakt error");
+                traktError.Description.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public void Test_TraktErrorObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
+        {
+            var traktJsonReader = new TraktErrorObjectJsonReader();
+
+            using (var reader = new StringReader(JSON_INCOMPLETE_2))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktError = traktJsonReader.ReadObject(jsonReader);
+
+                traktError.Should().NotBeNull();
+                traktError.Error.Should().BeNull();
+                traktError.Description.Should().Be("trakt error description");
+            }
+        }
+
+        [Fact]
+        public void Test_TraktErrorObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
+        {
+            var traktJsonReader = new TraktErrorObjectJsonReader();
+
+            using (var reader = new StringReader(JSON_NOT_VALID_1))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktError = traktJsonReader.ReadObject(jsonReader);
+
+                traktError.Should().NotBeNull();
+                traktError.Error.Should().Be("trakt error");
+                traktError.Description.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public void Test_TraktErrorObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
+        {
+            var traktJsonReader = new TraktErrorObjectJsonReader();
+
+            using (var reader = new StringReader(JSON_NOT_VALID_2))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktError = traktJsonReader.ReadObject(jsonReader);
+
+                traktError.Should().NotBeNull();
+                traktError.Error.Should().BeNull();
+                traktError.Description.Should().Be("trakt error description");
+            }
+        }
+
+        [Fact]
+        public void Test_TraktErrorObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
+        {
+            var traktJsonReader = new TraktErrorObjectJsonReader();
+
+            using (var reader = new StringReader(JSON_NOT_VALID_3))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktError = traktJsonReader.ReadObject(jsonReader);
+
+                traktError.Should().NotBeNull();
+                traktError.Error.Should().BeNull();
+                traktError.Description.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public void Test_TraktErrorObjectJsonReader_ReadObject_From_JsonReader_Null()
+        {
+            var jsonReader = new TraktErrorObjectJsonReader();
+
+            var traktError = jsonReader.ReadObject(default(JsonTextReader));
+            traktError.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_TraktErrorObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        {
+            var traktJsonReader = new TraktErrorObjectJsonReader();
+
+            using (var reader = new StringReader(string.Empty))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktError = traktJsonReader.ReadObject(jsonReader);
+                traktError.Should().BeNull();
+            }
         }
 
         private const string JSON_COMPLETE =

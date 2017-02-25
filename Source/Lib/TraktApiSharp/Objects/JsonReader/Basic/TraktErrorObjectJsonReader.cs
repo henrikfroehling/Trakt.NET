@@ -3,7 +3,6 @@
     using Newtonsoft.Json;
     using Objects.Basic;
     using System.IO;
-    using System;
 
     internal class TraktErrorObjectJsonReader : ITraktObjectJsonReader<TraktError>
     {
@@ -18,32 +17,35 @@
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
-                {
-                    var traktError = new TraktError();
-
-                    while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
-                    {
-                        var propertyName = jsonReader.Value.ToString();
-
-                        if (propertyName == PROPERTY_NAME_ERROR)
-                            traktError.Error = jsonReader.ReadAsString();
-                        else if (propertyName == PROPERTY_NAME_ERROR_DESCRIPTION)
-                            traktError.Description = jsonReader.ReadAsString();
-                        else
-                            jsonReader.Read(); // read unmatched property value
-                    }
-
-                    return traktError;
-                }
+                return ReadObject(jsonReader);
             }
-
-            return null;
         }
 
         public TraktError ReadObject(JsonTextReader jsonReader)
         {
-            throw new NotImplementedException();
+            if (jsonReader == null)
+                return null;
+
+            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            {
+                var traktError = new TraktError();
+
+                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                {
+                    var propertyName = jsonReader.Value.ToString();
+
+                    if (propertyName == PROPERTY_NAME_ERROR)
+                        traktError.Error = jsonReader.ReadAsString();
+                    else if (propertyName == PROPERTY_NAME_ERROR_DESCRIPTION)
+                        traktError.Description = jsonReader.ReadAsString();
+                    else
+                        jsonReader.Read(); // read unmatched property value
+                }
+
+                return traktError;
+            }
+
+            return null;
         }
     }
 }
