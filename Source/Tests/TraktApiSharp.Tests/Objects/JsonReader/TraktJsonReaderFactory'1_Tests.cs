@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Tests.Objects.JsonReader
 {
     using FluentAssertions;
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -14,6 +15,11 @@
         public class FakeObjectJsonReader : ITraktObjectJsonReader<object>
         {
             public object ReadObject(string json)
+            {
+                throw new NotImplementedException();
+            }
+
+            public object ReadObject(JsonTextReader jsonReader)
             {
                 throw new NotImplementedException();
             }

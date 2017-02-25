@@ -93,7 +93,7 @@
         {
             var jsonReader = new TraktErrorObjectJsonReader();
 
-            var traktError = jsonReader.ReadObject(null);
+            var traktError = jsonReader.ReadObject(default(string));
             traktError.Should().BeNull();
         }
 

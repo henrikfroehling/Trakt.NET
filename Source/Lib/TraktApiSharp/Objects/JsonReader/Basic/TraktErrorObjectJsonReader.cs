@@ -3,6 +3,7 @@
     using Newtonsoft.Json;
     using Objects.Basic;
     using System.IO;
+    using System;
 
     internal class TraktErrorObjectJsonReader : ITraktObjectJsonReader<TraktError>
     {
@@ -38,6 +39,11 @@
             }
 
             return null;
+        }
+
+        public TraktError ReadObject(JsonTextReader jsonReader)
+        {
+            throw new NotImplementedException();
         }
     }
 }
