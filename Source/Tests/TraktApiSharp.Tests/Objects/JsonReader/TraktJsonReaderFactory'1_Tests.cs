@@ -31,6 +31,11 @@
             {
                 throw new NotImplementedException();
             }
+
+            public IEnumerable<object> ReadArray(JsonTextReader jsonReader)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         [Fact]
