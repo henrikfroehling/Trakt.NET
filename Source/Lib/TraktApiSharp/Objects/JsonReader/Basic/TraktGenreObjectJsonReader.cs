@@ -34,12 +34,18 @@
                 {
                     var propertyName = jsonReader.Value.ToString();
 
-                    if (propertyName == PROPERTY_NAME_NAME)
-                        traktGenre.Name = jsonReader.ReadAsString();
-                    else if (propertyName == PROPERTY_NAME_SLUG)
-                        traktGenre.Slug = jsonReader.ReadAsString();
-                    else
-                        jsonReader.Read(); // read unmatched property value
+                    switch (propertyName)
+                    {
+                        case PROPERTY_NAME_NAME:
+                            traktGenre.Name = jsonReader.ReadAsString();
+                            break;
+                        case PROPERTY_NAME_SLUG:
+                            traktGenre.Slug = jsonReader.ReadAsString();
+                            break;
+                        default:
+                            jsonReader.Read(); // read unmatched property value
+                            break;
+                    }
                 }
 
                 return traktGenre;
