@@ -34,12 +34,18 @@
                 {
                     var propertyName = jsonReader.Value.ToString();
 
-                    if (propertyName == PROPERTY_NAME_ERROR)
-                        traktError.Error = jsonReader.ReadAsString();
-                    else if (propertyName == PROPERTY_NAME_ERROR_DESCRIPTION)
-                        traktError.Description = jsonReader.ReadAsString();
-                    else
-                        jsonReader.Read(); // read unmatched property value
+                    switch (propertyName)
+                    {
+                        case PROPERTY_NAME_ERROR:
+                            traktError.Error = jsonReader.ReadAsString();
+                            break;
+                        case PROPERTY_NAME_ERROR_DESCRIPTION:
+                            traktError.Description = jsonReader.ReadAsString();
+                            break;
+                        default:
+                            jsonReader.Read(); // read unmatched property value
+                            break;
+                    }
                 }
 
                 return traktError;
