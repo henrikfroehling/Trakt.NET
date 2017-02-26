@@ -59,7 +59,7 @@
                             traktIds.TvRage = (uint)jsonReader.ReadAsInt32();
                             break;
                         default:
-                            jsonReader.Read();
+                            jsonReader.Read(); // read unmatched property value
                             break;
                     }
                 }
