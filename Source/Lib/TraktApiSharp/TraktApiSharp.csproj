@@ -143,6 +143,7 @@
     <Compile Include="Objects\JsonReader\Basic\TraktImageObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Basic\TraktMetadataObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Basic\TraktRatingObjectJsonReader.cs" />
+    <Compile Include="Objects\JsonReader\Basic\TraktSharingObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\ITraktArrayJsonReader%271.cs" />
     <Compile Include="Objects\JsonReader\ITraktObjectJsonReader%271.cs" />
     <Compile Include="Objects\JsonReader\TraktJsonReaderFactory%271.cs" />
