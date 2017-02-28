@@ -35,9 +35,11 @@
         private const string HEADER_ENDDATE_KEY = "X-End-Date";
         private const string HEADER_PRIVATE_USER_KEY = "X-Private-User";
 
+        // Don't mark this field as readonly,
+        // as it is manually set in unit tests
         internal static HttpClient s_httpClient;
 
-        private TraktClient _client;
+        private readonly TraktClient _client;
 
         internal TraktRequestHandler(TraktClient client)
         {
