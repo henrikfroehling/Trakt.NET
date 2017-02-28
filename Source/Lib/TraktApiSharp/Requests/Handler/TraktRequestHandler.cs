@@ -162,7 +162,14 @@
                 Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
 
                 var contentObject = Json.Deserialize<TContentType>(responseContent);
-                var response = new TraktResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+                var hasValue = !EqualityComparer<TContentType>.Default.Equals(contentObject, default(TContentType));
+
+                var response = new TraktResponse<TContentType>
+                {
+                    IsSuccess = true,
+                    HasValue = hasValue,
+                    Value = contentObject
+                };
 
                 if (responseMessage.Headers != null)
                     ParseResponseHeaderValues(response, responseMessage.Headers);
@@ -195,7 +202,13 @@
                 Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
 
                 var contentObject = Json.Deserialize<IEnumerable<TContentType>>(responseContent);
-                var response = new TraktListResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+
+                var response = new TraktListResponse<TContentType>
+                {
+                    IsSuccess = true,
+                    HasValue = contentObject != null,
+                    Value = contentObject
+                };
 
                 if (responseMessage.Headers != null)
                     ParseResponseHeaderValues(response, responseMessage.Headers);
@@ -228,7 +241,13 @@
                 Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
 
                 var contentObject = Json.Deserialize<IEnumerable<TContentType>>(responseContent);
-                var response = new TraktPagedResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+
+                var response = new TraktPagedResponse<TContentType>
+                {
+                    IsSuccess = true,
+                    HasValue = contentObject != null,
+                    Value = contentObject
+                };
 
                 if (responseMessage.Headers != null)
                 {
@@ -390,8 +409,9 @@
         private HttpContent GetRequestBodyContent<TRequestBody>(ITraktHasRequestBody<TRequestBody> request, out string requestBodyJson)
         {
             var requestBody = request.RequestBody;
+            var requestBodyIsNull = EqualityComparer<TRequestBody>.Default.Equals(requestBody, default(TRequestBody));
 
-            if (requestBody == null)
+            if (requestBodyIsNull)
             {
                 requestBodyJson = string.Empty;
                 return null;
