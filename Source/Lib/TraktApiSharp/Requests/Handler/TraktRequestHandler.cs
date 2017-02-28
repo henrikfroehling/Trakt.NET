@@ -46,81 +46,81 @@
             _client = client;
         }
 
-        public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(ITraktRequest request)
+        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(ITraktRequest request)
         {
             PreExecuteRequest(request);
-            return await QueryNoContentAsync(SetupRequestMessage(request));
+            return QueryNoContentAsync(SetupRequestMessage(request));
         }
 
-        public async Task<TraktResponse<TContentType>> ExecuteSingleItemRequestAsync<TContentType>(ITraktRequest<TContentType> request)
+        public Task<TraktResponse<TContentType>> ExecuteSingleItemRequestAsync<TContentType>(ITraktRequest<TContentType> request)
         {
             PreExecuteRequest(request);
-            return await QuerySingleItemAsync<TContentType>(SetupRequestMessage(request));
+            return QuerySingleItemAsync<TContentType>(SetupRequestMessage(request));
         }
 
-        public async Task<TraktListResponse<TContentType>> ExecuteListRequestAsync<TContentType>(ITraktRequest<TContentType> request)
+        public Task<TraktListResponse<TContentType>> ExecuteListRequestAsync<TContentType>(ITraktRequest<TContentType> request)
         {
             PreExecuteRequest(request);
-            return await QueryListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryListAsync<TContentType>(SetupRequestMessage(request));
         }
 
-        public async Task<TraktPagedResponse<TContentType>> ExecutePagedRequestAsync<TContentType>(ITraktRequest<TContentType> request)
+        public Task<TraktPagedResponse<TContentType>> ExecutePagedRequestAsync<TContentType>(ITraktRequest<TContentType> request)
         {
             PreExecuteRequest(request);
-            return await QueryPagedListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryPagedListAsync<TContentType>(SetupRequestMessage(request));
         }
 
         // post requests
 
-        public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBody>(ITraktPostRequest<TRequestBody> request)
+        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBody>(ITraktPostRequest<TRequestBody> request)
         {
             PreExecuteRequest(request);
-            return await QueryNoContentAsync(SetupRequestMessage(request));
+            return QueryNoContentAsync(SetupRequestMessage(request));
         }
 
-        public async Task<TraktResponse<TContentType>> ExecuteSingleItemRequestAsync<TContentType, TRequestBody>(ITraktPostRequest<TContentType, TRequestBody> request)
+        public Task<TraktResponse<TContentType>> ExecuteSingleItemRequestAsync<TContentType, TRequestBody>(ITraktPostRequest<TContentType, TRequestBody> request)
         {
             PreExecuteRequest(request);
             var isCheckinRequest = request is TraktCheckinRequest<TContentType, TRequestBody>;
-            return await QuerySingleItemAsync<TContentType>(SetupRequestMessage(request), isCheckinRequest);
+            return QuerySingleItemAsync<TContentType>(SetupRequestMessage(request), isCheckinRequest);
         }
 
-        public async Task<TraktListResponse<TContentType>> ExecuteListRequestAsync<TContentType, TRequestBody>(ITraktPostRequest<TContentType, TRequestBody> request)
+        public Task<TraktListResponse<TContentType>> ExecuteListRequestAsync<TContentType, TRequestBody>(ITraktPostRequest<TContentType, TRequestBody> request)
         {
             PreExecuteRequest(request);
-            return await QueryListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryListAsync<TContentType>(SetupRequestMessage(request));
         }
 
-        public async Task<TraktPagedResponse<TContentType>> ExecutePagedRequestAsync<TContentType, TRequestBody>(ITraktPostRequest<TContentType, TRequestBody> request)
+        public Task<TraktPagedResponse<TContentType>> ExecutePagedRequestAsync<TContentType, TRequestBody>(ITraktPostRequest<TContentType, TRequestBody> request)
         {
             PreExecuteRequest(request);
-            return await QueryPagedListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryPagedListAsync<TContentType>(SetupRequestMessage(request));
         }
 
         // put requests
 
-        public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBody>(ITraktPutRequest<TRequestBody> request)
+        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBody>(ITraktPutRequest<TRequestBody> request)
         {
             PreExecuteRequest(request);
-            return await QueryNoContentAsync(SetupRequestMessage(request));
+            return QueryNoContentAsync(SetupRequestMessage(request));
         }
 
-        public async Task<TraktResponse<TContentType>> ExecuteSingleItemRequestAsync<TContentType, TRequestBody>(ITraktPutRequest<TContentType, TRequestBody> request)
+        public Task<TraktResponse<TContentType>> ExecuteSingleItemRequestAsync<TContentType, TRequestBody>(ITraktPutRequest<TContentType, TRequestBody> request)
         {
             PreExecuteRequest(request);
-            return await QuerySingleItemAsync<TContentType>(SetupRequestMessage(request));
+            return QuerySingleItemAsync<TContentType>(SetupRequestMessage(request));
         }
 
-        public async Task<TraktListResponse<TContentType>> ExecuteListRequestAsync<TContentType, TRequestBody>(ITraktPutRequest<TContentType, TRequestBody> request)
+        public Task<TraktListResponse<TContentType>> ExecuteListRequestAsync<TContentType, TRequestBody>(ITraktPutRequest<TContentType, TRequestBody> request)
         {
             PreExecuteRequest(request);
-            return await QueryListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryListAsync<TContentType>(SetupRequestMessage(request));
         }
 
-        public async Task<TraktPagedResponse<TContentType>> ExecutePagedRequestAsync<TContentType, TRequestBody>(ITraktPutRequest<TContentType, TRequestBody> request)
+        public Task<TraktPagedResponse<TContentType>> ExecutePagedRequestAsync<TContentType, TRequestBody>(ITraktPutRequest<TContentType, TRequestBody> request)
         {
             PreExecuteRequest(request);
-            return await QueryPagedListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryPagedListAsync<TContentType>(SetupRequestMessage(request));
         }
 
         // query response helper methods
@@ -280,8 +280,8 @@
             return response;
         }
 
-        private async Task<string> GetResponseContentAsync(HttpResponseMessage response)
-            => response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
+        private Task<string> GetResponseContentAsync(HttpResponseMessage response)
+            => response.Content != null ? response.Content.ReadAsStringAsync() : Task.FromResult(string.Empty);
 
         private void PreExecuteRequest(ITraktRequest request)
         {
