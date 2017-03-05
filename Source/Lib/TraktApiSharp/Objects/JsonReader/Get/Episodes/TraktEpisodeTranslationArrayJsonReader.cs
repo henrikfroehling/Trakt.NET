@@ -7,10 +7,6 @@
 
     internal class TraktEpisodeTranslationArrayJsonReader : ITraktArrayJsonReader<TraktEpisodeTranslation>
     {
-        private const string PROPERTY_NAME_TITLE = "title";
-        private const string PROPERTY_NAME_OVERVIEW = "overview";
-        private const string PROPERTY_NAME_LANGUAGE_CODE = "language";
-
         public IEnumerable<TraktEpisodeTranslation> ReadArray(string json)
         {
             if (string.IsNullOrEmpty(json))
@@ -30,34 +26,15 @@
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartArray)
             {
+                var episodeTranslationReader = new TraktEpisodeTranslationObjectJsonReader();
                 var traktEpisodeTranslations = new List<TraktEpisodeTranslation>();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+                var traktEpisodeTranslation = episodeTranslationReader.ReadObject(jsonReader);
+
+                while (traktEpisodeTranslation != null)
                 {
-                    var traktEpisodeTranslation = new TraktEpisodeTranslation();
-
-                    while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
-                    {
-                        var propertyName = jsonReader.Value.ToString();
-
-                        switch (propertyName)
-                        {
-                            case PROPERTY_NAME_TITLE:
-                                traktEpisodeTranslation.Title = jsonReader.ReadAsString();
-                                break;
-                            case PROPERTY_NAME_OVERVIEW:
-                                traktEpisodeTranslation.Overview = jsonReader.ReadAsString();
-                                break;
-                            case PROPERTY_NAME_LANGUAGE_CODE:
-                                traktEpisodeTranslation.LanguageCode = jsonReader.ReadAsString();
-                                break;
-                            default:
-                                jsonReader.Read(); // read unmatched property value
-                                break;
-                        }
-                    }
-
                     traktEpisodeTranslations.Add(traktEpisodeTranslation);
+                    traktEpisodeTranslation = episodeTranslationReader.ReadObject(jsonReader);
                 }
 
                 return traktEpisodeTranslations;
