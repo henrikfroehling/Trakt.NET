@@ -20,6 +20,15 @@
         }
 
         [Fact]
+        public void Test_TraktEpisodeTranslationArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
+        {
+            var jsonReader = new TraktEpisodeTranslationArrayJsonReader();
+
+            var traktEpisodeTranslations = jsonReader.ReadArray(JSON_EMPTY_ARRAY);
+            traktEpisodeTranslations.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [Fact]
         public void Test_TraktEpisodeTranslationArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
             var jsonReader = new TraktEpisodeTranslationArrayJsonReader();
@@ -288,6 +297,19 @@
 
             var traktEpisodeTranslations = jsonReader.ReadArray(string.Empty);
             traktEpisodeTranslations.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_TraktEpisodeTranslationArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
+        {
+            var traktJsonReader = new TraktEpisodeTranslationArrayJsonReader();
+
+            using (var reader = new StringReader(JSON_EMPTY_ARRAY))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktEpisodeTranslations = traktJsonReader.ReadArray(jsonReader);
+                traktEpisodeTranslations.Should().NotBeNull().And.BeEmpty();
+            }
         }
 
         [Fact]
@@ -608,6 +630,8 @@
                 traktEpisodeTranslations.Should().BeNull();
             }
         }
+
+        private const string JSON_EMPTY_ARRAY = @"[]";
 
         private const string JSON_COMPLETE =
             @"[

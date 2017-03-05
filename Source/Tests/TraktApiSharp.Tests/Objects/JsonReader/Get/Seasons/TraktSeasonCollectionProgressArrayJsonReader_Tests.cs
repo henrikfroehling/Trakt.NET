@@ -21,12 +21,21 @@
         }
 
         [Fact]
+        public void Test_TraktSeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
+        {
+            var jsonReader = new TraktSeasonCollectionProgressArrayJsonReader();
+
+            var traktSeasonCollectionProgresses = jsonReader.ReadArray(JSON_EMPTY_ARRAY);
+            traktSeasonCollectionProgresses.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [Fact]
         public void Test_TraktSeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
             var jsonReader = new TraktSeasonCollectionProgressArrayJsonReader();
 
             var traktSeasonCollectionProgresses = jsonReader.ReadArray(JSON_COMPLETE);
-            traktSeasonCollectionProgresses.Should().NotBeNull();
+            traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -92,7 +101,7 @@
             var jsonReader = new TraktSeasonCollectionProgressArrayJsonReader();
 
             var traktSeasonCollectionProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_1);
-            traktSeasonCollectionProgresses.Should().NotBeNull();
+            traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -158,7 +167,7 @@
             var jsonReader = new TraktSeasonCollectionProgressArrayJsonReader();
 
             var traktSeasonCollectionProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_2);
-            traktSeasonCollectionProgresses.Should().NotBeNull();
+            traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -224,7 +233,7 @@
             var jsonReader = new TraktSeasonCollectionProgressArrayJsonReader();
 
             var traktSeasonCollectionProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_3);
-            traktSeasonCollectionProgresses.Should().NotBeNull();
+            traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -290,7 +299,7 @@
             var jsonReader = new TraktSeasonCollectionProgressArrayJsonReader();
 
             var traktSeasonCollectionProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_4);
-            traktSeasonCollectionProgresses.Should().NotBeNull();
+            traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -332,7 +341,7 @@
             var jsonReader = new TraktSeasonCollectionProgressArrayJsonReader();
 
             var traktSeasonCollectionProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_5);
-            traktSeasonCollectionProgresses.Should().NotBeNull();
+            traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -386,7 +395,7 @@
             var jsonReader = new TraktSeasonCollectionProgressArrayJsonReader();
 
             var traktSeasonCollectionProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_6);
-            traktSeasonCollectionProgresses.Should().NotBeNull();
+            traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -440,7 +449,7 @@
             var jsonReader = new TraktSeasonCollectionProgressArrayJsonReader();
 
             var traktSeasonCollectionProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_7);
-            traktSeasonCollectionProgresses.Should().NotBeNull();
+            traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -494,7 +503,7 @@
             var jsonReader = new TraktSeasonCollectionProgressArrayJsonReader();
 
             var traktSeasonCollectionProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_8);
-            traktSeasonCollectionProgresses.Should().NotBeNull();
+            traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -560,7 +569,7 @@
             var jsonReader = new TraktSeasonCollectionProgressArrayJsonReader();
 
             var traktSeasonCollectionProgresses = jsonReader.ReadArray(JSON_NOT_VALID_1);
-            traktSeasonCollectionProgresses.Should().NotBeNull();
+            traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -626,7 +635,7 @@
             var jsonReader = new TraktSeasonCollectionProgressArrayJsonReader();
 
             var traktSeasonCollectionProgresses = jsonReader.ReadArray(JSON_NOT_VALID_2);
-            traktSeasonCollectionProgresses.Should().NotBeNull();
+            traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -692,7 +701,7 @@
             var jsonReader = new TraktSeasonCollectionProgressArrayJsonReader();
 
             var traktSeasonCollectionProgresses = jsonReader.ReadArray(JSON_NOT_VALID_3);
-            traktSeasonCollectionProgresses.Should().NotBeNull();
+            traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -758,7 +767,7 @@
             var jsonReader = new TraktSeasonCollectionProgressArrayJsonReader();
 
             var traktSeasonCollectionProgresses = jsonReader.ReadArray(JSON_NOT_VALID_4);
-            traktSeasonCollectionProgresses.Should().NotBeNull();
+            traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -812,7 +821,7 @@
             var jsonReader = new TraktSeasonCollectionProgressArrayJsonReader();
 
             var traktSeasonCollectionProgresses = jsonReader.ReadArray(JSON_NOT_VALID_5);
-            traktSeasonCollectionProgresses.Should().NotBeNull();
+            traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -879,6 +888,19 @@
         }
 
         [Fact]
+        public void Test_TraktSeasonCollectionProgressArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
+        {
+            var traktJsonReader = new TraktSeasonCollectionProgressArrayJsonReader();
+
+            using (var reader = new StringReader(JSON_EMPTY_ARRAY))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktSeasonCollectionProgresses = traktJsonReader.ReadArray(jsonReader);
+                traktSeasonCollectionProgresses.Should().NotBeNull().And.BeEmpty();
+            }
+        }
+
+        [Fact]
         public void Test_TraktSeasonCollectionProgressArrayJsonReader_ReadArray_From_JsonReader_Complete()
         {
             var traktJsonReader = new TraktSeasonCollectionProgressArrayJsonReader();
@@ -887,7 +909,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonCollectionProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonCollectionProgresses.Should().NotBeNull();
+                traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -957,7 +979,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonCollectionProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonCollectionProgresses.Should().NotBeNull();
+                traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -1027,7 +1049,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonCollectionProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonCollectionProgresses.Should().NotBeNull();
+                traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -1097,7 +1119,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonCollectionProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonCollectionProgresses.Should().NotBeNull();
+                traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -1167,7 +1189,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonCollectionProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonCollectionProgresses.Should().NotBeNull();
+                traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -1213,7 +1235,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonCollectionProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonCollectionProgresses.Should().NotBeNull();
+                traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -1271,7 +1293,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonCollectionProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonCollectionProgresses.Should().NotBeNull();
+                traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -1329,7 +1351,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonCollectionProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonCollectionProgresses.Should().NotBeNull();
+                traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -1387,7 +1409,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonCollectionProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonCollectionProgresses.Should().NotBeNull();
+                traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -1457,7 +1479,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonCollectionProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonCollectionProgresses.Should().NotBeNull();
+                traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -1527,7 +1549,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonCollectionProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonCollectionProgresses.Should().NotBeNull();
+                traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -1597,7 +1619,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonCollectionProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonCollectionProgresses.Should().NotBeNull();
+                traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -1667,7 +1689,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonCollectionProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonCollectionProgresses.Should().NotBeNull();
+                traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -1725,7 +1747,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonCollectionProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonCollectionProgresses.Should().NotBeNull();
+                traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var collectionProgresses = traktSeasonCollectionProgresses.ToArray();
 
@@ -1795,6 +1817,8 @@
                 traktSeasonCollectionProgresses.Should().BeNull();
             }
         }
+
+        private const string JSON_EMPTY_ARRAY = @"[]";
 
         private const string JSON_COMPLETE =
             @"[

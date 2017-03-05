@@ -21,12 +21,21 @@
         }
 
         [Fact]
+        public void Test_TraktEpisodeWatchedProgressArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
+        {
+            var jsonReader = new TraktEpisodeWatchedProgressArrayJsonReader();
+
+            var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_EMPTY_ARRAY);
+            traktEpisodeWatchedProgresses.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [Fact]
         public void Test_TraktEpisodeWatchedProgressArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
             var jsonReader = new TraktEpisodeWatchedProgressArrayJsonReader();
 
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_COMPLETE);
-            traktEpisodeWatchedProgresses.Should().NotBeNull();
+            traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -49,7 +58,7 @@
             var jsonReader = new TraktEpisodeWatchedProgressArrayJsonReader();
 
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_1);
-            traktEpisodeWatchedProgresses.Should().NotBeNull();
+            traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -72,7 +81,7 @@
             var jsonReader = new TraktEpisodeWatchedProgressArrayJsonReader();
 
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_2);
-            traktEpisodeWatchedProgresses.Should().NotBeNull();
+            traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -95,7 +104,7 @@
             var jsonReader = new TraktEpisodeWatchedProgressArrayJsonReader();
 
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_3);
-            traktEpisodeWatchedProgresses.Should().NotBeNull();
+            traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -118,7 +127,7 @@
             var jsonReader = new TraktEpisodeWatchedProgressArrayJsonReader();
 
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_4);
-            traktEpisodeWatchedProgresses.Should().NotBeNull();
+            traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -141,7 +150,7 @@
             var jsonReader = new TraktEpisodeWatchedProgressArrayJsonReader();
 
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_5);
-            traktEpisodeWatchedProgresses.Should().NotBeNull();
+            traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -164,7 +173,7 @@
             var jsonReader = new TraktEpisodeWatchedProgressArrayJsonReader();
 
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_6);
-            traktEpisodeWatchedProgresses.Should().NotBeNull();
+            traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -187,7 +196,7 @@
             var jsonReader = new TraktEpisodeWatchedProgressArrayJsonReader();
 
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_NOT_VALID_1);
-            traktEpisodeWatchedProgresses.Should().NotBeNull();
+            traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -210,7 +219,7 @@
             var jsonReader = new TraktEpisodeWatchedProgressArrayJsonReader();
 
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_NOT_VALID_2);
-            traktEpisodeWatchedProgresses.Should().NotBeNull();
+            traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -233,7 +242,7 @@
             var jsonReader = new TraktEpisodeWatchedProgressArrayJsonReader();
 
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_NOT_VALID_3);
-            traktEpisodeWatchedProgresses.Should().NotBeNull();
+            traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -256,7 +265,7 @@
             var jsonReader = new TraktEpisodeWatchedProgressArrayJsonReader();
 
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_NOT_VALID_4);
-            traktEpisodeWatchedProgresses.Should().NotBeNull();
+            traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -292,6 +301,19 @@
         }
 
         [Fact]
+        public void Test_TraktEpisodeWatchedProgressArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
+        {
+            var traktJsonReader = new TraktEpisodeWatchedProgressArrayJsonReader();
+
+            using (var reader = new StringReader(JSON_EMPTY_ARRAY))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
+                traktEpisodeWatchedProgresses.Should().NotBeNull().And.BeEmpty();
+            }
+        }
+
+        [Fact]
         public void Test_TraktEpisodeWatchedProgressArrayJsonReader_ReadArray_From_JsonReader_Complete()
         {
             var traktJsonReader = new TraktEpisodeWatchedProgressArrayJsonReader();
@@ -300,7 +322,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktEpisodeWatchedProgresses.Should().NotBeNull();
+                traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -327,7 +349,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktEpisodeWatchedProgresses.Should().NotBeNull();
+                traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -354,7 +376,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktEpisodeWatchedProgresses.Should().NotBeNull();
+                traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -381,7 +403,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktEpisodeWatchedProgresses.Should().NotBeNull();
+                traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -408,7 +430,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktEpisodeWatchedProgresses.Should().NotBeNull();
+                traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -435,7 +457,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktEpisodeWatchedProgresses.Should().NotBeNull();
+                traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -462,7 +484,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktEpisodeWatchedProgresses.Should().NotBeNull();
+                traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -489,7 +511,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktEpisodeWatchedProgresses.Should().NotBeNull();
+                traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -516,7 +538,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktEpisodeWatchedProgresses.Should().NotBeNull();
+                traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -543,7 +565,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktEpisodeWatchedProgresses.Should().NotBeNull();
+                traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -570,7 +592,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktEpisodeWatchedProgresses.Should().NotBeNull();
+                traktEpisodeWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
@@ -609,6 +631,8 @@
                 traktEpisodeWatchedProgress.Should().BeNull();
             }
         }
+
+        private const string JSON_EMPTY_ARRAY = @"[]";
 
         private const string JSON_COMPLETE =
             @"[

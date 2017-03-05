@@ -21,12 +21,21 @@
         }
 
         [Fact]
+        public void Test_TraktSeasonWatchedProgressArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
+        {
+            var jsonReader = new TraktSeasonWatchedProgressArrayJsonReader();
+
+            var traktSeasonWatchedProgresses = jsonReader.ReadArray(JSON_EMPTY_ARRAY);
+            traktSeasonWatchedProgresses.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [Fact]
         public void Test_TraktSeasonWatchedProgressArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
             var jsonReader = new TraktSeasonWatchedProgressArrayJsonReader();
 
             var traktSeasonWatchedProgresses = jsonReader.ReadArray(JSON_COMPLETE);
-            traktSeasonWatchedProgresses.Should().NotBeNull();
+            traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -92,7 +101,7 @@
             var jsonReader = new TraktSeasonWatchedProgressArrayJsonReader();
 
             var traktSeasonWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_1);
-            traktSeasonWatchedProgresses.Should().NotBeNull();
+            traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -158,7 +167,7 @@
             var jsonReader = new TraktSeasonWatchedProgressArrayJsonReader();
 
             var traktSeasonWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_2);
-            traktSeasonWatchedProgresses.Should().NotBeNull();
+            traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -224,7 +233,7 @@
             var jsonReader = new TraktSeasonWatchedProgressArrayJsonReader();
 
             var traktSeasonWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_3);
-            traktSeasonWatchedProgresses.Should().NotBeNull();
+            traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -290,7 +299,7 @@
             var jsonReader = new TraktSeasonWatchedProgressArrayJsonReader();
 
             var traktSeasonWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_4);
-            traktSeasonWatchedProgresses.Should().NotBeNull();
+            traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -332,7 +341,7 @@
             var jsonReader = new TraktSeasonWatchedProgressArrayJsonReader();
 
             var traktSeasonWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_5);
-            traktSeasonWatchedProgresses.Should().NotBeNull();
+            traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -386,7 +395,7 @@
             var jsonReader = new TraktSeasonWatchedProgressArrayJsonReader();
 
             var traktSeasonWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_6);
-            traktSeasonWatchedProgresses.Should().NotBeNull();
+            traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -440,7 +449,7 @@
             var jsonReader = new TraktSeasonWatchedProgressArrayJsonReader();
 
             var traktSeasonWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_7);
-            traktSeasonWatchedProgresses.Should().NotBeNull();
+            traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -494,7 +503,7 @@
             var jsonReader = new TraktSeasonWatchedProgressArrayJsonReader();
 
             var traktSeasonWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_8);
-            traktSeasonWatchedProgresses.Should().NotBeNull();
+            traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -560,7 +569,7 @@
             var jsonReader = new TraktSeasonWatchedProgressArrayJsonReader();
 
             var traktSeasonWatchedProgresses = jsonReader.ReadArray(JSON_NOT_VALID_1);
-            traktSeasonWatchedProgresses.Should().NotBeNull();
+            traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -626,7 +635,7 @@
             var jsonReader = new TraktSeasonWatchedProgressArrayJsonReader();
 
             var traktSeasonWatchedProgresses = jsonReader.ReadArray(JSON_NOT_VALID_2);
-            traktSeasonWatchedProgresses.Should().NotBeNull();
+            traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -692,7 +701,7 @@
             var jsonReader = new TraktSeasonWatchedProgressArrayJsonReader();
 
             var traktSeasonWatchedProgresses = jsonReader.ReadArray(JSON_NOT_VALID_3);
-            traktSeasonWatchedProgresses.Should().NotBeNull();
+            traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -758,7 +767,7 @@
             var jsonReader = new TraktSeasonWatchedProgressArrayJsonReader();
 
             var traktSeasonWatchedProgresses = jsonReader.ReadArray(JSON_NOT_VALID_4);
-            traktSeasonWatchedProgresses.Should().NotBeNull();
+            traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -812,7 +821,7 @@
             var jsonReader = new TraktSeasonWatchedProgressArrayJsonReader();
 
             var traktSeasonWatchedProgresses = jsonReader.ReadArray(JSON_NOT_VALID_5);
-            traktSeasonWatchedProgresses.Should().NotBeNull();
+            traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
             var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -879,6 +888,19 @@
         }
 
         [Fact]
+        public void Test_TraktSeasonWatchedProgressArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
+        {
+            var traktJsonReader = new TraktSeasonWatchedProgressArrayJsonReader();
+
+            using (var reader = new StringReader(JSON_EMPTY_ARRAY))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktSeasonWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
+                traktSeasonWatchedProgresses.Should().NotBeNull().And.BeEmpty();
+            }
+        }
+
+        [Fact]
         public void Test_TraktSeasonWatchedProgressArrayJsonReader_ReadArray_From_JsonReader_Complete()
         {
             var traktJsonReader = new TraktSeasonWatchedProgressArrayJsonReader();
@@ -887,7 +909,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonWatchedProgresses.Should().NotBeNull();
+                traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -957,7 +979,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonWatchedProgresses.Should().NotBeNull();
+                traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -1027,7 +1049,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonWatchedProgresses.Should().NotBeNull();
+                traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -1097,7 +1119,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonWatchedProgresses.Should().NotBeNull();
+                traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -1167,7 +1189,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonWatchedProgresses.Should().NotBeNull();
+                traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -1213,7 +1235,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonWatchedProgresses.Should().NotBeNull();
+                traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -1271,7 +1293,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonWatchedProgresses.Should().NotBeNull();
+                traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -1329,7 +1351,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonWatchedProgresses.Should().NotBeNull();
+                traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -1387,7 +1409,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonWatchedProgresses.Should().NotBeNull();
+                traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -1457,7 +1479,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonWatchedProgresses.Should().NotBeNull();
+                traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -1527,7 +1549,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonWatchedProgresses.Should().NotBeNull();
+                traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -1597,7 +1619,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonWatchedProgresses.Should().NotBeNull();
+                traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -1667,7 +1689,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonWatchedProgresses.Should().NotBeNull();
+                traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -1725,7 +1747,7 @@
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeasonWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
-                traktSeasonWatchedProgresses.Should().NotBeNull();
+                traktSeasonWatchedProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
 
                 var watchedProgresses = traktSeasonWatchedProgresses.ToArray();
 
@@ -1795,6 +1817,8 @@
                 traktSeasonWatchedProgresses.Should().BeNull();
             }
         }
+
+        private const string JSON_EMPTY_ARRAY = @"[]";
 
         private const string JSON_COMPLETE =
             @"[
