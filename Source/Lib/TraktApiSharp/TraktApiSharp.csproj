@@ -145,6 +145,7 @@
     <Compile Include="Objects\JsonReader\Basic\TraktRatingObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Basic\TraktSharingObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Basic\TraktStatisticsObjectJsonReader.cs" />
+    <Compile Include="Objects\JsonReader\Get\Episodes\TraktEpisodeCollectionProgressArrayJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Get\Episodes\TraktEpisodeCollectionProgressObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Get\Episodes\TraktEpisodeIdsObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Get\Episodes\TraktEpisodeObjectJsonReader.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Objects\JsonReader\Get\Episodes\TraktEpisodeWatchedProgressObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Get\People\TraktPersonIdsObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Get\People\TraktPersonObjectJsonReader.cs" />
+    <Compile Include="Objects\JsonReader\Get\Seasons\TraktSeasonCollectionProgressObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Get\Seasons\TraktSeasonIdsObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\ITraktArrayJsonReader%271.cs" />
     <Compile Include="Objects\JsonReader\ITraktObjectJsonReader%271.cs" />

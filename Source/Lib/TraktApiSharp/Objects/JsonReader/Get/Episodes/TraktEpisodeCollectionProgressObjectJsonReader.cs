@@ -45,8 +45,13 @@
                             traktEpisodeCollectionProgress.Completed = jsonReader.ReadAsBoolean();
                             break;
                         case PROPERTY_NAME_COLLECTED_AT:
-                            if (jsonReader.Read() && jsonReader.ValueType == typeof(DateTime))
-                                traktEpisodeCollectionProgress.CollectedAt = (DateTime)jsonReader.Value;
+                            if (jsonReader.Read())
+                            {
+                                if (jsonReader.ValueType == typeof(DateTime))
+                                    traktEpisodeCollectionProgress.CollectedAt = (DateTime)jsonReader.Value;
+                                else if (jsonReader.ValueType == typeof(string))
+                                    traktEpisodeCollectionProgress.CollectedAt = DateTime.Parse(jsonReader.Value.ToString());
+                            }
 
                             break;
                         default:
