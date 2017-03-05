@@ -79,13 +79,23 @@
                             traktEpisode.Votes = jsonReader.ReadAsInt32();
                             break;
                         case PROPERTY_NAME_FIRST_AIRED:
-                            if (jsonReader.Read() && jsonReader.ValueType == typeof(DateTime))
-                                traktEpisode.FirstAired = (DateTime)jsonReader.Value;
+                            if (jsonReader.Read())
+                            {
+                                if (jsonReader.ValueType == typeof(DateTime))
+                                    traktEpisode.FirstAired = (DateTime)jsonReader.Value;
+                                else if (jsonReader.ValueType == typeof(string))
+                                    traktEpisode.FirstAired = DateTime.Parse(jsonReader.Value.ToString());
+                            }
 
                             break;
                         case PROPERTY_NAME_UPDATED_AT:
-                            if (jsonReader.Read() && jsonReader.ValueType == typeof(DateTime))
-                                traktEpisode.UpdatedAt = (DateTime)jsonReader.Value;
+                            if (jsonReader.Read())
+                            {
+                                if (jsonReader.ValueType == typeof(DateTime))
+                                    traktEpisode.UpdatedAt = (DateTime)jsonReader.Value;
+                                else if (jsonReader.ValueType == typeof(string))
+                                    traktEpisode.UpdatedAt = DateTime.Parse(jsonReader.Value.ToString());
+                            }
 
                             break;
                         case PROPERTY_NAME_AVAILABLE_TRANSLATIONS:
