@@ -158,6 +158,7 @@
     <Compile Include="Objects\JsonReader\Get\Seasons\TraktSeasonCollectionProgressArrayJsonReader_Tests.cs" />
     <Compile Include="Objects\JsonReader\Get\Seasons\TraktSeasonCollectionProgressObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\JsonReader\Get\Seasons\TraktSeasonIdsObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\JsonReader\Get\Seasons\TraktSeasonWatchedProgressArrayJsonReader_Tests.cs" />
     <Compile Include="Objects\JsonReader\Get\Seasons\TraktSeasonWatchedProgressObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\JsonReader\ITraktArrayJsonReader%271_Tests.cs" />
     <Compile Include="Objects\JsonReader\ITraktObjectJsonReader%271_Tests.cs" />

@@ -28,19 +28,19 @@
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_COMPLETE);
             traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-            var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+            var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-            collectionProgress[0].Number.Should().Be(1);
-            collectionProgress[0].Completed.Should().BeTrue();
-            collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[0].Number.Should().Be(1);
+            watchedProgress[0].Completed.Should().BeTrue();
+            watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[1].Number.Should().Be(2);
-            collectionProgress[1].Completed.Should().BeTrue();
-            collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[1].Number.Should().Be(2);
+            watchedProgress[1].Completed.Should().BeTrue();
+            watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[2].Number.Should().Be(3);
-            collectionProgress[2].Completed.Should().BeTrue();
-            collectionProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[2].Number.Should().Be(3);
+            watchedProgress[2].Completed.Should().BeTrue();
+            watchedProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
         }
 
         [Fact]
@@ -51,19 +51,19 @@
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_1);
             traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-            var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+            var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-            collectionProgress[0].Number.Should().BeNull();
-            collectionProgress[0].Completed.Should().BeTrue();
-            collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[0].Number.Should().BeNull();
+            watchedProgress[0].Completed.Should().BeTrue();
+            watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[1].Number.Should().Be(2);
-            collectionProgress[1].Completed.Should().BeTrue();
-            collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[1].Number.Should().Be(2);
+            watchedProgress[1].Completed.Should().BeTrue();
+            watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[2].Number.Should().Be(3);
-            collectionProgress[2].Completed.Should().BeTrue();
-            collectionProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[2].Number.Should().Be(3);
+            watchedProgress[2].Completed.Should().BeTrue();
+            watchedProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
         }
 
         [Fact]
@@ -74,19 +74,19 @@
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_2);
             traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-            var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+            var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-            collectionProgress[0].Number.Should().Be(1);
-            collectionProgress[0].Completed.Should().BeTrue();
-            collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[0].Number.Should().Be(1);
+            watchedProgress[0].Completed.Should().BeTrue();
+            watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[1].Number.Should().Be(2);
-            collectionProgress[1].Completed.Should().BeNull();
-            collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[1].Number.Should().Be(2);
+            watchedProgress[1].Completed.Should().BeNull();
+            watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[2].Number.Should().Be(3);
-            collectionProgress[2].Completed.Should().BeTrue();
-            collectionProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[2].Number.Should().Be(3);
+            watchedProgress[2].Completed.Should().BeTrue();
+            watchedProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
         }
 
         [Fact]
@@ -97,19 +97,19 @@
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_3);
             traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-            var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+            var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-            collectionProgress[0].Number.Should().Be(1);
-            collectionProgress[0].Completed.Should().BeTrue();
-            collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[0].Number.Should().Be(1);
+            watchedProgress[0].Completed.Should().BeTrue();
+            watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[1].Number.Should().Be(2);
-            collectionProgress[1].Completed.Should().BeTrue();
-            collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[1].Number.Should().Be(2);
+            watchedProgress[1].Completed.Should().BeTrue();
+            watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[2].Number.Should().Be(3);
-            collectionProgress[2].Completed.Should().BeTrue();
-            collectionProgress[2].LastWatchedAt.Should().BeNull();
+            watchedProgress[2].Number.Should().Be(3);
+            watchedProgress[2].Completed.Should().BeTrue();
+            watchedProgress[2].LastWatchedAt.Should().BeNull();
         }
 
         [Fact]
@@ -120,19 +120,19 @@
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_4);
             traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-            var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+            var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-            collectionProgress[0].Number.Should().Be(1);
-            collectionProgress[0].Completed.Should().BeNull();
-            collectionProgress[0].LastWatchedAt.Should().BeNull();
+            watchedProgress[0].Number.Should().Be(1);
+            watchedProgress[0].Completed.Should().BeNull();
+            watchedProgress[0].LastWatchedAt.Should().BeNull();
 
-            collectionProgress[1].Number.Should().Be(2);
-            collectionProgress[1].Completed.Should().BeTrue();
-            collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[1].Number.Should().Be(2);
+            watchedProgress[1].Completed.Should().BeTrue();
+            watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[2].Number.Should().Be(3);
-            collectionProgress[2].Completed.Should().BeTrue();
-            collectionProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[2].Number.Should().Be(3);
+            watchedProgress[2].Completed.Should().BeTrue();
+            watchedProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
         }
 
         [Fact]
@@ -143,19 +143,19 @@
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_5);
             traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-            var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+            var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-            collectionProgress[0].Number.Should().Be(1);
-            collectionProgress[0].Completed.Should().BeTrue();
-            collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[0].Number.Should().Be(1);
+            watchedProgress[0].Completed.Should().BeTrue();
+            watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[1].Number.Should().BeNull();
-            collectionProgress[1].Completed.Should().BeTrue();
-            collectionProgress[1].LastWatchedAt.Should().BeNull();
+            watchedProgress[1].Number.Should().BeNull();
+            watchedProgress[1].Completed.Should().BeTrue();
+            watchedProgress[1].LastWatchedAt.Should().BeNull();
 
-            collectionProgress[2].Number.Should().Be(3);
-            collectionProgress[2].Completed.Should().BeTrue();
-            collectionProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[2].Number.Should().Be(3);
+            watchedProgress[2].Completed.Should().BeTrue();
+            watchedProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
         }
 
         [Fact]
@@ -166,19 +166,19 @@
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_INCOMPLETE_6);
             traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-            var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+            var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-            collectionProgress[0].Number.Should().Be(1);
-            collectionProgress[0].Completed.Should().BeTrue();
-            collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[0].Number.Should().Be(1);
+            watchedProgress[0].Completed.Should().BeTrue();
+            watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[1].Number.Should().Be(2);
-            collectionProgress[1].Completed.Should().BeTrue();
-            collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[1].Number.Should().Be(2);
+            watchedProgress[1].Completed.Should().BeTrue();
+            watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[2].Number.Should().BeNull();
-            collectionProgress[2].Completed.Should().BeNull();
-            collectionProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[2].Number.Should().BeNull();
+            watchedProgress[2].Completed.Should().BeNull();
+            watchedProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
         }
 
         [Fact]
@@ -189,19 +189,19 @@
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_NOT_VALID_1);
             traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-            var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+            var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-            collectionProgress[0].Number.Should().BeNull();
-            collectionProgress[0].Completed.Should().BeTrue();
-            collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[0].Number.Should().BeNull();
+            watchedProgress[0].Completed.Should().BeTrue();
+            watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[1].Number.Should().Be(2);
-            collectionProgress[1].Completed.Should().BeTrue();
-            collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[1].Number.Should().Be(2);
+            watchedProgress[1].Completed.Should().BeTrue();
+            watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[2].Number.Should().Be(3);
-            collectionProgress[2].Completed.Should().BeTrue();
-            collectionProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[2].Number.Should().Be(3);
+            watchedProgress[2].Completed.Should().BeTrue();
+            watchedProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
         }
 
         [Fact]
@@ -212,19 +212,19 @@
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_NOT_VALID_2);
             traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-            var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+            var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-            collectionProgress[0].Number.Should().Be(1);
-            collectionProgress[0].Completed.Should().BeTrue();
-            collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[0].Number.Should().Be(1);
+            watchedProgress[0].Completed.Should().BeTrue();
+            watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[1].Number.Should().Be(2);
-            collectionProgress[1].Completed.Should().BeNull();
-            collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[1].Number.Should().Be(2);
+            watchedProgress[1].Completed.Should().BeNull();
+            watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[2].Number.Should().Be(3);
-            collectionProgress[2].Completed.Should().BeTrue();
-            collectionProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[2].Number.Should().Be(3);
+            watchedProgress[2].Completed.Should().BeTrue();
+            watchedProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
         }
 
         [Fact]
@@ -235,19 +235,19 @@
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_NOT_VALID_3);
             traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-            var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+            var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-            collectionProgress[0].Number.Should().Be(1);
-            collectionProgress[0].Completed.Should().BeTrue();
-            collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[0].Number.Should().Be(1);
+            watchedProgress[0].Completed.Should().BeTrue();
+            watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[1].Number.Should().Be(2);
-            collectionProgress[1].Completed.Should().BeTrue();
-            collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[1].Number.Should().Be(2);
+            watchedProgress[1].Completed.Should().BeTrue();
+            watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[2].Number.Should().Be(3);
-            collectionProgress[2].Completed.Should().BeTrue();
-            collectionProgress[2].LastWatchedAt.Should().BeNull();
+            watchedProgress[2].Number.Should().Be(3);
+            watchedProgress[2].Completed.Should().BeTrue();
+            watchedProgress[2].LastWatchedAt.Should().BeNull();
         }
 
         [Fact]
@@ -258,19 +258,19 @@
             var traktEpisodeWatchedProgresses = jsonReader.ReadArray(JSON_NOT_VALID_4);
             traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-            var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+            var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-            collectionProgress[0].Number.Should().BeNull();
-            collectionProgress[0].Completed.Should().BeTrue();
-            collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[0].Number.Should().BeNull();
+            watchedProgress[0].Completed.Should().BeTrue();
+            watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[1].Number.Should().Be(2);
-            collectionProgress[1].Completed.Should().BeNull();
-            collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+            watchedProgress[1].Number.Should().Be(2);
+            watchedProgress[1].Completed.Should().BeNull();
+            watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-            collectionProgress[2].Number.Should().Be(3);
-            collectionProgress[2].Completed.Should().BeTrue();
-            collectionProgress[2].LastWatchedAt.Should().BeNull();
+            watchedProgress[2].Number.Should().Be(3);
+            watchedProgress[2].Completed.Should().BeTrue();
+            watchedProgress[2].LastWatchedAt.Should().BeNull();
         }
 
         [Fact]
@@ -302,19 +302,19 @@
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
                 traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-                var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+                var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-                collectionProgress[0].Number.Should().Be(1);
-                collectionProgress[0].Completed.Should().BeTrue();
-                collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[0].Number.Should().Be(1);
+                watchedProgress[0].Completed.Should().BeTrue();
+                watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[1].Number.Should().Be(2);
-                collectionProgress[1].Completed.Should().BeTrue();
-                collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[1].Number.Should().Be(2);
+                watchedProgress[1].Completed.Should().BeTrue();
+                watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[2].Number.Should().Be(3);
-                collectionProgress[2].Completed.Should().BeTrue();
-                collectionProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[2].Number.Should().Be(3);
+                watchedProgress[2].Completed.Should().BeTrue();
+                watchedProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
             }
         }
 
@@ -329,19 +329,19 @@
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
                 traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-                var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+                var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-                collectionProgress[0].Number.Should().BeNull();
-                collectionProgress[0].Completed.Should().BeTrue();
-                collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[0].Number.Should().BeNull();
+                watchedProgress[0].Completed.Should().BeTrue();
+                watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[1].Number.Should().Be(2);
-                collectionProgress[1].Completed.Should().BeTrue();
-                collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[1].Number.Should().Be(2);
+                watchedProgress[1].Completed.Should().BeTrue();
+                watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[2].Number.Should().Be(3);
-                collectionProgress[2].Completed.Should().BeTrue();
-                collectionProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[2].Number.Should().Be(3);
+                watchedProgress[2].Completed.Should().BeTrue();
+                watchedProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
             }
         }
 
@@ -356,19 +356,19 @@
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
                 traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-                var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+                var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-                collectionProgress[0].Number.Should().Be(1);
-                collectionProgress[0].Completed.Should().BeTrue();
-                collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[0].Number.Should().Be(1);
+                watchedProgress[0].Completed.Should().BeTrue();
+                watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[1].Number.Should().Be(2);
-                collectionProgress[1].Completed.Should().BeNull();
-                collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[1].Number.Should().Be(2);
+                watchedProgress[1].Completed.Should().BeNull();
+                watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[2].Number.Should().Be(3);
-                collectionProgress[2].Completed.Should().BeTrue();
-                collectionProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[2].Number.Should().Be(3);
+                watchedProgress[2].Completed.Should().BeTrue();
+                watchedProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
             }
         }
 
@@ -383,19 +383,19 @@
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
                 traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-                var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+                var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-                collectionProgress[0].Number.Should().Be(1);
-                collectionProgress[0].Completed.Should().BeTrue();
-                collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[0].Number.Should().Be(1);
+                watchedProgress[0].Completed.Should().BeTrue();
+                watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[1].Number.Should().Be(2);
-                collectionProgress[1].Completed.Should().BeTrue();
-                collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[1].Number.Should().Be(2);
+                watchedProgress[1].Completed.Should().BeTrue();
+                watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[2].Number.Should().Be(3);
-                collectionProgress[2].Completed.Should().BeTrue();
-                collectionProgress[2].LastWatchedAt.Should().BeNull();
+                watchedProgress[2].Number.Should().Be(3);
+                watchedProgress[2].Completed.Should().BeTrue();
+                watchedProgress[2].LastWatchedAt.Should().BeNull();
             }
         }
 
@@ -410,19 +410,19 @@
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
                 traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-                var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+                var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-                collectionProgress[0].Number.Should().Be(1);
-                collectionProgress[0].Completed.Should().BeNull();
-                collectionProgress[0].LastWatchedAt.Should().BeNull();
+                watchedProgress[0].Number.Should().Be(1);
+                watchedProgress[0].Completed.Should().BeNull();
+                watchedProgress[0].LastWatchedAt.Should().BeNull();
 
-                collectionProgress[1].Number.Should().Be(2);
-                collectionProgress[1].Completed.Should().BeTrue();
-                collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[1].Number.Should().Be(2);
+                watchedProgress[1].Completed.Should().BeTrue();
+                watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[2].Number.Should().Be(3);
-                collectionProgress[2].Completed.Should().BeTrue();
-                collectionProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[2].Number.Should().Be(3);
+                watchedProgress[2].Completed.Should().BeTrue();
+                watchedProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
             }
         }
 
@@ -437,19 +437,19 @@
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
                 traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-                var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+                var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-                collectionProgress[0].Number.Should().Be(1);
-                collectionProgress[0].Completed.Should().BeTrue();
-                collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[0].Number.Should().Be(1);
+                watchedProgress[0].Completed.Should().BeTrue();
+                watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[1].Number.Should().BeNull();
-                collectionProgress[1].Completed.Should().BeTrue();
-                collectionProgress[1].LastWatchedAt.Should().BeNull();
+                watchedProgress[1].Number.Should().BeNull();
+                watchedProgress[1].Completed.Should().BeTrue();
+                watchedProgress[1].LastWatchedAt.Should().BeNull();
 
-                collectionProgress[2].Number.Should().Be(3);
-                collectionProgress[2].Completed.Should().BeTrue();
-                collectionProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[2].Number.Should().Be(3);
+                watchedProgress[2].Completed.Should().BeTrue();
+                watchedProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
             }
         }
 
@@ -464,19 +464,19 @@
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
                 traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-                var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+                var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-                collectionProgress[0].Number.Should().Be(1);
-                collectionProgress[0].Completed.Should().BeTrue();
-                collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[0].Number.Should().Be(1);
+                watchedProgress[0].Completed.Should().BeTrue();
+                watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[1].Number.Should().Be(2);
-                collectionProgress[1].Completed.Should().BeTrue();
-                collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[1].Number.Should().Be(2);
+                watchedProgress[1].Completed.Should().BeTrue();
+                watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[2].Number.Should().BeNull();
-                collectionProgress[2].Completed.Should().BeNull();
-                collectionProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[2].Number.Should().BeNull();
+                watchedProgress[2].Completed.Should().BeNull();
+                watchedProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
             }
         }
 
@@ -491,19 +491,19 @@
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
                 traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-                var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+                var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-                collectionProgress[0].Number.Should().BeNull();
-                collectionProgress[0].Completed.Should().BeTrue();
-                collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[0].Number.Should().BeNull();
+                watchedProgress[0].Completed.Should().BeTrue();
+                watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[1].Number.Should().Be(2);
-                collectionProgress[1].Completed.Should().BeTrue();
-                collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[1].Number.Should().Be(2);
+                watchedProgress[1].Completed.Should().BeTrue();
+                watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[2].Number.Should().Be(3);
-                collectionProgress[2].Completed.Should().BeTrue();
-                collectionProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[2].Number.Should().Be(3);
+                watchedProgress[2].Completed.Should().BeTrue();
+                watchedProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
             }
         }
 
@@ -518,19 +518,19 @@
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
                 traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-                var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+                var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-                collectionProgress[0].Number.Should().Be(1);
-                collectionProgress[0].Completed.Should().BeTrue();
-                collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[0].Number.Should().Be(1);
+                watchedProgress[0].Completed.Should().BeTrue();
+                watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[1].Number.Should().Be(2);
-                collectionProgress[1].Completed.Should().BeNull();
-                collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[1].Number.Should().Be(2);
+                watchedProgress[1].Completed.Should().BeNull();
+                watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[2].Number.Should().Be(3);
-                collectionProgress[2].Completed.Should().BeTrue();
-                collectionProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[2].Number.Should().Be(3);
+                watchedProgress[2].Completed.Should().BeTrue();
+                watchedProgress[2].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
             }
         }
 
@@ -545,19 +545,19 @@
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
                 traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-                var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+                var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-                collectionProgress[0].Number.Should().Be(1);
-                collectionProgress[0].Completed.Should().BeTrue();
-                collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[0].Number.Should().Be(1);
+                watchedProgress[0].Completed.Should().BeTrue();
+                watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[1].Number.Should().Be(2);
-                collectionProgress[1].Completed.Should().BeTrue();
-                collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[1].Number.Should().Be(2);
+                watchedProgress[1].Completed.Should().BeTrue();
+                watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[2].Number.Should().Be(3);
-                collectionProgress[2].Completed.Should().BeTrue();
-                collectionProgress[2].LastWatchedAt.Should().BeNull();
+                watchedProgress[2].Number.Should().Be(3);
+                watchedProgress[2].Completed.Should().BeTrue();
+                watchedProgress[2].LastWatchedAt.Should().BeNull();
             }
         }
 
@@ -572,19 +572,19 @@
                 var traktEpisodeWatchedProgresses = traktJsonReader.ReadArray(jsonReader);
                 traktEpisodeWatchedProgresses.Should().NotBeNull();
 
-                var collectionProgress = traktEpisodeWatchedProgresses.ToArray();
+                var watchedProgress = traktEpisodeWatchedProgresses.ToArray();
 
-                collectionProgress[0].Number.Should().BeNull();
-                collectionProgress[0].Completed.Should().BeTrue();
-                collectionProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[0].Number.Should().BeNull();
+                watchedProgress[0].Completed.Should().BeTrue();
+                watchedProgress[0].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[1].Number.Should().Be(2);
-                collectionProgress[1].Completed.Should().BeNull();
-                collectionProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                watchedProgress[1].Number.Should().Be(2);
+                watchedProgress[1].Completed.Should().BeNull();
+                watchedProgress[1].LastWatchedAt.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
 
-                collectionProgress[2].Number.Should().Be(3);
-                collectionProgress[2].Completed.Should().BeTrue();
-                collectionProgress[2].LastWatchedAt.Should().BeNull();
+                watchedProgress[2].Number.Should().Be(3);
+                watchedProgress[2].Completed.Should().BeTrue();
+                watchedProgress[2].LastWatchedAt.Should().BeNull();
             }
         }
 
