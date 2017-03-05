@@ -145,6 +145,7 @@
     <Compile Include="Objects\JsonReader\Basic\TraktRatingObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Basic\TraktSharingObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Basic\TraktStatisticsObjectJsonReader.cs" />
+    <Compile Include="Objects\JsonReader\Get\Episodes\TraktEpisodeArrayJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Get\Episodes\TraktEpisodeCollectionProgressArrayJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Get\Episodes\TraktEpisodeCollectionProgressObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Get\Episodes\TraktEpisodeIdsObjectJsonReader.cs" />
