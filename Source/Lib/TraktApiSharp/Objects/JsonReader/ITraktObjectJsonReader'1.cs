@@ -2,7 +2,7 @@
 {
     using Newtonsoft.Json;
 
-    internal interface ITraktObjectJsonReader<TReturnType> where TReturnType : class, new()
+    internal interface ITraktObjectJsonReader<TReturnType>
     {
         TReturnType ReadObject(string json);
 

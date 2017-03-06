@@ -3,7 +3,7 @@
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
-    internal interface ITraktArrayJsonReader<TReturnType> where TReturnType : class, new()
+    internal interface ITraktArrayJsonReader<TReturnType>
     {
         IEnumerable<TReturnType> ReadArray(string json);
 
