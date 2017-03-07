@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Seasons
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using System.Linq;
     using Traits;
     using TraktApiSharp.Objects.Get.Seasons;
+    using TraktApiSharp.Objects.JsonReader.Get.Seasons;
     using Xunit;
 
     [Category("Objects.Get.Seasons")]
@@ -30,7 +30,8 @@
         [Fact]
         public void Test_TraktSeason_From_Minimal_Json()
         {
-            var season = JsonConvert.DeserializeObject<TraktSeason>(MINIMAL_JSON);
+            var jsonReader = new TraktSeasonObjectJsonReader();
+            var season = jsonReader.ReadObject(MINIMAL_JSON);
 
             season.Should().NotBeNull();
             season.Number.Should().Be(1);
@@ -51,7 +52,8 @@
         [Fact]
         public void Test_TraktSeason_From_Full_Json()
         {
-            var season = JsonConvert.DeserializeObject<TraktSeason>(FULL_JSON);
+            var jsonReader = new TraktSeasonObjectJsonReader();
+            var season = jsonReader.ReadObject(FULL_JSON);
 
             season.Should().NotBeNull();
             season.Number.Should().Be(1);

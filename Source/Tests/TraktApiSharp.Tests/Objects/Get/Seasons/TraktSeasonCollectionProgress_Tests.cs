@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Seasons
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using System.Linq;
     using Traits;
     using TraktApiSharp.Objects.Get.Seasons;
+    using TraktApiSharp.Objects.JsonReader.Get.Seasons;
     using Xunit;
 
     [Category("Objects.Get.Seasons")]
@@ -25,7 +25,8 @@
         [Fact]
         public void Test_TraktSeasonCollectionProgress_From_Json()
         {
-            var seasonCollectionProgress = JsonConvert.DeserializeObject<TraktSeasonCollectionProgress>(JSON);
+            var jsonReader = new TraktSeasonCollectionProgressObjectJsonReader();
+            var seasonCollectionProgress = jsonReader.ReadObject(JSON);
 
             seasonCollectionProgress.Should().NotBeNull();
             seasonCollectionProgress.Number.Should().Be(2);
