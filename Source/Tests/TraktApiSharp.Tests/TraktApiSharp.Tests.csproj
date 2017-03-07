@@ -154,6 +154,7 @@
     <Compile Include="Objects\JsonReader\Get\Episodes\TraktEpisodeTranslationObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\JsonReader\Get\Episodes\TraktEpisodeWatchedProgressArrayJsonReader_Tests.cs" />
     <Compile Include="Objects\JsonReader\Get\Episodes\TraktEpisodeWatchedProgressObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\JsonReader\Get\Movies\ITraktMovieObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\JsonReader\Get\Movies\TraktMovieAliasObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\JsonReader\Get\Movies\TraktMovieIdsObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\JsonReader\Get\Movies\TraktMovieReleaseObjectJsonReader_Tests.cs" />
