@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Episodes
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using Traits;
     using TraktApiSharp.Objects.Get.Episodes;
+    using TraktApiSharp.Objects.JsonReader.Get.Episodes;
     using Xunit;
 
     [Category("Objects.Get.Episodes")]
@@ -22,7 +22,8 @@
         [Fact]
         public void Test_TraktEpisodeTranslation_From_Json()
         {
-            var episodeTranslation = JsonConvert.DeserializeObject<TraktEpisodeTranslation>(JSON);
+            var jsonReader = new TraktEpisodeTranslationObjectJsonReader();
+            var episodeTranslation = jsonReader.ReadObject(JSON);
 
             episodeTranslation.Should().NotBeNull();
             episodeTranslation.Title.Should().Be("Winter Is Coming");
