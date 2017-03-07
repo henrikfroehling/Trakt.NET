@@ -41,22 +41,38 @@
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_TRAKT:
-                            traktIds.Trakt = (uint)jsonReader.ReadAsInt32();
+                            uint traktId;
+
+                            if (JsonReaderHelper.ReadUnsignedIntegerValue(jsonReader, out traktId))
+                                traktIds.Trakt = traktId;
+
                             break;
                         case PROPERTY_NAME_SLUG:
                             traktIds.Slug = jsonReader.ReadAsString();
                             break;
                         case PROPERTY_NAME_TVDB:
-                            traktIds.Tvdb = (uint)jsonReader.ReadAsInt32();
+                            uint tvdbId;
+
+                            if (JsonReaderHelper.ReadUnsignedIntegerValue(jsonReader, out tvdbId))
+                                traktIds.Tvdb = tvdbId;
+
                             break;
                         case PROPERTY_NAME_IMDB:
                             traktIds.Imdb = jsonReader.ReadAsString();
                             break;
                         case PROPERTY_NAME_TMDB:
-                            traktIds.Tmdb = (uint)jsonReader.ReadAsInt32();
+                            uint tmdbId;
+
+                            if (JsonReaderHelper.ReadUnsignedIntegerValue(jsonReader, out tmdbId))
+                                traktIds.Tmdb = tmdbId;
+
                             break;
                         case PROPERTY_NAME_TVRAGE:
-                            traktIds.TvRage = (uint)jsonReader.ReadAsInt32();
+                            uint tvRageId;
+
+                            if (JsonReaderHelper.ReadUnsignedIntegerValue(jsonReader, out tvRageId))
+                                traktIds.TvRage = tvRageId;
+
                             break;
                         default:
                             JsonReaderHelper.OverreadInvalidContent(jsonReader);

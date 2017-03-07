@@ -47,6 +47,20 @@
             return false;
         }
 
+        internal static bool ReadUnsignedIntegerValue(JsonTextReader jsonReader, out uint propertyValue)
+        {
+            var value = jsonReader.ReadAsInt32();
+
+            if (value.HasValue)
+            {
+                propertyValue = (uint)value;
+                return true;
+            }
+
+            propertyValue = 0;
+            return false;
+        }
+
         internal static void ReadEnumerationValue<TEnumeration>(JsonTextReader jsonReader, out TEnumeration enumeration) where TEnumeration : TraktEnumeration, new()
         {
             var value = jsonReader.ReadAsString();

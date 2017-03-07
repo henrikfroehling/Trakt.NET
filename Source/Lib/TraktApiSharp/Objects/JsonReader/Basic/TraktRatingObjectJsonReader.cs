@@ -39,7 +39,7 @@
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_RATING:
-                            traktRating.Rating = (float)jsonReader.ReadAsDouble();
+                            traktRating.Rating = (float?)jsonReader.ReadAsDouble();
                             break;
                         case PROPERTY_NAME_VOTES:
                             traktRating.Votes = jsonReader.ReadAsInt32();
