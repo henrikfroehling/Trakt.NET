@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Shows
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using Traits;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.JsonReader.Get.Shows;
     using Xunit;
 
     [Category("Objects.Get.Shows")]
@@ -22,7 +22,8 @@
         [Fact]
         public void Test_TraktShowAirs_From_Json()
         {
-            var showAirs = JsonConvert.DeserializeObject<TraktShowAirs>(JSON);
+            var jsonReader = new TraktShowAirsObjectJsonReader();
+            var showAirs = jsonReader.ReadObject(JSON);
 
             showAirs.Should().NotBeNull();
             showAirs.Day.Should().Be("Sunday");

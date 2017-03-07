@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Shows
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using Traits;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.JsonReader.Get.Shows;
     using Xunit;
 
     [Category("Objects.Get.Shows")]
@@ -22,7 +22,8 @@
         [Fact]
         public void Test_TraktShowTranslation_From_Json()
         {
-            var showTranslation = JsonConvert.DeserializeObject<TraktShowTranslation>(JSON);
+            var jsonReader = new TraktShowTranslationObjectJsonReader();
+            var showTranslation = jsonReader.ReadObject(JSON);
 
             showTranslation.Should().NotBeNull();
             showTranslation.Title.Should().Be("Game of Thrones");

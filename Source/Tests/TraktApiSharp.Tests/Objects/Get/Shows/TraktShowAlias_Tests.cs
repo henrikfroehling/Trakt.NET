@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Shows
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using Traits;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.JsonReader.Get.Shows;
     using Xunit;
 
     [Category("Objects.Get.Shows")]
@@ -21,7 +21,8 @@
         [Fact]
         public void Test_TraktShowAlias_From_Json()
         {
-            var showAlias = JsonConvert.DeserializeObject<TraktShowAlias>(JSON);
+            var jsonReader = new TraktShowAliasObjectJsonReader();
+            var showAlias = jsonReader.ReadObject(JSON);
 
             showAlias.Should().NotBeNull();
             showAlias.Title.Should().Be("Game of Thrones- Das Lied von Eis und Feuer");

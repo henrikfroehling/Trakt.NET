@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Shows
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using Traits;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.JsonReader.Get.Shows;
     using Xunit;
 
     [Category("Objects.Get.Shows")]
@@ -142,7 +142,8 @@
         [Fact]
         public void Test_TraktShowIds_From_Json()
         {
-            var showIds = JsonConvert.DeserializeObject<TraktShowIds>(JSON);
+            var jsonReader = new TraktShowIdsObjectJsonReader();
+            var showIds = jsonReader.ReadObject(JSON);
 
             showIds.Should().NotBeNull();
             showIds.Trakt.Should().Be(1390);

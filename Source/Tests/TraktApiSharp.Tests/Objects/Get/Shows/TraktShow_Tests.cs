@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Shows
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.JsonReader.Get.Shows;
     using Xunit;
 
     [Category("Objects.Get.Shows")]
@@ -48,7 +48,8 @@
         [Fact]
         public void Test_TraktShow_From_Minimal_Json()
         {
-            var show = JsonConvert.DeserializeObject<TraktShow>(MINIMAL_JSON);
+            var jsonReader = new ITraktShowObjectJsonReader();
+            var show = jsonReader.ReadObject(MINIMAL_JSON);
 
             show.Should().NotBeNull();
             show.Title.Should().Be("Game of Thrones");
@@ -83,7 +84,8 @@
         [Fact]
         public void Test_TraktShow_From_Full_Json()
         {
-            var show = JsonConvert.DeserializeObject<TraktShow>(FULL_JSON);
+            var jsonReader = new ITraktShowObjectJsonReader();
+            var show = jsonReader.ReadObject(FULL_JSON);
 
             show.Should().NotBeNull();
             show.Title.Should().Be("Game of Thrones");

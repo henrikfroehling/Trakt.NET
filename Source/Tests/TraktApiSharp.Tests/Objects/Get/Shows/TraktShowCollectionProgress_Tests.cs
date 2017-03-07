@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Shows
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using System.Linq;
     using Traits;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.JsonReader.Get.Shows;
     using Xunit;
 
     [Category("Objects.Get.Shows")]
@@ -27,7 +27,8 @@
         [Fact]
         public void Test_TraktShowCollectionProgress_From_Json()
         {
-            var showCollectionProgress = JsonConvert.DeserializeObject<TraktShowCollectionProgress>(JSON);
+            var jsonReader = new TraktShowCollectionProgressObjectJsonReader();
+            var showCollectionProgress = jsonReader.ReadObject(JSON);
 
             showCollectionProgress.Should().NotBeNull();
 
