@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.People
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using Traits;
     using TraktApiSharp.Objects.Get.People;
+    using TraktApiSharp.Objects.JsonReader.Get.People;
     using Xunit;
 
     [Category("Objects.Get.People")]
@@ -28,7 +28,8 @@
         [Fact]
         public void Test_TraktPerson_From_Minimal_Json()
         {
-            var person = JsonConvert.DeserializeObject<TraktPerson>(MINIMAL_JSON);
+            var jsonReader = new TraktPersonObjectJsonReader();
+            var person = jsonReader.ReadObject(MINIMAL_JSON);
 
             person.Should().NotBeNull();
             person.Name.Should().Be("Bryan Cranston");
@@ -49,7 +50,8 @@
         [Fact]
         public void Test_TraktPerson_From_Full_Json()
         {
-            var person = JsonConvert.DeserializeObject<TraktPerson>(FULL_JSON);
+            var jsonReader = new TraktPersonObjectJsonReader();
+            var person = jsonReader.ReadObject(FULL_JSON);
 
             person.Should().NotBeNull();
             person.Name.Should().Be("Bryan Cranston");

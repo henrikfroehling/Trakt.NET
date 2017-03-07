@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.People
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using Traits;
     using TraktApiSharp.Objects.Get.People;
+    using TraktApiSharp.Objects.JsonReader.Get.People;
     using Xunit;
 
     [Category("Objects.Get.People")]
@@ -12,69 +12,69 @@
         [Fact]
         public void Test_TraktPersonIds_Default_Constructor()
         {
-            var showIds = new TraktPersonIds();
+            var personIds = new TraktPersonIds();
 
-            showIds.Trakt.Should().Be(0);
-            showIds.Slug.Should().BeNullOrEmpty();
-            showIds.Imdb.Should().BeNullOrEmpty();
-            showIds.Tmdb.Should().BeNull();
-            showIds.TvRage.Should().BeNull();
-            showIds.HasAnyId.Should().BeFalse();
+            personIds.Trakt.Should().Be(0);
+            personIds.Slug.Should().BeNullOrEmpty();
+            personIds.Imdb.Should().BeNullOrEmpty();
+            personIds.Tmdb.Should().BeNull();
+            personIds.TvRage.Should().BeNull();
+            personIds.HasAnyId.Should().BeFalse();
         }
 
         [Fact]
         public void Test_TraktPersonIds_HasAnyId()
         {
-            var showIds = new TraktPersonIds { Trakt = 1 };
-            showIds.HasAnyId.Should().BeTrue();
+            var personIds = new TraktPersonIds { Trakt = 1 };
+            personIds.HasAnyId.Should().BeTrue();
 
-            showIds = new TraktPersonIds { Slug = "slug" };
-            showIds.HasAnyId.Should().BeTrue();
+            personIds = new TraktPersonIds { Slug = "slug" };
+            personIds.HasAnyId.Should().BeTrue();
 
-            showIds = new TraktPersonIds { Imdb = "imdb" };
-            showIds.HasAnyId.Should().BeTrue();
+            personIds = new TraktPersonIds { Imdb = "imdb" };
+            personIds.HasAnyId.Should().BeTrue();
 
-            showIds = new TraktPersonIds { Tmdb = 1 };
-            showIds.HasAnyId.Should().BeTrue();
+            personIds = new TraktPersonIds { Tmdb = 1 };
+            personIds.HasAnyId.Should().BeTrue();
 
-            showIds = new TraktPersonIds { TvRage = 1 };
-            showIds.HasAnyId.Should().BeTrue();
+            personIds = new TraktPersonIds { TvRage = 1 };
+            personIds.HasAnyId.Should().BeTrue();
         }
 
         [Fact]
         public void Test_TraktPersonIds_GetBestId()
         {
-            var showIds = new TraktPersonIds();
+            var personIds = new TraktPersonIds();
 
-            var bestId = showIds.GetBestId();
+            var bestId = personIds.GetBestId();
             bestId.Should().NotBeNull().And.BeEmpty();
 
-            showIds = new TraktPersonIds { Trakt = 1 };
+            personIds = new TraktPersonIds { Trakt = 1 };
 
-            bestId = showIds.GetBestId();
+            bestId = personIds.GetBestId();
             bestId.Should().Be("1");
 
-            showIds = new TraktPersonIds { Slug = "slug" };
+            personIds = new TraktPersonIds { Slug = "slug" };
 
-            bestId = showIds.GetBestId();
+            bestId = personIds.GetBestId();
             bestId.Should().Be("slug");
 
-            showIds = new TraktPersonIds { Imdb = "imdb" };
+            personIds = new TraktPersonIds { Imdb = "imdb" };
 
-            bestId = showIds.GetBestId();
+            bestId = personIds.GetBestId();
             bestId.Should().Be("imdb");
 
-            showIds = new TraktPersonIds { Tmdb = 1 };
+            personIds = new TraktPersonIds { Tmdb = 1 };
 
-            bestId = showIds.GetBestId();
+            bestId = personIds.GetBestId();
             bestId.Should().Be("1");
 
-            showIds = new TraktPersonIds { TvRage = 1 };
+            personIds = new TraktPersonIds { TvRage = 1 };
 
-            bestId = showIds.GetBestId();
+            bestId = personIds.GetBestId();
             bestId.Should().Be("1");
 
-            showIds = new TraktPersonIds
+            personIds = new TraktPersonIds
             {
                 Trakt = 1,
                 Slug = "slug",
@@ -83,10 +83,10 @@
                 TvRage = 1
             };
 
-            bestId = showIds.GetBestId();
+            bestId = personIds.GetBestId();
             bestId.Should().Be("1");
 
-            showIds = new TraktPersonIds
+            personIds = new TraktPersonIds
             {
                 Slug = "slug",
                 Imdb = "imdb",
@@ -94,41 +94,42 @@
                 TvRage = 1
             };
 
-            bestId = showIds.GetBestId();
+            bestId = personIds.GetBestId();
             bestId.Should().Be("slug");
 
-            showIds = new TraktPersonIds
+            personIds = new TraktPersonIds
             {
                 Imdb = "imdb",
                 Tmdb = 1,
                 TvRage = 1
             };
 
-            bestId = showIds.GetBestId();
+            bestId = personIds.GetBestId();
             bestId.Should().Be("imdb");
 
-            showIds = new TraktPersonIds
+            personIds = new TraktPersonIds
             {
                 Tmdb = 1,
                 TvRage = 1
             };
 
-            bestId = showIds.GetBestId();
+            bestId = personIds.GetBestId();
             bestId.Should().Be("1");
         }
 
         [Fact]
         public void Test_TraktPersonIds_From_Json()
         {
-            var showIds = JsonConvert.DeserializeObject<TraktPersonIds>(JSON);
+            var jsonReader = new TraktPersonIdsObjectJsonReader();
+            var personIds = jsonReader.ReadObject(JSON);
 
-            showIds.Should().NotBeNull();
-            showIds.Trakt.Should().Be(297737);
-            showIds.Slug.Should().Be("bryan-cranston");
-            showIds.Imdb.Should().Be("nm0186505");
-            showIds.Tmdb.Should().Be(17419U);
-            showIds.TvRage.Should().Be(1797U);
-            showIds.HasAnyId.Should().BeTrue();
+            personIds.Should().NotBeNull();
+            personIds.Trakt.Should().Be(297737);
+            personIds.Slug.Should().Be("bryan-cranston");
+            personIds.Imdb.Should().Be("nm0186505");
+            personIds.Tmdb.Should().Be(17419U);
+            personIds.TvRage.Should().Be(1797U);
+            personIds.HasAnyId.Should().BeTrue();
         }
 
         private const string JSON =
