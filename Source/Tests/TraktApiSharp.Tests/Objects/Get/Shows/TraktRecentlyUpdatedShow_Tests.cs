@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Shows
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.JsonReader.Get.Shows;
     using Xunit;
 
     [Category("Objects.Get.Shows")]
@@ -51,7 +51,8 @@
         [Fact]
         public void Test_TraktRecentlyUpdatedShow_From_Minimal_Json()
         {
-            var recentlyUpdatedShow = JsonConvert.DeserializeObject<TraktRecentlyUpdatedShow>(MINIMAL_JSON);
+            var jsonReader = new ITraktRecentlyUpdatedShowObjectJsonReader();
+            var recentlyUpdatedShow = jsonReader.ReadObject(MINIMAL_JSON);
 
             recentlyUpdatedShow.Should().NotBeNull();
             recentlyUpdatedShow.RecentlyUpdatedAt.Should().Be(DateTime.Parse("2016-03-31T01:29:13Z").ToUniversalTime());
@@ -117,7 +118,8 @@
         [Fact]
         public void Test_TraktRecentlyUpdatedShow_From_Full_Json()
         {
-            var recentlyUpdatedShow = JsonConvert.DeserializeObject<TraktRecentlyUpdatedShow>(FULL_JSON);
+            var jsonReader = new ITraktRecentlyUpdatedShowObjectJsonReader();
+            var recentlyUpdatedShow = jsonReader.ReadObject(FULL_JSON);
 
             recentlyUpdatedShow.Should().NotBeNull();
             recentlyUpdatedShow.RecentlyUpdatedAt.Should().Be(DateTime.Parse("2016-03-31T01:29:13Z").ToUniversalTime());

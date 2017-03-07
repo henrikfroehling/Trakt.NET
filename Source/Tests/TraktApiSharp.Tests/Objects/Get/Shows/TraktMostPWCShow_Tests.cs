@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Shows
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.JsonReader.Get.Shows;
     using Xunit;
 
     [Category("Objects.Get.Shows")]
@@ -54,7 +54,8 @@
         [Fact]
         public void Test_TraktMostPWCShow_From_Minimal_Json()
         {
-            var mostPWCShow = JsonConvert.DeserializeObject<TraktMostPWCShow>(MINIMAL_JSON);
+            var jsonReader = new ITraktMostPWCShowObjectJsonReader();
+            var mostPWCShow = jsonReader.ReadObject(MINIMAL_JSON);
 
             mostPWCShow.Should().NotBeNull();
             mostPWCShow.WatcherCount.Should().Be(4992);
@@ -123,7 +124,8 @@
         [Fact]
         public void Test_TraktMostPWCShow_From_Full_Json()
         {
-            var mostPWCShow = JsonConvert.DeserializeObject<TraktMostPWCShow>(FULL_JSON);
+            var jsonReader = new ITraktMostPWCShowObjectJsonReader();
+            var mostPWCShow = jsonReader.ReadObject(FULL_JSON);
 
             mostPWCShow.Should().NotBeNull();
             mostPWCShow.WatcherCount.Should().Be(4992);
