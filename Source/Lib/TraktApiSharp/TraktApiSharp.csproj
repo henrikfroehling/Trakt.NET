@@ -173,6 +173,7 @@
     <Compile Include="Objects\JsonReader\Get\Shows\TraktShowCollectionProgressObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Get\Shows\TraktShowIdsObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Get\Shows\TraktShowTranslationObjectJsonReader.cs" />
+    <Compile Include="Objects\JsonReader\Get\Shows\TraktShowWatchedProgressObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\ITraktArrayJsonReader%271.cs" />
     <Compile Include="Objects\JsonReader\ITraktObjectJsonReader%271.cs" />
     <Compile Include="Objects\JsonReader\TraktJsonReaderFactory%271.cs" />
