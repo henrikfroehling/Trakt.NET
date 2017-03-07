@@ -5,7 +5,6 @@
     using Objects.Get.Shows;
     using Seasons;
     using System;
-    using System.Collections.Generic;
     using System.IO;
 
     internal class ITraktShowObjectJsonReader : ITraktObjectJsonReader<ITraktShow>
@@ -76,15 +75,13 @@
                             traktShow.Overview = jsonReader.ReadAsString();
                             break;
                         case PROPERTY_NAME_FIRST_AIRED:
-                            if (jsonReader.Read())
                             {
-                                if (jsonReader.ValueType == typeof(DateTime))
-                                    traktShow.FirstAired = (DateTime)jsonReader.Value;
-                                else if (jsonReader.ValueType == typeof(string))
-                                    traktShow.FirstAired = DateTime.Parse(jsonReader.Value.ToString());
-                            }
+                                DateTime dateTime;
+                                if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
+                                    traktShow.FirstAired = dateTime;
 
-                            break;
+                                break;
+                            }
                         case PROPERTY_NAME_AIRS:
                             traktShow.Airs = airsObjectReader.ReadObject(jsonReader);
                             break;
@@ -107,11 +104,9 @@
                             traktShow.Homepage = jsonReader.ReadAsString();
                             break;
                         case PROPERTY_NAME_STATUS:
-                            var value = jsonReader.ReadAsString();
-
-                            if (!string.IsNullOrEmpty(value))
-                                traktShow.Status = TraktEnumeration.FromObjectName<TraktShowStatus>(value);
-
+                            TraktShowStatus showStatus = null;
+                            JsonReaderHelper.ReadEnumerationValue(jsonReader, out showStatus);
+                            traktShow.Status = showStatus;
                             break;
                         case PROPERTY_NAME_RATING:
                             traktShow.Rating = (float?)jsonReader.ReadAsDouble();
@@ -120,23 +115,21 @@
                             traktShow.Votes = jsonReader.ReadAsInt32();
                             break;
                         case PROPERTY_NAME_UPDATED_AT:
-                            if (jsonReader.Read())
                             {
-                                if (jsonReader.ValueType == typeof(DateTime))
-                                    traktShow.UpdatedAt = (DateTime)jsonReader.Value;
-                                else if (jsonReader.ValueType == typeof(string))
-                                    traktShow.UpdatedAt = DateTime.Parse(jsonReader.Value.ToString());
-                            }
+                                DateTime dateTime;
+                                if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
+                                    traktShow.UpdatedAt = dateTime;
 
-                            break;
+                                break;
+                            }
                         case PROPERTY_NAME_LANGUAGE:
                             traktShow.LanguageCode = jsonReader.ReadAsString();
                             break;
                         case PROPERTY_NAME_AVAILABLE_TRANSLATIONS:
-                            traktShow.AvailableTranslationLanguageCodes = ReadStringArray(jsonReader);
+                            traktShow.AvailableTranslationLanguageCodes = JsonReaderHelper.ReadStringArray(jsonReader);
                             break;
                         case PROPERTY_NAME_GENRES:
-                            traktShow.Genres = ReadStringArray(jsonReader);
+                            traktShow.Genres = JsonReaderHelper.ReadStringArray(jsonReader);
                             break;
                         case PROPERTY_NAME_AIRED_EPISODES:
                             traktShow.AiredEpisodes = jsonReader.ReadAsInt32();
@@ -145,48 +138,12 @@
                             traktShow.Seasons = seasonsArrayReader.ReadArray(jsonReader);
                             break;
                         default:
-                            jsonReader.Read(); // read unmatched property value
-
-                            if (jsonReader.TokenType == JsonToken.StartArray)
-                            {
-                                // step over possible array values for unmatched property
-                                while (jsonReader.Read() && jsonReader.TokenType != JsonToken.EndArray)
-                                {
-                                }
-                            }
-                            else if (jsonReader.TokenType == JsonToken.StartObject)
-                            {
-                                // step over possible object values for unmatched property
-                                while (jsonReader.Read() && jsonReader.TokenType != JsonToken.EndObject)
-                                {
-                                }
-                            }
-
+                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
                             break;
                     }
                 }
 
                 return traktShow;
-            }
-
-            return null;
-        }
-
-        private static IEnumerable<string> ReadStringArray(JsonTextReader reader)
-        {
-            if (reader.Read() && reader.TokenType == JsonToken.StartArray)
-            {
-                var values = new List<string>();
-
-                while (reader.Read() && reader.TokenType == JsonToken.String)
-                {
-                    var value = (string)reader.Value;
-
-                    if (!string.IsNullOrEmpty(value))
-                        values.Add(value);
-                }
-
-                return values;
             }
 
             return null;

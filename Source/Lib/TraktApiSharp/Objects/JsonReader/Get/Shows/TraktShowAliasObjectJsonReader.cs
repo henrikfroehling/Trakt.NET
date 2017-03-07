@@ -43,7 +43,7 @@
                             traktShowAlias.CountryCode = jsonReader.ReadAsString();
                             break;
                         default:
-                            jsonReader.Read(); // read unmatched property value
+                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
                             break;
                     }
                 }

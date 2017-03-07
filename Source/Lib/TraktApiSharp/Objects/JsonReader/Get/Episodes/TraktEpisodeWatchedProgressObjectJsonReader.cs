@@ -45,12 +45,15 @@
                             traktEpisodeWatchedProgress.Completed = jsonReader.ReadAsBoolean();
                             break;
                         case PROPERTY_NAME_LAST_WATCHED_AT:
-                            if (jsonReader.Read() && jsonReader.ValueType == typeof(DateTime))
-                                traktEpisodeWatchedProgress.LastWatchedAt = (DateTime)jsonReader.Value;
+                            {
+                                DateTime dateTime;
+                                if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
+                                    traktEpisodeWatchedProgress.LastWatchedAt = dateTime;
 
-                            break;
+                                break;
+                            }
                         default:
-                            jsonReader.Read(); // read unmatched property value
+                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
                             break;
                     }
                 }

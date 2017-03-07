@@ -69,36 +69,18 @@
                             traktSeason.Overview = jsonReader.ReadAsString();
                             break;
                         case PROPERTY_NAME_FIRST_AIRED:
-                            if (jsonReader.Read())
                             {
-                                if (jsonReader.ValueType == typeof(DateTime))
-                                    traktSeason.FirstAired = (DateTime)jsonReader.Value;
-                                else if (jsonReader.ValueType == typeof(string))
-                                    traktSeason.FirstAired = DateTime.Parse(jsonReader.Value.ToString());
-                            }
+                                DateTime dateTime;
+                                if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
+                                    traktSeason.FirstAired = dateTime;
 
-                            break;
+                                break;
+                            }
                         case PROPERTY_NAME_EPISODES:
                             traktSeason.Episodes = episodesArrayReader.ReadArray(jsonReader);
                             break;
                         default:
-                            jsonReader.Read(); // read unmatched property value
-
-                            if (jsonReader.TokenType == JsonToken.StartArray)
-                            {
-                                // step over possible array values for unmatched property
-                                while (jsonReader.Read() && jsonReader.TokenType != JsonToken.EndArray)
-                                {
-                                }
-                            }
-                            else if (jsonReader.TokenType == JsonToken.StartObject)
-                            {
-                                // step over possible object values for unmatched property
-                                while (jsonReader.Read() && jsonReader.TokenType != JsonToken.EndObject)
-                                {
-                                }
-                            }
-
+                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
                             break;
                     }
                 }

@@ -3,7 +3,6 @@
     using Newtonsoft.Json;
     using Objects.Get.Episodes;
     using System;
-    using System.Collections.Generic;
     using System.IO;
 
     internal class TraktEpisodeObjectJsonReader : ITraktObjectJsonReader<TraktEpisode>
@@ -79,74 +78,34 @@
                             traktEpisode.Votes = jsonReader.ReadAsInt32();
                             break;
                         case PROPERTY_NAME_FIRST_AIRED:
-                            if (jsonReader.Read())
                             {
-                                if (jsonReader.ValueType == typeof(DateTime))
-                                    traktEpisode.FirstAired = (DateTime)jsonReader.Value;
-                                else if (jsonReader.ValueType == typeof(string))
-                                    traktEpisode.FirstAired = DateTime.Parse(jsonReader.Value.ToString());
-                            }
+                                DateTime dateTime;
+                                if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
+                                    traktEpisode.FirstAired = dateTime;
 
-                            break;
+                                break;
+                            }
                         case PROPERTY_NAME_UPDATED_AT:
-                            if (jsonReader.Read())
                             {
-                                if (jsonReader.ValueType == typeof(DateTime))
-                                    traktEpisode.UpdatedAt = (DateTime)jsonReader.Value;
-                                else if (jsonReader.ValueType == typeof(string))
-                                    traktEpisode.UpdatedAt = DateTime.Parse(jsonReader.Value.ToString());
-                            }
+                                DateTime dateTime;
+                                if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
+                                    traktEpisode.UpdatedAt = dateTime;
 
-                            break;
+                                break;
+                            }
                         case PROPERTY_NAME_AVAILABLE_TRANSLATIONS:
-                            traktEpisode.AvailableTranslationLanguageCodes = ReadStringArray(jsonReader);
+                            traktEpisode.AvailableTranslationLanguageCodes = JsonReaderHelper.ReadStringArray(jsonReader);
                             break;
                         case PROPERTY_NAME_TRANSLATIONS:
                             traktEpisode.Translations = translationArrayReader.ReadArray(jsonReader);
                             break;
                         default:
-                            jsonReader.Read(); // read unmatched property value
-
-                            if (jsonReader.TokenType == JsonToken.StartArray)
-                            {
-                                // step over possible array values for unmatched property
-                                while (jsonReader.Read() && jsonReader.TokenType != JsonToken.EndArray)
-                                {
-                                }
-                            }
-                            else if (jsonReader.TokenType == JsonToken.StartObject)
-                            {
-                                // step over possible object values for unmatched property
-                                while (jsonReader.Read() && jsonReader.TokenType != JsonToken.EndObject)
-                                {
-                                }
-                            }
-
+                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
                             break;
                     }
                 }
 
                 return traktEpisode;
-            }
-
-            return null;
-        }
-
-        private static IEnumerable<string> ReadStringArray(JsonTextReader reader)
-        {
-            if (reader.Read() && reader.TokenType == JsonToken.StartArray)
-            {
-                var values = new List<string>();
-
-                while (reader.Read() && reader.TokenType == JsonToken.String)
-                {
-                    var value = (string)reader.Value;
-
-                    if (!string.IsNullOrEmpty(value))
-                        values.Add(value);
-                }
-
-                return values;
             }
 
             return null;

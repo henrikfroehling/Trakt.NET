@@ -51,7 +51,7 @@
                             traktSeasonIds.TvRage = (uint)jsonReader.ReadAsInt32();
                             break;
                         default:
-                            jsonReader.Read(); // read unmatched property value
+                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
                             break;
                     }
                 }

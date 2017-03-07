@@ -41,46 +41,30 @@
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_MEDIA_TYPE:
-                            {
-                                var value = jsonReader.ReadAsString();
-
-                                if (!string.IsNullOrEmpty(value))
-                                    traktMetadata.MediaType = TraktEnumeration.FromObjectName<TraktMediaType>(value);
-
-                                break;
-                            }
+                            TraktMediaType mediaType = null;
+                            JsonReaderHelper.ReadEnumerationValue(jsonReader, out mediaType);
+                            traktMetadata.MediaType = mediaType;
+                            break;
                         case PROPERTY_NAME_RESOLUTION:
-                            {
-                                var value = jsonReader.ReadAsString();
-
-                                if (!string.IsNullOrEmpty(value))
-                                    traktMetadata.MediaResolution = TraktEnumeration.FromObjectName<TraktMediaResolution>(value);
-
-                                break;
-                            }
+                            TraktMediaResolution mediaResolution = null;
+                            JsonReaderHelper.ReadEnumerationValue(jsonReader, out mediaResolution);
+                            traktMetadata.MediaResolution = mediaResolution;
+                            break;
                         case PROPERTY_NAME_AUDIO:
-                            {
-                                var value = jsonReader.ReadAsString();
-
-                                if (!string.IsNullOrEmpty(value))
-                                    traktMetadata.Audio = TraktEnumeration.FromObjectName<TraktMediaAudio>(value);
-
-                                break;
-                            }
+                            TraktMediaAudio mediaAudio = null;
+                            JsonReaderHelper.ReadEnumerationValue(jsonReader, out mediaAudio);
+                            traktMetadata.Audio = mediaAudio;
+                            break;
                         case PROPERTY_NAME_AUDIO_CHANNELS:
-                            {
-                                var value = jsonReader.ReadAsString();
-
-                                if (!string.IsNullOrEmpty(value))
-                                    traktMetadata.AudioChannels = TraktEnumeration.FromObjectName<TraktMediaAudioChannel>(value);
-
-                                break;
-                            }
+                            TraktMediaAudioChannel mediaAudioChannel = null;
+                            JsonReaderHelper.ReadEnumerationValue(jsonReader, out mediaAudioChannel);
+                            traktMetadata.AudioChannels = mediaAudioChannel;
+                            break;
                         case PROPERTY_NAME_3D:
                             traktMetadata.ThreeDimensional = jsonReader.ReadAsBoolean();
                             break;
                         default:
-                            jsonReader.Read(); // read unmatched property value
+                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
                             break;
                     }
                 }

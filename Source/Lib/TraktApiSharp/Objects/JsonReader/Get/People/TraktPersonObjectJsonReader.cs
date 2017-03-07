@@ -53,25 +53,21 @@
                             traktPerson.Biography = jsonReader.ReadAsString();
                             break;
                         case PROPERTY_NAME_BIRTHDAY:
-                            if (jsonReader.Read())
                             {
-                                if (jsonReader.ValueType == typeof(DateTime))
-                                    traktPerson.Birthday = (DateTime)jsonReader.Value;
-                                else if (jsonReader.ValueType == typeof(string))
-                                    traktPerson.Birthday = DateTime.Parse(jsonReader.Value.ToString());
-                            }
+                                DateTime dateTime;
+                                if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
+                                    traktPerson.Birthday = dateTime;
 
-                            break;
+                                break;
+                            }
                         case PROPERTY_NAME_DEATH:
-                            if (jsonReader.Read())
                             {
-                                if (jsonReader.ValueType == typeof(DateTime))
-                                    traktPerson.Death = (DateTime)jsonReader.Value;
-                                else if (jsonReader.ValueType == typeof(string))
-                                    traktPerson.Death = DateTime.Parse(jsonReader.Value.ToString());
-                            }
+                                DateTime dateTime;
+                                if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
+                                    traktPerson.Death = dateTime;
 
-                            break;
+                                break;
+                            }
                         case PROPERTY_NAME_BIRTHPLACE:
                             traktPerson.Birthplace = jsonReader.ReadAsString();
                             break;
@@ -79,23 +75,7 @@
                             traktPerson.Homepage = jsonReader.ReadAsString();
                             break;
                         default:
-                            jsonReader.Read(); // read unmatched property value
-
-                            if (jsonReader.TokenType == JsonToken.StartArray)
-                            {
-                                // step over possible array values for unmatched property
-                                while (jsonReader.Read() && jsonReader.TokenType != JsonToken.EndArray)
-                                {
-                                }
-                            }
-                            else if (jsonReader.TokenType == JsonToken.StartObject)
-                            {
-                                // step over possible object values for unmatched property
-                                while (jsonReader.Read() && jsonReader.TokenType != JsonToken.EndObject)
-                                {
-                                }
-                            }
-
+                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
                             break;
                     }
                 }

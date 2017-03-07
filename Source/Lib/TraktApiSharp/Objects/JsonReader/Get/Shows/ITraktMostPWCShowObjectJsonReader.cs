@@ -56,23 +56,7 @@
                             traktMostPWCShow.Show = showObjectReader.ReadObject(jsonReader);
                             break;
                         default:
-                            jsonReader.Read(); // read unmatched property value
-
-                            if (jsonReader.TokenType == JsonToken.StartArray)
-                            {
-                                // step over possible array values for unmatched property
-                                while (jsonReader.Read() && jsonReader.TokenType != JsonToken.EndArray)
-                                {
-                                }
-                            }
-                            else if (jsonReader.TokenType == JsonToken.StartObject)
-                            {
-                                // step over possible object values for unmatched property
-                                while (jsonReader.Read() && jsonReader.TokenType != JsonToken.EndObject)
-                                {
-                                }
-                            }
-
+                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
                             break;
                     }
                 }

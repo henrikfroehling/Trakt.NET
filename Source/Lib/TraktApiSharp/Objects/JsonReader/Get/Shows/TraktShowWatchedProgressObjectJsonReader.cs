@@ -54,15 +54,13 @@
                             traktShowWatchedProgress.Completed = jsonReader.ReadAsInt32();
                             break;
                         case PROPERTY_NAME_LAST_WATCHED_AT:
-                            if (jsonReader.Read())
                             {
-                                if (jsonReader.ValueType == typeof(DateTime))
-                                    traktShowWatchedProgress.LastWatchedAt = (DateTime)jsonReader.Value;
-                                else if (jsonReader.ValueType == typeof(string))
-                                    traktShowWatchedProgress.LastWatchedAt = DateTime.Parse(jsonReader.Value.ToString());
-                            }
+                                DateTime dateTime;
+                                if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
+                                    traktShowWatchedProgress.LastWatchedAt = dateTime;
 
-                            break;
+                                break;
+                            }
                         case PROPERTY_NAME_SEASONS:
                             traktShowWatchedProgress.Seasons = seasonWatchedProgressArrayReader.ReadArray(jsonReader);
                             break;
@@ -73,13 +71,7 @@
                             traktShowWatchedProgress.NextEpisode = episodeObjectReader.ReadObject(jsonReader);
                             break;
                         default:
-                            jsonReader.Read(); // read unmatched property value
-
-                            if (jsonReader.TokenType == JsonToken.StartArray)
-                                OverreadInvalidContent(jsonReader, true);
-                            else if (jsonReader.TokenType == JsonToken.StartObject)
-                                OverreadInvalidContent(jsonReader, false, true);
-
+                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
                             break;
                     }
                 }
@@ -88,61 +80,6 @@
             }
 
             return null;
-        }
-
-        private static void OverreadInvalidContent(JsonTextReader jsonReader, bool startWithOpenBracket = false, bool startWithOpenBrace = false)
-        {
-            var arrayBracketPairCount = startWithOpenBracket ? 1 : 0;
-            var objectBracePairCount = startWithOpenBrace ? 1 : 0;
-            var steppedOverAllArrays = false;
-            var steppedOverAllObjects = false;
-
-            while (true)
-            {
-                if (steppedOverAllArrays && steppedOverAllObjects)
-                    break;
-
-                if (jsonReader.Read())
-                {
-                    switch (jsonReader.TokenType)
-                    {
-                        case JsonToken.StartArray:
-                            arrayBracketPairCount++;
-
-                            if (arrayBracketPairCount != 0)
-                                steppedOverAllArrays = false;
-
-                            break;
-                        case JsonToken.EndArray:
-                            arrayBracketPairCount--;
-
-                            if (arrayBracketPairCount == 0)
-                                steppedOverAllArrays = true;
-
-                            break;
-                        case JsonToken.StartObject:
-                            objectBracePairCount++;
-
-                            if (objectBracePairCount != 0)
-                                steppedOverAllObjects = false;
-
-                            break;
-                        case JsonToken.EndObject:
-                            objectBracePairCount--;
-
-                            if (objectBracePairCount == 0)
-                                steppedOverAllObjects = true;
-
-                            break;
-                        default:
-                            continue;
-                    }
-                }
-                else
-                {
-                    break;
-                }
-            }
         }
     }
 }
