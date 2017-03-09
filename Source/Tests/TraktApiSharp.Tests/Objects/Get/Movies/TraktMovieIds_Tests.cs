@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Movies
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.JsonReader.Get.Movies;
     using Xunit;
 
     [Category("Objects.Get.Movies")]
@@ -99,7 +99,8 @@
         [Fact]
         public void Test_TraktMovieIds_From_Json()
         {
-            var movieIds = JsonConvert.DeserializeObject<TraktMovieIds>(JSON);
+            var jsonReader = new TraktMovieIdsObjectJsonReader();
+            var movieIds = jsonReader.ReadObject(JSON);
 
             movieIds.Should().NotBeNull();
             movieIds.Trakt.Should().Be(94024);

@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Movies
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.JsonReader.Get.Movies;
     using Xunit;
 
     [Category("Objects.Get.Movies")]
@@ -45,7 +45,8 @@
         [Fact]
         public void Test_TraktBoxOfficeMovie_From_Minimal_Json()
         {
-            var boxOfficeMovie = JsonConvert.DeserializeObject<TraktBoxOfficeMovie>(MINIMAL_JSON);
+            var jsonReader = new ITraktBoxOfficeMovieObjectJsonReader();
+            var boxOfficeMovie = jsonReader.ReadObject(MINIMAL_JSON);
 
             boxOfficeMovie.Should().NotBeNull();
             boxOfficeMovie.Revenue.Should().Be(166007347);
@@ -97,7 +98,8 @@
         [Fact]
         public void Test_TraktBoxOfficeMovie_From_Full_Json()
         {
-            var boxOfficeMovie = JsonConvert.DeserializeObject<TraktBoxOfficeMovie>(FULL_JSON);
+            var jsonReader = new ITraktBoxOfficeMovieObjectJsonReader();
+            var boxOfficeMovie = jsonReader.ReadObject(FULL_JSON);
 
             boxOfficeMovie.Should().NotBeNull();
             boxOfficeMovie.Revenue.Should().Be(166007347);

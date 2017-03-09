@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Movies
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.JsonReader.Get.Movies;
     using Xunit;
 
     [Category("Objects.Get.Movies")]
@@ -45,7 +45,8 @@
         [Fact]
         public void Test_TraktTrendingMovie_From_Minimal_Json()
         {
-            var trendingMovie = JsonConvert.DeserializeObject<TraktTrendingMovie>(MINIMAL_JSON);
+            var jsonReader = new ITraktTrendingMovieObjectJsonReader();
+            var trendingMovie = jsonReader.ReadObject(MINIMAL_JSON);
 
             trendingMovie.Should().NotBeNull();
             trendingMovie.Watchers.Should().Be(35);
@@ -97,7 +98,8 @@
         [Fact]
         public void Test_TraktTrendingMovie_From_Full_Json()
         {
-            var trendingMovie = JsonConvert.DeserializeObject<TraktTrendingMovie>(FULL_JSON);
+            var jsonReader = new ITraktTrendingMovieObjectJsonReader();
+            var trendingMovie = jsonReader.ReadObject(FULL_JSON);
 
             trendingMovie.Should().NotBeNull();
             trendingMovie.Watchers.Should().Be(35);

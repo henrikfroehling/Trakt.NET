@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Movies
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.JsonReader.Get.Movies;
     using Xunit;
 
     [Category("Objects.Get.Movies")]
@@ -26,7 +26,8 @@
         [Fact]
         public void Test_TraktMovieRelease_From_Json()
         {
-            var movieRelease = JsonConvert.DeserializeObject<TraktMovieRelease>(JSON);
+            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var movieRelease = jsonReader.ReadObject(JSON);
 
             movieRelease.Should().NotBeNull();
             movieRelease.CountryCode.Should().Be("us");

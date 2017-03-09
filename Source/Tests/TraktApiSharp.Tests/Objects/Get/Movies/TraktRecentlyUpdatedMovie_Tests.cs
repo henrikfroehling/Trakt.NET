@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Movies
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.JsonReader.Get.Movies;
     using Xunit;
 
     [Category("Objects.Get.Movies")]
@@ -45,7 +45,8 @@
         [Fact]
         public void Test_TraktRecentlyUpdatedMovie_From_Minimal_Json()
         {
-            var recentlyUpdatedMovie = JsonConvert.DeserializeObject<TraktRecentlyUpdatedMovie>(MINIMAL_JSON);
+            var jsonReader = new ITraktRecentlyUpdatedMovieObjectJsonReader();
+            var recentlyUpdatedMovie = jsonReader.ReadObject(MINIMAL_JSON);
 
             recentlyUpdatedMovie.Should().NotBeNull();
             recentlyUpdatedMovie.RecentlyUpdatedAt.Should().Be(DateTime.Parse("2016-03-31T01:29:13Z").ToUniversalTime());
@@ -97,7 +98,8 @@
         [Fact]
         public void Test_TraktRecentlyUpdatedMovie_From_Full_Json()
         {
-            var recentlyUpdatedMovie = JsonConvert.DeserializeObject<TraktRecentlyUpdatedMovie>(FULL_JSON);
+            var jsonReader = new ITraktRecentlyUpdatedMovieObjectJsonReader();
+            var recentlyUpdatedMovie = jsonReader.ReadObject(FULL_JSON);
 
             recentlyUpdatedMovie.Should().NotBeNull();
             recentlyUpdatedMovie.RecentlyUpdatedAt.Should().Be(DateTime.Parse("2016-03-31T01:29:13Z").ToUniversalTime());

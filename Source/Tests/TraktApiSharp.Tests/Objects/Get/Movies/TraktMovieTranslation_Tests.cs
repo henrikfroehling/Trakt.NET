@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Movies
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.JsonReader.Get.Movies;
     using Xunit;
 
     [Category("Objects.Get.Movies")]
@@ -23,7 +23,8 @@
         [Fact]
         public void Test_TraktMovieTranslation_From_Json()
         {
-            var movieTranslation = JsonConvert.DeserializeObject<TraktMovieTranslation>(JSON);
+            var jsonReader = new TraktMovieTranslationObjectJsonReader();
+            var movieTranslation = jsonReader.ReadObject(JSON);
 
             movieTranslation.Should().NotBeNull();
             movieTranslation.Title.Should().Be("Star Wars: Episode VII - The Force Awakens");

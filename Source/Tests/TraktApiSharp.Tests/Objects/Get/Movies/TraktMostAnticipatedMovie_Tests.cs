@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Movies
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.JsonReader.Get.Movies;
     using Xunit;
 
     [Category("Objects.Get.Movies")]
@@ -45,7 +45,8 @@
         [Fact]
         public void Test_TraktMostAnticipatedMovie_From_Minimal_Json()
         {
-            var anticipatedMovie = JsonConvert.DeserializeObject<TraktMostAnticipatedMovie>(MINIMAL_JSON);
+            var jsonReader = new ITraktMostAnticipatedMovieObjectJsonReader();
+            var anticipatedMovie = jsonReader.ReadObject(MINIMAL_JSON);
 
             anticipatedMovie.Should().NotBeNull();
             anticipatedMovie.ListCount.Should().Be(12805);
@@ -97,7 +98,8 @@
         [Fact]
         public void Test_TraktMostAnticipatedMovie_From_Full_Json()
         {
-            var anticipatedMovie = JsonConvert.DeserializeObject<TraktMostAnticipatedMovie>(FULL_JSON);
+            var jsonReader = new ITraktMostAnticipatedMovieObjectJsonReader();
+            var anticipatedMovie = jsonReader.ReadObject(FULL_JSON);
 
             anticipatedMovie.Should().NotBeNull();
             anticipatedMovie.ListCount.Should().Be(12805);
