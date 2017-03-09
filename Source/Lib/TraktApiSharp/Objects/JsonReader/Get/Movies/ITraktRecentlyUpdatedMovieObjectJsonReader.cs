@@ -1,16 +1,16 @@
-﻿namespace TraktApiSharp.Objects.JsonReader.Get.Shows
+﻿namespace TraktApiSharp.Objects.JsonReader.Get.Movies
 {
     using Newtonsoft.Json;
-    using Objects.Get.Shows;
+    using Objects.Get.Movies;
     using System;
     using System.IO;
 
-    internal class ITraktRecentlyUpdatedShowObjectJsonReader : ITraktObjectJsonReader<ITraktRecentlyUpdatedShow>
+    internal class ITraktRecentlyUpdatedMovieObjectJsonReader : ITraktObjectJsonReader<ITraktRecentlyUpdatedMovie>
     {
         private const string PROPERTY_NAME_UPDATED_AT = "updated_at";
-        private const string PROPERTY_NAME_SHOW = "show";
+        private const string PROPERTY_NAME_MOVIE = "movie";
 
-        public ITraktRecentlyUpdatedShow ReadObject(string json)
+        public ITraktRecentlyUpdatedMovie ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -22,15 +22,15 @@
             }
         }
 
-        public ITraktRecentlyUpdatedShow ReadObject(JsonTextReader jsonReader)
+        public ITraktRecentlyUpdatedMovie ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var showObjectReader = new ITraktShowObjectJsonReader();
-                ITraktRecentlyUpdatedShow traktRecentlyUpdatedShow = new TraktRecentlyUpdatedShow();
+                var movieObjectReader = new ITraktMovieObjectJsonReader();
+                ITraktRecentlyUpdatedMovie traktRecentlyUpdatedMovie = new TraktRecentlyUpdatedMovie();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -41,11 +41,11 @@
                         case PROPERTY_NAME_UPDATED_AT:
                             DateTime dateTime;
                             if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
-                                traktRecentlyUpdatedShow.RecentlyUpdatedAt = dateTime;
+                                traktRecentlyUpdatedMovie.RecentlyUpdatedAt = dateTime;
 
                             break;
-                        case PROPERTY_NAME_SHOW:
-                            traktRecentlyUpdatedShow.Show = showObjectReader.ReadObject(jsonReader);
+                        case PROPERTY_NAME_MOVIE:
+                            traktRecentlyUpdatedMovie.Movie = movieObjectReader.ReadObject(jsonReader);
                             break;
                         default:
                             JsonReaderHelper.OverreadInvalidContent(jsonReader);
@@ -53,7 +53,7 @@
                     }
                 }
 
-                return traktRecentlyUpdatedShow;
+                return traktRecentlyUpdatedMovie;
             }
 
             return null;

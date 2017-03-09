@@ -54,13 +54,11 @@
                             traktShowWatchedProgress.Completed = jsonReader.ReadAsInt32();
                             break;
                         case PROPERTY_NAME_LAST_WATCHED_AT:
-                            {
-                                DateTime dateTime;
-                                if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
-                                    traktShowWatchedProgress.LastWatchedAt = dateTime;
+                            DateTime dateTime;
+                            if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
+                                traktShowWatchedProgress.LastWatchedAt = dateTime;
 
-                                break;
-                            }
+                            break;
                         case PROPERTY_NAME_SEASONS:
                             traktShowWatchedProgress.Seasons = seasonWatchedProgressArrayReader.ReadArray(jsonReader);
                             break;

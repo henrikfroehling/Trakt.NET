@@ -54,13 +54,11 @@
                             traktShowCollectionProgress.Completed = jsonReader.ReadAsInt32();
                             break;
                         case PROPERTY_NAME_LAST_COLLECTED_AT:
-                            {
-                                DateTime dateTime;
-                                if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
-                                    traktShowCollectionProgress.LastCollectedAt = dateTime;
+                            DateTime dateTime;
+                            if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
+                                traktShowCollectionProgress.LastCollectedAt = dateTime;
 
-                                break;
-                            }
+                            break;
                         case PROPERTY_NAME_SEASONS:
                             traktShowCollectionProgress.Seasons = seasonCollectionProgressArrayReader.ReadArray(jsonReader);
                             break;

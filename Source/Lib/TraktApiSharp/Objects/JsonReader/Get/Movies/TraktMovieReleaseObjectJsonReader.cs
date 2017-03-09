@@ -48,13 +48,11 @@
                             traktMovieRelease.Certification = jsonReader.ReadAsString();
                             break;
                         case PROPERTY_NAME_RELEASE_DATE:
-                            {
-                                DateTime dateTime;
-                                if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
-                                    traktMovieRelease.ReleaseDate = dateTime;
+                            DateTime dateTime;
+                            if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
+                                traktMovieRelease.ReleaseDate = dateTime;
 
-                                break;
-                            }
+                            break;
                         case PROPERTY_NAME_RELEASE_TYPE:
                             TraktReleaseType releaseType = null;
                             JsonReaderHelper.ReadEnumerationValue(jsonReader, out releaseType);
