@@ -114,6 +114,7 @@
     <Compile Include="Objects\Get\People\Credits\Interfaces\ITraktPersonMovieCreditsCastItem_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\Interfaces\ITraktPersonMovieCreditsCrewItem_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\Interfaces\ITraktPersonShowCreditsCastItem_Tests.cs" />
+    <Compile Include="Objects\Get\People\Credits\Interfaces\ITraktPersonShowCreditsCrewItem_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCastItem_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCrewItem_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCrew_Tests.cs" />
