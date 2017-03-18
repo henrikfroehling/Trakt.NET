@@ -180,6 +180,7 @@
     <Compile Include="Objects\Get\Shows\TraktTrendingShow_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\Interfaces\ITraktSyncCommentsLastActivities_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\Interfaces\ITraktSyncEpisodesLastActivities_Tests.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\Interfaces\ITraktSyncLastActivities_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\Interfaces\ITraktSyncListsLastActivities_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\Interfaces\ITraktSyncMoviesLastActivities_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\Interfaces\ITraktSyncSeasonsLastActivities_Tests.cs" />
