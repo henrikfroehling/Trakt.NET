@@ -72,6 +72,7 @@
     <Compile Include="Objects\Basic\Interfaces\ITraktMetadata_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktRating_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktSharing_Tests.cs" />
+    <Compile Include="Objects\Basic\Interfaces\ITraktStatistics_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarMovie_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarShow_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarMovie_Tests.cs" />
