@@ -154,6 +154,7 @@
     <Compile Include="Objects\Get\People\ITraktPerson.cs" />
     <Compile Include="Objects\Get\People\ITraktPersonIds.cs" />
     <Compile Include="Objects\Get\Seasons\ITraktSeasonIds.cs" />
+    <Compile Include="Objects\Get\Seasons\ITraktSeasonProgress.cs" />
     <Compile Include="Objects\Get\Shows\ITraktMostAnticipatedShow.cs" />
     <Compile Include="Objects\Get\Shows\ITraktMostPWCShow.cs" />
     <Compile Include="Objects\Get\Shows\ITraktRecentlyUpdatedShow.cs" />
