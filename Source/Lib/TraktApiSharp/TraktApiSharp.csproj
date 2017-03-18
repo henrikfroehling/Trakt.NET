@@ -117,6 +117,7 @@
     <Compile Include="Exceptions\TraktShowNotFoundException.cs" />
     <Compile Include="Exceptions\TraktValidationException.cs" />
     <Compile Include="Objects\Basic\IIds.cs" />
+    <Compile Include="Objects\Basic\ITraktCastAndCrew.cs" />
     <Compile Include="Objects\Basic\ITraktCastMember.cs" />
     <Compile Include="Objects\Basic\ITraktCrew.cs" />
     <Compile Include="Objects\Basic\ITraktCrewMember.cs" />
