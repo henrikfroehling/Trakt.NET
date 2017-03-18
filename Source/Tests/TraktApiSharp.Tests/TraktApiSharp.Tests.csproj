@@ -112,6 +112,7 @@
     <Compile Include="Objects\Get\Movies\TraktRecentlyUpdatedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\TraktTrendingMovie_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\Interfaces\ITraktPersonMovieCreditsCastItem_Tests.cs" />
+    <Compile Include="Objects\Get\People\Credits\Interfaces\ITraktPersonMovieCreditsCrewItem_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCastItem_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCrewItem_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCrew_Tests.cs" />
