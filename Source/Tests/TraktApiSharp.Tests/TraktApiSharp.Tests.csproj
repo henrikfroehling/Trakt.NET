@@ -135,6 +135,7 @@
     <Compile Include="Objects\Get\Seasons\Interfaces\ITraktSeasonCollectionProgress_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\Interfaces\ITraktSeasonIds_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\Interfaces\ITraktSeasonProgress_Tests.cs" />
+    <Compile Include="Objects\Get\Seasons\Interfaces\ITraktSeasonWatchedProgress_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\TraktSeasonCollectionProgress_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\TraktSeasonIds_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\TraktSeasonWatchedProgress_Tests.cs" />

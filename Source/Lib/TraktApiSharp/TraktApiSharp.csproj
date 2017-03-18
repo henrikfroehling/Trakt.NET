@@ -156,6 +156,7 @@
     <Compile Include="Objects\Get\Seasons\ITraktSeasonCollectionProgress.cs" />
     <Compile Include="Objects\Get\Seasons\ITraktSeasonIds.cs" />
     <Compile Include="Objects\Get\Seasons\ITraktSeasonProgress.cs" />
+    <Compile Include="Objects\Get\Seasons\ITraktSeasonWatchedProgress.cs" />
     <Compile Include="Objects\Get\Shows\ITraktMostAnticipatedShow.cs" />
     <Compile Include="Objects\Get\Shows\ITraktMostPWCShow.cs" />
     <Compile Include="Objects\Get\Shows\ITraktRecentlyUpdatedShow.cs" />
