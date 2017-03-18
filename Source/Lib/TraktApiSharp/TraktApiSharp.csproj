@@ -120,6 +120,7 @@
     <Compile Include="Objects\Basic\ITraktError.cs" />
     <Compile Include="Objects\Basic\ITraktGenre.cs" />
     <Compile Include="Objects\Basic\ITraktIds.cs" />
+    <Compile Include="Objects\Basic\ITraktImage.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarMovie.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarShow.cs" />
     <Compile Include="Objects\Get\Collection\ITraktCollectionMovie.cs" />
