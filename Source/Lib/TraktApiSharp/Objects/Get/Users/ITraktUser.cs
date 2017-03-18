@@ -26,6 +26,6 @@
 
         int? Age { get; set; }
 
-        TraktUserImages Images { get; set; }
+        ITraktUserImages Images { get; set; }
     }
 }

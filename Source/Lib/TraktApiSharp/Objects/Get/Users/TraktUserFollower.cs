@@ -151,7 +151,7 @@
         }
 
         [JsonIgnore]
-        public TraktUserImages Images
+        public ITraktUserImages Images
         {
             get { return User?.Images; }
 

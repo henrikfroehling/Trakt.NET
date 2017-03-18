@@ -133,7 +133,7 @@
 
             propertyInfo.CanRead.Should().BeTrue();
             propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktUserImages));
+            propertyInfo.PropertyType.Should().Be(typeof(ITraktUserImages));
         }
     }
 }

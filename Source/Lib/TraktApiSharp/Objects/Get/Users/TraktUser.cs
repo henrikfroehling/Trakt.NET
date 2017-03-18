@@ -52,6 +52,6 @@
 
         /// <summary>Gets or sets the collection of images for the user. See also <seealso cref="TraktUserImages" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "images")]
-        public TraktUserImages Images { get; set; }
+        public ITraktUserImages Images { get; set; }
     }
 }
