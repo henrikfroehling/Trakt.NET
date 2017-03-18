@@ -8,7 +8,7 @@
     using TraktApiSharp.Objects.Get.Movies;
     using Xunit;
 
-    [Category("Objects.Get.Movies")]
+    [Category("Objects.Get.Movies.Interfaces")]
     public class ITraktMovie_Tests
     {
         [Fact]
