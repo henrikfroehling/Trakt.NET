@@ -184,6 +184,7 @@
     <Compile Include="Objects\Get\Shows\ITraktShowTranslation.cs" />
     <Compile Include="Objects\Get\Shows\ITraktShowWatchedProgress.cs" />
     <Compile Include="Objects\Get\Shows\ITraktTrendingShow.cs" />
+    <Compile Include="Objects\Get\Syncs\Playback\ITraktSyncPlaybackProgressItem.cs" />
     <Compile Include="Objects\Get\Users\ITraktUser.cs" />
     <Compile Include="Objects\Get\Users\ITraktUserFollower.cs" />
     <Compile Include="Objects\Get\Users\ITraktUserFriend.cs" />
