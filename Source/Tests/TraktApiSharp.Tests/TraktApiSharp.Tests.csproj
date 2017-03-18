@@ -76,6 +76,7 @@
     <Compile Include="Objects\Basic\Interfaces\ITraktImage_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktMetadata_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktRating_Tests.cs" />
+    <Compile Include="Objects\Basic\Interfaces\ITraktSearchResult_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktSharing_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktStatistics_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktTranslation_Tests.cs" />

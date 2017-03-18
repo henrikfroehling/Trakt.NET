@@ -128,6 +128,7 @@
     <Compile Include="Objects\Basic\ITraktImage.cs" />
     <Compile Include="Objects\Basic\ITraktMetadata.cs" />
     <Compile Include="Objects\Basic\ITraktRating.cs" />
+    <Compile Include="Objects\Basic\ITraktSearchResult.cs" />
     <Compile Include="Objects\Basic\ITraktSharing.cs" />
     <Compile Include="Objects\Basic\ITraktStatistics.cs" />
     <Compile Include="Objects\Basic\ITraktTranslation.cs" />
