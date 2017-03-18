@@ -10,6 +10,6 @@
 
         ITraktShow Show { get; set; }
 
-        IEnumerable<TraktCollectionShowSeason> CollectionSeasons { get; set; }
+        IEnumerable<ITraktCollectionShowSeason> CollectionSeasons { get; set; }
     }
 }
