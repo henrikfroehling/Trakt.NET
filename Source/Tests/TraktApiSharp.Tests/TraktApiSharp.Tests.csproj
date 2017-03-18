@@ -102,6 +102,7 @@
     <Compile Include="Objects\Get\Episodes\TraktEpisodeTranslation_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\TraktEpisodeWatchedProgress_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\TraktEpisode_Tests.cs" />
+    <Compile Include="Objects\Get\History\Interfaces\ITraktHistoryItem_Tests.cs" />
     <Compile Include="Objects\Get\History\TraktHistoryItem_Tests.cs" />
     <Compile Include="Objects\Get\Movies\Interfaces\ITraktBoxOfficeMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\Interfaces\ITraktMostAnticipatedMovie_Tests.cs" />
