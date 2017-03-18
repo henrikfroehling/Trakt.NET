@@ -118,6 +118,7 @@
     <Compile Include="Exceptions\TraktValidationException.cs" />
     <Compile Include="Objects\Basic\IIds.cs" />
     <Compile Include="Objects\Basic\ITraktCastMember.cs" />
+    <Compile Include="Objects\Basic\ITraktCrew.cs" />
     <Compile Include="Objects\Basic\ITraktCrewMember.cs" />
     <Compile Include="Objects\Basic\ITraktError.cs" />
     <Compile Include="Objects\Basic\ITraktGenre.cs" />
