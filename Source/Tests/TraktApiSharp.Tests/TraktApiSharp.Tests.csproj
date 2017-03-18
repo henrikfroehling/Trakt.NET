@@ -145,11 +145,12 @@
     <Compile Include="Objects\Get\Seasons\TraktSeasonIds_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\TraktSeasonWatchedProgress_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\TraktSeason_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\ITraktMostAnticipatedShow_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\ITraktMostPWCShow_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\ITraktRecentlyUpdatedShow_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\ITraktShow_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\ITraktTrendingShow_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\Interfaces\ITraktMostAnticipatedShow_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\Interfaces\ITraktMostPWCShow_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\Interfaces\ITraktRecentlyUpdatedShow_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\Interfaces\ITraktShowAirs_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\Interfaces\ITraktShow_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\Interfaces\ITraktTrendingShow_Tests.cs" />
     <Compile Include="Objects\Get\Shows\TraktMostAnticipatedShow_Tests.cs" />
     <Compile Include="Objects\Get\Shows\TraktMostPWCShow_Tests.cs" />
     <Compile Include="Objects\Get\Shows\TraktRecentlyUpdatedShow_Tests.cs" />

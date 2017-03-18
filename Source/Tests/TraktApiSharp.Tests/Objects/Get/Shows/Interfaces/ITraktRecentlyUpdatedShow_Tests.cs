@@ -7,7 +7,7 @@
     using TraktApiSharp.Objects.Get.Shows;
     using Xunit;
 
-    [Category("Objects.Get.Shows")]
+    [Category("Objects.Get.Shows.Interfaces")]
     public class ITraktRecentlyUpdatedShow_Tests
     {
         [Fact]
