@@ -9,7 +9,7 @@
     using TraktApiSharp.Objects.Get.Shows;
     using Xunit;
 
-    [Category("Objects.Get.Collection")]
+    [Category("Objects.Get.Collection.Interfaces")]
     public class ITraktCollectionShow_Tests
     {
         [Fact]

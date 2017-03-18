@@ -9,7 +9,7 @@
     using TraktApiSharp.Objects.Get.Movies;
     using Xunit;
 
-    [Category("Objects.Get.Collection")]
+    [Category("Objects.Get.Collection.Interfaces")]
     public class ITraktCollectionMovie_Tests
     {
         [Fact]
@@ -41,7 +41,7 @@
 
             propertyInfo.CanRead.Should().BeTrue();
             propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktMetadata));
+            propertyInfo.PropertyType.Should().Be(typeof(ITraktMetadata));
         }
 
         [Fact]
