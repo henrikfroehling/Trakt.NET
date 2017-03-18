@@ -10,6 +10,6 @@
 
         ITraktShow Show { get; set; }
 
-        TraktEpisode Episode { get; set; }
+        ITraktEpisode Episode { get; set; }
     }
 }

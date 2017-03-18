@@ -9,7 +9,7 @@
     using TraktApiSharp.Objects.Get.Shows;
     using Xunit;
 
-    [Category("Objects.Get.Calendars")]
+    [Category("Objects.Get.Calendars.Interfaces")]
     public class ITraktCalendarShow_Tests
     {
         [Fact]
@@ -57,7 +57,7 @@
 
             propertyInfo.CanRead.Should().BeTrue();
             propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktEpisode));
+            propertyInfo.PropertyType.Should().Be(typeof(ITraktEpisode));
         }
     }
 }

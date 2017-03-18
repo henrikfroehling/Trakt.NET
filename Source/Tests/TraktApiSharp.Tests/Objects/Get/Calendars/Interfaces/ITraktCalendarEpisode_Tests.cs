@@ -9,7 +9,7 @@
     using TraktApiSharp.Objects.Get.Episodes;
     using Xunit;
 
-    [Category("Objects.Get.Calendars")]
+    [Category("Objects.Get.Calendars.Interfaces")]
     public class ITraktCalendarEpisode_Tests
     {
         [Fact]
@@ -55,7 +55,7 @@
 
             propertyInfo.CanRead.Should().BeTrue();
             propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktEpisodeIds));
+            propertyInfo.PropertyType.Should().Be(typeof(ITraktEpisodeIds));
         }
 
         [Fact]
@@ -145,7 +145,7 @@
 
             propertyInfo.CanRead.Should().BeTrue();
             propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(IEnumerable<TraktEpisodeTranslation>));
+            propertyInfo.PropertyType.Should().Be(typeof(IEnumerable<ITraktEpisodeTranslation>));
         }
     }
 }

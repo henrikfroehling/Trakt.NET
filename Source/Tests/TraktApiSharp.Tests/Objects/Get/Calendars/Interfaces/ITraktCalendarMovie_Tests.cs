@@ -8,7 +8,7 @@
     using TraktApiSharp.Objects.Get.Movies;
     using Xunit;
 
-    [Category("Objects.Get.Calendars")]
+    [Category("Objects.Get.Calendars.Interfaces")]
     public class ITraktCalendarMovie_Tests
     {
         [Fact]

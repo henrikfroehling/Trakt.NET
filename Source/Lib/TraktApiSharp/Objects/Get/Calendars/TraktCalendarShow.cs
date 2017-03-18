@@ -21,7 +21,7 @@
 
         /// <summary>Gets or sets the Trakt episode. See also <seealso cref="TraktEpisode" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "episode")]
-        public TraktEpisode Episode { get; set; }
+        public ITraktEpisode Episode { get; set; }
 
         [JsonIgnore]
         public string Title
@@ -312,7 +312,7 @@
         }
 
         [JsonIgnore]
-        public TraktEpisodeIds EpisodeIds
+        public ITraktEpisodeIds EpisodeIds
         {
             get { return Episode?.Ids; }
 
@@ -420,7 +420,7 @@
         }
 
         [JsonIgnore]
-        public IEnumerable<TraktEpisodeTranslation> EpisodeTranslations
+        public IEnumerable<ITraktEpisodeTranslation> EpisodeTranslations
         {
             get { return Episode?.Translations; }
 
