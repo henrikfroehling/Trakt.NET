@@ -51,7 +51,7 @@
 
             propertyInfo.CanRead.Should().BeTrue();
             propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(IEnumerable<TraktWatchedShowSeason>));
+            propertyInfo.PropertyType.Should().Be(typeof(IEnumerable<ITraktWatchedShowSeason>));
         }
 
         [Fact]

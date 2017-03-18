@@ -12,6 +12,6 @@
 
         ITraktShow Show { get; set; }
 
-        IEnumerable<TraktWatchedShowSeason> WatchedSeasons { get; set; }
+        IEnumerable<ITraktWatchedShowSeason> WatchedSeasons { get; set; }
     }
 }

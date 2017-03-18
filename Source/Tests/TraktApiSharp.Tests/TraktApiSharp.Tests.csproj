@@ -178,6 +178,7 @@
     <Compile Include="Objects\Get\Users\TraktUser_Tests.cs" />
     <Compile Include="Objects\Get\Watched\Interfaces\ITraktWatchedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Watched\Interfaces\ITraktWatchedShowEpisode_Tests.cs" />
+    <Compile Include="Objects\Get\Watched\Interfaces\ITraktWatchedShowSeason_Tests.cs" />
     <Compile Include="Objects\Get\Watched\Interfaces\ITraktWatchedShow_Tests.cs" />
     <Compile Include="Objects\Get\Watched\TraktWatchedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Watched\TraktWatchedShow_Tests.cs" />

@@ -28,7 +28,7 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "seasons")]
-        public IEnumerable<TraktWatchedShowSeason> WatchedSeasons { get; set; }
+        public IEnumerable<ITraktWatchedShowSeason> WatchedSeasons { get; set; }
 
         [JsonIgnore]
         public string Title
