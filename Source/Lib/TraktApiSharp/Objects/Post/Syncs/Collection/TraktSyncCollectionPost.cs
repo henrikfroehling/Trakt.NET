@@ -862,7 +862,7 @@
                 return this;
 
             var collectionMovie = new TraktSyncCollectionPostMovie();
-            collectionMovie.Ids = movie.Ids;
+            collectionMovie.Ids = (TraktMovieIds)movie.Ids; // TODO use interface
             collectionMovie.Title = movie.Title;
             collectionMovie.Year = movie.Year;
 

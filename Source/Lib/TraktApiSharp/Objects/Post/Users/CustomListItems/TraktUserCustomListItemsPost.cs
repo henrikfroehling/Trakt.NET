@@ -92,7 +92,7 @@
             (_listItemsPost.Movies as List<TraktUserCustomListItemsPostMovie>).Add(
                 new TraktUserCustomListItemsPostMovie
                 {
-                    Ids = movie.Ids
+                    Ids = (TraktMovieIds)movie.Ids // TODO use interface
                 });
 
             return this;

@@ -21,7 +21,7 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "ids")]
-        public TraktMovieIds Ids { get; set; }
+        public ITraktMovieIds Ids { get; set; }
 
         /// <summary>Gets or sets the movie tagline.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "tagline")]

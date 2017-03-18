@@ -733,7 +733,7 @@
                 return this;
 
             var ratingsMovie = new TraktSyncRatingsPostMovie();
-            ratingsMovie.Ids = movie.Ids;
+            ratingsMovie.Ids = (TraktMovieIds)movie.Ids; // TODO use interface
             ratingsMovie.Title = movie.Title;
             ratingsMovie.Year = movie.Year;
 

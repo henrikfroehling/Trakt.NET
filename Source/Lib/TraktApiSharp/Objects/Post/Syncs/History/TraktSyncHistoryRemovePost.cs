@@ -428,7 +428,7 @@
                 return this;
 
             var historyMovie = new TraktSyncHistoryPostMovie();
-            historyMovie.Ids = movie.Ids;
+            historyMovie.Ids = (TraktMovieIds)movie.Ids; // TODO use interface
             historyMovie.Title = movie.Title;
             historyMovie.Year = movie.Year;
 

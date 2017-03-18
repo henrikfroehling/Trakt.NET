@@ -61,7 +61,8 @@
                             traktMovie.Year = jsonReader.ReadAsInt32();
                             break;
                         case PROPERTY_NAME_IDS:
-                            traktMovie.Ids = idsObjectReader.ReadObject(jsonReader);
+                            // TODO use interface
+                            //traktMovie.Ids = idsObjectReader.ReadObject(jsonReader);
                             break;
                         case PROPERTY_NAME_TAGLINE:
                             traktMovie.Tagline = jsonReader.ReadAsString();

@@ -45,7 +45,7 @@
         }
 
         [JsonIgnore]
-        public TraktMovieIds Ids
+        public ITraktMovieIds Ids
         {
             get { return Movie?.Ids; }
 

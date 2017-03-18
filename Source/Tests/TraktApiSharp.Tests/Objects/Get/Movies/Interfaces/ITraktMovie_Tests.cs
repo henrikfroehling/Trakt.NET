@@ -44,7 +44,7 @@
 
             propertyInfo.CanRead.Should().BeTrue();
             propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktMovieIds));
+            propertyInfo.PropertyType.Should().Be(typeof(ITraktMovieIds));
         }
 
         [Fact]

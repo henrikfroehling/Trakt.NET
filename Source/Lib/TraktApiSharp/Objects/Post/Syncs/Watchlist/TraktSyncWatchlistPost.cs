@@ -92,7 +92,7 @@
             (_watchlistPost.Movies as List<TraktSyncWatchlistPostMovie>).Add(
                 new TraktSyncWatchlistPostMovie
                 {
-                    Ids = movie.Ids,
+                    Ids = (TraktMovieIds)movie.Ids, // TODO use interface
                     Title = movie.Title,
                     Year = movie.Year
                 });
