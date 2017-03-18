@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Objects\Basic\ITraktError_Tests.cs" />
+    <Compile Include="Objects\Basic\ITraktGenre_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarMovie_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarShow_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarMovie_Tests.cs" />
