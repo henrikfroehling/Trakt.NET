@@ -147,6 +147,7 @@
     <Compile Include="Objects\Get\People\Credits\ITraktPersonMovieCreditsCrew.cs" />
     <Compile Include="Objects\Get\People\Credits\ITraktPersonMovieCreditsCrewItem.cs" />
     <Compile Include="Objects\Get\People\Credits\ITraktPersonShowCreditsCastItem.cs" />
+    <Compile Include="Objects\Get\People\Credits\ITraktPersonShowCreditsCrew.cs" />
     <Compile Include="Objects\Get\People\Credits\ITraktPersonShowCreditsCrewItem.cs" />
     <Compile Include="Objects\Get\People\ITraktPerson.cs" />
     <Compile Include="Objects\Get\People\ITraktPersonIds.cs" />
