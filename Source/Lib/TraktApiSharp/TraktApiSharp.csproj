@@ -116,8 +116,10 @@
     <Compile Include="Exceptions\TraktServerUnavailableException.cs" />
     <Compile Include="Exceptions\TraktShowNotFoundException.cs" />
     <Compile Include="Exceptions\TraktValidationException.cs" />
+    <Compile Include="Objects\Basic\IIds.cs" />
     <Compile Include="Objects\Basic\ITraktError.cs" />
     <Compile Include="Objects\Basic\ITraktGenre.cs" />
+    <Compile Include="Objects\Basic\ITraktIds.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarMovie.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarShow.cs" />
     <Compile Include="Objects\Get\Collection\ITraktCollectionMovie.cs" />
