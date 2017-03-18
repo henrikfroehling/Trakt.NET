@@ -190,6 +190,7 @@
     <Compile Include="Objects\Get\Users\Lists\ITraktList.cs" />
     <Compile Include="Objects\Get\Users\Lists\ITraktListIds.cs" />
     <Compile Include="Objects\Get\Users\Lists\ITraktListItem.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\ITraktUserEpisodesStatistics.cs" />
     <Compile Include="Objects\Get\Watched\ITraktWatchedMovie.cs" />
     <Compile Include="Objects\Get\Watched\ITraktWatchedShow.cs" />
     <Compile Include="Objects\Get\Watched\ITraktWatchedShowEpisode.cs" />
