@@ -187,6 +187,7 @@
     <Compile Include="Objects\Get\Syncs\Activities\Interfaces\ITraktSyncShowsLastActivities_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\Interfaces\ITraktSyncPlaybackProgressItem_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktAccountSettings_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Interfaces\ITraktSharingText_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUserFollower_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUserFriend_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUserIds_Tests.cs" />
