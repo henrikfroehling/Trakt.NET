@@ -123,6 +123,7 @@
     <Compile Include="Objects\Basic\ITraktImage.cs" />
     <Compile Include="Objects\Basic\ITraktMetadata.cs" />
     <Compile Include="Objects\Basic\ITraktRating.cs" />
+    <Compile Include="Objects\Basic\ITraktSharing.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarMovie.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarShow.cs" />
     <Compile Include="Objects\Get\Collection\ITraktCollectionMovie.cs" />
