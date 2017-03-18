@@ -9,7 +9,7 @@
     using TraktApiSharp.Objects.Get.Watched;
     using Xunit;
 
-    [Category("Objects.Get.Watched")]
+    [Category("Objects.Get.Watched.Interfaces")]
     public class ITraktWatchedShow_Tests
     {
         [Fact]
