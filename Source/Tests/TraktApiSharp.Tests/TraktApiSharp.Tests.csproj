@@ -67,6 +67,7 @@
     <Compile Include="Objects\Basic\Interfaces\IIds_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktCastAndCrew_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktCastMember_Tests.cs" />
+    <Compile Include="Objects\Basic\Interfaces\ITraktComment_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktCrewMember_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktCrew_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktError_Tests.cs" />

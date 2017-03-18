@@ -119,6 +119,7 @@
     <Compile Include="Objects\Basic\IIds.cs" />
     <Compile Include="Objects\Basic\ITraktCastAndCrew.cs" />
     <Compile Include="Objects\Basic\ITraktCastMember.cs" />
+    <Compile Include="Objects\Basic\ITraktComment.cs" />
     <Compile Include="Objects\Basic\ITraktCrew.cs" />
     <Compile Include="Objects\Basic\ITraktCrewMember.cs" />
     <Compile Include="Objects\Basic\ITraktError.cs" />
