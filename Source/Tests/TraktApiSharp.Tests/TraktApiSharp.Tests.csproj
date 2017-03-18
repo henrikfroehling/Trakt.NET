@@ -88,6 +88,7 @@
     <Compile Include="Objects\Get\Episodes\Interfaces\ITraktEpisodeProgress_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\Interfaces\ITraktEpisodeTranslation_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\Interfaces\ITraktEpisodeWatchedProgress_Tests.cs" />
+    <Compile Include="Objects\Get\Episodes\Interfaces\ITraktEpisode_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\TraktEpisodeCollectionProgress_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\TraktEpisodeIds_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\TraktEpisodeTranslation_Tests.cs" />
