@@ -135,6 +135,7 @@
     <Compile Include="Objects\Get\Episodes\ITraktEpisodeIds.cs" />
     <Compile Include="Objects\Get\Episodes\ITraktEpisodeProgress.cs" />
     <Compile Include="Objects\Get\Episodes\ITraktEpisodeTranslation.cs" />
+    <Compile Include="Objects\Get\Episodes\ITraktEpisodeWatchedProgress.cs" />
     <Compile Include="Objects\Get\Movies\ITraktBoxOfficeMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktMostAnticipatedMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktMostPWCMovie.cs" />
