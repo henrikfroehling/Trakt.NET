@@ -195,6 +195,7 @@
     <Compile Include="Objects\Get\Users\ITraktUser.cs" />
     <Compile Include="Objects\Get\Users\ITraktUserFollower.cs" />
     <Compile Include="Objects\Get\Users\ITraktUserFriend.cs" />
+    <Compile Include="Objects\Get\Users\ITraktUserIds.cs" />
     <Compile Include="Objects\Get\Users\Lists\ITraktList.cs" />
     <Compile Include="Objects\Get\Users\Lists\ITraktListIds.cs" />
     <Compile Include="Objects\Get\Users\Lists\ITraktListItem.cs" />

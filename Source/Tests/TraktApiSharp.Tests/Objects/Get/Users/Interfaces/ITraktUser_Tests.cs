@@ -7,7 +7,7 @@
     using TraktApiSharp.Objects.Get.Users;
     using Xunit;
 
-    [Category("Objects.Get.Users")]
+    [Category("Objects.Get.Users.Interfaces")]
     public class ITraktUser_Tests
     {
         [Fact]
@@ -43,7 +43,7 @@
 
             propertyInfo.CanRead.Should().BeTrue();
             propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktUserIds));
+            propertyInfo.PropertyType.Should().Be(typeof(ITraktUserIds));
         }
 
         [Fact]

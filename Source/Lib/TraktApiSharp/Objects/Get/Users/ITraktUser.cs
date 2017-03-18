@@ -8,7 +8,7 @@
 
         bool? IsPrivate { get; set; }
 
-        TraktUserIds Ids { get; set; }
+        ITraktUserIds Ids { get; set; }
 
         string Name { get; set; }
 

@@ -7,7 +7,7 @@
     using TraktApiSharp.Objects.Get.Users;
     using Xunit;
 
-    [Category("Objects.Get.Users")]
+    [Category("Objects.Get.Users.Interfaces")]
     public class ITraktUserFriend_Tests
     {
         [Fact]

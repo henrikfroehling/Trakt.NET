@@ -43,7 +43,7 @@
         }
 
         [JsonIgnore]
-        public TraktUserIds Ids
+        public ITraktUserIds Ids
         {
             get { return User?.Ids; }
 
