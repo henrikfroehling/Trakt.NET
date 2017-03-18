@@ -79,6 +79,7 @@
     <Compile Include="Objects\Get\Calendars\TraktCalendarMovie_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarShow_Tests.cs" />
     <Compile Include="Objects\Get\Collection\Interfaces\ITraktCollectionMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Collection\Interfaces\ITraktCollectionShowEpisode_Tests.cs" />
     <Compile Include="Objects\Get\Collection\Interfaces\ITraktCollectionShow_Tests.cs" />
     <Compile Include="Objects\Get\Collection\TraktCollectionMovie_Tests.cs" />
     <Compile Include="Objects\Get\Collection\TraktCollectionShow_Tests.cs" />
