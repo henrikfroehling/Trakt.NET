@@ -131,6 +131,7 @@
     <Compile Include="Objects\Get\Collection\ITraktCollectionMovie.cs" />
     <Compile Include="Objects\Get\Collection\ITraktCollectionShow.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarEpisode.cs" />
+    <Compile Include="Objects\Get\Episodes\ITraktEpisodeIds.cs" />
     <Compile Include="Objects\Get\Movies\ITraktBoxOfficeMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktMostAnticipatedMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktMostPWCMovie.cs" />
