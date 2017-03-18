@@ -169,6 +169,7 @@
     <Compile Include="Objects\Get\Shows\ITraktShowAirs.cs" />
     <Compile Include="Objects\Get\Shows\ITraktShowAlias.cs" />
     <Compile Include="Objects\Get\Shows\ITraktShowIds.cs" />
+    <Compile Include="Objects\Get\Shows\ITraktShowTranslation.cs" />
     <Compile Include="Objects\Get\Shows\ITraktTrendingShow.cs" />
     <Compile Include="Objects\Get\Users\ITraktUser.cs" />
     <Compile Include="Objects\Get\Users\ITraktUserFollower.cs" />
