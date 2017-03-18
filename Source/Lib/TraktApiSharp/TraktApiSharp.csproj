@@ -142,6 +142,7 @@
     <Compile Include="Objects\Get\Movies\ITraktMostPWCMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktMovieAlias.cs" />
+    <Compile Include="Objects\Get\Movies\ITraktMovieIds.cs" />
     <Compile Include="Objects\Get\Movies\ITraktRecentlyUpdatedMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktTrendingMovie.cs" />
     <Compile Include="Objects\Get\People\Credits\ITraktPersonMovieCredits.cs" />

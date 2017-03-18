@@ -99,6 +99,7 @@
     <Compile Include="Objects\Get\Movies\Interfaces\ITraktMostAnticipatedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\Interfaces\ITraktMostPWCMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\Interfaces\ITraktMovieAlias_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\Interfaces\ITraktMovieIds_Tests.cs" />
     <Compile Include="Objects\Get\Movies\Interfaces\ITraktMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\Interfaces\ITraktRecentlyUpdatedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Movies\Interfaces\ITraktTrendingMovie_Tests.cs" />
