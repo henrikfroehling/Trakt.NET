@@ -150,6 +150,7 @@
     <Compile Include="Objects\Get\Shows\Interfaces\ITraktRecentlyUpdatedShow_Tests.cs" />
     <Compile Include="Objects\Get\Shows\Interfaces\ITraktShowAirs_Tests.cs" />
     <Compile Include="Objects\Get\Shows\Interfaces\ITraktShowAlias_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\Interfaces\ITraktShowCollectionProgress_Tests.cs" />
     <Compile Include="Objects\Get\Shows\Interfaces\ITraktShowIds_Tests.cs" />
     <Compile Include="Objects\Get\Shows\Interfaces\ITraktShowProgress_Tests.cs" />
     <Compile Include="Objects\Get\Shows\Interfaces\ITraktShowTranslation_Tests.cs" />
