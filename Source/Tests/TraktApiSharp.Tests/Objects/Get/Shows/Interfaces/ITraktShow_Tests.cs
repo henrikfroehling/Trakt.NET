@@ -46,7 +46,7 @@
 
             propertyInfo.CanRead.Should().BeTrue();
             propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktShowIds));
+            propertyInfo.PropertyType.Should().Be(typeof(ITraktShowIds));
         }
 
         [Fact]
@@ -76,7 +76,7 @@
 
             propertyInfo.CanRead.Should().BeTrue();
             propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktShowAirs));
+            propertyInfo.PropertyType.Should().Be(typeof(ITraktShowAirs));
         }
 
         [Fact]
@@ -226,7 +226,7 @@
 
             propertyInfo.CanRead.Should().BeTrue();
             propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(IEnumerable<TraktSeason>));
+            propertyInfo.PropertyType.Should().Be(typeof(IEnumerable<ITraktSeason>));
         }
     }
 }

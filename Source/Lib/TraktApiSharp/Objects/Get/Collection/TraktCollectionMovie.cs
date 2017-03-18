@@ -25,7 +25,7 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "metadata")]
-        public TraktMetadata Metadata { get; set; }
+        public ITraktMetadata Metadata { get; set; }
 
         [JsonIgnore]
         public string Title

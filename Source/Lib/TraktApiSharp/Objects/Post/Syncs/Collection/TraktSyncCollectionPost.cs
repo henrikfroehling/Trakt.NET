@@ -884,7 +884,7 @@
                 return this;
 
             var collectionShow = new TraktSyncCollectionPostShow();
-            collectionShow.Ids = show.Ids;
+            collectionShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
             collectionShow.Title = show.Title;
             collectionShow.Year = show.Year;
 
@@ -929,7 +929,7 @@
             else
             {
                 var collectionShow = new TraktSyncCollectionPostShow();
-                collectionShow.Ids = show.Ids;
+                collectionShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
                 collectionShow.Title = show.Title;
                 collectionShow.Year = show.Year;
 

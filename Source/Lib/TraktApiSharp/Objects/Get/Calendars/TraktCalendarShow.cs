@@ -48,7 +48,7 @@
         }
 
         [JsonIgnore]
-        public TraktShowIds Ids
+        public ITraktShowIds Ids
         {
             get { return Show?.Ids; }
 
@@ -84,7 +84,7 @@
         }
 
         [JsonIgnore]
-        public TraktShowAirs Airs
+        public ITraktShowAirs Airs
         {
             get { return Show?.Airs; }
 
@@ -264,7 +264,7 @@
         }
 
         [JsonIgnore]
-        public IEnumerable<TraktSeason> Seasons
+        public IEnumerable<ITraktSeason> Seasons
         {
             get { return Show?.Seasons; }
 

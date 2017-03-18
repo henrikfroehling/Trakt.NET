@@ -10,6 +10,6 @@
 
         ITraktMovie Movie { get; set; }
 
-        TraktMetadata Metadata { get; set; }
+        ITraktMetadata Metadata { get; set; }
     }
 }

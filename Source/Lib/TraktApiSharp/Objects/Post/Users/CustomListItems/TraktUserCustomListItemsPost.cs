@@ -148,7 +148,7 @@
             (_listItemsPost.Shows as List<TraktUserCustomListItemsPostShow>).Add(
                 new TraktUserCustomListItemsPostShow
                 {
-                    Ids = show.Ids
+                    Ids = (TraktShowIds)show.Ids // TODO use interface
                 });
 
             return this;
@@ -227,7 +227,7 @@
             else
             {
                 var listItemsShow = new TraktUserCustomListItemsPostShow();
-                listItemsShow.Ids = show.Ids;
+                listItemsShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
 
                 listItemsShow.Seasons = showSeasons;
                 (_listItemsPost.Shows as List<TraktUserCustomListItemsPostShow>).Add(listItemsShow);
@@ -280,7 +280,7 @@
             else
             {
                 var listItemsShow = new TraktUserCustomListItemsPostShow();
-                listItemsShow.Ids = show.Ids;
+                listItemsShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
 
                 listItemsShow.Seasons = showSeasons;
                 (_listItemsPost.Shows as List<TraktUserCustomListItemsPostShow>).Add(listItemsShow);
@@ -351,7 +351,7 @@
             else
             {
                 var listItemsShow = new TraktUserCustomListItemsPostShow();
-                listItemsShow.Ids = show.Ids;
+                listItemsShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
 
                 listItemsShow.Seasons = showSeasons;
                 (_listItemsPost.Shows as List<TraktUserCustomListItemsPostShow>).Add(listItemsShow);

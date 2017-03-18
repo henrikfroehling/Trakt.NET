@@ -23,7 +23,7 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "ids")]
-        public TraktShowIds Ids { get; set; }
+        public ITraktShowIds Ids { get; set; }
 
         /// <summary>Gets or sets the synopsis of the show.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "overview")]
@@ -35,7 +35,7 @@
 
         /// <summary>Gets or sets the air time of the show. See also <seealso cref="TraktShowAirs" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "airs")]
-        public TraktShowAirs Airs { get; set; }
+        public ITraktShowAirs Airs { get; set; }
 
         /// <summary>Gets or sets the runtime for the show's episodes, in minutes.</summary>
         [JsonProperty(PropertyName = "runtime")]
@@ -96,6 +96,6 @@
 
         /// <summary>Gets or sets the collection of Trakt seasons for the show. See also <seealso cref="TraktSeason" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "seasons")]
-        public IEnumerable<TraktSeason> Seasons { get; set; }
+        public IEnumerable<ITraktSeason> Seasons { get; set; }
     }
 }

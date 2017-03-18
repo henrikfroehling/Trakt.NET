@@ -150,7 +150,7 @@
             (_watchlistPost.Shows as List<TraktSyncWatchlistPostShow>).Add(
                 new TraktSyncWatchlistPostShow
                 {
-                    Ids = show.Ids,
+                    Ids = (TraktShowIds)show.Ids, // TODO use interface
                     Title = show.Title,
                     Year = show.Year
                 });
@@ -231,7 +231,7 @@
             else
             {
                 var watchlistShow = new TraktSyncWatchlistPostShow();
-                watchlistShow.Ids = show.Ids;
+                watchlistShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
                 watchlistShow.Title = show.Title;
                 watchlistShow.Year = show.Year;
 
@@ -286,7 +286,7 @@
             else
             {
                 var watchlistShow = new TraktSyncWatchlistPostShow();
-                watchlistShow.Ids = show.Ids;
+                watchlistShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
                 watchlistShow.Title = show.Title;
                 watchlistShow.Year = show.Year;
 
@@ -363,7 +363,7 @@
             else
             {
                 var watchlistShow = new TraktSyncWatchlistPostShow();
-                watchlistShow.Ids = show.Ids;
+                watchlistShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
                 watchlistShow.Title = show.Title;
                 watchlistShow.Year = show.Year;
 

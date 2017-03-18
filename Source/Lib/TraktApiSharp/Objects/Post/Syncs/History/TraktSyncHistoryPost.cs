@@ -560,7 +560,7 @@
                 return this;
 
             var historyShow = new TraktSyncHistoryPostShow();
-            historyShow.Ids = show.Ids;
+            historyShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
             historyShow.Title = show.Title;
             historyShow.Year = show.Year;
 
@@ -598,7 +598,7 @@
             else
             {
                 var historyShow = new TraktSyncHistoryPostShow();
-                historyShow.Ids = show.Ids;
+                historyShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
                 historyShow.Title = show.Title;
                 historyShow.Year = show.Year;
 

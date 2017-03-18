@@ -754,7 +754,7 @@
                 return this;
 
             var ratingsShow = new TraktSyncRatingsPostShow();
-            ratingsShow.Ids = show.Ids;
+            ratingsShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
             ratingsShow.Title = show.Title;
             ratingsShow.Year = show.Year;
 
@@ -798,7 +798,7 @@
             else
             {
                 var ratingsShow = new TraktSyncRatingsPostShow();
-                ratingsShow.Ids = show.Ids;
+                ratingsShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
                 ratingsShow.Title = show.Title;
                 ratingsShow.Year = show.Year;
 
