@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Basic
 {
-    using TraktApiSharp.Enums;
+    using Enums;
 
     public interface ITraktGenre
     {

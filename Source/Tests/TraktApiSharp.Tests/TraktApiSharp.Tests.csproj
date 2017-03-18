@@ -64,11 +64,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Objects\Basic\IIds_Tests.cs" />
-    <Compile Include="Objects\Basic\ITraktError_Tests.cs" />
-    <Compile Include="Objects\Basic\ITraktGenre_Tests.cs" />
-    <Compile Include="Objects\Basic\ITraktIds_Tests.cs" />
-    <Compile Include="Objects\Basic\ITraktImage_Tests.cs" />
+    <Compile Include="Objects\Basic\Interfaces\IIds_Tests.cs" />
+    <Compile Include="Objects\Basic\Interfaces\ITraktError_Tests.cs" />
+    <Compile Include="Objects\Basic\Interfaces\ITraktGenre_Tests.cs" />
+    <Compile Include="Objects\Basic\Interfaces\ITraktIds_Tests.cs" />
+    <Compile Include="Objects\Basic\Interfaces\ITraktImage_Tests.cs" />
+    <Compile Include="Objects\Basic\Interfaces\ITraktMetadata_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarMovie_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarShow_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\TraktCalendarMovie_Tests.cs" />
