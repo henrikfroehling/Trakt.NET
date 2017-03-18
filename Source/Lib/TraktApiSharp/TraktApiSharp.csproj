@@ -117,6 +117,7 @@
     <Compile Include="Exceptions\TraktShowNotFoundException.cs" />
     <Compile Include="Exceptions\TraktValidationException.cs" />
     <Compile Include="Objects\Basic\IIds.cs" />
+    <Compile Include="Objects\Basic\ITraktCastMember.cs" />
     <Compile Include="Objects\Basic\ITraktError.cs" />
     <Compile Include="Objects\Basic\ITraktGenre.cs" />
     <Compile Include="Objects\Basic\ITraktIds.cs" />

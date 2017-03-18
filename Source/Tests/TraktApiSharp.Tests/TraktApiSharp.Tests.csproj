@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Objects\Basic\Interfaces\IIds_Tests.cs" />
+    <Compile Include="Objects\Basic\Interfaces\ITraktCastMember_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktError_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktGenre_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktIds_Tests.cs" />
