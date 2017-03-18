@@ -191,6 +191,7 @@
     <Compile Include="Objects\Get\Watched\ITraktWatchedShow.cs" />
     <Compile Include="Objects\Get\Watched\ITraktWatchedShowEpisode.cs" />
     <Compile Include="Objects\Get\Watched\ITraktWatchedShowSeason.cs" />
+    <Compile Include="Objects\Get\Watchlist\ITraktWatchlistItem.cs" />
     <Compile Include="Objects\JsonReader\Basic\TraktErrorObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Basic\TraktGenreObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Basic\TraktIdsObjectJsonReader.cs" />

@@ -190,6 +190,7 @@
     <Compile Include="Objects\Get\Watched\Interfaces\ITraktWatchedShow_Tests.cs" />
     <Compile Include="Objects\Get\Watched\TraktWatchedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Watched\TraktWatchedShow_Tests.cs" />
+    <Compile Include="Objects\Get\Watchlist\Interfaces\ITraktWatchlistItem_Tests.cs" />
     <Compile Include="Objects\Get\Watchlist\TraktWatchlistItem_Tests.cs" />
     <Compile Include="Objects\JsonReader\Basic\TraktErrorObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\JsonReader\Basic\TraktGenreObjectJsonReader_Tests.cs" />
