@@ -188,6 +188,7 @@
     <Compile Include="Objects\Get\Users\Statistics\Interfaces\ITraktUserMoviesStatistics_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Interfaces\ITraktUserNetworkStatistics_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Interfaces\ITraktUserRatingsStatistics_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\Interfaces\ITraktUserSeasonsStatistics_Tests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserFollower_Tests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserFriend_Tests.cs" />
     <Compile Include="Objects\Get\Users\TraktUser_Tests.cs" />
