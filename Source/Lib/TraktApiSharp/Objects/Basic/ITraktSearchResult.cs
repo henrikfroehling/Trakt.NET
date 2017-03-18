@@ -21,6 +21,6 @@
 
         ITraktPerson Person { get; set; }
 
-        TraktList List { get; set; }
+        ITraktList List { get; set; }
     }
 }
