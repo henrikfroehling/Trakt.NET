@@ -195,6 +195,7 @@
     <Compile Include="Objects\Get\Users\ITraktAccountSettings.cs" />
     <Compile Include="Objects\Get\Users\ITraktSharingText.cs" />
     <Compile Include="Objects\Get\Users\ITraktUser.cs" />
+    <Compile Include="Objects\Get\Users\ITraktUserComment.cs" />
     <Compile Include="Objects\Get\Users\ITraktUserFollower.cs" />
     <Compile Include="Objects\Get\Users\ITraktUserFriend.cs" />
     <Compile Include="Objects\Get\Users\ITraktUserIds.cs" />
