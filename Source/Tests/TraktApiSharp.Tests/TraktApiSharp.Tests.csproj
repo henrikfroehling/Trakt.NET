@@ -192,6 +192,7 @@
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUserFollower_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUserFollowRequest_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUserFriend_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Interfaces\ITraktUserHiddenItem_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUserIds_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUserImages_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUser_Tests.cs" />
