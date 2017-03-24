@@ -33,6 +33,7 @@
             seasonsArray[0].Ids.Tvdb.Should().Be(279121U);
             seasonsArray[0].Ids.Tmdb.Should().Be(60523U);
             seasonsArray[0].Ids.TvRage.Should().Be(36939U);
+            seasonsArray[0].Title.Should().BeNullOrEmpty();
 
             seasonsArray[0].Episodes.Should().BeNull();
 
@@ -43,6 +44,7 @@
             seasonsArray[1].Ids.Tvdb.Should().BeNull();
             seasonsArray[1].Ids.Tmdb.Should().Be(66922U);
             seasonsArray[1].Ids.TvRage.Should().BeNull();
+            seasonsArray[1].Title.Should().BeNullOrEmpty();
 
             seasonsArray[1].Episodes.Should().BeNull();
         }
@@ -68,6 +70,7 @@
             seasonsArray[0].Ids.Tvdb.Should().Be(279121U);
             seasonsArray[0].Ids.Tmdb.Should().Be(60523U);
             seasonsArray[0].Ids.TvRage.Should().Be(36939U);
+            seasonsArray[0].Title.Should().BeNullOrEmpty();
 
             seasonsArray[0].Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -100,6 +103,7 @@
             seasonsArray[1].Ids.Tvdb.Should().BeNull();
             seasonsArray[1].Ids.Tmdb.Should().Be(66922U);
             seasonsArray[1].Ids.TvRage.Should().BeNull();
+            seasonsArray[1].Title.Should().BeNullOrEmpty();
 
             seasonsArray[1].Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -147,6 +151,7 @@
             seasonsArray[0].Ids.Tvdb.Should().Be(279121U);
             seasonsArray[0].Ids.Tmdb.Should().Be(60523U);
             seasonsArray[0].Ids.TvRage.Should().Be(36939U);
+            seasonsArray[0].Title.Should().BeNullOrEmpty();
 
             seasonsArray[0].Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -181,6 +186,7 @@
             seasonsArray[1].Ids.Tvdb.Should().BeNull();
             seasonsArray[1].Ids.Tmdb.Should().Be(66922U);
             seasonsArray[1].Ids.TvRage.Should().BeNull();
+            seasonsArray[1].Title.Should().BeNullOrEmpty();
 
             seasonsArray[1].Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -230,6 +236,7 @@
             seasonsArray[0].Ids.Tvdb.Should().Be(279121U);
             seasonsArray[0].Ids.Tmdb.Should().Be(60523U);
             seasonsArray[0].Ids.TvRage.Should().Be(36939U);
+            seasonsArray[0].Title.Should().BeNullOrEmpty();
             seasonsArray[0].Images.Should().NotBeNull();
             seasonsArray[0].Images.Poster.Full.Should().Be("https://walter.trakt.us/images/seasons/000/061/430/posters/original/ea214a63c3.jpg");
             seasonsArray[0].Images.Poster.Medium.Should().Be("https://walter.trakt.us/images/seasons/000/061/430/posters/medium/ea214a63c3.jpg");
@@ -240,11 +247,12 @@
 
             // season 2
             seasonsArray[1].Number.Should().Be(2);
-            seasonsArray[0].Ids.Should().NotBeNull();
+            seasonsArray[1].Ids.Should().NotBeNull();
             seasonsArray[1].Ids.Trakt.Should().Be(110984U);
             seasonsArray[1].Ids.Tvdb.Should().BeNull();
             seasonsArray[1].Ids.Tmdb.Should().Be(66922U);
             seasonsArray[1].Ids.TvRage.Should().BeNull();
+            seasonsArray[1].Title.Should().BeNullOrEmpty();
             seasonsArray[1].Images.Should().NotBeNull();
             seasonsArray[1].Images.Poster.Full.Should().Be("https://walter.trakt.us/images/seasons/000/110/984/posters/original/26132fb16c.jpg");
             seasonsArray[1].Images.Poster.Medium.Should().Be("https://walter.trakt.us/images/seasons/000/110/984/posters/medium/26132fb16c.jpg");
@@ -275,6 +283,7 @@
             seasonsArray[0].Ids.Tvdb.Should().Be(279121U);
             seasonsArray[0].Ids.Tmdb.Should().Be(60523U);
             seasonsArray[0].Ids.TvRage.Should().Be(36939U);
+            seasonsArray[0].Title.Should().BeNullOrEmpty();
             seasonsArray[0].Images.Should().NotBeNull();
             seasonsArray[0].Images.Poster.Full.Should().Be("https://walter.trakt.us/images/seasons/000/061/430/posters/original/ea214a63c3.jpg");
             seasonsArray[0].Images.Poster.Medium.Should().Be("https://walter.trakt.us/images/seasons/000/061/430/posters/medium/ea214a63c3.jpg");
@@ -320,6 +329,7 @@
             seasonsArray[1].Ids.Tvdb.Should().BeNull();
             seasonsArray[1].Ids.Tmdb.Should().Be(66922U);
             seasonsArray[1].Ids.TvRage.Should().BeNull();
+            seasonsArray[1].Title.Should().BeNullOrEmpty();
             seasonsArray[1].Images.Should().NotBeNull();
             seasonsArray[1].Images.Poster.Full.Should().Be("https://walter.trakt.us/images/seasons/000/110/984/posters/original/26132fb16c.jpg");
             seasonsArray[1].Images.Poster.Medium.Should().Be("https://walter.trakt.us/images/seasons/000/110/984/posters/medium/26132fb16c.jpg");
@@ -380,6 +390,7 @@
             seasonsArray[0].Ids.Tvdb.Should().Be(279121U);
             seasonsArray[0].Ids.Tmdb.Should().Be(60523U);
             seasonsArray[0].Ids.TvRage.Should().Be(36939U);
+            seasonsArray[0].Title.Should().Be("Season 1");
             seasonsArray[0].Rating.Should().Be(8.57053f);
             seasonsArray[0].Votes.Should().Be(794);
             seasonsArray[0].TotalEpisodesCount.Should().Be(23);
@@ -396,6 +407,7 @@
             seasonsArray[1].Ids.Tvdb.Should().BeNull();
             seasonsArray[1].Ids.Tmdb.Should().Be(66922U);
             seasonsArray[1].Ids.TvRage.Should().BeNull();
+            seasonsArray[1].Title.Should().Be("Season 2");
             seasonsArray[1].Rating.Should().Be(8.61539f);
             seasonsArray[1].Votes.Should().Be(325);
             seasonsArray[1].TotalEpisodesCount.Should().Be(23);
@@ -427,6 +439,7 @@
             seasonsArray[0].Ids.Tvdb.Should().Be(279121U);
             seasonsArray[0].Ids.Tmdb.Should().Be(60523U);
             seasonsArray[0].Ids.TvRage.Should().Be(36939U);
+            seasonsArray[0].Title.Should().Be("Season 1");
             seasonsArray[0].Rating.Should().Be(8.57053f);
             seasonsArray[0].Votes.Should().Be(794);
             seasonsArray[0].TotalEpisodesCount.Should().Be(23);
@@ -479,6 +492,7 @@
             seasonsArray[1].Ids.Tvdb.Should().BeNull();
             seasonsArray[1].Ids.Tmdb.Should().Be(66922U);
             seasonsArray[1].Ids.TvRage.Should().BeNull();
+            seasonsArray[1].Title.Should().Be("Season 2");
             seasonsArray[1].Rating.Should().Be(8.61539f);
             seasonsArray[1].Votes.Should().Be(325);
             seasonsArray[1].TotalEpisodesCount.Should().Be(23);
@@ -546,6 +560,7 @@
             seasonsArray[0].Ids.Tvdb.Should().Be(279121U);
             seasonsArray[0].Ids.Tmdb.Should().Be(60523U);
             seasonsArray[0].Ids.TvRage.Should().Be(36939U);
+            seasonsArray[0].Title.Should().Be("Season 1");
             seasonsArray[0].Rating.Should().Be(8.57053f);
             seasonsArray[0].Votes.Should().Be(794);
             seasonsArray[0].TotalEpisodesCount.Should().Be(23);
@@ -567,6 +582,7 @@
             seasonsArray[1].Ids.Tvdb.Should().BeNull();
             seasonsArray[1].Ids.Tmdb.Should().Be(66922U);
             seasonsArray[1].Ids.TvRage.Should().BeNull();
+            seasonsArray[1].Title.Should().Be("Season 2");
             seasonsArray[1].Rating.Should().Be(8.61539f);
             seasonsArray[1].Votes.Should().Be(325);
             seasonsArray[1].TotalEpisodesCount.Should().Be(23);
@@ -603,6 +619,7 @@
             seasonsArray[0].Ids.Tvdb.Should().Be(279121U);
             seasonsArray[0].Ids.Tmdb.Should().Be(60523U);
             seasonsArray[0].Ids.TvRage.Should().Be(36939U);
+            seasonsArray[0].Title.Should().BeNullOrEmpty();
             seasonsArray[0].Rating.Should().Be(8.57053f);
             seasonsArray[0].Votes.Should().Be(794);
             seasonsArray[0].TotalEpisodesCount.Should().Be(23);
@@ -668,6 +685,7 @@
             seasonsArray[1].Ids.Tvdb.Should().BeNull();
             seasonsArray[1].Ids.Tmdb.Should().Be(66922U);
             seasonsArray[1].Ids.TvRage.Should().BeNull();
+            seasonsArray[1].Title.Should().BeNullOrEmpty();
             seasonsArray[1].Rating.Should().Be(8.61539f);
             seasonsArray[1].Votes.Should().Be(325);
             seasonsArray[1].TotalEpisodesCount.Should().Be(23);

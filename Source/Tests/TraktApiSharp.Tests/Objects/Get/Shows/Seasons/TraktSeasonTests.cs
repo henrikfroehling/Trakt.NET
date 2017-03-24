@@ -18,6 +18,7 @@
 
             season.Number.Should().NotHaveValue();
             season.Ids.Should().BeNull();
+            season.Title.Should().BeNullOrEmpty();
             season.Images.Should().BeNull();
             season.Rating.Should().NotHaveValue();
             season.Votes.Should().NotHaveValue();
@@ -44,6 +45,7 @@
             season.Ids.Tvdb.Should().Be(279121U);
             season.Ids.Tmdb.Should().Be(60523U);
             season.Ids.TvRage.Should().Be(36939U);
+            season.Title.Should().BeNullOrEmpty();
             season.Images.Should().BeNull();
             season.Rating.Should().NotHaveValue();
             season.Votes.Should().NotHaveValue();
@@ -70,6 +72,7 @@
             season.Ids.Tvdb.Should().Be(279121U);
             season.Ids.Tmdb.Should().Be(60523U);
             season.Ids.TvRage.Should().Be(36939U);
+            season.Title.Should().BeNullOrEmpty();
             season.Images.Should().BeNull();
             season.Rating.Should().NotHaveValue();
             season.Votes.Should().NotHaveValue();
@@ -107,6 +110,7 @@
             season.Ids.Tvdb.Should().Be(279121U);
             season.Ids.Tmdb.Should().Be(60523U);
             season.Ids.TvRage.Should().Be(36939U);
+            season.Title.Should().BeNullOrEmpty();
             season.Images.Should().BeNull();
             season.Rating.Should().NotHaveValue();
             season.Votes.Should().NotHaveValue();
@@ -150,6 +154,7 @@
             season.Ids.Tvdb.Should().Be(279121U);
             season.Ids.Tmdb.Should().Be(60523U);
             season.Ids.TvRage.Should().Be(36939U);
+            season.Title.Should().BeNullOrEmpty();
             season.Images.Should().NotBeNull();
             season.Images.Poster.Full.Should().Be("https://walter.trakt.us/images/seasons/000/061/430/posters/original/ea214a63c3.jpg");
             season.Images.Poster.Medium.Should().Be("https://walter.trakt.us/images/seasons/000/061/430/posters/medium/ea214a63c3.jpg");
@@ -180,6 +185,7 @@
             season.Ids.Tvdb.Should().Be(279121U);
             season.Ids.Tmdb.Should().Be(60523U);
             season.Ids.TvRage.Should().Be(36939U);
+            season.Title.Should().BeNullOrEmpty();
             season.Images.Should().NotBeNull();
             season.Images.Poster.Full.Should().Be("https://walter.trakt.us/images/seasons/000/061/430/posters/original/ea214a63c3.jpg");
             season.Images.Poster.Medium.Should().Be("https://walter.trakt.us/images/seasons/000/061/430/posters/medium/ea214a63c3.jpg");
@@ -221,6 +227,7 @@
             season.Ids.Tvdb.Should().Be(279121U);
             season.Ids.Tmdb.Should().Be(60523U);
             season.Ids.TvRage.Should().Be(36939U);
+            season.Title.Should().Be("Season 1");
             season.Images.Should().BeNull();
             season.Rating.Should().Be(8.57053f);
             season.Votes.Should().Be(794);
@@ -247,6 +254,7 @@
             season.Ids.Tvdb.Should().Be(279121U);
             season.Ids.Tmdb.Should().Be(60523U);
             season.Ids.TvRage.Should().Be(36939U);
+            season.Title.Should().BeNullOrEmpty();
             season.Images.Should().BeNull();
             season.Rating.Should().Be(8.57053f);
             season.Votes.Should().Be(794);
@@ -284,6 +292,7 @@
             season.Ids.Tvdb.Should().Be(279121U);
             season.Ids.Tmdb.Should().Be(60523U);
             season.Ids.TvRage.Should().Be(36939U);
+            season.Title.Should().Be("Season 1");
             season.Images.Should().NotBeNull();
             season.Images.Poster.Full.Should().Be("https://walter.trakt.us/images/seasons/000/061/430/posters/original/ea214a63c3.jpg");
             season.Images.Poster.Medium.Should().Be("https://walter.trakt.us/images/seasons/000/061/430/posters/medium/ea214a63c3.jpg");
@@ -314,6 +323,7 @@
             season.Ids.Tvdb.Should().Be(279121U);
             season.Ids.Tmdb.Should().Be(60523U);
             season.Ids.TvRage.Should().Be(36939U);
+            season.Title.Should().BeNullOrEmpty();
             season.Images.Should().NotBeNull();
             season.Images.Poster.Full.Should().Be("https://walter.trakt.us/images/seasons/000/061/430/posters/original/ea214a63c3.jpg");
             season.Images.Poster.Medium.Should().Be("https://walter.trakt.us/images/seasons/000/061/430/posters/medium/ea214a63c3.jpg");
