@@ -9,6 +9,7 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Seasons;
     using Xunit;

@@ -3,6 +3,7 @@
     using Objects.Basic;
     using Objects.Get.Shows;
     using System.Collections.ObjectModel;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     public class Show : TraktShow
     {

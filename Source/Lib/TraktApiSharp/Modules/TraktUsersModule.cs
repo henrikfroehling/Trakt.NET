@@ -24,6 +24,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to users.

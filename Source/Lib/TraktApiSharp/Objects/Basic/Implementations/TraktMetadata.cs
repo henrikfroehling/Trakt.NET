@@ -1,10 +1,10 @@
-﻿namespace TraktApiSharp.Objects.Basic
+﻿namespace TraktApiSharp.Objects.Basic.Implementations
 {
     using Enums;
     using Newtonsoft.Json;
 
     /// <summary>Contains metadata information for collection items.</summary>
-    public class TraktMetadata
+    public class TraktMetadata : ITraktMetadata
     {
         /// <summary>Gets or sets the media type. See also <seealso cref="TraktMediaType" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "media_type")]

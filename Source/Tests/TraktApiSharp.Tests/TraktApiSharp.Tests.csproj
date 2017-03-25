@@ -64,6 +64,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Objects\Basic\Implementations\TraktCastAndCrew_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktCastMember_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktComment_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktCrewMember_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktCrew_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktError_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktGenre_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktIds_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktImage_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktMetadata_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktRating_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktSearchResult_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktSharing_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktStatistics_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktTranslation_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\IIds_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktCastAndCrew_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktCastMember_Tests.cs" />

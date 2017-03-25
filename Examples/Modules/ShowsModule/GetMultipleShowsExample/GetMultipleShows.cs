@@ -114,7 +114,7 @@
                 Console.WriteLine($"Title: {show.Title}");
                 Console.WriteLine($"Year: {show.Year ?? 0}");
 
-                TraktShowIds ids = show.Ids;
+                TraktShowIds ids = (TraktShowIds)show.Ids; // TODO use interface
 
                 if (ids != null)
                 {
@@ -131,7 +131,7 @@
                 if (show.FirstAired.HasValue)
                     Console.WriteLine($"First Aired (UTC): {show.FirstAired.Value}");
 
-                TraktShowAirs airs = show.Airs;
+                TraktShowAirs airs = (TraktShowAirs)show.Airs; // TODO use interface
 
                 if (airs != null)
                 {

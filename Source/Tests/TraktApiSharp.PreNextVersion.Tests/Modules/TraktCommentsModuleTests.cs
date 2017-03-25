@@ -9,6 +9,7 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Seasons;
@@ -207,7 +208,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -270,7 +271,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -335,7 +336,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -406,7 +407,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -476,7 +477,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -566,7 +567,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -620,12 +621,12 @@
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(movie, comment);
             act.ShouldThrow<ArgumentNullException>();
 
-            movie.Ids = new TraktMovieIds();
+            movie.Ids = (ITraktMovieIds)new TraktMovieIds();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(movie, comment);
             act.ShouldThrow<ArgumentException>();
 
-            movie.Ids = new TraktMovieIds
+            movie.Ids = (ITraktMovieIds)new TraktMovieIds
             {
                 Trakt = 28,
                 Slug = "guardians-of-the-galaxy-2014",
@@ -661,7 +662,7 @@
             var show = new TraktShow
             {
                 Title = "Breaking Bad",
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1388,
                     Slug = "breaking bad",
@@ -725,7 +726,7 @@
             var show = new TraktShow
             {
                 Title = "Breaking Bad",
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1388,
                     Slug = "breaking bad",
@@ -791,7 +792,7 @@
             var show = new TraktShow
             {
                 Title = "Breaking Bad",
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1388,
                     Slug = "breaking bad",
@@ -863,7 +864,7 @@
             var show = new TraktShow
             {
                 Title = "Breaking Bad",
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1388,
                     Slug = "breaking bad",
@@ -934,7 +935,7 @@
             var show = new TraktShow
             {
                 Title = "Breaking Bad",
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1388,
                     Slug = "breaking bad",
@@ -1025,7 +1026,7 @@
             var show = new TraktShow
             {
                 Title = "Breaking Bad",
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1388,
                     Slug = "breaking bad",
@@ -1065,12 +1066,12 @@
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment);
             act.ShouldThrow<ArgumentNullException>();
 
-            show.Ids = new TraktShowIds();
+            show.Ids = (ITraktShowIds)new TraktShowIds();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment);
             act.ShouldThrow<ArgumentException>();
 
-            show.Ids = new TraktShowIds
+            show.Ids = (ITraktShowIds)new TraktShowIds
             {
                 Trakt = 1388,
                 Slug = "breaking bad",

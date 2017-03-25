@@ -6,6 +6,7 @@
     using Objects.Basic;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     internal sealed class TraktCommentRepliesRequest : ATraktGetRequest<TraktComment>, ITraktHasId, ITraktSupportsPagination
     {

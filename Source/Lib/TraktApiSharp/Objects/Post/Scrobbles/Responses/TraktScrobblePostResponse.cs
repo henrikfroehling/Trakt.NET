@@ -3,6 +3,7 @@
     using Basic;
     using Enums;
     using Newtonsoft.Json;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     public abstract class TraktScrobblePostResponse
     {

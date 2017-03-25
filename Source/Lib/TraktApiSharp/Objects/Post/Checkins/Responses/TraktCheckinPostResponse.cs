@@ -3,6 +3,7 @@
     using Basic;
     using Newtonsoft.Json;
     using System;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     public abstract class TraktCheckinPostResponse
     {

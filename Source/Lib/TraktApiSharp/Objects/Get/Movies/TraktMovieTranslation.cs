@@ -2,6 +2,7 @@
 {
     using Basic;
     using Newtonsoft.Json;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     /// <summary>A translation for a Trakt movie.</summary>
     public class TraktMovieTranslation : TraktTranslation

@@ -67,7 +67,7 @@
             {
                 Title = showTitle,
                 Year = showYear,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = showTraktId,
                     Slug = showSlug,

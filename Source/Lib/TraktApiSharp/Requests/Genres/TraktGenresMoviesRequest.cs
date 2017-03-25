@@ -3,6 +3,7 @@
     using Base;
     using Objects.Basic;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     internal sealed class TraktGenresMoviesRequest : ATraktGetRequest<TraktGenre>
     {

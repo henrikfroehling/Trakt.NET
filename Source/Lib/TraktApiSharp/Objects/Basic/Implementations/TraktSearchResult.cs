@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Basic
+﻿namespace TraktApiSharp.Objects.Basic.Implementations
 {
     using Enums;
     using Get.Episodes;
@@ -9,7 +9,7 @@
     using Newtonsoft.Json;
 
     /// <summary>A Trakt search result.</summary>
-    public class TraktSearchResult
+    public class TraktSearchResult : ITraktSearchResult
     {
         /// <summary>Gets or sets the result type. See also <seealso cref="TraktSearchResultType" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "type")]
@@ -22,42 +22,42 @@
 
         /// <summary>
         /// Gets or sets the result movie, if <see cref="Type" /> is <see cref="TraktSearchResultType.Movie" />.
-        /// See also <seealso cref="TraktMovie" />.
+        /// See also <seealso cref="ITraktMovie" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "movie")]
-        public TraktMovie Movie { get; set; }
+        public ITraktMovie Movie { get; set; }
 
         /// <summary>
         /// Gets or sets the result show, if <see cref="Type" /> is <see cref="TraktSearchResultType.Show" />.
-        /// See also <seealso cref="TraktShow" />.
+        /// See also <seealso cref="ITraktShow" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "show")]
-        public TraktShow Show { get; set; }
+        public ITraktShow Show { get; set; }
 
         /// <summary>
         /// Gets or sets the result episode, if <see cref="Type" /> is <see cref="TraktSearchResultType.Episode" />.
-        /// See also <seealso cref="TraktEpisode" />.
+        /// See also <seealso cref="ITraktEpisode" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "episode")]
-        public TraktEpisode Episode { get; set; }
+        public ITraktEpisode Episode { get; set; }
 
         /// <summary>
         /// Gets or sets the result person, if <see cref="Type" /> is <see cref="TraktSearchResultType.Person" />.
-        /// See also <seealso cref="TraktPerson" />.
+        /// See also <seealso cref="ITraktPerson" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "person")]
-        public TraktPerson Person { get; set; }
+        public ITraktPerson Person { get; set; }
 
         /// <summary>
         /// Gets or sets the result list, if <see cref="Type" /> is <see cref="TraktSearchResultType.List" />.
-        /// See also <seealso cref="TraktList" />.
+        /// See also <seealso cref="ITraktList" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "list")]
-        public TraktList List { get; set; }
+        public ITraktList List { get; set; }
     }
 }

@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Post.Comments;
 
@@ -39,7 +40,7 @@
             {
                 Title = movieTitle,
                 Year = movieYear,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = movieTraktId,
                     Slug = movieSlug,

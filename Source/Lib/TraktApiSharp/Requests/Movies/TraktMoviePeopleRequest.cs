@@ -4,6 +4,7 @@
     using Objects.Basic;
     using Parameters;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     internal sealed class TraktMoviePeopleRequest : ATraktMovieRequest<TraktCastAndCrew>, ITraktSupportsExtendedInfo
     {

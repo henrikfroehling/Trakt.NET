@@ -2,6 +2,7 @@
 {
     using Basic;
     using Newtonsoft.Json;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     /// <summary>Represents a comment post response.</summary>
     public class TraktCommentPostResponse : TraktComment

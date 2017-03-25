@@ -1,10 +1,10 @@
-﻿namespace TraktApiSharp.Objects.Basic
+﻿namespace TraktApiSharp.Objects.Basic.Implementations
 {
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
     /// <summary>Represents a Trakt rating.</summary>
-    public class TraktRating
+    public class TraktRating : ITraktRating
     {
         /// <summary>Gets or sets the rating value.</summary>
         [JsonProperty(PropertyName = "rating")]
@@ -16,7 +16,7 @@
 
         /// <summary>Gets or sets the rating distribution.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "distribution")]
-        public Dictionary<string, int> Distribution { get; set; }
+        public IDictionary<string, int> Distribution { get; set; }
 
         public override string ToString()
         {

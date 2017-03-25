@@ -4,6 +4,7 @@
     using Objects.Basic;
     using System.Collections.Generic;
     using System.IO;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     internal class TraktRatingObjectJsonReader : ITraktObjectJsonReader<TraktRating>
     {

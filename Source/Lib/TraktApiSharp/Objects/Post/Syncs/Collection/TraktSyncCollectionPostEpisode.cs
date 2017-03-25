@@ -4,6 +4,7 @@
     using Get.Episodes;
     using Newtonsoft.Json;
     using System;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     /// <summary>
     /// A Trakt collection post episode, containing the required episode ids,

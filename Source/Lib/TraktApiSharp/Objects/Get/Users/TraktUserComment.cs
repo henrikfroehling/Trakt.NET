@@ -8,6 +8,7 @@
     using Newtonsoft.Json;
     using Seasons;
     using Shows;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     /// <summary>A Trakt user comment.</summary>
     public class TraktUserComment

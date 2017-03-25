@@ -2,6 +2,7 @@
 {
     using Basic;
     using Newtonsoft.Json;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     /// <summary>A collection of images and image sets for a Trakt user.</summary>
     public class TraktUserImages

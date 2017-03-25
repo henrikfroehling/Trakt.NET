@@ -2,6 +2,7 @@
 {
     using Basic;
     using Newtonsoft.Json;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     public abstract class TraktCheckinPost
     {

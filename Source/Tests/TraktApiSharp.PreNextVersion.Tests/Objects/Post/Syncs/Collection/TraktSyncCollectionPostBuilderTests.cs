@@ -7,6 +7,7 @@
     using System.Linq;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Shows;
@@ -23,7 +24,7 @@
             {
                 Title = "movie1",
                 Year = 2016,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 1,
                     Slug = "movie1",
@@ -80,7 +81,7 @@
             {
                 Title = "movie2",
                 Year = 2016,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 3,
                     Slug = "movie2",
@@ -130,7 +131,7 @@
             {
                 Title = "movie1",
                 Year = 2016,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 1,
                     Slug = "movie1",
@@ -196,7 +197,7 @@
             {
                 Title = "movie2",
                 Year = 2016,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 3,
                     Slug = "movie2",
@@ -246,7 +247,7 @@
             {
                 Title = "movie1",
                 Year = 2016,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 1,
                     Slug = "movie1",
@@ -305,7 +306,7 @@
             {
                 Title = "movie2",
                 Year = 2016,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 3,
                     Slug = "movie2",
@@ -355,7 +356,7 @@
             {
                 Title = "movie1",
                 Year = 2016,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 1,
                     Slug = "movie1",
@@ -423,7 +424,7 @@
             {
                 Title = "movie2",
                 Year = 2016,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 3,
                     Slug = "movie2",
@@ -477,13 +478,13 @@
             act = () => builder.AddMovie(new TraktMovie());
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds() });
+            act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds() });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 123 });
+            act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 }, Year = 123 });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 12345 });
+            act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 }, Year = 12345 });
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -500,13 +501,13 @@
             act = () => builder.AddMovie(new TraktMovie(), metadata);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds() }, metadata);
+            act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds() }, metadata);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 123 }, metadata);
+            act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 }, Year = 123 }, metadata);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 12345 }, metadata);
+            act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 }, Year = 12345 }, metadata);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -523,13 +524,13 @@
             act = () => builder.AddMovie(new TraktMovie(), collectedAt);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds() }, collectedAt);
+            act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds() }, collectedAt);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 123 }, collectedAt);
+            act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 }, Year = 123 }, collectedAt);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 12345 }, collectedAt);
+            act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 }, Year = 12345 }, collectedAt);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -547,13 +548,13 @@
             act = () => builder.AddMovie(new TraktMovie(), metadata, collectedAt);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds() }, metadata, collectedAt);
+            act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds() }, metadata, collectedAt);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 123 }, metadata, collectedAt);
+            act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 }, Year = 123 }, metadata, collectedAt);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddMovie(new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 12345 }, metadata, collectedAt);
+            act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 }, Year = 12345 }, metadata, collectedAt);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -567,7 +568,7 @@
             {
                 Title = "movie1",
                 Year = 2016,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 1,
                     Slug = "movie1",
@@ -580,7 +581,7 @@
             {
                 Title = "movie2",
                 Year = 2016,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 3,
                     Slug = "movie2",
@@ -675,7 +676,7 @@
 
             movies = new List<TraktMovie>
             {
-                new TraktMovie { Ids = new TraktMovieIds() }
+                new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds() }
             };
 
             act = () => builder.AddMovies(movies);
@@ -683,7 +684,7 @@
 
             movies = new List<TraktMovie>
             {
-                new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 123 }
+                new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 }, Year = 123 }
             };
 
             act = () => builder.AddMovies(movies);
@@ -691,7 +692,7 @@
 
             movies = new List<TraktMovie>
             {
-                new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 }, Year = 12345 }
+                new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 }, Year = 12345 }
             };
 
             act = () => builder.AddMovies(movies);
@@ -1329,7 +1330,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -1391,7 +1392,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show2",
@@ -1449,7 +1450,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -1520,7 +1521,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show2",
@@ -1578,7 +1579,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -1642,7 +1643,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show2",
@@ -1700,7 +1701,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -1773,7 +1774,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show2",
@@ -1835,13 +1836,13 @@
             act = () => builder.AddShow(new TraktShow());
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 });
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -1858,13 +1859,13 @@
             act = () => builder.AddShow(new TraktShow(), metadata);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, metadata);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, metadata);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -1881,13 +1882,13 @@
             act = () => builder.AddShow(new TraktShow(), collectedAt);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, collectedAt);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, collectedAt);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, collectedAt);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, collectedAt);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, collectedAt);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, collectedAt);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -1905,13 +1906,13 @@
             act = () => builder.AddShow(new TraktShow(), metadata, collectedAt);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, metadata, collectedAt);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, metadata, collectedAt);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, collectedAt);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, collectedAt);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, collectedAt);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, collectedAt);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -1925,7 +1926,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -1940,7 +1941,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show2",
@@ -2043,7 +2044,7 @@
 
             shows = new List<TraktShow>
             {
-                new TraktShow { Ids = new TraktShowIds() }
+                new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }
             };
 
             act = () => builder.AddShows(shows);
@@ -2051,7 +2052,7 @@
 
             shows = new List<TraktShow>
             {
-                new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }
+                new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }
             };
 
             act = () => builder.AddShows(shows);
@@ -2059,7 +2060,7 @@
 
             shows = new List<TraktShow>
             {
-                new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }
+                new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }
             };
 
             act = () => builder.AddShows(shows);
@@ -2076,7 +2077,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -2238,7 +2239,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show2",
@@ -2318,7 +2319,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -2489,7 +2490,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show2",
@@ -2569,7 +2570,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -2733,7 +2734,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show2",
@@ -2813,7 +2814,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -2986,7 +2987,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show2",
@@ -3070,19 +3071,19 @@
             act = () => builder.AddShow(new TraktShow(), 1, 2, 3, 4);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, -1);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, -1);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, 1, 2, -1);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, 1, 2, -1);
             act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
@@ -3099,19 +3100,19 @@
             act = () => builder.AddShow(new TraktShow(), metadata, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, metadata, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, metadata, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, -1);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, -1);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, 1, 2, -1);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, 1, 2, -1);
             act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
@@ -3128,19 +3129,19 @@
             act = () => builder.AddShow(new TraktShow(), collectedAt, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, collectedAt, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, collectedAt, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, collectedAt, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, collectedAt, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, collectedAt, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, collectedAt, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, -1);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, -1);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, 1, 2, -1);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, 1, 2, -1);
             act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
@@ -3158,19 +3159,19 @@
             act = () => builder.AddShow(new TraktShow(), metadata, collectedAt, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, metadata, collectedAt, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, metadata, collectedAt, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, collectedAt, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, collectedAt, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, collectedAt, 1, 2, 3, 4);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, collectedAt, 1, 2, 3, 4);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, -1);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, -1);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, 1, 2, -1);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, 1, 2, -1);
             act.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
@@ -3184,7 +3185,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -3354,7 +3355,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show2",
@@ -3436,7 +3437,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -3615,7 +3616,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show2",
@@ -3697,7 +3698,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -3869,7 +3870,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show2",
@@ -3951,7 +3952,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -4132,7 +4133,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show2",
@@ -4220,26 +4221,26 @@
             act = () => builder.AddShow(new TraktShow(), seasons);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, seasons);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, seasons);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, seasons);
             act.ShouldThrow<ArgumentException>();
 
             seasons = new int[] { -1 };
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, seasons);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
             seasons = new int[] { 1, 2, -1 };
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, seasons);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, default(int[]));
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, default(int[]));
             act.ShouldThrow<ArgumentNullException>();
         }
 
@@ -4258,26 +4259,26 @@
             act = () => builder.AddShow(new TraktShow(), metadata, seasons);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, metadata, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, metadata, seasons);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, seasons);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, seasons);
             act.ShouldThrow<ArgumentException>();
 
             seasons = new int[] { -1 };
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, seasons);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
             seasons = new int[] { 1, 2, -1 };
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, seasons);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, default(int[]));
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, default(int[]));
             act.ShouldThrow<ArgumentNullException>();
         }
 
@@ -4296,26 +4297,26 @@
             act = () => builder.AddShow(new TraktShow(), collectedAt, seasons);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, collectedAt, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, collectedAt, seasons);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, collectedAt, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, collectedAt, seasons);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, collectedAt, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, collectedAt, seasons);
             act.ShouldThrow<ArgumentException>();
 
             seasons = new int[] { -1 };
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, seasons);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
             seasons = new int[] { 1, 2, -1 };
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, seasons);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, default(int[]));
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, collectedAt, default(int[]));
             act.ShouldThrow<ArgumentNullException>();
         }
 
@@ -4335,26 +4336,26 @@
             act = () => builder.AddShow(new TraktShow(), metadata, collectedAt, seasons);
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, metadata, collectedAt, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, metadata, collectedAt, seasons);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, collectedAt, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, collectedAt, seasons);
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, collectedAt, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, collectedAt, seasons);
             act.ShouldThrow<ArgumentException>();
 
             seasons = new int[] { -1 };
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, seasons);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
             seasons = new int[] { 1, 2, -1 };
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, seasons);
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, seasons);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, default(int[]));
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 1234 }, metadata, collectedAt, default(int[]));
             act.ShouldThrow<ArgumentNullException>();
         }
 
@@ -4368,7 +4369,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -4699,7 +4700,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show2",
@@ -4876,7 +4877,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -5216,7 +5217,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show2",
@@ -5393,7 +5394,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -5726,7 +5727,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show2",
@@ -5903,7 +5904,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -6245,7 +6246,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show2",
@@ -6426,32 +6427,32 @@
             act = () => builder.AddShow(new TraktShow(), new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, default(PostSeasons));
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, default(PostSeasons));
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostSeasons { { -1, new PostEpisodes { 1, 2, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, new PostSeasons { { -1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostSeasons { { 1, new PostEpisodes { 1, -1, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, new PostSeasons { { 1, new PostEpisodes { 1, -1, 3 } } });
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostSeasons
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, new PostSeasons
             {
                 { 1, new PostEpisodes { 1, 2, 3 } },
                 { -1, new PostEpisodes { 1, 2, 3 } }
             });
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, new PostSeasons
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, new PostSeasons
             {
                 { 1, new PostEpisodes { 1, 2, 3 } },
                 { 2, new PostEpisodes { 1, -1, 3 } }
@@ -6472,32 +6473,32 @@
             act = () => builder.AddShow(new TraktShow(), metadata, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, metadata, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, metadata, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, default(PostSeasons));
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, metadata, default(PostSeasons));
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, new PostSeasons { { -1, new PostEpisodes { 1, 2, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, metadata, new PostSeasons { { -1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, new PostSeasons { { 1, new PostEpisodes { 1, -1, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, metadata, new PostSeasons { { 1, new PostEpisodes { 1, -1, 3 } } });
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, new PostSeasons
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, metadata, new PostSeasons
             {
                 { 1, new PostEpisodes { 1, 2, 3 } },
                 { -1, new PostEpisodes { 1, 2, 3 } }
             });
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, new PostSeasons
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, metadata, new PostSeasons
             {
                 { 1, new PostEpisodes { 1, 2, 3 } },
                 { 2, new PostEpisodes { 1, -1, 3 } }
@@ -6518,32 +6519,32 @@
             act = () => builder.AddShow(new TraktShow(), collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, collectedAt, default(PostSeasons));
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, collectedAt, default(PostSeasons));
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, collectedAt, new PostSeasons { { -1, new PostEpisodes { 1, 2, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, collectedAt, new PostSeasons { { -1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, -1, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, -1, 3 } } });
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, collectedAt, new PostSeasons
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, collectedAt, new PostSeasons
             {
                 { 1, new PostEpisodes { 1, 2, 3 } },
                 { -1, new PostEpisodes { 1, 2, 3 } }
             });
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, collectedAt, new PostSeasons
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, collectedAt, new PostSeasons
             {
                 { 1, new PostEpisodes { 1, 2, 3 } },
                 { 2, new PostEpisodes { 1, -1, 3 } }
@@ -6565,32 +6566,32 @@
             act = () => builder.AddShow(new TraktShow(), metadata, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds() }, metadata, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, metadata, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, metadata, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, metadata, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, default(PostSeasons));
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, default(PostSeasons));
             act.ShouldThrow<ArgumentNullException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, new PostSeasons { { -1, new PostEpisodes { 1, 2, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, new PostSeasons { { -1, new PostEpisodes { 1, 2, 3 } } });
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, -1, 3 } } });
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, new PostSeasons { { 1, new PostEpisodes { 1, -1, 3 } } });
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, new PostSeasons
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, new PostSeasons
             {
                 { 1, new PostEpisodes { 1, 2, 3 } },
                 { -1, new PostEpisodes { 1, 2, 3 } }
             });
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            act = () => builder.AddShow(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, new PostSeasons
+            act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, metadata, collectedAt, new PostSeasons
             {
                 { 1, new PostEpisodes { 1, 2, 3 } },
                 { 2, new PostEpisodes { 1, -1, 3 } }
@@ -6608,7 +6609,7 @@
             {
                 Title = "movie1",
                 Year = 2016,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 1,
                     Slug = "movie1",
@@ -6633,7 +6634,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -6676,7 +6677,7 @@
             {
                 Title = "movie1",
                 Year = 2016,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 1,
                     Slug = "movie1",
@@ -6689,7 +6690,7 @@
             {
                 Title = "movie2",
                 Year = 2016,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 2,
                     Slug = "movie2",
@@ -6702,7 +6703,7 @@
             {
                 Title = "movie3",
                 Year = 2016,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 3,
                     Slug = "movie3",
@@ -6715,7 +6716,7 @@
             {
                 Title = "movie4",
                 Year = 2016,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 4,
                     Slug = "movie4",
@@ -6776,7 +6777,7 @@
             {
                 Title = "show1",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 1,
                     Slug = "show1",
@@ -6791,7 +6792,7 @@
             {
                 Title = "show2",
                 Year = 2016,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 2,
                     Slug = "show2",
@@ -6804,7 +6805,7 @@
 
             var show3 = new TraktShow
             {
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 3,
                     Slug = "show3",
@@ -6817,7 +6818,7 @@
 
             var show4 = new TraktShow
             {
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 4,
                     Slug = "show4",
@@ -6830,7 +6831,7 @@
 
             var show5 = new TraktShow
             {
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 5,
                     Slug = "show5",
@@ -6843,7 +6844,7 @@
 
             var show6 = new TraktShow
             {
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 6,
                     Slug = "show6",
@@ -6856,7 +6857,7 @@
 
             var show7 = new TraktShow
             {
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 7,
                     Slug = "show7",
@@ -6869,7 +6870,7 @@
 
             var show8 = new TraktShow
             {
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 8,
                     Slug = "show8",
@@ -6882,7 +6883,7 @@
 
             var show9 = new TraktShow
             {
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 9,
                     Slug = "show9",
@@ -6895,7 +6896,7 @@
 
             var show10 = new TraktShow
             {
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 10,
                     Slug = "show10",
@@ -6908,7 +6909,7 @@
 
             var show11 = new TraktShow
             {
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 11,
                     Slug = "show11",
@@ -6921,7 +6922,7 @@
 
             var show12 = new TraktShow
             {
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = 12,
                     Slug = "show12",

@@ -3,6 +3,7 @@
     using Newtonsoft.Json;
     using Objects.Basic;
     using System.IO;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     internal class TraktImageObjectJsonReader : ITraktObjectJsonReader<TraktImage>
     {

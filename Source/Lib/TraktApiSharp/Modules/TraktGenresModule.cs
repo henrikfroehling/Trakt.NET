@@ -7,6 +7,7 @@
     using Requests.Handler;
     using Responses;
     using System.Threading.Tasks;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to genres.

@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Objects.Basic
+﻿namespace TraktApiSharp.Objects.Basic.Implementations
 {
     using Get.Users;
     using Newtonsoft.Json;
     using System;
 
     /// <summary>A Trakt comment or reply.</summary>
-    public class TraktComment
+    public class TraktComment : ITraktComment
     {
         /// <summary>Gets or sets the Trakt id of the comment.</summary>
         [JsonProperty(PropertyName = "id")]
@@ -47,8 +47,8 @@
         [JsonProperty(PropertyName = "user_rating")]
         public float? UserRating { get; set; }
 
-        /// <summary>Gets or sets the user, which has written the comment. See also <seealso cref="TraktUser" />.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the user, which has written the comment. See also <seealso cref="ITraktUser" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "user")]
-        public TraktUser User { get; set; }
+        public ITraktUser User { get; set; }
     }
 }

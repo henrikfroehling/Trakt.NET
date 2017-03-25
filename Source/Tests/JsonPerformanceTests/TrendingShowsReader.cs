@@ -126,7 +126,7 @@
                 var showIds = ReadShowIds(reader);
 
                 if (showIds != null && show != null)
-                    show.Ids = showIds;
+                    show.Ids = (ITraktShowIds)showIds;
 
                 return;
             }
@@ -135,7 +135,7 @@
                 var showAirs = ReadShowAirs(reader);
 
                 if (showAirs != null && show != null)
-                    show.Airs = showAirs;
+                    show.Airs = (ITraktShowAirs)showAirs; // TODO use inteface
 
                 return;
             }

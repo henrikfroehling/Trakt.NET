@@ -1,8 +1,8 @@
-﻿namespace TraktApiSharp.Objects.Basic
+﻿namespace TraktApiSharp.Objects.Basic.Implementations
 {
     using Newtonsoft.Json;
 
-    public abstract class TraktTranslation
+    public abstract class TraktTranslation : ITraktTranslation
     {
         /// <summary>Gets or sets the title of the translation.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "title")]

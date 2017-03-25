@@ -1,10 +1,10 @@
-﻿namespace TraktApiSharp.Objects.Basic
+﻿namespace TraktApiSharp.Objects.Basic.Implementations
 {
     using Enums;
     using Newtonsoft.Json;
 
     /// <summary>A Trakt genre.</summary>
-    public class TraktGenre
+    public class TraktGenre : ITraktGenre
     {
         /// <summary>Gets or sets the genre name.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "name")]

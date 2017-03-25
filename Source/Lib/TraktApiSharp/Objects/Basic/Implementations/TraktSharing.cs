@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Objects.Basic
+﻿namespace TraktApiSharp.Objects.Basic.Implementations
 {
     using Newtonsoft.Json;
 
     /// <summary>Represents Trakt connection options.</summary>
-    public class TraktSharing
+    public class TraktSharing : ITraktSharing
     {
         /// <summary>Gets or sets, whether Facebook connection is enabled.</summary>
         [JsonProperty(PropertyName = "facebook")]

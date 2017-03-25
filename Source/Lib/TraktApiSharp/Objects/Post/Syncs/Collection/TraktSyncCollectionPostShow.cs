@@ -5,6 +5,7 @@
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     /// <summary>
     /// A Trakt collection post show, containing the required show ids,

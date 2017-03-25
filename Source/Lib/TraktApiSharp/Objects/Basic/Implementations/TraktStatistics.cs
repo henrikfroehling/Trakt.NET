@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Objects.Basic
+﻿namespace TraktApiSharp.Objects.Basic.Implementations
 {
     using Newtonsoft.Json;
 
     /// <summary>Represents Trakt statistics.</summary>
-    public class TraktStatistics
+    public class TraktStatistics : ITraktStatistics
     {
         /// <summary>Gets or sets the number of watchers.</summary>
         [JsonProperty(PropertyName = "watchers")]

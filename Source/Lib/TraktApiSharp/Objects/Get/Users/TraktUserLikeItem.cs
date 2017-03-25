@@ -5,6 +5,7 @@
     using Lists;
     using Newtonsoft.Json;
     using System;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     /// <summary>Contains information about an item a Trakt user has liked, including the corresponding comment or list.</summary>
     public class TraktUserLikeItem

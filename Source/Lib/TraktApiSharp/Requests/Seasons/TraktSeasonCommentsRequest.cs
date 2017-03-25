@@ -4,6 +4,7 @@
     using Interfaces;
     using Objects.Basic;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     internal sealed class TraktSeasonCommentsRequest : ATraktSeasonRequest<TraktComment>, ITraktSupportsPagination
     {

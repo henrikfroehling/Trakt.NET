@@ -1,18 +1,18 @@
-﻿namespace TraktApiSharp.Objects.Basic
+﻿namespace TraktApiSharp.Objects.Basic.Implementations
 {
     using Get.People;
     using Newtonsoft.Json;
 
     /// <summary>A Trakt cast member.</summary>
-    public class TraktCastMember
+    public class TraktCastMember : ITraktCastMember
     {
         /// <summary>Gets or sets the character name of the cast member.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "character")]
         public string Character { get; set; }
 
-        /// <summary>Gets or sets the cast member. See also <seealso cref="TraktPerson" />.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the cast member. See also <seealso cref="ITraktPerson" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "person")]
-        public TraktPerson Person { get; set; }
+        public ITraktPerson Person { get; set; }
 
         public override string ToString()
         {

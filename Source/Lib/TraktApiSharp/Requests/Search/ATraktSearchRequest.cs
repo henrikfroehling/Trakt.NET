@@ -6,6 +6,7 @@
     using Objects.Basic;
     using Parameters;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Basic.Implementations;
 
     internal abstract class ATraktSearchRequest : ATraktGetRequest<TraktSearchResult>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
     {
