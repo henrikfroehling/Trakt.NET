@@ -7,9 +7,10 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Calendars;
+    using TraktApiSharp.Objects.Get.Calendars.Implementations;
     using Xunit;
 
-    [Category("Objects.Get.Calendars")]
+    [Category("Objects.Get.Calendars.Implementations")]
     public class TraktCalendarShow_Tests
     {
         [Fact]

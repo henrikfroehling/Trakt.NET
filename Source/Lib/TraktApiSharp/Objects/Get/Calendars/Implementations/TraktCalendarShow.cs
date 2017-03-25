@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Calendars
+﻿namespace TraktApiSharp.Objects.Get.Calendars.Implementations
 {
     using Enums;
     using Episodes;

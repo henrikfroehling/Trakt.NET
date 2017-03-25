@@ -494,8 +494,8 @@
     <Compile Include="Modules\TraktUsersModule.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktMetadata.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktTranslation.cs" />
-    <Compile Include="Objects\Get\Calendars\TraktCalendarMovie.cs" />
-    <Compile Include="Objects\Get\Calendars\TraktCalendarShow.cs" />
+    <Compile Include="Objects\Get\Calendars\Implementations\TraktCalendarMovie.cs" />
+    <Compile Include="Objects\Get\Calendars\Implementations\TraktCalendarShow.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCastItem.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCrew.cs" />
     <Compile Include="Objects\Get\People\Credits\TraktPersonMovieCreditsCrewItem.cs" />

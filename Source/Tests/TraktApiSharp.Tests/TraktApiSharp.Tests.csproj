@@ -97,8 +97,8 @@
     <Compile Include="Objects\Basic\Interfaces\ITraktTranslation_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\Interfaces\ITraktCalendarMovie_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\Interfaces\ITraktCalendarShow_Tests.cs" />
-    <Compile Include="Objects\Get\Calendars\TraktCalendarMovie_Tests.cs" />
-    <Compile Include="Objects\Get\Calendars\TraktCalendarShow_Tests.cs" />
+    <Compile Include="Objects\Get\Calendars\Implementations\TraktCalendarMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Calendars\Implementations\TraktCalendarShow_Tests.cs" />
     <Compile Include="Objects\Get\Collection\Interfaces\ITraktCollectionMovie_Tests.cs" />
     <Compile Include="Objects\Get\Collection\Interfaces\ITraktCollectionShowEpisode_Tests.cs" />
     <Compile Include="Objects\Get\Collection\Interfaces\ITraktCollectionShowSeason_Tests.cs" />
