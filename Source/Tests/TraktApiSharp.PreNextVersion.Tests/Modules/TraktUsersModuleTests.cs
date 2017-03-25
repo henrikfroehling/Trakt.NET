@@ -14,6 +14,7 @@
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Collection;
+    using TraktApiSharp.Objects.Get.Collection.Implementations;
     using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.People;

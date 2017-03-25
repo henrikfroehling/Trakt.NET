@@ -103,8 +103,8 @@
     <Compile Include="Objects\Get\Collection\Interfaces\ITraktCollectionShowEpisode_Tests.cs" />
     <Compile Include="Objects\Get\Collection\Interfaces\ITraktCollectionShowSeason_Tests.cs" />
     <Compile Include="Objects\Get\Collection\Interfaces\ITraktCollectionShow_Tests.cs" />
-    <Compile Include="Objects\Get\Collection\TraktCollectionMovie_Tests.cs" />
-    <Compile Include="Objects\Get\Collection\TraktCollectionShow_Tests.cs" />
+    <Compile Include="Objects\Get\Collection\Implementations\TraktCollectionMovie_Tests.cs" />
+    <Compile Include="Objects\Get\Collection\Implementations\TraktCollectionShow_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\Interfaces\ITraktCalendarEpisode_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\Interfaces\ITraktEpisodeCollectionProgress_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\Interfaces\ITraktEpisodeIds_Tests.cs" />

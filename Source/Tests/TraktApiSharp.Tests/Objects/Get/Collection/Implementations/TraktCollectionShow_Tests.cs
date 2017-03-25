@@ -7,9 +7,10 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Collection;
+    using TraktApiSharp.Objects.Get.Collection.Implementations;
     using Xunit;
 
-    [Category("Objects.Get.Collection")]
+    [Category("Objects.Get.Collection.Implementations")]
     public class TraktCollectionShow_Tests
     {
         [Fact]

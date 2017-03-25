@@ -514,10 +514,10 @@
     <Compile Include="Objects\Get\Shows\TraktShowCollectionProgress.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowProgress.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowWatchedProgress.cs" />
-    <Compile Include="Objects\Get\Collection\TraktCollectionShowEpisode.cs" />
-    <Compile Include="Objects\Get\Collection\TraktCollectionMovie.cs" />
-    <Compile Include="Objects\Get\Collection\TraktCollectionShowSeason.cs" />
-    <Compile Include="Objects\Get\Collection\TraktCollectionShow.cs" />
+    <Compile Include="Objects\Get\Collection\Implementations\TraktCollectionShowEpisode.cs" />
+    <Compile Include="Objects\Get\Collection\Implementations\TraktCollectionMovie.cs" />
+    <Compile Include="Objects\Get\Collection\Implementations\TraktCollectionShowSeason.cs" />
+    <Compile Include="Objects\Get\Collection\Implementations\TraktCollectionShow.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncCommentsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncEpisodesLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncLastActivities.cs" />

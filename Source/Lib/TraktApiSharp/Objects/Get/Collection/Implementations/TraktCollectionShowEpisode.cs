@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Collection
+﻿namespace TraktApiSharp.Objects.Get.Collection.Implementations
 {
     using Basic;
     using Newtonsoft.Json;

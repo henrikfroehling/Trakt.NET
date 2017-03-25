@@ -12,6 +12,7 @@
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Collection;
+    using TraktApiSharp.Objects.Get.Collection.Implementations;
     using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Objects.Get.Movies;

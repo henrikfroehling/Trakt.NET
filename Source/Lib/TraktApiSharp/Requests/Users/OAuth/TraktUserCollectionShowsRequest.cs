@@ -4,6 +4,7 @@
     using Objects.Get.Collection;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Collection.Implementations;
 
     internal sealed class TraktUserCollectionShowsRequest : ATraktUsersGetRequest<TraktCollectionShow>
     {

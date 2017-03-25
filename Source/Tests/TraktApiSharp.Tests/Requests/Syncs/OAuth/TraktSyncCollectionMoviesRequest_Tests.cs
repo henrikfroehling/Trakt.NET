@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Objects.Get.Collection;
+    using TraktApiSharp.Objects.Get.Collection.Implementations;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Syncs.OAuth;
