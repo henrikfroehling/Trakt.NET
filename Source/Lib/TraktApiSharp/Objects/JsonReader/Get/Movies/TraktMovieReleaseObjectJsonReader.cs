@@ -5,6 +5,7 @@
     using Objects.Get.Movies;
     using System;
     using System.IO;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     internal class TraktMovieReleaseObjectJsonReader : ITraktObjectJsonReader<TraktMovieRelease>
     {

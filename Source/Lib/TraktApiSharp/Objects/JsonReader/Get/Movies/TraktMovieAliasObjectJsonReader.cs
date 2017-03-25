@@ -3,6 +3,7 @@
     using Newtonsoft.Json;
     using Objects.Get.Movies;
     using System.IO;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     internal class TraktMovieAliasObjectJsonReader : ITraktObjectJsonReader<TraktMovieAlias>
     {

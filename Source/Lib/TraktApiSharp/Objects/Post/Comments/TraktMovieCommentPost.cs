@@ -2,6 +2,7 @@
 {
     using Get.Movies;
     using Newtonsoft.Json;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     /// <summary>A movie comment post.</summary>
     public class TraktMovieCommentPost : TraktCommentPost

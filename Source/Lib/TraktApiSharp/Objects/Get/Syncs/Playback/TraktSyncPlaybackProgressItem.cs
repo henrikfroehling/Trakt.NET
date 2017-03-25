@@ -7,6 +7,7 @@
     using Shows;
     using System;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     /// <summary>Contains information about a Trakt playback progress, including the corresponding movie or episode.</summary>
     public class TraktSyncPlaybackProgressItem

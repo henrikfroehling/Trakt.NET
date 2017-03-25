@@ -10,6 +10,7 @@
     using Responses;
     using System;
     using System.Threading.Tasks;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to recommendations.

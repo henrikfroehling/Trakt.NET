@@ -5,6 +5,7 @@
     using Newtonsoft.Json;
     using System;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Post.Scrobbles;
 
     [TestClass]

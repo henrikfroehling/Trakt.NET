@@ -3,6 +3,7 @@
     using Get.Movies;
     using Newtonsoft.Json;
     using System;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     /// <summary>
     /// A Trakt history post movie, containing the required movie ids

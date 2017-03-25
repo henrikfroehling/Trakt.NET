@@ -5,6 +5,7 @@
     using Newtonsoft.Json;
     using System;
     using TraktApiSharp.Objects.Basic.Implementations;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     /// <summary>
     /// A Trakt collection post movie, containing the required movie ids,

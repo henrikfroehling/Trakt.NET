@@ -18,6 +18,7 @@
     using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Objects.Get.History.Implementations;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.People;
     using TraktApiSharp.Objects.Get.Ratings;
     using TraktApiSharp.Objects.Get.Shows;

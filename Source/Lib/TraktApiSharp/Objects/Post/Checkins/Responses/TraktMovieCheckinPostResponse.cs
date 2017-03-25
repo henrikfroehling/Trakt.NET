@@ -2,6 +2,7 @@
 {
     using Get.Movies;
     using Newtonsoft.Json;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     /// <summary>Represents a movie checkin response.</summary>
     public class TraktMovieCheckinPostResponse : TraktCheckinPostResponse

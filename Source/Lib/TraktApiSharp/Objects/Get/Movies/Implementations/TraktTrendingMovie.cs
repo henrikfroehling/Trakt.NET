@@ -1,15 +1,15 @@
-﻿namespace TraktApiSharp.Objects.Get.Movies
+﻿namespace TraktApiSharp.Objects.Get.Movies.Implementations
 {
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
 
-    /// <summary>A anticipated Trakt movie.</summary>
-    public class TraktMostAnticipatedMovie : ITraktMostAnticipatedMovie
+    /// <summary>A trending Trakt movie.</summary>
+    public class TraktTrendingMovie : ITraktTrendingMovie
     {
-        /// <summary>Gets or sets the list count for the <see cref="Movie" />.</summary>
-        [JsonProperty(PropertyName = "list_count")]
-        public int? ListCount { get; set; }
+        /// <summary>Gets or sets the watcher count for the <see cref="Movie" />.</summary>
+        [JsonProperty(PropertyName = "watchers")]
+        public int? Watchers { get; set; }
 
         /// <summary>Gets or sets the Trakt movie. See also <seealso cref="TraktMovie" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "movie")]

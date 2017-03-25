@@ -5,6 +5,7 @@
     using System.IO;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.JsonReader;
     using TraktApiSharp.Objects.JsonReader.Get.Movies;
     using Xunit;

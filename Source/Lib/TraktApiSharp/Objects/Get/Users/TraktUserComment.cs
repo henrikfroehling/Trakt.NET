@@ -10,6 +10,7 @@
     using Shows;
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     /// <summary>A Trakt user comment.</summary>
     public class TraktUserComment

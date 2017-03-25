@@ -6,6 +6,7 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Requests.Movies;
     using TraktApiSharp.Requests.Parameters;
     using Xunit;

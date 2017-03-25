@@ -3,6 +3,7 @@
     using Objects.Get.Movies;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     internal sealed class TraktMovieTranslationsRequest : ATraktMovieRequest<TraktMovieTranslation>
     {

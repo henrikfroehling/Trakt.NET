@@ -4,10 +4,11 @@
     using System;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.JsonReader.Get.Movies;
     using Xunit;
 
-    [Category("Objects.Get.Movies")]
+    [Category("Objects.Get.Movies.Implementations")]
     public class TraktMovie_Tests
     {
         [Fact]

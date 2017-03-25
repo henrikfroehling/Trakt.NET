@@ -2,6 +2,7 @@
 {
     using Get.Movies;
     using Newtonsoft.Json;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     /// <summary>An user custom list items post movie, containing the required movie ids.</summary>
     public class TraktUserCustomListItemsPostMovie

@@ -7,6 +7,7 @@
     using Parameters;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     internal sealed class TraktMoviesRecentlyUpdatedRequest : ATraktGetRequest<TraktRecentlyUpdatedMovie>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
     {
