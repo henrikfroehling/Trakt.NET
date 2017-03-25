@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.People
+﻿namespace TraktApiSharp.Objects.Get.People.Implementations
 {
     using Newtonsoft.Json;
 

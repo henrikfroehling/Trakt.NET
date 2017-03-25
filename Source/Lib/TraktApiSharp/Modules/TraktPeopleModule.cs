@@ -11,6 +11,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using TraktApiSharp.Objects.Get.People.Credits.Implementations;
+    using TraktApiSharp.Objects.Get.People.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to people.

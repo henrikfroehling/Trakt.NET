@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Calendars
+﻿namespace TraktApiSharp.Tests.Objects.Get.Calendars.Implementations
 {
     using FluentAssertions;
     using Newtonsoft.Json;

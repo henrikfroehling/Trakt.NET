@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Requests.People
 {
     using Objects.Get.People;
+    using TraktApiSharp.Objects.Get.People.Implementations;
 
     internal sealed class TraktPersonSummaryRequest : ATraktPersonRequest<TraktPerson>
     {

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Calendars
+﻿namespace TraktApiSharp.Tests.Objects.Get.Calendars.Interfaces
 {
     using FluentAssertions;
     using System;

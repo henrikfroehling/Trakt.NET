@@ -10,6 +10,7 @@
     using System;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
+    using TraktApiSharp.Objects.Get.People.Implementations;
 
     /// <summary>Represents a Trakt user list item.</summary>
     public class TraktListItem

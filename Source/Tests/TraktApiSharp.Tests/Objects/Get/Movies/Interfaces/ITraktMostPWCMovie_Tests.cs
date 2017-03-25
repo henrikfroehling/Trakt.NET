@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Movies
+﻿namespace TraktApiSharp.Tests.Objects.Get.Movies.Interfaces
 {
     using FluentAssertions;
     using System.Linq;

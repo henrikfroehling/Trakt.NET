@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Basic
+﻿namespace TraktApiSharp.Tests.Objects.Basic.Interfaces
 {
     using FluentAssertions;
     using System.Linq;

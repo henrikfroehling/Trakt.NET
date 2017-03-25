@@ -3,6 +3,7 @@
     using Newtonsoft.Json;
     using Objects.Get.People;
     using System.IO;
+    using TraktApiSharp.Objects.Get.People.Implementations;
 
     internal class TraktPersonIdsObjectJsonReader : ITraktObjectJsonReader<TraktPersonIds>
     {

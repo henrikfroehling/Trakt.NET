@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.People.Credits
+﻿namespace TraktApiSharp.Tests.Objects.Get.People.Credits.Implementations
 {
     using FluentAssertions;
     using Newtonsoft.Json;
@@ -6,35 +6,82 @@
     using System.Linq;
     using Traits;
     using TraktApiSharp.Objects.Get.People.Credits;
+    using TraktApiSharp.Objects.Get.People.Credits.Implementations;
     using Xunit;
 
-    [Category("Objects.Get.People.Credits")]
-    public class TraktPersonMovieCreditsCrew_Tests
+    [Category("Objects.Get.People.Credits.Implementations")]
+    public class TraktPersonMovieCredits_Tests
     {
         [Fact]
-        public void Test_TraktPersonMovieCreditsCrew_Default_Constructor()
+        public void Test_TraktPersonMovieCredits_Default_Constructor()
         {
-            var creditsCrew = new TraktPersonMovieCreditsCrew();
+            var credits = new TraktPersonMovieCredits();
 
-            creditsCrew.Production.Should().BeNull();
-            creditsCrew.Art.Should().BeNull();
-            creditsCrew.Crew.Should().BeNull();
-            creditsCrew.CostumeAndMakeup.Should().BeNull();
-            creditsCrew.Directing.Should().BeNull();
-            creditsCrew.Writing.Should().BeNull();
-            creditsCrew.Sound.Should().BeNull();
-            creditsCrew.Camera.Should().BeNull();
-            creditsCrew.Lighting.Should().BeNull();
-            creditsCrew.VisualEffects.Should().BeNull();
-            creditsCrew.Editing.Should().BeNull();
+            credits.Cast.Should().BeNull();
+            credits.Crew.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktPersonMovieCreditsCrew_From_Minimal_Json()
+        public void Test_TraktPersonMovieCredits_From_Minimal_Json()
         {
-            var creditsCrew = JsonConvert.DeserializeObject<TraktPersonMovieCreditsCrew>(MINIMAL_JSON);
+            var credits = JsonConvert.DeserializeObject<TraktPersonMovieCredits>(MINIMAL_JSON);
 
-            creditsCrew.Should().NotBeNull();
+            credits.Should().NotBeNull();
+            credits.Cast.Should().NotBeNull().And.HaveCount(2);
+            credits.Crew.Should().NotBeNull();
+
+            var creditsCast = credits.Cast.ToArray();
+
+            creditsCast[0].Should().NotBeNull();
+            creditsCast[0].Character.Should().Be("Rey");
+            creditsCast[0].Movie.Should().NotBeNull();
+            creditsCast[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
+            creditsCast[0].Movie.Year.Should().Be(2015);
+            creditsCast[0].Movie.Ids.Should().NotBeNull();
+            creditsCast[0].Movie.Ids.Trakt.Should().Be(94024U);
+            creditsCast[0].Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            creditsCast[0].Movie.Ids.Imdb.Should().Be("tt2488496");
+            creditsCast[0].Movie.Ids.Tmdb.Should().Be(140607U);
+            creditsCast[0].Movie.Tagline.Should().BeNullOrEmpty();
+            creditsCast[0].Movie.Overview.Should().BeNullOrEmpty();
+            creditsCast[0].Movie.Released.Should().NotHaveValue();
+            creditsCast[0].Movie.Runtime.Should().NotHaveValue();
+            creditsCast[0].Movie.UpdatedAt.Should().NotHaveValue();
+            creditsCast[0].Movie.Trailer.Should().BeNullOrEmpty();
+            creditsCast[0].Movie.Homepage.Should().BeNullOrEmpty();
+            creditsCast[0].Movie.Rating.Should().NotHaveValue();
+            creditsCast[0].Movie.Votes.Should().NotHaveValue();
+            creditsCast[0].Movie.LanguageCode.Should().BeNullOrEmpty();
+            creditsCast[0].Movie.AvailableTranslationLanguageCodes.Should().BeNull();
+            creditsCast[0].Movie.Genres.Should().BeNull();
+            creditsCast[0].Movie.Certification.Should().BeNullOrEmpty();
+
+            creditsCast[1].Should().NotBeNull();
+            creditsCast[1].Character.Should().Be("Han Solo");
+            creditsCast[1].Movie.Should().NotBeNull();
+            creditsCast[1].Movie.Title.Should().Be("Star Wars: The Force Awakens");
+            creditsCast[1].Movie.Year.Should().Be(2015);
+            creditsCast[1].Movie.Ids.Should().NotBeNull();
+            creditsCast[1].Movie.Ids.Trakt.Should().Be(94024U);
+            creditsCast[1].Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            creditsCast[1].Movie.Ids.Imdb.Should().Be("tt2488496");
+            creditsCast[1].Movie.Ids.Tmdb.Should().Be(140607U);
+            creditsCast[1].Movie.Tagline.Should().BeNullOrEmpty();
+            creditsCast[1].Movie.Overview.Should().BeNullOrEmpty();
+            creditsCast[1].Movie.Released.Should().NotHaveValue();
+            creditsCast[1].Movie.Runtime.Should().NotHaveValue();
+            creditsCast[1].Movie.UpdatedAt.Should().NotHaveValue();
+            creditsCast[1].Movie.Trailer.Should().BeNullOrEmpty();
+            creditsCast[1].Movie.Homepage.Should().BeNullOrEmpty();
+            creditsCast[1].Movie.Rating.Should().NotHaveValue();
+            creditsCast[1].Movie.Votes.Should().NotHaveValue();
+            creditsCast[1].Movie.LanguageCode.Should().BeNullOrEmpty();
+            creditsCast[1].Movie.AvailableTranslationLanguageCodes.Should().BeNull();
+            creditsCast[1].Movie.Genres.Should().BeNull();
+            creditsCast[1].Movie.Certification.Should().BeNullOrEmpty();
+
+            var creditsCrew = credits.Crew;
+
             creditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
 
             var productionCrew = creditsCrew.Production.ToArray();
@@ -609,11 +656,66 @@
         }
 
         [Fact]
-        public void Test_TraktPersonMovieCreditsCrew_From_Full_Json()
+        public void Test_TraktPersonMovieCredits_From_Full_Json()
         {
-            var creditsCrew = JsonConvert.DeserializeObject<TraktPersonMovieCreditsCrew>(FULL_JSON);
+            var credits = JsonConvert.DeserializeObject<TraktPersonMovieCredits>(FULL_JSON);
 
-            creditsCrew.Should().NotBeNull();
+            credits.Should().NotBeNull();
+            credits.Cast.Should().NotBeNull().And.HaveCount(2);
+            credits.Crew.Should().NotBeNull();
+
+            var creditsCast = credits.Cast.ToArray();
+
+            creditsCast[0].Should().NotBeNull();
+            creditsCast[0].Character.Should().Be("Rey");
+            creditsCast[0].Movie.Should().NotBeNull();
+            creditsCast[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
+            creditsCast[0].Movie.Year.Should().Be(2015);
+            creditsCast[0].Movie.Ids.Should().NotBeNull();
+            creditsCast[0].Movie.Ids.Trakt.Should().Be(94024U);
+            creditsCast[0].Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            creditsCast[0].Movie.Ids.Imdb.Should().Be("tt2488496");
+            creditsCast[0].Movie.Ids.Tmdb.Should().Be(140607U);
+            creditsCast[0].Movie.Tagline.Should().Be("Every generation has a story.");
+            creditsCast[0].Movie.Overview.Should().Be("Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers.");
+            creditsCast[0].Movie.Released.Should().Be(DateTime.Parse("2015-12-18"));
+            creditsCast[0].Movie.Runtime.Should().Be(136);
+            creditsCast[0].Movie.UpdatedAt.Should().Be(DateTime.Parse("2016-03-31T09:01:59Z").ToUniversalTime());
+            creditsCast[0].Movie.Trailer.Should().Be("http://youtube.com/watch?v=uwa7N0ShN2U");
+            creditsCast[0].Movie.Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vii");
+            creditsCast[0].Movie.Rating.Should().Be(8.31988f);
+            creditsCast[0].Movie.Votes.Should().Be(9338);
+            creditsCast[0].Movie.LanguageCode.Should().Be("en");
+            creditsCast[0].Movie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
+            creditsCast[0].Movie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
+            creditsCast[0].Movie.Certification.Should().Be("PG-13");
+
+            creditsCast[1].Should().NotBeNull();
+            creditsCast[1].Character.Should().Be("Han Solo");
+            creditsCast[1].Movie.Should().NotBeNull();
+            creditsCast[1].Movie.Title.Should().Be("Star Wars: The Force Awakens");
+            creditsCast[1].Movie.Year.Should().Be(2015);
+            creditsCast[1].Movie.Ids.Should().NotBeNull();
+            creditsCast[1].Movie.Ids.Trakt.Should().Be(94024U);
+            creditsCast[1].Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            creditsCast[1].Movie.Ids.Imdb.Should().Be("tt2488496");
+            creditsCast[1].Movie.Ids.Tmdb.Should().Be(140607U);
+            creditsCast[1].Movie.Tagline.Should().Be("Every generation has a story.");
+            creditsCast[1].Movie.Overview.Should().Be("Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers.");
+            creditsCast[1].Movie.Released.Should().Be(DateTime.Parse("2015-12-18"));
+            creditsCast[1].Movie.Runtime.Should().Be(136);
+            creditsCast[1].Movie.UpdatedAt.Should().Be(DateTime.Parse("2016-03-31T09:01:59Z").ToUniversalTime());
+            creditsCast[1].Movie.Trailer.Should().Be("http://youtube.com/watch?v=uwa7N0ShN2U");
+            creditsCast[1].Movie.Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vii");
+            creditsCast[1].Movie.Rating.Should().Be(8.31988f);
+            creditsCast[1].Movie.Votes.Should().Be(9338);
+            creditsCast[1].Movie.LanguageCode.Should().Be("en");
+            creditsCast[1].Movie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
+            creditsCast[1].Movie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
+            creditsCast[1].Movie.Certification.Should().Be("PG-13");
+
+            var creditsCrew = credits.Crew;
+
             creditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
 
             var productionCrew = creditsCrew.Production.ToArray();
@@ -1189,1132 +1291,1238 @@
 
         private const string MINIMAL_JSON =
             @"{
-                ""production"": [
+                ""cast"": [
                   {
-                    ""job"": ""Producer 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      }
-                    }
+                     ""character"": ""Rey"",
+                     ""movie"": {
+                       ""title"": ""Star Wars: The Force Awakens"",
+                       ""year"": 2015,
+                       ""ids"": {
+                         ""trakt"": 94024,
+                         ""slug"": ""star-wars-the-force-awakens-2015"",
+                         ""imdb"": ""tt2488496"",
+                         ""tmdb"": 140607
+                       }
+                     }
                   },
                   {
-                    ""job"": ""Producer 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      }
-                    }
+                     ""character"": ""Han Solo"",
+                     ""movie"": {
+                       ""title"": ""Star Wars: The Force Awakens"",
+                       ""year"": 2015,
+                       ""ids"": {
+                         ""trakt"": 94024,
+                         ""slug"": ""star-wars-the-force-awakens-2015"",
+                         ""imdb"": ""tt2488496"",
+                         ""tmdb"": 140607
+                       }
+                     }
                   }
                 ],
-                ""art"": [
-                  {
-                    ""job"": ""Art Director 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
+                ""crew"": {
+                  ""production"": [
+                    {
+                      ""job"": ""Producer 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
+                      }
+                    },
+                    {
+                      ""job"": ""Producer 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
                       }
                     }
-                  },
-                  {
-                    ""job"": ""Art Director 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
+                  ],
+                  ""art"": [
+                    {
+                      ""job"": ""Art Director 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
+                      }
+                    },
+                    {
+                      ""job"": ""Art Director 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
                       }
                     }
-                  }
-                ],
-                ""crew"": [
-                  {
-                    ""job"": ""Crew Member 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
+                  ],
+                  ""crew"": [
+                    {
+                      ""job"": ""Crew Member 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
+                      }
+                    },
+                    {
+                      ""job"": ""Crew Member 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
                       }
                     }
-                  },
-                  {
-                    ""job"": ""Crew Member 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
+                  ],
+                  ""costume & make-up"": [
+                    {
+                      ""job"": ""Costume Designer"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
+                      }
+                    },
+                    {
+                      ""job"": ""Make Up Artist"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
                       }
                     }
-                  }
-                ],
-                ""costume & make-up"": [
-                  {
-                    ""job"": ""Costume Designer"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
+                  ],
+                  ""directing"": [
+                    {
+                      ""job"": ""Director 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
+                      }
+                    },
+                    {
+                      ""job"": ""Director 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
                       }
                     }
-                  },
-                  {
-                    ""job"": ""Make Up Artist"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
+                  ],
+                  ""writing"": [
+                    {
+                      ""job"": ""Writer 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
+                      }
+                    },
+                    {
+                      ""job"": ""Writer 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
                       }
                     }
-                  }
-                ],
-                ""directing"": [
-                  {
-                    ""job"": ""Director 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
+                  ],
+                  ""sound"": [
+                    {
+                      ""job"": ""Sound Designer 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
+                      }
+                    },
+                    {
+                      ""job"": ""Sound Designer 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
                       }
                     }
-                  },
-                  {
-                    ""job"": ""Director 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
+                  ],
+                  ""camera"": [
+                    {
+                      ""job"": ""Camera Man 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
+                      }
+                    },
+                    {
+                      ""job"": ""Camera Man 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
                       }
                     }
-                  }
-                ],
-                ""writing"": [
-                  {
-                    ""job"": ""Writer 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
+                  ],
+                  ""lighting"": [
+                    {
+                      ""job"": ""Light Technician 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
+                      }
+                    },
+                    {
+                      ""job"": ""Light Technician 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
                       }
                     }
-                  },
-                  {
-                    ""job"": ""Writer 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
+                  ],
+                  ""visual effects"": [
+                    {
+                      ""job"": ""VFX Artist 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
+                      }
+                    },
+                    {
+                      ""job"": ""VFX Artist 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
                       }
                     }
-                  }
-                ],
-                ""sound"": [
-                  {
-                    ""job"": ""Sound Designer 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
+                  ],
+                  ""editing"": [
+                    {
+                      ""job"": ""Editor 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
+                      }
+                    },
+                    {
+                      ""job"": ""Editor 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        }
                       }
                     }
-                  },
-                  {
-                    ""job"": ""Sound Designer 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      }
-                    }
-                  }
-                ],
-                ""camera"": [
-                  {
-                    ""job"": ""Camera Man 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      }
-                    }
-                  },
-                  {
-                    ""job"": ""Camera Man 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      }
-                    }
-                  }
-                ],
-                ""lighting"": [
-                  {
-                    ""job"": ""Light Technician 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      }
-                    }
-                  },
-                  {
-                    ""job"": ""Light Technician 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      }
-                    }
-                  }
-                ],
-                ""visual effects"": [
-                  {
-                    ""job"": ""VFX Artist 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      }
-                    }
-                  },
-                  {
-                    ""job"": ""VFX Artist 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      }
-                    }
-                  }
-                ],
-                ""editing"": [
-                  {
-                    ""job"": ""Editor 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      }
-                    }
-                  },
-                  {
-                    ""job"": ""Editor 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      }
-                    }
-                  }
-                ]
+                  ]
+                }
               }";
 
         private const string FULL_JSON =
             @"{
-                ""production"": [
+                ""cast"": [
                   {
-                    ""job"": ""Producer 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
-                    }
+                     ""character"": ""Rey"",
+                     ""movie"": {
+                       ""title"": ""Star Wars: The Force Awakens"",
+                       ""year"": 2015,
+                       ""ids"": {
+                         ""trakt"": 94024,
+                         ""slug"": ""star-wars-the-force-awakens-2015"",
+                         ""imdb"": ""tt2488496"",
+                         ""tmdb"": 140607
+                       },
+                       ""tagline"": ""Every generation has a story."",
+                       ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                       ""released"": ""2015-12-18"",
+                       ""runtime"": 136,
+                       ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                       ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                       ""rating"": 8.31988,
+                       ""votes"": 9338,
+                       ""updated_at"": ""2016-03-31T09:01:59Z"",
+                       ""language"": ""en"",
+                       ""available_translations"": [
+                         ""en"",
+                         ""de"",
+                         ""en"",
+                         ""it""
+                       ],
+                       ""genres"": [
+                         ""action"",
+                         ""adventure"",
+                         ""fantasy"",
+                         ""science-fiction""
+                       ],
+                       ""certification"": ""PG-13""
+                     }
                   },
                   {
-                    ""job"": ""Producer 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
-                    }
+                     ""character"": ""Han Solo"",
+                     ""movie"": {
+                       ""title"": ""Star Wars: The Force Awakens"",
+                       ""year"": 2015,
+                       ""ids"": {
+                         ""trakt"": 94024,
+                         ""slug"": ""star-wars-the-force-awakens-2015"",
+                         ""imdb"": ""tt2488496"",
+                         ""tmdb"": 140607
+                       },
+                       ""tagline"": ""Every generation has a story."",
+                       ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                       ""released"": ""2015-12-18"",
+                       ""runtime"": 136,
+                       ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                       ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                       ""rating"": 8.31988,
+                       ""votes"": 9338,
+                       ""updated_at"": ""2016-03-31T09:01:59Z"",
+                       ""language"": ""en"",
+                       ""available_translations"": [
+                         ""en"",
+                         ""de"",
+                         ""en"",
+                         ""it""
+                       ],
+                       ""genres"": [
+                         ""action"",
+                         ""adventure"",
+                         ""fantasy"",
+                         ""science-fiction""
+                       ],
+                       ""certification"": ""PG-13""
+                     }
                   }
                 ],
-                ""art"": [
-                  {
-                    ""job"": ""Art Director 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
+                ""crew"": {
+                  ""production"": [
+                    {
+                      ""job"": ""Producer 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
+                    },
+                    {
+                      ""job"": ""Producer 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
                     }
-                  },
-                  {
-                    ""job"": ""Art Director 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
+                  ],
+                  ""art"": [
+                    {
+                      ""job"": ""Art Director 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
+                    },
+                    {
+                      ""job"": ""Art Director 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
                     }
-                  }
-                ],
-                ""crew"": [
-                  {
-                    ""job"": ""Crew Member 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
+                  ],
+                  ""crew"": [
+                    {
+                      ""job"": ""Crew Member 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
+                    },
+                    {
+                      ""job"": ""Crew Member 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
                     }
-                  },
-                  {
-                    ""job"": ""Crew Member 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
+                  ],
+                  ""costume & make-up"": [
+                    {
+                      ""job"": ""Costume Designer"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
+                    },
+                    {
+                      ""job"": ""Make Up Artist"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
                     }
-                  }
-                ],
-                ""costume & make-up"": [
-                  {
-                    ""job"": ""Costume Designer"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
+                  ],
+                  ""directing"": [
+                    {
+                      ""job"": ""Director 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
+                    },
+                    {
+                      ""job"": ""Director 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
                     }
-                  },
-                  {
-                    ""job"": ""Make Up Artist"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
+                  ],
+                  ""writing"": [
+                    {
+                      ""job"": ""Writer 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
+                    },
+                    {
+                      ""job"": ""Writer 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
                     }
-                  }
-                ],
-                ""directing"": [
-                  {
-                    ""job"": ""Director 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
+                  ],
+                  ""sound"": [
+                    {
+                      ""job"": ""Sound Designer 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
+                    },
+                    {
+                      ""job"": ""Sound Designer 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
                     }
-                  },
-                  {
-                    ""job"": ""Director 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
+                  ],
+                  ""camera"": [
+                    {
+                      ""job"": ""Camera Man 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
+                    },
+                    {
+                      ""job"": ""Camera Man 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
                     }
-                  }
-                ],
-                ""writing"": [
-                  {
-                    ""job"": ""Writer 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
+                  ],
+                  ""lighting"": [
+                    {
+                      ""job"": ""Light Technician 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
+                    },
+                    {
+                      ""job"": ""Light Technician 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
                     }
-                  },
-                  {
-                    ""job"": ""Writer 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
+                  ],
+                  ""visual effects"": [
+                    {
+                      ""job"": ""VFX Artist 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
+                    },
+                    {
+                      ""job"": ""VFX Artist 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
                     }
-                  }
-                ],
-                ""sound"": [
-                  {
-                    ""job"": ""Sound Designer 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
+                  ],
+                  ""editing"": [
+                    {
+                      ""job"": ""Editor 1"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
+                    },
+                    {
+                      ""job"": ""Editor 2"",
+                      ""movie"": {
+                        ""title"": ""Star Wars: The Force Awakens"",
+                        ""year"": 2015,
+                        ""ids"": {
+                          ""trakt"": 94024,
+                          ""slug"": ""star-wars-the-force-awakens-2015"",
+                          ""imdb"": ""tt2488496"",
+                          ""tmdb"": 140607
+                        },
+                        ""tagline"": ""Every generation has a story."",
+                        ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                        ""released"": ""2015-12-18"",
+                        ""runtime"": 136,
+                        ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                        ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                        ""rating"": 8.31988,
+                        ""votes"": 9338,
+                        ""updated_at"": ""2016-03-31T09:01:59Z"",
+                        ""language"": ""en"",
+                        ""available_translations"": [
+                          ""en"",
+                          ""de"",
+                          ""en"",
+                          ""it""
+                        ],
+                        ""genres"": [
+                          ""action"",
+                          ""adventure"",
+                          ""fantasy"",
+                          ""science-fiction""
+                        ],
+                        ""certification"": ""PG-13""
+                      }
                     }
-                  },
-                  {
-                    ""job"": ""Sound Designer 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
-                    }
-                  }
-                ],
-                ""camera"": [
-                  {
-                    ""job"": ""Camera Man 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
-                    }
-                  },
-                  {
-                    ""job"": ""Camera Man 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
-                    }
-                  }
-                ],
-                ""lighting"": [
-                  {
-                    ""job"": ""Light Technician 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
-                    }
-                  },
-                  {
-                    ""job"": ""Light Technician 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
-                    }
-                  }
-                ],
-                ""visual effects"": [
-                  {
-                    ""job"": ""VFX Artist 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
-                    }
-                  },
-                  {
-                    ""job"": ""VFX Artist 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
-                    }
-                  }
-                ],
-                ""editing"": [
-                  {
-                    ""job"": ""Editor 1"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
-                    }
-                  },
-                  {
-                    ""job"": ""Editor 2"",
-                    ""movie"": {
-                      ""title"": ""Star Wars: The Force Awakens"",
-                      ""year"": 2015,
-                      ""ids"": {
-                        ""trakt"": 94024,
-                        ""slug"": ""star-wars-the-force-awakens-2015"",
-                        ""imdb"": ""tt2488496"",
-                        ""tmdb"": 140607
-                      },
-                      ""tagline"": ""Every generation has a story."",
-                      ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                      ""released"": ""2015-12-18"",
-                      ""runtime"": 136,
-                      ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                      ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                      ""rating"": 8.31988,
-                      ""votes"": 9338,
-                      ""updated_at"": ""2016-03-31T09:01:59Z"",
-                      ""language"": ""en"",
-                      ""available_translations"": [
-                        ""en"",
-                        ""de"",
-                        ""en"",
-                        ""it""
-                      ],
-                      ""genres"": [
-                        ""action"",
-                        ""adventure"",
-                        ""fantasy"",
-                        ""science-fiction""
-                      ],
-                      ""certification"": ""PG-13""
-                    }
-                  }
-                ]
+                  ]
+                }
               }";
     }
 }

@@ -1,13 +1,14 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.People.Credits
+﻿namespace TraktApiSharp.Tests.Objects.Get.People.Credits.Implementations
 {
     using FluentAssertions;
     using Newtonsoft.Json;
     using System;
     using Traits;
     using TraktApiSharp.Objects.Get.People.Credits;
+    using TraktApiSharp.Objects.Get.People.Credits.Implementations;
     using Xunit;
 
-    [Category("Objects.Get.People.Credits")]
+    [Category("Objects.Get.People.Credits.Implementations")]
     public class TraktPersonMovieCreditsCrewItem_Tests
     {
         [Fact]

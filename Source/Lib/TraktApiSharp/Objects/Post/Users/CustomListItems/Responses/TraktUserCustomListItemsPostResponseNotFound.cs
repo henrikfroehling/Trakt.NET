@@ -10,6 +10,7 @@
     using System.Collections.Generic;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
+    using TraktApiSharp.Objects.Get.People.Implementations;
 
     /// <summary>A collection containing the ids of movies, shows, seasons, episodes and people, which were not found.</summary>
     public class TraktUserCustomListItemsPostResponseNotFound

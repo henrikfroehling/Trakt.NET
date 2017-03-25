@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.History
+﻿namespace TraktApiSharp.Tests.Objects.Get.History.Implementations
 {
     using FluentAssertions;
     using Newtonsoft.Json;

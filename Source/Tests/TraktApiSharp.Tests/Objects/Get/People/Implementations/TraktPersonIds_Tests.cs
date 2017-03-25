@@ -1,12 +1,13 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.People
+﻿namespace TraktApiSharp.Tests.Objects.Get.People.Implementations
 {
     using FluentAssertions;
     using Traits;
     using TraktApiSharp.Objects.Get.People;
+    using TraktApiSharp.Objects.Get.People.Implementations;
     using TraktApiSharp.Objects.JsonReader.Get.People;
     using Xunit;
 
-    [Category("Objects.Get.People")]
+    [Category("Objects.Get.People.Implementations")]
     public class TraktPersonIds_Tests
     {
         [Fact]

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Collection
+﻿namespace TraktApiSharp.Tests.Objects.Get.Collection.Interfaces
 {
     using FluentAssertions;
     using System;

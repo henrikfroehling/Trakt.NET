@@ -4,6 +4,7 @@
     using Objects.Get.People;
     using System;
     using System.IO;
+    using TraktApiSharp.Objects.Get.People.Implementations;
 
     internal class TraktPersonObjectJsonReader : ITraktObjectJsonReader<TraktPerson>
     {

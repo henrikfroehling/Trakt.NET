@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.People.Credits
+﻿namespace TraktApiSharp.Objects.Get.People.Credits.Implementations
 {
     using Newtonsoft.Json;
     using System.Collections.Generic;

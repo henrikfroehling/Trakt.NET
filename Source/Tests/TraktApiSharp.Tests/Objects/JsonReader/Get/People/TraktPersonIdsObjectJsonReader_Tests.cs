@@ -5,6 +5,7 @@
     using System.IO;
     using Traits;
     using TraktApiSharp.Objects.Get.People;
+    using TraktApiSharp.Objects.Get.People.Implementations;
     using TraktApiSharp.Objects.JsonReader;
     using TraktApiSharp.Objects.JsonReader.Get.People;
     using Xunit;

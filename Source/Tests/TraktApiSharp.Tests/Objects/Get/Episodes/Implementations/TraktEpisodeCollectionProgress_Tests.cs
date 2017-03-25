@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Episodes
+﻿namespace TraktApiSharp.Tests.Objects.Get.Episodes.Implementations
 {
     using FluentAssertions;
     using System;

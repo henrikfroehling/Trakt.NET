@@ -7,6 +7,7 @@
     using Traits;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.People;
+    using TraktApiSharp.Objects.Get.People.Implementations;
     using TraktApiSharp.Objects.JsonReader;
     using TraktApiSharp.Objects.JsonReader.Get.People;
     using Xunit;
