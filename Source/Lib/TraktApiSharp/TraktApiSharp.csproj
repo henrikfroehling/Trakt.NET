@@ -523,7 +523,7 @@
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncListsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncMoviesLastActivities.cs" />
-    <Compile Include="Objects\Get\History\TraktHistoryItem.cs" />
+    <Compile Include="Objects\Get\History\Implementations\TraktHistoryItem.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\TraktSyncPlaybackProgressItem.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncSeasonsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncShowsLastActivities.cs" />

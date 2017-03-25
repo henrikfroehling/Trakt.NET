@@ -7,9 +7,10 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.History;
+    using TraktApiSharp.Objects.Get.History.Implementations;
     using Xunit;
 
-    [Category("Objects.Get.History")]
+    [Category("Objects.Get.History.Implementations")]
     public class TraktHistoryItem_Tests
     {
         [Fact]

@@ -7,6 +7,7 @@
     using Parameters;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.History.Implementations;
 
     internal sealed class TraktSyncWatchedHistoryRequest : ATraktSyncGetRequest<TraktHistoryItem>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
     {

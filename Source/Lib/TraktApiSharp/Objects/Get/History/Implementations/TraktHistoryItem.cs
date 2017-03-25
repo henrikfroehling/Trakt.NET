@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.History
+﻿namespace TraktApiSharp.Objects.Get.History.Implementations
 {
     using Enums;
     using Episodes;

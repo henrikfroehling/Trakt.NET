@@ -26,6 +26,7 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Collection.Implementations;
+    using TraktApiSharp.Objects.Get.History.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to users.

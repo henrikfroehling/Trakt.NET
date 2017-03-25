@@ -7,6 +7,7 @@
     using Objects.Get.History;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.History.Implementations;
 
     internal sealed class TraktUserWatchedHistoryRequest : ATraktUsersPagedGetRequest<TraktHistoryItem>, ITraktHasId
     {
