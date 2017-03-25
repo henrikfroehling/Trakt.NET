@@ -8,6 +8,7 @@
     using Seasons;
     using Shows;
     using System;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>Represents a Trakt user list item.</summary>
     public class TraktListItem

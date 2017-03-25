@@ -12,6 +12,7 @@
     using Responses;
     using System;
     using System.Threading.Tasks;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to scrobbles.

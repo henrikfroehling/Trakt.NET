@@ -6,6 +6,7 @@
     using Newtonsoft.Json;
     using Shows;
     using System;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>Contains information about a Trakt playback progress, including the corresponding movie or episode.</summary>
     public class TraktSyncPlaybackProgressItem

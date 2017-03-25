@@ -3,6 +3,7 @@
     using Episodes;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>Represents the collection progress of a Trakt season.</summary>
     public class TraktSeasonCollectionProgress : TraktSeasonProgress

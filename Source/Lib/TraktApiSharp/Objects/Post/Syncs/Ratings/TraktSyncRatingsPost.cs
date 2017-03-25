@@ -7,6 +7,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>
     /// A Trakt ratings post, containing all movies, shows and / or episodes,

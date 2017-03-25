@@ -5,10 +5,11 @@
     using System.Linq;
     using Traits;
     using TraktApiSharp.Objects.Get.Episodes;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.JsonReader.Get.Episodes;
     using Xunit;
 
-    [Category("Objects.Get.Episodes")]
+    [Category("Objects.Get.Episodes.Implementations")]
     public class TraktEpisode_Tests
     {
         [Fact]

@@ -3,6 +3,7 @@
     using Get.Episodes;
     using Newtonsoft.Json;
     using System;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>
     /// A Trakt ratings post episode, containing the required episode ids,

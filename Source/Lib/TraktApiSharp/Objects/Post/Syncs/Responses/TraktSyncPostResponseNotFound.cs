@@ -6,6 +6,7 @@
     using Get.Shows;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>A collection containing the ids of movies, shows, seasons and episodes, which were not found.</summary>
     public class TraktSyncPostResponseNotFound

@@ -4,6 +4,7 @@
     using Objects.Get.Episodes;
     using System.Collections.Generic;
     using System.IO;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     internal class TraktEpisodeArrayJsonReader : ITraktArrayJsonReader<TraktEpisode>
     {

@@ -7,6 +7,7 @@
     using System.Reflection;
     using Traits;
     using TraktApiSharp.Objects.Get.Episodes;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Requests.Episodes;
     using Xunit;
 

@@ -3,6 +3,7 @@
     using Get.Episodes;
     using Get.Shows;
     using Newtonsoft.Json;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>A checkin post for a Trakt episode.</summary>
     public class TraktEpisodeCheckinPost : TraktCheckinPost

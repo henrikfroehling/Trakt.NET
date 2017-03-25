@@ -9,6 +9,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using TraktApiSharp.Objects.Basic.Implementations;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>
     /// A Trakt collection post, containing all movies, shows and / or episodes,

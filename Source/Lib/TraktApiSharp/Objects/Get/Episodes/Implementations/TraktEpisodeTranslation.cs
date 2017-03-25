@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Episodes
+﻿namespace TraktApiSharp.Objects.Get.Episodes.Implementations
 {
     using Basic;
     using TraktApiSharp.Objects.Basic.Implementations;

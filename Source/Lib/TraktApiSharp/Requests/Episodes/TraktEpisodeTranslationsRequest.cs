@@ -3,6 +3,7 @@
     using Objects.Get.Episodes;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     internal sealed class TraktEpisodeTranslationsRequest : ATraktEpisodeRequest<TraktEpisodeTranslation>
     {

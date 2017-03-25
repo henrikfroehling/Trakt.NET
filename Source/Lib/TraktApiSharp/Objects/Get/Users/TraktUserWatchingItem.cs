@@ -6,6 +6,7 @@
     using Newtonsoft.Json;
     using Shows;
     using System;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>Contains information about a movie or an episode a Trakt user is currently watching.</summary>
     public class TraktUserWatchingItem

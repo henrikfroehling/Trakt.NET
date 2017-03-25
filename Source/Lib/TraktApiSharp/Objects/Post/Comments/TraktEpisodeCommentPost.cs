@@ -2,6 +2,7 @@
 {
     using Get.Episodes;
     using Newtonsoft.Json;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>An episode comment post.</summary>
     public class TraktEpisodeCommentPost : TraktCommentPost

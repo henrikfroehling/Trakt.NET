@@ -112,11 +112,11 @@
     <Compile Include="Objects\Get\Episodes\Interfaces\ITraktEpisodeTranslation_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\Interfaces\ITraktEpisodeWatchedProgress_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\Interfaces\ITraktEpisode_Tests.cs" />
-    <Compile Include="Objects\Get\Episodes\TraktEpisodeCollectionProgress_Tests.cs" />
-    <Compile Include="Objects\Get\Episodes\TraktEpisodeIds_Tests.cs" />
-    <Compile Include="Objects\Get\Episodes\TraktEpisodeTranslation_Tests.cs" />
-    <Compile Include="Objects\Get\Episodes\TraktEpisodeWatchedProgress_Tests.cs" />
-    <Compile Include="Objects\Get\Episodes\TraktEpisode_Tests.cs" />
+    <Compile Include="Objects\Get\Episodes\Implementations\TraktEpisodeCollectionProgress_Tests.cs" />
+    <Compile Include="Objects\Get\Episodes\Implementations\TraktEpisodeIds_Tests.cs" />
+    <Compile Include="Objects\Get\Episodes\Implementations\TraktEpisodeTranslation_Tests.cs" />
+    <Compile Include="Objects\Get\Episodes\Implementations\TraktEpisodeWatchedProgress_Tests.cs" />
+    <Compile Include="Objects\Get\Episodes\Implementations\TraktEpisode_Tests.cs" />
     <Compile Include="Objects\Get\History\Interfaces\ITraktHistoryItem_Tests.cs" />
     <Compile Include="Objects\Get\History\TraktHistoryItem_Tests.cs" />
     <Compile Include="Objects\Get\Movies\Interfaces\ITraktBoxOfficeMovie_Tests.cs" />

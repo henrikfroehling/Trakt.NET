@@ -3,6 +3,7 @@
     using Newtonsoft.Json;
     using Objects.Get.Episodes;
     using System.IO;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     internal class TraktEpisodeIdsObjectJsonReader : ITraktObjectJsonReader<TraktEpisodeIds>
     {

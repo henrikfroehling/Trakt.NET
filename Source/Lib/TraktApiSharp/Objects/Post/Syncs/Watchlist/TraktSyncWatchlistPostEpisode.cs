@@ -2,6 +2,7 @@
 {
     using Get.Episodes;
     using Newtonsoft.Json;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>A Trakt watchlist post episode, containing the required episode ids.</summary>
     public class TraktSyncWatchlistPostEpisode

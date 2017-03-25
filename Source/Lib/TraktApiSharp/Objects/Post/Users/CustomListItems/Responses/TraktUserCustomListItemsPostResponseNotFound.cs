@@ -8,6 +8,7 @@
     using Newtonsoft.Json;
     using Syncs.Responses;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>A collection containing the ids of movies, shows, seasons, episodes and people, which were not found.</summary>
     public class TraktUserCustomListItemsPostResponseNotFound

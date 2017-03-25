@@ -4,6 +4,7 @@
     using Objects.Get.Episodes;
     using Parameters;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     internal sealed class TraktShowLastEpisodeRequest : ATraktShowRequest<TraktEpisode>, ITraktSupportsExtendedInfo
     {
