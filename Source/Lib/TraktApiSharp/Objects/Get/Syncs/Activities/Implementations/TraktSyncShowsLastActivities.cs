@@ -4,7 +4,7 @@
     using System;
 
     /// <summary>A collection of UTC datetimes of last activities for shows.</summary>
-    public class TraktSyncShowsLastActivities
+    public class TraktSyncShowsLastActivities : ITraktSyncShowsLastActivities
     {
         /// <summary>Gets or sets the UTC datetime, when a show was lastly rated.</summary>
         [JsonProperty(PropertyName = "rated_at")]

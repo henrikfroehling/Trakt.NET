@@ -4,7 +4,7 @@
     using System;
 
     /// <summary>A collection of UTC datetimes of last activities.</summary>
-    public class TraktSyncLastActivities
+    public class TraktSyncLastActivities : ITraktSyncLastActivities
     {
         /// <summary>Gets or sets the UTC datetime of the overall last activity.</summary>
         [JsonProperty(PropertyName = "all")]
@@ -12,50 +12,50 @@
 
         /// <summary>
         /// Gets or sets a collection of UTC datetimes of last activities for movies.
-        /// See also <seealso cref="TraktSyncMoviesLastActivities" />.
+        /// See also <seealso cref="ITraktSyncMoviesLastActivities" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "movies")]
-        public TraktSyncMoviesLastActivities Movies { get; set; }
+        public ITraktSyncMoviesLastActivities Movies { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of UTC datetimes of last activities for episodes.
-        /// See also <seealso cref="TraktSyncEpisodesLastActivities" />.
+        /// See also <seealso cref="ITraktSyncEpisodesLastActivities" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "episodes")]
-        public TraktSyncEpisodesLastActivities Episodes { get; set; }
+        public ITraktSyncEpisodesLastActivities Episodes { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of UTC datetimes of last activities for shows.
-        /// See also <seealso cref="TraktSyncShowsLastActivities" />.
+        /// See also <seealso cref="ITraktSyncShowsLastActivities" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "shows")]
-        public TraktSyncShowsLastActivities Shows { get; set; }
+        public ITraktSyncShowsLastActivities Shows { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of UTC datetimes of last activities for seasons.
-        /// See also <seealso cref="TraktSyncSeasonsLastActivities" />.
+        /// See also <seealso cref="ITraktSyncSeasonsLastActivities" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "seasons")]
-        public TraktSyncSeasonsLastActivities Seasons { get; set; }
+        public ITraktSyncSeasonsLastActivities Seasons { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of UTC datetimes of last activities for comments.
-        /// See also <seealso cref="TraktSyncCommentsLastActivities" />.
+        /// See also <seealso cref="ITraktSyncCommentsLastActivities" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "comments")]
-        public TraktSyncCommentsLastActivities Comments { get; set; }
+        public ITraktSyncCommentsLastActivities Comments { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of UTC datetimes of last activities for lists.
-        /// See also <seealso cref="TraktSyncListsLastActivities" />.
+        /// See also <seealso cref="ITraktSyncListsLastActivities" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "lists")]
-        public TraktSyncListsLastActivities Lists { get; set; }
+        public ITraktSyncListsLastActivities Lists { get; set; }
     }
 }

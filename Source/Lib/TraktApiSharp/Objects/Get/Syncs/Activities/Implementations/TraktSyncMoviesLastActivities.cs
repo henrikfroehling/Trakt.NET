@@ -4,7 +4,7 @@
     using System;
 
     /// <summary>A collection of UTC datetimes of last activities for movies.</summary>
-    public class TraktSyncMoviesLastActivities
+    public class TraktSyncMoviesLastActivities : ITraktSyncMoviesLastActivities
     {
         /// <summary>Gets or sets the UTC datetime, when a movie was lastly watched.</summary>
         [JsonProperty(PropertyName = "watched_at")]

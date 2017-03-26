@@ -198,6 +198,13 @@
     <Compile Include="Objects\Get\Shows\Implementations\TraktShowWatchedProgress_Tests.cs" />
     <Compile Include="Objects\Get\Shows\Implementations\TraktShow_Tests.cs" />
     <Compile Include="Objects\Get\Shows\Implementations\TraktTrendingShow_Tests.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\Implementations\TraktSyncCommentsLastActivities_Tests.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\Implementations\TraktSyncEpisodesLastActivities_Tests.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\Implementations\TraktSyncLastActivities_Tests.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\Implementations\TraktSyncListsLastActivities_Tests.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\Implementations\TraktSyncMoviesLastActivities_Tests.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\Implementations\TraktSyncSeasonsLastActivities_Tests.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\Implementations\TraktSyncShowsLastActivities_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\Interfaces\ITraktSyncCommentsLastActivities_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\Interfaces\ITraktSyncEpisodesLastActivities_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\Interfaces\ITraktSyncLastActivities_Tests.cs" />
@@ -205,6 +212,7 @@
     <Compile Include="Objects\Get\Syncs\Activities\Interfaces\ITraktSyncMoviesLastActivities_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\Interfaces\ITraktSyncSeasonsLastActivities_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\Interfaces\ITraktSyncShowsLastActivities_Tests.cs" />
+    <Compile Include="Objects\Get\Syncs\Playback\Implementations\TraktSyncPlaybackProgressItem_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\Interfaces\ITraktSyncPlaybackProgressItem_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktAccountSettings_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktSharingText_Tests.cs" />
@@ -518,8 +526,6 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Objects\Get\Syncs\Activities\Implementations\" />
-    <Folder Include="Objects\Get\Syncs\Playback\Implementations\" />
     <Folder Include="Objects\Get\Users\Lists\Implementations\" />
     <Folder Include="Objects\Get\Users\Statistics\Implementations\" />
   </ItemGroup>

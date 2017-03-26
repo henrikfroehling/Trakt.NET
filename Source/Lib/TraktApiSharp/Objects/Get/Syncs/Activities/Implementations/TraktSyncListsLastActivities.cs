@@ -4,7 +4,7 @@
     using System;
 
     /// <summary>A collection of UTC datetimes of last activities for lists.</summary>
-    public class TraktSyncListsLastActivities
+    public class TraktSyncListsLastActivities : ITraktSyncListsLastActivities
     {
         /// <summary>Gets or sets the UTC datetime, when a list was lastly liked.</summary>
         [JsonProperty(PropertyName = "liked_at")]
