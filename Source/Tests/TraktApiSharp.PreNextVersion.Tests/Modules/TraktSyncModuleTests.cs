@@ -30,6 +30,7 @@
     using TraktApiSharp.Objects.Get.Watched;
     using TraktApiSharp.Objects.Get.Watched.Implementations;
     using TraktApiSharp.Objects.Get.Watchlist;
+    using TraktApiSharp.Objects.Get.Watchlist.Implementations;
     using TraktApiSharp.Objects.Post.Syncs.Collection;
     using TraktApiSharp.Objects.Post.Syncs.Collection.Responses;
     using TraktApiSharp.Objects.Post.Syncs.History;

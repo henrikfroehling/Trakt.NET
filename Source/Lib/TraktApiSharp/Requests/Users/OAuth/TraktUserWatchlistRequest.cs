@@ -5,6 +5,7 @@
     using Objects.Get.Watchlist;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Watchlist.Implementations;
 
     internal sealed class TraktUserWatchlistRequest : ATraktUsersPagedGetRequest<TraktWatchlistItem>
     {

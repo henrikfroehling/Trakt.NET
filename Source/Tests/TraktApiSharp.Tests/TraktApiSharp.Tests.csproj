@@ -234,7 +234,7 @@
     <Compile Include="Objects\Get\Watched\Implementations\TraktWatchedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Watched\Implementations\TraktWatchedShow_Tests.cs" />
     <Compile Include="Objects\Get\Watchlist\Interfaces\ITraktWatchlistItem_Tests.cs" />
-    <Compile Include="Objects\Get\Watchlist\TraktWatchlistItem_Tests.cs" />
+    <Compile Include="Objects\Get\Watchlist\Implementations\TraktWatchlistItem_Tests.cs" />
     <Compile Include="Objects\JsonReader\Basic\TraktErrorObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\JsonReader\Basic\TraktGenreObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\JsonReader\Basic\TraktIdsObjectJsonReader_Tests.cs" />

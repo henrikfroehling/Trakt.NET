@@ -5,6 +5,7 @@
     using Objects.Get.Watchlist;
     using Parameters;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Watchlist.Implementations;
 
     internal sealed class TraktSyncWatchlistRequest : ATraktSyncGetRequest<TraktWatchlistItem>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
     {

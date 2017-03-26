@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Watchlist
+﻿namespace TraktApiSharp.Tests.Objects.Get.Watchlist.Implementations
 {
     using FluentAssertions;
     using Newtonsoft.Json;
@@ -7,9 +7,10 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Watchlist;
+    using TraktApiSharp.Objects.Get.Watchlist.Implementations;
     using Xunit;
 
-    [Category("Objects.Get.Watchlist")]
+    [Category("Objects.Get.Watchlist.Implementations")]
     public class TraktWatchlistItem_Tests
     {
         [Fact]

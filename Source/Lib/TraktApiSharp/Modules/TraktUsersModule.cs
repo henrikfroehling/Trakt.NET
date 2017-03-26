@@ -32,6 +32,7 @@
     using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
     using TraktApiSharp.Objects.Get.Users.Statistics.Implementations;
     using TraktApiSharp.Objects.Get.Watched.Implementations;
+    using TraktApiSharp.Objects.Get.Watchlist.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to users.
