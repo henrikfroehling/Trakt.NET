@@ -12,6 +12,12 @@
     public class TraktEpisodeWatchedProgress_Tests
     {
         [Fact]
+        public void Test_TraktEpisodeWatchedProgress_Inherits_TraktEpisodeProgress()
+        {
+            typeof(TraktEpisodeWatchedProgress).GetInterfaces().Should().Contain(typeof(TraktEpisodeProgress));
+        }
+
+        [Fact]
         public void Test_TraktEpisodeWatchedProgress_Implements_ITraktEpisodeWatchedProgress_Interface()
         {
             typeof(TraktEpisodeWatchedProgress).GetInterfaces().Should().Contain(typeof(ITraktEpisodeWatchedProgress));

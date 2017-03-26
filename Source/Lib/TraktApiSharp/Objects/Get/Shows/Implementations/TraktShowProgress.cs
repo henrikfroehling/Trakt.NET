@@ -8,7 +8,7 @@
     using TraktApiSharp.Objects.Get.Seasons.Implementations;
 
     /// <summary>Represents the progress of a Trakt show.</summary>
-    public abstract class TraktShowProgress
+    public abstract class TraktShowProgress : ITraktShowProgress
     {
         /// <summary>Gets or sets the number of episodes, which already aired.</summary>
         [JsonProperty(PropertyName = "aired")]
@@ -19,18 +19,18 @@
         public int? Completed { get; set; }
 
         /// <summary>
-        /// Gets or sets the hidden seasons. See also <seealso cref="TraktSeason" />.
+        /// Gets or sets the hidden seasons. See also <seealso cref="ITraktSeason" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "hidden_seasons")]
-        public IEnumerable<TraktSeason> HiddenSeasons { get; set; }
+        public IEnumerable<ITraktSeason> HiddenSeasons { get; set; }
 
         /// <summary>
         /// Gets or sets the episode, which the user should collect or watch.
-        /// See also <seealso cref="TraktEpisode" />.
+        /// See also <seealso cref="ITraktEpisode" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "next_episode")]
-        public TraktEpisode NextEpisode { get; set; }
+        public ITraktEpisode NextEpisode { get; set; }
     }
 }

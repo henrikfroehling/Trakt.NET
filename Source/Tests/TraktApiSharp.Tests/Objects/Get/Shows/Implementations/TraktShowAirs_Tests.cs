@@ -11,6 +11,12 @@
     public class TraktShowAirs_Tests
     {
         [Fact]
+        public void Test_TraktShowAirs_Implements_ITraktShowAirs_Interface()
+        {
+            typeof(TraktShowAirs).GetInterfaces().Should().Contain(typeof(ITraktShowAirs));
+        }
+
+        [Fact]
         public void Test_TraktShowAirs_Default_Constructor()
         {
             var showAirs = new TraktShowAirs();

@@ -13,6 +13,18 @@
     public class TraktShowCollectionProgress_Tests
     {
         [Fact]
+        public void Test_TraktShowCollectionProgress_Inherits_TraktShowProgress()
+        {
+            typeof(TraktShowCollectionProgress).GetInterfaces().Should().Contain(typeof(TraktShowProgress));
+        }
+
+        [Fact]
+        public void Test_TraktShowCollectionProgress_Implements_ITraktShowCollectionProgress_Interface()
+        {
+            typeof(TraktShowCollectionProgress).GetInterfaces().Should().Contain(typeof(ITraktShowCollectionProgress));
+        }
+
+        [Fact]
         public void Test_TraktShowCollectionProgress_Default_Constructor()
         {
             var showCollectionProgress = new TraktShowCollectionProgress();

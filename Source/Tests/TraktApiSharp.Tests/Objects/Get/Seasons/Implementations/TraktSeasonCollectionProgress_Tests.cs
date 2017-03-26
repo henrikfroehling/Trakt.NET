@@ -13,6 +13,12 @@
     public class TraktSeasonCollectionProgress_Tests
     {
         [Fact]
+        public void Test_TraktSeasonCollectionProgress_Inherits_TraktSeasonProgress()
+        {
+            typeof(TraktSeasonCollectionProgress).GetInterfaces().Should().Contain(typeof(TraktSeasonProgress));
+        }
+
+        [Fact]
         public void Test_TraktSeasonCollectionProgress_Implements_ITraktSeasonCollectionProgress_Interface()
         {
             typeof(TraktSeasonCollectionProgress).GetInterfaces().Should().Contain(typeof(ITraktSeasonCollectionProgress));

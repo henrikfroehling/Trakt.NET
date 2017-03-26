@@ -25,7 +25,7 @@
         [JsonProperty(PropertyName = "collector_count")]
         public int? CollectorCount { get; set; }
 
-        /// <summary>Gets or sets the Trakt show. See also <seealso cref="TraktShow" />.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the Trakt show. See also <seealso cref="ITraktShow" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "show")]
         public ITraktShow Show { get; set; }
 

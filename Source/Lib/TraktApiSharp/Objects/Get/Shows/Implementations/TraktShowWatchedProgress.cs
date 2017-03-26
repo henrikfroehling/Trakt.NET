@@ -7,17 +7,17 @@
     using TraktApiSharp.Objects.Get.Seasons.Implementations;
 
     /// <summary>Represents the watched progress of a Trakt show.</summary>
-    public class TraktShowWatchedProgress : TraktShowProgress
+    public class TraktShowWatchedProgress : TraktShowProgress, ITraktShowWatchedProgress
     {
         /// <summary>Gets or sets the UTC datetime, when the last watch occured.</summary>
         [JsonProperty(PropertyName = "last_watched_at")]
         public DateTime? LastWatchedAt { get; set; }
 
         /// <summary>
-        /// Gets or sets the watched seasons. See also <seealso cref="TraktSeasonWatchedProgress" />.
+        /// Gets or sets the watched seasons. See also <seealso cref="ITraktSeasonWatchedProgress" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "seasons")]
-        public IEnumerable<TraktSeasonWatchedProgress> Seasons { get; set; }
+        public IEnumerable<ITraktSeasonWatchedProgress> Seasons { get; set; }
     }
 }

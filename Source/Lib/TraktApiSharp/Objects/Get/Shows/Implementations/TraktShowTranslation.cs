@@ -4,7 +4,7 @@
     using TraktApiSharp.Objects.Basic.Implementations;
 
     /// <summary>A translation for a Trakt show.</summary>
-    public class TraktShowTranslation : TraktTranslation
+    public class TraktShowTranslation : TraktTranslation, ITraktShowTranslation
     {
 
     }

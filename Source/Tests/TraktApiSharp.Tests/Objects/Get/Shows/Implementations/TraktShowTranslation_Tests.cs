@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Traits;
+    using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.JsonReader.Get.Shows;
@@ -10,6 +11,18 @@
     [Category("Objects.Get.Shows.Implementations")]
     public class TraktShowTranslation_Tests
     {
+        [Fact]
+        public void Test_TraktShowTranslation_Inherits_TraktTranslation()
+        {
+            typeof(TraktShowTranslation).GetInterfaces().Should().Contain(typeof(TraktTranslation));
+        }
+
+        [Fact]
+        public void Test_TraktShowTranslation_Implements_ITraktShowTranslation_Interface()
+        {
+            typeof(TraktShowTranslation).GetInterfaces().Should().Contain(typeof(ITraktShowTranslation));
+        }
+
         [Fact]
         public void Test_TraktShowTranslation_Default_Constructor()
         {

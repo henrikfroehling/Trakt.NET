@@ -3,7 +3,7 @@
     using Newtonsoft.Json;
 
     /// <summary>The air time of a Trakt show.</summary>
-    public class TraktShowAirs
+    public class TraktShowAirs : ITraktShowAirs
     {
         /// <summary>Gets or sets the day of week on which the show airs.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "day")]

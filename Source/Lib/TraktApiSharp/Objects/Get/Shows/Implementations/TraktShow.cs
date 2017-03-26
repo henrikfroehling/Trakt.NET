@@ -19,7 +19,7 @@
 
         /// <summary>
         /// Gets or sets the collection of ids for the show for various web services.
-        /// See also <seealso cref="TraktShowIds" />.
+        /// See also <seealso cref="ITraktShowIds" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "ids")]
@@ -33,7 +33,7 @@
         [JsonProperty(PropertyName = "first_aired")]
         public DateTime? FirstAired { get; set; }
 
-        /// <summary>Gets or sets the air time of the show. See also <seealso cref="TraktShowAirs" />.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the air time of the show. See also <seealso cref="ITraktShowAirs" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "airs")]
         public ITraktShowAirs Airs { get; set; }
 
@@ -94,7 +94,7 @@
         [JsonProperty(PropertyName = "aired_episodes")]
         public int? AiredEpisodes { get; set; }
 
-        /// <summary>Gets or sets the collection of Trakt seasons for the show. See also <seealso cref="TraktSeason" />.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the collection of Trakt seasons for the show. See also <seealso cref="ITraktSeason" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "seasons")]
         public IEnumerable<ITraktSeason> Seasons { get; set; }
     }
