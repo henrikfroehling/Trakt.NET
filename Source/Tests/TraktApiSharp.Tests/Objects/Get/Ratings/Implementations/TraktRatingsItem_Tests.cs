@@ -14,6 +14,12 @@
     public class TraktRatingsItem_Tests
     {
         [Fact]
+        public void Test_TraktRatingsItem_Implements_ITraktRatingsItem_Interface()
+        {
+            typeof(TraktRatingsItem).GetInterfaces().Should().Contain(typeof(ITraktRatingsItem));
+        }
+
+        [Fact]
         public void Test_TraktRatingsItem_Default_Constructor()
         {
             var ratingsItem = new TraktRatingsItem();
