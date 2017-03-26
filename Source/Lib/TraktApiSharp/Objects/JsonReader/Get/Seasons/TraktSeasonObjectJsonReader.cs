@@ -5,6 +5,7 @@
     using Objects.Get.Seasons;
     using System;
     using System.IO;
+    using TraktApiSharp.Objects.Get.Seasons.Implementations;
 
     internal class TraktSeasonObjectJsonReader : ITraktObjectJsonReader<TraktSeason>
     {

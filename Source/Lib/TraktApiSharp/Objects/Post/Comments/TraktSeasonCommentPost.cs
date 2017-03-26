@@ -2,6 +2,7 @@
 {
     using Get.Seasons;
     using Newtonsoft.Json;
+    using TraktApiSharp.Objects.Get.Seasons.Implementations;
 
     /// <summary>A season comment post.</summary>
     public class TraktSeasonCommentPost : TraktCommentPost

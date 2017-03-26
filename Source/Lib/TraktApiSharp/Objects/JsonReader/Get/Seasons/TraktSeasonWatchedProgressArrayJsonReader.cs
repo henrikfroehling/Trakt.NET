@@ -4,6 +4,7 @@
     using Objects.Get.Seasons;
     using System.Collections.Generic;
     using System.IO;
+    using TraktApiSharp.Objects.Get.Seasons.Implementations;
 
     internal class TraktSeasonWatchedProgressArrayJsonReader : ITraktArrayJsonReader<TraktSeasonWatchedProgress>
     {

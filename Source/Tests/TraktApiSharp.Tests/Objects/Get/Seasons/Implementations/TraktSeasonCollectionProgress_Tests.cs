@@ -1,14 +1,15 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Seasons
+﻿namespace TraktApiSharp.Tests.Objects.Get.Seasons.Implementations
 {
     using FluentAssertions;
     using System;
     using System.Linq;
     using Traits;
     using TraktApiSharp.Objects.Get.Seasons;
+    using TraktApiSharp.Objects.Get.Seasons.Implementations;
     using TraktApiSharp.Objects.JsonReader.Get.Seasons;
     using Xunit;
 
-    [Category("Objects.Get.Seasons")]
+    [Category("Objects.Get.Seasons.Implementations")]
     public class TraktSeasonCollectionProgress_Tests
     {
         [Fact]

@@ -7,6 +7,7 @@
     using Parameters;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Seasons.Implementations;
 
     internal sealed class TraktSeasonsAllRequest : ATraktGetRequest<TraktSeason>, ITraktHasId, ITraktSupportsExtendedInfo
     {

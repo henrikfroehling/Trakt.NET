@@ -18,6 +18,7 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
+    using TraktApiSharp.Objects.Get.Seasons.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to seasons.

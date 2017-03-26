@@ -5,6 +5,7 @@
     using System.IO;
     using Traits;
     using TraktApiSharp.Objects.Get.Seasons;
+    using TraktApiSharp.Objects.Get.Seasons.Implementations;
     using TraktApiSharp.Objects.JsonReader;
     using TraktApiSharp.Objects.JsonReader.Get.Seasons;
     using Xunit;

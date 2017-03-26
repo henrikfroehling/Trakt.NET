@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Seasons
+﻿namespace TraktApiSharp.Objects.Get.Seasons.Implementations
 {
     using Episodes;
     using Newtonsoft.Json;

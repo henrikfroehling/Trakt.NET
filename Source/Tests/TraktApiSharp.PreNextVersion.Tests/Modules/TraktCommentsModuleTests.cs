@@ -15,6 +15,7 @@
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.Seasons;
+    using TraktApiSharp.Objects.Get.Seasons.Implementations;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Objects.Post.Comments;

@@ -508,9 +508,9 @@
     <Compile Include="Objects\Get\Episodes\Implementations\TraktEpisodeProgress.cs" />
     <Compile Include="Objects\Get\Episodes\Implementations\TraktEpisodeTranslation.cs" />
     <Compile Include="Objects\Get\Episodes\Implementations\TraktEpisodeWatchedProgress.cs" />
-    <Compile Include="Objects\Get\Seasons\TraktSeasonCollectionProgress.cs" />
-    <Compile Include="Objects\Get\Seasons\TraktSeasonProgress.cs" />
-    <Compile Include="Objects\Get\Seasons\TraktSeasonWatchedProgress.cs" />
+    <Compile Include="Objects\Get\Seasons\Implementations\TraktSeasonCollectionProgress.cs" />
+    <Compile Include="Objects\Get\Seasons\Implementations\TraktSeasonProgress.cs" />
+    <Compile Include="Objects\Get\Seasons\Implementations\TraktSeasonWatchedProgress.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowCollectionProgress.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowProgress.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowWatchedProgress.cs" />
@@ -571,8 +571,8 @@
     <Compile Include="Objects\Get\Shows\TraktTrendingShow.cs" />
     <Compile Include="Objects\Get\Episodes\Implementations\TraktEpisode.cs" />
     <Compile Include="Objects\Get\Episodes\Implementations\TraktEpisodeIds.cs" />
-    <Compile Include="Objects\Get\Seasons\TraktSeason.cs" />
-    <Compile Include="Objects\Get\Seasons\TraktSeasonIds.cs" />
+    <Compile Include="Objects\Get\Seasons\Implementations\TraktSeason.cs" />
+    <Compile Include="Objects\Get\Seasons\Implementations\TraktSeasonIds.cs" />
     <Compile Include="Objects\Get\Shows\TraktShow.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowAirs.cs" />
     <Compile Include="Objects\Get\Shows\TraktShowAlias.cs" />

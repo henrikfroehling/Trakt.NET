@@ -11,6 +11,7 @@
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
+    using TraktApiSharp.Objects.Get.Seasons.Implementations;
 
     /// <summary>A Trakt user comment.</summary>
     public class TraktUserComment
