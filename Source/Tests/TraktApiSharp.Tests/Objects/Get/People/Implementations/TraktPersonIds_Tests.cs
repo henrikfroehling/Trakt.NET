@@ -11,6 +11,12 @@
     public class TraktPersonIds_Tests
     {
         [Fact]
+        public void Test_TraktPersonIds_Implements_ITraktPersonIds_Interface()
+        {
+            typeof(TraktPersonIds).GetInterfaces().Should().Contain(typeof(ITraktPersonIds));
+        }
+
+        [Fact]
         public void Test_TraktPersonIds_Default_Constructor()
         {
             var personIds = new TraktPersonIds();

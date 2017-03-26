@@ -5,7 +5,7 @@
     using System;
 
     /// <summary>A Trakt person.</summary>
-    public class TraktPerson
+    public class TraktPerson : ITraktPerson
     {
         /// <summary>Gets or sets the person name.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "name")]
@@ -13,11 +13,11 @@
 
         /// <summary>
         /// Gets or sets the collection of ids for the person for various web services.
-        /// See also <seealso cref="TraktPersonIds" />.
+        /// See also <seealso cref="ITraktPersonIds" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "ids")]
-        public TraktPersonIds Ids { get; set; }
+        public ITraktPersonIds Ids { get; set; }
 
         /// <summary>Gets or sets the biography of the person.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "biography")]

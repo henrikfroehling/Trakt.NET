@@ -13,6 +13,12 @@
     public class TraktPersonMovieCredits_Tests
     {
         [Fact]
+        public void Test_TraktPersonMovieCredits_Implements_ITraktPersonMovieCredits_Interface()
+        {
+            typeof(TraktPersonMovieCredits).GetInterfaces().Should().Contain(typeof(ITraktPersonMovieCredits));
+        }
+
+        [Fact]
         public void Test_TraktPersonMovieCredits_Default_Constructor()
         {
             var credits = new TraktPersonMovieCredits();

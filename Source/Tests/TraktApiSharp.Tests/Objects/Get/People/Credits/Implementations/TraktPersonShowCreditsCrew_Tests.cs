@@ -14,6 +14,12 @@
     public class TraktPersonShowCreditsCrew_Tests
     {
         [Fact]
+        public void Test_TraktPersonShowCreditsCrew_Implements_ITraktPersonShowCreditsCrew_Interface()
+        {
+            typeof(TraktPersonShowCreditsCrew).GetInterfaces().Should().Contain(typeof(ITraktPersonShowCreditsCrew));
+        }
+
+        [Fact]
         public void Test_TraktPersonShowCreditsCrew_Default_Constructor()
         {
             var creditsCrew = new TraktPersonShowCreditsCrew();
