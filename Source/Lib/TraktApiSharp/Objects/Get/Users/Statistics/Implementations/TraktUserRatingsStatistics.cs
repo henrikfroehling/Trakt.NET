@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Users.Statistics
+﻿namespace TraktApiSharp.Objects.Get.Users.Statistics.Implementations
 {
     using Newtonsoft.Json;
     using System.Collections.Generic;

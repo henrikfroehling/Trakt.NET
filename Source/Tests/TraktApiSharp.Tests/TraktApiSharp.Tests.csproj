@@ -224,9 +224,9 @@
     <Compile Include="Objects\Get\Users\Statistics\Interfaces\ITraktUserSeasonsStatistics_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Interfaces\ITraktUserShowsStatistics_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Interfaces\ITraktUserStatistics_Tests.cs" />
-    <Compile Include="Objects\Get\Users\TraktUserFollower_Tests.cs" />
-    <Compile Include="Objects\Get\Users\TraktUserFriend_Tests.cs" />
-    <Compile Include="Objects\Get\Users\TraktUser_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Implementations\TraktUserFollower_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Implementations\TraktUserFriend_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Implementations\TraktUser_Tests.cs" />
     <Compile Include="Objects\Get\Watched\Interfaces\ITraktWatchedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Watched\Interfaces\ITraktWatchedShowEpisode_Tests.cs" />
     <Compile Include="Objects\Get\Watched\Interfaces\ITraktWatchedShowSeason_Tests.cs" />
@@ -515,6 +515,8 @@
   <ItemGroup>
     <Folder Include="Objects\Get\Syncs\Activities\Implementations\" />
     <Folder Include="Objects\Get\Syncs\Playback\Implementations\" />
+    <Folder Include="Objects\Get\Users\Lists\Implementations\" />
+    <Folder Include="Objects\Get\Users\Statistics\Implementations\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

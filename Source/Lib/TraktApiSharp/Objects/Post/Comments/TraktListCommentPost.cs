@@ -2,6 +2,7 @@
 {
     using Get.Users.Lists;
     using Newtonsoft.Json;
+    using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
 
     /// <summary>A list comment post.</summary>
     public class TraktListCommentPost : TraktCommentPost

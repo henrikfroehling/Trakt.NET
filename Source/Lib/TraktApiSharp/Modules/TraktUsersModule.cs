@@ -28,6 +28,9 @@
     using TraktApiSharp.Objects.Get.Collection.Implementations;
     using TraktApiSharp.Objects.Get.History.Implementations;
     using TraktApiSharp.Objects.Get.Ratings.Implementations;
+    using TraktApiSharp.Objects.Get.Users.Implementations;
+    using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
+    using TraktApiSharp.Objects.Get.Users.Statistics.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to users.

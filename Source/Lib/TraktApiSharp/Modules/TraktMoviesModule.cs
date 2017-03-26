@@ -16,6 +16,8 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
+    using TraktApiSharp.Objects.Get.Users.Implementations;
+    using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to movies.

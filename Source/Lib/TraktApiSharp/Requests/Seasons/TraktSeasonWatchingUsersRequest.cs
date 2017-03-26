@@ -4,6 +4,7 @@
     using Objects.Get.Users;
     using Parameters;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Users.Implementations;
 
     internal sealed class TraktSeasonWatchingUsersRequest : ATraktSeasonRequest<TraktUser>, ITraktSupportsExtendedInfo
     {

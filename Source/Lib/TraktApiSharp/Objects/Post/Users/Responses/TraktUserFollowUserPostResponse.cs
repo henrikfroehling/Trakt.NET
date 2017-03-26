@@ -3,6 +3,7 @@
     using Get.Users;
     using Newtonsoft.Json;
     using System;
+    using TraktApiSharp.Objects.Get.Users.Implementations;
 
     /// <summary>Represents the response for the approve of a follower request.</summary>
     public class TraktUserFollowUserPostResponse

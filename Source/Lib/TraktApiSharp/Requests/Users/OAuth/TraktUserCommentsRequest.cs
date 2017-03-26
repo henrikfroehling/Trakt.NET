@@ -5,6 +5,7 @@
     using Objects.Get.Users;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Users.Implementations;
 
     internal sealed class TraktUserCommentsRequest : ATraktUsersPagedGetRequest<TraktUserComment>
     {

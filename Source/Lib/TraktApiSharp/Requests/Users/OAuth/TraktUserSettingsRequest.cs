@@ -3,6 +3,7 @@
     using Base;
     using Objects.Get.Users;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Users.Implementations;
 
     internal sealed class TraktUserSettingsRequest : ATraktGetRequest<TraktUserSettings>
     {

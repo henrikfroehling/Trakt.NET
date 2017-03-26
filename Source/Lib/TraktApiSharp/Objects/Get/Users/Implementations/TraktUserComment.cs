@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Users
+﻿namespace TraktApiSharp.Objects.Get.Users.Implementations
 {
     using Basic;
     using Enums;
@@ -13,6 +13,7 @@
     using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.Seasons.Implementations;
     using TraktApiSharp.Objects.Get.Shows.Implementations;
+    using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
 
     /// <summary>A Trakt user comment.</summary>
     public class TraktUserComment

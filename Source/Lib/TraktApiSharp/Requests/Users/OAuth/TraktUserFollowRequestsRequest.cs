@@ -2,6 +2,7 @@
 {
     using Base;
     using Objects.Get.Users;
+    using TraktApiSharp.Objects.Get.Users.Implementations;
 
     internal sealed class TraktUserFollowRequestsRequest : ATraktUsersGetRequest<TraktUserFollowRequest>
     {

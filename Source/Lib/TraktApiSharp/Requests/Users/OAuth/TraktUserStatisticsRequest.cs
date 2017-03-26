@@ -5,6 +5,7 @@
     using Objects.Get.Users.Statistics;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Users.Statistics.Implementations;
 
     internal sealed class TraktUserStatisticsRequest : ATraktGetRequest<TraktUserStatistics>
     {

@@ -6,6 +6,7 @@
     using Objects.Get.Users.Lists;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
 
     internal sealed class TraktUserCustomSingleListRequest : ATraktGetRequest<TraktList>, ITraktHasId
     {

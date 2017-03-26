@@ -7,6 +7,7 @@
     using Objects.Post.Users;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
 
     internal sealed class TraktUserCustomListUpdateRequest : ATraktPutRequest<TraktList, TraktUserCustomListPost>, ITraktHasId
     {

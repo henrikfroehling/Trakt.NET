@@ -23,6 +23,7 @@
     using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.Seasons.Implementations;
     using TraktApiSharp.Objects.Get.Shows.Implementations;
+    using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to comments.
