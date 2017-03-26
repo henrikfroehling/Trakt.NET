@@ -15,7 +15,7 @@
         [Fact]
         public void Test_TraktSeasonCollectionProgress_Inherits_TraktSeasonProgress()
         {
-            typeof(TraktSeasonCollectionProgress).GetInterfaces().Should().Contain(typeof(TraktSeasonProgress));
+            typeof(TraktSeasonCollectionProgress).IsSubclassOf(typeof(TraktSeasonProgress)).Should().BeTrue();
         }
 
         [Fact]

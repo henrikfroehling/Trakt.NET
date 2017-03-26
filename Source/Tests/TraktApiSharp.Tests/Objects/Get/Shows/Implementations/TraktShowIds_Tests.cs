@@ -14,7 +14,7 @@
         [Fact]
         public void Test_TraktShowIds_Inherits_TraktIds()
         {
-            typeof(TraktShowIds).GetInterfaces().Should().Contain(typeof(TraktIds));
+            typeof(TraktShowIds).IsSubclassOf(typeof(TraktIds)).Should().BeTrue();
         }
 
         [Fact]

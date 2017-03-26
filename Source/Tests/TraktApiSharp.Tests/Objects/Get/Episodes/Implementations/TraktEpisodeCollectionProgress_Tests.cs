@@ -14,7 +14,7 @@
         [Fact]
         public void Test_TraktEpisodeCollectionProgress_Inherits_TraktEpisodeProgress()
         {
-            typeof(TraktEpisodeCollectionProgress).GetInterfaces().Should().Contain(typeof(TraktEpisodeProgress));
+            typeof(TraktEpisodeCollectionProgress).IsSubclassOf(typeof(TraktEpisodeProgress)).Should().BeTrue();
         }
 
         [Fact]
