@@ -27,6 +27,7 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Objects.Get.Collection.Implementations;
     using TraktApiSharp.Objects.Get.History.Implementations;
+    using TraktApiSharp.Objects.Get.Ratings.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to sync.

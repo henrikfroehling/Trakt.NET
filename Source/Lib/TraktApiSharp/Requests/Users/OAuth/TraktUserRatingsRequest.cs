@@ -6,6 +6,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using TraktApiSharp.Objects.Get.Ratings.Implementations;
 
     internal sealed class TraktUserRatingsRequest : ATraktUsersGetRequest<TraktRatingsItem>
     {

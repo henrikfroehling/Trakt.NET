@@ -22,6 +22,7 @@
     using TraktApiSharp.Objects.Get.People;
     using TraktApiSharp.Objects.Get.People.Implementations;
     using TraktApiSharp.Objects.Get.Ratings;
+    using TraktApiSharp.Objects.Get.Ratings.Implementations;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Objects.Get.Users.Lists;

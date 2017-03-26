@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Ratings
+﻿namespace TraktApiSharp.Tests.Objects.Get.Ratings.Implementations
 {
     using FluentAssertions;
     using Newtonsoft.Json;
@@ -7,9 +7,10 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Ratings;
+    using TraktApiSharp.Objects.Get.Ratings.Implementations;
     using Xunit;
 
-    [Category("Objects.Get.Ratings")]
+    [Category("Objects.Get.Ratings.Implementations")]
     public class TraktRatingsItem_Tests
     {
         [Fact]

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Ratings
+﻿namespace TraktApiSharp.Objects.Get.Ratings.Implementations
 {
     using Enums;
     using Episodes;
