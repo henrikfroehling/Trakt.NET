@@ -14,6 +14,12 @@
     public class TraktHistoryItem_Tests
     {
         [Fact]
+        public void Test_TraktHistoryItem_Implements_ITraktHistoryItem_Interface()
+        {
+            typeof(TraktHistoryItem).GetInterfaces().Should().Contain(typeof(ITraktHistoryItem));
+        }
+
+        [Fact]
         public void Test_TraktHistoryItem_Default_Constructor()
         {
             var historyItem = new TraktHistoryItem();
