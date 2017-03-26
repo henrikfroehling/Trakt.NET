@@ -15,11 +15,11 @@
         [JsonProperty(PropertyName = "first_aired")]
         public DateTime? FirstAiredInCalendar { get; set; }
 
-        /// <summary>Gets or sets the Trakt show. See also <seealso cref="TraktShow" />.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the Trakt show. See also <seealso cref="ITraktShow" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "show")]
         public ITraktShow Show { get; set; }
 
-        /// <summary>Gets or sets the Trakt episode. See also <seealso cref="TraktEpisode" />.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the Trakt episode. See also <seealso cref="ITraktEpisode" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "episode")]
         public ITraktEpisode Episode { get; set; }
 
