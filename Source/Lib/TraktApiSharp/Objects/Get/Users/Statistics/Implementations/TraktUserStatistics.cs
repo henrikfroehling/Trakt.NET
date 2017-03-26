@@ -3,54 +3,54 @@
     using Newtonsoft.Json;
 
     /// <summary>A collection of Trakt user statistics.</summary>
-    public class TraktUserStatistics
+    public class TraktUserStatistics : ITraktUserStatistics
     {
         /// <summary>
         /// Gets or sets a collection of Trakt user statistics for movies.
-        /// See also <seealso cref="TraktUserMoviesStatistics" />.
+        /// See also <seealso cref="ITraktUserMoviesStatistics" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "movies")]
-        public TraktUserMoviesStatistics Movies { get; set; }
+        public ITraktUserMoviesStatistics Movies { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of Trakt user statistics for shows.
-        /// See also <seealso cref="TraktUserShowsStatistics" />.
+        /// See also <seealso cref="ITraktUserShowsStatistics" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "shows")]
-        public TraktUserShowsStatistics Shows { get; set; }
+        public ITraktUserShowsStatistics Shows { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of Trakt user statistics for seasons.
-        /// See also <seealso cref="TraktUserSeasonsStatistics" />.
+        /// See also <seealso cref="ITraktUserSeasonsStatistics" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "seasons")]
-        public TraktUserSeasonsStatistics Seasons { get; set; }
+        public ITraktUserSeasonsStatistics Seasons { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of Trakt user statistics for episodes.
-        /// See also <seealso cref="TraktUserEpisodesStatistics" />.
+        /// See also <seealso cref="ITraktUserEpisodesStatistics" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "episodes")]
-        public TraktUserEpisodesStatistics Episodes { get; set; }
+        public ITraktUserEpisodesStatistics Episodes { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of Trakt user statistics about an user's network.
-        /// See also <seealso cref="TraktUserNetworkStatistics" />.
+        /// See also <seealso cref="ITraktUserNetworkStatistics" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "network")]
-        public TraktUserNetworkStatistics Network { get; set; }
+        public ITraktUserNetworkStatistics Network { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of Trakt user statistics for ratings.
-        /// See also <seealso cref="TraktUserRatingsStatistics" />.
+        /// See also <seealso cref="ITraktUserRatingsStatistics" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "ratings")]
-        public TraktUserRatingsStatistics Ratings { get; set; }
+        public ITraktUserRatingsStatistics Ratings { get; set; }
     }
 }

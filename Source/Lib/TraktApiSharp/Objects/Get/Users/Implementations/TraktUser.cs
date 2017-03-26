@@ -14,7 +14,7 @@
         [JsonProperty(PropertyName = "private")]
         public bool? IsPrivate { get; set; }
 
-        /// <summary>Gets or sets the collection of ids for the user. See also <seealso cref="TraktUserIds" />.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the collection of ids for the user. See also <seealso cref="ITraktUserIds" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "ids")]
         public ITraktUserIds Ids { get; set; }
 
@@ -50,7 +50,7 @@
         [JsonProperty(PropertyName = "age")]
         public int? Age { get; set; }
 
-        /// <summary>Gets or sets the collection of images for the user. See also <seealso cref="TraktUserImages" />.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the collection of images for the user. See also <seealso cref="ITraktUserImages" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "images")]
         public ITraktUserImages Images { get; set; }
     }

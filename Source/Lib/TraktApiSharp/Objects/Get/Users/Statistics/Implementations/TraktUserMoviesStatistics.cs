@@ -3,7 +3,7 @@
     using Newtonsoft.Json;
 
     /// <summary>A collection of Trakt user statistics for movies.</summary>
-    public class TraktUserMoviesStatistics
+    public class TraktUserMoviesStatistics : ITraktUserMoviesStatistics
     {
         /// <summary>Gets or sets the number of how many times an user has played movies.</summary>
         [JsonProperty(PropertyName = "plays")]

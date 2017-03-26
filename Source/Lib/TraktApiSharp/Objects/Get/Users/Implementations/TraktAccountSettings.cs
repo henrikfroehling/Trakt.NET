@@ -3,7 +3,7 @@
     using Newtonsoft.Json;
 
     /// <summary>Represents Trakt user account settings.</summary>
-    public class TraktAccountSettings
+    public class TraktAccountSettings : ITraktAccountSettings
     {
         /// <summary>Gets or sets the user's timezone.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "timezone")]

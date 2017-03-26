@@ -5,38 +5,38 @@
     using TraktApiSharp.Objects.Basic.Implementations;
 
     /// <summary>Represents Trakt user settings.</summary>
-    public class TraktUserSettings
+    public class TraktUserSettings : ITraktUserSettings
     {
         /// <summary>
         /// Gets or sets the Trakt user for this settings.
-        /// See also <seealso cref="TraktUser" />.
+        /// See also <seealso cref="ITraktUser" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "user")]
-        public TraktUser User { get; set; }
+        public ITraktUser User { get; set; }
 
         /// <summary>
         /// Gets or sets the account settings.
-        /// See also <seealso cref="TraktAccountSettings" />.
+        /// See also <seealso cref="ITraktAccountSettings" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "account")]
-        public TraktAccountSettings Account { get; set; }
+        public ITraktAccountSettings Account { get; set; }
 
         /// <summary>
         /// Gets or sets the social media connection settings.
-        /// See also <seealso cref="TraktSharing" />.
+        /// See also <seealso cref="ITraktSharing" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "connections")]
-        public TraktSharing Connections { get; set; }
+        public ITraktSharing Connections { get; set; }
 
         /// <summary>
         /// Gets or sets the social media sharing text settings.
-        /// See also <seealso cref="TraktSharingText" />.
+        /// See also <seealso cref="ITraktSharingText" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "sharing_text")]
-        public TraktSharingText SharingText { get; set; }
+        public ITraktSharingText SharingText { get; set; }
     }
 }

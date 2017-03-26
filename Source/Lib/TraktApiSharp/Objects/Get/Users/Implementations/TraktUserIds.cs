@@ -3,7 +3,7 @@
     using Newtonsoft.Json;
 
     /// <summary>A collection of ids for a Trakt user.</summary>
-    public class TraktUserIds
+    public class TraktUserIds : ITraktUserIds
     {
         /// <summary>Gets or sets the Trakt slug.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "slug")]

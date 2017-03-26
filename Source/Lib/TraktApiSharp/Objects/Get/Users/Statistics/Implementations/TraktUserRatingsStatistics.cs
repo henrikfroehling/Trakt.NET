@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     /// <summary>A collection of Trakt user statistics for ratings.</summary>
-    public class TraktUserRatingsStatistics
+    public class TraktUserRatingsStatistics : ITraktUserRatingsStatistics
     {
         /// <summary>Gets or sets the total number of items an user has rated.</summary>
         [JsonProperty(PropertyName = "total")]
@@ -15,6 +15,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "distribution")]
-        public Dictionary<string, int> Distribution { get; set; }
+        public IDictionary<string, int> Distribution { get; set; }
     }
 }

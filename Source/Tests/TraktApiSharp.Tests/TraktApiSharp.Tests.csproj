@@ -214,6 +214,16 @@
     <Compile Include="Objects\Get\Syncs\Activities\Interfaces\ITraktSyncShowsLastActivities_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\Implementations\TraktSyncPlaybackProgressItem_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\Interfaces\ITraktSyncPlaybackProgressItem_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Implementations\TraktAccountSettings_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Implementations\TraktSharingText_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Implementations\TraktUserComment_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Implementations\TraktUserFollowRequest_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Implementations\TraktUserHiddenItem_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Implementations\TraktUserIds_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Implementations\TraktUserImages_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Implementations\TraktUserLikeItem_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Implementations\TraktUserSettings_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Implementations\TraktUserWatchingItem_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktAccountSettings_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktSharingText_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUserComment_Tests.cs" />
@@ -227,9 +237,19 @@
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUserSettings_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUserWatchingItem_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUser_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Lists\Implementations\TraktListIds_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Lists\Implementations\TraktListItem_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Lists\Implementations\TraktList_Tests.cs" />
     <Compile Include="Objects\Get\Users\Lists\Interfaces\ITraktListIds_Tests.cs" />
     <Compile Include="Objects\Get\Users\Lists\Interfaces\ITraktListItem_Tests.cs" />
     <Compile Include="Objects\Get\Users\Lists\Interfaces\ITraktList_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\Implementations\TraktUserEpisodesStatistics_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\Implementations\TraktUserMoviesStatistics_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\Implementations\TraktUserNetworkStatistics_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\Implementations\TraktUserRatingsStatistics_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\Implementations\TraktUserSeasonsStatistics_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\Implementations\TraktUserShowsStatistics_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\Implementations\TraktUserStatistics_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Interfaces\ITraktUserEpisodesStatistics_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Interfaces\ITraktUserMoviesStatistics_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Interfaces\ITraktUserNetworkStatistics_Tests.cs" />
@@ -527,10 +547,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Objects\Get\Users\Lists\Implementations\" />
-    <Folder Include="Objects\Get\Users\Statistics\Implementations\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

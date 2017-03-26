@@ -12,7 +12,7 @@
 
         /// <summary>
         /// Gets or sets the Trakt user friend.
-        /// See also <seealso cref="TraktUser" />.
+        /// See also <seealso cref="ITraktUser" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "user")]

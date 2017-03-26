@@ -11,7 +11,7 @@
     using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>Contains information about a Trakt user's hidden item, including the corresponding movie, show or season.</summary>
-    public class TraktUserHiddenItem
+    public class TraktUserHiddenItem : ITraktUserHiddenItem
     {
         /// <summary>Gets or sets the UTC datetime, when the movie, show or season was hidden.</summary>
         [JsonProperty(PropertyName = "hidden_at")]
@@ -28,26 +28,26 @@
 
         /// <summary>
         /// Gets or sets the movie, if <see cref="Type" /> is <see cref="TraktHiddenItemType.Movie" />.
-        /// See also <seealso cref="TraktMovie" />.
+        /// See also <seealso cref="ITraktMovie" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "movie")]
-        public TraktMovie Movie { get; set; }
+        public ITraktMovie Movie { get; set; }
 
         /// <summary>
         /// Gets or sets the show, if <see cref="Type" /> is <see cref="TraktHiddenItemType.Show" />.
-        /// See also <seealso cref="TraktShow" />.
+        /// See also <seealso cref="ITraktShow" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "show")]
-        public TraktShow Show { get; set; }
+        public ITraktShow Show { get; set; }
 
         /// <summary>
         /// Gets or sets the season, if <see cref="Type" /> is <see cref="TraktHiddenItemType.Season" />.
-        /// See also <seealso cref="TraktSeason" />.
+        /// See also <seealso cref="ITraktSeason" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "season")]
-        public TraktSeason Season { get; set; }
+        public ITraktSeason Season { get; set; }
     }
 }

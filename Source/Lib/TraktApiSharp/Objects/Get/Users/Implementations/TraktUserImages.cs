@@ -5,10 +5,10 @@
     using TraktApiSharp.Objects.Basic.Implementations;
 
     /// <summary>A collection of images and image sets for a Trakt user.</summary>
-    public class TraktUserImages
+    public class TraktUserImages : ITraktUserImages
     {
-        /// <summary>Gets or sets the avatar image. See also <seealso cref="TraktImage" />.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the avatar image. See also <seealso cref="ITraktImage" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "avatar")]
-        public TraktImage Avatar { get; set; }
+        public ITraktImage Avatar { get; set; }
     }
 }

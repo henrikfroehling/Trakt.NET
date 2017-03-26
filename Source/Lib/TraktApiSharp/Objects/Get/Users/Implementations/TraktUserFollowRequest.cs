@@ -4,7 +4,7 @@
     using System;
 
     /// <summary>Represents a Trakt user follow request.</summary>
-    public class TraktUserFollowRequest
+    public class TraktUserFollowRequest : ITraktUserFollowRequest
     {
         /// <summary>Gets or sets the id of the follow request.</summary>
         [JsonProperty(PropertyName = "id")]
@@ -16,10 +16,10 @@
 
         /// <summary>
         /// Gets or sets the Trakt user, who is requesting.
-        /// See also <seealso cref="TraktUser" />.
+        /// See also <seealso cref="ITraktUser" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "user")]
-        public TraktUser User { get; set; }
+        public ITraktUser User { get; set; }
     }
 }

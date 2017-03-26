@@ -11,7 +11,7 @@
     using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>Contains information about a movie or an episode a Trakt user is currently watching.</summary>
-    public class TraktUserWatchingItem
+    public class TraktUserWatchingItem : ITraktUserWatchingItem
     {
         /// <summary>Gets or sets the UTC datetime, when the movie or episode started.</summary>
         [JsonProperty(PropertyName = "started_at")]
@@ -41,26 +41,26 @@
 
         /// <summary>
         /// Gets or sets the movie, if <see cref="Type" /> is <see cref="TraktSyncType.Movie" />.
-        /// See also <seealso cref="TraktMovie" />.
+        /// See also <seealso cref="ITraktMovie" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "movie")]
-        public TraktMovie Movie { get; set; }
+        public ITraktMovie Movie { get; set; }
 
         /// <summary>
         /// Gets or sets the show, if <see cref="Type" /> is <see cref="TraktSyncType.Episode" />.
-        /// See also <seealso cref="TraktShow" />.
+        /// See also <seealso cref="ITraktShow" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "show")]
-        public TraktShow Show { get; set; }
+        public ITraktShow Show { get; set; }
 
         /// <summary>
         /// Gets or sets the episode, if <see cref="Type" /> is <see cref="TraktSyncType.Episode" />.
-        /// See also <seealso cref="TraktEpisode" />.
+        /// See also <seealso cref="ITraktEpisode" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "episode")]
-        public TraktEpisode Episode { get; set; }
+        public ITraktEpisode Episode { get; set; }
     }
 }

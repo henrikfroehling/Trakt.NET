@@ -6,7 +6,7 @@
     using TraktApiSharp.Objects.Get.Users.Implementations;
 
     /// <summary>A Trakt list.</summary>
-    public class TraktList
+    public class TraktList : ITraktList
     {
         /// <summary>Gets or sets the list title.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "name")]
@@ -59,18 +59,18 @@
 
         /// <summary>
         /// Gets or sets the collection of ids for the list for various web services.
-        /// See also <seealso cref="TraktListIds" />.
+        /// See also <seealso cref="ITraktListIds" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "ids")]
-        public TraktListIds Ids { get; set; }
+        public ITraktListIds Ids { get; set; }
 
         /// <summary>
         /// Gets or sets the list's username of the user, which created this list.
-        /// See also <seealso cref="TraktUser" />.
+        /// See also <seealso cref="ITraktUser" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "user")]
-        public TraktUser User { get; set; }
+        public ITraktUser User { get; set; }
     }
 }

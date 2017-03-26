@@ -3,7 +3,7 @@
     using Newtonsoft.Json;
 
     /// <summary>A collection of Trakt user statistics about an user's network.</summary>
-    public class TraktUserNetworkStatistics
+    public class TraktUserNetworkStatistics : ITraktUserNetworkStatistics
     {
         /// <summary>Gets or sets the number of friends an user has.</summary>
         [JsonProperty(PropertyName = "friends")]
