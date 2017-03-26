@@ -3,7 +3,7 @@
     using Newtonsoft.Json;
 
     /// <summary>Represents the progress of a Trakt season.</summary>
-    public abstract class TraktSeasonProgress
+    public abstract class TraktSeasonProgress : ITraktSeasonProgress
     {
         /// <summary>Gets or sets the number of the collected or watched season.</summary>
         [JsonProperty(PropertyName = "number")]

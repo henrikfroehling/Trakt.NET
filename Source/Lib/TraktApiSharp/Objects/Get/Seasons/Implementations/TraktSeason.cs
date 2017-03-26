@@ -9,7 +9,7 @@
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>A Trakt season of a Trakt show.</summary>
-    public class TraktSeason
+    public class TraktSeason : ITraktSeason
     {
         /// <summary>Gets or sets the season number.</summary>
         [JsonProperty(PropertyName = "number")]
@@ -17,11 +17,11 @@
 
         /// <summary>
         /// Gets or sets the collection of ids for the season for various web services.
-        /// See also <seealso cref="TraktSeasonIds" />.
+        /// See also <seealso cref="ITraktSeasonIds" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "ids")]
-        public TraktSeasonIds Ids { get; set; }
+        public ITraktSeasonIds Ids { get; set; }
 
         /// <summary>Gets or sets the average user rating of the season.</summary>
         [JsonProperty(PropertyName = "rating")]
@@ -47,7 +47,7 @@
         [JsonProperty(PropertyName = "first_aired")]
         public DateTime? FirstAired { get; set; }
 
-        /// <summary>Gets or sets the collection of Trakt episodes in the season. See also <seealso cref="TraktEpisode" />.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the collection of Trakt episodes in the season. See also <seealso cref="ITraktEpisode" />.<para>Nullable</para></summary>
         /// <remarks>
         /// This property is set automatically if this season is in a collection
         /// of seasons and this collection was returned by
@@ -56,6 +56,6 @@
         /// <see cref="TraktExtendedInfo.Episodes" /> set to true.
         /// </remarks>
         [JsonProperty(PropertyName = "episodes")]
-        public IEnumerable<TraktEpisode> Episodes { get; set; }
+        public IEnumerable<ITraktEpisode> Episodes { get; set; }
     }
 }

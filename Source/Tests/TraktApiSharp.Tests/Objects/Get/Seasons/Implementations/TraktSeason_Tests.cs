@@ -13,6 +13,12 @@
     public class TraktSeason_Tests
     {
         [Fact]
+        public void Test_TraktSeason_Implements_ITraktSeason_Interface()
+        {
+            typeof(TraktSeason).GetInterfaces().Should().Contain(typeof(ITraktSeason));
+        }
+
+        [Fact]
         public void Test_TraktSeason_Default_Constructor()
         {
             var season = new TraktSeason();

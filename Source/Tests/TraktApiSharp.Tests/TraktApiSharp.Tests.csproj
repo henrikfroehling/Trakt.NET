@@ -164,6 +164,7 @@
     <Compile Include="Objects\Get\People\Implementations\TraktPerson_Tests.cs" />
     <Compile Include="Objects\Get\Ratings\Interfaces\ITraktRatingsItem_Tests.cs" />
     <Compile Include="Objects\Get\Ratings\Implementations\TraktRatingsItem_Tests.cs" />
+    <Compile Include="Objects\Get\Seasons\Implementations\TraktSeasonProgress_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\Interfaces\ITraktSeasonCollectionProgress_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\Interfaces\ITraktSeasonIds_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\Interfaces\ITraktSeasonProgress_Tests.cs" />

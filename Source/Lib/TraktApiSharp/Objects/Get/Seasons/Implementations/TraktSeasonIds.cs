@@ -3,7 +3,7 @@
     using Newtonsoft.Json;
 
     /// <summary>A collection of ids for various web services, including the Trakt id, for a Trakt season.</summary>
-    public class TraktSeasonIds
+    public class TraktSeasonIds : ITraktSeasonIds
     {
         /// <summary>Gets or sets the Trakt numeric id.</summary>
         [JsonProperty(PropertyName = "trakt")]

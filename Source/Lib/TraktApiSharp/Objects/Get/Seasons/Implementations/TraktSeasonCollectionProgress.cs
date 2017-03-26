@@ -6,13 +6,13 @@
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>Represents the collection progress of a Trakt season.</summary>
-    public class TraktSeasonCollectionProgress : TraktSeasonProgress
+    public class TraktSeasonCollectionProgress : TraktSeasonProgress, ITraktSeasonCollectionProgress
     {
         /// <summary>
-        /// Gets or sets the collected episodes. See also <seealso cref="TraktEpisodeCollectionProgress" />.
+        /// Gets or sets the collected episodes. See also <seealso cref="ITraktEpisodeCollectionProgress" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "episodes")]
-        public IEnumerable<TraktEpisodeCollectionProgress> Episodes { get; set; }
+        public IEnumerable<ITraktEpisodeCollectionProgress> Episodes { get; set; }
     }
 }

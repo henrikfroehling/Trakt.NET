@@ -13,6 +13,12 @@
     public class TraktSeasonWatchedProgress_Tests
     {
         [Fact]
+        public void Test_TraktSeasonWatchedProgress_Implements_ITraktSeasonWatchedProgress_Interface()
+        {
+            typeof(TraktSeasonWatchedProgress).GetInterfaces().Should().Contain(typeof(ITraktSeasonWatchedProgress));
+        }
+
+        [Fact]
         public void Test_TraktSeasonWatchedProgress_Default_Constructor()
         {
             var seasonWatchedProgress = new TraktSeasonWatchedProgress();
