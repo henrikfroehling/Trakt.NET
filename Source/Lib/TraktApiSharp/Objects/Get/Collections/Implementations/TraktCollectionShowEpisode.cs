@@ -6,7 +6,7 @@
     using TraktApiSharp.Objects.Basic.Implementations;
 
     /// <summary>Contains information about a collected Trakt episode.</summary>
-    public class TraktCollectionShowEpisode
+    public class TraktCollectionShowEpisode : ITraktCollectionShowEpisode
     {
         /// <summary>Gets or sets the number of the collected episode.</summary>
         [JsonProperty(PropertyName = "number")]
@@ -21,6 +21,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "metadata")]
-        public TraktMetadata Metadata { get; set; }
+        public ITraktMetadata Metadata { get; set; }
     }
 }

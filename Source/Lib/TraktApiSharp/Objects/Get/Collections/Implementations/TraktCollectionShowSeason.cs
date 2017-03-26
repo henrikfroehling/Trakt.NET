@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     /// <summary>Contains information about a collected Trakt season.</summary>
-    public class TraktCollectionShowSeason
+    public class TraktCollectionShowSeason : ITraktCollectionShowSeason
     {
         /// <summary>Gets or sets the number of the collected season.</summary>
         [JsonProperty(PropertyName = "number")]
@@ -16,6 +16,6 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "episodes")]
-        public IEnumerable<TraktCollectionShowEpisode> Episodes { get; set; }
+        public IEnumerable<ITraktCollectionShowEpisode> Episodes { get; set; }
     }
 }
