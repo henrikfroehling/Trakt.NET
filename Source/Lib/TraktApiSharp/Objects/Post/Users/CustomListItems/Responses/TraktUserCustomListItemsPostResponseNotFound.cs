@@ -12,6 +12,7 @@
     using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.People.Implementations;
     using TraktApiSharp.Objects.Get.Seasons.Implementations;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>A collection containing the ids of movies, shows, seasons, episodes and people, which were not found.</summary>
     public class TraktUserCustomListItemsPostResponseNotFound

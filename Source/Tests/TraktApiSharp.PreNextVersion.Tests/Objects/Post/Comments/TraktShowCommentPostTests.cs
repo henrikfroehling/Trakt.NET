@@ -6,6 +6,7 @@
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Post.Comments;
 
     [TestClass]

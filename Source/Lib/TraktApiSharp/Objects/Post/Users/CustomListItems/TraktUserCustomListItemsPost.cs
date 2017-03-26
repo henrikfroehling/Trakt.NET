@@ -9,6 +9,7 @@
     using System.Linq;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.People.Implementations;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>
     /// An user custom list items post, containing all movies, shows, episodes and / or people,

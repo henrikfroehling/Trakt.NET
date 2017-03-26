@@ -22,6 +22,7 @@
     using TraktApiSharp.Objects.Get.Ratings;
     using TraktApiSharp.Objects.Get.Ratings.Implementations;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Get.Syncs.Activities;
     using TraktApiSharp.Objects.Get.Syncs.Playback;
     using TraktApiSharp.Objects.Get.Watched;

@@ -7,6 +7,7 @@
     using Parameters;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     internal sealed class TraktShowsRecentlyUpdatedRequest : ATraktGetRequest<TraktRecentlyUpdatedShow>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
     {

@@ -16,6 +16,7 @@
     using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Requests.Parameters;

@@ -6,6 +6,7 @@
     using Seasons;
     using System;
     using System.IO;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     internal class TraktShowWatchedProgressObjectJsonReader : ITraktObjectJsonReader<TraktShowWatchedProgress>
     {

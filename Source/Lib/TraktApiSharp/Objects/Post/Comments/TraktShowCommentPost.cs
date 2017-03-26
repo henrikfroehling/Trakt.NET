@@ -2,6 +2,7 @@
 {
     using Get.Shows;
     using Newtonsoft.Json;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>A show comment post.</summary>
     public class TraktShowCommentPost : TraktCommentPost

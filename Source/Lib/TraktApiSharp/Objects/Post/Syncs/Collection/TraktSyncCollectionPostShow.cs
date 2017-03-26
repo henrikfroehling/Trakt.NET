@@ -6,6 +6,7 @@
     using System;
     using System.Collections.Generic;
     using TraktApiSharp.Objects.Basic.Implementations;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>
     /// A Trakt collection post show, containing the required show ids,

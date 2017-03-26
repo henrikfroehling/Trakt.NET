@@ -9,6 +9,7 @@
     using System.Linq;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>
     /// A Trakt watchlist post, containing all movies, shows and / or episodes,

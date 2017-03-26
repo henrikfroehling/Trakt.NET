@@ -8,6 +8,7 @@
     using System;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.Seasons.Implementations;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>Contains information about a Trakt user's hidden item, including the corresponding movie, show or season.</summary>
     public class TraktUserHiddenItem

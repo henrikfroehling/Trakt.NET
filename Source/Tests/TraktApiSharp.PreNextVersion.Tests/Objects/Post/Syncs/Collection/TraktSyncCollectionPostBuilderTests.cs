@@ -13,6 +13,7 @@
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Post;
     using TraktApiSharp.Objects.Post.Syncs.Collection;
 

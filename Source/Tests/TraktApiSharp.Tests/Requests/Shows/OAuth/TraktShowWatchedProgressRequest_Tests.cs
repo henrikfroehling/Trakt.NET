@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Requests.Shows.OAuth;
     using Xunit;
 

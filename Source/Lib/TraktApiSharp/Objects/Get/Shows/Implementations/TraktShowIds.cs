@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Shows
+﻿namespace TraktApiSharp.Objects.Get.Shows.Implementations
 {
     using Basic;
     using TraktApiSharp.Objects.Basic.Implementations;

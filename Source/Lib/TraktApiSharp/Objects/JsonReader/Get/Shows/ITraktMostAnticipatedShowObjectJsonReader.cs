@@ -3,6 +3,7 @@
     using Newtonsoft.Json;
     using Objects.Get.Shows;
     using System.IO;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     internal class ITraktMostAnticipatedShowObjectJsonReader : ITraktObjectJsonReader<ITraktMostAnticipatedShow>
     {

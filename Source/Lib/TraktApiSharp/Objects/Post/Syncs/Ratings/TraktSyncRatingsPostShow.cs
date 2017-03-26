@@ -4,6 +4,7 @@
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>
     /// A Trakt ratings post show, containing the required show ids,

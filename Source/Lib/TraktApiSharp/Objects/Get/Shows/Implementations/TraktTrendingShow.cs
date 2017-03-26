@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Shows
+﻿namespace TraktApiSharp.Objects.Get.Shows.Implementations
 {
     using Enums;
     using Newtonsoft.Json;
@@ -6,12 +6,12 @@
     using System;
     using System.Collections.Generic;
 
-    /// <summary>An updated Trakt show.</summary>
-    public class TraktRecentlyUpdatedShow : ITraktRecentlyUpdatedShow
+    /// <summary>A trending Trakt show.</summary>
+    public class TraktTrendingShow : ITraktTrendingShow
     {
-        /// <summary>Gets or sets the UTC datetime, when the <see cref="Show" /> was updated.</summary>
-        [JsonProperty(PropertyName = "updated_at")]
-        public DateTime? RecentlyUpdatedAt { get; set; }
+        /// <summary>Gets or sets the watcher count for the <see cref="Show" />.</summary>
+        [JsonProperty(PropertyName = "watchers")]
+        public int? Watchers { get; set; }
 
         /// <summary>Gets or sets the Trakt show. See also <seealso cref="TraktShow" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "show")]

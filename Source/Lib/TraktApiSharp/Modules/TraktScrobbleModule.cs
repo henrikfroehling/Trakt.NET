@@ -14,6 +14,7 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to scrobbles.

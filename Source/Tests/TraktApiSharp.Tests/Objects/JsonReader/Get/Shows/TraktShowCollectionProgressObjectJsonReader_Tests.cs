@@ -7,6 +7,7 @@
     using System.Linq;
     using Traits;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.JsonReader;
     using TraktApiSharp.Objects.JsonReader.Get.Shows;
     using Xunit;

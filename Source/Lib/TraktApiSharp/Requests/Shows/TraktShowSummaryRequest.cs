@@ -4,6 +4,7 @@
     using Objects.Get.Shows;
     using Parameters;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     internal sealed class TraktShowSummaryRequest : ATraktShowRequest<TraktShow>, ITraktSupportsExtendedInfo
     {

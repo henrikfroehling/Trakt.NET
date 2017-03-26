@@ -9,6 +9,7 @@
     using Traits;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;

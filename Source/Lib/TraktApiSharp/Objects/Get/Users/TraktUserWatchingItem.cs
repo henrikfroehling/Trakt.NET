@@ -8,6 +8,7 @@
     using System;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>Contains information about a movie or an episode a Trakt user is currently watching.</summary>
     public class TraktUserWatchingItem

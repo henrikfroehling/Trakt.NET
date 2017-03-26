@@ -3,6 +3,7 @@
     using Objects.Get.Shows;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     internal sealed class TraktShowTranslationsRequest : ATraktShowRequest<TraktShowTranslation>
     {

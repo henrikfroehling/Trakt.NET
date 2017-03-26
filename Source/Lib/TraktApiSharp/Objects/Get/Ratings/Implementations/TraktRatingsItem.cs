@@ -10,6 +10,7 @@
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.Seasons.Implementations;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>A Trakt rating item, containing a movie, show, season and / or episode and information about it.</summary>
     public class TraktRatingsItem

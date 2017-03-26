@@ -1,12 +1,13 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Shows
+﻿namespace TraktApiSharp.Tests.Objects.Get.Shows.Implementations
 {
     using FluentAssertions;
     using Traits;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.JsonReader.Get.Shows;
     using Xunit;
 
-    [Category("Objects.Get.Shows")]
+    [Category("Objects.Get.Shows.Implementations")]
     public class TraktShowIds_Tests
     {
         [Fact]

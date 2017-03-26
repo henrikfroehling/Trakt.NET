@@ -9,6 +9,7 @@
     using System;
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     public class TraktShowsService
     {

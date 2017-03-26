@@ -3,6 +3,7 @@
     using Get.Shows;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>
     /// An user custom list items post show, containing the required show ids.

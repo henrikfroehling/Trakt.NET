@@ -4,6 +4,7 @@
     using Get.Shows;
     using Newtonsoft.Json;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>Represents an episode scrobble response.</summary>
     public class TraktEpisodeScrobblePostResponse : TraktScrobblePostResponse

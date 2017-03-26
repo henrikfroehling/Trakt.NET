@@ -4,6 +4,7 @@
     using Get.Shows;
     using Newtonsoft.Json;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>Represents an episode checkin response.</summary>
     public class TraktEpisodeCheckinPostResponse : TraktCheckinPostResponse
