@@ -3,7 +3,7 @@
     using Enums;
     using Exceptions;
     using Objects.Basic;
-    using Objects.Get.Collection;
+    using Objects.Get.Collections;
     using Objects.Get.History;
     using Objects.Get.Ratings;
     using Objects.Get.Syncs.Activities;
@@ -25,7 +25,7 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using TraktApiSharp.Objects.Get.Collection.Implementations;
+    using TraktApiSharp.Objects.Get.Collections.Implementations;
     using TraktApiSharp.Objects.Get.History.Implementations;
     using TraktApiSharp.Objects.Get.Ratings.Implementations;
     using TraktApiSharp.Objects.Get.Syncs.Activities.Implementations;

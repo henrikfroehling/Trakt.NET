@@ -1,15 +1,15 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Collection.Interfaces
+﻿namespace TraktApiSharp.Tests.Objects.Get.Collections.Interfaces
 {
     using FluentAssertions;
     using System;
     using System.Linq;
     using Traits;
     using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Objects.Get.Collection;
+    using TraktApiSharp.Objects.Get.Collections;
     using TraktApiSharp.Objects.Get.Movies;
     using Xunit;
 
-    [Category("Objects.Get.Collection.Interfaces")]
+    [Category("Objects.Get.Collections.Interfaces")]
     public class ITraktCollectionMovie_Tests
     {
         [Fact]

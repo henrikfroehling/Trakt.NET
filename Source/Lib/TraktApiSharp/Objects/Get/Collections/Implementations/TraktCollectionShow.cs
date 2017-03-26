@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Collection.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Collections.Implementations
 {
     using Enums;
     using Newtonsoft.Json;

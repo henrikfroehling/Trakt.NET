@@ -13,8 +13,8 @@
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
-    using TraktApiSharp.Objects.Get.Collection;
-    using TraktApiSharp.Objects.Get.Collection.Implementations;
+    using TraktApiSharp.Objects.Get.Collections;
+    using TraktApiSharp.Objects.Get.Collections.Implementations;
     using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Objects.Get.History.Implementations;
     using TraktApiSharp.Objects.Get.Movies;

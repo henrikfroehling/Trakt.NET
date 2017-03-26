@@ -11,8 +11,8 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
-    using TraktApiSharp.Objects.Get.Collection;
-    using TraktApiSharp.Objects.Get.Collection.Implementations;
+    using TraktApiSharp.Objects.Get.Collections;
+    using TraktApiSharp.Objects.Get.Collections.Implementations;
     using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.History;

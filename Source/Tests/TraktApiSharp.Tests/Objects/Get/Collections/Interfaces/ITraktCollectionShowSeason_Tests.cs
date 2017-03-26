@@ -1,13 +1,13 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Collection.Interfaces
+﻿namespace TraktApiSharp.Tests.Objects.Get.Collections.Interfaces
 {
     using FluentAssertions;
     using System.Collections.Generic;
     using System.Linq;
     using Traits;
-    using TraktApiSharp.Objects.Get.Collection;
+    using TraktApiSharp.Objects.Get.Collections;
     using Xunit;
 
-    [Category("Objects.Get.Collection.Interfaces")]
+    [Category("Objects.Get.Collections.Interfaces")]
     public class ITraktCollectionShowSeason_Tests
     {
         [Fact]

@@ -1,15 +1,15 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Collection.Implementations
+﻿namespace TraktApiSharp.Tests.Objects.Get.Collections.Implementations
 {
     using FluentAssertions;
     using Newtonsoft.Json;
     using System;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Collection;
-    using TraktApiSharp.Objects.Get.Collection.Implementations;
+    using TraktApiSharp.Objects.Get.Collections;
+    using TraktApiSharp.Objects.Get.Collections.Implementations;
     using Xunit;
 
-    [Category("Objects.Get.Collection.Implementations")]
+    [Category("Objects.Get.Collections.Implementations")]
     public class TraktCollectionMovie_Tests
     {
         [Fact]
