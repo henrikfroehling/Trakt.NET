@@ -17,7 +17,7 @@
 
         /// <summary>
         /// Gets or sets the collection of ids for the movie for various web services.
-        /// See also <seealso cref="TraktMovieIds" />.
+        /// See also <seealso cref="ITraktMovieIds" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "ids")]

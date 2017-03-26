@@ -11,7 +11,7 @@
         [JsonProperty(PropertyName = "list_count")]
         public int? ListCount { get; set; }
 
-        /// <summary>Gets or sets the Trakt movie. See also <seealso cref="TraktMovie" />.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the Trakt movie. See also <seealso cref="ITraktMovie" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "movie")]
         public ITraktMovie Movie { get; set; }
 

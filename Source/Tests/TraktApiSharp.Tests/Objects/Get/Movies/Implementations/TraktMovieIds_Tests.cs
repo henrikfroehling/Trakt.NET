@@ -11,6 +11,12 @@
     public class TraktMovieIds_Tests
     {
         [Fact]
+        public void Test_TraktMovieIds_Implements_ITraktMovieIds_Interface()
+        {
+            typeof(TraktMovieIds).GetInterfaces().Should().Contain(typeof(ITraktMovieIds));
+        }
+
+        [Fact]
         public void Test_TraktMovieIds_Default_Constructor()
         {
             var movieIds = new TraktMovieIds();

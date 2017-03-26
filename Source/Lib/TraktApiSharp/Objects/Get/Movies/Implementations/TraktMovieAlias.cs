@@ -3,7 +3,7 @@
     using Newtonsoft.Json;
 
     /// <summary>An alias for a Trakt movie.</summary>
-    public class TraktMovieAlias
+    public class TraktMovieAlias : ITraktMovieAlias
     {
         /// <summary>Gets or sets the title of the movie alias.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "title")]

@@ -19,7 +19,7 @@
         [JsonProperty(PropertyName = "collected_count")]
         public int? CollectedCount { get; set; }
 
-        /// <summary>Gets or sets the Trakt movie. See also <seealso cref="TraktMovie" />.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the Trakt movie. See also <seealso cref="ITraktMovie" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "movie")]
         public ITraktMovie Movie { get; set; }
 

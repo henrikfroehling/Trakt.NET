@@ -13,6 +13,12 @@
     public class TraktMovieRelease_Tests
     {
         [Fact]
+        public void Test_TraktMovieRelease_Implements_ITraktMovieRelease_Interface()
+        {
+            typeof(TraktMovieRelease).GetInterfaces().Should().Contain(typeof(ITraktMovieRelease));
+        }
+
+        [Fact]
         public void Test_TraktMovieRelease_Default_Constructor()
         {
             var movieRelease = new TraktMovieRelease();

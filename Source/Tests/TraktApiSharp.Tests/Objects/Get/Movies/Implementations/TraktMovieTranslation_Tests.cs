@@ -11,6 +11,12 @@
     public class TraktMovieTranslation_Tests
     {
         [Fact]
+        public void Test_TraktMovieTranslation_Implements_ITraktMovieTranslation_Interface()
+        {
+            typeof(TraktMovieTranslation).GetInterfaces().Should().Contain(typeof(ITraktMovieTranslation));
+        }
+
+        [Fact]
         public void Test_TraktMovieTranslation_Default_Constructor()
         {
             var movieTranslation = new TraktMovieTranslation();

@@ -5,7 +5,7 @@
     using System;
 
     /// <summary>A release of a Trakt movie.</summary>
-    public class TraktMovieRelease
+    public class TraktMovieRelease : ITraktMovieRelease
     {
         /// <summary>Gets or sets the two letter country code for the movie release.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "country")]
