@@ -28,6 +28,7 @@
     using TraktApiSharp.Objects.Get.Syncs.Playback;
     using TraktApiSharp.Objects.Get.Syncs.Playback.Implementations;
     using TraktApiSharp.Objects.Get.Watched;
+    using TraktApiSharp.Objects.Get.Watched.Implementations;
     using TraktApiSharp.Objects.Get.Watchlist;
     using TraktApiSharp.Objects.Post.Syncs.Collection;
     using TraktApiSharp.Objects.Post.Syncs.Collection.Responses;

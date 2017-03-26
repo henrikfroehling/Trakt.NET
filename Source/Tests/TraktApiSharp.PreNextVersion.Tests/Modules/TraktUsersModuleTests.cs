@@ -32,6 +32,7 @@
     using TraktApiSharp.Objects.Get.Users.Statistics;
     using TraktApiSharp.Objects.Get.Users.Statistics.Implementations;
     using TraktApiSharp.Objects.Get.Watched;
+    using TraktApiSharp.Objects.Get.Watched.Implementations;
     using TraktApiSharp.Objects.Get.Watchlist;
     using TraktApiSharp.Objects.Post.Users;
     using TraktApiSharp.Objects.Post.Users.CustomListItems;

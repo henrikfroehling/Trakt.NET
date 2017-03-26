@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Watched
+﻿namespace TraktApiSharp.Tests.Objects.Get.Watched.Interfaces
 {
     using FluentAssertions;
     using System;

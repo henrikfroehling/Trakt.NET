@@ -529,10 +529,10 @@
     <Compile Include="Objects\Get\Syncs\Activities\Implementations\TraktSyncShowsLastActivities.cs" />
     <Compile Include="Objects\Get\Ratings\Implementations\TraktRatingsItem.cs" />
     <Compile Include="Objects\Get\Users\Implementations\TraktUserIds.cs" />
-    <Compile Include="Objects\Get\Watched\TraktWatchedMovie.cs" />
-    <Compile Include="Objects\Get\Watched\TraktWatchedShowEpisode.cs" />
-    <Compile Include="Objects\Get\Watched\TraktWatchedShow.cs" />
-    <Compile Include="Objects\Get\Watched\TraktWatchedShowSeason.cs" />
+    <Compile Include="Objects\Get\Watched\Implementations\TraktWatchedMovie.cs" />
+    <Compile Include="Objects\Get\Watched\Implementations\TraktWatchedShowEpisode.cs" />
+    <Compile Include="Objects\Get\Watched\Implementations\TraktWatchedShow.cs" />
+    <Compile Include="Objects\Get\Watched\Implementations\TraktWatchedShowSeason.cs" />
     <Compile Include="Objects\Get\Watchlist\TraktWatchlistItem.cs" />
     <Compile Include="Objects\Get\Users\Lists\Implementations\TraktListItem.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Implementations\TraktUserEpisodesStatistics.cs" />

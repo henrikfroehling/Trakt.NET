@@ -30,6 +30,7 @@
     using TraktApiSharp.Objects.Get.Ratings.Implementations;
     using TraktApiSharp.Objects.Get.Syncs.Activities.Implementations;
     using TraktApiSharp.Objects.Get.Syncs.Playback.Implementations;
+    using TraktApiSharp.Objects.Get.Watched.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to sync.

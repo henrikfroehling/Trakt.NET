@@ -4,6 +4,7 @@
     using Objects.Get.Watched;
     using Parameters;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Watched.Implementations;
 
     internal sealed class TraktSyncWatchedShowsRequest : ATraktSyncGetRequest<TraktWatchedShow>, ITraktSupportsExtendedInfo
     {

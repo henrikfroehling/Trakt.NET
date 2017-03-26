@@ -1,13 +1,14 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Watched
+﻿namespace TraktApiSharp.Tests.Objects.Get.Watched.Implementations
 {
     using FluentAssertions;
     using Newtonsoft.Json;
     using System;
     using Traits;
     using TraktApiSharp.Objects.Get.Watched;
+    using TraktApiSharp.Objects.Get.Watched.Implementations;
     using Xunit;
 
-    [Category("Objects.Get.Watched")]
+    [Category("Objects.Get.Watched.Implementations")]
     public class TraktWatchedMovie_Tests
     {
         [Fact]

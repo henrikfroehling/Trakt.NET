@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Watched
+﻿namespace TraktApiSharp.Objects.Get.Watched.Implementations
 {
     using Enums;
     using Newtonsoft.Json;
