@@ -17,7 +17,7 @@
         public DateTime? CollectedAt { get; set; }
 
         /// <summary>
-        /// Gets or sets metadata about the collected episode. See also <seealso cref="TraktMetadata" />.
+        /// Gets or sets metadata about the collected episode. See also <seealso cref="ITraktMetadata" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "metadata")]

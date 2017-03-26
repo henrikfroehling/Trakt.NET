@@ -14,14 +14,14 @@
         public DateTime? CollectedAt { get; set; }
 
         /// <summary>
-        /// Gets or sets the collected Trakt movie. See also <seealso cref="TraktMovie" />.
+        /// Gets or sets the collected Trakt movie. See also <seealso cref="ITraktMovie" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "movie")]
         public ITraktMovie Movie { get; set; }
 
         /// <summary>
-        /// Gets or sets metadata about the collected movie. See also <seealso cref="TraktMetadata" />.
+        /// Gets or sets metadata about the collected movie. See also <seealso cref="ITraktMetadata" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "metadata")]

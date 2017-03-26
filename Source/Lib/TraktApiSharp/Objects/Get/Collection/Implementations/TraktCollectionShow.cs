@@ -15,7 +15,7 @@
         public DateTime? LastCollectedAt { get; set; }
 
         /// <summary>
-        /// Gets or sets the collected Trakt show. See also <seealso cref="TraktShow" />.
+        /// Gets or sets the collected Trakt show. See also <seealso cref="ITraktShow" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "show")]
@@ -23,7 +23,7 @@
 
         /// <summary>
         /// Gets or sets a list of collected seasons in the collected show.
-        /// See also <seealso cref="TraktCollectionShowSeason" />.
+        /// See also <seealso cref="ITraktCollectionShowSeason" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "seasons")]

@@ -12,7 +12,7 @@
 
         /// <summary>
         /// Gets or sets a list of collected episodes in the collected season.
-        /// See also <seealso cref="TraktCollectionShowEpisode" />.
+        /// See also <seealso cref="ITraktCollectionShowEpisode" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "episodes")]
