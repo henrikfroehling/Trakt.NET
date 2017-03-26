@@ -6,7 +6,6 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.Calendars;
     using TraktApiSharp.Objects.Get.Calendars.Implementations;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Calendars;

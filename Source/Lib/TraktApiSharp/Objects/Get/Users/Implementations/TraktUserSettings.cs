@@ -2,7 +2,6 @@
 {
     using Basic;
     using Newtonsoft.Json;
-    using TraktApiSharp.Objects.Basic.Implementations;
 
     /// <summary>Represents Trakt user settings.</summary>
     public class TraktUserSettings : ITraktUserSettings

@@ -2,9 +2,9 @@
 {
     using Exceptions;
     using Extensions;
-    using Objects.Get.Episodes;
-    using Objects.Get.Movies;
-    using Objects.Get.Shows;
+    using Objects.Get.Episodes.Implementations;
+    using Objects.Get.Movies.Implementations;
+    using Objects.Get.Shows.Implementations;
     using Objects.Post.Scrobbles;
     using Objects.Post.Scrobbles.Responses;
     using Requests.Handler;
@@ -12,9 +12,6 @@
     using Responses;
     using System;
     using System.Threading.Tasks;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to scrobbles.

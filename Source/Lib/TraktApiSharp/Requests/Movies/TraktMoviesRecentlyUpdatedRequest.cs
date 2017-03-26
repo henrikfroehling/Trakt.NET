@@ -3,11 +3,10 @@
     using Base;
     using Extensions;
     using Interfaces;
-    using Objects.Get.Movies;
+    using Objects.Get.Movies.Implementations;
     using Parameters;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     internal sealed class TraktMoviesRecentlyUpdatedRequest : ATraktGetRequest<TraktRecentlyUpdatedMovie>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
     {

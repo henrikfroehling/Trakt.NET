@@ -1,8 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Checkins
 {
-    using Get.Movies;
+    using Get.Movies.Implementations;
     using Newtonsoft.Json;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     /// <summary>A checkin post for a Trakt movie.</summary>
     public class TraktMovieCheckinPost : TraktCheckinPost

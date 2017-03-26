@@ -4,14 +4,13 @@
     using Enums;
     using Exceptions;
     using Extensions;
-    using Objects.Basic;
+    using Objects.Basic.Implementations;
     using System;
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
-    using TraktApiSharp.Objects.Basic.Implementations;
     using Utils;
 
     /// <summary>

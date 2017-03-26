@@ -1,10 +1,9 @@
 ﻿namespace TraktApiSharp.Requests.Users.OAuth
 {
     using Extensions;
-    using Objects.Get.Watched;
+    using Objects.Get.Watched.Implementations;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Watched.Implementations;
 
     internal sealed class TraktUserWatchedMoviesRequest : ATraktUsersGetRequest<TraktWatchedMovie>
     {

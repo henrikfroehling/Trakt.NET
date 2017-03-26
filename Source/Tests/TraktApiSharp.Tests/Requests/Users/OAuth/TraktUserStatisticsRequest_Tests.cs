@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users.Statistics;
     using TraktApiSharp.Objects.Get.Users.Statistics.Implementations;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Users.OAuth;

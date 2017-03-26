@@ -1,9 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings
 {
-    using Get.Episodes;
+    using Get.Episodes.Implementations;
     using Newtonsoft.Json;
     using System;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>
     /// A Trakt ratings post episode, containing the required episode ids,

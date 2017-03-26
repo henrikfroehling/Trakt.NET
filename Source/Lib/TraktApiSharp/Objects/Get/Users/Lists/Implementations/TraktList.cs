@@ -3,7 +3,6 @@
     using Enums;
     using Newtonsoft.Json;
     using System;
-    using TraktApiSharp.Objects.Get.Users.Implementations;
 
     /// <summary>A Trakt list.</summary>
     public class TraktList : ITraktList

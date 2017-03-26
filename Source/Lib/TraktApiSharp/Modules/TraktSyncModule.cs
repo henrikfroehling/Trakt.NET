@@ -2,14 +2,13 @@
 {
     using Enums;
     using Exceptions;
-    using Objects.Basic;
-    using Objects.Get.Collections;
-    using Objects.Get.History;
-    using Objects.Get.Ratings;
-    using Objects.Get.Syncs.Activities;
-    using Objects.Get.Syncs.Playback;
-    using Objects.Get.Watched;
-    using Objects.Get.Watchlist;
+    using Objects.Get.Collections.Implementations;
+    using Objects.Get.History.Implementations;
+    using Objects.Get.Ratings.Implementations;
+    using Objects.Get.Syncs.Activities.Implementations;
+    using Objects.Get.Syncs.Playback.Implementations;
+    using Objects.Get.Watched.Implementations;
+    using Objects.Get.Watchlist.Implementations;
     using Objects.Post.Syncs.Collection;
     using Objects.Post.Syncs.Collection.Responses;
     using Objects.Post.Syncs.History;
@@ -25,13 +24,6 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using TraktApiSharp.Objects.Get.Collections.Implementations;
-    using TraktApiSharp.Objects.Get.History.Implementations;
-    using TraktApiSharp.Objects.Get.Ratings.Implementations;
-    using TraktApiSharp.Objects.Get.Syncs.Activities.Implementations;
-    using TraktApiSharp.Objects.Get.Syncs.Playback.Implementations;
-    using TraktApiSharp.Objects.Get.Watched.Implementations;
-    using TraktApiSharp.Objects.Get.Watchlist.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to sync.

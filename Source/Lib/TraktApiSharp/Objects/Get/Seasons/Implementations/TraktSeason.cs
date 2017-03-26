@@ -6,7 +6,6 @@
     using Requests.Parameters;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>A Trakt season of a Trakt show.</summary>
     public class TraktSeason : ITraktSeason

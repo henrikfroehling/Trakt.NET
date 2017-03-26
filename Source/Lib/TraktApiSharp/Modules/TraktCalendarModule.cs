@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Exceptions;
-    using Objects.Get.Calendars;
+    using Objects.Get.Calendars.Implementations;
     using Requests.Calendars;
     using Requests.Calendars.OAuth;
     using Requests.Handler;
@@ -9,7 +9,6 @@
     using Responses;
     using System;
     using System.Threading.Tasks;
-    using TraktApiSharp.Objects.Get.Calendars.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to calendars.

@@ -4,7 +4,6 @@
     using Seasons;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Seasons.Implementations;
 
     /// <summary>Represents the collection progress of a Trakt show.</summary>
     public class TraktShowCollectionProgress : TraktShowProgress, ITraktShowCollectionProgress

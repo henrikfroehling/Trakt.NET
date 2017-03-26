@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Exceptions;
-    using Objects.Get.People;
-    using Objects.Get.People.Credits;
+    using Objects.Get.People.Credits.Implementations;
+    using Objects.Get.People.Implementations;
     using Requests.Handler;
     using Requests.Parameters;
     using Requests.People;
@@ -11,8 +11,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using TraktApiSharp.Objects.Get.People.Credits.Implementations;
-    using TraktApiSharp.Objects.Get.People.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to people.

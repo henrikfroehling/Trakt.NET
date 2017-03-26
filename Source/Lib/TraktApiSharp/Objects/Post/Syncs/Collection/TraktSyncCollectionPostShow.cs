@@ -1,12 +1,10 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection
 {
-    using Basic;
-    using Get.Shows;
+    using Basic.Implementations;
+    using Get.Shows.Implementations;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Basic.Implementations;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>
     /// A Trakt collection post show, containing the required show ids,

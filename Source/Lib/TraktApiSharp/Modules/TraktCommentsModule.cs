@@ -2,12 +2,12 @@
 {
     using Exceptions;
     using Extensions;
-    using Objects.Basic;
-    using Objects.Get.Episodes;
-    using Objects.Get.Movies;
-    using Objects.Get.Seasons;
-    using Objects.Get.Shows;
-    using Objects.Get.Users.Lists;
+    using Objects.Basic.Implementations;
+    using Objects.Get.Episodes.Implementations;
+    using Objects.Get.Movies.Implementations;
+    using Objects.Get.Seasons.Implementations;
+    using Objects.Get.Shows.Implementations;
+    using Objects.Get.Users.Lists.Implementations;
     using Objects.Post.Comments;
     using Objects.Post.Comments.Responses;
     using Requests.Comments;
@@ -18,12 +18,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using TraktApiSharp.Objects.Basic.Implementations;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
-    using TraktApiSharp.Objects.Get.Seasons.Implementations;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
-    using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to comments.

@@ -1,17 +1,13 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection
 {
-    using Basic;
-    using Get.Episodes;
-    using Get.Movies;
-    using Get.Shows;
+    using Basic.Implementations;
+    using Get.Episodes.Implementations;
+    using Get.Movies.Implementations;
+    using Get.Shows.Implementations;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktApiSharp.Objects.Basic.Implementations;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>
     /// A Trakt collection post, containing all movies, shows and / or episodes,

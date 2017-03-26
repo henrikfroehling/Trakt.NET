@@ -3,11 +3,10 @@
     using Base;
     using Extensions;
     using Interfaces;
-    using Objects.Get.Shows;
+    using Objects.Get.Shows.Implementations;
     using Parameters;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     internal sealed class TraktShowsRecentlyUpdatedRequest : ATraktGetRequest<TraktRecentlyUpdatedShow>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
     {

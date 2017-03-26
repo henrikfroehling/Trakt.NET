@@ -8,11 +8,6 @@
     using Seasons;
     using Shows;
     using System;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
-    using TraktApiSharp.Objects.Get.People.Implementations;
-    using TraktApiSharp.Objects.Get.Seasons.Implementations;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>Represents a Trakt user list item.</summary>
     public class TraktListItem : ITraktListItem

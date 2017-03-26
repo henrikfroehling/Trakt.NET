@@ -6,7 +6,7 @@
     using Exceptions;
     using Interfaces;
     using Interfaces.Base;
-    using Objects.Basic;
+    using Objects.Basic.Implementations;
     using Objects.Post.Checkins.Responses;
     using Responses;
     using Responses.Interfaces;
@@ -19,7 +19,6 @@
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
-    using TraktApiSharp.Objects.Basic.Implementations;
     using UriTemplates;
     using Utils;
 

@@ -2,8 +2,8 @@
 {
     using Newtonsoft.Json;
     using Objects.Get.Movies;
+    using Objects.Get.Movies.Implementations;
     using System.IO;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     internal class ITraktBoxOfficeMovieObjectJsonReader : ITraktObjectJsonReader<ITraktBoxOfficeMovie>
     {

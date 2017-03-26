@@ -1,10 +1,9 @@
 ﻿namespace TraktApiSharp.Requests.Seasons
 {
     using Interfaces;
-    using Objects.Get.Users;
+    using Objects.Get.Users.Implementations;
     using Parameters;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Users.Implementations;
 
     internal sealed class TraktSeasonWatchingUsersRequest : ATraktSeasonRequest<TraktUser>, ITraktSupportsExtendedInfo
     {

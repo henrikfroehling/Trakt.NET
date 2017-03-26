@@ -2,9 +2,9 @@
 {
     using Newtonsoft.Json;
     using Objects.Get.Shows;
+    using Objects.Get.Shows.Implementations;
     using System;
     using System.IO;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     internal class ITraktRecentlyUpdatedShowObjectJsonReader : ITraktObjectJsonReader<ITraktRecentlyUpdatedShow>
     {

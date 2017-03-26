@@ -3,7 +3,6 @@
     using FluentAssertions;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Watched;
     using TraktApiSharp.Objects.Get.Watched.Implementations;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;

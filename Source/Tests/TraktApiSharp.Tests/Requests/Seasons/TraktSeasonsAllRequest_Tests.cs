@@ -7,7 +7,6 @@
     using System.Linq;
     using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Objects.Get.Seasons.Implementations;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Interfaces;

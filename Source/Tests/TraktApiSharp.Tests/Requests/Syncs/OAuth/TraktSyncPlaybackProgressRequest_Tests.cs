@@ -6,7 +6,6 @@
     using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Syncs.Playback;
     using TraktApiSharp.Objects.Get.Syncs.Playback.Implementations;
     using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;

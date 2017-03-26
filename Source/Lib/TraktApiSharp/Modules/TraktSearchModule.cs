@@ -2,14 +2,13 @@
 {
     using Enums;
     using Exceptions;
-    using Objects.Basic;
+    using Objects.Basic.Implementations;
     using Requests.Handler;
     using Requests.Parameters;
     using Requests.Search;
     using Responses;
     using System;
     using System.Threading.Tasks;
-    using TraktApiSharp.Objects.Basic.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to search.

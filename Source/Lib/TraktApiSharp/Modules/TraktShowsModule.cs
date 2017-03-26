@@ -2,11 +2,11 @@
 {
     using Enums;
     using Exceptions;
-    using Objects.Basic;
-    using Objects.Get.Episodes;
-    using Objects.Get.Shows;
-    using Objects.Get.Users;
-    using Objects.Get.Users.Lists;
+    using Objects.Basic.Implementations;
+    using Objects.Get.Episodes.Implementations;
+    using Objects.Get.Shows.Implementations;
+    using Objects.Get.Users.Implementations;
+    using Objects.Get.Users.Lists.Implementations;
     using Requests.Handler;
     using Requests.Parameters;
     using Requests.Shows;
@@ -16,11 +16,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using TraktApiSharp.Objects.Basic.Implementations;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
-    using TraktApiSharp.Objects.Get.Users.Implementations;
-    using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to shows.

@@ -1,9 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users.Responses
 {
-    using Get.Users;
+    using Get.Users.Implementations;
     using Newtonsoft.Json;
     using System;
-    using TraktApiSharp.Objects.Get.Users.Implementations;
 
     /// <summary>Represents the response for the approve of a follower request.</summary>
     public class TraktUserFollowUserPostResponse

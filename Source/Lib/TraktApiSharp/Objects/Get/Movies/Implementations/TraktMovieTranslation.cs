@@ -1,8 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.Movies.Implementations
 {
-    using Basic;
+    using Basic.Implementations;
     using Newtonsoft.Json;
-    using TraktApiSharp.Objects.Basic.Implementations;
 
     /// <summary>A translation for a Trakt movie.</summary>
     public class TraktMovieTranslation : TraktTranslation, ITraktMovieTranslation

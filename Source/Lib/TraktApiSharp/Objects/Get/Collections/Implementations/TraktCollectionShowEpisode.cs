@@ -3,7 +3,6 @@
     using Basic;
     using Newtonsoft.Json;
     using System;
-    using TraktApiSharp.Objects.Basic.Implementations;
 
     /// <summary>Contains information about a collected Trakt episode.</summary>
     public class TraktCollectionShowEpisode : ITraktCollectionShowEpisode

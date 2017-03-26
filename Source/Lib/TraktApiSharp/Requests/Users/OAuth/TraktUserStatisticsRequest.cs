@@ -2,10 +2,9 @@
 {
     using Base;
     using Extensions;
-    using Objects.Get.Users.Statistics;
+    using Objects.Get.Users.Statistics.Implementations;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Users.Statistics.Implementations;
 
     internal sealed class TraktUserStatisticsRequest : ATraktGetRequest<TraktUserStatistics>
     {

@@ -1,9 +1,8 @@
 ﻿namespace TraktApiSharp.Requests.Users.OAuth
 {
     using Base;
-    using Objects.Get.Users;
+    using Objects.Get.Users.Implementations;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Users.Implementations;
 
     internal sealed class TraktUserSettingsRequest : ATraktGetRequest<TraktUserSettings>
     {

@@ -2,15 +2,15 @@
 {
     using Enums;
     using Exceptions;
-    using Objects.Basic;
-    using Objects.Get.Collections;
-    using Objects.Get.History;
-    using Objects.Get.Ratings;
-    using Objects.Get.Users;
-    using Objects.Get.Users.Lists;
-    using Objects.Get.Users.Statistics;
-    using Objects.Get.Watched;
-    using Objects.Get.Watchlist;
+    using Objects.Basic.Implementations;
+    using Objects.Get.Collections.Implementations;
+    using Objects.Get.History.Implementations;
+    using Objects.Get.Ratings.Implementations;
+    using Objects.Get.Users.Implementations;
+    using Objects.Get.Users.Lists.Implementations;
+    using Objects.Get.Users.Statistics.Implementations;
+    using Objects.Get.Watched.Implementations;
+    using Objects.Get.Watchlist.Implementations;
     using Objects.Post.Users;
     using Objects.Post.Users.CustomListItems;
     using Objects.Post.Users.CustomListItems.Responses;
@@ -24,15 +24,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using TraktApiSharp.Objects.Basic.Implementations;
-    using TraktApiSharp.Objects.Get.Collections.Implementations;
-    using TraktApiSharp.Objects.Get.History.Implementations;
-    using TraktApiSharp.Objects.Get.Ratings.Implementations;
-    using TraktApiSharp.Objects.Get.Users.Implementations;
-    using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
-    using TraktApiSharp.Objects.Get.Users.Statistics.Implementations;
-    using TraktApiSharp.Objects.Get.Watched.Implementations;
-    using TraktApiSharp.Objects.Get.Watchlist.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to users.

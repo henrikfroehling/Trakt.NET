@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Watched;
     using TraktApiSharp.Objects.Get.Watched.Implementations;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Parameters;

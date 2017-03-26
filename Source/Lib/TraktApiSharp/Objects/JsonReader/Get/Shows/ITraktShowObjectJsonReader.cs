@@ -3,10 +3,10 @@
     using Enums;
     using Newtonsoft.Json;
     using Objects.Get.Shows;
+    using Objects.Get.Shows.Implementations;
     using Seasons;
     using System;
     using System.IO;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     internal class ITraktShowObjectJsonReader : ITraktObjectJsonReader<ITraktShow>
     {

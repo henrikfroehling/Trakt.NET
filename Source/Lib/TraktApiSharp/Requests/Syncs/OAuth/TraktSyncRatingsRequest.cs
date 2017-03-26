@@ -2,11 +2,10 @@
 {
     using Enums;
     using Interfaces;
-    using Objects.Get.Ratings;
+    using Objects.Get.Ratings.Implementations;
     using Parameters;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktApiSharp.Objects.Get.Ratings.Implementations;
 
     internal sealed class TraktSyncRatingsRequest : ATraktSyncGetRequest<TraktRatingsItem>, ITraktSupportsExtendedInfo
     {

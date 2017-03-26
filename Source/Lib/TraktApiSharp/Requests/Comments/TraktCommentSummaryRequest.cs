@@ -3,10 +3,9 @@
     using Base;
     using Extensions;
     using Interfaces;
-    using Objects.Basic;
+    using Objects.Basic.Implementations;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Basic.Implementations;
 
     internal sealed class TraktCommentSummaryRequest : ATraktGetRequest<TraktComment>, ITraktHasId
     {

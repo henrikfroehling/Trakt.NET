@@ -1,9 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings
 {
-    using Get.Movies;
+    using Get.Movies.Implementations;
     using Newtonsoft.Json;
     using System;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     /// <summary>
     /// A Trakt ratings post movie, containing the required movie ids,

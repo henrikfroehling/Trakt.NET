@@ -1,9 +1,8 @@
 ﻿namespace TraktApiSharp.Requests.Movies
 {
-    using Objects.Get.Movies;
+    using Objects.Get.Movies.Implementations;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     internal sealed class TraktMovieReleasesRequest : ATraktMovieRequest<TraktMovieRelease>
     {

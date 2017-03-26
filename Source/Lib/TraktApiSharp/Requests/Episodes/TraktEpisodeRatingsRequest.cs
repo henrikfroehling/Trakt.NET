@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Episodes
 {
-    using Objects.Basic;
-    using TraktApiSharp.Objects.Basic.Implementations;
+    using Objects.Basic.Implementations;
 
     internal sealed class TraktEpisodeRatingsRequest : ATraktEpisodeRequest<TraktRating>
     {

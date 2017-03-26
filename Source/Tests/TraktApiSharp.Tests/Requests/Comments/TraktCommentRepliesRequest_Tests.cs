@@ -5,7 +5,6 @@
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Comments;

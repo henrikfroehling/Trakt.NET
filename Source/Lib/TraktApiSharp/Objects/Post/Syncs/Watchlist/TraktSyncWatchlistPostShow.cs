@@ -1,9 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist
 {
-    using Get.Shows;
+    using Get.Shows.Implementations;
     using Newtonsoft.Json;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>
     /// A Trakt watchlist post show, containing the required show ids.

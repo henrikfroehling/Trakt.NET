@@ -1,18 +1,13 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Responses
 {
-    using Get.Episodes;
-    using Get.Movies;
-    using Get.People;
-    using Get.Seasons;
-    using Get.Shows;
+    using Get.Episodes.Implementations;
+    using Get.Movies.Implementations;
+    using Get.People.Implementations;
+    using Get.Seasons.Implementations;
+    using Get.Shows.Implementations;
     using Newtonsoft.Json;
     using Syncs.Responses;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
-    using TraktApiSharp.Objects.Get.People.Implementations;
-    using TraktApiSharp.Objects.Get.Seasons.Implementations;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>A collection containing the ids of movies, shows, seasons, episodes and people, which were not found.</summary>
     public class TraktUserCustomListItemsPostResponseNotFound

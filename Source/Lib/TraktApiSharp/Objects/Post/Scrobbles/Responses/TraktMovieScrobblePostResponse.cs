@@ -1,8 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Scrobbles.Responses
 {
-    using Get.Movies;
+    using Get.Movies.Implementations;
     using Newtonsoft.Json;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     /// <summary>Represents a movie scrobble response.</summary>
     public class TraktMovieScrobblePostResponse : TraktScrobblePostResponse

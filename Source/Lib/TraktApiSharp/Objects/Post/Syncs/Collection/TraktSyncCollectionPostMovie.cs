@@ -1,11 +1,9 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection
 {
-    using Basic;
-    using Get.Movies;
+    using Basic.Implementations;
+    using Get.Movies.Implementations;
     using Newtonsoft.Json;
     using System;
-    using TraktApiSharp.Objects.Basic.Implementations;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     /// <summary>
     /// A Trakt collection post movie, containing the required movie ids,

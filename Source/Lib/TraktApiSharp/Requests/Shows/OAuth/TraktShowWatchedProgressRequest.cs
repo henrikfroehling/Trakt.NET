@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Shows.OAuth
 {
-    using Objects.Get.Shows;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
+    using Objects.Get.Shows.Implementations;
 
     internal sealed class TraktShowWatchedProgressRequest : ATraktShowProgressRequest<TraktShowWatchedProgress>
     {

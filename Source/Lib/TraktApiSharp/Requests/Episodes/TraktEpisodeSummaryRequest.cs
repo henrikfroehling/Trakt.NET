@@ -1,10 +1,9 @@
 ﻿namespace TraktApiSharp.Requests.Episodes
 {
     using Interfaces;
-    using Objects.Get.Episodes;
+    using Objects.Get.Episodes.Implementations;
     using Parameters;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     internal sealed class TraktEpisodeSummaryRequest : ATraktEpisodeRequest<TraktEpisode>, ITraktSupportsExtendedInfo
     {

@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Movies
 {
-    using Objects.Basic;
-    using TraktApiSharp.Objects.Basic.Implementations;
+    using Objects.Basic.Implementations;
 
     internal sealed class TraktMovieRatingsRequest : ATraktMovieRequest<TraktRating>
     {

@@ -1,10 +1,9 @@
 ﻿namespace TraktApiSharp.Objects.JsonReader.Get.Seasons
 {
     using Newtonsoft.Json;
-    using Objects.Get.Seasons;
+    using Objects.Get.Seasons.Implementations;
     using System.Collections.Generic;
     using System.IO;
-    using TraktApiSharp.Objects.Get.Seasons.Implementations;
 
     internal class TraktSeasonArrayJsonReader : ITraktArrayJsonReader<TraktSeason>
     {

@@ -4,7 +4,6 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.People.Credits;
     using TraktApiSharp.Objects.Get.People.Credits.Implementations;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Parameters;

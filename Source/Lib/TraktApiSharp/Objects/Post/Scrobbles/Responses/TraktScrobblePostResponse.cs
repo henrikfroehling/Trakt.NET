@@ -1,9 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Scrobbles.Responses
 {
-    using Basic;
+    using Basic.Implementations;
     using Enums;
     using Newtonsoft.Json;
-    using TraktApiSharp.Objects.Basic.Implementations;
 
     public abstract class TraktScrobblePostResponse
     {

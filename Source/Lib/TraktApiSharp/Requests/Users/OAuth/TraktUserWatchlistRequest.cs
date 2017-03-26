@@ -2,10 +2,9 @@
 {
     using Enums;
     using Extensions;
-    using Objects.Get.Watchlist;
+    using Objects.Get.Watchlist.Implementations;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Watchlist.Implementations;
 
     internal sealed class TraktUserWatchlistRequest : ATraktUsersPagedGetRequest<TraktWatchlistItem>
     {

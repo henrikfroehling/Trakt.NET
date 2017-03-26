@@ -1,15 +1,12 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems
 {
-    using Get.Movies;
-    using Get.People;
-    using Get.Shows;
+    using Get.Movies.Implementations;
+    using Get.People.Implementations;
+    using Get.Shows.Implementations;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
-    using TraktApiSharp.Objects.Get.People.Implementations;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>
     /// An user custom list items post, containing all movies, shows, episodes and / or people,

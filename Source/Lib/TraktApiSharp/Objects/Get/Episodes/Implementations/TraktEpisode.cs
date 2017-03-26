@@ -3,10 +3,9 @@
     using Modules;
     using Newtonsoft.Json;
     using Requests.Parameters;
-    using Seasons;
+    using Seasons.Implementations;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Seasons.Implementations;
 
     /// <summary>A Trakt episode of a Trakt season.</summary>
     public class TraktEpisode : ITraktEpisode

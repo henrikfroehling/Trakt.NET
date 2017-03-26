@@ -1,9 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.JsonReader.Get.Shows
 {
     using Newtonsoft.Json;
-    using Objects.Get.Shows;
+    using Objects.Get.Shows.Implementations;
     using System.IO;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     internal class TraktShowAliasObjectJsonReader : ITraktObjectJsonReader<TraktShowAlias>
     {

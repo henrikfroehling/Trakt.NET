@@ -2,7 +2,6 @@
 {
     using Newtonsoft.Json;
     using Shows;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     /// <summary>Contains information about a Trakt person's cast position.</summary>
     public class TraktPersonShowCreditsCastItem : ITraktPersonShowCreditsCastItem

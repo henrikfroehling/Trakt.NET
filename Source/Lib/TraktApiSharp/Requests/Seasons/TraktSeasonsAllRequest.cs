@@ -3,11 +3,10 @@
     using Base;
     using Extensions;
     using Interfaces;
-    using Objects.Get.Seasons;
+    using Objects.Get.Seasons.Implementations;
     using Parameters;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Seasons.Implementations;
 
     internal sealed class TraktSeasonsAllRequest : ATraktGetRequest<TraktSeason>, ITraktHasId, ITraktSupportsExtendedInfo
     {

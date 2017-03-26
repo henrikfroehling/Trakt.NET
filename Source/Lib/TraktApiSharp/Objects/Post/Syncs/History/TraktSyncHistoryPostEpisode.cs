@@ -1,9 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.History
 {
-    using Get.Episodes;
+    using Get.Episodes.Implementations;
     using Newtonsoft.Json;
     using System;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
 
     /// <summary>
     /// A Trakt history post episode, containing the required episode ids

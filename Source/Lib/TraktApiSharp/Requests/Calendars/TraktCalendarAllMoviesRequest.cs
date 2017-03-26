@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Calendars
 {
-    using Objects.Get.Calendars;
-    using TraktApiSharp.Objects.Get.Calendars.Implementations;
+    using Objects.Get.Calendars.Implementations;
 
     internal sealed class TraktCalendarAllMoviesRequest : ATraktCalendarRequest<TraktCalendarMovie>
     {

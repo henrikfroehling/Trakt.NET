@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Seasons
 {
-    using Objects.Basic;
-    using TraktApiSharp.Objects.Basic.Implementations;
+    using Objects.Basic.Implementations;
 
     internal sealed class TraktSeasonStatisticsRequest : ATraktSeasonRequest<TraktStatistics>
     {

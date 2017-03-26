@@ -3,10 +3,9 @@
     using Base;
     using Extensions;
     using Interfaces;
-    using Objects.Get.Users;
+    using Objects.Get.Users.Implementations;
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Users.Implementations;
 
     internal sealed class TraktUserApproveFollowerRequest : ATraktBodylessPostRequest<TraktUserFollower>, ITraktHasId
     {

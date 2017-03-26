@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Objects.Get.Syncs.Activities;
     using TraktApiSharp.Objects.Get.Syncs.Activities.Implementations;
     using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;

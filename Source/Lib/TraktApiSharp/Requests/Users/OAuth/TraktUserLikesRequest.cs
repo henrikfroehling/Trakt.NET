@@ -3,9 +3,8 @@
     using Base;
     using Enums;
     using Interfaces;
-    using Objects.Get.Users;
+    using Objects.Get.Users.Implementations;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Users.Implementations;
 
     internal sealed class TraktUserLikesRequest : ATraktGetRequest<TraktUserLikeItem>, ITraktSupportsPagination
     {
