@@ -2,6 +2,7 @@
 {
     using Newtonsoft.Json;
     using Objects.Get.Movies;
+    using Objects.Get.Movies.Implementations;
     using System.IO;
 
     internal class ITraktBoxOfficeMovieObjectJsonReader : ITraktObjectJsonReader<ITraktBoxOfficeMovie>

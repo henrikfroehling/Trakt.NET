@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.History
 {
-    using Get.Shows;
+    using Get.Shows.Implementations;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;

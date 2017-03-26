@@ -2,14 +2,13 @@
 {
     using Enums;
     using Exceptions;
-    using Objects.Basic;
-    using Objects.Get.Collection;
-    using Objects.Get.History;
-    using Objects.Get.Ratings;
-    using Objects.Get.Syncs.Activities;
-    using Objects.Get.Syncs.Playback;
-    using Objects.Get.Watched;
-    using Objects.Get.Watchlist;
+    using Objects.Get.Collections.Implementations;
+    using Objects.Get.History.Implementations;
+    using Objects.Get.Ratings.Implementations;
+    using Objects.Get.Syncs.Activities.Implementations;
+    using Objects.Get.Syncs.Playback.Implementations;
+    using Objects.Get.Watched.Implementations;
+    using Objects.Get.Watchlist.Implementations;
     using Objects.Post.Syncs.Collection;
     using Objects.Post.Syncs.Collection.Responses;
     using Objects.Post.Syncs.History;

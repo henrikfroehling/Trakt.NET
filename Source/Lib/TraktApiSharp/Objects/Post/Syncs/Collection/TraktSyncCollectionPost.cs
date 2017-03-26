@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection
 {
-    using Basic;
-    using Get.Episodes;
-    using Get.Movies;
-    using Get.Shows;
+    using Basic.Implementations;
+    using Get.Episodes.Implementations;
+    using Get.Movies.Implementations;
+    using Get.Shows.Implementations;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
@@ -862,7 +862,7 @@
                 return this;
 
             var collectionMovie = new TraktSyncCollectionPostMovie();
-            collectionMovie.Ids = movie.Ids;
+            collectionMovie.Ids = (TraktMovieIds)movie.Ids; // TODO use interface
             collectionMovie.Title = movie.Title;
             collectionMovie.Year = movie.Year;
 
@@ -884,7 +884,7 @@
                 return this;
 
             var collectionShow = new TraktSyncCollectionPostShow();
-            collectionShow.Ids = show.Ids;
+            collectionShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
             collectionShow.Title = show.Title;
             collectionShow.Year = show.Year;
 
@@ -906,7 +906,7 @@
                 return this;
 
             var collectionEpisode = new TraktSyncCollectionPostEpisode();
-            collectionEpisode.Ids = episode.Ids;
+            collectionEpisode.Ids = (TraktEpisodeIds)episode.Ids; // TODO use interface
 
             if (metadata != null)
                 collectionEpisode.Metadata = metadata;
@@ -929,7 +929,7 @@
             else
             {
                 var collectionShow = new TraktSyncCollectionPostShow();
-                collectionShow.Ids = show.Ids;
+                collectionShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
                 collectionShow.Title = show.Title;
                 collectionShow.Year = show.Year;
 

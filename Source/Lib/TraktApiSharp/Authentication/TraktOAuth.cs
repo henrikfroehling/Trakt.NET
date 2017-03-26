@@ -4,7 +4,7 @@
     using Enums;
     using Exceptions;
     using Extensions;
-    using Objects.Basic;
+    using Objects.Basic.Implementations;
     using System;
     using System.Collections.Generic;
     using System.Net;

@@ -3,6 +3,7 @@
     using Enums;
     using Newtonsoft.Json;
     using Objects.Get.Shows;
+    using Objects.Get.Shows.Implementations;
     using Seasons;
     using System;
     using System.IO;
@@ -69,7 +70,8 @@
                             traktShow.Year = jsonReader.ReadAsInt32();
                             break;
                         case PROPERTY_NAME_IDS:
-                            traktShow.Ids = idsObjectReader.ReadObject(jsonReader);
+                            // TODO use interface
+                            //traktShow.Ids = idsObjectReader.ReadObject(jsonReader);
                             break;
                         case PROPERTY_NAME_OVERVIEW:
                             traktShow.Overview = jsonReader.ReadAsString();
@@ -83,7 +85,8 @@
                                 break;
                             }
                         case PROPERTY_NAME_AIRS:
-                            traktShow.Airs = airsObjectReader.ReadObject(jsonReader);
+                            // TODO use interface
+                            //traktShow.Airs = airsObjectReader.ReadObject(jsonReader);
                             break;
                         case PROPERTY_NAME_RUNTIME:
                             traktShow.Runtime = jsonReader.ReadAsInt32();
@@ -135,7 +138,8 @@
                             traktShow.AiredEpisodes = jsonReader.ReadAsInt32();
                             break;
                         case PROPERTY_NAME_SEASONS:
-                            traktShow.Seasons = seasonsArrayReader.ReadArray(jsonReader);
+                            // TODO use interface
+                            //traktShow.Seasons = seasonsArrayReader.ReadArray(jsonReader);
                             break;
                         default:
                             JsonReaderHelper.OverreadInvalidContent(jsonReader);

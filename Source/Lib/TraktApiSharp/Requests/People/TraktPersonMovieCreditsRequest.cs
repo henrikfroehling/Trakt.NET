@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.People
 {
-    using Objects.Get.People.Credits;
+    using Objects.Get.People.Credits.Implementations;
 
     internal sealed class TraktPersonMovieCreditsRequest : ATraktPersonRequest<TraktPersonMovieCredits>
     {

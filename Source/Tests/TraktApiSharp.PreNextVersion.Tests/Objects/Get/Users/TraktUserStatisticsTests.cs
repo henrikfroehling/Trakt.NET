@@ -5,6 +5,7 @@
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using TraktApiSharp.Objects.Get.Users.Statistics;
+    using TraktApiSharp.Objects.Get.Users.Statistics.Implementations;
     using Utils;
 
     [TestClass]

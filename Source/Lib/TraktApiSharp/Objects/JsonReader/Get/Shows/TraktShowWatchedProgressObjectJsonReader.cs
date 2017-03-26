@@ -2,7 +2,7 @@
 {
     using Episodes;
     using Newtonsoft.Json;
-    using Objects.Get.Shows;
+    using Objects.Get.Shows.Implementations;
     using Seasons;
     using System;
     using System.IO;

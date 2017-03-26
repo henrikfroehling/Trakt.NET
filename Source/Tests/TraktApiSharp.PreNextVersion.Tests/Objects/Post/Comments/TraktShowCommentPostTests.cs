@@ -4,7 +4,9 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Post.Comments;
 
     [TestClass]
@@ -35,7 +37,7 @@
             var show = new TraktShow
             {
                 Title = showTitle,
-                Ids = new TraktShowIds { Trakt = showTraktId, Slug = showSlug }
+                Ids = (ITraktShowIds)new TraktShowIds { Trakt = showTraktId, Slug = showSlug }
             };
 
             var showComment = new TraktShowCommentPost

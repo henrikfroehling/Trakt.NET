@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings
 {
-    using Get.Episodes;
-    using Get.Movies;
-    using Get.Shows;
+    using Get.Episodes.Implementations;
+    using Get.Movies.Implementations;
+    using Get.Shows.Implementations;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
@@ -733,7 +733,7 @@
                 return this;
 
             var ratingsMovie = new TraktSyncRatingsPostMovie();
-            ratingsMovie.Ids = movie.Ids;
+            ratingsMovie.Ids = (TraktMovieIds)movie.Ids; // TODO use interface
             ratingsMovie.Title = movie.Title;
             ratingsMovie.Year = movie.Year;
 
@@ -754,7 +754,7 @@
                 return this;
 
             var ratingsShow = new TraktSyncRatingsPostShow();
-            ratingsShow.Ids = show.Ids;
+            ratingsShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
             ratingsShow.Title = show.Title;
             ratingsShow.Year = show.Year;
 
@@ -775,7 +775,7 @@
                 return this;
 
             var ratingsEpisode = new TraktSyncRatingsPostEpisode();
-            ratingsEpisode.Ids = episode.Ids;
+            ratingsEpisode.Ids = (TraktEpisodeIds)episode.Ids; // TODO use interface
 
             if (rating.HasValue)
                 ratingsEpisode.Rating = rating;
@@ -798,7 +798,7 @@
             else
             {
                 var ratingsShow = new TraktSyncRatingsPostShow();
-                ratingsShow.Ids = show.Ids;
+                ratingsShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
                 ratingsShow.Title = show.Title;
                 ratingsShow.Year = show.Year;
 

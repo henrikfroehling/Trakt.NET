@@ -2,7 +2,7 @@
 {
     using Enums;
     using Interfaces;
-    using Objects.Basic;
+    using Objects.Basic.Implementations;
     using System.Collections.Generic;
 
     internal sealed class TraktShowCommentsRequest : ATraktShowRequest<TraktComment>, ITraktSupportsPagination

@@ -5,6 +5,7 @@
     using Newtonsoft.Json;
     using System;
     using TraktApiSharp.Objects.Get.Users;
+    using TraktApiSharp.Objects.Get.Users.Implementations;
     using Utils;
 
     [TestClass]

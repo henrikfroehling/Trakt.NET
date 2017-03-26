@@ -2,10 +2,10 @@
 {
     using Exceptions;
     using Extensions;
-    using Objects.Basic;
-    using Objects.Get.Episodes;
-    using Objects.Get.Movies;
-    using Objects.Get.Shows;
+    using Objects.Basic.Implementations;
+    using Objects.Get.Episodes.Implementations;
+    using Objects.Get.Movies.Implementations;
+    using Objects.Get.Shows.Implementations;
     using Objects.Post.Checkins;
     using Objects.Post.Checkins.Responses;
     using Requests.Checkins.OAuth;

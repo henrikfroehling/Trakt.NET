@@ -9,7 +9,7 @@
 
         int? Year { get; set; }
 
-        TraktMovieIds Ids { get; set; }
+        ITraktMovieIds Ids { get; set; }
 
         string Tagline { get; set; }
 

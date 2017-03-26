@@ -5,8 +5,11 @@
     using Newtonsoft.Json;
     using System;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Episodes;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Post.Checkins;
 
     [TestClass]
@@ -74,7 +77,7 @@
             {
                 Title = showTitle,
                 Year = showYear,
-                Ids = new TraktShowIds
+                Ids = (ITraktShowIds)new TraktShowIds
                 {
                     Trakt = showTraktId,
                     Slug = showSlug,

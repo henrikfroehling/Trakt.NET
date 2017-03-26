@@ -11,13 +11,13 @@
 
         int? Year { get; set; }
 
-        TraktShowIds Ids { get; set; }
+        ITraktShowIds Ids { get; set; }
 
         string Overview { get; set; }
 
         DateTime? FirstAired { get; set; }
 
-        TraktShowAirs Airs { get; set; }
+        ITraktShowAirs Airs { get; set; }
 
         int? Runtime { get; set; }
 
@@ -47,6 +47,6 @@
 
         int? AiredEpisodes { get; set; }
 
-        IEnumerable<TraktSeason> Seasons { get; set; }
+        IEnumerable<ITraktSeason> Seasons { get; set; }
     }
 }

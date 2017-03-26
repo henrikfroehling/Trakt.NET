@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Recommendations.OAuth
 {
-    using Objects.Get.Shows;
+    using Objects.Get.Shows.Implementations;
 
     internal sealed class TraktUserShowRecommendationsRequest : ATraktUserRecommendationsRequest<TraktShow>
     {

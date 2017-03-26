@@ -2,7 +2,7 @@
 {
     using Base;
     using Enums;
-    using Objects.Get.Users;
+    using Objects.Get.Users.Implementations;
     using System;
     using System.Collections.Generic;
 

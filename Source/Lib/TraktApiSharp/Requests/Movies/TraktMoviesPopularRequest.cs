@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Movies
 {
-    using Objects.Get.Movies;
+    using Objects.Get.Movies.Implementations;
 
     internal sealed class TraktMoviesPopularRequest : ATraktMoviesRequest<TraktMovie>
     {

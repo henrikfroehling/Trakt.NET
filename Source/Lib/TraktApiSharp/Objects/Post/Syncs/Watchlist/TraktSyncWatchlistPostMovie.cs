@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist
 {
-    using Get.Movies;
+    using Get.Movies.Implementations;
     using Newtonsoft.Json;
 
     /// <summary>A Trakt watchlist post movie, containing the required movie ids.</summary>

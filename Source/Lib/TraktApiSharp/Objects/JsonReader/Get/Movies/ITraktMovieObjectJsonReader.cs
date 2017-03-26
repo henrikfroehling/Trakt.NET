@@ -2,6 +2,7 @@
 {
     using Newtonsoft.Json;
     using Objects.Get.Movies;
+    using Objects.Get.Movies.Implementations;
     using System;
     using System.IO;
 
@@ -61,7 +62,8 @@
                             traktMovie.Year = jsonReader.ReadAsInt32();
                             break;
                         case PROPERTY_NAME_IDS:
-                            traktMovie.Ids = idsObjectReader.ReadObject(jsonReader);
+                            // TODO use interface
+                            //traktMovie.Ids = idsObjectReader.ReadObject(jsonReader);
                             break;
                         case PROPERTY_NAME_TAGLINE:
                             traktMovie.Tagline = jsonReader.ReadAsString();

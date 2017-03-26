@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.JsonReader.Basic
 {
     using Newtonsoft.Json;
-    using Objects.Basic;
+    using Objects.Basic.Implementations;
     using System.IO;
 
     internal class TraktGenreObjectJsonReader : ITraktObjectJsonReader<TraktGenre>

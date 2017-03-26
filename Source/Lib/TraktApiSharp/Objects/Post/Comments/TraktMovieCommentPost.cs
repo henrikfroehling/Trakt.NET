@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Comments
 {
-    using Get.Movies;
+    using Get.Movies.Implementations;
     using Newtonsoft.Json;
 
     /// <summary>A movie comment post.</summary>

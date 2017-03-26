@@ -5,6 +5,7 @@
     using System.IO;
     using Traits;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.JsonReader;
     using TraktApiSharp.Objects.JsonReader.Basic;
     using Xunit;

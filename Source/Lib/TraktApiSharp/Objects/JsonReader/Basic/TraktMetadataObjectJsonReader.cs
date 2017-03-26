@@ -2,7 +2,7 @@
 {
     using Enums;
     using Newtonsoft.Json;
-    using Objects.Basic;
+    using Objects.Basic.Implementations;
     using System.IO;
 
     internal class TraktMetadataObjectJsonReader : ITraktObjectJsonReader<TraktMetadata>

@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Calendars.OAuth
 {
-    using Objects.Get.Calendars;
+    using Objects.Get.Calendars.Implementations;
 
     internal sealed class TraktCalendarUserDVDMoviesRequest : ATraktCalendarUserRequest<TraktCalendarMovie>
     {

@@ -2,7 +2,7 @@
 {
     using Enums;
     using Interfaces;
-    using Objects.Get.Users.Lists;
+    using Objects.Get.Users.Lists.Implementations;
     using System.Collections.Generic;
 
     internal sealed class TraktShowListsRequest : ATraktShowRequest<TraktList>, ITraktSupportsPagination

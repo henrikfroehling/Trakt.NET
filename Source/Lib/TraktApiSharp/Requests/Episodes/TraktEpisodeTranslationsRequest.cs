@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Episodes
 {
-    using Objects.Get.Episodes;
+    using Objects.Get.Episodes.Implementations;
     using System;
     using System.Collections.Generic;
 

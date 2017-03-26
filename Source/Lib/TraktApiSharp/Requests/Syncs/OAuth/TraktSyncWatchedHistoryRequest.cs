@@ -3,7 +3,7 @@
     using Enums;
     using Extensions;
     using Interfaces;
-    using Objects.Get.History;
+    using Objects.Get.History.Implementations;
     using Parameters;
     using System;
     using System.Collections.Generic;

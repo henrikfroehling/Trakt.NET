@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Comments
 {
-    using Get.Seasons;
+    using Get.Seasons.Implementations;
     using Newtonsoft.Json;
 
     /// <summary>A season comment post.</summary>

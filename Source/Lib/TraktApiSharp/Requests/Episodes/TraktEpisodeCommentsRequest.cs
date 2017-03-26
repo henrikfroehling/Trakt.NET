@@ -2,7 +2,7 @@
 {
     using Enums;
     using Interfaces;
-    using Objects.Basic;
+    using Objects.Basic.Implementations;
     using System.Collections.Generic;
 
     internal sealed class TraktEpisodeCommentsRequest : ATraktEpisodeRequest<TraktComment>, ITraktSupportsPagination
@@ -12,7 +12,7 @@
         public int? Page { get; set; }
 
         public int? Limit { get; set; }
-        
+
         public override string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}/comments{/sort_order}{?page,limit}";
 
         public override IDictionary<string, object> GetUriPathParameters()

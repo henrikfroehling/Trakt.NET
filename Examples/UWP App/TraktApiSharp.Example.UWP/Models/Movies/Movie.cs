@@ -3,6 +3,8 @@
     using Objects.Basic;
     using Objects.Get.Movies;
     using System.Collections.ObjectModel;
+    using TraktApiSharp.Objects.Basic.Implementations;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
 
     public class Movie : TraktMovie
     {

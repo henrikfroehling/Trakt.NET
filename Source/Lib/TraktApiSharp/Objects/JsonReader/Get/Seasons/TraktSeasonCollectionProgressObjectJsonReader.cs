@@ -2,7 +2,7 @@
 {
     using Get.Episodes;
     using Newtonsoft.Json;
-    using Objects.Get.Seasons;
+    using Objects.Get.Seasons.Implementations;
     using System.IO;
 
     internal class TraktSeasonCollectionProgressObjectJsonReader : ITraktObjectJsonReader<TraktSeasonCollectionProgress>

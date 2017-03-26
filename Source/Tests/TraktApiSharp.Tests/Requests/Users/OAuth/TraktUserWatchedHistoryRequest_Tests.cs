@@ -9,7 +9,7 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.History;
+    using TraktApiSharp.Objects.Get.History.Implementations;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;

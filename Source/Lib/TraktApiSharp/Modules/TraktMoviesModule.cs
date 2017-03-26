@@ -2,10 +2,10 @@
 {
     using Enums;
     using Exceptions;
-    using Objects.Basic;
-    using Objects.Get.Movies;
-    using Objects.Get.Users;
-    using Objects.Get.Users.Lists;
+    using Objects.Basic.Implementations;
+    using Objects.Get.Movies.Implementations;
+    using Objects.Get.Users.Implementations;
+    using Objects.Get.Users.Lists.Implementations;
     using Requests.Handler;
     using Requests.Movies;
     using Requests.Parameters;

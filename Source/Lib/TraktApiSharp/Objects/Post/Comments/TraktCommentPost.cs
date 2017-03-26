@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Comments
 {
-    using Basic;
+    using Basic.Implementations;
     using Newtonsoft.Json;
 
     public abstract class TraktCommentPost

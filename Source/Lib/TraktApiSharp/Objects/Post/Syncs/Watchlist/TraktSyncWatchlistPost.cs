@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist
 {
-    using Get.Episodes;
-    using Get.Movies;
-    using Get.Shows;
+    using Get.Episodes.Implementations;
+    using Get.Movies.Implementations;
+    using Get.Shows.Implementations;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
@@ -92,7 +92,7 @@
             (_watchlistPost.Movies as List<TraktSyncWatchlistPostMovie>).Add(
                 new TraktSyncWatchlistPostMovie
                 {
-                    Ids = movie.Ids,
+                    Ids = (TraktMovieIds)movie.Ids, // TODO use interface
                     Title = movie.Title,
                     Year = movie.Year
                 });
@@ -150,7 +150,7 @@
             (_watchlistPost.Shows as List<TraktSyncWatchlistPostShow>).Add(
                 new TraktSyncWatchlistPostShow
                 {
-                    Ids = show.Ids,
+                    Ids = (TraktShowIds)show.Ids, // TODO use interface
                     Title = show.Title,
                     Year = show.Year
                 });
@@ -231,7 +231,7 @@
             else
             {
                 var watchlistShow = new TraktSyncWatchlistPostShow();
-                watchlistShow.Ids = show.Ids;
+                watchlistShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
                 watchlistShow.Title = show.Title;
                 watchlistShow.Year = show.Year;
 
@@ -286,7 +286,7 @@
             else
             {
                 var watchlistShow = new TraktSyncWatchlistPostShow();
-                watchlistShow.Ids = show.Ids;
+                watchlistShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
                 watchlistShow.Title = show.Title;
                 watchlistShow.Year = show.Year;
 
@@ -363,7 +363,7 @@
             else
             {
                 var watchlistShow = new TraktSyncWatchlistPostShow();
-                watchlistShow.Ids = show.Ids;
+                watchlistShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
                 watchlistShow.Title = show.Title;
                 watchlistShow.Year = show.Year;
 
@@ -403,7 +403,7 @@
             (_watchlistPost.Episodes as List<TraktSyncWatchlistPostEpisode>).Add(
                 new TraktSyncWatchlistPostEpisode
                 {
-                    Ids = episode.Ids
+                    Ids = (TraktEpisodeIds)episode.Ids // TODO use interface
                 });
 
             return this;

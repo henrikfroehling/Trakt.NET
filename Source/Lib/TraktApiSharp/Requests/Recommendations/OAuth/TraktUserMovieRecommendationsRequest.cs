@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Recommendations.OAuth
 {
-    using Objects.Get.Movies;
+    using Objects.Get.Movies.Implementations;
 
     internal sealed class TraktUserMovieRecommendationsRequest : ATraktUserRecommendationsRequest<TraktMovie>
     {

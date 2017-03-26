@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Exceptions;
-    using Objects.Get.People;
-    using Objects.Get.People.Credits;
+    using Objects.Get.People.Credits.Implementations;
+    using Objects.Get.People.Implementations;
     using Requests.Handler;
     using Requests.Parameters;
     using Requests.People;

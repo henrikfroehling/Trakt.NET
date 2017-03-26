@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Comments
 {
-    using Get.Shows;
+    using Get.Shows.Implementations;
     using Newtonsoft.Json;
 
     /// <summary>A show comment post.</summary>

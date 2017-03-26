@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Responses
 {
-    using Get.Episodes;
-    using Get.Movies;
-    using Get.People;
-    using Get.Seasons;
-    using Get.Shows;
+    using Get.Episodes.Implementations;
+    using Get.Movies.Implementations;
+    using Get.People.Implementations;
+    using Get.Seasons.Implementations;
+    using Get.Shows.Implementations;
     using Newtonsoft.Json;
     using Syncs.Responses;
     using System.Collections.Generic;

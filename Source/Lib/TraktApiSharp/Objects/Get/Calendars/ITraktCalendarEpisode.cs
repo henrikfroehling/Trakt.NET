@@ -12,7 +12,7 @@
 
         string EpisodeTitle { get; set; }
 
-        TraktEpisodeIds EpisodeIds { get; set; }
+        ITraktEpisodeIds EpisodeIds { get; set; }
 
         int? AbsoluteEpisodeNumber { get; set; }
 
@@ -30,6 +30,6 @@
 
         IEnumerable<string> AvailableEpisodeTranslationLanguageCodes { get; set; }
 
-        IEnumerable<TraktEpisodeTranslation> EpisodeTranslations { get; set; }
+        IEnumerable<ITraktEpisodeTranslation> EpisodeTranslations { get; set; }
     }
 }
