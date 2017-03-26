@@ -14,6 +14,12 @@
     public class TraktWatchlistItem_Tests
     {
         [Fact]
+        public void Test_TraktWatchlistItem_Implements_ITraktWatchlistItem_Interface()
+        {
+            typeof(TraktWatchlistItem).GetInterfaces().Should().Contain(typeof(ITraktWatchlistItem));
+        }
+
+        [Fact]
         public void Test_TraktWatchlistItem_Default_Constructor()
         {
             var watchlistItem = new TraktWatchlistItem();
