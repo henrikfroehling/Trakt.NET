@@ -778,7 +778,7 @@
                 return this;
 
             var ratingsEpisode = new TraktSyncRatingsPostEpisode();
-            ratingsEpisode.Ids = episode.Ids;
+            ratingsEpisode.Ids = (TraktEpisodeIds)episode.Ids; // TODO use interface
 
             if (rating.HasValue)
                 ratingsEpisode.Rating = rating;

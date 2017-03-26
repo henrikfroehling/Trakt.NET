@@ -406,7 +406,7 @@
             (_watchlistPost.Episodes as List<TraktSyncWatchlistPostEpisode>).Add(
                 new TraktSyncWatchlistPostEpisode
                 {
-                    Ids = episode.Ids
+                    Ids = (TraktEpisodeIds)episode.Ids // TODO use interface
                 });
 
             return this;

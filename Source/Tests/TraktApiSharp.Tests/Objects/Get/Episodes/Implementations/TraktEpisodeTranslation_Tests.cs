@@ -11,6 +11,12 @@
     public class TraktEpisodeTranslation_Tests
     {
         [Fact]
+        public void Test_TraktEpisodeTranslation_Implements_ITraktEpisodeTranslation_Interface()
+        {
+            typeof(TraktEpisodeTranslation).GetInterfaces().Should().Contain(typeof(ITraktEpisodeTranslation));
+        }
+
+        [Fact]
         public void Test_TraktEpisodeTranslation_Default_Constructor()
         {
             var episodeTranslation = new TraktEpisodeTranslation();

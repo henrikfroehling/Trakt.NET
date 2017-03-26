@@ -910,7 +910,7 @@
                 return this;
 
             var collectionEpisode = new TraktSyncCollectionPostEpisode();
-            collectionEpisode.Ids = episode.Ids;
+            collectionEpisode.Ids = (TraktEpisodeIds)episode.Ids; // TODO use interface
 
             if (metadata != null)
                 collectionEpisode.Metadata = metadata;

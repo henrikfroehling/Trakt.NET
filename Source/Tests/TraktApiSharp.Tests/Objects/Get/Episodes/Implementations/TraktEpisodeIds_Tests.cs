@@ -11,6 +11,12 @@
     public class TraktEpisodeIds_Tests
     {
         [Fact]
+        public void Test_TraktEpisodeIds_Implements_ITraktEpisodeIds_Interface()
+        {
+            typeof(TraktEpisodeIds).GetInterfaces().Should().Contain(typeof(ITraktEpisodeIds));
+        }
+
+        [Fact]
         public void Test_TraktEpisodeIds_Default_Constructor()
         {
             var episodeIds = new TraktEpisodeIds();

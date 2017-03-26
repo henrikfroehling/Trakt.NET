@@ -12,7 +12,13 @@
     public class TraktEpisodeCollectionProgress_Tests
     {
         [Fact]
-        public void Test_TraktEpisodeCollectionProgress_Default_Constructor()
+        public void Test_TraktEpisodeCollectionProgress_Implements_ITraktEpisodeCollectionProgress_Interface()
+        {
+            typeof(TraktEpisodeCollectionProgress).GetInterfaces().Should().Contain(typeof(ITraktEpisodeCollectionProgress));
+        }
+
+        [Fact]
+        public void Test_TraktEpisodeCollectionProgressCollectionProgress_Default_Constructor()
         {
             var episodeCollectionProgress = new TraktEpisodeCollectionProgress();
 
@@ -22,7 +28,7 @@
         }
 
         [Fact]
-        public void Test_TraktEpisodeCollectionProgress_From_Json()
+        public void Test_TraktEpisodeCollectionProgressCollectionProgress_From_Json()
         {
             var jsonReader = new TraktEpisodeCollectionProgressObjectJsonReader();
             var episodeCollectionProgress = jsonReader.ReadObject(JSON);

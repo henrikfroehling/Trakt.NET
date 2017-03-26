@@ -461,7 +461,7 @@
                 return this;
 
             var historyEpisode = new TraktSyncHistoryPostEpisode();
-            historyEpisode.Ids = episode.Ids;
+            historyEpisode.Ids = (TraktEpisodeIds)episode.Ids; // TODO use interface
 
             (_historyPost.Episodes as List<TraktSyncHistoryPostEpisode>).Add(historyEpisode);
 

@@ -6,9 +6,10 @@
     using Seasons;
     using System;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Seasons.Implementations;
 
     /// <summary>A Trakt episode of a Trakt season.</summary>
-    public class TraktEpisode
+    public class TraktEpisode : ITraktEpisode
     {
         /// <summary>Gets or sets the season number in which the episode was aired.</summary>
         [JsonProperty(PropertyName = "season")]
@@ -28,7 +29,7 @@
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "ids")]
-        public TraktEpisodeIds Ids { get; set; }
+        public ITraktEpisodeIds Ids { get; set; }
 
         /// <summary>Gets or sets the absolute episode number of all episodes in all seasons.</summary>
         [JsonProperty(PropertyName = "number_abs")]
@@ -62,7 +63,7 @@
         [JsonProperty(PropertyName = "available_translations")]
         public IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
 
-        /// <summary>Gets or sets the list of <see cref="TraktEpisodeTranslation" />s for the episode.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the list of <see cref="ITraktEpisodeTranslation" />s for the episode.<para>Nullable</para></summary>
         /// <seealso cref="TraktSeason.Episodes" />
         /// <remarks>
         /// This property is set automatically if this episode is in a
@@ -75,6 +76,6 @@
         /// and a translation language code was specified.
         /// </remarks>
         [JsonProperty(PropertyName = "translations")]
-        public IEnumerable<TraktEpisodeTranslation> Translations { get; set; }
+        public IEnumerable<ITraktEpisodeTranslation> Translations { get; set; }
     }
 }

@@ -12,6 +12,12 @@
     public class TraktEpisodeWatchedProgress_Tests
     {
         [Fact]
+        public void Test_TraktEpisodeWatchedProgress_Implements_ITraktEpisodeWatchedProgress_Interface()
+        {
+            typeof(TraktEpisodeWatchedProgress).GetInterfaces().Should().Contain(typeof(ITraktEpisodeWatchedProgress));
+        }
+
+        [Fact]
         public void Test_TraktEpisodeWatchedProgress_Default_Constructor()
         {
             var episodeWatchedProgress = new TraktEpisodeWatchedProgress();

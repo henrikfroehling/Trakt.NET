@@ -581,7 +581,7 @@
                 return this;
 
             var historyEpisode = new TraktSyncHistoryPostEpisode();
-            historyEpisode.Ids = episode.Ids;
+            historyEpisode.Ids = (TraktEpisodeIds)episode.Ids; // TODO use interface
 
             if (watchedAt.HasValue)
                 historyEpisode.WatchedAt = watchedAt.Value.ToUniversalTime();
