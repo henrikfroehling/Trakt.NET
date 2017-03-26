@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs.Activities
+﻿namespace TraktApiSharp.Objects.Get.Syncs.Activities.Implementations
 {
     using Newtonsoft.Json;
     using System;

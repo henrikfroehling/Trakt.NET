@@ -28,6 +28,8 @@
     using TraktApiSharp.Objects.Get.Collection.Implementations;
     using TraktApiSharp.Objects.Get.History.Implementations;
     using TraktApiSharp.Objects.Get.Ratings.Implementations;
+    using TraktApiSharp.Objects.Get.Syncs.Activities.Implementations;
+    using TraktApiSharp.Objects.Get.Syncs.Playback.Implementations;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to sync.

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs.Playback
+﻿namespace TraktApiSharp.Objects.Get.Syncs.Playback.Implementations
 {
     using Enums;
     using Episodes;

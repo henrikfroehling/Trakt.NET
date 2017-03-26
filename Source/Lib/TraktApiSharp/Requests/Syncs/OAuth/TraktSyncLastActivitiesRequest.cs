@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Requests.Syncs.OAuth
 {
     using Objects.Get.Syncs.Activities;
+    using TraktApiSharp.Objects.Get.Syncs.Activities.Implementations;
 
     internal sealed class TraktSyncLastActivitiesRequest : ATraktSyncGetRequest<TraktSyncLastActivities>
     {

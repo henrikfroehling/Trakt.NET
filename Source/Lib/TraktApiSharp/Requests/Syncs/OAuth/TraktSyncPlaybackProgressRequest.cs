@@ -3,6 +3,7 @@
     using Enums;
     using Objects.Get.Syncs.Playback;
     using System.Collections.Generic;
+    using TraktApiSharp.Objects.Get.Syncs.Playback.Implementations;
 
     internal sealed class TraktSyncPlaybackProgressRequest : ATraktSyncGetRequest<TraktSyncPlaybackProgressItem>
     {

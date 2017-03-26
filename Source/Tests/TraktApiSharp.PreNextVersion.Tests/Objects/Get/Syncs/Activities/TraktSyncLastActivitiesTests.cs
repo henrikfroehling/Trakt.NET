@@ -5,6 +5,7 @@
     using Newtonsoft.Json;
     using System;
     using TraktApiSharp.Objects.Get.Syncs.Activities;
+    using TraktApiSharp.Objects.Get.Syncs.Activities.Implementations;
     using Utils;
 
     [TestClass]
