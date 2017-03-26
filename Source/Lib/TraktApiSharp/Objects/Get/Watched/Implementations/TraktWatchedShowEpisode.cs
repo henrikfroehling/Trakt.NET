@@ -4,7 +4,7 @@
     using System;
 
     /// <summary>Contains information about a watched Trakt episode.</summary>
-    public class TraktWatchedShowEpisode
+    public class TraktWatchedShowEpisode : ITraktWatchedShowEpisode
     {
         /// <summary>Gets or sets the number of the watched episode.</summary>
         [JsonProperty(PropertyName = "number")]

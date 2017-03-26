@@ -18,13 +18,13 @@
         [JsonProperty(PropertyName = "last_watched_at")]
         public DateTime? LastWatchedAt { get; set; }
 
-        /// <summary>Gets or sets the Trakt show. See also <seealso cref="TraktShow" />.<para>Nullable</para></summary>
+        /// <summary>Gets or sets the Trakt show. See also <seealso cref="ITraktShow" />.<para>Nullable</para></summary>
         [JsonProperty(PropertyName = "show")]
         public ITraktShow Show { get; set; }
 
         /// <summary>
         /// Gets or sets a list of watched seasons in the watched show.
-        /// See also <seealso cref="TraktWatchedShowSeason" />.
+        /// See also <seealso cref="ITraktWatchedShowSeason" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "seasons")]
