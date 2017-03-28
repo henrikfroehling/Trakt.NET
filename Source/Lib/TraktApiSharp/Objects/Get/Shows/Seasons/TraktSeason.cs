@@ -25,6 +25,14 @@
         public TraktSeasonIds Ids { get; set; }
 
         /// <summary>
+        /// Gets or sets the title of the season.
+        /// <para>Nullable</para>
+        /// </summary>
+        [JsonProperty(PropertyName = "title")]
+        [Nullable]
+        public string Title { get; set; }
+
+        /// <summary>
         /// Gets or sets the collection of images for the season.
         /// See also <seealso cref="TraktSeasonImages" />.
         /// <para>Nullable</para>
