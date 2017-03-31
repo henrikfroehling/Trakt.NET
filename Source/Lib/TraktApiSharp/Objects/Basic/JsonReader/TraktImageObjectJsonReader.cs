@@ -1,7 +1,8 @@
-﻿namespace TraktApiSharp.Objects.JsonReader.Basic
+﻿namespace TraktApiSharp.Objects.Basic.JsonReader
 {
     using Newtonsoft.Json;
     using Objects.Basic.Implementations;
+    using Objects.JsonReader;
     using System.IO;
 
     internal class TraktImageObjectJsonReader : ITraktObjectJsonReader<TraktImage>

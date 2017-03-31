@@ -1,13 +1,12 @@
-﻿namespace TraktApiSharp.Tests.Objects.JsonReader.Basic
+﻿namespace TraktApiSharp.Tests.Objects.Basic.JsonReader
 {
     using FluentAssertions;
     using Newtonsoft.Json;
     using System.IO;
     using Traits;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
+    using TraktApiSharp.Objects.Basic.JsonReader;
     using TraktApiSharp.Objects.JsonReader;
-    using TraktApiSharp.Objects.JsonReader.Basic;
     using Xunit;
 
     [Category("Objects.JsonReader.Basic")]
