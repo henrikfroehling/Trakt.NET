@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.JsonReader.Get.Movies
+﻿namespace TraktApiSharp.Tests.Objects.Get.Movies.JsonReader
 {
     using FluentAssertions;
     using Newtonsoft.Json;
@@ -6,8 +6,8 @@
     using System.IO;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Movies.JsonReader;
     using TraktApiSharp.Objects.JsonReader;
-    using TraktApiSharp.Objects.JsonReader.Get.Movies;
     using Xunit;
 
     [Category("Objects.JsonReader.Get.Movies")]

@@ -1,17 +1,17 @@
-﻿namespace TraktApiSharp.Objects.JsonReader.Get.Movies
+﻿namespace TraktApiSharp.Objects.Get.Movies.JsonReader
 {
     using Newtonsoft.Json;
     using Objects.Get.Movies;
     using Objects.Get.Movies.Implementations;
-    using System;
+    using Objects.JsonReader;
     using System.IO;
 
-    internal class ITraktRecentlyUpdatedMovieObjectJsonReader : ITraktObjectJsonReader<ITraktRecentlyUpdatedMovie>
+    internal class ITraktMostAnticipatedMovieObjectJsonReader : ITraktObjectJsonReader<ITraktMostAnticipatedMovie>
     {
-        private const string PROPERTY_NAME_UPDATED_AT = "updated_at";
+        private const string PROPERTY_NAME_LIST_COUNT = "list_count";
         private const string PROPERTY_NAME_MOVIE = "movie";
 
-        public ITraktRecentlyUpdatedMovie ReadObject(string json)
+        public ITraktMostAnticipatedMovie ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -23,7 +23,7 @@
             }
         }
 
-        public ITraktRecentlyUpdatedMovie ReadObject(JsonTextReader jsonReader)
+        public ITraktMostAnticipatedMovie ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
@@ -31,7 +31,7 @@
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var movieObjectReader = new ITraktMovieObjectJsonReader();
-                ITraktRecentlyUpdatedMovie traktRecentlyUpdatedMovie = new TraktRecentlyUpdatedMovie();
+                ITraktMostAnticipatedMovie traktMostAnticipatedMovie = new TraktMostAnticipatedMovie();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -39,14 +39,11 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_UPDATED_AT:
-                            DateTime dateTime;
-                            if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
-                                traktRecentlyUpdatedMovie.RecentlyUpdatedAt = dateTime;
-
+                        case PROPERTY_NAME_LIST_COUNT:
+                            traktMostAnticipatedMovie.ListCount = jsonReader.ReadAsInt32();
                             break;
                         case PROPERTY_NAME_MOVIE:
-                            traktRecentlyUpdatedMovie.Movie = movieObjectReader.ReadObject(jsonReader);
+                            traktMostAnticipatedMovie.Movie = movieObjectReader.ReadObject(jsonReader);
                             break;
                         default:
                             JsonReaderHelper.OverreadInvalidContent(jsonReader);
@@ -54,7 +51,7 @@
                     }
                 }
 
-                return traktRecentlyUpdatedMovie;
+                return traktMostAnticipatedMovie;
             }
 
             return null;

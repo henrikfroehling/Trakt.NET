@@ -1,7 +1,8 @@
-﻿namespace TraktApiSharp.Objects.JsonReader.Get.Movies
+﻿namespace TraktApiSharp.Objects.Get.Movies.JsonReader
 {
     using Newtonsoft.Json;
     using Objects.Get.Movies.Implementations;
+    using Objects.JsonReader;
     using System.IO;
 
     internal class TraktMovieIdsObjectJsonReader : ITraktObjectJsonReader<TraktMovieIds>

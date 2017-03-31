@@ -1,18 +1,17 @@
-﻿namespace TraktApiSharp.Objects.JsonReader.Get.Movies
+﻿namespace TraktApiSharp.Objects.Get.Movies.JsonReader
 {
     using Newtonsoft.Json;
     using Objects.Get.Movies;
     using Objects.Get.Movies.Implementations;
+    using Objects.JsonReader;
     using System.IO;
 
-    internal class ITraktMostPWCMovieObjectJsonReader : ITraktObjectJsonReader<ITraktMostPWCMovie>
+    internal class ITraktBoxOfficeMovieObjectJsonReader : ITraktObjectJsonReader<ITraktBoxOfficeMovie>
     {
-        private const string PROPERTY_NAME_WATCHER_COUNT = "watcher_count";
-        private const string PROPERTY_NAME_PLAY_COUNT = "play_count";
-        private const string PROPERTY_NAME_COLLECTED_COUNT = "collected_count";
+        private const string PROPERTY_NAME_REVENUE = "revenue";
         private const string PROPERTY_NAME_MOVIE = "movie";
 
-        public ITraktMostPWCMovie ReadObject(string json)
+        public ITraktBoxOfficeMovie ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -24,7 +23,7 @@
             }
         }
 
-        public ITraktMostPWCMovie ReadObject(JsonTextReader jsonReader)
+        public ITraktBoxOfficeMovie ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
@@ -32,7 +31,7 @@
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var movieObjectReader = new ITraktMovieObjectJsonReader();
-                ITraktMostPWCMovie traktMostPWCMovie = new TraktMostPWCMovie();
+                ITraktBoxOfficeMovie traktBoxOfficeMovie = new TraktBoxOfficeMovie();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -40,17 +39,11 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_WATCHER_COUNT:
-                            traktMostPWCMovie.WatcherCount = jsonReader.ReadAsInt32();
-                            break;
-                        case PROPERTY_NAME_PLAY_COUNT:
-                            traktMostPWCMovie.PlayCount = jsonReader.ReadAsInt32();
-                            break;
-                        case PROPERTY_NAME_COLLECTED_COUNT:
-                            traktMostPWCMovie.CollectedCount = jsonReader.ReadAsInt32();
+                        case PROPERTY_NAME_REVENUE:
+                            traktBoxOfficeMovie.Revenue = jsonReader.ReadAsInt32();
                             break;
                         case PROPERTY_NAME_MOVIE:
-                            traktMostPWCMovie.Movie = movieObjectReader.ReadObject(jsonReader);
+                            traktBoxOfficeMovie.Movie = movieObjectReader.ReadObject(jsonReader);
                             break;
                         default:
                             JsonReaderHelper.OverreadInvalidContent(jsonReader);
@@ -58,7 +51,7 @@
                     }
                 }
 
-                return traktMostPWCMovie;
+                return traktBoxOfficeMovie;
             }
 
             return null;

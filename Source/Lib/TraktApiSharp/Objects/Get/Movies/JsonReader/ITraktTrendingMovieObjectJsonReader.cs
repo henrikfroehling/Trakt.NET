@@ -1,16 +1,17 @@
-﻿namespace TraktApiSharp.Objects.JsonReader.Get.Movies
+﻿namespace TraktApiSharp.Objects.Get.Movies.JsonReader
 {
     using Newtonsoft.Json;
     using Objects.Get.Movies;
     using Objects.Get.Movies.Implementations;
+    using Objects.JsonReader;
     using System.IO;
 
-    internal class ITraktBoxOfficeMovieObjectJsonReader : ITraktObjectJsonReader<ITraktBoxOfficeMovie>
+    internal class ITraktTrendingMovieObjectJsonReader : ITraktObjectJsonReader<ITraktTrendingMovie>
     {
-        private const string PROPERTY_NAME_REVENUE = "revenue";
+        private const string PROPERTY_NAME_WATCHERS = "watchers";
         private const string PROPERTY_NAME_MOVIE = "movie";
 
-        public ITraktBoxOfficeMovie ReadObject(string json)
+        public ITraktTrendingMovie ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -22,7 +23,7 @@
             }
         }
 
-        public ITraktBoxOfficeMovie ReadObject(JsonTextReader jsonReader)
+        public ITraktTrendingMovie ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
@@ -30,7 +31,7 @@
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var movieObjectReader = new ITraktMovieObjectJsonReader();
-                ITraktBoxOfficeMovie traktBoxOfficeMovie = new TraktBoxOfficeMovie();
+                ITraktTrendingMovie traktTrendingMovie = new TraktTrendingMovie();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -38,11 +39,11 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_REVENUE:
-                            traktBoxOfficeMovie.Revenue = jsonReader.ReadAsInt32();
+                        case PROPERTY_NAME_WATCHERS:
+                            traktTrendingMovie.Watchers = jsonReader.ReadAsInt32();
                             break;
                         case PROPERTY_NAME_MOVIE:
-                            traktBoxOfficeMovie.Movie = movieObjectReader.ReadObject(jsonReader);
+                            traktTrendingMovie.Movie = movieObjectReader.ReadObject(jsonReader);
                             break;
                         default:
                             JsonReaderHelper.OverreadInvalidContent(jsonReader);
@@ -50,7 +51,7 @@
                     }
                 }
 
-                return traktBoxOfficeMovie;
+                return traktTrendingMovie;
             }
 
             return null;
