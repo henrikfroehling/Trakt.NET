@@ -1,7 +1,8 @@
-﻿namespace TraktApiSharp.Objects.JsonReader.Get.People
+﻿namespace TraktApiSharp.Objects.Get.People.JsonReader
 {
     using Newtonsoft.Json;
     using Objects.Get.People.Implementations;
+    using Objects.JsonReader;
     using System.IO;
 
     internal class TraktPersonIdsObjectJsonReader : ITraktObjectJsonReader<TraktPersonIds>

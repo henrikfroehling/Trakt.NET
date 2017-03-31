@@ -247,8 +247,8 @@
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieIdsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieReleaseObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieTranslationObjectJsonReader.cs" />
-    <Compile Include="Objects\JsonReader\Get\People\TraktPersonIdsObjectJsonReader.cs" />
-    <Compile Include="Objects\JsonReader\Get\People\TraktPersonObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\People\JsonReader\TraktPersonIdsObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\People\JsonReader\TraktPersonObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Get\Seasons\TraktSeasonArrayJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Get\Seasons\TraktSeasonCollectionProgressArrayJsonReader.cs" />
     <Compile Include="Objects\JsonReader\Get\Seasons\TraktSeasonCollectionProgressObjectJsonReader.cs" />

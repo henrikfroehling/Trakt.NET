@@ -1,13 +1,12 @@
-﻿namespace TraktApiSharp.Tests.Objects.JsonReader.Get.People
+﻿namespace TraktApiSharp.Tests.Objects.Get.People.JsonReader
 {
     using FluentAssertions;
     using Newtonsoft.Json;
     using System.IO;
     using Traits;
-    using TraktApiSharp.Objects.Get.People;
     using TraktApiSharp.Objects.Get.People.Implementations;
+    using TraktApiSharp.Objects.Get.People.JsonReader;
     using TraktApiSharp.Objects.JsonReader;
-    using TraktApiSharp.Objects.JsonReader.Get.People;
     using Xunit;
 
     [Category("Objects.JsonReader.Get.People")]
