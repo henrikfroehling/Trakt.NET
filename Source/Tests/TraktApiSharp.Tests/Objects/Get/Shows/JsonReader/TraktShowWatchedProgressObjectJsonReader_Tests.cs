@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.JsonReader.Get.Shows
+﻿namespace TraktApiSharp.Tests.Objects.Get.Shows.JsonReader
 {
     using FluentAssertions;
     using Newtonsoft.Json;
@@ -6,10 +6,9 @@
     using System.IO;
     using System.Linq;
     using Traits;
-    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Implementations;
+    using TraktApiSharp.Objects.Get.Shows.JsonReader;
     using TraktApiSharp.Objects.JsonReader;
-    using TraktApiSharp.Objects.JsonReader.Get.Shows;
     using Xunit;
 
     [Category("Objects.JsonReader.Get.Shows")]

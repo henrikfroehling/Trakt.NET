@@ -1,16 +1,17 @@
-﻿namespace TraktApiSharp.Objects.JsonReader.Get.Shows
+﻿namespace TraktApiSharp.Objects.Get.Shows.JsonReader
 {
+    using Implementations;
     using Newtonsoft.Json;
-    using Objects.Get.Shows;
-    using Objects.Get.Shows.Implementations;
+    using Objects.JsonReader;
+    using Shows;
     using System.IO;
 
-    internal class ITraktMostAnticipatedShowObjectJsonReader : ITraktObjectJsonReader<ITraktMostAnticipatedShow>
+    internal class ITraktTrendingShowObjectJsonReader : ITraktObjectJsonReader<ITraktTrendingShow>
     {
-        private const string PROPERTY_NAME_LIST_COUNT = "list_count";
+        private const string PROPERTY_NAME_WATCHERS = "watchers";
         private const string PROPERTY_NAME_SHOW = "show";
 
-        public ITraktMostAnticipatedShow ReadObject(string json)
+        public ITraktTrendingShow ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -22,7 +23,7 @@
             }
         }
 
-        public ITraktMostAnticipatedShow ReadObject(JsonTextReader jsonReader)
+        public ITraktTrendingShow ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
@@ -30,7 +31,7 @@
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var showObjectReader = new ITraktShowObjectJsonReader();
-                ITraktMostAnticipatedShow traktMostAnticipatedShow = new TraktMostAnticipatedShow();
+                ITraktTrendingShow traktTrendingShow = new TraktTrendingShow();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -38,11 +39,11 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_LIST_COUNT:
-                            traktMostAnticipatedShow.ListCount = jsonReader.ReadAsInt32();
+                        case PROPERTY_NAME_WATCHERS:
+                            traktTrendingShow.Watchers = jsonReader.ReadAsInt32();
                             break;
                         case PROPERTY_NAME_SHOW:
-                            traktMostAnticipatedShow.Show = showObjectReader.ReadObject(jsonReader);
+                            traktTrendingShow.Show = showObjectReader.ReadObject(jsonReader);
                             break;
                         default:
                             JsonReaderHelper.OverreadInvalidContent(jsonReader);
@@ -50,7 +51,7 @@
                     }
                 }
 
-                return traktMostAnticipatedShow;
+                return traktTrendingShow;
             }
 
             return null;
