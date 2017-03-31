@@ -1,17 +1,18 @@
-﻿namespace TraktApiSharp.Objects.JsonReader.Get.Episodes
+﻿namespace TraktApiSharp.Objects.Get.Episodes.JsonReader
 {
     using Newtonsoft.Json;
     using Objects.Get.Episodes.Implementations;
+    using Objects.JsonReader;
     using System;
     using System.IO;
 
-    internal class TraktEpisodeCollectionProgressObjectJsonReader : ITraktObjectJsonReader<TraktEpisodeCollectionProgress>
+    internal class TraktEpisodeWatchedProgressObjectJsonReader : ITraktObjectJsonReader<TraktEpisodeWatchedProgress>
     {
         private const string PROPERTY_NAME_NUMBER = "number";
         private const string PROPERTY_NAME_COMPLETED = "completed";
-        private const string PROPERTY_NAME_COLLECTED_AT = "collected_at";
+        private const string PROPERTY_NAME_LAST_WATCHED_AT = "last_watched_at";
 
-        public TraktEpisodeCollectionProgress ReadObject(string json)
+        public TraktEpisodeWatchedProgress ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -23,14 +24,14 @@
             }
         }
 
-        public TraktEpisodeCollectionProgress ReadObject(JsonTextReader jsonReader)
+        public TraktEpisodeWatchedProgress ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var traktEpisodeCollectionProgress = new TraktEpisodeCollectionProgress();
+                var traktEpisodeWatchedProgress = new TraktEpisodeWatchedProgress();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -39,16 +40,16 @@
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_NUMBER:
-                            traktEpisodeCollectionProgress.Number = jsonReader.ReadAsInt32();
+                            traktEpisodeWatchedProgress.Number = jsonReader.ReadAsInt32();
                             break;
                         case PROPERTY_NAME_COMPLETED:
-                            traktEpisodeCollectionProgress.Completed = jsonReader.ReadAsBoolean();
+                            traktEpisodeWatchedProgress.Completed = jsonReader.ReadAsBoolean();
                             break;
-                        case PROPERTY_NAME_COLLECTED_AT:
+                        case PROPERTY_NAME_LAST_WATCHED_AT:
                             {
                                 DateTime dateTime;
                                 if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
-                                    traktEpisodeCollectionProgress.CollectedAt = dateTime;
+                                    traktEpisodeWatchedProgress.LastWatchedAt = dateTime;
 
                                 break;
                             }
@@ -58,7 +59,7 @@
                     }
                 }
 
-                return traktEpisodeCollectionProgress;
+                return traktEpisodeWatchedProgress;
             }
 
             return null;
