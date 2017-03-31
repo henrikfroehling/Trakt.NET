@@ -1,8 +1,8 @@
-﻿namespace TraktApiSharp.Objects.JsonReader.Get.Seasons
+﻿namespace TraktApiSharp.Objects.Get.Seasons.JsonReader
 {
-    using Get.Episodes;
+    using Implementations;
     using Newtonsoft.Json;
-    using Objects.Get.Seasons.Implementations;
+    using Objects.JsonReader;
     using System;
     using System.IO;
 

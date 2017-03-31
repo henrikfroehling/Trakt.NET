@@ -1,8 +1,9 @@
-﻿namespace TraktApiSharp.Objects.JsonReader.Get.Seasons
+﻿namespace TraktApiSharp.Objects.Get.Seasons.JsonReader
 {
-    using Get.Episodes;
+    using Episodes.JsonReader;
+    using Implementations;
     using Newtonsoft.Json;
-    using Objects.Get.Seasons.Implementations;
+    using Objects.JsonReader;
     using System.IO;
 
     internal class TraktSeasonWatchedProgressObjectJsonReader : ITraktObjectJsonReader<TraktSeasonWatchedProgress>

@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Get.Movies.JsonReader
 {
     using Enums;
+    using Implementations;
     using Newtonsoft.Json;
-    using Objects.Get.Movies.Implementations;
     using Objects.JsonReader;
     using System;
     using System.IO;

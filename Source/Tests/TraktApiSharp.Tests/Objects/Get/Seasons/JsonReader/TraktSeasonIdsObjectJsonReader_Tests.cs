@@ -1,13 +1,12 @@
-﻿namespace TraktApiSharp.Tests.Objects.JsonReader.Get.Seasons
+﻿namespace TraktApiSharp.Tests.Objects.Get.Seasons.JsonReader
 {
     using FluentAssertions;
     using Newtonsoft.Json;
     using System.IO;
     using Traits;
-    using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Objects.Get.Seasons.Implementations;
+    using TraktApiSharp.Objects.Get.Seasons.JsonReader;
     using TraktApiSharp.Objects.JsonReader;
-    using TraktApiSharp.Objects.JsonReader.Get.Seasons;
     using Xunit;
 
     [Category("Objects.JsonReader.Get.Seasons")]
