@@ -5,12 +5,12 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class ITraktMovieAliasObjectJsonReader : ITraktObjectJsonReader<TraktMovieAlias>
+    internal class ITraktMovieAliasObjectJsonReader : ITraktObjectJsonReader<ITraktMovieAlias>
     {
         private const string PROPERTY_NAME_TITLE = "title";
         private const string PROPERTY_NAME_COUNTRY = "country";
 
-        public TraktMovieAlias ReadObject(string json)
+        public ITraktMovieAlias ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -22,14 +22,14 @@
             }
         }
 
-        public TraktMovieAlias ReadObject(JsonTextReader jsonReader)
+        public ITraktMovieAlias ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var traktMovieAlias = new TraktMovieAlias();
+                ITraktMovieAlias traktMovieAlias = new TraktMovieAlias();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {

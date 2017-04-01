@@ -7,7 +7,7 @@
     using System;
     using System.IO;
 
-    internal class ITraktMovieReleaseObjectJsonReader : ITraktObjectJsonReader<TraktMovieRelease>
+    internal class ITraktMovieReleaseObjectJsonReader : ITraktObjectJsonReader<ITraktMovieRelease>
     {
         private const string PROPERTY_NAME_COUNTRY = "country";
         private const string PROPERTY_NAME_CERTIFICATION = "certification";
@@ -15,7 +15,7 @@
         private const string PROPERTY_NAME_RELEASE_TYPE = "release_type";
         private const string PROPERTY_NAME_NOTE = "note";
 
-        public TraktMovieRelease ReadObject(string json)
+        public ITraktMovieRelease ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -27,14 +27,14 @@
             }
         }
 
-        public TraktMovieRelease ReadObject(JsonTextReader jsonReader)
+        public ITraktMovieRelease ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var traktMovieRelease = new TraktMovieRelease();
+                ITraktMovieRelease traktMovieRelease = new TraktMovieRelease();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {

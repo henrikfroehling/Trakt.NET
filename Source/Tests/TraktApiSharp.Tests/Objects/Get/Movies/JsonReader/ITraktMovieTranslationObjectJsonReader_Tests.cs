@@ -4,7 +4,7 @@
     using Newtonsoft.Json;
     using System.IO;
     using Traits;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
+    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.JsonReader;
     using TraktApiSharp.Objects.JsonReader;
     using Xunit;
@@ -15,7 +15,7 @@
         [Fact]
         public void Test_ITraktMovieTranslationObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(ITraktMovieTranslationObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktMovieTranslation>));
+            typeof(ITraktMovieTranslationObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<ITraktMovieTranslation>));
         }
 
         [Fact]
