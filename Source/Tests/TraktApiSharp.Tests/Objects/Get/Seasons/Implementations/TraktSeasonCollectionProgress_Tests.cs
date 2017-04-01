@@ -38,7 +38,7 @@
         [Fact]
         public void Test_TraktSeasonCollectionProgress_From_Json()
         {
-            var jsonReader = new TraktSeasonCollectionProgressObjectJsonReader();
+            var jsonReader = new ITraktSeasonCollectionProgressObjectJsonReader();
             var seasonCollectionProgress = jsonReader.ReadObject(JSON);
 
             seasonCollectionProgress.Should().NotBeNull();

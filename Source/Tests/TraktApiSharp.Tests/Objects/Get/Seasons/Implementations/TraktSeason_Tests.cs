@@ -37,7 +37,7 @@
         [Fact]
         public void Test_TraktSeason_From_Minimal_Json()
         {
-            var jsonReader = new TraktSeasonObjectJsonReader();
+            var jsonReader = new ITraktSeasonObjectJsonReader();
             var season = jsonReader.ReadObject(MINIMAL_JSON);
 
             season.Should().NotBeNull();
@@ -59,7 +59,7 @@
         [Fact]
         public void Test_TraktSeason_From_Full_Json()
         {
-            var jsonReader = new TraktSeasonObjectJsonReader();
+            var jsonReader = new ITraktSeasonObjectJsonReader();
             var season = jsonReader.ReadObject(FULL_JSON);
 
             season.Should().NotBeNull();

@@ -106,7 +106,7 @@
         [Fact]
         public void Test_TraktSeasonIds_From_Json()
         {
-            var jsonReader = new TraktSeasonIdsObjectJsonReader();
+            var jsonReader = new ITraktSeasonIdsObjectJsonReader();
             var seasonIds = jsonReader.ReadObject(JSON);
 
             seasonIds.Should().NotBeNull();

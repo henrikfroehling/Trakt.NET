@@ -6,7 +6,7 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class TraktSeasonCollectionProgressObjectJsonReader : ITraktObjectJsonReader<TraktSeasonCollectionProgress>
+    internal class ITraktSeasonCollectionProgressObjectJsonReader : ITraktObjectJsonReader<TraktSeasonCollectionProgress>
     {
         private const string PROPERTY_NAME_NUMBER = "number";
         private const string PROPERTY_NAME_AIRED = "aired";

@@ -36,8 +36,8 @@
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var seasonsArrayReader = new TraktSeasonArrayJsonReader();
-                var seasonCollectionProgressArrayReader = new TraktSeasonCollectionProgressArrayJsonReader();
+                var seasonsArrayReader = new ITraktSeasonArrayJsonReader();
+                var seasonCollectionProgressArrayReader = new ITraktSeasonCollectionProgressArrayJsonReader();
                 var episodeObjectReader = new ITraktEpisodeObjectJsonReader();
 
                 var traktShowCollectionProgress = new TraktShowCollectionProgress();

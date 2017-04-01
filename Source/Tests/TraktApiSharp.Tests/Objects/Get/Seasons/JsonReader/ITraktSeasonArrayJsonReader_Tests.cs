@@ -12,27 +12,27 @@
     using Xunit;
 
     [Category("Objects.JsonReader.Get.Seasons")]
-    public class TraktSeasonArrayJsonReader_Tests
+    public class ITraktSeasonArrayJsonReader_Tests
     {
         [Fact]
-        public void Test_TraktSeasonArrayJsonReader_Implements_ITraktArrayJsonReader_Interface()
+        public void Test_ITraktSeasonArrayJsonReader_Implements_ITraktArrayJsonReader_Interface()
         {
-            typeof(TraktSeasonArrayJsonReader).GetInterfaces().Should().Contain(typeof(ITraktArrayJsonReader<TraktSeason>));
+            typeof(ITraktSeasonArrayJsonReader).GetInterfaces().Should().Contain(typeof(ITraktArrayJsonReader<TraktSeason>));
         }
 
         [Fact]
-        public void Test_TraktSeasonArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
+        public void Test_ITraktSeasonArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new TraktSeasonArrayJsonReader();
+            var jsonReader = new ITraktSeasonArrayJsonReader();
 
             var traktSeasons = jsonReader.ReadArray(JSON_EMPTY_ARRAY);
             traktSeasons.Should().NotBeNull().And.BeEmpty();
         }
 
         [Fact]
-        public void Test_TraktSeasonArrayJsonReader_ReadArray_From_Json_String_Minimal_Complete()
+        public void Test_ITraktSeasonArrayJsonReader_ReadArray_From_Json_String_Minimal_Complete()
         {
-            var jsonReader = new TraktSeasonArrayJsonReader();
+            var jsonReader = new ITraktSeasonArrayJsonReader();
 
             var traktSeasons = jsonReader.ReadArray(MINIMAL_JSON_COMPLETE);
             traktSeasons.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -71,9 +71,9 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonArrayJsonReader_ReadArray_From_Json_String_Full_Complete()
+        public void Test_ITraktSeasonArrayJsonReader_ReadArray_From_Json_String_Full_Complete()
         {
-            var jsonReader = new TraktSeasonArrayJsonReader();
+            var jsonReader = new ITraktSeasonArrayJsonReader();
 
             var traktSeasons = jsonReader.ReadArray(FULL_JSON_COMPLETE);
             traktSeasons.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -198,27 +198,27 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonArrayJsonReader_ReadArray_From_Json_String_Null()
+        public void Test_ITraktSeasonArrayJsonReader_ReadArray_From_Json_String_Null()
         {
-            var jsonReader = new TraktSeasonArrayJsonReader();
+            var jsonReader = new ITraktSeasonArrayJsonReader();
 
             var traktSeasons = jsonReader.ReadArray(default(string));
             traktSeasons.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktSeasonArrayJsonReader_ReadArray_From_Json_String_Empty()
+        public void Test_ITraktSeasonArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
-            var jsonReader = new TraktSeasonArrayJsonReader();
+            var jsonReader = new ITraktSeasonArrayJsonReader();
 
             var traktSeasons = jsonReader.ReadArray(string.Empty);
             traktSeasons.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktSeasonArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
+        public void Test_ITraktSeasonArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
         {
-            var traktJsonReader = new TraktSeasonArrayJsonReader();
+            var traktJsonReader = new ITraktSeasonArrayJsonReader();
 
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
@@ -229,9 +229,9 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonArrayJsonReader_ReadArray_From_JsonReader_Minimal_Complete()
+        public void Test_ITraktSeasonArrayJsonReader_ReadArray_From_JsonReader_Minimal_Complete()
         {
-            var traktJsonReader = new TraktSeasonArrayJsonReader();
+            var traktJsonReader = new ITraktSeasonArrayJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -274,9 +274,9 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonArrayJsonReader_ReadArray_From_JsonReader_Full_Complete()
+        public void Test_ITraktSeasonArrayJsonReader_ReadArray_From_JsonReader_Full_Complete()
         {
-            var traktJsonReader = new TraktSeasonArrayJsonReader();
+            var traktJsonReader = new ITraktSeasonArrayJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -405,18 +405,18 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonArrayJsonReader_ReadArray_From_JsonReader_Null()
+        public void Test_ITraktSeasonArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
-            var jsonReader = new TraktSeasonArrayJsonReader();
+            var jsonReader = new ITraktSeasonArrayJsonReader();
 
             var traktSeasons = jsonReader.ReadArray(default(JsonTextReader));
             traktSeasons.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktSeasonArrayJsonReader_ReadArray_From_JsonReader_Empty()
+        public void Test_ITraktSeasonArrayJsonReader_ReadArray_From_JsonReader_Empty()
         {
-            var traktJsonReader = new TraktSeasonArrayJsonReader();
+            var traktJsonReader = new ITraktSeasonArrayJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

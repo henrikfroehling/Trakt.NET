@@ -6,7 +6,7 @@
     using System.Collections.Generic;
     using System.IO;
 
-    internal class TraktSeasonCollectionProgressArrayJsonReader : ITraktArrayJsonReader<TraktSeasonCollectionProgress>
+    internal class ITraktSeasonCollectionProgressArrayJsonReader : ITraktArrayJsonReader<TraktSeasonCollectionProgress>
     {
         public IEnumerable<TraktSeasonCollectionProgress> ReadArray(string json)
         {
@@ -27,7 +27,7 @@
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var seasonCollectionProgressReader = new TraktSeasonCollectionProgressObjectJsonReader();
+                var seasonCollectionProgressReader = new ITraktSeasonCollectionProgressObjectJsonReader();
                 var traktSeasonCollectionProgresses = new List<TraktSeasonCollectionProgress>();
 
                 var traktSeasonCollectionProgress = seasonCollectionProgressReader.ReadObject(jsonReader);
