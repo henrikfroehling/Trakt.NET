@@ -6,13 +6,13 @@
     using System.Collections.Generic;
     using System.IO;
 
-    internal class ITraktRatingObjectJsonReader : ITraktObjectJsonReader<TraktRating>
+    internal class ITraktRatingObjectJsonReader : ITraktObjectJsonReader<ITraktRating>
     {
         private const string PROPERTY_NAME_RATING = "rating";
         private const string PROPERTY_NAME_VOTES = "votes";
         private const string PROPERTY_NAME_DISTRIBUTION = "distribution";
 
-        public TraktRating ReadObject(string json)
+        public ITraktRating ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -24,7 +24,7 @@
             }
         }
 
-        public TraktRating ReadObject(JsonTextReader jsonReader)
+        public ITraktRating ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;

@@ -6,7 +6,7 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class ITraktMetadataObjectJsonReader : ITraktObjectJsonReader<TraktMetadata>
+    internal class ITraktMetadataObjectJsonReader : ITraktObjectJsonReader<ITraktMetadata>
     {
         private const string PROPERTY_NAME_MEDIA_TYPE = "media_type";
         private const string PROPERTY_NAME_RESOLUTION = "resolution";
@@ -14,7 +14,7 @@
         private const string PROPERTY_NAME_AUDIO_CHANNELS = "audio_channels";
         private const string PROPERTY_NAME_3D = "3d";
 
-        public TraktMetadata ReadObject(string json)
+        public ITraktMetadata ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -26,7 +26,7 @@
             }
         }
 
-        public TraktMetadata ReadObject(JsonTextReader jsonReader)
+        public ITraktMetadata ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;

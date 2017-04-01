@@ -5,11 +5,11 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class ITraktImageObjectJsonReader : ITraktObjectJsonReader<TraktImage>
+    internal class ITraktImageObjectJsonReader : ITraktObjectJsonReader<ITraktImage>
     {
         private const string PROPERTY_NAME_FULL = "full";
 
-        public TraktImage ReadObject(string json)
+        public ITraktImage ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -21,7 +21,7 @@
             }
         }
 
-        public TraktImage ReadObject(JsonTextReader jsonReader)
+        public ITraktImage ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;

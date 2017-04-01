@@ -5,12 +5,12 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class ITraktErrorObjectJsonReader : ITraktObjectJsonReader<TraktError>
+    internal class ITraktErrorObjectJsonReader : ITraktObjectJsonReader<ITraktError>
     {
         private const string PROPERTY_NAME_ERROR = "error";
         private const string PROPERTY_NAME_ERROR_DESCRIPTION = "error_description";
 
-        public TraktError ReadObject(string json)
+        public ITraktError ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -22,7 +22,7 @@
             }
         }
 
-        public TraktError ReadObject(JsonTextReader jsonReader)
+        public ITraktError ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;

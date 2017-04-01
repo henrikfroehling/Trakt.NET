@@ -5,7 +5,7 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class ITraktSharingObjectJsonReader : ITraktObjectJsonReader<TraktSharing>
+    internal class ITraktSharingObjectJsonReader : ITraktObjectJsonReader<ITraktSharing>
     {
         private const string PROPERTY_NAME_FACEBOOK = "facebook";
         private const string PROPERTY_NAME_TWITTER = "twitter";
@@ -14,7 +14,7 @@
         private const string PROPERTY_NAME_MEDIUM = "medium";
         private const string PROPERTY_NAME_SLACK = "slack";
 
-        public TraktSharing ReadObject(string json)
+        public ITraktSharing ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -26,7 +26,7 @@
             }
         }
 
-        public TraktSharing ReadObject(JsonTextReader jsonReader)
+        public ITraktSharing ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;

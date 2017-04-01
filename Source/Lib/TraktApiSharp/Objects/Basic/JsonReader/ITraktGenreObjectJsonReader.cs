@@ -5,12 +5,12 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class ITraktGenreObjectJsonReader : ITraktObjectJsonReader<TraktGenre>
+    internal class ITraktGenreObjectJsonReader : ITraktObjectJsonReader<ITraktGenre>
     {
         private const string PROPERTY_NAME_NAME = "name";
         private const string PROPERTY_NAME_SLUG = "slug";
 
-        public TraktGenre ReadObject(string json)
+        public ITraktGenre ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -22,7 +22,7 @@
             }
         }
 
-        public TraktGenre ReadObject(JsonTextReader jsonReader)
+        public ITraktGenre ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;

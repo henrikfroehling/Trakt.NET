@@ -5,7 +5,7 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class ITraktStatisticsObjectJsonReader : ITraktObjectJsonReader<TraktStatistics>
+    internal class ITraktStatisticsObjectJsonReader : ITraktObjectJsonReader<ITraktStatistics>
     {
         private const string PROPERTY_NAME_WATCHERS = "watchers";
         private const string PROPERTY_NAME_PLAYS = "plays";
@@ -15,7 +15,7 @@
         private const string PROPERTY_NAME_LISTS = "lists";
         private const string PROPERTY_NAME_VOTES = "votes";
 
-        public TraktStatistics ReadObject(string json)
+        public ITraktStatistics ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -27,7 +27,7 @@
             }
         }
 
-        public TraktStatistics ReadObject(JsonTextReader jsonReader)
+        public ITraktStatistics ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
