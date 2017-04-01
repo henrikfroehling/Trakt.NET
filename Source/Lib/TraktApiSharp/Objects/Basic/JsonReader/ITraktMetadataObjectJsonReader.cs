@@ -6,7 +6,7 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class TraktMetadataObjectJsonReader : ITraktObjectJsonReader<TraktMetadata>
+    internal class ITraktMetadataObjectJsonReader : ITraktObjectJsonReader<TraktMetadata>
     {
         private const string PROPERTY_NAME_MEDIA_TYPE = "media_type";
         private const string PROPERTY_NAME_RESOLUTION = "resolution";

@@ -5,7 +5,7 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class TraktStatisticsObjectJsonReader : ITraktObjectJsonReader<TraktStatistics>
+    internal class ITraktStatisticsObjectJsonReader : ITraktObjectJsonReader<TraktStatistics>
     {
         private const string PROPERTY_NAME_WATCHERS = "watchers";
         private const string PROPERTY_NAME_PLAYS = "plays";

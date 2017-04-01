@@ -5,7 +5,7 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class TraktImageObjectJsonReader : ITraktObjectJsonReader<TraktImage>
+    internal class ITraktImageObjectJsonReader : ITraktObjectJsonReader<TraktImage>
     {
         private const string PROPERTY_NAME_FULL = "full";
 

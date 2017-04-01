@@ -10,18 +10,18 @@
     using Xunit;
 
     [Category("Objects.JsonReader.Basic")]
-    public class TraktGenreObjectJsonReader_Tests
+    public class ITraktGenreObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_TraktGenreObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
+        public void Test_ITraktGenreObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(TraktGenreObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktGenre>));
+            typeof(ITraktGenreObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktGenre>));
         }
 
         [Fact]
-        public void Test_TraktGenreObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public void Test_ITraktGenreObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktGenreObjectJsonReader();
+            var jsonReader = new ITraktGenreObjectJsonReader();
 
             var traktGenre = jsonReader.ReadObject(JSON_COMPLETE);
 
@@ -32,9 +32,9 @@
         }
 
         [Fact]
-        public void Test_TraktGenreObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public void Test_ITraktGenreObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new TraktGenreObjectJsonReader();
+            var jsonReader = new ITraktGenreObjectJsonReader();
 
             var traktGenre = jsonReader.ReadObject(JSON_INCOMPLETE_1);
 
@@ -45,9 +45,9 @@
         }
 
         [Fact]
-        public void Test_TraktGenreObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public void Test_ITraktGenreObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new TraktGenreObjectJsonReader();
+            var jsonReader = new ITraktGenreObjectJsonReader();
 
             var traktGenre = jsonReader.ReadObject(JSON_INCOMPLETE_2);
 
@@ -58,9 +58,9 @@
         }
 
         [Fact]
-        public void Test_TraktGenreObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public void Test_ITraktGenreObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new TraktGenreObjectJsonReader();
+            var jsonReader = new ITraktGenreObjectJsonReader();
 
             var traktGenre = jsonReader.ReadObject(JSON_NOT_VALID_1);
 
@@ -71,9 +71,9 @@
         }
 
         [Fact]
-        public void Test_TraktGenreObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public void Test_ITraktGenreObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new TraktGenreObjectJsonReader();
+            var jsonReader = new ITraktGenreObjectJsonReader();
 
             var traktGenre = jsonReader.ReadObject(JSON_NOT_VALID_2);
 
@@ -84,9 +84,9 @@
         }
 
         [Fact]
-        public void Test_TraktGenreObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public void Test_ITraktGenreObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new TraktGenreObjectJsonReader();
+            var jsonReader = new ITraktGenreObjectJsonReader();
 
             var traktGenre = jsonReader.ReadObject(JSON_NOT_VALID_3);
 
@@ -97,27 +97,27 @@
         }
 
         [Fact]
-        public void Test_TraktGenreObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_ITraktGenreObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktGenreObjectJsonReader();
+            var jsonReader = new ITraktGenreObjectJsonReader();
 
             var traktGenre = jsonReader.ReadObject(default(string));
             traktGenre.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktGenreObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public void Test_ITraktGenreObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktGenreObjectJsonReader();
+            var jsonReader = new ITraktGenreObjectJsonReader();
 
             var traktGenre = jsonReader.ReadObject(string.Empty);
             traktGenre.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktGenreObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public void Test_ITraktGenreObjectJsonReader_ReadObject_From_JsonReader_Complete()
         {
-            var traktJsonReader = new TraktGenreObjectJsonReader();
+            var traktJsonReader = new ITraktGenreObjectJsonReader();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -132,9 +132,9 @@
         }
 
         [Fact]
-        public void Test_TraktGenreObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
+        public void Test_ITraktGenreObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
         {
-            var traktJsonReader = new TraktGenreObjectJsonReader();
+            var traktJsonReader = new ITraktGenreObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -149,9 +149,9 @@
         }
 
         [Fact]
-        public void Test_TraktGenreObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
+        public void Test_ITraktGenreObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
         {
-            var traktJsonReader = new TraktGenreObjectJsonReader();
+            var traktJsonReader = new ITraktGenreObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -166,9 +166,9 @@
         }
 
         [Fact]
-        public void Test_TraktGenreObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
+        public void Test_ITraktGenreObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
         {
-            var traktJsonReader = new TraktGenreObjectJsonReader();
+            var traktJsonReader = new ITraktGenreObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -183,9 +183,9 @@
         }
 
         [Fact]
-        public void Test_TraktGenreObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
+        public void Test_ITraktGenreObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
         {
-            var traktJsonReader = new TraktGenreObjectJsonReader();
+            var traktJsonReader = new ITraktGenreObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -200,9 +200,9 @@
         }
 
         [Fact]
-        public void Test_TraktGenreObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
+        public void Test_ITraktGenreObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
         {
-            var traktJsonReader = new TraktGenreObjectJsonReader();
+            var traktJsonReader = new ITraktGenreObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -217,18 +217,18 @@
         }
 
         [Fact]
-        public void Test_TraktGenreObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_ITraktGenreObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new TraktGenreObjectJsonReader();
+            var jsonReader = new ITraktGenreObjectJsonReader();
 
             var traktGenre = jsonReader.ReadObject(default(JsonTextReader));
             traktGenre.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktGenreObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public void Test_ITraktGenreObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var traktJsonReader = new TraktGenreObjectJsonReader();
+            var traktJsonReader = new ITraktGenreObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

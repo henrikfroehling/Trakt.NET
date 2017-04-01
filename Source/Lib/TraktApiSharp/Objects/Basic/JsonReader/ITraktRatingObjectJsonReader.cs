@@ -6,7 +6,7 @@
     using System.Collections.Generic;
     using System.IO;
 
-    internal class TraktRatingObjectJsonReader : ITraktObjectJsonReader<TraktRating>
+    internal class ITraktRatingObjectJsonReader : ITraktObjectJsonReader<TraktRating>
     {
         private const string PROPERTY_NAME_RATING = "rating";
         private const string PROPERTY_NAME_VOTES = "votes";

@@ -10,18 +10,18 @@
     using Xunit;
 
     [Category("Objects.JsonReader.Basic")]
-    public class TraktImageObjectJsonReader_Tests
+    public class ITraktImageObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_TraktImageObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
+        public void Test_ITraktImageObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(TraktImageObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktImage>));
+            typeof(ITraktImageObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktImage>));
         }
 
         [Fact]
-        public void Test_TraktImageObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public void Test_ITraktImageObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktImageObjectJsonReader();
+            var jsonReader = new ITraktImageObjectJsonReader();
 
             var traktImage = jsonReader.ReadObject(JSON_COMPLETE);
 
@@ -30,9 +30,9 @@
         }
 
         [Fact]
-        public void Test_TraktImageObjectJsonReader_ReadObject_From_Json_String_Not_Valid()
+        public void Test_ITraktImageObjectJsonReader_ReadObject_From_Json_String_Not_Valid()
         {
-            var jsonReader = new TraktImageObjectJsonReader();
+            var jsonReader = new ITraktImageObjectJsonReader();
 
             var traktImage = jsonReader.ReadObject(JSON_NOT_VALID);
 
@@ -41,27 +41,27 @@
         }
 
         [Fact]
-        public void Test_TraktImageObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_ITraktImageObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktImageObjectJsonReader();
+            var jsonReader = new ITraktImageObjectJsonReader();
 
             var traktImage = jsonReader.ReadObject(default(string));
             traktImage.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktImageObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public void Test_ITraktImageObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktImageObjectJsonReader();
+            var jsonReader = new ITraktImageObjectJsonReader();
 
             var traktImage = jsonReader.ReadObject(string.Empty);
             traktImage.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktImageObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public void Test_ITraktImageObjectJsonReader_ReadObject_From_JsonReader_Complete()
         {
-            var traktJsonReader = new TraktImageObjectJsonReader();
+            var traktJsonReader = new ITraktImageObjectJsonReader();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -74,9 +74,9 @@
         }
 
         [Fact]
-        public void Test_TraktImageObjectJsonReader_ReadObject_From_JsonReader_Not_Valid()
+        public void Test_ITraktImageObjectJsonReader_ReadObject_From_JsonReader_Not_Valid()
         {
-            var traktJsonReader = new TraktImageObjectJsonReader();
+            var traktJsonReader = new ITraktImageObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID))
             using (var jsonReader = new JsonTextReader(reader))
@@ -89,18 +89,18 @@
         }
 
         [Fact]
-        public void Test_TraktImageObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_ITraktImageObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new TraktImageObjectJsonReader();
+            var jsonReader = new ITraktImageObjectJsonReader();
 
             var traktImage = jsonReader.ReadObject(default(JsonTextReader));
             traktImage.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktImageObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public void Test_ITraktImageObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var traktJsonReader = new TraktImageObjectJsonReader();
+            var traktJsonReader = new ITraktImageObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

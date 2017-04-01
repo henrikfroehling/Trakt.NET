@@ -5,7 +5,7 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class TraktErrorObjectJsonReader : ITraktObjectJsonReader<TraktError>
+    internal class ITraktErrorObjectJsonReader : ITraktObjectJsonReader<TraktError>
     {
         private const string PROPERTY_NAME_ERROR = "error";
         private const string PROPERTY_NAME_ERROR_DESCRIPTION = "error_description";

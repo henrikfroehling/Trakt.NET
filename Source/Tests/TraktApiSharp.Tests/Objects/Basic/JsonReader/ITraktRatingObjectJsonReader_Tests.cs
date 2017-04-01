@@ -11,18 +11,18 @@
     using Xunit;
 
     [Category("Objects.JsonReader.Basic")]
-    public class TraktRatingObjectJsonReader_Tests
+    public class ITraktRatingObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
+        public void Test_ITraktRatingObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(TraktRatingObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktRating>));
+            typeof(ITraktRatingObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktRating>));
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktRatingObjectJsonReader();
+            var jsonReader = new ITraktRatingObjectJsonReader();
 
             var traktRating = jsonReader.ReadObject(JSON_COMPLETE);
 
@@ -48,9 +48,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new TraktRatingObjectJsonReader();
+            var jsonReader = new ITraktRatingObjectJsonReader();
 
             var traktRating = jsonReader.ReadObject(JSON_INCOMPLETE_1);
 
@@ -76,9 +76,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new TraktRatingObjectJsonReader();
+            var jsonReader = new ITraktRatingObjectJsonReader();
 
             var traktRating = jsonReader.ReadObject(JSON_INCOMPLETE_2);
 
@@ -104,9 +104,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_Json_String_Incomplete_3()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_Json_String_Incomplete_3()
         {
-            var jsonReader = new TraktRatingObjectJsonReader();
+            var jsonReader = new ITraktRatingObjectJsonReader();
 
             var traktRating = jsonReader.ReadObject(JSON_INCOMPLETE_3);
 
@@ -117,9 +117,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_Json_String_Incomplete_4()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_Json_String_Incomplete_4()
         {
-            var jsonReader = new TraktRatingObjectJsonReader();
+            var jsonReader = new ITraktRatingObjectJsonReader();
 
             var traktRating = jsonReader.ReadObject(JSON_INCOMPLETE_4);
 
@@ -145,9 +145,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new TraktRatingObjectJsonReader();
+            var jsonReader = new ITraktRatingObjectJsonReader();
 
             var traktRating = jsonReader.ReadObject(JSON_NOT_VALID_1);
 
@@ -173,9 +173,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new TraktRatingObjectJsonReader();
+            var jsonReader = new ITraktRatingObjectJsonReader();
 
             var traktRating = jsonReader.ReadObject(JSON_NOT_VALID_2);
 
@@ -201,9 +201,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new TraktRatingObjectJsonReader();
+            var jsonReader = new ITraktRatingObjectJsonReader();
 
             var traktRating = jsonReader.ReadObject(JSON_NOT_VALID_3);
 
@@ -214,9 +214,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_Json_String_Not_Valid_4()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_Json_String_Not_Valid_4()
         {
-            var jsonReader = new TraktRatingObjectJsonReader();
+            var jsonReader = new ITraktRatingObjectJsonReader();
 
             var traktRating = jsonReader.ReadObject(JSON_NOT_VALID_4);
 
@@ -227,9 +227,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_Json_String_Not_Valid_5()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_Json_String_Not_Valid_5()
         {
-            var jsonReader = new TraktRatingObjectJsonReader();
+            var jsonReader = new ITraktRatingObjectJsonReader();
 
             var traktRating = jsonReader.ReadObject(JSON_NOT_VALID_5);
 
@@ -255,27 +255,27 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktRatingObjectJsonReader();
+            var jsonReader = new ITraktRatingObjectJsonReader();
 
             var traktRating = jsonReader.ReadObject(default(string));
             traktRating.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktRatingObjectJsonReader();
+            var jsonReader = new ITraktRatingObjectJsonReader();
 
             var traktRating = jsonReader.ReadObject(string.Empty);
             traktRating.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_JsonReader_Complete()
         {
-            var traktJsonReader = new TraktRatingObjectJsonReader();
+            var traktJsonReader = new ITraktRatingObjectJsonReader();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -305,9 +305,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
         {
-            var traktJsonReader = new TraktRatingObjectJsonReader();
+            var traktJsonReader = new ITraktRatingObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -337,9 +337,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
         {
-            var traktJsonReader = new TraktRatingObjectJsonReader();
+            var traktJsonReader = new ITraktRatingObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -369,9 +369,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_JsonReader_Incomplete_3()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_JsonReader_Incomplete_3()
         {
-            var traktJsonReader = new TraktRatingObjectJsonReader();
+            var traktJsonReader = new ITraktRatingObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -386,9 +386,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_JsonReader_Incomplete_4()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_JsonReader_Incomplete_4()
         {
-            var traktJsonReader = new TraktRatingObjectJsonReader();
+            var traktJsonReader = new ITraktRatingObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_4))
             using (var jsonReader = new JsonTextReader(reader))
@@ -418,9 +418,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
         {
-            var traktJsonReader = new TraktRatingObjectJsonReader();
+            var traktJsonReader = new ITraktRatingObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -450,9 +450,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
         {
-            var traktJsonReader = new TraktRatingObjectJsonReader();
+            var traktJsonReader = new ITraktRatingObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -482,9 +482,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
         {
-            var traktJsonReader = new TraktRatingObjectJsonReader();
+            var traktJsonReader = new ITraktRatingObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -499,9 +499,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_4()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_4()
         {
-            var traktJsonReader = new TraktRatingObjectJsonReader();
+            var traktJsonReader = new ITraktRatingObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_4))
             using (var jsonReader = new JsonTextReader(reader))
@@ -516,9 +516,9 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_5()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_5()
         {
-            var traktJsonReader = new TraktRatingObjectJsonReader();
+            var traktJsonReader = new ITraktRatingObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_5))
             using (var jsonReader = new JsonTextReader(reader))
@@ -548,18 +548,18 @@
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new TraktRatingObjectJsonReader();
+            var jsonReader = new ITraktRatingObjectJsonReader();
 
             var traktRating = jsonReader.ReadObject(default(JsonTextReader));
             traktRating.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktRatingObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public void Test_ITraktRatingObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var traktJsonReader = new TraktRatingObjectJsonReader();
+            var traktJsonReader = new ITraktRatingObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

@@ -5,7 +5,7 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class TraktSharingObjectJsonReader : ITraktObjectJsonReader<TraktSharing>
+    internal class ITraktSharingObjectJsonReader : ITraktObjectJsonReader<TraktSharing>
     {
         private const string PROPERTY_NAME_FACEBOOK = "facebook";
         private const string PROPERTY_NAME_TWITTER = "twitter";
