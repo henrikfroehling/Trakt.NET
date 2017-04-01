@@ -60,7 +60,7 @@
             return null;
         }
 
-        private static void ReadDistribution(JsonTextReader jsonReader, TraktRating traktRating)
+        private static void ReadDistribution(JsonTextReader jsonReader, ITraktRating traktRating)
         {
             const string nr1 = "1";
             const string nr2 = "2";
