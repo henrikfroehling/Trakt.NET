@@ -14,7 +14,7 @@
         [Fact]
         public void Test_TraktMovieTranslation_Inherits_TraktTranslation()
         {
-            typeof(TraktMovieTranslation).GetInterfaces().Should().Contain(typeof(TraktTranslation));
+            typeof(TraktMovieTranslation).IsSubclassOf(typeof(TraktTranslation)).Should().BeTrue();
         }
 
         [Fact]
