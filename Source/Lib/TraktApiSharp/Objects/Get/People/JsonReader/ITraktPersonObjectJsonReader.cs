@@ -6,7 +6,7 @@
     using System;
     using System.IO;
 
-    internal class TraktPersonObjectJsonReader : ITraktObjectJsonReader<TraktPerson>
+    internal class ITraktPersonObjectJsonReader : ITraktObjectJsonReader<TraktPerson>
     {
         private const string PROPERTY_NAME_NAME = "name";
         private const string PROPERTY_NAME_IDS = "ids";
@@ -35,7 +35,7 @@
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var idsObjectReader = new TraktPersonIdsObjectJsonReader();
+                var idsObjectReader = new ITraktPersonIdsObjectJsonReader();
                 var traktPerson = new TraktPerson();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)

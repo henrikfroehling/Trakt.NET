@@ -35,7 +35,7 @@
         [Fact]
         public void Test_TraktPerson_From_Minimal_Json()
         {
-            var jsonReader = new TraktPersonObjectJsonReader();
+            var jsonReader = new ITraktPersonObjectJsonReader();
             var person = jsonReader.ReadObject(MINIMAL_JSON);
 
             person.Should().NotBeNull();
@@ -57,7 +57,7 @@
         [Fact]
         public void Test_TraktPerson_From_Full_Json()
         {
-            var jsonReader = new TraktPersonObjectJsonReader();
+            var jsonReader = new ITraktPersonObjectJsonReader();
             var person = jsonReader.ReadObject(FULL_JSON);
 
             person.Should().NotBeNull();
