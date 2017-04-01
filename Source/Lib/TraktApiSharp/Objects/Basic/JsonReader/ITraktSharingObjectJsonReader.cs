@@ -33,7 +33,7 @@
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var traktSharing = new TraktSharing();
+                ITraktSharing traktSharing = new TraktSharing();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {

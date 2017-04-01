@@ -33,7 +33,7 @@
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var traktMetadata = new TraktMetadata();
+                ITraktMetadata traktMetadata = new TraktMetadata();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {

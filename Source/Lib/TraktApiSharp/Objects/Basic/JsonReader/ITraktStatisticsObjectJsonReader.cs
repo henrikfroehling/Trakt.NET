@@ -34,7 +34,7 @@
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var traktStatistics = new TraktStatistics();
+                ITraktStatistics traktStatistics = new TraktStatistics();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {

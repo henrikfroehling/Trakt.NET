@@ -29,7 +29,7 @@
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var traktGenre = new TraktGenre();
+                ITraktGenre traktGenre = new TraktGenre();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {

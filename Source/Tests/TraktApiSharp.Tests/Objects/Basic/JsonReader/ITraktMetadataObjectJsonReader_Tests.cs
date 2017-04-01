@@ -5,7 +5,7 @@
     using System.IO;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Basic.Implementations;
+    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.JsonReader;
     using TraktApiSharp.Objects.JsonReader;
     using Xunit;
@@ -16,7 +16,7 @@
         [Fact]
         public void Test_ITraktMetadataObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(ITraktMetadataObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktMetadata>));
+            typeof(ITraktMetadataObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<ITraktMetadata>));
         }
 
         [Fact]

@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.IO;
     using Traits;
-    using TraktApiSharp.Objects.Basic.Implementations;
+    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.JsonReader;
     using TraktApiSharp.Objects.JsonReader;
     using Xunit;
@@ -16,7 +16,7 @@
         [Fact]
         public void Test_ITraktRatingObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(ITraktRatingObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktRating>));
+            typeof(ITraktRatingObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<ITraktRating>));
         }
 
         [Fact]
