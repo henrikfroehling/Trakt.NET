@@ -11,7 +11,7 @@
     using TraktApiSharp.Objects.JsonReader;
     using Xunit;
 
-    [Category("Objects.JsonReader.Get.People")]
+    [Category("Objects.Get.People.JsonReader")]
     public class ITraktPersonObjectJsonReader_Tests
     {
         [Fact]

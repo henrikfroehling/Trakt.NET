@@ -11,7 +11,7 @@
     using TraktApiSharp.Objects.JsonReader;
     using Xunit;
 
-    [Category("Objects.JsonReader.Get.Episodes")]
+    [Category("Objects.Get.Episodes.JsonReader")]
     public class ITraktEpisodeCollectionProgressArrayJsonReader_Tests
     {
         [Fact]

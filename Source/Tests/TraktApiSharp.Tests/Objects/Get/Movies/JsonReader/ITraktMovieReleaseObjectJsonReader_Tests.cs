@@ -11,7 +11,7 @@
     using TraktApiSharp.Objects.JsonReader;
     using Xunit;
 
-    [Category("Objects.JsonReader.Get.Movies")]
+    [Category("Objects.Get.Movies.JsonReader")]
     public class ITraktMovieReleaseObjectJsonReader_Tests
     {
         [Fact]

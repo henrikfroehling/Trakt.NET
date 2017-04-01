@@ -10,7 +10,7 @@
     using TraktApiSharp.Objects.JsonReader;
     using Xunit;
 
-    [Category("Objects.JsonReader.Basic")]
+    [Category("Objects.Basic.JsonReader")]
     public class ITraktRatingObjectJsonReader_Tests
     {
         [Fact]

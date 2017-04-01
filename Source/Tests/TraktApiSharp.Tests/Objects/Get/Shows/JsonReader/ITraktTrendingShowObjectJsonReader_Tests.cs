@@ -9,7 +9,7 @@
     using TraktApiSharp.Objects.JsonReader;
     using Xunit;
 
-    [Category("Objects.JsonReader.Get.Shows")]
+    [Category("Objects.Get.Shows.JsonReader")]
     public class ITraktTrendingShowObjectJsonReader_Tests
     {
         [Fact]

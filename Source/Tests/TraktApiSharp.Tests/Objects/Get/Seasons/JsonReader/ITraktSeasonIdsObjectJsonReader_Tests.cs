@@ -9,7 +9,7 @@
     using TraktApiSharp.Objects.JsonReader;
     using Xunit;
 
-    [Category("Objects.JsonReader.Get.Seasons")]
+    [Category("Objects.Get.Seasons.JsonReader")]
     public class ITraktSeasonIdsObjectJsonReader_Tests
     {
         [Fact]
