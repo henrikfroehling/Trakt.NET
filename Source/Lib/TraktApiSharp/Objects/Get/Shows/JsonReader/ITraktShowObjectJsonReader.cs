@@ -71,8 +71,7 @@
                             traktShow.Year = jsonReader.ReadAsInt32();
                             break;
                         case PROPERTY_NAME_IDS:
-                            // TODO use interface
-                            //traktShow.Ids = idsObjectReader.ReadObject(jsonReader);
+                            traktShow.Ids = idsObjectReader.ReadObject(jsonReader);
                             break;
                         case PROPERTY_NAME_OVERVIEW:
                             traktShow.Overview = jsonReader.ReadAsString();
@@ -86,8 +85,7 @@
                                 break;
                             }
                         case PROPERTY_NAME_AIRS:
-                            // TODO use interface
-                            //traktShow.Airs = airsObjectReader.ReadObject(jsonReader);
+                            traktShow.Airs = airsObjectReader.ReadObject(jsonReader);
                             break;
                         case PROPERTY_NAME_RUNTIME:
                             traktShow.Runtime = jsonReader.ReadAsInt32();
@@ -139,8 +137,7 @@
                             traktShow.AiredEpisodes = jsonReader.ReadAsInt32();
                             break;
                         case PROPERTY_NAME_SEASONS:
-                            // TODO use interface
-                            //traktShow.Seasons = seasonsArrayReader.ReadArray(jsonReader);
+                            traktShow.Seasons = seasonsArrayReader.ReadArray(jsonReader);
                             break;
                         default:
                             JsonReaderHelper.OverreadInvalidContent(jsonReader);
