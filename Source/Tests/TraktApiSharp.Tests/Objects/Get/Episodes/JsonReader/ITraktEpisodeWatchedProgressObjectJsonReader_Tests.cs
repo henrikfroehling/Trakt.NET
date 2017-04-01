@@ -5,7 +5,7 @@
     using System;
     using System.IO;
     using Traits;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
+    using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.JsonReader;
     using TraktApiSharp.Objects.JsonReader;
     using Xunit;
@@ -16,7 +16,7 @@
         [Fact]
         public void Test_ITraktEpisodeWatchedProgressObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(ITraktEpisodeWatchedProgressObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktEpisodeWatchedProgress>));
+            typeof(ITraktEpisodeWatchedProgressObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<ITraktEpisodeWatchedProgress>));
         }
 
         [Fact]

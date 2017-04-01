@@ -5,13 +5,13 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class ITraktEpisodeTranslationObjectJsonReader : ITraktObjectJsonReader<TraktEpisodeTranslation>
+    internal class ITraktEpisodeTranslationObjectJsonReader : ITraktObjectJsonReader<ITraktEpisodeTranslation>
     {
         private const string PROPERTY_NAME_TITLE = "title";
         private const string PROPERTY_NAME_OVERVIEW = "overview";
         private const string PROPERTY_NAME_LANGUAGE_CODE = "language";
 
-        public TraktEpisodeTranslation ReadObject(string json)
+        public ITraktEpisodeTranslation ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -23,14 +23,14 @@
             }
         }
 
-        public TraktEpisodeTranslation ReadObject(JsonTextReader jsonReader)
+        public ITraktEpisodeTranslation ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var traktEpisodeTranslation = new TraktEpisodeTranslation();
+                ITraktEpisodeTranslation traktEpisodeTranslation = new TraktEpisodeTranslation();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {

@@ -6,9 +6,9 @@
     using System.Collections.Generic;
     using System.IO;
 
-    internal class ITraktEpisodeTranslationArrayJsonReader : ITraktArrayJsonReader<TraktEpisodeTranslation>
+    internal class ITraktEpisodeTranslationArrayJsonReader : ITraktArrayJsonReader<ITraktEpisodeTranslation>
     {
-        public IEnumerable<TraktEpisodeTranslation> ReadArray(string json)
+        public IEnumerable<ITraktEpisodeTranslation> ReadArray(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -20,7 +20,7 @@
             }
         }
 
-        public IEnumerable<TraktEpisodeTranslation> ReadArray(JsonTextReader jsonReader)
+        public IEnumerable<ITraktEpisodeTranslation> ReadArray(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
@@ -28,9 +28,9 @@
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var episodeTranslationReader = new ITraktEpisodeTranslationObjectJsonReader();
-                var traktEpisodeTranslations = new List<TraktEpisodeTranslation>();
+                var traktEpisodeTranslations = new List<ITraktEpisodeTranslation>();
 
-                var traktEpisodeTranslation = episodeTranslationReader.ReadObject(jsonReader);
+                ITraktEpisodeTranslation traktEpisodeTranslation = episodeTranslationReader.ReadObject(jsonReader);
 
                 while (traktEpisodeTranslation != null)
                 {
