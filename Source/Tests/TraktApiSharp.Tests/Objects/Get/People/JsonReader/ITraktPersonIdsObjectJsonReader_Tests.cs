@@ -4,7 +4,7 @@
     using Newtonsoft.Json;
     using System.IO;
     using Traits;
-    using TraktApiSharp.Objects.Get.People.Implementations;
+    using TraktApiSharp.Objects.Get.People;
     using TraktApiSharp.Objects.Get.People.JsonReader;
     using TraktApiSharp.Objects.JsonReader;
     using Xunit;
@@ -15,7 +15,7 @@
         [Fact]
         public void Test_ITraktPersonIdsObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(ITraktPersonIdsObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktPersonIds>));
+            typeof(ITraktPersonIdsObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<ITraktPersonIds>));
         }
 
         [Fact]
