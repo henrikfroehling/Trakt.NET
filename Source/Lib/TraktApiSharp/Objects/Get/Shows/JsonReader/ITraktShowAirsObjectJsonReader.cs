@@ -5,13 +5,13 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class ITraktShowAirsObjectJsonReader : ITraktObjectJsonReader<TraktShowAirs>
+    internal class ITraktShowAirsObjectJsonReader : ITraktObjectJsonReader<ITraktShowAirs>
     {
         private const string PROPERTY_NAME_DAY = "day";
         private const string PROPERTY_NAME_TIME = "time";
         private const string PROPERTY_NAME_TIMEZONE = "timezone";
 
-        public TraktShowAirs ReadObject(string json)
+        public ITraktShowAirs ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -23,14 +23,14 @@
             }
         }
 
-        public TraktShowAirs ReadObject(JsonTextReader jsonReader)
+        public ITraktShowAirs ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var traktShowAirs = new TraktShowAirs();
+                ITraktShowAirs traktShowAirs = new TraktShowAirs();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {
