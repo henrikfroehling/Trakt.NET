@@ -1,14 +1,13 @@
 ﻿namespace TraktApiSharp.Objects.Get.Seasons.JsonReader
 {
-    using Implementations;
     using Newtonsoft.Json;
     using Objects.JsonReader;
     using System.Collections.Generic;
     using System.IO;
 
-    internal class ITraktSeasonArrayJsonReader : ITraktArrayJsonReader<TraktSeason>
+    internal class ITraktSeasonArrayJsonReader : ITraktArrayJsonReader<ITraktSeason>
     {
-        public IEnumerable<TraktSeason> ReadArray(string json)
+        public IEnumerable<ITraktSeason> ReadArray(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -20,7 +19,7 @@
             }
         }
 
-        public IEnumerable<TraktSeason> ReadArray(JsonTextReader jsonReader)
+        public IEnumerable<ITraktSeason> ReadArray(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
@@ -28,9 +27,9 @@
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var seasonReader = new ITraktSeasonObjectJsonReader();
-                var traktSeasons = new List<TraktSeason>();
+                var traktSeasons = new List<ITraktSeason>();
 
-                var traktSeason = seasonReader.ReadObject(jsonReader);
+                ITraktSeason traktSeason = seasonReader.ReadObject(jsonReader);
 
                 while (traktSeason != null)
                 {

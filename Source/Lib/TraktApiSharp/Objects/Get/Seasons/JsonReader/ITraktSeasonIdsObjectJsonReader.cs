@@ -5,14 +5,14 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class ITraktSeasonIdsObjectJsonReader : ITraktObjectJsonReader<TraktSeasonIds>
+    internal class ITraktSeasonIdsObjectJsonReader : ITraktObjectJsonReader<ITraktSeasonIds>
     {
         private const string PROPERTY_NAME_TRAKT = "trakt";
         private const string PROPERTY_NAME_TVDB = "tvdb";
         private const string PROPERTY_NAME_TMDB = "tmdb";
         private const string PROPERTY_NAME_TVRAGE = "tvrage";
 
-        public TraktSeasonIds ReadObject(string json)
+        public ITraktSeasonIds ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -24,14 +24,14 @@
             }
         }
 
-        public TraktSeasonIds ReadObject(JsonTextReader jsonReader)
+        public ITraktSeasonIds ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var traktSeasonIds = new TraktSeasonIds();
+                ITraktSeasonIds traktSeasonIds = new TraktSeasonIds();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {

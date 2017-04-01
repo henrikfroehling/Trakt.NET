@@ -6,7 +6,7 @@
     using System.IO;
     using System.Linq;
     using Traits;
-    using TraktApiSharp.Objects.Get.Seasons.Implementations;
+    using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Objects.Get.Seasons.JsonReader;
     using TraktApiSharp.Objects.JsonReader;
     using Xunit;
@@ -17,7 +17,7 @@
         [Fact]
         public void Test_ITraktSeasonWatchedProgressObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(ITraktSeasonWatchedProgressObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktSeasonWatchedProgress>));
+            typeof(ITraktSeasonWatchedProgressObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<ITraktSeasonWatchedProgress>));
         }
 
         [Fact]

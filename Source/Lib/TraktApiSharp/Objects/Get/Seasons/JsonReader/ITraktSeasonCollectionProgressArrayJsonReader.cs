@@ -1,14 +1,13 @@
 ﻿namespace TraktApiSharp.Objects.Get.Seasons.JsonReader
 {
-    using Implementations;
     using Newtonsoft.Json;
     using Objects.JsonReader;
     using System.Collections.Generic;
     using System.IO;
 
-    internal class ITraktSeasonCollectionProgressArrayJsonReader : ITraktArrayJsonReader<TraktSeasonCollectionProgress>
+    internal class ITraktSeasonCollectionProgressArrayJsonReader : ITraktArrayJsonReader<ITraktSeasonCollectionProgress>
     {
-        public IEnumerable<TraktSeasonCollectionProgress> ReadArray(string json)
+        public IEnumerable<ITraktSeasonCollectionProgress> ReadArray(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -20,7 +19,7 @@
             }
         }
 
-        public IEnumerable<TraktSeasonCollectionProgress> ReadArray(JsonTextReader jsonReader)
+        public IEnumerable<ITraktSeasonCollectionProgress> ReadArray(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
@@ -28,9 +27,9 @@
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var seasonCollectionProgressReader = new ITraktSeasonCollectionProgressObjectJsonReader();
-                var traktSeasonCollectionProgresses = new List<TraktSeasonCollectionProgress>();
+                var traktSeasonCollectionProgresses = new List<ITraktSeasonCollectionProgress>();
 
-                var traktSeasonCollectionProgress = seasonCollectionProgressReader.ReadObject(jsonReader);
+                ITraktSeasonCollectionProgress traktSeasonCollectionProgress = seasonCollectionProgressReader.ReadObject(jsonReader);
 
                 while (traktSeasonCollectionProgress != null)
                 {

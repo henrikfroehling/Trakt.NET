@@ -6,14 +6,14 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class ITraktSeasonWatchedProgressObjectJsonReader : ITraktObjectJsonReader<TraktSeasonWatchedProgress>
+    internal class ITraktSeasonWatchedProgressObjectJsonReader : ITraktObjectJsonReader<ITraktSeasonWatchedProgress>
     {
         private const string PROPERTY_NAME_NUMBER = "number";
         private const string PROPERTY_NAME_AIRED = "aired";
         private const string PROPERTY_NAME_COMPLETED = "completed";
         private const string PROPERTY_NAME_EPISODES = "episodes";
 
-        public TraktSeasonWatchedProgress ReadObject(string json)
+        public ITraktSeasonWatchedProgress ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -25,7 +25,7 @@
             }
         }
 
-        public TraktSeasonWatchedProgress ReadObject(JsonTextReader jsonReader)
+        public ITraktSeasonWatchedProgress ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
@@ -33,7 +33,7 @@
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var episodeWatchedProgressArrayReader = new ITraktEpisodeWatchedProgressArrayJsonReader();
-                var traktSeasonWatchedProgress = new TraktSeasonWatchedProgress();
+                ITraktSeasonWatchedProgress traktSeasonWatchedProgress = new TraktSeasonWatchedProgress();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {

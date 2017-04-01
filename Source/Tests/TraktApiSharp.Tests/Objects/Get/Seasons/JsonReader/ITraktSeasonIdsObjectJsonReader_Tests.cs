@@ -4,7 +4,7 @@
     using Newtonsoft.Json;
     using System.IO;
     using Traits;
-    using TraktApiSharp.Objects.Get.Seasons.Implementations;
+    using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Objects.Get.Seasons.JsonReader;
     using TraktApiSharp.Objects.JsonReader;
     using Xunit;
@@ -15,7 +15,7 @@
         [Fact]
         public void Test_ITraktSeasonIdsObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(ITraktSeasonIdsObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktSeasonIds>));
+            typeof(ITraktSeasonIdsObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<ITraktSeasonIds>));
         }
 
         [Fact]

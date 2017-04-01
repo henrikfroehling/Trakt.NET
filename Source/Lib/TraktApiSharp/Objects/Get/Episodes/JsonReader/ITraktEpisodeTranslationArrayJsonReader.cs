@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Episodes.JsonReader
 {
-    using Implementations;
     using Newtonsoft.Json;
     using Objects.JsonReader;
     using System.Collections.Generic;
