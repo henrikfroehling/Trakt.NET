@@ -5,12 +5,13 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class TraktShowAliasObjectJsonReader : ITraktObjectJsonReader<TraktShowAlias>
+    internal class ITraktShowTranslationObjectJsonReader : ITraktObjectJsonReader<TraktShowTranslation>
     {
         private const string PROPERTY_NAME_TITLE = "title";
-        private const string PROPERTY_NAME_COUNTRY = "country";
+        private const string PROPERTY_NAME_OVERVIEW = "overview";
+        private const string PROPERTY_NAME_LANGUAGE_CODE = "language";
 
-        public TraktShowAlias ReadObject(string json)
+        public TraktShowTranslation ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -22,14 +23,14 @@
             }
         }
 
-        public TraktShowAlias ReadObject(JsonTextReader jsonReader)
+        public TraktShowTranslation ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var traktShowAlias = new TraktShowAlias();
+                var traktShowTranslation = new TraktShowTranslation();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -38,10 +39,13 @@
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_TITLE:
-                            traktShowAlias.Title = jsonReader.ReadAsString();
+                            traktShowTranslation.Title = jsonReader.ReadAsString();
                             break;
-                        case PROPERTY_NAME_COUNTRY:
-                            traktShowAlias.CountryCode = jsonReader.ReadAsString();
+                        case PROPERTY_NAME_OVERVIEW:
+                            traktShowTranslation.Overview = jsonReader.ReadAsString();
+                            break;
+                        case PROPERTY_NAME_LANGUAGE_CODE:
+                            traktShowTranslation.LanguageCode = jsonReader.ReadAsString();
                             break;
                         default:
                             JsonReaderHelper.OverreadInvalidContent(jsonReader);
@@ -49,7 +53,7 @@
                     }
                 }
 
-                return traktShowAlias;
+                return traktShowTranslation;
             }
 
             return null;

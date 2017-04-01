@@ -5,7 +5,7 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class TraktShowIdsObjectJsonReader : ITraktObjectJsonReader<TraktShowIds>
+    internal class ITraktShowIdsObjectJsonReader : ITraktObjectJsonReader<TraktShowIds>
     {
         private const string PROPERTY_NAME_TRAKT = "trakt";
         private const string PROPERTY_NAME_SLUG = "slug";

@@ -52,8 +52,8 @@
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var idsObjectReader = new TraktShowIdsObjectJsonReader();
-                var airsObjectReader = new TraktShowAirsObjectJsonReader();
+                var idsObjectReader = new ITraktShowIdsObjectJsonReader();
+                var airsObjectReader = new ITraktShowAirsObjectJsonReader();
                 var seasonsArrayReader = new ITraktSeasonArrayJsonReader();
 
                 ITraktShow traktShow = new TraktShow();

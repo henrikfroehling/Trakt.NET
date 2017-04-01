@@ -29,7 +29,7 @@
         [Fact]
         public void Test_TraktShowAirs_From_Json()
         {
-            var jsonReader = new TraktShowAirsObjectJsonReader();
+            var jsonReader = new ITraktShowAirsObjectJsonReader();
             var showAirs = jsonReader.ReadObject(JSON);
 
             showAirs.Should().NotBeNull();

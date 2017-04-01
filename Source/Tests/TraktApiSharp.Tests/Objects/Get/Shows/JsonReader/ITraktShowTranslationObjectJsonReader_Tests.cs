@@ -10,18 +10,18 @@
     using Xunit;
 
     [Category("Objects.JsonReader.Get.Shows")]
-    public class TraktShowTranslationObjectJsonReader_Tests
+    public class ITraktShowTranslationObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
+        public void Test_ITraktShowTranslationObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(TraktShowTranslationObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktShowTranslation>));
+            typeof(ITraktShowTranslationObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktShowTranslation>));
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktShowTranslationObjectJsonReader();
+            var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
             var traktShowTranslation = jsonReader.ReadObject(JSON_COMPLETE);
 
@@ -32,9 +32,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new TraktShowTranslationObjectJsonReader();
+            var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
             var traktShowTranslation = jsonReader.ReadObject(JSON_INCOMPLETE_1);
 
@@ -45,9 +45,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new TraktShowTranslationObjectJsonReader();
+            var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
             var traktShowTranslation = jsonReader.ReadObject(JSON_INCOMPLETE_2);
 
@@ -58,9 +58,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_3()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_3()
         {
-            var jsonReader = new TraktShowTranslationObjectJsonReader();
+            var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
             var traktShowTranslation = jsonReader.ReadObject(JSON_INCOMPLETE_3);
 
@@ -71,9 +71,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_4()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_4()
         {
-            var jsonReader = new TraktShowTranslationObjectJsonReader();
+            var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
             var traktShowTranslation = jsonReader.ReadObject(JSON_INCOMPLETE_4);
 
@@ -84,9 +84,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_5()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_5()
         {
-            var jsonReader = new TraktShowTranslationObjectJsonReader();
+            var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
             var traktShowTranslation = jsonReader.ReadObject(JSON_INCOMPLETE_5);
 
@@ -97,9 +97,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_6()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_6()
         {
-            var jsonReader = new TraktShowTranslationObjectJsonReader();
+            var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
             var traktShowTranslation = jsonReader.ReadObject(JSON_INCOMPLETE_6);
 
@@ -110,9 +110,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new TraktShowTranslationObjectJsonReader();
+            var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
             var traktShowTranslation = jsonReader.ReadObject(JSON_NOT_VALID_1);
 
@@ -123,9 +123,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new TraktShowTranslationObjectJsonReader();
+            var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
             var traktShowTranslation = jsonReader.ReadObject(JSON_NOT_VALID_2);
 
@@ -136,9 +136,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new TraktShowTranslationObjectJsonReader();
+            var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
             var traktShowTranslation = jsonReader.ReadObject(JSON_NOT_VALID_3);
 
@@ -149,9 +149,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Not_Valid_4()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Not_Valid_4()
         {
-            var jsonReader = new TraktShowTranslationObjectJsonReader();
+            var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
             var traktShowTranslation = jsonReader.ReadObject(JSON_NOT_VALID_4);
 
@@ -162,27 +162,27 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktShowTranslationObjectJsonReader();
+            var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
             var traktShowTranslation = jsonReader.ReadObject(default(string));
             traktShowTranslation.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktShowTranslationObjectJsonReader();
+            var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
             var traktShowTranslation = jsonReader.ReadObject(string.Empty);
             traktShowTranslation.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Complete()
         {
-            var traktJsonReader = new TraktShowTranslationObjectJsonReader();
+            var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -197,9 +197,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
         {
-            var traktJsonReader = new TraktShowTranslationObjectJsonReader();
+            var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -214,9 +214,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
         {
-            var traktJsonReader = new TraktShowTranslationObjectJsonReader();
+            var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -231,9 +231,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_3()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_3()
         {
-            var traktJsonReader = new TraktShowTranslationObjectJsonReader();
+            var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -248,9 +248,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_4()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_4()
         {
-            var traktJsonReader = new TraktShowTranslationObjectJsonReader();
+            var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_4))
             using (var jsonReader = new JsonTextReader(reader))
@@ -265,9 +265,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_5()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_5()
         {
-            var traktJsonReader = new TraktShowTranslationObjectJsonReader();
+            var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_5))
             using (var jsonReader = new JsonTextReader(reader))
@@ -282,9 +282,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_6()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_6()
         {
-            var traktJsonReader = new TraktShowTranslationObjectJsonReader();
+            var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_6))
             using (var jsonReader = new JsonTextReader(reader))
@@ -299,9 +299,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
         {
-            var traktJsonReader = new TraktShowTranslationObjectJsonReader();
+            var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -316,9 +316,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
         {
-            var traktJsonReader = new TraktShowTranslationObjectJsonReader();
+            var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -333,9 +333,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
         {
-            var traktJsonReader = new TraktShowTranslationObjectJsonReader();
+            var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -350,9 +350,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_4()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_4()
         {
-            var traktJsonReader = new TraktShowTranslationObjectJsonReader();
+            var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_4))
             using (var jsonReader = new JsonTextReader(reader))
@@ -367,18 +367,18 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new TraktShowTranslationObjectJsonReader();
+            var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
             var traktShowTranslation = jsonReader.ReadObject(default(JsonTextReader));
             traktShowTranslation.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var traktJsonReader = new TraktShowTranslationObjectJsonReader();
+            var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

@@ -5,13 +5,12 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class TraktShowAirsObjectJsonReader : ITraktObjectJsonReader<TraktShowAirs>
+    internal class ITraktShowAliasObjectJsonReader : ITraktObjectJsonReader<TraktShowAlias>
     {
-        private const string PROPERTY_NAME_DAY = "day";
-        private const string PROPERTY_NAME_TIME = "time";
-        private const string PROPERTY_NAME_TIMEZONE = "timezone";
+        private const string PROPERTY_NAME_TITLE = "title";
+        private const string PROPERTY_NAME_COUNTRY = "country";
 
-        public TraktShowAirs ReadObject(string json)
+        public TraktShowAlias ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -23,14 +22,14 @@
             }
         }
 
-        public TraktShowAirs ReadObject(JsonTextReader jsonReader)
+        public TraktShowAlias ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var traktShowAirs = new TraktShowAirs();
+                var traktShowAlias = new TraktShowAlias();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -38,14 +37,11 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_DAY:
-                            traktShowAirs.Day = jsonReader.ReadAsString();
+                        case PROPERTY_NAME_TITLE:
+                            traktShowAlias.Title = jsonReader.ReadAsString();
                             break;
-                        case PROPERTY_NAME_TIME:
-                            traktShowAirs.Time = jsonReader.ReadAsString();
-                            break;
-                        case PROPERTY_NAME_TIMEZONE:
-                            traktShowAirs.TimeZoneId = jsonReader.ReadAsString();
+                        case PROPERTY_NAME_COUNTRY:
+                            traktShowAlias.CountryCode = jsonReader.ReadAsString();
                             break;
                         default:
                             JsonReaderHelper.OverreadInvalidContent(jsonReader);
@@ -53,7 +49,7 @@
                     }
                 }
 
-                return traktShowAirs;
+                return traktShowAlias;
             }
 
             return null;

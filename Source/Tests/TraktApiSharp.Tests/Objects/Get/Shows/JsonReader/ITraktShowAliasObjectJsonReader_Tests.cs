@@ -10,18 +10,18 @@
     using Xunit;
 
     [Category("Objects.JsonReader.Get.Shows")]
-    public class TraktShowAliasObjectJsonReader_Tests
+    public class ITraktShowAliasObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_TraktShowAliasObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
+        public void Test_ITraktShowAliasObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(TraktShowAliasObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktShowAlias>));
+            typeof(ITraktShowAliasObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktShowAlias>));
         }
 
         [Fact]
-        public void Test_TraktShowAliasObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public void Test_ITraktShowAliasObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktShowAliasObjectJsonReader();
+            var jsonReader = new ITraktShowAliasObjectJsonReader();
 
             var traktShowAlias = jsonReader.ReadObject(JSON_COMPLETE);
 
@@ -31,9 +31,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowAliasObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public void Test_ITraktShowAliasObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new TraktShowAliasObjectJsonReader();
+            var jsonReader = new ITraktShowAliasObjectJsonReader();
 
             var traktShowAlias = jsonReader.ReadObject(JSON_INCOMPLETE_1);
 
@@ -43,9 +43,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowAliasObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public void Test_ITraktShowAliasObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new TraktShowAliasObjectJsonReader();
+            var jsonReader = new ITraktShowAliasObjectJsonReader();
 
             var traktShowAlias = jsonReader.ReadObject(JSON_INCOMPLETE_2);
 
@@ -55,9 +55,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowAliasObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public void Test_ITraktShowAliasObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new TraktShowAliasObjectJsonReader();
+            var jsonReader = new ITraktShowAliasObjectJsonReader();
 
             var traktShowAlias = jsonReader.ReadObject(JSON_NOT_VALID_1);
 
@@ -67,9 +67,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowAliasObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public void Test_ITraktShowAliasObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new TraktShowAliasObjectJsonReader();
+            var jsonReader = new ITraktShowAliasObjectJsonReader();
 
             var traktShowAlias = jsonReader.ReadObject(JSON_NOT_VALID_2);
 
@@ -79,9 +79,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowAliasObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public void Test_ITraktShowAliasObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new TraktShowAliasObjectJsonReader();
+            var jsonReader = new ITraktShowAliasObjectJsonReader();
 
             var traktShowAlias = jsonReader.ReadObject(JSON_NOT_VALID_3);
 
@@ -91,27 +91,27 @@
         }
 
         [Fact]
-        public void Test_TraktShowAliasObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_ITraktShowAliasObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktShowAliasObjectJsonReader();
+            var jsonReader = new ITraktShowAliasObjectJsonReader();
 
             var traktShowAlias = jsonReader.ReadObject(default(string));
             traktShowAlias.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktShowAliasObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public void Test_ITraktShowAliasObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktShowAliasObjectJsonReader();
+            var jsonReader = new ITraktShowAliasObjectJsonReader();
 
             var traktShowAlias = jsonReader.ReadObject(string.Empty);
             traktShowAlias.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktShowAliasObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public void Test_ITraktShowAliasObjectJsonReader_ReadObject_From_JsonReader_Complete()
         {
-            var traktJsonReader = new TraktShowAliasObjectJsonReader();
+            var traktJsonReader = new ITraktShowAliasObjectJsonReader();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -125,9 +125,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowAliasObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
+        public void Test_ITraktShowAliasObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
         {
-            var traktJsonReader = new TraktShowAliasObjectJsonReader();
+            var traktJsonReader = new ITraktShowAliasObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -141,9 +141,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowAliasObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
+        public void Test_ITraktShowAliasObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
         {
-            var traktJsonReader = new TraktShowAliasObjectJsonReader();
+            var traktJsonReader = new ITraktShowAliasObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -157,9 +157,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowAliasObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
+        public void Test_ITraktShowAliasObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
         {
-            var traktJsonReader = new TraktShowAliasObjectJsonReader();
+            var traktJsonReader = new ITraktShowAliasObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -173,9 +173,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowAliasObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
+        public void Test_ITraktShowAliasObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
         {
-            var traktJsonReader = new TraktShowAliasObjectJsonReader();
+            var traktJsonReader = new ITraktShowAliasObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -189,9 +189,9 @@
         }
 
         [Fact]
-        public void Test_TraktShowAliasObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
+        public void Test_ITraktShowAliasObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
         {
-            var traktJsonReader = new TraktShowAliasObjectJsonReader();
+            var traktJsonReader = new ITraktShowAliasObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -205,18 +205,18 @@
         }
 
         [Fact]
-        public void Test_TraktShowAliasObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_ITraktShowAliasObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new TraktShowAliasObjectJsonReader();
+            var jsonReader = new ITraktShowAliasObjectJsonReader();
 
             var traktShowAlias = jsonReader.ReadObject(default(JsonTextReader));
             traktShowAlias.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktShowAliasObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public void Test_ITraktShowAliasObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var traktJsonReader = new TraktShowAliasObjectJsonReader();
+            var traktJsonReader = new ITraktShowAliasObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

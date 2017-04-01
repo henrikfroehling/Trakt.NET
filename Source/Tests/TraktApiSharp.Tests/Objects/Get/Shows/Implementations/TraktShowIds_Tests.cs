@@ -156,7 +156,7 @@
         [Fact]
         public void Test_TraktShowIds_From_Json()
         {
-            var jsonReader = new TraktShowIdsObjectJsonReader();
+            var jsonReader = new ITraktShowIdsObjectJsonReader();
             var showIds = jsonReader.ReadObject(JSON);
 
             showIds.Should().NotBeNull();

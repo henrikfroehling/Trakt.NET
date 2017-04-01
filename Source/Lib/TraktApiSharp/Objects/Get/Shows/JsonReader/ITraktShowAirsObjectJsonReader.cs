@@ -5,13 +5,13 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class TraktShowTranslationObjectJsonReader : ITraktObjectJsonReader<TraktShowTranslation>
+    internal class ITraktShowAirsObjectJsonReader : ITraktObjectJsonReader<TraktShowAirs>
     {
-        private const string PROPERTY_NAME_TITLE = "title";
-        private const string PROPERTY_NAME_OVERVIEW = "overview";
-        private const string PROPERTY_NAME_LANGUAGE_CODE = "language";
+        private const string PROPERTY_NAME_DAY = "day";
+        private const string PROPERTY_NAME_TIME = "time";
+        private const string PROPERTY_NAME_TIMEZONE = "timezone";
 
-        public TraktShowTranslation ReadObject(string json)
+        public TraktShowAirs ReadObject(string json)
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -23,14 +23,14 @@
             }
         }
 
-        public TraktShowTranslation ReadObject(JsonTextReader jsonReader)
+        public TraktShowAirs ReadObject(JsonTextReader jsonReader)
         {
             if (jsonReader == null)
                 return null;
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var traktShowTranslation = new TraktShowTranslation();
+                var traktShowAirs = new TraktShowAirs();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -38,14 +38,14 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_TITLE:
-                            traktShowTranslation.Title = jsonReader.ReadAsString();
+                        case PROPERTY_NAME_DAY:
+                            traktShowAirs.Day = jsonReader.ReadAsString();
                             break;
-                        case PROPERTY_NAME_OVERVIEW:
-                            traktShowTranslation.Overview = jsonReader.ReadAsString();
+                        case PROPERTY_NAME_TIME:
+                            traktShowAirs.Time = jsonReader.ReadAsString();
                             break;
-                        case PROPERTY_NAME_LANGUAGE_CODE:
-                            traktShowTranslation.LanguageCode = jsonReader.ReadAsString();
+                        case PROPERTY_NAME_TIMEZONE:
+                            traktShowAirs.TimeZoneId = jsonReader.ReadAsString();
                             break;
                         default:
                             JsonReaderHelper.OverreadInvalidContent(jsonReader);
@@ -53,7 +53,7 @@
                     }
                 }
 
-                return traktShowTranslation;
+                return traktShowAirs;
             }
 
             return null;

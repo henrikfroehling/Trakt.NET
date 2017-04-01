@@ -8,7 +8,7 @@
     using System;
     using System.IO;
 
-    internal class TraktShowWatchedProgressObjectJsonReader : ITraktObjectJsonReader<TraktShowWatchedProgress>
+    internal class ITraktShowWatchedProgressObjectJsonReader : ITraktObjectJsonReader<TraktShowWatchedProgress>
     {
         private const string PROPERTY_NAME_AIRED = "aired";
         private const string PROPERTY_NAME_COMPLETED = "completed";

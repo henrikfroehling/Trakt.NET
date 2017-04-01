@@ -36,7 +36,7 @@
         [Fact]
         public void Test_TraktShowTranslation_From_Json()
         {
-            var jsonReader = new TraktShowTranslationObjectJsonReader();
+            var jsonReader = new ITraktShowTranslationObjectJsonReader();
             var showTranslation = jsonReader.ReadObject(JSON);
 
             showTranslation.Should().NotBeNull();

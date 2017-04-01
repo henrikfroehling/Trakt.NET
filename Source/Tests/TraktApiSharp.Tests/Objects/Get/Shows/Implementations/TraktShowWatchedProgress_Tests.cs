@@ -40,7 +40,7 @@
         [Fact]
         public void Test_TraktShowWatchedProgress_From_Json()
         {
-            var jsonReader = new TraktShowWatchedProgressObjectJsonReader();
+            var jsonReader = new ITraktShowWatchedProgressObjectJsonReader();
             var showWatchedProgress = jsonReader.ReadObject(JSON);
 
             showWatchedProgress.Should().NotBeNull();

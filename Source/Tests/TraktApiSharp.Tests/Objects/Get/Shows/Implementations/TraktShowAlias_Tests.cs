@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktShowAlias_From_Json()
         {
-            var jsonReader = new TraktShowAliasObjectJsonReader();
+            var jsonReader = new ITraktShowAliasObjectJsonReader();
             var showAlias = jsonReader.ReadObject(JSON);
 
             showAlias.Should().NotBeNull();
