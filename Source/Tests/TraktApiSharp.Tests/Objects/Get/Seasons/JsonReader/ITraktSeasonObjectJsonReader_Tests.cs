@@ -29,6 +29,7 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().BeNullOrEmpty();
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -52,6 +53,7 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().BeNullOrEmpty();
             traktSeason.Ids.Should().BeNull();
             traktSeason.Rating.Should().NotHaveValue();
             traktSeason.Votes.Should().NotHaveValue();
@@ -71,6 +73,7 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
+            traktSeason.Title.Should().BeNullOrEmpty();
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -94,6 +97,7 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
+            traktSeason.Title.Should().BeNullOrEmpty();
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -117,6 +121,7 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().BeNullOrEmpty();
             traktSeason.Ids.Should().BeNull();
             traktSeason.Rating.Should().NotHaveValue();
             traktSeason.Votes.Should().NotHaveValue();
@@ -136,6 +141,7 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
+            traktSeason.Title.Should().BeNullOrEmpty();
             traktSeason.Ids.Should().BeNull();
             traktSeason.Rating.Should().NotHaveValue();
             traktSeason.Votes.Should().NotHaveValue();
@@ -155,6 +161,7 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().Be("Season 1");
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -220,6 +227,7 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
+            traktSeason.Title.Should().Be("Season 1");
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -285,7 +293,12 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
-            traktSeason.Ids.Should().BeNull();
+            traktSeason.Title.Should().BeNull();
+            traktSeason.Ids.Should().NotBeNull();
+            traktSeason.Ids.Trakt.Should().Be(61430U);
+            traktSeason.Ids.Tvdb.Should().Be(279121U);
+            traktSeason.Ids.Tmdb.Should().Be(60523U);
+            traktSeason.Ids.TvRage.Should().Be(36939U);
             traktSeason.Rating.Should().Be(8.57053f);
             traktSeason.Votes.Should().Be(794);
             traktSeason.TotalEpisodesCount.Should().Be(23);
@@ -346,12 +359,9 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
-            traktSeason.Ids.Should().NotBeNull();
-            traktSeason.Ids.Trakt.Should().Be(61430U);
-            traktSeason.Ids.Tvdb.Should().Be(279121U);
-            traktSeason.Ids.Tmdb.Should().Be(60523U);
-            traktSeason.Ids.TvRage.Should().Be(36939U);
-            traktSeason.Rating.Should().BeNull();
+            traktSeason.Title.Should().Be("Season 1");
+            traktSeason.Ids.Should().BeNull();
+            traktSeason.Rating.Should().Be(8.57053f);
             traktSeason.Votes.Should().Be(794);
             traktSeason.TotalEpisodesCount.Should().Be(23);
             traktSeason.AiredEpisodesCount.Should().Be(23);
@@ -411,13 +421,14 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().Be("Season 1");
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
             traktSeason.Ids.Tmdb.Should().Be(60523U);
             traktSeason.Ids.TvRage.Should().Be(36939U);
-            traktSeason.Rating.Should().Be(8.57053f);
-            traktSeason.Votes.Should().BeNull();
+            traktSeason.Rating.Should().BeNull();
+            traktSeason.Votes.Should().Be(794);
             traktSeason.TotalEpisodesCount.Should().Be(23);
             traktSeason.AiredEpisodesCount.Should().Be(23);
             traktSeason.Overview.Should().Be("Text text text");
@@ -476,14 +487,15 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().Be("Season 1");
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
             traktSeason.Ids.Tmdb.Should().Be(60523U);
             traktSeason.Ids.TvRage.Should().Be(36939U);
             traktSeason.Rating.Should().Be(8.57053f);
-            traktSeason.Votes.Should().Be(794);
-            traktSeason.TotalEpisodesCount.Should().BeNull();
+            traktSeason.Votes.Should().BeNull();
+            traktSeason.TotalEpisodesCount.Should().Be(23);
             traktSeason.AiredEpisodesCount.Should().Be(23);
             traktSeason.Overview.Should().Be("Text text text");
             traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
@@ -541,6 +553,7 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().Be("Season 1");
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -548,8 +561,8 @@
             traktSeason.Ids.TvRage.Should().Be(36939U);
             traktSeason.Rating.Should().Be(8.57053f);
             traktSeason.Votes.Should().Be(794);
-            traktSeason.TotalEpisodesCount.Should().Be(23);
-            traktSeason.AiredEpisodesCount.Should().BeNull();
+            traktSeason.TotalEpisodesCount.Should().BeNull();
+            traktSeason.AiredEpisodesCount.Should().Be(23);
             traktSeason.Overview.Should().Be("Text text text");
             traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
             traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
@@ -606,6 +619,7 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().Be("Season 1");
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -614,8 +628,8 @@
             traktSeason.Rating.Should().Be(8.57053f);
             traktSeason.Votes.Should().Be(794);
             traktSeason.TotalEpisodesCount.Should().Be(23);
-            traktSeason.AiredEpisodesCount.Should().Be(23);
-            traktSeason.Overview.Should().BeNull();
+            traktSeason.AiredEpisodesCount.Should().BeNull();
+            traktSeason.Overview.Should().Be("Text text text");
             traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
             traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -671,6 +685,73 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().Be("Season 1");
+            traktSeason.Ids.Should().NotBeNull();
+            traktSeason.Ids.Trakt.Should().Be(61430U);
+            traktSeason.Ids.Tvdb.Should().Be(279121U);
+            traktSeason.Ids.Tmdb.Should().Be(60523U);
+            traktSeason.Ids.TvRage.Should().Be(36939U);
+            traktSeason.Rating.Should().Be(8.57053f);
+            traktSeason.Votes.Should().Be(794);
+            traktSeason.TotalEpisodesCount.Should().Be(23);
+            traktSeason.AiredEpisodesCount.Should().Be(23);
+            traktSeason.Overview.Should().BeNull();
+            traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+            traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
+
+            var episodes = traktSeason.Episodes.ToArray();
+
+            episodes[0].Should().NotBeNull();
+            episodes[0].SeasonNumber.Should().Be(1);
+            episodes[0].Number.Should().Be(1);
+            episodes[0].Title.Should().Be("Winter Is Coming");
+            episodes[0].Ids.Should().NotBeNull();
+            episodes[0].Ids.Trakt.Should().Be(73640U);
+            episodes[0].Ids.Tvdb.Should().Be(3254641U);
+            episodes[0].Ids.Imdb.Should().Be("tt1480055");
+            episodes[0].Ids.Tmdb.Should().Be(63056U);
+            episodes[0].Ids.TvRage.Should().Be(1065008299U);
+            episodes[0].NumberAbsolute.Should().NotHaveValue();
+            episodes[0].Overview.Should().BeNullOrEmpty();
+            episodes[0].Runtime.Should().NotHaveValue();
+            episodes[0].Rating.Should().NotHaveValue();
+            episodes[0].Votes.Should().NotHaveValue();
+            episodes[0].FirstAired.Should().NotHaveValue();
+            episodes[0].UpdatedAt.Should().NotHaveValue();
+            episodes[0].AvailableTranslationLanguageCodes.Should().BeNull();
+            episodes[0].Translations.Should().BeNull();
+
+            episodes[1].Should().NotBeNull();
+            episodes[1].SeasonNumber.Should().Be(1);
+            episodes[1].Number.Should().Be(2);
+            episodes[1].Title.Should().Be("The Kingsroad");
+            episodes[1].Ids.Should().NotBeNull();
+            episodes[1].Ids.Trakt.Should().Be(74138U);
+            episodes[1].Ids.Tvdb.Should().Be(3436411U);
+            episodes[1].Ids.Imdb.Should().Be("tt1668746");
+            episodes[1].Ids.Tmdb.Should().Be(63141U);
+            episodes[1].Ids.TvRage.Should().Be(1325718577U);
+            episodes[1].NumberAbsolute.Should().NotHaveValue();
+            episodes[1].Overview.Should().BeNullOrEmpty();
+            episodes[1].Runtime.Should().NotHaveValue();
+            episodes[1].Rating.Should().NotHaveValue();
+            episodes[1].Votes.Should().NotHaveValue();
+            episodes[1].FirstAired.Should().NotHaveValue();
+            episodes[1].UpdatedAt.Should().NotHaveValue();
+            episodes[1].AvailableTranslationLanguageCodes.Should().BeNull();
+            episodes[1].Translations.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_9()
+        {
+            var jsonReader = new ITraktSeasonObjectJsonReader();
+
+            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_9);
+
+            traktSeason.Should().NotBeNull();
+            traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().Be("Season 1");
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -728,14 +809,15 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_9()
+        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_10()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_9);
+            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_10);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().Be("Season 1");
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -751,25 +833,6 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_10()
-        {
-            var jsonReader = new ITraktSeasonObjectJsonReader();
-
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_10);
-
-            traktSeason.Should().NotBeNull();
-            traktSeason.Number.Should().Be(1);
-            traktSeason.Ids.Should().BeNull();
-            traktSeason.Rating.Should().BeNull();
-            traktSeason.Votes.Should().BeNull();
-            traktSeason.TotalEpisodesCount.Should().BeNull();
-            traktSeason.AiredEpisodesCount.Should().BeNull();
-            traktSeason.Overview.Should().BeNull();
-            traktSeason.FirstAired.Should().BeNull();
-            traktSeason.Episodes.Should().BeNull();
-        }
-
-        [Fact]
         public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_11()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
@@ -777,12 +840,9 @@
             var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_11);
 
             traktSeason.Should().NotBeNull();
-            traktSeason.Number.Should().BeNull();
-            traktSeason.Ids.Should().NotBeNull();
-            traktSeason.Ids.Trakt.Should().Be(61430U);
-            traktSeason.Ids.Tvdb.Should().Be(279121U);
-            traktSeason.Ids.Tmdb.Should().Be(60523U);
-            traktSeason.Ids.TvRage.Should().Be(36939U);
+            traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().BeNull();
+            traktSeason.Ids.Should().BeNull();
             traktSeason.Rating.Should().BeNull();
             traktSeason.Votes.Should().BeNull();
             traktSeason.TotalEpisodesCount.Should().BeNull();
@@ -801,8 +861,9 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
+            traktSeason.Title.Should().Be("Season 1");
             traktSeason.Ids.Should().BeNull();
-            traktSeason.Rating.Should().Be(8.57053f);
+            traktSeason.Rating.Should().BeNull();
             traktSeason.Votes.Should().BeNull();
             traktSeason.TotalEpisodesCount.Should().BeNull();
             traktSeason.AiredEpisodesCount.Should().BeNull();
@@ -820,9 +881,14 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
-            traktSeason.Ids.Should().BeNull();
+            traktSeason.Title.Should().BeNull();
+            traktSeason.Ids.Should().NotBeNull();
+            traktSeason.Ids.Trakt.Should().Be(61430U);
+            traktSeason.Ids.Tvdb.Should().Be(279121U);
+            traktSeason.Ids.Tmdb.Should().Be(60523U);
+            traktSeason.Ids.TvRage.Should().Be(36939U);
             traktSeason.Rating.Should().BeNull();
-            traktSeason.Votes.Should().Be(794);
+            traktSeason.Votes.Should().BeNull();
             traktSeason.TotalEpisodesCount.Should().BeNull();
             traktSeason.AiredEpisodesCount.Should().BeNull();
             traktSeason.Overview.Should().BeNull();
@@ -839,10 +905,11 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
+            traktSeason.Title.Should().BeNull();
             traktSeason.Ids.Should().BeNull();
-            traktSeason.Rating.Should().BeNull();
+            traktSeason.Rating.Should().Be(8.57053f);
             traktSeason.Votes.Should().BeNull();
-            traktSeason.TotalEpisodesCount.Should().Be(23);
+            traktSeason.TotalEpisodesCount.Should().BeNull();
             traktSeason.AiredEpisodesCount.Should().BeNull();
             traktSeason.Overview.Should().BeNull();
             traktSeason.FirstAired.Should().BeNull();
@@ -858,11 +925,12 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
+            traktSeason.Title.Should().BeNull();
             traktSeason.Ids.Should().BeNull();
             traktSeason.Rating.Should().BeNull();
-            traktSeason.Votes.Should().BeNull();
+            traktSeason.Votes.Should().Be(794);
             traktSeason.TotalEpisodesCount.Should().BeNull();
-            traktSeason.AiredEpisodesCount.Should().Be(23);
+            traktSeason.AiredEpisodesCount.Should().BeNull();
             traktSeason.Overview.Should().BeNull();
             traktSeason.FirstAired.Should().BeNull();
             traktSeason.Episodes.Should().BeNull();
@@ -877,12 +945,13 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
+            traktSeason.Title.Should().BeNull();
             traktSeason.Ids.Should().BeNull();
             traktSeason.Rating.Should().BeNull();
             traktSeason.Votes.Should().BeNull();
-            traktSeason.TotalEpisodesCount.Should().BeNull();
+            traktSeason.TotalEpisodesCount.Should().Be(23);
             traktSeason.AiredEpisodesCount.Should().BeNull();
-            traktSeason.Overview.Should().Be("Text text text");
+            traktSeason.Overview.Should().BeNull();
             traktSeason.FirstAired.Should().BeNull();
             traktSeason.Episodes.Should().BeNull();
         }
@@ -896,13 +965,14 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
+            traktSeason.Title.Should().BeNull();
             traktSeason.Ids.Should().BeNull();
             traktSeason.Rating.Should().BeNull();
             traktSeason.Votes.Should().BeNull();
             traktSeason.TotalEpisodesCount.Should().BeNull();
-            traktSeason.AiredEpisodesCount.Should().BeNull();
+            traktSeason.AiredEpisodesCount.Should().Be(23);
             traktSeason.Overview.Should().BeNull();
-            traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+            traktSeason.FirstAired.Should().BeNull();
             traktSeason.Episodes.Should().BeNull();
         }
 
@@ -915,6 +985,47 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
+            traktSeason.Title.Should().BeNull();
+            traktSeason.Ids.Should().BeNull();
+            traktSeason.Rating.Should().BeNull();
+            traktSeason.Votes.Should().BeNull();
+            traktSeason.TotalEpisodesCount.Should().BeNull();
+            traktSeason.AiredEpisodesCount.Should().BeNull();
+            traktSeason.Overview.Should().Be("Text text text");
+            traktSeason.FirstAired.Should().BeNull();
+            traktSeason.Episodes.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_19()
+        {
+            var jsonReader = new ITraktSeasonObjectJsonReader();
+
+            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_19);
+
+            traktSeason.Should().NotBeNull();
+            traktSeason.Number.Should().BeNull();
+            traktSeason.Title.Should().BeNull();
+            traktSeason.Ids.Should().BeNull();
+            traktSeason.Rating.Should().BeNull();
+            traktSeason.Votes.Should().BeNull();
+            traktSeason.TotalEpisodesCount.Should().BeNull();
+            traktSeason.AiredEpisodesCount.Should().BeNull();
+            traktSeason.Overview.Should().BeNull();
+            traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+            traktSeason.Episodes.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_20()
+        {
+            var jsonReader = new ITraktSeasonObjectJsonReader();
+
+            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_20);
+
+            traktSeason.Should().NotBeNull();
+            traktSeason.Number.Should().BeNull();
+            traktSeason.Title.Should().BeNull();
             traktSeason.Ids.Should().BeNull();
             traktSeason.Rating.Should().BeNull();
             traktSeason.Votes.Should().BeNull();
@@ -976,6 +1087,7 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
+            traktSeason.Title.Should().Be("Season 1");
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -1041,7 +1153,12 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
-            traktSeason.Ids.Should().BeNull();
+            traktSeason.Title.Should().BeNull();
+            traktSeason.Ids.Should().NotBeNull();
+            traktSeason.Ids.Trakt.Should().Be(61430U);
+            traktSeason.Ids.Tvdb.Should().Be(279121U);
+            traktSeason.Ids.Tmdb.Should().Be(60523U);
+            traktSeason.Ids.TvRage.Should().Be(36939U);
             traktSeason.Rating.Should().Be(8.57053f);
             traktSeason.Votes.Should().Be(794);
             traktSeason.TotalEpisodesCount.Should().Be(23);
@@ -1102,12 +1219,9 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
-            traktSeason.Ids.Should().NotBeNull();
-            traktSeason.Ids.Trakt.Should().Be(61430U);
-            traktSeason.Ids.Tvdb.Should().Be(279121U);
-            traktSeason.Ids.Tmdb.Should().Be(60523U);
-            traktSeason.Ids.TvRage.Should().Be(36939U);
-            traktSeason.Rating.Should().BeNull();
+            traktSeason.Title.Should().Be("Season 1");
+            traktSeason.Ids.Should().BeNull();
+            traktSeason.Rating.Should().Be(8.57053f);
             traktSeason.Votes.Should().Be(794);
             traktSeason.TotalEpisodesCount.Should().Be(23);
             traktSeason.AiredEpisodesCount.Should().Be(23);
@@ -1167,13 +1281,14 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().Be("Season 1");
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
             traktSeason.Ids.Tmdb.Should().Be(60523U);
             traktSeason.Ids.TvRage.Should().Be(36939U);
-            traktSeason.Rating.Should().Be(8.57053f);
-            traktSeason.Votes.Should().BeNull();
+            traktSeason.Rating.Should().BeNull();
+            traktSeason.Votes.Should().Be(794);
             traktSeason.TotalEpisodesCount.Should().Be(23);
             traktSeason.AiredEpisodesCount.Should().Be(23);
             traktSeason.Overview.Should().Be("Text text text");
@@ -1232,14 +1347,15 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().Be("Season 1");
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
             traktSeason.Ids.Tmdb.Should().Be(60523U);
             traktSeason.Ids.TvRage.Should().Be(36939U);
             traktSeason.Rating.Should().Be(8.57053f);
-            traktSeason.Votes.Should().Be(794);
-            traktSeason.TotalEpisodesCount.Should().BeNull();
+            traktSeason.Votes.Should().BeNull();
+            traktSeason.TotalEpisodesCount.Should().Be(23);
             traktSeason.AiredEpisodesCount.Should().Be(23);
             traktSeason.Overview.Should().Be("Text text text");
             traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
@@ -1297,6 +1413,7 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().Be("Season 1");
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -1304,8 +1421,8 @@
             traktSeason.Ids.TvRage.Should().Be(36939U);
             traktSeason.Rating.Should().Be(8.57053f);
             traktSeason.Votes.Should().Be(794);
-            traktSeason.TotalEpisodesCount.Should().Be(23);
-            traktSeason.AiredEpisodesCount.Should().BeNull();
+            traktSeason.TotalEpisodesCount.Should().BeNull();
+            traktSeason.AiredEpisodesCount.Should().Be(23);
             traktSeason.Overview.Should().Be("Text text text");
             traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
             traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
@@ -1362,6 +1479,7 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().Be("Season 1");
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -1370,8 +1488,8 @@
             traktSeason.Rating.Should().Be(8.57053f);
             traktSeason.Votes.Should().Be(794);
             traktSeason.TotalEpisodesCount.Should().Be(23);
-            traktSeason.AiredEpisodesCount.Should().Be(23);
-            traktSeason.Overview.Should().BeNull();
+            traktSeason.AiredEpisodesCount.Should().BeNull();
+            traktSeason.Overview.Should().Be("Text text text");
             traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
             traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -1427,6 +1545,73 @@
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().Be("Season 1");
+            traktSeason.Ids.Should().NotBeNull();
+            traktSeason.Ids.Trakt.Should().Be(61430U);
+            traktSeason.Ids.Tvdb.Should().Be(279121U);
+            traktSeason.Ids.Tmdb.Should().Be(60523U);
+            traktSeason.Ids.TvRage.Should().Be(36939U);
+            traktSeason.Rating.Should().Be(8.57053f);
+            traktSeason.Votes.Should().Be(794);
+            traktSeason.TotalEpisodesCount.Should().Be(23);
+            traktSeason.AiredEpisodesCount.Should().Be(23);
+            traktSeason.Overview.Should().BeNull();
+            traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+            traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
+
+            var episodes = traktSeason.Episodes.ToArray();
+
+            episodes[0].Should().NotBeNull();
+            episodes[0].SeasonNumber.Should().Be(1);
+            episodes[0].Number.Should().Be(1);
+            episodes[0].Title.Should().Be("Winter Is Coming");
+            episodes[0].Ids.Should().NotBeNull();
+            episodes[0].Ids.Trakt.Should().Be(73640U);
+            episodes[0].Ids.Tvdb.Should().Be(3254641U);
+            episodes[0].Ids.Imdb.Should().Be("tt1480055");
+            episodes[0].Ids.Tmdb.Should().Be(63056U);
+            episodes[0].Ids.TvRage.Should().Be(1065008299U);
+            episodes[0].NumberAbsolute.Should().NotHaveValue();
+            episodes[0].Overview.Should().BeNullOrEmpty();
+            episodes[0].Runtime.Should().NotHaveValue();
+            episodes[0].Rating.Should().NotHaveValue();
+            episodes[0].Votes.Should().NotHaveValue();
+            episodes[0].FirstAired.Should().NotHaveValue();
+            episodes[0].UpdatedAt.Should().NotHaveValue();
+            episodes[0].AvailableTranslationLanguageCodes.Should().BeNull();
+            episodes[0].Translations.Should().BeNull();
+
+            episodes[1].Should().NotBeNull();
+            episodes[1].SeasonNumber.Should().Be(1);
+            episodes[1].Number.Should().Be(2);
+            episodes[1].Title.Should().Be("The Kingsroad");
+            episodes[1].Ids.Should().NotBeNull();
+            episodes[1].Ids.Trakt.Should().Be(74138U);
+            episodes[1].Ids.Tvdb.Should().Be(3436411U);
+            episodes[1].Ids.Imdb.Should().Be("tt1668746");
+            episodes[1].Ids.Tmdb.Should().Be(63141U);
+            episodes[1].Ids.TvRage.Should().Be(1325718577U);
+            episodes[1].NumberAbsolute.Should().NotHaveValue();
+            episodes[1].Overview.Should().BeNullOrEmpty();
+            episodes[1].Runtime.Should().NotHaveValue();
+            episodes[1].Rating.Should().NotHaveValue();
+            episodes[1].Votes.Should().NotHaveValue();
+            episodes[1].FirstAired.Should().NotHaveValue();
+            episodes[1].UpdatedAt.Should().NotHaveValue();
+            episodes[1].AvailableTranslationLanguageCodes.Should().BeNull();
+            episodes[1].Translations.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_9()
+        {
+            var jsonReader = new ITraktSeasonObjectJsonReader();
+
+            var traktSeason = jsonReader.ReadObject(FULL_JSON_NOT_VALID_9);
+
+            traktSeason.Should().NotBeNull();
+            traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().Be("Season 1");
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -1484,14 +1669,15 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_9()
+        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_10()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_NOT_VALID_9);
+            var traktSeason = jsonReader.ReadObject(FULL_JSON_NOT_VALID_10);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
+            traktSeason.Title.Should().Be("Season 1");
             traktSeason.Ids.Should().NotBeNull();
             traktSeason.Ids.Trakt.Should().Be(61430U);
             traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -1507,14 +1693,15 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_10()
+        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_11()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_NOT_VALID_10);
+            var traktSeason = jsonReader.ReadObject(FULL_JSON_NOT_VALID_11);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
+            traktSeason.Title.Should().BeNull();
             traktSeason.Ids.Should().BeNull();
             traktSeason.Rating.Should().BeNull();
             traktSeason.Votes.Should().BeNull();
@@ -1555,6 +1742,7 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().BeNullOrEmpty();
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -1582,6 +1770,7 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().BeNullOrEmpty();
                 traktSeason.Ids.Should().BeNull();
                 traktSeason.Rating.Should().NotHaveValue();
                 traktSeason.Votes.Should().NotHaveValue();
@@ -1605,6 +1794,7 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
+                traktSeason.Title.Should().BeNullOrEmpty();
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -1632,6 +1822,7 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
+                traktSeason.Title.Should().BeNullOrEmpty();
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -1659,6 +1850,7 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().BeNullOrEmpty();
                 traktSeason.Ids.Should().BeNull();
                 traktSeason.Rating.Should().NotHaveValue();
                 traktSeason.Votes.Should().NotHaveValue();
@@ -1682,6 +1874,7 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
+                traktSeason.Title.Should().BeNullOrEmpty();
                 traktSeason.Ids.Should().BeNull();
                 traktSeason.Rating.Should().NotHaveValue();
                 traktSeason.Votes.Should().NotHaveValue();
@@ -1705,6 +1898,7 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().Be("Season 1");
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -1774,6 +1968,7 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
+                traktSeason.Title.Should().Be("Season 1");
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -1843,7 +2038,12 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
-                traktSeason.Ids.Should().BeNull();
+                traktSeason.Title.Should().BeNull();
+                traktSeason.Ids.Should().NotBeNull();
+                traktSeason.Ids.Trakt.Should().Be(61430U);
+                traktSeason.Ids.Tvdb.Should().Be(279121U);
+                traktSeason.Ids.Tmdb.Should().Be(60523U);
+                traktSeason.Ids.TvRage.Should().Be(36939U);
                 traktSeason.Rating.Should().Be(8.57053f);
                 traktSeason.Votes.Should().Be(794);
                 traktSeason.TotalEpisodesCount.Should().Be(23);
@@ -1908,12 +2108,9 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
-                traktSeason.Ids.Should().NotBeNull();
-                traktSeason.Ids.Trakt.Should().Be(61430U);
-                traktSeason.Ids.Tvdb.Should().Be(279121U);
-                traktSeason.Ids.Tmdb.Should().Be(60523U);
-                traktSeason.Ids.TvRage.Should().Be(36939U);
-                traktSeason.Rating.Should().BeNull();
+                traktSeason.Title.Should().Be("Season 1");
+                traktSeason.Ids.Should().BeNull();
+                traktSeason.Rating.Should().Be(8.57053f);
                 traktSeason.Votes.Should().Be(794);
                 traktSeason.TotalEpisodesCount.Should().Be(23);
                 traktSeason.AiredEpisodesCount.Should().Be(23);
@@ -1977,13 +2174,14 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().Be("Season 1");
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
                 traktSeason.Ids.Tmdb.Should().Be(60523U);
                 traktSeason.Ids.TvRage.Should().Be(36939U);
-                traktSeason.Rating.Should().Be(8.57053f);
-                traktSeason.Votes.Should().BeNull();
+                traktSeason.Rating.Should().BeNull();
+                traktSeason.Votes.Should().Be(794);
                 traktSeason.TotalEpisodesCount.Should().Be(23);
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
@@ -2046,14 +2244,15 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().Be("Season 1");
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
                 traktSeason.Ids.Tmdb.Should().Be(60523U);
                 traktSeason.Ids.TvRage.Should().Be(36939U);
                 traktSeason.Rating.Should().Be(8.57053f);
-                traktSeason.Votes.Should().Be(794);
-                traktSeason.TotalEpisodesCount.Should().BeNull();
+                traktSeason.Votes.Should().BeNull();
+                traktSeason.TotalEpisodesCount.Should().Be(23);
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
@@ -2115,6 +2314,7 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().Be("Season 1");
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -2122,8 +2322,8 @@
                 traktSeason.Ids.TvRage.Should().Be(36939U);
                 traktSeason.Rating.Should().Be(8.57053f);
                 traktSeason.Votes.Should().Be(794);
-                traktSeason.TotalEpisodesCount.Should().Be(23);
-                traktSeason.AiredEpisodesCount.Should().BeNull();
+                traktSeason.TotalEpisodesCount.Should().BeNull();
+                traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
@@ -2184,6 +2384,7 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().Be("Season 1");
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -2192,8 +2393,8 @@
                 traktSeason.Rating.Should().Be(8.57053f);
                 traktSeason.Votes.Should().Be(794);
                 traktSeason.TotalEpisodesCount.Should().Be(23);
-                traktSeason.AiredEpisodesCount.Should().Be(23);
-                traktSeason.Overview.Should().BeNull();
+                traktSeason.AiredEpisodesCount.Should().BeNull();
+                traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -2253,6 +2454,7 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().Be("Season 1");
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -2262,8 +2464,8 @@
                 traktSeason.Votes.Should().Be(794);
                 traktSeason.TotalEpisodesCount.Should().Be(23);
                 traktSeason.AiredEpisodesCount.Should().Be(23);
-                traktSeason.Overview.Should().Be("Text text text");
-                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.Overview.Should().BeNull();
+                traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
                 var episodes = traktSeason.Episodes.ToArray();
@@ -2322,6 +2524,77 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().Be("Season 1");
+                traktSeason.Ids.Should().NotBeNull();
+                traktSeason.Ids.Trakt.Should().Be(61430U);
+                traktSeason.Ids.Tvdb.Should().Be(279121U);
+                traktSeason.Ids.Tmdb.Should().Be(60523U);
+                traktSeason.Ids.TvRage.Should().Be(36939U);
+                traktSeason.Rating.Should().Be(8.57053f);
+                traktSeason.Votes.Should().Be(794);
+                traktSeason.TotalEpisodesCount.Should().Be(23);
+                traktSeason.AiredEpisodesCount.Should().Be(23);
+                traktSeason.Overview.Should().Be("Text text text");
+                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
+
+                var episodes = traktSeason.Episodes.ToArray();
+
+                episodes[0].Should().NotBeNull();
+                episodes[0].SeasonNumber.Should().Be(1);
+                episodes[0].Number.Should().Be(1);
+                episodes[0].Title.Should().Be("Winter Is Coming");
+                episodes[0].Ids.Should().NotBeNull();
+                episodes[0].Ids.Trakt.Should().Be(73640U);
+                episodes[0].Ids.Tvdb.Should().Be(3254641U);
+                episodes[0].Ids.Imdb.Should().Be("tt1480055");
+                episodes[0].Ids.Tmdb.Should().Be(63056U);
+                episodes[0].Ids.TvRage.Should().Be(1065008299U);
+                episodes[0].NumberAbsolute.Should().NotHaveValue();
+                episodes[0].Overview.Should().BeNullOrEmpty();
+                episodes[0].Runtime.Should().NotHaveValue();
+                episodes[0].Rating.Should().NotHaveValue();
+                episodes[0].Votes.Should().NotHaveValue();
+                episodes[0].FirstAired.Should().NotHaveValue();
+                episodes[0].UpdatedAt.Should().NotHaveValue();
+                episodes[0].AvailableTranslationLanguageCodes.Should().BeNull();
+                episodes[0].Translations.Should().BeNull();
+
+                episodes[1].Should().NotBeNull();
+                episodes[1].SeasonNumber.Should().Be(1);
+                episodes[1].Number.Should().Be(2);
+                episodes[1].Title.Should().Be("The Kingsroad");
+                episodes[1].Ids.Should().NotBeNull();
+                episodes[1].Ids.Trakt.Should().Be(74138U);
+                episodes[1].Ids.Tvdb.Should().Be(3436411U);
+                episodes[1].Ids.Imdb.Should().Be("tt1668746");
+                episodes[1].Ids.Tmdb.Should().Be(63141U);
+                episodes[1].Ids.TvRage.Should().Be(1325718577U);
+                episodes[1].NumberAbsolute.Should().NotHaveValue();
+                episodes[1].Overview.Should().BeNullOrEmpty();
+                episodes[1].Runtime.Should().NotHaveValue();
+                episodes[1].Rating.Should().NotHaveValue();
+                episodes[1].Votes.Should().NotHaveValue();
+                episodes[1].FirstAired.Should().NotHaveValue();
+                episodes[1].UpdatedAt.Should().NotHaveValue();
+                episodes[1].AvailableTranslationLanguageCodes.Should().BeNull();
+                episodes[1].Translations.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_10()
+        {
+            var traktJsonReader = new ITraktSeasonObjectJsonReader();
+
+            using (var reader = new StringReader(FULL_JSON_INCOMPLETE_10))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+
+                traktSeason.Should().NotBeNull();
+                traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().Be("Season 1");
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -2338,29 +2611,6 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_10()
-        {
-            var traktJsonReader = new ITraktSeasonObjectJsonReader();
-
-            using (var reader = new StringReader(FULL_JSON_INCOMPLETE_10))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
-
-                traktSeason.Should().NotBeNull();
-                traktSeason.Number.Should().Be(1);
-                traktSeason.Ids.Should().BeNull();
-                traktSeason.Rating.Should().BeNull();
-                traktSeason.Votes.Should().BeNull();
-                traktSeason.TotalEpisodesCount.Should().BeNull();
-                traktSeason.AiredEpisodesCount.Should().BeNull();
-                traktSeason.Overview.Should().BeNull();
-                traktSeason.FirstAired.Should().BeNull();
-                traktSeason.Episodes.Should().BeNull();
-            }
-        }
-
-        [Fact]
         public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_11()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
@@ -2371,12 +2621,9 @@
                 var traktSeason = traktJsonReader.ReadObject(jsonReader);
 
                 traktSeason.Should().NotBeNull();
-                traktSeason.Number.Should().BeNull();
-                traktSeason.Ids.Should().NotBeNull();
-                traktSeason.Ids.Trakt.Should().Be(61430U);
-                traktSeason.Ids.Tvdb.Should().Be(279121U);
-                traktSeason.Ids.Tmdb.Should().Be(60523U);
-                traktSeason.Ids.TvRage.Should().Be(36939U);
+                traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().BeNull();
+                traktSeason.Ids.Should().BeNull();
                 traktSeason.Rating.Should().BeNull();
                 traktSeason.Votes.Should().BeNull();
                 traktSeason.TotalEpisodesCount.Should().BeNull();
@@ -2399,8 +2646,9 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
+                traktSeason.Title.Should().Be("Season 1");
                 traktSeason.Ids.Should().BeNull();
-                traktSeason.Rating.Should().Be(8.57053f);
+                traktSeason.Rating.Should().BeNull();
                 traktSeason.Votes.Should().BeNull();
                 traktSeason.TotalEpisodesCount.Should().BeNull();
                 traktSeason.AiredEpisodesCount.Should().BeNull();
@@ -2422,9 +2670,14 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
-                traktSeason.Ids.Should().BeNull();
+                traktSeason.Title.Should().BeNull();
+                traktSeason.Ids.Should().NotBeNull();
+                traktSeason.Ids.Trakt.Should().Be(61430U);
+                traktSeason.Ids.Tvdb.Should().Be(279121U);
+                traktSeason.Ids.Tmdb.Should().Be(60523U);
+                traktSeason.Ids.TvRage.Should().Be(36939U);
                 traktSeason.Rating.Should().BeNull();
-                traktSeason.Votes.Should().Be(794);
+                traktSeason.Votes.Should().BeNull();
                 traktSeason.TotalEpisodesCount.Should().BeNull();
                 traktSeason.AiredEpisodesCount.Should().BeNull();
                 traktSeason.Overview.Should().BeNull();
@@ -2445,10 +2698,11 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
+                traktSeason.Title.Should().BeNull();
                 traktSeason.Ids.Should().BeNull();
-                traktSeason.Rating.Should().BeNull();
+                traktSeason.Rating.Should().Be(8.57053f);
                 traktSeason.Votes.Should().BeNull();
-                traktSeason.TotalEpisodesCount.Should().Be(23);
+                traktSeason.TotalEpisodesCount.Should().BeNull();
                 traktSeason.AiredEpisodesCount.Should().BeNull();
                 traktSeason.Overview.Should().BeNull();
                 traktSeason.FirstAired.Should().BeNull();
@@ -2468,11 +2722,12 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
+                traktSeason.Title.Should().BeNull();
                 traktSeason.Ids.Should().BeNull();
                 traktSeason.Rating.Should().BeNull();
-                traktSeason.Votes.Should().BeNull();
+                traktSeason.Votes.Should().Be(794);
                 traktSeason.TotalEpisodesCount.Should().BeNull();
-                traktSeason.AiredEpisodesCount.Should().Be(23);
+                traktSeason.AiredEpisodesCount.Should().BeNull();
                 traktSeason.Overview.Should().BeNull();
                 traktSeason.FirstAired.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
@@ -2491,12 +2746,13 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
+                traktSeason.Title.Should().BeNull();
                 traktSeason.Ids.Should().BeNull();
                 traktSeason.Rating.Should().BeNull();
                 traktSeason.Votes.Should().BeNull();
-                traktSeason.TotalEpisodesCount.Should().BeNull();
+                traktSeason.TotalEpisodesCount.Should().Be(23);
                 traktSeason.AiredEpisodesCount.Should().BeNull();
-                traktSeason.Overview.Should().Be("Text text text");
+                traktSeason.Overview.Should().BeNull();
                 traktSeason.FirstAired.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -2514,13 +2770,14 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
+                traktSeason.Title.Should().BeNull();
                 traktSeason.Ids.Should().BeNull();
                 traktSeason.Rating.Should().BeNull();
                 traktSeason.Votes.Should().BeNull();
                 traktSeason.TotalEpisodesCount.Should().BeNull();
-                traktSeason.AiredEpisodesCount.Should().BeNull();
+                traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().BeNull();
-                traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.FirstAired.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
         }
@@ -2537,6 +2794,55 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
+                traktSeason.Title.Should().BeNull();
+                traktSeason.Ids.Should().BeNull();
+                traktSeason.Rating.Should().BeNull();
+                traktSeason.Votes.Should().BeNull();
+                traktSeason.TotalEpisodesCount.Should().BeNull();
+                traktSeason.AiredEpisodesCount.Should().BeNull();
+                traktSeason.Overview.Should().Be("Text text text");
+                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.Episodes.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_19()
+        {
+            var traktJsonReader = new ITraktSeasonObjectJsonReader();
+
+            using (var reader = new StringReader(FULL_JSON_INCOMPLETE_19))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+
+                traktSeason.Should().NotBeNull();
+                traktSeason.Number.Should().BeNull();
+                traktSeason.Title.Should().BeNull();
+                traktSeason.Ids.Should().BeNull();
+                traktSeason.Rating.Should().BeNull();
+                traktSeason.Votes.Should().BeNull();
+                traktSeason.TotalEpisodesCount.Should().BeNull();
+                traktSeason.AiredEpisodesCount.Should().BeNull();
+                traktSeason.Overview.Should().BeNull();
+                traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.Episodes.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_20()
+        {
+            var traktJsonReader = new ITraktSeasonObjectJsonReader();
+
+            using (var reader = new StringReader(FULL_JSON_INCOMPLETE_20))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+
+                traktSeason.Should().NotBeNull();
+                traktSeason.Number.Should().BeNull();
+                traktSeason.Title.Should().BeNull();
                 traktSeason.Ids.Should().BeNull();
                 traktSeason.Rating.Should().BeNull();
                 traktSeason.Votes.Should().BeNull();
@@ -2602,6 +2908,7 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
+                traktSeason.Title.Should().Be("Season 1");
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -2671,7 +2978,12 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
-                traktSeason.Ids.Should().BeNull();
+                traktSeason.Title.Should().BeNull();
+                traktSeason.Ids.Should().NotBeNull();
+                traktSeason.Ids.Trakt.Should().Be(61430U);
+                traktSeason.Ids.Tvdb.Should().Be(279121U);
+                traktSeason.Ids.Tmdb.Should().Be(60523U);
+                traktSeason.Ids.TvRage.Should().Be(36939U);
                 traktSeason.Rating.Should().Be(8.57053f);
                 traktSeason.Votes.Should().Be(794);
                 traktSeason.TotalEpisodesCount.Should().Be(23);
@@ -2736,12 +3048,9 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
-                traktSeason.Ids.Should().NotBeNull();
-                traktSeason.Ids.Trakt.Should().Be(61430U);
-                traktSeason.Ids.Tvdb.Should().Be(279121U);
-                traktSeason.Ids.Tmdb.Should().Be(60523U);
-                traktSeason.Ids.TvRage.Should().Be(36939U);
-                traktSeason.Rating.Should().BeNull();
+                traktSeason.Title.Should().Be("Season 1");
+                traktSeason.Ids.Should().BeNull();
+                traktSeason.Rating.Should().Be(8.57053f);
                 traktSeason.Votes.Should().Be(794);
                 traktSeason.TotalEpisodesCount.Should().Be(23);
                 traktSeason.AiredEpisodesCount.Should().Be(23);
@@ -2805,13 +3114,14 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().Be("Season 1");
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
                 traktSeason.Ids.Tmdb.Should().Be(60523U);
                 traktSeason.Ids.TvRage.Should().Be(36939U);
-                traktSeason.Rating.Should().Be(8.57053f);
-                traktSeason.Votes.Should().BeNull();
+                traktSeason.Rating.Should().BeNull();
+                traktSeason.Votes.Should().Be(794);
                 traktSeason.TotalEpisodesCount.Should().Be(23);
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
@@ -2874,14 +3184,15 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().Be("Season 1");
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
                 traktSeason.Ids.Tmdb.Should().Be(60523U);
                 traktSeason.Ids.TvRage.Should().Be(36939U);
                 traktSeason.Rating.Should().Be(8.57053f);
-                traktSeason.Votes.Should().Be(794);
-                traktSeason.TotalEpisodesCount.Should().BeNull();
+                traktSeason.Votes.Should().BeNull();
+                traktSeason.TotalEpisodesCount.Should().Be(23);
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
@@ -2943,6 +3254,7 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().Be("Season 1");
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -2950,8 +3262,8 @@
                 traktSeason.Ids.TvRage.Should().Be(36939U);
                 traktSeason.Rating.Should().Be(8.57053f);
                 traktSeason.Votes.Should().Be(794);
-                traktSeason.TotalEpisodesCount.Should().Be(23);
-                traktSeason.AiredEpisodesCount.Should().BeNull();
+                traktSeason.TotalEpisodesCount.Should().BeNull();
+                traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
@@ -3012,6 +3324,7 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().Be("Season 1");
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -3020,8 +3333,8 @@
                 traktSeason.Rating.Should().Be(8.57053f);
                 traktSeason.Votes.Should().Be(794);
                 traktSeason.TotalEpisodesCount.Should().Be(23);
-                traktSeason.AiredEpisodesCount.Should().Be(23);
-                traktSeason.Overview.Should().BeNull();
+                traktSeason.AiredEpisodesCount.Should().BeNull();
+                traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -3081,6 +3394,7 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().Be("Season 1");
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -3090,8 +3404,8 @@
                 traktSeason.Votes.Should().Be(794);
                 traktSeason.TotalEpisodesCount.Should().Be(23);
                 traktSeason.AiredEpisodesCount.Should().Be(23);
-                traktSeason.Overview.Should().Be("Text text text");
-                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.Overview.Should().BeNull();
+                traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
                 var episodes = traktSeason.Episodes.ToArray();
@@ -3150,6 +3464,77 @@
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().Be("Season 1");
+                traktSeason.Ids.Should().NotBeNull();
+                traktSeason.Ids.Trakt.Should().Be(61430U);
+                traktSeason.Ids.Tvdb.Should().Be(279121U);
+                traktSeason.Ids.Tmdb.Should().Be(60523U);
+                traktSeason.Ids.TvRage.Should().Be(36939U);
+                traktSeason.Rating.Should().Be(8.57053f);
+                traktSeason.Votes.Should().Be(794);
+                traktSeason.TotalEpisodesCount.Should().Be(23);
+                traktSeason.AiredEpisodesCount.Should().Be(23);
+                traktSeason.Overview.Should().Be("Text text text");
+                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
+
+                var episodes = traktSeason.Episodes.ToArray();
+
+                episodes[0].Should().NotBeNull();
+                episodes[0].SeasonNumber.Should().Be(1);
+                episodes[0].Number.Should().Be(1);
+                episodes[0].Title.Should().Be("Winter Is Coming");
+                episodes[0].Ids.Should().NotBeNull();
+                episodes[0].Ids.Trakt.Should().Be(73640U);
+                episodes[0].Ids.Tvdb.Should().Be(3254641U);
+                episodes[0].Ids.Imdb.Should().Be("tt1480055");
+                episodes[0].Ids.Tmdb.Should().Be(63056U);
+                episodes[0].Ids.TvRage.Should().Be(1065008299U);
+                episodes[0].NumberAbsolute.Should().NotHaveValue();
+                episodes[0].Overview.Should().BeNullOrEmpty();
+                episodes[0].Runtime.Should().NotHaveValue();
+                episodes[0].Rating.Should().NotHaveValue();
+                episodes[0].Votes.Should().NotHaveValue();
+                episodes[0].FirstAired.Should().NotHaveValue();
+                episodes[0].UpdatedAt.Should().NotHaveValue();
+                episodes[0].AvailableTranslationLanguageCodes.Should().BeNull();
+                episodes[0].Translations.Should().BeNull();
+
+                episodes[1].Should().NotBeNull();
+                episodes[1].SeasonNumber.Should().Be(1);
+                episodes[1].Number.Should().Be(2);
+                episodes[1].Title.Should().Be("The Kingsroad");
+                episodes[1].Ids.Should().NotBeNull();
+                episodes[1].Ids.Trakt.Should().Be(74138U);
+                episodes[1].Ids.Tvdb.Should().Be(3436411U);
+                episodes[1].Ids.Imdb.Should().Be("tt1668746");
+                episodes[1].Ids.Tmdb.Should().Be(63141U);
+                episodes[1].Ids.TvRage.Should().Be(1325718577U);
+                episodes[1].NumberAbsolute.Should().NotHaveValue();
+                episodes[1].Overview.Should().BeNullOrEmpty();
+                episodes[1].Runtime.Should().NotHaveValue();
+                episodes[1].Rating.Should().NotHaveValue();
+                episodes[1].Votes.Should().NotHaveValue();
+                episodes[1].FirstAired.Should().NotHaveValue();
+                episodes[1].UpdatedAt.Should().NotHaveValue();
+                episodes[1].AvailableTranslationLanguageCodes.Should().BeNull();
+                episodes[1].Translations.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_10()
+        {
+            var traktJsonReader = new ITraktSeasonObjectJsonReader();
+
+            using (var reader = new StringReader(FULL_JSON_NOT_VALID_10))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+
+                traktSeason.Should().NotBeNull();
+                traktSeason.Number.Should().Be(1);
+                traktSeason.Title.Should().Be("Season 1");
                 traktSeason.Ids.Should().NotBeNull();
                 traktSeason.Ids.Trakt.Should().Be(61430U);
                 traktSeason.Ids.Tvdb.Should().Be(279121U);
@@ -3166,17 +3551,18 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_10()
+        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_11()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
-            using (var reader = new StringReader(FULL_JSON_NOT_VALID_10))
+            using (var reader = new StringReader(FULL_JSON_NOT_VALID_11))
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktSeason = traktJsonReader.ReadObject(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
+                traktSeason.Title.Should().BeNull();
                 traktSeason.Ids.Should().BeNull();
                 traktSeason.Rating.Should().BeNull();
                 traktSeason.Votes.Should().BeNull();
@@ -3272,6 +3658,7 @@
         private const string FULL_JSON_COMPLETE =
             @"{
                 ""number"": 1,
+                ""title"": ""Season 1"",
                 ""ids"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,
@@ -3314,6 +3701,7 @@
 
         private const string FULL_JSON_INCOMPLETE_1 =
             @"{
+                ""title"": ""Season 1"",
                 ""ids"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,
@@ -3357,6 +3745,12 @@
         private const string FULL_JSON_INCOMPLETE_2 =
             @"{
                 ""number"": 1,
+                ""ids"": {
+                  ""trakt"": 61430,
+                  ""tvdb"": 279121,
+                  ""tmdb"": 60523,
+                  ""tvrage"": 36939
+                },
                 ""rating"": 8.57053,
                 ""votes"": 794,
                 ""episode_count"": 23,
@@ -3394,12 +3788,8 @@
         private const string FULL_JSON_INCOMPLETE_3 =
             @"{
                 ""number"": 1,
-                ""ids"": {
-                  ""trakt"": 61430,
-                  ""tvdb"": 279121,
-                  ""tmdb"": 60523,
-                  ""tvrage"": 36939
-                },
+                ""title"": ""Season 1"",
+                ""rating"": 8.57053,
                 ""votes"": 794,
                 ""episode_count"": 23,
                 ""aired_episodes"": 23,
@@ -3436,13 +3826,14 @@
         private const string FULL_JSON_INCOMPLETE_4 =
             @"{
                 ""number"": 1,
+                ""title"": ""Season 1"",
                 ""ids"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,
                   ""tmdb"": 60523,
                   ""tvrage"": 36939
                 },
-                ""rating"": 8.57053,
+                ""votes"": 794,
                 ""episode_count"": 23,
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
@@ -3478,6 +3869,7 @@
         private const string FULL_JSON_INCOMPLETE_5 =
             @"{
                 ""number"": 1,
+                ""title"": ""Season 1"",
                 ""ids"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,
@@ -3485,7 +3877,7 @@
                   ""tvrage"": 36939
                 },
                 ""rating"": 8.57053,
-                ""votes"": 794,
+                ""episode_count"": 23,
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
@@ -3520,6 +3912,7 @@
         private const string FULL_JSON_INCOMPLETE_6 =
             @"{
                 ""number"": 1,
+                ""title"": ""Season 1"",
                 ""ids"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,
@@ -3528,7 +3921,7 @@
                 },
                 ""rating"": 8.57053,
                 ""votes"": 794,
-                ""episode_count"": 23,
+                ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
                 ""episodes"": [
@@ -3562,6 +3955,50 @@
         private const string FULL_JSON_INCOMPLETE_7 =
             @"{
                 ""number"": 1,
+                ""title"": ""Season 1"",
+                ""ids"": {
+                  ""trakt"": 61430,
+                  ""tvdb"": 279121,
+                  ""tmdb"": 60523,
+                  ""tvrage"": 36939
+                },
+                ""rating"": 8.57053,
+                ""votes"": 794,
+                ""episode_count"": 23,
+                ""overview"": ""Text text text"",
+                ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""episodes"": [
+                  {
+                    ""season"": 1,
+                    ""number"": 1,
+                    ""title"": ""Winter Is Coming"",
+                    ""ids"": {
+                      ""trakt"": 73640,
+                      ""tvdb"": 3254641,
+                      ""imdb"": ""tt1480055"",
+                      ""tmdb"": 63056,
+                      ""tvrage"": 1065008299
+                    }
+                  },
+                  {
+                    ""season"": 1,
+                    ""number"": 2,
+                    ""title"": ""The Kingsroad"",
+                    ""ids"": {
+                      ""trakt"": 74138,
+                      ""tvdb"": 3436411,
+                      ""imdb"": ""tt1668746"",
+                      ""tmdb"": 63141,
+                      ""tvrage"": 1325718577
+                    }
+                  }
+                ]
+              }";
+
+        private const string FULL_JSON_INCOMPLETE_8 =
+            @"{
+                ""number"": 1,
+                ""title"": ""Season 1"",
                 ""ids"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,
@@ -3601,9 +4038,10 @@
                 ]
               }";
 
-        private const string FULL_JSON_INCOMPLETE_8 =
+        private const string FULL_JSON_INCOMPLETE_9 =
             @"{
                 ""number"": 1,
+                ""title"": ""Season 1"",
                 ""ids"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,
@@ -3643,9 +4081,10 @@
                 ]
               }";
 
-        private const string FULL_JSON_INCOMPLETE_9 =
+        private const string FULL_JSON_INCOMPLETE_10 =
             @"{
                 ""number"": 1,
+                ""title"": ""Season 1"",
                 ""ids"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,
@@ -3660,12 +4099,17 @@
                 ""first_aired"": ""2014-10-08T00:00:00.000Z""
               }";
 
-        private const string FULL_JSON_INCOMPLETE_10 =
+        private const string FULL_JSON_INCOMPLETE_11 =
             @"{
                 ""number"": 1
               }";
 
-        private const string FULL_JSON_INCOMPLETE_11 =
+        private const string FULL_JSON_INCOMPLETE_12 =
+            @"{
+                ""title"": ""Season 1""
+              }";
+
+        private const string FULL_JSON_INCOMPLETE_13 =
             @"{
                 ""ids"": {
                   ""trakt"": 61430,
@@ -3675,37 +4119,37 @@
                 }
               }";
 
-        private const string FULL_JSON_INCOMPLETE_12 =
+        private const string FULL_JSON_INCOMPLETE_14 =
             @"{
                 ""rating"": 8.57053
               }";
 
-        private const string FULL_JSON_INCOMPLETE_13 =
+        private const string FULL_JSON_INCOMPLETE_15 =
             @"{
                 ""votes"": 794
               }";
 
-        private const string FULL_JSON_INCOMPLETE_14 =
+        private const string FULL_JSON_INCOMPLETE_16 =
             @"{
                 ""episode_count"": 23
               }";
 
-        private const string FULL_JSON_INCOMPLETE_15 =
+        private const string FULL_JSON_INCOMPLETE_17 =
             @"{
                 ""aired_episodes"": 23
               }";
 
-        private const string FULL_JSON_INCOMPLETE_16 =
+        private const string FULL_JSON_INCOMPLETE_18 =
             @"{
                 ""overview"": ""Text text text""
               }";
 
-        private const string FULL_JSON_INCOMPLETE_17 =
+        private const string FULL_JSON_INCOMPLETE_19 =
             @"{
                 ""first_aired"": ""2014-10-08T00:00:00.000Z""
               }";
 
-        private const string FULL_JSON_INCOMPLETE_18 =
+        private const string FULL_JSON_INCOMPLETE_20 =
             @"{
                 ""episodes"": [
                   {
@@ -3738,6 +4182,7 @@
         private const string FULL_JSON_NOT_VALID_1 =
             @"{
                 ""nu"": 1,
+                ""title"": ""Season 1"",
                 ""ids"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,
@@ -3781,7 +4226,8 @@
         private const string FULL_JSON_NOT_VALID_2 =
             @"{
                 ""number"": 1,
-                ""id"": {
+                ""ti"": ""Season 1"",
+                ""ids"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,
                   ""tmdb"": 60523,
@@ -3824,6 +4270,51 @@
         private const string FULL_JSON_NOT_VALID_3 =
             @"{
                 ""number"": 1,
+                ""title"": ""Season 1"",
+                ""id"": {
+                  ""trakt"": 61430,
+                  ""tvdb"": 279121,
+                  ""tmdb"": 60523,
+                  ""tvrage"": 36939
+                },
+                ""rating"": 8.57053,
+                ""votes"": 794,
+                ""episode_count"": 23,
+                ""aired_episodes"": 23,
+                ""overview"": ""Text text text"",
+                ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""episodes"": [
+                  {
+                    ""season"": 1,
+                    ""number"": 1,
+                    ""title"": ""Winter Is Coming"",
+                    ""ids"": {
+                      ""trakt"": 73640,
+                      ""tvdb"": 3254641,
+                      ""imdb"": ""tt1480055"",
+                      ""tmdb"": 63056,
+                      ""tvrage"": 1065008299
+                    }
+                  },
+                  {
+                    ""season"": 1,
+                    ""number"": 2,
+                    ""title"": ""The Kingsroad"",
+                    ""ids"": {
+                      ""trakt"": 74138,
+                      ""tvdb"": 3436411,
+                      ""imdb"": ""tt1668746"",
+                      ""tmdb"": 63141,
+                      ""tvrage"": 1325718577
+                    }
+                  }
+                ]
+              }";
+
+        private const string FULL_JSON_NOT_VALID_4 =
+            @"{
+                ""number"": 1,
+                ""title"": ""Season 1"",
                 ""ids"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,
@@ -3864,9 +4355,10 @@
                 ]
               }";
 
-        private const string FULL_JSON_NOT_VALID_4 =
+        private const string FULL_JSON_NOT_VALID_5 =
             @"{
                 ""number"": 1,
+                ""title"": ""Season 1"",
                 ""ids"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,
@@ -3907,9 +4399,10 @@
                 ]
               }";
 
-        private const string FULL_JSON_NOT_VALID_5 =
+        private const string FULL_JSON_NOT_VALID_6 =
             @"{
                 ""number"": 1,
+                ""title"": ""Season 1"",
                 ""ids"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,
@@ -3950,9 +4443,10 @@
                 ]
               }";
 
-        private const string FULL_JSON_NOT_VALID_6 =
+        private const string FULL_JSON_NOT_VALID_7 =
             @"{
                 ""number"": 1,
+                ""title"": ""Season 1"",
                 ""ids"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,
@@ -3993,9 +4487,10 @@
                 ]
               }";
 
-        private const string FULL_JSON_NOT_VALID_7 =
+        private const string FULL_JSON_NOT_VALID_8 =
             @"{
                 ""number"": 1,
+                ""title"": ""Season 1"",
                 ""ids"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,
@@ -4036,9 +4531,10 @@
                 ]
               }";
 
-        private const string FULL_JSON_NOT_VALID_8 =
+        private const string FULL_JSON_NOT_VALID_9 =
             @"{
                 ""number"": 1,
+                ""title"": ""Season 1"",
                 ""ids"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,
@@ -4079,9 +4575,10 @@
                 ]
               }";
 
-        private const string FULL_JSON_NOT_VALID_9 =
+        private const string FULL_JSON_NOT_VALID_10 =
             @"{
                 ""number"": 1,
+                ""title"": ""Season 1"",
                 ""ids"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,
@@ -4122,9 +4619,10 @@
                 ]
               }";
 
-        private const string FULL_JSON_NOT_VALID_10 =
+        private const string FULL_JSON_NOT_VALID_11 =
             @"{
                 ""nu"": 1,
+                ""ti"": ""Season 1"",
                 ""id"": {
                   ""trakt"": 61430,
                   ""tvdb"": 279121,

@@ -10,6 +10,7 @@
     internal class ITraktSeasonObjectJsonReader : ITraktObjectJsonReader<ITraktSeason>
     {
         private const string PROPERTY_NAME_NUMBER = "number";
+        private const string PROPERTY_NAME_TITLE = "title";
         private const string PROPERTY_NAME_IDS = "ids";
         private const string PROPERTY_NAME_RATING = "rating";
         private const string PROPERTY_NAME_VOTES = "votes";
@@ -50,6 +51,9 @@
                     {
                         case PROPERTY_NAME_NUMBER:
                             traktSeason.Number = jsonReader.ReadAsInt32();
+                            break;
+                        case PROPERTY_NAME_TITLE:
+                            traktSeason.Title = jsonReader.ReadAsString();
                             break;
                         case PROPERTY_NAME_IDS:
                             traktSeason.Ids = idsObjectReader.ReadObject(jsonReader);

@@ -24,6 +24,7 @@
             var season = new TraktSeason();
 
             season.Number.Should().NotHaveValue();
+            season.Title.Should().BeNullOrEmpty();
             season.Ids.Should().BeNull();
             season.Rating.Should().NotHaveValue();
             season.Votes.Should().NotHaveValue();
@@ -42,6 +43,7 @@
 
             season.Should().NotBeNull();
             season.Number.Should().Be(1);
+            season.Title.Should().BeNullOrEmpty();
             season.Ids.Should().NotBeNull();
             season.Ids.Trakt.Should().Be(61430U);
             season.Ids.Tvdb.Should().Be(279121U);
@@ -64,6 +66,7 @@
 
             season.Should().NotBeNull();
             season.Number.Should().Be(1);
+            season.Title.Should().Be("Season 1");
             season.Ids.Should().NotBeNull();
             season.Ids.Trakt.Should().Be(61430U);
             season.Ids.Tvdb.Should().Be(279121U);
@@ -140,6 +143,7 @@
                   ""tmdb"": 60523,
                   ""tvrage"": 36939
                 },
+                ""title"": ""Season 1"",
                 ""rating"": 8.57053,
                 ""votes"": 794,
                 ""episode_count"": 23,

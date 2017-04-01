@@ -8,6 +8,8 @@
     {
         int? Number { get; set; }
 
+        string Title { get; set; }
+
         ITraktSeasonIds Ids { get; set; }
 
         float? Rating { get; set; }
