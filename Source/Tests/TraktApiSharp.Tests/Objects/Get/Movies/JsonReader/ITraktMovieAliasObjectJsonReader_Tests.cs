@@ -10,18 +10,18 @@
     using Xunit;
 
     [Category("Objects.JsonReader.Get.Movies")]
-    public class TraktMovieAliasObjectJsonReader_Tests
+    public class ITraktMovieAliasObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_TraktMovieAliasObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
+        public void Test_ITraktMovieAliasObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(TraktMovieAliasObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktMovieAlias>));
+            typeof(ITraktMovieAliasObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktMovieAlias>));
         }
 
         [Fact]
-        public void Test_TraktMovieAliasObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public void Test_ITraktMovieAliasObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktMovieAliasObjectJsonReader();
+            var jsonReader = new ITraktMovieAliasObjectJsonReader();
 
             var traktMovieAlias = jsonReader.ReadObject(JSON_COMPLETE);
 
@@ -31,9 +31,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieAliasObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public void Test_ITraktMovieAliasObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new TraktMovieAliasObjectJsonReader();
+            var jsonReader = new ITraktMovieAliasObjectJsonReader();
 
             var traktMovieAlias = jsonReader.ReadObject(JSON_INCOMPLETE_1);
 
@@ -43,9 +43,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieAliasObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public void Test_ITraktMovieAliasObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new TraktMovieAliasObjectJsonReader();
+            var jsonReader = new ITraktMovieAliasObjectJsonReader();
 
             var traktMovieAlias = jsonReader.ReadObject(JSON_INCOMPLETE_2);
 
@@ -55,9 +55,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieAliasObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public void Test_ITraktMovieAliasObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new TraktMovieAliasObjectJsonReader();
+            var jsonReader = new ITraktMovieAliasObjectJsonReader();
 
             var traktMovieAlias = jsonReader.ReadObject(JSON_NOT_VALID_1);
 
@@ -67,9 +67,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieAliasObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public void Test_ITraktMovieAliasObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new TraktMovieAliasObjectJsonReader();
+            var jsonReader = new ITraktMovieAliasObjectJsonReader();
 
             var traktMovieAlias = jsonReader.ReadObject(JSON_NOT_VALID_2);
 
@@ -79,9 +79,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieAliasObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public void Test_ITraktMovieAliasObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new TraktMovieAliasObjectJsonReader();
+            var jsonReader = new ITraktMovieAliasObjectJsonReader();
 
             var traktMovieAlias = jsonReader.ReadObject(JSON_NOT_VALID_3);
 
@@ -91,27 +91,27 @@
         }
 
         [Fact]
-        public void Test_TraktMovieAliasObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_ITraktMovieAliasObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktMovieAliasObjectJsonReader();
+            var jsonReader = new ITraktMovieAliasObjectJsonReader();
 
             var traktMovieAlias = jsonReader.ReadObject(default(string));
             traktMovieAlias.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktMovieAliasObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public void Test_ITraktMovieAliasObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktMovieAliasObjectJsonReader();
+            var jsonReader = new ITraktMovieAliasObjectJsonReader();
 
             var traktMovieAlias = jsonReader.ReadObject(string.Empty);
             traktMovieAlias.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktMovieAliasObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public void Test_ITraktMovieAliasObjectJsonReader_ReadObject_From_JsonReader_Complete()
         {
-            var traktJsonReader = new TraktMovieAliasObjectJsonReader();
+            var traktJsonReader = new ITraktMovieAliasObjectJsonReader();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -125,9 +125,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieAliasObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
+        public void Test_ITraktMovieAliasObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
         {
-            var traktJsonReader = new TraktMovieAliasObjectJsonReader();
+            var traktJsonReader = new ITraktMovieAliasObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -141,9 +141,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieAliasObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
+        public void Test_ITraktMovieAliasObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
         {
-            var traktJsonReader = new TraktMovieAliasObjectJsonReader();
+            var traktJsonReader = new ITraktMovieAliasObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -157,9 +157,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieAliasObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
+        public void Test_ITraktMovieAliasObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
         {
-            var traktJsonReader = new TraktMovieAliasObjectJsonReader();
+            var traktJsonReader = new ITraktMovieAliasObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -173,9 +173,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieAliasObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
+        public void Test_ITraktMovieAliasObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
         {
-            var traktJsonReader = new TraktMovieAliasObjectJsonReader();
+            var traktJsonReader = new ITraktMovieAliasObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -189,9 +189,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieAliasObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
+        public void Test_ITraktMovieAliasObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
         {
-            var traktJsonReader = new TraktMovieAliasObjectJsonReader();
+            var traktJsonReader = new ITraktMovieAliasObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -205,18 +205,18 @@
         }
 
         [Fact]
-        public void Test_TraktMovieAliasObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_ITraktMovieAliasObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new TraktMovieAliasObjectJsonReader();
+            var jsonReader = new ITraktMovieAliasObjectJsonReader();
 
             var traktMovieAlias = jsonReader.ReadObject(default(JsonTextReader));
             traktMovieAlias.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktMovieAliasObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public void Test_ITraktMovieAliasObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var traktJsonReader = new TraktMovieAliasObjectJsonReader();
+            var traktJsonReader = new ITraktMovieAliasObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

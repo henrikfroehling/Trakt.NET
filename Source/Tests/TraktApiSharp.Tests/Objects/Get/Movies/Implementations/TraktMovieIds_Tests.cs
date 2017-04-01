@@ -106,7 +106,7 @@
         [Fact]
         public void Test_TraktMovieIds_From_Json()
         {
-            var jsonReader = new TraktMovieIdsObjectJsonReader();
+            var jsonReader = new ITraktMovieIdsObjectJsonReader();
             var movieIds = jsonReader.ReadObject(JSON);
 
             movieIds.Should().NotBeNull();

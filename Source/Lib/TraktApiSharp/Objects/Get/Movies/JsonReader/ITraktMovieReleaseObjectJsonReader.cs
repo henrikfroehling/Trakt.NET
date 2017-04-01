@@ -7,7 +7,7 @@
     using System;
     using System.IO;
 
-    internal class TraktMovieReleaseObjectJsonReader : ITraktObjectJsonReader<TraktMovieRelease>
+    internal class ITraktMovieReleaseObjectJsonReader : ITraktObjectJsonReader<TraktMovieRelease>
     {
         private const string PROPERTY_NAME_COUNTRY = "country";
         private const string PROPERTY_NAME_CERTIFICATION = "certification";

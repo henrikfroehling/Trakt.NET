@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktMovieAlias_From_Json()
         {
-            var jsonReader = new TraktMovieAliasObjectJsonReader();
+            var jsonReader = new ITraktMovieAliasObjectJsonReader();
             var movieAlias = jsonReader.ReadObject(JSON);
 
             movieAlias.Should().NotBeNull();

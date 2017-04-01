@@ -12,18 +12,18 @@
     using Xunit;
 
     [Category("Objects.JsonReader.Get.Movies")]
-    public class TraktMovieReleaseObjectJsonReader_Tests
+    public class ITraktMovieReleaseObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
+        public void Test_ITraktMovieReleaseObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(TraktMovieReleaseObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktMovieRelease>));
+            typeof(ITraktMovieReleaseObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<TraktMovieRelease>));
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(JSON_COMPLETE);
 
@@ -36,9 +36,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(JSON_INCOMPLETE_1);
 
@@ -51,9 +51,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(JSON_INCOMPLETE_2);
 
@@ -66,9 +66,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_3()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_3()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(JSON_INCOMPLETE_3);
 
@@ -81,9 +81,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_4()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_4()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(JSON_INCOMPLETE_4);
 
@@ -96,9 +96,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_5()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_5()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(JSON_INCOMPLETE_5);
 
@@ -111,9 +111,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_6()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_6()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(JSON_INCOMPLETE_6);
 
@@ -126,9 +126,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_7()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_7()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(JSON_INCOMPLETE_7);
 
@@ -141,9 +141,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_8()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_8()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(JSON_INCOMPLETE_8);
 
@@ -156,9 +156,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_9()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_9()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(JSON_INCOMPLETE_9);
 
@@ -171,9 +171,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_10()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Incomplete_10()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(JSON_INCOMPLETE_10);
 
@@ -186,9 +186,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(JSON_NOT_VALID_1);
 
@@ -201,9 +201,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(JSON_NOT_VALID_2);
 
@@ -216,9 +216,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(JSON_NOT_VALID_3);
 
@@ -231,9 +231,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_4()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_4()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(JSON_NOT_VALID_4);
 
@@ -246,9 +246,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_5()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_5()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(JSON_NOT_VALID_5);
 
@@ -261,9 +261,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_6()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_6()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(JSON_NOT_VALID_6);
 
@@ -276,27 +276,27 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(default(string));
             traktMovieRelease.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(string.Empty);
             traktMovieRelease.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Complete()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -313,9 +313,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -332,9 +332,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -351,9 +351,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_3()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_3()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -370,9 +370,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_4()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_4()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_4))
             using (var jsonReader = new JsonTextReader(reader))
@@ -389,9 +389,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_5()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_5()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_5))
             using (var jsonReader = new JsonTextReader(reader))
@@ -408,9 +408,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_6()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_6()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_6))
             using (var jsonReader = new JsonTextReader(reader))
@@ -427,9 +427,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_7()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_7()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_7))
             using (var jsonReader = new JsonTextReader(reader))
@@ -446,9 +446,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_8()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_8()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_8))
             using (var jsonReader = new JsonTextReader(reader))
@@ -465,9 +465,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_9()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_9()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_9))
             using (var jsonReader = new JsonTextReader(reader))
@@ -484,9 +484,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_10()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_10()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_10))
             using (var jsonReader = new JsonTextReader(reader))
@@ -503,9 +503,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -522,9 +522,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -541,9 +541,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -560,9 +560,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_4()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_4()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_4))
             using (var jsonReader = new JsonTextReader(reader))
@@ -579,9 +579,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_5()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_5()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_5))
             using (var jsonReader = new JsonTextReader(reader))
@@ -598,9 +598,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_6()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_6()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_6))
             using (var jsonReader = new JsonTextReader(reader))
@@ -617,18 +617,18 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             var traktMovieRelease = jsonReader.ReadObject(default(JsonTextReader));
             traktMovieRelease.Should().BeNull();
         }
 
         [Fact]
-        public void Test_TraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public void Test_ITraktMovieReleaseObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var traktJsonReader = new TraktMovieReleaseObjectJsonReader();
+            var traktJsonReader = new ITraktMovieReleaseObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

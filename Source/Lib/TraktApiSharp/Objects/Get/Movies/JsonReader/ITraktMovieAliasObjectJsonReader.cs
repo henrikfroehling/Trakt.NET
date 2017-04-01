@@ -5,7 +5,7 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class TraktMovieAliasObjectJsonReader : ITraktObjectJsonReader<TraktMovieAlias>
+    internal class ITraktMovieAliasObjectJsonReader : ITraktObjectJsonReader<TraktMovieAlias>
     {
         private const string PROPERTY_NAME_TITLE = "title";
         private const string PROPERTY_NAME_COUNTRY = "country";

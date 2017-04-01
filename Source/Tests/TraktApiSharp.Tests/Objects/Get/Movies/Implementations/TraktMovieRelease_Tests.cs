@@ -33,7 +33,7 @@
         [Fact]
         public void Test_TraktMovieRelease_From_Json()
         {
-            var jsonReader = new TraktMovieReleaseObjectJsonReader();
+            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
             var movieRelease = jsonReader.ReadObject(JSON);
 
             movieRelease.Should().NotBeNull();

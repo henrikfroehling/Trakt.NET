@@ -47,7 +47,7 @@
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var idsObjectReader = new TraktMovieIdsObjectJsonReader();
+                var idsObjectReader = new ITraktMovieIdsObjectJsonReader();
                 ITraktMovie traktMovie = new TraktMovie();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)

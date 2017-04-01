@@ -37,7 +37,7 @@
         [Fact]
         public void Test_TraktMovieTranslation_From_Json()
         {
-            var jsonReader = new TraktMovieTranslationObjectJsonReader();
+            var jsonReader = new ITraktMovieTranslationObjectJsonReader();
             var movieTranslation = jsonReader.ReadObject(JSON);
 
             movieTranslation.Should().NotBeNull();

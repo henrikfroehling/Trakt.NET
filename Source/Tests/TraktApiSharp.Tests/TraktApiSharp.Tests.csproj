@@ -293,10 +293,10 @@
     <Compile Include="Objects\Get\Movies\JsonReader\ITraktMovieObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\ITraktRecentlyUpdatedMovieObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\ITraktTrendingMovieObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieAliasObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieIdsObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieReleaseObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieTranslationObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\ITraktMovieAliasObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\ITraktMovieIdsObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\ITraktMovieReleaseObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\ITraktMovieTranslationObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\People\JsonReader\TraktPersonIdsObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\People\JsonReader\TraktPersonObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonArrayJsonReader_Tests.cs" />
