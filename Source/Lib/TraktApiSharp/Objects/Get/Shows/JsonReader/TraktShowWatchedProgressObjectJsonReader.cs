@@ -38,7 +38,7 @@
             {
                 var seasonsArrayReader = new TraktSeasonArrayJsonReader();
                 var seasonWatchedProgressArrayReader = new TraktSeasonWatchedProgressArrayJsonReader();
-                var episodeObjectReader = new TraktEpisodeObjectJsonReader();
+                var episodeObjectReader = new ITraktEpisodeObjectJsonReader();
 
                 var traktShowWatchedProgress = new TraktShowWatchedProgress();
 

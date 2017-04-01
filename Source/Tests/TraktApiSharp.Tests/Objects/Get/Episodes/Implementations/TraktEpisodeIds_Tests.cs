@@ -127,7 +127,7 @@
         [Fact]
         public void Test_TraktEpisodeIds_From_Json()
         {
-            var jsonReader = new TraktEpisodeIdsObjectJsonReader();
+            var jsonReader = new ITraktEpisodeIdsObjectJsonReader();
             var episodeIds = jsonReader.ReadObject(JSON);
 
             episodeIds.Should().NotBeNull();

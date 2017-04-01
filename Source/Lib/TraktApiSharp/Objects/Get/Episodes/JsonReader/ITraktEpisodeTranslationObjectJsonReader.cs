@@ -5,7 +5,7 @@
     using Objects.JsonReader;
     using System.IO;
 
-    internal class TraktEpisodeTranslationObjectJsonReader : ITraktObjectJsonReader<TraktEpisodeTranslation>
+    internal class ITraktEpisodeTranslationObjectJsonReader : ITraktObjectJsonReader<TraktEpisodeTranslation>
     {
         private const string PROPERTY_NAME_TITLE = "title";
         private const string PROPERTY_NAME_OVERVIEW = "overview";

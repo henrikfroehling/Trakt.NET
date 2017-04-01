@@ -36,7 +36,7 @@
         [Fact]
         public void Test_TraktEpisodeCollectionProgressCollectionProgress_From_Json()
         {
-            var jsonReader = new TraktEpisodeCollectionProgressObjectJsonReader();
+            var jsonReader = new ITraktEpisodeCollectionProgressObjectJsonReader();
             var episodeCollectionProgress = jsonReader.ReadObject(JSON);
 
             episodeCollectionProgress.Should().NotBeNull();

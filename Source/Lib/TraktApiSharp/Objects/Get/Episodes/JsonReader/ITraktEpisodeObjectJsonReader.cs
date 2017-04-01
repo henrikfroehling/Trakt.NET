@@ -6,7 +6,7 @@
     using System;
     using System.IO;
 
-    internal class TraktEpisodeObjectJsonReader : ITraktObjectJsonReader<TraktEpisode>
+    internal class ITraktEpisodeObjectJsonReader : ITraktObjectJsonReader<TraktEpisode>
     {
         private const string PROPERTY_NAME_SEASON_NUMBER = "season";
         private const string PROPERTY_NAME_NUMBER = "number";
@@ -41,8 +41,8 @@
 
             if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var idsObjectReader = new TraktEpisodeIdsObjectJsonReader();
-                var translationArrayReader = new TraktEpisodeTranslationArrayJsonReader();
+                var idsObjectReader = new ITraktEpisodeIdsObjectJsonReader();
+                var translationArrayReader = new ITraktEpisodeTranslationArrayJsonReader();
                 var traktEpisode = new TraktEpisode();
 
                 while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)

@@ -41,7 +41,7 @@
         [Fact]
         public void Test_TraktEpisode_From_Minimal_Json()
         {
-            var jsonReader = new TraktEpisodeObjectJsonReader();
+            var jsonReader = new ITraktEpisodeObjectJsonReader();
             var episode = jsonReader.ReadObject(MINIMAL_JSON);
 
             episode.Should().NotBeNull();
@@ -68,7 +68,7 @@
         [Fact]
         public void Test_TraktEpisode_From_Full_Json()
         {
-            var jsonReader = new TraktEpisodeObjectJsonReader();
+            var jsonReader = new ITraktEpisodeObjectJsonReader();
             var episode = jsonReader.ReadObject(FULL_JSON);
 
             episode.Should().NotBeNull();
