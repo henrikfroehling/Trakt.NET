@@ -4,6 +4,7 @@
     using Implementations;
     using Newtonsoft.Json;
     using Objects.JsonReader;
+    using Seasons.JsonReader;
     using Shows;
     using System;
     using System.IO;

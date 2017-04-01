@@ -4,7 +4,7 @@
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
-    using TraktApiSharp.Objects.JsonReader.Get.Movies;
+    using TraktApiSharp.Objects.Get.Movies.JsonReader;
     using Xunit;
 
     [Category("Objects.Get.Movies.Implementations")]

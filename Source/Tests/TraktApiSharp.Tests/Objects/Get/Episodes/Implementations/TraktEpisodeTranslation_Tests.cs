@@ -5,7 +5,7 @@
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
-    using TraktApiSharp.Objects.JsonReader.Get.Episodes;
+    using TraktApiSharp.Objects.Get.Episodes.JsonReader;
     using Xunit;
 
     [Category("Objects.Get.Episodes.Implementations")]

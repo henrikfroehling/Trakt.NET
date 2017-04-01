@@ -6,7 +6,7 @@
     using Traits;
     using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Objects.Get.Seasons.Implementations;
-    using TraktApiSharp.Objects.JsonReader.Get.Seasons;
+    using TraktApiSharp.Objects.Get.Seasons.JsonReader;
     using Xunit;
 
     [Category("Objects.Get.Seasons.Implementations")]
