@@ -3,8 +3,9 @@
     using Implementations;
     using Newtonsoft.Json;
     using Objects.JsonReader;
-    using System;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktPersonObjectJsonReader : ITraktObjectJsonReader<ITraktPerson>
     {
@@ -16,7 +17,7 @@
         private const string PROPERTY_NAME_BIRTHPLACE = "birthplace";
         private const string PROPERTY_NAME_HOMEPAGE = "homepage";
 
-        public ITraktPerson ReadObject(string json)
+        public Task<ITraktPerson> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -24,59 +25,61 @@
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktPerson ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktPerson> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
                 return null;
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var idsObjectReader = new ITraktPersonIdsObjectJsonReader();
                 ITraktPerson traktPerson = new TraktPerson();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_NAME:
-                            traktPerson.Name = jsonReader.ReadAsString();
+                            traktPerson.Name = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_IDS:
-                            traktPerson.Ids = idsObjectReader.ReadObject(jsonReader);
+                            traktPerson.Ids = await idsObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case PROPERTY_NAME_BIOGRAPHY:
-                            traktPerson.Biography = jsonReader.ReadAsString();
+                            traktPerson.Biography = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_BIRTHDAY:
                             {
-                                DateTime dateTime;
-                                if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
-                                    traktPerson.Birthday = dateTime;
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    traktPerson.Birthday = value.Second;
 
                                 break;
                             }
                         case PROPERTY_NAME_DEATH:
                             {
-                                DateTime dateTime;
-                                if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
-                                    traktPerson.Death = dateTime;
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    traktPerson.Death = value.Second;
 
                                 break;
                             }
                         case PROPERTY_NAME_BIRTHPLACE:
-                            traktPerson.Birthplace = jsonReader.ReadAsString();
+                            traktPerson.Birthplace = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_HOMEPAGE:
-                            traktPerson.Homepage = jsonReader.ReadAsString();
+                            traktPerson.Homepage = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }

@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.People.Implementations
 {
     using FluentAssertions;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.People;
     using TraktApiSharp.Objects.Get.People.Implementations;
@@ -125,10 +126,10 @@
         }
 
         [Fact]
-        public void Test_TraktPersonIds_From_Json()
+        public async Task Test_TraktPersonIds_From_Json()
         {
             var jsonReader = new ITraktPersonIdsObjectJsonReader();
-            var personIds = jsonReader.ReadObject(JSON);
+            var personIds = await jsonReader.ReadObjectAsync(JSON);
 
             personIds.Should().NotBeNull();
             personIds.Trakt.Should().Be(297737);

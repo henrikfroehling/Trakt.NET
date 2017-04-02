@@ -4,6 +4,8 @@
     using Newtonsoft.Json;
     using Objects.JsonReader;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktPersonIdsObjectJsonReader : ITraktObjectJsonReader<ITraktPersonIds>
     {
@@ -13,7 +15,7 @@
         private const string PROPERTY_NAME_TMDB = "tmdb";
         private const string PROPERTY_NAME_TVRAGE = "tvrage";
 
-        public ITraktPersonIds ReadObject(string json)
+        public Task<ITraktPersonIds> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -21,54 +23,60 @@
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktPersonIds ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktPersonIds> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
                 return null;
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 ITraktPersonIds traktPersonIds = new TraktPersonIds();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_TRAKT:
-                            uint traktId;
+                            {
+                                var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
-                            if (JsonReaderHelper.ReadUnsignedIntegerValue(jsonReader, out traktId))
-                                traktPersonIds.Trakt = traktId;
+                                if (value.First)
+                                    traktPersonIds.Trakt = value.Second;
 
-                            break;
+                                break;
+                            }
                         case PROPERTY_NAME_SLUG:
-                            traktPersonIds.Slug = jsonReader.ReadAsString();
+                            traktPersonIds.Slug = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_IMDB:
-                            traktPersonIds.Imdb = jsonReader.ReadAsString();
+                            traktPersonIds.Imdb = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_TMDB:
-                            uint tmdbId;
+                            {
+                                var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
-                            if (JsonReaderHelper.ReadUnsignedIntegerValue(jsonReader, out tmdbId))
-                                traktPersonIds.Tmdb = tmdbId;
+                                if (value.First)
+                                    traktPersonIds.Tmdb = value.Second;
 
-                            break;
+                                break;
+                            }
                         case PROPERTY_NAME_TVRAGE:
-                            uint tvRageId;
+                            {
+                                var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
-                            if (JsonReaderHelper.ReadUnsignedIntegerValue(jsonReader, out tvRageId))
-                                traktPersonIds.TvRage = tvRageId;
+                                if (value.First)
+                                    traktPersonIds.TvRage = value.Second;
 
-                            break;
+                                break;
+                            }
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }
