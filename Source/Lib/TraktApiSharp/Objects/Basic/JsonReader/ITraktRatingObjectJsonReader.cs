@@ -17,7 +17,7 @@
         public Task<ITraktRating> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return null;
+                return Task.FromResult(default(ITraktRating));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
@@ -29,7 +29,7 @@
         public async Task<ITraktRating> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return null;
+                return await Task.FromResult(default(ITraktRating));
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -59,7 +59,7 @@
                 return traktRating;
             }
 
-            return null;
+            return await Task.FromResult(default(ITraktRating));
         }
 
         private static async Task ReadDistributionAsync(JsonTextReader jsonReader, ITraktRating traktRating, CancellationToken cancellationToken = default(CancellationToken))

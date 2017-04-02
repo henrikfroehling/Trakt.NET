@@ -16,7 +16,7 @@
         public Task<ITraktMostAnticipatedMovie> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return null;
+                return Task.FromResult(default(ITraktMostAnticipatedMovie));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
@@ -28,7 +28,7 @@
         public async Task<ITraktMostAnticipatedMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return null;
+                return await Task.FromResult(default(ITraktMostAnticipatedMovie));
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -56,7 +56,7 @@
                 return traktMostAnticipatedMovie;
             }
 
-            return null;
+            return await Task.FromResult(default(ITraktMostAnticipatedMovie));
         }
     }
 }

@@ -18,7 +18,7 @@
         public Task<ITraktMostPWCMovie> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return null;
+                return Task.FromResult(default(ITraktMostPWCMovie));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
@@ -30,7 +30,7 @@
         public async Task<ITraktMostPWCMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return null;
+                return await Task.FromResult(default(ITraktMostPWCMovie));
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -64,7 +64,7 @@
                 return traktMostPWCMovie;
             }
 
-            return null;
+            return await Task.FromResult(default(ITraktMostPWCMovie));
         }
     }
 }

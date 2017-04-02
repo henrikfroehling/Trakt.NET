@@ -12,7 +12,7 @@
         public Task<IEnumerable<ITraktEpisodeTranslation>> ReadArrayAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return null;
+                return Task.FromResult(default(IEnumerable<ITraktEpisodeTranslation>));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
@@ -24,7 +24,7 @@
         public async Task<IEnumerable<ITraktEpisodeTranslation>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return null;
+                return await Task.FromResult(default(IEnumerable<ITraktEpisodeTranslation>));
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
@@ -47,7 +47,7 @@
                 return traktEpisodeTranslations;
             }
 
-            return null;
+            return await Task.FromResult(default(IEnumerable<ITraktEpisodeTranslation>));
         }
     }
 }

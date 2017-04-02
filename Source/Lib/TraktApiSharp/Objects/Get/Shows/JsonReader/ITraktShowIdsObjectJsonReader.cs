@@ -19,7 +19,7 @@
         public Task<ITraktShowIds> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return null;
+                return Task.FromResult(default(ITraktShowIds));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
@@ -31,7 +31,7 @@
         public async Task<ITraktShowIds> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return null;
+                return await Task.FromResult(default(ITraktShowIds));
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -94,7 +94,7 @@
                 return traktShowIds;
             }
 
-            return null;
+            return await Task.FromResult(default(ITraktShowIds));
         }
     }
 }

@@ -18,7 +18,7 @@
         public Task<ITraktSeasonCollectionProgress> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return null;
+                return Task.FromResult(default(ITraktSeasonCollectionProgress));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
@@ -30,7 +30,7 @@
         public async Task<ITraktSeasonCollectionProgress> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return null;
+                return await Task.FromResult(default(ITraktSeasonCollectionProgress));
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -64,7 +64,7 @@
                 return traktSeasonCollectionProgress;
             }
 
-            return null;
+            return await Task.FromResult(default(ITraktSeasonCollectionProgress));
         }
     }
 }
