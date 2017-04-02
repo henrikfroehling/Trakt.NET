@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Newtonsoft.Json;
     using System.IO;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.JsonReader;
@@ -19,11 +20,11 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
             var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
-            var traktShowTranslation = jsonReader.ReadObject(JSON_COMPLETE);
+            var traktShowTranslation = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
             traktShowTranslation.Should().NotBeNull();
             traktShowTranslation.Title.Should().Be("Game of Thrones");
@@ -32,11 +33,11 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
             var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
-            var traktShowTranslation = jsonReader.ReadObject(JSON_INCOMPLETE_1);
+            var traktShowTranslation = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_1);
 
             traktShowTranslation.Should().NotBeNull();
             traktShowTranslation.Title.Should().BeNull();
@@ -45,11 +46,11 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
             var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
-            var traktShowTranslation = jsonReader.ReadObject(JSON_INCOMPLETE_2);
+            var traktShowTranslation = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_2);
 
             traktShowTranslation.Should().NotBeNull();
             traktShowTranslation.Title.Should().Be("Game of Thrones");
@@ -58,11 +59,11 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_3()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_3()
         {
             var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
-            var traktShowTranslation = jsonReader.ReadObject(JSON_INCOMPLETE_3);
+            var traktShowTranslation = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_3);
 
             traktShowTranslation.Should().NotBeNull();
             traktShowTranslation.Title.Should().Be("Game of Thrones");
@@ -71,11 +72,11 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_4()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_4()
         {
             var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
-            var traktShowTranslation = jsonReader.ReadObject(JSON_INCOMPLETE_4);
+            var traktShowTranslation = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_4);
 
             traktShowTranslation.Should().NotBeNull();
             traktShowTranslation.Title.Should().Be("Game of Thrones");
@@ -84,11 +85,11 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_5()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_5()
         {
             var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
-            var traktShowTranslation = jsonReader.ReadObject(JSON_INCOMPLETE_5);
+            var traktShowTranslation = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_5);
 
             traktShowTranslation.Should().NotBeNull();
             traktShowTranslation.Title.Should().BeNull();
@@ -97,11 +98,11 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_6()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Incomplete_6()
         {
             var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
-            var traktShowTranslation = jsonReader.ReadObject(JSON_INCOMPLETE_6);
+            var traktShowTranslation = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_6);
 
             traktShowTranslation.Should().NotBeNull();
             traktShowTranslation.Title.Should().BeNull();
@@ -110,11 +111,11 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
             var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
-            var traktShowTranslation = jsonReader.ReadObject(JSON_NOT_VALID_1);
+            var traktShowTranslation = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_1);
 
             traktShowTranslation.Should().NotBeNull();
             traktShowTranslation.Title.Should().BeNull();
@@ -123,11 +124,11 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
             var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
-            var traktShowTranslation = jsonReader.ReadObject(JSON_NOT_VALID_2);
+            var traktShowTranslation = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_2);
 
             traktShowTranslation.Should().NotBeNull();
             traktShowTranslation.Title.Should().Be("Game of Thrones");
@@ -136,11 +137,11 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
             var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
-            var traktShowTranslation = jsonReader.ReadObject(JSON_NOT_VALID_3);
+            var traktShowTranslation = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_3);
 
             traktShowTranslation.Should().NotBeNull();
             traktShowTranslation.Title.Should().Be("Game of Thrones");
@@ -149,11 +150,11 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Not_Valid_4()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Not_Valid_4()
         {
             var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
-            var traktShowTranslation = jsonReader.ReadObject(JSON_NOT_VALID_4);
+            var traktShowTranslation = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_4);
 
             traktShowTranslation.Should().NotBeNull();
             traktShowTranslation.Title.Should().BeNull();
@@ -162,32 +163,32 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
-            var traktShowTranslation = jsonReader.ReadObject(default(string));
+            var traktShowTranslation = await jsonReader.ReadObjectAsync(default(string));
             traktShowTranslation.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
             var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
-            var traktShowTranslation = jsonReader.ReadObject(string.Empty);
+            var traktShowTranslation = await jsonReader.ReadObjectAsync(string.Empty);
             traktShowTranslation.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Complete()
         {
             var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktShowTranslation = traktJsonReader.ReadObject(jsonReader);
+                var traktShowTranslation = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktShowTranslation.Should().NotBeNull();
                 traktShowTranslation.Title.Should().Be("Game of Thrones");
@@ -197,14 +198,14 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
         {
             var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktShowTranslation = traktJsonReader.ReadObject(jsonReader);
+                var traktShowTranslation = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktShowTranslation.Should().NotBeNull();
                 traktShowTranslation.Title.Should().BeNull();
@@ -214,14 +215,14 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
         {
             var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktShowTranslation = traktJsonReader.ReadObject(jsonReader);
+                var traktShowTranslation = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktShowTranslation.Should().NotBeNull();
                 traktShowTranslation.Title.Should().Be("Game of Thrones");
@@ -231,14 +232,14 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_3()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_3()
         {
             var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_3))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktShowTranslation = traktJsonReader.ReadObject(jsonReader);
+                var traktShowTranslation = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktShowTranslation.Should().NotBeNull();
                 traktShowTranslation.Title.Should().Be("Game of Thrones");
@@ -248,14 +249,14 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_4()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_4()
         {
             var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_4))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktShowTranslation = traktJsonReader.ReadObject(jsonReader);
+                var traktShowTranslation = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktShowTranslation.Should().NotBeNull();
                 traktShowTranslation.Title.Should().Be("Game of Thrones");
@@ -265,14 +266,14 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_5()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_5()
         {
             var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_5))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktShowTranslation = traktJsonReader.ReadObject(jsonReader);
+                var traktShowTranslation = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktShowTranslation.Should().NotBeNull();
                 traktShowTranslation.Title.Should().BeNull();
@@ -282,14 +283,14 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_6()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Incomplete_6()
         {
             var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_6))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktShowTranslation = traktJsonReader.ReadObject(jsonReader);
+                var traktShowTranslation = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktShowTranslation.Should().NotBeNull();
                 traktShowTranslation.Title.Should().BeNull();
@@ -299,14 +300,14 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
         {
             var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktShowTranslation = traktJsonReader.ReadObject(jsonReader);
+                var traktShowTranslation = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktShowTranslation.Should().NotBeNull();
                 traktShowTranslation.Title.Should().BeNull();
@@ -316,14 +317,14 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
         {
             var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktShowTranslation = traktJsonReader.ReadObject(jsonReader);
+                var traktShowTranslation = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktShowTranslation.Should().NotBeNull();
                 traktShowTranslation.Title.Should().Be("Game of Thrones");
@@ -333,14 +334,14 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
         {
             var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktShowTranslation = traktJsonReader.ReadObject(jsonReader);
+                var traktShowTranslation = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktShowTranslation.Should().NotBeNull();
                 traktShowTranslation.Title.Should().Be("Game of Thrones");
@@ -350,14 +351,14 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_4()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_4()
         {
             var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_4))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktShowTranslation = traktJsonReader.ReadObject(jsonReader);
+                var traktShowTranslation = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktShowTranslation.Should().NotBeNull();
                 traktShowTranslation.Title.Should().BeNull();
@@ -367,23 +368,23 @@
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var jsonReader = new ITraktShowTranslationObjectJsonReader();
 
-            var traktShowTranslation = jsonReader.ReadObject(default(JsonTextReader));
+            var traktShowTranslation = await jsonReader.ReadObjectAsync(default(JsonTextReader));
             traktShowTranslation.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
             var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktShowTranslation = traktJsonReader.ReadObject(jsonReader);
+                var traktShowTranslation = await traktJsonReader.ReadObjectAsync(jsonReader);
                 traktShowTranslation.Should().BeNull();
             }
         }

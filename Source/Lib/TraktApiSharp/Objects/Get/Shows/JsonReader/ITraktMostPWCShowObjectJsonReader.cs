@@ -5,6 +5,8 @@
     using Objects.JsonReader;
     using Shows;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktMostPWCShowObjectJsonReader : ITraktObjectJsonReader<ITraktMostPWCShow>
     {
@@ -14,7 +16,7 @@
         private const string PROPERTY_NAME_COLLECTOR_COUNT = "collector_count";
         private const string PROPERTY_NAME_SHOW = "show";
 
-        public ITraktMostPWCShow ReadObject(string json)
+        public Task<ITraktMostPWCShow> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -22,43 +24,43 @@
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktMostPWCShow ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktMostPWCShow> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
                 return null;
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var showObjectReader = new ITraktShowObjectJsonReader();
                 ITraktMostPWCShow traktMostPWCShow = new TraktMostPWCShow();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_WATCHER_COUNT:
-                            traktMostPWCShow.WatcherCount = jsonReader.ReadAsInt32();
+                            traktMostPWCShow.WatcherCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_PLAY_COUNT:
-                            traktMostPWCShow.PlayCount = jsonReader.ReadAsInt32();
+                            traktMostPWCShow.PlayCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_COLLECTED_COUNT:
-                            traktMostPWCShow.CollectedCount = jsonReader.ReadAsInt32();
+                            traktMostPWCShow.CollectedCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_COLLECTOR_COUNT:
-                            traktMostPWCShow.CollectorCount = jsonReader.ReadAsInt32();
+                            traktMostPWCShow.CollectorCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_SHOW:
-                            traktMostPWCShow.Show = showObjectReader.ReadObject(jsonReader);
+                            traktMostPWCShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }

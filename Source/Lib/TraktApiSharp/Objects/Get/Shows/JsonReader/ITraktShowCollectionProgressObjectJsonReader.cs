@@ -5,8 +5,9 @@
     using Newtonsoft.Json;
     using Objects.JsonReader;
     using Seasons.JsonReader;
-    using System;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktShowCollectionProgressObjectJsonReader : ITraktObjectJsonReader<ITraktShowCollectionProgress>
     {
@@ -17,7 +18,7 @@
         private const string PROPERTY_NAME_HIDDEN_SEASONS = "hidden_seasons";
         private const string PROPERTY_NAME_NEXT_EPISODE = "next_episode";
 
-        public ITraktShowCollectionProgress ReadObject(string json)
+        public Task<ITraktShowCollectionProgress> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -25,16 +26,16 @@
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktShowCollectionProgress ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktShowCollectionProgress> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
                 return null;
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var seasonsArrayReader = new ITraktSeasonArrayJsonReader();
                 var seasonCollectionProgressArrayReader = new ITraktSeasonCollectionProgressArrayJsonReader();
@@ -42,35 +43,38 @@
 
                 ITraktShowCollectionProgress traktShowCollectionProgress = new TraktShowCollectionProgress();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_AIRED:
-                            traktShowCollectionProgress.Aired = jsonReader.ReadAsInt32();
+                            traktShowCollectionProgress.Aired = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_COMPLETED:
-                            traktShowCollectionProgress.Completed = jsonReader.ReadAsInt32();
+                            traktShowCollectionProgress.Completed = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_LAST_COLLECTED_AT:
-                            DateTime dateTime;
-                            if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
-                                traktShowCollectionProgress.LastCollectedAt = dateTime;
+                            {
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
-                            break;
+                                if (value.First)
+                                    traktShowCollectionProgress.LastCollectedAt = value.Second;
+
+                                break;
+                            }
                         case PROPERTY_NAME_SEASONS:
-                            traktShowCollectionProgress.Seasons = seasonCollectionProgressArrayReader.ReadArray(jsonReader);
+                            traktShowCollectionProgress.Seasons = await seasonCollectionProgressArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case PROPERTY_NAME_HIDDEN_SEASONS:
-                            traktShowCollectionProgress.HiddenSeasons = seasonsArrayReader.ReadArray(jsonReader);
+                            traktShowCollectionProgress.HiddenSeasons = await seasonsArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case PROPERTY_NAME_NEXT_EPISODE:
-                            traktShowCollectionProgress.NextEpisode = episodeObjectReader.ReadObject(jsonReader);
+                            traktShowCollectionProgress.NextEpisode = await episodeObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }

@@ -4,15 +4,16 @@
     using Newtonsoft.Json;
     using Objects.JsonReader;
     using Shows;
-    using System;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktRecentlyUpdatedShowObjectJsonReader : ITraktObjectJsonReader<ITraktRecentlyUpdatedShow>
     {
         private const string PROPERTY_NAME_UPDATED_AT = "updated_at";
         private const string PROPERTY_NAME_SHOW = "show";
 
-        public ITraktRecentlyUpdatedShow ReadObject(string json)
+        public Task<ITraktRecentlyUpdatedShow> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -20,37 +21,40 @@
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktRecentlyUpdatedShow ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktRecentlyUpdatedShow> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
                 return null;
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var showObjectReader = new ITraktShowObjectJsonReader();
                 ITraktRecentlyUpdatedShow traktRecentlyUpdatedShow = new TraktRecentlyUpdatedShow();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_UPDATED_AT:
-                            DateTime dateTime;
-                            if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
-                                traktRecentlyUpdatedShow.RecentlyUpdatedAt = dateTime;
+                            {
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
-                            break;
+                                if (value.First)
+                                    traktRecentlyUpdatedShow.RecentlyUpdatedAt = value.Second;
+
+                                break;
+                            }
                         case PROPERTY_NAME_SHOW:
-                            traktRecentlyUpdatedShow.Show = showObjectReader.ReadObject(jsonReader);
+                            traktRecentlyUpdatedShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }
