@@ -5,6 +5,7 @@
     using System;
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Objects.Get.Seasons.JsonReader;
@@ -21,11 +22,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Minimal_Complete()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Minimal_Complete()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(MINIMAL_JSON_COMPLETE);
+            var traktSeason = await jsonReader.ReadObjectAsync(MINIMAL_JSON_COMPLETE);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -45,11 +46,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Minimal_Incomplete_1()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Minimal_Incomplete_1()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(MINIMAL_JSON_INCOMPLETE_1);
+            var traktSeason = await jsonReader.ReadObjectAsync(MINIMAL_JSON_INCOMPLETE_1);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -65,35 +66,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Minimal_Incomplete_2()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Minimal_Incomplete_2()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(MINIMAL_JSON_INCOMPLETE_2);
-
-            traktSeason.Should().NotBeNull();
-            traktSeason.Number.Should().BeNull();
-            traktSeason.Title.Should().BeNullOrEmpty();
-            traktSeason.Ids.Should().NotBeNull();
-            traktSeason.Ids.Trakt.Should().Be(61430U);
-            traktSeason.Ids.Tvdb.Should().Be(279121U);
-            traktSeason.Ids.Tmdb.Should().Be(60523U);
-            traktSeason.Ids.TvRage.Should().Be(36939U);
-            traktSeason.Rating.Should().NotHaveValue();
-            traktSeason.Votes.Should().NotHaveValue();
-            traktSeason.TotalEpisodesCount.Should().NotHaveValue();
-            traktSeason.AiredEpisodesCount.Should().NotHaveValue();
-            traktSeason.Overview.Should().BeNullOrEmpty();
-            traktSeason.FirstAired.Should().NotHaveValue();
-            traktSeason.Episodes.Should().BeNull();
-        }
-
-        [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Minimal_Not_Valid_1()
-        {
-            var jsonReader = new ITraktSeasonObjectJsonReader();
-
-            var traktSeason = jsonReader.ReadObject(MINIMAL_JSON_NOT_VALID_1);
+            var traktSeason = await jsonReader.ReadObjectAsync(MINIMAL_JSON_INCOMPLETE_2);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
@@ -113,11 +90,35 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Minimal_Not_Valid_2()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Minimal_Not_Valid_1()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(MINIMAL_JSON_NOT_VALID_2);
+            var traktSeason = await jsonReader.ReadObjectAsync(MINIMAL_JSON_NOT_VALID_1);
+
+            traktSeason.Should().NotBeNull();
+            traktSeason.Number.Should().BeNull();
+            traktSeason.Title.Should().BeNullOrEmpty();
+            traktSeason.Ids.Should().NotBeNull();
+            traktSeason.Ids.Trakt.Should().Be(61430U);
+            traktSeason.Ids.Tvdb.Should().Be(279121U);
+            traktSeason.Ids.Tmdb.Should().Be(60523U);
+            traktSeason.Ids.TvRage.Should().Be(36939U);
+            traktSeason.Rating.Should().NotHaveValue();
+            traktSeason.Votes.Should().NotHaveValue();
+            traktSeason.TotalEpisodesCount.Should().NotHaveValue();
+            traktSeason.AiredEpisodesCount.Should().NotHaveValue();
+            traktSeason.Overview.Should().BeNullOrEmpty();
+            traktSeason.FirstAired.Should().NotHaveValue();
+            traktSeason.Episodes.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Minimal_Not_Valid_2()
+        {
+            var jsonReader = new ITraktSeasonObjectJsonReader();
+
+            var traktSeason = await jsonReader.ReadObjectAsync(MINIMAL_JSON_NOT_VALID_2);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -133,11 +134,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Minimal_Not_Valid_3()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Minimal_Not_Valid_3()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(MINIMAL_JSON_NOT_VALID_3);
+            var traktSeason = await jsonReader.ReadObjectAsync(MINIMAL_JSON_NOT_VALID_3);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
@@ -153,11 +154,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Complete()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Complete()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_COMPLETE);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_COMPLETE);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -219,11 +220,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_1()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_1()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_1);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_1);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
@@ -285,11 +286,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_2()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_2()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_2);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_2);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -351,11 +352,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_3()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_3()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_3);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_3);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -413,11 +414,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_4()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_4()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_4);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_4);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -479,11 +480,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_5()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_5()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_5);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_5);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -545,11 +546,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_6()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_6()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_6);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_6);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -611,11 +612,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_7()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_7()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_7);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_7);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -677,11 +678,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_8()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_8()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_8);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_8);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -743,11 +744,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_9()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_9()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_9);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_9);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -809,11 +810,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_10()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_10()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_10);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_10);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -833,11 +834,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_11()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_11()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_11);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_11);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -853,11 +854,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_12()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_12()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_12);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_12);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
@@ -873,11 +874,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_13()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_13()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_13);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_13);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
@@ -897,11 +898,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_14()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_14()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_14);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_14);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
@@ -917,11 +918,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_15()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_15()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_15);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_15);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
@@ -937,11 +938,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_16()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_16()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_16);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_16);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
@@ -957,11 +958,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_17()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_17()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_17);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_17);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
@@ -977,11 +978,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_18()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_18()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_18);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_18);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
@@ -997,11 +998,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_19()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_19()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_19);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_19);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
@@ -1017,11 +1018,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_20()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Incomplete_20()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_INCOMPLETE_20);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_INCOMPLETE_20);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
@@ -1079,11 +1080,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_1()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_1()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_NOT_VALID_1);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_NOT_VALID_1);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
@@ -1145,11 +1146,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_2()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_2()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_NOT_VALID_2);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_NOT_VALID_2);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -1211,11 +1212,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_3()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_3()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_NOT_VALID_3);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_NOT_VALID_3);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -1273,11 +1274,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_4()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_4()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_NOT_VALID_4);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_NOT_VALID_4);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -1339,11 +1340,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_5()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_5()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_NOT_VALID_5);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_NOT_VALID_5);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -1405,11 +1406,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_6()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_6()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_NOT_VALID_6);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_NOT_VALID_6);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -1471,11 +1472,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_7()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_7()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_NOT_VALID_7);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_NOT_VALID_7);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -1537,11 +1538,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_8()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_8()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_NOT_VALID_8);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_NOT_VALID_8);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -1603,11 +1604,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_9()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_9()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_NOT_VALID_9);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_NOT_VALID_9);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -1669,11 +1670,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_10()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_10()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_NOT_VALID_10);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_NOT_VALID_10);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().Be(1);
@@ -1693,11 +1694,11 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_11()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Full_Not_Valid_11()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(FULL_JSON_NOT_VALID_11);
+            var traktSeason = await jsonReader.ReadObjectAsync(FULL_JSON_NOT_VALID_11);
 
             traktSeason.Should().NotBeNull();
             traktSeason.Number.Should().BeNull();
@@ -1713,32 +1714,32 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(default(string));
+            var traktSeason = await jsonReader.ReadObjectAsync(default(string));
             traktSeason.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(string.Empty);
+            var traktSeason = await jsonReader.ReadObjectAsync(string.Empty);
             traktSeason.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Minimal_Complete()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Minimal_Complete()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -1759,14 +1760,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Minimal_Incomplete_1()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Minimal_Incomplete_1()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -1783,14 +1784,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Minimal_Incomplete_2()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Minimal_Incomplete_2()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
@@ -1811,14 +1812,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Minimal_Not_Valid_1()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Minimal_Not_Valid_1()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
@@ -1839,14 +1840,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Minimal_Not_Valid_2()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Minimal_Not_Valid_2()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -1863,14 +1864,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Minimal_Not_Valid_3()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Minimal_Not_Valid_3()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
@@ -1887,14 +1888,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Complete()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Complete()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -1957,14 +1958,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_1()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_1()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
@@ -2027,14 +2028,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_2()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_2()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -2097,14 +2098,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_3()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_3()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_3))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -2163,14 +2164,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_4()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_4()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_4))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -2233,14 +2234,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_5()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_5()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_5))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -2303,14 +2304,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_6()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_6()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_6))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -2373,14 +2374,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_7()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_7()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_7))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -2443,14 +2444,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_8()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_8()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_8))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -2513,14 +2514,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_9()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_9()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_9))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -2583,14 +2584,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_10()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_10()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_10))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -2611,14 +2612,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_11()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_11()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_11))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -2635,14 +2636,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_12()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_12()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_12))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
@@ -2659,14 +2660,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_13()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_13()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_13))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
@@ -2687,14 +2688,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_14()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_14()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_14))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
@@ -2711,14 +2712,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_15()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_15()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_15))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
@@ -2735,14 +2736,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_16()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_16()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_16))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
@@ -2759,14 +2760,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_17()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_17()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_17))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
@@ -2783,14 +2784,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_18()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_18()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_18))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
@@ -2807,14 +2808,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_19()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_19()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_19))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
@@ -2831,14 +2832,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_20()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_20()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_20))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
@@ -2897,14 +2898,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_1()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_1()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
@@ -2967,14 +2968,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_2()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_2()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -3037,14 +3038,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_3()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_3()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -3103,14 +3104,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_4()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_4()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_4))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -3173,14 +3174,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_5()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_5()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_5))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -3243,14 +3244,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_6()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_6()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_6))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -3313,14 +3314,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_7()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_7()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_7))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -3383,14 +3384,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_8()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_8()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_8))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -3453,14 +3454,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_9()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_9()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_9))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -3523,14 +3524,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_10()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_10()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_10))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().Be(1);
@@ -3551,14 +3552,14 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_11()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_11()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_11))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktSeason.Should().NotBeNull();
                 traktSeason.Number.Should().BeNull();
@@ -3575,23 +3576,23 @@
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var jsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = jsonReader.ReadObject(default(JsonTextReader));
+            var traktSeason = await jsonReader.ReadObjectAsync(default(JsonTextReader));
             traktSeason.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
             var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktSeason = traktJsonReader.ReadObject(jsonReader);
+                var traktSeason = await traktJsonReader.ReadObjectAsync(jsonReader);
                 traktSeason.Should().BeNull();
             }
         }
