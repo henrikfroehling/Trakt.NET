@@ -4,6 +4,8 @@
     using Newtonsoft.Json;
     using Objects.JsonReader;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktMovieTranslationObjectJsonReader : ITraktObjectJsonReader<ITraktMovieTranslation>
     {
@@ -12,7 +14,7 @@
         private const string PROPERTY_NAME_LANGUAGE_CODE = "language";
         private const string PROPERTY_NAME_TAGLINE = "tagline";
 
-        public ITraktMovieTranslation ReadObject(string json)
+        public Task<ITraktMovieTranslation> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -20,39 +22,39 @@
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktMovieTranslation ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktMovieTranslation> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
                 return null;
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 ITraktMovieTranslation traktMovieTranslation = new TraktMovieTranslation();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_TITLE:
-                            traktMovieTranslation.Title = jsonReader.ReadAsString();
+                            traktMovieTranslation.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_OVERVIEW:
-                            traktMovieTranslation.Overview = jsonReader.ReadAsString();
+                            traktMovieTranslation.Overview = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_LANGUAGE_CODE:
-                            traktMovieTranslation.LanguageCode = jsonReader.ReadAsString();
+                            traktMovieTranslation.LanguageCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_TAGLINE:
-                            traktMovieTranslation.Tagline = jsonReader.ReadAsString();
+                            traktMovieTranslation.Tagline = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }

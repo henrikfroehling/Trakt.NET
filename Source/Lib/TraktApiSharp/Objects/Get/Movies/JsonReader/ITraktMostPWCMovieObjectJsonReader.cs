@@ -5,6 +5,8 @@
     using Objects.Get.Movies;
     using Objects.JsonReader;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktMostPWCMovieObjectJsonReader : ITraktObjectJsonReader<ITraktMostPWCMovie>
     {
@@ -13,7 +15,7 @@
         private const string PROPERTY_NAME_COLLECTED_COUNT = "collected_count";
         private const string PROPERTY_NAME_MOVIE = "movie";
 
-        public ITraktMostPWCMovie ReadObject(string json)
+        public Task<ITraktMostPWCMovie> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -21,40 +23,40 @@
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktMostPWCMovie ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktMostPWCMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
                 return null;
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var movieObjectReader = new ITraktMovieObjectJsonReader();
                 ITraktMostPWCMovie traktMostPWCMovie = new TraktMostPWCMovie();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_WATCHER_COUNT:
-                            traktMostPWCMovie.WatcherCount = jsonReader.ReadAsInt32();
+                            traktMostPWCMovie.WatcherCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_PLAY_COUNT:
-                            traktMostPWCMovie.PlayCount = jsonReader.ReadAsInt32();
+                            traktMostPWCMovie.PlayCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_COLLECTED_COUNT:
-                            traktMostPWCMovie.CollectedCount = jsonReader.ReadAsInt32();
+                            traktMostPWCMovie.CollectedCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_MOVIE:
-                            traktMostPWCMovie.Movie = movieObjectReader.ReadObject(jsonReader);
+                            traktMostPWCMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }
