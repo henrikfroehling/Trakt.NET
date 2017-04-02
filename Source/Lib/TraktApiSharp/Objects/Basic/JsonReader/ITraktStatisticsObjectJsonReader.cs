@@ -4,6 +4,8 @@
     using Newtonsoft.Json;
     using Objects.JsonReader;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktStatisticsObjectJsonReader : ITraktObjectJsonReader<ITraktStatistics>
     {
@@ -15,7 +17,7 @@
         private const string PROPERTY_NAME_LISTS = "lists";
         private const string PROPERTY_NAME_VOTES = "votes";
 
-        public ITraktStatistics ReadObject(string json)
+        public Task<ITraktStatistics> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -23,45 +25,45 @@
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktStatistics ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktStatistics> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
                 return null;
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 ITraktStatistics traktStatistics = new TraktStatistics();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_WATCHERS:
-                            traktStatistics.Watchers = jsonReader.ReadAsInt32();
+                            traktStatistics.Watchers = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_PLAYS:
-                            traktStatistics.Plays = jsonReader.ReadAsInt32();
+                            traktStatistics.Plays = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_COLLECTORS:
-                            traktStatistics.Collectors = jsonReader.ReadAsInt32();
+                            traktStatistics.Collectors = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_COLLECTED_EPISODES:
-                            traktStatistics.CollectedEpisodes = jsonReader.ReadAsInt32();
+                            traktStatistics.CollectedEpisodes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_COMMENTS:
-                            traktStatistics.Comments = jsonReader.ReadAsInt32();
+                            traktStatistics.Comments = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_LISTS:
-                            traktStatistics.Lists = jsonReader.ReadAsInt32();
+                            traktStatistics.Lists = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_VOTES:
-                            traktStatistics.Votes = jsonReader.ReadAsInt32();
+                            traktStatistics.Votes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:
                             JsonReaderHelper.OverreadInvalidContent(jsonReader);

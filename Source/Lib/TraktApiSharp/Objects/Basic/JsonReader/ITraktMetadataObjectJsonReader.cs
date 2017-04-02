@@ -5,6 +5,8 @@
     using Newtonsoft.Json;
     using Objects.JsonReader;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktMetadataObjectJsonReader : ITraktObjectJsonReader<ITraktMetadata>
     {
@@ -14,7 +16,7 @@
         private const string PROPERTY_NAME_AUDIO_CHANNELS = "audio_channels";
         private const string PROPERTY_NAME_3D = "3d";
 
-        public ITraktMetadata ReadObject(string json)
+        public Task<ITraktMetadata> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -22,20 +24,20 @@
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktMetadata ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktMetadata> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
                 return null;
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 ITraktMetadata traktMetadata = new TraktMetadata();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
@@ -62,7 +64,7 @@
                             traktMetadata.AudioChannels = mediaAudioChannel;
                             break;
                         case PROPERTY_NAME_3D:
-                            traktMetadata.ThreeDimensional = jsonReader.ReadAsBoolean();
+                            traktMetadata.ThreeDimensional = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         default:
                             JsonReaderHelper.OverreadInvalidContent(jsonReader);

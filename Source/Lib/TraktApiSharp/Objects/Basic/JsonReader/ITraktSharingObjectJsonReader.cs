@@ -4,6 +4,8 @@
     using Newtonsoft.Json;
     using Objects.JsonReader;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktSharingObjectJsonReader : ITraktObjectJsonReader<ITraktSharing>
     {
@@ -14,7 +16,7 @@
         private const string PROPERTY_NAME_MEDIUM = "medium";
         private const string PROPERTY_NAME_SLACK = "slack";
 
-        public ITraktSharing ReadObject(string json)
+        public Task<ITraktSharing> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -22,42 +24,42 @@
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktSharing ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktSharing> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
                 return null;
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 ITraktSharing traktSharing = new TraktSharing();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_FACEBOOK:
-                            traktSharing.Facebook = jsonReader.ReadAsBoolean();
+                            traktSharing.Facebook = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_TWITTER:
-                            traktSharing.Twitter = jsonReader.ReadAsBoolean();
+                            traktSharing.Twitter = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_GOOGLE:
-                            traktSharing.Google = jsonReader.ReadAsBoolean();
+                            traktSharing.Google = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_TUMBLR:
-                            traktSharing.Tumblr = jsonReader.ReadAsBoolean();
+                            traktSharing.Tumblr = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_MEDIUM:
-                            traktSharing.Medium = jsonReader.ReadAsBoolean();
+                            traktSharing.Medium = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_SLACK:
-                            traktSharing.Slack = jsonReader.ReadAsBoolean();
+                            traktSharing.Slack = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         default:
                             JsonReaderHelper.OverreadInvalidContent(jsonReader);

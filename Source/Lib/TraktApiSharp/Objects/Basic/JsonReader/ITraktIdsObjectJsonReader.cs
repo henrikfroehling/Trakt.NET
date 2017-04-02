@@ -4,6 +4,8 @@
     using Newtonsoft.Json;
     using Objects.JsonReader;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktIdsObjectJsonReader : ITraktObjectJsonReader<ITraktIds>
     {
@@ -14,7 +16,7 @@
         private const string PROPERTY_NAME_TMDB = "tmdb";
         private const string PROPERTY_NAME_TVRAGE = "tvrage";
 
-        public ITraktIds ReadObject(string json)
+        public Task<ITraktIds> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -22,20 +24,20 @@
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktIds ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktIds> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
                 return null;
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 ITraktIds traktIds = new TraktIds();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
@@ -59,7 +61,7 @@
 
                             break;
                         case PROPERTY_NAME_IMDB:
-                            traktIds.Imdb = jsonReader.ReadAsString();
+                            traktIds.Imdb = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_TMDB:
                             uint tmdbId;
