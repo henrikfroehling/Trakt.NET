@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using System;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
@@ -44,10 +45,10 @@
         }
 
         [Fact]
-        public void Test_TraktTrendingMovie_From_Minimal_Json()
+        public async Task Test_TraktTrendingMovie_From_Minimal_Json()
         {
             var jsonReader = new ITraktTrendingMovieObjectJsonReader();
-            var trendingMovie = jsonReader.ReadObject(MINIMAL_JSON);
+            var trendingMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
 
             trendingMovie.Should().NotBeNull();
             trendingMovie.Watchers.Should().Be(35);
@@ -97,10 +98,10 @@
         }
 
         [Fact]
-        public void Test_TraktTrendingMovie_From_Full_Json()
+        public async Task Test_TraktTrendingMovie_From_Full_Json()
         {
             var jsonReader = new ITraktTrendingMovieObjectJsonReader();
-            var trendingMovie = jsonReader.ReadObject(FULL_JSON);
+            var trendingMovie = await jsonReader.ReadObjectAsync(FULL_JSON);
 
             trendingMovie.Should().NotBeNull();
             trendingMovie.Watchers.Should().Be(35);

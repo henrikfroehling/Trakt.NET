@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using System;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Shows;
@@ -53,10 +54,10 @@
         }
 
         [Fact]
-        public void Test_TraktMostPWCShow_From_Minimal_Json()
+        public async Task Test_TraktMostPWCShow_From_Minimal_Json()
         {
             var jsonReader = new ITraktMostPWCShowObjectJsonReader();
-            var mostPWCShow = jsonReader.ReadObject(MINIMAL_JSON);
+            var mostPWCShow = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
 
             mostPWCShow.Should().NotBeNull();
             mostPWCShow.WatcherCount.Should().Be(4992);
@@ -123,10 +124,10 @@
         }
 
         [Fact]
-        public void Test_TraktMostPWCShow_From_Full_Json()
+        public async Task Test_TraktMostPWCShow_From_Full_Json()
         {
             var jsonReader = new ITraktMostPWCShowObjectJsonReader();
-            var mostPWCShow = jsonReader.ReadObject(FULL_JSON);
+            var mostPWCShow = await jsonReader.ReadObjectAsync(FULL_JSON);
 
             mostPWCShow.Should().NotBeNull();
             mostPWCShow.WatcherCount.Should().Be(4992);

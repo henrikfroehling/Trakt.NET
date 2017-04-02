@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Shows.Implementations
 {
     using FluentAssertions;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Implementations;
@@ -27,10 +28,10 @@
         }
 
         [Fact]
-        public void Test_TraktShowAirs_From_Json()
+        public async Task Test_TraktShowAirs_From_Json()
         {
             var jsonReader = new ITraktShowAirsObjectJsonReader();
-            var showAirs = jsonReader.ReadObject(JSON);
+            var showAirs = await jsonReader.ReadObjectAsync(JSON);
 
             showAirs.Should().NotBeNull();
             showAirs.Day.Should().Be("Sunday");

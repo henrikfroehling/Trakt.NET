@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using System;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Shows;
@@ -47,10 +48,10 @@
         }
 
         [Fact]
-        public void Test_TraktShow_From_Minimal_Json()
+        public async Task Test_TraktShow_From_Minimal_Json()
         {
             var jsonReader = new ITraktShowObjectJsonReader();
-            var show = jsonReader.ReadObject(MINIMAL_JSON);
+            var show = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
 
             show.Should().NotBeNull();
             show.Title.Should().Be("Game of Thrones");
@@ -83,10 +84,10 @@
         }
 
         [Fact]
-        public void Test_TraktShow_From_Full_Json()
+        public async Task Test_TraktShow_From_Full_Json()
         {
             var jsonReader = new ITraktShowObjectJsonReader();
-            var show = jsonReader.ReadObject(FULL_JSON);
+            var show = await jsonReader.ReadObjectAsync(FULL_JSON);
 
             show.Should().NotBeNull();
             show.Title.Should().Be("Game of Thrones");

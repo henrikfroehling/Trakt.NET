@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Movies.Implementations
 {
     using FluentAssertions;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
@@ -26,10 +27,10 @@
         }
 
         [Fact]
-        public void Test_TraktMovieAlias_From_Json()
+        public async Task Test_TraktMovieAlias_From_Json()
         {
             var jsonReader = new ITraktMovieAliasObjectJsonReader();
-            var movieAlias = jsonReader.ReadObject(JSON);
+            var movieAlias = await jsonReader.ReadObjectAsync(JSON);
 
             movieAlias.Should().NotBeNull();
             movieAlias.Title.Should().Be("Star Wars: The Force Awakens");

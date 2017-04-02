@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Seasons.Implementations
 {
     using FluentAssertions;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Objects.Get.Seasons.Implementations;
@@ -104,10 +105,10 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonIds_From_Json()
+        public async Task Test_TraktSeasonIds_From_Json()
         {
             var jsonReader = new ITraktSeasonIdsObjectJsonReader();
-            var seasonIds = jsonReader.ReadObject(JSON);
+            var seasonIds = await jsonReader.ReadObjectAsync(JSON);
 
             seasonIds.Should().NotBeNull();
             seasonIds.Trakt.Should().Be(61430);

@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Episodes.Implementations
 {
     using FluentAssertions;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
@@ -125,10 +126,10 @@
         }
 
         [Fact]
-        public void Test_TraktEpisodeIds_From_Json()
+        public async Task Test_TraktEpisodeIds_From_Json()
         {
             var jsonReader = new ITraktEpisodeIdsObjectJsonReader();
-            var episodeIds = jsonReader.ReadObject(JSON);
+            var episodeIds = await jsonReader.ReadObjectAsync(JSON);
 
             episodeIds.Should().NotBeNull();
             episodeIds.Trakt.Should().Be(73640);

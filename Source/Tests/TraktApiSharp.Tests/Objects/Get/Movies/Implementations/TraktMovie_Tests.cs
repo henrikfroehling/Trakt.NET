@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using System;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
@@ -41,10 +42,10 @@
         }
 
         [Fact]
-        public void Test_TraktMovie_From_Minimal_Json()
+        public async Task Test_TraktMovie_From_Minimal_Json()
         {
             var jsonReader = new ITraktMovieObjectJsonReader();
-            var movie = jsonReader.ReadObject(MINIMAL_JSON);
+            var movie = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
 
             movie.Should().NotBeNull();
             movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -70,10 +71,10 @@
         }
 
         [Fact]
-        public void Test_TraktMovie_From_Full_Json()
+        public async Task Test_TraktMovie_From_Full_Json()
         {
             var jsonReader = new ITraktMovieObjectJsonReader();
-            var movie = jsonReader.ReadObject(FULL_JSON);
+            var movie = await jsonReader.ReadObjectAsync(FULL_JSON);
 
             movie.Should().NotBeNull();
             movie.Title.Should().Be("Star Wars: The Force Awakens");

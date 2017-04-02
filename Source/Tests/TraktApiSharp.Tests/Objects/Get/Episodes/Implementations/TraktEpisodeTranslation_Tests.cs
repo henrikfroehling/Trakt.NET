@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Episodes.Implementations
 {
     using FluentAssertions;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Episodes;
@@ -34,10 +35,10 @@
         }
 
         [Fact]
-        public void Test_TraktEpisodeTranslation_From_Json()
+        public async Task Test_TraktEpisodeTranslation_From_Json()
         {
             var jsonReader = new ITraktEpisodeTranslationObjectJsonReader();
-            var episodeTranslation = jsonReader.ReadObject(JSON);
+            var episodeTranslation = await jsonReader.ReadObjectAsync(JSON);
 
             episodeTranslation.Should().NotBeNull();
             episodeTranslation.Title.Should().Be("Winter Is Coming");

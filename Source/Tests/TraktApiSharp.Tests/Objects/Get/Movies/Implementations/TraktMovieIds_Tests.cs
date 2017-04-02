@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Movies.Implementations
 {
     using FluentAssertions;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
@@ -104,10 +105,10 @@
         }
 
         [Fact]
-        public void Test_TraktMovieIds_From_Json()
+        public async Task Test_TraktMovieIds_From_Json()
         {
             var jsonReader = new ITraktMovieIdsObjectJsonReader();
-            var movieIds = jsonReader.ReadObject(JSON);
+            var movieIds = await jsonReader.ReadObjectAsync(JSON);
 
             movieIds.Should().NotBeNull();
             movieIds.Trakt.Should().Be(94024);

@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using System;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
@@ -46,10 +47,10 @@
         }
 
         [Fact]
-        public void Test_TraktMostPWCMovie_From_Minimal_Json()
+        public async Task Test_TraktMostPWCMovie_From_Minimal_Json()
         {
             var jsonReader = new ITraktMostPWCMovieObjectJsonReader();
-            var mostPWCMovie = jsonReader.ReadObject(MINIMAL_JSON);
+            var mostPWCMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
 
             mostPWCMovie.Should().NotBeNull();
             mostPWCMovie.WatcherCount.Should().Be(4992);
@@ -101,10 +102,10 @@
         }
 
         [Fact]
-        public void Test_TraktMostPWCMovie_From_Full_Json()
+        public async Task Test_TraktMostPWCMovie_From_Full_Json()
         {
             var jsonReader = new ITraktMostPWCMovieObjectJsonReader();
-            var mostPWCMovie = jsonReader.ReadObject(FULL_JSON);
+            var mostPWCMovie = await jsonReader.ReadObjectAsync(FULL_JSON);
 
             mostPWCMovie.Should().NotBeNull();
             mostPWCMovie.WatcherCount.Should().Be(4992);

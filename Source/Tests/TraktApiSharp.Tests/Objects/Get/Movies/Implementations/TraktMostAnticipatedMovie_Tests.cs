@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using System;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
@@ -44,10 +45,10 @@
         }
 
         [Fact]
-        public void Test_TraktMostAnticipatedMovie_From_Minimal_Json()
+        public async Task Test_TraktMostAnticipatedMovie_From_Minimal_Json()
         {
             var jsonReader = new ITraktMostAnticipatedMovieObjectJsonReader();
-            var anticipatedMovie = jsonReader.ReadObject(MINIMAL_JSON);
+            var anticipatedMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
 
             anticipatedMovie.Should().NotBeNull();
             anticipatedMovie.ListCount.Should().Be(12805);
@@ -97,10 +98,10 @@
         }
 
         [Fact]
-        public void Test_TraktMostAnticipatedMovie_From_Full_Json()
+        public async Task Test_TraktMostAnticipatedMovie_From_Full_Json()
         {
             var jsonReader = new ITraktMostAnticipatedMovieObjectJsonReader();
-            var anticipatedMovie = jsonReader.ReadObject(FULL_JSON);
+            var anticipatedMovie = await jsonReader.ReadObjectAsync(FULL_JSON);
 
             anticipatedMovie.Should().NotBeNull();
             anticipatedMovie.ListCount.Should().Be(12805);
