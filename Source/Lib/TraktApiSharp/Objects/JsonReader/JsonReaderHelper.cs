@@ -4,16 +4,19 @@
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Utils;
 
     internal static class JsonReaderHelper
     {
-        internal static IEnumerable<string> ReadStringArray(JsonTextReader jsonReader)
+        internal static async Task<IEnumerable<string>> ReadStringArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartArray)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var values = new List<string>();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.String)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.String)
                 {
                     var value = (string)jsonReader.Value;
 
@@ -27,70 +30,72 @@
             return null;
         }
 
-        internal static bool ReadDateTimeValue(JsonTextReader jsonReader, out DateTime dateTime)
+        internal static async Task<Pair<bool, DateTime>> ReadDateTimeValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (jsonReader.Read())
+            if (await jsonReader.ReadAsync(cancellationToken))
             {
                 if (jsonReader.ValueType == typeof(DateTime))
                 {
-                    dateTime = (DateTime)jsonReader.Value;
-                    return true;
+                    var dateTime = (DateTime)jsonReader.Value;
+                    return new Pair<bool, DateTime>(true, dateTime);
                 }
                 else if (jsonReader.ValueType == typeof(string))
                 {
-                    dateTime = DateTime.Parse(jsonReader.Value.ToString());
-                    return true;
+                    try
+                    {
+                        var dateTime = DateTime.Parse(jsonReader.Value.ToString());
+                        return new Pair<bool, DateTime>(true, dateTime);
+                    }
+                    catch(Exception)
+                    {
+                        return new Pair<bool, DateTime>(false, default(DateTime));
+                    }
                 }
             }
 
-            dateTime = default(DateTime);
-            return false;
+            return new Pair<bool, DateTime>(false, default(DateTime));
         }
 
-        internal static bool ReadUnsignedIntegerValue(JsonTextReader jsonReader, out uint propertyValue)
+        internal static async Task<Pair<bool, uint>> ReadUnsignedIntegerValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var value = jsonReader.ReadAsInt32();
+            int? value = await jsonReader.ReadAsInt32Async(cancellationToken);
 
             if (value.HasValue)
             {
-                propertyValue = (uint)value;
-                return true;
+                var propertyValue = (uint)value;
+                return new Pair<bool, uint>(true, propertyValue);
             }
 
-            propertyValue = 0;
-            return false;
+            return new Pair<bool, uint>(false, 0);
         }
 
-        internal static void ReadEnumerationValue<TEnumeration>(JsonTextReader jsonReader, out TEnumeration enumeration) where TEnumeration : TraktEnumeration, new()
+        internal static async Task<TEnumeration> ReadEnumerationValueAsync<TEnumeration>(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken)) where TEnumeration : TraktEnumeration, new()
         {
-            var value = jsonReader.ReadAsString();
+            var value = await jsonReader.ReadAsStringAsync(cancellationToken);
 
             if (!string.IsNullOrEmpty(value))
-            {
-                enumeration = TraktEnumeration.FromObjectName<TEnumeration>(value);
-                return;
-            }
+                return TraktEnumeration.FromObjectName<TEnumeration>(value);
 
-            enumeration = default(TEnumeration);
+            return default(TEnumeration);
         }
 
-        internal static void OverreadInvalidContent(JsonTextReader jsonReader)
+        internal static async Task ReadAndIgnoreInvalidContentAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
-            jsonReader.Read(); // read unmatched property value
+            await jsonReader.ReadAsync(cancellationToken); // read unmatched property value
 
             if (jsonReader.TokenType == JsonToken.StartArray)
-                OverreadInvalidContentWithStartArrayToken(jsonReader);
+                await ReadAndIgnoreInvalidContentWithStartArrayTokenAsync(jsonReader, cancellationToken);
             else if (jsonReader.TokenType == JsonToken.StartObject)
-                OverreadInvalidContentWithStartObjectToken(jsonReader);
+                await ReadAndIgnoreInvalidContentWithStartObjectTokenAsync(jsonReader, cancellationToken);
         }
 
-        internal static void OverreadInvalidContentWithStartArrayToken(JsonTextReader jsonReader)
-            => OverreadInvalidContent(jsonReader, true, false);
+        internal static Task ReadAndIgnoreInvalidContentWithStartArrayTokenAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+            => ReadAndIgnoreInvalidContentAsync(jsonReader, true, false, cancellationToken);
 
-        internal static void OverreadInvalidContentWithStartObjectToken(JsonTextReader jsonReader)
-            => OverreadInvalidContent(jsonReader, false, true);
+        internal static Task ReadAndIgnoreInvalidContentWithStartObjectTokenAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+            => ReadAndIgnoreInvalidContentAsync(jsonReader, false, true, cancellationToken);
 
-        private static void OverreadInvalidContent(JsonTextReader jsonReader, bool startWithOpenBracket, bool startWithOpenBrace)
+        private static async Task ReadAndIgnoreInvalidContentAsync(JsonTextReader jsonReader, bool startWithOpenBracket, bool startWithOpenBrace, CancellationToken cancellationToken = default(CancellationToken))
         {
             var arrayBracketPairCount = startWithOpenBracket ? 1 : 0;
             var objectBracePairCount = startWithOpenBrace ? 1 : 0;
@@ -106,7 +111,7 @@
                 else if (steppedOverAllArrays && steppedOverAllObjects)
                     break;
 
-                if (jsonReader.Read())
+                if (await jsonReader.ReadAsync(cancellationToken))
                 {
                     switch (jsonReader.TokenType)
                     {

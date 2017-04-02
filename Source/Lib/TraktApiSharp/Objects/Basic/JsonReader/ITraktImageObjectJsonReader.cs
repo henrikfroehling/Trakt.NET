@@ -42,7 +42,7 @@
                             traktImage.Full = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }

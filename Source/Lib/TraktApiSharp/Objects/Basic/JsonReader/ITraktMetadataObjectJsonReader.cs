@@ -44,30 +44,22 @@
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_MEDIA_TYPE:
-                            TraktMediaType mediaType = null;
-                            JsonReaderHelper.ReadEnumerationValue(jsonReader, out mediaType);
-                            traktMetadata.MediaType = mediaType;
+                            traktMetadata.MediaType = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaType>(jsonReader, cancellationToken);
                             break;
                         case PROPERTY_NAME_RESOLUTION:
-                            TraktMediaResolution mediaResolution = null;
-                            JsonReaderHelper.ReadEnumerationValue(jsonReader, out mediaResolution);
-                            traktMetadata.MediaResolution = mediaResolution;
+                            traktMetadata.MediaResolution = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaResolution>(jsonReader, cancellationToken);
                             break;
                         case PROPERTY_NAME_AUDIO:
-                            TraktMediaAudio mediaAudio = null;
-                            JsonReaderHelper.ReadEnumerationValue(jsonReader, out mediaAudio);
-                            traktMetadata.Audio = mediaAudio;
+                            traktMetadata.Audio = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaAudio>(jsonReader, cancellationToken);
                             break;
                         case PROPERTY_NAME_AUDIO_CHANNELS:
-                            TraktMediaAudioChannel mediaAudioChannel = null;
-                            JsonReaderHelper.ReadEnumerationValue(jsonReader, out mediaAudioChannel);
-                            traktMetadata.AudioChannels = mediaAudioChannel;
+                            traktMetadata.AudioChannels = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaAudioChannel>(jsonReader, cancellationToken);
                             break;
                         case PROPERTY_NAME_3D:
                             traktMetadata.ThreeDimensional = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }

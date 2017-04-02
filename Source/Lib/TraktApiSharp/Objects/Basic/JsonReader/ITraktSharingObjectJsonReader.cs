@@ -62,7 +62,7 @@
                             traktSharing.Slack = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }

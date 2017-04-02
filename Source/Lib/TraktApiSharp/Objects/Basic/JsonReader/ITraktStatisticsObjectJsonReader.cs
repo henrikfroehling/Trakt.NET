@@ -66,7 +66,7 @@
                             traktStatistics.Votes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }

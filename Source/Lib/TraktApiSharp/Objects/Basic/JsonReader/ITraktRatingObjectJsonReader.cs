@@ -51,7 +51,7 @@
                             await ReadDistributionAsync(jsonReader, traktRating, cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }
@@ -128,7 +128,7 @@
                             distribution[nr10] = (int)await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             continue;
                     }
                 }
