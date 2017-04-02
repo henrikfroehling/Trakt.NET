@@ -2,11 +2,13 @@
 {
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal interface ITraktArrayJsonReader<TReturnType>
     {
-        IEnumerable<TReturnType> ReadArray(string json);
+        Task<IEnumerable<TReturnType>> ReadArrayAsync(string json, CancellationToken cancellationToken = default(CancellationToken));
 
-        IEnumerable<TReturnType> ReadArray(JsonTextReader jsonReader);
+        Task<IEnumerable<TReturnType>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken));
     }
 }
