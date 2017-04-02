@@ -4,47 +4,49 @@
     using Newtonsoft.Json;
     using Objects.JsonReader;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktErrorObjectJsonReader : ITraktObjectJsonReader<ITraktError>
     {
         private const string PROPERTY_NAME_ERROR = "error";
         private const string PROPERTY_NAME_ERROR_DESCRIPTION = "error_description";
 
-        public ITraktError ReadObject(string json)
+        public Task<ITraktError> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return null;
+                return Task.FromResult(default(ITraktError));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktError ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktError> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return null;
+                return await Task.FromResult(default(ITraktError));
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 ITraktError traktError = new TraktError();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_ERROR:
-                            traktError.Error = jsonReader.ReadAsString();
+                            traktError.Error = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_ERROR_DESCRIPTION:
-                            traktError.Description = jsonReader.ReadAsString();
+                            traktError.Description = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }
@@ -52,7 +54,7 @@
                 return traktError;
             }
 
-            return null;
+            return await Task.FromResult(default(ITraktError));
         }
     }
 }

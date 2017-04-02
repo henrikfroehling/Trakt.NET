@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using System;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
@@ -44,10 +45,10 @@
         }
 
         [Fact]
-        public void Test_TraktRecentlyUpdatedMovie_From_Minimal_Json()
+        public async Task Test_TraktRecentlyUpdatedMovie_From_Minimal_Json()
         {
             var jsonReader = new ITraktRecentlyUpdatedMovieObjectJsonReader();
-            var recentlyUpdatedMovie = jsonReader.ReadObject(MINIMAL_JSON);
+            var recentlyUpdatedMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
 
             recentlyUpdatedMovie.Should().NotBeNull();
             recentlyUpdatedMovie.RecentlyUpdatedAt.Should().Be(DateTime.Parse("2016-03-31T01:29:13Z").ToUniversalTime());
@@ -97,10 +98,10 @@
         }
 
         [Fact]
-        public void Test_TraktRecentlyUpdatedMovie_From_Full_Json()
+        public async Task Test_TraktRecentlyUpdatedMovie_From_Full_Json()
         {
             var jsonReader = new ITraktRecentlyUpdatedMovieObjectJsonReader();
-            var recentlyUpdatedMovie = jsonReader.ReadObject(FULL_JSON);
+            var recentlyUpdatedMovie = await jsonReader.ReadObjectAsync(FULL_JSON);
 
             recentlyUpdatedMovie.Should().NotBeNull();
             recentlyUpdatedMovie.RecentlyUpdatedAt.Should().Be(DateTime.Parse("2016-03-31T01:29:13Z").ToUniversalTime());

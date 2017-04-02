@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using System;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
@@ -44,10 +45,10 @@
         }
 
         [Fact]
-        public void Test_TraktBoxOfficeMovie_From_Minimal_Json()
+        public async Task Test_TraktBoxOfficeMovie_From_Minimal_Json()
         {
             var jsonReader = new ITraktBoxOfficeMovieObjectJsonReader();
-            var boxOfficeMovie = jsonReader.ReadObject(MINIMAL_JSON);
+            var boxOfficeMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
 
             boxOfficeMovie.Should().NotBeNull();
             boxOfficeMovie.Revenue.Should().Be(166007347);
@@ -97,10 +98,10 @@
         }
 
         [Fact]
-        public void Test_TraktBoxOfficeMovie_From_Full_Json()
+        public async Task Test_TraktBoxOfficeMovie_From_Full_Json()
         {
             var jsonReader = new ITraktBoxOfficeMovieObjectJsonReader();
-            var boxOfficeMovie = jsonReader.ReadObject(FULL_JSON);
+            var boxOfficeMovie = await jsonReader.ReadObjectAsync(FULL_JSON);
 
             boxOfficeMovie.Should().NotBeNull();
             boxOfficeMovie.Revenue.Should().Be(166007347);

@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Shows.Implementations
 {
     using FluentAssertions;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Implementations;
@@ -26,10 +27,10 @@
         }
 
         [Fact]
-        public void Test_TraktShowAlias_From_Json()
+        public async Task Test_TraktShowAlias_From_Json()
         {
             var jsonReader = new ITraktShowAliasObjectJsonReader();
-            var showAlias = jsonReader.ReadObject(JSON);
+            var showAlias = await jsonReader.ReadObjectAsync(JSON);
 
             showAlias.Should().NotBeNull();
             showAlias.Title.Should().Be("Game of Thrones- Das Lied von Eis und Feuer");

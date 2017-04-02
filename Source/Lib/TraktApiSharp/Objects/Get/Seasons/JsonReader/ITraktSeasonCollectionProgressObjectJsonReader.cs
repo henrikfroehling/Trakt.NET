@@ -5,6 +5,8 @@
     using Newtonsoft.Json;
     using Objects.JsonReader;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktSeasonCollectionProgressObjectJsonReader : ITraktObjectJsonReader<ITraktSeasonCollectionProgress>
     {
@@ -13,48 +15,48 @@
         private const string PROPERTY_NAME_COMPLETED = "completed";
         private const string PROPERTY_NAME_EPISODES = "episodes";
 
-        public ITraktSeasonCollectionProgress ReadObject(string json)
+        public Task<ITraktSeasonCollectionProgress> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return null;
+                return Task.FromResult(default(ITraktSeasonCollectionProgress));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktSeasonCollectionProgress ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktSeasonCollectionProgress> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return null;
+                return await Task.FromResult(default(ITraktSeasonCollectionProgress));
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var episodeCollectionProgressArrayReader = new ITraktEpisodeCollectionProgressArrayJsonReader();
                 ITraktSeasonCollectionProgress traktSeasonCollectionProgress = new TraktSeasonCollectionProgress();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_NUMBER:
-                            traktSeasonCollectionProgress.Number = jsonReader.ReadAsInt32();
+                            traktSeasonCollectionProgress.Number = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_AIRED:
-                            traktSeasonCollectionProgress.Aired = jsonReader.ReadAsInt32();
+                            traktSeasonCollectionProgress.Aired = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_COMPLETED:
-                            traktSeasonCollectionProgress.Completed = jsonReader.ReadAsInt32();
+                            traktSeasonCollectionProgress.Completed = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_EPISODES:
-                            traktSeasonCollectionProgress.Episodes = episodeCollectionProgressArrayReader.ReadArray(jsonReader);
+                            traktSeasonCollectionProgress.Episodes = await episodeCollectionProgressArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }
@@ -62,7 +64,7 @@
                 return traktSeasonCollectionProgress;
             }
 
-            return null;
+            return await Task.FromResult(default(ITraktSeasonCollectionProgress));
         }
     }
 }

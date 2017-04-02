@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Newtonsoft.Json;
     using System.IO;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.JsonReader;
@@ -19,11 +20,11 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
             var jsonReader = new ITraktTrendingShowObjectJsonReader();
 
-            var traktTrendingShow = jsonReader.ReadObject(JSON_COMPLETE);
+            var traktTrendingShow = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
             traktTrendingShow.Should().NotBeNull();
             traktTrendingShow.Watchers.Should().Be(35);
@@ -40,11 +41,11 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public async Task Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
             var jsonReader = new ITraktTrendingShowObjectJsonReader();
 
-            var traktTrendingShow = jsonReader.ReadObject(JSON_INCOMPLETE_1);
+            var traktTrendingShow = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_1);
 
             traktTrendingShow.Should().NotBeNull();
             traktTrendingShow.Watchers.Should().Be(35);
@@ -52,11 +53,11 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public async Task Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
             var jsonReader = new ITraktTrendingShowObjectJsonReader();
 
-            var traktTrendingShow = jsonReader.ReadObject(JSON_INCOMPLETE_2);
+            var traktTrendingShow = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_2);
 
             traktTrendingShow.Should().NotBeNull();
             traktTrendingShow.Watchers.Should().BeNull();
@@ -73,11 +74,11 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public async Task Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
             var jsonReader = new ITraktTrendingShowObjectJsonReader();
 
-            var traktTrendingShow = jsonReader.ReadObject(JSON_NOT_VALID_1);
+            var traktTrendingShow = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_1);
 
             traktTrendingShow.Should().NotBeNull();
             traktTrendingShow.Watchers.Should().BeNull();
@@ -94,11 +95,11 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public async Task Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
             var jsonReader = new ITraktTrendingShowObjectJsonReader();
 
-            var traktTrendingShow = jsonReader.ReadObject(JSON_NOT_VALID_2);
+            var traktTrendingShow = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_2);
 
             traktTrendingShow.Should().NotBeNull();
             traktTrendingShow.Watchers.Should().Be(35);
@@ -106,11 +107,11 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public async Task Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
             var jsonReader = new ITraktTrendingShowObjectJsonReader();
 
-            var traktTrendingShow = jsonReader.ReadObject(JSON_NOT_VALID_3);
+            var traktTrendingShow = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_3);
 
             traktTrendingShow.Should().NotBeNull();
             traktTrendingShow.Watchers.Should().BeNull();
@@ -118,32 +119,32 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new ITraktTrendingShowObjectJsonReader();
 
-            var traktTrendingShow = jsonReader.ReadObject(default(string));
+            var traktTrendingShow = await jsonReader.ReadObjectAsync(default(string));
             traktTrendingShow.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
             var jsonReader = new ITraktTrendingShowObjectJsonReader();
 
-            var traktTrendingShow = jsonReader.ReadObject(string.Empty);
+            var traktTrendingShow = await jsonReader.ReadObjectAsync(string.Empty);
             traktTrendingShow.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public async Task Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_JsonReader_Complete()
         {
             var traktJsonReader = new ITraktTrendingShowObjectJsonReader();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktTrendingShow = traktJsonReader.ReadObject(jsonReader);
+                var traktTrendingShow = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktTrendingShow.Should().NotBeNull();
                 traktTrendingShow.Watchers.Should().Be(35);
@@ -161,14 +162,14 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
+        public async Task Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
         {
             var traktJsonReader = new ITraktTrendingShowObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktTrendingShow = traktJsonReader.ReadObject(jsonReader);
+                var traktTrendingShow = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktTrendingShow.Should().NotBeNull();
                 traktTrendingShow.Watchers.Should().Be(35);
@@ -177,14 +178,14 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
+        public async Task Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
         {
             var traktJsonReader = new ITraktTrendingShowObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktTrendingShow = traktJsonReader.ReadObject(jsonReader);
+                var traktTrendingShow = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktTrendingShow.Should().NotBeNull();
                 traktTrendingShow.Watchers.Should().BeNull();
@@ -202,14 +203,14 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
+        public async Task Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
         {
             var traktJsonReader = new ITraktTrendingShowObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktTrendingShow = traktJsonReader.ReadObject(jsonReader);
+                var traktTrendingShow = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktTrendingShow.Should().NotBeNull();
                 traktTrendingShow.Watchers.Should().BeNull();
@@ -227,14 +228,14 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
+        public async Task Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
         {
             var traktJsonReader = new ITraktTrendingShowObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktTrendingShow = traktJsonReader.ReadObject(jsonReader);
+                var traktTrendingShow = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktTrendingShow.Should().NotBeNull();
                 traktTrendingShow.Watchers.Should().Be(35);
@@ -243,14 +244,14 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
+        public async Task Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
         {
             var traktJsonReader = new ITraktTrendingShowObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktTrendingShow = traktJsonReader.ReadObject(jsonReader);
+                var traktTrendingShow = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktTrendingShow.Should().NotBeNull();
                 traktTrendingShow.Watchers.Should().BeNull();
@@ -259,23 +260,23 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var jsonReader = new ITraktTrendingShowObjectJsonReader();
 
-            var traktTrendingShow = jsonReader.ReadObject(default(JsonTextReader));
+            var traktTrendingShow = await jsonReader.ReadObjectAsync(default(JsonTextReader));
             traktTrendingShow.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public async Task Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
             var traktJsonReader = new ITraktTrendingShowObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktTrendingShow = traktJsonReader.ReadObject(jsonReader);
+                var traktTrendingShow = await traktJsonReader.ReadObjectAsync(jsonReader);
                 traktTrendingShow.Should().BeNull();
             }
         }

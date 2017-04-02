@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Newtonsoft.Json;
     using System.IO;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.JsonReader;
@@ -19,11 +20,11 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
             var jsonReader = new ITraktTrendingMovieObjectJsonReader();
 
-            var traktTrendingMovie = jsonReader.ReadObject(JSON_COMPLETE);
+            var traktTrendingMovie = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
             traktTrendingMovie.Should().NotBeNull();
             traktTrendingMovie.Watchers.Should().Be(35);
@@ -38,11 +39,11 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public async Task Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
             var jsonReader = new ITraktTrendingMovieObjectJsonReader();
 
-            var traktTrendingMovie = jsonReader.ReadObject(JSON_INCOMPLETE_1);
+            var traktTrendingMovie = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_1);
 
             traktTrendingMovie.Should().NotBeNull();
             traktTrendingMovie.Watchers.Should().Be(35);
@@ -50,11 +51,11 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public async Task Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
             var jsonReader = new ITraktTrendingMovieObjectJsonReader();
 
-            var traktTrendingMovie = jsonReader.ReadObject(JSON_INCOMPLETE_2);
+            var traktTrendingMovie = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_2);
 
             traktTrendingMovie.Should().NotBeNull();
             traktTrendingMovie.Watchers.Should().BeNull();
@@ -69,11 +70,11 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public async Task Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
             var jsonReader = new ITraktTrendingMovieObjectJsonReader();
 
-            var traktTrendingMovie = jsonReader.ReadObject(JSON_NOT_VALID_1);
+            var traktTrendingMovie = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_1);
 
             traktTrendingMovie.Should().NotBeNull();
             traktTrendingMovie.Watchers.Should().BeNull();
@@ -88,11 +89,11 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public async Task Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
             var jsonReader = new ITraktTrendingMovieObjectJsonReader();
 
-            var traktTrendingMovie = jsonReader.ReadObject(JSON_NOT_VALID_2);
+            var traktTrendingMovie = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_2);
 
             traktTrendingMovie.Should().NotBeNull();
             traktTrendingMovie.Watchers.Should().Be(35);
@@ -100,11 +101,11 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public async Task Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
             var jsonReader = new ITraktTrendingMovieObjectJsonReader();
 
-            var traktTrendingMovie = jsonReader.ReadObject(JSON_NOT_VALID_3);
+            var traktTrendingMovie = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_3);
 
             traktTrendingMovie.Should().NotBeNull();
             traktTrendingMovie.Watchers.Should().BeNull();
@@ -112,32 +113,32 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new ITraktTrendingMovieObjectJsonReader();
 
-            var traktTrendingMovie = jsonReader.ReadObject(default(string));
+            var traktTrendingMovie = await jsonReader.ReadObjectAsync(default(string));
             traktTrendingMovie.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
             var jsonReader = new ITraktTrendingMovieObjectJsonReader();
 
-            var traktTrendingMovie = jsonReader.ReadObject(string.Empty);
+            var traktTrendingMovie = await jsonReader.ReadObjectAsync(string.Empty);
             traktTrendingMovie.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public async Task Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_JsonReader_Complete()
         {
             var traktJsonReader = new ITraktTrendingMovieObjectJsonReader();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktTrendingMovie = traktJsonReader.ReadObject(jsonReader);
+                var traktTrendingMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktTrendingMovie.Should().NotBeNull();
                 traktTrendingMovie.Watchers.Should().Be(35);
@@ -153,14 +154,14 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
+        public async Task Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
         {
             var traktJsonReader = new ITraktTrendingMovieObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktTrendingMovie = traktJsonReader.ReadObject(jsonReader);
+                var traktTrendingMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktTrendingMovie.Should().NotBeNull();
                 traktTrendingMovie.Watchers.Should().Be(35);
@@ -169,14 +170,14 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
+        public async Task Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
         {
             var traktJsonReader = new ITraktTrendingMovieObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktTrendingMovie = traktJsonReader.ReadObject(jsonReader);
+                var traktTrendingMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktTrendingMovie.Should().NotBeNull();
                 traktTrendingMovie.Watchers.Should().BeNull();
@@ -192,14 +193,14 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
+        public async Task Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
         {
             var traktJsonReader = new ITraktTrendingMovieObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktTrendingMovie = traktJsonReader.ReadObject(jsonReader);
+                var traktTrendingMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktTrendingMovie.Should().NotBeNull();
                 traktTrendingMovie.Watchers.Should().BeNull();
@@ -215,14 +216,14 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
+        public async Task Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
         {
             var traktJsonReader = new ITraktTrendingMovieObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktTrendingMovie = traktJsonReader.ReadObject(jsonReader);
+                var traktTrendingMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktTrendingMovie.Should().NotBeNull();
                 traktTrendingMovie.Watchers.Should().Be(35);
@@ -231,14 +232,14 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
+        public async Task Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
         {
             var traktJsonReader = new ITraktTrendingMovieObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktTrendingMovie = traktJsonReader.ReadObject(jsonReader);
+                var traktTrendingMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktTrendingMovie.Should().NotBeNull();
                 traktTrendingMovie.Watchers.Should().BeNull();
@@ -247,23 +248,23 @@
         }
 
         [Fact]
-        public void Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var jsonReader = new ITraktTrendingMovieObjectJsonReader();
 
-            var traktTrendingMovie = jsonReader.ReadObject(default(JsonTextReader));
+            var traktTrendingMovie = await jsonReader.ReadObjectAsync(default(JsonTextReader));
             traktTrendingMovie.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public async Task Test_ITraktTrendingMovieObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
             var traktJsonReader = new ITraktTrendingMovieObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktTrendingMovie = traktJsonReader.ReadObject(jsonReader);
+                var traktTrendingMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
                 traktTrendingMovie.Should().BeNull();
             }
         }

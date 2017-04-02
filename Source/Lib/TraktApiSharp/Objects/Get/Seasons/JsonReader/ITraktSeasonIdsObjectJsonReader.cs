@@ -4,6 +4,8 @@
     using Newtonsoft.Json;
     using Objects.JsonReader;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktSeasonIdsObjectJsonReader : ITraktObjectJsonReader<ITraktSeasonIds>
     {
@@ -12,63 +14,71 @@
         private const string PROPERTY_NAME_TMDB = "tmdb";
         private const string PROPERTY_NAME_TVRAGE = "tvrage";
 
-        public ITraktSeasonIds ReadObject(string json)
+        public Task<ITraktSeasonIds> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return null;
+                return Task.FromResult(default(ITraktSeasonIds));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktSeasonIds ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktSeasonIds> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return null;
+                return await Task.FromResult(default(ITraktSeasonIds));
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 ITraktSeasonIds traktSeasonIds = new TraktSeasonIds();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_TRAKT:
-                            uint traktId;
+                            {
+                                var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
-                            if (JsonReaderHelper.ReadUnsignedIntegerValue(jsonReader, out traktId))
-                                traktSeasonIds.Trakt = traktId;
+                                if (value.First)
+                                    traktSeasonIds.Trakt = value.Second;
 
-                            break;
+                                break;
+                            }
                         case PROPERTY_NAME_TVDB:
-                            uint tvdbId;
+                            {
+                                var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
-                            if (JsonReaderHelper.ReadUnsignedIntegerValue(jsonReader, out tvdbId))
-                                traktSeasonIds.Tvdb = tvdbId;
+                                if (value.First)
+                                    traktSeasonIds.Tvdb = value.Second;
 
-                            break;
+                                break;
+                            }
                         case PROPERTY_NAME_TMDB:
-                            uint tmdbId;
+                            {
+                                var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
-                            if (JsonReaderHelper.ReadUnsignedIntegerValue(jsonReader, out tmdbId))
-                                traktSeasonIds.Tmdb = tmdbId;
+                                if (value.First)
+                                    traktSeasonIds.Tmdb = value.Second;
 
-                            break;
+                                break;
+                            }
                         case PROPERTY_NAME_TVRAGE:
-                            uint tvRageId;
+                            {
+                                var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
-                            if (JsonReaderHelper.ReadUnsignedIntegerValue(jsonReader, out tvRageId))
-                                traktSeasonIds.TvRage = tvRageId;
+                                if (value.First)
+                                    traktSeasonIds.TvRage = value.Second;
 
-                            break;
+                                break;
+                            }
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }
@@ -76,7 +86,7 @@
                 return traktSeasonIds;
             }
 
-            return null;
+            return await Task.FromResult(default(ITraktSeasonIds));
         }
     }
 }

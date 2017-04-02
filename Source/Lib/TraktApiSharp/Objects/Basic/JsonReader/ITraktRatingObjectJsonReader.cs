@@ -5,6 +5,8 @@
     using Objects.JsonReader;
     using System.Collections.Generic;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktRatingObjectJsonReader : ITraktObjectJsonReader<ITraktRating>
     {
@@ -12,44 +14,44 @@
         private const string PROPERTY_NAME_VOTES = "votes";
         private const string PROPERTY_NAME_DISTRIBUTION = "distribution";
 
-        public ITraktRating ReadObject(string json)
+        public Task<ITraktRating> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return null;
+                return Task.FromResult(default(ITraktRating));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktRating ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktRating> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return null;
+                return await Task.FromResult(default(ITraktRating));
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 ITraktRating traktRating = new TraktRating();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_RATING:
-                            traktRating.Rating = (float?)jsonReader.ReadAsDouble();
+                            traktRating.Rating = (float?)await jsonReader.ReadAsDoubleAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_VOTES:
-                            traktRating.Votes = jsonReader.ReadAsInt32();
+                            traktRating.Votes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_DISTRIBUTION:
-                            ReadDistribution(jsonReader, traktRating);
+                            await ReadDistributionAsync(jsonReader, traktRating, cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }
@@ -57,10 +59,10 @@
                 return traktRating;
             }
 
-            return null;
+            return await Task.FromResult(default(ITraktRating));
         }
 
-        private static void ReadDistribution(JsonTextReader jsonReader, ITraktRating traktRating)
+        private static async Task ReadDistributionAsync(JsonTextReader jsonReader, ITraktRating traktRating, CancellationToken cancellationToken = default(CancellationToken))
         {
             const string nr1 = "1";
             const string nr2 = "2";
@@ -73,7 +75,7 @@
             const string nr9 = "9";
             const string nr10 = "10";
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var distribution = new Dictionary<string, int>
                 {
@@ -89,44 +91,44 @@
                     [nr10] = 0
                 };
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var numberProperty = jsonReader.Value.ToString();
 
                     switch (numberProperty)
                     {
                         case nr1:
-                            distribution[nr1] = (int)jsonReader.ReadAsInt32();
+                            distribution[nr1] = (int)await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case nr2:
-                            distribution[nr2] = (int)jsonReader.ReadAsInt32();
+                            distribution[nr2] = (int)await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case nr3:
-                            distribution[nr3] = (int)jsonReader.ReadAsInt32();
+                            distribution[nr3] = (int)await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case nr4:
-                            distribution[nr4] = (int)jsonReader.ReadAsInt32();
+                            distribution[nr4] = (int)await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case nr5:
-                            distribution[nr5] = (int)jsonReader.ReadAsInt32();
+                            distribution[nr5] = (int)await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case nr6:
-                            distribution[nr6] = (int)jsonReader.ReadAsInt32();
+                            distribution[nr6] = (int)await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case nr7:
-                            distribution[nr7] = (int)jsonReader.ReadAsInt32();
+                            distribution[nr7] = (int)await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case nr8:
-                            distribution[nr8] = (int)jsonReader.ReadAsInt32();
+                            distribution[nr8] = (int)await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case nr9:
-                            distribution[nr9] = (int)jsonReader.ReadAsInt32();
+                            distribution[nr9] = (int)await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case nr10:
-                            distribution[nr10] = (int)jsonReader.ReadAsInt32();
+                            distribution[nr10] = (int)await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:
-                            jsonReader.Read(); // read unmatched property value
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             continue;
                     }
                 }

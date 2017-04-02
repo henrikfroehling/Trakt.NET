@@ -4,47 +4,49 @@
     using Newtonsoft.Json;
     using Objects.JsonReader;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktMovieAliasObjectJsonReader : ITraktObjectJsonReader<ITraktMovieAlias>
     {
         private const string PROPERTY_NAME_TITLE = "title";
         private const string PROPERTY_NAME_COUNTRY = "country";
 
-        public ITraktMovieAlias ReadObject(string json)
+        public Task<ITraktMovieAlias> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return null;
+                return Task.FromResult(default(ITraktMovieAlias));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktMovieAlias ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktMovieAlias> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return null;
+                return await Task.FromResult(default(ITraktMovieAlias));
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 ITraktMovieAlias traktMovieAlias = new TraktMovieAlias();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_TITLE:
-                            traktMovieAlias.Title = jsonReader.ReadAsString();
+                            traktMovieAlias.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_COUNTRY:
-                            traktMovieAlias.CountryCode = jsonReader.ReadAsString();
+                            traktMovieAlias.CountryCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }
@@ -52,7 +54,7 @@
                 return traktMovieAlias;
             }
 
-            return null;
+            return await Task.FromResult(default(ITraktMovieAlias));
         }
     }
 }

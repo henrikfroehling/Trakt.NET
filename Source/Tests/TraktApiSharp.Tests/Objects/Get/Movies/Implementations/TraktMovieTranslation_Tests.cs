@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Movies.Implementations
 {
     using FluentAssertions;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Movies;
@@ -35,10 +36,10 @@
         }
 
         [Fact]
-        public void Test_TraktMovieTranslation_From_Json()
+        public async Task Test_TraktMovieTranslation_From_Json()
         {
             var jsonReader = new ITraktMovieTranslationObjectJsonReader();
-            var movieTranslation = jsonReader.ReadObject(JSON);
+            var movieTranslation = await jsonReader.ReadObjectAsync(JSON);
 
             movieTranslation.Should().NotBeNull();
             movieTranslation.Title.Should().Be("Star Wars: Episode VII - The Force Awakens");

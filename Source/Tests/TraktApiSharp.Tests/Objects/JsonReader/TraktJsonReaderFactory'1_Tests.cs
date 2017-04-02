@@ -5,6 +5,8 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.JsonReader;
     using Xunit;
@@ -14,12 +16,12 @@
     {
         public class FakeObjectJsonReader : ITraktObjectJsonReader<object>
         {
-            public object ReadObject(string json)
+            public Task<object> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
             {
                 throw new NotImplementedException();
             }
 
-            public object ReadObject(JsonTextReader jsonReader)
+            public Task<object> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
             {
                 throw new NotImplementedException();
             }
@@ -27,12 +29,12 @@
 
         public class FakeArrayJsonReader : ITraktArrayJsonReader<object>
         {
-            public IEnumerable<object> ReadArray(string json)
+            public Task<IEnumerable<object>> ReadArrayAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
             {
                 throw new NotImplementedException();
             }
 
-            public IEnumerable<object> ReadArray(JsonTextReader jsonReader)
+            public Task<IEnumerable<object>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
             {
                 throw new NotImplementedException();
             }

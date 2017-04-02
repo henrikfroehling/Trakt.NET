@@ -3,6 +3,7 @@
     using FluentAssertions;
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Implementations;
@@ -38,10 +39,10 @@
         }
 
         [Fact]
-        public void Test_TraktShowCollectionProgress_From_Json()
+        public async Task Test_TraktShowCollectionProgress_From_Json()
         {
             var jsonReader = new ITraktShowCollectionProgressObjectJsonReader();
-            var showCollectionProgress = jsonReader.ReadObject(JSON);
+            var showCollectionProgress = await jsonReader.ReadObjectAsync(JSON);
 
             showCollectionProgress.Should().NotBeNull();
 

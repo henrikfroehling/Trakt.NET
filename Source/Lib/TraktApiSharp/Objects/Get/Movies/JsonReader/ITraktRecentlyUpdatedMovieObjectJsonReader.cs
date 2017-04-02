@@ -4,53 +4,57 @@
     using Newtonsoft.Json;
     using Objects.Get.Movies;
     using Objects.JsonReader;
-    using System;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktRecentlyUpdatedMovieObjectJsonReader : ITraktObjectJsonReader<ITraktRecentlyUpdatedMovie>
     {
         private const string PROPERTY_NAME_UPDATED_AT = "updated_at";
         private const string PROPERTY_NAME_MOVIE = "movie";
 
-        public ITraktRecentlyUpdatedMovie ReadObject(string json)
+        public Task<ITraktRecentlyUpdatedMovie> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return null;
+                return Task.FromResult(default(ITraktRecentlyUpdatedMovie));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktRecentlyUpdatedMovie ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktRecentlyUpdatedMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return null;
+                return await Task.FromResult(default(ITraktRecentlyUpdatedMovie));
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var movieObjectReader = new ITraktMovieObjectJsonReader();
                 ITraktRecentlyUpdatedMovie traktRecentlyUpdatedMovie = new TraktRecentlyUpdatedMovie();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_UPDATED_AT:
-                            DateTime dateTime;
-                            if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
-                                traktRecentlyUpdatedMovie.RecentlyUpdatedAt = dateTime;
+                            {
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
-                            break;
+                                if (value.First)
+                                    traktRecentlyUpdatedMovie.RecentlyUpdatedAt = value.Second;
+
+                                break;
+                            }
                         case PROPERTY_NAME_MOVIE:
-                            traktRecentlyUpdatedMovie.Movie = movieObjectReader.ReadObject(jsonReader);
+                            traktRecentlyUpdatedMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }
@@ -58,7 +62,7 @@
                 return traktRecentlyUpdatedMovie;
             }
 
-            return null;
+            return await Task.FromResult(default(ITraktRecentlyUpdatedMovie));
         }
     }
 }

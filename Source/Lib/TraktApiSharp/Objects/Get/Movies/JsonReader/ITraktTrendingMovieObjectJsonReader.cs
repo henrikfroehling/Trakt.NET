@@ -5,48 +5,50 @@
     using Objects.Get.Movies;
     using Objects.JsonReader;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktTrendingMovieObjectJsonReader : ITraktObjectJsonReader<ITraktTrendingMovie>
     {
         private const string PROPERTY_NAME_WATCHERS = "watchers";
         private const string PROPERTY_NAME_MOVIE = "movie";
 
-        public ITraktTrendingMovie ReadObject(string json)
+        public Task<ITraktTrendingMovie> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return null;
+                return Task.FromResult(default(ITraktTrendingMovie));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktTrendingMovie ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktTrendingMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return null;
+                return await Task.FromResult(default(ITraktTrendingMovie));
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var movieObjectReader = new ITraktMovieObjectJsonReader();
                 ITraktTrendingMovie traktTrendingMovie = new TraktTrendingMovie();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_WATCHERS:
-                            traktTrendingMovie.Watchers = jsonReader.ReadAsInt32();
+                            traktTrendingMovie.Watchers = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_MOVIE:
-                            traktTrendingMovie.Movie = movieObjectReader.ReadObject(jsonReader);
+                            traktTrendingMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }
@@ -54,7 +56,7 @@
                 return traktTrendingMovie;
             }
 
-            return null;
+            return await Task.FromResult(default(ITraktTrendingMovie));
         }
     }
 }

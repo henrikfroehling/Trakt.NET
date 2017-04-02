@@ -4,6 +4,8 @@
     using Newtonsoft.Json;
     using Objects.JsonReader;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktEpisodeTranslationObjectJsonReader : ITraktObjectJsonReader<ITraktEpisodeTranslation>
     {
@@ -11,44 +13,44 @@
         private const string PROPERTY_NAME_OVERVIEW = "overview";
         private const string PROPERTY_NAME_LANGUAGE_CODE = "language";
 
-        public ITraktEpisodeTranslation ReadObject(string json)
+        public Task<ITraktEpisodeTranslation> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return null;
+                return Task.FromResult(default(ITraktEpisodeTranslation));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktEpisodeTranslation ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktEpisodeTranslation> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return null;
+                return await Task.FromResult(default(ITraktEpisodeTranslation));
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 ITraktEpisodeTranslation traktEpisodeTranslation = new TraktEpisodeTranslation();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_TITLE:
-                            traktEpisodeTranslation.Title = jsonReader.ReadAsString();
+                            traktEpisodeTranslation.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_OVERVIEW:
-                            traktEpisodeTranslation.Overview = jsonReader.ReadAsString();
+                            traktEpisodeTranslation.Overview = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_LANGUAGE_CODE:
-                            traktEpisodeTranslation.LanguageCode = jsonReader.ReadAsString();
+                            traktEpisodeTranslation.LanguageCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }
@@ -56,7 +58,7 @@
                 return traktEpisodeTranslation;
             }
 
-            return null;
+            return await Task.FromResult(default(ITraktEpisodeTranslation));
         }
     }
 }

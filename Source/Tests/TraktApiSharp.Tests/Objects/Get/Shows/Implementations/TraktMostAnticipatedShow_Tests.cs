@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using System;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Shows;
@@ -50,10 +51,10 @@
         }
 
         [Fact]
-        public void Test_TraktMostAnticipatedShow_From_Minimal_Json()
+        public async Task Test_TraktMostAnticipatedShow_From_Minimal_Json()
         {
             var jsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
-            var anticipatedShow = jsonReader.ReadObject(MINIMAL_JSON);
+            var anticipatedShow = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
 
             anticipatedShow.Should().NotBeNull();
             anticipatedShow.ListCount.Should().Be(12805);
@@ -117,10 +118,10 @@
         }
 
         [Fact]
-        public void Test_TraktMostAnticipatedShow_From_Full_Json()
+        public async Task Test_TraktMostAnticipatedShow_From_Full_Json()
         {
             var jsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
-            var anticipatedShow = jsonReader.ReadObject(FULL_JSON);
+            var anticipatedShow = await jsonReader.ReadObjectAsync(FULL_JSON);
 
             anticipatedShow.Should().NotBeNull();
             anticipatedShow.ListCount.Should().Be(12805);

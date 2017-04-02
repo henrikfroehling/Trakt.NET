@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Newtonsoft.Json;
     using System.IO;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.JsonReader;
@@ -19,11 +20,11 @@
         }
 
         [Fact]
-        public void Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
             var jsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
 
-            var traktMostAnticipatedShow = jsonReader.ReadObject(JSON_COMPLETE);
+            var traktMostAnticipatedShow = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
             traktMostAnticipatedShow.Should().NotBeNull();
             traktMostAnticipatedShow.ListCount.Should().Be(12805);
@@ -40,11 +41,11 @@
         }
 
         [Fact]
-        public void Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public async Task Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
             var jsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
 
-            var traktMostAnticipatedShow = jsonReader.ReadObject(JSON_INCOMPLETE_1);
+            var traktMostAnticipatedShow = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_1);
 
             traktMostAnticipatedShow.Should().NotBeNull();
             traktMostAnticipatedShow.ListCount.Should().Be(12805);
@@ -52,11 +53,11 @@
         }
 
         [Fact]
-        public void Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public async Task Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
             var jsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
 
-            var traktMostAnticipatedShow = jsonReader.ReadObject(JSON_INCOMPLETE_2);
+            var traktMostAnticipatedShow = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_2);
 
             traktMostAnticipatedShow.Should().NotBeNull();
             traktMostAnticipatedShow.ListCount.Should().BeNull();
@@ -73,11 +74,11 @@
         }
 
         [Fact]
-        public void Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public async Task Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
             var jsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
 
-            var traktMostAnticipatedShow = jsonReader.ReadObject(JSON_NOT_VALID_1);
+            var traktMostAnticipatedShow = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_1);
 
             traktMostAnticipatedShow.Should().NotBeNull();
             traktMostAnticipatedShow.ListCount.Should().BeNull();
@@ -94,11 +95,11 @@
         }
 
         [Fact]
-        public void Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public async Task Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
             var jsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
 
-            var traktMostAnticipatedShow = jsonReader.ReadObject(JSON_NOT_VALID_2);
+            var traktMostAnticipatedShow = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_2);
 
             traktMostAnticipatedShow.Should().NotBeNull();
             traktMostAnticipatedShow.ListCount.Should().Be(12805);
@@ -106,11 +107,11 @@
         }
 
         [Fact]
-        public void Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public async Task Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
             var jsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
 
-            var traktMostAnticipatedShow = jsonReader.ReadObject(JSON_NOT_VALID_3);
+            var traktMostAnticipatedShow = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_3);
 
             traktMostAnticipatedShow.Should().NotBeNull();
             traktMostAnticipatedShow.ListCount.Should().BeNull();
@@ -118,32 +119,32 @@
         }
 
         [Fact]
-        public void Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
 
-            var traktMostAnticipatedShow = jsonReader.ReadObject(default(string));
+            var traktMostAnticipatedShow = await jsonReader.ReadObjectAsync(default(string));
             traktMostAnticipatedShow.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
             var jsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
 
-            var traktMostAnticipatedShow = jsonReader.ReadObject(string.Empty);
+            var traktMostAnticipatedShow = await jsonReader.ReadObjectAsync(string.Empty);
             traktMostAnticipatedShow.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public async Task Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_JsonReader_Complete()
         {
             var traktJsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktMostAnticipatedShow = traktJsonReader.ReadObject(jsonReader);
+                var traktMostAnticipatedShow = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktMostAnticipatedShow.Should().NotBeNull();
                 traktMostAnticipatedShow.ListCount.Should().Be(12805);
@@ -161,14 +162,14 @@
         }
 
         [Fact]
-        public void Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
+        public async Task Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
         {
             var traktJsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktMostAnticipatedShow = traktJsonReader.ReadObject(jsonReader);
+                var traktMostAnticipatedShow = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktMostAnticipatedShow.Should().NotBeNull();
                 traktMostAnticipatedShow.ListCount.Should().Be(12805);
@@ -177,14 +178,14 @@
         }
 
         [Fact]
-        public void Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
+        public async Task Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
         {
             var traktJsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktMostAnticipatedShow = traktJsonReader.ReadObject(jsonReader);
+                var traktMostAnticipatedShow = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktMostAnticipatedShow.Should().NotBeNull();
                 traktMostAnticipatedShow.ListCount.Should().BeNull();
@@ -202,14 +203,14 @@
         }
 
         [Fact]
-        public void Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
+        public async Task Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
         {
             var traktJsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktMostAnticipatedShow = traktJsonReader.ReadObject(jsonReader);
+                var traktMostAnticipatedShow = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktMostAnticipatedShow.Should().NotBeNull();
                 traktMostAnticipatedShow.ListCount.Should().BeNull();
@@ -227,14 +228,14 @@
         }
 
         [Fact]
-        public void Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
+        public async Task Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
         {
             var traktJsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktMostAnticipatedShow = traktJsonReader.ReadObject(jsonReader);
+                var traktMostAnticipatedShow = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktMostAnticipatedShow.Should().NotBeNull();
                 traktMostAnticipatedShow.ListCount.Should().Be(12805);
@@ -243,14 +244,14 @@
         }
 
         [Fact]
-        public void Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
+        public async Task Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
         {
             var traktJsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktMostAnticipatedShow = traktJsonReader.ReadObject(jsonReader);
+                var traktMostAnticipatedShow = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktMostAnticipatedShow.Should().NotBeNull();
                 traktMostAnticipatedShow.ListCount.Should().BeNull();
@@ -259,23 +260,23 @@
         }
 
         [Fact]
-        public void Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var jsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
 
-            var traktMostAnticipatedShow = jsonReader.ReadObject(default(JsonTextReader));
+            var traktMostAnticipatedShow = await jsonReader.ReadObjectAsync(default(JsonTextReader));
             traktMostAnticipatedShow.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public async Task Test_ITraktMostAnticipatedShowObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
             var traktJsonReader = new ITraktMostAnticipatedShowObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktMostAnticipatedShow = traktJsonReader.ReadObject(jsonReader);
+                var traktMostAnticipatedShow = await traktJsonReader.ReadObjectAsync(jsonReader);
                 traktMostAnticipatedShow.Should().BeNull();
             }
         }

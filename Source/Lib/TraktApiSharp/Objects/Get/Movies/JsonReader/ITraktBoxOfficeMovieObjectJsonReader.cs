@@ -5,48 +5,50 @@
     using Objects.Get.Movies;
     using Objects.JsonReader;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktBoxOfficeMovieObjectJsonReader : ITraktObjectJsonReader<ITraktBoxOfficeMovie>
     {
         private const string PROPERTY_NAME_REVENUE = "revenue";
         private const string PROPERTY_NAME_MOVIE = "movie";
 
-        public ITraktBoxOfficeMovie ReadObject(string json)
+        public Task<ITraktBoxOfficeMovie> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return null;
+                return Task.FromResult(default(ITraktBoxOfficeMovie));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktBoxOfficeMovie ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktBoxOfficeMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return null;
+                return await Task.FromResult(default(ITraktBoxOfficeMovie));
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var movieObjectReader = new ITraktMovieObjectJsonReader();
                 ITraktBoxOfficeMovie traktBoxOfficeMovie = new TraktBoxOfficeMovie();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_REVENUE:
-                            traktBoxOfficeMovie.Revenue = jsonReader.ReadAsInt32();
+                            traktBoxOfficeMovie.Revenue = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_MOVIE:
-                            traktBoxOfficeMovie.Movie = movieObjectReader.ReadObject(jsonReader);
+                            traktBoxOfficeMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }
@@ -54,7 +56,7 @@
                 return traktBoxOfficeMovie;
             }
 
-            return null;
+            return await Task.FromResult(default(ITraktBoxOfficeMovie));
         }
     }
 }

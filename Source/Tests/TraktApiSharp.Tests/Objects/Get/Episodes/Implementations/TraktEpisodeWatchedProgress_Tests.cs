@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using System;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
@@ -34,10 +35,10 @@
         }
 
         [Fact]
-        public void Test_TraktEpisodeWatchedProgress_From_Json()
+        public async Task Test_TraktEpisodeWatchedProgress_From_Json()
         {
             var jsonReader = new ITraktEpisodeWatchedProgressObjectJsonReader();
-            var episodeWatchedProgress = jsonReader.ReadObject(JSON);
+            var episodeWatchedProgress = await jsonReader.ReadObjectAsync(JSON);
 
             episodeWatchedProgress.Should().NotBeNull();
             episodeWatchedProgress.Number.Should().Be(2);

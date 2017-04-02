@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using System;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Movies;
@@ -31,10 +32,10 @@
         }
 
         [Fact]
-        public void Test_TraktMovieRelease_From_Json()
+        public async Task Test_TraktMovieRelease_From_Json()
         {
             var jsonReader = new ITraktMovieReleaseObjectJsonReader();
-            var movieRelease = jsonReader.ReadObject(JSON);
+            var movieRelease = await jsonReader.ReadObjectAsync(JSON);
 
             movieRelease.Should().NotBeNull();
             movieRelease.CountryCode.Should().Be("us");

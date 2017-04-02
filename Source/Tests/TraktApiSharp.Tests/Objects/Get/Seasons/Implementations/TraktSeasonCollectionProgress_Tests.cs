@@ -3,6 +3,7 @@
     using FluentAssertions;
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Objects.Get.Seasons.Implementations;
@@ -36,10 +37,10 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonCollectionProgress_From_Json()
+        public async Task Test_TraktSeasonCollectionProgress_From_Json()
         {
             var jsonReader = new ITraktSeasonCollectionProgressObjectJsonReader();
-            var seasonCollectionProgress = jsonReader.ReadObject(JSON);
+            var seasonCollectionProgress = await jsonReader.ReadObjectAsync(JSON);
 
             seasonCollectionProgress.Should().NotBeNull();
             seasonCollectionProgress.Number.Should().Be(2);

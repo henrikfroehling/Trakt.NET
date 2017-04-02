@@ -3,6 +3,7 @@
     using FluentAssertions;
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
@@ -39,10 +40,10 @@
         }
 
         [Fact]
-        public void Test_TraktEpisode_From_Minimal_Json()
+        public async Task Test_TraktEpisode_From_Minimal_Json()
         {
             var jsonReader = new ITraktEpisodeObjectJsonReader();
-            var episode = jsonReader.ReadObject(MINIMAL_JSON);
+            var episode = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
 
             episode.Should().NotBeNull();
             episode.SeasonNumber.Should().Be(1);
@@ -66,10 +67,10 @@
         }
 
         [Fact]
-        public void Test_TraktEpisode_From_Full_Json()
+        public async Task Test_TraktEpisode_From_Full_Json()
         {
             var jsonReader = new ITraktEpisodeObjectJsonReader();
-            var episode = jsonReader.ReadObject(FULL_JSON);
+            var episode = await jsonReader.ReadObjectAsync(FULL_JSON);
 
             episode.Should().NotBeNull();
             episode.SeasonNumber.Should().Be(1);

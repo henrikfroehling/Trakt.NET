@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Shows.Implementations
 {
     using FluentAssertions;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Shows;
@@ -34,10 +35,10 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslation_From_Json()
+        public async Task Test_TraktShowTranslation_From_Json()
         {
             var jsonReader = new ITraktShowTranslationObjectJsonReader();
-            var showTranslation = jsonReader.ReadObject(JSON);
+            var showTranslation = await jsonReader.ReadObjectAsync(JSON);
 
             showTranslation.Should().NotBeNull();
             showTranslation.Title.Should().Be("Game of Thrones");

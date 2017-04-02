@@ -4,8 +4,9 @@
     using Implementations;
     using Newtonsoft.Json;
     using Objects.JsonReader;
-    using System;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktMovieReleaseObjectJsonReader : ITraktObjectJsonReader<ITraktMovieRelease>
     {
@@ -15,55 +16,56 @@
         private const string PROPERTY_NAME_RELEASE_TYPE = "release_type";
         private const string PROPERTY_NAME_NOTE = "note";
 
-        public ITraktMovieRelease ReadObject(string json)
+        public Task<ITraktMovieRelease> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return null;
+                return Task.FromResult(default(ITraktMovieRelease));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktMovieRelease ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktMovieRelease> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return null;
+                return await Task.FromResult(default(ITraktMovieRelease));
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 ITraktMovieRelease traktMovieRelease = new TraktMovieRelease();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_COUNTRY:
-                            traktMovieRelease.CountryCode = jsonReader.ReadAsString();
+                            traktMovieRelease.CountryCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_CERTIFICATION:
-                            traktMovieRelease.Certification = jsonReader.ReadAsString();
+                            traktMovieRelease.Certification = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_RELEASE_DATE:
-                            DateTime dateTime;
-                            if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
-                                traktMovieRelease.ReleaseDate = dateTime;
+                            {
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
-                            break;
+                                if (value.First)
+                                    traktMovieRelease.ReleaseDate = value.Second;
+
+                                break;
+                            }
                         case PROPERTY_NAME_RELEASE_TYPE:
-                            TraktReleaseType releaseType = null;
-                            JsonReaderHelper.ReadEnumerationValue(jsonReader, out releaseType);
-                            traktMovieRelease.ReleaseType = releaseType;
+                            traktMovieRelease.ReleaseType = await JsonReaderHelper.ReadEnumerationValueAsync<TraktReleaseType>(jsonReader, cancellationToken);
                             break;
                         case PROPERTY_NAME_NOTE:
-                            traktMovieRelease.Note = jsonReader.ReadAsString();
+                            traktMovieRelease.Note = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }
@@ -71,7 +73,7 @@
                 return traktMovieRelease;
             }
 
-            return null;
+            return await Task.FromResult(default(ITraktMovieRelease));
         }
     }
 }
