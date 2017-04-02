@@ -22,7 +22,7 @@
         public void Test_ITraktObjectJsonReader_1_Has_ReadObjectAsync_From_Json_Method()
         {
             var methodInfo = typeof(ITraktObjectJsonReader<object>).GetMethods()
-                .Where(m => m.Name == "ReadObject" && m.GetParameters().Length == 2)
+                .Where(m => m.Name == "ReadObjectAsync" && m.GetParameters().Length == 2)
                 .FirstOrDefault(m => m.GetParameters()[0].ParameterType == typeof(string)
                                      && m.GetParameters()[1].ParameterType == typeof(CancellationToken));
 
@@ -41,14 +41,13 @@
             parameterInfo.Should().NotBeNull();
             parameterInfo.ParameterType.Should().Be(typeof(CancellationToken));
             parameterInfo.Name.Should().Be("cancellationToken");
-            parameterInfo.DefaultValue.Should().Be(default(CancellationToken));
         }
 
         [Fact]
         public void Test_ITraktObjectJsonReader_1_Has_ReadObjectAsync_From_JsonReader_Method()
         {
             var methodInfo = typeof(ITraktObjectJsonReader<object>).GetMethods()
-                .Where(m => m.Name == "ReadObject" && m.GetParameters().Length == 2)
+                .Where(m => m.Name == "ReadObjectAsync" && m.GetParameters().Length == 2)
                 .FirstOrDefault(m => m.GetParameters()[0].ParameterType == typeof(JsonTextReader)
                                      && m.GetParameters()[1].ParameterType == typeof(CancellationToken));
 
@@ -67,7 +66,6 @@
             parameterInfo.Should().NotBeNull();
             parameterInfo.ParameterType.Should().Be(typeof(CancellationToken));
             parameterInfo.Name.Should().Be("cancellationToken");
-            parameterInfo.DefaultValue.Should().Be(default(CancellationToken));
         }
     }
 }
