@@ -4,10 +4,12 @@
     using Objects.JsonReader;
     using System.Collections.Generic;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktEpisodeWatchedProgressArrayJsonReader : ITraktArrayJsonReader<ITraktEpisodeWatchedProgress>
     {
-        public IEnumerable<ITraktEpisodeWatchedProgress> ReadArray(string json)
+        public Task<IEnumerable<ITraktEpisodeWatchedProgress>> ReadArrayAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -15,28 +17,33 @@
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadArray(jsonReader);
+                return ReadArrayAsync(jsonReader, cancellationToken);
             }
         }
 
-        public IEnumerable<ITraktEpisodeWatchedProgress> ReadArray(JsonTextReader jsonReader)
+        public async Task<IEnumerable<ITraktEpisodeWatchedProgress>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
                 return null;
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartArray)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var episodeWatchedProgressReader = new ITraktEpisodeWatchedProgressObjectJsonReader();
+                //var episodeWatchedProgressReadingTasks = new List<Task<ITraktEpisodeWatchedProgress>>();
                 var traktEpisodeWatchedProgresses = new List<ITraktEpisodeWatchedProgress>();
 
-                ITraktEpisodeWatchedProgress traktEpisodeWatchedProgress = episodeWatchedProgressReader.ReadObject(jsonReader);
+                //episodeWatchedProgressReadingTasks.Add(episodeWatchedProgressReader.ReadObjectAsync(jsonReader, cancellationToken));
+                ITraktEpisodeWatchedProgress traktEpisodeWatchedProgress = await episodeWatchedProgressReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (traktEpisodeWatchedProgress != null)
                 {
                     traktEpisodeWatchedProgresses.Add(traktEpisodeWatchedProgress);
-                    traktEpisodeWatchedProgress = episodeWatchedProgressReader.ReadObject(jsonReader);
+                    //episodeWatchedProgressReadingTasks.Add(episodeWatchedProgressReader.ReadObjectAsync(jsonReader, cancellationToken));
+                    traktEpisodeWatchedProgress = await episodeWatchedProgressReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
+                //var readEpisodeWatchedProgresses = await Task.WhenAll(episodeWatchedProgressReadingTasks);
+                //return (IEnumerable<ITraktEpisodeWatchedProgress>)readEpisodeWatchedProgresses.GetEnumerator();
                 return traktEpisodeWatchedProgresses;
             }
 

@@ -5,6 +5,7 @@
     using System;
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.JsonReader;
@@ -21,20 +22,20 @@
         }
 
         [Fact]
-        public void Test_ITraktEpisodeArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
+        public async Task Test_ITraktEpisodeArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
             var jsonReader = new ITraktEpisodeArrayJsonReader();
 
-            var traktEpisodes = jsonReader.ReadArray(JSON_EMPTY_ARRAY);
+            var traktEpisodes = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             traktEpisodes.Should().NotBeNull().And.BeEmpty();
         }
 
         [Fact]
-        public void Test_ITraktEpisodeArrayJsonReader_ReadArray_From_Json_String_Minimal_Complete()
+        public async Task Test_ITraktEpisodeArrayJsonReader_ReadArray_From_Json_String_Minimal_Complete()
         {
             var jsonReader = new ITraktEpisodeArrayJsonReader();
 
-            var traktEpisodes = jsonReader.ReadArray(MINIMAL_JSON_COMPLETE);
+            var traktEpisodes = await jsonReader.ReadArrayAsync(MINIMAL_JSON_COMPLETE);
             traktEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
 
             var episodes = traktEpisodes.ToArray();
@@ -81,11 +82,11 @@
         }
 
         [Fact]
-        public void Test_ITraktEpisodeArrayJsonReader_ReadArray_From_Json_String_Full_Complete()
+        public async Task Test_ITraktEpisodeArrayJsonReader_ReadArray_From_Json_String_Full_Complete()
         {
             var jsonReader = new ITraktEpisodeArrayJsonReader();
 
-            var traktEpisodes = jsonReader.ReadArray(FULL_JSON_COMPLETE);
+            var traktEpisodes = await jsonReader.ReadArrayAsync(FULL_JSON_COMPLETE);
             traktEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
 
             var episodes = traktEpisodes.ToArray();
@@ -156,45 +157,45 @@
         }
 
         [Fact]
-        public void Test_ITraktEpisodeArrayJsonReader_ReadArray_From_Json_String_Null()
+        public async Task Test_ITraktEpisodeArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ITraktEpisodeArrayJsonReader();
 
-            var traktEpisodes = jsonReader.ReadArray(default(string));
+            var traktEpisodes = await jsonReader.ReadArrayAsync(default(string));
             traktEpisodes.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktEpisodeArrayJsonReader_ReadArray_From_Json_String_Empty()
+        public async Task Test_ITraktEpisodeArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
             var jsonReader = new ITraktEpisodeArrayJsonReader();
 
-            var traktEpisodes = jsonReader.ReadArray(string.Empty);
+            var traktEpisodes = await jsonReader.ReadArrayAsync(string.Empty);
             traktEpisodes.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktEpisodeArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
+        public async Task Test_ITraktEpisodeArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
         {
             var traktJsonReader = new ITraktEpisodeArrayJsonReader();
 
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktEpisodes = traktJsonReader.ReadArray(jsonReader);
+                var traktEpisodes = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktEpisodes.Should().NotBeNull().And.BeEmpty();
             }
         }
 
         [Fact]
-        public void Test_ITraktEpisodeArrayJsonReader_ReadArray_From_JsonReader_Minimal_Complete()
+        public async Task Test_ITraktEpisodeArrayJsonReader_ReadArray_From_JsonReader_Minimal_Complete()
         {
             var traktJsonReader = new ITraktEpisodeArrayJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktEpisodes = traktJsonReader.ReadArray(jsonReader);
+                var traktEpisodes = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
 
                 var episodes = traktEpisodes.ToArray();
@@ -242,14 +243,14 @@
         }
 
         [Fact]
-        public void Test_ITraktEpisodeArrayJsonReader_ReadArray_From_JsonReader_Full_Complete()
+        public async Task Test_ITraktEpisodeArrayJsonReader_ReadArray_From_JsonReader_Full_Complete()
         {
             var traktJsonReader = new ITraktEpisodeArrayJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktEpisodes = traktJsonReader.ReadArray(jsonReader);
+                var traktEpisodes = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
 
                 var episodes = traktEpisodes.ToArray();
@@ -321,23 +322,23 @@
         }
 
         [Fact]
-        public void Test_ITraktEpisodeArrayJsonReader_ReadArray_From_JsonReader_Null()
+        public async Task Test_ITraktEpisodeArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var jsonReader = new ITraktEpisodeArrayJsonReader();
 
-            var traktEpisodes = jsonReader.ReadArray(default(JsonTextReader));
+            var traktEpisodes = await jsonReader.ReadArrayAsync(default(JsonTextReader));
             traktEpisodes.Should().BeNull();
         }
 
         [Fact]
-        public void Test_ITraktEpisodeArrayJsonReader_ReadArray_From_JsonReader_Empty()
+        public async Task Test_ITraktEpisodeArrayJsonReader_ReadArray_From_JsonReader_Empty()
         {
             var traktJsonReader = new ITraktEpisodeArrayJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktEpisodes = traktJsonReader.ReadArray(jsonReader);
+                var traktEpisodes = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktEpisodes.Should().BeNull();
             }
         }

@@ -4,10 +4,12 @@
     using Objects.JsonReader;
     using System.Collections.Generic;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktEpisodeTranslationArrayJsonReader : ITraktArrayJsonReader<ITraktEpisodeTranslation>
     {
-        public IEnumerable<ITraktEpisodeTranslation> ReadArray(string json)
+        public Task<IEnumerable<ITraktEpisodeTranslation>> ReadArrayAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -15,28 +17,33 @@
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadArray(jsonReader);
+                return ReadArrayAsync(jsonReader, cancellationToken);
             }
         }
 
-        public IEnumerable<ITraktEpisodeTranslation> ReadArray(JsonTextReader jsonReader)
+        public async Task<IEnumerable<ITraktEpisodeTranslation>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
                 return null;
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartArray)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var episodeTranslationReader = new ITraktEpisodeTranslationObjectJsonReader();
+                //var episodeTranslationReadingTasks = new List<Task<ITraktEpisodeTranslation>>();
                 var traktEpisodeTranslations = new List<ITraktEpisodeTranslation>();
 
-                ITraktEpisodeTranslation traktEpisodeTranslation = episodeTranslationReader.ReadObject(jsonReader);
+                //episodeTranslationReadingTasks.Add(episodeTranslationReader.ReadObjectAsync(jsonReader, cancellationToken));
+                ITraktEpisodeTranslation traktEpisodeTranslation = await episodeTranslationReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (traktEpisodeTranslation != null)
                 {
                     traktEpisodeTranslations.Add(traktEpisodeTranslation);
-                    traktEpisodeTranslation = episodeTranslationReader.ReadObject(jsonReader);
+                    //episodeTranslationReadingTasks.Add(episodeTranslationReader.ReadObjectAsync(jsonReader, cancellationToken));
+                    traktEpisodeTranslation = await episodeTranslationReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
+                //var readEpisodeTranslations = await Task.WhenAll(episodeTranslationReadingTasks);
+                //return (IEnumerable<ITraktEpisodeTranslation>)readEpisodeTranslations.GetEnumerator();
                 return traktEpisodeTranslations;
             }
 

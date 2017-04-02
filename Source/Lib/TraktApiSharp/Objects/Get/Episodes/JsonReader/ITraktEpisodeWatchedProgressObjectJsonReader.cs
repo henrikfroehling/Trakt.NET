@@ -3,8 +3,9 @@
     using Implementations;
     using Newtonsoft.Json;
     using Objects.JsonReader;
-    using System;
     using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     internal class ITraktEpisodeWatchedProgressObjectJsonReader : ITraktObjectJsonReader<ITraktEpisodeWatchedProgress>
     {
@@ -12,7 +13,7 @@
         private const string PROPERTY_NAME_COMPLETED = "completed";
         private const string PROPERTY_NAME_LAST_WATCHED_AT = "last_watched_at";
 
-        public ITraktEpisodeWatchedProgress ReadObject(string json)
+        public Task<ITraktEpisodeWatchedProgress> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
                 return null;
@@ -20,41 +21,42 @@
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ReadObject(jsonReader);
+                return ReadObjectAsync(jsonReader, cancellationToken);
             }
         }
 
-        public ITraktEpisodeWatchedProgress ReadObject(JsonTextReader jsonReader)
+        public async Task<ITraktEpisodeWatchedProgress> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
                 return null;
 
-            if (jsonReader.Read() && jsonReader.TokenType == JsonToken.StartObject)
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 ITraktEpisodeWatchedProgress traktEpisodeWatchedProgress = new TraktEpisodeWatchedProgress();
 
-                while (jsonReader.Read() && jsonReader.TokenType == JsonToken.PropertyName)
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
                     var propertyName = jsonReader.Value.ToString();
 
                     switch (propertyName)
                     {
                         case PROPERTY_NAME_NUMBER:
-                            traktEpisodeWatchedProgress.Number = jsonReader.ReadAsInt32();
+                            traktEpisodeWatchedProgress.Number = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_COMPLETED:
-                            traktEpisodeWatchedProgress.Completed = jsonReader.ReadAsBoolean();
+                            traktEpisodeWatchedProgress.Completed = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_LAST_WATCHED_AT:
                             {
-                                DateTime dateTime;
-                                if (JsonReaderHelper.ReadDateTimeValue(jsonReader, out dateTime))
-                                    traktEpisodeWatchedProgress.LastWatchedAt = dateTime;
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    traktEpisodeWatchedProgress.LastWatchedAt = value.Second;
 
                                 break;
                             }
                         default:
-                            JsonReaderHelper.OverreadInvalidContent(jsonReader);
+                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
                     }
                 }
