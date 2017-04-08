@@ -4,6 +4,7 @@
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -17,6 +18,11 @@
         public class FakeObjectJsonReader : ITraktObjectJsonReader<object>
         {
             public Task<object> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                throw new NotImplementedException();
+            }
+
+            public Task<object> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
             {
                 throw new NotImplementedException();
             }

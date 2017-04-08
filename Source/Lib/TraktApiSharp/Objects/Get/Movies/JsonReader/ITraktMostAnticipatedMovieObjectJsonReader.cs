@@ -4,6 +4,7 @@
     using Newtonsoft.Json;
     using Objects.Get.Movies;
     using Objects.JsonReader;
+    using System;
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
@@ -23,6 +24,11 @@
             {
                 return ReadObjectAsync(jsonReader, cancellationToken);
             }
+        }
+
+        public Task<ITraktMostAnticipatedMovie> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<ITraktMostAnticipatedMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))

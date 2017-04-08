@@ -6,6 +6,7 @@
     using Objects.JsonReader;
     using Seasons.JsonReader;
     using Shows;
+    using System;
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
@@ -44,6 +45,11 @@
             {
                 return ReadObjectAsync(jsonReader, cancellationToken);
             }
+        }
+
+        public Task<ITraktShow> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<ITraktShow> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))

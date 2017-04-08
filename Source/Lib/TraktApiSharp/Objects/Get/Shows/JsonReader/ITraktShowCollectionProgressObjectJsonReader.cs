@@ -5,6 +5,7 @@
     using Newtonsoft.Json;
     using Objects.JsonReader;
     using Seasons.JsonReader;
+    using System;
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
@@ -28,6 +29,11 @@
             {
                 return ReadObjectAsync(jsonReader, cancellationToken);
             }
+        }
+
+        public Task<ITraktShowCollectionProgress> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<ITraktShowCollectionProgress> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
