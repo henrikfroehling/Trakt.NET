@@ -40,6 +40,11 @@
                 throw new NotImplementedException();
             }
 
+            public Task<IEnumerable<object>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                throw new NotImplementedException();
+            }
+
             public Task<IEnumerable<object>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
             {
                 throw new NotImplementedException();
