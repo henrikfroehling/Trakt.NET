@@ -1983,9 +1983,9 @@
         [Fact]
         public async Task Test_ITraktEpisodeObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new ITraktEpisodeObjectJsonReader();
+            var traktJsonReader = new ITraktEpisodeObjectJsonReader();
 
-            var traktEpisode = await jsonReader.ReadObjectAsync(default(JsonTextReader));
+            var traktEpisode = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktEpisode.Should().BeNull();
         }
 
