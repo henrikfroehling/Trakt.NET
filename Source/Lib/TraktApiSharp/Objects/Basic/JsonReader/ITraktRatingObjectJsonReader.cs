@@ -3,7 +3,6 @@
     using Implementations;
     using Newtonsoft.Json;
     using Objects.JsonReader;
-    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Threading;
@@ -29,7 +28,14 @@
 
         public Task<ITraktRating> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
         {
-            throw new NotImplementedException();
+            if (stream == null)
+                return Task.FromResult(default(ITraktRating));
+
+            using (var streamReader = new StreamReader(stream))
+            using (var jsonReader = new JsonTextReader(streamReader))
+            {
+                return ReadObjectAsync(jsonReader, cancellationToken);
+            }
         }
 
         public async Task<ITraktRating> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))

@@ -414,9 +414,9 @@
         [Fact]
         public async Task Test_ITraktSharingObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new ITraktSharingObjectJsonReader();
+            var traktJsonReader = new ITraktSharingObjectJsonReader();
 
-            var traktSharing = await jsonReader.ReadObjectAsync(default(JsonTextReader));
+            var traktSharing = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktSharing.Should().BeNull();
         }
 

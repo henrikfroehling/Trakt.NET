@@ -338,9 +338,9 @@
         [Fact]
         public async Task Test_ITraktMetadataObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new ITraktMetadataObjectJsonReader();
+            var traktJsonReader = new ITraktMetadataObjectJsonReader();
 
-            var traktMetadata = await jsonReader.ReadObjectAsync(default(JsonTextReader));
+            var traktMetadata = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktMetadata.Should().BeNull();
         }
 

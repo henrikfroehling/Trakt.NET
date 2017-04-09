@@ -720,6 +720,7 @@
     <Compile Include="Traits\CategoryAttribute.cs" />
     <Compile Include="Traits\CategoryDiscoverer.cs" />
     <Compile Include="Traits\DiscovererUtils.cs" />
+    <Compile Include="TestUtils\TestUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Lib\TraktApiSharp\TraktApiSharp.csproj">

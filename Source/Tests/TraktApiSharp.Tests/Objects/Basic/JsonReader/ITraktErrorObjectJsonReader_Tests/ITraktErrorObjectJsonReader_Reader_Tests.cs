@@ -110,9 +110,9 @@
         [Fact]
         public async Task Test_ITraktErrorObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new ITraktErrorObjectJsonReader();
+            var traktJsonReader = new ITraktErrorObjectJsonReader();
 
-            var traktError = await jsonReader.ReadObjectAsync(default(JsonTextReader));
+            var traktError = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktError.Should().BeNull();
         }
 

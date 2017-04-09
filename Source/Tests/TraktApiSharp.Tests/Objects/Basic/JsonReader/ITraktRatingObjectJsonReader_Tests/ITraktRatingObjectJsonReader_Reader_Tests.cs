@@ -290,9 +290,9 @@
         [Fact]
         public async Task Test_ITraktRatingObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new ITraktRatingObjectJsonReader();
+            var traktJsonReader = new ITraktRatingObjectJsonReader();
 
-            var traktRating = await jsonReader.ReadObjectAsync(default(JsonTextReader));
+            var traktRating = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktRating.Should().BeNull();
         }
 
