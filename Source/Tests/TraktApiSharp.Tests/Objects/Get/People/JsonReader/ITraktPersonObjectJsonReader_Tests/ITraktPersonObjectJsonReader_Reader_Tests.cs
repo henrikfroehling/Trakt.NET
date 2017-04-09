@@ -739,9 +739,9 @@
         [Fact]
         public async Task Test_ITraktPersonObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new ITraktPersonObjectJsonReader();
+            var traktJsonReader = new ITraktPersonObjectJsonReader();
 
-            var traktPerson = await jsonReader.ReadObjectAsync(default(JsonTextReader));
+            var traktPerson = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktPerson.Should().BeNull();
         }
 
