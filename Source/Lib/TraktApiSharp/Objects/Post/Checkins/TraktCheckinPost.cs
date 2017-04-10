@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Checkins
 {
-    using Basic;
+    using Basic.Implementations;
     using Newtonsoft.Json;
 
     public abstract class TraktCheckinPost

@@ -9,6 +9,7 @@
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Calendars;
+    using TraktApiSharp.Objects.Get.Calendars.Implementations;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Utils;

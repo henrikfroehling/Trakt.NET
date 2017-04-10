@@ -6,6 +6,7 @@
     using System;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Syncs.Playback;
+    using TraktApiSharp.Objects.Get.Syncs.Playback.Implementations;
     using Utils;
 
     [TestClass]

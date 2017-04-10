@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Comments.Responses
 {
-    using Basic;
+    using Basic.Implementations;
     using Newtonsoft.Json;
 
     /// <summary>Represents a comment post response.</summary>

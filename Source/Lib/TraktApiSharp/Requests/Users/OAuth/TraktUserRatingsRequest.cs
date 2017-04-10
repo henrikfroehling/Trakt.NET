@@ -2,7 +2,7 @@
 {
     using Enums;
     using Extensions;
-    using Objects.Get.Ratings;
+    using Objects.Get.Ratings.Implementations;
     using System;
     using System.Collections.Generic;
     using System.Linq;

@@ -6,6 +6,7 @@
     using System.Diagnostics;
     using System.IO;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
 
     class Program
     {

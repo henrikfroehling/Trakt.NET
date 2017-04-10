@@ -6,8 +6,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using TraktApiSharp.Objects.Get.Episodes;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Post.Syncs.History;
 
     [TestClass]

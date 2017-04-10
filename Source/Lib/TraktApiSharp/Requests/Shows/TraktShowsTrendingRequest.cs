@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Shows
 {
-    using Objects.Get.Shows;
+    using Objects.Get.Shows.Implementations;
 
     internal sealed class TraktShowsTrendingRequest : ATraktShowsRequest<TraktTrendingShow>
     {

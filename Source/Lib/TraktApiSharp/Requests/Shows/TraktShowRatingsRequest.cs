@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Shows
 {
-    using Objects.Basic;
+    using Objects.Basic.Implementations;
 
     internal sealed class TraktShowRatingsRequest : ATraktShowRequest<TraktRating>
     {

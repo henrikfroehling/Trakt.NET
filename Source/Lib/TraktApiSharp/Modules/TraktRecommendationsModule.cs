@@ -1,9 +1,8 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Exceptions;
-    using Objects.Basic;
-    using Objects.Get.Movies;
-    using Objects.Get.Shows;
+    using Objects.Get.Movies.Implementations;
+    using Objects.Get.Shows.Implementations;
     using Requests.Handler;
     using Requests.Parameters;
     using Requests.Recommendations.OAuth;

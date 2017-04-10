@@ -2,7 +2,7 @@
 {
     using Base;
     using Extensions;
-    using Objects.Get.Users.Statistics;
+    using Objects.Get.Users.Statistics.Implementations;
     using System;
     using System.Collections.Generic;
 

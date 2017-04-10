@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Collection;
+    using TraktApiSharp.Objects.Get.Collections.Implementations;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Users.OAuth;

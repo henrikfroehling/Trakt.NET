@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection
 {
-    using Basic;
-    using Get.Movies;
+    using Basic.Implementations;
+    using Get.Movies.Implementations;
     using Newtonsoft.Json;
     using System;
 

@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Scrobbles
 {
-    using Get.Episodes;
-    using Get.Shows;
+    using Get.Episodes.Implementations;
+    using Get.Shows.Implementations;
     using Newtonsoft.Json;
 
     /// <summary>A scrobble post for a Trakt episode.</summary>

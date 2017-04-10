@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Scrobbles.Responses
 {
-    using Basic;
+    using Basic.Implementations;
     using Enums;
     using Newtonsoft.Json;
 

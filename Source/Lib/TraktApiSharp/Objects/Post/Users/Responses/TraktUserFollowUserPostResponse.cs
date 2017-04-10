@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users.Responses
 {
-    using Get.Users;
+    using Get.Users.Implementations;
     using Newtonsoft.Json;
     using System;
 

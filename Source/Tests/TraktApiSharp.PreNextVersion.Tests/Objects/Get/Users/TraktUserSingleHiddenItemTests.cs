@@ -6,6 +6,7 @@
     using System;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Users;
+    using TraktApiSharp.Objects.Get.Users.Implementations;
     using Utils;
 
     [TestClass]

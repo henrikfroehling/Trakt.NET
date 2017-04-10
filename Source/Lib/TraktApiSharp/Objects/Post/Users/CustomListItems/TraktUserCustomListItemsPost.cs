@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems
 {
-    using Get.Movies;
-    using Get.People;
-    using Get.Shows;
+    using Get.Movies.Implementations;
+    using Get.People.Implementations;
+    using Get.Shows.Implementations;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
@@ -92,7 +92,7 @@
             (_listItemsPost.Movies as List<TraktUserCustomListItemsPostMovie>).Add(
                 new TraktUserCustomListItemsPostMovie
                 {
-                    Ids = movie.Ids
+                    Ids = (TraktMovieIds)movie.Ids // TODO use interface
                 });
 
             return this;
@@ -148,7 +148,7 @@
             (_listItemsPost.Shows as List<TraktUserCustomListItemsPostShow>).Add(
                 new TraktUserCustomListItemsPostShow
                 {
-                    Ids = show.Ids
+                    Ids = (TraktShowIds)show.Ids // TODO use interface
                 });
 
             return this;
@@ -227,7 +227,7 @@
             else
             {
                 var listItemsShow = new TraktUserCustomListItemsPostShow();
-                listItemsShow.Ids = show.Ids;
+                listItemsShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
 
                 listItemsShow.Seasons = showSeasons;
                 (_listItemsPost.Shows as List<TraktUserCustomListItemsPostShow>).Add(listItemsShow);
@@ -280,7 +280,7 @@
             else
             {
                 var listItemsShow = new TraktUserCustomListItemsPostShow();
-                listItemsShow.Ids = show.Ids;
+                listItemsShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
 
                 listItemsShow.Seasons = showSeasons;
                 (_listItemsPost.Shows as List<TraktUserCustomListItemsPostShow>).Add(listItemsShow);
@@ -351,7 +351,7 @@
             else
             {
                 var listItemsShow = new TraktUserCustomListItemsPostShow();
-                listItemsShow.Ids = show.Ids;
+                listItemsShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
 
                 listItemsShow.Seasons = showSeasons;
                 (_listItemsPost.Shows as List<TraktUserCustomListItemsPostShow>).Add(listItemsShow);

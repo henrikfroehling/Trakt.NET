@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist
 {
-    using Get.Shows;
+    using Get.Shows.Implementations;
     using Newtonsoft.Json;
     using System.Collections.Generic;
 

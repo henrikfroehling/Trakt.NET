@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Requests.Syncs.OAuth
 {
     using Interfaces;
-    using Objects.Get.Watched;
+    using Objects.Get.Watched.Implementations;
     using Parameters;
     using System.Collections.Generic;
 

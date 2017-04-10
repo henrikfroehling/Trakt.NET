@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems
 {
-    using Get.Movies;
+    using Get.Movies.Implementations;
     using Newtonsoft.Json;
 
     /// <summary>An user custom list items post movie, containing the required movie ids.</summary>

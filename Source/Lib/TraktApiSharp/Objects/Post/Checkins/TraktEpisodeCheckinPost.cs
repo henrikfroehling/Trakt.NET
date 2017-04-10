@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Checkins
 {
-    using Get.Episodes;
-    using Get.Shows;
+    using Get.Episodes.Implementations;
+    using Get.Shows.Implementations;
     using Newtonsoft.Json;
 
     /// <summary>A checkin post for a Trakt episode.</summary>

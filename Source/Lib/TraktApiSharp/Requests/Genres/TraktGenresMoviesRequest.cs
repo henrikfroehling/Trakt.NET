@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Requests.Genres
 {
     using Base;
-    using Objects.Basic;
+    using Objects.Basic.Implementations;
     using System.Collections.Generic;
 
     internal sealed class TraktGenresMoviesRequest : ATraktGetRequest<TraktGenre>

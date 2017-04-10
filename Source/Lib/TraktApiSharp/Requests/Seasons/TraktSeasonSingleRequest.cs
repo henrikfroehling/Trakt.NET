@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Requests.Seasons
 {
     using Interfaces;
-    using Objects.Get.Episodes;
+    using Objects.Get.Episodes.Implementations;
     using Parameters;
     using System;
     using System.Collections.Generic;

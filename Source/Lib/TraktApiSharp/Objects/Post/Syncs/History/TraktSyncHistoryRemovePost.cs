@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.History
 {
-    using Get.Episodes;
-    using Get.Movies;
-    using Get.Shows;
+    using Get.Episodes.Implementations;
+    using Get.Movies.Implementations;
+    using Get.Shows.Implementations;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
@@ -428,7 +428,7 @@
                 return this;
 
             var historyMovie = new TraktSyncHistoryPostMovie();
-            historyMovie.Ids = movie.Ids;
+            historyMovie.Ids = (TraktMovieIds)movie.Ids; // TODO use interface
             historyMovie.Title = movie.Title;
             historyMovie.Year = movie.Year;
 
@@ -443,7 +443,7 @@
                 return this;
 
             var historyShow = new TraktSyncHistoryPostShow();
-            historyShow.Ids = show.Ids;
+            historyShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
             historyShow.Title = show.Title;
             historyShow.Year = show.Year;
 
@@ -458,7 +458,7 @@
                 return this;
 
             var historyEpisode = new TraktSyncHistoryPostEpisode();
-            historyEpisode.Ids = episode.Ids;
+            historyEpisode.Ids = (TraktEpisodeIds)episode.Ids; // TODO use interface
 
             (_historyPost.Episodes as List<TraktSyncHistoryPostEpisode>).Add(historyEpisode);
 
@@ -474,7 +474,7 @@
             else
             {
                 var historyShow = new TraktSyncHistoryPostShow();
-                historyShow.Ids = show.Ids;
+                historyShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
                 historyShow.Title = show.Title;
                 historyShow.Year = show.Year;
 

@@ -2,7 +2,7 @@
 {
     using Enums;
     using Exceptions;
-    using Objects.Basic;
+    using Objects.Basic.Implementations;
     using Requests.Handler;
     using Requests.Parameters;
     using Requests.Search;

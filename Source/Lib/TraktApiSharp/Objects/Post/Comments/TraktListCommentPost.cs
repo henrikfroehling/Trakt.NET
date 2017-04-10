@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Comments
 {
-    using Get.Users.Lists;
+    using Get.Users.Lists.Implementations;
     using Newtonsoft.Json;
 
     /// <summary>A list comment post.</summary>

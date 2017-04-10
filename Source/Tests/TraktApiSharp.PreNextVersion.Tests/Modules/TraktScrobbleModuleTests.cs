@@ -10,8 +10,11 @@
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Episodes;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Post.Scrobbles;
     using TraktApiSharp.Objects.Post.Scrobbles.Responses;
     using TraktApiSharp.Responses;
@@ -59,7 +62,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -117,7 +120,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -177,7 +180,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -237,7 +240,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -299,7 +302,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -358,7 +361,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -448,7 +451,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -502,12 +505,12 @@
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress);
             act.ShouldThrow<ArgumentNullException>();
 
-            movie.Ids = new TraktMovieIds();
+            movie.Ids = (ITraktMovieIds)new TraktMovieIds();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress);
             act.ShouldThrow<ArgumentException>();
 
-            movie.Ids = new TraktMovieIds
+            movie.Ids = (ITraktMovieIds)new TraktMovieIds
             {
                 Trakt = 28,
                 Slug = "guardians-of-the-galaxy-2014",
@@ -539,7 +542,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -597,7 +600,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -657,7 +660,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -717,7 +720,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -779,7 +782,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -838,7 +841,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -928,7 +931,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -982,12 +985,12 @@
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress);
             act.ShouldThrow<ArgumentNullException>();
 
-            movie.Ids = new TraktMovieIds();
+            movie.Ids = (ITraktMovieIds)new TraktMovieIds();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress);
             act.ShouldThrow<ArgumentException>();
 
-            movie.Ids = new TraktMovieIds
+            movie.Ids = (ITraktMovieIds)new TraktMovieIds
             {
                 Trakt = 28,
                 Slug = "guardians-of-the-galaxy-2014",
@@ -1019,7 +1022,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -1077,7 +1080,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -1137,7 +1140,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -1197,7 +1200,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -1259,7 +1262,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -1318,7 +1321,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -1408,7 +1411,7 @@
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = 28,
                     Slug = "guardians-of-the-galaxy-2014",
@@ -1462,12 +1465,12 @@
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress);
             act.ShouldThrow<ArgumentNullException>();
 
-            movie.Ids = new TraktMovieIds();
+            movie.Ids = (ITraktMovieIds)new TraktMovieIds();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress);
             act.ShouldThrow<ArgumentException>();
 
-            movie.Ids = new TraktMovieIds
+            movie.Ids = (ITraktMovieIds)new TraktMovieIds
             {
                 Trakt = 28,
                 Slug = "guardians-of-the-galaxy-2014",

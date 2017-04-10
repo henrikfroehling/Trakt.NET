@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.History
 {
-    using Get.Movies;
+    using Get.Movies.Implementations;
     using Newtonsoft.Json;
     using System;
 

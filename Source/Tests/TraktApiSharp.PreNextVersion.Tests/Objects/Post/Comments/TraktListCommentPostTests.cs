@@ -4,7 +4,9 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Users.Lists;
+    using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
     using TraktApiSharp.Objects.Post.Comments;
 
     [TestClass]

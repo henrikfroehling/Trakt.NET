@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Requests.Users.OAuth
 {
     using Extensions;
-    using Objects.Get.Users;
+    using Objects.Get.Users.Implementations;
     using System;
     using System.Collections.Generic;
 

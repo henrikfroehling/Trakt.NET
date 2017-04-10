@@ -5,6 +5,7 @@
     using Newtonsoft.Json;
     using System;
     using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Post.Scrobbles;
 
     [TestClass]
@@ -39,7 +40,7 @@
             {
                 Title = movieTitle,
                 Year = movieYear,
-                Ids = new TraktMovieIds
+                Ids = (ITraktMovieIds)new TraktMovieIds
                 {
                     Trakt = movieTraktId,
                     Slug = movieSlug,

@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Checkins.Responses
 {
-    using Get.Episodes;
-    using Get.Shows;
+    using Get.Episodes.Implementations;
+    using Get.Shows.Implementations;
     using Newtonsoft.Json;
 
     /// <summary>Represents an episode checkin response.</summary>

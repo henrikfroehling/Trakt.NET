@@ -8,6 +8,7 @@
     using System.Linq;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Users.Lists;
+    using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
     using Utils;
 
     [TestClass]

@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Requests.Shows
 {
     using Interfaces;
-    using Objects.Get.Shows;
+    using Objects.Get.Shows.Implementations;
     using Parameters;
     using System.Collections.Generic;
 

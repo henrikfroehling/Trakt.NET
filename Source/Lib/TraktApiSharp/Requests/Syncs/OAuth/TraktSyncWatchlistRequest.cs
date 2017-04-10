@@ -2,7 +2,7 @@
 {
     using Enums;
     using Interfaces;
-    using Objects.Get.Watchlist;
+    using Objects.Get.Watchlist.Implementations;
     using Parameters;
     using System.Collections.Generic;
 

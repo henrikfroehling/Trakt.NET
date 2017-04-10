@@ -4,7 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Shows;
