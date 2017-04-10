@@ -1,4 +1,4 @@
-TraktApiSharp
+TraktApiSharp [![Twitter](https://img.shields.io/twitter/url/https://www.nuget.org/packages/TraktApiSharp.svg?style=social)](https://twitter.com/intent/tweet?url=https://www.nuget.org/packages/TraktApiSharp)
 ===
 ##### This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).
 
