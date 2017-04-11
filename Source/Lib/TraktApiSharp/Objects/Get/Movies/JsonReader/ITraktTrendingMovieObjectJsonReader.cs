@@ -4,7 +4,6 @@
     using Newtonsoft.Json;
     using Objects.Get.Movies;
     using Objects.JsonReader;
-    using System;
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
@@ -28,7 +27,14 @@
 
         public Task<ITraktTrendingMovie> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
         {
-            throw new NotImplementedException();
+            if (stream == null)
+                return Task.FromResult(default(ITraktTrendingMovie));
+
+            using (var streamReader = new StreamReader(stream))
+            using (var jsonReader = new JsonTextReader(streamReader))
+            {
+                return ReadObjectAsync(jsonReader, cancellationToken);
+            }
         }
 
         public async Task<ITraktTrendingMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))

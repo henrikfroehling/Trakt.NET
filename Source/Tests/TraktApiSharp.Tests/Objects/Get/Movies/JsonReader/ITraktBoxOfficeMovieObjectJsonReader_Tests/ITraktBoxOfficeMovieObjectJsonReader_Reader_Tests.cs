@@ -131,9 +131,9 @@
         [Fact]
         public async Task Test_ITraktBoxOfficeMovieObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new ITraktBoxOfficeMovieObjectJsonReader();
+            var traktJsonReader = new ITraktBoxOfficeMovieObjectJsonReader();
 
-            var traktBoxOfficeMovie = await jsonReader.ReadObjectAsync(default(JsonTextReader));
+            var traktBoxOfficeMovie = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktBoxOfficeMovie.Should().BeNull();
         }
 

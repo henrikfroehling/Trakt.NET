@@ -131,9 +131,9 @@
         [Fact]
         public async Task Test_ITraktMostAnticipatedMovieObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new ITraktMostAnticipatedMovieObjectJsonReader();
+            var traktJsonReader = new ITraktMostAnticipatedMovieObjectJsonReader();
 
-            var traktMostAnticipatedMovie = await jsonReader.ReadObjectAsync(default(JsonTextReader));
+            var traktMostAnticipatedMovie = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktMostAnticipatedMovie.Should().BeNull();
         }
 

@@ -110,9 +110,9 @@
         [Fact]
         public async Task Test_ITraktMovieAliasObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new ITraktMovieAliasObjectJsonReader();
+            var traktJsonReader = new ITraktMovieAliasObjectJsonReader();
 
-            var traktMovieAlias = await jsonReader.ReadObjectAsync(default(JsonTextReader));
+            var traktMovieAlias = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktMovieAlias.Should().BeNull();
         }
 

@@ -322,9 +322,9 @@
         [Fact]
         public async Task Test_ITraktMostPWCMovieObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new ITraktMostPWCMovieObjectJsonReader();
+            var traktJsonReader = new ITraktMostPWCMovieObjectJsonReader();
 
-            var traktMostPWCMovie = await jsonReader.ReadObjectAsync(default(JsonTextReader));
+            var traktMostPWCMovie = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktMostPWCMovie.Should().BeNull();
         }
 
