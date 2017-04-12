@@ -925,9 +925,9 @@
         [Fact]
         public async Task Test_ITraktSeasonCollectionProgressArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
-            var jsonReader = new ITraktSeasonCollectionProgressArrayJsonReader();
+            var traktJsonReader = new ITraktSeasonCollectionProgressArrayJsonReader();
 
-            var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(default(JsonTextReader));
+            var traktSeasonCollectionProgresses = await traktJsonReader.ReadArrayAsync(default(JsonTextReader));
             traktSeasonCollectionProgresses.Should().BeNull();
         }
 

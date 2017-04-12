@@ -1860,9 +1860,9 @@
         [Fact]
         public async Task Test_ITraktSeasonObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new ITraktSeasonObjectJsonReader();
+            var traktJsonReader = new ITraktSeasonObjectJsonReader();
 
-            var traktSeason = await jsonReader.ReadObjectAsync(default(JsonTextReader));
+            var traktSeason = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktSeason.Should().BeNull();
         }
 
