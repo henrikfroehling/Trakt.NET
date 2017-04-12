@@ -138,9 +138,9 @@
         [Fact]
         public async Task Test_ITraktRecentlyUpdatedShowObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new ITraktRecentlyUpdatedShowObjectJsonReader();
+            var traktJsonReader = new ITraktRecentlyUpdatedShowObjectJsonReader();
 
-            var traktRecentlyUpdatedShow = await jsonReader.ReadObjectAsync(default(JsonTextReader));
+            var traktRecentlyUpdatedShow = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktRecentlyUpdatedShow.Should().BeNull();
         }
 

@@ -137,9 +137,9 @@
         [Fact]
         public async Task Test_ITraktTrendingShowObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new ITraktTrendingShowObjectJsonReader();
+            var traktJsonReader = new ITraktTrendingShowObjectJsonReader();
 
-            var traktTrendingShow = await jsonReader.ReadObjectAsync(default(JsonTextReader));
+            var traktTrendingShow = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktTrendingShow.Should().BeNull();
         }
 

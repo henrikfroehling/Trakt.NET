@@ -201,9 +201,9 @@
         [Fact]
         public async Task Test_ITraktShowTranslationObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new ITraktShowTranslationObjectJsonReader();
+            var traktJsonReader = new ITraktShowTranslationObjectJsonReader();
 
-            var traktShowTranslation = await jsonReader.ReadObjectAsync(default(JsonTextReader));
+            var traktShowTranslation = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktShowTranslation.Should().BeNull();
         }
 

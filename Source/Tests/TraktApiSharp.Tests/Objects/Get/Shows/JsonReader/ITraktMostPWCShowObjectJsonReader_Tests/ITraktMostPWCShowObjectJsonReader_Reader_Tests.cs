@@ -427,9 +427,9 @@
         [Fact]
         public async Task Test_ITraktMostPWCShowObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new ITraktMostPWCShowObjectJsonReader();
+            var traktJsonReader = new ITraktMostPWCShowObjectJsonReader();
 
-            var traktMostPWCShow = await jsonReader.ReadObjectAsync(default(JsonTextReader));
+            var traktMostPWCShow = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktMostPWCShow.Should().BeNull();
         }
 
