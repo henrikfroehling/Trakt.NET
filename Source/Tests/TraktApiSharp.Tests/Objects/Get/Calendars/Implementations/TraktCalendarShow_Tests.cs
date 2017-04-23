@@ -1,13 +1,14 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Calendars.Implementations
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Calendars;
     using TraktApiSharp.Objects.Get.Calendars.Implementations;
+    using TraktApiSharp.Objects.Get.Calendars.JsonReader;
     using Xunit;
 
     [Category("Objects.Get.Calendars.Implementations")]
@@ -66,9 +67,10 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarShow_From_Minimal_Json()
+        public async Task Test_TraktCalendarShow_From_Minimal_Json()
         {
-            var calendarShow = JsonConvert.DeserializeObject<TraktCalendarShow>(MINIMAL_JSON);
+            var jsonReader = new ITraktCalendarShowObjectJsonReader();
+            var calendarShow = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
 
             calendarShow.Should().NotBeNull();
             calendarShow.FirstAiredInCalendar.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
@@ -172,9 +174,10 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarShow_From_Full_Json()
+        public async Task Test_TraktCalendarShow_From_Full_Json()
         {
-            var calendarShow = JsonConvert.DeserializeObject<TraktCalendarShow>(FULL_JSON);
+            var jsonReader = new ITraktCalendarShowObjectJsonReader();
+            var calendarShow = await jsonReader.ReadObjectAsync(FULL_JSON);
 
             calendarShow.Should().NotBeNull();
             calendarShow.FirstAiredInCalendar.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
@@ -182,8 +185,11 @@
             calendarShow.Show.Should().NotBeNull();
             calendarShow.Show.Title.Should().Be("Game of Thrones");
             calendarShow.Show.Year.Should().Be(2011);
-            calendarShow.Show.Airs.Should().BeNull();
-            calendarShow.Show.AvailableTranslationLanguageCodes.Should().BeNull();
+            calendarShow.Show.Airs.Should().NotBeNull();
+            calendarShow.Show.Airs.Day.Should().Be("Sunday");
+            calendarShow.Show.Airs.Time.Should().Be("21:00");
+            calendarShow.Show.Airs.TimeZoneId.Should().Be("America/New_York");
+            calendarShow.Show.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "fr", "it", "de");
             calendarShow.Show.Ids.Should().NotBeNull();
             calendarShow.Show.Ids.Trakt.Should().Be(1390U);
             calendarShow.Show.Ids.Slug.Should().Be("game-of-thrones");
@@ -210,8 +216,11 @@
 
             calendarShow.Title.Should().Be("Game of Thrones");
             calendarShow.Year.Should().Be(2011);
-            calendarShow.Airs.Should().BeNull();
-            calendarShow.AvailableTranslationLanguageCodes.Should().BeNull();
+            calendarShow.Airs.Should().NotBeNull();
+            calendarShow.Airs.Day.Should().Be("Sunday");
+            calendarShow.Airs.Time.Should().Be("21:00");
+            calendarShow.Airs.TimeZoneId.Should().Be("America/New_York");
+            calendarShow.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "fr", "it", "de");
             calendarShow.Ids.Should().NotBeNull();
             calendarShow.Ids.Trakt.Should().Be(1390U);
             calendarShow.Ids.Slug.Should().Be("game-of-thrones");

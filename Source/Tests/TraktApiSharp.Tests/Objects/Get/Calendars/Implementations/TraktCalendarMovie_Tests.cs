@@ -1,11 +1,12 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Calendars.Implementations
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Calendars;
     using TraktApiSharp.Objects.Get.Calendars.Implementations;
+    using TraktApiSharp.Objects.Get.Calendars.JsonReader;
     using Xunit;
 
     [Category("Objects.Get.Calendars.Implementations")]
@@ -44,9 +45,10 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarMovie_From_Minimal_Json()
+        public async Task Test_TraktCalendarMovie_From_Minimal_Json()
         {
-            var calendarMovie = JsonConvert.DeserializeObject<TraktCalendarMovie>(MINIMAL_JSON);
+            var jsonReader = new ITraktCalendarMovieObjectJsonReader();
+            var calendarMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
 
             calendarMovie.Should().NotBeNull();
             calendarMovie.CalendarRelease.Should().Be(DateTime.Parse("2014-08-01"));
@@ -96,9 +98,10 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarMovie_From_Full_Json()
+        public async Task Test_TraktCalendarMovie_From_Full_Json()
         {
-            var calendarMovie = JsonConvert.DeserializeObject<TraktCalendarMovie>(FULL_JSON);
+            var jsonReader = new ITraktCalendarMovieObjectJsonReader();
+            var calendarMovie = await jsonReader.ReadObjectAsync(FULL_JSON);
 
             calendarMovie.Should().NotBeNull();
             calendarMovie.CalendarRelease.Should().Be(DateTime.Parse("2014-08-01"));
