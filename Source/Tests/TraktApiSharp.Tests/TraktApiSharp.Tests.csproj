@@ -140,6 +140,11 @@
     <Compile Include="Objects\Get\Calendars\Interfaces\ITraktCalendarShow_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\Implementations\TraktCalendarMovie_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\Implementations\TraktCalendarShow_Tests.cs" />
+    <Compile Include="Objects\Get\Calendars\JsonReader\ITraktCalendarMovieObjectJsonReader\ITraktCalendarMovieObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Calendars\JsonReader\ITraktCalendarMovieObjectJsonReader\ITraktCalendarMovieObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Calendars\JsonReader\ITraktCalendarMovieObjectJsonReader\ITraktCalendarMovieObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Calendars\JsonReader\ITraktCalendarMovieObjectJsonReader\ITraktCalendarMovieObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Calendars\JsonReader\ITraktCalendarMovieObjectJsonReader\ITraktCalendarMovieObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Collections\Implementations\TraktCollectionShowEpisode_Tests.cs" />
     <Compile Include="Objects\Get\Collections\Implementations\TraktCollectionShowSeason_Tests.cs" />
     <Compile Include="Objects\Get\Collections\Interfaces\ITraktCollectionMovie_Tests.cs" />

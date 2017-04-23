@@ -134,6 +134,7 @@
     <Compile Include="Objects\Basic\ITraktTranslation.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarMovie.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarShow.cs" />
+    <Compile Include="Objects\Get\Calendars\JsonReader\ITraktCalendarMovieObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Collections\ITraktCollectionMovie.cs" />
     <Compile Include="Objects\Get\Collections\ITraktCollectionShow.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarEpisode.cs" />
