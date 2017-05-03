@@ -278,8 +278,10 @@
 
         private void SetupHttpClient()
         {
-            var httpClient = s_httpClient ?? new HttpClient();
-            SetDefaultRequestHeaders(httpClient);
+            if (s_httpClient == null)
+                s_httpClient = new HttpClient();
+
+            SetDefaultRequestHeaders(s_httpClient);
         }
 
         private string BuildUrl(ITraktRequest request)
