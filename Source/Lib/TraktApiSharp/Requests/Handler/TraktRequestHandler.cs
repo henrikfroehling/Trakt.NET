@@ -35,90 +35,92 @@
         private const string HEADER_ENDDATE_KEY = "X-End-Date";
         private const string HEADER_PRIVATE_USER_KEY = "X-Private-User";
 
+        // Don't mark this field as readonly,
+        // as it is manually set in unit tests
         internal static HttpClient s_httpClient;
 
-        private TraktClient _client;
+        private readonly TraktClient _client;
 
         internal TraktRequestHandler(TraktClient client)
         {
             _client = client;
         }
 
-        public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(ITraktRequest request)
+        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(ITraktRequest request)
         {
             PreExecuteRequest(request);
-            return await QueryNoContentAsync(SetupRequestMessage(request));
+            return QueryNoContentAsync(SetupRequestMessage(request));
         }
 
-        public async Task<TraktResponse<TContentType>> ExecuteSingleItemRequestAsync<TContentType>(ITraktRequest<TContentType> request)
+        public Task<TraktResponse<TContentType>> ExecuteSingleItemRequestAsync<TContentType>(ITraktRequest<TContentType> request)
         {
             PreExecuteRequest(request);
-            return await QuerySingleItemAsync<TContentType>(SetupRequestMessage(request));
+            return QuerySingleItemAsync<TContentType>(SetupRequestMessage(request));
         }
 
-        public async Task<TraktListResponse<TContentType>> ExecuteListRequestAsync<TContentType>(ITraktRequest<TContentType> request)
+        public Task<TraktListResponse<TContentType>> ExecuteListRequestAsync<TContentType>(ITraktRequest<TContentType> request)
         {
             PreExecuteRequest(request);
-            return await QueryListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryListAsync<TContentType>(SetupRequestMessage(request));
         }
 
-        public async Task<TraktPagedResponse<TContentType>> ExecutePagedRequestAsync<TContentType>(ITraktRequest<TContentType> request)
+        public Task<TraktPagedResponse<TContentType>> ExecutePagedRequestAsync<TContentType>(ITraktRequest<TContentType> request)
         {
             PreExecuteRequest(request);
-            return await QueryPagedListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryPagedListAsync<TContentType>(SetupRequestMessage(request));
         }
 
         // post requests
 
-        public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBody>(ITraktPostRequest<TRequestBody> request)
+        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBody>(ITraktPostRequest<TRequestBody> request)
         {
             PreExecuteRequest(request);
-            return await QueryNoContentAsync(SetupRequestMessage(request));
+            return QueryNoContentAsync(SetupRequestMessage(request));
         }
 
-        public async Task<TraktResponse<TContentType>> ExecuteSingleItemRequestAsync<TContentType, TRequestBody>(ITraktPostRequest<TContentType, TRequestBody> request)
+        public Task<TraktResponse<TContentType>> ExecuteSingleItemRequestAsync<TContentType, TRequestBody>(ITraktPostRequest<TContentType, TRequestBody> request)
         {
             PreExecuteRequest(request);
             var isCheckinRequest = request is TraktCheckinRequest<TContentType, TRequestBody>;
-            return await QuerySingleItemAsync<TContentType>(SetupRequestMessage(request), isCheckinRequest);
+            return QuerySingleItemAsync<TContentType>(SetupRequestMessage(request), isCheckinRequest);
         }
 
-        public async Task<TraktListResponse<TContentType>> ExecuteListRequestAsync<TContentType, TRequestBody>(ITraktPostRequest<TContentType, TRequestBody> request)
+        public Task<TraktListResponse<TContentType>> ExecuteListRequestAsync<TContentType, TRequestBody>(ITraktPostRequest<TContentType, TRequestBody> request)
         {
             PreExecuteRequest(request);
-            return await QueryListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryListAsync<TContentType>(SetupRequestMessage(request));
         }
 
-        public async Task<TraktPagedResponse<TContentType>> ExecutePagedRequestAsync<TContentType, TRequestBody>(ITraktPostRequest<TContentType, TRequestBody> request)
+        public Task<TraktPagedResponse<TContentType>> ExecutePagedRequestAsync<TContentType, TRequestBody>(ITraktPostRequest<TContentType, TRequestBody> request)
         {
             PreExecuteRequest(request);
-            return await QueryPagedListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryPagedListAsync<TContentType>(SetupRequestMessage(request));
         }
 
         // put requests
 
-        public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBody>(ITraktPutRequest<TRequestBody> request)
+        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBody>(ITraktPutRequest<TRequestBody> request)
         {
             PreExecuteRequest(request);
-            return await QueryNoContentAsync(SetupRequestMessage(request));
+            return QueryNoContentAsync(SetupRequestMessage(request));
         }
 
-        public async Task<TraktResponse<TContentType>> ExecuteSingleItemRequestAsync<TContentType, TRequestBody>(ITraktPutRequest<TContentType, TRequestBody> request)
+        public Task<TraktResponse<TContentType>> ExecuteSingleItemRequestAsync<TContentType, TRequestBody>(ITraktPutRequest<TContentType, TRequestBody> request)
         {
             PreExecuteRequest(request);
-            return await QuerySingleItemAsync<TContentType>(SetupRequestMessage(request));
+            return QuerySingleItemAsync<TContentType>(SetupRequestMessage(request));
         }
 
-        public async Task<TraktListResponse<TContentType>> ExecuteListRequestAsync<TContentType, TRequestBody>(ITraktPutRequest<TContentType, TRequestBody> request)
+        public Task<TraktListResponse<TContentType>> ExecuteListRequestAsync<TContentType, TRequestBody>(ITraktPutRequest<TContentType, TRequestBody> request)
         {
             PreExecuteRequest(request);
-            return await QueryListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryListAsync<TContentType>(SetupRequestMessage(request));
         }
 
-        public async Task<TraktPagedResponse<TContentType>> ExecutePagedRequestAsync<TContentType, TRequestBody>(ITraktPutRequest<TContentType, TRequestBody> request)
+        public Task<TraktPagedResponse<TContentType>> ExecutePagedRequestAsync<TContentType, TRequestBody>(ITraktPutRequest<TContentType, TRequestBody> request)
         {
             PreExecuteRequest(request);
-            return await QueryPagedListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryPagedListAsync<TContentType>(SetupRequestMessage(request));
         }
 
         // query response helper methods
@@ -160,7 +162,14 @@
                 Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
 
                 var contentObject = Json.Deserialize<TContentType>(responseContent);
-                var response = new TraktResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+                var hasValue = !EqualityComparer<TContentType>.Default.Equals(contentObject, default(TContentType));
+
+                var response = new TraktResponse<TContentType>
+                {
+                    IsSuccess = true,
+                    HasValue = hasValue,
+                    Value = contentObject
+                };
 
                 if (responseMessage.Headers != null)
                     ParseResponseHeaderValues(response, responseMessage.Headers);
@@ -193,7 +202,13 @@
                 Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
 
                 var contentObject = Json.Deserialize<IEnumerable<TContentType>>(responseContent);
-                var response = new TraktListResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+
+                var response = new TraktListResponse<TContentType>
+                {
+                    IsSuccess = true,
+                    HasValue = contentObject != null,
+                    Value = contentObject
+                };
 
                 if (responseMessage.Headers != null)
                     ParseResponseHeaderValues(response, responseMessage.Headers);
@@ -226,7 +241,13 @@
                 Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
 
                 var contentObject = Json.Deserialize<IEnumerable<TContentType>>(responseContent);
-                var response = new TraktPagedResponse<TContentType> { IsSuccess = true, HasValue = contentObject != null, Value = contentObject };
+
+                var response = new TraktPagedResponse<TContentType>
+                {
+                    IsSuccess = true,
+                    HasValue = contentObject != null,
+                    Value = contentObject
+                };
 
                 if (responseMessage.Headers != null)
                 {
@@ -259,8 +280,8 @@
             return response;
         }
 
-        private async Task<string> GetResponseContentAsync(HttpResponseMessage response)
-            => response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
+        private Task<string> GetResponseContentAsync(HttpResponseMessage response)
+            => response.Content != null ? response.Content.ReadAsStringAsync() : Task.FromResult(string.Empty);
 
         private void PreExecuteRequest(ITraktRequest request)
         {
@@ -278,8 +299,10 @@
 
         private void SetupHttpClient()
         {
-            var httpClient = s_httpClient ?? new HttpClient();
-            SetDefaultRequestHeaders(httpClient);
+            if (s_httpClient == null)
+                s_httpClient = new HttpClient();
+
+            SetDefaultRequestHeaders(s_httpClient);
         }
 
         private string BuildUrl(ITraktRequest request)
@@ -388,8 +411,9 @@
         private HttpContent GetRequestBodyContent<TRequestBody>(ITraktHasRequestBody<TRequestBody> request, out string requestBodyJson)
         {
             var requestBody = request.RequestBody;
+            var requestBodyIsNull = EqualityComparer<TRequestBody>.Default.Equals(requestBody, default(TRequestBody));
 
-            if (requestBody == null)
+            if (requestBodyIsNull)
             {
                 requestBodyJson = string.Empty;
                 return null;
@@ -529,97 +553,20 @@
             var code = response.StatusCode;
             var url = requestMessage.Url;
             var requestBodyJson = requestMessage.RequestBodyJson;
+            var reasonPhrase = response.ReasonPhrase;
 
             switch (code)
             {
                 case HttpStatusCode.NotFound:
-                    {
-                        var requestObjectType = requestMessage.RequestObjectType;
-
-                        if (requestObjectType.HasValue)
-                        {
-                            var objectId = requestMessage.ObjectId;
-                            uint seasonNr = requestMessage.SeasonNumber ?? 0;
-                            uint episodeNr = requestMessage.EpisodeNumber ?? 0;
-
-                            switch (requestObjectType.Value)
-                            {
-                                case TraktRequestObjectType.Episodes:
-                                    throw new TraktEpisodeNotFoundException(objectId, seasonNr, episodeNr)
-                                    {
-                                        RequestUrl = url,
-                                        RequestBody = requestBodyJson,
-                                        Response = responseContent,
-                                        ServerReasonPhrase = response.ReasonPhrase
-                                    };
-                                case TraktRequestObjectType.Seasons:
-                                    throw new TraktSeasonNotFoundException(objectId, seasonNr)
-                                    {
-                                        RequestUrl = url,
-                                        RequestBody = requestBodyJson,
-                                        Response = responseContent,
-                                        ServerReasonPhrase = response.ReasonPhrase
-                                    };
-                                case TraktRequestObjectType.Shows:
-                                    throw new TraktShowNotFoundException(objectId)
-                                    {
-                                        RequestUrl = url,
-                                        RequestBody = requestBodyJson,
-                                        Response = responseContent,
-                                        ServerReasonPhrase = response.ReasonPhrase
-                                    };
-                                case TraktRequestObjectType.Movies:
-                                    throw new TraktMovieNotFoundException(objectId)
-                                    {
-                                        RequestUrl = url,
-                                        RequestBody = requestBodyJson,
-                                        Response = responseContent,
-                                        ServerReasonPhrase = response.ReasonPhrase
-                                    };
-                                case TraktRequestObjectType.People:
-                                    throw new TraktPersonNotFoundException(objectId)
-                                    {
-                                        RequestUrl = url,
-                                        RequestBody = requestBodyJson,
-                                        Response = responseContent,
-                                        ServerReasonPhrase = response.ReasonPhrase
-                                    };
-                                case TraktRequestObjectType.Comments:
-                                    throw new TraktCommentNotFoundException(objectId)
-                                    {
-                                        RequestUrl = url,
-                                        RequestBody = requestBodyJson,
-                                        Response = responseContent,
-                                        ServerReasonPhrase = response.ReasonPhrase
-                                    };
-                                case TraktRequestObjectType.Lists:
-                                    throw new TraktListNotFoundException(objectId)
-                                    {
-                                        RequestUrl = url,
-                                        RequestBody = requestBodyJson,
-                                        Response = responseContent,
-                                        ServerReasonPhrase = response.ReasonPhrase
-                                    };
-                                default:
-                                    throw new TraktObjectNotFoundException(objectId)
-                                    {
-                                        RequestUrl = url,
-                                        RequestBody = requestBodyJson,
-                                        Response = responseContent,
-                                        ServerReasonPhrase = response.ReasonPhrase
-                                    };
-                            }
-                        }
-
-                        throw new TraktNotFoundException($"Resource not found - Reason Phrase: {response.ReasonPhrase}");
-                    }
+                    HandleNotFoundStatusCode(requestMessage, responseContent, url, requestBodyJson, reasonPhrase);
+                    break;
                 case HttpStatusCode.BadRequest:
                     throw new TraktBadRequestException()
                     {
                         RequestUrl = url,
                         RequestBody = requestBodyJson,
                         Response = responseContent,
-                        ServerReasonPhrase = response.ReasonPhrase
+                        ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.Unauthorized:
                     throw new TraktAuthorizationException()
@@ -627,7 +574,7 @@
                         RequestUrl = url,
                         RequestBody = requestBodyJson,
                         Response = responseContent,
-                        ServerReasonPhrase = response.ReasonPhrase
+                        ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.Forbidden:
                     throw new TraktForbiddenException()
@@ -635,7 +582,7 @@
                         RequestUrl = url,
                         RequestBody = requestBodyJson,
                         Response = responseContent,
-                        ServerReasonPhrase = response.ReasonPhrase
+                        ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.MethodNotAllowed:
                     throw new TraktMethodNotFoundException()
@@ -643,40 +590,18 @@
                         RequestUrl = url,
                         RequestBody = requestBodyJson,
                         Response = responseContent,
-                        ServerReasonPhrase = response.ReasonPhrase
+                        ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.Conflict:
-                    if (isCheckinRequest)
-                    {
-                        TraktCheckinPostErrorResponse errorResponse = null;
-
-                        if (!string.IsNullOrEmpty(responseContent))
-                            errorResponse = Json.Deserialize<TraktCheckinPostErrorResponse>(responseContent);
-
-                        throw new TraktCheckinException("checkin is already in progress")
-                        {
-                            RequestUrl = url,
-                            RequestBody = requestBodyJson,
-                            Response = responseContent,
-                            ServerReasonPhrase = response.ReasonPhrase,
-                            ExpiresAt = errorResponse?.ExpiresAt
-                        };
-                    }
-
-                    throw new TraktConflictException()
-                    {
-                        RequestUrl = url,
-                        RequestBody = requestBodyJson,
-                        Response = responseContent,
-                        ServerReasonPhrase = response.ReasonPhrase
-                    };
+                    HandleConflictStatusCode(isCheckinRequest, responseContent, url, requestBodyJson, reasonPhrase);
+                    break;
                 case HttpStatusCode.InternalServerError:
                     throw new TraktServerException()
                     {
                         RequestUrl = url,
                         RequestBody = requestBodyJson,
                         Response = responseContent,
-                        ServerReasonPhrase = response.ReasonPhrase
+                        ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.BadGateway:
                     throw new TraktBadGatewayException()
@@ -684,7 +609,7 @@
                         RequestUrl = url,
                         RequestBody = requestBodyJson,
                         Response = responseContent,
-                        ServerReasonPhrase = response.ReasonPhrase
+                        ServerReasonPhrase = reasonPhrase
                     };
                 case (HttpStatusCode)412:
                     throw new TraktPreconditionFailedException()
@@ -692,7 +617,7 @@
                         RequestUrl = url,
                         RequestBody = requestBodyJson,
                         Response = responseContent,
-                        ServerReasonPhrase = response.ReasonPhrase
+                        ServerReasonPhrase = reasonPhrase
                     };
                 case (HttpStatusCode)422:
                     throw new TraktValidationException()
@@ -700,7 +625,7 @@
                         RequestUrl = url,
                         RequestBody = requestBodyJson,
                         Response = responseContent,
-                        ServerReasonPhrase = response.ReasonPhrase
+                        ServerReasonPhrase = reasonPhrase
                     };
                 case (HttpStatusCode)429:
                     throw new TraktRateLimitException()
@@ -708,7 +633,7 @@
                         RequestUrl = url,
                         RequestBody = requestBodyJson,
                         Response = responseContent,
-                        ServerReasonPhrase = response.ReasonPhrase
+                        ServerReasonPhrase = reasonPhrase
                     };
                 case (HttpStatusCode)503:
                 case (HttpStatusCode)504:
@@ -718,7 +643,7 @@
                         RequestBody = requestBodyJson,
                         StatusCode = HttpStatusCode.ServiceUnavailable,
                         Response = responseContent,
-                        ServerReasonPhrase = response.ReasonPhrase
+                        ServerReasonPhrase = reasonPhrase
                     };
                 case (HttpStatusCode)520:
                 case (HttpStatusCode)521:
@@ -729,10 +654,125 @@
                         RequestBody = requestBodyJson,
                         StatusCode = HttpStatusCode.ServiceUnavailable,
                         Response = responseContent,
-                        ServerReasonPhrase = response.ReasonPhrase
+                        ServerReasonPhrase = reasonPhrase
                     };
             }
 
+            HandleUnknownError(responseContent, code, url, requestBodyJson, reasonPhrase);
+        }
+
+        private static void HandleNotFoundStatusCode(TraktHttpRequestMessage requestMessage, string responseContent, string url, string requestBodyJson, string reasonPhrase)
+        {
+            var requestObjectType = requestMessage.RequestObjectType;
+
+            if (requestObjectType.HasValue)
+            {
+                var objectId = requestMessage.ObjectId;
+                uint seasonNr = requestMessage.SeasonNumber ?? 0;
+                uint episodeNr = requestMessage.EpisodeNumber ?? 0;
+
+                switch (requestObjectType.Value)
+                {
+                    case TraktRequestObjectType.Episodes:
+                        throw new TraktEpisodeNotFoundException(objectId, seasonNr, episodeNr)
+                        {
+                            RequestUrl = url,
+                            RequestBody = requestBodyJson,
+                            Response = responseContent,
+                            ServerReasonPhrase = reasonPhrase
+                        };
+                    case TraktRequestObjectType.Seasons:
+                        throw new TraktSeasonNotFoundException(objectId, seasonNr)
+                        {
+                            RequestUrl = url,
+                            RequestBody = requestBodyJson,
+                            Response = responseContent,
+                            ServerReasonPhrase = reasonPhrase
+                        };
+                    case TraktRequestObjectType.Shows:
+                        throw new TraktShowNotFoundException(objectId)
+                        {
+                            RequestUrl = url,
+                            RequestBody = requestBodyJson,
+                            Response = responseContent,
+                            ServerReasonPhrase = reasonPhrase
+                        };
+                    case TraktRequestObjectType.Movies:
+                        throw new TraktMovieNotFoundException(objectId)
+                        {
+                            RequestUrl = url,
+                            RequestBody = requestBodyJson,
+                            Response = responseContent,
+                            ServerReasonPhrase = reasonPhrase
+                        };
+                    case TraktRequestObjectType.People:
+                        throw new TraktPersonNotFoundException(objectId)
+                        {
+                            RequestUrl = url,
+                            RequestBody = requestBodyJson,
+                            Response = responseContent,
+                            ServerReasonPhrase = reasonPhrase
+                        };
+                    case TraktRequestObjectType.Comments:
+                        throw new TraktCommentNotFoundException(objectId)
+                        {
+                            RequestUrl = url,
+                            RequestBody = requestBodyJson,
+                            Response = responseContent,
+                            ServerReasonPhrase = reasonPhrase
+                        };
+                    case TraktRequestObjectType.Lists:
+                        throw new TraktListNotFoundException(objectId)
+                        {
+                            RequestUrl = url,
+                            RequestBody = requestBodyJson,
+                            Response = responseContent,
+                            ServerReasonPhrase = reasonPhrase
+                        };
+                    default:
+                        throw new TraktObjectNotFoundException(objectId)
+                        {
+                            RequestUrl = url,
+                            RequestBody = requestBodyJson,
+                            Response = responseContent,
+                            ServerReasonPhrase = reasonPhrase
+                        };
+                }
+            }
+
+            throw new TraktNotFoundException($"Resource not found - Reason Phrase: {reasonPhrase}");
+        }
+
+        private static void HandleConflictStatusCode(bool isCheckinRequest, string responseContent, string url, string requestBodyJson, string reasonPhrase)
+        {
+            if (isCheckinRequest)
+            {
+                TraktCheckinPostErrorResponse errorResponse = null;
+
+                if (!string.IsNullOrEmpty(responseContent))
+                    errorResponse = Json.Deserialize<TraktCheckinPostErrorResponse>(responseContent);
+
+                throw new TraktCheckinException("checkin is already in progress")
+                {
+                    RequestUrl = url,
+                    RequestBody = requestBodyJson,
+                    Response = responseContent,
+                    ServerReasonPhrase = reasonPhrase,
+                    ExpiresAt = errorResponse?.ExpiresAt
+                };
+            }
+
+            throw new TraktConflictException()
+            {
+                RequestUrl = url,
+                RequestBody = requestBodyJson,
+                Response = responseContent,
+                ServerReasonPhrase = reasonPhrase
+            };
+        }
+
+        private static void HandleUnknownError(string responseContent, HttpStatusCode code, string url, string requestBodyJson, string reasonPhrase)
+        {
             TraktError error = null;
 
             try
@@ -753,7 +793,7 @@
                 RequestUrl = url,
                 RequestBody = requestBodyJson,
                 Response = responseContent,
-                ServerReasonPhrase = response.ReasonPhrase
+                ServerReasonPhrase = reasonPhrase
             };
         }
     }

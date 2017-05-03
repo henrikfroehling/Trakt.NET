@@ -1,4 +1,4 @@
-TraktApiSharp
+TraktApiSharp [![Twitter](https://img.shields.io/twitter/url/https://www.nuget.org/packages/TraktApiSharp.svg?style=social)](https://twitter.com/intent/tweet?url=https://www.nuget.org/packages/TraktApiSharp)
 ===
 ##### This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).
 
@@ -7,6 +7,7 @@ TraktApiSharp
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![Zenhub Support](https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png)](https://www.zenhub.com/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![CodeFactor](https://www.codefactor.io/repository/github/henrikfroehling/traktapisharp/badge)](https://www.codefactor.io/repository/github/henrikfroehling/traktapisharp)
 
 ### Features
 - ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/full-support.png) Full Trakt.tv API Coverage

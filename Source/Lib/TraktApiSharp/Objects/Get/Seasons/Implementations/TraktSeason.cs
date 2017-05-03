@@ -14,10 +14,6 @@
         [JsonProperty(PropertyName = "number")]
         public int? Number { get; set; }
 
-        /// <summary>Gets or sets the title of the season.</summary>
-        [JsonProperty(PropertyName = "title")]
-        public string Title { get; set; }
-
         /// <summary>
         /// Gets or sets the collection of ids for the season for various web services.
         /// See also <seealso cref="ITraktSeasonIds" />.
@@ -25,6 +21,13 @@
         /// </summary>
         [JsonProperty(PropertyName = "ids")]
         public ITraktSeasonIds Ids { get; set; }
+
+        /// <summary>
+        /// Gets or sets the title of the season.
+        /// <para>Nullable</para>
+        /// </summary>
+        [JsonProperty(PropertyName = "title")]
+        public string Title { get; set; }
 
         /// <summary>Gets or sets the average user rating of the season.</summary>
         [JsonProperty(PropertyName = "rating")]
