@@ -2,7 +2,7 @@
 {
     using Objects.Get.Users.Lists;
 
-    /// <summary>Determines the sort order for lists of <see cref="TraktList" />.</summary>
+    /// <summary>Determines the sort order for lists of <see cref="ITraktList" />.</summary>
     public sealed class TraktListSortOrder : TraktEnumeration
     {
         /// <summary>An invalid sort order.</summary>
@@ -20,10 +20,10 @@
         /// <summary>Lists will be sorted by the number of items first.</summary>
         public static TraktListSortOrder Items { get; } = new TraktListSortOrder(8, "items", "items", "Items");
 
-        /// <summary>Lists will be sorted by <see cref="TraktList.CreatedAt" /> first.</summary>
+        /// <summary>Lists will be sorted by <see cref="ITraktList.CreatedAt" /> first.</summary>
         public static TraktListSortOrder Added { get; } = new TraktListSortOrder(16, "added", "added", "Added");
 
-        /// <summary>Lists will be sorted by <see cref="TraktList.UpdatedAt" /> first.</summary>
+        /// <summary>Lists will be sorted by <see cref="ITraktList.UpdatedAt" /> first.</summary>
         public static TraktListSortOrder Updated { get; } = new TraktListSortOrder(32, "updated", "updated", "Updated");
 
         /// <summary>

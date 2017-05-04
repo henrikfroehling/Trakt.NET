@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.History
 {
     using Get.Episodes.Implementations;
+    using Get.History;
     using Get.Movies.Implementations;
     using Get.Shows.Implementations;
     using Newtonsoft.Json;
@@ -266,8 +267,8 @@
         }
 
         /// <summary>Adds history ids, which will be added to the history remove post.</summary>
-        /// <param name="id">A history item id. See also <seealso cref="Get.History.TraktHistoryItem" />.</param>
-        /// <param name="ids">An optional array of history item ids. See also <seealso cref="Get.History.TraktHistoryItem" />.</param>
+        /// <param name="id">A history item id. See also <seealso cref="ITraktHistoryItem" />.</param>
+        /// <param name="ids">An optional array of history item ids. See also <seealso cref="ITraktHistoryItem" />.</param>
         /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if at least one of the given history ids equals zero.</exception>
         public TraktSyncHistoryRemovePostBuilder AddHistoryIds(ulong id, params ulong[] ids)
@@ -291,7 +292,7 @@
         }
 
         /// <summary>Adds history ids, which will be added to the history remove post.</summary>
-        /// <param name="ids">An array of history item ids. See also <seealso cref="Get.History.TraktHistoryItem" />.</param>
+        /// <param name="ids">An array of history item ids. See also <seealso cref="ITraktHistoryItem" />.</param>
         /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
         /// <exception cref="ArgumentNullException">Thrown, if the given ids array is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if at least one of the given history ids equals zero.</exception>
