@@ -141,6 +141,7 @@
     <Compile Include="Objects\Get\Calendars\ITraktCalendarEpisode.cs" />
     <Compile Include="Objects\Get\Collections\ITraktCollectionShowEpisode.cs" />
     <Compile Include="Objects\Get\Collections\ITraktCollectionShowSeason.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\ITraktCollectionMovieObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\ITraktCollectionShowEpisodeArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\ITraktCollectionShowEpisodeObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\ITraktCollectionShowObjectJsonReader.cs" />

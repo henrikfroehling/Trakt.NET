@@ -159,6 +159,11 @@
     <Compile Include="Objects\Get\Collections\Implementations\TraktCollectionMovie_Tests.cs" />
     <Compile Include="Objects\Get\Collections\Implementations\TraktCollectionShow_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\Interfaces\ITraktCalendarEpisode_Tests.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\ITraktCollectionMovieObjectJsonReader\ITraktCollectionMovieObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\ITraktCollectionMovieObjectJsonReader\ITraktCollectionMovieObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\ITraktCollectionMovieObjectJsonReader\ITraktCollectionMovieObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\ITraktCollectionMovieObjectJsonReader\ITraktCollectionMovieObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\ITraktCollectionMovieObjectJsonReader\ITraktCollectionMovieObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\ITraktCollectionShowEpisodeArrayJsonReader\ITraktCollectionShowEpisodeArrayJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\ITraktCollectionShowEpisodeArrayJsonReader\ITraktCollectionShowEpisodeArrayJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\ITraktCollectionShowEpisodeArrayJsonReader\ITraktCollectionShowEpisodeArrayJsonReader_Stream_Tests.cs" />
