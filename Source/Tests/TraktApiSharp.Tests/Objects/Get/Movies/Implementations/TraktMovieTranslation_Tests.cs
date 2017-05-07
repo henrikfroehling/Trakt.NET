@@ -39,7 +39,7 @@
         public async Task Test_TraktMovieTranslation_From_Json()
         {
             var jsonReader = new ITraktMovieTranslationObjectJsonReader();
-            var movieTranslation = await jsonReader.ReadObjectAsync(JSON);
+            var movieTranslation = await jsonReader.ReadObjectAsync(JSON) as TraktMovieTranslation;
 
             movieTranslation.Should().NotBeNull();
             movieTranslation.Title.Should().Be("Star Wars: Episode VII - The Force Awakens");

@@ -48,7 +48,7 @@
         public async Task Test_TraktRecentlyUpdatedMovie_From_Minimal_Json()
         {
             var jsonReader = new ITraktRecentlyUpdatedMovieObjectJsonReader();
-            var recentlyUpdatedMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
+            var recentlyUpdatedMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktRecentlyUpdatedMovie;
 
             recentlyUpdatedMovie.Should().NotBeNull();
             recentlyUpdatedMovie.RecentlyUpdatedAt.Should().Be(DateTime.Parse("2016-03-31T01:29:13Z").ToUniversalTime());
@@ -101,7 +101,7 @@
         public async Task Test_TraktRecentlyUpdatedMovie_From_Full_Json()
         {
             var jsonReader = new ITraktRecentlyUpdatedMovieObjectJsonReader();
-            var recentlyUpdatedMovie = await jsonReader.ReadObjectAsync(FULL_JSON);
+            var recentlyUpdatedMovie = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktRecentlyUpdatedMovie;
 
             recentlyUpdatedMovie.Should().NotBeNull();
             recentlyUpdatedMovie.RecentlyUpdatedAt.Should().Be(DateTime.Parse("2016-03-31T01:29:13Z").ToUniversalTime());

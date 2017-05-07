@@ -70,7 +70,7 @@
         public async Task Test_TraktCalendarShow_From_Minimal_Json()
         {
             var jsonReader = new ITraktCalendarShowObjectJsonReader();
-            var calendarShow = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
+            var calendarShow = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktCalendarShow;
 
             calendarShow.Should().NotBeNull();
             calendarShow.FirstAiredInCalendar.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
@@ -177,7 +177,7 @@
         public async Task Test_TraktCalendarShow_From_Full_Json()
         {
             var jsonReader = new ITraktCalendarShowObjectJsonReader();
-            var calendarShow = await jsonReader.ReadObjectAsync(FULL_JSON);
+            var calendarShow = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktCalendarShow;
 
             calendarShow.Should().NotBeNull();
             calendarShow.FirstAiredInCalendar.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());

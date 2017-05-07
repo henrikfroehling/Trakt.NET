@@ -31,7 +31,7 @@
         public async Task Test_TraktShowAirs_From_Json()
         {
             var jsonReader = new ITraktShowAirsObjectJsonReader();
-            var showAirs = await jsonReader.ReadObjectAsync(JSON);
+            var showAirs = await jsonReader.ReadObjectAsync(JSON) as TraktShowAirs;
 
             showAirs.Should().NotBeNull();
             showAirs.Day.Should().Be("Sunday");

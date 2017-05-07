@@ -38,7 +38,7 @@
         public async Task Test_TraktEpisodeTranslation_From_Json()
         {
             var jsonReader = new ITraktEpisodeTranslationObjectJsonReader();
-            var episodeTranslation = await jsonReader.ReadObjectAsync(JSON);
+            var episodeTranslation = await jsonReader.ReadObjectAsync(JSON) as TraktEpisodeTranslation;
 
             episodeTranslation.Should().NotBeNull();
             episodeTranslation.Title.Should().Be("Winter Is Coming");

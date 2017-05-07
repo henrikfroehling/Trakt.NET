@@ -39,7 +39,7 @@
         public async Task Test_TraktHistoryItem_With_Type_Movie_From_Minimal_Json()
         {
             var jsonReader = new ITraktHistoryItemObjectJsonReader();
-            var historyItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_MINIMAL_JSON);
+            var historyItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_MINIMAL_JSON) as TraktHistoryItem;
 
             historyItem.Should().NotBeNull();
             historyItem.Id.Should().Be(1982346UL);
@@ -76,7 +76,7 @@
         public async Task Test_TraktHistoryItem_With_Type_Show_From_Minimal_Json()
         {
             var jsonReader = new ITraktHistoryItemObjectJsonReader();
-            var historyItem = await jsonReader.ReadObjectAsync(TYPE_SHOW_MINIMAL_JSON);
+            var historyItem = await jsonReader.ReadObjectAsync(TYPE_SHOW_MINIMAL_JSON) as TraktHistoryItem;
 
             historyItem.Should().NotBeNull();
             historyItem.Id.Should().Be(1982348UL);
@@ -120,7 +120,7 @@
         public async Task Test_TraktHistoryItem_With_Type_Season_From_Minimal_Json()
         {
             var jsonReader = new ITraktHistoryItemObjectJsonReader();
-            var historyItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_MINIMAL_JSON);
+            var historyItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_MINIMAL_JSON) as TraktHistoryItem;
 
             historyItem.Should().NotBeNull();
             historyItem.Id.Should().Be(1982344UL);
@@ -150,7 +150,7 @@
         public async Task Test_TraktHistoryItem_With_Type_Episode_From_Minimal_Json()
         {
             var jsonReader = new ITraktHistoryItemObjectJsonReader();
-            var historyItem = await jsonReader.ReadObjectAsync(TYPE_EPISODE_MINIMAL_JSON);
+            var historyItem = await jsonReader.ReadObjectAsync(TYPE_EPISODE_MINIMAL_JSON) as TraktHistoryItem;
 
             historyItem.Should().NotBeNull();
             historyItem.Id.Should().Be(1982347UL);
@@ -212,7 +212,7 @@
         public async Task Test_TraktHistoryItem_With_Type_Movie_From_Full_Json()
         {
             var jsonReader = new ITraktHistoryItemObjectJsonReader();
-            var historyItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_FULL_JSON);
+            var historyItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_FULL_JSON) as TraktHistoryItem;
 
             historyItem.Should().NotBeNull();
             historyItem.Id.Should().Be(1982346UL);
@@ -249,7 +249,7 @@
         public async Task Test_TraktHistoryItem_With_Type_Show_From_Full_Json()
         {
             var jsonReader = new ITraktHistoryItemObjectJsonReader();
-            var historyItem = await jsonReader.ReadObjectAsync(TYPE_SHOW_FULL_JSON);
+            var historyItem = await jsonReader.ReadObjectAsync(TYPE_SHOW_FULL_JSON) as TraktHistoryItem;
 
             historyItem.Should().NotBeNull();
             historyItem.Id.Should().Be(1982348UL);
@@ -296,7 +296,7 @@
         public async Task Test_TraktHistoryItem_With_Type_Season_From_Full_Json()
         {
             var jsonReader = new ITraktHistoryItemObjectJsonReader();
-            var historyItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_FULL_JSON);
+            var historyItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_FULL_JSON) as TraktHistoryItem;
 
             historyItem.Should().NotBeNull();
             historyItem.Id.Should().Be(1982344UL);
@@ -369,7 +369,7 @@
         public async Task Test_TraktHistoryItem_With_Type_Episode_From_Full_Json()
         {
             var jsonReader = new ITraktHistoryItemObjectJsonReader();
-            var historyItem = await jsonReader.ReadObjectAsync(TYPE_EPISODE_FULL_JSON);
+            var historyItem = await jsonReader.ReadObjectAsync(TYPE_EPISODE_FULL_JSON) as TraktHistoryItem;
 
             historyItem.Should().NotBeNull();
             historyItem.Id.Should().Be(1982347UL);

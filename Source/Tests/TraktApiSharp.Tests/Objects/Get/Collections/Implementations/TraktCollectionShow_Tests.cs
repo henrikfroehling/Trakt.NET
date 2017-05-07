@@ -56,7 +56,7 @@
         public async Task Test_TraktCollectionShow_From_Minimal_Json()
         {
             var jsonReader = new ITraktCollectionShowObjectJsonReader();
-            var collectionShow = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
+            var collectionShow = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktCollectionShow;
 
             collectionShow.Should().NotBeNull();
             collectionShow.LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
@@ -185,7 +185,7 @@
         public async Task Test_TraktCollectionShow_From_Full_Json()
         {
             var jsonReader = new ITraktCollectionShowObjectJsonReader();
-            var collectionShow = await jsonReader.ReadObjectAsync(FULL_JSON);
+            var collectionShow = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktCollectionShow;
 
             collectionShow.Should().NotBeNull();
             collectionShow.LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());

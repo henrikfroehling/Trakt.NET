@@ -50,7 +50,7 @@
         public async Task Test_TraktCollectionMovie_From_Minimal_Json()
         {
             var jsonReader = new ITraktCollectionMovieObjectJsonReader();
-            var collectionMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
+            var collectionMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktCollectionMovie;
 
             collectionMovie.Should().NotBeNull();
             collectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
@@ -110,7 +110,7 @@
         public async Task Test_TraktCollectionMovie_From_Full_Json()
         {
             var jsonReader = new ITraktCollectionMovieObjectJsonReader();
-            var collectionMovie = await jsonReader.ReadObjectAsync(FULL_JSON);
+            var collectionMovie = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktCollectionMovie;
 
             collectionMovie.Should().NotBeNull();
             collectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());

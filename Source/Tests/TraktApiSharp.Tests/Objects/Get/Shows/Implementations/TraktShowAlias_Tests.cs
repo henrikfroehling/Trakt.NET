@@ -30,7 +30,7 @@
         public async Task Test_TraktShowAlias_From_Json()
         {
             var jsonReader = new ITraktShowAliasObjectJsonReader();
-            var showAlias = await jsonReader.ReadObjectAsync(JSON);
+            var showAlias = await jsonReader.ReadObjectAsync(JSON) as TraktShowAlias;
 
             showAlias.Should().NotBeNull();
             showAlias.Title.Should().Be("Game of Thrones- Das Lied von Eis und Feuer");

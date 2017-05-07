@@ -48,7 +48,7 @@
         public async Task Test_TraktMostAnticipatedMovie_From_Minimal_Json()
         {
             var jsonReader = new ITraktMostAnticipatedMovieObjectJsonReader();
-            var anticipatedMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
+            var anticipatedMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktMostAnticipatedMovie;
 
             anticipatedMovie.Should().NotBeNull();
             anticipatedMovie.ListCount.Should().Be(12805);
@@ -101,7 +101,7 @@
         public async Task Test_TraktMostAnticipatedMovie_From_Full_Json()
         {
             var jsonReader = new ITraktMostAnticipatedMovieObjectJsonReader();
-            var anticipatedMovie = await jsonReader.ReadObjectAsync(FULL_JSON);
+            var anticipatedMovie = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktMostAnticipatedMovie;
 
             anticipatedMovie.Should().NotBeNull();
             anticipatedMovie.ListCount.Should().Be(12805);
