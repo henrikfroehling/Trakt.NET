@@ -69,6 +69,20 @@
             return new Pair<bool, uint>(false, 0);
         }
 
+        internal static async Task<Pair<bool, ulong>> ReadUnsignedLongIntegerAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (await jsonReader.ReadAsync(cancellationToken))
+            {
+                if (jsonReader.TokenType == JsonToken.Integer)
+                {
+                    if (ulong.TryParse(jsonReader.Value.ToString(), out ulong value))
+                        return new Pair<bool, ulong>(true, value);
+                }
+            }
+
+            return new Pair<bool, ulong>(false, 0);
+        }
+
         internal static async Task<TEnumeration> ReadEnumerationValueAsync<TEnumeration>(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken)) where TEnumeration : TraktEnumeration, new()
         {
             var value = await jsonReader.ReadAsStringAsync(cancellationToken);
