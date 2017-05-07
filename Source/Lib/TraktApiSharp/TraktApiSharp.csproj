@@ -176,6 +176,7 @@
     <Compile Include="Objects\Get\People\ITraktPerson.cs" />
     <Compile Include="Objects\Get\People\ITraktPersonIds.cs" />
     <Compile Include="Objects\Get\Ratings\ITraktRatingsItem.cs" />
+    <Compile Include="Objects\Get\Ratings\JsonReader\ITraktRatingsItemObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Seasons\ITraktSeason.cs" />
     <Compile Include="Objects\Get\Seasons\ITraktSeasonCollectionProgress.cs" />
     <Compile Include="Objects\Get\Seasons\ITraktSeasonIds.cs" />

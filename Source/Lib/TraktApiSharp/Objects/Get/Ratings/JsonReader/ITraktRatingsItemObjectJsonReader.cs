@@ -1,32 +1,31 @@
-﻿namespace TraktApiSharp.Objects.Get.History.JsonReader
+﻿namespace TraktApiSharp.Objects.Get.Ratings.JsonReader
 {
     using Enums;
     using Episodes.JsonReader;
-    using Implementations;
     using Movies.JsonReader;
     using Newtonsoft.Json;
     using Objects.JsonReader;
+    using Ratings.Implementations;
     using Seasons.JsonReader;
     using Shows.JsonReader;
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class ITraktHistoryItemObjectJsonReader : ITraktObjectJsonReader<ITraktHistoryItem>
+    internal class ITraktRatingsItemObjectJsonReader : ITraktObjectJsonReader<ITraktRatingsItem>
     {
-        private const string PROPERTY_NAME_ID = "id";
-        private const string PROPERTY_NAME_WATCHED_AT = "watched_at";
-        private const string PROPERTY_NAME_ACTION = "action";
+        private const string PROPERTY_NAME_RATED_AT = "rated_at";
+        private const string PROPERTY_NAME_RATING = "rating";
         private const string PROPERTY_NAME_TYPE = "type";
         private const string PROPERTY_NAME_MOVIE = "movie";
         private const string PROPERTY_NAME_SHOW = "show";
         private const string PROPERTY_NAME_SEASON = "season";
         private const string PROPERTY_NAME_EPISODE = "episode";
 
-        public Task<ITraktHistoryItem> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktRatingsItem> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(ITraktHistoryItem));
+                return Task.FromResult(default(ITraktRatingsItem));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
@@ -35,10 +34,10 @@
             }
         }
 
-        public Task<ITraktHistoryItem> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktRatingsItem> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (stream == null)
-                return Task.FromResult(default(ITraktHistoryItem));
+                return Task.FromResult(default(ITraktRatingsItem));
 
             using (var streamReader = new StreamReader(stream))
             using (var jsonReader = new JsonTextReader(streamReader))
@@ -47,10 +46,10 @@
             }
         }
 
-        public async Task<ITraktHistoryItem> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<ITraktRatingsItem> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return await Task.FromResult(default(ITraktHistoryItem));
+                return await Task.FromResult(default(ITraktRatingsItem));
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -59,7 +58,7 @@
                 var seasonObjectReader = new ITraktSeasonObjectJsonReader();
                 var episodeObjectReader = new ITraktEpisodeObjectJsonReader();
 
-                ITraktHistoryItem traktHistoryItem = new TraktHistoryItem();
+                ITraktRatingsItem traktRatingItem = new TraktRatingsItem();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -67,41 +66,32 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_ID:
-                            {
-                                var value = await JsonReaderHelper.ReadUnsignedLongIntegerAsync(jsonReader, cancellationToken);
-
-                                if (value.First)
-                                    traktHistoryItem.Id = value.Second;
-
-                                break;
-                            }
-                        case PROPERTY_NAME_WATCHED_AT:
+                        case PROPERTY_NAME_RATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
                                 if (value.First)
-                                    traktHistoryItem.WatchedAt = value.Second;
+                                    traktRatingItem.RatedAt = value.Second;
 
                                 break;
                             }
-                        case PROPERTY_NAME_ACTION:
-                            traktHistoryItem.Action = await JsonReaderHelper.ReadEnumerationValueAsync<TraktHistoryActionType>(jsonReader, cancellationToken);
+                        case PROPERTY_NAME_RATING:
+                            traktRatingItem.Rating = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_TYPE:
-                            traktHistoryItem.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktSyncItemType>(jsonReader, cancellationToken);
+                            traktRatingItem.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktRatingsItemType>(jsonReader, cancellationToken);
                             break;
                         case PROPERTY_NAME_MOVIE:
-                            traktHistoryItem.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            traktRatingItem.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case PROPERTY_NAME_SHOW:
-                            traktHistoryItem.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            traktRatingItem.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case PROPERTY_NAME_SEASON:
-                            traktHistoryItem.Season = await seasonObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            traktRatingItem.Season = await seasonObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case PROPERTY_NAME_EPISODE:
-                            traktHistoryItem.Episode = await episodeObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            traktRatingItem.Episode = await episodeObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
@@ -109,10 +99,10 @@
                     }
                 }
 
-                return traktHistoryItem;
+                return traktRatingItem;
             }
 
-            return await Task.FromResult(default(ITraktHistoryItem));
+            return await Task.FromResult(default(ITraktRatingsItem));
         }
     }
 }
