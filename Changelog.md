@@ -47,7 +47,7 @@ Added:
    - GetNetworksAsync()
  - AddHiddenItemsAsync() in TraktUsersModule ([Issue #54](https://github.com/henrikfroehling/TraktApiSharp/issues/54))
  - RemoveHiddenItemsAsync() TraktUsersModule ([Issue #55](https://github.com/henrikfroehling/TraktApiSharp/issues/55))
- - "Title" property in TraktSeason ([Issue #53](https://github.com/henrikfroehling/TraktApiSharp/issues/53) (thanks to @[Amoenus](https://github.com/Amoenus)))
+ - "Title" property in TraktSeason ([Issue #53](https://github.com/henrikfroehling/TraktApiSharp/issues/53) (thanks to [Romans Pokrovskis](https://github.com/Amoenus)))
 
 Version 0.9.0
 ===
