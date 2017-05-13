@@ -40,14 +40,14 @@ Version 0.10.0
 
 Added:
 
- - TraktCertificationsModule #62
+ - TraktCertificationsModule ([Issue #62](https://github.com/henrikfroehling/TraktApiSharp/issues/62))
    - GetMovieCertificationsAsync()
    - GetShowCertificationsAsync()
- - TraktNetworksModule #63
+ - TraktNetworksModule ([Issue #63](https://github.com/henrikfroehling/TraktApiSharp/issues/63))
    - GetNetworksAsync()
- - AddHiddenItemsAsync() in TraktUsersModule #54
- - RemoveHiddenItemsAsync() TraktUsersModule #55
- - "Title" property in TraktSeason #53 (thanks to @Amoenus)
+ - AddHiddenItemsAsync() in TraktUsersModule ([Issue #54](https://github.com/henrikfroehling/TraktApiSharp/issues/54))
+ - RemoveHiddenItemsAsync() TraktUsersModule ([Issue #55](https://github.com/henrikfroehling/TraktApiSharp/issues/55))
+ - "Title" property in TraktSeason ([Issue #53](https://github.com/henrikfroehling/TraktApiSharp/issues/53) (thanks to @[Amoenus](https://github.com/Amoenus)))
 
 Version 0.9.0
 ===
