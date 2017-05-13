@@ -2,9 +2,9 @@
 # build in Release mode
 -
   environment:
-    packageVersion: 0.9.0
+    packageVersion: 0.10.0
 
-  version: '{branch}-v0.9.0-{build}'
+  version: '{branch}-v0.10.0-{build}'
   image: Visual Studio 2017
 
   install:

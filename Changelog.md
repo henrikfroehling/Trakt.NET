@@ -32,6 +32,23 @@ Renamed:
 
 - namespace Requests.Params (-> Requests.Parameters)
 
+Version 0.10.0
+===
+
+#### 0.10.0
+*(2017-05-13)*
+
+Added:
+
+ - TraktCertificationsModule #62
+   - GetMovieCertificationsAsync()
+   - GetShowCertificationsAsync()
+ - TraktNetworksModule #63
+   - GetNetworksAsync()
+ - AddHiddenItemsAsync() in TraktUsersModule #54
+ - RemoveHiddenItemsAsync() TraktUsersModule #55
+ - "Title" property in TraktSeason #53 (thanks to @Amoenus)
+
 Version 0.9.0
 ===
 

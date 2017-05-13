@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>TraktApiSharp</id>
-        <version>0.9.0</version>
+        <version>0.10.0</version>
         <title>TraktApiSharp</title>
         <authors>Henrik Fröhling</authors>
         <owners>henrikfroehling</owners>
@@ -20,28 +20,15 @@ Features
 - Language Service
         </description>
         <summary>.NET wrapper library for the Trakt.tv API.</summary>
-        <releaseNotes>Fixed:
-- GetMovieReleasesAsync() in TraktMoviesModule
-- GetMovieTranslationsAsync() in TraktMoviesModule
-- GetShowTranslationsAsync() in TraktShowsModule
-
-Added:
-- GetEpisodeListsAsync() in TraktEpisodesModule
-- GetEpisodeTranslationsAsync() in TraktEpisodesModule
-- GetMovieListsAsync() in TraktMoviesModule
-- GetSeasonListsAsync() in TraktSeasonsModule
-- GetShowListsAsync() in TraktShowsModule
-- "Runtime" property in TraktEpisode
-- "Translations" property in TraktEpisode
-- support for episode translations in GetAllSeasonsAsync() in TraktSeasonsModule
-- support for episode translations in GetSeasonAsync() in TraktSeasonsModule
-
-Removed:
-- GetMovieSingleReleaseAsync() in TraktMoviesModule (use GetMovieReleasesAsync() instead)
-- GetMovieSingleTranslationAsync() in TraktMoviesModule (use GetMovieTranslationsAsync() instead)
-- GetShowSingleTranslationAsync() in TraktShowsModule (use GetShowTranslationsAsync() instead
-- deprecated version of GetTextQueryResultsAsync() in TraktSearchModule
-- deprecated version of GetIdLookupResultsAsync() in TraktSearchModule
+        <releaseNotes>Added:
+- TraktCertificationsModule
+  - GetMovieCertificationsAsync()
+  - GetShowCertificationsAsync()
+- TraktNetworksModule
+  - GetNetworksAsync()
+- AddHiddenItemsAsync() in TraktUsersModule
+- RemoveHiddenItemsAsync() TraktUsersModule
+- "Title" property in TraktSeason
         </releaseNotes>
         <copyright>Copyright (c) 2016 - 2017 Henrik Fröhling</copyright>
         <language>en-US</language>
