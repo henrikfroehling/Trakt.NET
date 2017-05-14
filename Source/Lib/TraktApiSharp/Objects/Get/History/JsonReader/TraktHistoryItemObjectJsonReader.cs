@@ -12,7 +12,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class ITraktHistoryItemObjectJsonReader : ITraktObjectJsonReader<ITraktHistoryItem>
+    internal class TraktHistoryItemObjectJsonReader : ITraktObjectJsonReader<ITraktHistoryItem>
     {
         private const string PROPERTY_NAME_ID = "id";
         private const string PROPERTY_NAME_WATCHED_AT = "watched_at";

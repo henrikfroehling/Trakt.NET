@@ -11,12 +11,12 @@
     using Xunit;
 
     [Category("Objects.Get.History.JsonReader")]
-    public partial class ITraktHistoryItemObjectJsonReader_Tests
+    public partial class TraktHistoryItemObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_ITraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Complete()
+        public async Task Test_TraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Complete()
         {
-            var traktJsonReader = new ITraktHistoryItemObjectJsonReader();
+            var traktJsonReader = new TraktHistoryItemObjectJsonReader();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -43,9 +43,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_1()
+        public async Task Test_TraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_1()
         {
-            var traktJsonReader = new ITraktHistoryItemObjectJsonReader();
+            var traktJsonReader = new TraktHistoryItemObjectJsonReader();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -72,9 +72,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_2()
+        public async Task Test_TraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_2()
         {
-            var traktJsonReader = new ITraktHistoryItemObjectJsonReader();
+            var traktJsonReader = new TraktHistoryItemObjectJsonReader();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -101,9 +101,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_3()
+        public async Task Test_TraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_3()
         {
-            var traktJsonReader = new ITraktHistoryItemObjectJsonReader();
+            var traktJsonReader = new TraktHistoryItemObjectJsonReader();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_INCOMPLETE_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -130,9 +130,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_4()
+        public async Task Test_TraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_4()
         {
-            var traktJsonReader = new ITraktHistoryItemObjectJsonReader();
+            var traktJsonReader = new TraktHistoryItemObjectJsonReader();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_INCOMPLETE_4))
             using (var jsonReader = new JsonTextReader(reader))
@@ -159,9 +159,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_5()
+        public async Task Test_TraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_5()
         {
-            var traktJsonReader = new ITraktHistoryItemObjectJsonReader();
+            var traktJsonReader = new TraktHistoryItemObjectJsonReader();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_INCOMPLETE_5))
             using (var jsonReader = new JsonTextReader(reader))
@@ -182,9 +182,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_6()
+        public async Task Test_TraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_6()
         {
-            var traktJsonReader = new ITraktHistoryItemObjectJsonReader();
+            var traktJsonReader = new TraktHistoryItemObjectJsonReader();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_INCOMPLETE_6))
             using (var jsonReader = new JsonTextReader(reader))
@@ -205,9 +205,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_7()
+        public async Task Test_TraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_7()
         {
-            var traktJsonReader = new ITraktHistoryItemObjectJsonReader();
+            var traktJsonReader = new TraktHistoryItemObjectJsonReader();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_INCOMPLETE_7))
             using (var jsonReader = new JsonTextReader(reader))
@@ -228,9 +228,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_8()
+        public async Task Test_TraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_8()
         {
-            var traktJsonReader = new ITraktHistoryItemObjectJsonReader();
+            var traktJsonReader = new TraktHistoryItemObjectJsonReader();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_INCOMPLETE_8))
             using (var jsonReader = new JsonTextReader(reader))
@@ -251,9 +251,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_9()
+        public async Task Test_TraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_9()
         {
-            var traktJsonReader = new ITraktHistoryItemObjectJsonReader();
+            var traktJsonReader = new TraktHistoryItemObjectJsonReader();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_INCOMPLETE_9))
             using (var jsonReader = new JsonTextReader(reader))
@@ -274,9 +274,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_10()
+        public async Task Test_TraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_10()
         {
-            var traktJsonReader = new ITraktHistoryItemObjectJsonReader();
+            var traktJsonReader = new TraktHistoryItemObjectJsonReader();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_INCOMPLETE_10))
             using (var jsonReader = new JsonTextReader(reader))
@@ -303,9 +303,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Not_Valid_1()
+        public async Task Test_TraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Not_Valid_1()
         {
-            var traktJsonReader = new ITraktHistoryItemObjectJsonReader();
+            var traktJsonReader = new TraktHistoryItemObjectJsonReader();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -332,9 +332,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Not_Valid_2()
+        public async Task Test_TraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Not_Valid_2()
         {
-            var traktJsonReader = new ITraktHistoryItemObjectJsonReader();
+            var traktJsonReader = new TraktHistoryItemObjectJsonReader();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -361,9 +361,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Not_Valid_3()
+        public async Task Test_TraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Not_Valid_3()
         {
-            var traktJsonReader = new ITraktHistoryItemObjectJsonReader();
+            var traktJsonReader = new TraktHistoryItemObjectJsonReader();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -390,9 +390,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Not_Valid_4()
+        public async Task Test_TraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Not_Valid_4()
         {
-            var traktJsonReader = new ITraktHistoryItemObjectJsonReader();
+            var traktJsonReader = new TraktHistoryItemObjectJsonReader();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_NOT_VALID_4))
             using (var jsonReader = new JsonTextReader(reader))
@@ -419,9 +419,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Not_Valid_5()
+        public async Task Test_TraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Not_Valid_5()
         {
-            var traktJsonReader = new ITraktHistoryItemObjectJsonReader();
+            var traktJsonReader = new TraktHistoryItemObjectJsonReader();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_NOT_VALID_5))
             using (var jsonReader = new JsonTextReader(reader))
@@ -442,9 +442,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Not_Valid_6()
+        public async Task Test_TraktHistoryItemObjectJsonReader_Season_ReadObject_From_JsonReader_Not_Valid_6()
         {
-            var traktJsonReader = new ITraktHistoryItemObjectJsonReader();
+            var traktJsonReader = new TraktHistoryItemObjectJsonReader();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_NOT_VALID_6))
             using (var jsonReader = new JsonTextReader(reader))
