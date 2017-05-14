@@ -27,7 +27,7 @@
                 return values;
             }
 
-            return null;
+            return default(IEnumerable<string>);
         }
 
         internal static async Task<Pair<bool, DateTime>> ReadDateTimeValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
@@ -56,17 +56,32 @@
             return new Pair<bool, DateTime>(false, default(DateTime));
         }
 
-        internal static async Task<Pair<bool, uint>> ReadUnsignedIntegerValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        internal static async Task<Pair<bool, float>> ReadFloatValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
-            int? value = await jsonReader.ReadAsInt32Async(cancellationToken);
-
-            if (value.HasValue)
+            if (await jsonReader.ReadAsync(cancellationToken))
             {
-                var propertyValue = (uint)value;
-                return new Pair<bool, uint>(true, propertyValue);
+                if (jsonReader.TokenType == JsonToken.Float)
+                {
+                    if (float.TryParse(jsonReader.Value.ToString(), out float value))
+                        return new Pair<bool, float>(true, value);
+                }
             }
 
-            return new Pair<bool, uint>(false, 0);
+            return new Pair<bool, float>(false, default(float));
+        }
+
+        internal static async Task<Pair<bool, uint>> ReadUnsignedIntegerValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (await jsonReader.ReadAsync(cancellationToken))
+            {
+                if (jsonReader.TokenType == JsonToken.Integer)
+                {
+                    if (uint.TryParse(jsonReader.Value.ToString(), out uint value))
+                        return new Pair<bool, uint>(true, value);
+                }
+            }
+
+            return new Pair<bool, uint>(false, default(uint));
         }
 
         internal static async Task<Pair<bool, ulong>> ReadUnsignedLongIntegerAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
@@ -80,7 +95,7 @@
                 }
             }
 
-            return new Pair<bool, ulong>(false, 0);
+            return new Pair<bool, ulong>(false, default(ulong));
         }
 
         internal static async Task<TEnumeration> ReadEnumerationValueAsync<TEnumeration>(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken)) where TEnumeration : TraktEnumeration, new()

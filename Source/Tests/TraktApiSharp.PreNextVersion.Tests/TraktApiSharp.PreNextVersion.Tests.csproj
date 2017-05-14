@@ -197,7 +197,6 @@
     <Compile Include="Objects\Basic\TraktSharingTests.cs" />
     <Compile Include="Objects\Basic\TraktStatisticsTests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\TraktSyncLastActivitiesTests.cs" />
-    <Compile Include="Objects\Get\Syncs\Playback\TraktSyncPlaybackProgressItemTests.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListItemTests.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListTests.cs" />
     <Compile Include="Objects\Get\Users\TraktAccountSettingsTests.cs" />
@@ -385,8 +384,6 @@
     <None Include="TestData\Objects\Get\Syncs\Activities\SyncLastActivities.json" />
     <None Include="TestData\Objects\Get\History\History.json" />
     <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgress.json" />
-    <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgressItemEpisode.json" />
-    <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgressItemMovie.json" />
     <None Include="TestData\Objects\Get\Ratings\Ratings.json" />
     <None Include="TestData\Objects\Get\Ratings\RatingsEpisodes.json" />
     <None Include="TestData\Objects\Get\Ratings\RatingsMovies.json" />
