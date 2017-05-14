@@ -47,7 +47,7 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var showObjectReader = new ITraktShowObjectJsonReader();
-                var episodeObjectReader = new ITraktEpisodeObjectJsonReader();
+                var episodeObjectReader = new TraktEpisodeObjectJsonReader();
 
                 ITraktCalendarShow traktCalendarShow = new TraktCalendarShow();
 

@@ -51,7 +51,7 @@
             {
                 var seasonsArrayReader = new ITraktSeasonArrayJsonReader();
                 var seasonCollectionProgressArrayReader = new ITraktSeasonCollectionProgressArrayJsonReader();
-                var episodeObjectReader = new ITraktEpisodeObjectJsonReader();
+                var episodeObjectReader = new TraktEpisodeObjectJsonReader();
 
                 ITraktShowCollectionProgress traktShowCollectionProgress = new TraktShowCollectionProgress();
 
