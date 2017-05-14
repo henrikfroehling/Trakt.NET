@@ -39,7 +39,7 @@
         [Fact]
         public async Task Test_TraktSeason_From_Minimal_Json()
         {
-            var jsonReader = new ITraktSeasonObjectJsonReader();
+            var jsonReader = new TraktSeasonObjectJsonReader();
             var season = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktSeason;
 
             season.Should().NotBeNull();
@@ -62,7 +62,7 @@
         [Fact]
         public async Task Test_TraktSeason_From_Full_Json()
         {
-            var jsonReader = new ITraktSeasonObjectJsonReader();
+            var jsonReader = new TraktSeasonObjectJsonReader();
             var season = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktSeason;
 
             season.Should().NotBeNull();

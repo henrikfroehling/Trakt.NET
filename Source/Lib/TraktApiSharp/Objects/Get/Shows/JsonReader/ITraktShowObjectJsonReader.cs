@@ -67,7 +67,7 @@
             {
                 var idsObjectReader = new ITraktShowIdsObjectJsonReader();
                 var airsObjectReader = new ITraktShowAirsObjectJsonReader();
-                var seasonsArrayReader = new ITraktSeasonArrayJsonReader();
+                var seasonsArrayReader = new TraktSeasonArrayJsonReader();
 
                 ITraktShow traktShow = new TraktShow();
 
