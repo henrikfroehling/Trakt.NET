@@ -9,12 +9,12 @@
     using Xunit;
 
     [Category("Objects.Get.Ratings.JsonReader")]
-    public partial class ITraktRatingsItemObjectJsonReader_Tests
+    public partial class TraktRatingsItemObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_ITraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Complete()
+        public async Task Test_TraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
 
             var traktRatingItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_JSON_COMPLETE);
 
@@ -36,9 +36,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Incomplete_1()
+        public async Task Test_TraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
 
             var traktRatingItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_JSON_INCOMPLETE_1);
 
@@ -60,9 +60,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Incomplete_2()
+        public async Task Test_TraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
 
             var traktRatingItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_JSON_INCOMPLETE_2);
 
@@ -84,9 +84,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Incomplete_3()
+        public async Task Test_TraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Incomplete_3()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
 
             var traktRatingItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_JSON_INCOMPLETE_3);
 
@@ -108,9 +108,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Incomplete_4()
+        public async Task Test_TraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Incomplete_4()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
 
             var traktRatingItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_JSON_INCOMPLETE_4);
 
@@ -126,9 +126,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Incomplete_5()
+        public async Task Test_TraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Incomplete_5()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
 
             var traktRatingItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_JSON_INCOMPLETE_5);
 
@@ -144,9 +144,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Incomplete_6()
+        public async Task Test_TraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Incomplete_6()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
 
             var traktRatingItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_JSON_INCOMPLETE_6);
 
@@ -162,9 +162,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Incomplete_7()
+        public async Task Test_TraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Incomplete_7()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
 
             var traktRatingItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_JSON_INCOMPLETE_7);
 
@@ -180,9 +180,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Incomplete_8()
+        public async Task Test_TraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Incomplete_8()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
 
             var traktRatingItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_JSON_INCOMPLETE_8);
 
@@ -204,9 +204,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Not_Valid_1()
+        public async Task Test_TraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
 
             var traktRatingItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_JSON_NOT_VALID_1);
 
@@ -228,9 +228,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Not_Valid_2()
+        public async Task Test_TraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
 
             var traktRatingItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_JSON_NOT_VALID_2);
 
@@ -252,9 +252,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Not_Valid_3()
+        public async Task Test_TraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
 
             var traktRatingItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_JSON_NOT_VALID_3);
 
@@ -276,9 +276,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Not_Valid_4()
+        public async Task Test_TraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Not_Valid_4()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
 
             var traktRatingItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_JSON_NOT_VALID_4);
 
@@ -294,9 +294,9 @@
         }
 
         [Fact]
-        public async Task Test_ITraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Not_Valid_5()
+        public async Task Test_TraktRatingsItemObjectJsonReader_Season_ReadObject_From_Json_String_Not_Valid_5()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
 
             var traktRatingItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_JSON_NOT_VALID_5);
 
