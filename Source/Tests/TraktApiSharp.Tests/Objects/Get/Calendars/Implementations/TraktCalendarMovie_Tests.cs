@@ -47,7 +47,7 @@
         [Fact]
         public async Task Test_TraktCalendarMovie_From_Minimal_Json()
         {
-            var jsonReader = new ITraktCalendarMovieObjectJsonReader();
+            var jsonReader = new TraktCalendarMovieObjectJsonReader();
             var calendarMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktCalendarMovie;
 
             calendarMovie.Should().NotBeNull();
@@ -100,7 +100,7 @@
         [Fact]
         public async Task Test_TraktCalendarMovie_From_Full_Json()
         {
-            var jsonReader = new ITraktCalendarMovieObjectJsonReader();
+            var jsonReader = new TraktCalendarMovieObjectJsonReader();
             var calendarMovie = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktCalendarMovie;
 
             calendarMovie.Should().NotBeNull();
