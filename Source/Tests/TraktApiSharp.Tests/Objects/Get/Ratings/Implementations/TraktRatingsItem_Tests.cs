@@ -37,7 +37,7 @@
         [Fact]
         public async Task Test_TraktRatingsItem_With_Type_Movie_From_Minimal_Json()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
             var ratingsItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_MINIMAL_JSON) as TraktRatingsItem;
 
             ratingsItem.Should().NotBeNull();
@@ -73,7 +73,7 @@
         [Fact]
         public async Task Test_TraktRatingsItem_With_Type_Show_From_Minimal_Json()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
             var ratingsItem = await jsonReader.ReadObjectAsync(TYPE_SHOW_MINIMAL_JSON) as TraktRatingsItem;
 
             ratingsItem.Should().NotBeNull();
@@ -116,7 +116,7 @@
         [Fact]
         public async Task Test_TraktRatingsItem_With_Type_Season_From_Minimal_Json()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
             var ratingsItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_MINIMAL_JSON) as TraktRatingsItem;
 
             ratingsItem.Should().NotBeNull();
@@ -145,7 +145,7 @@
         [Fact]
         public async Task Test_TraktRatingsItem_With_Type_Episode_From_Minimal_Json()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
             var ratingsItem = await jsonReader.ReadObjectAsync(TYPE_EPISODE_MINIMAL_JSON) as TraktRatingsItem;
 
             ratingsItem.Should().NotBeNull();
@@ -206,7 +206,7 @@
         [Fact]
         public async Task Test_TraktRatingsItem_With_Type_Movie_From_Full_Json()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
             var ratingsItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_FULL_JSON) as TraktRatingsItem;
 
             ratingsItem.Should().NotBeNull();
@@ -242,7 +242,7 @@
         [Fact]
         public async Task Test_TraktRatingsItem_With_Type_Show_From_Full_Json()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
             var ratingsItem = await jsonReader.ReadObjectAsync(TYPE_SHOW_FULL_JSON) as TraktRatingsItem;
 
             ratingsItem.Should().NotBeNull();
@@ -288,7 +288,7 @@
         [Fact]
         public async Task Test_TraktRatingsItem_With_Type_Season_From_Full_Json()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
             var ratingsItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_FULL_JSON) as TraktRatingsItem;
 
             ratingsItem.Should().NotBeNull();
@@ -360,7 +360,7 @@
         [Fact]
         public async Task Test_TraktRatingsItem_With_Type_Episode_From_Full_Json()
         {
-            var jsonReader = new ITraktRatingsItemObjectJsonReader();
+            var jsonReader = new TraktRatingsItemObjectJsonReader();
             var ratingsItem = await jsonReader.ReadObjectAsync(TYPE_EPISODE_FULL_JSON) as TraktRatingsItem;
 
             ratingsItem.Should().NotBeNull();

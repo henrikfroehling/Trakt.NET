@@ -47,7 +47,7 @@
         [Fact]
         public async Task Test_TraktRecentlyUpdatedMovie_From_Minimal_Json()
         {
-            var jsonReader = new ITraktRecentlyUpdatedMovieObjectJsonReader();
+            var jsonReader = new TraktRecentlyUpdatedMovieObjectJsonReader();
             var recentlyUpdatedMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktRecentlyUpdatedMovie;
 
             recentlyUpdatedMovie.Should().NotBeNull();
@@ -100,7 +100,7 @@
         [Fact]
         public async Task Test_TraktRecentlyUpdatedMovie_From_Full_Json()
         {
-            var jsonReader = new ITraktRecentlyUpdatedMovieObjectJsonReader();
+            var jsonReader = new TraktRecentlyUpdatedMovieObjectJsonReader();
             var recentlyUpdatedMovie = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktRecentlyUpdatedMovie;
 
             recentlyUpdatedMovie.Should().NotBeNull();

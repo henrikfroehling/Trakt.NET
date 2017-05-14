@@ -37,7 +37,7 @@
         [Fact]
         public async Task Test_TraktShowTranslation_From_Json()
         {
-            var jsonReader = new ITraktShowTranslationObjectJsonReader();
+            var jsonReader = new TraktShowTranslationObjectJsonReader();
             var showTranslation = await jsonReader.ReadObjectAsync(JSON) as TraktShowTranslation;
 
             showTranslation.Should().NotBeNull();

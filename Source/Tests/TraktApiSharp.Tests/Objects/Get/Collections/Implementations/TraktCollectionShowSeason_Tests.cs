@@ -32,7 +32,7 @@
         [Fact]
         public async Task Test_TraktCollectionShowSeason_From_Json()
         {
-            var jsonReader = new ITraktCollectionShowSeasonObjectJsonReader();
+            var jsonReader = new TraktCollectionShowSeasonObjectJsonReader();
             var collectionShowSeason = await jsonReader.ReadObjectAsync(JSON) as TraktCollectionShowSeason;
 
             collectionShowSeason.Should().NotBeNull();

@@ -29,7 +29,7 @@
         [Fact]
         public async Task Test_TraktShowAlias_From_Json()
         {
-            var jsonReader = new ITraktShowAliasObjectJsonReader();
+            var jsonReader = new TraktShowAliasObjectJsonReader();
             var showAlias = await jsonReader.ReadObjectAsync(JSON) as TraktShowAlias;
 
             showAlias.Should().NotBeNull();
