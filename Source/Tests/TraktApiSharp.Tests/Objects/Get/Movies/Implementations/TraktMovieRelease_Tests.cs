@@ -34,7 +34,7 @@
         [Fact]
         public async Task Test_TraktMovieRelease_From_Json()
         {
-            var jsonReader = new ITraktMovieReleaseObjectJsonReader();
+            var jsonReader = new TraktMovieReleaseObjectJsonReader();
             var movieRelease = await jsonReader.ReadObjectAsync(JSON) as TraktMovieRelease;
 
             movieRelease.Should().NotBeNull();

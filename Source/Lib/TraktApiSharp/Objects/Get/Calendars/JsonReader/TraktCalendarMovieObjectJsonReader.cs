@@ -44,7 +44,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var movieObjectReader = new ITraktMovieObjectJsonReader();
+                var movieObjectReader = new TraktMovieObjectJsonReader();
                 ITraktCalendarMovie traktCalendarMovie = new TraktCalendarMovie();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
