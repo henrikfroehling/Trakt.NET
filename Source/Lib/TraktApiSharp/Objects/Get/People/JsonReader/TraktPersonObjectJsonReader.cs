@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class ITraktPersonObjectJsonReader : ITraktObjectJsonReader<ITraktPerson>
+    internal class TraktPersonObjectJsonReader : ITraktObjectJsonReader<ITraktPerson>
     {
         private const string PROPERTY_NAME_NAME = "name";
         private const string PROPERTY_NAME_IDS = "ids";
@@ -48,7 +48,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var idsObjectReader = new ITraktPersonIdsObjectJsonReader();
+                var idsObjectReader = new TraktPersonIdsObjectJsonReader();
                 ITraktPerson traktPerson = new TraktPerson();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
