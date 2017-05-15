@@ -201,6 +201,13 @@
     <Compile Include="Objects\Get\Syncs\Activities\ITraktSyncMoviesLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\ITraktSyncSeasonsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\ITraktSyncShowsLastActivities.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncCommentsLastActivitiesObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncEpisodesLastActivitiesObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncLastActivitiesObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncListsLastActivitiesObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncMoviesLastActivitiesObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncSeasonsLastActivitiesObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncShowsLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\ITraktSyncPlaybackProgressItem.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\JsonReader\TraktSyncPlaybackProgressItemObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\ITraktAccountSettings.cs" />
