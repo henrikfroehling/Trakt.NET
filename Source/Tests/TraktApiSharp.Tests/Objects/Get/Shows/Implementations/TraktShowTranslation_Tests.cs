@@ -37,8 +37,8 @@
         [Fact]
         public async Task Test_TraktShowTranslation_From_Json()
         {
-            var jsonReader = new ITraktShowTranslationObjectJsonReader();
-            var showTranslation = await jsonReader.ReadObjectAsync(JSON);
+            var jsonReader = new TraktShowTranslationObjectJsonReader();
+            var showTranslation = await jsonReader.ReadObjectAsync(JSON) as TraktShowTranslation;
 
             showTranslation.Should().NotBeNull();
             showTranslation.Title.Should().Be("Game of Thrones");

@@ -44,8 +44,8 @@
         [Fact]
         public async Task Test_TraktMovie_From_Minimal_Json()
         {
-            var jsonReader = new ITraktMovieObjectJsonReader();
-            var movie = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
+            var jsonReader = new TraktMovieObjectJsonReader();
+            var movie = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktMovie;
 
             movie.Should().NotBeNull();
             movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -73,8 +73,8 @@
         [Fact]
         public async Task Test_TraktMovie_From_Full_Json()
         {
-            var jsonReader = new ITraktMovieObjectJsonReader();
-            var movie = await jsonReader.ReadObjectAsync(FULL_JSON);
+            var jsonReader = new TraktMovieObjectJsonReader();
+            var movie = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktMovie;
 
             movie.Should().NotBeNull();
             movie.Title.Should().Be("Star Wars: The Force Awakens");

@@ -47,8 +47,8 @@
         [Fact]
         public async Task Test_TraktBoxOfficeMovie_From_Minimal_Json()
         {
-            var jsonReader = new ITraktBoxOfficeMovieObjectJsonReader();
-            var boxOfficeMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
+            var jsonReader = new TraktBoxOfficeMovieObjectJsonReader();
+            var boxOfficeMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktBoxOfficeMovie;
 
             boxOfficeMovie.Should().NotBeNull();
             boxOfficeMovie.Revenue.Should().Be(166007347);
@@ -100,8 +100,8 @@
         [Fact]
         public async Task Test_TraktBoxOfficeMovie_From_Full_Json()
         {
-            var jsonReader = new ITraktBoxOfficeMovieObjectJsonReader();
-            var boxOfficeMovie = await jsonReader.ReadObjectAsync(FULL_JSON);
+            var jsonReader = new TraktBoxOfficeMovieObjectJsonReader();
+            var boxOfficeMovie = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktBoxOfficeMovie;
 
             boxOfficeMovie.Should().NotBeNull();
             boxOfficeMovie.Revenue.Should().Be(166007347);

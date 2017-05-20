@@ -128,8 +128,8 @@
         [Fact]
         public async Task Test_TraktPersonIds_From_Json()
         {
-            var jsonReader = new ITraktPersonIdsObjectJsonReader();
-            var personIds = await jsonReader.ReadObjectAsync(JSON);
+            var jsonReader = new TraktPersonIdsObjectJsonReader();
+            var personIds = await jsonReader.ReadObjectAsync(JSON) as TraktPersonIds;
 
             personIds.Should().NotBeNull();
             personIds.Trakt.Should().Be(297737);

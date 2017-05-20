@@ -47,8 +47,8 @@
         [Fact]
         public async Task Test_TraktTrendingMovie_From_Minimal_Json()
         {
-            var jsonReader = new ITraktTrendingMovieObjectJsonReader();
-            var trendingMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
+            var jsonReader = new TraktTrendingMovieObjectJsonReader();
+            var trendingMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktTrendingMovie;
 
             trendingMovie.Should().NotBeNull();
             trendingMovie.Watchers.Should().Be(35);
@@ -100,8 +100,8 @@
         [Fact]
         public async Task Test_TraktTrendingMovie_From_Full_Json()
         {
-            var jsonReader = new ITraktTrendingMovieObjectJsonReader();
-            var trendingMovie = await jsonReader.ReadObjectAsync(FULL_JSON);
+            var jsonReader = new TraktTrendingMovieObjectJsonReader();
+            var trendingMovie = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktTrendingMovie;
 
             trendingMovie.Should().NotBeNull();
             trendingMovie.Watchers.Should().Be(35);

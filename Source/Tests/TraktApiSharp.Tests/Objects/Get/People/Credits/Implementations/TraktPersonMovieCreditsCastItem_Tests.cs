@@ -1,11 +1,12 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.People.Credits.Implementations
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.People.Credits;
     using TraktApiSharp.Objects.Get.People.Credits.Implementations;
+    using TraktApiSharp.Objects.Get.People.Credits.JsonReader;
     using Xunit;
 
     [Category("Objects.Get.People.Credits.Implementations")]
@@ -27,9 +28,10 @@
         }
 
         [Fact]
-        public void Test_TraktPersonMovieCreditsCastItem_From_Minimal_Json()
+        public async Task Test_TraktPersonMovieCreditsCastItem_From_Minimal_Json()
         {
-            var creditsCastItem = JsonConvert.DeserializeObject<TraktPersonMovieCreditsCastItem>(MINIMAL_JSON);
+            var jsonReader = new TraktPersonMovieCreditsCastItemObjectJsonReader();
+            var creditsCastItem = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktPersonMovieCreditsCastItem;
 
             creditsCastItem.Should().NotBeNull();
             creditsCastItem.Character.Should().Be("Joe Brody");
@@ -57,9 +59,10 @@
         }
 
         [Fact]
-        public void Test_TraktPersonMovieCreditsCastItem_From_Full_Json()
+        public async Task Test_TraktPersonMovieCreditsCastItem_From_Full_Json()
         {
-            var creditsCastItem = JsonConvert.DeserializeObject<TraktPersonMovieCreditsCastItem>(FULL_JSON);
+            var jsonReader = new TraktPersonMovieCreditsCastItemObjectJsonReader();
+            var creditsCastItem = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktPersonMovieCreditsCastItem;
 
             creditsCastItem.Should().NotBeNull();
             creditsCastItem.Character.Should().Be("Joe Brody");

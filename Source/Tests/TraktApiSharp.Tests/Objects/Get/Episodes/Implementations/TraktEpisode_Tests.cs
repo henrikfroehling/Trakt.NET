@@ -42,8 +42,8 @@
         [Fact]
         public async Task Test_TraktEpisode_From_Minimal_Json()
         {
-            var jsonReader = new ITraktEpisodeObjectJsonReader();
-            var episode = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
+            var jsonReader = new TraktEpisodeObjectJsonReader();
+            var episode = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktEpisode;
 
             episode.Should().NotBeNull();
             episode.SeasonNumber.Should().Be(1);
@@ -69,8 +69,8 @@
         [Fact]
         public async Task Test_TraktEpisode_From_Full_Json()
         {
-            var jsonReader = new ITraktEpisodeObjectJsonReader();
-            var episode = await jsonReader.ReadObjectAsync(FULL_JSON);
+            var jsonReader = new TraktEpisodeObjectJsonReader();
+            var episode = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktEpisode;
 
             episode.Should().NotBeNull();
             episode.SeasonNumber.Should().Be(1);

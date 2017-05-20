@@ -53,8 +53,8 @@
         [Fact]
         public async Task Test_TraktRecentlyUpdatedShow_From_Minimal_Json()
         {
-            var jsonReader = new ITraktRecentlyUpdatedShowObjectJsonReader();
-            var recentlyUpdatedShow = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
+            var jsonReader = new TraktRecentlyUpdatedShowObjectJsonReader();
+            var recentlyUpdatedShow = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktRecentlyUpdatedShow;
 
             recentlyUpdatedShow.Should().NotBeNull();
             recentlyUpdatedShow.RecentlyUpdatedAt.Should().Be(DateTime.Parse("2016-03-31T01:29:13Z").ToUniversalTime());
@@ -120,8 +120,8 @@
         [Fact]
         public async Task Test_TraktRecentlyUpdatedShow_From_Full_Json()
         {
-            var jsonReader = new ITraktRecentlyUpdatedShowObjectJsonReader();
-            var recentlyUpdatedShow = await jsonReader.ReadObjectAsync(FULL_JSON);
+            var jsonReader = new TraktRecentlyUpdatedShowObjectJsonReader();
+            var recentlyUpdatedShow = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktRecentlyUpdatedShow;
 
             recentlyUpdatedShow.Should().NotBeNull();
             recentlyUpdatedShow.RecentlyUpdatedAt.Should().Be(DateTime.Parse("2016-03-31T01:29:13Z").ToUniversalTime());

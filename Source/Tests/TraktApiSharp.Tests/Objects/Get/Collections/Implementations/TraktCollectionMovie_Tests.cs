@@ -1,12 +1,13 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Collections.Implementations
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Collections;
     using TraktApiSharp.Objects.Get.Collections.Implementations;
+    using TraktApiSharp.Objects.Get.Collections.JsonReader;
     using Xunit;
 
     [Category("Objects.Get.Collections.Implementations")]
@@ -46,9 +47,10 @@
         }
 
         [Fact]
-        public void Test_TraktCollectionMovie_From_Minimal_Json()
+        public async Task Test_TraktCollectionMovie_From_Minimal_Json()
         {
-            var collectionMovie = JsonConvert.DeserializeObject<TraktCollectionMovie>(MINIMAL_JSON);
+            var jsonReader = new TraktCollectionMovieObjectJsonReader();
+            var collectionMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktCollectionMovie;
 
             collectionMovie.Should().NotBeNull();
             collectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
@@ -105,9 +107,10 @@
         }
 
         [Fact]
-        public void Test_TraktCollectionMovie_From_Full_Json()
+        public async Task Test_TraktCollectionMovie_From_Full_Json()
         {
-            var collectionMovie = JsonConvert.DeserializeObject<TraktCollectionMovie>(FULL_JSON);
+            var jsonReader = new TraktCollectionMovieObjectJsonReader();
+            var collectionMovie = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktCollectionMovie;
 
             collectionMovie.Should().NotBeNull();
             collectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());

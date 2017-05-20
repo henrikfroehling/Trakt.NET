@@ -1,13 +1,14 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Collections.Implementations
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Collections;
     using TraktApiSharp.Objects.Get.Collections.Implementations;
+    using TraktApiSharp.Objects.Get.Collections.JsonReader;
     using Xunit;
 
     [Category("Objects.Get.Collections.Implementations")]
@@ -52,9 +53,10 @@
         }
 
         [Fact]
-        public void Test_TraktCollectionShow_From_Minimal_Json()
+        public async Task Test_TraktCollectionShow_From_Minimal_Json()
         {
-            var collectionShow = JsonConvert.DeserializeObject<TraktCollectionShow>(MINIMAL_JSON);
+            var jsonReader = new TraktCollectionShowObjectJsonReader();
+            var collectionShow = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktCollectionShow;
 
             collectionShow.Should().NotBeNull();
             collectionShow.LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
@@ -132,12 +134,22 @@
             episodesSeason1[0].Should().NotBeNull();
             episodesSeason1[0].Number.Should().Be(1);
             episodesSeason1[0].CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            episodesSeason1[0].Metadata.Should().BeNull();
+            episodesSeason1[0].Metadata.Should().NotBeNull();
+            episodesSeason1[0].Metadata.MediaType.Should().Be(TraktMediaType.Digital);
+            episodesSeason1[0].Metadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+            episodesSeason1[0].Metadata.Audio.Should().Be(TraktMediaAudio.AAC);
+            episodesSeason1[0].Metadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+            episodesSeason1[0].Metadata.ThreeDimensional.Should().BeTrue();
 
             episodesSeason1[1].Should().NotBeNull();
             episodesSeason1[1].Number.Should().Be(2);
             episodesSeason1[1].CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            episodesSeason1[1].Metadata.Should().BeNull();
+            episodesSeason1[1].Metadata.Should().NotBeNull();
+            episodesSeason1[1].Metadata.MediaType.Should().Be(TraktMediaType.Digital);
+            episodesSeason1[1].Metadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+            episodesSeason1[1].Metadata.Audio.Should().Be(TraktMediaAudio.AAC);
+            episodesSeason1[1].Metadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+            episodesSeason1[1].Metadata.ThreeDimensional.Should().BeTrue();
 
             // Season 2
             seasons[1].Should().NotBeNull();
@@ -151,18 +163,29 @@
             episodesSeason2[0].Should().NotBeNull();
             episodesSeason2[0].Number.Should().Be(1);
             episodesSeason2[0].CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            episodesSeason2[0].Metadata.Should().BeNull();
+            episodesSeason1[0].Metadata.Should().NotBeNull();
+            episodesSeason1[0].Metadata.MediaType.Should().Be(TraktMediaType.Digital);
+            episodesSeason1[0].Metadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+            episodesSeason1[0].Metadata.Audio.Should().Be(TraktMediaAudio.AAC);
+            episodesSeason1[0].Metadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+            episodesSeason1[0].Metadata.ThreeDimensional.Should().BeTrue();
 
             episodesSeason2[1].Should().NotBeNull();
             episodesSeason2[1].Number.Should().Be(2);
             episodesSeason2[1].CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            episodesSeason2[1].Metadata.Should().BeNull();
+            episodesSeason1[1].Metadata.Should().NotBeNull();
+            episodesSeason1[1].Metadata.MediaType.Should().Be(TraktMediaType.Digital);
+            episodesSeason1[1].Metadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+            episodesSeason1[1].Metadata.Audio.Should().Be(TraktMediaAudio.AAC);
+            episodesSeason1[1].Metadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+            episodesSeason1[1].Metadata.ThreeDimensional.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCollectionShow_From_Full_Json()
+        public async Task Test_TraktCollectionShow_From_Full_Json()
         {
-            var collectionShow = JsonConvert.DeserializeObject<TraktCollectionShow>(FULL_JSON);
+            var jsonReader = new TraktCollectionShowObjectJsonReader();
+            var collectionShow = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktCollectionShow;
 
             collectionShow.Should().NotBeNull();
             collectionShow.LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
@@ -170,8 +193,11 @@
             collectionShow.Show.Should().NotBeNull();
             collectionShow.Show.Title.Should().Be("Game of Thrones");
             collectionShow.Show.Year.Should().Be(2011);
-            collectionShow.Show.Airs.Should().BeNull();
-            collectionShow.Show.AvailableTranslationLanguageCodes.Should().BeNull();
+            collectionShow.Show.Airs.Should().NotBeNull();
+            collectionShow.Show.Airs.Day.Should().Be("Sunday");
+            collectionShow.Show.Airs.Time.Should().Be("21:00");
+            collectionShow.Show.Airs.TimeZoneId.Should().Be("America/New_York");
+            collectionShow.Show.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "fr", "it", "de");
             collectionShow.Show.Ids.Should().NotBeNull();
             collectionShow.Show.Ids.Trakt.Should().Be(1390U);
             collectionShow.Show.Ids.Slug.Should().Be("game-of-thrones");
@@ -198,8 +224,11 @@
 
             collectionShow.Title.Should().Be("Game of Thrones");
             collectionShow.Year.Should().Be(2011);
-            collectionShow.Airs.Should().BeNull();
-            collectionShow.AvailableTranslationLanguageCodes.Should().BeNull();
+            collectionShow.Airs.Should().NotBeNull();
+            collectionShow.Airs.Day.Should().Be("Sunday");
+            collectionShow.Airs.Time.Should().Be("21:00");
+            collectionShow.Airs.TimeZoneId.Should().Be("America/New_York");
+            collectionShow.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "fr", "it", "de");
             collectionShow.Ids.Should().NotBeNull();
             collectionShow.Ids.Trakt.Should().Be(1390U);
             collectionShow.Ids.Slug.Should().Be("game-of-thrones");
@@ -240,12 +269,22 @@
             episodesSeason1[0].Should().NotBeNull();
             episodesSeason1[0].Number.Should().Be(1);
             episodesSeason1[0].CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            episodesSeason1[0].Metadata.Should().BeNull();
+            episodesSeason1[0].Metadata.Should().NotBeNull();
+            episodesSeason1[0].Metadata.MediaType.Should().Be(TraktMediaType.Digital);
+            episodesSeason1[0].Metadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+            episodesSeason1[0].Metadata.Audio.Should().Be(TraktMediaAudio.AAC);
+            episodesSeason1[0].Metadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+            episodesSeason1[0].Metadata.ThreeDimensional.Should().BeTrue();
 
             episodesSeason1[1].Should().NotBeNull();
             episodesSeason1[1].Number.Should().Be(2);
             episodesSeason1[1].CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            episodesSeason1[1].Metadata.Should().BeNull();
+            episodesSeason1[1].Metadata.Should().NotBeNull();
+            episodesSeason1[1].Metadata.MediaType.Should().Be(TraktMediaType.Digital);
+            episodesSeason1[1].Metadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+            episodesSeason1[1].Metadata.Audio.Should().Be(TraktMediaAudio.AAC);
+            episodesSeason1[1].Metadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+            episodesSeason1[1].Metadata.ThreeDimensional.Should().BeTrue();
 
             // Season 2
             seasons[1].Should().NotBeNull();
@@ -259,12 +298,22 @@
             episodesSeason2[0].Should().NotBeNull();
             episodesSeason2[0].Number.Should().Be(1);
             episodesSeason2[0].CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            episodesSeason2[0].Metadata.Should().BeNull();
+            episodesSeason1[0].Metadata.Should().NotBeNull();
+            episodesSeason1[0].Metadata.MediaType.Should().Be(TraktMediaType.Digital);
+            episodesSeason1[0].Metadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+            episodesSeason1[0].Metadata.Audio.Should().Be(TraktMediaAudio.AAC);
+            episodesSeason1[0].Metadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+            episodesSeason1[0].Metadata.ThreeDimensional.Should().BeTrue();
 
             episodesSeason2[1].Should().NotBeNull();
             episodesSeason2[1].Number.Should().Be(2);
             episodesSeason2[1].CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            episodesSeason2[1].Metadata.Should().BeNull();
+            episodesSeason1[1].Metadata.Should().NotBeNull();
+            episodesSeason1[1].Metadata.MediaType.Should().Be(TraktMediaType.Digital);
+            episodesSeason1[1].Metadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+            episodesSeason1[1].Metadata.Audio.Should().Be(TraktMediaAudio.AAC);
+            episodesSeason1[1].Metadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+            episodesSeason1[1].Metadata.ThreeDimensional.Should().BeTrue();
         }
 
         private const string MINIMAL_JSON =
@@ -294,7 +343,7 @@
                           ""resolution"": ""hd_720p"",
                           ""audio"": ""aac"",
                           ""audio_channels"": ""5.1"",
-                          ""3d"": false
+                          ""3d"": true
                         }
                       },
                       {
@@ -305,7 +354,7 @@
                           ""resolution"": ""hd_720p"",
                           ""audio"": ""aac"",
                           ""audio_channels"": ""5.1"",
-                          ""3d"": false
+                          ""3d"": true
                         }
                       }
                     ]
@@ -321,7 +370,7 @@
                           ""resolution"": ""hd_720p"",
                           ""audio"": ""aac"",
                           ""audio_channels"": ""5.1"",
-                          ""3d"": false
+                          ""3d"": true
                         }
                       },
                       {
@@ -332,7 +381,7 @@
                           ""resolution"": ""hd_720p"",
                           ""audio"": ""aac"",
                           ""audio_channels"": ""5.1"",
-                          ""3d"": false
+                          ""3d"": true
                         }
                       }
                     ]
@@ -399,7 +448,7 @@
                           ""resolution"": ""hd_720p"",
                           ""audio"": ""aac"",
                           ""audio_channels"": ""5.1"",
-                          ""3d"": false
+                          ""3d"": true
                         }
                       },
                       {
@@ -410,7 +459,7 @@
                           ""resolution"": ""hd_720p"",
                           ""audio"": ""aac"",
                           ""audio_channels"": ""5.1"",
-                          ""3d"": false
+                          ""3d"": true
                         }
                       }
                     ]
@@ -426,7 +475,7 @@
                           ""resolution"": ""hd_720p"",
                           ""audio"": ""aac"",
                           ""audio_channels"": ""5.1"",
-                          ""3d"": false
+                          ""3d"": true
                         }
                       },
                       {
@@ -437,7 +486,7 @@
                           ""resolution"": ""hd_720p"",
                           ""audio"": ""aac"",
                           ""audio_channels"": ""5.1"",
-                          ""3d"": false
+                          ""3d"": true
                         }
                       }
                     ]

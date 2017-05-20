@@ -1,13 +1,14 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.History.Implementations
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Objects.Get.History.Implementations;
+    using TraktApiSharp.Objects.Get.History.JsonReader;
     using Xunit;
 
     [Category("Objects.Get.History.Implementations")]
@@ -35,12 +36,13 @@
         }
 
         [Fact]
-        public void Test_TraktHistoryItem_With_Type_Movie_From_Minimal_Json()
+        public async Task Test_TraktHistoryItem_With_Type_Movie_From_Minimal_Json()
         {
-            var historyItem = JsonConvert.DeserializeObject<TraktHistoryItem>(TYPE_MOVIE_MINIMAL_JSON);
+            var jsonReader = new TraktHistoryItemObjectJsonReader();
+            var historyItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_MINIMAL_JSON) as TraktHistoryItem;
 
             historyItem.Should().NotBeNull();
-            historyItem.Id.Should().Be(1982346);
+            historyItem.Id.Should().Be(1982346UL);
             historyItem.WatchedAt.Should().Be(DateTime.Parse("2014-03-31T09:28:53.000Z").ToUniversalTime());
             historyItem.Action.Should().Be(TraktHistoryActionType.Scrobble);
             historyItem.Type.Should().Be(TraktSyncItemType.Movie);
@@ -71,12 +73,13 @@
         }
 
         [Fact]
-        public void Test_TraktHistoryItem_With_Type_Show_From_Minimal_Json()
+        public async Task Test_TraktHistoryItem_With_Type_Show_From_Minimal_Json()
         {
-            var historyItem = JsonConvert.DeserializeObject<TraktHistoryItem>(TYPE_SHOW_MINIMAL_JSON);
+            var jsonReader = new TraktHistoryItemObjectJsonReader();
+            var historyItem = await jsonReader.ReadObjectAsync(TYPE_SHOW_MINIMAL_JSON) as TraktHistoryItem;
 
             historyItem.Should().NotBeNull();
-            historyItem.Id.Should().Be(1982348);
+            historyItem.Id.Should().Be(1982348UL);
             historyItem.WatchedAt.Should().Be(DateTime.Parse("2013-06-15T05:54:27.000Z").ToUniversalTime());
             historyItem.Action.Should().Be(TraktHistoryActionType.Checkin);
             historyItem.Type.Should().Be(TraktSyncItemType.Show);
@@ -114,12 +117,13 @@
         }
 
         [Fact]
-        public void Test_TraktHistoryItem_With_Type_Season_From_Minimal_Json()
+        public async Task Test_TraktHistoryItem_With_Type_Season_From_Minimal_Json()
         {
-            var historyItem = JsonConvert.DeserializeObject<TraktHistoryItem>(TYPE_SEASON_MINIMAL_JSON);
+            var jsonReader = new TraktHistoryItemObjectJsonReader();
+            var historyItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_MINIMAL_JSON) as TraktHistoryItem;
 
             historyItem.Should().NotBeNull();
-            historyItem.Id.Should().Be(1982344);
+            historyItem.Id.Should().Be(1982344UL);
             historyItem.WatchedAt.Should().Be(DateTime.Parse("2013-05-15T05:54:27.000Z").ToUniversalTime());
             historyItem.Action.Should().Be(TraktHistoryActionType.Watch);
             historyItem.Type.Should().Be(TraktSyncItemType.Season);
@@ -143,12 +147,13 @@
         }
 
         [Fact]
-        public void Test_TraktHistoryItem_With_Type_Episode_From_Minimal_Json()
+        public async Task Test_TraktHistoryItem_With_Type_Episode_From_Minimal_Json()
         {
-            var historyItem = JsonConvert.DeserializeObject<TraktHistoryItem>(TYPE_EPISODE_MINIMAL_JSON);
+            var jsonReader = new TraktHistoryItemObjectJsonReader();
+            var historyItem = await jsonReader.ReadObjectAsync(TYPE_EPISODE_MINIMAL_JSON) as TraktHistoryItem;
 
             historyItem.Should().NotBeNull();
-            historyItem.Id.Should().Be(1982347);
+            historyItem.Id.Should().Be(1982347UL);
             historyItem.WatchedAt.Should().Be(DateTime.Parse("2014-02-27T09:28:53.000Z").ToUniversalTime());
             historyItem.Action.Should().Be(TraktHistoryActionType.Checkin);
             historyItem.Type.Should().Be(TraktSyncItemType.Episode);
@@ -204,12 +209,13 @@
         }
 
         [Fact]
-        public void Test_TraktHistoryItem_With_Type_Movie_From_Full_Json()
+        public async Task Test_TraktHistoryItem_With_Type_Movie_From_Full_Json()
         {
-            var historyItem = JsonConvert.DeserializeObject<TraktHistoryItem>(TYPE_MOVIE_FULL_JSON);
+            var jsonReader = new TraktHistoryItemObjectJsonReader();
+            var historyItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_FULL_JSON) as TraktHistoryItem;
 
             historyItem.Should().NotBeNull();
-            historyItem.Id.Should().Be(1982346);
+            historyItem.Id.Should().Be(1982346UL);
             historyItem.WatchedAt.Should().Be(DateTime.Parse("2014-03-31T09:28:53.000Z").ToUniversalTime());
             historyItem.Action.Should().Be(TraktHistoryActionType.Scrobble);
             historyItem.Type.Should().Be(TraktSyncItemType.Movie);
@@ -240,12 +246,13 @@
         }
 
         [Fact]
-        public void Test_TraktHistoryItem_With_Type_Show_From_Full_Json()
+        public async Task Test_TraktHistoryItem_With_Type_Show_From_Full_Json()
         {
-            var historyItem = JsonConvert.DeserializeObject<TraktHistoryItem>(TYPE_SHOW_FULL_JSON);
+            var jsonReader = new TraktHistoryItemObjectJsonReader();
+            var historyItem = await jsonReader.ReadObjectAsync(TYPE_SHOW_FULL_JSON) as TraktHistoryItem;
 
             historyItem.Should().NotBeNull();
-            historyItem.Id.Should().Be(1982348);
+            historyItem.Id.Should().Be(1982348UL);
             historyItem.WatchedAt.Should().Be(DateTime.Parse("2013-06-15T05:54:27.000Z").ToUniversalTime());
             historyItem.Action.Should().Be(TraktHistoryActionType.Checkin);
             historyItem.Type.Should().Be(TraktSyncItemType.Show);
@@ -286,12 +293,13 @@
         }
 
         [Fact]
-        public void Test_TraktHistoryItem_With_Type_Season_From_Full_Json()
+        public async Task Test_TraktHistoryItem_With_Type_Season_From_Full_Json()
         {
-            var historyItem = JsonConvert.DeserializeObject<TraktHistoryItem>(TYPE_SEASON_FULL_JSON);
+            var jsonReader = new TraktHistoryItemObjectJsonReader();
+            var historyItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_FULL_JSON) as TraktHistoryItem;
 
             historyItem.Should().NotBeNull();
-            historyItem.Id.Should().Be(1982344);
+            historyItem.Id.Should().Be(1982344UL);
             historyItem.WatchedAt.Should().Be(DateTime.Parse("2013-05-15T05:54:27.000Z").ToUniversalTime());
             historyItem.Action.Should().Be(TraktHistoryActionType.Watch);
             historyItem.Type.Should().Be(TraktSyncItemType.Season);
@@ -358,12 +366,13 @@
         }
 
         [Fact]
-        public void Test_TraktHistoryItem_With_Type_Episode_From_Full_Json()
+        public async Task Test_TraktHistoryItem_With_Type_Episode_From_Full_Json()
         {
-            var historyItem = JsonConvert.DeserializeObject<TraktHistoryItem>(TYPE_EPISODE_FULL_JSON);
+            var jsonReader = new TraktHistoryItemObjectJsonReader();
+            var historyItem = await jsonReader.ReadObjectAsync(TYPE_EPISODE_FULL_JSON) as TraktHistoryItem;
 
             historyItem.Should().NotBeNull();
-            historyItem.Id.Should().Be(1982347);
+            historyItem.Id.Should().Be(1982347UL);
             historyItem.WatchedAt.Should().Be(DateTime.Parse("2014-02-27T09:28:53.000Z").ToUniversalTime());
             historyItem.Action.Should().Be(TraktHistoryActionType.Checkin);
             historyItem.Type.Should().Be(TraktSyncItemType.Episode);

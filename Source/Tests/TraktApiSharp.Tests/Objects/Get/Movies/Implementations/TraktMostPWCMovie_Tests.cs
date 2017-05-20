@@ -49,8 +49,8 @@
         [Fact]
         public async Task Test_TraktMostPWCMovie_From_Minimal_Json()
         {
-            var jsonReader = new ITraktMostPWCMovieObjectJsonReader();
-            var mostPWCMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
+            var jsonReader = new TraktMostPWCMovieObjectJsonReader();
+            var mostPWCMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktMostPWCMovie;
 
             mostPWCMovie.Should().NotBeNull();
             mostPWCMovie.WatcherCount.Should().Be(4992);
@@ -104,8 +104,8 @@
         [Fact]
         public async Task Test_TraktMostPWCMovie_From_Full_Json()
         {
-            var jsonReader = new ITraktMostPWCMovieObjectJsonReader();
-            var mostPWCMovie = await jsonReader.ReadObjectAsync(FULL_JSON);
+            var jsonReader = new TraktMostPWCMovieObjectJsonReader();
+            var mostPWCMovie = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktMostPWCMovie;
 
             mostPWCMovie.Should().NotBeNull();
             mostPWCMovie.WatcherCount.Should().Be(4992);

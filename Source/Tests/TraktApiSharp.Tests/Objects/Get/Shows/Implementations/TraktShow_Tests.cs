@@ -50,8 +50,8 @@
         [Fact]
         public async Task Test_TraktShow_From_Minimal_Json()
         {
-            var jsonReader = new ITraktShowObjectJsonReader();
-            var show = await jsonReader.ReadObjectAsync(MINIMAL_JSON);
+            var jsonReader = new TraktShowObjectJsonReader();
+            var show = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktShow;
 
             show.Should().NotBeNull();
             show.Title.Should().Be("Game of Thrones");
@@ -86,8 +86,8 @@
         [Fact]
         public async Task Test_TraktShow_From_Full_Json()
         {
-            var jsonReader = new ITraktShowObjectJsonReader();
-            var show = await jsonReader.ReadObjectAsync(FULL_JSON);
+            var jsonReader = new TraktShowObjectJsonReader();
+            var show = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktShow;
 
             show.Should().NotBeNull();
             show.Title.Should().Be("Game of Thrones");

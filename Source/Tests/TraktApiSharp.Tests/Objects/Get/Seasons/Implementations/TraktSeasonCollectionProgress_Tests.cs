@@ -39,8 +39,8 @@
         [Fact]
         public async Task Test_TraktSeasonCollectionProgress_From_Json()
         {
-            var jsonReader = new ITraktSeasonCollectionProgressObjectJsonReader();
-            var seasonCollectionProgress = await jsonReader.ReadObjectAsync(JSON);
+            var jsonReader = new TraktSeasonCollectionProgressObjectJsonReader();
+            var seasonCollectionProgress = await jsonReader.ReadObjectAsync(JSON) as TraktSeasonCollectionProgress;
 
             seasonCollectionProgress.Should().NotBeNull();
             seasonCollectionProgress.Number.Should().Be(2);

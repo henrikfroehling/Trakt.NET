@@ -4,9 +4,11 @@
     using Newtonsoft.Json;
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.People.Credits;
     using TraktApiSharp.Objects.Get.People.Credits.Implementations;
+    using TraktApiSharp.Objects.Get.People.Credits.JsonReader;
     using Xunit;
 
     [Category("Objects.Get.People.Credits.Implementations")]
@@ -28,9 +30,10 @@
         }
 
         [Fact]
-        public void Test_TraktPersonMovieCredits_From_Minimal_Json()
+        public async Task Test_TraktPersonMovieCredits_From_Minimal_Json()
         {
-            var credits = JsonConvert.DeserializeObject<TraktPersonMovieCredits>(MINIMAL_JSON);
+            var jsonReader = new TraktPersonMovieCreditsObjectJsonReader();
+            var credits = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktPersonMovieCredits;
 
             credits.Should().NotBeNull();
             credits.Cast.Should().NotBeNull().And.HaveCount(2);
@@ -662,9 +665,10 @@
         }
 
         [Fact]
-        public void Test_TraktPersonMovieCredits_From_Full_Json()
+        public async Task Test_TraktPersonMovieCredits_From_Full_Json()
         {
-            var credits = JsonConvert.DeserializeObject<TraktPersonMovieCredits>(FULL_JSON);
+            var jsonReader = new TraktPersonMovieCreditsObjectJsonReader();
+            var credits = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktPersonMovieCredits;
 
             credits.Should().NotBeNull();
             credits.Cast.Should().NotBeNull().And.HaveCount(2);

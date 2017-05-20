@@ -41,8 +41,8 @@
         [Fact]
         public async Task Test_TraktShowCollectionProgress_From_Json()
         {
-            var jsonReader = new ITraktShowCollectionProgressObjectJsonReader();
-            var showCollectionProgress = await jsonReader.ReadObjectAsync(JSON);
+            var jsonReader = new TraktShowCollectionProgressObjectJsonReader();
+            var showCollectionProgress = await jsonReader.ReadObjectAsync(JSON) as TraktShowCollectionProgress;
 
             showCollectionProgress.Should().NotBeNull();
 
