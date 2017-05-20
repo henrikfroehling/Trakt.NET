@@ -21,8 +21,6 @@
         private const string PROPERTY_NAME_SHOW = "show";
         private const string PROPERTY_NAME_EPISODE = "episode";
 
-        private TraktSyncPlaybackProgressItem item = null;
-
         public Task<ITraktSyncPlaybackProgressItem> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
