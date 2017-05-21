@@ -297,6 +297,7 @@
     <Compile Include="Objects\Get\Shows\JsonReader\TraktShowIdsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktShowTranslationObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktShowWatchedProgressObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Watchlist\JsonReader\TraktWatchlistItemObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\ITraktArrayJsonReader%271.cs" />
     <Compile Include="Objects\JsonReader\ITraktObjectJsonReader%271.cs" />
     <Compile Include="Objects\JsonReader\JsonReaderHelper.cs" />
