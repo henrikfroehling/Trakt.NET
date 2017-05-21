@@ -32,6 +32,23 @@ Renamed:
 
 - namespace Requests.Params (-> Requests.Parameters)
 
+Version 0.10.0
+===
+
+#### 0.10.0
+*(2017-05-13)*
+
+Added:
+
+ - TraktCertificationsModule ([Issue #62](https://github.com/henrikfroehling/TraktApiSharp/issues/62))
+   - GetMovieCertificationsAsync()
+   - GetShowCertificationsAsync()
+ - TraktNetworksModule ([Issue #63](https://github.com/henrikfroehling/TraktApiSharp/issues/63))
+   - GetNetworksAsync()
+ - AddHiddenItemsAsync() in TraktUsersModule ([Issue #54](https://github.com/henrikfroehling/TraktApiSharp/issues/54))
+ - RemoveHiddenItemsAsync() TraktUsersModule ([Issue #55](https://github.com/henrikfroehling/TraktApiSharp/issues/55))
+ - "Title" property in TraktSeason ([Issue #53](https://github.com/henrikfroehling/TraktApiSharp/issues/53) (thanks to [Romans Pokrovskis](https://github.com/Amoenus)))
+
 Version 0.9.0
 ===
 

@@ -1,6 +1,5 @@
 C# Coding Style
 ===
-- C# 6
 - use [Allman style](https://en.wikipedia.org/wiki/Indent_style#Allman_style) braces
 - four spaces of indentation (no tabs)
 - `_camelCase` for internal and private fields
@@ -16,7 +15,7 @@ C# Coding Style
 - avoid spurious free spaces (i.e. avoid `if (someVar == 0)...`, where the dots mark the spurious free spaces); Consider enabling "View White Space (Ctrl+E, S)" if using Visual Studio, to aid detection
 - if a file happens to differ in style from these guidelines (e.g. private members are named `m_member` rather than `_member`), the existing style in that file takes precedence
 - use language keywords instead of BCL types (i.e. `int, string, float` instead of `Int32, String, Single`) for both type references as well as method calls (i.e. `int.Parse()` instead of `Int32.Parse()`)
-- use `Pascal_Case` to name all constant local variables and fields,
+- use `UPPER_CASE` to name all constant local variables and fields,
 - use `nameof(...)` instead of `"..."` whenever possible and relevant
 - use `var` when it is obvious what the variable type is (i.e. `var stream = new FileStream(...)`, not `var stream = OpenStandardInput()`)
 - fields should be specified at the top within type declarations
