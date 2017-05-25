@@ -1,13 +1,14 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Watched.Implementations
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Watched;
     using TraktApiSharp.Objects.Get.Watched.Implementations;
+    using TraktApiSharp.Objects.Get.Watched.JsonReader;
     using Xunit;
 
     [Category("Objects.Get.Watched.Implementations")]
@@ -53,9 +54,10 @@
         }
 
         [Fact]
-        public void Test_TraktWatchedShow_From_Minimal_Json()
+        public async Task Test_TraktWatchedShow_From_Minimal_Json()
         {
-            var watchedShow = JsonConvert.DeserializeObject<TraktWatchedShow>(MINIMAL_JSON);
+            var jsonReader = new TraktWatchedShowObjectJsonReader();
+            var watchedShow = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktWatchedShow;
 
             watchedShow.Should().NotBeNull();
             watchedShow.Plays.Should().Be(20);
@@ -162,9 +164,10 @@
         }
 
         [Fact]
-        public void Test_TraktWatchedShow_From_Full_Json()
+        public async Task Test_TraktWatchedShow_From_Full_Json()
         {
-            var watchedShow = JsonConvert.DeserializeObject<TraktWatchedShow>(FULL_JSON);
+            var jsonReader = new TraktWatchedShowObjectJsonReader();
+            var watchedShow = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktWatchedShow;
 
             watchedShow.Should().NotBeNull();
             watchedShow.Plays.Should().Be(20);
@@ -173,8 +176,11 @@
             watchedShow.Show.Should().NotBeNull();
             watchedShow.Show.Title.Should().Be("Game of Thrones");
             watchedShow.Show.Year.Should().Be(2011);
-            watchedShow.Show.Airs.Should().BeNull();
-            watchedShow.Show.AvailableTranslationLanguageCodes.Should().BeNull();
+            watchedShow.Show.Airs.Should().NotBeNull();
+            watchedShow.Show.Airs.Day.Should().Be("Sunday");
+            watchedShow.Show.Airs.Time.Should().Be("21:00");
+            watchedShow.Show.Airs.TimeZoneId.Should().Be("America/New_York");
+            watchedShow.Show.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "fr", "it", "de");
             watchedShow.Show.Ids.Should().NotBeNull();
             watchedShow.Show.Ids.Trakt.Should().Be(1390U);
             watchedShow.Show.Ids.Slug.Should().Be("game-of-thrones");
@@ -201,8 +207,11 @@
 
             watchedShow.Title.Should().Be("Game of Thrones");
             watchedShow.Year.Should().Be(2011);
-            watchedShow.Airs.Should().BeNull();
-            watchedShow.AvailableTranslationLanguageCodes.Should().BeNull();
+            watchedShow.Airs.Should().NotBeNull();
+            watchedShow.Airs.Day.Should().Be("Sunday");
+            watchedShow.Airs.Time.Should().Be("21:00");
+            watchedShow.Airs.TimeZoneId.Should().Be("America/New_York");
+            watchedShow.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "fr", "it", "de");
             watchedShow.Ids.Should().NotBeNull();
             watchedShow.Ids.Trakt.Should().Be(1390U);
             watchedShow.Ids.Slug.Should().Be("game-of-thrones");

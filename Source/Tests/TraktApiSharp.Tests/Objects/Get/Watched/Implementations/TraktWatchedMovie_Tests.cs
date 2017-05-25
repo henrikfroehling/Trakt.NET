@@ -1,11 +1,12 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Watched.Implementations
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Watched;
     using TraktApiSharp.Objects.Get.Watched.Implementations;
+    using TraktApiSharp.Objects.Get.Watched.JsonReader;
     using Xunit;
 
     [Category("Objects.Get.Watched.Implementations")]
@@ -44,9 +45,10 @@
         }
 
         [Fact]
-        public void Test_TraktWatchedMovie_From_Minimal_Json()
+        public async Task Test_TraktWatchedMovie_From_Minimal_Json()
         {
-            var watchedMovie = JsonConvert.DeserializeObject<TraktWatchedMovie>(MINIMAL_JSON);
+            var jsonReader = new TraktWatchedMovieObjectJsonReader();
+            var watchedMovie = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktWatchedMovie;
 
             watchedMovie.Should().NotBeNull();
             watchedMovie.Plays.Should().Be(10);
@@ -97,9 +99,10 @@
         }
 
         [Fact]
-        public void Test_TraktWatchedMovie_From_Full_Json()
+        public async Task Test_TraktWatchedMovie_From_Full_Json()
         {
-            var watchedMovie = JsonConvert.DeserializeObject<TraktWatchedMovie>(FULL_JSON);
+            var jsonReader = new TraktWatchedMovieObjectJsonReader();
+            var watchedMovie = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktWatchedMovie;
 
             watchedMovie.Should().NotBeNull();
             watchedMovie.Plays.Should().Be(10);

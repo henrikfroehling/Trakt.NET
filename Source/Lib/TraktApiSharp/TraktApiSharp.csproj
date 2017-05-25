@@ -249,6 +249,12 @@
     <Compile Include="Objects\Get\Watched\ITraktWatchedShow.cs" />
     <Compile Include="Objects\Get\Watched\ITraktWatchedShowEpisode.cs" />
     <Compile Include="Objects\Get\Watched\ITraktWatchedShowSeason.cs" />
+    <Compile Include="Objects\Get\Watched\JsonReader\TraktWatchedMovieObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Watched\JsonReader\TraktWatchedShowEpisodeArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Watched\JsonReader\TraktWatchedShowEpisodeObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Watched\JsonReader\TraktWatchedShowObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Watched\JsonReader\TraktWatchedShowSeasonArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Watched\JsonReader\TraktWatchedShowSeasonObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Watchlist\ITraktWatchlistItem.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktErrorObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktGenreObjectJsonReader.cs" />
