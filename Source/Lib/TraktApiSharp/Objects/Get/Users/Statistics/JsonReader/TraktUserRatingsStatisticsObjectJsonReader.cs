@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Basic.JsonReader
+﻿namespace TraktApiSharp.Objects.Get.Users.Statistics.JsonReader
 {
     using Implementations;
     using Newtonsoft.Json;
@@ -7,16 +7,15 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktRatingObjectJsonReader : ITraktObjectJsonReader<ITraktRating>
+    internal class TraktUserRatingsStatisticsObjectJsonReader : ITraktObjectJsonReader<ITraktUserRatingsStatistics>
     {
-        private const string PROPERTY_NAME_RATING = "rating";
-        private const string PROPERTY_NAME_VOTES = "votes";
+        private const string PROPERTY_NAME_TOTAL = "total";
         private const string PROPERTY_NAME_DISTRIBUTION = "distribution";
 
-        public Task<ITraktRating> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktUserRatingsStatistics> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(ITraktRating));
+                return Task.FromResult(default(ITraktUserRatingsStatistics));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
@@ -25,10 +24,10 @@
             }
         }
 
-        public Task<ITraktRating> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktUserRatingsStatistics> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (stream == null)
-                return Task.FromResult(default(ITraktRating));
+                return Task.FromResult(default(ITraktUserRatingsStatistics));
 
             using (var streamReader = new StreamReader(stream))
             using (var jsonReader = new JsonTextReader(streamReader))
@@ -37,14 +36,14 @@
             }
         }
 
-        public async Task<ITraktRating> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<ITraktUserRatingsStatistics> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return await Task.FromResult(default(ITraktRating));
+                return await Task.FromResult(default(ITraktUserRatingsStatistics));
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                ITraktRating traktRating = new TraktRating();
+                ITraktUserRatingsStatistics userRatingsStatistics = new TraktUserRatingsStatistics();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -52,14 +51,11 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_RATING:
-                            traktRating.Rating = (float?)await jsonReader.ReadAsDoubleAsync(cancellationToken);
-                            break;
-                        case PROPERTY_NAME_VOTES:
-                            traktRating.Votes = await jsonReader.ReadAsInt32Async(cancellationToken);
+                        case PROPERTY_NAME_TOTAL:
+                            userRatingsStatistics.Total = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case PROPERTY_NAME_DISTRIBUTION:
-                            traktRating.Distribution = await JsonReaderHelper.ReadDistributionAsync(jsonReader, cancellationToken);
+                            userRatingsStatistics.Distribution = await JsonReaderHelper.ReadDistributionAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
@@ -67,10 +63,10 @@
                     }
                 }
 
-                return traktRating;
+                return userRatingsStatistics;
             }
 
-            return await Task.FromResult(default(ITraktRating));
+            return await Task.FromResult(default(ITraktUserRatingsStatistics));
         }
     }
 }

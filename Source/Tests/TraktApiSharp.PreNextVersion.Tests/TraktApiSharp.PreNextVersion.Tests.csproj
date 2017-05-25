@@ -210,7 +210,6 @@
     <Compile Include="Objects\Get\Users\TraktUserSettingsTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserSingleFriendTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserSingleHiddenItemTests.cs" />
-    <Compile Include="Objects\Get\Users\TraktUserStatisticsTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserWatchingItemTests.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\TraktCheckinPostErrorResponseTests.cs" />
