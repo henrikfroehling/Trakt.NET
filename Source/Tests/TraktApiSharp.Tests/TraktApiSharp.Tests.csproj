@@ -653,6 +653,11 @@
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUserSettings_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUserWatchingItem_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUser_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\TraktAccountSettingsObjectJsonReader\TraktAccountSettingsObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\TraktAccountSettingsObjectJsonReader\TraktAccountSettingsObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\TraktAccountSettingsObjectJsonReader\TraktAccountSettingsObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\TraktAccountSettingsObjectJsonReader\TraktAccountSettingsObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\TraktAccountSettingsObjectJsonReader\TraktAccountSettingsObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserIdsObjectJsonReader\TraktUserIdsObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserIdsObjectJsonReader\TraktUserIdsObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserIdsObjectJsonReader\TraktUserIdsObjectJsonReader_Stream_Tests.cs" />

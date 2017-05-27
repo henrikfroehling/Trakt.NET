@@ -235,6 +235,7 @@
     <Compile Include="Objects\Get\Users\ITraktUserLikeItem.cs" />
     <Compile Include="Objects\Get\Users\ITraktUserSettings.cs" />
     <Compile Include="Objects\Get\Users\ITraktUserWatchingItem.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\TraktAccountSettingsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserIdsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserImagesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Lists\ITraktList.cs" />
