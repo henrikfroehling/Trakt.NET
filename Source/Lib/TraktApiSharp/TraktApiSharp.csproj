@@ -240,6 +240,7 @@
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserIdsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserImagesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\TraktUserSettingsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Lists\ITraktList.cs" />
     <Compile Include="Objects\Get\Users\Lists\ITraktListIds.cs" />
     <Compile Include="Objects\Get\Users\Lists\ITraktListItem.cs" />
