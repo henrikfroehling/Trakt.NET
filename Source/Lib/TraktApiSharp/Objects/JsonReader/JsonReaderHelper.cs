@@ -174,7 +174,7 @@
                             distribution[nr10] = (int)await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:
-                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
+                            await ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             continue;
                     }
                 }

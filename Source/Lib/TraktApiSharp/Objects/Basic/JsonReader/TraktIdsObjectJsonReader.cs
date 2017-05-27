@@ -65,7 +65,7 @@
                                 break;
                             }
                         case PROPERTY_NAME_SLUG:
-                            traktIds.Slug = jsonReader.ReadAsString();
+                            traktIds.Slug = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_TVDB:
                             {
