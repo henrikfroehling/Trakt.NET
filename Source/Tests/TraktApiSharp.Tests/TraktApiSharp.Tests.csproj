@@ -673,6 +673,11 @@
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserImagesObjectJsonReader\TraktUserImagesObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserImagesObjectJsonReader\TraktUserImagesObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserImagesObjectJsonReader\TraktUserImagesObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\TraktUserObjectJsonReader\TraktUserObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\TraktUserObjectJsonReader\TraktUserObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\TraktUserObjectJsonReader\TraktUserObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\TraktUserObjectJsonReader\TraktUserObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\TraktUserObjectJsonReader\TraktUserObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Users\Lists\Implementations\TraktListIds_Tests.cs" />
     <Compile Include="Objects\Get\Users\Lists\Implementations\TraktListItem_Tests.cs" />
     <Compile Include="Objects\Get\Users\Lists\Implementations\TraktList_Tests.cs" />
