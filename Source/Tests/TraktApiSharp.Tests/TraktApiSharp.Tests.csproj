@@ -704,6 +704,11 @@
     <Compile Include="Objects\Get\Users\Lists\Interfaces\ITraktListIds_Tests.cs" />
     <Compile Include="Objects\Get\Users\Lists\Interfaces\ITraktListItem_Tests.cs" />
     <Compile Include="Objects\Get\Users\Lists\Interfaces\ITraktList_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Lists\JsonReader\TraktListIdsObjectJsonReader\TraktListIdsObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Lists\JsonReader\TraktListIdsObjectJsonReader\TraktListIdsObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Lists\JsonReader\TraktListIdsObjectJsonReader\TraktListIdsObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Lists\JsonReader\TraktListIdsObjectJsonReader\TraktListIdsObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Lists\JsonReader\TraktListIdsObjectJsonReader\TraktListIdsObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Implementations\TraktUserEpisodesStatistics_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Implementations\TraktUserMoviesStatistics_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Implementations\TraktUserNetworkStatistics_Tests.cs" />
