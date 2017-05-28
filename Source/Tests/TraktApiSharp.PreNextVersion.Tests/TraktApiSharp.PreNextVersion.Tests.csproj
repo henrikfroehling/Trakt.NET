@@ -197,7 +197,6 @@
     <Compile Include="Objects\Basic\TraktSharingTests.cs" />
     <Compile Include="Objects\Basic\TraktStatisticsTests.cs" />
     <Compile Include="Objects\Get\Users\Lists\TraktListItemTests.cs" />
-    <Compile Include="Objects\Get\Users\Lists\TraktListTests.cs" />
     <Compile Include="Objects\Get\Users\TraktAccountSettingsTests.cs" />
     <Compile Include="Objects\Get\Users\TraktSharingTextTests.cs" />
     <Compile Include="Objects\Get\Users\TraktUserCommentTests.cs" />
