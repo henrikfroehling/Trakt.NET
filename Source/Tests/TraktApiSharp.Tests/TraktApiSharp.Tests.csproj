@@ -96,6 +96,11 @@
     <Compile Include="Objects\Basic\Interfaces\ITraktSharing_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktStatistics_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktTranslation_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCommentObjectJsonReader\TraktCommentObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCommentObjectJsonReader\TraktCommentObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCommentObjectJsonReader\TraktCommentObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCommentObjectJsonReader\TraktCommentObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCommentObjectJsonReader\TraktCommentObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktErrorObjectJsonReader_Tests\TraktErrorObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktErrorObjectJsonReader_Tests\TraktErrorObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktErrorObjectJsonReader_Tests\TraktErrorObjectJsonReader_Stream_Tests.cs" />
