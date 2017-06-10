@@ -121,6 +121,11 @@
     <Compile Include="Objects\Basic\JsonReader\TraktCrewMemberObjectJsonReader\TraktCrewMemberObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktCrewMemberObjectJsonReader\TraktCrewMemberObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktCrewMemberObjectJsonReader\TraktCrewMemberObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCrewObjectJsonReader\TraktCrewObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCrewObjectJsonReader\TraktCrewObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCrewObjectJsonReader\TraktCrewObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCrewObjectJsonReader\TraktCrewObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCrewObjectJsonReader\TraktCrewObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktErrorObjectJsonReader_Tests\TraktErrorObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktErrorObjectJsonReader_Tests\TraktErrorObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktErrorObjectJsonReader_Tests\TraktErrorObjectJsonReader_Stream_Tests.cs" />
