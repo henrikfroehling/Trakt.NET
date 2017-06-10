@@ -132,6 +132,8 @@
     <Compile Include="Objects\Basic\ITraktSharing.cs" />
     <Compile Include="Objects\Basic\ITraktStatistics.cs" />
     <Compile Include="Objects\Basic\ITraktTranslation.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCastMemberArrayJsonReader.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCastMemberObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktCommentObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarMovie.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarShow.cs" />

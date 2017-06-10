@@ -96,6 +96,16 @@
     <Compile Include="Objects\Basic\Interfaces\ITraktSharing_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktStatistics_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktTranslation_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCastMemberArrayJsonReader\TraktCastMemberArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCastMemberArrayJsonReader\TraktCastMemberArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCastMemberArrayJsonReader\TraktCastMemberArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCastMemberArrayJsonReader\TraktCastMemberArrayJsonReader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCastMemberArrayJsonReader\TraktCastMemberArrayJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCastMemberObjectJsonReader\TraktCastMemberObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCastMemberObjectJsonReader\TraktCastMemberObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCastMemberObjectJsonReader\TraktCastMemberObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCastMemberObjectJsonReader\TraktCastMemberObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\TraktCastMemberObjectJsonReader\TraktCastMemberObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktCommentObjectJsonReader\TraktCommentObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktCommentObjectJsonReader\TraktCommentObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktCommentObjectJsonReader\TraktCommentObjectJsonReader_Stream_Tests.cs" />
