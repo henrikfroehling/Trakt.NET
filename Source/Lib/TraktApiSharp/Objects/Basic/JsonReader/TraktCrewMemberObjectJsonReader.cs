@@ -8,15 +8,15 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktCastMemberObjectJsonReader : ITraktObjectJsonReader<ITraktCastMember>
+    internal class TraktCrewMemberObjectJsonReader : ITraktObjectJsonReader<ITraktCrewMember>
     {
-        private const string PROPERTY_NAME_CHARACTER = "character";
+        private const string PROPERTY_NAME_JOB = "job";
         private const string PROPERTY_NAME_PERSON = "person";
 
-        public Task<ITraktCastMember> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktCrewMember> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(ITraktCastMember));
+                return Task.FromResult(default(ITraktCrewMember));
 
             using (var reader = new StringReader(json))
             using (var jsonReader = new JsonTextReader(reader))
@@ -25,10 +25,10 @@
             }
         }
 
-        public Task<ITraktCastMember> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktCrewMember> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (stream == null)
-                return Task.FromResult(default(ITraktCastMember));
+                return Task.FromResult(default(ITraktCrewMember));
 
             using (var streamReader = new StreamReader(stream))
             using (var jsonReader = new JsonTextReader(streamReader))
@@ -37,15 +37,15 @@
             }
         }
 
-        public async Task<ITraktCastMember> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<ITraktCrewMember> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (jsonReader == null)
-                return await Task.FromResult(default(ITraktCastMember));
+                return await Task.FromResult(default(ITraktCrewMember));
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var personReader = new TraktPersonObjectJsonReader();
-                ITraktCastMember traktCastMember = new TraktCastMember();
+                ITraktCrewMember traktCrewMember = new TraktCrewMember();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -53,11 +53,11 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_CHARACTER:
-                            traktCastMember.Character = await jsonReader.ReadAsStringAsync(cancellationToken);
+                        case PROPERTY_NAME_JOB:
+                            traktCrewMember.Job = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case PROPERTY_NAME_PERSON:
-                            traktCastMember.Person = await personReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            traktCrewMember.Person = await personReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
@@ -65,10 +65,10 @@
                     }
                 }
 
-                return traktCastMember;
+                return traktCrewMember;
             }
 
-            return await Task.FromResult(default(ITraktCastMember));
+            return await Task.FromResult(default(ITraktCrewMember));
         }
     }
 }
