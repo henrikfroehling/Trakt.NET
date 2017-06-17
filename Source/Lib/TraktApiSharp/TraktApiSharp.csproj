@@ -165,6 +165,10 @@
     <Compile Include="Objects\Get\Calendars\ITraktCalendarEpisode.cs" />
     <Compile Include="Objects\Get\Collections\ITraktCollectionShowEpisode.cs" />
     <Compile Include="Objects\Get\Collections\ITraktCollectionShowSeason.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\Factories\TraktCollectionShowJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\Factories\TraktCollectionMovieJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\Factories\TraktCollectionShowEpisodeJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\Factories\TraktCollectionShowSeasonJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionMovieObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowEpisodeArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowEpisodeObjectJsonReader.cs" />
