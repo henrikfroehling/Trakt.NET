@@ -955,6 +955,7 @@
     <Compile Include="Objects\Get\Watchlist\JsonReader\TraktWatchlistItemObjectJsonReader\TraktWatchlistItemObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Watchlist\JsonReader\TraktWatchlistItemObjectJsonReader\TraktWatchlistItemObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\JsonReader\ITraktArrayJsonReader%271_Tests.cs" />
+    <Compile Include="Objects\JsonReader\ITraktJsonReaderFactory_1_Tests.cs" />
     <Compile Include="Objects\JsonReader\ITraktObjectJsonReader%271_Tests.cs" />
     <Compile Include="Objects\JsonReader\TraktJsonReaderFactory%271_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
