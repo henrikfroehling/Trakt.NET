@@ -249,6 +249,10 @@
     <Compile Include="Objects\Get\Seasons\ITraktSeasonIds.cs" />
     <Compile Include="Objects\Get\Seasons\ITraktSeasonProgress.cs" />
     <Compile Include="Objects\Get\Seasons\ITraktSeasonWatchedProgress.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\Factories\TraktSeasonCollectionProgressJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\Factories\TraktSeasonIdsJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\Factories\TraktSeasonJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\Factories\TraktSeasonWatchedProgressJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Shows\ITraktMostAnticipatedShow.cs" />
     <Compile Include="Objects\Get\Shows\ITraktMostPWCShow.cs" />
     <Compile Include="Objects\Get\Shows\ITraktRecentlyUpdatedShow.cs" />
