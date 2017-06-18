@@ -1,10 +1,10 @@
-﻿namespace TraktApiSharp.Objects.Post.Checkins.Responses
+﻿namespace TraktApiSharp.Objects.Post.Checkins.Responses.Implementations
 {
-    using Basic.Implementations;
+    using Basic;
     using Newtonsoft.Json;
     using System;
 
-    public abstract class TraktCheckinPostResponse
+    public abstract class TraktCheckinPostResponse : ITraktCheckinPostResponse
     {
         /// <summary>Gets or sets the history id for the checkin response.</summary>
         [JsonProperty(PropertyName = "id")]
@@ -16,10 +16,10 @@
 
         /// <summary>
         /// Gets or sets the sharing options for the checkin response.
-        /// See also <seealso cref="TraktSharing" />.
+        /// See also <seealso cref="ITraktSharing" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "sharing")]
-        public TraktSharing Sharing { get; set; }
+        public ITraktSharing Sharing { get; set; }
     }
 }

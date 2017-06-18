@@ -183,9 +183,6 @@
     <Compile Include="Exceptions\TraktValidationExceptionTests.cs" />
     <Compile Include="Extensions\DateTimeExtensionsTests.cs" />
     <Compile Include="Extensions\StringExtensionsTests.cs" />
-    <Compile Include="Objects\Post\Checkins\Responses\TraktCheckinPostErrorResponseTests.cs" />
-    <Compile Include="Objects\Post\Checkins\Responses\TraktEpisodeCheckinPostResponseTests.cs" />
-    <Compile Include="Objects\Post\Checkins\Responses\TraktMovieCheckinPostResponseTests.cs" />
     <Compile Include="Objects\Post\Checkins\TraktEpisodeCheckinPostTests.cs" />
     <Compile Include="Objects\Post\Checkins\TraktMovieCheckinPostTests.cs" />
     <Compile Include="Objects\Post\Comments\Responses\TraktCommentPostResponseTests.cs" />

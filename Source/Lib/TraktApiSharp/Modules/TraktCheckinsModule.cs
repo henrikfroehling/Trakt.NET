@@ -7,7 +7,7 @@
     using Objects.Get.Movies.Implementations;
     using Objects.Get.Shows.Implementations;
     using Objects.Post.Checkins;
-    using Objects.Post.Checkins.Responses;
+    using Objects.Post.Checkins.Responses.Implementations;
     using Requests.Checkins.OAuth;
     using Requests.Handler;
     using Responses;

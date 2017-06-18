@@ -18,6 +18,7 @@
     using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Post.Checkins;
     using TraktApiSharp.Objects.Post.Checkins.Responses;
+    using TraktApiSharp.Objects.Post.Checkins.Responses.Implementations;
     using TraktApiSharp.Responses;
     using Utils;
 
