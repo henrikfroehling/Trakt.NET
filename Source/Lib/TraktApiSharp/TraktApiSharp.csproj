@@ -437,7 +437,7 @@
     <Compile Include="Objects\JsonReader\ITraktJsonReaderFactory%271.cs" />
     <Compile Include="Objects\JsonReader\ITraktObjectJsonReader%271.cs" />
     <Compile Include="Objects\JsonReader\JsonReaderHelper.cs" />
-    <Compile Include="Objects\JsonReader\TraktJsonReaderFactory%271.cs" />
+    <Compile Include="Objects\JsonReader\TraktJsonFactoryContainer.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest%271.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest.cs" />
     <Compile Include="Requests\Base\ATraktDeleteRequest.cs" />
