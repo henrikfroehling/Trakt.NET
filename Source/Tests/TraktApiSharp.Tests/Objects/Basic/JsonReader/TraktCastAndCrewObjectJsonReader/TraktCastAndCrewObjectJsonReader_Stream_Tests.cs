@@ -19,11 +19,11 @@
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                var castAndCrew = await jsonReader.ReadObjectAsync(stream);
+                var traktCastAndCrew = await jsonReader.ReadObjectAsync(stream);
 
-                castAndCrew.Should().NotBeNull();
-                castAndCrew.Cast.Should().NotBeNull().And.HaveCount(2);
-                var castMemberItems = castAndCrew.Cast.ToArray();
+                traktCastAndCrew.Should().NotBeNull();
+                traktCastAndCrew.Cast.Should().NotBeNull().And.HaveCount(2);
+                var castMemberItems = traktCastAndCrew.Cast.ToArray();
 
                 castMemberItems[0].Should().NotBeNull();
                 castMemberItems[0].Character.Should().Be("Joe Brody");
@@ -47,8 +47,8 @@
                 castMemberItems[1].Person.Ids.Tmdb.Should().Be(2231U);
                 castMemberItems[1].Person.Ids.TvRage.Should().Be(55720U);
 
-                castAndCrew.Crew.Should().NotBeNull();
-                var crew = castAndCrew.Crew;
+                traktCastAndCrew.Crew.Should().NotBeNull();
+                var crew = traktCastAndCrew.Crew;
 
                 crew.Production.Should().NotBeNull().And.HaveCount(2);
                 var productionCrew = crew.Production.ToArray();
@@ -334,13 +334,13 @@
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                var castAndCrew = await jsonReader.ReadObjectAsync(stream);
+                var traktCastAndCrew = await jsonReader.ReadObjectAsync(stream);
 
-                castAndCrew.Should().NotBeNull();
-                castAndCrew.Cast.Should().BeNull();
+                traktCastAndCrew.Should().NotBeNull();
+                traktCastAndCrew.Cast.Should().BeNull();
 
-                castAndCrew.Crew.Should().NotBeNull();
-                var crew = castAndCrew.Crew;
+                traktCastAndCrew.Crew.Should().NotBeNull();
+                var crew = traktCastAndCrew.Crew;
 
                 crew.Production.Should().NotBeNull().And.HaveCount(2);
                 var productionCrew = crew.Production.ToArray();
@@ -626,11 +626,11 @@
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                var castAndCrew = await jsonReader.ReadObjectAsync(stream);
+                var traktCastAndCrew = await jsonReader.ReadObjectAsync(stream);
 
-                castAndCrew.Should().NotBeNull();
-                castAndCrew.Cast.Should().NotBeNull().And.HaveCount(2);
-                var castMemberItems = castAndCrew.Cast.ToArray();
+                traktCastAndCrew.Should().NotBeNull();
+                traktCastAndCrew.Cast.Should().NotBeNull().And.HaveCount(2);
+                var castMemberItems = traktCastAndCrew.Cast.ToArray();
 
                 castMemberItems[0].Should().NotBeNull();
                 castMemberItems[0].Character.Should().Be("Joe Brody");
@@ -654,7 +654,7 @@
                 castMemberItems[1].Person.Ids.Tmdb.Should().Be(2231U);
                 castMemberItems[1].Person.Ids.TvRage.Should().Be(55720U);
 
-                castAndCrew.Crew.Should().BeNull();
+                traktCastAndCrew.Crew.Should().BeNull();
             }
         }
 
@@ -665,13 +665,13 @@
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                var castAndCrew = await jsonReader.ReadObjectAsync(stream);
+                var traktCastAndCrew = await jsonReader.ReadObjectAsync(stream);
 
-                castAndCrew.Should().NotBeNull();
-                castAndCrew.Cast.Should().BeNull();
+                traktCastAndCrew.Should().NotBeNull();
+                traktCastAndCrew.Cast.Should().BeNull();
 
-                castAndCrew.Crew.Should().NotBeNull();
-                var crew = castAndCrew.Crew;
+                traktCastAndCrew.Crew.Should().NotBeNull();
+                var crew = traktCastAndCrew.Crew;
 
                 crew.Production.Should().NotBeNull().And.HaveCount(2);
                 var productionCrew = crew.Production.ToArray();
@@ -957,11 +957,11 @@
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                var castAndCrew = await jsonReader.ReadObjectAsync(stream);
+                var traktCastAndCrew = await jsonReader.ReadObjectAsync(stream);
 
-                castAndCrew.Should().NotBeNull();
-                castAndCrew.Cast.Should().NotBeNull().And.HaveCount(2);
-                var castMemberItems = castAndCrew.Cast.ToArray();
+                traktCastAndCrew.Should().NotBeNull();
+                traktCastAndCrew.Cast.Should().NotBeNull().And.HaveCount(2);
+                var castMemberItems = traktCastAndCrew.Cast.ToArray();
 
                 castMemberItems[0].Should().NotBeNull();
                 castMemberItems[0].Character.Should().Be("Joe Brody");
@@ -985,7 +985,7 @@
                 castMemberItems[1].Person.Ids.Tmdb.Should().Be(2231U);
                 castMemberItems[1].Person.Ids.TvRage.Should().Be(55720U);
 
-                castAndCrew.Crew.Should().BeNull();
+                traktCastAndCrew.Crew.Should().BeNull();
             }
         }
 
@@ -996,11 +996,11 @@
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                var castAndCrew = await jsonReader.ReadObjectAsync(stream);
+                var traktCastAndCrew = await jsonReader.ReadObjectAsync(stream);
 
-                castAndCrew.Should().NotBeNull();
-                castAndCrew.Cast.Should().BeNull();
-                castAndCrew.Crew.Should().BeNull();
+                traktCastAndCrew.Should().NotBeNull();
+                traktCastAndCrew.Cast.Should().BeNull();
+                traktCastAndCrew.Crew.Should().BeNull();
             }
         }
 
@@ -1009,8 +1009,8 @@
         {
             var jsonReader = new TraktCastAndCrewObjectJsonReader();
 
-            var castAndCrew = await jsonReader.ReadObjectAsync(default(Stream));
-            castAndCrew.Should().BeNull();
+            var traktCastAndCrew = await jsonReader.ReadObjectAsync(default(Stream));
+            traktCastAndCrew.Should().BeNull();
         }
 
         [Fact]
@@ -1020,8 +1020,8 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                var castAndCrew = await jsonReader.ReadObjectAsync(stream);
-                castAndCrew.Should().BeNull();
+                var traktCastAndCrew = await jsonReader.ReadObjectAsync(stream);
+                traktCastAndCrew.Should().BeNull();
             }
         }
     }

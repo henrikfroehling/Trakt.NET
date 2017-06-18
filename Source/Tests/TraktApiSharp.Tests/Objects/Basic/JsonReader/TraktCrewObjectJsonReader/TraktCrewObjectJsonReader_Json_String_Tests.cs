@@ -15,12 +15,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -44,8 +44,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -69,8 +69,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -94,8 +94,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -119,8 +119,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -144,8 +144,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -169,8 +169,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -194,8 +194,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -219,8 +219,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -244,8 +244,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -269,8 +269,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -300,14 +300,14 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_1);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_1);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().BeNull();
+            traktCrew.Production.Should().BeNull();
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -331,8 +331,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -356,8 +356,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -381,8 +381,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -406,8 +406,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -431,8 +431,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -456,8 +456,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -481,8 +481,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -506,8 +506,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -531,8 +531,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -562,12 +562,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_2);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_2);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -591,10 +591,10 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().BeNull();
+            traktCrew.Art.Should().BeNull();
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -618,8 +618,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -643,8 +643,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -668,8 +668,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -693,8 +693,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -718,8 +718,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -743,8 +743,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -768,8 +768,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -793,8 +793,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -824,12 +824,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_3);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_3);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -853,8 +853,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -878,10 +878,10 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().BeNull();
+            traktCrew.Crew.Should().BeNull();
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -905,8 +905,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -930,8 +930,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -955,8 +955,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -980,8 +980,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -1005,8 +1005,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -1030,8 +1030,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -1055,8 +1055,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -1086,12 +1086,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_4);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_4);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -1115,8 +1115,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -1140,8 +1140,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -1165,10 +1165,10 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().BeNull();
+            traktCrew.CostumeAndMakeup.Should().BeNull();
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -1192,8 +1192,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -1217,8 +1217,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -1242,8 +1242,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -1267,8 +1267,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -1292,8 +1292,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -1317,8 +1317,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -1348,12 +1348,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_5);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_5);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -1377,8 +1377,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -1402,8 +1402,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -1427,8 +1427,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -1452,10 +1452,10 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().BeNull();
+            traktCrew.Directing.Should().BeNull();
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -1479,8 +1479,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -1504,8 +1504,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -1529,8 +1529,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -1554,8 +1554,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -1579,8 +1579,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -1610,12 +1610,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_6);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_6);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -1639,8 +1639,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -1664,8 +1664,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -1689,8 +1689,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -1714,8 +1714,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -1739,10 +1739,10 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().BeNull();
+            traktCrew.Writing.Should().BeNull();
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -1766,8 +1766,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -1791,8 +1791,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -1816,8 +1816,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -1841,8 +1841,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -1872,12 +1872,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_7);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_7);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -1901,8 +1901,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -1926,8 +1926,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -1951,8 +1951,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -1976,8 +1976,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -2001,8 +2001,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -2026,10 +2026,10 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().BeNull();
+            traktCrew.Sound.Should().BeNull();
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -2053,8 +2053,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -2078,8 +2078,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -2103,8 +2103,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -2134,12 +2134,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_8);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_8);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -2163,8 +2163,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -2188,8 +2188,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -2213,8 +2213,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -2238,8 +2238,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -2263,8 +2263,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -2288,8 +2288,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -2313,10 +2313,10 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().BeNull();
+            traktCrew.Camera.Should().BeNull();
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -2340,8 +2340,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -2365,8 +2365,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -2396,12 +2396,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_9);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_9);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -2425,8 +2425,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -2450,8 +2450,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -2475,8 +2475,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -2500,8 +2500,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -2525,8 +2525,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -2550,8 +2550,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -2575,8 +2575,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -2600,10 +2600,10 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().BeNull();
+            traktCrew.Lighting.Should().BeNull();
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -2627,8 +2627,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -2658,12 +2658,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_10);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_10);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -2687,8 +2687,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -2712,8 +2712,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -2737,8 +2737,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -2762,8 +2762,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -2787,8 +2787,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -2812,8 +2812,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -2837,8 +2837,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -2862,8 +2862,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -2887,10 +2887,10 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().BeNull();
+            traktCrew.VisualEffects.Should().BeNull();
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -2920,12 +2920,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_11);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_11);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -2949,8 +2949,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -2974,8 +2974,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -2999,8 +2999,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -3024,8 +3024,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -3049,8 +3049,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -3074,8 +3074,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -3099,8 +3099,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -3124,8 +3124,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -3149,8 +3149,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -3174,7 +3174,7 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().BeNull();
+            traktCrew.Editing.Should().BeNull();
         }
 
         [Fact]
@@ -3182,12 +3182,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_12);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_12);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -3211,16 +3211,16 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().BeNull();
-            movieCreditsCrew.Crew.Should().BeNull();
-            movieCreditsCrew.CostumeAndMakeup.Should().BeNull();
-            movieCreditsCrew.Directing.Should().BeNull();
-            movieCreditsCrew.Writing.Should().BeNull();
-            movieCreditsCrew.Sound.Should().BeNull();
-            movieCreditsCrew.Camera.Should().BeNull();
-            movieCreditsCrew.Lighting.Should().BeNull();
-            movieCreditsCrew.VisualEffects.Should().BeNull();
-            movieCreditsCrew.Editing.Should().BeNull();
+            traktCrew.Art.Should().BeNull();
+            traktCrew.Crew.Should().BeNull();
+            traktCrew.CostumeAndMakeup.Should().BeNull();
+            traktCrew.Directing.Should().BeNull();
+            traktCrew.Writing.Should().BeNull();
+            traktCrew.Sound.Should().BeNull();
+            traktCrew.Camera.Should().BeNull();
+            traktCrew.Lighting.Should().BeNull();
+            traktCrew.VisualEffects.Should().BeNull();
+            traktCrew.Editing.Should().BeNull();
         }
 
         [Fact]
@@ -3228,14 +3228,14 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_13);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_13);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().BeNull();
+            traktCrew.Production.Should().BeNull();
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -3259,15 +3259,15 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().BeNull();
-            movieCreditsCrew.CostumeAndMakeup.Should().BeNull();
-            movieCreditsCrew.Directing.Should().BeNull();
-            movieCreditsCrew.Writing.Should().BeNull();
-            movieCreditsCrew.Sound.Should().BeNull();
-            movieCreditsCrew.Camera.Should().BeNull();
-            movieCreditsCrew.Lighting.Should().BeNull();
-            movieCreditsCrew.VisualEffects.Should().BeNull();
-            movieCreditsCrew.Editing.Should().BeNull();
+            traktCrew.Crew.Should().BeNull();
+            traktCrew.CostumeAndMakeup.Should().BeNull();
+            traktCrew.Directing.Should().BeNull();
+            traktCrew.Writing.Should().BeNull();
+            traktCrew.Sound.Should().BeNull();
+            traktCrew.Camera.Should().BeNull();
+            traktCrew.Lighting.Should().BeNull();
+            traktCrew.VisualEffects.Should().BeNull();
+            traktCrew.Editing.Should().BeNull();
         }
 
         [Fact]
@@ -3275,15 +3275,15 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_14);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_14);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().BeNull();
-            movieCreditsCrew.Art.Should().BeNull();
+            traktCrew.Production.Should().BeNull();
+            traktCrew.Art.Should().BeNull();
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -3307,14 +3307,14 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().BeNull();
-            movieCreditsCrew.Directing.Should().BeNull();
-            movieCreditsCrew.Writing.Should().BeNull();
-            movieCreditsCrew.Sound.Should().BeNull();
-            movieCreditsCrew.Camera.Should().BeNull();
-            movieCreditsCrew.Lighting.Should().BeNull();
-            movieCreditsCrew.VisualEffects.Should().BeNull();
-            movieCreditsCrew.Editing.Should().BeNull();
+            traktCrew.CostumeAndMakeup.Should().BeNull();
+            traktCrew.Directing.Should().BeNull();
+            traktCrew.Writing.Should().BeNull();
+            traktCrew.Sound.Should().BeNull();
+            traktCrew.Camera.Should().BeNull();
+            traktCrew.Lighting.Should().BeNull();
+            traktCrew.VisualEffects.Should().BeNull();
+            traktCrew.Editing.Should().BeNull();
         }
 
         [Fact]
@@ -3322,16 +3322,16 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_15);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_15);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().BeNull();
-            movieCreditsCrew.Art.Should().BeNull();
-            movieCreditsCrew.Crew.Should().BeNull();
+            traktCrew.Production.Should().BeNull();
+            traktCrew.Art.Should().BeNull();
+            traktCrew.Crew.Should().BeNull();
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -3355,13 +3355,13 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().BeNull();
-            movieCreditsCrew.Writing.Should().BeNull();
-            movieCreditsCrew.Sound.Should().BeNull();
-            movieCreditsCrew.Camera.Should().BeNull();
-            movieCreditsCrew.Lighting.Should().BeNull();
-            movieCreditsCrew.VisualEffects.Should().BeNull();
-            movieCreditsCrew.Editing.Should().BeNull();
+            traktCrew.Directing.Should().BeNull();
+            traktCrew.Writing.Should().BeNull();
+            traktCrew.Sound.Should().BeNull();
+            traktCrew.Camera.Should().BeNull();
+            traktCrew.Lighting.Should().BeNull();
+            traktCrew.VisualEffects.Should().BeNull();
+            traktCrew.Editing.Should().BeNull();
         }
 
         [Fact]
@@ -3369,17 +3369,17 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_16);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_16);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().BeNull();
-            movieCreditsCrew.Art.Should().BeNull();
-            movieCreditsCrew.Crew.Should().BeNull();
-            movieCreditsCrew.CostumeAndMakeup.Should().BeNull();
+            traktCrew.Production.Should().BeNull();
+            traktCrew.Art.Should().BeNull();
+            traktCrew.Crew.Should().BeNull();
+            traktCrew.CostumeAndMakeup.Should().BeNull();
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -3403,12 +3403,12 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().BeNull();
-            movieCreditsCrew.Sound.Should().BeNull();
-            movieCreditsCrew.Camera.Should().BeNull();
-            movieCreditsCrew.Lighting.Should().BeNull();
-            movieCreditsCrew.VisualEffects.Should().BeNull();
-            movieCreditsCrew.Editing.Should().BeNull();
+            traktCrew.Writing.Should().BeNull();
+            traktCrew.Sound.Should().BeNull();
+            traktCrew.Camera.Should().BeNull();
+            traktCrew.Lighting.Should().BeNull();
+            traktCrew.VisualEffects.Should().BeNull();
+            traktCrew.Editing.Should().BeNull();
         }
 
         [Fact]
@@ -3416,18 +3416,18 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_17);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_17);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().BeNull();
-            movieCreditsCrew.Art.Should().BeNull();
-            movieCreditsCrew.Crew.Should().BeNull();
-            movieCreditsCrew.CostumeAndMakeup.Should().BeNull();
-            movieCreditsCrew.Directing.Should().BeNull();
+            traktCrew.Production.Should().BeNull();
+            traktCrew.Art.Should().BeNull();
+            traktCrew.Crew.Should().BeNull();
+            traktCrew.CostumeAndMakeup.Should().BeNull();
+            traktCrew.Directing.Should().BeNull();
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -3451,11 +3451,11 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().BeNull();
-            movieCreditsCrew.Camera.Should().BeNull();
-            movieCreditsCrew.Lighting.Should().BeNull();
-            movieCreditsCrew.VisualEffects.Should().BeNull();
-            movieCreditsCrew.Editing.Should().BeNull();
+            traktCrew.Sound.Should().BeNull();
+            traktCrew.Camera.Should().BeNull();
+            traktCrew.Lighting.Should().BeNull();
+            traktCrew.VisualEffects.Should().BeNull();
+            traktCrew.Editing.Should().BeNull();
         }
 
         [Fact]
@@ -3463,19 +3463,19 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_18);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_18);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().BeNull();
-            movieCreditsCrew.Art.Should().BeNull();
-            movieCreditsCrew.Crew.Should().BeNull();
-            movieCreditsCrew.CostumeAndMakeup.Should().BeNull();
-            movieCreditsCrew.Directing.Should().BeNull();
-            movieCreditsCrew.Writing.Should().BeNull();
+            traktCrew.Production.Should().BeNull();
+            traktCrew.Art.Should().BeNull();
+            traktCrew.Crew.Should().BeNull();
+            traktCrew.CostumeAndMakeup.Should().BeNull();
+            traktCrew.Directing.Should().BeNull();
+            traktCrew.Writing.Should().BeNull();
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -3499,10 +3499,10 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().BeNull();
-            movieCreditsCrew.Lighting.Should().BeNull();
-            movieCreditsCrew.VisualEffects.Should().BeNull();
-            movieCreditsCrew.Editing.Should().BeNull();
+            traktCrew.Camera.Should().BeNull();
+            traktCrew.Lighting.Should().BeNull();
+            traktCrew.VisualEffects.Should().BeNull();
+            traktCrew.Editing.Should().BeNull();
         }
 
         [Fact]
@@ -3510,20 +3510,20 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_19);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_19);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().BeNull();
-            movieCreditsCrew.Art.Should().BeNull();
-            movieCreditsCrew.Crew.Should().BeNull();
-            movieCreditsCrew.CostumeAndMakeup.Should().BeNull();
-            movieCreditsCrew.Directing.Should().BeNull();
-            movieCreditsCrew.Writing.Should().BeNull();
-            movieCreditsCrew.Sound.Should().BeNull();
+            traktCrew.Production.Should().BeNull();
+            traktCrew.Art.Should().BeNull();
+            traktCrew.Crew.Should().BeNull();
+            traktCrew.CostumeAndMakeup.Should().BeNull();
+            traktCrew.Directing.Should().BeNull();
+            traktCrew.Writing.Should().BeNull();
+            traktCrew.Sound.Should().BeNull();
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -3547,9 +3547,9 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().BeNull();
-            movieCreditsCrew.VisualEffects.Should().BeNull();
-            movieCreditsCrew.Editing.Should().BeNull();
+            traktCrew.Lighting.Should().BeNull();
+            traktCrew.VisualEffects.Should().BeNull();
+            traktCrew.Editing.Should().BeNull();
         }
 
         [Fact]
@@ -3557,21 +3557,21 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_20);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_20);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().BeNull();
-            movieCreditsCrew.Art.Should().BeNull();
-            movieCreditsCrew.Crew.Should().BeNull();
-            movieCreditsCrew.CostumeAndMakeup.Should().BeNull();
-            movieCreditsCrew.Directing.Should().BeNull();
-            movieCreditsCrew.Writing.Should().BeNull();
-            movieCreditsCrew.Sound.Should().BeNull();
-            movieCreditsCrew.Camera.Should().BeNull();
+            traktCrew.Production.Should().BeNull();
+            traktCrew.Art.Should().BeNull();
+            traktCrew.Crew.Should().BeNull();
+            traktCrew.CostumeAndMakeup.Should().BeNull();
+            traktCrew.Directing.Should().BeNull();
+            traktCrew.Writing.Should().BeNull();
+            traktCrew.Sound.Should().BeNull();
+            traktCrew.Camera.Should().BeNull();
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -3595,8 +3595,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().BeNull();
-            movieCreditsCrew.Editing.Should().BeNull();
+            traktCrew.VisualEffects.Should().BeNull();
+            traktCrew.Editing.Should().BeNull();
         }
 
         [Fact]
@@ -3604,22 +3604,22 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_21);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_21);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().BeNull();
-            movieCreditsCrew.Art.Should().BeNull();
-            movieCreditsCrew.Crew.Should().BeNull();
-            movieCreditsCrew.CostumeAndMakeup.Should().BeNull();
-            movieCreditsCrew.Directing.Should().BeNull();
-            movieCreditsCrew.Writing.Should().BeNull();
-            movieCreditsCrew.Sound.Should().BeNull();
-            movieCreditsCrew.Camera.Should().BeNull();
-            movieCreditsCrew.Lighting.Should().BeNull();
+            traktCrew.Production.Should().BeNull();
+            traktCrew.Art.Should().BeNull();
+            traktCrew.Crew.Should().BeNull();
+            traktCrew.CostumeAndMakeup.Should().BeNull();
+            traktCrew.Directing.Should().BeNull();
+            traktCrew.Writing.Should().BeNull();
+            traktCrew.Sound.Should().BeNull();
+            traktCrew.Camera.Should().BeNull();
+            traktCrew.Lighting.Should().BeNull();
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -3643,7 +3643,7 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().BeNull();
+            traktCrew.Editing.Should().BeNull();
         }
 
         [Fact]
@@ -3651,23 +3651,23 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_22);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_22);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().BeNull();
-            movieCreditsCrew.Art.Should().BeNull();
-            movieCreditsCrew.Crew.Should().BeNull();
-            movieCreditsCrew.CostumeAndMakeup.Should().BeNull();
-            movieCreditsCrew.Directing.Should().BeNull();
-            movieCreditsCrew.Writing.Should().BeNull();
-            movieCreditsCrew.Sound.Should().BeNull();
-            movieCreditsCrew.Camera.Should().BeNull();
-            movieCreditsCrew.Lighting.Should().BeNull();
-            movieCreditsCrew.VisualEffects.Should().BeNull();
+            traktCrew.Production.Should().BeNull();
+            traktCrew.Art.Should().BeNull();
+            traktCrew.Crew.Should().BeNull();
+            traktCrew.CostumeAndMakeup.Should().BeNull();
+            traktCrew.Directing.Should().BeNull();
+            traktCrew.Writing.Should().BeNull();
+            traktCrew.Sound.Should().BeNull();
+            traktCrew.Camera.Should().BeNull();
+            traktCrew.Lighting.Should().BeNull();
+            traktCrew.VisualEffects.Should().BeNull();
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -3697,14 +3697,14 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_1);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_1);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().BeNull();
+            traktCrew.Production.Should().BeNull();
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -3728,8 +3728,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -3753,8 +3753,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -3778,8 +3778,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -3803,8 +3803,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -3828,8 +3828,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -3853,8 +3853,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -3878,8 +3878,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -3903,8 +3903,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -3928,8 +3928,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -3959,12 +3959,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_2);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_2);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -3988,10 +3988,10 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().BeNull();
+            traktCrew.Art.Should().BeNull();
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -4015,8 +4015,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -4040,8 +4040,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -4065,8 +4065,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -4090,8 +4090,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -4115,8 +4115,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -4140,8 +4140,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -4165,8 +4165,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -4190,8 +4190,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -4221,12 +4221,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_3);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_3);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -4250,8 +4250,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -4275,10 +4275,10 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().BeNull();
+            traktCrew.Crew.Should().BeNull();
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -4302,8 +4302,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -4327,8 +4327,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -4352,8 +4352,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -4377,8 +4377,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -4402,8 +4402,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -4427,8 +4427,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -4452,8 +4452,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -4483,12 +4483,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_4);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_4);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -4512,8 +4512,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -4537,8 +4537,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -4562,10 +4562,10 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().BeNull();
+            traktCrew.CostumeAndMakeup.Should().BeNull();
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -4589,8 +4589,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -4614,8 +4614,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -4639,8 +4639,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -4664,8 +4664,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -4689,8 +4689,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -4714,8 +4714,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -4745,12 +4745,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_5);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_5);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -4774,8 +4774,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -4799,8 +4799,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -4824,8 +4824,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -4849,10 +4849,10 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().BeNull();
+            traktCrew.Directing.Should().BeNull();
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -4876,8 +4876,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -4901,8 +4901,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -4926,8 +4926,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -4951,8 +4951,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -4976,8 +4976,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -5007,12 +5007,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_6);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_6);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -5036,8 +5036,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -5061,8 +5061,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -5086,8 +5086,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -5111,8 +5111,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -5136,10 +5136,10 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().BeNull();
+            traktCrew.Writing.Should().BeNull();
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -5163,8 +5163,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -5188,8 +5188,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -5213,8 +5213,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -5238,8 +5238,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -5269,12 +5269,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_7);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_7);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -5298,8 +5298,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -5323,8 +5323,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -5348,8 +5348,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -5373,8 +5373,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -5398,8 +5398,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -5423,10 +5423,10 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().BeNull();
+            traktCrew.Sound.Should().BeNull();
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -5450,8 +5450,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -5475,8 +5475,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -5500,8 +5500,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -5531,12 +5531,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_8);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_8);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -5560,8 +5560,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -5585,8 +5585,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -5610,8 +5610,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -5635,8 +5635,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -5660,8 +5660,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -5685,8 +5685,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -5710,10 +5710,10 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().BeNull();
+            traktCrew.Camera.Should().BeNull();
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -5737,8 +5737,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -5762,8 +5762,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -5793,12 +5793,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_9);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_9);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -5822,8 +5822,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -5847,8 +5847,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -5872,8 +5872,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -5897,8 +5897,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -5922,8 +5922,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -5947,8 +5947,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -5972,8 +5972,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -5997,10 +5997,10 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().BeNull();
+            traktCrew.Lighting.Should().BeNull();
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -6024,8 +6024,8 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -6055,12 +6055,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_10);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_10);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -6084,8 +6084,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -6109,8 +6109,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -6134,8 +6134,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -6159,8 +6159,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -6184,8 +6184,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -6209,8 +6209,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -6234,8 +6234,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -6259,8 +6259,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -6284,10 +6284,10 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().BeNull();
+            traktCrew.VisualEffects.Should().BeNull();
 
-            movieCreditsCrew.Editing.Should().NotBeNull().And.HaveCount(2);
-            var editingCrew = movieCreditsCrew.Editing.ToArray();
+            traktCrew.Editing.Should().NotBeNull().And.HaveCount(2);
+            var editingCrew = traktCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
@@ -6317,12 +6317,12 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_11);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_11);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().NotBeNull().And.HaveCount(2);
-            var productionCrew = movieCreditsCrew.Production.ToArray();
+            traktCrew.Production.Should().NotBeNull().And.HaveCount(2);
+            var productionCrew = traktCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -6346,8 +6346,8 @@
             productionCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             productionCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Art.Should().NotBeNull().And.HaveCount(2);
-            var artCrew = movieCreditsCrew.Art.ToArray();
+            traktCrew.Art.Should().NotBeNull().And.HaveCount(2);
+            var artCrew = traktCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
@@ -6371,8 +6371,8 @@
             artCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             artCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Crew.Should().NotBeNull().And.HaveCount(2);
-            var crew = movieCreditsCrew.Crew.ToArray();
+            traktCrew.Crew.Should().NotBeNull().And.HaveCount(2);
+            var crew = traktCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
             crew[0].Job.Should().Be("Crew Member");
@@ -6396,8 +6396,8 @@
             crew[1].Person.Ids.Tmdb.Should().Be(2231U);
             crew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
-            var costumeAndMakeupCrew = movieCreditsCrew.CostumeAndMakeup.ToArray();
+            traktCrew.CostumeAndMakeup.Should().NotBeNull().And.HaveCount(2);
+            var costumeAndMakeupCrew = traktCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
@@ -6421,8 +6421,8 @@
             costumeAndMakeupCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             costumeAndMakeupCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Directing.Should().NotBeNull().And.HaveCount(2);
-            var directingCrew = movieCreditsCrew.Directing.ToArray();
+            traktCrew.Directing.Should().NotBeNull().And.HaveCount(2);
+            var directingCrew = traktCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
@@ -6446,8 +6446,8 @@
             directingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             directingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Writing.Should().NotBeNull().And.HaveCount(2);
-            var writingCrew = movieCreditsCrew.Writing.ToArray();
+            traktCrew.Writing.Should().NotBeNull().And.HaveCount(2);
+            var writingCrew = traktCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
@@ -6471,8 +6471,8 @@
             writingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             writingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Sound.Should().NotBeNull().And.HaveCount(2);
-            var soundCrew = movieCreditsCrew.Sound.ToArray();
+            traktCrew.Sound.Should().NotBeNull().And.HaveCount(2);
+            var soundCrew = traktCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
@@ -6496,8 +6496,8 @@
             soundCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             soundCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Camera.Should().NotBeNull().And.HaveCount(2);
-            var cameraCrew = movieCreditsCrew.Camera.ToArray();
+            traktCrew.Camera.Should().NotBeNull().And.HaveCount(2);
+            var cameraCrew = traktCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
@@ -6521,8 +6521,8 @@
             cameraCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             cameraCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
-            var lightingCrew = movieCreditsCrew.Lighting.ToArray();
+            traktCrew.Lighting.Should().NotBeNull().And.HaveCount(2);
+            var lightingCrew = traktCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
@@ -6546,8 +6546,8 @@
             lightingCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             lightingCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
-            var vfxCrew = movieCreditsCrew.VisualEffects.ToArray();
+            traktCrew.VisualEffects.Should().NotBeNull().And.HaveCount(2);
+            var vfxCrew = traktCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
@@ -6571,7 +6571,7 @@
             vfxCrew[1].Person.Ids.Tmdb.Should().Be(2231U);
             vfxCrew[1].Person.Ids.TvRage.Should().Be(55720U);
 
-            movieCreditsCrew.Editing.Should().BeNull();
+            traktCrew.Editing.Should().BeNull();
         }
 
         [Fact]
@@ -6579,21 +6579,21 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_12);
+            var traktCrew = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_12);
 
-            movieCreditsCrew.Should().NotBeNull();
+            traktCrew.Should().NotBeNull();
 
-            movieCreditsCrew.Production.Should().BeNull();
-            movieCreditsCrew.Art.Should().BeNull();
-            movieCreditsCrew.Crew.Should().BeNull();
-            movieCreditsCrew.CostumeAndMakeup.Should().BeNull();
-            movieCreditsCrew.Directing.Should().BeNull();
-            movieCreditsCrew.Writing.Should().BeNull();
-            movieCreditsCrew.Sound.Should().BeNull();
-            movieCreditsCrew.Camera.Should().BeNull();
-            movieCreditsCrew.Lighting.Should().BeNull();
-            movieCreditsCrew.VisualEffects.Should().BeNull();
-            movieCreditsCrew.Editing.Should().BeNull();
+            traktCrew.Production.Should().BeNull();
+            traktCrew.Art.Should().BeNull();
+            traktCrew.Crew.Should().BeNull();
+            traktCrew.CostumeAndMakeup.Should().BeNull();
+            traktCrew.Directing.Should().BeNull();
+            traktCrew.Writing.Should().BeNull();
+            traktCrew.Sound.Should().BeNull();
+            traktCrew.Camera.Should().BeNull();
+            traktCrew.Lighting.Should().BeNull();
+            traktCrew.VisualEffects.Should().BeNull();
+            traktCrew.Editing.Should().BeNull();
         }
 
         [Fact]
@@ -6601,8 +6601,8 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(default(string));
-            movieCreditsCrew.Should().BeNull();
+            var traktCrew = await jsonReader.ReadObjectAsync(default(string));
+            traktCrew.Should().BeNull();
         }
 
         [Fact]
@@ -6610,8 +6610,8 @@
         {
             var jsonReader = new TraktCrewObjectJsonReader();
 
-            var movieCreditsCrew = await jsonReader.ReadObjectAsync(string.Empty);
-            movieCreditsCrew.Should().BeNull();
+            var traktCrew = await jsonReader.ReadObjectAsync(string.Empty);
+            traktCrew.Should().BeNull();
         }
     }
 }
