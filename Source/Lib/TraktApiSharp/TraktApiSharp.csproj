@@ -445,6 +445,8 @@
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\TraktCheckinPostErrorResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\TraktEpisodeCheckinPostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\TraktMovieCheckinPostResponseObjectJsonReader.cs" />
+    <Compile Include="Objects\Post\Comments\Responses\ITraktCommentPostResponse.cs" />
+    <Compile Include="Objects\Post\Comments\Responses\JsonReader\TraktCommentPostResponseObjectJsonReader.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest%271.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest.cs" />
     <Compile Include="Requests\Base\ATraktDeleteRequest.cs" />
@@ -775,7 +777,7 @@
     <Compile Include="Objects\Get\Users\Implementations\TraktUserHiddenItem.cs" />
     <Compile Include="Objects\Get\Users\Implementations\TraktUserImages.cs" />
     <Compile Include="Objects\Get\Users\Implementations\TraktUserSettings.cs" />
-    <Compile Include="Objects\Post\Comments\Responses\TraktCommentPostResponse.cs" />
+    <Compile Include="Objects\Post\Comments\Responses\Implementations\TraktCommentPostResponse.cs" />
     <Compile Include="Objects\Post\Comments\TraktCommentPost.cs" />
     <Compile Include="Objects\Post\Comments\TraktCommentReplyPost.cs" />
     <Compile Include="Objects\Post\Comments\TraktEpisodeCommentPost.cs" />

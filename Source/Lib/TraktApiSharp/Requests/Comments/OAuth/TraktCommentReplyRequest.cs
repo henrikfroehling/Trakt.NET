@@ -4,7 +4,7 @@
     using Extensions;
     using Interfaces;
     using Objects.Post.Comments;
-    using Objects.Post.Comments.Responses;
+    using Objects.Post.Comments.Responses.Implementations;
     using System;
     using System.Collections.Generic;
 
