@@ -283,6 +283,13 @@
     <Compile Include="Objects\Get\Syncs\Activities\ITraktSyncMoviesLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\ITraktSyncSeasonsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\ITraktSyncShowsLastActivities.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\Factories\TraktSyncCommentsLastActivitiesJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\Factories\TraktSyncEpisodesLastActivitiesJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\Factories\TraktSyncLastActivitiesJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\Factories\TraktSyncListsLastActivitiesJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\Factories\TraktSyncMoviesLastActivitiesJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\Factories\TraktSyncSeasonsLastActivitiesJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\Factories\TraktSyncShowsLastActivitiesJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncCommentsLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncEpisodesLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncLastActivitiesObjectJsonReader.cs" />
