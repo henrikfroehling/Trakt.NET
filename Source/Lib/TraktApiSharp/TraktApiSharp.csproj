@@ -447,6 +447,11 @@
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\TraktMovieCheckinPostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Comments\Responses\ITraktCommentPostResponse.cs" />
     <Compile Include="Objects\Post\Comments\Responses\JsonReader\TraktCommentPostResponseObjectJsonReader.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\ITraktEpisodeScrobblePostResponse.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\ITraktMovieScrobblePostResponse.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\ITraktScrobblePostResponse.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\TraktEpisodeScrobblePostResponseObjectJsonReader.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\TraktMovieScrobblePostResponseObjectJsonReader.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest%271.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest.cs" />
     <Compile Include="Requests\Base\ATraktDeleteRequest.cs" />
@@ -788,9 +793,9 @@
     <Compile Include="Objects\Post\Comments\TraktCommentUpdatePost.cs" />
     <Compile Include="Objects\Post\PostHistorySeasons.cs" />
     <Compile Include="Objects\Post\PostRatingsSeasons.cs" />
-    <Compile Include="Objects\Post\Scrobbles\Responses\TraktEpisodeScrobblePostResponse.cs" />
-    <Compile Include="Objects\Post\Scrobbles\Responses\TraktMovieScrobblePostResponse.cs" />
-    <Compile Include="Objects\Post\Scrobbles\Responses\TraktScrobblePostResponse.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\Implementations\TraktEpisodeScrobblePostResponse.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\Implementations\TraktMovieScrobblePostResponse.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\Implementations\TraktScrobblePostResponse.cs" />
     <Compile Include="Objects\Post\Scrobbles\TraktEpisodeScrobblePost.cs" />
     <Compile Include="Objects\Post\Scrobbles\TraktMovieScrobblePost.cs" />
     <Compile Include="Objects\Post\Scrobbles\TraktScrobblePost.cs" />

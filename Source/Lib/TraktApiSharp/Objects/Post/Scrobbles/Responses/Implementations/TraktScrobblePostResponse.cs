@@ -1,10 +1,10 @@
-﻿namespace TraktApiSharp.Objects.Post.Scrobbles.Responses
+﻿namespace TraktApiSharp.Objects.Post.Scrobbles.Responses.Implementations
 {
-    using Basic.Implementations;
+    using Basic;
     using Enums;
     using Newtonsoft.Json;
 
-    public abstract class TraktScrobblePostResponse
+    public abstract class TraktScrobblePostResponse : ITraktScrobblePostResponse
     {
         /// <summary>Gets or sets the history id for the scrobble response.</summary>
         [JsonProperty(PropertyName = "id")]
@@ -25,10 +25,10 @@
 
         /// <summary>
         /// Gets or sets the sharing options for the scrobble response.
-        /// See also <seealso cref="TraktSharing" />.
+        /// See also <seealso cref="ITraktSharing" />.
         /// <para>Nullable</para>
         /// </summary>
         [JsonProperty(PropertyName = "sharing")]
-        public TraktSharing Sharing { get; set; }
+        public ITraktSharing Sharing { get; set; }
     }
 }
