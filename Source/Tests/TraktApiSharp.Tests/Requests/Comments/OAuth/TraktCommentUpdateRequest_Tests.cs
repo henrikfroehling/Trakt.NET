@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Objects.Post.Comments;
-    using TraktApiSharp.Objects.Post.Comments.Responses;
+    using TraktApiSharp.Objects.Post.Comments.Responses.Implementations;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Comments.OAuth;
     using TraktApiSharp.Requests.Interfaces;

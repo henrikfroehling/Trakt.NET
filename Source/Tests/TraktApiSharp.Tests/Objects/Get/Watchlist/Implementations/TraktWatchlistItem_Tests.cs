@@ -1,13 +1,14 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Watchlist.Implementations
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Watchlist;
     using TraktApiSharp.Objects.Get.Watchlist.Implementations;
+    using TraktApiSharp.Objects.Get.Watchlist.JsonReader;
     using Xunit;
 
     [Category("Objects.Get.Watchlist.Implementations")]
@@ -33,9 +34,10 @@
         }
 
         [Fact]
-        public void Test_TraktWatchlistItem_With_Type_Movie_From_Minimal_Json()
+        public async Task Test_TraktWatchlistItem_With_Type_Movie_From_Minimal_Json()
         {
-            var watchlistItem = JsonConvert.DeserializeObject<TraktWatchlistItem>(TYPE_MOVIE_MINIMAL_JSON);
+            var jsonReader = new TraktWatchlistItemObjectJsonReader();
+            var watchlistItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_MINIMAL_JSON) as TraktWatchlistItem;
 
             watchlistItem.Should().NotBeNull();
             watchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
@@ -67,9 +69,10 @@
         }
 
         [Fact]
-        public void Test_TraktWatchlistItem_With_Type_Show_From_Minimal_Json()
+        public async Task Test_TraktWatchlistItem_With_Type_Show_From_Minimal_Json()
         {
-            var watchlistItem = JsonConvert.DeserializeObject<TraktWatchlistItem>(TYPE_SHOW_MINIMAL_JSON);
+            var jsonReader = new TraktWatchlistItemObjectJsonReader();
+            var watchlistItem = await jsonReader.ReadObjectAsync(TYPE_SHOW_MINIMAL_JSON) as TraktWatchlistItem;
 
             watchlistItem.Should().NotBeNull();
             watchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
@@ -108,9 +111,10 @@
         }
 
         [Fact]
-        public void Test_TraktWatchlistItem_With_Type_Season_From_Minimal_Json()
+        public async Task Test_TraktWatchlistItem_With_Type_Season_From_Minimal_Json()
         {
-            var watchlistItem = JsonConvert.DeserializeObject<TraktWatchlistItem>(TYPE_SEASON_MINIMAL_JSON);
+            var jsonReader = new TraktWatchlistItemObjectJsonReader();
+            var watchlistItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_MINIMAL_JSON) as TraktWatchlistItem;
 
             watchlistItem.Should().NotBeNull();
             watchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
@@ -135,9 +139,10 @@
         }
 
         [Fact]
-        public void Test_TraktWatchlistItem_With_Type_Episode_From_Minimal_Json()
+        public async Task Test_TraktWatchlistItem_With_Type_Episode_From_Minimal_Json()
         {
-            var watchlistItem = JsonConvert.DeserializeObject<TraktWatchlistItem>(TYPE_EPISODE_MINIMAL_JSON);
+            var jsonReader = new TraktWatchlistItemObjectJsonReader();
+            var watchlistItem = await jsonReader.ReadObjectAsync(TYPE_EPISODE_MINIMAL_JSON) as TraktWatchlistItem;
 
             watchlistItem.Should().NotBeNull();
             watchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
@@ -194,9 +199,10 @@
         }
 
         [Fact]
-        public void Test_TraktWatchlistItem_With_Type_Movie_From_Full_Json()
+        public async Task Test_TraktWatchlistItem_With_Type_Movie_From_Full_Json()
         {
-            var watchlistItem = JsonConvert.DeserializeObject<TraktWatchlistItem>(TYPE_MOVIE_FULL_JSON);
+            var jsonReader = new TraktWatchlistItemObjectJsonReader();
+            var watchlistItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_FULL_JSON) as TraktWatchlistItem;
 
             watchlistItem.Should().NotBeNull();
             watchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
@@ -228,9 +234,10 @@
         }
 
         [Fact]
-        public void Test_TraktWatchlistItem_With_Type_Show_From_Full_Json()
+        public async Task Test_TraktWatchlistItem_With_Type_Show_From_Full_Json()
         {
-            var watchlistItem = JsonConvert.DeserializeObject<TraktWatchlistItem>(TYPE_SHOW_FULL_JSON);
+            var jsonReader = new TraktWatchlistItemObjectJsonReader();
+            var watchlistItem = await jsonReader.ReadObjectAsync(TYPE_SHOW_FULL_JSON) as TraktWatchlistItem;
 
             watchlistItem.Should().NotBeNull();
             watchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
@@ -272,9 +279,10 @@
         }
 
         [Fact]
-        public void Test_TraktWatchlistItem_With_Type_Season_From_Full_Json()
+        public async Task Test_TraktWatchlistItem_With_Type_Season_From_Full_Json()
         {
-            var watchlistItem = JsonConvert.DeserializeObject<TraktWatchlistItem>(TYPE_SEASON_FULL_JSON);
+            var jsonReader = new TraktWatchlistItemObjectJsonReader();
+            var watchlistItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_FULL_JSON) as TraktWatchlistItem;
 
             watchlistItem.Should().NotBeNull();
             watchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
@@ -342,9 +350,10 @@
         }
 
         [Fact]
-        public void Test_TraktWatchlistItem_With_Type_Episode_From_Full_Json()
+        public async Task Test_TraktWatchlistItem_With_Type_Episode_From_Full_Json()
         {
-            var watchlistItem = JsonConvert.DeserializeObject<TraktWatchlistItem>(TYPE_EPISODE_FULL_JSON);
+            var jsonReader = new TraktWatchlistItemObjectJsonReader();
+            var watchlistItem = await jsonReader.ReadObjectAsync(TYPE_EPISODE_FULL_JSON) as TraktWatchlistItem;
 
             watchlistItem.Should().NotBeNull();
             watchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());

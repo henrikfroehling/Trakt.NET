@@ -2,7 +2,7 @@
 {
     using Base;
     using Objects.Post.Comments;
-    using Objects.Post.Comments.Responses;
+    using Objects.Post.Comments.Responses.Implementations;
     using System.Collections.Generic;
 
     internal sealed class TraktCommentPostRequest<TRequestBody> : ATraktPostRequest<TraktCommentPostResponse, TRequestBody> where TRequestBody : TraktCommentPost
