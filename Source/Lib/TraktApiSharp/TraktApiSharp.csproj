@@ -480,6 +480,8 @@
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\TraktUserCustomListItemsPostResponseNotFoundGroupObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\TraktUserCustomListItemsPostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\TraktUserCustomListItemsRemovePostResponseObjectJsonReader.cs" />
+    <Compile Include="Objects\Post\Users\Responses\ITraktUserFollowUserPostResponse.cs" />
+    <Compile Include="Objects\Post\Users\Responses\JsonReader\TraktUserFollowUserPostResponseObjectJsonReader.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest%271.cs" />
     <Compile Include="Requests\Base\ATraktBodylessPostRequest.cs" />
     <Compile Include="Requests\Base\ATraktDeleteRequest.cs" />
@@ -876,7 +878,7 @@
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostShowEpisode.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostShow.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostShowSeason.cs" />
-    <Compile Include="Objects\Post\Users\Responses\TraktUserFollowUserPostResponse.cs" />
+    <Compile Include="Objects\Post\Users\Responses\Implementations\TraktUserFollowUserPostResponse.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPost.cs" />
     <Compile Include="Objects\Post\Users\TraktUserCustomListPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

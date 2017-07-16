@@ -14,7 +14,7 @@
     using Objects.Post.Users;
     using Objects.Post.Users.CustomListItems;
     using Objects.Post.Users.CustomListItems.Responses.Implementations;
-    using Objects.Post.Users.Responses;
+    using Objects.Post.Users.Responses.Implementations;
     using Requests.Handler;
     using Requests.Parameters;
     using Requests.Users;

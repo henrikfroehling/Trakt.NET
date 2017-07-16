@@ -2,7 +2,7 @@
 {
     using Base;
     using Extensions;
-    using Objects.Post.Users.Responses;
+    using Objects.Post.Users.Responses.Implementations;
     using System;
     using System.Collections.Generic;
 
