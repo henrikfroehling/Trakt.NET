@@ -13,7 +13,7 @@
     using Objects.Get.Watchlist.Implementations;
     using Objects.Post.Users;
     using Objects.Post.Users.CustomListItems;
-    using Objects.Post.Users.CustomListItems.Responses;
+    using Objects.Post.Users.CustomListItems.Responses.Implementations;
     using Objects.Post.Users.Responses;
     using Requests.Handler;
     using Requests.Parameters;

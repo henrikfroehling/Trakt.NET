@@ -37,7 +37,7 @@
     using TraktApiSharp.Objects.Get.Watchlist.Implementations;
     using TraktApiSharp.Objects.Post.Users;
     using TraktApiSharp.Objects.Post.Users.CustomListItems;
-    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
+    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses.Implementations;
     using TraktApiSharp.Objects.Post.Users.Responses;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;

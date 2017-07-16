@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Responses
+﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Responses.Implementations
 {
     using Newtonsoft.Json;
 
     /// <summary>A collection containing the number of movies, shows, seasons, episodes and people.</summary>
-    public class TraktUserCustomListItemsPostResponseGroup
+    public class TraktUserCustomListItemsPostResponseGroup : ITraktUserCustomListItemsPostResponseGroup
     {
         /// <summary>Gets or sets the number of movies.</summary>
         [JsonProperty(PropertyName = "movies")]

@@ -4,7 +4,7 @@
     using Enums;
     using Extensions;
     using Objects.Post.Users.CustomListItems;
-    using Objects.Post.Users.CustomListItems.Responses;
+    using Objects.Post.Users.CustomListItems.Responses.Implementations;
     using System;
     using System.Collections.Generic;
 

@@ -8,7 +8,7 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Post.Users.CustomListItems;
-    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
+    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses.Implementations;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
