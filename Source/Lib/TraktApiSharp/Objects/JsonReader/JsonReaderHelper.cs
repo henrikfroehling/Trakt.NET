@@ -30,6 +30,24 @@
             return default(IEnumerable<string>);
         }
 
+        internal static async Task<IEnumerable<ulong>> ReadUnsignedLongArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
+            {
+                var values = new List<ulong>();
+
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.Integer)
+                {
+                    if (ulong.TryParse(jsonReader.Value.ToString(), out ulong value))
+                        values.Add(value);
+                }
+
+                return values;
+            }
+
+            return default(IEnumerable<ulong>);
+        }
+
         internal static async Task<Pair<bool, DateTime>> ReadDateTimeValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (await jsonReader.ReadAsync(cancellationToken))

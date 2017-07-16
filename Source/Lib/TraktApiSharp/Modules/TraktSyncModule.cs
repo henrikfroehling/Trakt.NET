@@ -10,13 +10,13 @@
     using Objects.Get.Watched.Implementations;
     using Objects.Get.Watchlist.Implementations;
     using Objects.Post.Syncs.Collection;
-    using Objects.Post.Syncs.Collection.Responses;
+    using Objects.Post.Syncs.Collection.Responses.Implementations;
     using Objects.Post.Syncs.History;
-    using Objects.Post.Syncs.History.Responses;
+    using Objects.Post.Syncs.History.Responses.Implementations;
     using Objects.Post.Syncs.Ratings;
-    using Objects.Post.Syncs.Ratings.Responses;
+    using Objects.Post.Syncs.Ratings.Responses.Implementations;
     using Objects.Post.Syncs.Watchlist;
-    using Objects.Post.Syncs.Watchlist.Responses;
+    using Objects.Post.Syncs.Watchlist.Responses.Implementations;
     using Requests.Handler;
     using Requests.Parameters;
     using Requests.Syncs.OAuth;

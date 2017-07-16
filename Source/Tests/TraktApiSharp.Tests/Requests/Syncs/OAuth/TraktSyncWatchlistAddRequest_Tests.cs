@@ -3,7 +3,7 @@
     using FluentAssertions;
     using Traits;
     using TraktApiSharp.Objects.Post.Syncs.Watchlist;
-    using TraktApiSharp.Objects.Post.Syncs.Watchlist.Responses;
+    using TraktApiSharp.Objects.Post.Syncs.Watchlist.Responses.Implementations;
     using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;
 

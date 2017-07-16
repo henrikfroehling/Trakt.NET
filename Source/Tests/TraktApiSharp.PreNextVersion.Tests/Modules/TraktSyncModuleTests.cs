@@ -11,34 +11,24 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
-    using TraktApiSharp.Objects.Get.Collections;
     using TraktApiSharp.Objects.Get.Collections.Implementations;
-    using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
-    using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Objects.Get.History.Implementations;
-    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
-    using TraktApiSharp.Objects.Get.Ratings;
     using TraktApiSharp.Objects.Get.Ratings.Implementations;
-    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Implementations;
-    using TraktApiSharp.Objects.Get.Syncs.Activities;
     using TraktApiSharp.Objects.Get.Syncs.Activities.Implementations;
-    using TraktApiSharp.Objects.Get.Syncs.Playback;
     using TraktApiSharp.Objects.Get.Syncs.Playback.Implementations;
-    using TraktApiSharp.Objects.Get.Watched;
     using TraktApiSharp.Objects.Get.Watched.Implementations;
-    using TraktApiSharp.Objects.Get.Watchlist;
     using TraktApiSharp.Objects.Get.Watchlist.Implementations;
     using TraktApiSharp.Objects.Post.Syncs.Collection;
-    using TraktApiSharp.Objects.Post.Syncs.Collection.Responses;
+    using TraktApiSharp.Objects.Post.Syncs.Collection.Responses.Implementations;
     using TraktApiSharp.Objects.Post.Syncs.History;
-    using TraktApiSharp.Objects.Post.Syncs.History.Responses;
+    using TraktApiSharp.Objects.Post.Syncs.History.Responses.Implementations;
     using TraktApiSharp.Objects.Post.Syncs.Ratings;
-    using TraktApiSharp.Objects.Post.Syncs.Ratings.Responses;
+    using TraktApiSharp.Objects.Post.Syncs.Ratings.Responses.Implementations;
     using TraktApiSharp.Objects.Post.Syncs.Watchlist;
-    using TraktApiSharp.Objects.Post.Syncs.Watchlist.Responses;
+    using TraktApiSharp.Objects.Post.Syncs.Watchlist.Responses.Implementations;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Utils;
@@ -4412,8 +4402,8 @@
             responseValue.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
             responseValue.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
 
-            responseValue.NotFound.Ids.Should().NotBeNull().And.HaveCount(2);
-            responseValue.NotFound.Ids.Should().Contain(new List<ulong>() { 23, 42 });
+            responseValue.NotFound.HistoryIds.Should().NotBeNull().And.HaveCount(2);
+            responseValue.NotFound.HistoryIds.Should().Contain(new List<ulong>() { 23, 42 });
         }
 
         [TestMethod]

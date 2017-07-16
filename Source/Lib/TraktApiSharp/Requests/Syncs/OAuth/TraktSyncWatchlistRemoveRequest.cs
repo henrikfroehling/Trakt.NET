@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Requests.Syncs.OAuth
 {
     using Objects.Post.Syncs.Watchlist;
-    using Objects.Post.Syncs.Watchlist.Responses;
+    using Objects.Post.Syncs.Watchlist.Responses.Implementations;
 
     internal sealed class TraktSyncWatchlistRemoveRequest : ATraktSyncPostRequest<TraktSyncWatchlistRemovePostResponse, TraktSyncWatchlistPost>
     {
