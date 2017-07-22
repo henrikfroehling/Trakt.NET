@@ -40,23 +40,23 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var calendarMovieReader = new TraktCollectionMovieObjectJsonReader();
-                //var calendarMovieReadingTasks = new List<Task<ITraktCollectionMovie>>();
-                var calendarMovies = new List<ITraktCollectionMovie>();
+                var collectionMovieReader = new TraktCollectionMovieObjectJsonReader();
+                //var collectionMovieReadingTasks = new List<Task<ITraktCollectionMovie>>();
+                var collectionMovies = new List<ITraktCollectionMovie>();
 
-                //calendarMovieReadingTasks.Add(calendarMovieReader.ReadObjectAsync(jsonReader, cancellationToken));
-                ITraktCollectionMovie calendarMovie = await calendarMovieReader.ReadObjectAsync(jsonReader, cancellationToken);
+                //collectionMovieReadingTasks.Add(collectionMovieReader.ReadObjectAsync(jsonReader, cancellationToken));
+                ITraktCollectionMovie collectionMovie = await collectionMovieReader.ReadObjectAsync(jsonReader, cancellationToken);
 
-                while (calendarMovie != null)
+                while (collectionMovie != null)
                 {
-                    calendarMovies.Add(calendarMovie);
-                    //calendarMovieReadingTasks.Add(calendarMovieReader.ReadObjectAsync(jsonReader, cancellationToken));
-                    calendarMovie = await calendarMovieReader.ReadObjectAsync(jsonReader, cancellationToken);
+                    collectionMovies.Add(collectionMovie);
+                    //collectionMovieReadingTasks.Add(collectionMovieReader.ReadObjectAsync(jsonReader, cancellationToken));
+                    collectionMovie = await collectionMovieReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readCollectionMovies = await Task.WhenAll(calendarMovieReadingTasks);
+                //var readCollectionMovies = await Task.WhenAll(collectionMovieReadingTasks);
                 //return (IEnumerable<ITraktCollectionMovie>)readCollectionMovies.GetEnumerator();
-                return calendarMovies;
+                return collectionMovies;
             }
 
             return await Task.FromResult(default(IEnumerable<ITraktCollectionMovie>));

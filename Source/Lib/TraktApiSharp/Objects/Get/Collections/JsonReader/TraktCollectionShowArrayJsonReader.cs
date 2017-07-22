@@ -40,23 +40,23 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var calendarShowReader = new TraktCollectionShowObjectJsonReader();
-                //var calendarShowReadingTasks = new List<Task<ITraktCollectionShow>>();
-                var calendarShows = new List<ITraktCollectionShow>();
+                var collectionShowReader = new TraktCollectionShowObjectJsonReader();
+                //var collectionShowReadingTasks = new List<Task<ITraktCollectionShow>>();
+                var collectionShows = new List<ITraktCollectionShow>();
 
-                //calendarShowReadingTasks.Add(calendarShowReader.ReadObjectAsync(jsonReader, cancellationToken));
-                ITraktCollectionShow calendarShow = await calendarShowReader.ReadObjectAsync(jsonReader, cancellationToken);
+                //collectionShowReadingTasks.Add(collectionShowReader.ReadObjectAsync(jsonReader, cancellationToken));
+                ITraktCollectionShow collectionShow = await collectionShowReader.ReadObjectAsync(jsonReader, cancellationToken);
 
-                while (calendarShow != null)
+                while (collectionShow != null)
                 {
-                    calendarShows.Add(calendarShow);
-                    //calendarShowReadingTasks.Add(calendarShowReader.ReadObjectAsync(jsonReader, cancellationToken));
-                    calendarShow = await calendarShowReader.ReadObjectAsync(jsonReader, cancellationToken);
+                    collectionShows.Add(collectionShow);
+                    //collectionShowReadingTasks.Add(collectionShowReader.ReadObjectAsync(jsonReader, cancellationToken));
+                    collectionShow = await collectionShowReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readCollectionShows = await Task.WhenAll(calendarShowReadingTasks);
+                //var readCollectionShows = await Task.WhenAll(collectionShowReadingTasks);
                 //return (IEnumerable<ITraktCollectionShow>)readCollectionShows.GetEnumerator();
-                return calendarShows;
+                return collectionShows;
             }
 
             return await Task.FromResult(default(IEnumerable<ITraktCollectionShow>));
