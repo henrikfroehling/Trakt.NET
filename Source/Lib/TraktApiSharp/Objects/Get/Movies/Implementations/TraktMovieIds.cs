@@ -1,28 +1,21 @@
 ﻿namespace TraktApiSharp.Objects.Get.Movies.Implementations
 {
-    using Newtonsoft.Json;
-
     /// <summary>A collection of ids for various web services, including the Trakt id, for a Trakt movie.</summary>
     public class TraktMovieIds : ITraktMovieIds
     {
         /// <summary>Gets or sets the Trakt numeric id.</summary>
-        [JsonProperty(PropertyName = "trakt")]
         public uint Trakt { get; set; }
 
         /// <summary>Gets or sets the Trakt slug.<para>Nullable</para></summary>
-        [JsonProperty(PropertyName = "slug")]
         public string Slug { get; set; }
 
         /// <summary>Gets or sets the id from imdb.com<para>Nullable</para></summary>
-        [JsonProperty(PropertyName = "imdb")]
         public string Imdb { get; set; }
 
         /// <summary>Gets or sets the numeric id from themoviedb.org</summary>
-        [JsonProperty(PropertyName = "tmdb")]
         public uint? Tmdb { get; set; }
 
         /// <summary>Returns, whether any id has been set.</summary>
-        [JsonIgnore]
         public bool HasAnyId => Trakt > 0 || !string.IsNullOrEmpty(Slug) || !string.IsNullOrEmpty(Imdb) || Tmdb > 0;
 
         /// <summary>Gets the most reliable id from those that have been set.</summary>

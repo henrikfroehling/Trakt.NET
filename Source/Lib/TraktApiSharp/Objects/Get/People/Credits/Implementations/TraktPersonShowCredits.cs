@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.People.Credits.Implementations
 {
-    using Newtonsoft.Json;
     using System.Collections.Generic;
 
     /// <summary>Contains all Trakt shows where a Trakt person is in the cast or crew.</summary>
@@ -11,7 +10,6 @@
         /// See also <seealso cref="ITraktPersonShowCreditsCastItem" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "cast")]
         public IEnumerable<ITraktPersonShowCreditsCastItem> Cast { get; set; }
 
         /// <summary>
@@ -19,7 +17,6 @@
         /// See also <seealso cref="ITraktPersonShowCreditsCrew" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "crew")]
         public ITraktPersonShowCreditsCrew Crew { get; set; }
     }
 }

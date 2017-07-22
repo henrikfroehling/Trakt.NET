@@ -6,18 +6,14 @@
     using Get.People;
     using Get.Shows;
     using Get.Users.Lists;
-    using Newtonsoft.Json;
 
     /// <summary>A Trakt search result.</summary>
     public class TraktSearchResult : ITraktSearchResult
     {
         /// <summary>Gets or sets the result type. See also <seealso cref="TraktSearchResultType" />.<para>Nullable</para></summary>
-        [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktEnumerationConverter<TraktSearchResultType>))]
         public TraktSearchResultType Type { get; set; }
 
         /// <summary>Gets or sets the result score.</summary>
-        [JsonProperty(PropertyName = "score")]
         public float? Score { get; set; }
 
         /// <summary>
@@ -25,7 +21,6 @@
         /// See also <seealso cref="ITraktMovie" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "movie")]
         public ITraktMovie Movie { get; set; }
 
         /// <summary>
@@ -33,7 +28,6 @@
         /// See also <seealso cref="ITraktShow" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "show")]
         public ITraktShow Show { get; set; }
 
         /// <summary>
@@ -41,7 +35,6 @@
         /// See also <seealso cref="ITraktEpisode" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "episode")]
         public ITraktEpisode Episode { get; set; }
 
         /// <summary>
@@ -49,7 +42,6 @@
         /// See also <seealso cref="ITraktPerson" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "person")]
         public ITraktPerson Person { get; set; }
 
         /// <summary>
@@ -57,7 +49,6 @@
         /// See also <seealso cref="ITraktList" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "list")]
         public ITraktList List { get; set; }
     }
 }

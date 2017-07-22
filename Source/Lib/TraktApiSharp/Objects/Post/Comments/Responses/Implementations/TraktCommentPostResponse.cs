@@ -2,7 +2,6 @@
 {
     using Basic;
     using Basic.Implementations;
-    using Newtonsoft.Json;
 
     /// <summary>Represents a comment post response.</summary>
     public class TraktCommentPostResponse : TraktComment, ITraktCommentPostResponse
@@ -12,7 +11,6 @@
         /// See also <seealso cref="ITraktSharing" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "sharing")]
         public ITraktSharing Sharing { get; set; }
     }
 }

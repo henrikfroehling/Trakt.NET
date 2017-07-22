@@ -1,16 +1,12 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users.Implementations
 {
-    using Newtonsoft.Json;
-
     /// <summary>A collection of ids for a Trakt user.</summary>
     public class TraktUserIds : ITraktUserIds
     {
         /// <summary>Gets or sets the Trakt slug.<para>Nullable</para></summary>
-        [JsonProperty(PropertyName = "slug")]
         public string Slug { get; set; }
 
         /// <summary>Returns, whether any id has been set.</summary>
-        [JsonIgnore]
         public bool HasAnyId => !string.IsNullOrEmpty(Slug);
 
         /// <summary>Gets the most reliable id from those that have been set.</summary>

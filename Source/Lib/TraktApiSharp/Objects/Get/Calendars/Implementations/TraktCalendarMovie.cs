@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Calendars.Implementations
 {
     using Movies;
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
 
@@ -9,14 +8,11 @@
     public class TraktCalendarMovie : ITraktCalendarMovie
     {
         /// <summary>Gets or sets the release date of the <see cref="Movie" />.<para>Nullable</para></summary>
-        [JsonProperty(PropertyName = "released")]
         public DateTime? CalendarRelease { get; set; }
 
         /// <summary>Gets or sets the Trakt movie. See also <seealso cref="ITraktMovie" />.<para>Nullable</para></summary>
-        [JsonProperty(PropertyName = "movie")]
         public ITraktMovie Movie { get; set; }
 
-        [JsonIgnore]
         public string Title
         {
             get { return Movie?.Title; }
@@ -28,7 +24,6 @@
             }
         }
 
-        [JsonIgnore]
         public int? Year
         {
             get { return Movie?.Year; }
@@ -40,7 +35,6 @@
             }
         }
 
-        [JsonIgnore]
         public ITraktMovieIds Ids
         {
             get { return Movie?.Ids; }
@@ -52,7 +46,6 @@
             }
         }
 
-        [JsonIgnore]
         public string Tagline
         {
             get { return Movie?.Tagline; }
@@ -64,7 +57,6 @@
             }
         }
 
-        [JsonIgnore]
         public string Overview
         {
             get { return Movie?.Overview; }
@@ -76,7 +68,6 @@
             }
         }
 
-        [JsonIgnore]
         public DateTime? Released
         {
             get { return Movie?.Released; }
@@ -88,7 +79,6 @@
             }
         }
 
-        [JsonIgnore]
         public int? Runtime
         {
             get { return Movie?.Runtime; }
@@ -100,7 +90,6 @@
             }
         }
 
-        [JsonIgnore]
         public string Trailer
         {
             get { return Movie?.Trailer; }
@@ -112,7 +101,6 @@
             }
         }
 
-        [JsonIgnore]
         public string Homepage
         {
             get { return Movie?.Homepage; }
@@ -124,7 +112,6 @@
             }
         }
 
-        [JsonIgnore]
         public float? Rating
         {
             get { return Movie?.Rating; }
@@ -136,7 +123,6 @@
             }
         }
 
-        [JsonIgnore]
         public int? Votes
         {
             get { return Movie?.Votes; }
@@ -148,7 +134,6 @@
             }
         }
 
-        [JsonIgnore]
         public DateTime? UpdatedAt
         {
             get { return Movie?.UpdatedAt; }
@@ -160,7 +145,6 @@
             }
         }
 
-        [JsonIgnore]
         public string LanguageCode
         {
             get { return Movie?.LanguageCode; }
@@ -172,7 +156,6 @@
             }
         }
 
-        [JsonIgnore]
         public IEnumerable<string> AvailableTranslationLanguageCodes
         {
             get { return Movie?.AvailableTranslationLanguageCodes; }
@@ -184,7 +167,6 @@
             }
         }
 
-        [JsonIgnore]
         public IEnumerable<string> Genres
         {
             get { return Movie?.Genres; }
@@ -196,7 +178,6 @@
             }
         }
 
-        [JsonIgnore]
         public string Certification
         {
             get { return Movie?.Certification; }
