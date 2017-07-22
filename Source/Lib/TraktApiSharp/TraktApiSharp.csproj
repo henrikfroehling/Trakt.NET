@@ -217,6 +217,15 @@
     <Compile Include="Objects\Get\Movies\JsonReader\Factories\TraktMovieTranslationJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\Factories\TraktRecentlyUpdatedMovieJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\Factories\TraktTrendingMovieJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\TraktBoxOfficeMovieArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\TraktMostAnticipatedMovieArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\TraktMostPWCMovieArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieAliasArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieReleaseArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieTranslationArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\TraktRecentlyUpdatedMovieArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\TraktTrendingMovieArrayJsonReader.cs" />
     <Compile Include="Objects\Get\People\Credits\ITraktPersonMovieCredits.cs" />
     <Compile Include="Objects\Get\People\Credits\ITraktPersonMovieCreditsCastItem.cs" />
     <Compile Include="Objects\Get\People\Credits\ITraktPersonMovieCreditsCrew.cs" />
