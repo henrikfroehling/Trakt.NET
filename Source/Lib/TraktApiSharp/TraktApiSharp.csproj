@@ -294,6 +294,13 @@
     <Compile Include="Objects\Get\Shows\JsonReader\Factories\TraktShowTranslationJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\Factories\TraktShowWatchedProgressJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\Factories\TraktTrendingShowJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\TraktMostAnticipatedShowArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\TraktMostPWCShowArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\TraktRecentlyUpdatedShowArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\TraktShowAliasArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\TraktShowArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\TraktShowTranslationArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\TraktTrendingShowArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\ITraktSyncCommentsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\ITraktSyncEpisodesLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\ITraktSyncLastActivities.cs" />
