@@ -308,6 +308,7 @@
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncShowsLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\ITraktSyncPlaybackProgressItem.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\JsonReader\Factories\TraktSyncPlaybackProgressItemJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Syncs\Playback\JsonReader\TraktSyncPlaybackProgressItemArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\JsonReader\TraktSyncPlaybackProgressItemObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\ITraktAccountSettings.cs" />
     <Compile Include="Objects\Get\Users\ITraktSharingText.cs" />
