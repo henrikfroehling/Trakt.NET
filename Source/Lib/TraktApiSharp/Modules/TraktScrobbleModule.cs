@@ -6,7 +6,7 @@
     using Objects.Get.Movies.Implementations;
     using Objects.Get.Shows.Implementations;
     using Objects.Post.Scrobbles;
-    using Objects.Post.Scrobbles.Responses.Implementations;
+    using Objects.Post.Scrobbles.Responses;
     using Requests.Handler;
     using Requests.Scrobbles.OAuth;
     using Responses;
@@ -34,19 +34,19 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
+        /// <returns>An <see cref="ITraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
-        public async Task<TraktResponse<TraktMovieScrobblePostResponse>> StartMovieAsync(TraktMovie movie, float progress,
-                                                                                         string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<ITraktMovieScrobblePostResponse>> StartMovieAsync(TraktMovie movie, float progress,
+                                                                                          string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobbleStartRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
+                CreateScrobbleStartRequest<ITraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
         }
 
         /// <summary>
@@ -60,19 +60,19 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
+        /// <returns>An <see cref="ITraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
-        public async Task<TraktResponse<TraktMovieScrobblePostResponse>> PauseMovieAsync(TraktMovie movie, float progress,
-                                                                                         string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<ITraktMovieScrobblePostResponse>> PauseMovieAsync(TraktMovie movie, float progress,
+                                                                                          string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobblePauseRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
+                CreateScrobblePauseRequest<ITraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
         }
 
         /// <summary>
@@ -86,19 +86,19 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
+        /// <returns>An <see cref="ITraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
-        public async Task<TraktResponse<TraktMovieScrobblePostResponse>> StopMovieAsync(TraktMovie movie, float progress,
-                                                                                        string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<ITraktMovieScrobblePostResponse>> StopMovieAsync(TraktMovie movie, float progress,
+                                                                                         string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobbleStopRequest<TraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
+                CreateScrobbleStopRequest<ITraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
         }
 
         /// <summary>
@@ -112,7 +112,7 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">
         /// Thrown, if the given episode is null or if the given episode's ids are null.
@@ -121,14 +121,14 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> StartEpisodeAsync(TraktEpisode episode, float progress,
-                                                                                             string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> StartEpisodeAsync(TraktEpisode episode, float progress,
+                                                                                              string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobbleStartRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+                CreateScrobbleStartRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
         /// <summary>
@@ -142,7 +142,7 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">
         /// Thrown, if the given episode is null or if the given episode's ids are null.
@@ -151,14 +151,14 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> PauseEpisodeAsync(TraktEpisode episode, float progress,
-                                                                                             string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> PauseEpisodeAsync(TraktEpisode episode, float progress,
+                                                                                              string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobblePauseRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+                CreateScrobblePauseRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
         /// <summary>
@@ -172,7 +172,7 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">
         /// Thrown, if the given episode is null or if the given episode's ids are null.
@@ -181,14 +181,14 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> StopEpisodeAsync(TraktEpisode episode, float progress,
-                                                                                            string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> StopEpisodeAsync(TraktEpisode episode, float progress,
+                                                                                             string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobbleStopRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+                CreateScrobbleStopRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
         /// <summary>
@@ -203,7 +203,7 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if the given episode's ids are null and the given show is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if given show's title is null or empty.</exception>
@@ -211,14 +211,14 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> StartEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
-                                                                                                     string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> StartEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
+                                                                                                      string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobbleStartRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+                CreateScrobbleStartRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
         /// <summary>
@@ -233,7 +233,7 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if the given episode's ids are null and the given show is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if given show's title is null or empty.</exception>
@@ -241,14 +241,14 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> PauseEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
-                                                                                                     string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> PauseEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
+                                                                                                      string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobblePauseRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+                CreateScrobblePauseRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
         /// <summary>
@@ -263,7 +263,7 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <returns>An <see cref="TraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if the given episode's ids are null and the given show is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if given show's title is null or empty.</exception>
@@ -271,14 +271,14 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        public async Task<TraktResponse<TraktEpisodeScrobblePostResponse>> StopEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
-                                                                                                    string appVersion = null, DateTime? appBuildDate = null)
+        public async Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> StopEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
+                                                                                                     string appVersion = null, DateTime? appBuildDate = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobbleStopRequest<TraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+                CreateScrobbleStopRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
         }
 
         private TraktScrobbleStartRequest<T, U> CreateScrobbleStartRequest<T, U>(U requestBody) where U : TraktScrobblePost
