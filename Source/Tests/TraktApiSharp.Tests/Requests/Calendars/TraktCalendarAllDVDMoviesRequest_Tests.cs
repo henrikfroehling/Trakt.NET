@@ -6,7 +6,7 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.Calendars.Implementations;
+    using TraktApiSharp.Objects.Get.Calendars;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Calendars;
     using TraktApiSharp.Requests.Parameters;
@@ -30,7 +30,7 @@
         [Fact]
         public void Test_TraktCalendarAllDVDMoviesRequest_Inherits_ATraktCalendarRequest()
         {
-            typeof(TraktCalendarAllDVDMoviesRequest).IsSubclassOf(typeof(ATraktCalendarRequest<TraktCalendarMovie>)).Should().BeTrue();
+            typeof(TraktCalendarAllDVDMoviesRequest).IsSubclassOf(typeof(ATraktCalendarRequest<ITraktCalendarMovie>)).Should().BeTrue();
         }
 
         [Fact]

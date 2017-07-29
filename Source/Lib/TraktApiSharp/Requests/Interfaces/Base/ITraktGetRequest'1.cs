@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Interfaces.Base
 {
-    internal interface ITraktGetRequest<TContentType> : ITraktRequest<TContentType>
+    internal interface ITraktGetRequest<TResponseContentType> : ITraktRequest<TResponseContentType>
     {
 
     }

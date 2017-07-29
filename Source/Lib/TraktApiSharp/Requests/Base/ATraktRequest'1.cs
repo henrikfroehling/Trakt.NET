@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Net.Http;
 
-    internal abstract class ATraktRequest<TContentType> : ITraktRequest<TContentType>
+    internal abstract class ATraktRequest<TResponseContentType> : ITraktRequest<TResponseContentType>
     {
         public abstract TraktAuthorizationRequirement AuthorizationRequirement { get; }
 

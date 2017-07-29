@@ -3,11 +3,11 @@
     using Interfaces;
     using System;
 
-    public class TraktResponse<TContentType> : TraktNoContentResponse, ITraktResponse<TContentType>, IEquatable<TraktResponse<TContentType>>
+    public class TraktResponse<TResponseContentType> : TraktNoContentResponse, ITraktResponse<TResponseContentType>, IEquatable<TraktResponse<TResponseContentType>>
     {
         public bool HasValue { get; set; }
 
-        public TContentType Value { get; set; }
+        public TResponseContentType Value { get; set; }
 
         public string SortBy { get; set; }
 
@@ -25,7 +25,7 @@
 
         public bool? IsPrivateUser { get; set; }
 
-        public bool Equals(TraktResponse<TContentType> other)
+        public bool Equals(TraktResponse<TResponseContentType> other)
         {
             if (other == null)
                 return false;
@@ -42,10 +42,10 @@
                 && other.IsPrivateUser == IsPrivateUser;
         }
 
-        public static implicit operator TContentType(TraktResponse<TContentType> response) => response.Value;
+        public static implicit operator TResponseContentType(TraktResponse<TResponseContentType> response) => response.Value;
 
-        public static implicit operator TraktResponse<TContentType>(TContentType value) => new TraktResponse<TContentType> { Value = value, HasValue = value != null, IsSuccess = value != null };
+        public static implicit operator TraktResponse<TResponseContentType>(TResponseContentType value) => new TraktResponse<TResponseContentType> { Value = value, HasValue = value != null, IsSuccess = value != null };
 
-        public static implicit operator bool(TraktResponse<TContentType> response) => response.IsSuccess && response.HasValue;
+        public static implicit operator bool(TraktResponse<TResponseContentType> response) => response.IsSuccess && response.HasValue;
     }
 }

@@ -52,75 +52,75 @@
             return QueryNoContentAsync(SetupRequestMessage(request));
         }
 
-        public Task<TraktResponse<TContentType>> ExecuteSingleItemRequestAsync<TContentType>(ITraktRequest<TContentType> request)
+        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType>(ITraktRequest<TResponseContentType> request)
         {
             PreExecuteRequest(request);
-            return QuerySingleItemAsync<TContentType>(SetupRequestMessage(request));
+            return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request));
         }
 
-        public Task<TraktListResponse<TContentType>> ExecuteListRequestAsync<TContentType>(ITraktRequest<TContentType> request)
+        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType>(ITraktRequest<TResponseContentType> request)
         {
             PreExecuteRequest(request);
-            return QueryListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryListAsync<TResponseContentType>(SetupRequestMessage(request));
         }
 
-        public Task<TraktPagedResponse<TContentType>> ExecutePagedRequestAsync<TContentType>(ITraktRequest<TContentType> request)
+        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(ITraktRequest<TResponseContentType> request)
         {
             PreExecuteRequest(request);
-            return QueryPagedListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request));
         }
 
         // post requests
 
-        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBody>(ITraktPostRequest<TRequestBody> request)
+        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TResponseContentType>(ITraktPostRequest<TResponseContentType> request)
         {
             PreExecuteRequest(request);
             return QueryNoContentAsync(SetupRequestMessage(request));
         }
 
-        public Task<TraktResponse<TContentType>> ExecuteSingleItemRequestAsync<TContentType, TRequestBody>(ITraktPostRequest<TContentType, TRequestBody> request)
+        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPostRequest<TResponseContentType, TRequestBodyType> request)
         {
             PreExecuteRequest(request);
-            var isCheckinRequest = request is TraktCheckinRequest<TContentType, TRequestBody>;
-            return QuerySingleItemAsync<TContentType>(SetupRequestMessage(request), isCheckinRequest);
+            var isCheckinRequest = request is TraktCheckinRequest<TResponseContentType, TRequestBodyType>;
+            return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request), isCheckinRequest);
         }
 
-        public Task<TraktListResponse<TContentType>> ExecuteListRequestAsync<TContentType, TRequestBody>(ITraktPostRequest<TContentType, TRequestBody> request)
+        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPostRequest<TResponseContentType, TRequestBodyType> request)
         {
             PreExecuteRequest(request);
-            return QueryListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryListAsync<TResponseContentType>(SetupRequestMessage(request));
         }
 
-        public Task<TraktPagedResponse<TContentType>> ExecutePagedRequestAsync<TContentType, TRequestBody>(ITraktPostRequest<TContentType, TRequestBody> request)
+        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPostRequest<TResponseContentType, TRequestBodyType> request)
         {
             PreExecuteRequest(request);
-            return QueryPagedListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request));
         }
 
         // put requests
 
-        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBody>(ITraktPutRequest<TRequestBody> request)
+        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(ITraktPutRequest<TRequestBodyType> request)
         {
             PreExecuteRequest(request);
             return QueryNoContentAsync(SetupRequestMessage(request));
         }
 
-        public Task<TraktResponse<TContentType>> ExecuteSingleItemRequestAsync<TContentType, TRequestBody>(ITraktPutRequest<TContentType, TRequestBody> request)
+        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPutRequest<TResponseContentType, TRequestBodyType> request)
         {
             PreExecuteRequest(request);
-            return QuerySingleItemAsync<TContentType>(SetupRequestMessage(request));
+            return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request));
         }
 
-        public Task<TraktListResponse<TContentType>> ExecuteListRequestAsync<TContentType, TRequestBody>(ITraktPutRequest<TContentType, TRequestBody> request)
+        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPutRequest<TResponseContentType, TRequestBodyType> request)
         {
             PreExecuteRequest(request);
-            return QueryListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryListAsync<TResponseContentType>(SetupRequestMessage(request));
         }
 
-        public Task<TraktPagedResponse<TContentType>> ExecutePagedRequestAsync<TContentType, TRequestBody>(ITraktPutRequest<TContentType, TRequestBody> request)
+        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPutRequest<TResponseContentType, TRequestBodyType> request)
         {
             PreExecuteRequest(request);
-            return QueryPagedListAsync<TContentType>(SetupRequestMessage(request));
+            return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request));
         }
 
         // query response helper methods
@@ -149,7 +149,7 @@
             }
         }
 
-        private async Task<TraktResponse<TContentType>> QuerySingleItemAsync<TContentType>(TraktHttpRequestMessage requestMessage, bool isCheckinRequest = false)
+        private async Task<TraktResponse<TResponseContentType>> QuerySingleItemAsync<TResponseContentType>(TraktHttpRequestMessage requestMessage, bool isCheckinRequest = false)
         {
             HttpResponseMessage responseMessage = null;
 
@@ -161,10 +161,10 @@
                 var responseContent = await GetResponseContentAsync(responseMessage).ConfigureAwait(false);
                 Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
 
-                var contentObject = Json.Deserialize<TContentType>(responseContent);
-                var hasValue = !EqualityComparer<TContentType>.Default.Equals(contentObject, default(TContentType));
+                var contentObject = Json.Deserialize<TResponseContentType>(responseContent);
+                var hasValue = !EqualityComparer<TResponseContentType>.Default.Equals(contentObject, default(TResponseContentType));
 
-                var response = new TraktResponse<TContentType>
+                var response = new TraktResponse<TResponseContentType>
                 {
                     IsSuccess = true,
                     HasValue = hasValue,
@@ -181,7 +181,7 @@
                 if (_client.Configuration.ThrowResponseExceptions)
                     throw;
 
-                return new TraktResponse<TContentType> { IsSuccess = false, Exception = ex };
+                return new TraktResponse<TResponseContentType> { IsSuccess = false, Exception = ex };
             }
             finally
             {
@@ -189,7 +189,7 @@
             }
         }
 
-        private async Task<TraktListResponse<TContentType>> QueryListAsync<TContentType>(TraktHttpRequestMessage requestMessage)
+        private async Task<TraktListResponse<TResponseContentType>> QueryListAsync<TResponseContentType>(TraktHttpRequestMessage requestMessage)
         {
             HttpResponseMessage responseMessage = null;
 
@@ -201,9 +201,9 @@
                 var responseContent = await GetResponseContentAsync(responseMessage).ConfigureAwait(false);
                 Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
 
-                var contentObject = Json.Deserialize<IEnumerable<TContentType>>(responseContent);
+                var contentObject = Json.Deserialize<IEnumerable<TResponseContentType>>(responseContent);
 
-                var response = new TraktListResponse<TContentType>
+                var response = new TraktListResponse<TResponseContentType>
                 {
                     IsSuccess = true,
                     HasValue = contentObject != null,
@@ -220,7 +220,7 @@
                 if (_client.Configuration.ThrowResponseExceptions)
                     throw;
 
-                return new TraktListResponse<TContentType> { IsSuccess = false, Exception = ex };
+                return new TraktListResponse<TResponseContentType> { IsSuccess = false, Exception = ex };
             }
             finally
             {
@@ -228,7 +228,7 @@
             }
         }
 
-        private async Task<TraktPagedResponse<TContentType>> QueryPagedListAsync<TContentType>(TraktHttpRequestMessage requestMessage)
+        private async Task<TraktPagedResponse<TResponseContentType>> QueryPagedListAsync<TResponseContentType>(TraktHttpRequestMessage requestMessage)
         {
             HttpResponseMessage responseMessage = null;
 
@@ -240,9 +240,9 @@
                 var responseContent = await GetResponseContentAsync(responseMessage).ConfigureAwait(false);
                 Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
 
-                var contentObject = Json.Deserialize<IEnumerable<TContentType>>(responseContent);
+                var contentObject = Json.Deserialize<IEnumerable<TResponseContentType>>(responseContent);
 
-                var response = new TraktPagedResponse<TContentType>
+                var response = new TraktPagedResponse<TResponseContentType>
                 {
                     IsSuccess = true,
                     HasValue = contentObject != null,
@@ -262,7 +262,7 @@
                 if (_client.Configuration.ThrowResponseExceptions)
                     throw;
 
-                return new TraktPagedResponse<TContentType> { IsSuccess = false, Exception = ex };
+                return new TraktPagedResponse<TResponseContentType> { IsSuccess = false, Exception = ex };
             }
             finally
             {
@@ -324,7 +324,7 @@
             return requestMessage;
         }
 
-        private TraktHttpRequestMessage SetupRequestMessage<TRequestBody>(ITraktPostRequest<TRequestBody> request)
+        private TraktHttpRequestMessage SetupRequestMessage<TRequestBodyType>(ITraktPostRequest<TRequestBodyType> request)
         {
             var requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);
@@ -332,7 +332,7 @@
             return requestMessage;
         }
 
-        private TraktHttpRequestMessage SetupRequestMessage<TContentType, TRequestBody>(ITraktPostRequest<TContentType, TRequestBody> request)
+        private TraktHttpRequestMessage SetupRequestMessage<TResponseContentType, TRequestBodyType>(ITraktPostRequest<TResponseContentType, TRequestBodyType> request)
         {
             var requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);
@@ -340,7 +340,7 @@
             return requestMessage;
         }
 
-        private TraktHttpRequestMessage SetupRequestMessage<TRequestBody>(ITraktPutRequest<TRequestBody> request)
+        private TraktHttpRequestMessage SetupRequestMessage<TRequestBodyType>(ITraktPutRequest<TRequestBodyType> request)
         {
             var requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);
@@ -348,7 +348,7 @@
             return requestMessage;
         }
 
-        private TraktHttpRequestMessage SetupRequestMessage<TContentType, TRequestBody>(ITraktPutRequest<TContentType, TRequestBody> request)
+        private TraktHttpRequestMessage SetupRequestMessage<TResponseContentType, TRequestBodyType>(ITraktPutRequest<TResponseContentType, TRequestBodyType> request)
         {
             var requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);
@@ -396,7 +396,7 @@
             return requestMessage;
         }
 
-        private void AddRequestBodyContent<TRequestBody>(TraktHttpRequestMessage requestMessage, ITraktHasRequestBody<TRequestBody> request)
+        private void AddRequestBodyContent<TRequestBodyType>(TraktHttpRequestMessage requestMessage, ITraktHasRequestBody<TRequestBodyType> request)
         {
             if (requestMessage == null)
                 throw new ArgumentNullException(nameof(requestMessage));
@@ -405,10 +405,10 @@
             requestMessage.RequestBodyJson = requestBodyJson;
         }
 
-        private HttpContent GetRequestBodyContent<TRequestBody>(ITraktHasRequestBody<TRequestBody> request, out string requestBodyJson)
+        private HttpContent GetRequestBodyContent<TRequestBodyType>(ITraktHasRequestBody<TRequestBodyType> request, out string requestBodyJson)
         {
             var requestBody = request.RequestBody;
-            var requestBodyIsNull = EqualityComparer<TRequestBody>.Default.Equals(requestBody, default(TRequestBody));
+            var requestBodyIsNull = EqualityComparer<TRequestBodyType>.Default.Equals(requestBody, default(TRequestBodyType));
 
             if (requestBodyIsNull)
             {

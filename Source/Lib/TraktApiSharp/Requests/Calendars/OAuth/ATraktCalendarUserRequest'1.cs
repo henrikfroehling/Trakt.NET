@@ -2,7 +2,7 @@
 {
     using Base;
 
-    internal abstract class ATraktCalendarUserRequest<TContentType> : ATraktCalendarRequest<TContentType>
+    internal abstract class ATraktCalendarUserRequest<TResponseContentType> : ATraktCalendarRequest<TResponseContentType>
     {
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
     }
