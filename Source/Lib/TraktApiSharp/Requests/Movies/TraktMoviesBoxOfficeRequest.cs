@@ -2,11 +2,11 @@
 {
     using Base;
     using Interfaces;
-    using Objects.Get.Movies.Implementations;
+    using Objects.Get.Movies;
     using Parameters;
     using System.Collections.Generic;
 
-    internal sealed class TraktMoviesBoxOfficeRequest : ATraktGetRequest<TraktBoxOfficeMovie>, ITraktSupportsExtendedInfo
+    internal sealed class TraktMoviesBoxOfficeRequest : ATraktGetRequest<ITraktBoxOfficeMovie>, ITraktSupportsExtendedInfo
     {
         public TraktExtendedInfo ExtendedInfo { get; set; }
 

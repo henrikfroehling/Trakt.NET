@@ -3,12 +3,12 @@
     using Base;
     using Extensions;
     using Interfaces;
-    using Objects.Get.Movies.Implementations;
+    using Objects.Get.Movies;
     using Parameters;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktMoviesRecentlyUpdatedRequest : ATraktGetRequest<TraktRecentlyUpdatedMovie>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
+    internal sealed class TraktMoviesRecentlyUpdatedRequest : ATraktGetRequest<ITraktRecentlyUpdatedMovie>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
     {
         internal DateTime? StartDate { get; set; }
 

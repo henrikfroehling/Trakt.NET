@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Requests.Movies
 {
-    using Objects.Basic.Implementations;
+    using Objects.Basic;
 
-    internal sealed class TraktMovieRatingsRequest : ATraktMovieRequest<TraktRating>
+    internal sealed class TraktMovieRatingsRequest : ATraktMovieRequest<ITraktRating>
     {
         public override string UriTemplate => "movies/{id}/ratings";
     }

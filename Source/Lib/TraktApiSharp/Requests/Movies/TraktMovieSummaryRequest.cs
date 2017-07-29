@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Requests.Movies
 {
     using Interfaces;
-    using Objects.Get.Movies.Implementations;
+    using Objects.Get.Movies;
     using Parameters;
     using System.Collections.Generic;
 
-    internal sealed class TraktMovieSummaryRequest : ATraktMovieRequest<TraktMovie>, ITraktSupportsExtendedInfo
+    internal sealed class TraktMovieSummaryRequest : ATraktMovieRequest<ITraktMovie>, ITraktSupportsExtendedInfo
     {
         public TraktExtendedInfo ExtendedInfo { get; set; }
 

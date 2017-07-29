@@ -8,7 +8,7 @@
     using System.Reflection;
     using Traits;
     using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
+    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Movies;
@@ -33,7 +33,7 @@
         [Fact]
         public void Test_TraktMoviesRecentlyUpdatedRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktMoviesRecentlyUpdatedRequest).IsSubclassOf(typeof(ATraktGetRequest<TraktRecentlyUpdatedMovie>)).Should().BeTrue();
+            typeof(TraktMoviesRecentlyUpdatedRequest).IsSubclassOf(typeof(ATraktGetRequest<ITraktRecentlyUpdatedMovie>)).Should().BeTrue();
         }
 
         [Fact]

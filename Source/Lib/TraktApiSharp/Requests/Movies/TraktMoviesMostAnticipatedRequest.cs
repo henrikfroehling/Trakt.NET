@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Requests.Movies
 {
-    using Objects.Get.Movies.Implementations;
+    using Objects.Get.Movies;
 
-    internal sealed class TraktMoviesMostAnticipatedRequest : ATraktMoviesRequest<TraktMostAnticipatedMovie>
+    internal sealed class TraktMoviesMostAnticipatedRequest : ATraktMoviesRequest<ITraktMostAnticipatedMovie>
     {
         public override string UriTemplate => "movies/anticipated{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
 

@@ -3,7 +3,7 @@
     using FluentAssertions;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
+    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Movies;
@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktMoviesBoxOfficeRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktMoviesBoxOfficeRequest).IsSubclassOf(typeof(ATraktGetRequest<TraktBoxOfficeMovie>)).Should().BeTrue();
+            typeof(TraktMoviesBoxOfficeRequest).IsSubclassOf(typeof(ATraktGetRequest<ITraktBoxOfficeMovie>)).Should().BeTrue();
         }
 
         [Fact]

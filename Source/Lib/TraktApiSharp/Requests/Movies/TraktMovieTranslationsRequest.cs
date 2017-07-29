@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Requests.Movies
 {
-    using Objects.Get.Movies.Implementations;
+    using Objects.Get.Movies;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktMovieTranslationsRequest : ATraktMovieRequest<TraktMovieTranslation>
+    internal sealed class TraktMovieTranslationsRequest : ATraktMovieRequest<ITraktMovieTranslation>
     {
         internal string LanguageCode { get; set; }
 

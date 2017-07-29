@@ -8,7 +8,7 @@
     using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
+    using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Movies;
     using Xunit;
@@ -31,7 +31,7 @@
         [Fact]
         public void Test_TraktMovieListsRequest_Inherits_ATraktMovieRequest_1()
         {
-            typeof(TraktMovieListsRequest).IsSubclassOf(typeof(ATraktMovieRequest<TraktList>)).Should().BeTrue();
+            typeof(TraktMovieListsRequest).IsSubclassOf(typeof(ATraktMovieRequest<ITraktList>)).Should().BeTrue();
         }
 
         [Fact]

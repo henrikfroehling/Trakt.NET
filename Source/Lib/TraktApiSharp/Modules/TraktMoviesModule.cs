@@ -2,9 +2,11 @@
 {
     using Enums;
     using Exceptions;
-    using Objects.Basic.Implementations;
+    using Objects.Basic;
+    using Objects.Get.Movies;
     using Objects.Get.Movies.Implementations;
-    using Objects.Get.Users.Implementations;
+    using Objects.Get.Users;
+    using Objects.Get.Users.Lists;
     using Objects.Get.Users.Lists.Implementations;
     using Requests.Handler;
     using Requests.Movies;
@@ -26,7 +28,7 @@
         internal TraktMoviesModule(TraktClient client) : base(client) { }
 
         /// <summary>
-        /// Gets a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
+        /// Gets a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/summary/get-a-movie">"Trakt API Doc - Movies: Summary"</a> for more information.
@@ -38,10 +40,10 @@
         /// The extended info, which determines how much data about the movie should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <returns>An <see cref="TraktMovie" /> instance with the queried movie's data.</returns>
+        /// <returns>An <see cref="ITraktMovie" /> instance with the queried movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<TraktMovie>> GetMovieAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktResponse<ITraktMovie>> GetMovieAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -53,7 +55,7 @@
         }
 
         /// <summary>
-        /// Gets multiple different <see cref="TraktMovie" />s at once with the given Trakt-Ids or -Slugs.
+        /// Gets multiple different <see cref="ITraktMovie" />s at once with the given Trakt-Ids or -Slugs.
         /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/summary/get-a-movie">"Trakt API Doc - Movies: Summary"</a> for more information.
@@ -61,19 +63,19 @@
         /// <para>See also <seealso cref="GetMovieAsync(string, TraktExtendedInfo)" />.</para>
         /// </summary>
         /// <param name="moviesQueryParams">A list of movie ids and optional extended infos. See also <seealso cref="TraktMultipleObjectsQueryParams" />.</param>
-        /// <returns>A list of <see cref="TraktMovie" /> instances with the data of each queried movie.</returns>
+        /// <returns>A list of <see cref="ITraktMovie" /> instances with the data of each queried movie.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given movie ids is null, empty or contains spaces.</exception>
-        public async Task<IEnumerable<TraktResponse<TraktMovie>>> GetMultipleMoviesAsync(TraktMultipleObjectsQueryParams moviesQueryParams)
+        public async Task<IEnumerable<TraktResponse<ITraktMovie>>> GetMultipleMoviesAsync(TraktMultipleObjectsQueryParams moviesQueryParams)
         {
             if (moviesQueryParams == null || moviesQueryParams.Count <= 0)
-                return new List<TraktResponse<TraktMovie>>();
+                return new List<TraktResponse<ITraktMovie>>();
 
-            var tasks = new List<Task<TraktResponse<TraktMovie>>>();
+            var tasks = new List<Task<TraktResponse<ITraktMovie>>>();
 
             foreach (var queryParam in moviesQueryParams)
             {
-                Task<TraktResponse<TraktMovie>> task = GetMovieAsync(queryParam.Id, queryParam.ExtendedInfo);
+                Task<TraktResponse<ITraktMovie>> task = GetMovieAsync(queryParam.Id, queryParam.ExtendedInfo);
                 tasks.Add(task);
             }
 
@@ -82,24 +84,24 @@
         }
 
         /// <summary>
-        /// Gets all title aliases for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
+        /// Gets all title aliases for a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/aliases/get-all-movie-aliases">"Trakt API Doc - Movies: Aliases"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
-        /// <returns>A list of <see cref="TraktMovieAlias" /> instances, each containing a title and country code.</returns>
+        /// <returns>A list of <see cref="ITraktMovieAlias" /> instances, each containing a title and country code.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktListResponse<TraktMovieAlias>> GetMovieAliasesAsync(string movieIdOrSlug)
+        public async Task<TraktListResponse<ITraktMovieAlias>> GetMovieAliasesAsync(string movieIdOrSlug)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktMovieAliasesRequest { Id = movieIdOrSlug });
         }
 
         /// <summary>
-        /// Gets all releases for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
+        /// Gets all releases for a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/releases/get-all-movie-releases">"Trakt API Doc - Movies: Releases"</a> for more information.
@@ -107,18 +109,18 @@
         /// </summary>
         /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <param name="countryCode">An optional two letter country code to query a specific release.</param>
-        /// <returns>A list of <see cref="TraktMovieRelease" /> instances, each containing a country code, certification, release date and a note.</returns>
+        /// <returns>A list of <see cref="ITraktMovieRelease" /> instances, each containing a country code, certification, release date and a note.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given countryCode is shorter or longer than two characters.</exception>
-        public async Task<TraktListResponse<TraktMovieRelease>> GetMovieReleasesAsync(string movieIdOrSlug, string countryCode = null)
+        public async Task<TraktListResponse<ITraktMovieRelease>> GetMovieReleasesAsync(string movieIdOrSlug, string countryCode = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktMovieReleasesRequest { Id = movieIdOrSlug, CountryCode = countryCode });
         }
 
         /// <summary>
-        /// Gets all translations for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
+        /// Gets all translations for a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/translations/get-all-movie-translations">"Trakt API Doc - Movies: Translations"</a> for more information.
@@ -126,18 +128,18 @@
         /// </summary>
         /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
         /// <param name="languageCode">An optional two letter language code to query a specific translation language.</param>
-        /// <returns>A list of <see cref="TraktMovieTranslation" /> instances, each containing a title, tagline, overview and language code.</returns>
+        /// <returns>A list of <see cref="ITraktMovieTranslation" /> instances, each containing a title, tagline, overview and language code.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given languageCode is shorter or longer than two characters.</exception>
-        public async Task<TraktListResponse<TraktMovieTranslation>> GetMovieTranslationsAsync(string movieIdOrSlug, string languageCode = null)
+        public async Task<TraktListResponse<ITraktMovieTranslation>> GetMovieTranslationsAsync(string movieIdOrSlug, string languageCode = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktMovieTranslationsRequest { Id = movieIdOrSlug, LanguageCode = languageCode });
         }
 
         /// <summary>
-        /// Gets top level comments for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
+        /// Gets top level comments for a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/translations/get-all-movie-comments">"Trakt API Doc - Movies: Comments"</a> for more information.
@@ -148,17 +150,17 @@
         /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{TraktComment}"/> instance containing the queried movie comments and which also
+        /// An <see cref="TraktPagedResponse{ITraktComment}"/> instance containing the queried movie comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktComment" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktComment" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktPagedResponse<TraktComment>> GetMovieCommentsAsync(string movieIdOrSlug,
-                                                                                  TraktCommentSortOrder commentSortOrder = null,
-                                                                                  int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<ITraktComment>> GetMovieCommentsAsync(string movieIdOrSlug,
+                                                                                   TraktCommentSortOrder commentSortOrder = null,
+                                                                                   int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -172,7 +174,7 @@
         }
 
         /// <summary>
-        /// Gets all <see cref="TraktList" />s containing a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
+        /// Gets all <see cref="ITraktList" />s containing a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/lists/get-lists-containing-this-movie">"Trakt API Doc - Movies: Lists"</a> for more information.
@@ -184,17 +186,17 @@
         /// <param name="page">The page of the <see cref="TraktList" /> list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of <see cref="TraktList" />s for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{TraktList}"/> instance containing the queried movie lists and which also
+        /// An <see cref="TraktPagedResponse{ITraktList}"/> instance containing the queried movie lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktList" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktList" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktPagedResponse<TraktList>> GetMovieListsAsync(string movieIdOrSlug, TraktListType listType = null,
-                                                                            TraktListSortOrder listSortOrder = null,
-                                                                            int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<ITraktList>> GetMovieListsAsync(string movieIdOrSlug, TraktListType listType = null,
+                                                                             TraktListSortOrder listSortOrder = null,
+                                                                             int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -209,7 +211,7 @@
         }
 
         /// <summary>
-        /// Gets all people for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
+        /// Gets all people for a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/people/get-all-people-for-a-movie">"Trakt API Doc - Movies: People"</a> for more information.
@@ -220,34 +222,34 @@
         /// The extended info, which determines how much data about the people should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <returns>An <see cref="TraktCastAndCrew" /> instance, containing the cast and crew for a movie with the given movieIdOrSlug.</returns>
+        /// <returns>An <see cref="ITraktCastAndCrew" /> instance, containing the cast and crew for a movie with the given movieIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<TraktCastAndCrew>> GetMoviePeopleAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktResponse<ITraktCastAndCrew>> GetMoviePeopleAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteSingleItemRequestAsync(new TraktMoviePeopleRequest { Id = movieIdOrSlug, ExtendedInfo = extendedInfo });
         }
 
         /// <summary>
-        /// Gets the ratings for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
+        /// Gets the ratings for a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/ratings/get-movie-ratings">"Trakt API Doc - Movies: Ratings"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
-        /// <returns>An <see cref="TraktRating" /> instance, containing the ratings for a movie with the given movieIdOrSlug.</returns>
+        /// <returns>An <see cref="ITraktRating" /> instance, containing the ratings for a movie with the given movieIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<TraktRating>> GetMovieRatingsAsync(string movieIdOrSlug)
+        public async Task<TraktResponse<ITraktRating>> GetMovieRatingsAsync(string movieIdOrSlug)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteSingleItemRequestAsync(new TraktMovieRatingsRequest { Id = movieIdOrSlug });
         }
 
         /// <summary>
-        /// Gets related movies for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
+        /// Gets related movies for a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/related/get-related-movies">"Trakt API Doc - Movies: Related"</a> for more information.
@@ -261,16 +263,16 @@
         /// <param name="page">The page of the related movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of related movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{TraktMovie}"/> instance containing the queried related movies and which also
+        /// An <see cref="TraktPagedResponse{ITraktMovie}"/> instance containing the queried related movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktPagedResponse<TraktMovie>> GetMovieRelatedMoviesAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                                     int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<ITraktMovie>> GetMovieRelatedMoviesAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                                      int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -284,24 +286,24 @@
         }
 
         /// <summary>
-        /// Gets the statistics for a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
+        /// Gets the statistics for a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/stats/get-movie-stats">"Trakt API Doc - Movies: Stats"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="TraktMovieIds" />.</param>
-        /// <returns>An <see cref="TraktStatistics" /> instance, containing the statistics for a movie with the given movieIdOrSlug.</returns>
+        /// <returns>An <see cref="ITraktStatistics" /> instance, containing the statistics for a movie with the given movieIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<TraktStatistics>> GetMovieStatisticsAsync(string movieIdOrSlug)
+        public async Task<TraktResponse<ITraktStatistics>> GetMovieStatisticsAsync(string movieIdOrSlug)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteSingleItemRequestAsync(new TraktMovieStatisticsRequest { Id = movieIdOrSlug });
         }
 
         /// <summary>
-        /// Gets all watching users of a <see cref="TraktMovie" /> with the given Trakt-Id or -Slug.
+        /// Gets all watching users of a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/watching/get-users-watching-right-now">"Trakt API Doc - Movies: Watching"</a> for more information.
@@ -312,10 +314,10 @@
         /// The extended info, which determines how much data about the users should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <returns>A list of <see cref="TraktUser" /> instances.</returns>
+        /// <returns>A list of <see cref="ITraktUser" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktListResponse<TraktUser>> GetMovieWatchingUsersAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktListResponse<ITraktUser>> GetMovieWatchingUsersAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktMovieWatchingUsersRequest { Id = movieIdOrSlug, ExtendedInfo = extendedInfo });
@@ -336,16 +338,16 @@
         /// <param name="page">The page of the trending movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of trending movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{TraktTrendingMovie}"/> instance containing the queried trending movies and which also
+        /// An <see cref="TraktPagedResponse{ITraktTrendingMovie}"/> instance containing the queried trending movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktTrendingMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktTrendingMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<TraktTrendingMovie>> GetTrendingMoviesAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                         TraktMovieFilter filter = null,
-                                                                                         int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<ITraktTrendingMovie>> GetTrendingMoviesAsync(TraktExtendedInfo extendedInfo = null,
+                                                                                          TraktMovieFilter filter = null,
+                                                                                          int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -373,16 +375,16 @@
         /// <param name="page">The page of the popular movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of popular movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{TraktMovie}"/> instance containing the queried popular movies and which also
+        /// An <see cref="TraktPagedResponse{ITraktMovie}"/> instance containing the queried popular movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<TraktMovie>> GetPopularMoviesAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                TraktMovieFilter filter = null,
-                                                                                int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<ITraktMovie>> GetPopularMoviesAsync(TraktExtendedInfo extendedInfo = null,
+                                                                                 TraktMovieFilter filter = null,
+                                                                                 int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -411,17 +413,17 @@
         /// <param name="page">The page of the most played movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of most played movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{TraktMostPlayedMovie}"/> instance containing the queried most played movies and which also
+        /// An <see cref="TraktPagedResponse{ITraktMostPlayedMovie}"/> instance containing the queried most played movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostPWCMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktMostPWCMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<TraktMostPWCMovie>> GetMostPlayedMoviesAsync(TraktTimePeriod period = null,
-                                                                                             TraktExtendedInfo extendedInfo = null,
-                                                                                             TraktMovieFilter filter = null,
-                                                                                             int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostPlayedMoviesAsync(TraktTimePeriod period = null,
+                                                                                           TraktExtendedInfo extendedInfo = null,
+                                                                                           TraktMovieFilter filter = null,
+                                                                                           int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -451,17 +453,17 @@
         /// <param name="page">The page of the most watched movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of most watched movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{TraktMostPWCMovie}"/> instance containing the queried most watched movies and which also
+        /// An <see cref="TraktPagedResponse{ITraktMostPWCMovie}"/> instance containing the queried most watched movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostPWCMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktMostPWCMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<TraktMostPWCMovie>> GetMostWatchedMoviesAsync(TraktTimePeriod period = null,
-                                                                                           TraktExtendedInfo extendedInfo = null,
-                                                                                           TraktMovieFilter filter = null,
-                                                                                           int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostWatchedMoviesAsync(TraktTimePeriod period = null,
+                                                                                            TraktExtendedInfo extendedInfo = null,
+                                                                                            TraktMovieFilter filter = null,
+                                                                                            int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -491,17 +493,17 @@
         /// <param name="page">The page of the most collected movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of most collected movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{TraktMostPWCMovie}"/> instance containing the queried most collected movies and which also
+        /// An <see cref="TraktPagedResponse{ITraktMostPWCMovie}"/> instance containing the queried most collected movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostPWCMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktMostPWCMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<TraktMostPWCMovie>> GetMostCollectedMoviesAsync(TraktTimePeriod period = null,
-                                                                                             TraktExtendedInfo extendedInfo = null,
-                                                                                             TraktMovieFilter filter = null,
-                                                                                             int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostCollectedMoviesAsync(TraktTimePeriod period = null,
+                                                                                              TraktExtendedInfo extendedInfo = null,
+                                                                                              TraktMovieFilter filter = null,
+                                                                                              int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -530,16 +532,16 @@
         /// <param name="page">The page of the most anticipated movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of most anticipated movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{TraktMostAnticipatedMovie}"/> instance containing the queried most anticipated movies and which also
+        /// An <see cref="TraktPagedResponse{ITraktMostAnticipatedMovie}"/> instance containing the queried most anticipated movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMostAnticipatedMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktMostAnticipatedMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<TraktMostAnticipatedMovie>> GetMostAnticipatedMoviesAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                                       TraktMovieFilter filter = null,
-                                                                                                       int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<ITraktMostAnticipatedMovie>> GetMostAnticipatedMoviesAsync(TraktExtendedInfo extendedInfo = null,
+                                                                                                        TraktMovieFilter filter = null,
+                                                                                                        int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -563,9 +565,9 @@
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <returns>A list of <see cref="TraktBoxOfficeMovie" /> instances.</returns>
+        /// <returns>A list of <see cref="ITraktBoxOfficeMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktListResponse<TraktBoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktListResponse<ITraktBoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktMoviesBoxOfficeRequest { ExtendedInfo = extendedInfo });
@@ -586,16 +588,16 @@
         /// <param name="page">The page of the updated movies list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum item count of updated movies for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{TraktRecentlyUpdatedMovie}"/> instance containing the queried updated movies and which also
+        /// An <see cref="TraktPagedResponse{ITraktRecentlyUpdatedMovie}"/> instance containing the queried updated movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktRecentlyUpdatedMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktRecentlyUpdatedMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<TraktRecentlyUpdatedMovie>> GetRecentlyUpdatedMoviesAsync(DateTime? startDate = null,
-                                                                                                       TraktExtendedInfo extendedInfo = null,
-                                                                                                       int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<ITraktRecentlyUpdatedMovie>> GetRecentlyUpdatedMoviesAsync(DateTime? startDate = null,
+                                                                                                        TraktExtendedInfo extendedInfo = null,
+                                                                                                        int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
