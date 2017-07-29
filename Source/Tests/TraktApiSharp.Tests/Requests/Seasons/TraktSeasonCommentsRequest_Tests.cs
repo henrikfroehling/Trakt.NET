@@ -8,7 +8,7 @@
     using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Basic.Implementations;
+    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Seasons;
     using Xunit;
@@ -31,7 +31,7 @@
         [Fact]
         public void Test_TraktSeasonCommentsRequest_Inherits_ATraktSeasonRequest_1()
         {
-            typeof(TraktSeasonCommentsRequest).IsSubclassOf(typeof(ATraktSeasonRequest<TraktComment>)).Should().BeTrue();
+            typeof(TraktSeasonCommentsRequest).IsSubclassOf(typeof(ATraktSeasonRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]

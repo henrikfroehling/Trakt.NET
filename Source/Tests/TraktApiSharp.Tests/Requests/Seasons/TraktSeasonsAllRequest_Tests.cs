@@ -7,7 +7,7 @@
     using System.Linq;
     using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Seasons.Implementations;
+    using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
@@ -32,7 +32,7 @@
         [Fact]
         public void Test_TraktSeasonsAllRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktSeasonsAllRequest).IsSubclassOf(typeof(ATraktGetRequest<TraktSeason>)).Should().BeTrue();
+            typeof(TraktSeasonsAllRequest).IsSubclassOf(typeof(ATraktGetRequest<ITraktSeason>)).Should().BeTrue();
         }
 
         [Fact]
