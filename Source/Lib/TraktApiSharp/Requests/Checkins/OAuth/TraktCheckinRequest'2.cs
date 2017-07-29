@@ -3,9 +3,9 @@
     using Base;
     using System.Collections.Generic;
 
-    internal sealed class TraktCheckinRequest<TContentType, TRequestBody> : ATraktPostRequest<TContentType, TRequestBody>
+    internal sealed class TraktCheckinRequest<TResponseContentType, TRequestBodyType> : ATraktPostRequest<TResponseContentType, TRequestBodyType>
     {
-        public override TRequestBody RequestBody { get; set; }
+        public override TRequestBodyType RequestBody { get; set; }
 
         public override string UriTemplate => "checkin";
 
