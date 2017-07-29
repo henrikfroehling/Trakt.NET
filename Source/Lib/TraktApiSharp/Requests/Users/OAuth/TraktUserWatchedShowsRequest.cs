@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Requests.Users.OAuth
 {
     using Extensions;
-    using Objects.Get.Watched.Implementations;
+    using Objects.Get.Watched;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserWatchedShowsRequest : ATraktUsersGetRequest<TraktWatchedShow>
+    internal sealed class TraktUserWatchedShowsRequest : ATraktUsersGetRequest<ITraktWatchedShow>
     {
         internal string Username { get; set; }
 

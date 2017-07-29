@@ -6,13 +6,13 @@
     using System;
     using System.Collections.Generic;
 
-    internal abstract class ATraktUsersPostByIdRequest<TContentType, TRequestBody> : ATraktPostRequest<TContentType, TRequestBody>, ITraktHasId
+    internal abstract class ATraktUsersPostByIdRequest<TResponseContentType, TRequestBodyType> : ATraktPostRequest<TResponseContentType, TRequestBodyType>, ITraktHasId
     {
         public string Id { get; set; }
 
         public abstract TraktRequestObjectType RequestObjectType { get; }
 
-        public override TRequestBody RequestBody { get; set; }
+        public override TRequestBodyType RequestBody { get; set; }
 
         public override IDictionary<string, object> GetUriPathParameters()
             => new Dictionary<string, object>

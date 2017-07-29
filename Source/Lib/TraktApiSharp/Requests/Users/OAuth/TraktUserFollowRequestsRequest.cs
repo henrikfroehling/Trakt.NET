@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Requests.Users.OAuth
 {
     using Base;
-    using TraktApiSharp.Objects.Get.Users.Implementations;
+    using TraktApiSharp.Objects.Get.Users;
 
-    internal sealed class TraktUserFollowRequestsRequest : ATraktUsersGetRequest<TraktUserFollowRequest>
+    internal sealed class TraktUserFollowRequestsRequest : ATraktUsersGetRequest<ITraktUserFollowRequest>
     {
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 

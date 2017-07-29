@@ -2,11 +2,11 @@
 {
     using Base;
     using Extensions;
-    using Objects.Post.Users.Responses.Implementations;
+    using Objects.Post.Users.Responses;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserFollowUserRequest : ATraktBodylessPostRequest<TraktUserFollowUserPostResponse>
+    internal sealed class TraktUserFollowUserRequest : ATraktBodylessPostRequest<ITraktUserFollowUserPostResponse>
     {
         internal string Username { get; set; }
 

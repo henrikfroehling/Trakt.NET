@@ -7,7 +7,7 @@
     using System.Reflection;
     using Traits;
     using TraktApiSharp.Objects.Post.Users.CustomListItems;
-    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses.Implementations;
+    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
@@ -30,7 +30,7 @@
         [Fact]
         public void Test_TraktUserCustomListItemsRemoveRequest_Inherits_ATraktUsersPostByIdRequest_2()
         {
-            typeof(TraktUserCustomListItemsRemoveRequest).IsSubclassOf(typeof(ATraktUsersPostByIdRequest<TraktUserCustomListItemsRemovePostResponse, TraktUserCustomListItemsPost>)).Should().BeTrue();
+            typeof(TraktUserCustomListItemsRemoveRequest).IsSubclassOf(typeof(ATraktUsersPostByIdRequest<ITraktUserCustomListItemsRemovePostResponse, TraktUserCustomListItemsPost>)).Should().BeTrue();
         }
 
         [Fact]

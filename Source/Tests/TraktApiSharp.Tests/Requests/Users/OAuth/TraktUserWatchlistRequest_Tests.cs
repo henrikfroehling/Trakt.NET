@@ -8,7 +8,7 @@
     using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Watchlist.Implementations;
+    using TraktApiSharp.Objects.Get.Watchlist;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Users.OAuth;
@@ -32,7 +32,7 @@
         [Fact]
         public void Test_TraktUserWatchlistRequest_Inherits_ATraktUsersPagedGetRequest_1()
         {
-            typeof(TraktUserWatchlistRequest).IsSubclassOf(typeof(ATraktUsersPagedGetRequest<TraktWatchlistItem>)).Should().BeTrue();
+            typeof(TraktUserWatchlistRequest).IsSubclassOf(typeof(ATraktUsersPagedGetRequest<ITraktWatchlistItem>)).Should().BeTrue();
         }
 
         [Fact]

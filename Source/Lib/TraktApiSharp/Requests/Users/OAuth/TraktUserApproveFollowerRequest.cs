@@ -3,11 +3,11 @@
     using Base;
     using Extensions;
     using Interfaces;
-    using Objects.Get.Users.Implementations;
+    using Objects.Get.Users;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserApproveFollowerRequest : ATraktBodylessPostRequest<TraktUserFollower>, ITraktHasId
+    internal sealed class TraktUserApproveFollowerRequest : ATraktBodylessPostRequest<ITraktUserFollower>, ITraktHasId
     {
         public string Id { get; set; }
 

@@ -7,7 +7,7 @@
     using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Users.Implementations;
+    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Users.OAuth;
@@ -31,7 +31,7 @@
         [Fact]
         public void Test_TraktUserLikesRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktUserLikesRequest).IsSubclassOf(typeof(ATraktGetRequest<TraktUserLikeItem>)).Should().BeTrue();
+            typeof(TraktUserLikesRequest).IsSubclassOf(typeof(ATraktGetRequest<ITraktUserLikeItem>)).Should().BeTrue();
         }
 
         [Fact]

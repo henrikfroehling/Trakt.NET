@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Post.Users.Responses.Implementations;
+    using TraktApiSharp.Objects.Post.Users.Responses;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
@@ -29,7 +29,7 @@
         [Fact]
         public void Test_TraktUserFollowUserRequest_Inherits_ATraktBodylessPostRequest_1()
         {
-            typeof(TraktUserFollowUserRequest).IsSubclassOf(typeof(ATraktBodylessPostRequest<TraktUserFollowUserPostResponse>)).Should().BeTrue();
+            typeof(TraktUserFollowUserRequest).IsSubclassOf(typeof(ATraktBodylessPostRequest<ITraktUserFollowUserPostResponse>)).Should().BeTrue();
         }
 
         [Fact]

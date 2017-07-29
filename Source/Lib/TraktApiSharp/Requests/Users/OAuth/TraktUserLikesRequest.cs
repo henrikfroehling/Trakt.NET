@@ -3,10 +3,10 @@
     using Base;
     using Enums;
     using Interfaces;
-    using Objects.Get.Users.Implementations;
+    using Objects.Get.Users;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserLikesRequest : ATraktGetRequest<TraktUserLikeItem>, ITraktSupportsPagination
+    internal sealed class TraktUserLikesRequest : ATraktGetRequest<ITraktUserLikeItem>, ITraktSupportsPagination
     {
         internal TraktUserLikeType Type { get; set; }
 

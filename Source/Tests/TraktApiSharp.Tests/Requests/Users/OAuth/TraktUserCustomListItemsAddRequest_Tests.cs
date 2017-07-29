@@ -8,7 +8,7 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Post.Users.CustomListItems;
-    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses.Implementations;
+    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
@@ -31,7 +31,7 @@
         [Fact]
         public void Test_TraktUserCustomListItemsAddRequest_Inherits_ATraktUsersPostByIdRequest_2()
         {
-            typeof(TraktUserCustomListItemsAddRequest).IsSubclassOf(typeof(ATraktUsersPostByIdRequest<TraktUserCustomListItemsPostResponse, TraktUserCustomListItemsPost>)).Should().BeTrue();
+            typeof(TraktUserCustomListItemsAddRequest).IsSubclassOf(typeof(ATraktUsersPostByIdRequest<ITraktUserCustomListItemsPostResponse, TraktUserCustomListItemsPost>)).Should().BeTrue();
         }
 
         [Fact]

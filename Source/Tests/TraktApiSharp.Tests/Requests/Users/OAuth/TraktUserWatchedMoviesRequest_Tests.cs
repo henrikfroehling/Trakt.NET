@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Watched.Implementations;
+    using TraktApiSharp.Objects.Get.Watched;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Users.OAuth;
@@ -30,7 +30,7 @@
         [Fact]
         public void Test_TraktUserWatchedMoviesRequest_Inherits_ATraktUsersGetRequest_1()
         {
-            typeof(TraktUserWatchedMoviesRequest).IsSubclassOf(typeof(ATraktUsersGetRequest<TraktWatchedMovie>)).Should().BeTrue();
+            typeof(TraktUserWatchedMoviesRequest).IsSubclassOf(typeof(ATraktUsersGetRequest<ITraktWatchedMovie>)).Should().BeTrue();
         }
 
         [Fact]

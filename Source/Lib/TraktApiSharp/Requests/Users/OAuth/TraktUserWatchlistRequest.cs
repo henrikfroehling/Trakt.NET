@@ -2,11 +2,11 @@
 {
     using Enums;
     using Extensions;
-    using Objects.Get.Watchlist.Implementations;
+    using Objects.Get.Watchlist;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserWatchlistRequest : ATraktUsersPagedGetRequest<TraktWatchlistItem>
+    internal sealed class TraktUserWatchlistRequest : ATraktUsersPagedGetRequest<ITraktWatchlistItem>
     {
         internal string Username { get; set; }
 

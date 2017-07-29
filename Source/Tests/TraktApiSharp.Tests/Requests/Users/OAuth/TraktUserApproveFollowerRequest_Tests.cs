@@ -4,7 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users.Implementations;
+    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Users.OAuth;
@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktUserApproveFollowerRequest_Inherits_ATraktBodylessPostRequest_1()
         {
-            typeof(TraktUserApproveFollowerRequest).IsSubclassOf(typeof(ATraktBodylessPostRequest<TraktUserFollower>)).Should().BeTrue();
+            typeof(TraktUserApproveFollowerRequest).IsSubclassOf(typeof(ATraktBodylessPostRequest<ITraktUserFollower>)).Should().BeTrue();
         }
 
         [Fact]

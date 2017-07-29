@@ -3,11 +3,11 @@
     using Base;
     using Extensions;
     using Interfaces;
-    using Objects.Get.Users.Lists.Implementations;
+    using Objects.Get.Users.Lists;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserCustomSingleListRequest : ATraktGetRequest<TraktList>, ITraktHasId
+    internal sealed class TraktUserCustomSingleListRequest : ATraktGetRequest<ITraktList>, ITraktHasId
     {
         internal string Username { get; set; }
 

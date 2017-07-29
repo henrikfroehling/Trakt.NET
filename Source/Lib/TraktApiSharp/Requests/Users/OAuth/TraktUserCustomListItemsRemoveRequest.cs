@@ -3,11 +3,11 @@
     using Base;
     using Extensions;
     using Objects.Post.Users.CustomListItems;
-    using Objects.Post.Users.CustomListItems.Responses.Implementations;
+    using Objects.Post.Users.CustomListItems.Responses;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserCustomListItemsRemoveRequest : ATraktUsersPostByIdRequest<TraktUserCustomListItemsRemovePostResponse, TraktUserCustomListItemsPost>
+    internal sealed class TraktUserCustomListItemsRemoveRequest : ATraktUsersPostByIdRequest<ITraktUserCustomListItemsRemovePostResponse, TraktUserCustomListItemsPost>
     {
         internal string Username { get; set; }
 
