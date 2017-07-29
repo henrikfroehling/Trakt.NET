@@ -2,7 +2,7 @@
 {
     using Enums;
     using Exceptions;
-    using Objects.Basic.Implementations;
+    using Objects.Basic;
     using Requests.Genres;
     using Requests.Handler;
     using Responses;
@@ -25,9 +25,9 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/genres/list/get-genres">"Trakt API Doc - Genres: List"</a> for more information.
         /// </para>
         /// </summary>
-        /// <returns>A list of <see cref="TraktGenre" /> instances.</returns>
+        /// <returns>A list of <see cref="ITraktGenre" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktListResponse<TraktGenre>> GetMovieGenresAsync()
+        public async Task<TraktListResponse<ITraktGenre>> GetMovieGenresAsync()
         {
             var requestHandler = new TraktRequestHandler(Client);
             var response = await requestHandler.ExecuteListRequestAsync(new TraktGenresMoviesRequest());
@@ -48,9 +48,9 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/genres/list/get-genres">"Trakt API Doc - Genres: List"</a> for more information.
         /// </para>
         /// </summary>
-        /// <returns>A list of <see cref="TraktGenre" /> instances.</returns>
+        /// <returns>A list of <see cref="ITraktGenre" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktListResponse<TraktGenre>> GetShowGenresAsync()
+        public async Task<TraktListResponse<ITraktGenre>> GetShowGenresAsync()
         {
             var requestHandler = new TraktRequestHandler(Client);
             var response = await requestHandler.ExecuteListRequestAsync(new TraktGenresShowsRequest());

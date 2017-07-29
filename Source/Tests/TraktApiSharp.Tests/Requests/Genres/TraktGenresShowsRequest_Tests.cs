@@ -2,7 +2,7 @@
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Objects.Basic.Implementations;
+    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Genres;
     using Xunit;
@@ -25,7 +25,7 @@
         [Fact]
         public void Test_TraktGenresShowsRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktGenresShowsRequest).IsSubclassOf(typeof(ATraktGetRequest<TraktGenre>)).Should().BeTrue();
+            typeof(TraktGenresShowsRequest).IsSubclassOf(typeof(ATraktGetRequest<ITraktGenre>)).Should().BeTrue();
         }
 
         [Fact]
