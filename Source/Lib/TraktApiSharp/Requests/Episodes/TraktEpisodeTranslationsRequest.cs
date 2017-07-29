@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Requests.Episodes
 {
-    using Objects.Get.Episodes.Implementations;
+    using Objects.Get.Episodes;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktEpisodeTranslationsRequest : ATraktEpisodeRequest<TraktEpisodeTranslation>
+    internal sealed class TraktEpisodeTranslationsRequest : ATraktEpisodeRequest<ITraktEpisodeTranslation>
     {
         internal string LanguageCode { get; set; }
 

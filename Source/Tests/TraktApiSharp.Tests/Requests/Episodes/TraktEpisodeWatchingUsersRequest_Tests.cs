@@ -4,7 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users.Implementations;
+    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests.Episodes;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktEpisodeWatchingUsersRequest_Inherits_ATraktEpisodeRequest_1()
         {
-            typeof(TraktEpisodeWatchingUsersRequest).IsSubclassOf(typeof(ATraktEpisodeRequest<TraktUser>)).Should().BeTrue();
+            typeof(TraktEpisodeWatchingUsersRequest).IsSubclassOf(typeof(ATraktEpisodeRequest<ITraktUser>)).Should().BeTrue();
         }
         
         [Fact]

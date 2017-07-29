@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Requests.Episodes
 {
-    using Objects.Basic.Implementations;
+    using Objects.Basic;
 
-    internal sealed class TraktEpisodeRatingsRequest : ATraktEpisodeRequest<TraktRating>
+    internal sealed class TraktEpisodeRatingsRequest : ATraktEpisodeRequest<ITraktRating>
     {
         public override string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}/ratings";
     }
