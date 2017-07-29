@@ -4,7 +4,7 @@
     using System;
     using Traits;
     using TraktApiSharp.Objects.Post.Comments;
-    using TraktApiSharp.Objects.Post.Comments.Responses.Implementations;
+    using TraktApiSharp.Objects.Post.Comments.Responses;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Comments.OAuth;
     using Xunit;
@@ -34,7 +34,7 @@
         [Fact]
         public void Test_TraktCommentPostRequest_1_Inherits_ATraktPostRequest_2()
         {
-            typeof(TraktCommentPostRequest<TraktCommentPost>).IsSubclassOf(typeof(ATraktPostRequest<TraktCommentPostResponse, TraktCommentPost>)).Should().BeTrue();
+            typeof(TraktCommentPostRequest<TraktCommentPost>).IsSubclassOf(typeof(ATraktPostRequest<ITraktCommentPostResponse, TraktCommentPost>)).Should().BeTrue();
         }
 
         [Fact]

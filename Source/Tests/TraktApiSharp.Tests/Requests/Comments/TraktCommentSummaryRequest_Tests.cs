@@ -4,7 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Basic.Implementations;
+    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Comments;
     using TraktApiSharp.Requests.Interfaces;
@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktCommentSummaryRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktCommentSummaryRequest).IsSubclassOf(typeof(ATraktGetRequest<TraktComment>)).Should().BeTrue();
+            typeof(TraktCommentSummaryRequest).IsSubclassOf(typeof(ATraktGetRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]

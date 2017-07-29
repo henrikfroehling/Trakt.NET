@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Objects.Post.Comments;
-    using TraktApiSharp.Objects.Post.Comments.Responses.Implementations;
+    using TraktApiSharp.Objects.Post.Comments.Responses;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Comments.OAuth;
     using TraktApiSharp.Requests.Interfaces;
@@ -29,7 +29,7 @@
         [Fact]
         public void Test_TraktCommentUpdateRequest_Inherits_ATraktPutRequest_2()
         {
-            typeof(TraktCommentUpdateRequest).IsSubclassOf(typeof(ATraktPutRequest<TraktCommentPostResponse, TraktCommentUpdatePost>)).Should().BeTrue();
+            typeof(TraktCommentUpdateRequest).IsSubclassOf(typeof(ATraktPutRequest<ITraktCommentPostResponse, TraktCommentUpdatePost>)).Should().BeTrue();
         }
 
         [Fact]
