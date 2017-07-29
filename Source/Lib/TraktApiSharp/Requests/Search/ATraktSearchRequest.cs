@@ -3,11 +3,11 @@
     using Base;
     using Enums;
     using Interfaces;
-    using Objects.Basic.Implementations;
+    using Objects.Basic;
     using Parameters;
     using System.Collections.Generic;
 
-    internal abstract class ATraktSearchRequest : ATraktGetRequest<TraktSearchResult>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
+    internal abstract class ATraktSearchRequest : ATraktGetRequest<ITraktSearchResult>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
     {
         public TraktExtendedInfo ExtendedInfo { get; set; }
 

@@ -2,7 +2,7 @@
 {
     using Enums;
     using Exceptions;
-    using Objects.Basic.Implementations;
+    using Objects.Basic;
     using Requests.Handler;
     using Requests.Parameters;
     using Requests.Search;
@@ -41,10 +41,10 @@
         /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of results for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
+        /// An <see cref="TraktPagedResponse{ITraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktSearchResult" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktSearchResult" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -53,10 +53,10 @@
         /// Thrown, if the given searchResultType is unspecified.
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given searchResultType is null</exception>
-        public async Task<TraktPagedResponse<TraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultTypes, string searchQuery,
-                                                                                          TraktSearchField searchFields = null, TraktSearchFilter filter = null,
-                                                                                          TraktExtendedInfo extendedInfo = null,
-                                                                                          int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<ITraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultTypes, string searchQuery,
+                                                                                           TraktSearchField searchFields = null, TraktSearchFilter filter = null,
+                                                                                           TraktExtendedInfo extendedInfo = null,
+                                                                                           int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -89,10 +89,10 @@
         /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of results for each page, that should be queried.</param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{TraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
+        /// An <see cref="TraktPagedResponse{ITraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktSearchResult" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktSearchResult" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -101,10 +101,10 @@
         /// Thrown, if the given searchIdType is unspecified.
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given searchIdType is null.</exception>
-        public async Task<TraktPagedResponse<TraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, string lookupId,
-                                                                                         TraktSearchResultType searchResultTypes = null,
-                                                                                         TraktExtendedInfo extendedInfo = null,
-                                                                                         int? page = null, int? limitPerPage = null)
+        public async Task<TraktPagedResponse<ITraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, string lookupId,
+                                                                                          TraktSearchResultType searchResultTypes = null,
+                                                                                          TraktExtendedInfo extendedInfo = null,
+                                                                                          int? page = null, int? limitPerPage = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 

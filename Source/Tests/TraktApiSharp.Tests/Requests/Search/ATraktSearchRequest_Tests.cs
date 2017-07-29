@@ -8,7 +8,7 @@
     using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Basic.Implementations;
+    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
@@ -37,7 +37,7 @@
         [Fact]
         public void Test_ATraktSearchRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(ATraktSearchRequest).IsSubclassOf(typeof(ATraktGetRequest<TraktSearchResult>)).Should().BeTrue();
+            typeof(ATraktSearchRequest).IsSubclassOf(typeof(ATraktGetRequest<ITraktSearchResult>)).Should().BeTrue();
         }
 
         [Fact]
