@@ -7,7 +7,7 @@
     using Interfaces;
     using Interfaces.Base;
     using Objects.Basic.Implementations;
-    using Objects.Post.Checkins.Responses;
+    using Objects.Post.Checkins.Responses.Implementations;
     using Responses;
     using Responses.Interfaces;
     using System;
@@ -19,7 +19,6 @@
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
-    using TraktApiSharp.Objects.Post.Checkins.Responses.Implementations;
     using UriTemplates;
     using Utils;
 
@@ -380,18 +379,16 @@
                 if (parameters.ContainsKey(seasonKey))
                 {
                     var strSeasonNumber = (string)parameters[seasonKey];
-                    uint seasonNumber;
 
-                    if (uint.TryParse(strSeasonNumber, out seasonNumber))
+                    if (uint.TryParse(strSeasonNumber, out uint seasonNumber))
                         requestMessage.SeasonNumber = seasonNumber;
                 }
 
                 if (parameters.ContainsKey(episodeKey))
                 {
                     var strEpisodeNumber = (string)parameters[episodeKey];
-                    uint episodeNumber;
 
-                    if (uint.TryParse(strEpisodeNumber, out episodeNumber))
+                    if (uint.TryParse(strEpisodeNumber, out uint episodeNumber))
                         requestMessage.EpisodeNumber = episodeNumber;
                 }
             }
@@ -404,8 +401,7 @@
             if (requestMessage == null)
                 throw new ArgumentNullException(nameof(requestMessage));
 
-            string requestBodyJson;
-            requestMessage.Content = GetRequestBodyContent(request, out requestBodyJson);
+            requestMessage.Content = GetRequestBodyContent(request, out string requestBodyJson);
             requestMessage.RequestBodyJson = requestBodyJson;
         }
 
@@ -458,32 +454,27 @@
 
         private void ParseResponseHeaderValues(ITraktResponseHeaders headerResults, HttpResponseHeaders responseHeaders)
         {
-            IEnumerable<string> values;
-
-            if (responseHeaders.TryGetValues(HEADER_PAGINATION_PAGE_KEY, out values))
+            if (responseHeaders.TryGetValues(HEADER_PAGINATION_PAGE_KEY, out IEnumerable<string> values))
             {
                 var strPage = values.First();
-                int page;
 
-                if (int.TryParse(strPage, out page))
+                if (int.TryParse(strPage, out int page))
                     headerResults.Page = page;
             }
 
             if (responseHeaders.TryGetValues(HEADER_PAGINATION_LIMIT_KEY, out values))
             {
                 var strLimit = values.First();
-                int limit;
 
-                if (int.TryParse(strLimit, out limit))
+                if (int.TryParse(strLimit, out int limit))
                     headerResults.Limit = limit;
             }
 
             if (responseHeaders.TryGetValues(HEADER_TRENDING_USER_COUNT_KEY, out values))
             {
                 var strTrendingUserCount = values.First();
-                int userCount;
 
-                if (int.TryParse(strTrendingUserCount, out userCount))
+                if (int.TryParse(strTrendingUserCount, out int userCount))
                     headerResults.TrendingUserCount = userCount;
             }
 
@@ -496,50 +487,43 @@
             if (responseHeaders.TryGetValues(HEADER_PRIVATE_USER_KEY, out values))
             {
                 var strIsPrivateUser = values.First();
-                bool isPrivateUser;
 
-                if (bool.TryParse(strIsPrivateUser, out isPrivateUser))
+                if (bool.TryParse(strIsPrivateUser, out bool isPrivateUser))
                     headerResults.IsPrivateUser = isPrivateUser;
             }
 
             if (responseHeaders.TryGetValues(HEADER_STARTDATE_KEY, out values))
             {
                 var strStartDate = values.First();
-                DateTime startDate;
 
-                if (DateTime.TryParse(strStartDate, out startDate))
+                if (DateTime.TryParse(strStartDate, out DateTime startDate))
                     headerResults.StartDate = startDate.ToUniversalTime();
             }
 
             if (responseHeaders.TryGetValues(HEADER_ENDDATE_KEY, out values))
             {
                 var strEndDate = values.First();
-                DateTime endDate;
 
-                if (DateTime.TryParse(strEndDate, out endDate))
+                if (DateTime.TryParse(strEndDate, out DateTime endDate))
                     headerResults.EndDate = endDate.ToUniversalTime();
             }
         }
 
         private void ParsePagedResponseHeaderValues(ITraktPagedResponseHeaders headerResults, HttpResponseHeaders responseHeaders)
         {
-            IEnumerable<string> values;
-
-            if (responseHeaders.TryGetValues(HEADER_PAGINATION_PAGE_COUNT_KEY, out values))
+            if (responseHeaders.TryGetValues(HEADER_PAGINATION_PAGE_COUNT_KEY, out IEnumerable<string> values))
             {
                 var strPageCount = values.First();
-                int pageCount;
 
-                if (int.TryParse(strPageCount, out pageCount))
+                if (int.TryParse(strPageCount, out int pageCount))
                     headerResults.PageCount = pageCount;
             }
 
             if (responseHeaders.TryGetValues(HEADER_PAGINATION_ITEM_COUNT_KEY, out values))
             {
                 var strItemCount = values.First();
-                int itemCount;
 
-                if (int.TryParse(strItemCount, out itemCount))
+                if (int.TryParse(strItemCount, out int itemCount))
                     headerResults.ItemCount = itemCount;
             }
         }
