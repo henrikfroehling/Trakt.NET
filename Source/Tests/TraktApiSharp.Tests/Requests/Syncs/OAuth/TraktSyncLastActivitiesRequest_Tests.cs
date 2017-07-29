@@ -2,7 +2,7 @@
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Objects.Get.Syncs.Activities.Implementations;
+    using TraktApiSharp.Objects.Get.Syncs.Activities;
     using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;
 
@@ -24,7 +24,7 @@
         [Fact]
         public void Test_TraktSyncLastActivitiesRequest_Inherits_ATraktSyncGetRequest_1()
         {
-            typeof(TraktSyncLastActivitiesRequest).IsSubclassOf(typeof(ATraktSyncGetRequest<TraktSyncLastActivities>)).Should().BeTrue();
+            typeof(TraktSyncLastActivitiesRequest).IsSubclassOf(typeof(ATraktSyncGetRequest<ITraktSyncLastActivities>)).Should().BeTrue();
         }
 
         [Fact]

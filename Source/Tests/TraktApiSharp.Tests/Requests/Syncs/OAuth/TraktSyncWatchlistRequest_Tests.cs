@@ -7,7 +7,7 @@
     using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Watchlist.Implementations;
+    using TraktApiSharp.Objects.Get.Watchlist;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Syncs.OAuth;
@@ -31,7 +31,7 @@
         [Fact]
         public void Test_TraktSyncWatchlistRequest_Inherits_ATraktSyncGetRequest_1()
         {
-            typeof(TraktSyncWatchlistRequest).IsSubclassOf(typeof(ATraktSyncGetRequest<TraktWatchlistItem>)).Should().BeTrue();
+            typeof(TraktSyncWatchlistRequest).IsSubclassOf(typeof(ATraktSyncGetRequest<ITraktWatchlistItem>)).Should().BeTrue();
         }
 
         [Fact]

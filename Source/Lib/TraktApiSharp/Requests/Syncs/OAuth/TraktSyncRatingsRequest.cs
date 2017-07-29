@@ -2,12 +2,12 @@
 {
     using Enums;
     using Interfaces;
-    using Objects.Get.Ratings.Implementations;
+    using Objects.Get.Ratings;
     using Parameters;
     using System.Collections.Generic;
     using System.Linq;
 
-    internal sealed class TraktSyncRatingsRequest : ATraktSyncGetRequest<TraktRatingsItem>, ITraktSupportsExtendedInfo
+    internal sealed class TraktSyncRatingsRequest : ATraktSyncGetRequest<ITraktRatingsItem>, ITraktSupportsExtendedInfo
     {
         internal TraktRatingsItemType Type { get; set; }
 

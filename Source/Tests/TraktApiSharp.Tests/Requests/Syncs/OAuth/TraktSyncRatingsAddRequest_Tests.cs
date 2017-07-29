@@ -3,7 +3,7 @@
     using FluentAssertions;
     using Traits;
     using TraktApiSharp.Objects.Post.Syncs.Ratings;
-    using TraktApiSharp.Objects.Post.Syncs.Ratings.Responses.Implementations;
+    using TraktApiSharp.Objects.Post.Syncs.Ratings.Responses;
     using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;
 
@@ -25,7 +25,7 @@
         [Fact]
         public void Test_TraktSyncRatingsAddRequest_Inherits_ATraktSyncPostRequest_2()
         {
-            typeof(TraktSyncRatingsAddRequest).IsSubclassOf(typeof(ATraktSyncPostRequest<TraktSyncRatingsPostResponse, TraktSyncRatingsPost>)).Should().BeTrue();
+            typeof(TraktSyncRatingsAddRequest).IsSubclassOf(typeof(ATraktSyncPostRequest<ITraktSyncRatingsPostResponse, TraktSyncRatingsPost>)).Should().BeTrue();
         }
 
         [Fact]

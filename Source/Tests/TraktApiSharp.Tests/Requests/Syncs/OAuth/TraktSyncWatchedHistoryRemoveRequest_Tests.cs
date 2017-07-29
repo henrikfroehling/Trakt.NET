@@ -3,7 +3,7 @@
     using FluentAssertions;
     using Traits;
     using TraktApiSharp.Objects.Post.Syncs.History;
-    using TraktApiSharp.Objects.Post.Syncs.History.Responses.Implementations;
+    using TraktApiSharp.Objects.Post.Syncs.History.Responses;
     using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;
 
@@ -25,7 +25,7 @@
         [Fact]
         public void Test_TraktSyncWatchedHistoryRemoveRequest_Inherits_ATraktSyncPostRequest_2()
         {
-            typeof(TraktSyncWatchedHistoryRemoveRequest).IsSubclassOf(typeof(ATraktSyncPostRequest<TraktSyncHistoryRemovePostResponse, TraktSyncHistoryRemovePost>)).Should().BeTrue();
+            typeof(TraktSyncWatchedHistoryRemoveRequest).IsSubclassOf(typeof(ATraktSyncPostRequest<ITraktSyncHistoryRemovePostResponse, TraktSyncHistoryRemovePost>)).Should().BeTrue();
         }
 
         [Fact]

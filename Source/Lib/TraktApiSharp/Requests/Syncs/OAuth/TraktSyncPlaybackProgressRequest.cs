@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Requests.Syncs.OAuth
 {
     using Enums;
-    using Objects.Get.Syncs.Playback.Implementations;
+    using Objects.Get.Syncs.Playback;
     using System.Collections.Generic;
 
-    internal sealed class TraktSyncPlaybackProgressRequest : ATraktSyncGetRequest<TraktSyncPlaybackProgressItem>
+    internal sealed class TraktSyncPlaybackProgressRequest : ATraktSyncGetRequest<ITraktSyncPlaybackProgressItem>
     {
         internal TraktSyncType Type { get; set; }
 

@@ -3,12 +3,12 @@
     using Enums;
     using Extensions;
     using Interfaces;
-    using Objects.Get.History.Implementations;
+    using Objects.Get.History;
     using Parameters;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktSyncWatchedHistoryRequest : ATraktSyncGetRequest<TraktHistoryItem>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
+    internal sealed class TraktSyncWatchedHistoryRequest : ATraktSyncGetRequest<ITraktHistoryItem>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
     {
         internal TraktSyncItemType Type { get; set; }
 

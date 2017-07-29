@@ -3,7 +3,7 @@
     using FluentAssertions;
     using Traits;
     using TraktApiSharp.Objects.Post.Syncs.Watchlist;
-    using TraktApiSharp.Objects.Post.Syncs.Watchlist.Responses.Implementations;
+    using TraktApiSharp.Objects.Post.Syncs.Watchlist.Responses;
     using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;
 
@@ -25,7 +25,7 @@
         [Fact]
         public void Test_TraktSyncWatchlistAddRequest_Inherits_ATraktSyncPostRequest_2()
         {
-            typeof(TraktSyncWatchlistAddRequest).IsSubclassOf(typeof(ATraktSyncPostRequest<TraktSyncWatchlistPostResponse, TraktSyncWatchlistPost>)).Should().BeTrue();
+            typeof(TraktSyncWatchlistAddRequest).IsSubclassOf(typeof(ATraktSyncPostRequest<ITraktSyncWatchlistPostResponse, TraktSyncWatchlistPost>)).Should().BeTrue();
         }
 
         [Fact]
