@@ -8,6 +8,7 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
+    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Movies;
@@ -17,7 +18,7 @@
     using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
     using TraktApiSharp.Objects.Post.Comments;
-    using TraktApiSharp.Objects.Post.Comments.Responses.Implementations;
+    using TraktApiSharp.Objects.Post.Comments.Responses;
     using TraktApiSharp.Responses;
     using Utils;
 
@@ -92,7 +93,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktResponse<TraktComment>>> act =
+            Func<Task<TraktResponse<ITraktComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentAsync(commentId);
             act.ShouldThrow<TraktCommentNotFoundException>();
 
@@ -167,7 +168,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"comments/{commentId}", comment);
 
-            Func<Task<TraktResponse<TraktComment>>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentAsync(0);
+            Func<Task<TraktResponse<ITraktComment>>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentAsync(0);
             act.ShouldThrow<ArgumentException>();
         }
 
@@ -181,7 +182,7 @@
         [TestMethod]
         public void TestTraktCommentsModuleGetCommentsArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktResponse<TraktComment>>>> act =
+            Func<Task<IEnumerable<TraktResponse<ITraktComment>>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetMutlipleCommentsAsync(new uint[] { 0 });
             act.ShouldThrow<ArgumentException>();
 
@@ -493,7 +494,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(movie, comment);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -590,7 +591,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("comments", postJson, movieCommentPostResponse);
 
-            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostMovieCommentAsync(null, comment);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -953,7 +954,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(show, comment);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1051,7 +1052,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("comments", postJson, showCommentPostResponse);
 
-            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostShowCommentAsync(null, comment);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -1380,7 +1381,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(season, comment);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1474,7 +1475,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("comments", postJson, seasonCommentPostResponse);
 
-            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostSeasonCommentAsync(null, comment);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -1804,7 +1805,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1900,7 +1901,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("comments", postJson, episodeCommentPostResponse);
 
-            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(null, comment);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -2217,7 +2218,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(list, comment);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -2310,7 +2311,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("comments", postJson, listCommentPostResponse);
 
-            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(null, comment);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -2467,7 +2468,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.UpdateCommentAsync(commentId, comment);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -2551,7 +2552,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"comments/{commentId}", postJson, commentUpdatePostResponse);
 
-            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.UpdateCommentAsync(0, comment);
 
             act.ShouldThrow<ArgumentException>();
@@ -2692,7 +2693,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(commentId, comment);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -2776,7 +2777,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"comments/{commentId}/replies", postJson, commentReplyPostResponse);
 
-            Func<Task<TraktResponse<TraktCommentPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(0, comment);
 
             act.ShouldThrow<ArgumentException>();
@@ -3211,7 +3212,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktComment>>> act =
+            Func<Task<TraktPagedResponse<ITraktComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId);
             act.ShouldThrow<TraktCommentNotFoundException>();
 
@@ -3288,7 +3289,7 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"comments/{commentId}/replies",
                                                                 commentReplies, 1, 10, 1, itemCount);
 
-            Func<Task<TraktPagedResponse<TraktComment>>> act =
+            Func<Task<TraktPagedResponse<ITraktComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(0);
             act.ShouldThrow<ArgumentException>();
         }

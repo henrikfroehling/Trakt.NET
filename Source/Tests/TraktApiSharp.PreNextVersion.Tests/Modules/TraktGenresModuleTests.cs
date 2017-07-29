@@ -10,7 +10,6 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Responses;
     using Utils;
 
@@ -68,7 +67,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResponse<TraktGenre>>> act =
+            Func<Task<TraktListResponse<ITraktGenre>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetMovieGenresAsync();
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -157,7 +156,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResponse<TraktGenre>>> act =
+            Func<Task<TraktListResponse<ITraktGenre>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetShowGenresAsync();
             act.ShouldThrow<TraktNotFoundException>();
 

@@ -11,8 +11,6 @@
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.People;
     using TraktApiSharp.Objects.Get.People.Credits;
-    using TraktApiSharp.Objects.Get.People.Credits.Implementations;
-    using TraktApiSharp.Objects.Get.People.Implementations;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Utils;
@@ -121,7 +119,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktResponse<TraktPerson>>> act =
+            Func<Task<TraktResponse<ITraktPerson>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonAsync(personId);
             act.ShouldThrow<TraktPersonNotFoundException>();
 
@@ -196,7 +194,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}", person);
 
-            Func<Task<TraktResponse<TraktPerson>>> act =
+            Func<Task<TraktResponse<ITraktPerson>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -217,7 +215,7 @@
         [TestMethod]
         public void TestTraktPeopleModuleGetPersonsArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktResponse<TraktPerson>>>> act =
+            Func<Task<IEnumerable<TraktResponse<ITraktPerson>>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.People.GetMultiplePersonsAsync(null);
             act.ShouldNotThrow();
 
@@ -446,7 +444,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktResponse<TraktPersonMovieCredits>>> act =
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonMovieCreditsAsync(personId);
             act.ShouldThrow<TraktPersonNotFoundException>();
 
@@ -521,7 +519,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}/movies", personMovieCredits);
 
-            Func<Task<TraktResponse<TraktPersonMovieCredits>>> act =
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonMovieCreditsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -702,7 +700,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktResponse<TraktPersonShowCredits>>> act =
+            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonShowCreditsAsync(personId);
             act.ShouldThrow<TraktPersonNotFoundException>();
 
@@ -777,7 +775,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}/shows", personShowCredits);
 
-            Func<Task<TraktResponse<TraktPersonShowCredits>>> act =
+            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonShowCreditsAsync(null);
             act.ShouldThrow<ArgumentException>();
 

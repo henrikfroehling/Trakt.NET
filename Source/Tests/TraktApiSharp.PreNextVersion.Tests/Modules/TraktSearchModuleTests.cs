@@ -9,7 +9,6 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Utils;
@@ -3664,7 +3663,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktSearchResult>>> act =
+            Func<Task<TraktPagedResponse<ITraktSearchResult>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(type, query);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -3742,7 +3741,7 @@
 
             var searchResultType = default(TraktSearchResultType);
 
-            Func<Task<TraktPagedResponse<TraktSearchResult>>> act =
+            Func<Task<TraktPagedResponse<ITraktSearchResult>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetTextQueryResultsAsync(searchResultType, null);
             act.ShouldThrow<ArgumentNullException>();
 
@@ -4277,7 +4276,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktSearchResult>>> act =
+            Func<Task<TraktPagedResponse<ITraktSearchResult>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(idType, lookupId);
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -4355,7 +4354,7 @@
 
             var searchIdType = default(TraktSearchIdType);
 
-            Func<Task<TraktPagedResponse<TraktSearchResult>>> act =
+            Func<Task<TraktPagedResponse<ITraktSearchResult>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Search.GetIdLookupResultsAsync(searchIdType, lookupId);
             act.ShouldThrow<ArgumentNullException>();
 

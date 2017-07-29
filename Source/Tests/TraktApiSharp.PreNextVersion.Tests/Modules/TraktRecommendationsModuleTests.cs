@@ -8,9 +8,7 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Movies;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Utils;
@@ -137,7 +135,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktPagedResponse<TraktMovie>>> act =
+            Func<Task<TraktPagedResponse<ITraktMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.GetMovieRecommendationsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -408,7 +406,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktPagedResponse<TraktShow>>> act =
+            Func<Task<TraktPagedResponse<ITraktShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.GetShowRecommendationsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 

@@ -8,17 +8,13 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
-    using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
-    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Post.Checkins;
     using TraktApiSharp.Objects.Post.Checkins.Responses;
-    using TraktApiSharp.Objects.Post.Checkins.Responses.Implementations;
     using TraktApiSharp.Responses;
     using Utils;
 
@@ -1476,7 +1472,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktMovieCheckinPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktMovieCheckinPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(movie);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1570,7 +1566,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinMovieResponse);
 
-            Func<Task<TraktResponse<TraktMovieCheckinPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktMovieCheckinPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoMovieAsync(null);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -3106,7 +3102,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktEpisodeCheckinPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(episode);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -3201,7 +3197,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            Func<Task<TraktResponse<TraktEpisodeCheckinPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeAsync(null);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -5033,7 +5029,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktEpisodeCheckinPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(episode, show);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -5123,7 +5119,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("checkin", postJson, checkinEpisodeResponse);
 
-            Func<Task<TraktResponse<TraktEpisodeCheckinPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.CheckIntoEpisodeWithShowAsync(null, show);
 
             act.ShouldThrow<ArgumentNullException>();

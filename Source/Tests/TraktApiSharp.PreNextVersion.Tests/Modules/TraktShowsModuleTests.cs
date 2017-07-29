@@ -12,15 +12,10 @@
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Get.Users;
-    using TraktApiSharp.Objects.Get.Users.Implementations;
     using TraktApiSharp.Objects.Get.Users.Lists;
-    using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Utils;
@@ -148,7 +143,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktResponse<TraktShow>>> act =
+            Func<Task<TraktResponse<ITraktShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowAsync(showId);
             act.ShouldThrow<TraktShowNotFoundException>();
 
@@ -223,7 +218,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}", show);
 
-            Func<Task<TraktResponse<TraktShow>>> act =
+            Func<Task<TraktResponse<ITraktShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -244,7 +239,7 @@
         [TestMethod]
         public void TestTraktShowsModuleGetShowsArgumentExceptions()
         {
-            Func<Task<IEnumerable<TraktResponse<TraktShow>>>> act =
+            Func<Task<IEnumerable<TraktResponse<ITraktShow>>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMultipleShowsAsync(null);
             act.ShouldNotThrow();
 
@@ -298,7 +293,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResponse<TraktShowAlias>>> act =
+            Func<Task<TraktListResponse<ITraktShowAlias>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowAliasesAsync(showId);
             act.ShouldThrow<TraktShowNotFoundException>();
 
@@ -373,7 +368,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/aliases", showAliases);
 
-            Func<Task<TraktListResponse<TraktShowAlias>>> act =
+            Func<Task<TraktListResponse<ITraktShowAlias>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowAliasesAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -417,7 +412,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResponse<TraktShowTranslation>>> act =
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(showId);
             act.ShouldThrow<TraktShowNotFoundException>();
 
@@ -492,7 +487,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/translations", showTranslations);
 
-            Func<Task<TraktListResponse<TraktShowTranslation>>> act =
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -538,7 +533,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResponse<TraktShowTranslation>>> act =
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(showId, languageCode);
             act.ShouldThrow<TraktShowNotFoundException>();
 
@@ -614,7 +609,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/translations/{languageCode}", showTranslations);
 
-            Func<Task<TraktListResponse<TraktShowTranslation>>> act =
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -850,7 +845,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktComment>>> act =
+            Func<Task<TraktPagedResponse<ITraktComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCommentsAsync(showId);
             act.ShouldThrow<TraktShowNotFoundException>();
 
@@ -925,7 +920,7 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/comments", showComments);
 
-            Func<Task<TraktPagedResponse<TraktComment>>> act =
+            Func<Task<TraktPagedResponse<ITraktComment>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCommentsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -1289,7 +1284,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktList>>> act =
+            Func<Task<TraktPagedResponse<ITraktList>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(showId);
             act.ShouldThrow<TraktShowNotFoundException>();
 
@@ -1364,7 +1359,7 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/lists", showLists);
 
-            Func<Task<TraktPagedResponse<TraktList>>> act =
+            Func<Task<TraktPagedResponse<ITraktList>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowListsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -1460,7 +1455,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktResponse<TraktCastAndCrew>>> act =
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowPeopleAsync(showId);
             act.ShouldThrow<TraktShowNotFoundException>();
 
@@ -1535,7 +1530,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/people", showPeople);
 
-            Func<Task<TraktResponse<TraktCastAndCrew>>> act =
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowPeopleAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -1592,7 +1587,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktResponse<TraktRating>>> act =
+            Func<Task<TraktResponse<ITraktRating>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRatingsAsync(showId);
             act.ShouldThrow<TraktShowNotFoundException>();
 
@@ -1667,7 +1662,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/ratings", showRatings);
 
-            Func<Task<TraktResponse<TraktRating>>> act =
+            Func<Task<TraktResponse<ITraktRating>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRatingsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -1898,7 +1893,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktShow>>> act =
+            Func<Task<TraktPagedResponse<ITraktShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRelatedShowsAsync(showId);
             act.ShouldThrow<TraktShowNotFoundException>();
 
@@ -1973,7 +1968,7 @@
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/related", showRelatedShows);
 
-            Func<Task<TraktPagedResponse<TraktShow>>> act =
+            Func<Task<TraktPagedResponse<ITraktShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowRelatedShowsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -2027,7 +2022,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktResponse<TraktStatistics>>> act =
+            Func<Task<TraktResponse<ITraktStatistics>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowStatisticsAsync(showId);
             act.ShouldThrow<TraktShowNotFoundException>();
 
@@ -2102,7 +2097,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/stats", showStatistics);
 
-            Func<Task<TraktResponse<TraktStatistics>>> act =
+            Func<Task<TraktResponse<ITraktStatistics>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowStatisticsAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -2166,7 +2161,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktListResponse<TraktUser>>> act =
+            Func<Task<TraktListResponse<ITraktUser>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowWatchingUsersAsync(showId);
             act.ShouldThrow<TraktShowNotFoundException>();
 
@@ -2241,7 +2236,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/watching", showWatchingUsers);
 
-            Func<Task<TraktListResponse<TraktUser>>> act =
+            Func<Task<TraktListResponse<ITraktUser>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowWatchingUsersAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -2883,7 +2878,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktShowCollectionProgress>>> act =
+            Func<Task<TraktResponse<ITraktShowCollectionProgress>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCollectionProgressAsync(showId);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -2958,7 +2953,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"shows/{showId}/progress/collection", showCollectionProgress);
 
-            Func<Task<TraktResponse<TraktShowCollectionProgress>>> act =
+            Func<Task<TraktResponse<ITraktShowCollectionProgress>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowCollectionProgressAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -3600,7 +3595,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktShowWatchedProgress>>> act =
+            Func<Task<TraktResponse<ITraktShowWatchedProgress>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowWatchedProgressAsync(showId);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -3675,7 +3670,7 @@
 
             TestUtility.SetupMockResponseWithOAuth($"shows/{showId}/progress/watched", showWatchedProgress);
 
-            Func<Task<TraktResponse<TraktShowWatchedProgress>>> act =
+            Func<Task<TraktResponse<ITraktShowWatchedProgress>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowWatchedProgressAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -3770,7 +3765,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktResponse<TraktEpisode>>> act =
+            Func<Task<TraktResponse<ITraktEpisode>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowNextEpisodeAsync(showId);
             act.ShouldThrow<TraktShowNotFoundException>();
 
@@ -3845,7 +3840,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/next_episode", show);
 
-            Func<Task<TraktResponse<TraktEpisode>>> act =
+            Func<Task<TraktResponse<ITraktEpisode>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowNextEpisodeAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -3940,7 +3935,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktResponse<TraktEpisode>>> act =
+            Func<Task<TraktResponse<ITraktEpisode>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowLastEpisodeAsync(showId);
             act.ShouldThrow<TraktShowNotFoundException>();
 
@@ -4015,7 +4010,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/last_episode", show);
 
-            Func<Task<TraktResponse<TraktEpisode>>> act =
+            Func<Task<TraktResponse<ITraktEpisode>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowLastEpisodeAsync(null);
             act.ShouldThrow<ArgumentException>();
 
@@ -4569,7 +4564,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktTrendingShow>>> act =
+            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync();
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -5144,7 +5139,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktShow>>> act =
+            Func<Task<TraktPagedResponse<ITraktShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync();
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -6104,7 +6099,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktMostPWCShow>>> act =
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync();
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -7065,7 +7060,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktMostPWCShow>>> act =
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMostWatchedShowsAsync();
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -8026,7 +8021,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktMostPWCShow>>> act =
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMostCollectedShowsAsync();
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -8603,7 +8598,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktMostAnticipatedShow>>> act =
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync();
             act.ShouldThrow<TraktNotFoundException>();
 
@@ -9035,7 +9030,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
 
-            Func<Task<TraktPagedResponse<TraktRecentlyUpdatedShow>>> act =
+            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync();
             act.ShouldThrow<TraktNotFoundException>();
 
