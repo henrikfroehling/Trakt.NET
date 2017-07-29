@@ -4,7 +4,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
+    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Shows.OAuth;
     using Xunit;
 
@@ -26,7 +26,7 @@
         [Fact]
         public void Test_TraktShowWatchedProgressRequest_Inherits_ATraktShowProgressRequest_1()
         {
-            typeof(TraktShowWatchedProgressRequest).IsSubclassOf(typeof(ATraktShowProgressRequest<TraktShowWatchedProgress>)).Should().BeTrue();
+            typeof(TraktShowWatchedProgressRequest).IsSubclassOf(typeof(ATraktShowProgressRequest<ITraktShowWatchedProgress>)).Should().BeTrue();
         }
 
         [Fact]

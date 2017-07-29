@@ -1,10 +1,10 @@
 ﻿namespace TraktApiSharp.Requests.Shows
 {
-    using Objects.Get.Shows.Implementations;
+    using Objects.Get.Shows;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktShowTranslationsRequest : ATraktShowRequest<TraktShowTranslation>
+    internal sealed class TraktShowTranslationsRequest : ATraktShowRequest<ITraktShowTranslation>
     {
         internal string LanguageCode { get; set; }
 

@@ -4,7 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
+    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Shows;
@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktShowSummaryRequest_Inherits_ATraktShowRequest_1()
         {
-            typeof(TraktShowSummaryRequest).IsSubclassOf(typeof(ATraktShowRequest<TraktShow>)).Should().BeTrue();
+            typeof(TraktShowSummaryRequest).IsSubclassOf(typeof(ATraktShowRequest<ITraktShow>)).Should().BeTrue();
         }
 
         [Fact]

@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Requests.Shows
 {
     using Interfaces;
-    using Objects.Get.Users.Implementations;
+    using Objects.Get.Users;
     using Parameters;
     using System.Collections.Generic;
 
-    internal sealed class TraktShowWatchingUsersRequest : ATraktShowRequest<TraktUser>, ITraktSupportsExtendedInfo
+    internal sealed class TraktShowWatchingUsersRequest : ATraktShowRequest<ITraktUser>, ITraktSupportsExtendedInfo
     {
         public TraktExtendedInfo ExtendedInfo { get; set; }
 

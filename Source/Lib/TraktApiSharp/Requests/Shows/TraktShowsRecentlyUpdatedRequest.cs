@@ -3,12 +3,12 @@
     using Base;
     using Extensions;
     using Interfaces;
-    using Objects.Get.Shows.Implementations;
+    using Objects.Get.Shows;
     using Parameters;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktShowsRecentlyUpdatedRequest : ATraktGetRequest<TraktRecentlyUpdatedShow>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
+    internal sealed class TraktShowsRecentlyUpdatedRequest : ATraktGetRequest<ITraktRecentlyUpdatedShow>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
     {
         internal DateTime? StartDate { get; set; }
 

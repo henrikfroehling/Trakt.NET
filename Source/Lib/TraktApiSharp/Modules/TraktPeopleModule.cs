@@ -3,7 +3,6 @@
     using Exceptions;
     using Objects.Get.People;
     using Objects.Get.People.Credits;
-    using Objects.Get.People.Implementations;
     using Requests.Handler;
     using Requests.Parameters;
     using Requests.People;
@@ -31,7 +30,7 @@
         /// </para>
         /// <para>See also <seealso cref="GetMultiplePersonsAsync(TraktMultipleObjectsQueryParams)" />.</para>
         /// </summary>
-        /// <param name="personIdOrSlug">The person's Trakt-Id or -Slug. See also <seealso cref="TraktPersonIds" />.</param>
+        /// <param name="personIdOrSlug">The person's Trakt-Id or -Slug. See also <seealso cref="ITraktPersonIds" />.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the person should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.

@@ -8,7 +8,7 @@
     using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
+    using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Shows;
     using Xunit;
@@ -31,7 +31,7 @@
         [Fact]
         public void Test_TraktShowListsRequest_Inherits_ATraktShowRequest_1()
         {
-            typeof(TraktShowListsRequest).IsSubclassOf(typeof(ATraktShowRequest<TraktList>)).Should().BeTrue();
+            typeof(TraktShowListsRequest).IsSubclassOf(typeof(ATraktShowRequest<ITraktList>)).Should().BeTrue();
         }
 
         [Fact]

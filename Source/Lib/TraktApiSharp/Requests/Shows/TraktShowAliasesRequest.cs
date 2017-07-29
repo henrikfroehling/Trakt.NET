@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Requests.Shows
 {
-    using Objects.Get.Shows.Implementations;
+    using Objects.Get.Shows;
 
-    internal sealed class TraktShowAliasesRequest : ATraktShowRequest<TraktShowAlias>
+    internal sealed class TraktShowAliasesRequest : ATraktShowRequest<ITraktShowAlias>
     {
         public override string UriTemplate => "shows/{id}/aliases";
     }
