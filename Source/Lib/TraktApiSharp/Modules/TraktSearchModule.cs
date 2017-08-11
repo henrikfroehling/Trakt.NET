@@ -8,6 +8,7 @@
     using Requests.Search;
     using Responses;
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -40,6 +41,7 @@
         /// </param>
         /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of results for each page, that should be queried.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -56,7 +58,8 @@
         public async Task<TraktPagedResponse<ITraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultTypes, string searchQuery,
                                                                                            TraktSearchField searchFields = null, TraktSearchFilter filter = null,
                                                                                            TraktExtendedInfo extendedInfo = null,
-                                                                                           int? page = null, int? limitPerPage = null)
+                                                                                           int? page = null, int? limitPerPage = null,
+                                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -88,6 +91,7 @@
         /// </param>
         /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of results for each page, that should be queried.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -104,7 +108,8 @@
         public async Task<TraktPagedResponse<ITraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, string lookupId,
                                                                                           TraktSearchResultType searchResultTypes = null,
                                                                                           TraktExtendedInfo extendedInfo = null,
-                                                                                          int? page = null, int? limitPerPage = null)
+                                                                                          int? page = null, int? limitPerPage = null,
+                                                                                          CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 

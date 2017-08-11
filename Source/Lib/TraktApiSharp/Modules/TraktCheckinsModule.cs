@@ -12,6 +12,7 @@
     using Requests.Handler;
     using Responses;
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -38,6 +39,7 @@
         /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
         /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
         /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktMovieCheckinPostResponse" /> instance, containing the successfully checked in movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -48,7 +50,8 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid.</exception>
         public async Task<TraktResponse<ITraktMovieCheckinPostResponse>> CheckIntoMovieAsync(TraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
                                                                                              string message = null, TraktSharing sharing = null,
-                                                                                             string foursquareVenueID = null, string foursquareVenueName = null)
+                                                                                             string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
             Validate(movie);
 
@@ -94,13 +97,15 @@
         /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
         /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
         /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if its ids are null.</exception>
         public async Task<TraktResponse<ITraktEpisodeCheckinPostResponse>> CheckIntoEpisodeAsync(TraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
                                                                                                  string message = null, TraktSharing sharing = null,
-                                                                                                 string foursquareVenueID = null, string foursquareVenueName = null)
+                                                                                                 string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
             Validate(episode);
 
@@ -148,6 +153,7 @@
         /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
         /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
         /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given show's title is null or empty.</exception>
@@ -156,7 +162,8 @@
         public async Task<TraktResponse<ITraktEpisodeCheckinPostResponse>> CheckIntoEpisodeWithShowAsync(TraktEpisode episode, TraktShow show,
                                                                                                          string appVersion = null, DateTime? appBuildDate = null,
                                                                                                          string message = null, TraktSharing sharing = null,
-                                                                                                         string foursquareVenueID = null, string foursquareVenueName = null)
+                                                                                                         string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
             Validate(episode, show);
 
@@ -196,8 +203,9 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/checkin/checkin/delete-any-active-checkins">"Trakt API Doc - Checkin: Checkin"</a> for more information.
         /// </para>
         /// </summary>
+        /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktNoContentResponse> DeleteAnyActiveCheckinsAsync()
+        public async Task<TraktNoContentResponse> DeleteAnyActiveCheckinsAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteNoContentRequestAsync(new TraktCheckinsDeleteRequest());

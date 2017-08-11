@@ -10,6 +10,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -28,17 +29,19 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/people/summary/get-a-single-person">"Trakt API Doc - People: Summary"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetMultiplePersonsAsync(TraktMultipleObjectsQueryParams)" />.</para>
+        /// <para>See also <seealso cref="GetMultiplePersonsAsync(TraktMultipleObjectsQueryParams, CancellationToken)" />.</para>
         /// </summary>
         /// <param name="personIdOrSlug">The person's Trakt-Id or -Slug. See also <seealso cref="ITraktPersonIds" />.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the person should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktPerson" /> instance with the queried person's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktPerson>> GetPersonAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktResponse<ITraktPerson>> GetPersonAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -55,13 +58,15 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/people/summary/get-a-single-person">"Trakt API Doc - People: Summary"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetPersonAsync(string, TraktExtendedInfo)" />.</para>
+        /// <para>See also <seealso cref="GetPersonAsync(string, TraktExtendedInfo, CancellationToken)" />.</para>
         /// </summary>
         /// <param name="personsQueryParams">A list of person ids and optional extended infos. See also <seealso cref="TraktMultipleObjectsQueryParams" />.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktPerson" /> instances with the data of each queried person.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given person ids is null, empty or contains spaces.</exception>
-        public async Task<IEnumerable<TraktResponse<ITraktPerson>>> GetMultiplePersonsAsync(TraktMultipleObjectsQueryParams personsQueryParams)
+        public async Task<IEnumerable<TraktResponse<ITraktPerson>>> GetMultiplePersonsAsync(TraktMultipleObjectsQueryParams personsQueryParams,
+                                                                                            CancellationToken cancellationToken = default(CancellationToken))
         {
             if (personsQueryParams == null || personsQueryParams.Count <= 0)
                 return new List<TraktResponse<ITraktPerson>>();
@@ -90,10 +95,12 @@
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktPersonMovieCredits" /> instance with the queried person's movie credits.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktPersonMovieCredits>> GetPersonMovieCreditsAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktResponse<ITraktPersonMovieCredits>> GetPersonMovieCreditsAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -116,10 +123,12 @@
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktPersonShowCredits" /> instance with the queried person's show credits.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktPersonShowCredits>> GetPersonShowCreditsAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktResponse<ITraktPersonShowCredits>> GetPersonShowCreditsAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                                            CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 

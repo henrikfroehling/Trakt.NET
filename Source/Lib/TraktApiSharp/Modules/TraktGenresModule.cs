@@ -6,6 +6,7 @@
     using Requests.Genres;
     using Requests.Handler;
     using Responses;
+    using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -25,9 +26,10 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/genres/list/get-genres">"Trakt API Doc - Genres: List"</a> for more information.
         /// </para>
         /// </summary>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktGenre" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktListResponse<ITraktGenre>> GetMovieGenresAsync()
+        public async Task<TraktListResponse<ITraktGenre>> GetMovieGenresAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             var response = await requestHandler.ExecuteListRequestAsync(new TraktGenresMoviesRequest());
@@ -48,9 +50,10 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/genres/list/get-genres">"Trakt API Doc - Genres: List"</a> for more information.
         /// </para>
         /// </summary>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktGenre" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktListResponse<ITraktGenre>> GetShowGenresAsync()
+        public async Task<TraktListResponse<ITraktGenre>> GetShowGenresAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             var response = await requestHandler.ExecuteListRequestAsync(new TraktGenresShowsRequest());

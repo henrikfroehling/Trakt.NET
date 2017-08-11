@@ -8,6 +8,7 @@
     using Requests.Parameters;
     using Responses;
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -34,12 +35,14 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktCalendarShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public async Task<TraktListResponse<ITraktCalendarShow>> GetUserShowsAsync(DateTime? startDate = null, int? days = null,
                                                                                    TraktExtendedInfo extendedInfo = null,
-                                                                                   TraktCalendarFilter filter = null)
+                                                                                   TraktCalendarFilter filter = null,
+                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -66,12 +69,14 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktCalendarShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public async Task<TraktListResponse<ITraktCalendarShow>> GetUserNewShowsAsync(DateTime? startDate = null, int? days = null,
                                                                                       TraktExtendedInfo extendedInfo = null,
-                                                                                      TraktCalendarFilter filter = null)
+                                                                                      TraktCalendarFilter filter = null,
+                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -98,12 +103,14 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktCalendarShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public async Task<TraktListResponse<ITraktCalendarShow>> GetUserSeasonPremieresAsync(DateTime? startDate = null, int? days = null,
                                                                                              TraktExtendedInfo extendedInfo = null,
-                                                                                             TraktCalendarFilter filter = null)
+                                                                                             TraktCalendarFilter filter = null,
+                                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -130,12 +137,14 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktCalendarMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public async Task<TraktListResponse<ITraktCalendarMovie>> GetUserMoviesAsync(DateTime? startDate = null, int? days = null,
                                                                                      TraktExtendedInfo extendedInfo = null,
-                                                                                     TraktCalendarFilter filter = null)
+                                                                                     TraktCalendarFilter filter = null,
+                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -162,12 +171,14 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktCalendarMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public async Task<TraktListResponse<ITraktCalendarMovie>> GetUserDVDMoviesAsync(DateTime? startDate = null, int? days = null,
                                                                                         TraktExtendedInfo extendedInfo = null,
-                                                                                        TraktCalendarFilter filter = null)
+                                                                                        TraktCalendarFilter filter = null,
+                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -194,12 +205,14 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktCalendarShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public async Task<TraktListResponse<ITraktCalendarShow>> GetAllShowsAsync(DateTime? startDate = null, int? days = null,
                                                                                   TraktExtendedInfo extendedInfo = null,
-                                                                                  TraktCalendarFilter filter = null)
+                                                                                  TraktCalendarFilter filter = null,
+                                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -226,12 +239,14 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktCalendarShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public async Task<TraktListResponse<ITraktCalendarShow>> GetAllNewShowsAsync(DateTime? startDate = null, int? days = null,
                                                                                      TraktExtendedInfo extendedInfo = null,
-                                                                                     TraktCalendarFilter filter = null)
+                                                                                     TraktCalendarFilter filter = null,
+                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -258,12 +273,14 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktCalendarShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public async Task<TraktListResponse<ITraktCalendarShow>> GetAllSeasonPremieresAsync(DateTime? startDate = null, int? days = null,
                                                                                             TraktExtendedInfo extendedInfo = null,
-                                                                                            TraktCalendarFilter filter = null)
+                                                                                            TraktCalendarFilter filter = null,
+                                                                                            CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -290,12 +307,14 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktCalendarMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public async Task<TraktListResponse<ITraktCalendarMovie>> GetAllMoviesAsync(DateTime? startDate = null, int? days = null,
                                                                                     TraktExtendedInfo extendedInfo = null,
-                                                                                    TraktCalendarFilter filter = null)
+                                                                                    TraktCalendarFilter filter = null,
+                                                                                    CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -322,12 +341,14 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktCalendarMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public async Task<TraktListResponse<ITraktCalendarMovie>> GetAllDVDMoviesAsync(DateTime? startDate = null, int? days = null,
                                                                                        TraktExtendedInfo extendedInfo = null,
-                                                                                       TraktCalendarFilter filter = null)
+                                                                                       TraktCalendarFilter filter = null,
+                                                                                       CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 

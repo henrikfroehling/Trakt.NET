@@ -23,6 +23,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -42,9 +43,10 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/users/settings/retrieve-settings">"Trakt API Doc - Users: Settings"</a> for more information.
         /// </para>
         /// </summary>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktUserSettings" /> instance containing the user's settings.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktResponse<ITraktUserSettings>> GetSettingsAsync()
+        public async Task<TraktResponse<ITraktUserSettings>> GetSettingsAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteSingleItemRequestAsync(new TraktUserSettingsRequest());
@@ -61,9 +63,11 @@
         /// The extended info, which determines how much data about the follow request users should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktUserFollowRequest" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktListResponse<ITraktUserFollowRequest>> GetFollowRequestsAsync(TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktListResponse<ITraktUserFollowRequest>> GetFollowRequestsAsync(TraktExtendedInfo extendedInfo = null,
+                                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktUserFollowRequestsRequest { ExtendedInfo = extendedInfo });
@@ -84,6 +88,7 @@
         /// </param>
         /// <param name="page">The page of the hidden items list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of hidden items for each page, that should be queried.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktUserHiddenItem}"/> instance containing the queried hidden items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -96,7 +101,8 @@
         public async Task<TraktPagedResponse<ITraktUserHiddenItem>> GetHiddenItemsAsync(TraktHiddenItemsSection hiddenItemsSection,
                                                                                         TraktHiddenItemType hiddenItemType = null,
                                                                                         TraktExtendedInfo extendedInfo = null,
-                                                                                        int? page = null, int? limitPerPage = null)
+                                                                                        int? page = null, int? limitPerPage = null,
+                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -120,6 +126,7 @@
         /// <param name="likeType">Determines, which type of objects liked should be queried. See also <seealso cref="TraktUserLikeType" />.</param>
         /// <param name="page">The page of the like items list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of like items for each page, that should be queried.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktUserLikeItem}"/> instance containing the queried like items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -129,7 +136,8 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public async Task<TraktPagedResponse<ITraktUserLikeItem>> GetLikesAsync(TraktUserLikeType likeType = null,
-                                                                                int? page = null, int? limitPerPage = null)
+                                                                                int? page = null, int? limitPerPage = null,
+                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -153,10 +161,12 @@
         /// The extended info, which determines how much data about the user's profile should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktUser" /> instance containing the user's profile information.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktUser>> GetUserProfileAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktResponse<ITraktUser>> GetUserProfileAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -179,11 +189,13 @@
         /// The extended info, which determines how much data about the collected movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktCollectionMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         public async Task<TraktListResponse<ITraktCollectionMovie>> GetCollectionMoviesAsync(string usernameOrSlug,
-                                                                                             TraktExtendedInfo extendedInfo = null)
+                                                                                             TraktExtendedInfo extendedInfo = null,
+                                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -206,11 +218,13 @@
         /// The extended info, which determines how much data about the collected shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktCollectionShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         public async Task<TraktListResponse<ITraktCollectionShow>> GetCollectionShowsAsync(string usernameOrSlug,
-                                                                                           TraktExtendedInfo extendedInfo = null)
+                                                                                           TraktExtendedInfo extendedInfo = null,
+                                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -237,6 +251,7 @@
         /// </param>
         /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktUserComment}"/> instance containing the queried comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -250,7 +265,8 @@
                                                                                   TraktCommentType commentType = null,
                                                                                   TraktObjectType objectType = null,
                                                                                   TraktExtendedInfo extendedInfo = null,
-                                                                                  int? page = null, int? limitPerPage = null)
+                                                                                  int? page = null, int? limitPerPage = null,
+                                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -273,10 +289,11 @@
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the custom lists should be queried.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktList" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
-        public async Task<TraktListResponse<ITraktList>> GetCustomListsAsync(string usernameOrSlug)
+        public async Task<TraktListResponse<ITraktList>> GetCustomListsAsync(string usernameOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktUserCustomListsRequest { Username = usernameOrSlug });
@@ -292,13 +309,15 @@
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the custom list should be queried.</param>
         /// <param name="listIdOrSlug">The id or slug of the custom list, which should be queried.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>Anv <see cref="ITraktList" /> instance containing the custom list informations.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given username or slug is null, empty or contains spaces.
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
-        public async Task<TraktResponse<ITraktList>> GetCustomSingleListAsync(string usernameOrSlug, string listIdOrSlug)
+        public async Task<TraktResponse<ITraktList>> GetCustomSingleListAsync(string usernameOrSlug, string listIdOrSlug,
+                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -315,16 +334,18 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/users/list/get-custom-list">"Trakt API Doc - Users: List"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetCustomSingleListAsync(string, string)" />.</para>
+        /// <para>See also <seealso cref="GetCustomSingleListAsync(string, string, CancellationToken)" />.</para>
         /// </summary>
         /// <param name="userListsQueryParams">A list of usernames and list ids. See also <seealso cref="TraktMultipleUserListsQueryParams" />.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktList" /> instances with the data of each queried custom list.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if one of the given usernames is null, empty or contains spaces.
         /// Thrown, if one of the given list ids is null, empty or contains spaces.
         /// </exception>
-        public async Task<IEnumerable<TraktResponse<ITraktList>>> GetMultipleCustomListsAsync(TraktMultipleUserListsQueryParams userListsQueryParams)
+        public async Task<IEnumerable<TraktResponse<ITraktList>>> GetMultipleCustomListsAsync(TraktMultipleUserListsQueryParams userListsQueryParams,
+                                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             if (userListsQueryParams == null || userListsQueryParams.Count <= 0)
                 return new List<TraktResponse<ITraktList>>();
@@ -357,6 +378,7 @@
         /// </param>
         /// <param name="page"></param>
         /// <param name="limitPerPage"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktListItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -365,7 +387,8 @@
         /// </exception>
         public async Task<TraktPagedResponse<ITraktListItem>> GetCustomListItemsAsync(string usernameOrSlug, string listIdOrSlug,
                                                                                       TraktListItemType listItemType = null, TraktExtendedInfo extendedInfo = null,
-                                                                                      int? page = null, int? limitPerPage = null)
+                                                                                      int? page = null, int? limitPerPage = null,
+                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -393,6 +416,7 @@
         /// <param name="privacy">Determines the visibility of the newly created custom list. See also <seealso cref="TraktAccessScope" />.</param>
         /// <param name="displayNumbers">Determines, if ranking numbers should be visible on the newly created custom list.</param>
         /// <param name="allowComments">Determines, if comments are allowed on the newly created custom list.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktList" /> instance containing information about the successfully created custom list.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -401,7 +425,8 @@
         /// </exception>
         public async Task<TraktResponse<ITraktList>> CreateCustomListAsync(string usernameOrSlug, string listName,
                                                                            string listDescription = null, TraktAccessScope privacy = null,
-                                                                           bool? displayNumbers = null, bool? allowComments = null)
+                                                                           bool? displayNumbers = null, bool? allowComments = null,
+                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
             if (listName == null)
                 throw new ArgumentNullException(nameof(listName), "list name must not be null");
@@ -443,6 +468,7 @@
         /// <param name="privacy">A new visibility setting for the custom list with the given id.</param>
         /// <param name="displayNumbers">A new ranking numbers visibility setting for the custom list with the given id.</param>
         /// <param name="allowComments">A new comments allowed setting for the custom list with the given id.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktList" /> instance containing information about the successfully updated custom list.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -454,7 +480,8 @@
         public async Task<TraktResponse<ITraktList>> UpdateCustomListAsync(string usernameOrSlug, string listIdOrSlug,
                                                                            string listName = null, string listDescription = null,
                                                                            TraktAccessScope privacy = null,
-                                                                           bool? displayNumbers = null, bool? allowComments = null)
+                                                                           bool? displayNumbers = null, bool? allowComments = null,
+                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
             var isListNameNotValid = string.IsNullOrEmpty(listName);
             var isDescriptionNotSet = listDescription == null;
@@ -497,12 +524,14 @@
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the custom list should be deleted.</param>
         /// <param name="listIdOrSlug">The id or slug of the list, which should be deleted.</param>
+        /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given username or slug is null, empty or contains spaces.
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
-        public async Task<TraktNoContentResponse> DeleteCustomListAsync(string usernameOrSlug, string listIdOrSlug)
+        public async Task<TraktNoContentResponse> DeleteCustomListAsync(string usernameOrSlug, string listIdOrSlug,
+                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -529,6 +558,7 @@
         /// <param name="listIdOrSlug">The id or slug of the custom list, to which items should be added.</param>
         /// <param name="listItemsPost">An <see cref="TraktUserCustomListItemsPost" /> instance containing all shows, seasons, episodes, movies and people, which should be added.</param>
         /// <param name="listItemType">Determines, which type of items should be added. See also <seealso cref="TraktListItemType" />.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktUserCustomListItemsPostResponse" /> instance, which contains information about which items were added, existing and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given list items post is null.</exception>
@@ -539,7 +569,8 @@
         /// </exception>
         public async Task<TraktResponse<ITraktUserCustomListItemsPostResponse>> AddCustomListItemsAsync(string usernameOrSlug, string listIdOrSlug,
                                                                                                         TraktUserCustomListItemsPost listItemsPost,
-                                                                                                        TraktListItemType listItemType = null)
+                                                                                                        TraktListItemType listItemType = null,
+                                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateCustomListItemsPost(listItemsPost);
 
@@ -569,6 +600,7 @@
         /// <param name="usernameOrSlug">The username or slug of the user, for which items should be removed from a custom list.</param>
         /// <param name="listIdOrSlug">The id or slug of the custom list, from which items should be removed.</param>
         /// <param name="listItemsRemovePost">An <see cref="TraktUserCustomListItemsPost" /> instance containing all shows, seasons, episodes, movies and people, which should be removed.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktUserCustomListItemsPostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given list items remove post is null.</exception>
@@ -578,7 +610,8 @@
         /// Thrown, if the given list items remove post is empty.
         /// </exception>
         public async Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>> RemoveCustomListItemsAsync(string usernameOrSlug, string listIdOrSlug,
-                                                                                                                 TraktUserCustomListItemsPost listItemsRemovePost)
+                                                                                                                 TraktUserCustomListItemsPost listItemsRemovePost,
+                                                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateCustomListItemsPost(listItemsRemovePost);
 
@@ -604,6 +637,7 @@
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
         /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktComment}"/> instance containing the queried custom list comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -618,7 +652,8 @@
         /// </exception>
         public async Task<TraktPagedResponse<ITraktComment>> GetListCommentsAsync(string usernameOrSlug, string listIdOrSlug,
                                                                                   TraktCommentSortOrder commentSortOrder = null,
-                                                                                  int? page = null, int? limitPerPage = null)
+                                                                                  int? page = null, int? limitPerPage = null,
+                                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -641,12 +676,14 @@
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the custom list should be liked.</param>
         /// <param name="listIdOrSlug">The id or slug of the list, which should be liked.</param>
+        /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given username or slug is null, empty or contains spaces.
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
-        public async Task<TraktNoContentResponse> LikeListAsync(string usernameOrSlug, string listIdOrSlug)
+        public async Task<TraktNoContentResponse> LikeListAsync(string usernameOrSlug, string listIdOrSlug,
+                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -666,12 +703,14 @@
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which a like on a custom list should be removed.</param>
         /// <param name="listIdOrSlug">The id or slug of the list, for which a like should be removed.</param>
+        /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given username or slug is null, empty or contains spaces.
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
-        public async Task<TraktNoContentResponse> UnlikeListAsync(string usernameOrSlug, string listIdOrSlug)
+        public async Task<TraktNoContentResponse> UnlikeListAsync(string usernameOrSlug, string listIdOrSlug,
+                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -694,10 +733,12 @@
         /// The extended info, which determines how much data about the follower users should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktUserFollower" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
-        public async Task<TraktListResponse<ITraktUserFollower>> GetFollowersAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktListResponse<ITraktUserFollower>> GetFollowersAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktUserFollowersRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo });
@@ -715,10 +756,12 @@
         /// The extended info, which determines how much data about the following users should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktUserFollower" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
-        public async Task<TraktListResponse<ITraktUserFollower>> GetFollowingAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktListResponse<ITraktUserFollower>> GetFollowingAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktUserFollowingRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo });
@@ -736,10 +779,12 @@
         /// The extended info, which determines how much data about the friend users should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktUserFriend" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
-        public async Task<TraktListResponse<ITraktUserFriend>> GetFriendsAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktListResponse<ITraktUserFriend>> GetFriendsAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktUserFriendsRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo });
@@ -753,13 +798,15 @@
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, which should be followed.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="ITraktUserFollowUserPostResponse" /> instance containing information whether the request was successful.
         /// See <see cref="ITraktUserFollowUserPostResponse.ApprovedAt" />.
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktUserFollowUserPostResponse>> FollowUserAsync(string usernameOrSlug)
+        public async Task<TraktResponse<ITraktUserFollowUserPostResponse>> FollowUserAsync(string usernameOrSlug,
+                                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteSingleItemRequestAsync(new TraktUserFollowUserRequest { Username = usernameOrSlug });
@@ -773,9 +820,10 @@
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, which should be unfollowed.</param>
+        /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
-        public async Task<TraktNoContentResponse> UnfollowUserAsync(string usernameOrSlug)
+        public async Task<TraktNoContentResponse> UnfollowUserAsync(string usernameOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteNoContentRequestAsync(new TraktUserUnfollowUserRequest { Username = usernameOrSlug });
@@ -789,10 +837,11 @@
         /// </para>
         /// </summary>
         /// <param name="followerRequestId">The id of the follower request, which should be approved.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktUserFollower" /> instance containing information about the approved user.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given follower request id is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktUserFollower>> ApproveFollowRequestAsync(uint followerRequestId)
+        public async Task<TraktResponse<ITraktUserFollower>> ApproveFollowRequestAsync(uint followerRequestId, CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateFollowerRequestId(followerRequestId);
             var requestHandler = new TraktRequestHandler(Client);
@@ -807,9 +856,10 @@
         /// </para>
         /// </summary>
         /// <param name="followerRequestId">The id of the follower request, which should be denied.</param>
+        /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given follower request id is null, empty or contains spaces.</exception>
-        public async Task<TraktNoContentResponse> DenyFollowRequestAsync(uint followerRequestId)
+        public async Task<TraktNoContentResponse> DenyFollowRequestAsync(uint followerRequestId, CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateFollowerRequestId(followerRequestId);
             var requestHandler = new TraktRequestHandler(Client);
@@ -834,6 +884,7 @@
         /// </param>
         /// <param name="page">The page of the history items list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of history items for each page, that should be queried.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>
         /// A <see cref="TraktPagedResponse{ITraktHistoryItem}"/> instance containing the queried history items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -846,7 +897,8 @@
         public async Task<TraktPagedResponse<ITraktHistoryItem>> GetWatchedHistoryAsync(string usernameOrSlug, TraktSyncItemType historyItemType = null,
                                                                                         uint? itemId = null, DateTime? startAt = null,
                                                                                         DateTime? endAt = null, TraktExtendedInfo extendedInfo = null,
-                                                                                        int? page = null, int? limitPerPage = null)
+                                                                                        int? page = null, int? limitPerPage = null,
+                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -881,11 +933,13 @@
         /// The extended info, which determines how much data about the rating items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktRatingsItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         public async Task<TraktListResponse<ITraktRatingsItem>> GetRatingsAsync(string usernameOrSlug, TraktRatingsItemType ratingsItemType = null,
-                                                                                int[] ratingsFilter = null, TraktExtendedInfo extendedInfo = null)
+                                                                                int[] ratingsFilter = null, TraktExtendedInfo extendedInfo = null,
+                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -913,6 +967,7 @@
         /// </param>
         /// <param name="page">The page of the watchlist items list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of watchlist items for each page, that should be queried.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktWatchlistItem}"/> instance containing the queried watchlist items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -924,7 +979,8 @@
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         public async Task<TraktPagedResponse<ITraktWatchlistItem>> GetWatchlistAsync(string usernameOrSlug, TraktSyncItemType watchlistItemType = null,
                                                                                      TraktExtendedInfo extendedInfo = null,
-                                                                                     int? page = null, int? limitPerPage = null)
+                                                                                     int? page = null, int? limitPerPage = null,
+                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -950,10 +1006,12 @@
         /// The extended info, which determines how much data about the currently watching item should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktUserWatchingItem" /> instance containing the movie or episode an user is currently watching.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktUserWatchingItem>> GetWatchingAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktResponse<ITraktUserWatchingItem>> GetWatchingAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteSingleItemRequestAsync(new TraktUserWatchingRequest
@@ -975,10 +1033,12 @@
         /// The extended info, which determines how much data about the watched movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktWatchedMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
-        public async Task<TraktListResponse<ITraktWatchedMovie>> GetWatchedMoviesAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktListResponse<ITraktWatchedMovie>> GetWatchedMoviesAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                                       CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteListRequestAsync(new TraktUserWatchedMoviesRequest
@@ -1000,10 +1060,12 @@
         /// The extended info, which determines how much data about the watched shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktWatchedShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
-        public async Task<TraktListResponse<ITraktWatchedShow>> GetWatchedShowsAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktListResponse<ITraktWatchedShow>> GetWatchedShowsAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -1022,10 +1084,11 @@
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the statistics should be queried.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktUserStatistics" /> instance coontaining statistics about movies, shows and episodes.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktUserStatistics>> GetStatisticsAsync(string usernameOrSlug)
+        public async Task<TraktResponse<ITraktUserStatistics>> GetStatisticsAsync(string usernameOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             return await requestHandler.ExecuteSingleItemRequestAsync(new TraktUserStatisticsRequest { Username = usernameOrSlug });

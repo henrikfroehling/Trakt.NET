@@ -14,6 +14,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -32,7 +33,7 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams)" />.</para>
+        /// <para>See also <seealso cref="GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams, CancellationToken)" />.</para>
         /// </summary>
         /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="ITraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, which should be queried.</param>
@@ -41,6 +42,7 @@
         /// The extended info, which determines how much data about the episode should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktEpisode" /> instance with the queried episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
@@ -49,7 +51,8 @@
         /// Thrown, if the given episode-number is below one.
         /// </exception>
         public async Task<TraktResponse<ITraktEpisode>> GetEpisodeAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
-                                                                        TraktExtendedInfo extendedInfo = null)
+                                                                        TraktExtendedInfo extendedInfo = null,
+                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -68,9 +71,10 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetEpisodeAsync(string, uint, uint, TraktExtendedInfo)" />.</para>
+        /// <para>See also <seealso cref="GetEpisodeAsync(string, uint, uint, TraktExtendedInfo, CancellationToken)" />.</para>
         /// </summary>
         /// <param name="episodesQueryParams">A list of show ids, season numbers, episode numbers and optional extended infos. See also <seealso cref="TraktMultipleEpisodesQueryParams" />.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktEpisode" /> instances with the data of each queried episode.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given show ids is null, empty or contains spaces.</exception>
@@ -78,7 +82,8 @@
         /// Thrown, if the given season-number is below zero.
         /// Thrown, if the given episode-number is below one.
         /// </exception>
-        public async Task<IEnumerable<TraktResponse<ITraktEpisode>>> GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams episodesQueryParams)
+        public async Task<IEnumerable<TraktResponse<ITraktEpisode>>> GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams episodesQueryParams,
+                                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             if (episodesQueryParams == null || episodesQueryParams.Count <= 0)
                 return new List<TraktResponse<ITraktEpisode>>();
@@ -109,6 +114,7 @@
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
         /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktComment}"/> instance containing the queried episode comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -124,7 +130,8 @@
         /// </exception>
         public async Task<TraktPagedResponse<ITraktComment>> GetEpisodeCommentsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                                      TraktCommentSortOrder commentSortOrder = null,
-                                                                                     int? page = null, int? limitPerPage = null)
+                                                                                     int? page = null, int? limitPerPage = null,
+                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -153,6 +160,7 @@
         /// <param name="listSortOrder">The list sort order. See also <seealso cref="TraktListSortOrder" />. Defaults to sorted by popularity.</param>
         /// <param name="page">The page of the <see cref="ITraktList" /> list, that should be queried. Defaults to the first page.</param>
         /// <param name="limitPerPage">The maximum count of <see cref="ITraktList" />s for each page, that should be queried.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktList}"/> instance containing the queried episode lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -168,7 +176,8 @@
         /// </exception>
         public async Task<TraktPagedResponse<ITraktList>> GetEpisodeListsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                                TraktListType listType = null, TraktListSortOrder listSortOrder = null,
-                                                                               int? page = null, int? limitPerPage = null)
+                                                                               int? page = null, int? limitPerPage = null,
+                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -194,6 +203,7 @@
         /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="ITraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, for which the ratings should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the ratings should be queried.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktRating" /> instance, containing the ratings for a episode with the given showIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
@@ -201,7 +211,8 @@
         /// Thrown, if the given season-number is below zero.
         /// Thrown, if the given episode-number is below one.
         /// </exception>
-        public async Task<TraktResponse<ITraktRating>> GetEpisodeRatingsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber)
+        public async Task<TraktResponse<ITraktRating>> GetEpisodeRatingsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -223,6 +234,7 @@
         /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="ITraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, for which the statistics should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the statistics should be queried.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktStatistics" /> instance, containing the statistics for a episode with the given showIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
@@ -230,7 +242,8 @@
         /// Thrown, if the given season-number is below zero.
         /// Thrown, if the given episode-number is below one.
         /// </exception>
-        public async Task<TraktResponse<ITraktStatistics>> GetEpisodeStatisticsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber)
+        public async Task<TraktResponse<ITraktStatistics>> GetEpisodeStatisticsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -253,6 +266,7 @@
         /// <param name="seasonNumber">The number of the season containing the episode, for which the translations should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the translations should be queried.</param>
         /// <param name="languageCode">An optional two letter language code to query a specific translation language.</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktEpisodeTranslation" /> instances, each containing a title, overview and language code.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
@@ -262,7 +276,8 @@
         /// Thrown, if the given languageCode is shorter or longer than two characters.
         /// </exception>
         public async Task<TraktListResponse<ITraktEpisodeTranslation>> GetEpisodeTranslationsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
-                                                                                                   string languageCode = null)
+                                                                                                   string languageCode = null,
+                                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -289,6 +304,7 @@
         /// The extended info, which determines how much data about the users should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktUser" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
@@ -297,7 +313,8 @@
         /// Thrown, if the given episode-number is below one.
         /// </exception>
         public async Task<TraktListResponse<ITraktUser>> GetEpisodeWatchingUsersAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
-                                                                                      TraktExtendedInfo extendedInfo = null)
+                                                                                      TraktExtendedInfo extendedInfo = null,
+                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
