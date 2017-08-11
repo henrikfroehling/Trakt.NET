@@ -6,13 +6,15 @@
     using Exceptions;
     using Interfaces;
     using Interfaces.Base;
-    using Objects.Basic.Implementations;
-    using Objects.Post.Checkins.Responses.Implementations;
+    using Objects.Basic;
+    using Objects.JsonReader;
+    using Objects.Post.Checkins.Responses;
     using Responses;
     using Responses.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.IO;
     using System.Linq;
     using System.Net;
     using System.Net.Http;
@@ -34,6 +36,8 @@
         private const string HEADER_STARTDATE_KEY = "X-Start-Date";
         private const string HEADER_ENDDATE_KEY = "X-End-Date";
         private const string HEADER_PRIVATE_USER_KEY = "X-Private-User";
+        private const string MEDIA_TYPE = "application/json";
+        private const string AUTHENTICATION_SCHEME = "Bearer";
 
         // Don't mark this field as readonly,
         // as it is manually set in unit tests
@@ -132,7 +136,7 @@
             try
             {
                 responseMessage = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
-                Debug.Assert(responseMessage?.StatusCode == HttpStatusCode.NoContent, "precondition for generating no content response failed");
+                Debug.Assert(responseMessage?.StatusCode == HttpStatusCode.NoContent, "precondition for generating no content response failed: invalid status code");
 
                 return new TraktNoContentResponse { IsSuccess = true };
             }
@@ -156,13 +160,16 @@
             try
             {
                 responseMessage = await ExecuteRequestAsync(requestMessage, isCheckinRequest).ConfigureAwait(false);
-                Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating single item response failed");
+                Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating single item response failed: invalid status code");
 
-                var responseContent = await GetResponseContentAsync(responseMessage).ConfigureAwait(false);
-                Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
+                Stream responseContentStream = await GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
+                Debug.Assert(responseContentStream != null, "precondition for deserializing response content failed: stream is null");
 
-                var contentObject = Json.Deserialize<TResponseContentType>(responseContent);
-                var hasValue = !EqualityComparer<TResponseContentType>.Default.Equals(contentObject, default(TResponseContentType));
+                ITraktObjectJsonReader<TResponseContentType> objectJsonReader = TraktJsonFactoryContainer.CreateObjectReader<TResponseContentType>();
+                Debug.Assert(objectJsonReader != null, "precondition for deserializing response content failed: json content reader is null");
+
+                TResponseContentType contentObject = await objectJsonReader.ReadObjectAsync(responseContentStream).ConfigureAwait(false);
+                bool hasValue = !EqualityComparer<TResponseContentType>.Default.Equals(contentObject, default(TResponseContentType));
 
                 var response = new TraktResponse<TResponseContentType>
                 {
@@ -196,12 +203,15 @@
             try
             {
                 responseMessage = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
-                Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating list response failed");
+                Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating list response failed: invalid status code");
 
-                var responseContent = await GetResponseContentAsync(responseMessage).ConfigureAwait(false);
-                Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
+                Stream responseContentStream = await GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
+                Debug.Assert(responseContentStream != null, "precondition for deserializing response content failed: stream is null");
 
-                var contentObject = Json.Deserialize<IEnumerable<TResponseContentType>>(responseContent);
+                ITraktArrayJsonReader<TResponseContentType> arrayJsonReader = TraktJsonFactoryContainer.CreateArrayReader<TResponseContentType>();
+                Debug.Assert(arrayJsonReader != null, "precondition for deserializing response content failed: json content reader is null");
+
+                IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream).ConfigureAwait(false);
 
                 var response = new TraktListResponse<TResponseContentType>
                 {
@@ -235,12 +245,15 @@
             try
             {
                 responseMessage = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
-                Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating paged list response failed");
+                Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating paged list response failed: invalid status code");
 
-                var responseContent = await GetResponseContentAsync(responseMessage).ConfigureAwait(false);
-                Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed");
+                Stream responseContentStream = await GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
+                Debug.Assert(responseContentStream != null, "precondition for deserializing response content failed: stream is null");
 
-                var contentObject = Json.Deserialize<IEnumerable<TResponseContentType>>(responseContent);
+                ITraktArrayJsonReader<TResponseContentType> arrayJsonReader = TraktJsonFactoryContainer.CreateArrayReader<TResponseContentType>();
+                Debug.Assert(arrayJsonReader != null, "precondition for deserializing response content failed: json content reader is null");
+
+                IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream).ConfigureAwait(false);
 
                 var response = new TraktPagedResponse<TResponseContentType>
                 {
@@ -272,16 +285,16 @@
 
         private async Task<HttpResponseMessage> ExecuteRequestAsync(TraktHttpRequestMessage requestMessage, bool isCheckinRequest = false)
         {
-            var response = await s_httpClient.SendAsync(requestMessage).ConfigureAwait(false);
+            HttpResponseMessage responseMessage = await s_httpClient.SendAsync(requestMessage).ConfigureAwait(false);
 
-            if (!response.IsSuccessStatusCode)
-                await ErrorHandlingAsync(response, requestMessage, isCheckinRequest).ConfigureAwait(false);
+            if (!responseMessage.IsSuccessStatusCode)
+                await ErrorHandlingAsync(responseMessage, requestMessage, isCheckinRequest).ConfigureAwait(false);
 
-            return response;
+            return responseMessage;
         }
 
-        private Task<string> GetResponseContentAsync(HttpResponseMessage response)
-            => response.Content != null ? response.Content.ReadAsStringAsync() : Task.FromResult(string.Empty);
+        private Task<Stream> GetResponseContentStreamAsync(HttpResponseMessage response)
+            => response.Content != null ? response.Content.ReadAsStreamAsync() : Task.FromResult(default(Stream));
 
         private void PreExecuteRequest(ITraktRequest request)
         {
@@ -308,25 +321,25 @@
         private string BuildUrl(ITraktRequest request)
         {
             var uriTemplate = new UriTemplate(request.UriTemplate);
-            var requestUriParameters = request.GetUriPathParameters();
+            IDictionary<string, object> requestUriParameters = request.GetUriPathParameters();
 
-            foreach (var parameter in requestUriParameters)
+            foreach (KeyValuePair<string, object> parameter in requestUriParameters)
                 uriTemplate.AddParameterFromKeyValuePair(parameter.Key, parameter.Value);
 
-            var uri = uriTemplate.Resolve();
+            string uri = uriTemplate.Resolve();
             return $"{_client.Configuration.BaseUrl}{uri}";
         }
 
         private TraktHttpRequestMessage SetupRequestMessage(ITraktRequest request)
         {
-            var requestMessage = CreateRequestMessage(request);
+            TraktHttpRequestMessage requestMessage = CreateRequestMessage(request);
             SetRequestMessageHeadersForAuthorization(requestMessage, request.AuthorizationRequirement);
             return requestMessage;
         }
 
         private TraktHttpRequestMessage SetupRequestMessage<TRequestBodyType>(ITraktPostRequest<TRequestBodyType> request)
         {
-            var requestMessage = CreateRequestMessage(request);
+            TraktHttpRequestMessage requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);
             SetRequestMessageHeadersForAuthorization(requestMessage, request.AuthorizationRequirement);
             return requestMessage;
@@ -334,7 +347,7 @@
 
         private TraktHttpRequestMessage SetupRequestMessage<TResponseContentType, TRequestBodyType>(ITraktPostRequest<TResponseContentType, TRequestBodyType> request)
         {
-            var requestMessage = CreateRequestMessage(request);
+            TraktHttpRequestMessage requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);
             SetRequestMessageHeadersForAuthorization(requestMessage, request.AuthorizationRequirement);
             return requestMessage;
@@ -342,7 +355,7 @@
 
         private TraktHttpRequestMessage SetupRequestMessage<TRequestBodyType>(ITraktPutRequest<TRequestBodyType> request)
         {
-            var requestMessage = CreateRequestMessage(request);
+            TraktHttpRequestMessage requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);
             SetRequestMessageHeadersForAuthorization(requestMessage, request.AuthorizationRequirement);
             return requestMessage;
@@ -350,7 +363,7 @@
 
         private TraktHttpRequestMessage SetupRequestMessage<TResponseContentType, TRequestBodyType>(ITraktPutRequest<TResponseContentType, TRequestBodyType> request)
         {
-            var requestMessage = CreateRequestMessage(request);
+            TraktHttpRequestMessage requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);
             SetRequestMessageHeadersForAuthorization(requestMessage, request.AuthorizationRequirement);
             return requestMessage;
@@ -361,7 +374,7 @@
             const string seasonKey = "season";
             const string episodeKey = "episode";
 
-            var url = BuildUrl(request);
+            string url = BuildUrl(request);
             var requestMessage = new TraktHttpRequestMessage(request.Method, url) { Url = url };
 
             if (request is ITraktHasId)
@@ -372,7 +385,7 @@
                 requestMessage.RequestObjectType = idRequest?.RequestObjectType;
             }
 
-            var parameters = request.GetUriPathParameters();
+            IDictionary<string, object> parameters = request.GetUriPathParameters();
 
             if (parameters.Count != 0)
             {
@@ -407,8 +420,8 @@
 
         private HttpContent GetRequestBodyContent<TRequestBodyType>(ITraktHasRequestBody<TRequestBodyType> request, out string requestBodyJson)
         {
-            var requestBody = request.RequestBody;
-            var requestBodyIsNull = EqualityComparer<TRequestBodyType>.Default.Equals(requestBody, default(TRequestBodyType));
+            TRequestBodyType requestBody = request.RequestBody;
+            bool requestBodyIsNull = EqualityComparer<TRequestBodyType>.Default.Equals(requestBody, default(TRequestBodyType));
 
             if (requestBodyIsNull)
             {
@@ -416,14 +429,14 @@
                 return null;
             }
 
-            var json = Json.Serialize(requestBody);
+            string json = Json.Serialize(requestBody);
             requestBodyJson = json;
-            return !string.IsNullOrEmpty(json) ? new StringContent(json, Encoding.UTF8, "application/json") : null;
+            return !string.IsNullOrEmpty(json) ? new StringContent(json, Encoding.UTF8, MEDIA_TYPE) : null;
         }
 
         private void SetDefaultRequestHeaders(HttpClient httpClient)
         {
-            var appJsonHeader = new MediaTypeWithQualityHeaderValue("application/json");
+            var appJsonHeader = new MediaTypeWithQualityHeaderValue(MEDIA_TYPE);
 
             if (!httpClient.DefaultRequestHeaders.Contains(TraktConstants.APIClientIdHeaderKey))
                 httpClient.DefaultRequestHeaders.Add(TraktConstants.APIClientIdHeaderKey, _client.ClientId);
@@ -445,18 +458,18 @@
                 if (!_client.Authentication.IsAuthorized)
                     throw new TraktAuthorizationException("authorization is required for this request, but the current authorization parameters are invalid");
 
-                requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _client.Authentication.Authorization.AccessToken);
+                requestMessage.Headers.Authorization = new AuthenticationHeaderValue(AUTHENTICATION_SCHEME, _client.Authentication.Authorization.AccessToken);
             }
 
             if (authorizationRequirement == TraktAuthorizationRequirement.Optional && _client.Configuration.ForceAuthorization && _client.Authentication.IsAuthorized)
-                requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _client.Authentication.Authorization.AccessToken);
+                requestMessage.Headers.Authorization = new AuthenticationHeaderValue(AUTHENTICATION_SCHEME, _client.Authentication.Authorization.AccessToken);
         }
 
         private void ParseResponseHeaderValues(ITraktResponseHeaders headerResults, HttpResponseHeaders responseHeaders)
         {
             if (responseHeaders.TryGetValues(HEADER_PAGINATION_PAGE_KEY, out IEnumerable<string> values))
             {
-                var strPage = values.First();
+                string strPage = values.First();
 
                 if (int.TryParse(strPage, out int page))
                     headerResults.Page = page;
@@ -464,7 +477,7 @@
 
             if (responseHeaders.TryGetValues(HEADER_PAGINATION_LIMIT_KEY, out values))
             {
-                var strLimit = values.First();
+                string strLimit = values.First();
 
                 if (int.TryParse(strLimit, out int limit))
                     headerResults.Limit = limit;
@@ -472,7 +485,7 @@
 
             if (responseHeaders.TryGetValues(HEADER_TRENDING_USER_COUNT_KEY, out values))
             {
-                var strTrendingUserCount = values.First();
+                string strTrendingUserCount = values.First();
 
                 if (int.TryParse(strTrendingUserCount, out int userCount))
                     headerResults.TrendingUserCount = userCount;
@@ -486,7 +499,7 @@
 
             if (responseHeaders.TryGetValues(HEADER_PRIVATE_USER_KEY, out values))
             {
-                var strIsPrivateUser = values.First();
+                string strIsPrivateUser = values.First();
 
                 if (bool.TryParse(strIsPrivateUser, out bool isPrivateUser))
                     headerResults.IsPrivateUser = isPrivateUser;
@@ -494,7 +507,7 @@
 
             if (responseHeaders.TryGetValues(HEADER_STARTDATE_KEY, out values))
             {
-                var strStartDate = values.First();
+                string strStartDate = values.First();
 
                 if (DateTime.TryParse(strStartDate, out DateTime startDate))
                     headerResults.StartDate = startDate.ToUniversalTime();
@@ -502,7 +515,7 @@
 
             if (responseHeaders.TryGetValues(HEADER_ENDDATE_KEY, out values))
             {
-                var strEndDate = values.First();
+                string strEndDate = values.First();
 
                 if (DateTime.TryParse(strEndDate, out DateTime endDate))
                     headerResults.EndDate = endDate.ToUniversalTime();
@@ -513,7 +526,7 @@
         {
             if (responseHeaders.TryGetValues(HEADER_PAGINATION_PAGE_COUNT_KEY, out IEnumerable<string> values))
             {
-                var strPageCount = values.First();
+                string strPageCount = values.First();
 
                 if (int.TryParse(strPageCount, out int pageCount))
                     headerResults.PageCount = pageCount;
@@ -521,7 +534,7 @@
 
             if (responseHeaders.TryGetValues(HEADER_PAGINATION_ITEM_COUNT_KEY, out values))
             {
-                var strItemCount = values.First();
+                string strItemCount = values.First();
 
                 if (int.TryParse(strItemCount, out int itemCount))
                     headerResults.ItemCount = itemCount;
@@ -535,10 +548,10 @@
             if (response.Content != null)
                 responseContent = await response.Content.ReadAsStringAsync();
 
-            var code = response.StatusCode;
-            var url = requestMessage.Url;
-            var requestBodyJson = requestMessage.RequestBodyJson;
-            var reasonPhrase = response.ReasonPhrase;
+            HttpStatusCode code = response.StatusCode;
+            string url = requestMessage.Url;
+            string requestBodyJson = requestMessage.RequestBodyJson;
+            string reasonPhrase = response.ReasonPhrase;
 
             switch (code)
             {
@@ -578,7 +591,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.Conflict:
-                    HandleConflictStatusCode(isCheckinRequest, responseContent, url, requestBodyJson, reasonPhrase);
+                    await HandleConflictStatusCode(isCheckinRequest, responseContent, url, requestBodyJson, reasonPhrase);
                     break;
                 case HttpStatusCode.InternalServerError:
                     throw new TraktServerException()
@@ -643,16 +656,16 @@
                     };
             }
 
-            HandleUnknownError(responseContent, code, url, requestBodyJson, reasonPhrase);
+            await HandleUnknownError(responseContent, code, url, requestBodyJson, reasonPhrase);
         }
 
         private static void HandleNotFoundStatusCode(TraktHttpRequestMessage requestMessage, string responseContent, string url, string requestBodyJson, string reasonPhrase)
         {
-            var requestObjectType = requestMessage.RequestObjectType;
+            TraktRequestObjectType? requestObjectType = requestMessage.RequestObjectType;
 
             if (requestObjectType.HasValue)
             {
-                var objectId = requestMessage.ObjectId;
+                string objectId = requestMessage.ObjectId;
                 uint seasonNr = requestMessage.SeasonNumber ?? 0;
                 uint episodeNr = requestMessage.EpisodeNumber ?? 0;
 
@@ -728,14 +741,17 @@
             throw new TraktNotFoundException($"Resource not found - Reason Phrase: {reasonPhrase}");
         }
 
-        private static void HandleConflictStatusCode(bool isCheckinRequest, string responseContent, string url, string requestBodyJson, string reasonPhrase)
+        private static async Task HandleConflictStatusCode(bool isCheckinRequest, string responseContent, string url, string requestBodyJson, string reasonPhrase)
         {
             if (isCheckinRequest)
             {
-                TraktCheckinPostErrorResponse errorResponse = null;
+                ITraktCheckinPostErrorResponse errorResponse = null;
 
                 if (!string.IsNullOrEmpty(responseContent))
-                    errorResponse = Json.Deserialize<TraktCheckinPostErrorResponse>(responseContent);
+                {
+                    ITraktObjectJsonReader<ITraktCheckinPostErrorResponse> errorResponseReader = TraktJsonFactoryContainer.CreateObjectReader<ITraktCheckinPostErrorResponse>();
+                    errorResponse = await errorResponseReader.ReadObjectAsync(responseContent);
+                }
 
                 throw new TraktCheckinException("checkin is already in progress")
                 {
@@ -756,13 +772,14 @@
             };
         }
 
-        private static void HandleUnknownError(string responseContent, HttpStatusCode code, string url, string requestBodyJson, string reasonPhrase)
+        private static async Task HandleUnknownError(string responseContent, HttpStatusCode code, string url, string requestBodyJson, string reasonPhrase)
         {
-            TraktError error = null;
+            ITraktError error = null;
 
             try
             {
-                error = Json.Deserialize<TraktError>(responseContent);
+                ITraktObjectJsonReader<ITraktError> errorReader = TraktJsonFactoryContainer.CreateObjectReader<ITraktError>();
+                error = await errorReader.ReadObjectAsync(responseContent);
             }
             catch (Exception ex)
             {
