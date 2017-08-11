@@ -78,7 +78,7 @@
         {
             if (await jsonReader.ReadAsync(cancellationToken))
             {
-                if (jsonReader.TokenType == JsonToken.Float)
+                if (jsonReader.TokenType == JsonToken.Float || jsonReader.TokenType == JsonToken.Integer)
                 {
                     if (float.TryParse(jsonReader.Value.ToString(), out float value))
                         return new Pair<bool, float>(true, value);
