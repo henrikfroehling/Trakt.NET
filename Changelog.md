@@ -4,6 +4,39 @@ Release notes
 Version 1.0.0
 ===
 
+#### 1.0.0-alpha2
+(2017-08-11)
+
+Breaking Changes:
+
+- New response classes
+  - `TraktNoContentResponse` replaces all `Task` return types in `Modules`
+  - `TraktResponse<TContentType>` replaces all `Task<TItem>` return types in `Modules`
+  - `TraktListResponse<TContentType>` replaces all `Task<IEnumerable<TItem>>` return types in `Modules`
+  - `TraktPagedResponse<TContentType>` replaces all `Task<TraktPaginationListResult<TItem>>` return types in `Modules`
+  - [More information](https://github.com/henrikfroehling/TraktApiSharp/wiki/00-Prereleases#v100-alpha1)
+
+- .NET Standard 1.1 replaces PCL
+
+Known issues:
+
+- Serialization of JSON data is not working when post builders are used for post requests ([Issue #77](https://github.com/henrikfroehling/TraktApiSharp/issues/77))
+
+Fixed:
+
+- System.NullReferenceException when getting popular shows ([Issue #59](https://github.com/henrikfroehling/TraktApiSharp/issues/59))
+
+Improved:
+
+- Deserialization of JSON data ([Issue #20](https://github.com/henrikfroehling/TraktApiSharp/issues/20))
+- Reduced indirection in object properties ([Issue #18](https://github.com/henrikfroehling/TraktApiSharp/issues/18))
+
+Removed:
+
+- `Images` option in `TraktExtendedInfo` ([Issue #43](https://github.com/henrikfroehling/TraktApiSharp/issues/43))
+
+---------
+
 #### 1.0.0-alpha1
 (2017-02-07)
 

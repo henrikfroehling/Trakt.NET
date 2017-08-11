@@ -3,9 +3,8 @@ TraktApiSharp [![Twitter](https://img.shields.io/twitter/url/https://www.nuget.o
 ##### This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).
 
 [![NuGet Package](https://img.shields.io/badge/NuGet-v0.10.0-brightgreen.svg?style=flat)](https://www.nuget.org/packages/TraktApiSharp)
-[![NuGet Package](https://img.shields.io/badge/NuGet-v1.0.0alpha1-orange.svg?style=flat)](https://www.nuget.org/packages/TraktApiSharp/1.0.0-alpha1)
+[![NuGet Package](https://img.shields.io/badge/NuGet-v1.0.0alpha2-orange.svg?style=flat)](https://www.nuget.org/packages/TraktApiSharp/1.0.0-alpha2)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
-[![Zenhub Support](https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png)](https://www.zenhub.com/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![CodeFactor](https://www.codefactor.io/repository/github/henrikfroehling/traktapisharp/badge)](https://www.codefactor.io/repository/github/henrikfroehling/traktapisharp)
 
@@ -18,10 +17,10 @@ TraktApiSharp [![Twitter](https://img.shields.io/twitter/url/https://www.nuget.o
 - ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/language-service.png) Language Service
 
 ### Supported Platforms
-- .Net Framework >= 4.5.1
+- .Net Framework >= 4.5.0
 - ASP.NET Core >= 1.0
-- Windows 8.1 / 10 / UWP
-- Windows Phone 8.1
+- Windows 8 / 8.1 / 10 / UWP
+- Windows Phone 8.0 / 8.1
 - Xamarin Android / Xamarin iOS
 
 ### Chat Room

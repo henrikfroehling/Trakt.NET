@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{80FD2672-3557-48BD-BA73-3952E2D57B22}"
 EndProject
@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		LICENSE.md = LICENSE.md
 		PublishRelease.txt = PublishRelease.txt
 		README.md = README.md
-		Source\Lib\TraktApiSharp\TraktApiSharp-v1.0.0-alpha1.nuspec = Source\Lib\TraktApiSharp\TraktApiSharp-v1.0.0-alpha1.nuspec
+		Source\Lib\TraktApiSharp\TraktApiSharp-v1.0.0-alpha2.nuspec = Source\Lib\TraktApiSharp\TraktApiSharp-v1.0.0-alpha2.nuspec
 		Source\Lib\TraktApiSharp\TraktApiSharp.nuspec = Source\Lib\TraktApiSharp\TraktApiSharp.nuspec
 	EndProjectSection
 EndProject

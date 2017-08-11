@@ -56,9 +56,9 @@
 # build in Release mode
 -
   environment:
-    packageVersion: 1.0.0-alpha1
+    packageVersion: 1.0.0-alpha2
 
-  version: '{branch}-v1.0.0-alpha1-{build}'
+  version: '{branch}-v1.0.0-alpha2-{build}'
   image: Visual Studio 2017
 
   install:
@@ -76,7 +76,7 @@
     - cmd: nuget restore
 
   after_test:
-    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%-v1.0.0-alpha1.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release
+    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%-v1.0.0-alpha2.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release
     - ps: Get-ChildItem .\Build\Lib\Release\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   build:

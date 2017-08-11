@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Henrik Fröhling")]
 [assembly: AssemblyProduct("TraktApiSharp")]
-[assembly: AssemblyCopyright("Copyright © 2016 - 2017 Henrik Fröhling")]
+[assembly: AssemblyCopyright("Copyright © 2016 - 2017 Henrik Fröhling et al.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en-US")]
