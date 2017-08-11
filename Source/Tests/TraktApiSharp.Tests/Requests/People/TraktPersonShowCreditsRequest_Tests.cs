@@ -4,7 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.People.Credits.Implementations;
+    using TraktApiSharp.Objects.Get.People.Credits;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.People;
@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktPersonShowCreditsRequest_Inherits_ATraktPersonRequest_1()
         {
-            typeof(TraktPersonShowCreditsRequest).IsSubclassOf(typeof(ATraktPersonRequest<TraktPersonShowCredits>)).Should().BeTrue();
+            typeof(TraktPersonShowCreditsRequest).IsSubclassOf(typeof(ATraktPersonRequest<ITraktPersonShowCredits>)).Should().BeTrue();
         }
 
         [Fact]

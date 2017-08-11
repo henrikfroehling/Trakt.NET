@@ -1,13 +1,11 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users.Implementations
 {
-    using Newtonsoft.Json;
     using System;
 
     /// <summary>A Trakt user follower.</summary>
     public class TraktUserFollower : ITraktUserFollower
     {
         /// <summary>Gets or sets the UTC datetime, when the relationship began.</summary>
-        [JsonProperty(PropertyName = "followed_at")]
         public DateTime? FollowedAt { get; set; }
 
         /// <summary>
@@ -15,10 +13,8 @@
         /// See also <seealso cref="ITraktUser" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "user")]
         public ITraktUser User { get; set; }
 
-        [JsonIgnore]
         public string Username
         {
             get { return User?.Username; }
@@ -30,7 +26,6 @@
             }
         }
 
-        [JsonIgnore]
         public bool? IsPrivate
         {
             get { return User?.IsPrivate; }
@@ -42,7 +37,6 @@
             }
         }
 
-        [JsonIgnore]
         public ITraktUserIds Ids
         {
             get { return User?.Ids; }
@@ -54,7 +48,6 @@
             }
         }
 
-        [JsonIgnore]
         public string Name
         {
             get { return User?.Name; }
@@ -66,7 +59,6 @@
             }
         }
 
-        [JsonIgnore]
         public bool? IsVIP
         {
             get { return User?.IsVIP; }
@@ -78,7 +70,6 @@
             }
         }
 
-        [JsonIgnore]
         public bool? IsVIP_EP
         {
             get { return User?.IsVIP_EP; }
@@ -90,7 +81,6 @@
             }
         }
 
-        [JsonIgnore]
         public DateTime? JoinedAt
         {
             get { return User?.JoinedAt; }
@@ -102,7 +92,6 @@
             }
         }
 
-        [JsonIgnore]
         public string Location
         {
             get { return User?.Location; }
@@ -114,7 +103,6 @@
             }
         }
 
-        [JsonIgnore]
         public string About
         {
             get { return User?.About; }
@@ -126,7 +114,6 @@
             }
         }
 
-        [JsonIgnore]
         public string Gender
         {
             get { return User?.Gender; }
@@ -138,7 +125,6 @@
             }
         }
 
-        [JsonIgnore]
         public int? Age
         {
             get { return User?.Age; }
@@ -150,7 +136,6 @@
             }
         }
 
-        [JsonIgnore]
         public ITraktUserImages Images
         {
             get { return User?.Images; }

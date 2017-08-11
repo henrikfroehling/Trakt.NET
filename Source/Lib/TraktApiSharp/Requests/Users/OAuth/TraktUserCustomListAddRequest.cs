@@ -2,12 +2,12 @@
 {
     using Base;
     using Extensions;
-    using Objects.Get.Users.Lists.Implementations;
+    using Objects.Get.Users.Lists;
     using Objects.Post.Users;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserCustomListAddRequest : ATraktPostRequest<TraktList, TraktUserCustomListPost>
+    internal sealed class TraktUserCustomListAddRequest : ATraktPostRequest<ITraktList, TraktUserCustomListPost>
     {
         internal string Username { get; set; }
 

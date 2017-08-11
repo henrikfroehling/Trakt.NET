@@ -5,7 +5,6 @@
     using TraktApiSharp;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Requests.Parameters;
 
     class GetSingleShow
@@ -82,8 +81,8 @@
         static async Task GetShowMinimal(string showIdOrSlug)
         {
             Console.WriteLine("------------------------- Show Minimal -------------------------");
-            TraktShow show = await _client.Shows.GetShowAsync(showIdOrSlug);
-            WriteShowMinimal(show);
+            var response = await _client.Shows.GetShowAsync(showIdOrSlug);
+            WriteShowMinimal(response.Value);
             Console.WriteLine("----------------------------------------------------------------");
         }
 
@@ -92,19 +91,19 @@
             var extendedInfo = new TraktExtendedInfo().SetFull();
 
             Console.WriteLine("------------------------- Show Full -------------------------");
-            TraktShow show = await _client.Shows.GetShowAsync(showIdOrSlug, extendedInfo);
-            WriteShowFull(show);
+            var response = await _client.Shows.GetShowAsync(showIdOrSlug, extendedInfo);
+            WriteShowFull(response.Value);
             Console.WriteLine("-------------------------------------------------------------");
         }
 
-        static void WriteShowMinimal(TraktShow show)
+        static void WriteShowMinimal(ITraktShow show)
         {
             if (show != null)
             {
                 Console.WriteLine($"Title: {show.Title}");
                 Console.WriteLine($"Year: {show.Year ?? 0}");
 
-                TraktShowIds ids = (TraktShowIds)show.Ids; // TODO use interface
+                ITraktShowIds ids = show.Ids; // TODO use interface
 
                 if (ids != null)
                 {
@@ -118,7 +117,7 @@
             }
         }
 
-        static void WriteShowFull(TraktShow show)
+        static void WriteShowFull(ITraktShow show)
         {
             WriteShowMinimal(show);
 
@@ -129,7 +128,7 @@
                 if (show.FirstAired.HasValue)
                     Console.WriteLine($"First Aired (UTC): {show.FirstAired.Value}");
 
-                TraktShowAirs airs = (TraktShowAirs)show.Airs; // TODO use interface
+                ITraktShowAirs airs = show.Airs; // TODO use interface
 
                 if (airs != null)
                 {

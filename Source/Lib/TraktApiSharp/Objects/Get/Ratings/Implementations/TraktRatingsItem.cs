@@ -3,7 +3,6 @@
     using Enums;
     using Episodes;
     using Movies;
-    using Newtonsoft.Json;
     using Seasons;
     using Shows;
     using System;
@@ -12,11 +11,9 @@
     public class TraktRatingsItem : ITraktRatingsItem
     {
         /// <summary>Gets or sets the UTC datetime, when the movie, show, season and / or episode was rated.</summary>
-        [JsonProperty(PropertyName = "rated_at")]
         public DateTime? RatedAt { get; set; }
 
         /// <summary>Gets or sets the rating of the movie, show, season and / or episode.</summary>
-        [JsonProperty(PropertyName = "rating")]
         public int? Rating { get; set; }
 
         /// <summary>
@@ -24,8 +21,6 @@
         /// See also <seealso cref="TraktRatingsItemType" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktEnumerationConverter<TraktRatingsItemType>))]
         public TraktRatingsItemType Type { get; set; }
 
         /// <summary>
@@ -33,7 +28,6 @@
         /// See also <seealso cref="ITraktMovie" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "movie")]
         public ITraktMovie Movie { get; set; }
 
         /// <summary>
@@ -43,7 +37,6 @@
         /// <para>See also <seealso cref="ITraktShow" />.</para>
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "show")]
         public ITraktShow Show { get; set; }
 
         /// <summary>
@@ -51,7 +44,6 @@
         /// See also <seealso cref="ITraktSeason" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "season")]
         public ITraktSeason Season { get; set; }
 
         /// <summary>
@@ -59,7 +51,6 @@
         /// See also <seealso cref="ITraktEpisode" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "episode")]
         public ITraktEpisode Episode { get; set; }
     }
 }

@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
+    using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Requests.Episodes;
     using Xunit;
 
@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktEpisodeTranslationsRequest_Inherits_ATraktEpisodeRequest_1()
         {
-            typeof(TraktEpisodeTranslationsRequest).IsSubclassOf(typeof(ATraktEpisodeRequest<TraktEpisodeTranslation>)).Should().BeTrue();
+            typeof(TraktEpisodeTranslationsRequest).IsSubclassOf(typeof(ATraktEpisodeRequest<ITraktEpisodeTranslation>)).Should().BeTrue();
         }
 
         [Fact]

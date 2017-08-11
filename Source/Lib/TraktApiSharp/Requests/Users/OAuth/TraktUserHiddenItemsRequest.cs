@@ -2,11 +2,11 @@
 {
     using Base;
     using Enums;
-    using Objects.Get.Users.Implementations;
+    using Objects.Get.Users;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserHiddenItemsRequest : ATraktUsersPagedGetRequest<TraktUserHiddenItem>
+    internal sealed class TraktUserHiddenItemsRequest : ATraktUsersPagedGetRequest<ITraktUserHiddenItem>
     {
         internal TraktHiddenItemsSection Section { get; set; }
 

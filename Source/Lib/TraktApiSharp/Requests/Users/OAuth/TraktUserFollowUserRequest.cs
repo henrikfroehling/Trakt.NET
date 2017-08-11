@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserFollowUserRequest : ATraktBodylessPostRequest<TraktUserFollowUserPostResponse>
+    internal sealed class TraktUserFollowUserRequest : ATraktBodylessPostRequest<ITraktUserFollowUserPostResponse>
     {
         internal string Username { get; set; }
 

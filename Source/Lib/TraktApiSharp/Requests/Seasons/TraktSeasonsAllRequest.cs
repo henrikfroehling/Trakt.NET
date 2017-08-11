@@ -3,12 +3,12 @@
     using Base;
     using Extensions;
     using Interfaces;
-    using Objects.Get.Seasons.Implementations;
+    using Objects.Get.Seasons;
     using Parameters;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktSeasonsAllRequest : ATraktGetRequest<TraktSeason>, ITraktHasId, ITraktSupportsExtendedInfo
+    internal sealed class TraktSeasonsAllRequest : ATraktGetRequest<ITraktSeason>, ITraktHasId, ITraktSupportsExtendedInfo
     {
         public string Id { get; set; }
 

@@ -4,11 +4,11 @@
     using Enums;
     using Extensions;
     using Interfaces;
-    using Objects.Get.History.Implementations;
+    using Objects.Get.History;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserWatchedHistoryRequest : ATraktUsersPagedGetRequest<TraktHistoryItem>, ITraktHasId
+    internal sealed class TraktUserWatchedHistoryRequest : ATraktUsersPagedGetRequest<ITraktHistoryItem>, ITraktHasId
     {
         internal string Username { get; set; }
 

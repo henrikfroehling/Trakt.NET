@@ -1,12 +1,12 @@
 ﻿namespace TraktApiSharp.Requests.Seasons
 {
     using Interfaces;
-    using Objects.Get.Episodes.Implementations;
+    using Objects.Get.Episodes;
     using Parameters;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktSeasonSingleRequest : ATraktSeasonRequest<TraktEpisode>, ITraktSupportsExtendedInfo
+    internal sealed class TraktSeasonSingleRequest : ATraktSeasonRequest<ITraktEpisode>, ITraktSupportsExtendedInfo
     {
         internal string TranslationLanguageCode { get; set; }
 

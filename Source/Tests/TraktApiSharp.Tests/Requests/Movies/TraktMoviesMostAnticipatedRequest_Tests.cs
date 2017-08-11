@@ -4,7 +4,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
+    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Requests.Movies;
     using TraktApiSharp.Requests.Parameters;
     using Xunit;
@@ -27,7 +27,7 @@
         [Fact]
         public void Test_TraktMoviesMostAnticipatedRequest_Inherits_ATraktMoviesRequest_1()
         {
-            typeof(TraktMoviesMostAnticipatedRequest).IsSubclassOf(typeof(ATraktMoviesRequest<TraktMostAnticipatedMovie>)).Should().BeTrue();
+            typeof(TraktMoviesMostAnticipatedRequest).IsSubclassOf(typeof(ATraktMoviesRequest<ITraktMostAnticipatedMovie>)).Should().BeTrue();
         }
 
         [Fact]

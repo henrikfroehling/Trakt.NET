@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Requests.People
 {
-    using Objects.Get.People.Credits.Implementations;
+    using Objects.Get.People.Credits;
 
-    internal sealed class TraktPersonShowCreditsRequest : ATraktPersonRequest<TraktPersonShowCredits>
+    internal sealed class TraktPersonShowCreditsRequest : ATraktPersonRequest<ITraktPersonShowCredits>
     {
         public override string UriTemplate => "people/{id}/shows{?extended}";
     }

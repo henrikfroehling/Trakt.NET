@@ -2,7 +2,7 @@
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users.Implementations;
+    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
@@ -25,7 +25,7 @@
         [Fact]
         public void Test_TraktUserSettingsRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktUserSettingsRequest).IsSubclassOf(typeof(ATraktGetRequest<TraktUserSettings>)).Should().BeTrue();
+            typeof(TraktUserSettingsRequest).IsSubclassOf(typeof(ATraktGetRequest<ITraktUserSettings>)).Should().BeTrue();
         }
 
         [Fact]

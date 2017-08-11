@@ -12,25 +12,15 @@
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Collections;
-    using TraktApiSharp.Objects.Get.Collections.Implementations;
-    using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.History;
-    using TraktApiSharp.Objects.Get.History.Implementations;
-    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.Ratings;
-    using TraktApiSharp.Objects.Get.Ratings.Implementations;
-    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Get.Syncs.Activities;
-    using TraktApiSharp.Objects.Get.Syncs.Activities.Implementations;
     using TraktApiSharp.Objects.Get.Syncs.Playback;
-    using TraktApiSharp.Objects.Get.Syncs.Playback.Implementations;
     using TraktApiSharp.Objects.Get.Watched;
-    using TraktApiSharp.Objects.Get.Watched.Implementations;
     using TraktApiSharp.Objects.Get.Watchlist;
-    using TraktApiSharp.Objects.Get.Watchlist.Implementations;
     using TraktApiSharp.Objects.Post.Syncs.Collection;
     using TraktApiSharp.Objects.Post.Syncs.Collection.Responses;
     using TraktApiSharp.Objects.Post.Syncs.History;
@@ -138,7 +128,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktSyncLastActivities>>> act =
+            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetLastActivitiesAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -288,7 +278,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResponse<TraktSyncPlaybackProgressItem>>> act =
+            Func<Task<TraktListResponse<ITraktSyncPlaybackProgressItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetPlaybackProgressAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -502,7 +492,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResponse<TraktCollectionMovie>>> act =
+            Func<Task<TraktListResponse<ITraktCollectionMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionMoviesAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -616,7 +606,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResponse<TraktCollectionShow>>> act =
+            Func<Task<TraktListResponse<ITraktCollectionShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetCollectionShowsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -911,7 +901,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktSyncCollectionPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktSyncCollectionPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddCollectionItemsAsync(collectionPost);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -979,7 +969,7 @@
         [TestMethod]
         public void TestTraktSyncModuleAddCollectionItemsArgumentExceptions()
         {
-            Func<Task<TraktResponse<TraktSyncCollectionPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktSyncCollectionPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddCollectionItemsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
@@ -1215,7 +1205,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktSyncCollectionRemovePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktSyncCollectionRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveCollectionItemsAsync(collectionRemovePost);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1283,7 +1273,7 @@
         [TestMethod]
         public void TestTraktSyncModuleRemoveCollectionItemsArgumentExceptions()
         {
-            Func<Task<TraktResponse<TraktSyncCollectionRemovePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktSyncCollectionRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveCollectionItemsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
@@ -1350,7 +1340,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResponse<TraktWatchedMovie>>> act =
+            Func<Task<TraktListResponse<ITraktWatchedMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedMoviesAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1464,7 +1454,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResponse<TraktWatchedShow>>> act =
+            Func<Task<TraktListResponse<ITraktWatchedShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedShowsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -3881,7 +3871,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktPagedResponse<TraktHistoryItem>>> act =
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedHistoryAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -4168,7 +4158,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktSyncHistoryPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktSyncHistoryPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddWatchedHistoryItemsAsync(historyPost);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -4236,7 +4226,7 @@
         [TestMethod]
         public void TestTraktSyncModuleAddWatchedHistoryItemsArgumentExceptions()
         {
-            Func<Task<TraktResponse<TraktSyncHistoryPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktSyncHistoryPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddWatchedHistoryItemsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
@@ -4412,8 +4402,8 @@
             responseValue.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
             responseValue.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
 
-            responseValue.NotFound.Ids.Should().NotBeNull().And.HaveCount(2);
-            responseValue.NotFound.Ids.Should().Contain(new List<ulong>() { 23, 42 });
+            responseValue.NotFound.HistoryIds.Should().NotBeNull().And.HaveCount(2);
+            responseValue.NotFound.HistoryIds.Should().Contain(new List<ulong>() { 23, 42 });
         }
 
         [TestMethod]
@@ -4473,7 +4463,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktSyncHistoryRemovePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktSyncHistoryRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchedHistoryItemsAsync(historyRemovePost);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -4541,7 +4531,7 @@
         [TestMethod]
         public void TestTraktSyncModuleRemoveWatchedHistoryItemsArgumentExceptions()
         {
-            Func<Task<TraktResponse<TraktSyncHistoryRemovePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktSyncHistoryRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchedHistoryItemsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
@@ -5000,7 +4990,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResponse<TraktRatingsItem>>> act =
+            Func<Task<TraktListResponse<ITraktRatingsItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -5294,7 +5284,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktSyncRatingsPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktSyncRatingsPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddRatingsAsync(ratingsPost);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -5362,7 +5352,7 @@
         [TestMethod]
         public void TestTraktSyncModuleAddRatingsArgumentExceptions()
         {
-            Func<Task<TraktResponse<TraktSyncRatingsPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktSyncRatingsPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddRatingsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
@@ -5596,7 +5586,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktSyncRatingsRemovePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktSyncRatingsRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveRatingsAsync(ratingsRemovePost);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -5664,7 +5654,7 @@
         [TestMethod]
         public void TestTraktSyncModuleRemoveRatingsArgumentExceptions()
         {
-            Func<Task<TraktResponse<TraktSyncRatingsRemovePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktSyncRatingsRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveRatingsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
@@ -6087,7 +6077,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktPagedResponse<TraktWatchlistItem>>> act =
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchlistAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -6374,7 +6364,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktSyncWatchlistPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktSyncWatchlistPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddWatchlistItemsAsync(watchlistPost);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -6442,7 +6432,7 @@
         [TestMethod]
         public void TestTraktSyncModuleAddWatchlistItemsArgumentExceptions()
         {
-            Func<Task<TraktResponse<TraktSyncWatchlistPostResponse>>> act =
+            Func<Task<TraktResponse<ITraktSyncWatchlistPostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.AddWatchlistItemsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 
@@ -6676,7 +6666,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktSyncWatchlistRemovePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchlistItemsAsync(watchlistRemovePost);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -6744,7 +6734,7 @@
         [TestMethod]
         public void TestTraktSyncModuleRemoveWatchlistItemsArgumentExceptions()
         {
-            Func<Task<TraktResponse<TraktSyncWatchlistRemovePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemoveWatchlistItemsAsync(null);
             act.ShouldThrow<ArgumentNullException>();
 

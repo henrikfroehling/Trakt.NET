@@ -36,6 +36,28 @@
     using Get.Watched.JsonReader.Factories;
     using Get.Watchlist;
     using Get.Watchlist.JsonReader.Factories;
+    using Post.Checkins.Responses;
+    using Post.Checkins.Responses.JsonReader.Factories;
+    using Post.Comments.Responses;
+    using Post.Comments.Responses.JsonReader.Factories;
+    using Post.Responses;
+    using Post.Responses.JsonReader.Factories;
+    using Post.Scrobbles.Responses;
+    using Post.Scrobbles.Responses.JsonReader.Factories;
+    using Post.Syncs.Collection.Responses;
+    using Post.Syncs.Collection.Responses.JsonReader.Factories;
+    using Post.Syncs.History.Responses;
+    using Post.Syncs.History.Responses.JsonReader.Factories;
+    using Post.Syncs.Ratings.Responses;
+    using Post.Syncs.Ratings.Responses.JsonReader.Factories;
+    using Post.Syncs.Responses;
+    using Post.Syncs.Responses.JsonReader.Factories;
+    using Post.Syncs.Watchlist.Responses;
+    using Post.Syncs.Watchlist.Responses.JsonReader.Factories;
+    using Post.Users.CustomListItems.Responses;
+    using Post.Users.CustomListItems.Responses.JsonReader.Factories;
+    using Post.Users.Responses;
+    using Post.Users.Responses.JsonReader.Factories;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -90,11 +112,19 @@
             s_readerFactories.Add(typeof(ITraktCalendarMovie), new TraktCalendarMovieJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktCalendarShow), new TraktCalendarShowJsonReaderFactory());
 
+            // checkin post response objects
+            s_readerFactories.Add(typeof(ITraktCheckinPostErrorResponse), new TraktCheckinPostErrorResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktEpisodeCheckinPostResponse), new TraktEpisodeCheckinPostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktMovieCheckinPostResponse), new TraktMovieCheckinPostResponseJsonReaderFactory());
+
             // collection objects
             s_readerFactories.Add(typeof(ITraktCollectionShowEpisode), new TraktCollectionShowEpisodeJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktCollectionShowSeason), new TraktCollectionShowSeasonJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktCollectionShow), new TraktCollectionShowJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktCollectionMovie), new TraktCollectionMovieJsonReaderFactory());
+
+            // comment post response objects
+            s_readerFactories.Add(typeof(ITraktCommentPostResponse), new TraktCommentPostResponseJsonReaderFactory());
 
             // episode objects
             s_readerFactories.Add(typeof(ITraktEpisode), new TraktEpisodeJsonReaderFactory());
@@ -132,6 +162,13 @@
             s_readerFactories.Add(typeof(ITraktPersonShowCreditsCrew), new TraktPersonShowCreditsCrewJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktPersonShowCreditsCrewItem), new TraktPersonShowCreditsCrewItemJsonReaderFactory());
 
+            // post response objects
+            s_readerFactories.Add(typeof(ITraktPostResponseNotFoundEpisode), new TraktPostResponseNotFoundEpisodeJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktPostResponseNotFoundMovie), new TraktPostResponseNotFoundMovieJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktPostResponseNotFoundPerson), new TraktPostResponseNotFoundPersonJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktPostResponseNotFoundSeason), new TraktPostResponseNotFoundSeasonJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktPostResponseNotFoundShow), new TraktPostResponseNotFoundShowJsonReaderFactory());
+
             // rating objects
             s_readerFactories.Add(typeof(ITraktRatingsItem), new TraktRatingsItemJsonReaderFactory());
 
@@ -140,6 +177,10 @@
             s_readerFactories.Add(typeof(ITraktSeasonIds), new TraktSeasonIdsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSeasonCollectionProgress), new TraktSeasonCollectionProgressJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSeasonWatchedProgress), new TraktSeasonWatchedProgressJsonReaderFactory());
+
+            // scrobble post response objects
+            s_readerFactories.Add(typeof(ITraktEpisodeScrobblePostResponse), new TraktEpisodeScrobblePostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktMovieScrobblePostResponse), new TraktMovieScrobblePostResponseJsonReaderFactory());
 
             // show objects
             s_readerFactories.Add(typeof(ITraktShow), new TraktShowJsonReaderFactory());
@@ -163,8 +204,41 @@
             s_readerFactories.Add(typeof(ITraktSyncSeasonsLastActivities), new TraktSyncSeasonsLastActivitiesJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncShowsLastActivities), new TraktSyncShowsLastActivitiesJsonReaderFactory());
 
+            // sync collection post response objects
+            s_readerFactories.Add(typeof(ITraktSyncCollectionPostResponse), new TraktSyncCollectionPostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncCollectionRemovePostResponse), new TraktSyncCollectionRemovePostResponseJsonReaderFactory());
+
+            // sync history post response objects
+            s_readerFactories.Add(typeof(ITraktSyncHistoryPostResponse), new TraktSyncHistoryPostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncHistoryRemovePostResponse), new TraktSyncHistoryRemovePostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncHistoryRemovePostResponseGroup), new TraktSyncHistoryRemovePostResponseGroupJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncHistoryRemovePostResponseNotFoundGroup), new TraktSyncHistoryRemovePostResponseNotFoundGroupJsonReaderFactory());
+
+            // sync rating post response objects
+            s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponse), new TraktSyncRatingsPostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundEpisode), new TraktSyncRatingsPostResponseNotFoundEpisodeJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundGroup), new TraktSyncRatingsPostResponseNotFoundGroupJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundMovie), new TraktSyncRatingsPostResponseNotFoundMovieJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundSeason), new TraktSyncRatingsPostResponseNotFoundSeasonJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundShow), new TraktSyncRatingsPostResponseNotFoundShowJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncRatingsRemovePostResponse), new TraktSyncRatingsRemovePostResponseJsonReaderFactory());
+
             // sync playback objects
             s_readerFactories.Add(typeof(ITraktSyncPlaybackProgressItem), new TraktSyncPlaybackProgressItemJsonReaderFactory());
+
+            // sync response objects
+            s_readerFactories.Add(typeof(ITraktSyncPostResponseGroup), new TraktSyncPostResponseGroupJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncPostResponseNotFoundGroup), new TraktSyncPostResponseNotFoundGroupJsonReaderFactory());
+
+            // sync watchlist post response objects
+            s_readerFactories.Add(typeof(ITraktSyncWatchlistPostResponse), new TraktSyncWatchlistPostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncWatchlistRemovePostResponse), new TraktSyncWatchlistRemovePostResponseJsonReaderFactory());
+
+            // user custom list items post response objects
+            s_readerFactories.Add(typeof(ITraktUserCustomListItemsPostResponse), new TraktUserCustomListItemsPostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktUserCustomListItemsPostResponseGroup), new TraktUserCustomListItemsPostResponseGroupJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktUserCustomListItemsPostResponseNotFoundGroup), new TraktUserCustomListItemsPostResponseNotFoundGroupJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktUserCustomListItemsRemovePostResponse), new TraktUserCustomListItemsRemovePostResponseJsonReaderFactory());
 
             // user objects
             s_readerFactories.Add(typeof(ITraktUser), new TraktUserJsonReaderFactory());
@@ -185,6 +259,9 @@
             s_readerFactories.Add(typeof(ITraktList), new TraktListJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktListIds), new TraktListIdsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktListItem), new TraktListItemJsonReaderFactory());
+
+            // user response post objects
+            s_readerFactories.Add(typeof(ITraktUserFollowUserPostResponse), new TraktUserFollowUserPostResponseJsonReaderFactory());
 
             // user statistic objects
             s_readerFactories.Add(typeof(ITraktUserStatistics), new TraktUserStatisticsJsonReaderFactory());

@@ -2,7 +2,6 @@
 {
     using Enums;
     using Episodes;
-    using Newtonsoft.Json;
     using Seasons;
     using Shows;
     using System;
@@ -12,18 +11,14 @@
     public class TraktCalendarShow : ITraktCalendarShow
     {
         /// <summary>Gets or sets the UTC datetime, when the <see cref="Episode" /> first aired.</summary>
-        [JsonProperty(PropertyName = "first_aired")]
         public DateTime? FirstAiredInCalendar { get; set; }
 
         /// <summary>Gets or sets the Trakt show. See also <seealso cref="ITraktShow" />.<para>Nullable</para></summary>
-        [JsonProperty(PropertyName = "show")]
         public ITraktShow Show { get; set; }
 
         /// <summary>Gets or sets the Trakt episode. See also <seealso cref="ITraktEpisode" />.<para>Nullable</para></summary>
-        [JsonProperty(PropertyName = "episode")]
         public ITraktEpisode Episode { get; set; }
 
-        [JsonIgnore]
         public string Title
         {
             get { return Show?.Title; }
@@ -35,7 +30,6 @@
             }
         }
 
-        [JsonIgnore]
         public int? Year
         {
             get { return Show?.Year; }
@@ -47,7 +41,6 @@
             }
         }
 
-        [JsonIgnore]
         public ITraktShowIds Ids
         {
             get { return Show?.Ids; }
@@ -59,7 +52,6 @@
             }
         }
 
-        [JsonIgnore]
         public string Overview
         {
             get { return Show?.Overview; }
@@ -71,7 +63,6 @@
             }
         }
 
-        [JsonIgnore]
         public DateTime? FirstAired
         {
             get { return Show?.FirstAired; }
@@ -83,7 +74,6 @@
             }
         }
 
-        [JsonIgnore]
         public ITraktShowAirs Airs
         {
             get { return Show?.Airs; }
@@ -95,7 +85,6 @@
             }
         }
 
-        [JsonIgnore]
         public int? Runtime
         {
             get { return Show?.Runtime; }
@@ -107,7 +96,6 @@
             }
         }
 
-        [JsonIgnore]
         public string Certification
         {
             get { return Show?.Certification; }
@@ -119,7 +107,6 @@
             }
         }
 
-        [JsonIgnore]
         public string Network
         {
             get { return Show?.Network; }
@@ -131,7 +118,6 @@
             }
         }
 
-        [JsonIgnore]
         public string CountryCode
         {
             get { return Show?.CountryCode; }
@@ -143,7 +129,6 @@
             }
         }
 
-        [JsonIgnore]
         public string Trailer
         {
             get { return Show?.Trailer; }
@@ -155,7 +140,6 @@
             }
         }
 
-        [JsonIgnore]
         public string Homepage
         {
             get { return Show?.Homepage; }
@@ -167,7 +151,6 @@
             }
         }
 
-        [JsonIgnore]
         public TraktShowStatus Status
         {
             get { return Show?.Status; }
@@ -179,7 +162,6 @@
             }
         }
 
-        [JsonIgnore]
         public float? Rating
         {
             get { return Show?.Rating; }
@@ -191,7 +173,6 @@
             }
         }
 
-        [JsonIgnore]
         public int? Votes
         {
             get { return Show?.Votes; }
@@ -203,7 +184,6 @@
             }
         }
 
-        [JsonIgnore]
         public DateTime? UpdatedAt
         {
             get { return Show?.UpdatedAt; }
@@ -215,7 +195,6 @@
             }
         }
 
-        [JsonIgnore]
         public string LanguageCode
         {
             get { return Show?.LanguageCode; }
@@ -227,7 +206,6 @@
             }
         }
 
-        [JsonIgnore]
         public IEnumerable<string> AvailableTranslationLanguageCodes
         {
             get { return Show?.AvailableTranslationLanguageCodes; }
@@ -239,7 +217,6 @@
             }
         }
 
-        [JsonIgnore]
         public IEnumerable<string> Genres
         {
             get { return Show?.Genres; }
@@ -251,7 +228,6 @@
             }
         }
 
-        [JsonIgnore]
         public int? AiredEpisodes
         {
             get { return Show?.AiredEpisodes; }
@@ -263,7 +239,6 @@
             }
         }
 
-        [JsonIgnore]
         public IEnumerable<ITraktSeason> Seasons
         {
             get { return Show?.Seasons; }
@@ -275,7 +250,6 @@
             }
         }
 
-        [JsonIgnore]
         public int? SeasonNumber
         {
             get { return Episode?.SeasonNumber; }
@@ -287,7 +261,6 @@
             }
         }
 
-        [JsonIgnore]
         public int? EpisodeNumber
         {
             get { return Episode?.Number; }
@@ -299,7 +272,6 @@
             }
         }
 
-        [JsonIgnore]
         public string EpisodeTitle
         {
             get { return Episode?.Title; }
@@ -311,7 +283,6 @@
             }
         }
 
-        [JsonIgnore]
         public ITraktEpisodeIds EpisodeIds
         {
             get { return Episode?.Ids; }
@@ -323,7 +294,6 @@
             }
         }
 
-        [JsonIgnore]
         public int? AbsoluteEpisodeNumber
         {
             get { return Episode?.NumberAbsolute; }
@@ -335,7 +305,6 @@
             }
         }
 
-        [JsonIgnore]
         public string EpisodeOverview
         {
             get { return Episode?.Overview; }
@@ -347,7 +316,6 @@
             }
         }
 
-        [JsonIgnore]
         public int? EpisodeRuntime
         {
             get { return Episode?.Runtime; }
@@ -359,7 +327,6 @@
             }
         }
 
-        [JsonIgnore]
         public float? EpisodeRating
         {
             get { return Episode?.Rating; }
@@ -371,7 +338,6 @@
             }
         }
 
-        [JsonIgnore]
         public int? EpisodeVotes
         {
             get { return Episode?.Votes; }
@@ -383,7 +349,6 @@
             }
         }
 
-        [JsonIgnore]
         public DateTime? EpisodeAiredFirstAt
         {
             get { return Episode?.FirstAired; }
@@ -395,7 +360,6 @@
             }
         }
 
-        [JsonIgnore]
         public DateTime? EpisodeUpdatedAt
         {
             get { return Episode?.UpdatedAt; }
@@ -407,7 +371,6 @@
             }
         }
 
-        [JsonIgnore]
         public IEnumerable<string> AvailableEpisodeTranslationLanguageCodes
         {
             get { return Episode?.AvailableTranslationLanguageCodes; }
@@ -419,7 +382,6 @@
             }
         }
 
-        [JsonIgnore]
         public IEnumerable<ITraktEpisodeTranslation> EpisodeTranslations
         {
             get { return Episode?.Translations; }

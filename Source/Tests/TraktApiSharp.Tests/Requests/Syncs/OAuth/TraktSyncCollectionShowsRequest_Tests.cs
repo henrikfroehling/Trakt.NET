@@ -3,7 +3,7 @@
     using FluentAssertions;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Collections.Implementations;
+    using TraktApiSharp.Objects.Get.Collections;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Syncs.OAuth;
@@ -27,7 +27,7 @@
         [Fact]
         public void Test_TraktSyncCollectionShowsRequest_Inherits_ATraktSyncGetRequest_1()
         {
-            typeof(TraktSyncCollectionShowsRequest).IsSubclassOf(typeof(ATraktSyncGetRequest<TraktCollectionShow>)).Should().BeTrue();
+            typeof(TraktSyncCollectionShowsRequest).IsSubclassOf(typeof(ATraktSyncGetRequest<ITraktCollectionShow>)).Should().BeTrue();
         }
 
         [Fact]

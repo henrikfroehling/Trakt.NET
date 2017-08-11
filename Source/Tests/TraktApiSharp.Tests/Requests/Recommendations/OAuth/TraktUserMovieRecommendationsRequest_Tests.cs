@@ -3,7 +3,7 @@
     using FluentAssertions;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
+    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Recommendations.OAuth;
@@ -27,7 +27,7 @@
         [Fact]
         public void Test_TraktUserMovieRecommendationsRequest_Inherits_ATraktUserRecommendationsRequest_1()
         {
-            typeof(TraktUserMovieRecommendationsRequest).IsSubclassOf(typeof(ATraktUserRecommendationsRequest<TraktMovie>)).Should().BeTrue();
+            typeof(TraktUserMovieRecommendationsRequest).IsSubclassOf(typeof(ATraktUserRecommendationsRequest<ITraktMovie>)).Should().BeTrue();
         }
 
         [Fact]

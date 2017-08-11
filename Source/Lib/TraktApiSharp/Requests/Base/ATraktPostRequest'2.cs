@@ -4,13 +4,13 @@
     using System;
     using System.Net.Http;
 
-    internal abstract class ATraktPostRequest<TContentType, TRequestBody> : ATraktRequest<TContentType>, ITraktPostRequest<TContentType, TRequestBody>
+    internal abstract class ATraktPostRequest<TResponseContentType, TRequestBodyType> : ATraktRequest<TResponseContentType>, ITraktPostRequest<TResponseContentType, TRequestBodyType>
     {
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
         public sealed override HttpMethod Method => HttpMethod.Post;
 
-        public abstract TRequestBody RequestBody { get; set; }
+        public abstract TRequestBodyType RequestBody { get; set; }
 
         public override void Validate()
         {

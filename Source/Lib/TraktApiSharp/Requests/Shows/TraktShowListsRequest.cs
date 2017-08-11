@@ -2,10 +2,10 @@
 {
     using Enums;
     using Interfaces;
-    using Objects.Get.Users.Lists.Implementations;
+    using Objects.Get.Users.Lists;
     using System.Collections.Generic;
 
-    internal sealed class TraktShowListsRequest : ATraktShowRequest<TraktList>, ITraktSupportsPagination
+    internal sealed class TraktShowListsRequest : ATraktShowRequest<ITraktList>, ITraktSupportsPagination
     {
         internal TraktListType Type { get; set; }
 

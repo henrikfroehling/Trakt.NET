@@ -8,7 +8,7 @@
     using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Users.Implementations;
+    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Users.OAuth;
@@ -32,7 +32,7 @@
         [Fact]
         public void Test_TraktUserCommentsRequest_Inherits_ATraktUsersPagedGetRequest_1()
         {
-            typeof(TraktUserCommentsRequest).IsSubclassOf(typeof(ATraktUsersPagedGetRequest<TraktUserComment>)).Should().BeTrue();
+            typeof(TraktUserCommentsRequest).IsSubclassOf(typeof(ATraktUsersPagedGetRequest<ITraktUserComment>)).Should().BeTrue();
         }
 
         [Fact]

@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Requests.Syncs.OAuth
 {
     using Interfaces;
-    using Objects.Get.Collections.Implementations;
+    using Objects.Get.Collections;
     using Parameters;
     using System.Collections.Generic;
 
-    internal sealed class TraktSyncCollectionMoviesRequest : ATraktSyncGetRequest<TraktCollectionMovie>, ITraktSupportsExtendedInfo
+    internal sealed class TraktSyncCollectionMoviesRequest : ATraktSyncGetRequest<ITraktCollectionMovie>, ITraktSupportsExtendedInfo
     {
         public TraktExtendedInfo ExtendedInfo { get; set; }
 

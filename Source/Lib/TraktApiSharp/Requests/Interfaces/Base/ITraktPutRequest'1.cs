@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Interfaces.Base
 {
-    internal interface ITraktPutRequest<TRequestBody> : ITraktRequest, ITraktHasRequestBody<TRequestBody>
+    internal interface ITraktPutRequest<TRequestBodyType> : ITraktRequest, ITraktHasRequestBody<TRequestBodyType>
     {
-
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Exceptions;
-    using Objects.Get.Movies.Implementations;
-    using Objects.Get.Shows.Implementations;
+    using Objects.Get.Movies;
+    using Objects.Get.Shows;
     using Requests.Handler;
     using Requests.Parameters;
     using Requests.Recommendations.OAuth;
@@ -33,15 +33,15 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{TraktMovie}"/> instance containing the queried movies and which also
+        /// An <see cref="TraktPagedResponse{ITraktMovie}"/> instance containing the queried movies and which also
         /// contains the queried page number and the page's item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<TraktMovie>> GetMovieRecommendationsAsync(uint? limit = null,
-                                                                                       TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktPagedResponse<ITraktMovie>> GetMovieRecommendationsAsync(uint? limit = null,
+                                                                                        TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 
@@ -81,15 +81,15 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{TraktShow}"/> instance containing the queried shows and which also
+        /// An <see cref="TraktPagedResponse{ITraktShow}"/> instance containing the queried shows and which also
         /// contains the queried page number and the page's item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="TraktShow" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktShow" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<TraktShow>> GetShowRecommendationsAsync(uint? limit = null,
-                                                                                     TraktExtendedInfo extendedInfo = null)
+        public async Task<TraktPagedResponse<ITraktShow>> GetShowRecommendationsAsync(uint? limit = null,
+                                                                                      TraktExtendedInfo extendedInfo = null)
         {
             var requestHandler = new TraktRequestHandler(Client);
 

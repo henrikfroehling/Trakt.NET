@@ -30,7 +30,7 @@
         [Fact]
         public void Test_TraktUserCustomListItemsRemoveRequest_Inherits_ATraktUsersPostByIdRequest_2()
         {
-            typeof(TraktUserCustomListItemsRemoveRequest).IsSubclassOf(typeof(ATraktUsersPostByIdRequest<TraktUserCustomListItemsRemovePostResponse, TraktUserCustomListItemsPost>)).Should().BeTrue();
+            typeof(TraktUserCustomListItemsRemoveRequest).IsSubclassOf(typeof(ATraktUsersPostByIdRequest<ITraktUserCustomListItemsRemovePostResponse, TraktUserCustomListItemsPost>)).Should().BeTrue();
         }
 
         [Fact]

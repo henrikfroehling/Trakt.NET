@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Responses.Interfaces
 {
-    public interface ITraktResponse<TContentType> : ITraktNoContentResponse, ITraktResponseHeaders
+    public interface ITraktResponse<TResponseContentType> : ITraktNoContentResponse, ITraktResponseHeaders
     {
         bool HasValue { get; }
 
-        TContentType Value { get; }
+        TResponseContentType Value { get; }
     }
 }

@@ -9,7 +9,7 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.History.Implementations;
+    using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Syncs.OAuth;
@@ -33,7 +33,7 @@
         [Fact]
         public void Test_TraktSyncWatchedHistoryRequest_Inherits_ATraktSyncGetRequest_1()
         {
-            typeof(TraktSyncWatchedHistoryRequest).IsSubclassOf(typeof(ATraktSyncGetRequest<TraktHistoryItem>)).Should().BeTrue();
+            typeof(TraktSyncWatchedHistoryRequest).IsSubclassOf(typeof(ATraktSyncGetRequest<ITraktHistoryItem>)).Should().BeTrue();
         }
 
         [Fact]

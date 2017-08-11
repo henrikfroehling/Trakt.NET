@@ -5,7 +5,7 @@
     using Parameters;
     using System.Collections.Generic;
 
-    internal abstract class ATraktUserRecommendationsRequest<TContentType> : ATraktGetRequest<TContentType>, ITraktSupportsExtendedInfo
+    internal abstract class ATraktUserRecommendationsRequest<TResponseContentType> : ATraktGetRequest<TResponseContentType>, ITraktSupportsExtendedInfo
     {
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 

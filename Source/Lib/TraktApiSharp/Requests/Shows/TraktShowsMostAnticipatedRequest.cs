@@ -1,8 +1,8 @@
 ﻿namespace TraktApiSharp.Requests.Shows
 {
-    using Objects.Get.Shows.Implementations;
+    using Objects.Get.Shows;
 
-    internal sealed class TraktShowsMostAnticipatedRequest : ATraktShowsRequest<TraktMostAnticipatedShow>
+    internal sealed class TraktShowsMostAnticipatedRequest : ATraktShowsRequest<ITraktMostAnticipatedShow>
     {
         public override string UriTemplate => "shows/anticipated{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}";
 

@@ -14,7 +14,7 @@
     using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Post.Scrobbles;
-    using TraktApiSharp.Objects.Post.Scrobbles.Responses.Implementations;
+    using TraktApiSharp.Objects.Post.Scrobbles.Responses;
     using TraktApiSharp.Responses;
     using Utils;
 
@@ -374,7 +374,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktMovieScrobblePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -471,7 +471,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, movieStartScrobbleResponse);
 
-            Func<Task<TraktResponse<TraktMovieScrobblePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(null, progress);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -854,7 +854,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktMovieScrobblePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(movie, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -951,7 +951,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/pause", postJson, moviePauseScrobbleResponse);
 
-            Func<Task<TraktResponse<TraktMovieScrobblePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseMovieAsync(null, progress);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -1334,7 +1334,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktMovieScrobblePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(movie, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -1431,7 +1431,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/stop", postJson, movieStopScrobbleResponse);
 
-            Func<Task<TraktResponse<TraktMovieScrobblePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopMovieAsync(null, progress);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -2227,7 +2227,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -2320,7 +2320,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -2424,7 +2424,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, episodeStartScrobbleResponse);
 
-            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(null, progress);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -3247,7 +3247,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(episode, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -3340,7 +3340,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -3444,7 +3444,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/pause", postJson, episodePauseScrobbleResponse);
 
-            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.PauseEpisodeAsync(null, progress);
 
             act.ShouldThrow<ArgumentNullException>();
@@ -4267,7 +4267,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(episode, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -4360,7 +4360,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeWithShowAsync(episode, show, progress);
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -4464,7 +4464,7 @@
 
             TestUtility.SetupMockResponseWithOAuth("scrobble/stop", postJson, episodeStopScrobbleResponse);
 
-            Func<Task<TraktResponse<TraktEpisodeScrobblePostResponse>>> act =
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StopEpisodeAsync(null, progress);
 
             act.ShouldThrow<ArgumentNullException>();

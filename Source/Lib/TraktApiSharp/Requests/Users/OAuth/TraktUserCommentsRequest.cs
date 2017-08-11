@@ -2,11 +2,11 @@
 {
     using Enums;
     using Extensions;
-    using Objects.Get.Users.Implementations;
+    using Objects.Get.Users;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserCommentsRequest : ATraktUsersPagedGetRequest<TraktUserComment>
+    internal sealed class TraktUserCommentsRequest : ATraktUsersPagedGetRequest<ITraktUserComment>
     {
         internal string Username { get; set; }
 

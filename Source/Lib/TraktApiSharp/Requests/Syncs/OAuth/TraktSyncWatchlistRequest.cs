@@ -2,11 +2,11 @@
 {
     using Enums;
     using Interfaces;
-    using Objects.Get.Watchlist.Implementations;
+    using Objects.Get.Watchlist;
     using Parameters;
     using System.Collections.Generic;
 
-    internal sealed class TraktSyncWatchlistRequest : ATraktSyncGetRequest<TraktWatchlistItem>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
+    internal sealed class TraktSyncWatchlistRequest : ATraktSyncGetRequest<ITraktWatchlistItem>, ITraktSupportsExtendedInfo, ITraktSupportsPagination
     {
         internal TraktSyncItemType Type { get; set; }
 

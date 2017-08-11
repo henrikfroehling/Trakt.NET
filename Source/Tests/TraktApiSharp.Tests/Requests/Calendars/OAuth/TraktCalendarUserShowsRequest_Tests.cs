@@ -6,7 +6,7 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.Calendars.Implementations;
+    using TraktApiSharp.Objects.Get.Calendars;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Calendars.OAuth;
     using TraktApiSharp.Requests.Parameters;
@@ -30,7 +30,7 @@
         [Fact]
         public void Test_TraktCalendarUserShowsRequest_Inherits_ATraktCalendarUserRequest()
         {
-            typeof(TraktCalendarUserShowsRequest).IsSubclassOf(typeof(ATraktCalendarUserRequest<TraktCalendarShow>)).Should().BeTrue();
+            typeof(TraktCalendarUserShowsRequest).IsSubclassOf(typeof(ATraktCalendarUserRequest<ITraktCalendarShow>)).Should().BeTrue();
         }
 
         [Fact]

@@ -2,10 +2,10 @@
 {
     using Enums;
     using Interfaces;
-    using Objects.Basic.Implementations;
+    using Objects.Basic;
     using System.Collections.Generic;
 
-    internal sealed class TraktSeasonCommentsRequest : ATraktSeasonRequest<TraktComment>, ITraktSupportsPagination
+    internal sealed class TraktSeasonCommentsRequest : ATraktSeasonRequest<ITraktComment>, ITraktSupportsPagination
     {
         internal TraktCommentSortOrder SortOrder { get; set; }
 

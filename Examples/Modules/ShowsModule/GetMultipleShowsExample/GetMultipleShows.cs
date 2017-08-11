@@ -5,7 +5,6 @@
     using TraktApiSharp;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Modules;
-    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Requests.Parameters;
 

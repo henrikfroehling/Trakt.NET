@@ -9,7 +9,6 @@
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Calendars;
-    using TraktApiSharp.Objects.Get.Calendars.Implementations;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Utils;
@@ -538,7 +537,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -606,7 +605,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetAllShowsArgumentExceptions()
         {
-            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -1102,7 +1101,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -1170,7 +1169,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetAllNewShowsArgumentExceptions()
         {
-            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllNewShowsAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -1666,7 +1665,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -1734,7 +1733,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetAllSeasonPremieresArgumentExceptions()
         {
-            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllSeasonPremieresAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -2230,7 +2229,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktListResponse<TraktCalendarMovie>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -2298,7 +2297,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetAllMoviesArgumentExceptions()
         {
-            Func<Task<TraktListResponse<TraktCalendarMovie>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllMoviesAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -2794,7 +2793,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
-            Func<Task<TraktListResponse<TraktCalendarMovie>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
@@ -2862,7 +2861,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetAllDVDMoviesArgumentExceptions()
         {
-            Func<Task<TraktListResponse<TraktCalendarMovie>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllDVDMoviesAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -3356,7 +3355,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -3424,7 +3423,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetUserShowsArgumentExceptions()
         {
-            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -3919,7 +3918,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -3987,7 +3986,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetUserNewShowsArgumentExceptions()
         {
-            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserNewShowsAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -4483,7 +4482,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -4551,7 +4550,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetUserSeasonPremieresArgumentExceptions()
         {
-            Func<Task<TraktListResponse<TraktCalendarShow>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -5047,7 +5046,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResponse<TraktCalendarMovie>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -5115,7 +5114,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetUserMoviesArgumentExceptions()
         {
-            Func<Task<TraktListResponse<TraktCalendarMovie>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserMoviesAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
@@ -5611,7 +5610,7 @@
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResponse<TraktCalendarMovie>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
@@ -5679,7 +5678,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleGetUserDVDMoviesArgumentExceptions()
         {
-            Func<Task<TraktListResponse<TraktCalendarMovie>>> act =
+            Func<Task<TraktListResponse<ITraktCalendarMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, 0);
             act.ShouldThrow<ArgumentOutOfRangeException>();
 

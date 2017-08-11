@@ -2,12 +2,12 @@
 {
     using Base;
     using Objects.Post.Comments;
-    using Objects.Post.Comments.Responses.Implementations;
+    using Objects.Post.Comments.Responses;
     using System.Collections.Generic;
 
-    internal sealed class TraktCommentPostRequest<TRequestBody> : ATraktPostRequest<TraktCommentPostResponse, TRequestBody> where TRequestBody : TraktCommentPost
+    internal sealed class TraktCommentPostRequest<TRequestBodyType> : ATraktPostRequest<ITraktCommentPostResponse, TRequestBodyType> where TRequestBodyType : TraktCommentPost
     {
-        public override TRequestBody RequestBody { get; set; }
+        public override TRequestBodyType RequestBody { get; set; }
 
         public override string UriTemplate => "comments";
 

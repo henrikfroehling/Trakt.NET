@@ -2,12 +2,12 @@
 {
     using Enums;
     using Extensions;
-    using Objects.Get.Ratings.Implementations;
+    using Objects.Get.Ratings;
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    internal sealed class TraktUserRatingsRequest : ATraktUsersGetRequest<TraktRatingsItem>
+    internal sealed class TraktUserRatingsRequest : ATraktUsersGetRequest<ITraktRatingsItem>
     {
         internal string Username { get; set; }
 

@@ -5,7 +5,6 @@
     using Episodes;
     using Lists;
     using Movies;
-    using Newtonsoft.Json;
     using Seasons;
     using Shows;
 
@@ -17,12 +16,9 @@
         /// See also <seealso cref="TraktObjectType" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktEnumerationConverter<TraktObjectType>))]
         public TraktObjectType Type { get; set; }
 
         /// <summary>Gets or sets the comment's content.<para>Nullable</para></summary>
-        [JsonProperty(PropertyName = "comment")]
         public ITraktComment Comment { get; set; }
 
         /// <summary>
@@ -30,7 +26,6 @@
         /// See also <seealso cref="ITraktMovie" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "movie")]
         public ITraktMovie Movie { get; set; }
 
         /// <summary>
@@ -38,7 +33,6 @@
         /// See also <seealso cref="ITraktShow" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "show")]
         public ITraktShow Show { get; set; }
 
         /// <summary>
@@ -46,7 +40,6 @@
         /// See also <seealso cref="ITraktSeason" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "season")]
         public ITraktSeason Season { get; set; }
 
         /// <summary>
@@ -54,7 +47,6 @@
         /// See also <seealso cref="ITraktEpisode" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "episode")]
         public ITraktEpisode Episode { get; set; }
 
         /// <summary>
@@ -62,7 +54,6 @@
         /// See also <seealso cref="ITraktList" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "list")]
         public ITraktList List { get; set; }
     }
 }

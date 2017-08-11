@@ -6,7 +6,7 @@
     using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Syncs.Playback.Implementations;
+    using TraktApiSharp.Objects.Get.Syncs.Playback;
     using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;
 
@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktSyncPlaybackProgressRequest_Inherits_ATraktSyncGetRequest_1()
         {
-            typeof(TraktSyncPlaybackProgressRequest).IsSubclassOf(typeof(ATraktSyncGetRequest<TraktSyncPlaybackProgressItem>)).Should().BeTrue();
+            typeof(TraktSyncPlaybackProgressRequest).IsSubclassOf(typeof(ATraktSyncGetRequest<ITraktSyncPlaybackProgressItem>)).Should().BeTrue();
         }
 
         [Fact]

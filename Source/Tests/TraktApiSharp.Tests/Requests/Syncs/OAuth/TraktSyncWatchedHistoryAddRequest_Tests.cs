@@ -25,7 +25,7 @@
         [Fact]
         public void Test_TraktSyncWatchedHistoryAddRequest_Inherits_ATraktSyncPostRequest_2()
         {
-            typeof(TraktSyncWatchedHistoryAddRequest).IsSubclassOf(typeof(ATraktSyncPostRequest<TraktSyncHistoryPostResponse, TraktSyncHistoryPost>)).Should().BeTrue();
+            typeof(TraktSyncWatchedHistoryAddRequest).IsSubclassOf(typeof(ATraktSyncPostRequest<ITraktSyncHistoryPostResponse, TraktSyncHistoryPost>)).Should().BeTrue();
         }
 
         [Fact]

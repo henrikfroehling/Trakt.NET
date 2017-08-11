@@ -3,7 +3,6 @@
     using Enums;
     using Episodes;
     using Movies;
-    using Newtonsoft.Json;
     using Seasons;
     using Shows;
     using System;
@@ -12,19 +11,15 @@
     public class TraktHistoryItem : ITraktHistoryItem
     {
         /// <summary>Gets or sets the id of this history item.</summary>
-        [JsonProperty(PropertyName = "id")]
         public ulong Id { get; set; }
 
         /// <summary>Gets or sets the UTC datetime, when the movie, show, season and / or episode was watched.</summary>
-        [JsonProperty(PropertyName = "watched_at")]
         public DateTime? WatchedAt { get; set; }
 
         /// <summary>
         /// Gets or sets the type of action. See also <seealso cref="TraktHistoryActionType" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "action")]
-        [JsonConverter(typeof(TraktEnumerationConverter<TraktHistoryActionType>))]
         public TraktHistoryActionType Action { get; set; }
 
         /// <summary>
@@ -32,8 +27,6 @@
         /// See also <seealso cref="TraktSyncItemType" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktEnumerationConverter<TraktSyncItemType>))]
         public TraktSyncItemType Type { get; set; }
 
         /// <summary>
@@ -41,7 +34,6 @@
         /// See also <seealso cref="ITraktMovie" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "movie")]
         public ITraktMovie Movie { get; set; }
 
         /// <summary>
@@ -51,7 +43,6 @@
         /// <para>See also <seealso cref="ITraktShow" />.</para>
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "show")]
         public ITraktShow Show { get; set; }
 
         /// <summary>
@@ -59,7 +50,6 @@
         /// See also <seealso cref="ITraktSeason" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "season")]
         public ITraktSeason Season { get; set; }
 
         /// <summary>
@@ -67,7 +57,6 @@
         /// See also <seealso cref="ITraktEpisode" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "episode")]
         public ITraktEpisode Episode { get; set; }
     }
 }

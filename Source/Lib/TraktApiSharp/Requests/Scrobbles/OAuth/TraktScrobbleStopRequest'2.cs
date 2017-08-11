@@ -3,9 +3,9 @@
     using Base;
     using System.Collections.Generic;
 
-    internal sealed class TraktScrobbleStopRequest<TContentType, TRequestBody> : ATraktPostRequest<TContentType, TRequestBody>
+    internal sealed class TraktScrobbleStopRequest<TResponseContentType, TRequestBodyType> : ATraktPostRequest<TResponseContentType, TRequestBodyType>
     {
-        public override TRequestBody RequestBody { get; set; }
+        public override TRequestBodyType RequestBody { get; set; }
 
         public override string UriTemplate => "scrobble/stop";
 

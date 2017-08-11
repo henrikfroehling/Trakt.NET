@@ -8,7 +8,7 @@
     using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
+    using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
@@ -33,7 +33,7 @@
         [Fact]
         public void Test_TraktUserCustomListItemsRequest_Inherits_ATraktUsersPagedGetRequest_1()
         {
-            typeof(TraktUserCustomListItemsRequest).IsSubclassOf(typeof(ATraktUsersPagedGetRequest<TraktListItem>)).Should().BeTrue();
+            typeof(TraktUserCustomListItemsRequest).IsSubclassOf(typeof(ATraktUsersPagedGetRequest<ITraktListItem>)).Should().BeTrue();
         }
 
         [Fact]

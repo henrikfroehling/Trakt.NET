@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
+    using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Objects.Post.Users;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Users.OAuth;
@@ -30,7 +30,7 @@
         [Fact]
         public void Test_TraktUserCustomListAddRequest_Inherits_ATraktPostRequest_2()
         {
-            typeof(TraktUserCustomListAddRequest).IsSubclassOf(typeof(ATraktPostRequest<TraktList, TraktUserCustomListPost>)).Should().BeTrue();
+            typeof(TraktUserCustomListAddRequest).IsSubclassOf(typeof(ATraktPostRequest<ITraktList, TraktUserCustomListPost>)).Should().BeTrue();
         }
 
         [Fact]

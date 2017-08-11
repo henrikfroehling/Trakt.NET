@@ -7,7 +7,7 @@
     using Objects.Get.Movies.Implementations;
     using Objects.Get.Shows.Implementations;
     using Objects.Post.Checkins;
-    using Objects.Post.Checkins.Responses.Implementations;
+    using Objects.Post.Checkins.Responses;
     using Requests.Checkins.OAuth;
     using Requests.Handler;
     using Responses;
@@ -38,7 +38,7 @@
         /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
         /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
         /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
-        /// <returns>An <see cref="TraktMovieCheckinPostResponse" /> instance, containing the successfully checked in movie's data.</returns>
+        /// <returns>An <see cref="ITraktMovieCheckinPostResponse" /> instance, containing the successfully checked in movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given movie's title is null or empty.
@@ -46,9 +46,9 @@
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid.</exception>
-        public async Task<TraktResponse<TraktMovieCheckinPostResponse>> CheckIntoMovieAsync(TraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
-                                                                                            string message = null, TraktSharing sharing = null,
-                                                                                            string foursquareVenueID = null, string foursquareVenueName = null)
+        public async Task<TraktResponse<ITraktMovieCheckinPostResponse>> CheckIntoMovieAsync(TraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
+                                                                                             string message = null, TraktSharing sharing = null,
+                                                                                             string foursquareVenueID = null, string foursquareVenueName = null)
         {
             Validate(movie);
 
@@ -74,7 +74,7 @@
 
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<TraktMovieCheckinPostResponse, TraktMovieCheckinPost>
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktMovieCheckinPostResponse, TraktMovieCheckinPost>
             {
                 RequestBody = requestBody
             });
@@ -94,13 +94,13 @@
         /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
         /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
         /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
-        /// <returns>An <see cref="TraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
+        /// <returns>An <see cref="ITraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if its ids are null.</exception>
-        public async Task<TraktResponse<TraktEpisodeCheckinPostResponse>> CheckIntoEpisodeAsync(TraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
-                                                                                                string message = null, TraktSharing sharing = null,
-                                                                                                string foursquareVenueID = null, string foursquareVenueName = null)
+        public async Task<TraktResponse<ITraktEpisodeCheckinPostResponse>> CheckIntoEpisodeAsync(TraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
+                                                                                                 string message = null, TraktSharing sharing = null,
+                                                                                                 string foursquareVenueID = null, string foursquareVenueName = null)
         {
             Validate(episode);
 
@@ -127,7 +127,7 @@
 
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
             {
                 RequestBody = requestBody
             });
@@ -148,15 +148,15 @@
         /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
         /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
         /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
-        /// <returns>An <see cref="TraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
+        /// <returns>An <see cref="ITraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given show's title is null or empty.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null. Thrown, if the given show is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given episode's season number or the given episode's number is below zero.</exception>
-        public async Task<TraktResponse<TraktEpisodeCheckinPostResponse>> CheckIntoEpisodeWithShowAsync(TraktEpisode episode, TraktShow show,
-                                                                                                        string appVersion = null, DateTime? appBuildDate = null,
-                                                                                                        string message = null, TraktSharing sharing = null,
-                                                                                                        string foursquareVenueID = null, string foursquareVenueName = null)
+        public async Task<TraktResponse<ITraktEpisodeCheckinPostResponse>> CheckIntoEpisodeWithShowAsync(TraktEpisode episode, TraktShow show,
+                                                                                                         string appVersion = null, DateTime? appBuildDate = null,
+                                                                                                         string message = null, TraktSharing sharing = null,
+                                                                                                         string foursquareVenueID = null, string foursquareVenueName = null)
         {
             Validate(episode, show);
 
@@ -183,7 +183,7 @@
 
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<TraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
             {
                 RequestBody = requestBody
             });

@@ -2,8 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public interface ITraktListResponse<TContentType> : ITraktResponse<IEnumerable<TContentType>>, IEnumerable<TContentType>
+    public interface ITraktListResponse<TResponseContentType> : ITraktResponse<IEnumerable<TResponseContentType>>, IEnumerable<TResponseContentType>
     {
-
     }
 }

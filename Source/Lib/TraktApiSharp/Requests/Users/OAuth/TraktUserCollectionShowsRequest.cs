@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Requests.Users.OAuth
 {
     using Extensions;
-    using Objects.Get.Collections.Implementations;
+    using Objects.Get.Collections;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserCollectionShowsRequest : ATraktUsersGetRequest<TraktCollectionShow>
+    internal sealed class TraktUserCollectionShowsRequest : ATraktUsersGetRequest<ITraktCollectionShow>
     {
         internal string Username { get; set; }
 

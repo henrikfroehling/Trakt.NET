@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
+    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Requests.Movies;
     using Xunit;
 
@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktMovieTranslationsRequest_Inherits_ATraktMovieRequest_1()
         {
-            typeof(TraktMovieTranslationsRequest).IsSubclassOf(typeof(ATraktMovieRequest<TraktMovieTranslation>)).Should().BeTrue();
+            typeof(TraktMovieTranslationsRequest).IsSubclassOf(typeof(ATraktMovieRequest<ITraktMovieTranslation>)).Should().BeTrue();
         }
 
         [Fact]

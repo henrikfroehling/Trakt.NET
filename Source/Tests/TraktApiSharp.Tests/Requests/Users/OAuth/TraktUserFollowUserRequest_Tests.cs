@@ -29,7 +29,7 @@
         [Fact]
         public void Test_TraktUserFollowUserRequest_Inherits_ATraktBodylessPostRequest_1()
         {
-            typeof(TraktUserFollowUserRequest).IsSubclassOf(typeof(ATraktBodylessPostRequest<TraktUserFollowUserPostResponse>)).Should().BeTrue();
+            typeof(TraktUserFollowUserRequest).IsSubclassOf(typeof(ATraktBodylessPostRequest<ITraktUserFollowUserPostResponse>)).Should().BeTrue();
         }
 
         [Fact]

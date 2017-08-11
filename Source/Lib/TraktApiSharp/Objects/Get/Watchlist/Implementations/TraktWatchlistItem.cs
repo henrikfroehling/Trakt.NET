@@ -3,7 +3,6 @@
     using Enums;
     using Episodes;
     using Movies;
-    using Newtonsoft.Json;
     using Seasons;
     using Shows;
     using System;
@@ -12,7 +11,6 @@
     public class TraktWatchlistItem : ITraktWatchlistItem
     {
         /// <summary>Gets or sets the UTC datetime, when the movie, show, season and / or episode was listed.</summary>
-        [JsonProperty(PropertyName = "listed_at")]
         public DateTime? ListedAt { get; set; }
 
         /// <summary>
@@ -20,8 +18,6 @@
         /// See also <seealso cref="TraktSyncItemType" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktEnumerationConverter<TraktSyncItemType>))]
         public TraktSyncItemType Type { get; set; }
 
         /// <summary>
@@ -29,7 +25,6 @@
         /// See also <seealso cref="ITraktMovie" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "movie")]
         public ITraktMovie Movie { get; set; }
 
         /// <summary>
@@ -39,7 +34,6 @@
         /// <para>See also <seealso cref="ITraktShow" />.</para>
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "show")]
         public ITraktShow Show { get; set; }
 
         /// <summary>
@@ -47,7 +41,6 @@
         /// See also <seealso cref="ITraktSeason" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "season")]
         public ITraktSeason Season { get; set; }
 
         /// <summary>
@@ -55,7 +48,6 @@
         /// See also <seealso cref="ITraktEpisode" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "episode")]
         public ITraktEpisode Episode { get; set; }
     }
 }

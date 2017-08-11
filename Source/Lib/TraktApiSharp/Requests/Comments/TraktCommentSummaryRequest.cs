@@ -3,11 +3,11 @@
     using Base;
     using Extensions;
     using Interfaces;
-    using Objects.Basic.Implementations;
+    using Objects.Basic;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktCommentSummaryRequest : ATraktGetRequest<TraktComment>, ITraktHasId
+    internal sealed class TraktCommentSummaryRequest : ATraktGetRequest<ITraktComment>, ITraktHasId
     {
         public string Id { get; set; }
 

@@ -4,11 +4,11 @@
     using Extensions;
     using Interfaces;
     using Objects.Post.Comments;
-    using Objects.Post.Comments.Responses.Implementations;
+    using Objects.Post.Comments.Responses;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktCommentUpdateRequest : ATraktPutRequest<TraktCommentPostResponse, TraktCommentUpdatePost>, ITraktHasId
+    internal sealed class TraktCommentUpdateRequest : ATraktPutRequest<ITraktCommentPostResponse, TraktCommentUpdatePost>, ITraktHasId
     {
         public string Id { get; set; }
 

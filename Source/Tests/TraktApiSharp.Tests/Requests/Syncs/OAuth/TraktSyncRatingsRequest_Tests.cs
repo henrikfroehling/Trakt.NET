@@ -7,7 +7,7 @@
     using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Ratings.Implementations;
+    using TraktApiSharp.Objects.Get.Ratings;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Syncs.OAuth;
@@ -31,7 +31,7 @@
         [Fact]
         public void Test_TraktSyncRatingsRequest_Inherits_ATraktSyncGetRequest_1()
         {
-            typeof(TraktSyncRatingsRequest).IsSubclassOf(typeof(ATraktSyncGetRequest<TraktRatingsItem>)).Should().BeTrue();
+            typeof(TraktSyncRatingsRequest).IsSubclassOf(typeof(ATraktSyncGetRequest<ITraktRatingsItem>)).Should().BeTrue();
         }
 
         [Fact]

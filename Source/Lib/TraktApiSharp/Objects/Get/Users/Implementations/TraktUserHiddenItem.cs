@@ -2,7 +2,6 @@
 {
     using Enums;
     using Movies;
-    using Newtonsoft.Json;
     using Seasons;
     using Shows;
     using System;
@@ -11,7 +10,6 @@
     public class TraktUserHiddenItem : ITraktUserHiddenItem
     {
         /// <summary>Gets or sets the UTC datetime, when the movie, show or season was hidden.</summary>
-        [JsonProperty(PropertyName = "hidden_at")]
         public DateTime? HiddenAt { get; set; }
 
         /// <summary>
@@ -19,8 +17,6 @@
         /// See also <seealso cref="TraktHiddenItemType" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "type")]
-        [JsonConverter(typeof(TraktEnumerationConverter<TraktHiddenItemType>))]
         public TraktHiddenItemType Type { get; set; }
 
         /// <summary>
@@ -28,7 +24,6 @@
         /// See also <seealso cref="ITraktMovie" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "movie")]
         public ITraktMovie Movie { get; set; }
 
         /// <summary>
@@ -36,7 +31,6 @@
         /// See also <seealso cref="ITraktShow" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "show")]
         public ITraktShow Show { get; set; }
 
         /// <summary>
@@ -44,7 +38,6 @@
         /// See also <seealso cref="ITraktSeason" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "season")]
         public ITraktSeason Season { get; set; }
     }
 }

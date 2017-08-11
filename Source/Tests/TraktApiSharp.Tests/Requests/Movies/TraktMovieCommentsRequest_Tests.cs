@@ -8,7 +8,7 @@
     using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Basic.Implementations;
+    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Movies;
     using Xunit;
@@ -31,7 +31,7 @@
         [Fact]
         public void Test_TraktMovieCommentsRequest_Inherits_ATraktMovieRequest_1()
         {
-            typeof(TraktMovieCommentsRequest).IsSubclassOf(typeof(ATraktMovieRequest<TraktComment>)).Should().BeTrue();
+            typeof(TraktMovieCommentsRequest).IsSubclassOf(typeof(ATraktMovieRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]

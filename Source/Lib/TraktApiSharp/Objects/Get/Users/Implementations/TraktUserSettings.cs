@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users.Implementations
 {
     using Basic;
-    using Newtonsoft.Json;
 
     /// <summary>Represents Trakt user settings.</summary>
     public class TraktUserSettings : ITraktUserSettings
@@ -11,7 +10,6 @@
         /// See also <seealso cref="ITraktUser" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "user")]
         public ITraktUser User { get; set; }
 
         /// <summary>
@@ -19,7 +17,6 @@
         /// See also <seealso cref="ITraktAccountSettings" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "account")]
         public ITraktAccountSettings Account { get; set; }
 
         /// <summary>
@@ -27,7 +24,6 @@
         /// See also <seealso cref="ITraktSharing" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "connections")]
         public ITraktSharing Connections { get; set; }
 
         /// <summary>
@@ -35,7 +31,6 @@
         /// See also <seealso cref="ITraktSharingText" />.
         /// <para>Nullable</para>
         /// </summary>
-        [JsonProperty(PropertyName = "sharing_text")]
         public ITraktSharingText SharingText { get; set; }
     }
 }
