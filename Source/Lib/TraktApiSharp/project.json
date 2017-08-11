@@ -6,6 +6,6 @@
     "Newtonsoft.Json": "10.0.3"
   },
   "frameworks": {
-    "netstandard1.2": {}
+    "netstandard1.1": {}
   }
 }
