@@ -2,6 +2,5 @@
 {
     internal interface ITraktPutRequest<TResponseContentType, TRequestBodyType> : ITraktRequest<TResponseContentType>, ITraktHasRequestBody<TRequestBodyType>
     {
-
     }
 }

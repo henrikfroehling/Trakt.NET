@@ -4,6 +4,5 @@
 
     public interface ITraktListResponse<TResponseContentType> : ITraktResponse<IEnumerable<TResponseContentType>>, IEnumerable<TResponseContentType>
     {
-
     }
 }

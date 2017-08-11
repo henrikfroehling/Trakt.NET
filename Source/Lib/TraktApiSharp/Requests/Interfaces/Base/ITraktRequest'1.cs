@@ -2,6 +2,5 @@
 {
     internal interface ITraktRequest<TResponseContentType> : ITraktRequest
     {
-
     }
 }

@@ -2,6 +2,5 @@
 {
     public interface ITraktPagedResponse<TResponseContentType> : ITraktListResponse<TResponseContentType>, ITraktPagedResponseHeaders
     {
-
     }
 }
