@@ -45,7 +45,7 @@
   deploy:
     - provider: NuGet
       api_key:
-        secure: SN3+YTcNTLpLVVD+/VA9UV2r6EWhR60wVcmZlKOhQwpS98bqSymIA+gDT+yYYnKA
+        secure: sjU4hS/2R00uglMrDRFL2J4F5HccKXtd+AOfK5XStBv/p4+ZoHjA3L7LNLklrkBr
       skip_symbols: true
       symbol_server:
       artifact: TraktApiSharp.$(packageVersion).nupkg
@@ -99,7 +99,7 @@
   deploy:
     - provider: NuGet
       api_key:
-        secure: SN3+YTcNTLpLVVD+/VA9UV2r6EWhR60wVcmZlKOhQwpS98bqSymIA+gDT+yYYnKA
+        secure: sjU4hS/2R00uglMrDRFL2J4F5HccKXtd+AOfK5XStBv/p4+ZoHjA3L7LNLklrkBr
       skip_symbols: true
       symbol_server:
       artifact: TraktApiSharp.$(packageVersion).nupkg
