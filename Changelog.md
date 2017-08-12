@@ -20,7 +20,7 @@ Breaking Changes:
 
 Known issues:
 
-- Serialization of JSON data is not working when post builders are used for post requests ([Issue #77](https://github.com/henrikfroehling/TraktApiSharp/issues/77))
+- Serialization of JSON data is not working in post requests ([Issue #77](https://github.com/henrikfroehling/TraktApiSharp/issues/77))
 
 Fixed:
 
