@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktGenreObjectJsonReader : ITraktObjectJsonReader<ITraktGenre>
+    internal class TraktGenreObjectJsonReader : IObjectJsonReader<ITraktGenre>
     {
         private const string PROPERTY_NAME_NAME = "name";
         private const string PROPERTY_NAME_SLUG = "slug";

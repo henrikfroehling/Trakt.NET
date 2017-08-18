@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktUserCustomListItemsRemovePostResponseObjectJsonReader : ITraktObjectJsonReader<ITraktUserCustomListItemsRemovePostResponse>
+    internal class TraktUserCustomListItemsRemovePostResponseObjectJsonReader : IObjectJsonReader<ITraktUserCustomListItemsRemovePostResponse>
     {
         private const string PROPERTY_NAME_DELETED = "deleted";
         private const string PROPERTY_NAME_NOT_FOUND = "not_found";

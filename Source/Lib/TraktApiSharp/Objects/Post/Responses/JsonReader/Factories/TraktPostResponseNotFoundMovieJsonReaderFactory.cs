@@ -4,7 +4,7 @@
 
     internal class TraktPostResponseNotFoundMovieJsonReaderFactory : IJsonReaderFactory<ITraktPostResponseNotFoundMovie>
     {
-        public ITraktObjectJsonReader<ITraktPostResponseNotFoundMovie> CreateObjectReader() => new TraktPostResponseNotFoundMovieObjectJsonReader();
+        public IObjectJsonReader<ITraktPostResponseNotFoundMovie> CreateObjectReader() => new TraktPostResponseNotFoundMovieObjectJsonReader();
 
         public IArrayJsonReader<ITraktPostResponseNotFoundMovie> CreateArrayReader() => new TraktPostResponseNotFoundMovieArrayJsonReader();
     }

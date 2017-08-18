@@ -2,7 +2,7 @@
 {
     internal interface IJsonReaderFactory<TReturnType>
     {
-        ITraktObjectJsonReader<TReturnType> CreateObjectReader();
+        IObjectJsonReader<TReturnType> CreateObjectReader();
 
         IArrayJsonReader<TReturnType> CreateArrayReader();
     }

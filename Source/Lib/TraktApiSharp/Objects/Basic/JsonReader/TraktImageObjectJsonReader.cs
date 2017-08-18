@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktImageObjectJsonReader : ITraktObjectJsonReader<ITraktImage>
+    internal class TraktImageObjectJsonReader : IObjectJsonReader<ITraktImage>
     {
         private const string PROPERTY_NAME_FULL = "full";
 

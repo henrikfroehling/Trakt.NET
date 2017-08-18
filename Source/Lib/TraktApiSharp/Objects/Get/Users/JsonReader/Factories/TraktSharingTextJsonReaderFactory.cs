@@ -5,7 +5,7 @@
 
     internal class TraktSharingTextJsonReaderFactory : IJsonReaderFactory<ITraktSharingText>
     {
-        public ITraktObjectJsonReader<ITraktSharingText> CreateObjectReader() => new TraktSharingTextObjectJsonReader();
+        public IObjectJsonReader<ITraktSharingText> CreateObjectReader() => new TraktSharingTextObjectJsonReader();
 
         public IArrayJsonReader<ITraktSharingText> CreateArrayReader()
         {

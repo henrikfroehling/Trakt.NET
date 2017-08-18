@@ -5,7 +5,7 @@
 
     internal class TraktMovieScrobblePostResponseJsonReaderFactory : IJsonReaderFactory<ITraktMovieScrobblePostResponse>
     {
-        public ITraktObjectJsonReader<ITraktMovieScrobblePostResponse> CreateObjectReader() => new TraktMovieScrobblePostResponseObjectJsonReader();
+        public IObjectJsonReader<ITraktMovieScrobblePostResponse> CreateObjectReader() => new TraktMovieScrobblePostResponseObjectJsonReader();
 
         public IArrayJsonReader<ITraktMovieScrobblePostResponse> CreateArrayReader()
         {

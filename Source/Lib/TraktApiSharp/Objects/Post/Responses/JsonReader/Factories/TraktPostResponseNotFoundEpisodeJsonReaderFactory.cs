@@ -4,7 +4,7 @@
 
     internal class TraktPostResponseNotFoundEpisodeJsonReaderFactory : IJsonReaderFactory<ITraktPostResponseNotFoundEpisode>
     {
-        public ITraktObjectJsonReader<ITraktPostResponseNotFoundEpisode> CreateObjectReader() => new TraktPostResponseNotFoundEpisodeObjectJsonReader();
+        public IObjectJsonReader<ITraktPostResponseNotFoundEpisode> CreateObjectReader() => new TraktPostResponseNotFoundEpisodeObjectJsonReader();
 
         public IArrayJsonReader<ITraktPostResponseNotFoundEpisode> CreateArrayReader() => new TraktPostResponseNotFoundEpisodeArrayJsonReader();
     }

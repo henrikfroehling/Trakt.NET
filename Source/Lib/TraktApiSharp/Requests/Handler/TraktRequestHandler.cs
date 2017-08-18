@@ -166,7 +166,7 @@
                 Stream responseContentStream = await GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
                 Debug.Assert(responseContentStream != null, "precondition for deserializing response content failed: stream is null");
 
-                ITraktObjectJsonReader<TResponseContentType> objectJsonReader = JsonFactoryContainer.CreateObjectReader<TResponseContentType>();
+                IObjectJsonReader<TResponseContentType> objectJsonReader = JsonFactoryContainer.CreateObjectReader<TResponseContentType>();
                 Debug.Assert(objectJsonReader != null, "precondition for deserializing response content failed: json content reader is null");
 
                 TResponseContentType contentObject = await objectJsonReader.ReadObjectAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
@@ -750,7 +750,7 @@
 
                 if (!string.IsNullOrEmpty(responseContent))
                 {
-                    ITraktObjectJsonReader<ITraktCheckinPostErrorResponse> errorResponseReader = JsonFactoryContainer.CreateObjectReader<ITraktCheckinPostErrorResponse>();
+                    IObjectJsonReader<ITraktCheckinPostErrorResponse> errorResponseReader = JsonFactoryContainer.CreateObjectReader<ITraktCheckinPostErrorResponse>();
                     errorResponse = await errorResponseReader.ReadObjectAsync(responseContent, cancellationToken);
                 }
 
@@ -779,7 +779,7 @@
 
             try
             {
-                ITraktObjectJsonReader<ITraktError> errorReader = JsonFactoryContainer.CreateObjectReader<ITraktError>();
+                IObjectJsonReader<ITraktError> errorReader = JsonFactoryContainer.CreateObjectReader<ITraktError>();
                 error = await errorReader.ReadObjectAsync(responseContent, cancellationToken);
             }
             catch (Exception ex)

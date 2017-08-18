@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktRecentlyUpdatedMovieObjectJsonReader : ITraktObjectJsonReader<ITraktRecentlyUpdatedMovie>
+    internal class TraktRecentlyUpdatedMovieObjectJsonReader : IObjectJsonReader<ITraktRecentlyUpdatedMovie>
     {
         private const string PROPERTY_NAME_UPDATED_AT = "updated_at";
         private const string PROPERTY_NAME_MOVIE = "movie";

@@ -9,7 +9,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktMovieCheckinPostResponseObjectJsonReader : ITraktObjectJsonReader<ITraktMovieCheckinPostResponse>
+    internal class TraktMovieCheckinPostResponseObjectJsonReader : IObjectJsonReader<ITraktMovieCheckinPostResponse>
     {
         private const string PROPERTY_NAME_ID = "id";
         private const string PROPERTY_NAME_WATCHED_AT = "watched_at";

@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktSeasonIdsObjectJsonReader : ITraktObjectJsonReader<ITraktSeasonIds>
+    internal class TraktSeasonIdsObjectJsonReader : IObjectJsonReader<ITraktSeasonIds>
     {
         private const string PROPERTY_NAME_TRAKT = "trakt";
         private const string PROPERTY_NAME_TVDB = "tvdb";

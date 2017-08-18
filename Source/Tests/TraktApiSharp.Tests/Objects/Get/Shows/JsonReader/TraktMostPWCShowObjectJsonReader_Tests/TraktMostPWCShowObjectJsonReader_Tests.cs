@@ -13,7 +13,7 @@
         [Fact]
         public void Test_TraktMostPWCShowObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(TraktMostPWCShowObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<ITraktMostPWCShow>));
+            typeof(TraktMostPWCShowObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktMostPWCShow>));
         }
     }
 }

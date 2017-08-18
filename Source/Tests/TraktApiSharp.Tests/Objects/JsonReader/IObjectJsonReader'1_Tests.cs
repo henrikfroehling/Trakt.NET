@@ -11,18 +11,18 @@
     using Xunit;
 
     [Category("Objects.JsonReader")]
-    public class ITraktObjectJsonReader_1_Tests
+    public class IObjectJsonReader_1_Tests
     {
         [Fact]
-        public void Test_ITraktObjectJsonReader_1_Is_Interface()
+        public void Test_IObjectJsonReader_1_Is_Interface()
         {
-            typeof(ITraktObjectJsonReader<>).IsInterface.Should().BeTrue();
+            typeof(IObjectJsonReader<>).IsInterface.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ITraktObjectJsonReader_1_Has_ReadObjectAsync_From_Json_Method()
+        public void Test_IObjectJsonReader_1_Has_ReadObjectAsync_From_Json_Method()
         {
-            var methodInfo = typeof(ITraktObjectJsonReader<object>).GetMethods()
+            var methodInfo = typeof(IObjectJsonReader<object>).GetMethods()
                 .Where(m => m.Name == "ReadObjectAsync" && m.GetParameters().Length == 2)
                 .FirstOrDefault(m => m.GetParameters()[0].ParameterType == typeof(string)
                                      && m.GetParameters()[1].ParameterType == typeof(CancellationToken));
@@ -45,9 +45,9 @@
         }
 
         [Fact]
-        public void Test_ITraktObjectJsonReader_1_Has_ReadObjectAsync_From_Stream_Method()
+        public void Test_IObjectJsonReader_1_Has_ReadObjectAsync_From_Stream_Method()
         {
-            var methodInfo = typeof(ITraktObjectJsonReader<object>).GetMethods()
+            var methodInfo = typeof(IObjectJsonReader<object>).GetMethods()
                 .Where(m => m.Name == "ReadObjectAsync" && m.GetParameters().Length == 2)
                 .FirstOrDefault(m => m.GetParameters()[0].ParameterType == typeof(Stream)
                                      && m.GetParameters()[1].ParameterType == typeof(CancellationToken));
@@ -70,9 +70,9 @@
         }
 
         [Fact]
-        public void Test_ITraktObjectJsonReader_1_Has_ReadObjectAsync_From_JsonReader_Method()
+        public void Test_IObjectJsonReader_1_Has_ReadObjectAsync_From_JsonReader_Method()
         {
-            var methodInfo = typeof(ITraktObjectJsonReader<object>).GetMethods()
+            var methodInfo = typeof(IObjectJsonReader<object>).GetMethods()
                 .Where(m => m.Name == "ReadObjectAsync" && m.GetParameters().Length == 2)
                 .FirstOrDefault(m => m.GetParameters()[0].ParameterType == typeof(JsonTextReader)
                                      && m.GetParameters()[1].ParameterType == typeof(CancellationToken));

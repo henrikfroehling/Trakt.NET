@@ -5,7 +5,7 @@
 
     internal class TraktUserShowsStatisticsJsonReaderFactory : IJsonReaderFactory<ITraktUserShowsStatistics>
     {
-        public ITraktObjectJsonReader<ITraktUserShowsStatistics> CreateObjectReader() => new TraktUserShowsStatisticsObjectJsonReader();
+        public IObjectJsonReader<ITraktUserShowsStatistics> CreateObjectReader() => new TraktUserShowsStatisticsObjectJsonReader();
 
         public IArrayJsonReader<ITraktUserShowsStatistics> CreateArrayReader()
         {

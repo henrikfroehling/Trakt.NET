@@ -5,7 +5,7 @@
 
     internal class TraktMovieCheckinPostResponseJsonReaderFactory : IJsonReaderFactory<ITraktMovieCheckinPostResponse>
     {
-        public ITraktObjectJsonReader<ITraktMovieCheckinPostResponse> CreateObjectReader() => new TraktMovieCheckinPostResponseObjectJsonReader();
+        public IObjectJsonReader<ITraktMovieCheckinPostResponse> CreateObjectReader() => new TraktMovieCheckinPostResponseObjectJsonReader();
 
         public IArrayJsonReader<ITraktMovieCheckinPostResponse> CreateArrayReader()
         {

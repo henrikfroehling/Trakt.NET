@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktTrendingShowObjectJsonReader : ITraktObjectJsonReader<ITraktTrendingShow>
+    internal class TraktTrendingShowObjectJsonReader : IObjectJsonReader<ITraktTrendingShow>
     {
         private const string PROPERTY_NAME_WATCHERS = "watchers";
         private const string PROPERTY_NAME_SHOW = "show";

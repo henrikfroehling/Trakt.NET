@@ -12,7 +12,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktRatingsItemObjectJsonReader : ITraktObjectJsonReader<ITraktRatingsItem>
+    internal class TraktRatingsItemObjectJsonReader : IObjectJsonReader<ITraktRatingsItem>
     {
         private const string PROPERTY_NAME_RATED_AT = "rated_at";
         private const string PROPERTY_NAME_RATING = "rating";

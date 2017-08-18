@@ -13,7 +13,7 @@
         [Fact]
         public void Test_TraktUserCustomListItemsPostResponseObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(TraktUserCustomListItemsPostResponseObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<ITraktUserCustomListItemsPostResponse>));
+            typeof(TraktUserCustomListItemsPostResponseObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktUserCustomListItemsPostResponse>));
         }
     }
 }

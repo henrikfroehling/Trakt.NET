@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktMovieReleaseObjectJsonReader : ITraktObjectJsonReader<ITraktMovieRelease>
+    internal class TraktMovieReleaseObjectJsonReader : IObjectJsonReader<ITraktMovieRelease>
     {
         private const string PROPERTY_NAME_COUNTRY = "country";
         private const string PROPERTY_NAME_CERTIFICATION = "certification";

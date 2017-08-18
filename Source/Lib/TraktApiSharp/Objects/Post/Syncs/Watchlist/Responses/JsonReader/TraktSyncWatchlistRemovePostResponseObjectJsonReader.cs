@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktSyncWatchlistRemovePostResponseObjectJsonReader : ITraktObjectJsonReader<ITraktSyncWatchlistRemovePostResponse>
+    internal class TraktSyncWatchlistRemovePostResponseObjectJsonReader : IObjectJsonReader<ITraktSyncWatchlistRemovePostResponse>
     {
         private const string PROPERTY_NAME_DELETED = "deleted";
         private const string PROPERTY_NAME_NOT_FOUND = "not_found";

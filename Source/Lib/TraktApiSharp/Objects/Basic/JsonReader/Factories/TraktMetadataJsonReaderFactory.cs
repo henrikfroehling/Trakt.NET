@@ -5,7 +5,7 @@
 
     internal class TraktMetadataJsonReaderFactory : IJsonReaderFactory<ITraktMetadata>
     {
-        public ITraktObjectJsonReader<ITraktMetadata> CreateObjectReader() => new TraktMetadataObjectJsonReader();
+        public IObjectJsonReader<ITraktMetadata> CreateObjectReader() => new TraktMetadataObjectJsonReader();
 
         public IArrayJsonReader<ITraktMetadata> CreateArrayReader()
         {

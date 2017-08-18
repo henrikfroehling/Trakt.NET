@@ -5,7 +5,7 @@
 
     internal class TraktUserWatchingItemJsonReaderFactory : IJsonReaderFactory<ITraktUserWatchingItem>
     {
-        public ITraktObjectJsonReader<ITraktUserWatchingItem> CreateObjectReader() => new TraktUserWatchingItemObjectJsonReader();
+        public IObjectJsonReader<ITraktUserWatchingItem> CreateObjectReader() => new TraktUserWatchingItemObjectJsonReader();
 
         public IArrayJsonReader<ITraktUserWatchingItem> CreateArrayReader()
         {

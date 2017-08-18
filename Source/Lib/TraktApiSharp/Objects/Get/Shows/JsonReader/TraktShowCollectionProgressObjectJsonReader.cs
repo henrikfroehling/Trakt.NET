@@ -9,7 +9,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktShowCollectionProgressObjectJsonReader : ITraktObjectJsonReader<ITraktShowCollectionProgress>
+    internal class TraktShowCollectionProgressObjectJsonReader : IObjectJsonReader<ITraktShowCollectionProgress>
     {
         private const string PROPERTY_NAME_AIRED = "aired";
         private const string PROPERTY_NAME_COMPLETED = "completed";

@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktUserCustomListItemsPostResponseObjectJsonReader : ITraktObjectJsonReader<ITraktUserCustomListItemsPostResponse>
+    internal class TraktUserCustomListItemsPostResponseObjectJsonReader : IObjectJsonReader<ITraktUserCustomListItemsPostResponse>
     {
         private const string PROPERTY_NAME_ADDED = "added";
         private const string PROPERTY_NAME_EXISTING = "existing";

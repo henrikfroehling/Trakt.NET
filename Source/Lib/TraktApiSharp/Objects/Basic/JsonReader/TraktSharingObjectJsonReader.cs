@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktSharingObjectJsonReader : ITraktObjectJsonReader<ITraktSharing>
+    internal class TraktSharingObjectJsonReader : IObjectJsonReader<ITraktSharing>
     {
         private const string PROPERTY_NAME_FACEBOOK = "facebook";
         private const string PROPERTY_NAME_TWITTER = "twitter";

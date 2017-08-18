@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktMostAnticipatedMovieObjectJsonReader : ITraktObjectJsonReader<ITraktMostAnticipatedMovie>
+    internal class TraktMostAnticipatedMovieObjectJsonReader : IObjectJsonReader<ITraktMostAnticipatedMovie>
     {
         private const string PROPERTY_NAME_LIST_COUNT = "list_count";
         private const string PROPERTY_NAME_MOVIE = "movie";

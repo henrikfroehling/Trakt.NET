@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktShowAliasObjectJsonReader : ITraktObjectJsonReader<ITraktShowAlias>
+    internal class TraktShowAliasObjectJsonReader : IObjectJsonReader<ITraktShowAlias>
     {
         private const string PROPERTY_NAME_TITLE = "title";
         private const string PROPERTY_NAME_COUNTRY = "country";

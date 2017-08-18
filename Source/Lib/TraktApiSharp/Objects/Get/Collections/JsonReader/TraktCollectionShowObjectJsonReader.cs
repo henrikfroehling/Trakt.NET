@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktCollectionShowObjectJsonReader : ITraktObjectJsonReader<ITraktCollectionShow>
+    internal class TraktCollectionShowObjectJsonReader : IObjectJsonReader<ITraktCollectionShow>
     {
         private const string PROPERTY_NAME_LAST_COLLECTED_AT = "last_collected_at";
         private const string PROPERTY_NAME_SHOW = "show";

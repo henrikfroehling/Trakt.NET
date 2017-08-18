@@ -13,7 +13,7 @@
         [Fact]
         public void Test_TraktGenreObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(TraktGenreObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<ITraktGenre>));
+            typeof(TraktGenreObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktGenre>));
         }
     }
 }

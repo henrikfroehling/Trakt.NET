@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktUserFollowerObjectJsonReader : ITraktObjectJsonReader<ITraktUserFollower>
+    internal class TraktUserFollowerObjectJsonReader : IObjectJsonReader<ITraktUserFollower>
     {
         private const string PROPERTY_NAME_FOLLOWED_AT = "followed_at";
         private const string PROPERTY_NAME_USER = "user";

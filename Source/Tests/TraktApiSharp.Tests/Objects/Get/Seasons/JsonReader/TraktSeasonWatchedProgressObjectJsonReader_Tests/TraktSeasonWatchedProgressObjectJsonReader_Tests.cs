@@ -13,7 +13,7 @@
         [Fact]
         public void Test_TraktSeasonWatchedProgressObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(TraktSeasonWatchedProgressObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<ITraktSeasonWatchedProgress>));
+            typeof(TraktSeasonWatchedProgressObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktSeasonWatchedProgress>));
         }
     }
 }

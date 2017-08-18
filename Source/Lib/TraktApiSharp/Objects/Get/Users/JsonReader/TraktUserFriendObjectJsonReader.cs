@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktUserFriendObjectJsonReader : ITraktObjectJsonReader<ITraktUserFriend>
+    internal class TraktUserFriendObjectJsonReader : IObjectJsonReader<ITraktUserFriend>
     {
         private const string PROPERTY_NAME_FRIENDS_AT = "friends_at";
         private const string PROPERTY_NAME_USER = "user";

@@ -4,7 +4,7 @@
 
     internal class TraktSyncPlaybackProgressItemJsonReaderFactory : IJsonReaderFactory<ITraktSyncPlaybackProgressItem>
     {
-        public ITraktObjectJsonReader<ITraktSyncPlaybackProgressItem> CreateObjectReader() => new TraktSyncPlaybackProgressItemObjectJsonReader();
+        public IObjectJsonReader<ITraktSyncPlaybackProgressItem> CreateObjectReader() => new TraktSyncPlaybackProgressItemObjectJsonReader();
 
         public IArrayJsonReader<ITraktSyncPlaybackProgressItem> CreateArrayReader() => new TraktSyncPlaybackProgressItemArrayJsonReader();
     }

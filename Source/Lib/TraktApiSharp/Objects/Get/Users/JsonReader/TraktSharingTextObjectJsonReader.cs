@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktSharingTextObjectJsonReader : ITraktObjectJsonReader<ITraktSharingText>
+    internal class TraktSharingTextObjectJsonReader : IObjectJsonReader<ITraktSharingText>
     {
         private const string PROPERTY_NAME_WATCHING = "watching";
         private const string PROPERTY_NAME_WATCHED = "watched";

@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktUserRatingsStatisticsObjectJsonReader : ITraktObjectJsonReader<ITraktUserRatingsStatistics>
+    internal class TraktUserRatingsStatisticsObjectJsonReader : IObjectJsonReader<ITraktUserRatingsStatistics>
     {
         private const string PROPERTY_NAME_TOTAL = "total";
         private const string PROPERTY_NAME_DISTRIBUTION = "distribution";

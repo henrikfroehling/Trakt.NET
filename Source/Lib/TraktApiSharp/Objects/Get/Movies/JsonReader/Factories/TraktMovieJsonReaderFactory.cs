@@ -4,7 +4,7 @@
 
     internal class TraktMovieJsonReaderFactory : IJsonReaderFactory<ITraktMovie>
     {
-        public ITraktObjectJsonReader<ITraktMovie> CreateObjectReader() => new TraktMovieObjectJsonReader();
+        public IObjectJsonReader<ITraktMovie> CreateObjectReader() => new TraktMovieObjectJsonReader();
 
         public IArrayJsonReader<ITraktMovie> CreateArrayReader() => new TraktMovieArrayJsonReader();
     }

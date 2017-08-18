@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktMetadataObjectJsonReader : ITraktObjectJsonReader<ITraktMetadata>
+    internal class TraktMetadataObjectJsonReader : IObjectJsonReader<ITraktMetadata>
     {
         private const string PROPERTY_NAME_MEDIA_TYPE = "media_type";
         private const string PROPERTY_NAME_RESOLUTION = "resolution";

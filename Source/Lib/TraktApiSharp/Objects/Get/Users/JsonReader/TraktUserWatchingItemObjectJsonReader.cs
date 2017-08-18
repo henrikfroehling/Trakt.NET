@@ -11,7 +11,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktUserWatchingItemObjectJsonReader : ITraktObjectJsonReader<ITraktUserWatchingItem>
+    internal class TraktUserWatchingItemObjectJsonReader : IObjectJsonReader<ITraktUserWatchingItem>
     {
         private const string PROPERTY_NAME_STARTED_AT = "started_at";
         private const string PROPERTY_NAME_EXPIRES_AT = "expires_at";

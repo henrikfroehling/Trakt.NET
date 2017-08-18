@@ -4,7 +4,7 @@
 
     internal class TraktCalendarMovieJsonReaderFactory : IJsonReaderFactory<ITraktCalendarMovie>
     {
-        public ITraktObjectJsonReader<ITraktCalendarMovie> CreateObjectReader() => new TraktCalendarMovieObjectJsonReader();
+        public IObjectJsonReader<ITraktCalendarMovie> CreateObjectReader() => new TraktCalendarMovieObjectJsonReader();
 
         public IArrayJsonReader<ITraktCalendarMovie> CreateArrayReader() => new TraktCalendarMovieArrayJsonReader();
     }

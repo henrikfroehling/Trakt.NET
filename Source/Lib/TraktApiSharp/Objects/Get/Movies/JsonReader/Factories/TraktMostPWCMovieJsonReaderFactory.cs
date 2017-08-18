@@ -4,7 +4,7 @@
 
     internal class TraktMostPWCMovieJsonReaderFactory : IJsonReaderFactory<ITraktMostPWCMovie>
     {
-        public ITraktObjectJsonReader<ITraktMostPWCMovie> CreateObjectReader() => new TraktMostPWCMovieObjectJsonReader();
+        public IObjectJsonReader<ITraktMostPWCMovie> CreateObjectReader() => new TraktMostPWCMovieObjectJsonReader();
 
         public IArrayJsonReader<ITraktMostPWCMovie> CreateArrayReader() => new TraktMostPWCMovieArrayJsonReader();
     }

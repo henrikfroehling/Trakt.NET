@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktCheckinPostErrorResponseObjectJsonReader : ITraktObjectJsonReader<ITraktCheckinPostErrorResponse>
+    internal class TraktCheckinPostErrorResponseObjectJsonReader : IObjectJsonReader<ITraktCheckinPostErrorResponse>
     {
         private const string PROPERTY_NAME_EXPIRES_AT = "expires_at";
 

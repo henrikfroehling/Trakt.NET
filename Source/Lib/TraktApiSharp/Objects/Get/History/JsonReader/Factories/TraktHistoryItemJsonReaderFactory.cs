@@ -4,7 +4,7 @@
 
     internal class TraktHistoryItemJsonReaderFactory : IJsonReaderFactory<ITraktHistoryItem>
     {
-        public ITraktObjectJsonReader<ITraktHistoryItem> CreateObjectReader() => new TraktHistoryItemObjectJsonReader();
+        public IObjectJsonReader<ITraktHistoryItem> CreateObjectReader() => new TraktHistoryItemObjectJsonReader();
 
         public IArrayJsonReader<ITraktHistoryItem> CreateArrayReader() => new TraktHistoryItemArrayJsonReader();
     }

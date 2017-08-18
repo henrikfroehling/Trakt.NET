@@ -28,7 +28,7 @@
             var methodInfo = typeof(IJsonReaderFactory<object>).GetMethods().FirstOrDefault(m => m.Name == "CreateObjectReader");
 
             methodInfo.Should().NotBeNull();
-            methodInfo.ReturnType.Should().Be(typeof(ITraktObjectJsonReader<object>));
+            methodInfo.ReturnType.Should().Be(typeof(IObjectJsonReader<object>));
             methodInfo.GetParameters().Should().BeEmpty();
         }
 

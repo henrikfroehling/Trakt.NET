@@ -5,7 +5,7 @@
 
     internal class TraktSyncHistoryRemovePostResponseJsonReaderFactory : IJsonReaderFactory<ITraktSyncHistoryRemovePostResponse>
     {
-        public ITraktObjectJsonReader<ITraktSyncHistoryRemovePostResponse> CreateObjectReader() => new TraktSyncHistoryRemovePostResponseObjectJsonReader();
+        public IObjectJsonReader<ITraktSyncHistoryRemovePostResponse> CreateObjectReader() => new TraktSyncHistoryRemovePostResponseObjectJsonReader();
 
         public IArrayJsonReader<ITraktSyncHistoryRemovePostResponse> CreateArrayReader()
         {

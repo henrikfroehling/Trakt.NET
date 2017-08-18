@@ -66,7 +66,7 @@
     {
         private static readonly Dictionary<Type, object> s_readerFactories = new Dictionary<Type, object>();
 
-        public static ITraktObjectJsonReader<TReturnType> CreateObjectReader<TReturnType>()
+        public static IObjectJsonReader<TReturnType> CreateObjectReader<TReturnType>()
         {
             var factory = GetReaderFactory<TReturnType>();
             Debug.Assert(factory != null, $"factory for {nameof(TReturnType)} should not be null");

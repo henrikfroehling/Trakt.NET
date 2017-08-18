@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktUserFollowUserPostResponseObjectJsonReader : ITraktObjectJsonReader<ITraktUserFollowUserPostResponse>
+    internal class TraktUserFollowUserPostResponseObjectJsonReader : IObjectJsonReader<ITraktUserFollowUserPostResponse>
     {
         private const string PROPERTY_NAME_APPROVED_AT = "approved_at";
         private const string PROPERTY_NAME_USER = "user";

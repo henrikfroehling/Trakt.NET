@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktSyncListsLastActivitiesObjectJsonReader : ITraktObjectJsonReader<ITraktSyncListsLastActivities>
+    internal class TraktSyncListsLastActivitiesObjectJsonReader : IObjectJsonReader<ITraktSyncListsLastActivities>
     {
         private const string PROPERTY_NAME_LIKED_AT = "liked_at";
         private const string PROPERTY_NAME_UPDATED_AT = "updated_at";

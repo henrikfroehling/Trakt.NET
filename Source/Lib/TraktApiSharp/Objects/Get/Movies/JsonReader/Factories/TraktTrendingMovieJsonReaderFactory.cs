@@ -4,7 +4,7 @@
 
     internal class TraktTrendingMovieJsonReaderFactory : IJsonReaderFactory<ITraktTrendingMovie>
     {
-        public ITraktObjectJsonReader<ITraktTrendingMovie> CreateObjectReader() => new TraktTrendingMovieObjectJsonReader();
+        public IObjectJsonReader<ITraktTrendingMovie> CreateObjectReader() => new TraktTrendingMovieObjectJsonReader();
 
         public IArrayJsonReader<ITraktTrendingMovie> CreateArrayReader() => new TraktTrendingMovieArrayJsonReader();
     }

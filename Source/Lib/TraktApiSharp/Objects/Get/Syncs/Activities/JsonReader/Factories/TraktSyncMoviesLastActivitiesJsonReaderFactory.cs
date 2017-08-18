@@ -5,7 +5,7 @@
 
     internal class TraktSyncMoviesLastActivitiesJsonReaderFactory : IJsonReaderFactory<ITraktSyncMoviesLastActivities>
     {
-        public ITraktObjectJsonReader<ITraktSyncMoviesLastActivities> CreateObjectReader() => new TraktSyncMoviesLastActivitiesObjectJsonReader();
+        public IObjectJsonReader<ITraktSyncMoviesLastActivities> CreateObjectReader() => new TraktSyncMoviesLastActivitiesObjectJsonReader();
 
         public IArrayJsonReader<ITraktSyncMoviesLastActivities> CreateArrayReader()
         {

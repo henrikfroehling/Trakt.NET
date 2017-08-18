@@ -11,7 +11,7 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
 
-    internal class TraktSyncPlaybackProgressItemObjectJsonReader : ITraktObjectJsonReader<ITraktSyncPlaybackProgressItem>
+    internal class TraktSyncPlaybackProgressItemObjectJsonReader : IObjectJsonReader<ITraktSyncPlaybackProgressItem>
     {
         private const string PROPERTY_NAME_ID = "id";
         private const string PROPERTY_NAME_PROGRESS = "progress";

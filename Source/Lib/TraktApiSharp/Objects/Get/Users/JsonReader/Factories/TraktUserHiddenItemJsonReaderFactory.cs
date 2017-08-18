@@ -4,7 +4,7 @@
 
     internal class TraktUserHiddenItemJsonReaderFactory : IJsonReaderFactory<ITraktUserHiddenItem>
     {
-        public ITraktObjectJsonReader<ITraktUserHiddenItem> CreateObjectReader() => new TraktUserHiddenItemObjectJsonReader();
+        public IObjectJsonReader<ITraktUserHiddenItem> CreateObjectReader() => new TraktUserHiddenItemObjectJsonReader();
 
         public IArrayJsonReader<ITraktUserHiddenItem> CreateArrayReader() => new TraktUserHiddenItemArrayJsonReader();
     }

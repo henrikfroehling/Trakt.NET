@@ -10,7 +10,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktMovieScrobblePostResponseObjectJsonReader : ITraktObjectJsonReader<ITraktMovieScrobblePostResponse>
+    internal class TraktMovieScrobblePostResponseObjectJsonReader : IObjectJsonReader<ITraktMovieScrobblePostResponse>
     {
         private const string PROPERTY_NAME_ID = "id";
         private const string PROPERTY_NAME_ACTION = "action";

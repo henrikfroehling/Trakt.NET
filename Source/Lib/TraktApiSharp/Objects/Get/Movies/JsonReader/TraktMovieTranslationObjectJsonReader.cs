@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktMovieTranslationObjectJsonReader : ITraktObjectJsonReader<ITraktMovieTranslation>
+    internal class TraktMovieTranslationObjectJsonReader : IObjectJsonReader<ITraktMovieTranslation>
     {
         private const string PROPERTY_NAME_TITLE = "title";
         private const string PROPERTY_NAME_OVERVIEW = "overview";

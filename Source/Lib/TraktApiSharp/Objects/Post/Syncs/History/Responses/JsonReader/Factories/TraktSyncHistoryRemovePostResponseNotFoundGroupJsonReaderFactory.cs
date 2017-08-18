@@ -5,7 +5,7 @@
 
     internal class TraktSyncHistoryRemovePostResponseNotFoundGroupJsonReaderFactory : IJsonReaderFactory<ITraktSyncHistoryRemovePostResponseNotFoundGroup>
     {
-        public ITraktObjectJsonReader<ITraktSyncHistoryRemovePostResponseNotFoundGroup> CreateObjectReader() => new TraktSyncHistoryRemovePostResponseNotFoundGroupObjectJsonReader();
+        public IObjectJsonReader<ITraktSyncHistoryRemovePostResponseNotFoundGroup> CreateObjectReader() => new TraktSyncHistoryRemovePostResponseNotFoundGroupObjectJsonReader();
 
         public IArrayJsonReader<ITraktSyncHistoryRemovePostResponseNotFoundGroup> CreateArrayReader()
         {

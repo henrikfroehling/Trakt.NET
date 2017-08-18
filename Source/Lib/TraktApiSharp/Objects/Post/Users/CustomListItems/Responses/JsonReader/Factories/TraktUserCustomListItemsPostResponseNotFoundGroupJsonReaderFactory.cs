@@ -5,7 +5,7 @@
 
     internal class TraktUserCustomListItemsPostResponseNotFoundGroupJsonReaderFactory : IJsonReaderFactory<ITraktUserCustomListItemsPostResponseNotFoundGroup>
     {
-        public ITraktObjectJsonReader<ITraktUserCustomListItemsPostResponseNotFoundGroup> CreateObjectReader() => new TraktUserCustomListItemsPostResponseNotFoundGroupObjectJsonReader();
+        public IObjectJsonReader<ITraktUserCustomListItemsPostResponseNotFoundGroup> CreateObjectReader() => new TraktUserCustomListItemsPostResponseNotFoundGroupObjectJsonReader();
 
         public IArrayJsonReader<ITraktUserCustomListItemsPostResponseNotFoundGroup> CreateArrayReader()
         {

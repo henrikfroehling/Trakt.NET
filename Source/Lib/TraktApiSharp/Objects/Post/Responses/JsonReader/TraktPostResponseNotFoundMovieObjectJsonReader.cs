@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktPostResponseNotFoundMovieObjectJsonReader : ITraktObjectJsonReader<ITraktPostResponseNotFoundMovie>
+    internal class TraktPostResponseNotFoundMovieObjectJsonReader : IObjectJsonReader<ITraktPostResponseNotFoundMovie>
     {
         private const string PROPERTY_NAME_IDS = "ids";
 

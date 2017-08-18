@@ -9,7 +9,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktCalendarShowObjectJsonReader : ITraktObjectJsonReader<ITraktCalendarShow>
+    internal class TraktCalendarShowObjectJsonReader : IObjectJsonReader<ITraktCalendarShow>
     {
         private const string PROPERTY_NAME_FIRST_AIRED = "first_aired";
         private const string PROPERTY_NAME_SHOW = "show";

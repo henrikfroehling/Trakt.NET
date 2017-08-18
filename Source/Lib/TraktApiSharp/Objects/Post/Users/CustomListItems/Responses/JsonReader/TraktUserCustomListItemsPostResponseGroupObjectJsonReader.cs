@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktUserCustomListItemsPostResponseGroupObjectJsonReader : ITraktObjectJsonReader<ITraktUserCustomListItemsPostResponseGroup>
+    internal class TraktUserCustomListItemsPostResponseGroupObjectJsonReader : IObjectJsonReader<ITraktUserCustomListItemsPostResponseGroup>
     {
         private const string PROPERTY_NAME_MOVIES = "movies";
         private const string PROPERTY_NAME_SHOWS = "shows";

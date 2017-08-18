@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktWatchedMovieObjectJsonReader : ITraktObjectJsonReader<ITraktWatchedMovie>
+    internal class TraktWatchedMovieObjectJsonReader : IObjectJsonReader<ITraktWatchedMovie>
     {
         private const string PROPERTY_NAME_PLAYS = "plays";
         private const string PROPERTY_NAME_LAST_WATCHED_AT = "last_watched_at";

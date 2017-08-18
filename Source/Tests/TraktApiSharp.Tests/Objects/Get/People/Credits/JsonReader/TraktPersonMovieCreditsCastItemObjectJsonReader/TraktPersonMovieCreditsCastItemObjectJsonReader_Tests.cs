@@ -13,7 +13,7 @@
         [Fact]
         public void Test_TraktPersonMovieCreditsCastItemObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(TraktPersonMovieCreditsCastItemObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<ITraktPersonMovieCreditsCastItem>));
+            typeof(TraktPersonMovieCreditsCastItemObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktPersonMovieCreditsCastItem>));
         }
     }
 }

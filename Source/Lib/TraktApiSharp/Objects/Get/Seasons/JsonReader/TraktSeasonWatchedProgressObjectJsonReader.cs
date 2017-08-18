@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktSeasonWatchedProgressObjectJsonReader : ITraktObjectJsonReader<ITraktSeasonWatchedProgress>
+    internal class TraktSeasonWatchedProgressObjectJsonReader : IObjectJsonReader<ITraktSeasonWatchedProgress>
     {
         private const string PROPERTY_NAME_NUMBER = "number";
         private const string PROPERTY_NAME_AIRED = "aired";

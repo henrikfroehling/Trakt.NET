@@ -4,7 +4,7 @@
 
     internal class TraktCalendarShowJsonReaderFactory : IJsonReaderFactory<ITraktCalendarShow>
     {
-        public ITraktObjectJsonReader<ITraktCalendarShow> CreateObjectReader() => new TraktCalendarShowObjectJsonReader();
+        public IObjectJsonReader<ITraktCalendarShow> CreateObjectReader() => new TraktCalendarShowObjectJsonReader();
 
         public IArrayJsonReader<ITraktCalendarShow> CreateArrayReader() => new TraktCalendarShowArrayJsonReader();
     }

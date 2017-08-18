@@ -13,7 +13,7 @@
         [Fact]
         public void Test_TraktCalendarShowObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(TraktCalendarShowObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<ITraktCalendarShow>));
+            typeof(TraktCalendarShowObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktCalendarShow>));
         }
     }
 }

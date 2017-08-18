@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktSyncHistoryPostResponseObjectJsonReader : ITraktObjectJsonReader<ITraktSyncHistoryPostResponse>
+    internal class TraktSyncHistoryPostResponseObjectJsonReader : IObjectJsonReader<ITraktSyncHistoryPostResponse>
     {
         private const string PROPERTY_NAME_ADDED = "added";
         private const string PROPERTY_NAME_NOT_FOUND = "not_found";

@@ -4,7 +4,7 @@
 
     internal class TraktWatchedShowEpisodeJsonReaderFactory : IJsonReaderFactory<ITraktWatchedShowEpisode>
     {
-        public ITraktObjectJsonReader<ITraktWatchedShowEpisode> CreateObjectReader() => new TraktWatchedShowEpisodeObjectJsonReader();
+        public IObjectJsonReader<ITraktWatchedShowEpisode> CreateObjectReader() => new TraktWatchedShowEpisodeObjectJsonReader();
 
         public IArrayJsonReader<ITraktWatchedShowEpisode> CreateArrayReader() => new TraktWatchedShowEpisodeArrayJsonReader();
     }

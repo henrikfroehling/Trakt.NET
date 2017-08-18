@@ -9,7 +9,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktCollectionMovieObjectJsonReader : ITraktObjectJsonReader<ITraktCollectionMovie>
+    internal class TraktCollectionMovieObjectJsonReader : IObjectJsonReader<ITraktCollectionMovie>
     {
         private const string PROPERTY_NAME_COLLECTED_AT = "collected_at";
         private const string PROPERTY_NAME_MOVIE = "movie";

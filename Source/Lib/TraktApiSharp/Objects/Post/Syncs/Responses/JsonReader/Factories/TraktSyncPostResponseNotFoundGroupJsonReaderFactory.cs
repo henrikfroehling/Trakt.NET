@@ -5,7 +5,7 @@
 
     internal class TraktSyncPostResponseNotFoundGroupJsonReaderFactory : IJsonReaderFactory<ITraktSyncPostResponseNotFoundGroup>
     {
-        public ITraktObjectJsonReader<ITraktSyncPostResponseNotFoundGroup> CreateObjectReader() => new TraktSyncPostResponseNotFoundGroupObjectJsonReader();
+        public IObjectJsonReader<ITraktSyncPostResponseNotFoundGroup> CreateObjectReader() => new TraktSyncPostResponseNotFoundGroupObjectJsonReader();
 
         public IArrayJsonReader<ITraktSyncPostResponseNotFoundGroup> CreateArrayReader()
         {

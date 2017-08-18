@@ -13,7 +13,7 @@
         [Fact]
         public void Test_TraktMostAnticipatedShowObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
         {
-            typeof(TraktMostAnticipatedShowObjectJsonReader).GetInterfaces().Should().Contain(typeof(ITraktObjectJsonReader<ITraktMostAnticipatedShow>));
+            typeof(TraktMostAnticipatedShowObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktMostAnticipatedShow>));
         }
     }
 }

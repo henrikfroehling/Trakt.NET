@@ -4,7 +4,7 @@
 
     internal class TraktMostAnticipatedMovieJsonReaderFactory : IJsonReaderFactory<ITraktMostAnticipatedMovie>
     {
-        public ITraktObjectJsonReader<ITraktMostAnticipatedMovie> CreateObjectReader() => new TraktMostAnticipatedMovieObjectJsonReader();
+        public IObjectJsonReader<ITraktMostAnticipatedMovie> CreateObjectReader() => new TraktMostAnticipatedMovieObjectJsonReader();
 
         public IArrayJsonReader<ITraktMostAnticipatedMovie> CreateArrayReader() => new TraktMostAnticipatedMovieArrayJsonReader();
     }

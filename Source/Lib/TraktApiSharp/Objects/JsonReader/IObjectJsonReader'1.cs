@@ -5,7 +5,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal interface ITraktObjectJsonReader<TReturnType>
+    internal interface IObjectJsonReader<TReturnType>
     {
         Task<TReturnType> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken));
 

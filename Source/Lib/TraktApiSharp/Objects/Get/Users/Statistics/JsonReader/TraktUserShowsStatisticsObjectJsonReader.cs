@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktUserShowsStatisticsObjectJsonReader : ITraktObjectJsonReader<ITraktUserShowsStatistics>
+    internal class TraktUserShowsStatisticsObjectJsonReader : IObjectJsonReader<ITraktUserShowsStatistics>
     {
         private const string PROPERTY_NAME_WATCHED = "watched";
         private const string PROPERTY_NAME_COLLECTED = "collected";

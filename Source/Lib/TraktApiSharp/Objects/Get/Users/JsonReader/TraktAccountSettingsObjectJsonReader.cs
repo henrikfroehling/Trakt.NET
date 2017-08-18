@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktAccountSettingsObjectJsonReader : ITraktObjectJsonReader<ITraktAccountSettings>
+    internal class TraktAccountSettingsObjectJsonReader : IObjectJsonReader<ITraktAccountSettings>
     {
         private const string PROPERTY_NAME_TIMEZONE_ID = "timezone";
         private const string PROPERTY_NAME_TIME_24HR = "time_24hr";

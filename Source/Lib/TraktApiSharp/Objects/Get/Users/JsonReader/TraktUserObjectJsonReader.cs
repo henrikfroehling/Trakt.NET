@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktUserObjectJsonReader : ITraktObjectJsonReader<ITraktUser>
+    internal class TraktUserObjectJsonReader : IObjectJsonReader<ITraktUser>
     {
         private const string PROPERTY_NAME_USERNAME = "username";
         private const string PROPERTY_NAME_IS_PRIVATE = "private";

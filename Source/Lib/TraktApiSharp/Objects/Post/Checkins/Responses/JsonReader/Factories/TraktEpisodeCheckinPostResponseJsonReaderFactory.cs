@@ -5,7 +5,7 @@
 
     internal class TraktEpisodeCheckinPostResponseJsonReaderFactory : IJsonReaderFactory<ITraktEpisodeCheckinPostResponse>
     {
-        public ITraktObjectJsonReader<ITraktEpisodeCheckinPostResponse> CreateObjectReader() => new TraktEpisodeCheckinPostResponseObjectJsonReader();
+        public IObjectJsonReader<ITraktEpisodeCheckinPostResponse> CreateObjectReader() => new TraktEpisodeCheckinPostResponseObjectJsonReader();
 
         public IArrayJsonReader<ITraktEpisodeCheckinPostResponse> CreateArrayReader()
         {
