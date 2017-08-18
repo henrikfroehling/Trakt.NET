@@ -2,7 +2,7 @@
 {
     using Objects.JsonReader;
 
-    internal class TraktUserFollowRequestJsonReaderFactory : ITraktJsonReaderFactory<ITraktUserFollowRequest>
+    internal class TraktUserFollowRequestJsonReaderFactory : IJsonReaderFactory<ITraktUserFollowRequest>
     {
         public ITraktObjectJsonReader<ITraktUserFollowRequest> CreateObjectReader() => new TraktUserFollowRequestObjectJsonReader();
 

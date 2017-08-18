@@ -2,7 +2,7 @@
 {
     using Objects.JsonReader;
 
-    internal class TraktPersonShowCreditsCrewItemJsonReaderFactory : ITraktJsonReaderFactory<ITraktPersonShowCreditsCrewItem>
+    internal class TraktPersonShowCreditsCrewItemJsonReaderFactory : IJsonReaderFactory<ITraktPersonShowCreditsCrewItem>
     {
         public ITraktObjectJsonReader<ITraktPersonShowCreditsCrewItem> CreateObjectReader() => new TraktPersonShowCreditsCrewItemObjectJsonReader();
 

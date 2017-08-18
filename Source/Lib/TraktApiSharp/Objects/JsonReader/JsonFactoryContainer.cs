@@ -80,14 +80,14 @@
             return factory.CreateArrayReader();
         }
 
-        public static ITraktJsonReaderFactory<TReturnType> GetReaderFactory<TReturnType>()
+        public static IJsonReaderFactory<TReturnType> GetReaderFactory<TReturnType>()
         {
             var type = typeof(TReturnType);
 
             if (!s_readerFactories.ContainsKey(type))
                 throw new NotSupportedException($"A json reader factory for {nameof(TReturnType)} is not supported.");
 
-            return (ITraktJsonReaderFactory<TReturnType>)s_readerFactories[type];
+            return (IJsonReaderFactory<TReturnType>)s_readerFactories[type];
         }
 
         static JsonFactoryContainer()

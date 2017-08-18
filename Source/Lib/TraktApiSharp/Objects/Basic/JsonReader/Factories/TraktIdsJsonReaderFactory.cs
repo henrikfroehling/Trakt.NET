@@ -3,7 +3,7 @@
     using Objects.JsonReader;
     using System;
 
-    internal class TraktIdsJsonReaderFactory : ITraktJsonReaderFactory<ITraktIds>
+    internal class TraktIdsJsonReaderFactory : IJsonReaderFactory<ITraktIds>
     {
         public ITraktObjectJsonReader<ITraktIds> CreateObjectReader() => new TraktIdsObjectJsonReader();
 

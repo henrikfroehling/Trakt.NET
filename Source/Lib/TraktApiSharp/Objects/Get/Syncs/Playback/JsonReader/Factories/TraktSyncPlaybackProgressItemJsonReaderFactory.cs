@@ -2,7 +2,7 @@
 {
     using Objects.JsonReader;
 
-    internal class TraktSyncPlaybackProgressItemJsonReaderFactory : ITraktJsonReaderFactory<ITraktSyncPlaybackProgressItem>
+    internal class TraktSyncPlaybackProgressItemJsonReaderFactory : IJsonReaderFactory<ITraktSyncPlaybackProgressItem>
     {
         public ITraktObjectJsonReader<ITraktSyncPlaybackProgressItem> CreateObjectReader() => new TraktSyncPlaybackProgressItemObjectJsonReader();
 

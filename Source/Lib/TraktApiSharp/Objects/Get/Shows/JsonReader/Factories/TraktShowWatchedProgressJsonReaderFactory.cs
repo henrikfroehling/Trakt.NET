@@ -3,7 +3,7 @@
     using Objects.JsonReader;
     using System;
 
-    internal class TraktShowWatchedProgressJsonReaderFactory : ITraktJsonReaderFactory<ITraktShowWatchedProgress>
+    internal class TraktShowWatchedProgressJsonReaderFactory : IJsonReaderFactory<ITraktShowWatchedProgress>
     {
         public ITraktObjectJsonReader<ITraktShowWatchedProgress> CreateObjectReader() => new TraktShowWatchedProgressObjectJsonReader();
 

@@ -3,7 +3,7 @@
     using Objects.JsonReader;
     using System;
 
-    internal class TraktSyncPostResponseGroupJsonReaderFactory : ITraktJsonReaderFactory<ITraktSyncPostResponseGroup>
+    internal class TraktSyncPostResponseGroupJsonReaderFactory : IJsonReaderFactory<ITraktSyncPostResponseGroup>
     {
         public ITraktObjectJsonReader<ITraktSyncPostResponseGroup> CreateObjectReader() => new TraktSyncPostResponseGroupObjectJsonReader();
 

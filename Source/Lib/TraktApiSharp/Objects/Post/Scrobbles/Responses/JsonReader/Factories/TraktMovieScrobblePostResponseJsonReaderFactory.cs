@@ -3,7 +3,7 @@
     using Objects.JsonReader;
     using System;
 
-    internal class TraktMovieScrobblePostResponseJsonReaderFactory : ITraktJsonReaderFactory<ITraktMovieScrobblePostResponse>
+    internal class TraktMovieScrobblePostResponseJsonReaderFactory : IJsonReaderFactory<ITraktMovieScrobblePostResponse>
     {
         public ITraktObjectJsonReader<ITraktMovieScrobblePostResponse> CreateObjectReader() => new TraktMovieScrobblePostResponseObjectJsonReader();
 

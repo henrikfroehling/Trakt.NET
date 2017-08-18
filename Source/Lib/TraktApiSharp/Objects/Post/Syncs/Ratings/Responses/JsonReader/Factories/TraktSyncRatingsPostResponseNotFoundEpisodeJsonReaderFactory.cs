@@ -2,7 +2,7 @@
 {
     using Objects.JsonReader;
 
-    internal class TraktSyncRatingsPostResponseNotFoundEpisodeJsonReaderFactory : ITraktJsonReaderFactory<ITraktSyncRatingsPostResponseNotFoundEpisode>
+    internal class TraktSyncRatingsPostResponseNotFoundEpisodeJsonReaderFactory : IJsonReaderFactory<ITraktSyncRatingsPostResponseNotFoundEpisode>
     {
         public ITraktObjectJsonReader<ITraktSyncRatingsPostResponseNotFoundEpisode> CreateObjectReader() => new TraktSyncRatingsPostResponseNotFoundEpisodeObjectJsonReader();
 

@@ -3,7 +3,7 @@
     using Objects.JsonReader;
     using System;
 
-    internal class TraktEpisodeCheckinPostResponseJsonReaderFactory : ITraktJsonReaderFactory<ITraktEpisodeCheckinPostResponse>
+    internal class TraktEpisodeCheckinPostResponseJsonReaderFactory : IJsonReaderFactory<ITraktEpisodeCheckinPostResponse>
     {
         public ITraktObjectJsonReader<ITraktEpisodeCheckinPostResponse> CreateObjectReader() => new TraktEpisodeCheckinPostResponseObjectJsonReader();
 

@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.JsonReader
 {
-    internal interface ITraktJsonReaderFactory<TReturnType>
+    internal interface IJsonReaderFactory<TReturnType>
     {
         ITraktObjectJsonReader<TReturnType> CreateObjectReader();
 

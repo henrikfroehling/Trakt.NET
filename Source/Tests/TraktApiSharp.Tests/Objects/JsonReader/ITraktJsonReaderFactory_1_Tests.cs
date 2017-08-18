@@ -12,20 +12,20 @@
         [Fact]
         public void Test_ITraktJsonReaderFactory_1_Is_Interface()
         {
-            typeof(ITraktJsonReaderFactory<>).IsInterface.Should().BeTrue();
+            typeof(IJsonReaderFactory<>).IsInterface.Should().BeTrue();
         }
 
         [Fact]
         public void Test_ITraktJsonReaderFactory_1_Has_Generic_TypeParameter()
         {
-            typeof(ITraktJsonReaderFactory<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ITraktJsonReaderFactory<object>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+            typeof(IJsonReaderFactory<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(IJsonReaderFactory<object>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
         [Fact]
         public void Test_ITraktJsonReaderFactory_1_Has_CreateObjectReader_Method()
         {
-            var methodInfo = typeof(ITraktJsonReaderFactory<object>).GetMethods().FirstOrDefault(m => m.Name == "CreateObjectReader");
+            var methodInfo = typeof(IJsonReaderFactory<object>).GetMethods().FirstOrDefault(m => m.Name == "CreateObjectReader");
 
             methodInfo.Should().NotBeNull();
             methodInfo.ReturnType.Should().Be(typeof(ITraktObjectJsonReader<object>));
@@ -35,7 +35,7 @@
         [Fact]
         public void Test_ITraktJsonReaderFactory_1_Has_CreateArrayReader_Method()
         {
-            var methodInfo = typeof(ITraktJsonReaderFactory<object>).GetMethods().FirstOrDefault(m => m.Name == "CreateArrayReader");
+            var methodInfo = typeof(IJsonReaderFactory<object>).GetMethods().FirstOrDefault(m => m.Name == "CreateArrayReader");
 
             methodInfo.Should().NotBeNull();
             methodInfo.ReturnType.Should().Be(typeof(ITraktArrayJsonReader<object>));

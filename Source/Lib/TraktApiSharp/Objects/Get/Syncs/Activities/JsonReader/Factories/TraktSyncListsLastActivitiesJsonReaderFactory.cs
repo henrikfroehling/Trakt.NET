@@ -3,7 +3,7 @@
     using Objects.JsonReader;
     using System;
 
-    internal class TraktSyncListsLastActivitiesJsonReaderFactory : ITraktJsonReaderFactory<ITraktSyncListsLastActivities>
+    internal class TraktSyncListsLastActivitiesJsonReaderFactory : IJsonReaderFactory<ITraktSyncListsLastActivities>
     {
         public ITraktObjectJsonReader<ITraktSyncListsLastActivities> CreateObjectReader() => new TraktSyncListsLastActivitiesObjectJsonReader();
 

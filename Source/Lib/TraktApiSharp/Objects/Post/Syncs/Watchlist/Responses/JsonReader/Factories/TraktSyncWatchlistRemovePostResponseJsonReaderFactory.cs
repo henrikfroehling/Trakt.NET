@@ -3,7 +3,7 @@
     using Objects.JsonReader;
     using System;
 
-    internal class TraktSyncWatchlistRemovePostResponseJsonReaderFactory : ITraktJsonReaderFactory<ITraktSyncWatchlistRemovePostResponse>
+    internal class TraktSyncWatchlistRemovePostResponseJsonReaderFactory : IJsonReaderFactory<ITraktSyncWatchlistRemovePostResponse>
     {
         public ITraktObjectJsonReader<ITraktSyncWatchlistRemovePostResponse> CreateObjectReader() => new TraktSyncWatchlistRemovePostResponseObjectJsonReader();
 

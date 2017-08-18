@@ -2,7 +2,7 @@
 {
     using Objects.JsonReader;
 
-    internal class TraktCalendarShowJsonReaderFactory : ITraktJsonReaderFactory<ITraktCalendarShow>
+    internal class TraktCalendarShowJsonReaderFactory : IJsonReaderFactory<ITraktCalendarShow>
     {
         public ITraktObjectJsonReader<ITraktCalendarShow> CreateObjectReader() => new TraktCalendarShowObjectJsonReader();
 

@@ -473,7 +473,7 @@
     <Compile Include="Objects\Get\Watchlist\JsonReader\TraktWatchlistItemArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Watchlist\JsonReader\TraktWatchlistItemObjectJsonReader.cs" />
     <Compile Include="Objects\JsonReader\ITraktArrayJsonReader%271.cs" />
-    <Compile Include="Objects\JsonReader\ITraktJsonReaderFactory%271.cs" />
+    <Compile Include="Objects\JsonReader\IJsonReaderFactory%271.cs" />
     <Compile Include="Objects\JsonReader\ITraktObjectJsonReader%271.cs" />
     <Compile Include="Objects\JsonReader\JsonReaderHelper.cs" />
     <Compile Include="Objects\JsonReader\JsonFactoryContainer.cs" />
