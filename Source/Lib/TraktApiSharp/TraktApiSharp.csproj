@@ -147,7 +147,7 @@
     <Compile Include="Objects\Basic\JsonReader\Factories\TraktSearchResultJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\TraktSharingJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\TraktStatisticsJsonReaderFactory.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktCastAndCrewObjectJsonReader.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CastAndCrewObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktCastMemberArrayJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktCastMemberObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktCommentArrayJsonReader.cs" />

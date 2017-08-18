@@ -30,7 +30,7 @@
         [Fact]
         public async Task Test_TraktCastAndCrew_From_Json()
         {
-            var jsonReader = new TraktCastAndCrewObjectJsonReader();
+            var jsonReader = new CastAndCrewObjectJsonReader();
             var traktCastAndCrew = await jsonReader.ReadObjectAsync(JSON) as TraktCastAndCrew;
 
             traktCastAndCrew.Should().NotBeNull();
