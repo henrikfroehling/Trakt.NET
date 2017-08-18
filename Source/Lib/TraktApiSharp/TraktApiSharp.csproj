@@ -116,6 +116,7 @@
     <Compile Include="Exceptions\TraktServerUnavailableException.cs" />
     <Compile Include="Exceptions\TraktShowNotFoundException.cs" />
     <Compile Include="Exceptions\TraktValidationException.cs" />
+    <Compile Include="Modules\ITraktModule.cs" />
     <Compile Include="Objects\Basic\IIds.cs" />
     <Compile Include="Objects\Basic\ITraktCastAndCrew.cs" />
     <Compile Include="Objects\Basic\ITraktCastMember.cs" />
@@ -798,7 +799,6 @@
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Modules\TraktMultipleEpisodesQueryParams.cs" />
-    <Compile Include="Modules\TraktBaseModule.cs" />
     <Compile Include="Modules\TraktCalendarModule.cs" />
     <Compile Include="Modules\TraktCheckinsModule.cs" />
     <Compile Include="Modules\TraktCommentsModule.cs" />

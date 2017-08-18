@@ -21,7 +21,7 @@
         [TestMethod]
         public void TestTraktPeopleModuleIsModule()
         {
-            typeof(TraktBaseModule).IsAssignableFrom(typeof(TraktPeopleModule)).Should().BeTrue();
+            typeof(TraktPeopleModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
         }
 
         [ClassInitialize]

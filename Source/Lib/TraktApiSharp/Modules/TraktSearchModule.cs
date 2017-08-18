@@ -17,9 +17,15 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/search">"Trakt API Doc - Search"</a> section.
     /// </para>
     /// </summary>
-    public class TraktSearchModule : TraktBaseModule
+    public class TraktSearchModule : ITraktModule
     {
-        internal TraktSearchModule(TraktClient client) : base(client) { }
+        internal TraktSearchModule(TraktClient client)
+        {
+            Client = client;
+        }
+
+        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
+        public TraktClient Client { get; }
 
         /// <summary>
         /// Searches for movies, shows, episodes, people and / or lists with the given search query.

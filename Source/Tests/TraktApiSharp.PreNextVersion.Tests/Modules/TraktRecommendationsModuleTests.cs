@@ -19,7 +19,7 @@
         [TestMethod]
         public void TestTraktRecommendationsModuleIsModule()
         {
-            typeof(TraktBaseModule).IsAssignableFrom(typeof(TraktRecommendationsModule)).Should().BeTrue();
+            typeof(TraktRecommendationsModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
         }
 
         [ClassInitialize]

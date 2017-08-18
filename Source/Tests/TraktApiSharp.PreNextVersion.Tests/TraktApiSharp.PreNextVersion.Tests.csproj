@@ -106,7 +106,6 @@
     <Compile Include="Enums\TraktSearchFieldTests.cs" />
     <Compile Include="Enums\TraktSearchIdTypeTests.cs" />
     <Compile Include="Exceptions\TraktCheckinExceptionTests.cs" />
-    <Compile Include="Modules\TraktBaseModuleTests.cs" />
     <Compile Include="Modules\TraktCalendarModuleTests.cs" />
     <Compile Include="Modules\TraktCheckinsModuleTests.cs" />
     <Compile Include="Modules\TraktCommentsModuleTests.cs" />

@@ -17,9 +17,15 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/recommendations">"Trakt API Doc - Recommendations"</a> section.
     /// </para>
     /// </summary>
-    public class TraktRecommendationsModule : TraktBaseModule
+    public class TraktRecommendationsModule : ITraktModule
     {
-        internal TraktRecommendationsModule(TraktClient client) : base(client) { }
+        internal TraktRecommendationsModule(TraktClient client)
+        {
+            Client = client;
+        }
+
+        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
+        public TraktClient Client { get; }
 
         /// <summary>
         /// Gets personalized movie recommendations for an user.

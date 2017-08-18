@@ -25,7 +25,7 @@
         [TestMethod]
         public void TestTraktCalendarModuleIsModule()
         {
-            typeof(TraktBaseModule).IsAssignableFrom(typeof(TraktCalendarModule)).Should().BeTrue();
+            typeof(TraktCalendarModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
         }
 
         [ClassInitialize]

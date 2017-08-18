@@ -24,7 +24,7 @@
         [TestMethod]
         public void TestTraktScrobbleModuleIsModule()
         {
-            typeof(TraktBaseModule).IsAssignableFrom(typeof(TraktScrobbleModule)).Should().BeTrue();
+            typeof(TraktScrobbleModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
         }
 
         [ClassInitialize]

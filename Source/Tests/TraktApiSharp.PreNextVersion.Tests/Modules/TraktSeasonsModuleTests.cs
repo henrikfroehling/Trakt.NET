@@ -24,7 +24,7 @@
         [TestMethod]
         public void TestTraktSeasonsModuleIsModule()
         {
-            typeof(TraktBaseModule).IsAssignableFrom(typeof(TraktSeasonsModule)).Should().BeTrue();
+            typeof(TraktSeasonsModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
         }
 
         [ClassInitialize]

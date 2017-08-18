@@ -39,7 +39,7 @@
         [TestMethod]
         public void TestTraktSyncModuleIsModule()
         {
-            typeof(TraktBaseModule).IsAssignableFrom(typeof(TraktSyncModule)).Should().BeTrue();
+            typeof(TraktSyncModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
         }
 
         [ClassInitialize]

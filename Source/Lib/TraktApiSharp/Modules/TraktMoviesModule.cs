@@ -22,9 +22,15 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/movies">"Trakt API Doc - Movies"</a> section.
     /// </para>
     /// </summary>
-    public class TraktMoviesModule : TraktBaseModule
+    public class TraktMoviesModule : ITraktModule
     {
-        internal TraktMoviesModule(TraktClient client) : base(client) { }
+        internal TraktMoviesModule(TraktClient client)
+        {
+            Client = client;
+        }
+
+        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
+        public TraktClient Client { get; }
 
         /// <summary>
         /// Gets a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.

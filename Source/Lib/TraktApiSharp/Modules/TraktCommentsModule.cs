@@ -27,9 +27,15 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/comments">"Trakt API Doc - Comments"</a> section.
     /// </para>
     /// </summary>
-    public class TraktCommentsModule : TraktBaseModule
+    public class TraktCommentsModule : ITraktModule
     {
-        internal TraktCommentsModule(TraktClient client) : base(client) { }
+        internal TraktCommentsModule(TraktClient client)
+        {
+            Client = client;
+        }
+
+        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
+        public TraktClient Client { get; }
 
         /// <summary>
         /// Gets a <see cref="ITraktComment" /> or reply with the given id.
