@@ -305,7 +305,7 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/users/list/get-custom-list">"Trakt API Doc - Users: List"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetMultipleCustomListsAsync(TraktMultipleUserListsQueryParams)" />.</para>
+        /// <para>See also <seealso cref="GetMultipleCustomListsAsync(TraktMultipleUserListsQueryParams, CancellationToken)" />.</para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the custom list should be queried.</param>
         /// <param name="listIdOrSlug">The id or slug of the custom list, which should be queried.</param>

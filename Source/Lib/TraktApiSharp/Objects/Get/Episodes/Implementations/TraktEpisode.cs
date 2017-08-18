@@ -5,6 +5,7 @@
     using Seasons.Implementations;
     using System;
     using System.Collections.Generic;
+    using System.Threading;
 
     /// <summary>A Trakt episode of a Trakt season.</summary>
     public class TraktEpisode : ITraktEpisode
@@ -55,10 +56,10 @@
         /// This property is set automatically if this episode is in a
         /// <see cref="TraktSeason.Episodes" /> collection and the episode's season
         /// is in a collection of seasons returned by
-        /// <see cref="TraktSeasonsModule.GetAllSeasonsAsync(string, TraktExtendedInfo, string)" />
+        /// <see cref="TraktSeasonsModule.GetAllSeasonsAsync(string, TraktExtendedInfo, string, CancellationToken)" />
         /// and a translation language code was specified.
         /// This property is also set automatically if this episode is in
-        /// a collection returned by <see cref="TraktSeasonsModule.GetSeasonAsync(string, uint, TraktExtendedInfo, string)" />
+        /// a collection returned by <see cref="TraktSeasonsModule.GetSeasonAsync(string, uint, TraktExtendedInfo, string, CancellationToken)" />
         /// and a translation language code was specified.
         /// </remarks>
         public IEnumerable<ITraktEpisodeTranslation> Translations { get; set; }

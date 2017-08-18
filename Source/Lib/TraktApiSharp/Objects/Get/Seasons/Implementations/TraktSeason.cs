@@ -5,6 +5,7 @@
     using Requests.Parameters;
     using System;
     using System.Collections.Generic;
+    using System.Threading;
 
     /// <summary>A Trakt season of a Trakt show.</summary>
     public class TraktSeason : ITraktSeason
@@ -47,7 +48,7 @@
         /// <remarks>
         /// This property is set automatically if this season is in a collection
         /// of seasons and this collection was returned by
-        /// <see cref="TraktSeasonsModule.GetAllSeasonsAsync(string, TraktExtendedInfo, string)" />
+        /// <see cref="TraktSeasonsModule.GetAllSeasonsAsync(string, TraktExtendedInfo, string, CancellationToken)" />
         /// and the optional <see cref="TraktExtendedInfo" /> has
         /// <see cref="TraktExtendedInfo.Episodes" /> set to true.
         /// </remarks>

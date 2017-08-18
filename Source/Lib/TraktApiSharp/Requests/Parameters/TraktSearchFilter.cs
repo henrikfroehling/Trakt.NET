@@ -3,11 +3,12 @@
     using Enums;
     using Modules;
     using System;
+    using System.Threading;
     using Utils;
 
     /// <summary>
     /// Provides additional filter parameters for the new search methods.<para />
-    /// Supported by <see cref="TraktSearchModule.GetTextQueryResultsAsync(TraktSearchResultType, string, TraktSearchField, TraktSearchFilter, TraktExtendedInfo, int?, int?)" />.<para />
+    /// Supported by <see cref="TraktSearchModule.GetTextQueryResultsAsync(TraktSearchResultType, string, TraktSearchField, TraktSearchFilter, TraktExtendedInfo, int?, int?, CancellationToken)" />.<para />
     /// This class has an fluent interface.
     /// <para>See <a href ="http://docs.trakt.apiary.io/#introduction/filters">"Trakt API Doc - Filters"</a> for more information.</para>
     /// </summary>

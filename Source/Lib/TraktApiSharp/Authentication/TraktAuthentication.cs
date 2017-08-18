@@ -10,6 +10,7 @@
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
+    using System.Threading;
     using System.Threading.Tasks;
     using Utils;
 
@@ -103,7 +104,7 @@
         public bool IsAuthorized => Authorization != null && !Authorization.IsExpired;
 
         /// <summary>
-        /// Calls <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync()" /> to check,
+        /// Calls <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync(CancellationToken)" /> to check,
         /// whether the current <see cref="Authorization" /> is not expired yet and was not revoked by the user.
         /// </summary>
         /// <param name="autoRefresh">
@@ -139,7 +140,7 @@
         }
 
         /// <summary>
-        /// Calls <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync()" /> to check,
+        /// Calls <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync(CancellationToken)" /> to check,
         /// whether the given <see cref="TraktAuthorization" /> is not expired yet and was not revoked by the user.
         /// </summary>
         /// <param name="authorization">The authorization information, which will be checked.</param>
@@ -179,13 +180,13 @@
         }
 
         /// <summary>
-        /// Calls <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync()" /> to check,
+        /// Calls <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync(CancellationToken)" /> to check,
         /// whether the given access token is still valid and was not revoked by the user.
         /// </summary>
         /// <param name="accessToken">The access token, which will be checked.</param>
         /// <returns>True, if the given access token was revoked and / or is not valid anymore, otherwise false.</returns>
         /// <exception cref="ArgumentException">Thrown, if the given access token is null, empty or contains spaces.</exception>
-        /// <exception cref="TraktException">Thrown, if the request <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync()" /> fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync(CancellationToken)" /> fails.</exception>
         public async Task<bool> CheckIfAccessTokenWasRevokedOrIsNotValidAsync(string accessToken)
         {
             if (string.IsNullOrEmpty(accessToken) || accessToken.ContainsSpace())

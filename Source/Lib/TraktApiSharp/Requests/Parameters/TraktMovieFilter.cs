@@ -2,17 +2,18 @@
 {
     using Modules;
     using System;
+    using System.Threading;
     using Utils;
 
     /// <summary>
     /// Provides additional filter parameters for some <see cref="TraktMoviesModule" /> methods.<para />
-    /// Supported by <see cref="TraktMoviesModule.GetMostAnticipatedMoviesAsync(TraktExtendedInfo, TraktMovieFilter, int?, int?)" />,
-    /// <see cref="TraktMoviesModule.GetMostCollectedMoviesAsync(Enums.TraktTimePeriod, TraktExtendedInfo, TraktMovieFilter, int?, int?)" />,
-    /// <see cref="TraktMoviesModule.GetMostPlayedMoviesAsync(Enums.TraktTimePeriod, TraktExtendedInfo, TraktMovieFilter, int?, int?)" />,
-    /// <see cref="TraktMoviesModule.GetMostWatchedMoviesAsync(Enums.TraktTimePeriod, TraktExtendedInfo, TraktMovieFilter, int?, int?)" />,
-    /// <see cref="TraktMoviesModule.GetPopularMoviesAsync(TraktExtendedInfo, TraktMovieFilter, int?, int?)" />,
-    /// <see cref="TraktMoviesModule.GetRecentlyUpdatedMoviesAsync(System.DateTime?, TraktExtendedInfo, int?, int?)" /> and
-    /// <see cref="TraktMoviesModule.GetTrendingMoviesAsync(TraktExtendedInfo, TraktMovieFilter, int?, int?)" />.<para />
+    /// Supported by <see cref="TraktMoviesModule.GetMostAnticipatedMoviesAsync(TraktExtendedInfo, TraktMovieFilter, int?, int?, CancellationToken)" />,
+    /// <see cref="TraktMoviesModule.GetMostCollectedMoviesAsync(Enums.TraktTimePeriod, TraktExtendedInfo, TraktMovieFilter, int?, int?, CancellationToken)" />,
+    /// <see cref="TraktMoviesModule.GetMostPlayedMoviesAsync(Enums.TraktTimePeriod, TraktExtendedInfo, TraktMovieFilter, int?, int?, CancellationToken)" />,
+    /// <see cref="TraktMoviesModule.GetMostWatchedMoviesAsync(Enums.TraktTimePeriod, TraktExtendedInfo, TraktMovieFilter, int?, int?, CancellationToken)" />,
+    /// <see cref="TraktMoviesModule.GetPopularMoviesAsync(TraktExtendedInfo, TraktMovieFilter, int?, int?, CancellationToken)" />,
+    /// <see cref="TraktMoviesModule.GetRecentlyUpdatedMoviesAsync(System.DateTime?, TraktExtendedInfo, int?, int?, CancellationToken)" /> and
+    /// <see cref="TraktMoviesModule.GetTrendingMoviesAsync(TraktExtendedInfo, TraktMovieFilter, int?, int?, CancellationToken)" />.<para />
     /// This class has an fluent interface.
     /// <para>See <a href ="http://docs.trakt.apiary.io/#introduction/filters">"Trakt API Doc - Filters"</a> for more information.</para>
     /// </summary>

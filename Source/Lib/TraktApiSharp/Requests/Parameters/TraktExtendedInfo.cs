@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Requests.Parameters
 {
     using System.Collections.Generic;
+    using System.Threading;
 
     /// <summary>
     /// A boolean flag container representing the possible extended options for Trakt requests, allowing retrieving of
@@ -25,10 +26,10 @@
         /// <summary>
         /// Gets or sets, whether metadata information should be retrieved.
         /// <para>
-        /// Only supported by <see cref="Modules.TraktSyncModule.GetCollectionMoviesAsync(TraktExtendedInfo)" />,
-        /// <see cref="Modules.TraktSyncModule.GetCollectionShowsAsync(TraktExtendedInfo)" />,
-        /// <see cref="Modules.TraktUsersModule.GetCollectionMoviesAsync(string, TraktExtendedInfo)" /> and
-        /// <see cref="Modules.TraktUsersModule.GetCollectionShowsAsync(string, TraktExtendedInfo)" />.
+        /// Only supported by <see cref="Modules.TraktSyncModule.GetCollectionMoviesAsync(TraktExtendedInfo, CancellationToken)" />,
+        /// <see cref="Modules.TraktSyncModule.GetCollectionShowsAsync(TraktExtendedInfo, CancellationToken)" />,
+        /// <see cref="Modules.TraktUsersModule.GetCollectionMoviesAsync(string, TraktExtendedInfo, CancellationToken)" /> and
+        /// <see cref="Modules.TraktUsersModule.GetCollectionShowsAsync(string, TraktExtendedInfo, CancellationToken)" />.
         /// Will be ignored otherwise.
         /// </para>
         /// <para>See also <see cref="SetMetadata()" /> and <see cref="ResetMetadata()" />.</para>
@@ -44,8 +45,8 @@
         /// <summary>
         /// Gets or sets, whether no seasons information should be retrieved.
         /// <para>
-        /// Only supported by <see cref="Modules.TraktSyncModule.GetWatchedShowsAsync(TraktExtendedInfo)" /> and
-        /// <see cref="Modules.TraktUsersModule.GetWatchedShowsAsync(string, TraktExtendedInfo)" />.
+        /// Only supported by <see cref="Modules.TraktSyncModule.GetWatchedShowsAsync(TraktExtendedInfo, CancellationToken)" /> and
+        /// <see cref="Modules.TraktUsersModule.GetWatchedShowsAsync(string, TraktExtendedInfo, CancellationToken)" />.
         /// Will be ignored otherwise.
         /// </para>
         /// <para>See also <see cref="SetNoSeasons()" /> and <see cref="ResetNoSeasons()" />.</para>
@@ -55,7 +56,7 @@
         /// <summary>
         /// Gets or sets, whether episodes information should be retrieved.
         /// <para>
-        /// Only supported by <see cref="Modules.TraktSeasonsModule.GetAllSeasonsAsync(string, TraktExtendedInfo, string)" />.
+        /// Only supported by <see cref="Modules.TraktSeasonsModule.GetAllSeasonsAsync(string, TraktExtendedInfo, string, CancellationToken)" />.
         /// Will be ignored otherwise.
         /// </para>
         /// <para>See also <see cref="SetEpisodes()" /> and <see cref="ResetEpisodes()" />.</para>
