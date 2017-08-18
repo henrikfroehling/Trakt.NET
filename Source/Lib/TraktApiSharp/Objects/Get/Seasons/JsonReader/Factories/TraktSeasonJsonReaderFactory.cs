@@ -6,6 +6,6 @@
     {
         public ITraktObjectJsonReader<ITraktSeason> CreateObjectReader() => new TraktSeasonObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktSeason> CreateArrayReader() => new TraktSeasonArrayJsonReader();
+        public IArrayJsonReader<ITraktSeason> CreateArrayReader() => new TraktSeasonArrayJsonReader();
     }
 }

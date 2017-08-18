@@ -7,7 +7,7 @@
     {
         public ITraktObjectJsonReader<ITraktUserCustomListItemsRemovePostResponse> CreateObjectReader() => new TraktUserCustomListItemsRemovePostResponseObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktUserCustomListItemsRemovePostResponse> CreateArrayReader()
+        public IArrayJsonReader<ITraktUserCustomListItemsRemovePostResponse> CreateArrayReader()
         {
             throw new NotSupportedException($"A array json reader for {nameof(ITraktUserCustomListItemsRemovePostResponse)} is not supported.");
         }

@@ -7,7 +7,7 @@
     {
         public ITraktObjectJsonReader<ITraktUserStatistics> CreateObjectReader() => new TraktUserStatisticsObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktUserStatistics> CreateArrayReader()
+        public IArrayJsonReader<ITraktUserStatistics> CreateArrayReader()
         {
             throw new NotSupportedException($"A array json reader for {nameof(ITraktUserStatistics)} is not supported.");
         }

@@ -6,6 +6,6 @@
     {
         public ITraktObjectJsonReader<ITraktCastMember> CreateObjectReader() => new TraktCastMemberObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktCastMember> CreateArrayReader() => new TraktCastMemberArrayJsonReader();
+        public IArrayJsonReader<ITraktCastMember> CreateArrayReader() => new TraktCastMemberArrayJsonReader();
     }
 }

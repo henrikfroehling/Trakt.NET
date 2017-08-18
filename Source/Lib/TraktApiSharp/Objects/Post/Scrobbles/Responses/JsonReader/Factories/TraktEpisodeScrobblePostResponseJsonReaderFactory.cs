@@ -7,7 +7,7 @@
     {
         public ITraktObjectJsonReader<ITraktEpisodeScrobblePostResponse> CreateObjectReader() => new TraktEpisodeScrobblePostResponseObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktEpisodeScrobblePostResponse> CreateArrayReader()
+        public IArrayJsonReader<ITraktEpisodeScrobblePostResponse> CreateArrayReader()
         {
             throw new NotSupportedException($"A array json reader for {nameof(ITraktEpisodeScrobblePostResponse)} is not supported.");
         }

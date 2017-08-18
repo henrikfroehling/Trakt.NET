@@ -7,7 +7,7 @@
     {
         public ITraktObjectJsonReader<ITraktAccountSettings> CreateObjectReader() => new TraktAccountSettingsObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktAccountSettings> CreateArrayReader()
+        public IArrayJsonReader<ITraktAccountSettings> CreateArrayReader()
         {
             throw new NotSupportedException($"A array json reader for {nameof(ITraktAccountSettings)} is not supported.");
         }

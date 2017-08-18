@@ -7,7 +7,7 @@
     {
         public ITraktObjectJsonReader<ITraktCheckinPostErrorResponse> CreateObjectReader() => new TraktCheckinPostErrorResponseObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktCheckinPostErrorResponse> CreateArrayReader()
+        public IArrayJsonReader<ITraktCheckinPostErrorResponse> CreateArrayReader()
         {
             throw new NotSupportedException($"A array json reader for {nameof(ITraktCheckinPostErrorResponse)} is not supported.");
         }

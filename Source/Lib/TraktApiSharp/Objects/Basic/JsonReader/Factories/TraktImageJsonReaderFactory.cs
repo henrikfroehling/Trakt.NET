@@ -7,7 +7,7 @@
     {
         public ITraktObjectJsonReader<ITraktImage> CreateObjectReader() => new TraktImageObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktImage> CreateArrayReader()
+        public IArrayJsonReader<ITraktImage> CreateArrayReader()
         {
             throw new NotSupportedException($"A array json reader for {nameof(ITraktImage)} is not supported.");
         }

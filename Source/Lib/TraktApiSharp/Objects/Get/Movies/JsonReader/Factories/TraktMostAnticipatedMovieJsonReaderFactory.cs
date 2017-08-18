@@ -6,6 +6,6 @@
     {
         public ITraktObjectJsonReader<ITraktMostAnticipatedMovie> CreateObjectReader() => new TraktMostAnticipatedMovieObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktMostAnticipatedMovie> CreateArrayReader() => new TraktMostAnticipatedMovieArrayJsonReader();
+        public IArrayJsonReader<ITraktMostAnticipatedMovie> CreateArrayReader() => new TraktMostAnticipatedMovieArrayJsonReader();
     }
 }

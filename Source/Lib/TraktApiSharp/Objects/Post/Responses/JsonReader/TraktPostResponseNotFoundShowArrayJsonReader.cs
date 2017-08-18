@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktPostResponseNotFoundShowArrayJsonReader : ITraktArrayJsonReader<ITraktPostResponseNotFoundShow>
+    internal class TraktPostResponseNotFoundShowArrayJsonReader : IArrayJsonReader<ITraktPostResponseNotFoundShow>
     {
         public Task<IEnumerable<ITraktPostResponseNotFoundShow>> ReadArrayAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {

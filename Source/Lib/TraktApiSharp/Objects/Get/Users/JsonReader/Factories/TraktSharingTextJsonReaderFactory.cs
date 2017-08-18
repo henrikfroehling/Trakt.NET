@@ -7,7 +7,7 @@
     {
         public ITraktObjectJsonReader<ITraktSharingText> CreateObjectReader() => new TraktSharingTextObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktSharingText> CreateArrayReader()
+        public IArrayJsonReader<ITraktSharingText> CreateArrayReader()
         {
             throw new NotSupportedException($"A array json reader for {nameof(ITraktSharingText)} is not supported.");
         }

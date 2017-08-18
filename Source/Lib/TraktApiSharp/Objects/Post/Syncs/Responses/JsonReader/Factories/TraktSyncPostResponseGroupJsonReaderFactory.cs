@@ -7,7 +7,7 @@
     {
         public ITraktObjectJsonReader<ITraktSyncPostResponseGroup> CreateObjectReader() => new TraktSyncPostResponseGroupObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktSyncPostResponseGroup> CreateArrayReader()
+        public IArrayJsonReader<ITraktSyncPostResponseGroup> CreateArrayReader()
         {
             throw new NotSupportedException($"A array json reader for {nameof(ITraktSyncPostResponseGroup)} is not supported.");
         }

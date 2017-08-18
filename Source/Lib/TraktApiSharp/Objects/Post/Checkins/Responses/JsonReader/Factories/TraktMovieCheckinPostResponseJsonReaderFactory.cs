@@ -7,7 +7,7 @@
     {
         public ITraktObjectJsonReader<ITraktMovieCheckinPostResponse> CreateObjectReader() => new TraktMovieCheckinPostResponseObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktMovieCheckinPostResponse> CreateArrayReader()
+        public IArrayJsonReader<ITraktMovieCheckinPostResponse> CreateArrayReader()
         {
             throw new NotSupportedException($"A array json reader for {nameof(ITraktMovieCheckinPostResponse)} is not supported.");
         }

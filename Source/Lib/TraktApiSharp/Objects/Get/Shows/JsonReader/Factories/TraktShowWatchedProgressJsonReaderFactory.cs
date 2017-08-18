@@ -7,7 +7,7 @@
     {
         public ITraktObjectJsonReader<ITraktShowWatchedProgress> CreateObjectReader() => new TraktShowWatchedProgressObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktShowWatchedProgress> CreateArrayReader()
+        public IArrayJsonReader<ITraktShowWatchedProgress> CreateArrayReader()
         {
             throw new NotSupportedException($"A array json reader for {nameof(ITraktShowWatchedProgress)} is not supported.");
         }

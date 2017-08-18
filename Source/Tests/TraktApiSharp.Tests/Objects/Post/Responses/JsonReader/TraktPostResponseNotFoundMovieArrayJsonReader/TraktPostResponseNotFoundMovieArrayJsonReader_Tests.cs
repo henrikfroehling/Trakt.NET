@@ -13,7 +13,7 @@
         [Fact]
         public void Test_TraktPostResponseNotFoundMovieArrayJsonReader_Implements_ITraktArrayJsonReader_Interface()
         {
-            typeof(TraktPostResponseNotFoundMovieArrayJsonReader).GetInterfaces().Should().Contain(typeof(ITraktArrayJsonReader<ITraktPostResponseNotFoundMovie>));
+            typeof(TraktPostResponseNotFoundMovieArrayJsonReader).GetInterfaces().Should().Contain(typeof(IArrayJsonReader<ITraktPostResponseNotFoundMovie>));
         }
     }
 }

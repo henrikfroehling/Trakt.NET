@@ -7,7 +7,7 @@
     {
         public ITraktObjectJsonReader<ITraktSeasonIds> CreateObjectReader() => new TraktSeasonIdsObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktSeasonIds> CreateArrayReader()
+        public IArrayJsonReader<ITraktSeasonIds> CreateArrayReader()
         {
             throw new NotSupportedException($"A array json reader for {nameof(ITraktSeasonIds)} is not supported.");
         }

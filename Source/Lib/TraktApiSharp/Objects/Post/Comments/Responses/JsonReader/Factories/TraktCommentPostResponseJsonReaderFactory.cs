@@ -7,7 +7,7 @@
     {
         public ITraktObjectJsonReader<ITraktCommentPostResponse> CreateObjectReader() => new TraktCommentPostResponseObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktCommentPostResponse> CreateArrayReader()
+        public IArrayJsonReader<ITraktCommentPostResponse> CreateArrayReader()
         {
             throw new NotSupportedException($"A array json reader for {nameof(ITraktCommentPostResponse)} is not supported.");
         }

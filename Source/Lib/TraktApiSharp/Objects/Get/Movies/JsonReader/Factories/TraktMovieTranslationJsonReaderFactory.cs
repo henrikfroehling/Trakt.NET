@@ -6,6 +6,6 @@
     {
         public ITraktObjectJsonReader<ITraktMovieTranslation> CreateObjectReader() => new TraktMovieTranslationObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktMovieTranslation> CreateArrayReader() => new TraktMovieTranslationArrayJsonReader();
+        public IArrayJsonReader<ITraktMovieTranslation> CreateArrayReader() => new TraktMovieTranslationArrayJsonReader();
     }
 }

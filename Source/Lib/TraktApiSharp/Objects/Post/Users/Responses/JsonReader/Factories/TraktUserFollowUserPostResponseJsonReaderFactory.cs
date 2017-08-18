@@ -7,7 +7,7 @@
     {
         public ITraktObjectJsonReader<ITraktUserFollowUserPostResponse> CreateObjectReader() => new TraktUserFollowUserPostResponseObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktUserFollowUserPostResponse> CreateArrayReader()
+        public IArrayJsonReader<ITraktUserFollowUserPostResponse> CreateArrayReader()
         {
             throw new NotSupportedException($"A array json reader for {nameof(ITraktUserFollowUserPostResponse)} is not supported.");
         }

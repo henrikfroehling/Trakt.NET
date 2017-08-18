@@ -955,10 +955,10 @@
     <Compile Include="Objects\Get\Watchlist\JsonReader\TraktWatchlistItemObjectJsonReader\TraktWatchlistItemObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Watchlist\JsonReader\TraktWatchlistItemObjectJsonReader\TraktWatchlistItemObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Watchlist\JsonReader\TraktWatchlistItemObjectJsonReader\TraktWatchlistItemObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\JsonReader\ITraktArrayJsonReader%271_Tests.cs" />
-    <Compile Include="Objects\JsonReader\ITraktJsonReaderFactory_1_Tests.cs" />
+    <Compile Include="Objects\JsonReader\IArrayJsonReader%271_Tests.cs" />
+    <Compile Include="Objects\JsonReader\IJsonReaderFactory_1_Tests.cs" />
     <Compile Include="Objects\JsonReader\ITraktObjectJsonReader%271_Tests.cs" />
-    <Compile Include="Objects\JsonReader\TraktJsonFactoryContainer_Tests.cs" />
+    <Compile Include="Objects\JsonReader\JsonFactoryContainer_Tests.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\Implementations\TraktCheckinPostErrorResponse_Tests.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\Implementations\TraktCheckinPostResponse_Tests.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\Implementations\TraktEpisodeCheckinPostResponse_Tests.cs" />

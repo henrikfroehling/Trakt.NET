@@ -7,7 +7,7 @@
     {
         public ITraktObjectJsonReader<ITraktSyncShowsLastActivities> CreateObjectReader() => new TraktSyncShowsLastActivitiesObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktSyncShowsLastActivities> CreateArrayReader()
+        public IArrayJsonReader<ITraktSyncShowsLastActivities> CreateArrayReader()
         {
             throw new NotSupportedException($"A array json reader for {nameof(ITraktSyncShowsLastActivities)} is not supported.");
         }

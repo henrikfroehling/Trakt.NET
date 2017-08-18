@@ -6,6 +6,6 @@
     {
         public ITraktObjectJsonReader<ITraktTrendingShow> CreateObjectReader() => new TraktTrendingShowObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktTrendingShow> CreateArrayReader() => new TraktTrendingShowArrayJsonReader();
+        public IArrayJsonReader<ITraktTrendingShow> CreateArrayReader() => new TraktTrendingShowArrayJsonReader();
     }
 }

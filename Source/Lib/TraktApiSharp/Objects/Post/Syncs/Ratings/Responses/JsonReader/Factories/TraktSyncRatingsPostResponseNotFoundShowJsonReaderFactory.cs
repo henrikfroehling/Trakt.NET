@@ -6,6 +6,6 @@
     {
         public ITraktObjectJsonReader<ITraktSyncRatingsPostResponseNotFoundShow> CreateObjectReader() => new TraktSyncRatingsPostResponseNotFoundShowObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktSyncRatingsPostResponseNotFoundShow> CreateArrayReader() => new TraktSyncRatingsPostResponseNotFoundShowArrayJsonReader();
+        public IArrayJsonReader<ITraktSyncRatingsPostResponseNotFoundShow> CreateArrayReader() => new TraktSyncRatingsPostResponseNotFoundShowArrayJsonReader();
     }
 }

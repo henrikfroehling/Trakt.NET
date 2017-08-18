@@ -4,6 +4,6 @@
     {
         ITraktObjectJsonReader<TReturnType> CreateObjectReader();
 
-        ITraktArrayJsonReader<TReturnType> CreateArrayReader();
+        IArrayJsonReader<TReturnType> CreateArrayReader();
     }
 }

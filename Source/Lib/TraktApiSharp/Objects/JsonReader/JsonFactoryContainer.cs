@@ -73,7 +73,7 @@
             return factory.CreateObjectReader();
         }
 
-        public static ITraktArrayJsonReader<TReturnType> CreateArrayReader<TReturnType>()
+        public static IArrayJsonReader<TReturnType> CreateArrayReader<TReturnType>()
         {
             var factory = GetReaderFactory<TReturnType>();
             Debug.Assert(factory != null, $"factory for {nameof(TReturnType)} should not be null");

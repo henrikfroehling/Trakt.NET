@@ -7,7 +7,7 @@
     {
         public ITraktObjectJsonReader<ITraktSyncCollectionRemovePostResponse> CreateObjectReader() => new TraktSyncCollectionRemovePostResponseObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktSyncCollectionRemovePostResponse> CreateArrayReader()
+        public IArrayJsonReader<ITraktSyncCollectionRemovePostResponse> CreateArrayReader()
         {
             throw new NotSupportedException($"A array json reader for {nameof(ITraktSyncCollectionRemovePostResponse)} is not supported.");
         }

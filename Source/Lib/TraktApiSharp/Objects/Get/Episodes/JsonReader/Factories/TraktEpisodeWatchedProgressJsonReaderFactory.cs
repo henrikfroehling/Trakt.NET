@@ -6,6 +6,6 @@
     {
         public ITraktObjectJsonReader<ITraktEpisodeWatchedProgress> CreateObjectReader() => new TraktEpisodeWatchedProgressObjectJsonReader();
 
-        public ITraktArrayJsonReader<ITraktEpisodeWatchedProgress> CreateArrayReader() => new TraktEpisodeWatchedProgressArrayJsonReader();
+        public IArrayJsonReader<ITraktEpisodeWatchedProgress> CreateArrayReader() => new TraktEpisodeWatchedProgressArrayJsonReader();
     }
 }

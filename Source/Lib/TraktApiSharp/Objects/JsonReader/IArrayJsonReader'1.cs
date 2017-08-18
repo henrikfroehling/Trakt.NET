@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal interface ITraktArrayJsonReader<TReturnType>
+    internal interface IArrayJsonReader<TReturnType>
     {
         Task<IEnumerable<TReturnType>> ReadArrayAsync(string json, CancellationToken cancellationToken = default(CancellationToken));
 
