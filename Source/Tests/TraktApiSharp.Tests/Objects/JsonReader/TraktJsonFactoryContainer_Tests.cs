@@ -12,7 +12,7 @@
         [Fact]
         public void Test_TraktJsonFactoryContainer_Has_CreateObjectReader_Method()
         {
-            var methodInfo = typeof(TraktJsonFactoryContainer).GetMethods().FirstOrDefault(m => m.Name == "CreateObjectReader");
+            var methodInfo = typeof(JsonFactoryContainer).GetMethods().FirstOrDefault(m => m.Name == "CreateObjectReader");
             methodInfo.GetParameters().Should().BeEmpty();
             methodInfo.IsGenericMethod.Should().BeTrue();
         }
@@ -20,7 +20,7 @@
         [Fact]
         public void Test_TraktJsonFactoryContainer_Has_CreateArrayReader_Method()
         {
-            var methodInfo = typeof(TraktJsonFactoryContainer).GetMethods().FirstOrDefault(m => m.Name == "CreateArrayReader");
+            var methodInfo = typeof(JsonFactoryContainer).GetMethods().FirstOrDefault(m => m.Name == "CreateArrayReader");
             methodInfo.GetParameters().Should().BeEmpty();
             methodInfo.IsGenericMethod.Should().BeTrue();
         }
@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktJsonFactoryContainer_Has_GetReaderFactory_Method()
         {
-            var methodInfo = typeof(TraktJsonFactoryContainer).GetMethods().FirstOrDefault(m => m.Name == "GetReaderFactory");
+            var methodInfo = typeof(JsonFactoryContainer).GetMethods().FirstOrDefault(m => m.Name == "GetReaderFactory");
             methodInfo.GetParameters().Should().BeEmpty();
             methodInfo.IsGenericMethod.Should().BeTrue();
         }

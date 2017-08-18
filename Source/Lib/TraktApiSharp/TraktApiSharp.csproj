@@ -476,7 +476,7 @@
     <Compile Include="Objects\JsonReader\ITraktJsonReaderFactory%271.cs" />
     <Compile Include="Objects\JsonReader\ITraktObjectJsonReader%271.cs" />
     <Compile Include="Objects\JsonReader\JsonReaderHelper.cs" />
-    <Compile Include="Objects\JsonReader\TraktJsonFactoryContainer.cs" />
+    <Compile Include="Objects\JsonReader\JsonFactoryContainer.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\ITraktCheckinPostErrorResponse.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\ITraktCheckinPostResponse.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\ITraktEpisodeCheckinPostResponse.cs" />

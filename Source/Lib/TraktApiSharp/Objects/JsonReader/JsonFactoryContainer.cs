@@ -62,7 +62,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
 
-    internal static class TraktJsonFactoryContainer
+    internal static class JsonFactoryContainer
     {
         private static readonly Dictionary<Type, object> s_readerFactories = new Dictionary<Type, object>();
 
@@ -90,7 +90,7 @@
             return (ITraktJsonReaderFactory<TReturnType>)s_readerFactories[type];
         }
 
-        static TraktJsonFactoryContainer()
+        static JsonFactoryContainer()
         {
             // basic objects
             s_readerFactories.Add(typeof(ITraktCastAndCrew), new TraktCastAndCrewJsonReaderFactory());
