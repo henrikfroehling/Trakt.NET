@@ -45,12 +45,12 @@
         /// <returns>An <see cref="ITraktShow" /> instance with the queried show's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktShow>> GetShowAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                  CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktShow>> GetShowAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                            CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktShowSummaryRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowSummaryRequest
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
@@ -100,10 +100,10 @@
         /// <returns>A list of <see cref="ITraktShowAlias" /> instances, each containing a title and country code.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktListResponse<ITraktShowAlias>> GetShowAliasesAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktShowAlias>> GetShowAliasesAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktShowAliasesRequest { Id = showIdOrSlug }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new TraktShowAliasesRequest { Id = showIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -120,11 +120,11 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given languageCode is shorter or longer than two characters.</exception>
-        public async Task<TraktListResponse<ITraktShowTranslation>> GetShowTranslationsAsync(string showIdOrSlug, string languageCode = null,
-                                                                                             CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktShowTranslation>> GetShowTranslationsAsync(string showIdOrSlug, string languageCode = null,
+                                                                                       CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktShowTranslationsRequest { Id = showIdOrSlug, LanguageCode = languageCode }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new TraktShowTranslationsRequest { Id = showIdOrSlug, LanguageCode = languageCode }, cancellationToken);
         }
 
         /// <summary>
@@ -148,14 +148,14 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktPagedResponse<ITraktComment>> GetShowCommentsAsync(string showIdOrSlug,
-                                                                                  TraktCommentSortOrder commentSortOrder = null,
-                                                                                  int? page = null, int? limitPerPage = null,
-                                                                                  CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktComment>> GetShowCommentsAsync(string showIdOrSlug,
+                                                                            TraktCommentSortOrder commentSortOrder = null,
+                                                                            int? page = null, int? limitPerPage = null,
+                                                                            CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktShowCommentsRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktShowCommentsRequest
             {
                 Id = showIdOrSlug,
                 SortOrder = commentSortOrder,
@@ -186,14 +186,14 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktPagedResponse<ITraktList>> GetShowListsAsync(string showIdOrSlug, TraktListType listType = null,
-                                                                            TraktListSortOrder listSortOrder = null,
-                                                                            int? page = null, int? limitPerPage = null,
-                                                                            CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktList>> GetShowListsAsync(string showIdOrSlug, TraktListType listType = null,
+                                                                      TraktListSortOrder listSortOrder = null,
+                                                                      int? page = null, int? limitPerPage = null,
+                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktShowListsRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktShowListsRequest
             {
                 Id = showIdOrSlug,
                 Type = listType,
@@ -219,12 +219,12 @@
         /// <returns>An <see cref="ITraktCastAndCrew" /> instance, containing the cast and crew for a show with the given showIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktCastAndCrew>> GetShowPeopleAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                               CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCastAndCrew>> GetShowPeopleAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktShowPeopleRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowPeopleRequest
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
@@ -243,10 +243,10 @@
         /// <returns>An <see cref="ITraktRating" /> instance, containing the ratings for a show with the given showIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktRating>> GetShowRatingsAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktRating>> GetShowRatingsAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktShowRatingsRequest { Id = showIdOrSlug }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowRatingsRequest { Id = showIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -273,13 +273,13 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktPagedResponse<ITraktShow>> GetShowRelatedShowsAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                                   int? page = null, int? limitPerPage = null,
-                                                                                   CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktShow>> GetShowRelatedShowsAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                             int? page = null, int? limitPerPage = null,
+                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktShowRelatedShowsRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktShowRelatedShowsRequest
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo,
@@ -300,10 +300,10 @@
         /// <returns>An <see cref="ITraktStatistics" /> instance, containing the statistics for a show with the given showIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktStatistics>> GetShowStatisticsAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktStatistics>> GetShowStatisticsAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktShowStatisticsRequest { Id = showIdOrSlug }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowStatisticsRequest { Id = showIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -322,11 +322,11 @@
         /// <returns>A list of <see cref="ITraktUser" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktListResponse<ITraktUser>> GetShowWatchingUsersAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                                   CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktUser>> GetShowWatchingUsersAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktShowWatchingUsersRequest { Id = showIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new TraktShowWatchingUsersRequest { Id = showIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -344,14 +344,14 @@
         /// <returns>An <see cref="ITraktShowCollectionProgress" /> instance, containing the collection progress for a show with the given showIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktShowCollectionProgress>> GetShowCollectionProgressAsync(string showIdOrSlug, bool? includingHiddenSeasons = null,
-                                                                                                      bool? includingSpecialSeasons = null,
-                                                                                                      bool? countSpecialSeasons = null,
-                                                                                                      CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktShowCollectionProgress>> GetShowCollectionProgressAsync(string showIdOrSlug, bool? includingHiddenSeasons = null,
+                                                                                                bool? includingSpecialSeasons = null,
+                                                                                                bool? countSpecialSeasons = null,
+                                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktShowCollectionProgressRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowCollectionProgressRequest
             {
                 Id = showIdOrSlug,
                 Hidden = includingHiddenSeasons,
@@ -375,14 +375,14 @@
         /// <returns>An <see cref="ITraktShowWatchedProgress" /> instance, containing the watched progress for a show with the given showIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktShowWatchedProgress>> GetShowWatchedProgressAsync(string showIdOrSlug, bool? includingHiddenSeasons = null,
-                                                                                                bool? includingSpecialSeasons = null,
-                                                                                                bool? countSpecialSeasons = null,
-                                                                                                CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktShowWatchedProgress>> GetShowWatchedProgressAsync(string showIdOrSlug, bool? includingHiddenSeasons = null,
+                                                                                          bool? includingSpecialSeasons = null,
+                                                                                          bool? countSpecialSeasons = null,
+                                                                                          CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktShowWatchedProgressRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowWatchedProgressRequest
             {
                 Id = showIdOrSlug,
                 Hidden = includingHiddenSeasons,
@@ -407,12 +407,12 @@
         /// <returns>An <see cref="ITraktEpisode" /> instance with the queried episode's data or null, if there is no scheduled to air episode.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktEpisode>> GetShowNextEpisodeAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                                CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktEpisode>> GetShowNextEpisodeAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                          CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktShowNextEpisodeRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowNextEpisodeRequest
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
@@ -435,12 +435,12 @@
         /// <returns>An <see cref="ITraktEpisode" /> instance with the queried episode's data or null, if there is no most recently aired episode.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktEpisode>> GetShowLastEpisodeAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                                CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktEpisode>> GetShowLastEpisodeAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                          CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktShowLastEpisodeRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowLastEpisodeRequest
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
@@ -470,14 +470,14 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<ITraktTrendingShow>> GetTrendingShowsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                        TraktShowFilter filter = null,
-                                                                                        int? page = null, int? limitPerPage = null,
-                                                                                        CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktTrendingShow>> GetTrendingShowsAsync(TraktExtendedInfo extendedInfo = null,
+                                                                                  TraktShowFilter filter = null,
+                                                                                  int? page = null, int? limitPerPage = null,
+                                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktShowsTrendingRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktShowsTrendingRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
@@ -509,14 +509,14 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<ITraktShow>> GetPopularShowsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                               TraktShowFilter filter = null,
-                                                                               int? page = null, int? limitPerPage = null,
-                                                                               CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktShow>> GetPopularShowsAsync(TraktExtendedInfo extendedInfo = null,
+                                                                         TraktShowFilter filter = null,
+                                                                         int? page = null, int? limitPerPage = null,
+                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktShowsPopularRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktShowsPopularRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
@@ -549,15 +549,15 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<ITraktMostPWCShow>> GetMostPlayedShowsAsync(TraktTimePeriod period = null,
-                                                                                         TraktExtendedInfo extendedInfo = null,
-                                                                                         TraktShowFilter filter = null,
-                                                                                         int? page = null, int? limitPerPage = null,
-                                                                                         CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktMostPWCShow>> GetMostPlayedShowsAsync(TraktTimePeriod period = null,
+                                                                                   TraktExtendedInfo extendedInfo = null,
+                                                                                   TraktShowFilter filter = null,
+                                                                                   int? page = null, int? limitPerPage = null,
+                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktShowsMostPlayedRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktShowsMostPlayedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
@@ -591,15 +591,15 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<ITraktMostPWCShow>> GetMostWatchedShowsAsync(TraktTimePeriod period = null,
-                                                                                          TraktExtendedInfo extendedInfo = null,
-                                                                                          TraktShowFilter filter = null,
-                                                                                          int? page = null, int? limitPerPage = null,
-                                                                                          CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktMostPWCShow>> GetMostWatchedShowsAsync(TraktTimePeriod period = null,
+                                                                                    TraktExtendedInfo extendedInfo = null,
+                                                                                    TraktShowFilter filter = null,
+                                                                                    int? page = null, int? limitPerPage = null,
+                                                                                    CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktShowsMostWatchedRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktShowsMostWatchedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
@@ -633,15 +633,15 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<ITraktMostPWCShow>> GetMostCollectedShowsAsync(TraktTimePeriod period = null,
-                                                                                            TraktExtendedInfo extendedInfo = null,
-                                                                                            TraktShowFilter filter = null,
-                                                                                            int? page = null, int? limitPerPage = null,
-                                                                                            CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktMostPWCShow>> GetMostCollectedShowsAsync(TraktTimePeriod period = null,
+                                                                                      TraktExtendedInfo extendedInfo = null,
+                                                                                      TraktShowFilter filter = null,
+                                                                                      int? page = null, int? limitPerPage = null,
+                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktShowsMostCollectedRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktShowsMostCollectedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
@@ -674,14 +674,14 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<ITraktMostAnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                                      TraktShowFilter filter = null,
-                                                                                                      int? page = null, int? limitPerPage = null,
-                                                                                                      CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktMostAnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedInfo extendedInfo = null,
+                                                                                                TraktShowFilter filter = null,
+                                                                                                int? page = null, int? limitPerPage = null,
+                                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktShowsMostAnticipatedRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktShowsMostAnticipatedRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
@@ -713,14 +713,14 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>> GetRecentlyUpdatedShowsAsync(DateTime? startDate = null,
-                                                                                                      TraktExtendedInfo extendedInfo = null,
-                                                                                                      int? page = null, int? limitPerPage = null,
-                                                                                                      CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>> GetRecentlyUpdatedShowsAsync(DateTime? startDate = null,
+                                                                                                TraktExtendedInfo extendedInfo = null,
+                                                                                                int? page = null, int? limitPerPage = null,
+                                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktShowsRecentlyUpdatedRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktShowsRecentlyUpdatedRequest
             {
                 StartDate = startDate,
                 ExtendedInfo = extendedInfo,

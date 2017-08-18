@@ -51,14 +51,14 @@
         /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown, if the given translationLanguageCode is shorter or longer than two characters, if it is not set to "all".
         /// </exception>
-        public async Task<TraktListResponse<ITraktSeason>> GetAllSeasonsAsync(string showIdOrSlug,
-                                                                              TraktExtendedInfo extendedInfo = null,
-                                                                              string translationLanguageCode = null,
-                                                                              CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktSeason>> GetAllSeasonsAsync(string showIdOrSlug,
+                                                                        TraktExtendedInfo extendedInfo = null,
+                                                                        string translationLanguageCode = null,
+                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteListRequestAsync(new TraktSeasonsAllRequest
+            return requestHandler.ExecuteListRequestAsync(new TraktSeasonsAllRequest
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo,
@@ -92,14 +92,14 @@
         /// Thrown, if the given season number is below zero.
         /// Thrown, if the given translationLanguageCode is shorter or longer than two characters, if it is not set to "all".
         /// </exception>
-        public async Task<TraktListResponse<ITraktEpisode>> GetSeasonAsync(string showIdOrSlug, uint seasonNumber,
-                                                                           TraktExtendedInfo extendedInfo = null,
-                                                                           string translationLanguageCode = null,
-                                                                           CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktEpisode>> GetSeasonAsync(string showIdOrSlug, uint seasonNumber,
+                                                                     TraktExtendedInfo extendedInfo = null,
+                                                                     string translationLanguageCode = null,
+                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteListRequestAsync(new TraktSeasonSingleRequest
+            return requestHandler.ExecuteListRequestAsync(new TraktSeasonSingleRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
@@ -166,14 +166,14 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
-        public async Task<TraktPagedResponse<ITraktComment>> GetSeasonCommentsAsync(string showIdOrSlug, uint seasonNumber,
-                                                                                    TraktCommentSortOrder commentSortOrder = null,
-                                                                                    int? page = null, int? limitPerPage = null,
-                                                                                    CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktComment>> GetSeasonCommentsAsync(string showIdOrSlug, uint seasonNumber,
+                                                                              TraktCommentSortOrder commentSortOrder = null,
+                                                                              int? page = null, int? limitPerPage = null,
+                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktSeasonCommentsRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktSeasonCommentsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
@@ -207,14 +207,14 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
-        public async Task<TraktPagedResponse<ITraktList>> GetSeasonListsAsync(string showIdOrSlug, uint seasonNumber,
-                                                                              TraktListType listType = null, TraktListSortOrder listSortOrder = null,
-                                                                              int? page = null, int? limitPerPage = null,
-                                                                              CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktList>> GetSeasonListsAsync(string showIdOrSlug, uint seasonNumber,
+                                                                        TraktListType listType = null, TraktListSortOrder listSortOrder = null,
+                                                                        int? page = null, int? limitPerPage = null,
+                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktSeasonListsRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktSeasonListsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
@@ -239,12 +239,12 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
-        public async Task<TraktResponse<ITraktRating>> GetSeasonRatingsAsync(string showIdOrSlug, uint seasonNumber,
-                                                                             CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktRating>> GetSeasonRatingsAsync(string showIdOrSlug, uint seasonNumber,
+                                                                       CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSeasonRatingsRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSeasonRatingsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber
@@ -265,12 +265,12 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
-        public async Task<TraktResponse<ITraktStatistics>> GetSeasonStatisticsAsync(string showIdOrSlug, uint seasonNumber,
-                                                                                    CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktStatistics>> GetSeasonStatisticsAsync(string showIdOrSlug, uint seasonNumber,
+                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSeasonStatisticsRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSeasonStatisticsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber
@@ -295,13 +295,13 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
-        public async Task<TraktListResponse<ITraktUser>> GetSeasonWatchingUsersAsync(string showIdOrSlug, uint seasonNumber,
-                                                                                     TraktExtendedInfo extendedInfo = null,
-                                                                                     CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktUser>> GetSeasonWatchingUsersAsync(string showIdOrSlug, uint seasonNumber,
+                                                                               TraktExtendedInfo extendedInfo = null,
+                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteListRequestAsync(new TraktSeasonWatchingUsersRequest
+            return requestHandler.ExecuteListRequestAsync(new TraktSeasonWatchingUsersRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,

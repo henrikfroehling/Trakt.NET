@@ -48,10 +48,10 @@
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid.</exception>
-        public async Task<TraktResponse<ITraktMovieCheckinPostResponse>> CheckIntoMovieAsync(TraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
-                                                                                             string message = null, TraktSharing sharing = null,
-                                                                                             string foursquareVenueID = null, string foursquareVenueName = null,
-                                                                                             CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktMovieCheckinPostResponse>> CheckIntoMovieAsync(TraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
+                                                                                       string message = null, TraktSharing sharing = null,
+                                                                                       string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                                       CancellationToken cancellationToken = default(CancellationToken))
         {
             Validate(movie);
 
@@ -77,7 +77,7 @@
 
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktMovieCheckinPostResponse, TraktMovieCheckinPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktMovieCheckinPostResponse, TraktMovieCheckinPost>
             {
                 RequestBody = requestBody
             }, cancellationToken);
@@ -102,10 +102,10 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if its ids are null.</exception>
-        public async Task<TraktResponse<ITraktEpisodeCheckinPostResponse>> CheckIntoEpisodeAsync(TraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
-                                                                                                 string message = null, TraktSharing sharing = null,
-                                                                                                 string foursquareVenueID = null, string foursquareVenueName = null,
-                                                                                                 CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktEpisodeCheckinPostResponse>> CheckIntoEpisodeAsync(TraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
+                                                                                           string message = null, TraktSharing sharing = null,
+                                                                                           string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
             Validate(episode);
 
@@ -132,7 +132,7 @@
 
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
             {
                 RequestBody = requestBody
             }, cancellationToken);
@@ -159,11 +159,11 @@
         /// <exception cref="ArgumentException">Thrown, if the given show's title is null or empty.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null. Thrown, if the given show is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given episode's season number or the given episode's number is below zero.</exception>
-        public async Task<TraktResponse<ITraktEpisodeCheckinPostResponse>> CheckIntoEpisodeWithShowAsync(TraktEpisode episode, TraktShow show,
-                                                                                                         string appVersion = null, DateTime? appBuildDate = null,
-                                                                                                         string message = null, TraktSharing sharing = null,
-                                                                                                         string foursquareVenueID = null, string foursquareVenueName = null,
-                                                                                                         CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktEpisodeCheckinPostResponse>> CheckIntoEpisodeWithShowAsync(TraktEpisode episode, TraktShow show,
+                                                                                                   string appVersion = null, DateTime? appBuildDate = null,
+                                                                                                   string message = null, TraktSharing sharing = null,
+                                                                                                   string foursquareVenueID = null, string foursquareVenueName = null,
+                                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
             Validate(episode, show);
 
@@ -190,7 +190,7 @@
 
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
             {
                 RequestBody = requestBody
             }, cancellationToken);
@@ -205,10 +205,10 @@
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktNoContentResponse> DeleteAnyActiveCheckinsAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktNoContentResponse> DeleteAnyActiveCheckinsAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteNoContentRequestAsync(new TraktCheckinsDeleteRequest(), cancellationToken);
+            return requestHandler.ExecuteNoContentRequestAsync(new TraktCheckinsDeleteRequest(), cancellationToken);
         }
 
         private void Validate(TraktMovie movie)

@@ -43,12 +43,12 @@
         /// <returns>An <see cref="ITraktMovie" /> instance with the queried movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktMovie>> GetMovieAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                    CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktMovie>> GetMovieAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktMovieSummaryRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktMovieSummaryRequest
             {
                 Id = movieIdOrSlug,
                 ExtendedInfo = extendedInfo
@@ -98,11 +98,11 @@
         /// <returns>A list of <see cref="ITraktMovieAlias" /> instances, each containing a title and country code.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktListResponse<ITraktMovieAlias>> GetMovieAliasesAsync(string movieIdOrSlug,
-                                                                                    CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktMovieAlias>> GetMovieAliasesAsync(string movieIdOrSlug,
+                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktMovieAliasesRequest { Id = movieIdOrSlug }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new TraktMovieAliasesRequest { Id = movieIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -119,11 +119,11 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given countryCode is shorter or longer than two characters.</exception>
-        public async Task<TraktListResponse<ITraktMovieRelease>> GetMovieReleasesAsync(string movieIdOrSlug, string countryCode = null,
-                                                                                       CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktMovieRelease>> GetMovieReleasesAsync(string movieIdOrSlug, string countryCode = null,
+                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktMovieReleasesRequest { Id = movieIdOrSlug, CountryCode = countryCode }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new TraktMovieReleasesRequest { Id = movieIdOrSlug, CountryCode = countryCode }, cancellationToken);
         }
 
         /// <summary>
@@ -140,11 +140,11 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given languageCode is shorter or longer than two characters.</exception>
-        public async Task<TraktListResponse<ITraktMovieTranslation>> GetMovieTranslationsAsync(string movieIdOrSlug, string languageCode = null,
-                                                                                               CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktMovieTranslation>> GetMovieTranslationsAsync(string movieIdOrSlug, string languageCode = null,
+                                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktMovieTranslationsRequest { Id = movieIdOrSlug, LanguageCode = languageCode }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new TraktMovieTranslationsRequest { Id = movieIdOrSlug, LanguageCode = languageCode }, cancellationToken);
         }
 
         /// <summary>
@@ -168,14 +168,14 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktPagedResponse<ITraktComment>> GetMovieCommentsAsync(string movieIdOrSlug,
-                                                                                   TraktCommentSortOrder commentSortOrder = null,
-                                                                                   int? page = null, int? limitPerPage = null,
-                                                                                   CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktComment>> GetMovieCommentsAsync(string movieIdOrSlug,
+                                                                             TraktCommentSortOrder commentSortOrder = null,
+                                                                             int? page = null, int? limitPerPage = null,
+                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktMovieCommentsRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktMovieCommentsRequest
             {
                 Id = movieIdOrSlug,
                 SortOrder = commentSortOrder,
@@ -206,14 +206,14 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktPagedResponse<ITraktList>> GetMovieListsAsync(string movieIdOrSlug, TraktListType listType = null,
-                                                                             TraktListSortOrder listSortOrder = null,
-                                                                             int? page = null, int? limitPerPage = null,
-                                                                             CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktList>> GetMovieListsAsync(string movieIdOrSlug, TraktListType listType = null,
+                                                                       TraktListSortOrder listSortOrder = null,
+                                                                       int? page = null, int? limitPerPage = null,
+                                                                       CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktMovieListsRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktMovieListsRequest
             {
                 Id = movieIdOrSlug,
                 Type = listType,
@@ -239,11 +239,11 @@
         /// <returns>An <see cref="ITraktCastAndCrew" /> instance, containing the cast and crew for a movie with the given movieIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktCastAndCrew>> GetMoviePeopleAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                                CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCastAndCrew>> GetMoviePeopleAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                          CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktMoviePeopleRequest { Id = movieIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktMoviePeopleRequest { Id = movieIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -258,10 +258,10 @@
         /// <returns>An <see cref="ITraktRating" /> instance, containing the ratings for a movie with the given movieIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktRating>> GetMovieRatingsAsync(string movieIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktRating>> GetMovieRatingsAsync(string movieIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktMovieRatingsRequest { Id = movieIdOrSlug }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktMovieRatingsRequest { Id = movieIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -288,13 +288,13 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktPagedResponse<ITraktMovie>> GetMovieRelatedMoviesAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                                      int? page = null, int? limitPerPage = null,
-                                                                                      CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktMovie>> GetMovieRelatedMoviesAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                                int? page = null, int? limitPerPage = null,
+                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktMovieRelatedMoviesRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktMovieRelatedMoviesRequest
             {
                 Id = movieIdOrSlug,
                 ExtendedInfo = extendedInfo,
@@ -315,10 +315,10 @@
         /// <returns>An <see cref="ITraktStatistics" /> instance, containing the statistics for a movie with the given movieIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktStatistics>> GetMovieStatisticsAsync(string movieIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktStatistics>> GetMovieStatisticsAsync(string movieIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktMovieStatisticsRequest { Id = movieIdOrSlug }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktMovieStatisticsRequest { Id = movieIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -337,11 +337,11 @@
         /// <returns>A list of <see cref="ITraktUser" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktListResponse<ITraktUser>> GetMovieWatchingUsersAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                                    CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktUser>> GetMovieWatchingUsersAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktMovieWatchingUsersRequest { Id = movieIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new TraktMovieWatchingUsersRequest { Id = movieIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -367,14 +367,14 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<ITraktTrendingMovie>> GetTrendingMoviesAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                          TraktMovieFilter filter = null,
-                                                                                          int? page = null, int? limitPerPage = null,
-                                                                                          CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktTrendingMovie>> GetTrendingMoviesAsync(TraktExtendedInfo extendedInfo = null,
+                                                                                    TraktMovieFilter filter = null,
+                                                                                    int? page = null, int? limitPerPage = null,
+                                                                                    CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktMoviesTrendingRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesTrendingRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
@@ -406,14 +406,14 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<ITraktMovie>> GetPopularMoviesAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                 TraktMovieFilter filter = null,
-                                                                                 int? page = null, int? limitPerPage = null,
-                                                                                 CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktMovie>> GetPopularMoviesAsync(TraktExtendedInfo extendedInfo = null,
+                                                                           TraktMovieFilter filter = null,
+                                                                           int? page = null, int? limitPerPage = null,
+                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktMoviesPopularRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesPopularRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
@@ -446,15 +446,15 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostPlayedMoviesAsync(TraktTimePeriod period = null,
-                                                                                           TraktExtendedInfo extendedInfo = null,
-                                                                                           TraktMovieFilter filter = null,
-                                                                                           int? page = null, int? limitPerPage = null,
-                                                                                           CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostPlayedMoviesAsync(TraktTimePeriod period = null,
+                                                                                     TraktExtendedInfo extendedInfo = null,
+                                                                                     TraktMovieFilter filter = null,
+                                                                                     int? page = null, int? limitPerPage = null,
+                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktMoviesMostPlayedRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesMostPlayedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
@@ -488,15 +488,15 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostWatchedMoviesAsync(TraktTimePeriod period = null,
-                                                                                            TraktExtendedInfo extendedInfo = null,
-                                                                                            TraktMovieFilter filter = null,
-                                                                                            int? page = null, int? limitPerPage = null,
-                                                                                            CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostWatchedMoviesAsync(TraktTimePeriod period = null,
+                                                                                      TraktExtendedInfo extendedInfo = null,
+                                                                                      TraktMovieFilter filter = null,
+                                                                                      int? page = null, int? limitPerPage = null,
+                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktMoviesMostWatchedRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesMostWatchedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
@@ -530,15 +530,15 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostCollectedMoviesAsync(TraktTimePeriod period = null,
-                                                                                              TraktExtendedInfo extendedInfo = null,
-                                                                                              TraktMovieFilter filter = null,
-                                                                                              int? page = null, int? limitPerPage = null,
-                                                                                              CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostCollectedMoviesAsync(TraktTimePeriod period = null,
+                                                                                        TraktExtendedInfo extendedInfo = null,
+                                                                                        TraktMovieFilter filter = null,
+                                                                                        int? page = null, int? limitPerPage = null,
+                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktMoviesMostCollectedRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesMostCollectedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
@@ -571,14 +571,14 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<ITraktMostAnticipatedMovie>> GetMostAnticipatedMoviesAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                                        TraktMovieFilter filter = null,
-                                                                                                        int? page = null, int? limitPerPage = null,
-                                                                                                        CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktMostAnticipatedMovie>> GetMostAnticipatedMoviesAsync(TraktExtendedInfo extendedInfo = null,
+                                                                                                  TraktMovieFilter filter = null,
+                                                                                                  int? page = null, int? limitPerPage = null,
+                                                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktMoviesMostAnticipatedRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesMostAnticipatedRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
@@ -601,11 +601,11 @@
         /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktBoxOfficeMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktListResponse<ITraktBoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                           CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktBoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedInfo extendedInfo = null,
+                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktMoviesBoxOfficeRequest { ExtendedInfo = extendedInfo }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new TraktMoviesBoxOfficeRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -631,14 +631,14 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<ITraktRecentlyUpdatedMovie>> GetRecentlyUpdatedMoviesAsync(DateTime? startDate = null,
-                                                                                                        TraktExtendedInfo extendedInfo = null,
-                                                                                                        int? page = null, int? limitPerPage = null,
-                                                                                                        CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktRecentlyUpdatedMovie>> GetRecentlyUpdatedMoviesAsync(DateTime? startDate = null,
+                                                                                                  TraktExtendedInfo extendedInfo = null,
+                                                                                                  int? page = null, int? limitPerPage = null,
+                                                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktMoviesRecentlyUpdatedRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesRecentlyUpdatedRequest
             {
                 StartDate = startDate,
                 ExtendedInfo = extendedInfo,

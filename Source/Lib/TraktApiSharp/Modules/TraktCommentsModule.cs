@@ -44,11 +44,11 @@
         /// <returns>An <see cref="ITraktComment" /> instance with the queried comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given commentId is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktComment>> GetCommentAsync(uint commentId, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktComment>> GetCommentAsync(uint commentId, CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateId(commentId);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentSummaryRequest { Id = commentId.ToString() }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentSummaryRequest { Id = commentId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -105,16 +105,16 @@
         /// Thrown, if the given movie's year is not valid.
         /// Thrown, if the given comment's word count is below five.
         /// </exception>
-        public async Task<TraktResponse<ITraktCommentPostResponse>> PostMovieCommentAsync(TraktMovie movie, string comment,
-                                                                                          bool? containsSpoiler = null, TraktSharing sharing = null,
-                                                                                          CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCommentPostResponse>> PostMovieCommentAsync(TraktMovie movie, string comment,
+                                                                                    bool? containsSpoiler = null, TraktSharing sharing = null,
+                                                                                    CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateMovie(movie);
             ValidateComment(comment);
 
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktMovieCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktMovieCommentPost>
             {
                 RequestBody = new TraktMovieCommentPost
                 {
@@ -152,16 +152,16 @@
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given show is null or its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
-        public async Task<TraktResponse<ITraktCommentPostResponse>> PostShowCommentAsync(TraktShow show, string comment,
-                                                                                         bool? containsSpoiler = null, TraktSharing sharing = null,
-                                                                                         CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCommentPostResponse>> PostShowCommentAsync(TraktShow show, string comment,
+                                                                                   bool? containsSpoiler = null, TraktSharing sharing = null,
+                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateShow(show);
             ValidateComment(comment);
 
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktShowCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktShowCommentPost>
             {
                 RequestBody = new TraktShowCommentPost
                 {
@@ -197,16 +197,16 @@
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given season is null or its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
-        public async Task<TraktResponse<ITraktCommentPostResponse>> PostSeasonCommentAsync(TraktSeason season, string comment,
-                                                                                           bool? containsSpoiler = null, TraktSharing sharing = null,
-                                                                                           CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCommentPostResponse>> PostSeasonCommentAsync(TraktSeason season, string comment,
+                                                                                     bool? containsSpoiler = null, TraktSharing sharing = null,
+                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateSeason(season);
             ValidateComment(comment);
 
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktSeasonCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktSeasonCommentPost>
             {
                 RequestBody = new TraktSeasonCommentPost
                 {
@@ -238,16 +238,16 @@
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
-        public async Task<TraktResponse<ITraktCommentPostResponse>> PostEpisodeCommentAsync(TraktEpisode episode, string comment,
-                                                                                            bool? containsSpoiler = null, TraktSharing sharing = null,
-                                                                                            CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCommentPostResponse>> PostEpisodeCommentAsync(TraktEpisode episode, string comment,
+                                                                                      bool? containsSpoiler = null, TraktSharing sharing = null,
+                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateEpisode(episode);
             ValidateComment(comment);
 
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktEpisodeCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktEpisodeCommentPost>
             {
                 RequestBody = new TraktEpisodeCommentPost
                 {
@@ -279,16 +279,16 @@
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given list is null or its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
-        public async Task<TraktResponse<ITraktCommentPostResponse>> PostListCommentAsync(TraktList list, string comment,
-                                                                                         bool? containsSpoiler = null, TraktSharing sharing = null,
-                                                                                         CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCommentPostResponse>> PostListCommentAsync(TraktList list, string comment,
+                                                                                   bool? containsSpoiler = null, TraktSharing sharing = null,
+                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateList(list);
             ValidateComment(comment);
 
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktListCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktListCommentPost>
             {
                 RequestBody = new TraktListCommentPost
                 {
@@ -318,15 +318,15 @@
         /// Thrown, if the given comment is null or empty.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
-        public async Task<TraktResponse<ITraktCommentPostResponse>> UpdateCommentAsync(uint commentId, string comment, bool? containsSpoiler = null,
-                                                                                       CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCommentPostResponse>> UpdateCommentAsync(uint commentId, string comment, bool? containsSpoiler = null,
+                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateId(commentId);
             ValidateComment(comment);
 
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentUpdateRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentUpdateRequest
             {
                 Id = commentId.ToString(),
                 RequestBody = new TraktCommentUpdatePost
@@ -355,15 +355,15 @@
         /// Thrown, if the given comment is null or empty.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
-        public async Task<TraktResponse<ITraktCommentPostResponse>> PostCommentReplyAsync(uint commentId, string comment, bool? containsSpoiler = null,
-                                                                                          CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCommentPostResponse>> PostCommentReplyAsync(uint commentId, string comment, bool? containsSpoiler = null,
+                                                                                    CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateId(commentId);
             ValidateComment(comment);
 
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentReplyRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentReplyRequest
             {
                 Id = commentId.ToString(),
                 RequestBody = new TraktCommentReplyPost
@@ -385,11 +385,11 @@
         /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
-        public async Task<TraktNoContentResponse> DeleteCommentAsync(uint commentId, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktNoContentResponse> DeleteCommentAsync(uint commentId, CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateId(commentId);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteNoContentRequestAsync(new TraktCommentDeleteRequest { Id = commentId.ToString() }, cancellationToken);
+            return requestHandler.ExecuteNoContentRequestAsync(new TraktCommentDeleteRequest { Id = commentId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -403,11 +403,11 @@
         /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
-        public async Task<TraktNoContentResponse> LikeCommentAsync(uint commentId, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktNoContentResponse> LikeCommentAsync(uint commentId, CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateId(commentId);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteNoContentRequestAsync(new TraktCommentLikeRequest { Id = commentId.ToString() }, cancellationToken);
+            return requestHandler.ExecuteNoContentRequestAsync(new TraktCommentLikeRequest { Id = commentId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -421,11 +421,11 @@
         /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
-        public async Task<TraktNoContentResponse> UnlikeCommentAsync(uint commentId, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktNoContentResponse> UnlikeCommentAsync(uint commentId, CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateId(commentId);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteNoContentRequestAsync(new TraktCommentUnlikeRequest { Id = commentId.ToString() }, cancellationToken);
+            return requestHandler.ExecuteNoContentRequestAsync(new TraktCommentUnlikeRequest { Id = commentId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -448,13 +448,13 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
-        public async Task<TraktPagedResponse<ITraktComment>> GetCommentRepliesAsync(uint commentId, int? page = null, int? limitPerPage = null,
-                                                                                    CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktComment>> GetCommentRepliesAsync(uint commentId, int? page = null, int? limitPerPage = null,
+                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateId(commentId);
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktCommentRepliesRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktCommentRepliesRequest
             {
                 Id = commentId.ToString(),
                 Page = page,

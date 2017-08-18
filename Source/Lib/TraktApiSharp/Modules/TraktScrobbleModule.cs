@@ -41,14 +41,14 @@
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
-        public async Task<TraktResponse<ITraktMovieScrobblePostResponse>> StartMovieAsync(TraktMovie movie, float progress,
-                                                                                          string appVersion = null, DateTime? appBuildDate = null,
-                                                                                          CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktMovieScrobblePostResponse>> StartMovieAsync(TraktMovie movie, float progress,
+                                                                                    string appVersion = null, DateTime? appBuildDate = null,
+                                                                                    CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(
+            return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobbleStartRequest<ITraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody), cancellationToken);
         }
 
@@ -69,14 +69,14 @@
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
-        public async Task<TraktResponse<ITraktMovieScrobblePostResponse>> PauseMovieAsync(TraktMovie movie, float progress,
-                                                                                          string appVersion = null, DateTime? appBuildDate = null,
-                                                                                          CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktMovieScrobblePostResponse>> PauseMovieAsync(TraktMovie movie, float progress,
+                                                                                    string appVersion = null, DateTime? appBuildDate = null,
+                                                                                    CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(
+            return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobblePauseRequest<ITraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody), cancellationToken);
         }
 
@@ -97,14 +97,14 @@
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
-        public async Task<TraktResponse<ITraktMovieScrobblePostResponse>> StopMovieAsync(TraktMovie movie, float progress,
-                                                                                         string appVersion = null, DateTime? appBuildDate = null,
-                                                                                         CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktMovieScrobblePostResponse>> StopMovieAsync(TraktMovie movie, float progress,
+                                                                                   string appVersion = null, DateTime? appBuildDate = null,
+                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(
+            return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobbleStopRequest<ITraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody), cancellationToken);
         }
 
@@ -129,14 +129,14 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        public async Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> StartEpisodeAsync(TraktEpisode episode, float progress,
-                                                                                              string appVersion = null, DateTime? appBuildDate = null,
-                                                                                              CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> StartEpisodeAsync(TraktEpisode episode, float progress,
+                                                                                        string appVersion = null, DateTime? appBuildDate = null,
+                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(
+            return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobbleStartRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
         }
 
@@ -161,14 +161,14 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        public async Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> PauseEpisodeAsync(TraktEpisode episode, float progress,
-                                                                                              string appVersion = null, DateTime? appBuildDate = null,
-                                                                                              CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> PauseEpisodeAsync(TraktEpisode episode, float progress,
+                                                                                        string appVersion = null, DateTime? appBuildDate = null,
+                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(
+            return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobblePauseRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
         }
 
@@ -193,14 +193,14 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        public async Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> StopEpisodeAsync(TraktEpisode episode, float progress,
-                                                                                             string appVersion = null, DateTime? appBuildDate = null,
-                                                                                             CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> StopEpisodeAsync(TraktEpisode episode, float progress,
+                                                                                       string appVersion = null, DateTime? appBuildDate = null,
+                                                                                       CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(
+            return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobbleStopRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
         }
 
@@ -225,14 +225,14 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        public async Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> StartEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
-                                                                                                      string appVersion = null, DateTime? appBuildDate = null,
-                                                                                                      CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> StartEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
+                                                                                                string appVersion = null, DateTime? appBuildDate = null,
+                                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(
+            return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobbleStartRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
         }
 
@@ -257,14 +257,14 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        public async Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> PauseEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
-                                                                                                      string appVersion = null, DateTime? appBuildDate = null,
-                                                                                                      CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> PauseEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
+                                                                                                string appVersion = null, DateTime? appBuildDate = null,
+                                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(
+            return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobblePauseRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
         }
 
@@ -289,14 +289,14 @@
         /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
         /// Thrown, if the given progress value is not between 0 and 100.
         /// </exception>
-        public async Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> StopEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
-                                                                                                     string appVersion = null, DateTime? appBuildDate = null,
-                                                                                                     CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> StopEpisodeWithShowAsync(TraktEpisode episode, TraktShow show, float progress,
+                                                                                               string appVersion = null, DateTime? appBuildDate = null,
+                                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(
+            return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobbleStopRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
         }
 

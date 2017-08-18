@@ -46,10 +46,10 @@
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktSyncLastActivities" /> instance with the queried last activities.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktResponse<ITraktSyncLastActivities>> GetLastActivitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktSyncLastActivities>> GetLastActivitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncLastActivitiesRequest(), cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncLastActivitiesRequest(), cancellationToken);
         }
 
         /// <summary>
@@ -64,12 +64,12 @@
         /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktSyncPlaybackProgressItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktListResponse<ITraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null, int? limit = null,
-                                                                                                      CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null, int? limit = null,
+                                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteListRequestAsync(new TraktSyncPlaybackProgressRequest
+            return requestHandler.ExecuteListRequestAsync(new TraktSyncPlaybackProgressRequest
             {
                 Type = objectType,
                 Limit = limit
@@ -87,13 +87,13 @@
         /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given playback progress id is null, empty or contains spaces.</exception>
-        public async Task<TraktNoContentResponse> RemovePlaybackItemAsync(uint playbackId, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktNoContentResponse> RemovePlaybackItemAsync(uint playbackId, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (playbackId == 0)
                 throw new ArgumentOutOfRangeException(nameof(playbackId), "playback id not valid");
 
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteNoContentRequestAsync(new TraktSyncPlaybackDeleteRequest { Id = playbackId.ToString() }, cancellationToken);
+            return requestHandler.ExecuteNoContentRequestAsync(new TraktSyncPlaybackDeleteRequest { Id = playbackId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -110,11 +110,11 @@
         /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktCollectionMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktListResponse<ITraktCollectionMovie>> GetCollectionMoviesAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                             CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktCollectionMovie>> GetCollectionMoviesAsync(TraktExtendedInfo extendedInfo = null,
+                                                                                       CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktSyncCollectionMoviesRequest { ExtendedInfo = extendedInfo }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new TraktSyncCollectionMoviesRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -131,11 +131,11 @@
         /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktCollectionShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktListResponse<ITraktCollectionShow>> GetCollectionShowsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                           CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktCollectionShow>> GetCollectionShowsAsync(TraktExtendedInfo extendedInfo = null,
+                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktSyncCollectionShowsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new TraktSyncCollectionShowsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -156,12 +156,12 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given collection post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given collection post is empty.</exception>
-        public async Task<TraktResponse<ITraktSyncCollectionPostResponse>> AddCollectionItemsAsync(TraktSyncCollectionPost collectionPost,
-                                                                                                   CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktSyncCollectionPostResponse>> AddCollectionItemsAsync(TraktSyncCollectionPost collectionPost,
+                                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateCollectionPost(collectionPost);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncCollectionAddRequest { RequestBody = collectionPost }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncCollectionAddRequest { RequestBody = collectionPost }, cancellationToken);
         }
 
         /// <summary>
@@ -182,12 +182,12 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given collection remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given collection remove post is empty.</exception>
-        public async Task<TraktResponse<ITraktSyncCollectionRemovePostResponse>> RemoveCollectionItemsAsync(TraktSyncCollectionPost collectionRemovePost,
-                                                                                                            CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktSyncCollectionRemovePostResponse>> RemoveCollectionItemsAsync(TraktSyncCollectionPost collectionRemovePost,
+                                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateCollectionPost(collectionRemovePost);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncCollectionRemoveRequest { RequestBody = collectionRemovePost }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncCollectionRemoveRequest { RequestBody = collectionRemovePost }, cancellationToken);
         }
 
         /// <summary>
@@ -204,11 +204,11 @@
         /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktWatchedMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktListResponse<ITraktWatchedMovie>> GetWatchedMoviesAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                       CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktWatchedMovie>> GetWatchedMoviesAsync(TraktExtendedInfo extendedInfo = null,
+                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktSyncWatchedMoviesRequest { ExtendedInfo = extendedInfo }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new TraktSyncWatchedMoviesRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -225,11 +225,11 @@
         /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktWatchedShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktListResponse<ITraktWatchedShow>> GetWatchedShowsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                     CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktWatchedShow>> GetWatchedShowsAsync(TraktExtendedInfo extendedInfo = null,
+                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktSyncWatchedShowsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new TraktSyncWatchedShowsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -258,15 +258,15 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<ITraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType historyItemType = null, uint? itemId = null,
-                                                                                        DateTime? startAt = null, DateTime? endAt = null,
-                                                                                        TraktExtendedInfo extendedInfo = null,
-                                                                                        int? page = null, int? limitPerPage = null,
-                                                                                        CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType historyItemType = null, uint? itemId = null,
+                                                                                  DateTime? startAt = null, DateTime? endAt = null,
+                                                                                  TraktExtendedInfo extendedInfo = null,
+                                                                                  int? page = null, int? limitPerPage = null,
+                                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktSyncWatchedHistoryRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktSyncWatchedHistoryRequest
             {
                 Type = historyItemType,
                 ItemId = itemId,
@@ -296,12 +296,12 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given history post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given history post is empty.</exception>
-        public async Task<TraktResponse<ITraktSyncHistoryPostResponse>> AddWatchedHistoryItemsAsync(TraktSyncHistoryPost historyPost,
-                                                                                                    CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktSyncHistoryPostResponse>> AddWatchedHistoryItemsAsync(TraktSyncHistoryPost historyPost,
+                                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateHistoryPost(historyPost);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchedHistoryAddRequest { RequestBody = historyPost }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchedHistoryAddRequest { RequestBody = historyPost }, cancellationToken);
         }
 
         /// <summary>
@@ -322,12 +322,12 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given history remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given history remove post is empty.</exception>
-        public async Task<TraktResponse<ITraktSyncHistoryRemovePostResponse>> RemoveWatchedHistoryItemsAsync(TraktSyncHistoryRemovePost historyRemovePost,
-                                                                                                             CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktSyncHistoryRemovePostResponse>> RemoveWatchedHistoryItemsAsync(TraktSyncHistoryRemovePost historyRemovePost,
+                                                                                                       CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateHistoryPost(historyRemovePost);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchedHistoryRemoveRequest { RequestBody = historyRemovePost }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchedHistoryRemoveRequest { RequestBody = historyRemovePost }, cancellationToken);
         }
 
         /// <summary>
@@ -350,14 +350,14 @@
         /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktRatingsItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktListResponse<ITraktRatingsItem>> GetRatingsAsync(TraktRatingsItemType ratingsItemType = null,
-                                                                                int[] ratingsFilter = null,
-                                                                                TraktExtendedInfo extendedInfo = null,
-                                                                                CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktRatingsItem>> GetRatingsAsync(TraktRatingsItemType ratingsItemType = null,
+                                                                          int[] ratingsFilter = null,
+                                                                          TraktExtendedInfo extendedInfo = null,
+                                                                          CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteListRequestAsync(new TraktSyncRatingsRequest
+            return requestHandler.ExecuteListRequestAsync(new TraktSyncRatingsRequest
             {
                 Type = ratingsItemType,
                 RatingFilter = ratingsFilter,
@@ -383,12 +383,12 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given ratings post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given ratings post is empty.</exception>
-        public async Task<TraktResponse<ITraktSyncRatingsPostResponse>> AddRatingsAsync(TraktSyncRatingsPost ratingsPost,
-                                                                                        CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktSyncRatingsPostResponse>> AddRatingsAsync(TraktSyncRatingsPost ratingsPost,
+                                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateRatingsPost(ratingsPost);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncRatingsAddRequest { RequestBody = ratingsPost }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncRatingsAddRequest { RequestBody = ratingsPost }, cancellationToken);
         }
 
         /// <summary>
@@ -409,12 +409,12 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given ratings remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given ratings remove post is empty.</exception>
-        public async Task<TraktResponse<ITraktSyncRatingsRemovePostResponse>> RemoveRatingsAsync(TraktSyncRatingsPost ratingsRemovePost,
-                                                                                                 CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktSyncRatingsRemovePostResponse>> RemoveRatingsAsync(TraktSyncRatingsPost ratingsRemovePost,
+                                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateRatingsPost(ratingsRemovePost);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncRatingsRemoveRequest { RequestBody = ratingsRemovePost }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncRatingsRemoveRequest { RequestBody = ratingsRemovePost }, cancellationToken);
         }
 
         /// <summary>
@@ -440,14 +440,14 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktPagedResponse<ITraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType watchlistItemType = null,
-                                                                                     TraktExtendedInfo extendedInfo = null,
-                                                                                     int? page = null, int? limitPerPage = null,
-                                                                                     CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType watchlistItemType = null,
+                                                                               TraktExtendedInfo extendedInfo = null,
+                                                                               int? page = null, int? limitPerPage = null,
+                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktSyncWatchlistRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktSyncWatchlistRequest
             {
                 Type = watchlistItemType,
                 ExtendedInfo = extendedInfo,
@@ -474,12 +474,12 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given watchlist post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given watchlist post is empty.</exception>
-        public async Task<TraktResponse<ITraktSyncWatchlistPostResponse>> AddWatchlistItemsAsync(TraktSyncWatchlistPost watchlistPost,
-                                                                                                 CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktSyncWatchlistPostResponse>> AddWatchlistItemsAsync(TraktSyncWatchlistPost watchlistPost,
+                                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateWatchlistPost(watchlistPost);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchlistAddRequest { RequestBody = watchlistPost }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchlistAddRequest { RequestBody = watchlistPost }, cancellationToken);
         }
 
         /// <summary>
@@ -500,12 +500,12 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given watchlist remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given watchlist remove post is empty.</exception>
-        public async Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>> RemoveWatchlistItemsAsync(TraktSyncWatchlistPost watchlistRemovePost,
-                                                                                                          CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>> RemoveWatchlistItemsAsync(TraktSyncWatchlistPost watchlistRemovePost,
+                                                                                                    CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateWatchlistPost(watchlistRemovePost);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchlistRemoveRequest { RequestBody = watchlistRemovePost }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchlistRemoveRequest { RequestBody = watchlistRemovePost }, cancellationToken);
         }
 
         private void ValidateCollectionPost(TraktSyncCollectionPost collectionPost)

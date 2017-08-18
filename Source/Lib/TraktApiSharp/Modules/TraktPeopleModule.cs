@@ -40,12 +40,12 @@
         /// <returns>An <see cref="ITraktPerson" /> instance with the queried person's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktPerson>> GetPersonAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                      CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktPerson>> GetPersonAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktPersonSummaryRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktPersonSummaryRequest
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo
@@ -99,12 +99,12 @@
         /// <returns>An <see cref="ITraktPersonMovieCredits" /> instance with the queried person's movie credits.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktPersonMovieCredits>> GetPersonMovieCreditsAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                                              CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktPersonMovieCredits>> GetPersonMovieCreditsAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktPersonMovieCreditsRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktPersonMovieCreditsRequest
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo
@@ -127,12 +127,12 @@
         /// <returns>An <see cref="ITraktPersonShowCredits" /> instance with the queried person's show credits.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
-        public async Task<TraktResponse<ITraktPersonShowCredits>> GetPersonShowCreditsAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                                            CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktPersonShowCredits>> GetPersonShowCreditsAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktPersonShowCreditsRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktPersonShowCreditsRequest
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo

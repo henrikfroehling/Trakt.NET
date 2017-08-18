@@ -50,13 +50,13 @@
         /// Thrown, if the given season-number is below zero.
         /// Thrown, if the given episode-number is below one.
         /// </exception>
-        public async Task<TraktResponse<ITraktEpisode>> GetEpisodeAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
-                                                                        TraktExtendedInfo extendedInfo = null,
-                                                                        CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktEpisode>> GetEpisodeAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+                                                                  TraktExtendedInfo extendedInfo = null,
+                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktEpisodeSummaryRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktEpisodeSummaryRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
@@ -128,14 +128,14 @@
         /// Thrown, if the given season-number is below zero.
         /// Thrown, if the given episode-number is below one.
         /// </exception>
-        public async Task<TraktPagedResponse<ITraktComment>> GetEpisodeCommentsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
-                                                                                     TraktCommentSortOrder commentSortOrder = null,
-                                                                                     int? page = null, int? limitPerPage = null,
-                                                                                     CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktComment>> GetEpisodeCommentsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+                                                                               TraktCommentSortOrder commentSortOrder = null,
+                                                                               int? page = null, int? limitPerPage = null,
+                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktEpisodeCommentsRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktEpisodeCommentsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
@@ -174,14 +174,14 @@
         /// Thrown, if the given season-number is below zero.
         /// Thrown, if the given episode-number is below one.
         /// </exception>
-        public async Task<TraktPagedResponse<ITraktList>> GetEpisodeListsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
-                                                                               TraktListType listType = null, TraktListSortOrder listSortOrder = null,
-                                                                               int? page = null, int? limitPerPage = null,
-                                                                               CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktList>> GetEpisodeListsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+                                                                         TraktListType listType = null, TraktListSortOrder listSortOrder = null,
+                                                                         int? page = null, int? limitPerPage = null,
+                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktEpisodeListsRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktEpisodeListsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
@@ -211,12 +211,12 @@
         /// Thrown, if the given season-number is below zero.
         /// Thrown, if the given episode-number is below one.
         /// </exception>
-        public async Task<TraktResponse<ITraktRating>> GetEpisodeRatingsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
-                                                                              CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktRating>> GetEpisodeRatingsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktEpisodeRatingsRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktEpisodeRatingsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
@@ -242,12 +242,12 @@
         /// Thrown, if the given season-number is below zero.
         /// Thrown, if the given episode-number is below one.
         /// </exception>
-        public async Task<TraktResponse<ITraktStatistics>> GetEpisodeStatisticsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
-                                                                                     CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktStatistics>> GetEpisodeStatisticsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktEpisodeStatisticsRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new TraktEpisodeStatisticsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
@@ -275,13 +275,13 @@
         /// Thrown, if the given episode-number is below one.
         /// Thrown, if the given languageCode is shorter or longer than two characters.
         /// </exception>
-        public async Task<TraktListResponse<ITraktEpisodeTranslation>> GetEpisodeTranslationsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
-                                                                                                   string languageCode = null,
-                                                                                                   CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktEpisodeTranslation>> GetEpisodeTranslationsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+                                                                                             string languageCode = null,
+                                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteListRequestAsync(new TraktEpisodeTranslationsRequest
+            return requestHandler.ExecuteListRequestAsync(new TraktEpisodeTranslationsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
@@ -312,13 +312,13 @@
         /// Thrown, if the given season-number is below zero.
         /// Thrown, if the given episode-number is below one.
         /// </exception>
-        public async Task<TraktListResponse<ITraktUser>> GetEpisodeWatchingUsersAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
-                                                                                      TraktExtendedInfo extendedInfo = null,
-                                                                                      CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktUser>> GetEpisodeWatchingUsersAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+                                                                                TraktExtendedInfo extendedInfo = null,
+                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecuteListRequestAsync(new TraktEpisodeWatchingUsersRequest
+            return requestHandler.ExecuteListRequestAsync(new TraktEpisodeWatchingUsersRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,

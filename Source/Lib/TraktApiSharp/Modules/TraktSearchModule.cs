@@ -55,15 +55,15 @@
         /// Thrown, if the given searchResultType is unspecified.
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given searchResultType is null</exception>
-        public async Task<TraktPagedResponse<ITraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultTypes, string searchQuery,
-                                                                                           TraktSearchField searchFields = null, TraktSearchFilter filter = null,
-                                                                                           TraktExtendedInfo extendedInfo = null,
-                                                                                           int? page = null, int? limitPerPage = null,
-                                                                                           CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultTypes, string searchQuery,
+                                                                                     TraktSearchField searchFields = null, TraktSearchFilter filter = null,
+                                                                                     TraktExtendedInfo extendedInfo = null,
+                                                                                     int? page = null, int? limitPerPage = null,
+                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktSearchTextQueryRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktSearchTextQueryRequest
             {
                 ResultTypes = searchResultTypes,
                 Query = searchQuery,
@@ -105,15 +105,15 @@
         /// Thrown, if the given searchIdType is unspecified.
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given searchIdType is null.</exception>
-        public async Task<TraktPagedResponse<ITraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, string lookupId,
-                                                                                          TraktSearchResultType searchResultTypes = null,
-                                                                                          TraktExtendedInfo extendedInfo = null,
-                                                                                          int? page = null, int? limitPerPage = null,
-                                                                                          CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<ITraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, string lookupId,
+                                                                                    TraktSearchResultType searchResultTypes = null,
+                                                                                    TraktExtendedInfo extendedInfo = null,
+                                                                                    int? page = null, int? limitPerPage = null,
+                                                                                    CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
 
-            return await requestHandler.ExecutePagedRequestAsync(new TraktSearchIdLookupRequest
+            return requestHandler.ExecutePagedRequestAsync(new TraktSearchIdLookupRequest
             {
                 IdType = searchIdType,
                 LookupId = lookupId,
