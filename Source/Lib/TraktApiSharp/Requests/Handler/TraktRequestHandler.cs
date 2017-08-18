@@ -439,11 +439,11 @@
         {
             var appJsonHeader = new MediaTypeWithQualityHeaderValue(MEDIA_TYPE);
 
-            if (!httpClient.DefaultRequestHeaders.Contains(TraktConstants.APIClientIdHeaderKey))
-                httpClient.DefaultRequestHeaders.Add(TraktConstants.APIClientIdHeaderKey, _client.ClientId);
+            if (!httpClient.DefaultRequestHeaders.Contains(Constants.APIClientIdHeaderKey))
+                httpClient.DefaultRequestHeaders.Add(Constants.APIClientIdHeaderKey, _client.ClientId);
 
-            if (!httpClient.DefaultRequestHeaders.Contains(TraktConstants.APIVersionHeaderKey))
-                httpClient.DefaultRequestHeaders.Add(TraktConstants.APIVersionHeaderKey, $"{_client.Configuration.ApiVersion}");
+            if (!httpClient.DefaultRequestHeaders.Contains(Constants.APIVersionHeaderKey))
+                httpClient.DefaultRequestHeaders.Add(Constants.APIVersionHeaderKey, $"{_client.Configuration.ApiVersion}");
 
             if (!httpClient.DefaultRequestHeaders.Accept.Contains(appJsonHeader))
                 httpClient.DefaultRequestHeaders.Accept.Add(appJsonHeader);

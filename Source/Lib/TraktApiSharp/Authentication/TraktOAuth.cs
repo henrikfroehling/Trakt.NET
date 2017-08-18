@@ -280,7 +280,7 @@
             var httpClient = TraktConfiguration.HTTP_CLIENT ?? new HttpClient();
             SetDefaultRequestHeaders(httpClient);
 
-            var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthTokenUri}";
+            var tokenUrl = $"{Client.Configuration.BaseUrl}{Constants.OAuthTokenUri}";
             var content = new StringContent(postContent, Encoding.UTF8, "application/json");
 
             var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
@@ -605,8 +605,8 @@
         {
             var encodedUriParams = CreateEncodedAuthorizationUri(clientId, redirectUri, state);
             var isStagingUsed = Client.Configuration.UseSandboxEnvironment;
-            var baseUrl = isStagingUsed ? TraktConstants.OAuthBaseAuthorizeStagingUrl : TraktConstants.OAuthBaseAuthorizeUrl;
-            return $"{baseUrl}/{TraktConstants.OAuthAuthorizeUri}{encodedUriParams}";
+            var baseUrl = isStagingUsed ? Constants.OAuthBaseAuthorizeStagingUrl : Constants.OAuthBaseAuthorizeUrl;
+            return $"{baseUrl}/{Constants.OAuthAuthorizeUri}{encodedUriParams}";
         }
 
         private void ValidateAuthorizationUrlArguments(string clientId, string redirectUri)

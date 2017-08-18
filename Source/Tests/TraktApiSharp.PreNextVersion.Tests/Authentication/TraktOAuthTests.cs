@@ -496,8 +496,8 @@
 
         private string BuildEncodedAuthorizeUrl(bool staging, string clientId, string redirectUri, string state = null)
         {
-            var baseUrl = staging ? TraktConstants.OAuthBaseAuthorizeStagingUrl : TraktConstants.OAuthBaseAuthorizeUrl;
-            var oauthAuthorizeUri = TraktConstants.OAuthAuthorizeUri;
+            var baseUrl = staging ? Constants.OAuthBaseAuthorizeStagingUrl : Constants.OAuthBaseAuthorizeUrl;
+            var oauthAuthorizeUri = Constants.OAuthAuthorizeUri;
 
             var uriParams = new Dictionary<string, string>();
 
@@ -548,7 +548,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.OAuth.GetAuthorizationAsync().Result;
 
@@ -600,7 +600,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            var uri = TraktConstants.OAuthTokenUri;
+            var uri = Constants.OAuthTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
 
@@ -778,7 +778,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.OAuth.GetAuthorizationAsync(mockAuthCode).Result;
 
@@ -827,7 +827,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            var uri = TraktConstants.OAuthTokenUri;
+            var uri = Constants.OAuthTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
 
@@ -1001,7 +1001,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.OAuth.GetAuthorizationAsync(mockAuthCode, clientId).Result;
 
@@ -1052,7 +1052,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            var uri = TraktConstants.OAuthTokenUri;
+            var uri = Constants.OAuthTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
 
@@ -1224,7 +1224,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.OAuth.GetAuthorizationAsync(mockAuthCode, clientId, clientSecret).Result;
 
@@ -1273,7 +1273,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            var uri = TraktConstants.OAuthTokenUri;
+            var uri = Constants.OAuthTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
 
@@ -1443,7 +1443,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.OAuth.GetAuthorizationAsync(mockAuthCode, clientId, clientSecret, redirectUri).Result;
 
@@ -1494,7 +1494,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            var uri = TraktConstants.OAuthTokenUri;
+            var uri = Constants.OAuthTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
 
@@ -1667,7 +1667,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
             var response = TestUtility.MOCK_TEST_CLIENT.OAuth.RefreshAuthorizationAsync().Result;
@@ -1726,7 +1726,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            var uri = TraktConstants.OAuthTokenUri;
+            var uri = Constants.OAuthTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
@@ -1925,7 +1925,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.OAuth.RefreshAuthorizationAsync(accessToken.RefreshToken).Result;
 
@@ -1983,7 +1983,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            var uri = TraktConstants.OAuthTokenUri;
+            var uri = Constants.OAuthTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
@@ -2225,7 +2225,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.OAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId).Result;
 
@@ -2283,7 +2283,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            var uri = TraktConstants.OAuthTokenUri;
+            var uri = Constants.OAuthTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
@@ -2520,7 +2520,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.OAuth.RefreshAuthorizationAsync(accessToken.RefreshToken,
                                                                                       clientId, clientSecret).Result;
@@ -2579,7 +2579,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            var uri = TraktConstants.OAuthTokenUri;
+            var uri = Constants.OAuthTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
@@ -2810,7 +2810,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.OAuth.RefreshAuthorizationAsync(accessToken.RefreshToken,
                                                                                       clientId, clientSecret,
@@ -2870,7 +2870,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            var uri = TraktConstants.OAuthTokenUri;
+            var uri = Constants.OAuthTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
@@ -3093,7 +3093,7 @@
 
             var postContent = $"token={accessToken.AccessToken}";
 
-            var uri = TraktConstants.OAuthRevokeUri;
+            var uri = Constants.OAuthRevokeUri;
 
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
             TestUtility.SetupMockAuthenticationTokenRevokeResponse(uri, postContent);
@@ -3127,7 +3127,7 @@
                 AccessScope = TraktAccessScope.Public
             };
 
-            var uri = TraktConstants.OAuthRevokeUri;
+            var uri = Constants.OAuthRevokeUri;
 
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
@@ -3285,7 +3285,7 @@
 
             var postContent = $"token={accessToken.AccessToken}";
 
-            var uri = TraktConstants.OAuthRevokeUri;
+            var uri = Constants.OAuthRevokeUri;
 
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
             TestUtility.SetupMockAuthenticationTokenRevokeResponse(uri, postContent);
@@ -3319,7 +3319,7 @@
                 AccessScope = TraktAccessScope.Public
             };
 
-            var uri = TraktConstants.OAuthRevokeUri;
+            var uri = Constants.OAuthRevokeUri;
 
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
@@ -3522,7 +3522,7 @@
 
             var postContent = $"token={accessToken.AccessToken}";
 
-            var uri = TraktConstants.OAuthRevokeUri;
+            var uri = Constants.OAuthRevokeUri;
 
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
             TestUtility.SetupMockAuthenticationTokenRevokeResponse(uri, postContent);
@@ -3558,7 +3558,7 @@
                 AccessScope = TraktAccessScope.Public
             };
 
-            var uri = TraktConstants.OAuthRevokeUri;
+            var uri = Constants.OAuthRevokeUri;
 
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 

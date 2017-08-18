@@ -24,7 +24,7 @@
         public bool UseSandboxEnvironment { get; set; } = false;
 
         /// <summary>Returns the Trakt API base URL based on, whether <see cref="UseSandboxEnvironment" /> is false or true.</summary>
-        public string BaseUrl => UseSandboxEnvironment ? TraktConstants.API_STAGING_URL : TraktConstants.API_URL;
+        public string BaseUrl => UseSandboxEnvironment ? Constants.API_STAGING_URL : Constants.API_URL;
 
         /// <summary>Gets or sets, whether authorization should be enforced, even if it is optional. This is disabled by default.</summary>
         public bool ForceAuthorization { get; set; } = false;

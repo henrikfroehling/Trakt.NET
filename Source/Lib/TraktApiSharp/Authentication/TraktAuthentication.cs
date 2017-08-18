@@ -391,7 +391,7 @@
             var httpClient = TraktConfiguration.HTTP_CLIENT ?? new HttpClient();
             SetDefaultRequestHeaders(httpClient);
 
-            var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthTokenUri}";
+            var tokenUrl = $"{Client.Configuration.BaseUrl}{Constants.OAuthTokenUri}";
             var content = new StringContent(postContent, Encoding.UTF8, "application/json");
 
             var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
@@ -530,7 +530,7 @@
             SetDefaultRequestHeaders(httpClient);
             SetAuthorizationRequestHeaders(httpClient, accessToken, clientId);
 
-            var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthRevokeUri}";
+            var tokenUrl = $"{Client.Configuration.BaseUrl}{Constants.OAuthRevokeUri}";
             var content = new StringContent(postContent, Encoding.UTF8, "application/x-www-form-urlencoded");
 
             var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
@@ -568,11 +568,11 @@
 
         private void SetAuthorizationRequestHeaders(HttpClient httpClient, string accessToken, string clientId)
         {
-            if (!httpClient.DefaultRequestHeaders.Contains(TraktConstants.APIClientIdHeaderKey))
-                httpClient.DefaultRequestHeaders.Add(TraktConstants.APIClientIdHeaderKey, clientId);
+            if (!httpClient.DefaultRequestHeaders.Contains(Constants.APIClientIdHeaderKey))
+                httpClient.DefaultRequestHeaders.Add(Constants.APIClientIdHeaderKey, clientId);
 
-            if (!httpClient.DefaultRequestHeaders.Contains(TraktConstants.APIVersionHeaderKey))
-                httpClient.DefaultRequestHeaders.Add(TraktConstants.APIVersionHeaderKey, $"{Client.Configuration.ApiVersion}");
+            if (!httpClient.DefaultRequestHeaders.Contains(Constants.APIVersionHeaderKey))
+                httpClient.DefaultRequestHeaders.Add(Constants.APIVersionHeaderKey, $"{Client.Configuration.ApiVersion}");
 
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         }

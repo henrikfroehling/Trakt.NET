@@ -58,7 +58,7 @@
             var httpClient = TraktConfiguration.HTTP_CLIENT ?? new HttpClient();
             SetDefaultRequestHeaders(httpClient);
 
-            var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthDeviceCodeUri}";
+            var tokenUrl = $"{Client.Configuration.BaseUrl}{Constants.OAuthDeviceCodeUri}";
             var content = new StringContent(postContent, Encoding.UTF8, "application/json");
 
             var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
@@ -204,7 +204,7 @@
             var httpClient = TraktConfiguration.HTTP_CLIENT ?? new HttpClient();
             SetDefaultRequestHeaders(httpClient);
 
-            var tokenUrl = $"{Client.Configuration.BaseUrl}{TraktConstants.OAuthDeviceTokenUri}";
+            var tokenUrl = $"{Client.Configuration.BaseUrl}{Constants.OAuthDeviceTokenUri}";
 
             HttpStatusCode responseCode = default(HttpStatusCode);
             string responseContent = string.Empty;

@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Core
 {
-    internal static class TraktConstants
+    internal static class Constants
     {
         internal const string API_URL = "https://api.trakt.tv/";
         internal const string API_STAGING_URL = "https://api-staging.trakt.tv/";

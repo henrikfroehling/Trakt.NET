@@ -72,7 +72,7 @@
 
             var postContent = $"{{ \"client_id\": \"{clientId}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthDeviceCodeUri, postContent, deviceJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceCodeUri, postContent, deviceJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync().Result;
 
@@ -102,7 +102,7 @@
         [TestMethod]
         public void TestTraktDeviceAuthGenerateDeviceExceptions()
         {
-            var uri = TraktConstants.OAuthDeviceCodeUri;
+            var uri = Constants.OAuthDeviceCodeUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
 
@@ -223,7 +223,7 @@
 
             var postContent = $"{{ \"client_id\": \"{clientId}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthDeviceCodeUri, postContent, deviceJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceCodeUri, postContent, deviceJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId).Result;
 
@@ -255,7 +255,7 @@
         {
             var clientId = "clientId";
 
-            var uri = TraktConstants.OAuthDeviceCodeUri;
+            var uri = Constants.OAuthDeviceCodeUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
 
@@ -393,7 +393,7 @@
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
             accessTokenJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthDeviceTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson);
             TestUtility.MOCK_TEST_CLIENT.Authentication.Device = device;
 
             var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync().Result;
@@ -451,13 +451,13 @@
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.Device = device;
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.BadRequest);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.BadRequest);
 
             var timer = new Timer(x =>
             {
                 //Debug.WriteLine("Delayed Http Status Code Change");
                 TestUtility.ClearMockHttpClient();
-                TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.OK);
+                TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.OK);
             }, null, POLLING_DELAY_IN_MILLISECONDS, POLLING_DELAY_IN_MILLISECONDS);
 
             var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync().Result;
@@ -497,7 +497,7 @@
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.Device = device;
 
-            var uri = TraktConstants.OAuthDeviceTokenUri;
+            var uri = Constants.OAuthDeviceTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
 
@@ -693,7 +693,7 @@
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
             accessTokenJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthDeviceTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device).Result;
 
@@ -748,13 +748,13 @@
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
             accessTokenJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.BadRequest);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.BadRequest);
 
             var timer = new Timer(x =>
             {
                 //Debug.WriteLine("Delayed Http Status Code Change");
                 TestUtility.ClearMockHttpClient();
-                TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.OK);
+                TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.OK);
             }, null, POLLING_DELAY_IN_MILLISECONDS, POLLING_DELAY_IN_MILLISECONDS);
 
             var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device).Result;
@@ -792,7 +792,7 @@
                 IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
             };
 
-            var uri = TraktConstants.OAuthDeviceTokenUri;
+            var uri = Constants.OAuthDeviceTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
 
@@ -977,7 +977,7 @@
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
             accessTokenJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthDeviceTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId).Result;
 
@@ -1032,13 +1032,13 @@
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
             accessTokenJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.BadRequest);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.BadRequest);
 
             var timer = new Timer(x =>
             {
                 //Debug.WriteLine("Delayed Http Status Code Change");
                 TestUtility.ClearMockHttpClient();
-                TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.OK);
+                TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.OK);
             }, null, POLLING_DELAY_IN_MILLISECONDS, POLLING_DELAY_IN_MILLISECONDS);
 
             var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId).Result;
@@ -1076,7 +1076,7 @@
 
             var clientId = "clientId";
 
-            var uri = TraktConstants.OAuthDeviceTokenUri;
+            var uri = Constants.OAuthDeviceTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
 
@@ -1259,7 +1259,7 @@
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
             accessTokenJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthDeviceTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret).Result;
 
@@ -1314,13 +1314,13 @@
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
             accessTokenJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.BadRequest);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.BadRequest);
 
             var timer = new Timer(x =>
             {
                 //Debug.WriteLine("Delayed Http Status Code Change");
                 TestUtility.ClearMockHttpClient();
-                TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.OK);
+                TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.OK);
             }, null, POLLING_DELAY_IN_MILLISECONDS, POLLING_DELAY_IN_MILLISECONDS);
 
             var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret).Result;
@@ -1361,7 +1361,7 @@
             var clientId = "clientId";
             var clientSecret = "clientSecret";
 
-            var uri = TraktConstants.OAuthDeviceTokenUri;
+            var uri = Constants.OAuthDeviceTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
 
@@ -1547,7 +1547,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
             var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync().Result;
@@ -1606,7 +1606,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            var uri = TraktConstants.OAuthTokenUri;
+            var uri = Constants.OAuthTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
@@ -1805,7 +1805,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken).Result;
 
@@ -1863,7 +1863,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            var uri = TraktConstants.OAuthTokenUri;
+            var uri = Constants.OAuthTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
@@ -2105,7 +2105,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId).Result;
 
@@ -2163,7 +2163,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            var uri = TraktConstants.OAuthTokenUri;
+            var uri = Constants.OAuthTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
@@ -2400,7 +2400,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken,
                                                                                            clientId, clientSecret).Result;
@@ -2459,7 +2459,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            var uri = TraktConstants.OAuthTokenUri;
+            var uri = Constants.OAuthTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
@@ -2690,7 +2690,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(TraktConstants.OAuthTokenUri, postContent, accessTokenJson);
+            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
 
             var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken,
                                                                                            clientId, clientSecret,
@@ -2750,7 +2750,7 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            var uri = TraktConstants.OAuthTokenUri;
+            var uri = Constants.OAuthTokenUri;
 
             TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
@@ -2973,7 +2973,7 @@
 
             var postContent = $"token={accessToken.AccessToken}";
 
-            var uri = TraktConstants.OAuthRevokeUri;
+            var uri = Constants.OAuthRevokeUri;
 
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
             TestUtility.SetupMockAuthenticationTokenRevokeResponse(uri, postContent);
@@ -3007,7 +3007,7 @@
                 AccessScope = TraktAccessScope.Public
             };
 
-            var uri = TraktConstants.OAuthRevokeUri;
+            var uri = Constants.OAuthRevokeUri;
 
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
@@ -3165,7 +3165,7 @@
 
             var postContent = $"token={accessToken.AccessToken}";
 
-            var uri = TraktConstants.OAuthRevokeUri;
+            var uri = Constants.OAuthRevokeUri;
 
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
             TestUtility.SetupMockAuthenticationTokenRevokeResponse(uri, postContent);
@@ -3199,7 +3199,7 @@
                 AccessScope = TraktAccessScope.Public
             };
 
-            var uri = TraktConstants.OAuthRevokeUri;
+            var uri = Constants.OAuthRevokeUri;
 
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
@@ -3402,7 +3402,7 @@
 
             var postContent = $"token={accessToken.AccessToken}";
 
-            var uri = TraktConstants.OAuthRevokeUri;
+            var uri = Constants.OAuthRevokeUri;
 
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
             TestUtility.SetupMockAuthenticationTokenRevokeResponse(uri, postContent);
@@ -3438,7 +3438,7 @@
                 AccessScope = TraktAccessScope.Public
             };
 
-            var uri = TraktConstants.OAuthRevokeUri;
+            var uri = Constants.OAuthRevokeUri;
 
             TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
