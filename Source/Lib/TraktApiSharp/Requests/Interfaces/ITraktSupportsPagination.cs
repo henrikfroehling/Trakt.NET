@@ -2,8 +2,8 @@
 {
     internal interface ITraktSupportsPagination
     {
-        int? Page { get; set; }
+        uint? Page { get; set; }
 
-        int? Limit { get; set; }
+        uint? Limit { get; set; }
     }
 }

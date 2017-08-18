@@ -162,8 +162,7 @@
         /// </summary>
         /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="ITraktMovieIds" />.</param>
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
-        /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktComment}"/> instance containing the queried movie comments and which also
@@ -176,7 +175,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         public Task<TraktPagedResponse<ITraktComment>> GetMovieCommentsAsync(string movieIdOrSlug,
                                                                              TraktCommentSortOrder commentSortOrder = null,
-                                                                             int? page = null, int? limitPerPage = null,
+                                                                             TraktPagedParameters pagedParameters = null,
                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -185,8 +184,8 @@
             {
                 Id = movieIdOrSlug,
                 SortOrder = commentSortOrder,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -200,8 +199,7 @@
         /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="ITraktMovieIds" />.</param>
         /// <param name="listType">The type of lists, that should be queried. Defaults to personal lists.</param>
         /// <param name="listSortOrder">The list sort order. See also <seealso cref="TraktListSortOrder" />. Defaults to sorted by popularity.</param>
-        /// <param name="page">The page of the <see cref="ITraktList" /> list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum count of <see cref="ITraktList" />s for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktList}"/> instance containing the queried movie lists and which also
@@ -214,7 +212,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         public Task<TraktPagedResponse<ITraktList>> GetMovieListsAsync(string movieIdOrSlug, TraktListType listType = null,
                                                                        TraktListSortOrder listSortOrder = null,
-                                                                       int? page = null, int? limitPerPage = null,
+                                                                       TraktPagedParameters pagedParameters = null,
                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -224,8 +222,8 @@
                 Id = movieIdOrSlug,
                 Type = listType,
                 SortOrder = listSortOrder,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -282,8 +280,7 @@
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="page">The page of the related movies list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum count of related movies for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktMovie}"/> instance containing the queried related movies and which also
@@ -295,7 +292,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         public Task<TraktPagedResponse<ITraktMovie>> GetMovieRelatedMoviesAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                                int? page = null, int? limitPerPage = null,
+                                                                                TraktPagedParameters pagedParameters = null,
                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -304,8 +301,8 @@
             {
                 Id = movieIdOrSlug,
                 ExtendedInfo = extendedInfo,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -362,8 +359,7 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
-        /// <param name="page">The page of the trending movies list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum item count of trending movies for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktTrendingMovie}"/> instance containing the queried trending movies and which also
@@ -375,7 +371,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktTrendingMovie>> GetTrendingMoviesAsync(TraktExtendedInfo extendedInfo = null,
                                                                                     TraktMovieFilter filter = null,
-                                                                                    int? page = null, int? limitPerPage = null,
+                                                                                    TraktPagedParameters pagedParameters = null,
                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -384,8 +380,8 @@
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -401,8 +397,7 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
-        /// <param name="page">The page of the popular movies list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum item count of popular movies for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktMovie}"/> instance containing the queried popular movies and which also
@@ -414,7 +409,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMovie>> GetPopularMoviesAsync(TraktExtendedInfo extendedInfo = null,
                                                                            TraktMovieFilter filter = null,
-                                                                           int? page = null, int? limitPerPage = null,
+                                                                           TraktPagedParameters pagedParameters = null,
                                                                            CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -423,8 +418,8 @@
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -441,8 +436,7 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
-        /// <param name="page">The page of the most played movies list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum item count of most played movies for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktMostPlayedMovie}"/> instance containing the queried most played movies and which also
@@ -455,7 +449,7 @@
         public Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostPlayedMoviesAsync(TraktTimePeriod period = null,
                                                                                      TraktExtendedInfo extendedInfo = null,
                                                                                      TraktMovieFilter filter = null,
-                                                                                     int? page = null, int? limitPerPage = null,
+                                                                                     TraktPagedParameters pagedParameters = null,
                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -465,8 +459,8 @@
                 Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -483,8 +477,7 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
-        /// <param name="page">The page of the most watched movies list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum item count of most watched movies for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktMostPWCMovie}"/> instance containing the queried most watched movies and which also
@@ -497,7 +490,7 @@
         public Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostWatchedMoviesAsync(TraktTimePeriod period = null,
                                                                                       TraktExtendedInfo extendedInfo = null,
                                                                                       TraktMovieFilter filter = null,
-                                                                                      int? page = null, int? limitPerPage = null,
+                                                                                      TraktPagedParameters pagedParameters = null,
                                                                                       CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -507,8 +500,8 @@
                 Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -525,8 +518,7 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
-        /// <param name="page">The page of the most collected movies list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum item count of most collected movies for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktMostPWCMovie}"/> instance containing the queried most collected movies and which also
@@ -539,7 +531,7 @@
         public Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostCollectedMoviesAsync(TraktTimePeriod period = null,
                                                                                         TraktExtendedInfo extendedInfo = null,
                                                                                         TraktMovieFilter filter = null,
-                                                                                        int? page = null, int? limitPerPage = null,
+                                                                                        TraktPagedParameters pagedParameters = null,
                                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -549,8 +541,8 @@
                 Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -566,8 +558,7 @@
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
-        /// <param name="page">The page of the most anticipated movies list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum item count of most anticipated movies for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktMostAnticipatedMovie}"/> instance containing the queried most anticipated movies and which also
@@ -579,7 +570,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMostAnticipatedMovie>> GetMostAnticipatedMoviesAsync(TraktExtendedInfo extendedInfo = null,
                                                                                                   TraktMovieFilter filter = null,
-                                                                                                  int? page = null, int? limitPerPage = null,
+                                                                                                  TraktPagedParameters pagedParameters = null,
                                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -588,8 +579,8 @@
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -626,8 +617,7 @@
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="page">The page of the updated movies list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum item count of updated movies for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktRecentlyUpdatedMovie}"/> instance containing the queried updated movies and which also
@@ -639,7 +629,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktRecentlyUpdatedMovie>> GetRecentlyUpdatedMoviesAsync(DateTime? startDate = null,
                                                                                                   TraktExtendedInfo extendedInfo = null,
-                                                                                                  int? page = null, int? limitPerPage = null,
+                                                                                                  TraktPagedParameters pagedParameters = null,
                                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -648,8 +638,8 @@
             {
                 StartDate = startDate,
                 ExtendedInfo = extendedInfo,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
     }

@@ -45,8 +45,7 @@
         /// The extended info, which determines how much data about the movies, shows, episodes, people and / or lists should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum count of results for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
@@ -64,7 +63,7 @@
         public Task<TraktPagedResponse<ITraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultTypes, string searchQuery,
                                                                                      TraktSearchField searchFields = null, TraktSearchFilter filter = null,
                                                                                      TraktExtendedInfo extendedInfo = null,
-                                                                                     int? page = null, int? limitPerPage = null,
+                                                                                     TraktPagedParameters pagedParameters = null,
                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -76,8 +75,8 @@
                 SearchFields = searchFields,
                 Filter = filter,
                 ExtendedInfo = extendedInfo,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -95,8 +94,7 @@
         /// The extended info, which determines how much data about the lookup object(s) should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="page">The page of the search results list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum count of results for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
@@ -114,7 +112,7 @@
         public Task<TraktPagedResponse<ITraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, string lookupId,
                                                                                     TraktSearchResultType searchResultTypes = null,
                                                                                     TraktExtendedInfo extendedInfo = null,
-                                                                                    int? page = null, int? limitPerPage = null,
+                                                                                    TraktPagedParameters pagedParameters = null,
                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -125,8 +123,8 @@
                 LookupId = lookupId,
                 ResultTypes = searchResultTypes,
                 ExtendedInfo = extendedInfo,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
     }

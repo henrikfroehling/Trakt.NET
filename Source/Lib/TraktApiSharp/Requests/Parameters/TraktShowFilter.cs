@@ -9,13 +9,13 @@
 
     /// <summary>
     /// Provides additional filter parameters for some <see cref="TraktShowsModule" /> methods.<para />
-    /// Supported by <see cref="TraktShowsModule.GetMostAnticipatedShowsAsync(TraktExtendedInfo, TraktShowFilter, int?, int?, CancellationToken)" />,
-    /// <see cref="TraktShowsModule.GetMostCollectedShowsAsync(TraktTimePeriod, TraktExtendedInfo, TraktShowFilter, int?, int?, CancellationToken)" />,
-    /// <see cref="TraktShowsModule.GetMostPlayedShowsAsync(TraktTimePeriod, TraktExtendedInfo, TraktShowFilter, int?, int?, CancellationToken)" />,
-    /// <see cref="TraktShowsModule.GetMostWatchedShowsAsync(TraktTimePeriod, TraktExtendedInfo, TraktShowFilter, int?, int?, CancellationToken)" />,
-    /// <see cref="TraktShowsModule.GetPopularShowsAsync(TraktExtendedInfo, TraktShowFilter, int?, int?, CancellationToken)" />,
-    /// <see cref="TraktShowsModule.GetRecentlyUpdatedShowsAsync(DateTime?, TraktExtendedInfo, int?, int?, CancellationToken)" /> and
-    /// <see cref="TraktShowsModule.GetTrendingShowsAsync(TraktExtendedInfo, TraktShowFilter, int?, int?, CancellationToken)" />.<para />
+    /// Supported by <see cref="TraktShowsModule.GetMostAnticipatedShowsAsync(TraktExtendedInfo, TraktShowFilter, TraktPagedParameters, CancellationToken)" />,
+    /// <see cref="TraktShowsModule.GetMostCollectedShowsAsync(TraktTimePeriod, TraktExtendedInfo, TraktShowFilter, TraktPagedParameters, CancellationToken)" />,
+    /// <see cref="TraktShowsModule.GetMostPlayedShowsAsync(TraktTimePeriod, TraktExtendedInfo, TraktShowFilter, TraktPagedParameters, CancellationToken)" />,
+    /// <see cref="TraktShowsModule.GetMostWatchedShowsAsync(TraktTimePeriod, TraktExtendedInfo, TraktShowFilter, TraktPagedParameters, CancellationToken)" />,
+    /// <see cref="TraktShowsModule.GetPopularShowsAsync(TraktExtendedInfo, TraktShowFilter, TraktPagedParameters, CancellationToken)" />,
+    /// <see cref="TraktShowsModule.GetRecentlyUpdatedShowsAsync(DateTime?, TraktExtendedInfo, TraktPagedParameters, CancellationToken)" /> and
+    /// <see cref="TraktShowsModule.GetTrendingShowsAsync(TraktExtendedInfo, TraktShowFilter, TraktPagedParameters, CancellationToken)" />.<para />
     /// This class has an fluent interface.
     /// <para>See <a href ="http://docs.trakt.apiary.io/#introduction/filters">"Trakt API Doc - Filters"</a> for more information.</para>
     /// </summary>

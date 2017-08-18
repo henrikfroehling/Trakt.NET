@@ -10,9 +10,9 @@
     {
         internal TraktUserLikeType Type { get; set; }
 
-        public int? Page { get; set; }
+        public uint? Page { get; set; }
 
-        public int? Limit { get; set; }
+        public uint? Limit { get; set; }
 
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 

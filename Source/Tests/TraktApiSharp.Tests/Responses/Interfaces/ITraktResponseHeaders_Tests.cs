@@ -85,7 +85,7 @@
 
             userCountPropertyInfo.CanRead.Should().BeTrue();
             userCountPropertyInfo.CanWrite.Should().BeTrue();
-            userCountPropertyInfo.PropertyType.Should().Be(typeof(int?));
+            userCountPropertyInfo.PropertyType.Should().Be(typeof(uint?));
         }
 
         [Fact]
@@ -97,7 +97,7 @@
 
             userCountPropertyInfo.CanRead.Should().BeTrue();
             userCountPropertyInfo.CanWrite.Should().BeTrue();
-            userCountPropertyInfo.PropertyType.Should().Be(typeof(int?));
+            userCountPropertyInfo.PropertyType.Should().Be(typeof(uint?));
         }
 
         [Fact]

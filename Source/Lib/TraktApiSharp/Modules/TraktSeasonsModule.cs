@@ -159,8 +159,7 @@
         /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="ITraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season, for which the comments should be queried.</param>
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
-        /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktComment}"/> instance containing the queried season comments and which also
@@ -174,7 +173,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
         public Task<TraktPagedResponse<ITraktComment>> GetSeasonCommentsAsync(string showIdOrSlug, uint seasonNumber,
                                                                               TraktCommentSortOrder commentSortOrder = null,
-                                                                              int? page = null, int? limitPerPage = null,
+                                                                              TraktPagedParameters pagedParameters = null,
                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -184,8 +183,8 @@
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
                 SortOrder = commentSortOrder,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -200,8 +199,7 @@
         /// <param name="seasonNumber">The number of the season, for which the lists should be queried.</param>
         /// <param name="listType">The type of lists, that should be queried. Defaults to personal lists.</param>
         /// <param name="listSortOrder">The list sort order. See also <seealso cref="TraktListSortOrder" />. Defaults to sorted by popularity.</param>
-        /// <param name="page">The page of the <see cref="ITraktList" /> list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum count of <see cref="ITraktList" />s for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktList}"/> instance containing the queried season lists and which also
@@ -215,7 +213,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
         public Task<TraktPagedResponse<ITraktList>> GetSeasonListsAsync(string showIdOrSlug, uint seasonNumber,
                                                                         TraktListType listType = null, TraktListSortOrder listSortOrder = null,
-                                                                        int? page = null, int? limitPerPage = null,
+                                                                        TraktPagedParameters pagedParameters = null,
                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -226,8 +224,8 @@
                 SeasonNumber = seasonNumber,
                 Type = listType,
                 SortOrder = listSortOrder,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 

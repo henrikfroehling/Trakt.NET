@@ -9,9 +9,9 @@
     {
         internal TraktCommentSortOrder SortOrder { get; set; }
 
-        public int? Page { get; set; }
+        public uint? Page { get; set; }
 
-        public int? Limit { get; set; }
+        public uint? Limit { get; set; }
 
         public override string UriTemplate => "shows/{id}/comments{/sort_order}{?page,limit}";
 

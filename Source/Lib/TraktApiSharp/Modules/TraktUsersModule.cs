@@ -92,8 +92,7 @@
         /// The extended info, which determines how much data about the hidden items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="page">The page of the hidden items list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum count of hidden items for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktUserHiddenItem}"/> instance containing the queried hidden items and which also
@@ -107,7 +106,7 @@
         public Task<TraktPagedResponse<ITraktUserHiddenItem>> GetHiddenItemsAsync(TraktHiddenItemsSection hiddenItemsSection,
                                                                                   TraktHiddenItemType hiddenItemType = null,
                                                                                   TraktExtendedInfo extendedInfo = null,
-                                                                                  int? page = null, int? limitPerPage = null,
+                                                                                  TraktPagedParameters pagedParameters = null,
                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -117,8 +116,8 @@
                 Section = hiddenItemsSection,
                 Type = hiddenItemType,
                 ExtendedInfo = extendedInfo,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -130,8 +129,7 @@
         /// </para>
         /// </summary>
         /// <param name="likeType">Determines, which type of objects liked should be queried. See also <seealso cref="TraktUserLikeType" />.</param>
-        /// <param name="page">The page of the like items list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum count of like items for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktUserLikeItem}"/> instance containing the queried like items and which also
@@ -142,7 +140,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktUserLikeItem>> GetLikesAsync(TraktUserLikeType likeType = null,
-                                                                          int? page = null, int? limitPerPage = null,
+                                                                          TraktPagedParameters pagedParameters = null,
                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -150,8 +148,8 @@
             return requestHandler.ExecutePagedRequestAsync(new TraktUserLikesRequest
             {
                 Type = likeType,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -255,8 +253,7 @@
         /// The extended info, which determines how much data about the commented objects should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktUserComment}"/> instance containing the queried comments and which also
@@ -271,7 +268,7 @@
                                                                             TraktCommentType commentType = null,
                                                                             TraktObjectType objectType = null,
                                                                             TraktExtendedInfo extendedInfo = null,
-                                                                            int? page = null, int? limitPerPage = null,
+                                                                            TraktPagedParameters pagedParameters = null,
                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -282,8 +279,8 @@
                 CommentType = commentType,
                 ObjectType = objectType,
                 ExtendedInfo = extendedInfo,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -382,8 +379,7 @@
         /// The extended info, which determines how much data about the list items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="page"></param>
-        /// <param name="limitPerPage"></param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktListItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -393,7 +389,7 @@
         /// </exception>
         public Task<TraktPagedResponse<ITraktListItem>> GetCustomListItemsAsync(string usernameOrSlug, string listIdOrSlug,
                                                                                 TraktListItemType listItemType = null, TraktExtendedInfo extendedInfo = null,
-                                                                                int? page = null, int? limitPerPage = null,
+                                                                                TraktPagedParameters pagedParameters = null,
                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -404,8 +400,8 @@
                 Id = listIdOrSlug,
                 Type = listItemType,
                 ExtendedInfo = extendedInfo,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -641,8 +637,7 @@
         /// <param name="usernameOrSlug">The username or slug of the user, for which the custom list comments should be queried.</param>
         /// <param name="listIdOrSlug">The id or slug of the custom list, for which the comments should be queried.</param>
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
-        /// <param name="page">The page of the comments list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum count of comments for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktComment}"/> instance containing the queried custom list comments and which also
@@ -658,7 +653,7 @@
         /// </exception>
         public Task<TraktPagedResponse<ITraktComment>> GetListCommentsAsync(string usernameOrSlug, string listIdOrSlug,
                                                                             TraktCommentSortOrder commentSortOrder = null,
-                                                                            int? page = null, int? limitPerPage = null,
+                                                                            TraktPagedParameters pagedParameters = null,
                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -668,8 +663,8 @@
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
                 SortOrder = commentSortOrder,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -888,8 +883,7 @@
         /// The extended info, which determines how much data about the history items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="page">The page of the history items list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum count of history items for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// A <see cref="TraktPagedResponse{ITraktHistoryItem}"/> instance containing the queried history items and which also
@@ -903,7 +897,7 @@
         public Task<TraktPagedResponse<ITraktHistoryItem>> GetWatchedHistoryAsync(string usernameOrSlug, TraktSyncItemType historyItemType = null,
                                                                                   uint? itemId = null, DateTime? startAt = null,
                                                                                   DateTime? endAt = null, TraktExtendedInfo extendedInfo = null,
-                                                                                  int? page = null, int? limitPerPage = null,
+                                                                                  TraktPagedParameters pagedParameters = null,
                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -916,8 +910,8 @@
                 StartAt = startAt,
                 EndAt = endAt,
                 ExtendedInfo = extendedInfo,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -971,8 +965,7 @@
         /// The extended info, which determines how much data about the watchlist items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="page">The page of the watchlist items list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum count of watchlist items for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktWatchlistItem}"/> instance containing the queried watchlist items and which also
@@ -985,7 +978,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         public Task<TraktPagedResponse<ITraktWatchlistItem>> GetWatchlistAsync(string usernameOrSlug, TraktSyncItemType watchlistItemType = null,
                                                                                TraktExtendedInfo extendedInfo = null,
-                                                                               int? page = null, int? limitPerPage = null,
+                                                                               TraktPagedParameters pagedParameters = null,
                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -995,8 +988,8 @@
                 Username = usernameOrSlug,
                 Type = watchlistItemType,
                 ExtendedInfo = extendedInfo,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 

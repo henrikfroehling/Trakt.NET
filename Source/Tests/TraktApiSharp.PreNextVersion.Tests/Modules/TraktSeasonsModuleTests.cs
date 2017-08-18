@@ -607,8 +607,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -633,8 +633,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -647,20 +647,21 @@
             var showId = "1390";
             var seasonNr = 1U;
             var itemCount = 3;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/comments?page={page}",
                                                                 seasonComments, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, seasonNr, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, seasonNr, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -674,20 +675,21 @@
             var seasonNr = 1U;
             var itemCount = 3;
             var sortOrder = TraktCommentSortOrder.Likes;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/comments/{sortOrder.UriName}?page={page}",
                                                                 seasonComments, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, seasonNr, sortOrder, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, seasonNr, sortOrder, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -700,20 +702,21 @@
             var showId = "1390";
             var seasonNr = 1U;
             var itemCount = 3;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/comments?limit={limit}",
                                                                 seasonComments, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, seasonNr, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, seasonNr, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -727,20 +730,21 @@
             var seasonNr = 1U;
             var itemCount = 3;
             var sortOrder = TraktCommentSortOrder.Likes;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/comments/{sortOrder.UriName}?limit={limit}",
                                                                 seasonComments, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, seasonNr, sortOrder, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, seasonNr, sortOrder, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -753,21 +757,22 @@
             var showId = "1390";
             var seasonNr = 1U;
             var itemCount = 3;
-            var page = 2;
-            var limit = 20;
+            uint page = 2;
+            uint limit = 20;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/comments?page={page}&limit={limit}",
                                                                 seasonComments, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, seasonNr, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, seasonNr, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -781,21 +786,22 @@
             var seasonNr = 1U;
             var itemCount = 3;
             var sortOrder = TraktCommentSortOrder.Likes;
-            var page = 2;
-            var limit = 20;
+            uint page = 2;
+            uint limit = 20;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/comments/{sortOrder.UriName}?page={page}&limit={limit}",
                                                                 seasonComments, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, seasonNr, sortOrder, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonCommentsAsync(showId, seasonNr, sortOrder, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -922,8 +928,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -948,8 +954,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -974,8 +980,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -988,20 +994,21 @@
             var showId = "1390";
             var seasonNr = 1U;
             var itemCount = 10;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/lists?page={page}",
                                                                 seasonLists, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1014,21 +1021,21 @@
             var showId = "1390";
             var seasonNr = 1U;
             var itemCount = 10;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/lists?limit={limit}",
                                                                 seasonLists, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, null,
-                                                                                    null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1041,23 +1048,23 @@
             var showId = "1390";
             var seasonNr = 1U;
             var itemCount = 10;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"shows/{showId}/seasons/{seasonNr}/lists?page={page}&limit={limit}",
                 seasonLists, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr,
-                                                                                    null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1084,8 +1091,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1099,22 +1106,22 @@
             var seasonNr = 1U;
             var itemCount = 10;
             var type = TraktListType.Official;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"shows/{showId}/seasons/{seasonNr}/lists/{type.UriName}?page={page}",
                 seasonLists, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type,
-                                                                                    null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1128,22 +1135,22 @@
             var seasonNr = 1U;
             var itemCount = 10;
             var type = TraktListType.Official;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"shows/{showId}/seasons/{seasonNr}/lists/{type.UriName}?limit={limit}",
                 seasonLists, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type,
-                                                                                    null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1157,23 +1164,23 @@
             var seasonNr = 1U;
             var itemCount = 10;
             var type = TraktListType.Official;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"shows/{showId}/seasons/{seasonNr}/lists/{type.UriName}?page={page}&limit={limit}",
                 seasonLists, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type,
-                                                                                    null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1188,22 +1195,22 @@
             var itemCount = 10;
             var type = TraktListType.Official;
             var sortOrder = TraktListSortOrder.Comments;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"shows/{showId}/seasons/{seasonNr}/lists/{type.UriName}/{sortOrder.UriName}?page={page}",
                 seasonLists, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type,
-                                                                                    sortOrder, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type, sortOrder, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1218,22 +1225,22 @@
             var itemCount = 10;
             var type = TraktListType.Official;
             var sortOrder = TraktListSortOrder.Comments;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"shows/{showId}/seasons/{seasonNr}/lists/{type.UriName}/{sortOrder.UriName}?limit={limit}",
                 seasonLists, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type,
-                                                                                    sortOrder, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type, sortOrder, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1248,24 +1255,24 @@
             var itemCount = 10;
             var type = TraktListType.Official;
             var sortOrder = TraktListSortOrder.Comments;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"shows/{showId}/seasons/{seasonNr}/lists/{type.UriName}/{sortOrder.UriName}" +
                 $"?page={page}&limit={limit}",
                 seasonLists, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type,
-                                                                                    sortOrder, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetSeasonListsAsync(showId, seasonNr, type, sortOrder, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 

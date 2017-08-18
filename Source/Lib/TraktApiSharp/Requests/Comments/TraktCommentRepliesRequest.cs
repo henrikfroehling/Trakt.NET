@@ -13,9 +13,9 @@
 
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Comments;
 
-        public int? Page { get; set; }
+        public uint? Page { get; set; }
 
-        public int? Limit { get; set; }
+        public uint? Limit { get; set; }
 
         public override string UriTemplate => "comments/{id}/replies{?page,limit}";
 

@@ -19,6 +19,7 @@
     using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
     using TraktApiSharp.Objects.Post.Comments;
     using TraktApiSharp.Objects.Post.Comments.Responses;
+    using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Utils;
 
@@ -3123,8 +3124,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3136,20 +3137,21 @@
 
             var commentId = 190U;
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"comments/{commentId}/replies?page={page}",
                                                                 commentReplies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3161,20 +3163,21 @@
 
             var commentId = 190U;
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"comments/{commentId}/replies?limit={limit}",
                                                                 commentReplies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3186,21 +3189,22 @@
 
             var commentId = 190U;
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"comments/{commentId}/replies?page={page}&limit={limit}",
                                                                 commentReplies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Comments.GetCommentRepliesAsync(commentId, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 

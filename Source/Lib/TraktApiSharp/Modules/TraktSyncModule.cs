@@ -70,7 +70,7 @@
         /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktSyncPlaybackProgressItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktListResponse<ITraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null, int? limit = null,
+        public Task<TraktListResponse<ITraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null, uint? limit = null,
                                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -253,8 +253,7 @@
         /// The extended info, which determines how much data about the history items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="page">The page of the history items list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum count of history items for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktHistoryItem}"/> instance containing the queried history items and which also
@@ -267,7 +266,7 @@
         public Task<TraktPagedResponse<ITraktHistoryItem>> GetWatchedHistoryAsync(TraktSyncItemType historyItemType = null, uint? itemId = null,
                                                                                   DateTime? startAt = null, DateTime? endAt = null,
                                                                                   TraktExtendedInfo extendedInfo = null,
-                                                                                  int? page = null, int? limitPerPage = null,
+                                                                                  TraktPagedParameters pagedParameters = null,
                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -279,8 +278,8 @@
                 StartAt = startAt,
                 EndAt = endAt,
                 ExtendedInfo = extendedInfo,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 
@@ -435,8 +434,7 @@
         /// The extended info, which determines how much data about the watchlist items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="page">The page of the watchlist items list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum count of watchlist items for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktWatchlistItem}"/> instance containing the queried watchlist items and which also
@@ -448,7 +446,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType watchlistItemType = null,
                                                                                TraktExtendedInfo extendedInfo = null,
-                                                                               int? page = null, int? limitPerPage = null,
+                                                                               TraktPagedParameters pagedParameters = null,
                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
@@ -457,8 +455,8 @@
             {
                 Type = watchlistItemType,
                 ExtendedInfo = extendedInfo,
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             }, cancellationToken);
         }
 

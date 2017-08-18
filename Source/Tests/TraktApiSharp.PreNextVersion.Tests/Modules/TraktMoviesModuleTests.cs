@@ -885,8 +885,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -910,8 +910,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -923,20 +923,21 @@
 
             var movieId = "94024";
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/comments?page={page}",
                                                                 movieComments, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieCommentsAsync(movieId, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieCommentsAsync(movieId, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -949,20 +950,21 @@
             var movieId = "94024";
             var itemCount = 2;
             var sortOrder = TraktCommentSortOrder.Likes;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/comments/{sortOrder.UriName}?page={page}",
                                                                 movieComments, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieCommentsAsync(movieId, sortOrder, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieCommentsAsync(movieId, sortOrder, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -974,20 +976,21 @@
 
             var movieId = "94024";
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/comments?limit={limit}",
                                                                 movieComments, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieCommentsAsync(movieId, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieCommentsAsync(movieId, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1000,20 +1003,21 @@
             var movieId = "94024";
             var itemCount = 2;
             var sortOrder = TraktCommentSortOrder.Likes;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/comments/{sortOrder.UriName}?limit={limit}",
                                                                 movieComments, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieCommentsAsync(movieId, sortOrder, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieCommentsAsync(movieId, sortOrder, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1025,21 +1029,22 @@
 
             var movieId = "94024";
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/comments?page={page}&limit={limit}",
                                                                 movieComments, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieCommentsAsync(movieId, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieCommentsAsync(movieId, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1052,21 +1057,22 @@
             var movieId = "94024";
             var itemCount = 2;
             var sortOrder = TraktCommentSortOrder.Likes;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/comments/{sortOrder.UriName}?page={page}&limit={limit}",
                                                                 movieComments, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieCommentsAsync(movieId, sortOrder, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieCommentsAsync(movieId, sortOrder, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1186,8 +1192,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1211,8 +1217,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1236,8 +1242,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1249,20 +1255,21 @@
 
             var movieId = "94024";
             var itemCount = 10;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists?page={page}",
                                                                 movieLists, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1274,20 +1281,21 @@
 
             var movieId = "94024";
             var itemCount = 10;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists?limit={limit}",
                                                                 movieLists, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1299,21 +1307,22 @@
 
             var movieId = "94024";
             var itemCount = 10;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists?page={page}&limit={limit}",
                                                                 movieLists, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1338,8 +1347,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1352,20 +1361,21 @@
             var movieId = "94024";
             var itemCount = 10;
             var type = TraktListType.Official;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}?page={page}",
                                                                 movieLists, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1378,20 +1388,21 @@
             var movieId = "94024";
             var itemCount = 10;
             var type = TraktListType.Official;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}?limit={limit}",
                                                                 movieLists, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1404,21 +1415,22 @@
             var movieId = "94024";
             var itemCount = 10;
             var type = TraktListType.Official;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}?page={page}&limit={limit}",
                                                                 movieLists, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1432,20 +1444,21 @@
             var itemCount = 10;
             var type = TraktListType.Official;
             var sortOrder = TraktListSortOrder.Comments;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}/{sortOrder.UriName}?page={page}",
                                                                 movieLists, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, sortOrder, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, sortOrder, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1459,21 +1472,22 @@
             var itemCount = 10;
             var type = TraktListType.Official;
             var sortOrder = TraktListSortOrder.Comments;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"movies/{movieId}/lists/{type.UriName}/{sortOrder.UriName}?limit={limit}",
                 movieLists, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, sortOrder, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, sortOrder, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1487,22 +1501,23 @@
             var itemCount = 10;
             var type = TraktListType.Official;
             var sortOrder = TraktListSortOrder.Comments;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}/{sortOrder.UriName}" +
                                                                 $"?page={page}&limit={limit}",
                                                                 movieLists, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, sortOrder, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, sortOrder, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1928,8 +1943,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1954,8 +1969,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1967,20 +1982,21 @@
 
             var movieId = "94024";
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?page={page}",
                                                                 movieRelatedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1992,22 +2008,23 @@
 
             var movieId = "94024";
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?extended={extendedInfo.ToString()}&page={page}",
                                                                 movieRelatedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, extendedInfo, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2019,20 +2036,21 @@
 
             var movieId = "94024";
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?limit={limit}",
                                                                 movieRelatedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2044,22 +2062,23 @@
 
             var movieId = "94024";
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 movieRelatedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, extendedInfo, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2071,21 +2090,22 @@
 
             var movieId = "94024";
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?page={page}&limit={limit}",
                                                                 movieRelatedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2097,23 +2117,24 @@
 
             var movieId = "94024";
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/related?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 movieRelatedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, extendedInfo, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieRelatedMoviesAsync(movieId, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2503,8 +2524,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
         }
@@ -2538,8 +2559,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
         }
@@ -2565,8 +2586,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
         }
@@ -2602,8 +2623,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
         }
@@ -2616,19 +2637,20 @@
 
             var itemCount = 2;
             var userCount = 300;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?page={page}", moviesTrending, page, 10, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
         }
@@ -2641,7 +2663,8 @@
 
             var itemCount = 2;
             var userCount = 300;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -2656,15 +2679,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?{filter.ToString()}&page={page}",
                                                                 moviesTrending, page, 10, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
         }
@@ -2677,22 +2700,23 @@
 
             var itemCount = 2;
             var userCount = 300;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedInfo.ToString()}&page={page}",
                                                                 moviesTrending, page, 10, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
         }
@@ -2705,7 +2729,8 @@
 
             var itemCount = 2;
             var userCount = 300;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -2723,15 +2748,15 @@
                 $"movies/trending?extended={extendedInfo.ToString()}&page={page}&{filter.ToString()}",
                 moviesTrending, page, 10, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
         }
@@ -2744,19 +2769,20 @@
 
             var itemCount = 2;
             var userCount = 300;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?limit={limit}", moviesTrending, 1, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
         }
@@ -2769,7 +2795,8 @@
 
             var itemCount = 2;
             var userCount = 300;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -2784,15 +2811,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?{filter.ToString()}&limit={limit}",
                                                                 moviesTrending, 1, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
         }
@@ -2805,22 +2832,23 @@
 
             var itemCount = 2;
             var userCount = 300;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 moviesTrending, 1, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
         }
@@ -2833,7 +2861,8 @@
 
             var itemCount = 2;
             var userCount = 300;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -2851,15 +2880,15 @@
                 $"movies/trending?extended={extendedInfo.ToString()}&limit={limit}&{filter.ToString()}",
                 moviesTrending, 1, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
         }
@@ -2872,21 +2901,22 @@
 
             var itemCount = 2;
             var userCount = 300;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?page={page}&limit={limit}",
                                                                 moviesTrending, page, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
         }
@@ -2899,8 +2929,9 @@
 
             var itemCount = 2;
             var userCount = 300;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -2915,15 +2946,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?page={page}&limit={limit}&{filter.ToString()}",
                                                                 moviesTrending, page, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
         }
@@ -2936,23 +2967,24 @@
 
             var itemCount = 2;
             var userCount = 300;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/trending?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 moviesTrending, page, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
         }
@@ -2965,8 +2997,9 @@
 
             var itemCount = 2;
             var userCount = 300;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -2984,15 +3017,15 @@
                 $"movies/trending?extended={extendedInfo.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
                 moviesTrending, page, limit, 1, itemCount, userCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetTrendingMoviesAsync(extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
         }
@@ -3093,8 +3126,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3125,8 +3158,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3150,8 +3183,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3185,8 +3218,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3197,19 +3230,20 @@
             popularMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?page={page}", popularMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3220,7 +3254,8 @@
             popularMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -3235,15 +3270,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?page={page}&{filter.ToString()}",
                                                                 popularMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3254,22 +3289,23 @@
             popularMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedInfo.ToString()}&page={page}",
                                                                 popularMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3280,7 +3316,8 @@
             popularMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -3298,15 +3335,15 @@
                 $"movies/popular?extended={extendedInfo.ToString()}&{filter.ToString()}&page={page}",
                 popularMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3317,19 +3354,20 @@
             popularMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?limit={limit}", popularMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3340,7 +3378,8 @@
             popularMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -3355,15 +3394,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?limit={limit}&{filter.ToString()}",
                                                                 popularMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3374,22 +3413,23 @@
             popularMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 popularMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3400,7 +3440,8 @@
             popularMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -3418,15 +3459,15 @@
                 $"movies/popular?extended={extendedInfo.ToString()}&limit={limit}&{filter.ToString()}",
                 popularMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3437,21 +3478,22 @@
             popularMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?page={page}&limit={limit}",
                                                                 popularMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3462,8 +3504,9 @@
             popularMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -3478,15 +3521,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?page={page}&limit={limit}&{filter.ToString()}",
                                                                 popularMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3497,23 +3540,24 @@
             popularMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/popular?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 popularMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3524,8 +3568,9 @@
             popularMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -3543,15 +3588,15 @@
                 $"movies/popular?extended={extendedInfo.ToString()}&{filter.ToString()}&page={page}&limit={limit}",
                 popularMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetPopularMoviesAsync(extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3651,8 +3696,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3683,8 +3728,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3707,8 +3752,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3741,8 +3786,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3766,8 +3811,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3801,8 +3846,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3813,19 +3858,20 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?page={page}", mostPlayedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3836,7 +3882,8 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -3851,15 +3898,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?page={page}&{filter.ToString()}",
                                                                 mostPlayedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, null, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3870,19 +3917,20 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?limit={limit}", mostPlayedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3893,7 +3941,8 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -3908,15 +3957,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?limit={limit}&{filter.ToString()}",
                                                                 mostPlayedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, null, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3941,8 +3990,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3978,8 +4027,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -3991,20 +4040,21 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played/{period.UriName}?page={page}",
                                                                 mostPlayedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4016,7 +4066,8 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -4031,15 +4082,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played/{period.UriName}?{filter.ToString()}&page={page}",
                                                                 mostPlayedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, null, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4051,20 +4102,21 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played/{period.UriName}?limit={limit}",
                                                                 mostPlayedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4076,7 +4128,8 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -4091,15 +4144,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played/{period.UriName}?limit={limit}&{filter.ToString()}",
                                                                 mostPlayedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, null, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4110,22 +4163,23 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?extended={extendedInfo.ToString()}&page={page}",
                                                                 mostPlayedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4136,7 +4190,8 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -4154,15 +4209,15 @@
                 $"movies/played?extended={extendedInfo.ToString()}&page={page}&{filter.ToString()}",
                 mostPlayedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4173,22 +4228,23 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 mostPlayedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4199,7 +4255,8 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -4217,15 +4274,15 @@
                 $"movies/played?extended={extendedInfo.ToString()}&limit={limit}&{filter.ToString()}",
                 mostPlayedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4236,21 +4293,22 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?page={page}&limit={limit}",
                                                                 mostPlayedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4261,8 +4319,9 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -4277,15 +4336,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?page={page}&limit={limit}&{filter.ToString()}",
                                                                 mostPlayedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, null, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4296,23 +4355,24 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 mostPlayedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4323,8 +4383,9 @@
             mostPlayedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -4342,15 +4403,15 @@
                 $"movies/played?extended={extendedInfo.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
                 mostPlayedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(null, extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4362,21 +4423,22 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/played/{period.UriName}?page={page}&limit={limit}",
                                                                 mostPlayedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4388,8 +4450,9 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -4405,15 +4468,15 @@
                 $"movies/played/{period.UriName}?page={page}&limit={limit}&{filter.ToString()}",
                 mostPlayedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, null, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4425,8 +4488,9 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -4434,15 +4498,15 @@
                 $"movies/played/{period.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 mostPlayedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, extendedInfo, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4454,8 +4518,9 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -4473,15 +4538,15 @@
                 $"movies/played/{period.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
                 mostPlayedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, extendedInfo, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostPlayedMoviesAsync(period, extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4581,8 +4646,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4613,8 +4678,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4637,8 +4702,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4671,8 +4736,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4696,8 +4761,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4732,8 +4797,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4744,19 +4809,20 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?page={page}", mostWatchedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4767,7 +4833,8 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -4782,15 +4849,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?page={page}&{filter.ToString()}",
                                                                 mostWatchedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4801,19 +4868,20 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?limit={limit}", mostWatchedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4824,7 +4892,8 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -4839,15 +4908,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?limit={limit}&{filter.ToString()}",
                                                                 mostWatchedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4872,8 +4941,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4909,8 +4978,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4922,20 +4991,21 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.UriName}?page={page}",
                                                                 mostWatchedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4947,7 +5017,8 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -4962,15 +5033,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.UriName}?{filter.ToString()}&page={page}",
                                                                 mostWatchedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -4982,20 +5053,21 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.UriName}?limit={limit}",
                                                                 mostWatchedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5007,7 +5079,8 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -5022,15 +5095,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.UriName}?limit={limit}&{filter.ToString()}",
                                                                 mostWatchedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5041,22 +5114,23 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedInfo.ToString()}&page={page}",
                                                                 mostWatchedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5067,7 +5141,8 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -5085,15 +5160,15 @@
                 $"movies/watched?extended={extendedInfo.ToString()}&page={page}&{filter.ToString()}",
                 mostWatchedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5104,22 +5179,23 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 mostWatchedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5130,7 +5206,8 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -5148,15 +5225,15 @@
                 $"movies/watched?extended={extendedInfo.ToString()}&limit={limit}&{filter.ToString()}",
                 mostWatchedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5167,21 +5244,22 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?page={page}&limit={limit}",
                                                                 mostWatchedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5192,8 +5270,9 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -5209,15 +5288,15 @@
                 $"movies/watched?page={page}&limit={limit}&{filter.ToString()}",
                 mostWatchedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5228,23 +5307,24 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 mostWatchedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5255,8 +5335,9 @@
             mostWatchedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -5274,15 +5355,15 @@
                 $"movies/watched?extended={extendedInfo.ToString()}&page={page}&{filter.ToString()}&limit={limit}",
                 mostWatchedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5294,21 +5375,22 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.UriName}?page={page}&limit={limit}",
                                                                 mostWatchedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5320,8 +5402,9 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -5337,15 +5420,15 @@
                 $"movies/watched/{period.UriName}?page={page}&limit={limit}&{filter.ToString()}",
                 mostWatchedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5357,8 +5440,9 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -5366,15 +5450,15 @@
                 $"movies/watched/{period.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 mostWatchedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedInfo, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5386,8 +5470,9 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -5405,15 +5490,15 @@
                 $"movies/watched/{period.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
                 mostWatchedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedInfo, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5513,8 +5598,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5546,8 +5631,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5570,8 +5655,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5604,8 +5689,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5629,8 +5714,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5665,8 +5750,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5677,19 +5762,20 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?page={page}", mostCollectedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5700,7 +5786,8 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -5715,15 +5802,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?page={page}&{filter.ToString()}",
                                                                 mostCollectedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5734,19 +5821,20 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?limit={limit}", mostCollectedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5757,7 +5845,8 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -5772,15 +5861,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?limit={limit}&{filter.ToString()}",
                                                                 mostCollectedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5805,8 +5894,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5842,8 +5931,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5855,20 +5944,21 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.UriName}?page={page}",
                                                                 mostCollectedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5880,7 +5970,8 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -5895,15 +5986,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.UriName}?page={page}&{filter.ToString()}",
                                                                 mostCollectedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5915,20 +6006,21 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.UriName}?limit={limit}",
                                                                 mostCollectedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5940,7 +6032,8 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -5955,15 +6048,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.UriName}?limit={limit}&{filter.ToString()}",
                                                                 mostCollectedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -5974,22 +6067,23 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedInfo.ToString()}&page={page}",
                                                                 mostCollectedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6000,7 +6094,8 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -6018,15 +6113,15 @@
                 $"movies/collected?extended={extendedInfo.ToString()}&{filter.ToString()}&page={page}",
                 mostCollectedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6037,22 +6132,23 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 mostCollectedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6063,7 +6159,8 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -6081,15 +6178,15 @@
                 $"movies/collected?extended={extendedInfo.ToString()}&{filter.ToString()}&limit={limit}",
                 mostCollectedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6100,21 +6197,22 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?page={page}&limit={limit}",
                                                                 mostCollectedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6125,8 +6223,9 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -6142,15 +6241,15 @@
                 $"movies/collected?page={page}&limit={limit}&{filter.ToString()}",
                 mostCollectedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6161,23 +6260,24 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 mostCollectedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6188,8 +6288,9 @@
             mostCollectedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -6207,15 +6308,15 @@
                 $"movies/collected?extended={extendedInfo.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
                 mostCollectedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6227,21 +6328,22 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.UriName}?page={page}&limit={limit}",
                                                                 mostCollectedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6253,8 +6355,9 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -6270,15 +6373,15 @@
                 $"movies/collected/{period.UriName}?page={page}&{filter.ToString()}&limit={limit}",
                 mostCollectedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6290,8 +6393,9 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -6299,15 +6403,15 @@
                 $"movies/collected/{period.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 mostCollectedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedInfo, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6319,8 +6423,9 @@
 
             var itemCount = 2;
             var period = TraktTimePeriod.Monthly;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -6338,15 +6443,15 @@
                 $"movies/collected/{period.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}&{filter.ToString()}",
                 mostCollectedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedInfo, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6446,8 +6551,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6479,8 +6584,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6504,8 +6609,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6540,8 +6645,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6552,19 +6657,20 @@
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?page={page}", mostAnticipatedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6575,7 +6681,8 @@
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -6590,15 +6697,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?page={page}&{filter.ToString()}",
                                                                 mostAnticipatedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6609,22 +6716,23 @@
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedInfo.ToString()}&page={page}",
                                                                 mostAnticipatedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6635,7 +6743,8 @@
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -6653,15 +6762,15 @@
                 $"movies/anticipated?extended={extendedInfo.ToString()}&{filter.ToString()}&page={page}",
                 mostAnticipatedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, filter, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6672,19 +6781,20 @@
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?limit={limit}", mostAnticipatedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6695,7 +6805,8 @@
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -6710,15 +6821,15 @@
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?limit={limit}&{filter.ToString()}",
                                                                 mostAnticipatedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6729,22 +6840,23 @@
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 mostAnticipatedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6755,7 +6867,8 @@
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -6773,15 +6886,15 @@
                 $"movies/anticipated?extended={extendedInfo.ToString()}&limit={limit}&{filter.ToString()}",
                 mostAnticipatedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, filter, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6792,21 +6905,22 @@
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?page={page}&limit={limit}",
                                                                 mostAnticipatedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6817,8 +6931,9 @@
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var filter = new TraktMovieFilter()
                 .WithCertifications("TV-MA")
@@ -6834,15 +6949,15 @@
                 $"movies/anticipated?page={page}&limit={limit}&{filter.ToString()}",
                 mostAnticipatedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6853,23 +6968,24 @@
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 mostAnticipatedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6880,8 +6996,9 @@
             mostAnticipatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -6899,15 +7016,15 @@
                 $"movies/anticipated?extended={extendedInfo.ToString()}&page={page}&{filter.ToString()}&limit={limit}",
                 mostAnticipatedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, filter, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, filter, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7120,8 +7237,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7144,8 +7261,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7169,8 +7286,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7181,19 +7298,20 @@
             recentlyUpdatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?page={page}", recentlyUpdatedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7204,19 +7322,20 @@
             recentlyUpdatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?limit={limit}", recentlyUpdatedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7242,8 +7361,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7254,21 +7373,22 @@
             recentlyUpdatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
             var today = DateTime.UtcNow;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates/{today.ToTraktDateString()}?page={page}",
                                                                 recentlyUpdatedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7279,21 +7399,22 @@
             recentlyUpdatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
             var today = DateTime.UtcNow;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates/{today.ToTraktDateString()}?limit={limit}",
                                                                 recentlyUpdatedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7304,22 +7425,23 @@
             recentlyUpdatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?extended={extendedInfo.ToString()}&page={page}",
                                                                 recentlyUpdatedMovies, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, extendedInfo, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7330,22 +7452,23 @@
             recentlyUpdatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?extended={extendedInfo.ToString()}&limit={limit}",
                                                                 recentlyUpdatedMovies, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, extendedInfo, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7356,21 +7479,22 @@
             recentlyUpdatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?page={page}&limit={limit}",
                                                                 recentlyUpdatedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7381,23 +7505,24 @@
             recentlyUpdatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                                                                 recentlyUpdatedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, extendedInfo, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(null, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7408,22 +7533,23 @@
             recentlyUpdatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
             var today = DateTime.UtcNow;
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/updates/{today.ToTraktDateString()}?page={page}&limit={limit}",
                                                                 recentlyUpdatedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7434,8 +7560,9 @@
             recentlyUpdatedMovies.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
             var today = DateTime.UtcNow;
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
@@ -7444,15 +7571,15 @@
                 $"movies/updates/{today.ToTraktDateString()}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 recentlyUpdatedMovies, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today, extendedInfo, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetRecentlyUpdatedMoviesAsync(today, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 

@@ -14,6 +14,7 @@
     using Requests.Comments;
     using Requests.Comments.OAuth;
     using Requests.Handler;
+    using Requests.Parameters;
     using Responses;
     using System;
     using System.Collections.Generic;
@@ -442,8 +443,7 @@
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, for which the replies should be queried.</param>
-        /// <param name="page">The page of the replies list, that should be queried. Defaults to the first page.</param>
-        /// <param name="limitPerPage">The maximum item count of replies for each page, that should be queried.</param>
+        /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktComment}"/> instance containing the queried replies and which also
@@ -454,7 +454,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
-        public Task<TraktPagedResponse<ITraktComment>> GetCommentRepliesAsync(uint commentId, int? page = null, int? limitPerPage = null,
+        public Task<TraktPagedResponse<ITraktComment>> GetCommentRepliesAsync(uint commentId, TraktPagedParameters pagedParameters = null,
                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateId(commentId);
@@ -463,8 +463,8 @@
             return requestHandler.ExecutePagedRequestAsync(new TraktCommentRepliesRequest
             {
                 Id = commentId.ToString(),
-                Page = page,
-                Limit = limitPerPage
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit,
             }, cancellationToken);
         }
 

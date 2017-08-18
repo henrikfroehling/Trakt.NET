@@ -11,9 +11,9 @@
 
         internal TraktListSortOrder SortOrder { get; set; }
 
-        public int? Page { get; set; }
+        public uint? Page { get; set; }
 
-        public int? Limit { get; set; }
+        public uint? Limit { get; set; }
 
         public override string UriTemplate => "shows/{id}/seasons/{season}/episodes/{episode}/lists{/type}{/sort_order}{?page,limit}";
 

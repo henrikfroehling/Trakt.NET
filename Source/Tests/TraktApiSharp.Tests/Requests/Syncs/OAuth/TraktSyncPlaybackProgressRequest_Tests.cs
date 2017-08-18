@@ -61,7 +61,7 @@
 
             propertyInfo.CanRead.Should().BeTrue();
             propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(int?));
+            propertyInfo.PropertyType.Should().Be(typeof(uint?));
         }
 
         [Fact]
@@ -84,7 +84,7 @@
                                                    });
 
             // with limit
-            var limit = 10;
+            uint limit = 10;
             request = new TraktSyncPlaybackProgressRequest { Limit = limit };
 
             request.GetUriPathParameters().Should().NotBeNull()

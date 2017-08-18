@@ -8,7 +8,7 @@
     {
         internal TraktSyncType Type { get; set; }
 
-        internal int? Limit { get; set; }
+        internal uint? Limit { get; set; }
 
         public override string UriTemplate => "sync/playback{/type}{?limit}";
 

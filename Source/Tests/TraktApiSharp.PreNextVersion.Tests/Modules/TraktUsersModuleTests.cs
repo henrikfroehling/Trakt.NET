@@ -321,8 +321,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -346,8 +346,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -374,8 +374,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -388,20 +388,21 @@
             var section = TraktHiddenItemsSection.Recommendations;
             var type = TraktHiddenItemType.Movie;
             var itemCount = 3;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?type={type.UriName}&page={page}",
                                                              hiddenItems, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -414,20 +415,21 @@
             var section = TraktHiddenItemsSection.Recommendations;
             var type = TraktHiddenItemType.Movie;
             var itemCount = 3;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?type={type.UriName}&limit={limit}",
                                                              hiddenItems, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -440,21 +442,22 @@
             var section = TraktHiddenItemsSection.ProgressCollected;
             var type = TraktHiddenItemType.Season;
             var itemCount = 3;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?type={type.UriName}&page={page}&limit={limit}",
                                                              hiddenItems, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -479,8 +482,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -492,7 +495,8 @@
 
             var section = TraktHiddenItemsSection.ProgressWatched;
             var itemCount = 3;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -500,15 +504,15 @@
                 $"users/hidden/{section.UriName}?extended={extendedInfo.ToString()}&page={page}",
                 hiddenItems, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedInfo, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -520,7 +524,8 @@
 
             var section = TraktHiddenItemsSection.ProgressWatched;
             var itemCount = 3;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -528,15 +533,15 @@
                 $"users/hidden/{section.UriName}?extended={extendedInfo.ToString()}&limit={limit}",
                 hiddenItems, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedInfo, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -548,8 +553,9 @@
 
             var section = TraktHiddenItemsSection.Calendar;
             var itemCount = 3;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -557,15 +563,15 @@
                 $"users/hidden/{section.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 hiddenItems, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedInfo, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -577,20 +583,21 @@
 
             var section = TraktHiddenItemsSection.Calendar;
             var itemCount = 3;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?page={page}",
                                                              hiddenItems, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -602,20 +609,21 @@
 
             var section = TraktHiddenItemsSection.Calendar;
             var itemCount = 3;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?limit={limit}",
                                                              hiddenItems, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -627,21 +635,22 @@
 
             var section = TraktHiddenItemsSection.Calendar;
             var itemCount = 3;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?page={page}&limit={limit}",
                                                              hiddenItems, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -654,8 +663,9 @@
             var section = TraktHiddenItemsSection.Calendar;
             var type = TraktHiddenItemType.Season;
             var itemCount = 3;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -663,15 +673,15 @@
                 $"users/hidden/{section.UriName}?type={type.UriName}&extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 hiddenItems, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, extendedInfo, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -792,8 +802,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -815,8 +825,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -828,20 +838,21 @@
 
             var type = TraktUserLikeType.Comment;
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes/{type.UriName}?page={page}",
                                                              userLikes, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(type, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(type, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -853,20 +864,21 @@
 
             var type = TraktUserLikeType.List;
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes/{type.UriName}?limit={limit}",
                                                              userLikes, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(type, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(type, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -877,19 +889,20 @@
             userLikes.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes?page={page}", userLikes, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -900,19 +913,20 @@
             userLikes.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes?limit={limit}", userLikes, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -923,20 +937,21 @@
             userLikes.Should().NotBeNullOrEmpty();
 
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes?page={page}&limit={limit}", userLikes, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -948,21 +963,22 @@
 
             var type = TraktUserLikeType.List;
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithOAuth($"users/likes/{type.UriName}?page={page}&limit={limit}",
                                                              userLikes, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(type, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetLikesAsync(type, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1559,8 +1575,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1583,8 +1599,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1608,8 +1624,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1635,8 +1651,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1665,8 +1681,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1680,21 +1696,22 @@
             var commentType = TraktCommentType.Shout;
             var objectType = TraktObjectType.List;
             var itemCount = 5;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/comments/{commentType.UriName}/{objectType.UriName}?page={page}",
                 userComments, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1708,21 +1725,22 @@
             var commentType = TraktCommentType.Shout;
             var objectType = TraktObjectType.Movie;
             var itemCount = 5;
-            var limit = 6;
+            uint limit = 6;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/comments/{commentType.UriName}/{objectType.UriName}?limit={limit}",
                 userComments, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1736,22 +1754,23 @@
             var commentType = TraktCommentType.All;
             var objectType = TraktObjectType.Season;
             var itemCount = 5;
-            var page = 2;
-            var limit = 6;
+            uint page = 2;
+            uint limit = 6;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/comments/{commentType.UriName}/{objectType.UriName}?page={page}&limit={limit}",
                 userComments, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1778,8 +1797,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1792,7 +1811,8 @@
             var username = "sean";
             var commentType = TraktCommentType.Review;
             var itemCount = 5;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -1800,15 +1820,15 @@
                 $"users/{username}/comments/{commentType.UriName}?extended={extendedInfo.ToString()}&page={page}",
                 userComments, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, extendedInfo, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1821,7 +1841,8 @@
             var username = "sean";
             var commentType = TraktCommentType.Review;
             var itemCount = 5;
-            var limit = 6;
+            uint limit = 6;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -1829,15 +1850,15 @@
                 $"users/{username}/comments/{commentType.UriName}?extended={extendedInfo.ToString()}&limit={limit}",
                 userComments, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, extendedInfo, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1850,8 +1871,9 @@
             var username = "sean";
             var commentType = TraktCommentType.Review;
             var itemCount = 5;
-            var page = 2;
-            var limit = 6;
+            uint page = 2;
+            uint limit = 6;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -1859,15 +1881,15 @@
                 $"users/{username}/comments/{commentType.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 userComments, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, extendedInfo, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1880,20 +1902,21 @@
             var username = "sean";
             var commentType = TraktCommentType.Review;
             var itemCount = 5;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments/{commentType.UriName}?page={page}",
                                                                 userComments, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1906,20 +1929,21 @@
             var username = "sean";
             var commentType = TraktCommentType.Review;
             var itemCount = 5;
-            var limit = 6;
+            uint limit = 6;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments/{commentType.UriName}?limit={limit}",
                                                                 userComments, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1932,21 +1956,22 @@
             var username = "sean";
             var commentType = TraktCommentType.Review;
             var itemCount = 5;
-            var page = 2;
-            var limit = 6;
+            uint page = 2;
+            uint limit = 6;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments/{commentType.UriName}?page={page}&limit={limit}",
                                                                 userComments, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1970,8 +1995,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -1998,8 +2023,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2012,7 +2037,8 @@
             var username = "sean";
             var objectType = TraktObjectType.List;
             var itemCount = 5;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -2020,15 +2046,15 @@
                 $"users/{username}/comments/{objectType.UriName}?extended={extendedInfo.ToString()}&page={page}",
                 userComments, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, extendedInfo, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2041,7 +2067,8 @@
             var username = "sean";
             var objectType = TraktObjectType.List;
             var itemCount = 5;
-            var limit = 6;
+            uint limit = 6;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -2049,15 +2076,15 @@
                 $"users/{username}/comments/{objectType.UriName}?extended={extendedInfo.ToString()}&limit={limit}",
                 userComments, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, extendedInfo, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2070,8 +2097,9 @@
             var username = "sean";
             var objectType = TraktObjectType.List;
             var itemCount = 5;
-            var page = 2;
-            var limit = 6;
+            uint page = 2;
+            uint limit = 6;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -2079,15 +2107,15 @@
                 $"users/{username}/comments/{objectType.UriName}?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 userComments, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, extendedInfo, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2100,20 +2128,21 @@
             var username = "sean";
             var objectType = TraktObjectType.List;
             var itemCount = 5;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments/{objectType.UriName}?page={page}",
                                                                 userComments, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2126,20 +2155,21 @@
             var username = "sean";
             var objectType = TraktObjectType.List;
             var itemCount = 5;
-            var limit = 6;
+            uint limit = 6;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments/{objectType.UriName}?limit={limit}",
                                                                 userComments, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2152,21 +2182,22 @@
             var username = "sean";
             var objectType = TraktObjectType.List;
             var itemCount = 5;
-            var page = 2;
-            var limit = 6;
+            uint page = 2;
+            uint limit = 6;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments/{objectType.UriName}?page={page}&limit={limit}",
                                                                 userComments, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2192,8 +2223,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2205,7 +2236,8 @@
 
             var username = "sean";
             var itemCount = 5;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -2213,15 +2245,15 @@
                 $"users/{username}/comments?extended={extendedInfo.ToString()}&page={page}",
                 userComments, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, extendedInfo, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2233,7 +2265,8 @@
 
             var username = "sean";
             var itemCount = 5;
-            var limit = 6;
+            uint limit = 6;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -2241,15 +2274,15 @@
                 $"users/{username}/comments?extended={extendedInfo.ToString()}&limit={limit}",
                 userComments, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, extendedInfo, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2261,8 +2294,9 @@
 
             var username = "sean";
             var itemCount = 5;
-            var page = 2;
-            var limit = 6;
+            uint page = 2;
+            uint limit = 6;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -2270,15 +2304,15 @@
                 $"users/{username}/comments?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 userComments, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, extendedInfo, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2290,20 +2324,21 @@
 
             var username = "sean";
             var itemCount = 5;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments?page={page}",
                                                                 userComments, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2315,20 +2350,21 @@
 
             var username = "sean";
             var itemCount = 5;
-            var limit = 6;
+            uint limit = 6;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments?limit={limit}",
                                                                 userComments, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2340,21 +2376,22 @@
 
             var username = "sean";
             var itemCount = 5;
-            var page = 2;
-            var limit = 6;
+            uint page = 2;
+            uint limit = 6;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments?page={page}&limit={limit}",
                                                                 userComments, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -2368,8 +2405,9 @@
             var commentType = TraktCommentType.All;
             var objectType = TraktObjectType.Season;
             var itemCount = 5;
-            var page = 2;
-            var limit = 6;
+            uint page = 2;
+            uint limit = 6;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -2378,15 +2416,15 @@
                                                                 userComments, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType,
-                                                                                   extendedInfo, page, limit).Result;
+                                                                                   extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6236,8 +6274,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6262,8 +6300,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6276,20 +6314,21 @@
             var username = "sean";
             var listId = "55";
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/lists/{listId}/comments?page={page}",
                                                                 listComments, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6303,21 +6342,22 @@
             var listId = "55";
             var sortOrder = TraktCommentSortOrder.Newest;
             var itemCount = 2;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/lists/{listId}/comments/{sortOrder.UriName}?page={page}",
                 listComments, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6330,20 +6370,21 @@
             var username = "sean";
             var listId = "55";
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/lists/{listId}/comments?limit={limit}",
                                                                 listComments, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6357,21 +6398,22 @@
             var listId = "55";
             var sortOrder = TraktCommentSortOrder.Oldest;
             var itemCount = 2;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/lists/{listId}/comments/{sortOrder.UriName}?limit={limit}",
                 listComments, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6384,22 +6426,23 @@
             var username = "sean";
             var listId = "55";
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/lists/{listId}/comments?page={page}&limit={limit}",
                 listComments, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -6413,22 +6456,23 @@
             var listId = "55";
             var sortOrder = TraktCommentSortOrder.Replies;
             var itemCount = 2;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/lists/{listId}/comments/{sortOrder.UriName}?page={page}&limit={limit}",
                 listComments, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetListCommentsAsync(username, listId, sortOrder, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7705,8 +7749,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7729,8 +7773,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7754,8 +7798,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7780,8 +7824,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7808,8 +7852,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7838,8 +7882,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7872,8 +7916,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7889,7 +7933,8 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Episode;
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -7900,15 +7945,15 @@
                 userHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, endAt,
-                                                                                     extendedInfo, page).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7924,7 +7969,8 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Episode;
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -7935,15 +7981,15 @@
                 userHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, endAt,
-                                                                                     extendedInfo, null, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7974,8 +8020,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -7990,7 +8036,8 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -8000,15 +8047,15 @@
                 userHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null,
-                                                                                     extendedInfo, page).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8023,7 +8070,8 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -8033,15 +8081,15 @@
                 userHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null,
-                                                                                     extendedInfo, null, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8056,8 +8104,9 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -8068,15 +8117,15 @@
                 userHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null,
-                                                                                     extendedInfo, page, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8091,22 +8140,23 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}",
                 userHistory, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8121,22 +8171,23 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&limit={limit}",
                 userHistory, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8151,23 +8202,24 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
                 userHistory, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8198,8 +8250,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8214,7 +8266,8 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -8224,15 +8277,15 @@
                 userHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt,
-                                                                                     extendedInfo, page).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8247,7 +8300,8 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -8257,15 +8311,15 @@
                 userHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt,
-                                                                                     extendedInfo, null, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8280,8 +8334,9 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -8291,15 +8346,15 @@
                 userHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt,
-                                                                                     extendedInfo, page, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8314,22 +8369,23 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
                 userHistory, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8344,22 +8400,23 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
                 userHistory, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8374,23 +8431,24 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history/{type.UriName}/{itemId}" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
                 userHistory, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8420,8 +8478,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8435,7 +8493,8 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -8445,15 +8504,15 @@
                 userHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, null,
-                                                                                     extendedInfo, page).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8467,7 +8526,8 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -8477,15 +8537,15 @@
                 userHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, null,
-                                                                                     extendedInfo, null, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8499,8 +8559,9 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var type = TraktSyncItemType.Movie;
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -8511,15 +8572,15 @@
                 userHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, null,
-                                                                                     extendedInfo, page, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8545,8 +8606,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8560,22 +8621,23 @@
             var startAt = DateTime.Now.AddMonths(-1);
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
                                                                 $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}",
                                                                 userHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, null,
-                                                                                     null, page).Result;
+                                                                                     null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8589,22 +8651,23 @@
             var startAt = DateTime.Now.AddMonths(-1);
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
                                                                 $"?start_at={startAt.ToTraktLongDateTimeString()}&limit={limit}",
                                                                 userHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, null,
-                                                                                     null, null, limit).Result;
+                                                                                     null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8618,23 +8681,24 @@
             var startAt = DateTime.Now.AddMonths(-1);
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
                                                                 $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
                                                                 userHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, null,
-                                                                                     null, page, limit).Result;
+                                                                                     null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8666,8 +8730,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8682,7 +8746,8 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Episode;
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -8693,15 +8758,15 @@
                 userHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt,
-                                                                                     extendedInfo, page).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8716,7 +8781,8 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Episode;
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -8727,15 +8793,15 @@
                 userHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt,
-                                                                                     extendedInfo, null, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8750,8 +8816,9 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Episode;
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -8762,15 +8829,15 @@
                 userHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt,
-                                                                                     extendedInfo, page, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8798,8 +8865,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8814,22 +8881,23 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
                 userHistory, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8844,22 +8912,23 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
                 userHistory, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8874,23 +8943,24 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history/{type.UriName}" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
                 userHistory, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8920,8 +8990,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8935,7 +9005,8 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -8945,15 +9016,15 @@
                 userHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt,
-                                                                                     extendedInfo, page).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8967,7 +9038,8 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -8977,15 +9049,15 @@
                 userHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt,
-                                                                                     extendedInfo, null, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -8999,8 +9071,9 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -9010,15 +9083,15 @@
                 userHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt,
-                                                                                     extendedInfo, page, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9044,8 +9117,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9059,21 +9132,22 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
                                                                 $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
                                                                 userHistory, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9087,21 +9161,22 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
                                                                 $"?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
                                                                 userHistory, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9115,22 +9190,23 @@
             var endAt = DateTime.UtcNow;
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
                                                                 $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
                                                                 userHistory, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9158,8 +9234,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9172,7 +9248,8 @@
             var username = "sean";
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -9181,15 +9258,15 @@
                 userHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null,
-                                                                                     extendedInfo, page).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9202,7 +9279,8 @@
             var username = "sean";
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -9211,15 +9289,15 @@
                 userHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null,
-                                                                                     extendedInfo, null, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9232,8 +9310,9 @@
             var username = "sean";
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -9242,15 +9321,15 @@
                                                                 userHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null,
-                                                                                     extendedInfo, page, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9263,20 +9342,21 @@
             var username = "sean";
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}?page={page}",
                                                                 userHistory, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9289,20 +9369,21 @@
             var username = "sean";
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}?limit={limit}",
                                                                 userHistory, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9315,21 +9396,22 @@
             var username = "sean";
             var type = TraktSyncItemType.Show;
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}?page={page}&limit={limit}",
                                                                 userHistory, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9358,8 +9440,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9372,7 +9454,8 @@
             var username = "sean";
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -9382,15 +9465,15 @@
                 userHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null,
-                                                                                     extendedInfo, page).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9403,7 +9486,8 @@
             var username = "sean";
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -9413,15 +9497,15 @@
                 userHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null,
-                                                                                     extendedInfo, null, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9434,8 +9518,9 @@
             var username = "sean";
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -9445,15 +9530,15 @@
                 userHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null,
-                                                                                     extendedInfo, page, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9479,8 +9564,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9510,8 +9595,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9525,7 +9610,8 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -9535,15 +9621,15 @@
                 userHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt,
-                                                                                     extendedInfo, page).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9557,7 +9643,8 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -9567,15 +9654,15 @@
                 userHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt,
-                                                                                     extendedInfo, null, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9589,8 +9676,9 @@
             var startAt = DateTime.UtcNow.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -9600,15 +9688,15 @@
                 userHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt,
-                                                                                     extendedInfo, page, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9635,8 +9723,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9650,22 +9738,23 @@
             var startAt = DateTime.Now.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
                 userHistory, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9679,22 +9768,23 @@
             var startAt = DateTime.Now.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
                 userHistory, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9708,23 +9798,24 @@
             var startAt = DateTime.Now.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
                 userHistory, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9737,22 +9828,23 @@
             var username = "sean";
             var startAt = DateTime.Now.AddMonths(-1);
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}",
                 userHistory, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9765,22 +9857,23 @@
             var username = "sean";
             var startAt = DateTime.Now.AddMonths(-1);
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&limit={limit}",
                 userHistory, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9793,23 +9886,24 @@
             var username = "sean";
             var startAt = DateTime.Now.AddMonths(-1);
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history" +
                 $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
                 userHistory, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9837,8 +9931,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9851,7 +9945,8 @@
             var username = "sean";
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -9861,15 +9956,15 @@
                 userHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt,
-                                                                                     extendedInfo, page).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9882,7 +9977,8 @@
             var username = "sean";
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -9892,15 +9988,15 @@
                 userHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt,
-                                                                                     extendedInfo, null, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9913,8 +10009,9 @@
             var username = "sean";
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -9924,15 +10021,15 @@
                 userHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt,
-                                                                                     extendedInfo, page, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9958,8 +10055,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -9972,22 +10069,23 @@
             var username = "sean";
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
                 userHistory, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -10000,22 +10098,23 @@
             var username = "sean";
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
                 userHistory, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -10028,23 +10127,24 @@
             var username = "sean";
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history" +
                 $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
                 userHistory, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -10071,8 +10171,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -10084,7 +10184,8 @@
 
             var username = "sean";
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -10093,15 +10194,15 @@
                 userHistory, page, 10, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null,
-                                                                                     extendedInfo, page).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -10113,7 +10214,8 @@
 
             var username = "sean";
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -10122,15 +10224,15 @@
                 userHistory, 1, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null,
-                                                                                     extendedInfo, null, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -10142,8 +10244,9 @@
 
             var username = "sean";
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -10152,15 +10255,15 @@
                 userHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null,
-                                                                                     extendedInfo, page, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -10172,22 +10275,23 @@
 
             var username = "sean";
             var itemCount = 4;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history" +
                 $"?page={page}",
                 userHistory, page, 10, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -10199,22 +10303,23 @@
 
             var username = "sean";
             var itemCount = 4;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history" +
                 $"?limit={limit}",
                 userHistory, 1, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null, null, null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -10226,23 +10331,24 @@
 
             var username = "sean";
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/history" +
                 $"?page={page}&limit={limit}",
                 userHistory, page, limit, 1, itemCount);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null, null, page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -10258,8 +10364,9 @@
             var startAt = DateTime.Now.AddMonths(-1);
             var endAt = DateTime.UtcNow;
             var itemCount = 4;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -10270,15 +10377,15 @@
                 userHistory, page, limit, 1, itemCount);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, endAt,
-                                                                                     extendedInfo, page, limit).Result;
+                                                                                     extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
@@ -10946,8 +11053,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.SortBy.Should().NotBeNull().And.Be(sortBy);
             response.SortHow.Should().NotBeNull().And.Be(sortHow);
@@ -10976,8 +11083,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.SortBy.Should().NotBeNull().And.Be(sortBy);
             response.SortHow.Should().NotBeNull().And.Be(sortHow);
@@ -11006,8 +11113,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.SortBy.Should().NotBeNull().And.Be(sortBy);
             response.SortHow.Should().NotBeNull().And.Be(sortHow);
@@ -11038,8 +11145,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.SortBy.Should().NotBeNull().And.Be(sortBy);
             response.SortHow.Should().NotBeNull().And.Be(sortHow);
@@ -11056,7 +11163,8 @@
             var sortBy = "rank";
             var sortHow = "asc";
             var type = TraktSyncItemType.Movie;
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -11064,16 +11172,15 @@
                 $"users/{username}/watchlist/{type.UriName}?extended={extendedInfo.ToString()}&page={page}",
                 userWatchlist, page, 10, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedInfo,
-                                                                                page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.SortBy.Should().NotBeNull().And.Be(sortBy);
             response.SortHow.Should().NotBeNull().And.Be(sortHow);
@@ -11090,7 +11197,8 @@
             var sortBy = "rank";
             var sortHow = "asc";
             var type = TraktSyncItemType.Movie;
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -11098,16 +11206,15 @@
                 $"users/{username}/watchlist/{type.UriName}?extended={extendedInfo.ToString()}&limit={limit}",
                 userWatchlist, 1, limit, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedInfo,
-                                                                                null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.SortBy.Should().NotBeNull().And.Be(sortBy);
             response.SortHow.Should().NotBeNull().And.Be(sortHow);
@@ -11137,8 +11244,8 @@
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.SortBy.Should().NotBeNull().And.Be(sortBy);
             response.SortHow.Should().NotBeNull().And.Be(sortHow);
@@ -11154,7 +11261,8 @@
             var itemCount = 4;
             var sortBy = "rank";
             var sortHow = "asc";
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -11162,16 +11270,15 @@
                 $"users/{username}/watchlist?extended={extendedInfo.ToString()}&page={page}",
                 userWatchlist, page, 10, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, extendedInfo,
-                                                                                page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.SortBy.Should().NotBeNull().And.Be(sortBy);
             response.SortHow.Should().NotBeNull().And.Be(sortHow);
@@ -11187,7 +11294,8 @@
             var itemCount = 4;
             var sortBy = "rank";
             var sortHow = "asc";
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -11195,16 +11303,15 @@
                 $"users/{username}/watchlist?extended={extendedInfo.ToString()}&limit={limit}",
                 userWatchlist, 1, limit, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, extendedInfo,
-                                                                                null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.SortBy.Should().NotBeNull().And.Be(sortBy);
             response.SortHow.Should().NotBeNull().And.Be(sortHow);
@@ -11220,8 +11327,9 @@
             var itemCount = 4;
             var sortBy = "rank";
             var sortHow = "asc";
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -11229,16 +11337,15 @@
                 $"users/{username}/watchlist?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 userWatchlist, page, limit, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, extendedInfo,
-                                                                                page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.SortBy.Should().NotBeNull().And.Be(sortBy);
             response.SortHow.Should().NotBeNull().And.Be(sortHow);
@@ -11254,21 +11361,22 @@
             var itemCount = 4;
             var sortBy = "rank";
             var sortHow = "asc";
-            var page = 2;
+            uint page = 2;
+            var pagedParameters = new TraktPagedParameters(page);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/watchlist?page={page}",
                 userWatchlist, page, 10, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, null, page).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(10);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.SortBy.Should().NotBeNull().And.Be(sortBy);
             response.SortHow.Should().NotBeNull().And.Be(sortHow);
@@ -11284,22 +11392,22 @@
             var itemCount = 4;
             var sortBy = "rank";
             var sortHow = "asc";
-            var limit = 4;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(null, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/watchlist?limit={limit}",
                 userWatchlist, 1, limit, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, null,
-                                                                                null, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(1);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.SortBy.Should().NotBeNull().And.Be(sortBy);
             response.SortHow.Should().NotBeNull().And.Be(sortHow);
@@ -11315,23 +11423,23 @@
             var itemCount = 4;
             var sortBy = "rank";
             var sortHow = "asc";
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             TestUtility.SetupMockPaginationResponseWithoutOAuth(
                 $"users/{username}/watchlist?page={page}&limit={limit}",
                 userWatchlist, page, limit, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, null,
-                                                                                page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, null, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.SortBy.Should().NotBeNull().And.Be(sortBy);
             response.SortHow.Should().NotBeNull().And.Be(sortHow);
@@ -11348,8 +11456,9 @@
             var sortBy = "rank";
             var sortHow = "asc";
             var type = TraktSyncItemType.Movie;
-            var page = 2;
-            var limit = 4;
+            uint page = 2;
+            uint limit = 4;
+            var pagedParameters = new TraktPagedParameters(page, limit);
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
@@ -11358,16 +11467,15 @@
                 $"?extended={extendedInfo.ToString()}&page={page}&limit={limit}",
                 userWatchlist, page, limit, 1, itemCount, null, sortBy, sortHow);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedInfo,
-                                                                                page, limit).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedInfo, pagedParameters).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(itemCount);
             response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().HaveValue().And.Be(limit);
-            response.Page.Should().HaveValue().And.Be(page);
+            response.Limit.Should().Be(limit);
+            response.Page.Should().Be(page);
             response.PageCount.Should().HaveValue().And.Be(1);
             response.SortBy.Should().NotBeNull().And.Be(sortBy);
             response.SortHow.Should().NotBeNull().And.Be(sortHow);

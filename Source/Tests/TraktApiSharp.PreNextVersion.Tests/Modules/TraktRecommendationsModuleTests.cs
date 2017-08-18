@@ -59,8 +59,8 @@
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().HaveValue().And.Be(1);
-            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().Be(1u);
+            response.Limit.Should().Be(10u);
         }
 
         [TestMethod]
@@ -69,9 +69,9 @@
             var movies = TestUtility.ReadFileContents(@"Objects\Get\Recommendations\MovieRecommendations.json");
             movies.Should().NotBeNullOrEmpty();
 
-            var limit = 4U;
+            uint limit = 4U;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"recommendations/movies?limit={limit}", movies, 1, (int)limit);
+            TestUtility.SetupMockPaginationResponseWithOAuth($"recommendations/movies?limit={limit}", movies, 1, limit);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetMovieRecommendationsAsync(limit).Result;
 
@@ -79,8 +79,8 @@
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().HaveValue().And.Be(1);
-            response.Limit.Should().HaveValue().And.Be((int)limit);
+            response.Page.Should().Be(1u);
+            response.Limit.Should().Be(limit);
         }
 
         [TestMethod]
@@ -100,8 +100,8 @@
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().HaveValue().And.Be(1);
-            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().Be(1u);
+            response.Limit.Should().Be(10u);
         }
 
         [TestMethod]
@@ -110,13 +110,13 @@
             var movies = TestUtility.ReadFileContents(@"Objects\Get\Recommendations\MovieRecommendations.json");
             movies.Should().NotBeNullOrEmpty();
 
-            var limit = 4U;
+            uint limit = 4U;
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"recommendations/movies?extended={extendedInfo.ToString()}&limit={limit}",
-                movies, 1, (int)limit);
+                movies, 1, limit);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetMovieRecommendationsAsync(limit, extendedInfo).Result;
 
@@ -124,8 +124,8 @@
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().HaveValue().And.Be(1);
-            response.Limit.Should().HaveValue().And.Be((int)limit);
+            response.Page.Should().Be(1u);
+            response.Limit.Should().Be(limit);
         }
 
         [TestMethod]
@@ -330,8 +330,8 @@
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().HaveValue().And.Be(1);
-            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().Be(1u);
+            response.Limit.Should().Be(10u);
         }
 
         [TestMethod]
@@ -340,9 +340,9 @@
             var shows = TestUtility.ReadFileContents(@"Objects\Get\Recommendations\ShowRecommendations.json");
             shows.Should().NotBeNullOrEmpty();
 
-            var limit = 4U;
+            uint limit = 4U;
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"recommendations/shows?limit={limit}", shows, 1, (int)limit);
+            TestUtility.SetupMockPaginationResponseWithOAuth($"recommendations/shows?limit={limit}", shows, 1, limit);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetShowRecommendationsAsync(limit).Result;
 
@@ -350,8 +350,8 @@
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().HaveValue().And.Be(1);
-            response.Limit.Should().HaveValue().And.Be((int)limit);
+            response.Page.Should().Be(1u);
+            response.Limit.Should().Be(limit);
         }
 
         [TestMethod]
@@ -371,8 +371,8 @@
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().HaveValue().And.Be(1);
-            response.Limit.Should().HaveValue().And.Be(10);
+            response.Page.Should().Be(1u);
+            response.Limit.Should().Be(10u);
         }
 
         [TestMethod]
@@ -381,13 +381,13 @@
             var shows = TestUtility.ReadFileContents(@"Objects\Get\Recommendations\ShowRecommendations.json");
             shows.Should().NotBeNullOrEmpty();
 
-            var limit = 4U;
+            uint limit = 4U;
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockPaginationResponseWithOAuth(
                 $"recommendations/shows?extended={extendedInfo.ToString()}&limit={limit}",
-                shows, 1, (int)limit);
+                shows, 1, limit);
 
             var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.GetShowRecommendationsAsync(limit, extendedInfo).Result;
 
@@ -395,8 +395,8 @@
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().HaveValue().And.Be(1);
-            response.Limit.Should().HaveValue().And.Be((int)limit);
+            response.Page.Should().Be(1u);
+            response.Limit.Should().Be(limit);
         }
 
         [TestMethod]

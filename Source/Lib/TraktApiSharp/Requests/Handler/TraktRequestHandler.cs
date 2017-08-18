@@ -472,7 +472,7 @@
             {
                 string strPage = values.First();
 
-                if (int.TryParse(strPage, out int page))
+                if (uint.TryParse(strPage, out uint page))
                     headerResults.Page = page;
             }
 
@@ -480,7 +480,7 @@
             {
                 string strLimit = values.First();
 
-                if (int.TryParse(strLimit, out int limit))
+                if (uint.TryParse(strLimit, out uint limit))
                     headerResults.Limit = limit;
             }
 

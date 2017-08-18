@@ -24,7 +24,7 @@
 
             propertyInfo.CanRead.Should().BeTrue();
             propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(int?));
+            propertyInfo.PropertyType.Should().Be(typeof(uint?));
         }
 
         [Fact]
@@ -36,7 +36,7 @@
 
             propertyInfo.CanRead.Should().BeTrue();
             propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(int?));
+            propertyInfo.PropertyType.Should().Be(typeof(uint?));
         }
     }
 }

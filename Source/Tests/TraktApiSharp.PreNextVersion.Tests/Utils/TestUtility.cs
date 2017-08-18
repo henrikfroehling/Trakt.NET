@@ -252,7 +252,7 @@
         }
 
         public static void SetupMockPaginationResponseWithoutOAuth(string uri, string responseContent,
-                                                                   int? page = null, int? limit = null,
+                                                                   uint? page = null, uint? limit = null,
                                                                    int? pageCount = null, int? itemCount = null,
                                                                    int? userCount = null, string sortBy = null,
                                                                    string sortHow = null)
@@ -501,7 +501,7 @@
         }
 
         public static void SetupMockPaginationResponseWithOAuth(string uri, string responseContent,
-                                                                int? page = null, int? limit = null,
+                                                                uint? page = null, uint? limit = null,
                                                                 int? pageCount = null, int? itemCount = null,
                                                                 int? userCount = null, string sortBy = null,
                                                                 string sortHow = null)
