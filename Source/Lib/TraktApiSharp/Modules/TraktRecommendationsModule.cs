@@ -52,7 +52,7 @@
             {
                 ExtendedInfo = extendedInfo,
                 Limit = limit
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@
         public async Task<TraktNoContentResponse> HideMovieRecommendationAsync(string movieIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteNoContentRequestAsync(new TraktUserRecommendationHideMovieRequest { Id = movieIdOrSlug });
+            return await requestHandler.ExecuteNoContentRequestAsync(new TraktUserRecommendationHideMovieRequest { Id = movieIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -103,7 +103,7 @@
             {
                 ExtendedInfo = extendedInfo,
                 Limit = limit
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -120,7 +120,7 @@
         public async Task<TraktNoContentResponse> HideShowRecommendationAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteNoContentRequestAsync(new TraktUserRecommendationHideShowRequest { Id = showIdOrSlug });
+            return await requestHandler.ExecuteNoContentRequestAsync(new TraktUserRecommendationHideShowRequest { Id = showIdOrSlug }, cancellationToken);
         }
     }
 }

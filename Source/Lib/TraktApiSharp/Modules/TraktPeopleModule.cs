@@ -49,7 +49,7 @@
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@
 
             foreach (var queryParam in personsQueryParams)
             {
-                Task<TraktResponse<ITraktPerson>> task = GetPersonAsync(queryParam.Id, queryParam.ExtendedInfo);
+                Task<TraktResponse<ITraktPerson>> task = GetPersonAsync(queryParam.Id, queryParam.ExtendedInfo, cancellationToken);
                 tasks.Add(task);
             }
 
@@ -108,7 +108,7 @@
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -136,7 +136,7 @@
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
     }
 }

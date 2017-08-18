@@ -49,7 +49,7 @@
         public async Task<TraktResponse<ITraktSyncLastActivities>> GetLastActivitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncLastActivitiesRequest());
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncLastActivitiesRequest(), cancellationToken);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@
             {
                 Type = objectType,
                 Limit = limit
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@
                 throw new ArgumentOutOfRangeException(nameof(playbackId), "playback id not valid");
 
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteNoContentRequestAsync(new TraktSyncPlaybackDeleteRequest { Id = playbackId.ToString() });
+            return await requestHandler.ExecuteNoContentRequestAsync(new TraktSyncPlaybackDeleteRequest { Id = playbackId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -114,7 +114,7 @@
                                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktSyncCollectionMoviesRequest { ExtendedInfo = extendedInfo });
+            return await requestHandler.ExecuteListRequestAsync(new TraktSyncCollectionMoviesRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@
                                                                                            CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktSyncCollectionShowsRequest { ExtendedInfo = extendedInfo });
+            return await requestHandler.ExecuteListRequestAsync(new TraktSyncCollectionShowsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -161,7 +161,7 @@
         {
             ValidateCollectionPost(collectionPost);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncCollectionAddRequest { RequestBody = collectionPost });
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncCollectionAddRequest { RequestBody = collectionPost }, cancellationToken);
         }
 
         /// <summary>
@@ -187,7 +187,7 @@
         {
             ValidateCollectionPost(collectionRemovePost);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncCollectionRemoveRequest { RequestBody = collectionRemovePost });
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncCollectionRemoveRequest { RequestBody = collectionRemovePost }, cancellationToken);
         }
 
         /// <summary>
@@ -208,7 +208,7 @@
                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktSyncWatchedMoviesRequest { ExtendedInfo = extendedInfo });
+            return await requestHandler.ExecuteListRequestAsync(new TraktSyncWatchedMoviesRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -229,7 +229,7 @@
                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktSyncWatchedShowsRequest { ExtendedInfo = extendedInfo });
+            return await requestHandler.ExecuteListRequestAsync(new TraktSyncWatchedShowsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -275,7 +275,7 @@
                 ExtendedInfo = extendedInfo,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -301,7 +301,7 @@
         {
             ValidateHistoryPost(historyPost);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchedHistoryAddRequest { RequestBody = historyPost });
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchedHistoryAddRequest { RequestBody = historyPost }, cancellationToken);
         }
 
         /// <summary>
@@ -327,7 +327,7 @@
         {
             ValidateHistoryPost(historyRemovePost);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchedHistoryRemoveRequest { RequestBody = historyRemovePost });
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchedHistoryRemoveRequest { RequestBody = historyRemovePost }, cancellationToken);
         }
 
         /// <summary>
@@ -362,7 +362,7 @@
                 Type = ratingsItemType,
                 RatingFilter = ratingsFilter,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -388,7 +388,7 @@
         {
             ValidateRatingsPost(ratingsPost);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncRatingsAddRequest { RequestBody = ratingsPost });
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncRatingsAddRequest { RequestBody = ratingsPost }, cancellationToken);
         }
 
         /// <summary>
@@ -414,7 +414,7 @@
         {
             ValidateRatingsPost(ratingsRemovePost);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncRatingsRemoveRequest { RequestBody = ratingsRemovePost });
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncRatingsRemoveRequest { RequestBody = ratingsRemovePost }, cancellationToken);
         }
 
         /// <summary>
@@ -453,7 +453,7 @@
                 ExtendedInfo = extendedInfo,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -479,7 +479,7 @@
         {
             ValidateWatchlistPost(watchlistPost);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchlistAddRequest { RequestBody = watchlistPost });
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchlistAddRequest { RequestBody = watchlistPost }, cancellationToken);
         }
 
         /// <summary>
@@ -505,7 +505,7 @@
         {
             ValidateWatchlistPost(watchlistRemovePost);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchlistRemoveRequest { RequestBody = watchlistRemovePost });
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchlistRemoveRequest { RequestBody = watchlistRemovePost }, cancellationToken);
         }
 
         private void ValidateCollectionPost(TraktSyncCollectionPost collectionPost)

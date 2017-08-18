@@ -54,7 +54,7 @@
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -80,7 +80,7 @@
 
             foreach (var queryParam in showsQueryParams)
             {
-                Task<TraktResponse<ITraktShow>> task = GetShowAsync(queryParam.Id, queryParam.ExtendedInfo);
+                Task<TraktResponse<ITraktShow>> task = GetShowAsync(queryParam.Id, queryParam.ExtendedInfo, cancellationToken);
                 tasks.Add(task);
             }
 
@@ -103,7 +103,7 @@
         public async Task<TraktListResponse<ITraktShowAlias>> GetShowAliasesAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktShowAliasesRequest { Id = showIdOrSlug });
+            return await requestHandler.ExecuteListRequestAsync(new TraktShowAliasesRequest { Id = showIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -124,7 +124,7 @@
                                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktShowTranslationsRequest { Id = showIdOrSlug, LanguageCode = languageCode });
+            return await requestHandler.ExecuteListRequestAsync(new TraktShowTranslationsRequest { Id = showIdOrSlug, LanguageCode = languageCode }, cancellationToken);
         }
 
         /// <summary>
@@ -161,7 +161,7 @@
                 SortOrder = commentSortOrder,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -200,7 +200,7 @@
                 SortOrder = listSortOrder,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -228,7 +228,7 @@
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -246,7 +246,7 @@
         public async Task<TraktResponse<ITraktRating>> GetShowRatingsAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktShowRatingsRequest { Id = showIdOrSlug });
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktShowRatingsRequest { Id = showIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -285,7 +285,7 @@
                 ExtendedInfo = extendedInfo,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -303,7 +303,7 @@
         public async Task<TraktResponse<ITraktStatistics>> GetShowStatisticsAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktShowStatisticsRequest { Id = showIdOrSlug });
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktShowStatisticsRequest { Id = showIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -326,7 +326,7 @@
                                                                                    CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktShowWatchingUsersRequest { Id = showIdOrSlug, ExtendedInfo = extendedInfo });
+            return await requestHandler.ExecuteListRequestAsync(new TraktShowWatchingUsersRequest { Id = showIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -357,7 +357,7 @@
                 Hidden = includingHiddenSeasons,
                 Specials = includingSpecialSeasons,
                 CountSpecials = countSpecialSeasons
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -388,7 +388,7 @@
                 Hidden = includingHiddenSeasons,
                 Specials = includingSpecialSeasons,
                 CountSpecials = countSpecialSeasons
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -416,7 +416,7 @@
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -444,7 +444,7 @@
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -483,7 +483,7 @@
                 Filter = filter,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -522,7 +522,7 @@
                 Filter = filter,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -564,7 +564,7 @@
                 Filter = filter,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -606,7 +606,7 @@
                 Filter = filter,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -648,7 +648,7 @@
                 Filter = filter,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -687,7 +687,7 @@
                 Filter = filter,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -726,7 +726,7 @@
                 ExtendedInfo = extendedInfo,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
     }
 }

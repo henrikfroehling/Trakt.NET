@@ -49,7 +49,7 @@
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobbleStartRequest<ITraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
+                CreateScrobbleStartRequest<ITraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody), cancellationToken);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobblePauseRequest<ITraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
+                CreateScrobblePauseRequest<ITraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody), cancellationToken);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@
             var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobbleStopRequest<ITraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody));
+                CreateScrobbleStopRequest<ITraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody), cancellationToken);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@
             var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobbleStartRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+                CreateScrobbleStartRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@
             var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobblePauseRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+                CreateScrobblePauseRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
         }
 
         /// <summary>
@@ -201,7 +201,7 @@
             var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobbleStopRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+                CreateScrobbleStopRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
         }
 
         /// <summary>
@@ -233,7 +233,7 @@
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobbleStartRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+                CreateScrobbleStartRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
         }
 
         /// <summary>
@@ -265,7 +265,7 @@
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobblePauseRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+                CreateScrobblePauseRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
         }
 
         /// <summary>
@@ -297,7 +297,7 @@
             var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
 
             return await requestHandler.ExecuteSingleItemRequestAsync(
-                CreateScrobbleStopRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody));
+                CreateScrobbleStopRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
         }
 
         private TraktScrobbleStartRequest<T, U> CreateScrobbleStartRequest<T, U>(U requestBody) where U : TraktScrobblePost

@@ -52,7 +52,7 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -120,7 +120,7 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -154,7 +154,7 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -188,7 +188,7 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -222,7 +222,7 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -256,7 +256,7 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -290,7 +290,7 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -324,7 +324,7 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -358,7 +358,7 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            });
+            }, cancellationToken);
         }
     }
 }

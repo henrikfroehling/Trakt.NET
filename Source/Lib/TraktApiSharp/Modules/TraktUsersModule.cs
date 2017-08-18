@@ -49,7 +49,7 @@
         public async Task<TraktResponse<ITraktUserSettings>> GetSettingsAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktUserSettingsRequest());
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktUserSettingsRequest(), cancellationToken);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@
                                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktUserFollowRequestsRequest { ExtendedInfo = extendedInfo });
+            return await requestHandler.ExecuteListRequestAsync(new TraktUserFollowRequestsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@
                 ExtendedInfo = extendedInfo,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -146,7 +146,7 @@
                 Type = likeType,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -174,7 +174,7 @@
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -203,7 +203,7 @@
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -232,7 +232,7 @@
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -278,7 +278,7 @@
                 ExtendedInfo = extendedInfo,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -296,7 +296,7 @@
         public async Task<TraktListResponse<ITraktList>> GetCustomListsAsync(string usernameOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktUserCustomListsRequest { Username = usernameOrSlug });
+            return await requestHandler.ExecuteListRequestAsync(new TraktUserCustomListsRequest { Username = usernameOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -325,7 +325,7 @@
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -354,7 +354,7 @@
 
             foreach (var queryParam in userListsQueryParams)
             {
-                Task<TraktResponse<ITraktList>> task = GetCustomSingleListAsync(queryParam.Username, queryParam.ListId);
+                Task<TraktResponse<ITraktList>> task = GetCustomSingleListAsync(queryParam.Username, queryParam.ListId, cancellationToken);
                 tasks.Add(task);
             }
 
@@ -400,7 +400,7 @@
                 ExtendedInfo = extendedInfo,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -451,7 +451,7 @@
             {
                 Username = usernameOrSlug,
                 RequestBody = requestBody
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -512,7 +512,7 @@
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
                 RequestBody = requestBody
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -539,7 +539,7 @@
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -582,7 +582,7 @@
                 Id = listIdOrSlug,
                 Type = listItemType,
                 RequestBody = listItemsPost
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -622,7 +622,7 @@
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
                 RequestBody = listItemsRemovePost
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -664,7 +664,7 @@
                 SortOrder = commentSortOrder,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -691,7 +691,7 @@
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -718,7 +718,7 @@
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -741,7 +741,7 @@
                                                                                    CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktUserFollowersRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo });
+            return await requestHandler.ExecuteListRequestAsync(new TraktUserFollowersRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -764,7 +764,7 @@
                                                                                    CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktUserFollowingRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo });
+            return await requestHandler.ExecuteListRequestAsync(new TraktUserFollowingRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -787,7 +787,7 @@
                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteListRequestAsync(new TraktUserFriendsRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo });
+            return await requestHandler.ExecuteListRequestAsync(new TraktUserFriendsRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -809,7 +809,7 @@
                                                                                            CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktUserFollowUserRequest { Username = usernameOrSlug });
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktUserFollowUserRequest { Username = usernameOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -826,7 +826,7 @@
         public async Task<TraktNoContentResponse> UnfollowUserAsync(string usernameOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteNoContentRequestAsync(new TraktUserUnfollowUserRequest { Username = usernameOrSlug });
+            return await requestHandler.ExecuteNoContentRequestAsync(new TraktUserUnfollowUserRequest { Username = usernameOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -845,7 +845,7 @@
         {
             ValidateFollowerRequestId(followerRequestId);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktUserApproveFollowerRequest { Id = followerRequestId.ToString() });
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktUserApproveFollowerRequest { Id = followerRequestId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -863,7 +863,7 @@
         {
             ValidateFollowerRequestId(followerRequestId);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteNoContentRequestAsync(new TraktUserDenyFollowerRequest { Id = followerRequestId.ToString() });
+            return await requestHandler.ExecuteNoContentRequestAsync(new TraktUserDenyFollowerRequest { Id = followerRequestId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -912,7 +912,7 @@
                 ExtendedInfo = extendedInfo,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -949,7 +949,7 @@
                 Type = ratingsItemType,
                 RatingFilter = ratingsFilter,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -991,7 +991,7 @@
                 ExtendedInfo = extendedInfo,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -1018,7 +1018,7 @@
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -1045,7 +1045,7 @@
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -1073,7 +1073,7 @@
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -1091,7 +1091,7 @@
         public async Task<TraktResponse<ITraktUserStatistics>> GetStatisticsAsync(string usernameOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktUserStatisticsRequest { Username = usernameOrSlug });
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktUserStatisticsRequest { Username = usernameOrSlug }, cancellationToken);
         }
 
         private void ValidateCustomListItemsPost(TraktUserCustomListItemsPost customListItemsPost)

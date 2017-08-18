@@ -62,7 +62,7 @@
                 SeasonNumber = seasonNumber,
                 EpisodeNumber = episodeNumber,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@
             foreach (var queryParam in episodesQueryParams)
             {
                 Task<TraktResponse<ITraktEpisode>> task = GetEpisodeAsync(queryParam.ShowId, queryParam.Season, queryParam.Episode,
-                                                                          queryParam.ExtendedInfo);
+                                                                          queryParam.ExtendedInfo, cancellationToken);
                 tasks.Add(task);
             }
 
@@ -143,7 +143,7 @@
                 SortOrder = commentSortOrder,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -190,7 +190,7 @@
                 SortOrder = listSortOrder,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -221,7 +221,7 @@
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
                 EpisodeNumber = episodeNumber
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -252,7 +252,7 @@
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
                 EpisodeNumber = episodeNumber
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -287,7 +287,7 @@
                 SeasonNumber = seasonNumber,
                 EpisodeNumber = episodeNumber,
                 LanguageCode = languageCode
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -324,7 +324,7 @@
                 SeasonNumber = seasonNumber,
                 EpisodeNumber = episodeNumber,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
     }
 }

@@ -63,7 +63,7 @@
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo,
                 TranslationLanguageCode = translationLanguageCode
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@
                 SeasonNumber = seasonNumber,
                 ExtendedInfo = extendedInfo,
                 TranslationLanguageCode = translationLanguageCode
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -134,7 +134,7 @@
             {
                 Task<TraktListResponse<ITraktEpisode>> task = GetSeasonAsync(queryParam.ShowId, queryParam.Season,
                                                                              queryParam.ExtendedInfo,
-                                                                             queryParam.TranslationLanguageCode);
+                                                                             queryParam.TranslationLanguageCode, cancellationToken);
 
                 tasks.Add(task);
             }
@@ -180,7 +180,7 @@
                 SortOrder = commentSortOrder,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -222,7 +222,7 @@
                 SortOrder = listSortOrder,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -248,7 +248,7 @@
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -274,7 +274,7 @@
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -306,7 +306,7 @@
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
                 ExtendedInfo = extendedInfo
-            });
+            }, cancellationToken);
         }
     }
 }

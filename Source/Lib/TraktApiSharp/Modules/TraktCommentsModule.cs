@@ -48,7 +48,7 @@
         {
             ValidateId(commentId);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentSummaryRequest { Id = commentId.ToString() });
+            return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentSummaryRequest { Id = commentId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@
 
             for (int i = 0; i < commentIds.Length; i++)
             {
-                Task<TraktResponse<ITraktComment>> task = GetCommentAsync(commentIds[i]);
+                Task<TraktResponse<ITraktComment>> task = GetCommentAsync(commentIds[i], cancellationToken);
                 tasks.Add(task);
             }
 
@@ -128,7 +128,7 @@
                     Spoiler = containsSpoiler,
                     Sharing = sharing
                 }
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -174,7 +174,7 @@
                     Spoiler = containsSpoiler,
                     Sharing = sharing
                 }
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -215,7 +215,7 @@
                     Spoiler = containsSpoiler,
                     Sharing = sharing
                 }
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -256,7 +256,7 @@
                     Spoiler = containsSpoiler,
                     Sharing = sharing
                 }
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -297,7 +297,7 @@
                     Spoiler = containsSpoiler,
                     Sharing = sharing
                 }
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -334,7 +334,7 @@
                     Comment = comment,
                     Spoiler = containsSpoiler
                 }
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -371,7 +371,7 @@
                     Comment = comment,
                     Spoiler = containsSpoiler
                 }
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -389,7 +389,7 @@
         {
             ValidateId(commentId);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteNoContentRequestAsync(new TraktCommentDeleteRequest { Id = commentId.ToString() });
+            return await requestHandler.ExecuteNoContentRequestAsync(new TraktCommentDeleteRequest { Id = commentId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -407,7 +407,7 @@
         {
             ValidateId(commentId);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteNoContentRequestAsync(new TraktCommentLikeRequest { Id = commentId.ToString() });
+            return await requestHandler.ExecuteNoContentRequestAsync(new TraktCommentLikeRequest { Id = commentId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -425,7 +425,7 @@
         {
             ValidateId(commentId);
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteNoContentRequestAsync(new TraktCommentUnlikeRequest { Id = commentId.ToString() });
+            return await requestHandler.ExecuteNoContentRequestAsync(new TraktCommentUnlikeRequest { Id = commentId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -459,7 +459,7 @@
                 Id = commentId.ToString(),
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         private void ValidateId(uint commentId)

@@ -20,6 +20,7 @@
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
+    using System.Threading;
     using System.Threading.Tasks;
     using UriTemplates;
     using Utils;
@@ -50,92 +51,92 @@
             _client = client;
         }
 
-        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(ITraktRequest request)
+        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(ITraktRequest request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
-            return QueryNoContentAsync(SetupRequestMessage(request));
+            return QueryNoContentAsync(SetupRequestMessage(request), cancellationToken);
         }
 
-        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType>(ITraktRequest<TResponseContentType> request)
+        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType>(ITraktRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
-            return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request));
+            return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request), false, cancellationToken);
         }
 
-        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType>(ITraktRequest<TResponseContentType> request)
+        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType>(ITraktRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
-            return QueryListAsync<TResponseContentType>(SetupRequestMessage(request));
+            return QueryListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
         }
 
-        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(ITraktRequest<TResponseContentType> request)
+        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(ITraktRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
-            return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request));
+            return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
         }
 
         // post requests
 
-        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TResponseContentType>(ITraktPostRequest<TResponseContentType> request)
+        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TResponseContentType>(ITraktPostRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
-            return QueryNoContentAsync(SetupRequestMessage(request));
+            return QueryNoContentAsync(SetupRequestMessage(request), cancellationToken);
         }
 
-        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPostRequest<TResponseContentType, TRequestBodyType> request)
+        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
             var isCheckinRequest = request is TraktCheckinRequest<TResponseContentType, TRequestBodyType>;
-            return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request), isCheckinRequest);
+            return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request), isCheckinRequest, cancellationToken);
         }
 
-        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPostRequest<TResponseContentType, TRequestBodyType> request)
+        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
-            return QueryListAsync<TResponseContentType>(SetupRequestMessage(request));
+            return QueryListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
         }
 
-        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPostRequest<TResponseContentType, TRequestBodyType> request)
+        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
-            return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request));
+            return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
         }
 
         // put requests
 
-        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(ITraktPutRequest<TRequestBodyType> request)
+        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(ITraktPutRequest<TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
-            return QueryNoContentAsync(SetupRequestMessage(request));
+            return QueryNoContentAsync(SetupRequestMessage(request), cancellationToken);
         }
 
-        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPutRequest<TResponseContentType, TRequestBodyType> request)
+        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
-            return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request));
+            return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request), false, cancellationToken);
         }
 
-        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPutRequest<TResponseContentType, TRequestBodyType> request)
+        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
-            return QueryListAsync<TResponseContentType>(SetupRequestMessage(request));
+            return QueryListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
         }
 
-        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPutRequest<TResponseContentType, TRequestBodyType> request)
+        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
-            return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request));
+            return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
         }
 
         // query response helper methods
 
-        private async Task<TraktNoContentResponse> QueryNoContentAsync(TraktHttpRequestMessage requestMessage)
+        private async Task<TraktNoContentResponse> QueryNoContentAsync(TraktHttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
         {
             HttpResponseMessage responseMessage = null;
 
             try
             {
-                responseMessage = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
+                responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
                 Debug.Assert(responseMessage?.StatusCode == HttpStatusCode.NoContent, "precondition for generating no content response failed: invalid status code");
 
                 return new TraktNoContentResponse { IsSuccess = true };
@@ -153,13 +154,13 @@
             }
         }
 
-        private async Task<TraktResponse<TResponseContentType>> QuerySingleItemAsync<TResponseContentType>(TraktHttpRequestMessage requestMessage, bool isCheckinRequest = false)
+        private async Task<TraktResponse<TResponseContentType>> QuerySingleItemAsync<TResponseContentType>(TraktHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default(CancellationToken))
         {
             HttpResponseMessage responseMessage = null;
 
             try
             {
-                responseMessage = await ExecuteRequestAsync(requestMessage, isCheckinRequest).ConfigureAwait(false);
+                responseMessage = await ExecuteRequestAsync(requestMessage, isCheckinRequest, cancellationToken).ConfigureAwait(false);
                 Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating single item response failed: invalid status code");
 
                 Stream responseContentStream = await GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
@@ -168,7 +169,7 @@
                 ITraktObjectJsonReader<TResponseContentType> objectJsonReader = TraktJsonFactoryContainer.CreateObjectReader<TResponseContentType>();
                 Debug.Assert(objectJsonReader != null, "precondition for deserializing response content failed: json content reader is null");
 
-                TResponseContentType contentObject = await objectJsonReader.ReadObjectAsync(responseContentStream).ConfigureAwait(false);
+                TResponseContentType contentObject = await objectJsonReader.ReadObjectAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
                 bool hasValue = !EqualityComparer<TResponseContentType>.Default.Equals(contentObject, default(TResponseContentType));
 
                 var response = new TraktResponse<TResponseContentType>
@@ -196,13 +197,13 @@
             }
         }
 
-        private async Task<TraktListResponse<TResponseContentType>> QueryListAsync<TResponseContentType>(TraktHttpRequestMessage requestMessage)
+        private async Task<TraktListResponse<TResponseContentType>> QueryListAsync<TResponseContentType>(TraktHttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
         {
             HttpResponseMessage responseMessage = null;
 
             try
             {
-                responseMessage = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
+                responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
                 Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating list response failed: invalid status code");
 
                 Stream responseContentStream = await GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
@@ -211,7 +212,7 @@
                 ITraktArrayJsonReader<TResponseContentType> arrayJsonReader = TraktJsonFactoryContainer.CreateArrayReader<TResponseContentType>();
                 Debug.Assert(arrayJsonReader != null, "precondition for deserializing response content failed: json content reader is null");
 
-                IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream).ConfigureAwait(false);
+                IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
 
                 var response = new TraktListResponse<TResponseContentType>
                 {
@@ -238,13 +239,13 @@
             }
         }
 
-        private async Task<TraktPagedResponse<TResponseContentType>> QueryPagedListAsync<TResponseContentType>(TraktHttpRequestMessage requestMessage)
+        private async Task<TraktPagedResponse<TResponseContentType>> QueryPagedListAsync<TResponseContentType>(TraktHttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
         {
             HttpResponseMessage responseMessage = null;
 
             try
             {
-                responseMessage = await ExecuteRequestAsync(requestMessage).ConfigureAwait(false);
+                responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
                 Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating paged list response failed: invalid status code");
 
                 Stream responseContentStream = await GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
@@ -253,7 +254,7 @@
                 ITraktArrayJsonReader<TResponseContentType> arrayJsonReader = TraktJsonFactoryContainer.CreateArrayReader<TResponseContentType>();
                 Debug.Assert(arrayJsonReader != null, "precondition for deserializing response content failed: json content reader is null");
 
-                IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream).ConfigureAwait(false);
+                IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
 
                 var response = new TraktPagedResponse<TResponseContentType>
                 {
@@ -283,12 +284,12 @@
             }
         }
 
-        private async Task<HttpResponseMessage> ExecuteRequestAsync(TraktHttpRequestMessage requestMessage, bool isCheckinRequest = false)
+        private async Task<HttpResponseMessage> ExecuteRequestAsync(TraktHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default(CancellationToken))
         {
-            HttpResponseMessage responseMessage = await s_httpClient.SendAsync(requestMessage).ConfigureAwait(false);
+            HttpResponseMessage responseMessage = await s_httpClient.SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
             if (!responseMessage.IsSuccessStatusCode)
-                await ErrorHandlingAsync(responseMessage, requestMessage, isCheckinRequest).ConfigureAwait(false);
+                await ErrorHandlingAsync(responseMessage, requestMessage, isCheckinRequest, cancellationToken).ConfigureAwait(false);
 
             return responseMessage;
         }
@@ -541,7 +542,7 @@
             }
         }
 
-        private async Task ErrorHandlingAsync(HttpResponseMessage response, TraktHttpRequestMessage requestMessage, bool isCheckinRequest = false)
+        private async Task ErrorHandlingAsync(HttpResponseMessage response, TraktHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default(CancellationToken))
         {
             var responseContent = string.Empty;
 
@@ -591,7 +592,7 @@
                         ServerReasonPhrase = reasonPhrase
                     };
                 case HttpStatusCode.Conflict:
-                    await HandleConflictStatusCode(isCheckinRequest, responseContent, url, requestBodyJson, reasonPhrase);
+                    await HandleConflictStatusCode(isCheckinRequest, responseContent, url, requestBodyJson, reasonPhrase, cancellationToken);
                     break;
                 case HttpStatusCode.InternalServerError:
                     throw new TraktServerException()
@@ -656,7 +657,7 @@
                     };
             }
 
-            await HandleUnknownError(responseContent, code, url, requestBodyJson, reasonPhrase);
+            await HandleUnknownError(responseContent, code, url, requestBodyJson, reasonPhrase, cancellationToken);
         }
 
         private static void HandleNotFoundStatusCode(TraktHttpRequestMessage requestMessage, string responseContent, string url, string requestBodyJson, string reasonPhrase)
@@ -741,7 +742,7 @@
             throw new TraktNotFoundException($"Resource not found - Reason Phrase: {reasonPhrase}");
         }
 
-        private static async Task HandleConflictStatusCode(bool isCheckinRequest, string responseContent, string url, string requestBodyJson, string reasonPhrase)
+        private static async Task HandleConflictStatusCode(bool isCheckinRequest, string responseContent, string url, string requestBodyJson, string reasonPhrase, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (isCheckinRequest)
             {
@@ -750,7 +751,7 @@
                 if (!string.IsNullOrEmpty(responseContent))
                 {
                     ITraktObjectJsonReader<ITraktCheckinPostErrorResponse> errorResponseReader = TraktJsonFactoryContainer.CreateObjectReader<ITraktCheckinPostErrorResponse>();
-                    errorResponse = await errorResponseReader.ReadObjectAsync(responseContent);
+                    errorResponse = await errorResponseReader.ReadObjectAsync(responseContent, cancellationToken);
                 }
 
                 throw new TraktCheckinException("checkin is already in progress")
@@ -772,14 +773,14 @@
             };
         }
 
-        private static async Task HandleUnknownError(string responseContent, HttpStatusCode code, string url, string requestBodyJson, string reasonPhrase)
+        private static async Task HandleUnknownError(string responseContent, HttpStatusCode code, string url, string requestBodyJson, string reasonPhrase, CancellationToken cancellationToken = default(CancellationToken))
         {
             ITraktError error = null;
 
             try
             {
                 ITraktObjectJsonReader<ITraktError> errorReader = TraktJsonFactoryContainer.CreateObjectReader<ITraktError>();
-                error = await errorReader.ReadObjectAsync(responseContent);
+                error = await errorReader.ReadObjectAsync(responseContent, cancellationToken);
             }
             catch (Exception ex)
             {

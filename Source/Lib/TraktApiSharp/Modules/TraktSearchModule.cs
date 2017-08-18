@@ -72,7 +72,7 @@
                 ExtendedInfo = extendedInfo,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@
                 ExtendedInfo = extendedInfo,
                 Page = page,
                 Limit = limitPerPage
-            });
+            }, cancellationToken);
         }
     }
 }

@@ -80,7 +80,7 @@
             return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktMovieCheckinPostResponse, TraktMovieCheckinPost>
             {
                 RequestBody = requestBody
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@
             return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
             {
                 RequestBody = requestBody
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -193,7 +193,7 @@
             return await requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
             {
                 RequestBody = requestBody
-            });
+            }, cancellationToken);
         }
 
         /// <summary>
@@ -208,7 +208,7 @@
         public async Task<TraktNoContentResponse> DeleteAnyActiveCheckinsAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            return await requestHandler.ExecuteNoContentRequestAsync(new TraktCheckinsDeleteRequest());
+            return await requestHandler.ExecuteNoContentRequestAsync(new TraktCheckinsDeleteRequest(), cancellationToken);
         }
 
         private void Validate(TraktMovie movie)
