@@ -30,7 +30,7 @@ Features
 - RemoveHiddenItemsAsync() TraktUsersModule
 - "Title" property in TraktSeason
         </releaseNotes>
-        <copyright>Copyright (c) 2016 - 2017 Henrik Fröhling</copyright>
+        <copyright>Copyright © 2016 - 2017 Henrik Fröhling et al.</copyright>
         <language>en-US</language>
         <tags>trakt REST</tags>
         <dependencies>

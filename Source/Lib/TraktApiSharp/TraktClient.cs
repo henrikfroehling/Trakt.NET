@@ -61,7 +61,7 @@
             get { return Authentication.ClientSecret; }
             set { Authentication.ClientSecret = value; }
         }
-        
+
         /// <summary>Gets or sets the Trakt Authorization information. See also <seealso cref="TraktAuthorization" />.</summary>
         public TraktAuthorization Authorization
         {
