@@ -22,9 +22,12 @@
         /// Initializes a new instance of the <see cref="TraktHiddenItemsSection" /> class.<para />
         /// The initialized <see cref="TraktHiddenItemsSection" /> is invalid.
         /// </summary>
-        public TraktHiddenItemsSection() : base() { }
+        public TraktHiddenItemsSection()
+        {
+        }
 
-        private TraktHiddenItemsSection(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktHiddenItemsSection(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

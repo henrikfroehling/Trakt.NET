@@ -52,7 +52,7 @@
                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
+            TraktMovieScrobblePost requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobbleStartRequest<ITraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody), cancellationToken);
@@ -80,7 +80,7 @@
                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
+            TraktMovieScrobblePost requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobblePauseRequest<ITraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody), cancellationToken);
@@ -108,7 +108,7 @@
                                                                                    CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            var requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
+            TraktMovieScrobblePost requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobbleStopRequest<ITraktMovieScrobblePostResponse, TraktMovieScrobblePost>(requestBody), cancellationToken);
@@ -140,7 +140,7 @@
                                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
+            TraktEpisodeScrobblePost requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobbleStartRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
@@ -172,7 +172,7 @@
                                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
+            TraktEpisodeScrobblePost requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobblePauseRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
@@ -204,7 +204,7 @@
                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            var requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
+            TraktEpisodeScrobblePost requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobbleStopRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
@@ -236,7 +236,7 @@
                                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
+            TraktEpisodeScrobblePost requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobbleStartRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
@@ -268,7 +268,7 @@
                                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
+            TraktEpisodeScrobblePost requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobblePauseRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
@@ -300,7 +300,7 @@
                                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new TraktRequestHandler(Client);
-            var requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
+            TraktEpisodeScrobblePost requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(
                 CreateScrobbleStopRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);

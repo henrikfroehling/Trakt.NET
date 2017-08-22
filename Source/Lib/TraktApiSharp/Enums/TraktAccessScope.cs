@@ -19,9 +19,12 @@
         /// Initializes a new instance of the <see cref="TraktAccessScope" /> class.<para />
         /// The initialized <see cref="TraktAccessScope" /> is invalid.
         /// </summary>
-        public TraktAccessScope() : base() { }
+        public TraktAccessScope()
+        {
+        }
 
-        private TraktAccessScope(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktAccessScope(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

@@ -31,9 +31,12 @@
         /// Initializes a new instance of the <see cref="TraktReleaseType" /> class.<para />
         /// The initialized <see cref="TraktReleaseType" /> is invalid.
         /// </summary>
-        public TraktReleaseType() : base() { }
+        public TraktReleaseType()
+        {
+        }
 
-        private TraktReleaseType(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktReleaseType(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

@@ -25,9 +25,12 @@
         /// Initializes a new instance of the <see cref="TraktSearchIdType" /> class.<para />
         /// The initialized <see cref="TraktSearchIdType" /> is invalid.
         /// </summary>
-        public TraktSearchIdType() : base() { }
+        public TraktSearchIdType()
+        {
+        }
 
-        private TraktSearchIdType(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktSearchIdType(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

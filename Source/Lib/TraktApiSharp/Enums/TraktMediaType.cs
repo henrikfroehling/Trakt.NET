@@ -34,9 +34,12 @@
         /// Initializes a new instance of the <see cref="TraktMediaType" /> class.<para />
         /// The initialized <see cref="TraktMediaType" /> is invalid.
         /// </summary>
-        public TraktMediaType() : base() { }
+        public TraktMediaType()
+        {
+        }
 
-        private TraktMediaType(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktMediaType(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

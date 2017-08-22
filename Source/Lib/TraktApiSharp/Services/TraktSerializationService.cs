@@ -27,10 +27,10 @@
             if (authorization == null)
                 throw new ArgumentNullException(nameof(authorization), "authorization must not be null");
 
-            var scope = authorization.AccessScope ?? TraktAccessScope.Public;
-            var tokenType = authorization.TokenType ?? TraktAccessTokenType.Bearer;
-            var accessToken = authorization.AccessToken ?? string.Empty;
-            var refreshToken = authorization.RefreshToken ?? string.Empty;
+            TraktAccessScope scope = authorization.AccessScope ?? TraktAccessScope.Public;
+            TraktAccessTokenType tokenType = authorization.TokenType ?? TraktAccessTokenType.Bearer;
+            string accessToken = authorization.AccessToken ?? string.Empty;
+            string refreshToken = authorization.RefreshToken ?? string.Empty;
 
             var stringBuilder = new StringBuilder();
             var stringWriter = new StringWriter(stringBuilder);
@@ -74,10 +74,10 @@
 
             var accessToken = string.Empty;
             var refreshToken = string.Empty;
-            var expiresIn = 0;
+            int expiresIn = 0;
             var scope = string.Empty;
             var tokenType = string.Empty;
-            var createdAtTicks = 0L;
+            long createdAtTicks = 0L;
             var ignoreExpiration = false;
 
             var stringReader = new StringReader(authorizationJson);
@@ -171,14 +171,11 @@
                 throw new ArgumentException("authorization JSON is invalid", nameof(authorizationJson), ex);
             }
 
-            if (string.IsNullOrEmpty(accessToken) || string.IsNullOrEmpty(refreshToken)
-                    || string.IsNullOrEmpty(scope) || string.IsNullOrEmpty(tokenType))
-            {
+            if (string.IsNullOrEmpty(accessToken) || string.IsNullOrEmpty(refreshToken) || string.IsNullOrEmpty(scope) || string.IsNullOrEmpty(tokenType))
                 return default(TraktAuthorization);
-            }
 
-            var accessScope = scope != string.Empty ? TraktEnumeration.FromObjectName<TraktAccessScope>(scope) : TraktAccessScope.Public;
-            var accessTokenType = tokenType != string.Empty ? TraktEnumeration.FromObjectName<TraktAccessTokenType>(tokenType) : TraktAccessTokenType.Bearer;
+            TraktAccessScope accessScope = scope != string.Empty ? TraktEnumeration.FromObjectName<TraktAccessScope>(scope) : TraktAccessScope.Public;
+            TraktAccessTokenType accessTokenType = tokenType != string.Empty ? TraktEnumeration.FromObjectName<TraktAccessTokenType>(tokenType) : TraktAccessTokenType.Bearer;
             var createdDateTime = new DateTime(createdAtTicks, DateTimeKind.Utc);
 
             return new TraktAuthorization

@@ -37,10 +37,13 @@
         /// Initializes a new instance of the <see cref="TraktSearchField" /> class.<para />
         /// The initialized <see cref="TraktSearchField" /> is invalid.
         /// </summary>
-        public TraktSearchField() : base() { }
+        public TraktSearchField()
+        {
+        }
 
-        private TraktSearchField(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktSearchField(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
 
         /// <summary>
         /// Combines two <see cref="TraktSearchField" /> enumerations to one enumeration.
@@ -62,10 +65,10 @@
             if (first == Unspecified || second == Unspecified)
                 return Unspecified;
 
-            var newValue = first.Value | second.Value;
-            var newObjectName = string.Join(",", first.ObjectName, second.ObjectName);
-            var newUriName = string.Join(",", first.UriName, second.UriName);
-            var newDisplayName = string.Join(", ", first.DisplayName, second.DisplayName);
+            int newValue = first.Value | second.Value;
+            string newObjectName = string.Join(",", first.ObjectName, second.ObjectName);
+            string newUriName = string.Join(",", first.UriName, second.UriName);
+            string newDisplayName = string.Join(", ", first.DisplayName, second.DisplayName);
 
             return new TraktSearchField(newValue, newObjectName, newUriName, newDisplayName);
         }

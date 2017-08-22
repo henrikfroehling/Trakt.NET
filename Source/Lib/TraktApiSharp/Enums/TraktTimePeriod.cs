@@ -22,9 +22,12 @@
         /// Initializes a new instance of the <see cref="TraktTimePeriod" /> class.<para />
         /// The initialized <see cref="TraktTimePeriod" /> is invalid.
         /// </summary>
-        public TraktTimePeriod() : base() { }
+        public TraktTimePeriod()
+        {
+        }
 
-        private TraktTimePeriod(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktTimePeriod(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

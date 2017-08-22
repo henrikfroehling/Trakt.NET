@@ -22,9 +22,12 @@
         /// Initializes a new instance of the <see cref="TraktShowStatus" /> class.<para />
         /// The initialized <see cref="TraktShowStatus" /> is invalid.
         /// </summary>
-        public TraktShowStatus() : base() { }
+        public TraktShowStatus()
+        {
+        }
 
-        private TraktShowStatus(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktShowStatus(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

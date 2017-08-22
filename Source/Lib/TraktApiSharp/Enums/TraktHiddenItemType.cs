@@ -19,9 +19,12 @@
         /// Initializes a new instance of the <see cref="TraktHiddenItemType" /> class.<para />
         /// The initialized <see cref="TraktHiddenItemType" /> is invalid.
         /// </summary>
-        public TraktHiddenItemType() : base() { }
+        public TraktHiddenItemType()
+        {
+        }
 
-        private TraktHiddenItemType(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktHiddenItemType(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

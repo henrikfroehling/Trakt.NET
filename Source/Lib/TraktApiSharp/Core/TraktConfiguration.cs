@@ -5,7 +5,7 @@
     /// <summary>Provides global client settings.</summary>
     public class TraktConfiguration
     {
-        internal static HttpClient HTTP_CLIENT = null;
+        internal static HttpClient HTTP_CLIENT;
 
         /// <summary>
         /// Gets or sets the Trakt API version.
@@ -21,13 +21,13 @@
         /// See <a href="http://docs.trakt.apiary.io/#introduction/api-url">"Trakt API Doc - API URL"</a> for more information.
         /// </para>
         /// </summary>
-        public bool UseSandboxEnvironment { get; set; } = false;
+        public bool UseSandboxEnvironment { get; set; }
 
         /// <summary>Returns the Trakt API base URL based on, whether <see cref="UseSandboxEnvironment" /> is false or true.</summary>
         public string BaseUrl => UseSandboxEnvironment ? Constants.API_STAGING_URL : Constants.API_URL;
 
         /// <summary>Gets or sets, whether authorization should be enforced, even if it is optional. This is disabled by default.</summary>
-        public bool ForceAuthorization { get; set; } = false;
+        public bool ForceAuthorization { get; set; }
 
         public bool ThrowResponseExceptions { get; set; } = true;
     }

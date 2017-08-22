@@ -7,7 +7,7 @@
     {
         protected readonly List<T> _items;
 
-        public TraktMultipleQueryParams()
+        protected TraktMultipleQueryParams()
         {
             _items = new List<T>();
         }

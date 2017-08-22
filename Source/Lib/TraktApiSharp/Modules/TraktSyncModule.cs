@@ -22,6 +22,7 @@
     using Requests.Syncs.OAuth;
     using Responses;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -517,13 +518,13 @@
             if (collectionPost == null)
                 throw new ArgumentNullException(nameof(collectionPost), "collection post must not be null");
 
-            var movies = collectionPost.Movies;
-            var shows = collectionPost.Shows;
-            var episodes = collectionPost.Episodes;
+            IEnumerable<TraktSyncCollectionPostMovie> movies = collectionPost.Movies;
+            IEnumerable<TraktSyncCollectionPostShow> shows = collectionPost.Shows;
+            IEnumerable<TraktSyncCollectionPostEpisode> episodes = collectionPost.Episodes;
 
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoEpisodes = episodes == null || !episodes.Any();
+            bool bHasNoMovies = movies == null || !movies.Any();
+            bool bHasNoShows = shows == null || !shows.Any();
+            bool bHasNoEpisodes = episodes == null || !episodes.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
                 throw new ArgumentException("no collection items set");
@@ -534,13 +535,13 @@
             if (historyPost == null)
                 throw new ArgumentNullException(nameof(historyPost), "history post must not be null");
 
-            var movies = historyPost.Movies;
-            var shows = historyPost.Shows;
-            var episodes = historyPost.Episodes;
+            IEnumerable<TraktSyncHistoryPostMovie> movies = historyPost.Movies;
+            IEnumerable<TraktSyncHistoryPostShow> shows = historyPost.Shows;
+            IEnumerable<TraktSyncHistoryPostEpisode> episodes = historyPost.Episodes;
 
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoEpisodes = episodes == null || !episodes.Any();
+            bool bHasNoMovies = movies == null || !movies.Any();
+            bool bHasNoShows = shows == null || !shows.Any();
+            bool bHasNoEpisodes = episodes == null || !episodes.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
                 throw new ArgumentException("no watched history items set");
@@ -551,13 +552,13 @@
             if (ratingsPost == null)
                 throw new ArgumentNullException(nameof(ratingsPost), "ratings post must not be null");
 
-            var movies = ratingsPost.Movies;
-            var shows = ratingsPost.Shows;
-            var episodes = ratingsPost.Episodes;
+            IEnumerable<TraktSyncRatingsPostMovie> movies = ratingsPost.Movies;
+            IEnumerable<TraktSyncRatingsPostShow> shows = ratingsPost.Shows;
+            IEnumerable<TraktSyncRatingsPostEpisode> episodes = ratingsPost.Episodes;
 
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoEpisodes = episodes == null || !episodes.Any();
+            bool bHasNoMovies = movies == null || !movies.Any();
+            bool bHasNoShows = shows == null || !shows.Any();
+            bool bHasNoEpisodes = episodes == null || !episodes.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
                 throw new ArgumentException("no ratings items set");
@@ -568,13 +569,13 @@
             if (watchlistPost == null)
                 throw new ArgumentNullException(nameof(watchlistPost), "watchlist post must not be null");
 
-            var movies = watchlistPost.Movies;
-            var shows = watchlistPost.Shows;
-            var episodes = watchlistPost.Episodes;
+            IEnumerable<TraktSyncWatchlistPostMovie> movies = watchlistPost.Movies;
+            IEnumerable<TraktSyncWatchlistPostShow> shows = watchlistPost.Shows;
+            IEnumerable<TraktSyncWatchlistPostEpisode> episodes = watchlistPost.Episodes;
 
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoEpisodes = episodes == null || !episodes.Any();
+            bool bHasNoMovies = movies == null || !movies.Any();
+            bool bHasNoShows = shows == null || !shows.Any();
+            bool bHasNoEpisodes = episodes == null || !episodes.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
                 throw new ArgumentException("no watchlist items set");

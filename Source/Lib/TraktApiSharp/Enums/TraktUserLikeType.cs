@@ -16,9 +16,12 @@
         /// Initializes a new instance of the <see cref="TraktUserLikeType" /> class.<para />
         /// The initialized <see cref="TraktUserLikeType" /> is invalid.
         /// </summary>
-        public TraktUserLikeType() : base() { }
+        public TraktUserLikeType()
+        {
+        }
 
-        private TraktUserLikeType(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktUserLikeType(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

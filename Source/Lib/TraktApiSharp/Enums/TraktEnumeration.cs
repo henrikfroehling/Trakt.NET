@@ -57,8 +57,8 @@
             if (other == null)
                 return false;
 
-            var typeMatches = GetType().Equals(other.GetType());
-            var valueMatches = Value.Equals(other.Value);
+            bool typeMatches = GetType().Equals(other.GetType());
+            bool valueMatches = Value.Equals(other.Value);
 
             return typeMatches && valueMatches;
         }
@@ -72,15 +72,13 @@
         /// <returns>A list of all enumerations of an enumeration of type T.</returns>
         public static IEnumerable<T> GetAll<T>() where T : TraktEnumeration, new()
         {
-            var derivedEnumType = typeof(T);
-            var derivedEnum = Activator.CreateInstance(derivedEnumType);
-            var fields = derivedEnumType.GetRuntimeFields().Where(f => f.FieldType == derivedEnumType && f.IsStatic && f.IsInitOnly);
+            Type derivedEnumType = typeof(T);
+            var derivedEnum = Activator.CreateInstance(derivedEnumType) as T;
+            IEnumerable<FieldInfo> fieldInfos = derivedEnumType.GetRuntimeFields().Where(f => f.FieldType == derivedEnumType && f.IsStatic && f.IsInitOnly);
 
-            foreach (var field in fields)
+            foreach (FieldInfo field in fieldInfos)
             {
-                var value = field.GetValue(derivedEnum) as T;
-
-                if (value != null)
+                if (field.GetValue(derivedEnum) is T value)
                     yield return value;
             }
         }
@@ -129,7 +127,7 @@
 
         private static T Search<T>(Func<TraktEnumeration, bool> predicate) where T : TraktEnumeration, new()
         {
-            var matchingItem = GetAll<T>().FirstOrDefault(predicate);
+            TraktEnumeration matchingItem = GetAll<T>().FirstOrDefault(predicate);
             return matchingItem != null ? matchingItem as T : null;
         }
     }

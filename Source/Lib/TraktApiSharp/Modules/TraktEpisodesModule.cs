@@ -103,7 +103,7 @@
                 tasks.Add(task);
             }
 
-            var episodes = await Task.WhenAll(tasks);
+            var episodes = await Task.WhenAll(tasks).ConfigureAwait(false);
             return episodes.ToList();
         }
 

@@ -22,9 +22,12 @@
         /// Initializes a new instance of the <see cref="TraktSyncItemType" /> class.<para />
         /// The initialized <see cref="TraktSyncItemType" /> is invalid.
         /// </summary>
-        public TraktSyncItemType() : base() { }
+        public TraktSyncItemType()
+        {
+        }
 
-        private TraktSyncItemType(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktSyncItemType(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

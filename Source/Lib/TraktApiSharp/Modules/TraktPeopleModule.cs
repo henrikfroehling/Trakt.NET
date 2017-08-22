@@ -85,7 +85,7 @@
                 tasks.Add(task);
             }
 
-            var people = await Task.WhenAll(tasks);
+            var people = await Task.WhenAll(tasks).ConfigureAwait(false);
             return people.ToList();
         }
 

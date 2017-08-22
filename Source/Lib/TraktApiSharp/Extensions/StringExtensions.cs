@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Extensions
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     /// <summary>Provides helper methods for strings.</summary>
@@ -17,7 +18,7 @@
             if (string.IsNullOrEmpty(value))
                 throw new ArgumentException("value not valid", nameof(value));
 
-            var trimmedValue = value.Trim();
+            string trimmedValue = value.Trim();
 
             if (trimmedValue.Length > 1)
                 return char.ToUpper(trimmedValue[0]) + trimmedValue.Substring(1).ToLower();
@@ -33,8 +34,8 @@
             if (string.IsNullOrEmpty(value))
                 return 0;
 
-            var words = value.Split(s_delimiterChars);
-            var filteredWords = words.Where(s => !string.IsNullOrEmpty(s));
+            string[] words = value.Split(s_delimiterChars);
+            IEnumerable<string> filteredWords = words.Where(s => !string.IsNullOrEmpty(s));
             return filteredWords.Count();
         }
 

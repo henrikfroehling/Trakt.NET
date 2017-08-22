@@ -16,9 +16,12 @@
         /// Initializes a new instance of the <see cref="TraktAccessTokenGrantType" /> class.<para />
         /// The initialized <see cref="TraktAccessTokenGrantType" /> is invalid.
         /// </summary>
-        public TraktAccessTokenGrantType() : base() { }
+        public TraktAccessTokenGrantType()
+        {
+        }
 
-        private TraktAccessTokenGrantType(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktAccessTokenGrantType(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

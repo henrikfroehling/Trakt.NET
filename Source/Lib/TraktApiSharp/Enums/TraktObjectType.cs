@@ -28,9 +28,12 @@
         /// Initializes a new instance of the <see cref="TraktObjectType" /> class.<para />
         /// The initialized <see cref="TraktObjectType" /> is invalid.
         /// </summary>
-        public TraktObjectType() : base() { }
+        public TraktObjectType()
+        {
+        }
 
-        private TraktObjectType(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktObjectType(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

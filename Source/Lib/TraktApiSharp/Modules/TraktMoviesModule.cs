@@ -88,7 +88,7 @@
                 tasks.Add(task);
             }
 
-            var movies = await Task.WhenAll(tasks);
+            var movies = await Task.WhenAll(tasks).ConfigureAwait(false);
             return movies.ToList();
         }
 

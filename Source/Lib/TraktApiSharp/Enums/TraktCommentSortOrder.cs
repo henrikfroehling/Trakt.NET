@@ -22,9 +22,12 @@
         /// Initializes a new instance of the <see cref="TraktCommentSortOrder" /> class.<para />
         /// The initialized <see cref="TraktCommentSortOrder" /> is invalid.
         /// </summary>
-        public TraktCommentSortOrder() : base() { }
+        public TraktCommentSortOrder()
+        {
+        }
 
-        private TraktCommentSortOrder(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktCommentSortOrder(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

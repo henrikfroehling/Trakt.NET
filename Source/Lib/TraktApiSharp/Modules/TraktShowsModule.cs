@@ -90,7 +90,7 @@
                 tasks.Add(task);
             }
 
-            var shows = await Task.WhenAll(tasks);
+            var shows = await Task.WhenAll(tasks).ConfigureAwait(false);
             return shows.ToList();
         }
 

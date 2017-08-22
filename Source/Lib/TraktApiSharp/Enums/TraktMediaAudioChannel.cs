@@ -43,9 +43,12 @@
         /// Initializes a new instance of the <see cref="TraktMediaAudioChannel" /> class.<para />
         /// The initialized <see cref="TraktMediaAudioChannel" /> is invalid.
         /// </summary>
-        public TraktMediaAudioChannel() : base() { }
+        public TraktMediaAudioChannel()
+        {
+        }
 
-        private TraktMediaAudioChannel(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktMediaAudioChannel(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

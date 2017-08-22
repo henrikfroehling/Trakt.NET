@@ -145,7 +145,7 @@
                 tasks.Add(task);
             }
 
-            var seasons = await Task.WhenAll(tasks);
+            var seasons = await Task.WhenAll(tasks).ConfigureAwait(false);
             return seasons.ToList();
         }
 

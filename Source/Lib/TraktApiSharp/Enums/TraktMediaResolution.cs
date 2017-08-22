@@ -34,9 +34,12 @@
         /// Initializes a new instance of the <see cref="TraktMediaResolution" /> class.<para />
         /// The initialized <see cref="TraktMediaResolution" /> is invalid.
         /// </summary>
-        public TraktMediaResolution() : base() { }
+        public TraktMediaResolution()
+        {
+        }
 
-        private TraktMediaResolution(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktMediaResolution(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

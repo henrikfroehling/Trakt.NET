@@ -19,9 +19,12 @@
         /// Initializes a new instance of the <see cref="TraktHistoryActionType" /> class.<para />
         /// The initialized <see cref="TraktHistoryActionType" /> is invalid.
         /// </summary>
-        public TraktHistoryActionType() : base() { }
+        public TraktHistoryActionType()
+        {
+        }
 
-        private TraktHistoryActionType(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktHistoryActionType(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

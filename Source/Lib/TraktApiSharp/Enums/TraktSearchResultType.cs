@@ -25,10 +25,13 @@
         /// Initializes a new instance of the <see cref="TraktSearchResultType" /> class.<para />
         /// The initialized <see cref="TraktSearchResultType" /> is invalid.
         /// </summary>
-        public TraktSearchResultType() : base() { }
+        public TraktSearchResultType()
+        {
+        }
 
-        private TraktSearchResultType(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktSearchResultType(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
 
         /// <summary>
         /// Combines two <see cref="TraktSearchResultType" /> enumerations to one enumeration.

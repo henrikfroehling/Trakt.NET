@@ -30,9 +30,12 @@
         /// Initializes a new instance of the <see cref="TraktListSortOrder" /> class.<para />
         /// The initialized <see cref="TraktListSortOrder" /> is invalid.
         /// </summary>
-        public TraktListSortOrder() : base() { }
+        public TraktListSortOrder()
+        {
+        }
 
-        private TraktListSortOrder(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktListSortOrder(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

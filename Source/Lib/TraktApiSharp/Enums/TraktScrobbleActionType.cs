@@ -19,9 +19,12 @@
         /// Initializes a new instance of the <see cref="TraktScrobbleActionType" /> class.<para />
         /// The initialized <see cref="TraktScrobbleActionType" /> is invalid.
         /// </summary>
-        public TraktScrobbleActionType() : base() { }
+        public TraktScrobbleActionType()
+        {
+        }
 
-        private TraktScrobbleActionType(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktScrobbleActionType(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

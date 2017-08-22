@@ -361,7 +361,7 @@
                 tasks.Add(task);
             }
 
-            var lists = await Task.WhenAll(tasks);
+            var lists = await Task.WhenAll(tasks).ConfigureAwait(false);
             return lists.ToList();
         }
 
@@ -433,7 +433,7 @@
             if (listName == null)
                 throw new ArgumentNullException(nameof(listName), "list name must not be null");
 
-            if (listName == string.Empty)
+            if (listName.Length == 0)
                 throw new ArgumentException("list name must not be empty", nameof(listName));
 
             var requestBody = new TraktUserCustomListPost
@@ -485,16 +485,14 @@
                                                                      bool? displayNumbers = null, bool? allowComments = null,
                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
-            var isListNameNotValid = string.IsNullOrEmpty(listName);
-            var isDescriptionNotSet = listDescription == null;
-            var isPrivacyNotSetOrValid = privacy == null || privacy == TraktAccessScope.Unspecified;
-            var isDisplayNumbersNotSet = !displayNumbers.HasValue;
-            var isAllowCommentsNotSet = !allowComments.HasValue;
+            bool isListNameNotValid = string.IsNullOrEmpty(listName);
+            bool isDescriptionNotSet = listDescription == null;
+            bool isPrivacyNotSetOrValid = privacy == null || privacy == TraktAccessScope.Unspecified;
+            bool isDisplayNumbersNotSet = !displayNumbers.HasValue;
+            bool isAllowCommentsNotSet = !allowComments.HasValue;
 
             if (isListNameNotValid && isDescriptionNotSet && isPrivacyNotSetOrValid && isDisplayNumbersNotSet && isAllowCommentsNotSet)
-            {
                 throw new ArgumentException("no list specific values set");
-            }
 
             var requestBody = new TraktUserCustomListPost
             {
@@ -1098,13 +1096,13 @@
             if (customListItemsPost == null)
                 throw new ArgumentNullException(nameof(customListItemsPost), "list items post must not be null");
 
-            var movies = customListItemsPost.Movies;
-            var shows = customListItemsPost.Shows;
-            var people = customListItemsPost.People;
+            IEnumerable<TraktUserCustomListItemsPostMovie> movies = customListItemsPost.Movies;
+            IEnumerable<TraktUserCustomListItemsPostShow> shows = customListItemsPost.Shows;
+            IEnumerable<Objects.Get.People.Implementations.TraktPerson> people = customListItemsPost.People;
 
-            var bHasNoMovies = movies == null || !movies.Any();
-            var bHasNoShows = shows == null || !shows.Any();
-            var bHasNoPeople = people == null || !people.Any();
+            bool bHasNoMovies = movies == null || !movies.Any();
+            bool bHasNoShows = shows == null || !shows.Any();
+            bool bHasNoPeople = people == null || !people.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoPeople)
                 throw new ArgumentException("no items set");

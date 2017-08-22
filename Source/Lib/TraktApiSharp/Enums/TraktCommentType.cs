@@ -19,9 +19,12 @@
         /// Initializes a new instance of the <see cref="TraktCommentType" /> class.<para />
         /// The initialized <see cref="TraktCommentType" /> is invalid.
         /// </summary>
-        public TraktCommentType() : base() { }
+        public TraktCommentType()
+        {
+        }
 
-        private TraktCommentType(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktCommentType(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

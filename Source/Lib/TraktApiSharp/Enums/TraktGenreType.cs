@@ -16,9 +16,12 @@
         /// Initializes a new instance of the <see cref="TraktGenreType" /> class.<para />
         /// The initialized <see cref="TraktGenreType" /> is invalid.
         /// </summary>
-        public TraktGenreType() : base() { }
+        public TraktGenreType()
+        {
+        }
 
-        private TraktGenreType(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktGenreType(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

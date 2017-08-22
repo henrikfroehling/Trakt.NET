@@ -22,9 +22,12 @@
         /// Initializes a new instance of the <see cref="TraktListType" /> class.<para />
         /// The initialized <see cref="TraktListType" /> is invalid.
         /// </summary>
-        public TraktListType() : base() { }
+        public TraktListType()
+        {
+        }
 
-        private TraktListType(int value, string objectName, string uriName, string displayName)
-            : base(value, objectName, uriName, displayName) { }
+        private TraktListType(int value, string objectName, string uriName, string displayName) : base(value, objectName, uriName, displayName)
+        {
+        }
     }
 }

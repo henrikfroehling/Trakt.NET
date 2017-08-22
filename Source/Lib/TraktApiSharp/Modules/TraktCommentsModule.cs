@@ -84,7 +84,7 @@
                 tasks.Add(task);
             }
 
-            var comments = await Task.WhenAll(tasks);
+            var comments = await Task.WhenAll(tasks).ConfigureAwait(false);
             return comments.ToList();
         }
 
