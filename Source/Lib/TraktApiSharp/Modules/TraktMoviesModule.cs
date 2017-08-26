@@ -129,7 +129,7 @@
                                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktMovieReleasesRequest { Id = movieIdOrSlug, CountryCode = countryCode }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new MovieReleasesRequest { Id = movieIdOrSlug, CountryCode = countryCode }, cancellationToken);
         }
 
         /// <summary>

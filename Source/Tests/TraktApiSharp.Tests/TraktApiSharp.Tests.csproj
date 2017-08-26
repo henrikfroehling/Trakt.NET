@@ -1177,7 +1177,7 @@
     <Compile Include="Requests\Movies\MoviePeopleRequest_Tests.cs" />
     <Compile Include="Requests\Movies\MovieRatingsRequest_Tests.cs" />
     <Compile Include="Requests\Movies\MovieRelatedMoviesRequest_Tests.cs" />
-    <Compile Include="Requests\Movies\TraktMovieReleasesRequest_Tests.cs" />
+    <Compile Include="Requests\Movies\MovieReleasesRequest_Tests.cs" />
     <Compile Include="Requests\Movies\TraktMoviesBoxOfficeRequest_Tests.cs" />
     <Compile Include="Requests\Movies\TraktMoviesMostAnticipatedRequest_Tests.cs" />
     <Compile Include="Requests\Movies\TraktMoviesMostCollectedRequest_Tests.cs" />

@@ -11,37 +11,37 @@
     using Xunit;
 
     [Category("Requests.Movies")]
-    public class TraktMovieReleasesRequest_Tests
+    public class MovieReleasesRequest_Tests
     {
         [Fact]
-        public void Test_TraktMovieReleasesRequest_IsNotAbstract()
+        public void Test_MovieReleasesRequest_IsNotAbstract()
         {
-            typeof(TraktMovieReleasesRequest).IsAbstract.Should().BeFalse();
+            typeof(MovieReleasesRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktMovieReleasesRequest_IsSealed()
+        public void Test_MovieReleasesRequest_IsSealed()
         {
-            typeof(TraktMovieReleasesRequest).IsSealed.Should().BeTrue();
+            typeof(MovieReleasesRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMovieReleasesRequest_Inherits_ATraktMovieRequest_1()
+        public void Test_MovieReleasesRequest_Inherits_ATraktMovieRequest_1()
         {
-            typeof(TraktMovieReleasesRequest).IsSubclassOf(typeof(AMovieRequest<ITraktMovieRelease>)).Should().BeTrue();
+            typeof(MovieReleasesRequest).IsSubclassOf(typeof(AMovieRequest<ITraktMovieRelease>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMovieReleasesRequest_Has_Valid_UriTemplate()
+        public void Test_MovieReleasesRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktMovieReleasesRequest();
+            var request = new MovieReleasesRequest();
             request.UriTemplate.Should().Be("movies/{id}/releases{/country}");
         }
 
         [Fact]
-        public void Test_TraktMovieReleasesRequest_Has_CountryCode_Property()
+        public void Test_MovieReleasesRequest_Has_CountryCode_Property()
         {
-            var propertyInfo = typeof(TraktMovieReleasesRequest)
+            var propertyInfo = typeof(MovieReleasesRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "CountryCode")
                     .FirstOrDefault();
@@ -52,10 +52,10 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleasesRequest_Returns_Valid_UriPathParameters()
+        public void Test_MovieReleasesRequest_Returns_Valid_UriPathParameters()
         {
             // without country code
-            var request = new TraktMovieReleasesRequest { Id = "123" };
+            var request = new MovieReleasesRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -65,7 +65,7 @@
                                                    });
 
             // with country code
-            request = new TraktMovieReleasesRequest { Id = "123", CountryCode = "us" };
+            request = new MovieReleasesRequest { Id = "123", CountryCode = "us" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -77,31 +77,31 @@
         }
 
         [Fact]
-        public void Test_TraktMovieReleasesRequest_Validate_Throws_Exceptions()
+        public void Test_MovieReleasesRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktMovieReleasesRequest();
+            var request = new MovieReleasesRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktMovieReleasesRequest { Id = string.Empty };
+            request = new MovieReleasesRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktMovieReleasesRequest { Id = "invalid id" };
+            request = new MovieReleasesRequest { Id = "invalid id" };
             act.ShouldThrow<ArgumentException>();
 
             // country code with wrong length
-            request = new TraktMovieReleasesRequest { Id = "123", CountryCode = "usa" };
+            request = new MovieReleasesRequest { Id = "123", CountryCode = "usa" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            request = new TraktMovieReleasesRequest { Id = "123", CountryCode = "a" };
+            request = new MovieReleasesRequest { Id = "123", CountryCode = "a" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentOutOfRangeException>();
