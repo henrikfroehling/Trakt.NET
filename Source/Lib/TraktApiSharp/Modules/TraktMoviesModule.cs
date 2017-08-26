@@ -54,7 +54,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktMovieSummaryRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new MovieSummaryRequest
             {
                 Id = movieIdOrSlug,
                 ExtendedInfo = extendedInfo

@@ -11,44 +11,44 @@
     using Xunit;
 
     [Category("Requests.Movies")]
-    public class TraktMovieSummaryRequest_Tests
+    public class MovieSummaryRequest_Tests
     {
         [Fact]
-        public void Test_TraktMovieSummaryRequest_IsNotAbstract()
+        public void Test_MovieSummaryRequest_IsNotAbstract()
         {
-            typeof(TraktMovieSummaryRequest).IsAbstract.Should().BeFalse();
+            typeof(MovieSummaryRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktMovieSummaryRequest_IsSealed()
+        public void Test_MovieSummaryRequest_IsSealed()
         {
-            typeof(TraktMovieSummaryRequest).IsSealed.Should().BeTrue();
+            typeof(MovieSummaryRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMovieSummaryRequest_Inherits_ATraktMovieRequest_1()
+        public void Test_MovieSummaryRequest_Inherits_ATraktMovieRequest_1()
         {
-            typeof(TraktMovieSummaryRequest).IsSubclassOf(typeof(AMovieRequest<ITraktMovie>)).Should().BeTrue();
+            typeof(MovieSummaryRequest).IsSubclassOf(typeof(AMovieRequest<ITraktMovie>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMovieSummaryRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_MovieSummaryRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktMovieSummaryRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(MovieSummaryRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_TraktMovieSummaryRequest_Has_Valid_UriTemplate()
+        public void Test_MovieSummaryRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktMovieSummaryRequest();
+            var request = new MovieSummaryRequest();
             request.UriTemplate.Should().Be("movies/{id}{?extended}");
         }
 
         [Fact]
-        public void Test_TraktMovieSummaryRequest_Returns_Valid_UriPathParameters()
+        public void Test_MovieSummaryRequest_Returns_Valid_UriPathParameters()
         {
             // without extended info
-            var request = new TraktMovieSummaryRequest { Id = "123" };
+            var request = new MovieSummaryRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -59,7 +59,7 @@
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktMovieSummaryRequest { Id = "123", ExtendedInfo = extendedInfo };
+            request = new MovieSummaryRequest { Id = "123", ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -71,22 +71,22 @@
         }
 
         [Fact]
-        public void Test_TraktMovieSummaryRequest_Validate_Throws_Exceptions()
+        public void Test_MovieSummaryRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktMovieSummaryRequest();
+            var request = new MovieSummaryRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktMovieSummaryRequest { Id = string.Empty };
+            request = new MovieSummaryRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktMovieSummaryRequest { Id = "invalid id" };
+            request = new MovieSummaryRequest { Id = "invalid id" };
             act.ShouldThrow<ArgumentException>();
         }
     }

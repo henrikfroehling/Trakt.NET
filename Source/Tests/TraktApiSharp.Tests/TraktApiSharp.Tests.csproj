@@ -1187,7 +1187,7 @@
     <Compile Include="Requests\Movies\MoviesRecentlyUpdatedRequest_Tests.cs" />
     <Compile Include="Requests\Movies\MovieStatisticsRequest_Tests.cs" />
     <Compile Include="Requests\Movies\MoviesTrendingRequest_Tests.cs" />
-    <Compile Include="Requests\Movies\TraktMovieSummaryRequest_Tests.cs" />
+    <Compile Include="Requests\Movies\MovieSummaryRequest_Tests.cs" />
     <Compile Include="Requests\Movies\TraktMovieTranslationsRequest_Tests.cs" />
     <Compile Include="Requests\Movies\TraktMovieWatchingUsersRequest_Tests.cs" />
     <Compile Include="Requests\Parameters\TraktExtendedInfo_Tests.cs" />
