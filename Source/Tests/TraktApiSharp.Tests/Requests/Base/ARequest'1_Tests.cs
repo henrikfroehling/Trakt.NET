@@ -8,31 +8,31 @@
     using Xunit;
 
     [Category("Requests.Base")]
-    public class ATraktRequest_1_Tests
+    public class ARequest_1_Tests
     {
         [Fact]
-        public void Test_ATraktRequest_1_Is_AbstractClass()
+        public void Test_ARequest_1_Is_AbstractClass()
         {
-            typeof(ATraktRequest<>).IsAbstract.Should().BeTrue();
+            typeof(ARequest<>).IsAbstract.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktRequest_1_Has_GenericTypeParameter()
+        public void Test_ARequest_1_Has_GenericTypeParameter()
         {
-            typeof(ATraktRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ATraktRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+            typeof(ARequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(ARequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
         [Fact]
-        public void Test_ATraktRequest_1_Implements_ITraktRequest_1_Interface()
+        public void Test_ARequest_1_Implements_ITraktRequest_1_Interface()
         {
-            typeof(ATraktRequest<int>).GetInterfaces().Should().Contain(typeof(ITraktRequest<int>));
+            typeof(ARequest<int>).GetInterfaces().Should().Contain(typeof(ITraktRequest<int>));
         }
 
         [Fact]
-        public void Test_ATraktRequest_1_Has_Abstract_AuthorizationRequirement_Property()
+        public void Test_ARequest_1_Has_Abstract_AuthorizationRequirement_Property()
         {
-            var propertyInfo = typeof(ATraktRequest<>).GetProperties()
+            var propertyInfo = typeof(ARequest<>).GetProperties()
                                                       .Where(p => p.Name == "AuthorizationRequirement")
                                                       .FirstOrDefault();
 
@@ -40,9 +40,9 @@
         }
 
         [Fact]
-        public void Test_ATraktRequest_1_Has_Abstract_Method_Property()
+        public void Test_ARequest_1_Has_Abstract_Method_Property()
         {
-            var propertyInfo = typeof(ATraktRequest<>).GetProperties()
+            var propertyInfo = typeof(ARequest<>).GetProperties()
                                                       .Where(p => p.Name == "Method")
                                                       .FirstOrDefault();
 
@@ -50,9 +50,9 @@
         }
 
         [Fact]
-        public void Test_ATraktRequest_1_Has_Abstract_UriTemplate_Property()
+        public void Test_ARequest_1_Has_Abstract_UriTemplate_Property()
         {
-            var propertyInfo = typeof(ATraktRequest<>).GetProperties()
+            var propertyInfo = typeof(ARequest<>).GetProperties()
                                                       .Where(p => p.Name == "UriTemplate")
                                                       .FirstOrDefault();
 
@@ -60,9 +60,9 @@
         }
 
         [Fact]
-        public void Test_ATraktRequest_1_Has_Abstract_GetUriPathParameters_Method()
+        public void Test_ARequest_1_Has_Abstract_GetUriPathParameters_Method()
         {
-            var methodInfo = typeof(ATraktRequest<>).GetMethods()
+            var methodInfo = typeof(ARequest<>).GetMethods()
                                                     .Where(m => m.Name == "GetUriPathParameters")
                                                     .FirstOrDefault();
 
@@ -70,9 +70,9 @@
         }
 
         [Fact]
-        public void Test_ATraktRequest_1_Has_Abstract_Validate_Method()
+        public void Test_ARequest_1_Has_Abstract_Validate_Method()
         {
-            var methodInfo = typeof(ATraktRequest<>).GetMethods()
+            var methodInfo = typeof(ARequest<>).GetMethods()
                                                     .Where(m => m.Name == "Validate")
                                                     .FirstOrDefault();
 
