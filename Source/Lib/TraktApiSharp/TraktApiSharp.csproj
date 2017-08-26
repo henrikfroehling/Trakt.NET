@@ -612,7 +612,7 @@
     <Compile Include="Requests\Handler\TraktHttpRequestMessage.cs" />
     <Compile Include="Requests\Interfaces\Base\IBodylessPostRequest%271.cs" />
     <Compile Include="Requests\Interfaces\Base\IBodylessPostRequest.cs" />
-    <Compile Include="Requests\Interfaces\Base\ITraktDeleteRequest.cs" />
+    <Compile Include="Requests\Interfaces\Base\IDeleteRequest.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktGetRequest%271.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktPostRequest%271.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktPostRequest%272.cs" />

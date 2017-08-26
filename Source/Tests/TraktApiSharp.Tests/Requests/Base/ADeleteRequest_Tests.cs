@@ -35,7 +35,7 @@
         [Fact]
         public void Test_ADeleteRequest_Implements_ITraktDeleteRequest_Interface()
         {
-            typeof(ADeleteRequest).GetInterfaces().Should().Contain(typeof(ITraktDeleteRequest));
+            typeof(ADeleteRequest).GetInterfaces().Should().Contain(typeof(IDeleteRequest));
         }
 
         [Fact]
