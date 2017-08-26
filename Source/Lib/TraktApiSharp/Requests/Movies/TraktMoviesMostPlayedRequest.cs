@@ -2,7 +2,7 @@
 {
     using Objects.Get.Movies;
 
-    internal sealed class TraktMoviesMostPlayedRequest : ATraktMoviesMostPWCRequest<ITraktMostPWCMovie>
+    internal sealed class TraktMoviesMostPlayedRequest : AMoviesMostPWCRequest<ITraktMostPWCMovie>
     {
         public override string UriTemplate => "movies/played{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
 
