@@ -34,7 +34,7 @@
         [Fact]
         public void Test_ATraktCalendarRequest_1_Inherits_ATraktGetRequest_1()
         {
-            typeof(ATraktCalendarRequest<int>).IsSubclassOf(typeof(ATraktGetRequest<int>)).Should().BeTrue();
+            typeof(ATraktCalendarRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]

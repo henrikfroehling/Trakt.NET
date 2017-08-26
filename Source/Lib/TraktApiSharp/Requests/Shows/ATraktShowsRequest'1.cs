@@ -5,7 +5,7 @@
     using Parameters;
     using System.Collections.Generic;
 
-    internal abstract class ATraktShowsRequest<TResponseContentType> : ATraktGetRequest<TResponseContentType>, ITraktSupportsExtendedInfo, ITraktSupportsFilter, ITraktSupportsPagination
+    internal abstract class ATraktShowsRequest<TResponseContentType> : AGetRequest<TResponseContentType>, ITraktSupportsExtendedInfo, ITraktSupportsFilter, ITraktSupportsPagination
     {
         public TraktExtendedInfo ExtendedInfo { get; set; }
 

@@ -40,7 +40,7 @@
         [Fact]
         public void Test_ATraktShowsRequest_1_Inherits_ATraktGetRequest_1()
         {
-            typeof(ATraktShowsRequest<int>).IsSubclassOf(typeof(ATraktGetRequest<int>)).Should().BeTrue();
+            typeof(ATraktShowsRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]

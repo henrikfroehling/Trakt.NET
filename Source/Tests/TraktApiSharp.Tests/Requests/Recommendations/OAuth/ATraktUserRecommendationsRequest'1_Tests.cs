@@ -41,7 +41,7 @@
         [Fact]
         public void Test_ATraktUserRecommendationsRequest_1_Inherits_ATraktGetRequest_1()
         {
-            typeof(ATraktUserRecommendationsRequest<int>).IsSubclassOf(typeof(ATraktGetRequest<int>)).Should().BeTrue();
+            typeof(ATraktUserRecommendationsRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]

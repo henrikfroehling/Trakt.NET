@@ -31,7 +31,7 @@
         [Fact]
         public void Test_TraktUserLikesRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktUserLikesRequest).IsSubclassOf(typeof(ATraktGetRequest<ITraktUserLikeItem>)).Should().BeTrue();
+            typeof(TraktUserLikesRequest).IsSubclassOf(typeof(AGetRequest<ITraktUserLikeItem>)).Should().BeTrue();
         }
 
         [Fact]

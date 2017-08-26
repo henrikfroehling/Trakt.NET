@@ -7,7 +7,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal abstract class ATraktPersonRequest<TResponseContentType> : ATraktGetRequest<TResponseContentType>, ITraktHasId, ITraktSupportsExtendedInfo
+    internal abstract class ATraktPersonRequest<TResponseContentType> : AGetRequest<TResponseContentType>, ITraktHasId, ITraktSupportsExtendedInfo
     {
         public string Id { get; set; }
 

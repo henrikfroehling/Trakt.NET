@@ -7,7 +7,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserCustomSingleListRequest : ATraktGetRequest<ITraktList>, ITraktHasId
+    internal sealed class TraktUserCustomSingleListRequest : AGetRequest<ITraktList>, ITraktHasId
     {
         internal string Username { get; set; }
 

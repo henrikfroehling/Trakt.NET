@@ -36,7 +36,7 @@
         [Fact]
         public void Test_ATraktShowProgressRequest_1_Inherits_ATraktGetRequest_1()
         {
-            typeof(ATraktShowProgressRequest<int>).IsSubclassOf(typeof(ATraktGetRequest<int>)).Should().BeTrue();
+            typeof(ATraktShowProgressRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]

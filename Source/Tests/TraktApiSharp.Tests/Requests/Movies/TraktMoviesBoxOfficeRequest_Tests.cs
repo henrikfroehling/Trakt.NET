@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktMoviesBoxOfficeRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktMoviesBoxOfficeRequest).IsSubclassOf(typeof(ATraktGetRequest<ITraktBoxOfficeMovie>)).Should().BeTrue();
+            typeof(TraktMoviesBoxOfficeRequest).IsSubclassOf(typeof(AGetRequest<ITraktBoxOfficeMovie>)).Should().BeTrue();
         }
 
         [Fact]

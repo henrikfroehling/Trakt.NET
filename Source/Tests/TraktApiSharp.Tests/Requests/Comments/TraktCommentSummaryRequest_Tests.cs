@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktCommentSummaryRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktCommentSummaryRequest).IsSubclassOf(typeof(ATraktGetRequest<ITraktComment>)).Should().BeTrue();
+            typeof(TraktCommentSummaryRequest).IsSubclassOf(typeof(AGetRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]

@@ -3,7 +3,7 @@
     using Interfaces.Base;
     using System.Net.Http;
 
-    internal abstract class ATraktGetRequest<TResponseContentType> : ATraktRequest<TResponseContentType>, ITraktGetRequest<TResponseContentType>
+    internal abstract class AGetRequest<TResponseContentType> : ATraktRequest<TResponseContentType>, ITraktGetRequest<TResponseContentType>
     {
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
 

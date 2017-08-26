@@ -32,7 +32,7 @@
         [Fact]
         public void Test_TraktSeasonsAllRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktSeasonsAllRequest).IsSubclassOf(typeof(ATraktGetRequest<ITraktSeason>)).Should().BeTrue();
+            typeof(TraktSeasonsAllRequest).IsSubclassOf(typeof(AGetRequest<ITraktSeason>)).Should().BeTrue();
         }
 
         [Fact]
