@@ -128,7 +128,7 @@
                 var strExtendedInfo = _extendedInfo.ToString();
                 var filterParameters = _filter.GetParameters();
 
-                _data.Add(new object[] { _request1.GetUriPathParameters(), new Dictionary<string, object> { } });
+                _data.Add(new object[] { _request1.GetUriPathParameters(), new Dictionary<string, object>() });
 
                 _data.Add(new object[] { _request2.GetUriPathParameters(), new Dictionary<string, object>
                     {
@@ -176,7 +176,7 @@
                     }});
 
                 // with filter
-                _data.Add(new object[] { _request9.GetUriPathParameters(), new Dictionary<string, object>(filterParameters) { } });
+                _data.Add(new object[] { _request9.GetUriPathParameters(), new Dictionary<string, object>(filterParameters) });
 
                 _data.Add(new object[] { _request10.GetUriPathParameters(), new Dictionary<string, object>(filterParameters)
                     {

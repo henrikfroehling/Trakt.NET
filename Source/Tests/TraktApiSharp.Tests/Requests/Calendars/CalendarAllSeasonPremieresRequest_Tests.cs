@@ -13,42 +13,42 @@
     using Xunit;
 
     [Category("Requests.Calendars.Shows")]
-    public class TraktCalendarAllSeasonPremieresRequest_Tests
+    public class CalendarAllSeasonPremieresRequest_Tests
     {
         [Fact]
-        public void Test_TraktCalendarAllSeasonPremieresRequest_IsNotAbstract()
+        public void Test_CalendarAllSeasonPremieresRequest_IsNotAbstract()
         {
-            typeof(TraktCalendarAllSeasonPremieresRequest).IsAbstract.Should().BeFalse();
+            typeof(CalendarAllSeasonPremieresRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktCalendarAllSeasonPremieresRequest_IsSealed()
+        public void Test_CalendarAllSeasonPremieresRequest_IsSealed()
         {
-            typeof(TraktCalendarAllSeasonPremieresRequest).IsSealed.Should().BeTrue();
+            typeof(CalendarAllSeasonPremieresRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarAllSeasonPremieresRequest_Inherits_ATraktCalendarRequest()
+        public void Test_CalendarAllSeasonPremieresRequest_Inherits_ATraktCalendarRequest()
         {
-            typeof(TraktCalendarAllSeasonPremieresRequest).IsSubclassOf(typeof(ACalendarRequest<ITraktCalendarShow>)).Should().BeTrue();
+            typeof(CalendarAllSeasonPremieresRequest).IsSubclassOf(typeof(ACalendarRequest<ITraktCalendarShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarAllSeasonPremieresRequest_Has_AuthorizationRequirement_NotRequired()
+        public void Test_CalendarAllSeasonPremieresRequest_Has_AuthorizationRequirement_NotRequired()
         {
-            var request = new TraktCalendarAllSeasonPremieresRequest();
+            var request = new CalendarAllSeasonPremieresRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_TraktCalendarAllSeasonPremieresRequest_Has_Valid_UriTemplate()
+        public void Test_CalendarAllSeasonPremieresRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktCalendarAllSeasonPremieresRequest();
+            var request = new CalendarAllSeasonPremieresRequest();
             request.UriTemplate.Should().Be("calendars/all/shows/premieres{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}");
         }
 
-        [Theory, ClassData(typeof(TraktCalendarAllSeasonPremieresRequest_TestData))]
-        public void Test_TraktCalendarAllSeasonPremieresRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(CalendarAllSeasonPremieresRequest_TestData))]
+        public void Test_CalendarAllSeasonPremieresRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                                 IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -57,66 +57,66 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktCalendarAllSeasonPremieresRequest_TestData : IEnumerable<object[]>
+        public class CalendarAllSeasonPremieresRequest_TestData : IEnumerable<object[]>
         {
             private static readonly DateTime _startDate = DateTime.Now.AddDays(-7);
             private const int _days = 14;
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktMovieFilter _filter = new TraktMovieFilter().WithYears(2010, 2017);
 
-            private static readonly TraktCalendarAllSeasonPremieresRequest _request1 = new TraktCalendarAllSeasonPremieresRequest();
+            private static readonly CalendarAllSeasonPremieresRequest _request1 = new CalendarAllSeasonPremieresRequest();
 
-            private static readonly TraktCalendarAllSeasonPremieresRequest _request2 = new TraktCalendarAllSeasonPremieresRequest
+            private static readonly CalendarAllSeasonPremieresRequest _request2 = new CalendarAllSeasonPremieresRequest
             { StartDate = _startDate };
 
-            private static readonly TraktCalendarAllSeasonPremieresRequest _request3 = new TraktCalendarAllSeasonPremieresRequest
+            private static readonly CalendarAllSeasonPremieresRequest _request3 = new CalendarAllSeasonPremieresRequest
             { StartDate = _startDate, Days = _days };
 
-            private static readonly TraktCalendarAllSeasonPremieresRequest _request4 = new TraktCalendarAllSeasonPremieresRequest
+            private static readonly CalendarAllSeasonPremieresRequest _request4 = new CalendarAllSeasonPremieresRequest
             { Days = _days };
 
             // with extended info
-            private static readonly TraktCalendarAllSeasonPremieresRequest _request5 = new TraktCalendarAllSeasonPremieresRequest
+            private static readonly CalendarAllSeasonPremieresRequest _request5 = new CalendarAllSeasonPremieresRequest
             { ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarAllSeasonPremieresRequest _request6 = new TraktCalendarAllSeasonPremieresRequest
+            private static readonly CalendarAllSeasonPremieresRequest _request6 = new CalendarAllSeasonPremieresRequest
             { StartDate = _startDate, ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarAllSeasonPremieresRequest _request7 = new TraktCalendarAllSeasonPremieresRequest
+            private static readonly CalendarAllSeasonPremieresRequest _request7 = new CalendarAllSeasonPremieresRequest
             { StartDate = _startDate, Days = _days, ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarAllSeasonPremieresRequest _request8 = new TraktCalendarAllSeasonPremieresRequest
+            private static readonly CalendarAllSeasonPremieresRequest _request8 = new CalendarAllSeasonPremieresRequest
             { Days = _days, ExtendedInfo = _extendedInfo };
 
             // with filter
-            private static readonly TraktCalendarAllSeasonPremieresRequest _request9 = new TraktCalendarAllSeasonPremieresRequest
+            private static readonly CalendarAllSeasonPremieresRequest _request9 = new CalendarAllSeasonPremieresRequest
             { Filter = _filter };
 
-            private static readonly TraktCalendarAllSeasonPremieresRequest _request10 = new TraktCalendarAllSeasonPremieresRequest
+            private static readonly CalendarAllSeasonPremieresRequest _request10 = new CalendarAllSeasonPremieresRequest
             { StartDate = _startDate, Filter = _filter };
 
-            private static readonly TraktCalendarAllSeasonPremieresRequest _request11 = new TraktCalendarAllSeasonPremieresRequest
+            private static readonly CalendarAllSeasonPremieresRequest _request11 = new CalendarAllSeasonPremieresRequest
             { StartDate = _startDate, Days = _days, Filter = _filter };
 
-            private static readonly TraktCalendarAllSeasonPremieresRequest _request12 = new TraktCalendarAllSeasonPremieresRequest
+            private static readonly CalendarAllSeasonPremieresRequest _request12 = new CalendarAllSeasonPremieresRequest
             { Days = _days, Filter = _filter };
 
             // with extended info and filter
-            private static readonly TraktCalendarAllSeasonPremieresRequest _request13 = new TraktCalendarAllSeasonPremieresRequest
+            private static readonly CalendarAllSeasonPremieresRequest _request13 = new CalendarAllSeasonPremieresRequest
             { ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarAllSeasonPremieresRequest _request14 = new TraktCalendarAllSeasonPremieresRequest
+            private static readonly CalendarAllSeasonPremieresRequest _request14 = new CalendarAllSeasonPremieresRequest
             { StartDate = _startDate, ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarAllSeasonPremieresRequest _request15 = new TraktCalendarAllSeasonPremieresRequest
+            private static readonly CalendarAllSeasonPremieresRequest _request15 = new CalendarAllSeasonPremieresRequest
             { StartDate = _startDate, Days = _days, ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarAllSeasonPremieresRequest _request16 = new TraktCalendarAllSeasonPremieresRequest
+            private static readonly CalendarAllSeasonPremieresRequest _request16 = new CalendarAllSeasonPremieresRequest
             { Days = _days, ExtendedInfo = _extendedInfo, Filter = _filter };
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktCalendarAllSeasonPremieresRequest_TestData()
+            public CalendarAllSeasonPremieresRequest_TestData()
             {
                 SetupPathParamters();
             }
@@ -128,7 +128,7 @@
                 var strExtendedInfo = _extendedInfo.ToString();
                 var filterParameters = _filter.GetParameters();
 
-                _data.Add(new object[] { _request1.GetUriPathParameters(), new Dictionary<string, object> { } });
+                _data.Add(new object[] { _request1.GetUriPathParameters(), new Dictionary<string, object>() });
 
                 _data.Add(new object[] { _request2.GetUriPathParameters(), new Dictionary<string, object>
                     {
@@ -176,7 +176,7 @@
                     }});
 
                 // with filter
-                _data.Add(new object[] { _request9.GetUriPathParameters(), new Dictionary<string, object>(filterParameters) { } });
+                _data.Add(new object[] { _request9.GetUriPathParameters(), new Dictionary<string, object>(filterParameters) });
 
                 _data.Add(new object[] { _request10.GetUriPathParameters(), new Dictionary<string, object>(filterParameters)
                     {

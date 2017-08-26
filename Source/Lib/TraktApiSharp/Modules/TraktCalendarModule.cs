@@ -290,7 +290,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktCalendarAllSeasonPremieresRequest
+            return requestHandler.ExecuteListRequestAsync(new CalendarAllSeasonPremieresRequest
             {
                 StartDate = startDate,
                 Days = days,
