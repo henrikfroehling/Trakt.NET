@@ -31,7 +31,7 @@
         [Fact]
         public void Test_TraktShowCommentsRequest_Inherits_ATraktShowRequest_1()
         {
-            typeof(TraktShowCommentsRequest).IsSubclassOf(typeof(ATraktShowRequest<ITraktComment>)).Should().BeTrue();
+            typeof(TraktShowCommentsRequest).IsSubclassOf(typeof(AShowRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]

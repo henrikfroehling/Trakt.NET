@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktShowNextEpisodeRequest_Inherits_ATraktShowRequest_1()
         {
-            typeof(TraktShowNextEpisodeRequest).IsSubclassOf(typeof(ATraktShowRequest<ITraktEpisode>)).Should().BeTrue();
+            typeof(TraktShowNextEpisodeRequest).IsSubclassOf(typeof(AShowRequest<ITraktEpisode>)).Should().BeTrue();
         }
 
         [Fact]

@@ -5,7 +5,7 @@
     using Parameters;
     using System.Collections.Generic;
 
-    internal sealed class TraktShowLastEpisodeRequest : ATraktShowRequest<ITraktEpisode>, ISupportsExtendedInfo
+    internal sealed class TraktShowLastEpisodeRequest : AShowRequest<ITraktEpisode>, ISupportsExtendedInfo
     {
         public TraktExtendedInfo ExtendedInfo { get; set; }
 

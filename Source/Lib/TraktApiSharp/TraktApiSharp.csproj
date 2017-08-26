@@ -710,7 +710,7 @@
     <Compile Include="Requests\Seasons\SeasonSingleRequest.cs" />
     <Compile Include="Requests\Seasons\SeasonStatisticsRequest.cs" />
     <Compile Include="Requests\Seasons\SeasonWatchingUsersRequest.cs" />
-    <Compile Include="Requests\Shows\ATraktShowRequest%271.cs" />
+    <Compile Include="Requests\Shows\AShowRequest%271.cs" />
     <Compile Include="Requests\Shows\ATraktShowsMostPWCRequest%271.cs" />
     <Compile Include="Requests\Shows\ATraktShowsRequest%271.cs" />
     <Compile Include="Requests\Shows\OAuth\AShowProgressRequest%271.cs" />

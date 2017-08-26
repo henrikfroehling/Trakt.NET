@@ -10,56 +10,56 @@
     using Xunit;
 
     [Category("Requests.Shows")]
-    public class ATraktShowRequest_1_Tests
+    public class AShowRequest_1_Tests
     {
-        internal class TraktShowRequestMock : ATraktShowRequest<int>
+        internal class ShowRequestMock : AShowRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
         }
 
         [Fact]
-        public void Test_ATraktShowRequest_1_Is_Abstract()
+        public void Test_AShowRequest_1_Is_Abstract()
         {
-            typeof(ATraktShowRequest<>).IsAbstract.Should().BeTrue();
+            typeof(AShowRequest<>).IsAbstract.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktShowRequest_1_Has_GenericTypeParameter()
+        public void Test_AShowRequest_1_Has_GenericTypeParameter()
         {
-            typeof(ATraktShowRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ATraktShowRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+            typeof(AShowRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(AShowRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
         [Fact]
-        public void Test_ATraktShowRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_AShowRequest_1_Inherits_ATraktGetRequest_1()
         {
-            typeof(ATraktShowRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
+            typeof(AShowRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktShowRequest_1_Implements_ITraktHasId_Interface()
+        public void Test_AShowRequest_1_Implements_ITraktHasId_Interface()
         {
-            typeof(ATraktShowRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(AShowRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_ATraktShowRequest_1_Has_AuthorizationRequirement_NotRequired()
+        public void Test_AShowRequest_1_Has_AuthorizationRequirement_NotRequired()
         {
-            var requestMock = new TraktShowRequestMock();
+            var requestMock = new ShowRequestMock();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_ATraktShowRequest_1_Returns_Valid_RequestObjectType()
+        public void Test_AShowRequest_1_Returns_Valid_RequestObjectType()
         {
-            var requestMock = new TraktShowRequestMock();
+            var requestMock = new ShowRequestMock();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Shows);
         }
 
         [Fact]
-        public void Test_ATraktShowRequest_1_Returns_Valid_UriPathParameters()
+        public void Test_AShowRequest_1_Returns_Valid_UriPathParameters()
         {
-            var requestMock = new TraktShowRequestMock { Id = "123" };
+            var requestMock = new ShowRequestMock { Id = "123" };
 
             requestMock.GetUriPathParameters().Should().NotBeNull()
                                                        .And.HaveCount(1)
@@ -70,22 +70,22 @@
         }
 
         [Fact]
-        public void Test_ATraktShowRequest_1_Validate_Throws_Exceptions()
+        public void Test_AShowRequest_1_Validate_Throws_Exceptions()
         {
             // id is null
-            var requestMock = new TraktShowRequestMock();
+            var requestMock = new ShowRequestMock();
 
             Action act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            requestMock = new TraktShowRequestMock { Id = string.Empty };
+            requestMock = new ShowRequestMock { Id = string.Empty };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            requestMock = new TraktShowRequestMock { Id = "invalid id" };
+            requestMock = new ShowRequestMock { Id = "invalid id" };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();

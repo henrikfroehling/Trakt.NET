@@ -26,7 +26,7 @@
         [Fact]
         public void Test_TraktShowAliasesRequest_Inherits_ATraktShowRequest_1()
         {
-            typeof(TraktShowAliasesRequest).IsSubclassOf(typeof(ATraktShowRequest<ITraktShowAlias>)).Should().BeTrue();
+            typeof(TraktShowAliasesRequest).IsSubclassOf(typeof(AShowRequest<ITraktShowAlias>)).Should().BeTrue();
         }
 
         [Fact]

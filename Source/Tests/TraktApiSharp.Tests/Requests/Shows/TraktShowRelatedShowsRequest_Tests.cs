@@ -29,7 +29,7 @@
         [Fact]
         public void Test_TraktShowRelatedShowsRequest_Inherits_ATraktShowRequest_1()
         {
-            typeof(TraktShowRelatedShowsRequest).IsSubclassOf(typeof(ATraktShowRequest<ITraktShow>)).Should().BeTrue();
+            typeof(TraktShowRelatedShowsRequest).IsSubclassOf(typeof(AShowRequest<ITraktShow>)).Should().BeTrue();
         }
 
         [Fact]
