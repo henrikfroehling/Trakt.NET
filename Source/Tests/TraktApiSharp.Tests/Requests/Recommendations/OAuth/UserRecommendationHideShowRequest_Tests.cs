@@ -9,52 +9,52 @@
     using Xunit;
 
     [Category("Requests.Recommendations.OAuth")]
-    public class TraktUserRecommendationHideShowRequest_Tests
+    public class UserRecommendationHideShowRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserRecommendationHideShowRequest_IsNotAbstract()
+        public void Test_UserRecommendationHideShowRequest_IsNotAbstract()
         {
-            typeof(TraktUserRecommendationHideShowRequest).IsAbstract.Should().BeFalse();
+            typeof(UserRecommendationHideShowRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserRecommendationHideShowRequest_IsSealed()
+        public void Test_UserRecommendationHideShowRequest_IsSealed()
         {
-            typeof(TraktUserRecommendationHideShowRequest).IsSealed.Should().BeTrue();
+            typeof(UserRecommendationHideShowRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserRecommendationHideShowRequest_Inherits_ATraktUserRecommendationHideRequest()
+        public void Test_UserRecommendationHideShowRequest_Inherits_ATraktUserRecommendationHideRequest()
         {
-            typeof(TraktUserRecommendationHideShowRequest).IsSubclassOf(typeof(AUserRecommendationHideRequest)).Should().BeTrue();
+            typeof(UserRecommendationHideShowRequest).IsSubclassOf(typeof(AUserRecommendationHideRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserRecommendationHideShowRequest_Has_AuthorizationRequirement_Required()
+        public void Test_UserRecommendationHideShowRequest_Has_AuthorizationRequirement_Required()
         {
-            var request = new TraktUserRecommendationHideShowRequest();
+            var request = new UserRecommendationHideShowRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktUserRecommendationHideShowRequest_Returns_Valid_RequestObjectType()
+        public void Test_UserRecommendationHideShowRequest_Returns_Valid_RequestObjectType()
         {
-            var request = new TraktUserRecommendationHideShowRequest();
+            var request = new UserRecommendationHideShowRequest();
             request.RequestObjectType.Should().Be(RequestObjectType.Shows);
         }
 
         [Fact]
-        public void Test_TraktUserRecommendationHideShowRequest_Has_Valid_UriTemplate()
+        public void Test_UserRecommendationHideShowRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserRecommendationHideShowRequest();
+            var request = new UserRecommendationHideShowRequest();
             request.UriTemplate.Should().Be("recommendations/shows/{id}");
         }
 
         [Fact]
-        public void Test_TraktUserRecommendationHideShowRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserRecommendationHideShowRequest_Returns_Valid_UriPathParameters()
         {
             // only id
-            var request = new TraktUserRecommendationHideShowRequest { Id = "123" };
+            var request = new UserRecommendationHideShowRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -65,22 +65,22 @@
         }
 
         [Fact]
-        public void Test_TraktUserRecommendationHideShowRequest_Validate_Throws_Exceptions()
+        public void Test_UserRecommendationHideShowRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktUserRecommendationHideShowRequest();
+            var request = new UserRecommendationHideShowRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktUserRecommendationHideShowRequest { Id = string.Empty };
+            request = new UserRecommendationHideShowRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktUserRecommendationHideShowRequest { Id = "invalid id" };
+            request = new UserRecommendationHideShowRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

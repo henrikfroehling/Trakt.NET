@@ -2,7 +2,7 @@
 {
     using Base;
 
-    internal sealed class TraktUserRecommendationHideShowRequest : AUserRecommendationHideRequest
+    internal sealed class UserRecommendationHideShowRequest : AUserRecommendationHideRequest
     {
         public override RequestObjectType RequestObjectType => RequestObjectType.Shows;
 

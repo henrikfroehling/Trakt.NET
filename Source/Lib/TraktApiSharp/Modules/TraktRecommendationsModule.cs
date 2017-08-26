@@ -126,7 +126,7 @@
         public Task<TraktNoContentResponse> HideShowRecommendationAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktUserRecommendationHideShowRequest { Id = showIdOrSlug }, cancellationToken);
+            return requestHandler.ExecuteNoContentRequestAsync(new UserRecommendationHideShowRequest { Id = showIdOrSlug }, cancellationToken);
         }
     }
 }
