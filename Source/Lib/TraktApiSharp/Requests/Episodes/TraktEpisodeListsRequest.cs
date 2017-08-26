@@ -5,7 +5,7 @@
     using Objects.Get.Users.Lists;
     using System.Collections.Generic;
 
-    internal sealed class TraktEpisodeListsRequest : ATraktEpisodeRequest<ITraktList>, ISupportsPagination
+    internal sealed class TraktEpisodeListsRequest : AEpisodeRequest<ITraktList>, ISupportsPagination
     {
         internal TraktListType Type { get; set; }
 

@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktEpisodeTranslationsRequest_Inherits_ATraktEpisodeRequest_1()
         {
-            typeof(TraktEpisodeTranslationsRequest).IsSubclassOf(typeof(ATraktEpisodeRequest<ITraktEpisodeTranslation>)).Should().BeTrue();
+            typeof(TraktEpisodeTranslationsRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktEpisodeTranslation>)).Should().BeTrue();
         }
 
         [Fact]

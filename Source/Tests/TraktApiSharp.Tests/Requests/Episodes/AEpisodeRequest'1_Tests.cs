@@ -12,56 +12,56 @@
     using Xunit;
 
     [Category("Requests.Episodes")]
-    public class ATraktEpisodeRequest_1_Tests
+    public class AEpisodeRequest_1_Tests
     {
-        internal class TraktEpisodeRequestMock : ATraktEpisodeRequest<int>
+        internal class TraktEpisodeRequestMock : AEpisodeRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
         }
 
         [Fact]
-        public void Test_ATraktEpisodeRequest_1_IsAbstract()
+        public void Test_AEpisodeRequest_1_IsAbstract()
         {
-            typeof(ATraktEpisodeRequest<>).IsAbstract.Should().BeTrue();
+            typeof(AEpisodeRequest<>).IsAbstract.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktEpisodeRequest_1_Has_GenericTypeParameter()
+        public void Test_AEpisodeRequest_1_Has_GenericTypeParameter()
         {
-            typeof(ATraktEpisodeRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ATraktEpisodeRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+            typeof(AEpisodeRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(AEpisodeRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
         [Fact]
-        public void Test_ATraktEpisodeRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_AEpisodeRequest_1_Inherits_ATraktGetRequest_1()
         {
-            typeof(ATraktEpisodeRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
+            typeof(AEpisodeRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktEpisodeRequest_1_Implements_ITraktHasId_Interface()
+        public void Test_AEpisodeRequest_1_Implements_ITraktHasId_Interface()
         {
-            typeof(ATraktEpisodeRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(AEpisodeRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_ATraktEpisodeRequest_1_Has_AuthorizationRequirement_NotRequired()
+        public void Test_AEpisodeRequest_1_Has_AuthorizationRequirement_NotRequired()
         {
             var requestMock = new TraktEpisodeRequestMock();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_ATraktEpisodeRequest_1_Returns_Valid_RequestObjectType()
+        public void Test_AEpisodeRequest_1_Returns_Valid_RequestObjectType()
         {
             var requestMock = new TraktEpisodeRequestMock();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Episodes);
         }
 
         [Fact]
-        public void Test_ATraktEpisodeRequest_1_Has_SeasonNumber_Property()
+        public void Test_AEpisodeRequest_1_Has_SeasonNumber_Property()
         {
-            var propertyInfo = typeof(ATraktEpisodeRequest<>)
+            var propertyInfo = typeof(AEpisodeRequest<>)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "SeasonNumber")
                     .FirstOrDefault();
@@ -72,9 +72,9 @@
         }
 
         [Fact]
-        public void Test_ATraktEpisodeRequest_1_Has_EpisodeNumber_Property()
+        public void Test_AEpisodeRequest_1_Has_EpisodeNumber_Property()
         {
-            var propertyInfo = typeof(ATraktEpisodeRequest<>)
+            var propertyInfo = typeof(AEpisodeRequest<>)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "EpisodeNumber")
                     .FirstOrDefault();
@@ -85,7 +85,7 @@
         }
 
         [Fact]
-        public void Test_ATraktEpisodeRequest_1_Returns_Valid_UriPathParameters()
+        public void Test_AEpisodeRequest_1_Returns_Valid_UriPathParameters()
         {
             // with implicit season number
             var requestMock = new TraktEpisodeRequestMock { Id = "123", EpisodeNumber = 1 };
@@ -113,7 +113,7 @@
         }
 
         [Fact]
-        public void Test_ATraktEpisodeRequest_1_Validate_Throws_Exceptions()
+        public void Test_AEpisodeRequest_1_Validate_Throws_Exceptions()
         {
             // id is null
             var requestMock = new TraktEpisodeRequestMock { EpisodeNumber = 1 };
