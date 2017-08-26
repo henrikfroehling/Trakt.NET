@@ -8,7 +8,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktCommentUpdateRequest : APutRequest<ITraktCommentPostResponse, TraktCommentUpdatePost>, IHasId
+    internal sealed class CommentUpdateRequest : APutRequest<ITraktCommentPostResponse, TraktCommentUpdatePost>, IHasId
     {
         public string Id { get; set; }
 
