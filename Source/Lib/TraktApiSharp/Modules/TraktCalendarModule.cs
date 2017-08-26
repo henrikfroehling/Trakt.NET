@@ -324,7 +324,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktCalendarAllMoviesRequest
+            return requestHandler.ExecuteListRequestAsync(new CalendarAllMoviesRequest
             {
                 StartDate = startDate,
                 Days = days,

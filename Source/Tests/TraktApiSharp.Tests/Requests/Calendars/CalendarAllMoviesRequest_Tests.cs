@@ -13,42 +13,42 @@
     using Xunit;
 
     [Category("Requests.Calendars.Movies")]
-    public class TraktCalendarAllMoviesRequest_Tests
+    public class CalendarAllMoviesRequest_Tests
     {
         [Fact]
-        public void Test_TraktCalendarAllMoviesRequest_IsNotAbstract()
+        public void Test_CalendarAllMoviesRequest_IsNotAbstract()
         {
-            typeof(TraktCalendarAllMoviesRequest).IsAbstract.Should().BeFalse();
+            typeof(CalendarAllMoviesRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktCalendarAllMoviesRequest_IsSealed()
+        public void Test_CalendarAllMoviesRequest_IsSealed()
         {
-            typeof(TraktCalendarAllMoviesRequest).IsSealed.Should().BeTrue();
+            typeof(CalendarAllMoviesRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarAllMoviesRequest_Inherits_ATraktCalendarRequest()
+        public void Test_CalendarAllMoviesRequest_Inherits_ATraktCalendarRequest()
         {
-            typeof(TraktCalendarAllMoviesRequest).IsSubclassOf(typeof(ACalendarRequest<ITraktCalendarMovie>)).Should().BeTrue();
+            typeof(CalendarAllMoviesRequest).IsSubclassOf(typeof(ACalendarRequest<ITraktCalendarMovie>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarAllMoviesRequest_Has_AuthorizationRequirement_NotRequired()
+        public void Test_CalendarAllMoviesRequest_Has_AuthorizationRequirement_NotRequired()
         {
-            var request = new TraktCalendarAllMoviesRequest();
+            var request = new CalendarAllMoviesRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_TraktCalendarAllMoviesRequest_Has_Valid_UriTemplate()
+        public void Test_CalendarAllMoviesRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktCalendarAllMoviesRequest();
+            var request = new CalendarAllMoviesRequest();
             request.UriTemplate.Should().Be("calendars/all/movies{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}");
         }
 
-        [Theory, ClassData(typeof(TraktCalendarAllMoviesRequest_TestData))]
-        public void Test_TraktCalendarAllMoviesRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(CalendarAllMoviesRequest_TestData))]
+        public void Test_CalendarAllMoviesRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                        IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -57,66 +57,66 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktCalendarAllMoviesRequest_TestData : IEnumerable<object[]>
+        public class CalendarAllMoviesRequest_TestData : IEnumerable<object[]>
         {
             private static readonly DateTime _startDate = DateTime.Now.AddDays(-7);
             private const int _days = 14;
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktMovieFilter _filter = new TraktMovieFilter().WithYears(2010, 2017);
 
-            private static readonly TraktCalendarAllMoviesRequest _request1 = new TraktCalendarAllMoviesRequest();
+            private static readonly CalendarAllMoviesRequest _request1 = new CalendarAllMoviesRequest();
 
-            private static readonly TraktCalendarAllMoviesRequest _request2 = new TraktCalendarAllMoviesRequest
+            private static readonly CalendarAllMoviesRequest _request2 = new CalendarAllMoviesRequest
             { StartDate = _startDate };
 
-            private static readonly TraktCalendarAllMoviesRequest _request3 = new TraktCalendarAllMoviesRequest
+            private static readonly CalendarAllMoviesRequest _request3 = new CalendarAllMoviesRequest
             { StartDate = _startDate, Days = _days };
 
-            private static readonly TraktCalendarAllMoviesRequest _request4 = new TraktCalendarAllMoviesRequest
+            private static readonly CalendarAllMoviesRequest _request4 = new CalendarAllMoviesRequest
             { Days = _days };
 
             // with extended info
-            private static readonly TraktCalendarAllMoviesRequest _request5 = new TraktCalendarAllMoviesRequest
+            private static readonly CalendarAllMoviesRequest _request5 = new CalendarAllMoviesRequest
             { ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarAllMoviesRequest _request6 = new TraktCalendarAllMoviesRequest
+            private static readonly CalendarAllMoviesRequest _request6 = new CalendarAllMoviesRequest
             { StartDate = _startDate, ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarAllMoviesRequest _request7 = new TraktCalendarAllMoviesRequest
+            private static readonly CalendarAllMoviesRequest _request7 = new CalendarAllMoviesRequest
             { StartDate = _startDate, Days = _days, ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarAllMoviesRequest _request8 = new TraktCalendarAllMoviesRequest
+            private static readonly CalendarAllMoviesRequest _request8 = new CalendarAllMoviesRequest
             { Days = _days, ExtendedInfo = _extendedInfo };
 
             // with filter
-            private static readonly TraktCalendarAllMoviesRequest _request9 = new TraktCalendarAllMoviesRequest
+            private static readonly CalendarAllMoviesRequest _request9 = new CalendarAllMoviesRequest
             { Filter = _filter };
 
-            private static readonly TraktCalendarAllMoviesRequest _request10 = new TraktCalendarAllMoviesRequest
+            private static readonly CalendarAllMoviesRequest _request10 = new CalendarAllMoviesRequest
             { StartDate = _startDate, Filter = _filter };
 
-            private static readonly TraktCalendarAllMoviesRequest _request11 = new TraktCalendarAllMoviesRequest
+            private static readonly CalendarAllMoviesRequest _request11 = new CalendarAllMoviesRequest
             { StartDate = _startDate, Days = _days, Filter = _filter };
 
-            private static readonly TraktCalendarAllMoviesRequest _request12 = new TraktCalendarAllMoviesRequest
+            private static readonly CalendarAllMoviesRequest _request12 = new CalendarAllMoviesRequest
             { Days = _days, Filter = _filter };
 
             // with extended info and filter
-            private static readonly TraktCalendarAllMoviesRequest _request13 = new TraktCalendarAllMoviesRequest
+            private static readonly CalendarAllMoviesRequest _request13 = new CalendarAllMoviesRequest
             { ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarAllMoviesRequest _request14 = new TraktCalendarAllMoviesRequest
+            private static readonly CalendarAllMoviesRequest _request14 = new CalendarAllMoviesRequest
             { StartDate = _startDate, ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarAllMoviesRequest _request15 = new TraktCalendarAllMoviesRequest
+            private static readonly CalendarAllMoviesRequest _request15 = new CalendarAllMoviesRequest
             { StartDate = _startDate, Days = _days, ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarAllMoviesRequest _request16 = new TraktCalendarAllMoviesRequest
+            private static readonly CalendarAllMoviesRequest _request16 = new CalendarAllMoviesRequest
             { Days = _days, ExtendedInfo = _extendedInfo, Filter = _filter };
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktCalendarAllMoviesRequest_TestData()
+            public CalendarAllMoviesRequest_TestData()
             {
                 SetupPathParamters();
             }
