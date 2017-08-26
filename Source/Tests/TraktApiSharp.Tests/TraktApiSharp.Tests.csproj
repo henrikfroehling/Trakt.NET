@@ -1135,7 +1135,7 @@
     <Compile Include="Requests\Comments\CommentSummaryRequest_Tests.cs" />
     <Compile Include="Requests\Episodes\AEpisodeRequest%271_Tests.cs" />
     <Compile Include="Requests\Episodes\EpisodeCommentsRequest_Tests.cs" />
-    <Compile Include="Requests\Episodes\TraktEpisodeListsRequest_Tests.cs" />
+    <Compile Include="Requests\Episodes\EpisodeListsRequest_Tests.cs" />
     <Compile Include="Requests\Episodes\TraktEpisodeRatingsRequest_Tests.cs" />
     <Compile Include="Requests\Episodes\TraktEpisodeStatisticsRequest_Tests.cs" />
     <Compile Include="Requests\Episodes\TraktEpisodeSummaryRequest_Tests.cs" />

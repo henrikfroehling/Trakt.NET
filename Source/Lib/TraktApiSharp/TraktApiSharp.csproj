@@ -607,7 +607,7 @@
     <Compile Include="Requests\Base\ARequest%271.cs" />
     <Compile Include="Requests\Base\ARequest.cs" />
     <Compile Include="Requests\Episodes\AEpisodeRequest%271.cs" />
-    <Compile Include="Requests\Episodes\TraktEpisodeListsRequest.cs" />
+    <Compile Include="Requests\Episodes\EpisodeListsRequest.cs" />
     <Compile Include="Requests\Episodes\TraktEpisodeTranslationsRequest.cs" />
     <Compile Include="Requests\Handler\ExtendedHttpRequestMessage.cs" />
     <Compile Include="Requests\Interfaces\Base\IBodylessPostRequest%271.cs" />

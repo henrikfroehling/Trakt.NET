@@ -185,7 +185,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktEpisodeListsRequest
+            return requestHandler.ExecutePagedRequestAsync(new EpisodeListsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,

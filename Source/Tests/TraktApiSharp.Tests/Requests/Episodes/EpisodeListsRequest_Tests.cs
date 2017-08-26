@@ -14,43 +14,43 @@
     using Xunit;
 
     [Category("Requests.Episodes")]
-    public class TraktEpisodeListsRequest_Tests
+    public class EpisodeListsRequest_Tests
     {
         [Fact]
-        public void Test_TraktEpisodeListsRequest_IsNotAbstract()
+        public void Test_EpisodeListsRequest_IsNotAbstract()
         {
-            typeof(TraktEpisodeListsRequest).IsAbstract.Should().BeFalse();
+            typeof(EpisodeListsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktEpisodeListsRequest_IsSealed()
+        public void Test_EpisodeListsRequest_IsSealed()
         {
-            typeof(TraktEpisodeListsRequest).IsSealed.Should().BeTrue();
+            typeof(EpisodeListsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktEpisodeListsRequest_Inherits_ATraktEpisodeRequest_1()
+        public void Test_EpisodeListsRequest_Inherits_ATraktEpisodeRequest_1()
         {
-            typeof(TraktEpisodeListsRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktList>)).Should().BeTrue();
+            typeof(EpisodeListsRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktList>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktEpisodeListsRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_EpisodeListsRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktEpisodeListsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
+            typeof(EpisodeListsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]
-        public void Test_TraktEpisodeListsRequest_Has_Valid_UriTemplate()
+        public void Test_EpisodeListsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktEpisodeListsRequest();
+            var request = new EpisodeListsRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/episodes/{episode}/lists{/type}{/sort_order}{?page,limit}");
         }
 
         [Fact]
-        public void Test_TraktEpisodeListsRequest_Has_Type_Property()
+        public void Test_EpisodeListsRequest_Has_Type_Property()
         {
-            var propertyInfo = typeof(TraktEpisodeListsRequest)
+            var propertyInfo = typeof(EpisodeListsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
@@ -61,9 +61,9 @@
         }
 
         [Fact]
-        public void Test_TraktEpisodeListsRequest_Has_SortOrder_Property()
+        public void Test_EpisodeListsRequest_Has_SortOrder_Property()
         {
-            var propertyInfo = typeof(TraktEpisodeListsRequest)
+            var propertyInfo = typeof(EpisodeListsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "SortOrder")
                     .FirstOrDefault();
@@ -74,35 +74,35 @@
         }
 
         [Fact]
-        public void Test_TraktEpisodeListsRequest_Validate_Throws_Exceptions()
+        public void Test_EpisodeListsRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktEpisodeListsRequest { EpisodeNumber = 1 };
+            var request = new EpisodeListsRequest { EpisodeNumber = 1 };
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktEpisodeListsRequest { Id = string.Empty, EpisodeNumber = 1 };
+            request = new EpisodeListsRequest { Id = string.Empty, EpisodeNumber = 1 };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktEpisodeListsRequest { Id = "invalid id", EpisodeNumber = 1 };
+            request = new EpisodeListsRequest { Id = "invalid id", EpisodeNumber = 1 };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // episode number == 0
-            request = new TraktEpisodeListsRequest { EpisodeNumber = 0 };
+            request = new EpisodeListsRequest { EpisodeNumber = 0 };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktEpisodeListsRequest_TestData))]
-        public void Test_TraktEpisodeListsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(EpisodeListsRequest_TestData))]
+        public void Test_EpisodeListsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                   IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -111,7 +111,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktEpisodeListsRequest_TestData : IEnumerable<object[]>
+        public class EpisodeListsRequest_TestData : IEnumerable<object[]>
         {
             private const string _id = "123";
             private const uint _seasonNumber = 1;
@@ -121,14 +121,14 @@
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktEpisodeListsRequest _request1 = new TraktEpisodeListsRequest
+            private static readonly EpisodeListsRequest _request1 = new EpisodeListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
                 EpisodeNumber = _episodeNumber
             };
 
-            private static readonly TraktEpisodeListsRequest _request2 = new TraktEpisodeListsRequest
+            private static readonly EpisodeListsRequest _request2 = new EpisodeListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -136,7 +136,7 @@
                 Type = _type
             };
 
-            private static readonly TraktEpisodeListsRequest _request3 = new TraktEpisodeListsRequest
+            private static readonly EpisodeListsRequest _request3 = new EpisodeListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -144,7 +144,7 @@
                 SortOrder = _sortOrder
             };
 
-            private static readonly TraktEpisodeListsRequest _request4 = new TraktEpisodeListsRequest
+            private static readonly EpisodeListsRequest _request4 = new EpisodeListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -152,7 +152,7 @@
                 Page = _page
             };
 
-            private static readonly TraktEpisodeListsRequest _request5 = new TraktEpisodeListsRequest
+            private static readonly EpisodeListsRequest _request5 = new EpisodeListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -160,7 +160,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktEpisodeListsRequest _request6 = new TraktEpisodeListsRequest
+            private static readonly EpisodeListsRequest _request6 = new EpisodeListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -169,7 +169,7 @@
                 SortOrder = _sortOrder
             };
 
-            private static readonly TraktEpisodeListsRequest _request7 = new TraktEpisodeListsRequest
+            private static readonly EpisodeListsRequest _request7 = new EpisodeListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -178,7 +178,7 @@
                 Page = _page
             };
 
-            private static readonly TraktEpisodeListsRequest _request8 = new TraktEpisodeListsRequest
+            private static readonly EpisodeListsRequest _request8 = new EpisodeListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -187,7 +187,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktEpisodeListsRequest _request9 = new TraktEpisodeListsRequest
+            private static readonly EpisodeListsRequest _request9 = new EpisodeListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -197,7 +197,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktEpisodeListsRequest _request10 = new TraktEpisodeListsRequest
+            private static readonly EpisodeListsRequest _request10 = new EpisodeListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -206,7 +206,7 @@
                 Page = _page
             };
 
-            private static readonly TraktEpisodeListsRequest _request11 = new TraktEpisodeListsRequest
+            private static readonly EpisodeListsRequest _request11 = new EpisodeListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -215,7 +215,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktEpisodeListsRequest _request12 = new TraktEpisodeListsRequest
+            private static readonly EpisodeListsRequest _request12 = new EpisodeListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -225,7 +225,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktEpisodeListsRequest _request13 = new TraktEpisodeListsRequest
+            private static readonly EpisodeListsRequest _request13 = new EpisodeListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -234,7 +234,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktEpisodeListsRequest _request14 = new TraktEpisodeListsRequest
+            private static readonly EpisodeListsRequest _request14 = new EpisodeListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -244,7 +244,7 @@
                 Page = _page
             };
 
-            private static readonly TraktEpisodeListsRequest _request15 = new TraktEpisodeListsRequest
+            private static readonly EpisodeListsRequest _request15 = new EpisodeListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -254,7 +254,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktEpisodeListsRequest _request16 = new TraktEpisodeListsRequest
+            private static readonly EpisodeListsRequest _request16 = new EpisodeListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -267,7 +267,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktEpisodeListsRequest_TestData()
+            public EpisodeListsRequest_TestData()
             {
                 SetupPathParamters();
             }
