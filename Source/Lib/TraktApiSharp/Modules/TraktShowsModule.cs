@@ -329,7 +329,7 @@
                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktShowWatchingUsersRequest { Id = showIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new ShowWatchingUsersRequest { Id = showIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>

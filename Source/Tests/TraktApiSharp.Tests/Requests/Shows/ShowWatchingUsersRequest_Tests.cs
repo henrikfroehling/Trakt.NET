@@ -11,44 +11,44 @@
     using Xunit;
 
     [Category("Requests.Shows")]
-    public class TraktShowWatchingUsersRequest_Tests
+    public class ShowWatchingUsersRequest_Tests
     {
         [Fact]
-        public void Test_TraktShowWatchingUsersRequest_Is_Not_Abstract()
+        public void Test_ShowWatchingUsersRequest_Is_Not_Abstract()
         {
-            typeof(TraktShowWatchingUsersRequest).IsAbstract.Should().BeFalse();
+            typeof(ShowWatchingUsersRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktShowWatchingUsersRequest_Is_Sealed()
+        public void Test_ShowWatchingUsersRequest_Is_Sealed()
         {
-            typeof(TraktShowWatchingUsersRequest).IsSealed.Should().BeTrue();
+            typeof(ShowWatchingUsersRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowWatchingUsersRequest_Inherits_ATraktShowRequest_1()
+        public void Test_ShowWatchingUsersRequest_Inherits_ATraktShowRequest_1()
         {
-            typeof(TraktShowWatchingUsersRequest).IsSubclassOf(typeof(AShowRequest<ITraktUser>)).Should().BeTrue();
+            typeof(ShowWatchingUsersRequest).IsSubclassOf(typeof(AShowRequest<ITraktUser>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowWatchingUsersRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_ShowWatchingUsersRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktShowWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(ShowWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_TraktShowWatchingUsersRequest_Has_Valid_UriTemplate()
+        public void Test_ShowWatchingUsersRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktShowWatchingUsersRequest();
+            var request = new ShowWatchingUsersRequest();
             request.UriTemplate.Should().Be("shows/{id}/watching{?extended}");
         }
 
         [Fact]
-        public void Test_TraktShowWatchingUsersRequest_Returns_Valid_UriPathParameters()
+        public void Test_ShowWatchingUsersRequest_Returns_Valid_UriPathParameters()
         {
             // without extended info
-            var request = new TraktShowWatchingUsersRequest { Id = "123" };
+            var request = new ShowWatchingUsersRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -59,7 +59,7 @@
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktShowWatchingUsersRequest { Id = "123", ExtendedInfo = extendedInfo };
+            request = new ShowWatchingUsersRequest { Id = "123", ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -71,22 +71,22 @@
         }
 
         [Fact]
-        public void Test_TraktShowWatchingUsersRequest_Validate_Throws_Exceptions()
+        public void Test_ShowWatchingUsersRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktShowWatchingUsersRequest();
+            var request = new ShowWatchingUsersRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktShowWatchingUsersRequest { Id = string.Empty };
+            request = new ShowWatchingUsersRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktShowWatchingUsersRequest { Id = "invalid id" };
+            request = new ShowWatchingUsersRequest { Id = "invalid id" };
             act.ShouldThrow<ArgumentException>();
         }
     }
