@@ -603,7 +603,7 @@
     <Compile Include="Requests\Base\APostRequest%271.cs" />
     <Compile Include="Requests\Base\APostRequest%272.cs" />
     <Compile Include="Requests\Base\APutRequest%271.cs" />
-    <Compile Include="Requests\Base\ATraktPutRequest%272.cs" />
+    <Compile Include="Requests\Base\APutRequest%272.cs" />
     <Compile Include="Requests\Base\ATraktRequest%271.cs" />
     <Compile Include="Requests\Base\ATraktRequest.cs" />
     <Compile Include="Requests\Episodes\ATraktEpisodeRequest%271.cs" />

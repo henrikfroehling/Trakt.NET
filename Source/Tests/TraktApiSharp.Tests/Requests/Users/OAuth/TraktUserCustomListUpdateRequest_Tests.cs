@@ -31,7 +31,7 @@
         [Fact]
         public void Test_TraktUserCustomListUpdateRequest_Inherits_ATraktPutRequest_2()
         {
-            typeof(TraktUserCustomListUpdateRequest).IsSubclassOf(typeof(ATraktPutRequest<ITraktList, TraktUserCustomListPost>)).Should().BeTrue();
+            typeof(TraktUserCustomListUpdateRequest).IsSubclassOf(typeof(APutRequest<ITraktList, TraktUserCustomListPost>)).Should().BeTrue();
         }
 
         [Fact]
