@@ -27,7 +27,7 @@
         [Fact]
         public void Test_TraktMoviesMostAnticipatedRequest_Inherits_ATraktMoviesRequest_1()
         {
-            typeof(TraktMoviesMostAnticipatedRequest).IsSubclassOf(typeof(ATraktMoviesRequest<ITraktMostAnticipatedMovie>)).Should().BeTrue();
+            typeof(TraktMoviesMostAnticipatedRequest).IsSubclassOf(typeof(AMoviesRequest<ITraktMostAnticipatedMovie>)).Should().BeTrue();
         }
 
         [Fact]

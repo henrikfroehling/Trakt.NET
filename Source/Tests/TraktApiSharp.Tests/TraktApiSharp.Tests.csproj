@@ -1170,7 +1170,7 @@
     <Compile Include="Requests\Interfaces\IValidatable_Tests.cs" />
     <Compile Include="Requests\Movies\AMovieRequest%271_Tests.cs" />
     <Compile Include="Requests\Movies\AMoviesMostPWCRequest%271_Tests.cs" />
-    <Compile Include="Requests\Movies\ATraktMoviesRequest%271_Tests.cs" />
+    <Compile Include="Requests\Movies\AMoviesRequest%271_Tests.cs" />
     <Compile Include="Requests\Movies\TraktMovieAliasesRequest_Tests.cs" />
     <Compile Include="Requests\Movies\TraktMovieCommentsRequest_Tests.cs" />
     <Compile Include="Requests\Movies\TraktMovieListsRequest_Tests.cs" />

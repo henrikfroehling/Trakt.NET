@@ -2,7 +2,7 @@
 {
     using Objects.Get.Movies;
 
-    internal sealed class TraktMoviesMostAnticipatedRequest : ATraktMoviesRequest<ITraktMostAnticipatedMovie>
+    internal sealed class TraktMoviesMostAnticipatedRequest : AMoviesRequest<ITraktMostAnticipatedMovie>
     {
         public override string UriTemplate => "movies/anticipated{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
 

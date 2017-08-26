@@ -3,7 +3,7 @@
     using Enums;
     using System.Collections.Generic;
 
-    internal abstract class AMoviesMostPWCRequest<TResponseContentType> : ATraktMoviesRequest<TResponseContentType>
+    internal abstract class AMoviesMostPWCRequest<TResponseContentType> : AMoviesRequest<TResponseContentType>
     {
         internal TraktTimePeriod Period { get; set; }
 

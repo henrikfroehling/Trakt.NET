@@ -2,7 +2,7 @@
 {
     using Objects.Get.Movies;
 
-    internal sealed class TraktMoviesTrendingRequest : ATraktMoviesRequest<ITraktTrendingMovie>
+    internal sealed class TraktMoviesTrendingRequest : AMoviesRequest<ITraktTrendingMovie>
     {
         public override string UriTemplate => "movies/trending{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}";
 

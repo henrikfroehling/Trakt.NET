@@ -12,64 +12,60 @@
     using Xunit;
 
     [Category("Requests.Movies.Lists")]
-    public class ATraktMoviesRequest_1_Tests
+    public class AMoviesRequest_1_Tests
     {
-        internal class TraktMoviesRequestMock : ATraktMoviesRequest<int>
+        internal class MoviesRequestMock : AMoviesRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
-
-            public override void Validate()
-            {
-                throw new NotImplementedException();
-            }
+            public override void Validate() => throw new NotImplementedException();
         }
 
         [Fact]
-        public void Test_ATraktMoviesRequest_1_IsAbstract()
+        public void Test_AMoviesRequest_1_IsAbstract()
         {
-            typeof(ATraktMoviesRequest<>).IsAbstract.Should().BeTrue();
+            typeof(AMoviesRequest<>).IsAbstract.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktMoviesRequest_1_Has_GenericTypeParameter()
+        public void Test_AMoviesRequest_1_Has_GenericTypeParameter()
         {
-            typeof(ATraktMoviesRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ATraktMoviesRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+            typeof(AMoviesRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(AMoviesRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
         [Fact]
-        public void Test_ATraktMoviesRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_AMoviesRequest_1_Inherits_ATraktGetRequest_1()
         {
-            typeof(ATraktMoviesRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
+            typeof(AMoviesRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktMoviesRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_AMoviesRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(ATraktMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(AMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_ATraktMoviesRequest_1_Implements_ITraktSupportsFilter_Interface()
+        public void Test_AMoviesRequest_1_Implements_ITraktSupportsFilter_Interface()
         {
-            typeof(ATraktMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
+            typeof(AMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
         }
 
         [Fact]
-        public void Test_ATraktMoviesRequest_1_Implements_ITraktSupportsPagination_Interface()
+        public void Test_AMoviesRequest_1_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(ATraktMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
+            typeof(AMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]
-        public void Test_ATraktMoviesRequest_1_Has_AuthorizationRequirement_NotRequired()
+        public void Test_AMoviesRequest_1_Has_AuthorizationRequirement_NotRequired()
         {
-            var requestMock = new TraktMoviesRequestMock();
+            var requestMock = new MoviesRequestMock();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Theory, ClassData(typeof(TraktMoviesRequestMock_TestData))]
-        public void Test_ATraktMoviesRequest_1_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        public void Test_AMoviesRequest_1_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -85,86 +81,86 @@
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktMoviesRequestMock _request1 = new TraktMoviesRequestMock();
+            private static readonly MoviesRequestMock _request1 = new MoviesRequestMock();
 
-            private static readonly TraktMoviesRequestMock _request2 = new TraktMoviesRequestMock
+            private static readonly MoviesRequestMock _request2 = new MoviesRequestMock
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktMoviesRequestMock _request3 = new TraktMoviesRequestMock
+            private static readonly MoviesRequestMock _request3 = new MoviesRequestMock
             {
                 Filter = _filter
             };
 
-            private static readonly TraktMoviesRequestMock _request4 = new TraktMoviesRequestMock
+            private static readonly MoviesRequestMock _request4 = new MoviesRequestMock
             {
                 Page = _page
             };
 
-            private static readonly TraktMoviesRequestMock _request5 = new TraktMoviesRequestMock
+            private static readonly MoviesRequestMock _request5 = new MoviesRequestMock
             {
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesRequestMock _request6 = new TraktMoviesRequestMock
+            private static readonly MoviesRequestMock _request6 = new MoviesRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter
             };
 
-            private static readonly TraktMoviesRequestMock _request7 = new TraktMoviesRequestMock
+            private static readonly MoviesRequestMock _request7 = new MoviesRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktMoviesRequestMock _request8 = new TraktMoviesRequestMock
+            private static readonly MoviesRequestMock _request8 = new MoviesRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesRequestMock _request9 = new TraktMoviesRequestMock
+            private static readonly MoviesRequestMock _request9 = new MoviesRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesRequestMock _request10 = new TraktMoviesRequestMock
+            private static readonly MoviesRequestMock _request10 = new MoviesRequestMock
             {
                 Filter = _filter,
                 Page = _page
             };
 
-            private static readonly TraktMoviesRequestMock _request11 = new TraktMoviesRequestMock
+            private static readonly MoviesRequestMock _request11 = new MoviesRequestMock
             {
                 Filter = _filter,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesRequestMock _request12 = new TraktMoviesRequestMock
+            private static readonly MoviesRequestMock _request12 = new MoviesRequestMock
             {
                 Filter = _filter,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesRequestMock _request13 = new TraktMoviesRequestMock
+            private static readonly MoviesRequestMock _request13 = new MoviesRequestMock
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesRequestMock _request14 = new TraktMoviesRequestMock
+            private static readonly MoviesRequestMock _request14 = new MoviesRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter,
                 Page = _page,
                 Limit = _limit
             };
-            
+
             private static readonly List<object[]> _data = new List<object[]>();
 
             public TraktMoviesRequestMock_TestData()
