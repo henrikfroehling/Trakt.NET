@@ -49,7 +49,7 @@
         public void Test_ATraktShowProgressRequest_1_Has_AuthorizationRequirement_NotRequired()
         {
             var requestMock = new TraktShowProgressRequestMock();
-            requestMock.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

@@ -71,7 +71,7 @@
         public void Test_TraktSeasonsAllRequest_Has_AuthorizationRequirement_NotRequired()
         {
             var requestMock = new TraktSeasonsAllRequest();
-            requestMock.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
+            requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]

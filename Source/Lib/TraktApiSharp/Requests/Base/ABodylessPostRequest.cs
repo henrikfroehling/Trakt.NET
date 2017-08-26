@@ -5,7 +5,7 @@
 
     internal abstract class ABodylessPostRequest : ARequest, ITraktBodylessPostRequest
     {
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
 
         public sealed override HttpMethod Method => HttpMethod.Post;
     }

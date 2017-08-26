@@ -20,7 +20,7 @@
 
         public uint? Limit { get; set; }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.NotRequired;
 
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
 

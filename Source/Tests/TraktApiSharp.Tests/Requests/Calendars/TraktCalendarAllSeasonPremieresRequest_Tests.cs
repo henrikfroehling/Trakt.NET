@@ -37,7 +37,7 @@
         public void Test_TraktCalendarAllSeasonPremieresRequest_Has_AuthorizationRequirement_NotRequired()
         {
             var request = new TraktCalendarAllSeasonPremieresRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]

@@ -41,7 +41,7 @@
         public void Test_TraktMoviesBoxOfficeRequest_Has_AuthorizationRequirement_NotRequired()
         {
             var requestMock = new TraktMoviesBoxOfficeRequest();
-            requestMock.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
+            requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]

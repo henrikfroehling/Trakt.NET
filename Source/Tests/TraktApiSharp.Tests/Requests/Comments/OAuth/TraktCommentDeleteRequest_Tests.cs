@@ -47,7 +47,7 @@
         public void Test_TraktCommentDeleteRequest_Has_AuthorizationRequirement_Required()
         {
             var requestMock = new TraktCommentDeleteRequest();
-            requestMock.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

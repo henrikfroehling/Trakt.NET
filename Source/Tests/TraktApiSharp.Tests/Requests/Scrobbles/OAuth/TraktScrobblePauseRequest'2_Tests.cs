@@ -38,7 +38,7 @@
         public void Test_TraktScrobblePauseRequest_2_Has_AuthorizationRequirement_Required()
         {
             var request = new TraktScrobblePauseRequest<int, float>();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

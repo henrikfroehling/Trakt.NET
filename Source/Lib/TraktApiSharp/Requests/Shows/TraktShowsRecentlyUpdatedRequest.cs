@@ -20,7 +20,7 @@
 
         public override string UriTemplate => "shows/updates{/start_date}{?extended,page,limit}";
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.NotRequired;
 
         public override IDictionary<string, object> GetUriPathParameters()
         {

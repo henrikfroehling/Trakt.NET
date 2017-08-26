@@ -49,7 +49,7 @@
         public void Test_TraktUserFollowUserRequest_Has_AuthorizationRequirement_Required()
         {
             var request = new TraktUserFollowUserRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

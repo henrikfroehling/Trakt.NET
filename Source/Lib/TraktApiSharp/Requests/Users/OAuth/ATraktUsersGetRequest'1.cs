@@ -9,7 +9,7 @@
     {
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Optional;
 
         public override IDictionary<string, object> GetUriPathParameters()
         {

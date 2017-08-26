@@ -13,7 +13,7 @@
 
         public string Id { get; set; }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Optional;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Optional;
 
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
 

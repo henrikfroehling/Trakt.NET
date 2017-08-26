@@ -62,7 +62,7 @@
         public void Test_ATraktMoviesMostPWCRequest_1_Has_AuthorizationRequirement_NotRequired()
         {
             var requestMock = new TraktMoviesMostPWCRequestMock();
-            requestMock.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
+            requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Theory, ClassData(typeof(TraktMoviesMostPWCRequestMock_TestData))]

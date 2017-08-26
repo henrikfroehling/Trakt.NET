@@ -41,7 +41,7 @@
         public void Test_ATraktUserRecommendationHideRequest_Has_AuthorizationRequirement_Required()
         {
             var requestMock = new TraktUserRecommendationHideRequestMock();
-            requestMock.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

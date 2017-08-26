@@ -52,7 +52,7 @@
         public void Test_TraktShowsRecentlyUpdatedRequest_Has_AuthorizationRequirement_NotRequired()
         {
             var requestMock = new TraktShowsRecentlyUpdatedRequest();
-            requestMock.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
+            requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]

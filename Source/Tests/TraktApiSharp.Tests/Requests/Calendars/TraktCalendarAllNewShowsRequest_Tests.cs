@@ -37,7 +37,7 @@
         public void Test_TraktCalendarAllNewShowsRequest_Has_AuthorizationRequirement_NotRequired()
         {
             var request = new TraktCalendarAllNewShowsRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]

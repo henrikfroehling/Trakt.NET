@@ -49,7 +49,7 @@
         public void Test_APutRequest_2_Returns_Valid_AuthorizationRequirement()
         {
             var requestMock = new PutRequestMock();
-            requestMock.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

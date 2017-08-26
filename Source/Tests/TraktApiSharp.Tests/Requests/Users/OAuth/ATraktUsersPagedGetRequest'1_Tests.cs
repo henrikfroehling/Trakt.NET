@@ -53,7 +53,7 @@
         public void Test_ATraktUsersPagedGetRequest_1_Has_AuthorizationRequirement_Optional()
         {
             var request = new TraktUsersPagedGetRequestMock();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Optional);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Theory, ClassData(typeof(TraktUsersPagedGetRequestMock_TestData))]

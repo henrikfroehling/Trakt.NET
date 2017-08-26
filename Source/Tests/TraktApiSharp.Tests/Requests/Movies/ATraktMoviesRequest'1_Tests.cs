@@ -65,7 +65,7 @@
         public void Test_ATraktMoviesRequest_1_Has_AuthorizationRequirement_NotRequired()
         {
             var requestMock = new TraktMoviesRequestMock();
-            requestMock.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
+            requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Theory, ClassData(typeof(TraktMoviesRequestMock_TestData))]

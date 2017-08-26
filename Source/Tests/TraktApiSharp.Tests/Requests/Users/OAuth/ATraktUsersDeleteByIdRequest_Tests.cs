@@ -41,7 +41,7 @@
         public void Test_ATraktUsersDeleteByIdRequest_Has_AuthorizationRequirement_Required()
         {
             var request = new TraktUsersDeleteByIdRequestMock();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

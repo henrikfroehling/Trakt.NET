@@ -5,7 +5,7 @@
 
     internal abstract class ATraktSyncGetRequest<TResponseContentType> : AGetRequest<TResponseContentType>
     {
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
 
         public override IDictionary<string, object> GetUriPathParameters() => new Dictionary<string, object>();
 

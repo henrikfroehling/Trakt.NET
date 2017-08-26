@@ -25,7 +25,7 @@
 
             propertyInfo.CanRead.Should().BeTrue();
             propertyInfo.CanWrite.Should().BeFalse();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktAuthorizationRequirement));
+            propertyInfo.PropertyType.Should().Be(typeof(AuthorizationRequirement));
         }
     }
 }

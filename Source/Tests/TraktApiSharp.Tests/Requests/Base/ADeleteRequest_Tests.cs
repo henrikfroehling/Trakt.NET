@@ -42,7 +42,7 @@
         public void Test_ADeleteRequest_Returns_Valid_AuthorizationRequirement()
         {
             var requestMock = new DeleteRequestMock();
-            requestMock.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

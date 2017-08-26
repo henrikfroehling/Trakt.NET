@@ -49,7 +49,7 @@
         public void Test_ABodylessPostRequest_1_Returns_Valid_AuthorizationRequirement()
         {
             var requestMock = new BodylessPostRequestMock();
-            requestMock.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

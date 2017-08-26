@@ -41,7 +41,7 @@
         public void Test_TraktCommentPostRequest_1_Has_AuthorizationRequirement_Required()
         {
             var request = new TraktCommentPostRequest<TraktCommentPost>();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

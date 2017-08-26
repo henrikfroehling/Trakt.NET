@@ -51,7 +51,7 @@
         public void Test_TraktUserListCommentsRequest_Has_AuthorizationRequirement_Not_Required()
         {
             var request = new TraktUserListCommentsRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]

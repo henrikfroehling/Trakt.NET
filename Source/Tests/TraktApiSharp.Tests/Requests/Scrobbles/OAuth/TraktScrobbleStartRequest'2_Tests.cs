@@ -38,7 +38,7 @@
         public void Test_TraktScrobbleStartRequest_2_Has_AuthorizationRequirement_Required()
         {
             var request = new TraktScrobbleStartRequest<int, float>();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

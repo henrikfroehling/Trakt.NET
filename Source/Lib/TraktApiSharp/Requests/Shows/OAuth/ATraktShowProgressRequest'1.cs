@@ -16,7 +16,7 @@
 
         internal bool? CountSpecials { get; set; }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
 
         public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
 

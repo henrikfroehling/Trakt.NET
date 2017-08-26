@@ -5,7 +5,7 @@
 
     internal abstract class AGetRequest<TResponseContentType> : ARequest<TResponseContentType>, ITraktGetRequest<TResponseContentType>
     {
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.NotRequired;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.NotRequired;
 
         public sealed override HttpMethod Method => HttpMethod.Get;
     }

@@ -449,12 +449,12 @@
                 httpClient.DefaultRequestHeaders.Accept.Add(appJsonHeader);
         }
 
-        private void SetRequestMessageHeadersForAuthorization(TraktHttpRequestMessage requestMessage, TraktAuthorizationRequirement authorizationRequirement)
+        private void SetRequestMessageHeadersForAuthorization(TraktHttpRequestMessage requestMessage, AuthorizationRequirement authorizationRequirement)
         {
             if (requestMessage == null)
                 throw new ArgumentNullException(nameof(requestMessage));
 
-            if (authorizationRequirement == TraktAuthorizationRequirement.Required)
+            if (authorizationRequirement == AuthorizationRequirement.Required)
             {
                 if (!_client.Authentication.IsAuthorized)
                     throw new TraktAuthorizationException("authorization is required for this request, but the current authorization parameters are invalid");
@@ -462,7 +462,7 @@
                 requestMessage.Headers.Authorization = new AuthenticationHeaderValue(AUTHENTICATION_SCHEME, _client.Authentication.Authorization.AccessToken);
             }
 
-            if (authorizationRequirement == TraktAuthorizationRequirement.Optional && _client.Configuration.ForceAuthorization && _client.Authentication.IsAuthorized)
+            if (authorizationRequirement == AuthorizationRequirement.Optional && _client.Configuration.ForceAuthorization && _client.Authentication.IsAuthorized)
                 requestMessage.Headers.Authorization = new AuthenticationHeaderValue(AUTHENTICATION_SCHEME, _client.Authentication.Authorization.AccessToken);
         }
 

@@ -47,7 +47,7 @@
         public void Test_TraktCommentUnlikeRequest_Has_AuthorizationRequirement_Required()
         {
             var requestMock = new TraktCommentUnlikeRequest();
-            requestMock.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

@@ -6,7 +6,7 @@
 
     internal abstract class ARequest : ITraktRequest
     {
-        public abstract TraktAuthorizationRequirement AuthorizationRequirement { get; }
+        public abstract AuthorizationRequirement AuthorizationRequirement { get; }
 
         public abstract HttpMethod Method { get; }
 

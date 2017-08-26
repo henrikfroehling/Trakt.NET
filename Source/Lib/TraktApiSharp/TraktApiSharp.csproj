@@ -1017,7 +1017,7 @@
     <Compile Include="Requests\UriTemplates\UriTemplateExtensions.cs" />
     <Compile Include="Requests\UriTemplates\UriTemplateTable.cs" />
     <Compile Include="Requests\UriTemplates\VarSpec.cs" />
-    <Compile Include="Requests\Base\TraktAuthorizationRequirement.cs" />
+    <Compile Include="Requests\Base\AuthorizationRequirement.cs" />
     <Compile Include="Requests\Parameters\TraktExtendedInfo.cs" />
     <Compile Include="Requests\Base\TraktRequestObjectType.cs" />
     <Compile Include="Services\TraktLanguageService.cs" />

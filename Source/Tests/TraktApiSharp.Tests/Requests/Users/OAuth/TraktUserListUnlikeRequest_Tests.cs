@@ -48,7 +48,7 @@
         public void Test_TraktUserListUnlikeRequest_Has_AuthorizationRequirement_Required()
         {
             var request = new TraktUserListUnlikeRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

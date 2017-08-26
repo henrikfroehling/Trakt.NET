@@ -14,7 +14,7 @@
 
         public uint? Limit { get; set; }
 
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
 
         public override string UriTemplate => "users/likes{/type}{?page,limit}";
 

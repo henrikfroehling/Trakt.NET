@@ -4,6 +4,6 @@
 
     internal interface ITraktHasRequestAuthorization
     {
-        TraktAuthorizationRequirement AuthorizationRequirement { get; }
+        AuthorizationRequirement AuthorizationRequirement { get; }
     }
 }

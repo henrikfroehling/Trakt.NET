@@ -37,7 +37,7 @@
         public void Test_TraktCalendarUserDVDMoviesRequest_Has_AuthorizationRequirement_Required()
         {
             var request = new TraktCalendarUserDVDMoviesRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

@@ -46,7 +46,7 @@
         public void Test_ATraktShowRequest_1_Has_AuthorizationRequirement_NotRequired()
         {
             var requestMock = new TraktShowRequestMock();
-            requestMock.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
+            requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]

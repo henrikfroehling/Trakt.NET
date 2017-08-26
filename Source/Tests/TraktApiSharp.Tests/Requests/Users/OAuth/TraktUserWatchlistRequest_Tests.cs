@@ -65,7 +65,7 @@
         public void Test_TraktUserWatchlistRequest_Has_AuthorizationRequirement_Optional()
         {
             var request = new TraktUserWatchlistRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Optional);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]

@@ -7,7 +7,7 @@
 
     internal abstract class ATraktUserRecommendationsRequest<TResponseContentType> : AGetRequest<TResponseContentType>, ITraktSupportsExtendedInfo
     {
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 

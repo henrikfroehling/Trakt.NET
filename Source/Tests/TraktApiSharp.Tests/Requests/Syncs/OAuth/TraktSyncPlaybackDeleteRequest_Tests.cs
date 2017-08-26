@@ -40,7 +40,7 @@
         public void Test_TraktSyncPlaybackDeleteRequest_Has_AuthorizationRequirement_Required()
         {
             var request = new TraktSyncPlaybackDeleteRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

@@ -4,6 +4,6 @@
 
     internal abstract class ATraktCalendarUserRequest<TResponseContentType> : ATraktCalendarRequest<TResponseContentType>
     {
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
     }
 }

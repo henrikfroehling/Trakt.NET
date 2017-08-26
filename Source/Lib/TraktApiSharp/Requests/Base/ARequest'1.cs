@@ -6,7 +6,7 @@
 
     internal abstract class ARequest<TResponseContentType> : ITraktRequest<TResponseContentType>
     {
-        public abstract TraktAuthorizationRequirement AuthorizationRequirement { get; }
+        public abstract AuthorizationRequirement AuthorizationRequirement { get; }
 
         public abstract HttpMethod Method { get; }
 

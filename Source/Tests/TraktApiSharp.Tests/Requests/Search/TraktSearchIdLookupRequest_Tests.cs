@@ -38,7 +38,7 @@
         public void Test_TraktSearchIdLookupRequest_Has_AuthorizationRequirement_NotRequired()
         {
             var request = new TraktSearchIdLookupRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]

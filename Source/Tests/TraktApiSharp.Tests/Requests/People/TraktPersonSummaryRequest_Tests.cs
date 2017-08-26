@@ -35,7 +35,7 @@
         public void Test_TraktPersonSummaryRequest_Has_AuthorizationRequirement_NotRequired()
         {
             var request = new TraktPersonSummaryRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]

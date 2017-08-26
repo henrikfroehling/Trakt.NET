@@ -6,7 +6,7 @@
 
     internal abstract class APostRequest<TResponseContentType, TRequestBodyType> : ARequest<TResponseContentType>, ITraktPostRequest<TResponseContentType, TRequestBodyType>
     {
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
 
         public sealed override HttpMethod Method => HttpMethod.Post;
 

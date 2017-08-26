@@ -50,7 +50,7 @@
         public void Test_TraktUserFollowingRequest_Has_AuthorizationRequirement_Optional()
         {
             var request = new TraktUserFollowingRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Optional);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]

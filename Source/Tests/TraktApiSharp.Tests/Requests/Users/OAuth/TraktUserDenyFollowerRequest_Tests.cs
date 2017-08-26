@@ -33,7 +33,7 @@
         public void Test_TraktUserDenyFollowerRequest_Has_AuthorizationRequirement_Optional()
         {
             var request = new TraktUserDenyFollowerRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

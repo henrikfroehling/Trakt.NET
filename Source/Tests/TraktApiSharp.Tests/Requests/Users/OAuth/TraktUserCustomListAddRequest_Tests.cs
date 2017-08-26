@@ -50,7 +50,7 @@
         public void Test_TraktUserCustomListAddRequest_Has_AuthorizationRequirement_Required()
         {
             var request = new TraktUserCustomListAddRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

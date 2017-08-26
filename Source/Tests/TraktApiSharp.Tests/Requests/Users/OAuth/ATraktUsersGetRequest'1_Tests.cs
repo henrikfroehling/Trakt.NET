@@ -52,7 +52,7 @@
         public void Test_ATraktUsersGetRequest_1_Has_AuthorizationRequirement_Optional()
         {
             var request = new TraktUsersGetRequestMock();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Optional);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]

@@ -32,7 +32,7 @@
         public void Test_TraktGenresMoviesRequest_Has_AuthorizationRequirement_NotRequired()
         {
             var request = new TraktGenresMoviesRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.NotRequired);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]

@@ -38,7 +38,7 @@
         public void Test_ATraktSyncGetRequest_1_Has_AuthorizationRequirement_Required()
         {
             var request = new TraktSyncGetRequestMock();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

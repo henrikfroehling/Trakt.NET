@@ -33,7 +33,7 @@
         public void Test_TraktUserRecommendationHideMovieRequest_Has_AuthorizationRequirement_Required()
         {
             var request = new TraktUserRecommendationHideMovieRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

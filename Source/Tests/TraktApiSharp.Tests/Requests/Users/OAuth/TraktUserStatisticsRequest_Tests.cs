@@ -49,7 +49,7 @@
         public void Test_TraktUserStatisticsRequest_Has_AuthorizationRequirement_Optional()
         {
             var request = new TraktUserStatisticsRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Optional);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]

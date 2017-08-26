@@ -5,7 +5,7 @@
 
     internal sealed class TraktUserFollowRequestsRequest : ATraktUsersGetRequest<ITraktUserFollowRequest>
     {
-        public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
 
         public override string UriTemplate => "users/requests{?extended}";
     }

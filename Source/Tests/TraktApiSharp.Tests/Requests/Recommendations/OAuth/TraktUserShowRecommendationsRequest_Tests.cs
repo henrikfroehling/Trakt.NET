@@ -34,7 +34,7 @@
         public void Test_TraktUserShowRecommendationsRequest_Has_AuthorizationRequirement_Required()
         {
             var request = new TraktUserShowRecommendationsRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

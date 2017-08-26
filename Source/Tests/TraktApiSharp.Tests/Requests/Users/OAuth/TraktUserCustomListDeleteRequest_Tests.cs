@@ -48,7 +48,7 @@
         public void Test_TraktUserCustomListDeleteRequest_Has_AuthorizationRequirement_Required()
         {
             var request = new TraktUserCustomListDeleteRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Required);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]

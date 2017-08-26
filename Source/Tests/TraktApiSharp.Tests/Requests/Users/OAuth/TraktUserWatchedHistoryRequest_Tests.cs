@@ -112,7 +112,7 @@
         public void Test_TraktUserWatchedHistoryRequest_Has_AuthorizationRequirement_Optional()
         {
             var request = new TraktUserWatchedHistoryRequest();
-            request.AuthorizationRequirement.Should().Be(TraktAuthorizationRequirement.Optional);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
