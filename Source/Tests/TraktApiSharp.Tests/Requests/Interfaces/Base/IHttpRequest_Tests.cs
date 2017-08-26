@@ -8,18 +8,18 @@
     using Xunit;
 
     [Category("Requests.Interfaces.Base")]
-    public class ITraktHttpRequest_Tests
+    public class IHttpRequest_Tests
     {
         [Fact]
-        public void Test_ITraktHttpRequest_Is_Interface()
+        public void Test_IHttpRequest_Is_Interface()
         {
-            typeof(ITraktHttpRequest).IsInterface.Should().BeTrue();
+            typeof(IHttpRequest).IsInterface.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ITraktHttpRequest_Has_Method_Property()
+        public void Test_IHttpRequest_Has_Method_Property()
         {
-            var propertyInfo = typeof(ITraktHttpRequest).GetProperties()
+            var propertyInfo = typeof(IHttpRequest).GetProperties()
                                                         .Where(p => p.Name == "Method")
                                                         .FirstOrDefault();
 

@@ -2,7 +2,7 @@
 {
     using System.Net.Http;
 
-    internal interface ITraktHttpRequest
+    internal interface IHttpRequest
     {
         HttpMethod Method { get; }
     }

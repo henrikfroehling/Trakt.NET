@@ -18,7 +18,7 @@
         [Fact]
         public void Test_ITraktRequest_Inherits_ITraktHttpRequest_Interface()
         {
-            typeof(ITraktRequest).GetInterfaces().Should().Contain(typeof(ITraktHttpRequest));
+            typeof(ITraktRequest).GetInterfaces().Should().Contain(typeof(IHttpRequest));
         }
 
         [Fact]
