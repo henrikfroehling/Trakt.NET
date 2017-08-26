@@ -30,7 +30,7 @@
         [Fact]
         public void Test_TraktCalendarUserSeasonPremieresRequest_Inherits_ATraktCalendarUserRequest()
         {
-            typeof(TraktCalendarUserSeasonPremieresRequest).IsSubclassOf(typeof(ATraktCalendarUserRequest<ITraktCalendarShow>)).Should().BeTrue();
+            typeof(TraktCalendarUserSeasonPremieresRequest).IsSubclassOf(typeof(ACalendarUserRequest<ITraktCalendarShow>)).Should().BeTrue();
         }
 
         [Fact]

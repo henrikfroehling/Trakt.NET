@@ -626,7 +626,7 @@
     <Compile Include="Requests\Interfaces\IHasId.cs" />
     <Compile Include="Requests\Interfaces\Base\IHasRequestBody%271.cs" />
     <Compile Include="Requests\Calendars\ATraktCalendarRequest%271.cs" />
-    <Compile Include="Requests\Calendars\OAuth\ATraktCalendarUserRequest%271.cs" />
+    <Compile Include="Requests\Calendars\OAuth\ACalendarUserRequest%271.cs" />
     <Compile Include="Requests\Calendars\OAuth\TraktCalendarUserDVDMoviesRequest.cs" />
     <Compile Include="Requests\Calendars\OAuth\TraktCalendarUserMoviesRequest.cs" />
     <Compile Include="Requests\Calendars\OAuth\TraktCalendarUserNewShowsRequest.cs" />

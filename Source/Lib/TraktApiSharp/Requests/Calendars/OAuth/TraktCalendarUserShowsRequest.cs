@@ -2,7 +2,7 @@
 {
     using Objects.Get.Calendars;
 
-    internal sealed class TraktCalendarUserShowsRequest : ATraktCalendarUserRequest<ITraktCalendarShow>
+    internal sealed class TraktCalendarUserShowsRequest : ACalendarUserRequest<ITraktCalendarShow>
     {
         public override string UriTemplate => "calendars/my/shows{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}";
     }
