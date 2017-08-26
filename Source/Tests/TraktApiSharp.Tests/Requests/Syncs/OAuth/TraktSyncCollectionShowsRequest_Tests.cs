@@ -33,7 +33,7 @@
         [Fact]
         public void Test_TraktSyncCollectionShowsRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktSyncCollectionShowsRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
+            typeof(TraktSyncCollectionShowsRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]

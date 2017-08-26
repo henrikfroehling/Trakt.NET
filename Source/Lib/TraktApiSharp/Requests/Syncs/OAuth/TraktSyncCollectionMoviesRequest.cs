@@ -5,7 +5,7 @@
     using Parameters;
     using System.Collections.Generic;
 
-    internal sealed class TraktSyncCollectionMoviesRequest : ATraktSyncGetRequest<ITraktCollectionMovie>, ITraktSupportsExtendedInfo
+    internal sealed class TraktSyncCollectionMoviesRequest : ATraktSyncGetRequest<ITraktCollectionMovie>, ISupportsExtendedInfo
     {
         public TraktExtendedInfo ExtendedInfo { get; set; }
 

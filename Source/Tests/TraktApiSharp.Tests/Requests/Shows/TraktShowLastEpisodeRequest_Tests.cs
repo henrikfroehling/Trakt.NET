@@ -34,7 +34,7 @@
         [Fact]
         public void Test_TraktShowLastEpisodeRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktShowLastEpisodeRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
+            typeof(TraktShowLastEpisodeRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]

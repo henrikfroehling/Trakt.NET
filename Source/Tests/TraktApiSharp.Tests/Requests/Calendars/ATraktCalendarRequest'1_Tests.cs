@@ -40,7 +40,7 @@
         [Fact]
         public void Test_ATraktCalendarRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(ATraktCalendarRequest<>).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
+            typeof(ATraktCalendarRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]

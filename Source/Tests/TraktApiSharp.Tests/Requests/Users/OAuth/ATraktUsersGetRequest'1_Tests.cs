@@ -45,7 +45,7 @@
         [Fact]
         public void Test_ATraktUsersGetRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(ATraktUsersGetRequest<>).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
+            typeof(ATraktUsersGetRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]

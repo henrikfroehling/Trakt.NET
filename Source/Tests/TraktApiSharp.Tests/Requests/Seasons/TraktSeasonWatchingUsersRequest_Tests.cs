@@ -34,7 +34,7 @@
         [Fact]
         public void Test_TraktSeasonWatchingUsersRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktSeasonWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
+            typeof(TraktSeasonWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]

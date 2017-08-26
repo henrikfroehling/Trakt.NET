@@ -39,7 +39,7 @@
         [Fact]
         public void Test_TraktShowsRecentlyUpdatedRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktShowsRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
+            typeof(TraktShowsRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]

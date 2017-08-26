@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    internal sealed class TraktSyncRatingsRequest : ATraktSyncGetRequest<ITraktRatingsItem>, ITraktSupportsExtendedInfo
+    internal sealed class TraktSyncRatingsRequest : ATraktSyncGetRequest<ITraktRatingsItem>, ISupportsExtendedInfo
     {
         internal TraktRatingsItemType Type { get; set; }
 

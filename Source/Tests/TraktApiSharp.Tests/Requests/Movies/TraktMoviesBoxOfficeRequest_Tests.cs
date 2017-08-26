@@ -34,7 +34,7 @@
         [Fact]
         public void Test_TraktMoviesBoxOfficeRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktMoviesBoxOfficeRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
+            typeof(TraktMoviesBoxOfficeRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]

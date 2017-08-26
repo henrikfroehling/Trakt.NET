@@ -7,7 +7,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal abstract class ATraktCalendarRequest<TResponseContentType> : AGetRequest<TResponseContentType>, ITraktSupportsExtendedInfo, ITraktSupportsFilter
+    internal abstract class ATraktCalendarRequest<TResponseContentType> : AGetRequest<TResponseContentType>, ISupportsExtendedInfo, ITraktSupportsFilter
     {
         internal DateTime? StartDate { get; set; }
 

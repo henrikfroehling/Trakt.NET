@@ -2,7 +2,7 @@
 {
     using Parameters;
 
-    internal interface ITraktSupportsExtendedInfo
+    internal interface ISupportsExtendedInfo
     {
         TraktExtendedInfo ExtendedInfo { get; set; }
     }

@@ -656,7 +656,7 @@
     <Compile Include="Requests\Genres\TraktGenresShowsRequest.cs" />
     <Compile Include="Requests\Interfaces\Base\IHasUriPathParameters.cs" />
     <Compile Include="Requests\Interfaces\Base\IHasRequestAuthorization.cs" />
-    <Compile Include="Requests\Interfaces\ITraktSupportsExtendedInfo.cs" />
+    <Compile Include="Requests\Interfaces\ISupportsExtendedInfo.cs" />
     <Compile Include="Requests\Interfaces\ITraktSupportsFilter.cs" />
     <Compile Include="Requests\Interfaces\ITraktSupportsPagination.cs" />
     <Compile Include="Requests\Interfaces\IObjectRequest.cs" />

@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktSeasonSingleRequest : ATraktSeasonRequest<ITraktEpisode>, ITraktSupportsExtendedInfo
+    internal sealed class TraktSeasonSingleRequest : ATraktSeasonRequest<ITraktEpisode>, ISupportsExtendedInfo
     {
         internal string TranslationLanguageCode { get; set; }
 

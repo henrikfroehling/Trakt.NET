@@ -5,7 +5,7 @@
     using Parameters;
     using System.Collections.Generic;
 
-    internal abstract class ATraktUserRecommendationsRequest<TResponseContentType> : AGetRequest<TResponseContentType>, ITraktSupportsExtendedInfo
+    internal abstract class ATraktUserRecommendationsRequest<TResponseContentType> : AGetRequest<TResponseContentType>, ISupportsExtendedInfo
     {
         public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
 

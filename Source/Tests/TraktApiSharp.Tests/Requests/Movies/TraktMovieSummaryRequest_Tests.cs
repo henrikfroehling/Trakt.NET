@@ -34,7 +34,7 @@
         [Fact]
         public void Test_TraktMovieSummaryRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktMovieSummaryRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsExtendedInfo));
+            typeof(TraktMovieSummaryRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
