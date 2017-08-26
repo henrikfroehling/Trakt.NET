@@ -1209,7 +1209,7 @@
     <Compile Include="Requests\Search\SearchTextQueryRequest_Tests.cs" />
     <Compile Include="Requests\Seasons\ASeasonRequest%271_Tests.cs" />
     <Compile Include="Requests\Seasons\SeasonCommentsRequest_Tests.cs" />
-    <Compile Include="Requests\Seasons\TraktSeasonListsRequest_Tests.cs" />
+    <Compile Include="Requests\Seasons\SeasonListsRequest_Tests.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonRatingsRequest_Tests.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonsAllRequest_Tests.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonSingleRequest_Tests.cs" />

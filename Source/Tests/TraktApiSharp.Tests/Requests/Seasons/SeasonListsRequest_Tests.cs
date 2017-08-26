@@ -14,43 +14,43 @@
     using Xunit;
 
     [Category("Requests.Seasons")]
-    public class TraktSeasonListsRequest_Tests
+    public class SeasonListsRequest_Tests
     {
         [Fact]
-        public void Test_TraktSeasonListsRequest_IsNotAbstract()
+        public void Test_SeasonListsRequest_IsNotAbstract()
         {
-            typeof(TraktSeasonListsRequest).IsAbstract.Should().BeFalse();
+            typeof(SeasonListsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktSeasonListsRequest_IsSealed()
+        public void Test_SeasonListsRequest_IsSealed()
         {
-            typeof(TraktSeasonListsRequest).IsSealed.Should().BeTrue();
+            typeof(SeasonListsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSeasonListsRequest_Inherits_ATraktSeasonRequest_1()
+        public void Test_SeasonListsRequest_Inherits_ATraktSeasonRequest_1()
         {
-            typeof(TraktSeasonListsRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktList>)).Should().BeTrue();
+            typeof(SeasonListsRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktList>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSeasonListsRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_SeasonListsRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktSeasonListsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
+            typeof(SeasonListsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]
-        public void Test_TraktSeasonListsRequest_Has_Valid_UriTemplate()
+        public void Test_SeasonListsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktSeasonListsRequest();
+            var request = new SeasonListsRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/lists{/type}{/sort_order}{?page,limit}");
         }
 
         [Fact]
-        public void Test_TraktSeasonListsRequest_Has_Type_Property()
+        public void Test_SeasonListsRequest_Has_Type_Property()
         {
-            var propertyInfo = typeof(TraktSeasonListsRequest)
+            var propertyInfo = typeof(SeasonListsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
@@ -61,9 +61,9 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonListsRequest_Has_SortOrder_Property()
+        public void Test_SeasonListsRequest_Has_SortOrder_Property()
         {
-            var propertyInfo = typeof(TraktSeasonListsRequest)
+            var propertyInfo = typeof(SeasonListsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "SortOrder")
                     .FirstOrDefault();
@@ -74,29 +74,29 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonListsRequest_Validate_Throws_Exceptions()
+        public void Test_SeasonListsRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktSeasonListsRequest();
+            var request = new SeasonListsRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktSeasonListsRequest { Id = string.Empty };
+            request = new SeasonListsRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktSeasonListsRequest { Id = "invalid id" };
+            request = new SeasonListsRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktSeasonListsRequest_TestData))]
-        public void Test_TraktSeasonListsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(SeasonListsRequest_TestData))]
+        public void Test_SeasonListsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                  IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -105,7 +105,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktSeasonListsRequest_TestData : IEnumerable<object[]>
+        public class SeasonListsRequest_TestData : IEnumerable<object[]>
         {
             private const string _id = "123";
             private const uint _seasonNumber = 1;
@@ -114,41 +114,41 @@
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktSeasonListsRequest _request1 = new TraktSeasonListsRequest
+            private static readonly SeasonListsRequest _request1 = new SeasonListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber
             };
 
-            private static readonly TraktSeasonListsRequest _request2 = new TraktSeasonListsRequest
+            private static readonly SeasonListsRequest _request2 = new SeasonListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
                 Type = _type
             };
 
-            private static readonly TraktSeasonListsRequest _request3 = new TraktSeasonListsRequest
+            private static readonly SeasonListsRequest _request3 = new SeasonListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
                 SortOrder = _sortOrder
             };
 
-            private static readonly TraktSeasonListsRequest _request4 = new TraktSeasonListsRequest
+            private static readonly SeasonListsRequest _request4 = new SeasonListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
                 Page = _page
             };
 
-            private static readonly TraktSeasonListsRequest _request5 = new TraktSeasonListsRequest
+            private static readonly SeasonListsRequest _request5 = new SeasonListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
                 Limit = _limit
             };
 
-            private static readonly TraktSeasonListsRequest _request6 = new TraktSeasonListsRequest
+            private static readonly SeasonListsRequest _request6 = new SeasonListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -156,7 +156,7 @@
                 SortOrder = _sortOrder
             };
 
-            private static readonly TraktSeasonListsRequest _request7 = new TraktSeasonListsRequest
+            private static readonly SeasonListsRequest _request7 = new SeasonListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -164,7 +164,7 @@
                 Page = _page
             };
 
-            private static readonly TraktSeasonListsRequest _request8 = new TraktSeasonListsRequest
+            private static readonly SeasonListsRequest _request8 = new SeasonListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -172,7 +172,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktSeasonListsRequest _request9 = new TraktSeasonListsRequest
+            private static readonly SeasonListsRequest _request9 = new SeasonListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -181,7 +181,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktSeasonListsRequest _request10 = new TraktSeasonListsRequest
+            private static readonly SeasonListsRequest _request10 = new SeasonListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -189,7 +189,7 @@
                 Page = _page
             };
 
-            private static readonly TraktSeasonListsRequest _request11 = new TraktSeasonListsRequest
+            private static readonly SeasonListsRequest _request11 = new SeasonListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -197,7 +197,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktSeasonListsRequest _request12 = new TraktSeasonListsRequest
+            private static readonly SeasonListsRequest _request12 = new SeasonListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -206,7 +206,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktSeasonListsRequest _request13 = new TraktSeasonListsRequest
+            private static readonly SeasonListsRequest _request13 = new SeasonListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -214,7 +214,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktSeasonListsRequest _request14 = new TraktSeasonListsRequest
+            private static readonly SeasonListsRequest _request14 = new SeasonListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -223,7 +223,7 @@
                 Page = _page
             };
 
-            private static readonly TraktSeasonListsRequest _request15 = new TraktSeasonListsRequest
+            private static readonly SeasonListsRequest _request15 = new SeasonListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -232,7 +232,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktSeasonListsRequest _request16 = new TraktSeasonListsRequest
+            private static readonly SeasonListsRequest _request16 = new SeasonListsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -244,7 +244,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktSeasonListsRequest_TestData()
+            public SeasonListsRequest_TestData()
             {
                 SetupPathParamters();
             }

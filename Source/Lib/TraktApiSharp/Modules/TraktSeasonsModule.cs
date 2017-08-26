@@ -218,7 +218,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktSeasonListsRequest
+            return requestHandler.ExecutePagedRequestAsync(new SeasonListsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,

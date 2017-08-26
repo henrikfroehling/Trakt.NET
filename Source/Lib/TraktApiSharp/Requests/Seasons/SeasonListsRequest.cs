@@ -5,7 +5,7 @@
     using Objects.Get.Users.Lists;
     using System.Collections.Generic;
 
-    internal sealed class TraktSeasonListsRequest : ASeasonRequest<ITraktList>, ISupportsPagination
+    internal sealed class SeasonListsRequest : ASeasonRequest<ITraktList>, ISupportsPagination
     {
         internal TraktListType Type { get; set; }
 
