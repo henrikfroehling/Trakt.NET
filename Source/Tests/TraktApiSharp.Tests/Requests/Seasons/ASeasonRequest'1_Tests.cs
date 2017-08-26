@@ -12,56 +12,56 @@
     using Xunit;
 
     [Category("Requests.Seasons")]
-    public class ATraktSeasonRequest_1_Tests
+    public class ASeasonRequest_1_Tests
     {
-        internal class TraktSeasonRequestMock : ATraktSeasonRequest<int>
+        internal class TraktSeasonRequestMock : ASeasonRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
         }
 
         [Fact]
-        public void Test_ATraktSeasonRequest_1_IsAbstract()
+        public void Test_ASeasonRequest_1_IsAbstract()
         {
-            typeof(ATraktSeasonRequest<>).IsAbstract.Should().BeTrue();
+            typeof(ASeasonRequest<>).IsAbstract.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktSeasonRequest_1_Has_GenericTypeParameter()
+        public void Test_ASeasonRequest_1_Has_GenericTypeParameter()
         {
-            typeof(ATraktSeasonRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ATraktSeasonRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+            typeof(ASeasonRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(ASeasonRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
         [Fact]
-        public void Test_ATraktSeasonRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_ASeasonRequest_1_Inherits_ATraktGetRequest_1()
         {
-            typeof(ATraktSeasonRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
+            typeof(ASeasonRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktSeasonRequest_1_Implements_ITraktHasId_Interface()
+        public void Test_ASeasonRequest_1_Implements_ITraktHasId_Interface()
         {
-            typeof(ATraktSeasonRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(ASeasonRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_ATraktSeasonRequest_1_Has_AuthorizationRequirement_NotRequired()
+        public void Test_ASeasonRequest_1_Has_AuthorizationRequirement_NotRequired()
         {
             var requestMock = new TraktSeasonRequestMock();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_ATraktSeasonRequest_1_Returns_Valid_RequestObjectType()
+        public void Test_ASeasonRequest_1_Returns_Valid_RequestObjectType()
         {
             var requestMock = new TraktSeasonRequestMock();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Seasons);
         }
 
         [Fact]
-        public void Test_ATraktSeasonRequest_1_Has_SeasonNumber_Property()
+        public void Test_ASeasonRequest_1_Has_SeasonNumber_Property()
         {
-            var propertyInfo = typeof(ATraktSeasonRequest<>)
+            var propertyInfo = typeof(ASeasonRequest<>)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "SeasonNumber")
                     .FirstOrDefault();
@@ -72,7 +72,7 @@
         }
 
         [Fact]
-        public void Test_ATraktSeasonRequest_1_Returns_Valid_UriPathParameters()
+        public void Test_ASeasonRequest_1_Returns_Valid_UriPathParameters()
         {
             // with implicit season number
             var requestMock = new TraktSeasonRequestMock { Id = "123" };
@@ -98,7 +98,7 @@
         }
 
         [Fact]
-        public void Test_ATraktSeasonRequest_1_Validate_Throws_Exceptions()
+        public void Test_ASeasonRequest_1_Validate_Throws_Exceptions()
         {
             // id is null
             var requestMock = new TraktSeasonRequestMock();

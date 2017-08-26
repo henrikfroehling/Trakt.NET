@@ -702,7 +702,7 @@
     <Compile Include="Requests\Search\ASearchRequest.cs" />
     <Compile Include="Requests\Search\SearchIdLookupRequest.cs" />
     <Compile Include="Requests\Search\SearchTextQueryRequest.cs" />
-    <Compile Include="Requests\Seasons\ATraktSeasonRequest%271.cs" />
+    <Compile Include="Requests\Seasons\ASeasonRequest%271.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonCommentsRequest.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonListsRequest.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonRatingsRequest.cs" />

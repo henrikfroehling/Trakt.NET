@@ -31,7 +31,7 @@
         [Fact]
         public void Test_TraktSeasonSingleRequest_Inherits_ATraktSeasonRequest_1()
         {
-            typeof(TraktSeasonSingleRequest).IsSubclassOf(typeof(ATraktSeasonRequest<ITraktEpisode>)).Should().BeTrue();
+            typeof(TraktSeasonSingleRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktEpisode>)).Should().BeTrue();
         }
 
         [Fact]

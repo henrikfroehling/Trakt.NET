@@ -5,7 +5,7 @@
     using Parameters;
     using System.Collections.Generic;
 
-    internal sealed class TraktSeasonWatchingUsersRequest : ATraktSeasonRequest<ITraktUser>, ISupportsExtendedInfo
+    internal sealed class TraktSeasonWatchingUsersRequest : ASeasonRequest<ITraktUser>, ISupportsExtendedInfo
     {
         public TraktExtendedInfo ExtendedInfo { get; set; }
 

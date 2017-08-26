@@ -1207,7 +1207,7 @@
     <Compile Include="Requests\Search\ASearchRequest_Tests.cs" />
     <Compile Include="Requests\Search\SearchIdLookupRequest_Tests.cs" />
     <Compile Include="Requests\Search\SearchTextQueryRequest_Tests.cs" />
-    <Compile Include="Requests\Seasons\ATraktSeasonRequest%271_Tests.cs" />
+    <Compile Include="Requests\Seasons\ASeasonRequest%271_Tests.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonCommentsRequest_Tests.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonListsRequest_Tests.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonRatingsRequest_Tests.cs" />

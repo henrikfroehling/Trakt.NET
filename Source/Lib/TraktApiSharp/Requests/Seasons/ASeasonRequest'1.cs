@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal abstract class ATraktSeasonRequest<TResponseContentType> : AGetRequest<TResponseContentType>, IHasId
+    internal abstract class ASeasonRequest<TResponseContentType> : AGetRequest<TResponseContentType>, IHasId
     {
         public string Id { get; set; }
 
