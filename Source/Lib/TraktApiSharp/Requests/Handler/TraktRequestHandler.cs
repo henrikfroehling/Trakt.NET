@@ -110,19 +110,19 @@
             return QueryNoContentAsync(SetupRequestMessage(request), cancellationToken);
         }
 
-        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
             return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request), false, cancellationToken);
         }
 
-        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
             return QueryListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
         }
 
-        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
             return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
@@ -362,7 +362,7 @@
             return requestMessage;
         }
 
-        private TraktHttpRequestMessage SetupRequestMessage<TResponseContentType, TRequestBodyType>(ITraktPutRequest<TResponseContentType, TRequestBodyType> request)
+        private TraktHttpRequestMessage SetupRequestMessage<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request)
         {
             TraktHttpRequestMessage requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);

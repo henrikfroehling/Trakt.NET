@@ -42,7 +42,7 @@
         [Fact]
         public void Test_APutRequest_2_Implements_ITraktPutRequest_2_Interface()
         {
-            typeof(APutRequest<int, float>).GetInterfaces().Should().Contain(typeof(ITraktPutRequest<int, float>));
+            typeof(APutRequest<int, float>).GetInterfaces().Should().Contain(typeof(IPutRequest<int, float>));
         }
 
         [Fact]

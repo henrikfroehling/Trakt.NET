@@ -1156,7 +1156,7 @@
     <Compile Include="Requests\Interfaces\Base\IPostRequest%271_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\IPostRequest%272_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\IPutRequest%271_Tests.cs" />
-    <Compile Include="Requests\Interfaces\Base\ITraktPutRequest%272_Tests.cs" />
+    <Compile Include="Requests\Interfaces\Base\IPutRequest%272_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktRequest%271_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktRequest_Tests.cs" />
     <Compile Include="Requests\Handler\ITraktPostRequestHandler_Tests.cs" />
