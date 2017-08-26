@@ -321,7 +321,7 @@
         public Task<TraktResponse<ITraktStatistics>> GetMovieStatisticsAsync(string movieIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktMovieStatisticsRequest { Id = movieIdOrSlug }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new MovieStatisticsRequest { Id = movieIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
