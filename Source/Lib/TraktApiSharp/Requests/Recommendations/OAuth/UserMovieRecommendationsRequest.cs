@@ -2,7 +2,7 @@
 {
     using Objects.Get.Movies;
 
-    internal sealed class TraktUserMovieRecommendationsRequest : AUserRecommendationsRequest<ITraktMovie>
+    internal sealed class UserMovieRecommendationsRequest : AUserRecommendationsRequest<ITraktMovie>
     {
         public override string UriTemplate => "recommendations/movies{?extended,limit}";
 

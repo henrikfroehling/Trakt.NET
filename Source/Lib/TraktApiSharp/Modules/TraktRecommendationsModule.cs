@@ -54,7 +54,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktUserMovieRecommendationsRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserMovieRecommendationsRequest
             {
                 ExtendedInfo = extendedInfo,
                 Limit = limit
