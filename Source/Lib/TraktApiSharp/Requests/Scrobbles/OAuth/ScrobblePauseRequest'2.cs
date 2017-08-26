@@ -3,7 +3,7 @@
     using Base;
     using System.Collections.Generic;
 
-    internal sealed class TraktScrobblePauseRequest<TResponseContentType, TRequestBodyType> : APostRequest<TResponseContentType, TRequestBodyType>
+    internal sealed class ScrobblePauseRequest<TResponseContentType, TRequestBodyType> : APostRequest<TResponseContentType, TRequestBodyType>
     {
         public override TRequestBodyType RequestBody { get; set; }
 

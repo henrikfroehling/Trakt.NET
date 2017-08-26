@@ -309,8 +309,8 @@
         private TraktScrobbleStartRequest<T, U> CreateScrobbleStartRequest<T, U>(U requestBody) where U : TraktScrobblePost
             => new TraktScrobbleStartRequest<T, U> { RequestBody = requestBody };
 
-        private TraktScrobblePauseRequest<T, U> CreateScrobblePauseRequest<T, U>(U requestBody) where U : TraktScrobblePost
-            => new TraktScrobblePauseRequest<T, U> { RequestBody = requestBody };
+        private ScrobblePauseRequest<T, U> CreateScrobblePauseRequest<T, U>(U requestBody) where U : TraktScrobblePost
+            => new ScrobblePauseRequest<T, U> { RequestBody = requestBody };
 
         private TraktScrobbleStopRequest<T, U> CreateScrobbleStopRequest<T, U>(U requestBody) where U : TraktScrobblePost
             => new TraktScrobbleStopRequest<T, U> { RequestBody = requestBody };
