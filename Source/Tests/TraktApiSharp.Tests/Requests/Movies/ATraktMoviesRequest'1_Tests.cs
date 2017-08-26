@@ -52,7 +52,7 @@
         [Fact]
         public void Test_ATraktMoviesRequest_1_Implements_ITraktSupportsFilter_Interface()
         {
-            typeof(ATraktMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ITraktSupportsFilter));
+            typeof(ATraktMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
         }
 
         [Fact]

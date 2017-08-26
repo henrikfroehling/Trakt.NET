@@ -2,7 +2,7 @@
 {
     using Parameters;
 
-    internal interface ITraktSupportsFilter
+    internal interface ISupportsFilter
     {
         TraktCommonFilter Filter { get; set; }
     }

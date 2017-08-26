@@ -8,18 +8,18 @@
     using Xunit;
 
     [Category("Requests.Interfaces")]
-    public class ITraktSupportsFilter_Tests
+    public class ISupportsFilter_Tests
     {
         [Fact]
-        public void Test_ITraktSupportsFilter_Is_Interface()
+        public void Test_ISupportsFilter_Is_Interface()
         {
-            typeof(ITraktSupportsFilter).IsInterface.Should().BeTrue();
+            typeof(ISupportsFilter).IsInterface.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ITraktSupportsFilter_Has_Filter_Property()
+        public void Test_ISupportsFilter_Has_Filter_Property()
         {
-            var propertyInfo = typeof(ITraktSupportsFilter).GetProperties()
+            var propertyInfo = typeof(ISupportsFilter).GetProperties()
                                                            .Where(p => p.Name == "Filter")
                                                            .FirstOrDefault();
 

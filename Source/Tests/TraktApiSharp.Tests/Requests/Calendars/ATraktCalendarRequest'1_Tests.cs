@@ -46,7 +46,7 @@
         [Fact]
         public void Test_ATraktCalendarRequest_1_Implements_ITraktSupportsFilter_Interface()
         {
-            typeof(ATraktCalendarRequest<>).GetInterfaces().Should().Contain(typeof(ITraktSupportsFilter));
+            typeof(ATraktCalendarRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
         }
 
         [Fact]

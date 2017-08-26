@@ -38,7 +38,7 @@
         [Fact]
         public void Test_TraktSearchTextQueryRequest_Implements_ITraktSupportsFilter_Interface()
         {
-            typeof(TraktSearchTextQueryRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsFilter));
+            typeof(TraktSearchTextQueryRequest).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
         }
 
         [Fact]
