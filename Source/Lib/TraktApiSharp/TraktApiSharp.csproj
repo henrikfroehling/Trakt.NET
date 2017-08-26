@@ -619,7 +619,7 @@
     <Compile Include="Requests\Interfaces\Base\IPutRequest%271.cs" />
     <Compile Include="Requests\Interfaces\Base\IPutRequest%272.cs" />
     <Compile Include="Requests\Interfaces\Base\IRequest%271.cs" />
-    <Compile Include="Requests\Interfaces\Base\ITraktRequest.cs" />
+    <Compile Include="Requests\Interfaces\Base\IRequest.cs" />
     <Compile Include="Requests\Handler\ITraktPostRequestHandler.cs" />
     <Compile Include="Requests\Handler\ITraktPutRequestHandler.cs" />
     <Compile Include="Requests\Handler\ITraktRequestHandler.cs" />

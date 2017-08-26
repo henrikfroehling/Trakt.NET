@@ -51,7 +51,7 @@
             _client = client;
         }
 
-        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(ITraktRequest request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(IRequest request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
             return QueryNoContentAsync(SetupRequestMessage(request), cancellationToken);
@@ -297,13 +297,13 @@
         private Task<Stream> GetResponseContentStreamAsync(HttpResponseMessage response)
             => response.Content != null ? response.Content.ReadAsStreamAsync() : Task.FromResult(default(Stream));
 
-        private void PreExecuteRequest(ITraktRequest request)
+        private void PreExecuteRequest(IRequest request)
         {
             ValidateRequest(request);
             SetupHttpClient();
         }
 
-        private void ValidateRequest(ITraktRequest request)
+        private void ValidateRequest(IRequest request)
         {
             if (request == null)
                 throw new ArgumentNullException(nameof(request));
@@ -319,7 +319,7 @@
             SetDefaultRequestHeaders(s_httpClient);
         }
 
-        private string BuildUrl(ITraktRequest request)
+        private string BuildUrl(IRequest request)
         {
             var uriTemplate = new UriTemplate(request.UriTemplate);
             IDictionary<string, object> requestUriParameters = request.GetUriPathParameters();
@@ -331,7 +331,7 @@
             return $"{_client.Configuration.BaseUrl}{uri}";
         }
 
-        private TraktHttpRequestMessage SetupRequestMessage(ITraktRequest request)
+        private TraktHttpRequestMessage SetupRequestMessage(IRequest request)
         {
             TraktHttpRequestMessage requestMessage = CreateRequestMessage(request);
             SetRequestMessageHeadersForAuthorization(requestMessage, request.AuthorizationRequirement);
@@ -370,7 +370,7 @@
             return requestMessage;
         }
 
-        private TraktHttpRequestMessage CreateRequestMessage(ITraktRequest request)
+        private TraktHttpRequestMessage CreateRequestMessage(IRequest request)
         {
             const string seasonKey = "season";
             const string episodeKey = "episode";

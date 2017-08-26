@@ -7,7 +7,7 @@
 
     internal interface ITraktRequestHandler : ITraktPostRequestHandler, ITraktPutRequestHandler
     {
-        Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(ITraktRequest request, CancellationToken cancellationToken = default(CancellationToken));
+        Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(IRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken));
 

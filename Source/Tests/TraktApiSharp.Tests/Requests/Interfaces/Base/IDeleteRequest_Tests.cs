@@ -17,7 +17,7 @@
         [Fact]
         public void Test_IDeleteRequest_Inherits_ITraktRequest_Interface()
         {
-            typeof(IDeleteRequest).GetInterfaces().Should().Contain(typeof(ITraktRequest));
+            typeof(IDeleteRequest).GetInterfaces().Should().Contain(typeof(IRequest));
         }
     }
 }

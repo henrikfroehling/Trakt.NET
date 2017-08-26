@@ -17,7 +17,7 @@
         [Fact]
         public void Test_IBodylessPostRequest_Inherits_ITraktRequest_Interface()
         {
-            typeof(IBodylessPostRequest).GetInterfaces().Should().Contain(typeof(ITraktRequest));
+            typeof(IBodylessPostRequest).GetInterfaces().Should().Contain(typeof(IRequest));
         }
     }
 }

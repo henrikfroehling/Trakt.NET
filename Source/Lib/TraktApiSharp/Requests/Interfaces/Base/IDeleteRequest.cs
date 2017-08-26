@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Interfaces.Base
 {
-    internal interface IDeleteRequest : ITraktRequest
+    internal interface IDeleteRequest : IRequest
     {
     }
 }

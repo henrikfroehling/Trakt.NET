@@ -24,7 +24,7 @@
         [Fact]
         public void Test_IPostRequest_1_Inherits_ITraktRequest_Interface()
         {
-            typeof(IPostRequest<>).GetInterfaces().Should().Contain(typeof(ITraktRequest));
+            typeof(IPostRequest<>).GetInterfaces().Should().Contain(typeof(IRequest));
         }
 
         [Fact]

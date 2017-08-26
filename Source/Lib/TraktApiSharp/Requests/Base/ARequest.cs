@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Net.Http;
 
-    internal abstract class ARequest : ITraktRequest
+    internal abstract class ARequest : IRequest
     {
         public abstract AuthorizationRequirement AuthorizationRequirement { get; }
 

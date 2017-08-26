@@ -24,7 +24,7 @@
         [Fact]
         public void Test_IRequest_1_Inherits_ITraktRequest_Interface()
         {
-            typeof(IRequest<>).GetInterfaces().Should().Contain(typeof(ITraktRequest));
+            typeof(IRequest<>).GetInterfaces().Should().Contain(typeof(IRequest));
         }
     }
 }
