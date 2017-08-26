@@ -1214,7 +1214,7 @@
     <Compile Include="Requests\Seasons\SeasonsAllRequest_Tests.cs" />
     <Compile Include="Requests\Seasons\SeasonSingleRequest_Tests.cs" />
     <Compile Include="Requests\Seasons\SeasonStatisticsRequest_Tests.cs" />
-    <Compile Include="Requests\Seasons\TraktSeasonWatchingUsersRequest_Tests.cs" />
+    <Compile Include="Requests\Seasons\SeasonWatchingUsersRequest_Tests.cs" />
     <Compile Include="Requests\Shows\ATraktShowRequest%271_Tests.cs" />
     <Compile Include="Requests\Shows\ATraktShowsMostPWCRequest%271_Tests.cs" />
     <Compile Include="Requests\Shows\ATraktShowsRequest%271_Tests.cs" />

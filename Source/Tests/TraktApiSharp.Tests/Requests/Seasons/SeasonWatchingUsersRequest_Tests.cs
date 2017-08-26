@@ -11,44 +11,44 @@
     using Xunit;
 
     [Category("Requests.Seasons")]
-    public class TraktSeasonWatchingUsersRequest_Tests
+    public class SeasonWatchingUsersRequest_Tests
     {
         [Fact]
-        public void Test_TraktSeasonWatchingUsersRequest_IsNotAbstract()
+        public void Test_SeasonWatchingUsersRequest_IsNotAbstract()
         {
-            typeof(TraktSeasonWatchingUsersRequest).IsAbstract.Should().BeFalse();
+            typeof(SeasonWatchingUsersRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktSeasonWatchingUsersRequest_IsSealed()
+        public void Test_SeasonWatchingUsersRequest_IsSealed()
         {
-            typeof(TraktSeasonWatchingUsersRequest).IsSealed.Should().BeTrue();
+            typeof(SeasonWatchingUsersRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSeasonWatchingUsersRequest_Inherits_ATraktSeasonRequest_1()
+        public void Test_SeasonWatchingUsersRequest_Inherits_ATraktSeasonRequest_1()
         {
-            typeof(TraktSeasonWatchingUsersRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktUser>)).Should().BeTrue();
+            typeof(SeasonWatchingUsersRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktUser>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSeasonWatchingUsersRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_SeasonWatchingUsersRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktSeasonWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(SeasonWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_TraktSeasonWatchingUsersRequest_Has_Valid_UriTemplate()
+        public void Test_SeasonWatchingUsersRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktSeasonWatchingUsersRequest();
+            var request = new SeasonWatchingUsersRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/watching{?extended}");
         }
 
         [Fact]
-        public void Test_TraktSeasonWatchingUsersRequest_Returns_Valid_UriPathParameters()
+        public void Test_SeasonWatchingUsersRequest_Returns_Valid_UriPathParameters()
         {
             // with implicit season number / without extended info
-            var request = new TraktSeasonWatchingUsersRequest { Id = "123" };
+            var request = new SeasonWatchingUsersRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -59,7 +59,7 @@
                                                    });
 
             // with explicit season number / without extended info
-            request = new TraktSeasonWatchingUsersRequest { Id = "123", SeasonNumber = 2 };
+            request = new SeasonWatchingUsersRequest { Id = "123", SeasonNumber = 2 };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -73,7 +73,7 @@
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             // with implicit season number / with extended info
-            request = new TraktSeasonWatchingUsersRequest { Id = "123", ExtendedInfo = extendedInfo };
+            request = new SeasonWatchingUsersRequest { Id = "123", ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(3)
@@ -85,7 +85,7 @@
                                                    });
 
             // with explicit season number / with extended info
-            request = new TraktSeasonWatchingUsersRequest { Id = "123", SeasonNumber = 2, ExtendedInfo = extendedInfo };
+            request = new SeasonWatchingUsersRequest { Id = "123", SeasonNumber = 2, ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(3)
@@ -98,22 +98,22 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonWatchingUsersRequest_Validate_Throws_Exceptions()
+        public void Test_SeasonWatchingUsersRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktSeasonWatchingUsersRequest();
+            var request = new SeasonWatchingUsersRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktSeasonWatchingUsersRequest { Id = string.Empty };
+            request = new SeasonWatchingUsersRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktSeasonWatchingUsersRequest { Id = "invalid id" };
+            request = new SeasonWatchingUsersRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

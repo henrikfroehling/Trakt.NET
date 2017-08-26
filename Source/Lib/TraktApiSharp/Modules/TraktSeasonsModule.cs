@@ -305,7 +305,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktSeasonWatchingUsersRequest
+            return requestHandler.ExecuteListRequestAsync(new SeasonWatchingUsersRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
