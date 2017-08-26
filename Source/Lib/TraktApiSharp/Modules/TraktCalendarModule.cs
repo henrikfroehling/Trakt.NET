@@ -52,7 +52,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktCalendarUserShowsRequest
+            return requestHandler.ExecuteListRequestAsync(new CalendarUserShowsRequest
             {
                 StartDate = startDate,
                 Days = days,

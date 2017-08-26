@@ -13,42 +13,42 @@
     using Xunit;
 
     [Category("Requests.Calendars.OAuth.Shows")]
-    public class TraktCalendarUserShowsRequest_Tests
+    public class CalendarUserShowsRequest_Tests
     {
         [Fact]
-        public void Test_TraktCalendarUserShowsRequest_IsNotAbstract()
+        public void Test_CalendarUserShowsRequest_IsNotAbstract()
         {
-            typeof(TraktCalendarUserShowsRequest).IsAbstract.Should().BeFalse();
+            typeof(CalendarUserShowsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktCalendarUserShowsRequest_IsSealed()
+        public void Test_CalendarUserShowsRequest_IsSealed()
         {
-            typeof(TraktCalendarUserShowsRequest).IsSealed.Should().BeTrue();
+            typeof(CalendarUserShowsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarUserShowsRequest_Inherits_ATraktCalendarUserRequest()
+        public void Test_CalendarUserShowsRequest_Inherits_ATraktCalendarUserRequest()
         {
-            typeof(TraktCalendarUserShowsRequest).IsSubclassOf(typeof(ACalendarUserRequest<ITraktCalendarShow>)).Should().BeTrue();
+            typeof(CalendarUserShowsRequest).IsSubclassOf(typeof(ACalendarUserRequest<ITraktCalendarShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarUserShowsRequest_Has_AuthorizationRequirement_Required()
+        public void Test_CalendarUserShowsRequest_Has_AuthorizationRequirement_Required()
         {
-            var request = new TraktCalendarUserShowsRequest();
+            var request = new CalendarUserShowsRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktCalendarUserShowsRequest_Has_Valid_UriTemplate()
+        public void Test_CalendarUserShowsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktCalendarUserShowsRequest();
+            var request = new CalendarUserShowsRequest();
             request.UriTemplate.Should().Be("calendars/my/shows{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}");
         }
 
-        [Theory, ClassData(typeof(TraktCalendarUserShowsRequest_TestData))]
-        public void Test_TraktCalendarUserShowsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(CalendarUserShowsRequest_TestData))]
+        public void Test_CalendarUserShowsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                        IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -57,66 +57,66 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktCalendarUserShowsRequest_TestData : IEnumerable<object[]>
+        public class CalendarUserShowsRequest_TestData : IEnumerable<object[]>
         {
             private static readonly DateTime _startDate = DateTime.Now.AddDays(-7);
             private const int _days = 14;
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktMovieFilter _filter = new TraktMovieFilter().WithYears(2010, 2017);
 
-            private static readonly TraktCalendarUserShowsRequest _request1 = new TraktCalendarUserShowsRequest();
+            private static readonly CalendarUserShowsRequest _request1 = new CalendarUserShowsRequest();
 
-            private static readonly TraktCalendarUserShowsRequest _request2 = new TraktCalendarUserShowsRequest
+            private static readonly CalendarUserShowsRequest _request2 = new CalendarUserShowsRequest
             { StartDate = _startDate };
 
-            private static readonly TraktCalendarUserShowsRequest _request3 = new TraktCalendarUserShowsRequest
+            private static readonly CalendarUserShowsRequest _request3 = new CalendarUserShowsRequest
             { StartDate = _startDate, Days = _days };
 
-            private static readonly TraktCalendarUserShowsRequest _request4 = new TraktCalendarUserShowsRequest
+            private static readonly CalendarUserShowsRequest _request4 = new CalendarUserShowsRequest
             { Days = _days };
 
             // with extended info
-            private static readonly TraktCalendarUserShowsRequest _request5 = new TraktCalendarUserShowsRequest
+            private static readonly CalendarUserShowsRequest _request5 = new CalendarUserShowsRequest
             { ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarUserShowsRequest _request6 = new TraktCalendarUserShowsRequest
+            private static readonly CalendarUserShowsRequest _request6 = new CalendarUserShowsRequest
             { StartDate = _startDate, ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarUserShowsRequest _request7 = new TraktCalendarUserShowsRequest
+            private static readonly CalendarUserShowsRequest _request7 = new CalendarUserShowsRequest
             { StartDate = _startDate, Days = _days, ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarUserShowsRequest _request8 = new TraktCalendarUserShowsRequest
+            private static readonly CalendarUserShowsRequest _request8 = new CalendarUserShowsRequest
             { Days = _days, ExtendedInfo = _extendedInfo };
 
             // with filter
-            private static readonly TraktCalendarUserShowsRequest _request9 = new TraktCalendarUserShowsRequest
+            private static readonly CalendarUserShowsRequest _request9 = new CalendarUserShowsRequest
             { Filter = _filter };
 
-            private static readonly TraktCalendarUserShowsRequest _request10 = new TraktCalendarUserShowsRequest
+            private static readonly CalendarUserShowsRequest _request10 = new CalendarUserShowsRequest
             { StartDate = _startDate, Filter = _filter };
 
-            private static readonly TraktCalendarUserShowsRequest _request11 = new TraktCalendarUserShowsRequest
+            private static readonly CalendarUserShowsRequest _request11 = new CalendarUserShowsRequest
             { StartDate = _startDate, Days = _days, Filter = _filter };
 
-            private static readonly TraktCalendarUserShowsRequest _request12 = new TraktCalendarUserShowsRequest
+            private static readonly CalendarUserShowsRequest _request12 = new CalendarUserShowsRequest
             { Days = _days, Filter = _filter };
 
             // with extended info and filter
-            private static readonly TraktCalendarUserShowsRequest _request13 = new TraktCalendarUserShowsRequest
+            private static readonly CalendarUserShowsRequest _request13 = new CalendarUserShowsRequest
             { ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarUserShowsRequest _request14 = new TraktCalendarUserShowsRequest
+            private static readonly CalendarUserShowsRequest _request14 = new CalendarUserShowsRequest
             { StartDate = _startDate, ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarUserShowsRequest _request15 = new TraktCalendarUserShowsRequest
+            private static readonly CalendarUserShowsRequest _request15 = new CalendarUserShowsRequest
             { StartDate = _startDate, Days = _days, ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarUserShowsRequest _request16 = new TraktCalendarUserShowsRequest
+            private static readonly CalendarUserShowsRequest _request16 = new CalendarUserShowsRequest
             { Days = _days, ExtendedInfo = _extendedInfo, Filter = _filter };
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktCalendarUserShowsRequest_TestData()
+            public CalendarUserShowsRequest_TestData()
             {
                 SetupPathParamters();
             }

@@ -1117,7 +1117,7 @@
     <Compile Include="Requests\Calendars\OAuth\CalendarUserMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Calendars\OAuth\CalendarUserNewShowsRequest_Tests.cs" />
     <Compile Include="Requests\Calendars\OAuth\CalendarUserSeasonPremieresRequest_Tests.cs" />
-    <Compile Include="Requests\Calendars\OAuth\TraktCalendarUserShowsRequest_Tests.cs" />
+    <Compile Include="Requests\Calendars\OAuth\CalendarUserShowsRequest_Tests.cs" />
     <Compile Include="Requests\Calendars\TraktCalendarAllDVDMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Calendars\TraktCalendarAllMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Calendars\TraktCalendarAllNewShowsRequest_Tests.cs" />
