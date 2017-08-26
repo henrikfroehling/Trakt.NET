@@ -222,7 +222,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktCalendarAllShowsRequest
+            return requestHandler.ExecuteListRequestAsync(new CalendarAllShowsRequest
             {
                 StartDate = startDate,
                 Days = days,

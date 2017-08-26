@@ -636,7 +636,7 @@
     <Compile Include="Requests\Calendars\CalendarAllMoviesRequest.cs" />
     <Compile Include="Requests\Calendars\CalendarAllNewShowsRequest.cs" />
     <Compile Include="Requests\Calendars\CalendarAllSeasonPremieresRequest.cs" />
-    <Compile Include="Requests\Calendars\TraktCalendarAllShowsRequest.cs" />
+    <Compile Include="Requests\Calendars\CalendarAllShowsRequest.cs" />
     <Compile Include="Requests\Checkins\OAuth\TraktCheckinRequest%272.cs" />
     <Compile Include="Requests\Checkins\OAuth\TraktCheckinsDeleteRequest.cs" />
     <Compile Include="Requests\Comments\OAuth\TraktCommentPostRequest%271.cs" />

@@ -13,42 +13,42 @@
     using Xunit;
 
     [Category("Requests.Calendars.Shows")]
-    public class TraktCalendarAllShowsRequest_Tests
+    public class CalendarAllShowsRequest_Tests
     {
         [Fact]
-        public void Test_TraktCalendarAllShowsRequest_IsNotAbstract()
+        public void Test_CalendarAllShowsRequest_IsNotAbstract()
         {
-            typeof(TraktCalendarAllShowsRequest).IsAbstract.Should().BeFalse();
+            typeof(CalendarAllShowsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktCalendarAllShowsRequest_IsSealed()
+        public void Test_CalendarAllShowsRequest_IsSealed()
         {
-            typeof(TraktCalendarAllShowsRequest).IsSealed.Should().BeTrue();
+            typeof(CalendarAllShowsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarAllShowsRequest_Inherits_ATraktCalendarRequest()
+        public void Test_CalendarAllShowsRequest_Inherits_ATraktCalendarRequest()
         {
-            typeof(TraktCalendarAllShowsRequest).IsSubclassOf(typeof(ACalendarRequest<ITraktCalendarShow>)).Should().BeTrue();
+            typeof(CalendarAllShowsRequest).IsSubclassOf(typeof(ACalendarRequest<ITraktCalendarShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarAllShowsRequest_Has_AuthorizationRequirement_NotRequired()
+        public void Test_CalendarAllShowsRequest_Has_AuthorizationRequirement_NotRequired()
         {
-            var request = new TraktCalendarAllShowsRequest();
+            var request = new CalendarAllShowsRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_TraktCalendarAllShowsRequest_Has_Valid_UriTemplate()
+        public void Test_CalendarAllShowsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktCalendarAllShowsRequest();
+            var request = new CalendarAllShowsRequest();
             request.UriTemplate.Should().Be("calendars/all/shows{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}");
         }
 
-        [Theory, ClassData(typeof(TraktCalendarAllShowsRequest_TestData))]
-        public void Test_TraktCalendarAllShowsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(CalendarAllShowsRequest_TestData))]
+        public void Test_CalendarAllShowsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                       IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -57,66 +57,66 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktCalendarAllShowsRequest_TestData : IEnumerable<object[]>
+        public class CalendarAllShowsRequest_TestData : IEnumerable<object[]>
         {
             private static readonly DateTime _startDate = DateTime.Now.AddDays(-7);
             private const int _days = 14;
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktMovieFilter _filter = new TraktMovieFilter().WithYears(2010, 2017);
 
-            private static readonly TraktCalendarAllShowsRequest _request1 = new TraktCalendarAllShowsRequest();
+            private static readonly CalendarAllShowsRequest _request1 = new CalendarAllShowsRequest();
 
-            private static readonly TraktCalendarAllShowsRequest _request2 = new TraktCalendarAllShowsRequest
+            private static readonly CalendarAllShowsRequest _request2 = new CalendarAllShowsRequest
             { StartDate = _startDate };
 
-            private static readonly TraktCalendarAllShowsRequest _request3 = new TraktCalendarAllShowsRequest
+            private static readonly CalendarAllShowsRequest _request3 = new CalendarAllShowsRequest
             { StartDate = _startDate, Days = _days };
 
-            private static readonly TraktCalendarAllShowsRequest _request4 = new TraktCalendarAllShowsRequest
+            private static readonly CalendarAllShowsRequest _request4 = new CalendarAllShowsRequest
             { Days = _days };
 
             // with extended info
-            private static readonly TraktCalendarAllShowsRequest _request5 = new TraktCalendarAllShowsRequest
+            private static readonly CalendarAllShowsRequest _request5 = new CalendarAllShowsRequest
             { ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarAllShowsRequest _request6 = new TraktCalendarAllShowsRequest
+            private static readonly CalendarAllShowsRequest _request6 = new CalendarAllShowsRequest
             { StartDate = _startDate, ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarAllShowsRequest _request7 = new TraktCalendarAllShowsRequest
+            private static readonly CalendarAllShowsRequest _request7 = new CalendarAllShowsRequest
             { StartDate = _startDate, Days = _days, ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarAllShowsRequest _request8 = new TraktCalendarAllShowsRequest
+            private static readonly CalendarAllShowsRequest _request8 = new CalendarAllShowsRequest
             { Days = _days, ExtendedInfo = _extendedInfo };
 
             // with filter
-            private static readonly TraktCalendarAllShowsRequest _request9 = new TraktCalendarAllShowsRequest
+            private static readonly CalendarAllShowsRequest _request9 = new CalendarAllShowsRequest
             { Filter = _filter };
 
-            private static readonly TraktCalendarAllShowsRequest _request10 = new TraktCalendarAllShowsRequest
+            private static readonly CalendarAllShowsRequest _request10 = new CalendarAllShowsRequest
             { StartDate = _startDate, Filter = _filter };
 
-            private static readonly TraktCalendarAllShowsRequest _request11 = new TraktCalendarAllShowsRequest
+            private static readonly CalendarAllShowsRequest _request11 = new CalendarAllShowsRequest
             { StartDate = _startDate, Days = _days, Filter = _filter };
 
-            private static readonly TraktCalendarAllShowsRequest _request12 = new TraktCalendarAllShowsRequest
+            private static readonly CalendarAllShowsRequest _request12 = new CalendarAllShowsRequest
             { Days = _days, Filter = _filter };
 
             // with extended info and filter
-            private static readonly TraktCalendarAllShowsRequest _request13 = new TraktCalendarAllShowsRequest
+            private static readonly CalendarAllShowsRequest _request13 = new CalendarAllShowsRequest
             { ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarAllShowsRequest _request14 = new TraktCalendarAllShowsRequest
+            private static readonly CalendarAllShowsRequest _request14 = new CalendarAllShowsRequest
             { StartDate = _startDate, ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarAllShowsRequest _request15 = new TraktCalendarAllShowsRequest
+            private static readonly CalendarAllShowsRequest _request15 = new CalendarAllShowsRequest
             { StartDate = _startDate, Days = _days, ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarAllShowsRequest _request16 = new TraktCalendarAllShowsRequest
+            private static readonly CalendarAllShowsRequest _request16 = new CalendarAllShowsRequest
             { Days = _days, ExtendedInfo = _extendedInfo, Filter = _filter };
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktCalendarAllShowsRequest_TestData()
+            public CalendarAllShowsRequest_TestData()
             {
                 SetupPathParamters();
             }
@@ -128,7 +128,7 @@
                 var strExtendedInfo = _extendedInfo.ToString();
                 var filterParameters = _filter.GetParameters();
 
-                _data.Add(new object[] { _request1.GetUriPathParameters(), new Dictionary<string, object> { } });
+                _data.Add(new object[] { _request1.GetUriPathParameters(), new Dictionary<string, object>() });
 
                 _data.Add(new object[] { _request2.GetUriPathParameters(), new Dictionary<string, object>
                     {
@@ -176,7 +176,7 @@
                     }});
 
                 // with filter
-                _data.Add(new object[] { _request9.GetUriPathParameters(), new Dictionary<string, object>(filterParameters) { } });
+                _data.Add(new object[] { _request9.GetUriPathParameters(), new Dictionary<string, object>(filterParameters) });
 
                 _data.Add(new object[] { _request10.GetUriPathParameters(), new Dictionary<string, object>(filterParameters)
                     {
