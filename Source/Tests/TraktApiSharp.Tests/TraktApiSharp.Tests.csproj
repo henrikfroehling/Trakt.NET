@@ -1193,7 +1193,7 @@
     <Compile Include="Requests\Parameters\TraktExtendedInfo_Tests.cs" />
     <Compile Include="Requests\People\APersonRequest%271_Tests.cs" />
     <Compile Include="Requests\People\PersonMovieCreditsRequest_Tests.cs" />
-    <Compile Include="Requests\People\TraktPersonShowCreditsRequest_Tests.cs" />
+    <Compile Include="Requests\People\PersonShowCreditsRequest_Tests.cs" />
     <Compile Include="Requests\People\TraktPersonSummaryRequest_Tests.cs" />
     <Compile Include="Requests\Recommendations\OAuth\ATraktUserRecommendationHideRequest_Tests.cs" />
     <Compile Include="Requests\Recommendations\OAuth\ATraktUserRecommendationsRequest%271_Tests.cs" />

@@ -138,7 +138,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktPersonShowCreditsRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new PersonShowCreditsRequest
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo
