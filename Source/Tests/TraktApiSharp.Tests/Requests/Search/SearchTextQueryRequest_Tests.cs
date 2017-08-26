@@ -15,50 +15,50 @@
     using Xunit;
 
     [Category("Requests.Search")]
-    public class TraktSearchTextQueryRequest_Tests
+    public class SearchTextQueryRequest_Tests
     {
         [Fact]
-        public void Test_TraktSearchTextQueryRequest_IsNotAbstract()
+        public void Test_SearchTextQueryRequest_IsNotAbstract()
         {
-            typeof(TraktSearchTextQueryRequest).IsAbstract.Should().BeFalse();
+            typeof(SearchTextQueryRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktSearchTextQueryRequest_IsSealed()
+        public void Test_SearchTextQueryRequest_IsSealed()
         {
-            typeof(TraktSearchTextQueryRequest).IsSealed.Should().BeTrue();
+            typeof(SearchTextQueryRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSearchTextQueryRequest_Inherits_ATraktSearchRequest()
+        public void Test_SearchTextQueryRequest_Inherits_ATraktSearchRequest()
         {
-            typeof(TraktSearchTextQueryRequest).IsSubclassOf(typeof(ASearchRequest)).Should().BeTrue();
+            typeof(SearchTextQueryRequest).IsSubclassOf(typeof(ASearchRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSearchTextQueryRequest_Implements_ITraktSupportsFilter_Interface()
+        public void Test_SearchTextQueryRequest_Implements_ITraktSupportsFilter_Interface()
         {
-            typeof(TraktSearchTextQueryRequest).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
+            typeof(SearchTextQueryRequest).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
         }
 
         [Fact]
-        public void Test_TraktSearchTextQueryRequest_Has_AuthorizationRequirement_NotRequired()
+        public void Test_SearchTextQueryRequest_Has_AuthorizationRequirement_NotRequired()
         {
-            var request = new TraktSearchTextQueryRequest();
+            var request = new SearchTextQueryRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_TraktSearchTextQueryRequest_Has_Valid_UriTemplate()
+        public void Test_SearchTextQueryRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktSearchTextQueryRequest();
+            var request = new SearchTextQueryRequest();
             request.UriTemplate.Should().Be("search/{type}{?query,fields,years,genres,languages,countries,runtimes,ratings,extended,page,limit}");
         }
 
         [Fact]
-        public void Test_TraktSearchTextQueryRequest_Has_SearchFields_Property()
+        public void Test_SearchTextQueryRequest_Has_SearchFields_Property()
         {
-            var propertyInfo = typeof(TraktSearchTextQueryRequest)
+            var propertyInfo = typeof(SearchTextQueryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "SearchFields")
                     .FirstOrDefault();
@@ -69,9 +69,9 @@
         }
 
         [Fact]
-        public void Test_TraktSearchTextQueryRequest_Has_Query_Property()
+        public void Test_SearchTextQueryRequest_Has_Query_Property()
         {
-            var propertyInfo = typeof(TraktSearchTextQueryRequest)
+            var propertyInfo = typeof(SearchTextQueryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Query")
                     .FirstOrDefault();
@@ -82,39 +82,39 @@
         }
 
         [Fact]
-        public void Test_TraktSearchTextQueryRequest_Validate_Throws_ArgumentNullException()
+        public void Test_SearchTextQueryRequest_Validate_Throws_ArgumentNullException()
         {
             // no result types set
-            var request = new TraktSearchTextQueryRequest { Query = "query" };
+            var request = new SearchTextQueryRequest { Query = "query" };
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // no query set
-            request = new TraktSearchTextQueryRequest { ResultTypes = TraktSearchResultType.Episode };
+            request = new SearchTextQueryRequest { ResultTypes = TraktSearchResultType.Episode };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
         }
 
         [Fact]
-        public void Test_TraktSearchTextQueryRequest_Validate_Throws_ArgumentException()
+        public void Test_SearchTextQueryRequest_Validate_Throws_ArgumentException()
         {
             // result types is unspecified
-            var request = new TraktSearchTextQueryRequest { Query = "query", ResultTypes = TraktSearchResultType.Unspecified };
+            var request = new SearchTextQueryRequest { Query = "query", ResultTypes = TraktSearchResultType.Unspecified };
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // query is empty
-            request = new TraktSearchTextQueryRequest { Query = string.Empty, ResultTypes = TraktSearchResultType.Episode };
+            request = new SearchTextQueryRequest { Query = string.Empty, ResultTypes = TraktSearchResultType.Episode };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktSearchTextQueryRequest_TestData))]
-        public void Test_TraktSearchTextQueryRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(SearchTextQueryRequest_TestData))]
+        public void Test_SearchTextQueryRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                      IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -123,7 +123,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktSearchTextQueryRequest_TestData : IEnumerable<object[]>
+        public class SearchTextQueryRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktSearchResultType _resultTypes = TraktSearchResultType.Movie | TraktSearchResultType.Show;
             private const string _query = "searchQuery";
@@ -133,48 +133,48 @@
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktSearchTextQueryRequest _request1 = new TraktSearchTextQueryRequest
+            private static readonly SearchTextQueryRequest _request1 = new SearchTextQueryRequest
             {
                 ResultTypes = _resultTypes,
                 Query = _query
             };
 
-            private static readonly TraktSearchTextQueryRequest _request2 = new TraktSearchTextQueryRequest
+            private static readonly SearchTextQueryRequest _request2 = new SearchTextQueryRequest
             {
                 ResultTypes = _resultTypes,
                 Query = _query,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktSearchTextQueryRequest _request3 = new TraktSearchTextQueryRequest
+            private static readonly SearchTextQueryRequest _request3 = new SearchTextQueryRequest
             {
                 ResultTypes = _resultTypes,
                 Query = _query,
                 Filter = _filter
             };
 
-            private static readonly TraktSearchTextQueryRequest _request4 = new TraktSearchTextQueryRequest
+            private static readonly SearchTextQueryRequest _request4 = new SearchTextQueryRequest
             {
                 ResultTypes = _resultTypes,
                 Query = _query,
                 SearchFields = _searchFields
             };
 
-            private static readonly TraktSearchTextQueryRequest _request5 = new TraktSearchTextQueryRequest
+            private static readonly SearchTextQueryRequest _request5 = new SearchTextQueryRequest
             {
                 ResultTypes = _resultTypes,
                 Query = _query,
                 Page = _page
             };
 
-            private static readonly TraktSearchTextQueryRequest _request6 = new TraktSearchTextQueryRequest
+            private static readonly SearchTextQueryRequest _request6 = new SearchTextQueryRequest
             {
                 ResultTypes = _resultTypes,
                 Query = _query,
                 Limit = _limit
             };
 
-            private static readonly TraktSearchTextQueryRequest _request7 = new TraktSearchTextQueryRequest
+            private static readonly SearchTextQueryRequest _request7 = new SearchTextQueryRequest
             {
                 ResultTypes = _resultTypes,
                 Query = _query,
@@ -182,7 +182,7 @@
                 Filter = _filter
             };
 
-            private static readonly TraktSearchTextQueryRequest _request8 = new TraktSearchTextQueryRequest
+            private static readonly SearchTextQueryRequest _request8 = new SearchTextQueryRequest
             {
                 ResultTypes = _resultTypes,
                 Query = _query,
@@ -191,7 +191,7 @@
                 SearchFields = _searchFields
             };
 
-            private static readonly TraktSearchTextQueryRequest _request9 = new TraktSearchTextQueryRequest
+            private static readonly SearchTextQueryRequest _request9 = new SearchTextQueryRequest
             {
                 ResultTypes = _resultTypes,
                 Query = _query,
@@ -201,7 +201,7 @@
                 Page = _page
             };
 
-            private static readonly TraktSearchTextQueryRequest _request10 = new TraktSearchTextQueryRequest
+            private static readonly SearchTextQueryRequest _request10 = new SearchTextQueryRequest
             {
                 ResultTypes = _resultTypes,
                 Query = _query,
@@ -212,7 +212,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktSearchTextQueryRequest _request11 = new TraktSearchTextQueryRequest
+            private static readonly SearchTextQueryRequest _request11 = new SearchTextQueryRequest
             {
                 ResultTypes = _resultTypes,
                 Query = _query,
@@ -220,7 +220,7 @@
                 SearchFields = _searchFields
             };
 
-            private static readonly TraktSearchTextQueryRequest _request12 = new TraktSearchTextQueryRequest
+            private static readonly SearchTextQueryRequest _request12 = new SearchTextQueryRequest
             {
                 ResultTypes = _resultTypes,
                 Query = _query,
@@ -229,7 +229,7 @@
                 Page = _page
             };
 
-            private static readonly TraktSearchTextQueryRequest _request13 = new TraktSearchTextQueryRequest
+            private static readonly SearchTextQueryRequest _request13 = new SearchTextQueryRequest
             {
                 ResultTypes = _resultTypes,
                 Query = _query,
@@ -239,7 +239,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktSearchTextQueryRequest _request14 = new TraktSearchTextQueryRequest
+            private static readonly SearchTextQueryRequest _request14 = new SearchTextQueryRequest
             {
                 ResultTypes = _resultTypes,
                 Query = _query,
@@ -247,7 +247,7 @@
                 Page = _page
             };
 
-            private static readonly TraktSearchTextQueryRequest _request15 = new TraktSearchTextQueryRequest
+            private static readonly SearchTextQueryRequest _request15 = new SearchTextQueryRequest
             {
                 ResultTypes = _resultTypes,
                 Query = _query,
@@ -256,7 +256,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktSearchTextQueryRequest _request16 = new TraktSearchTextQueryRequest
+            private static readonly SearchTextQueryRequest _request16 = new SearchTextQueryRequest
             {
                 ResultTypes = _resultTypes,
                 Query = _query,
@@ -266,11 +266,11 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktSearchTextQueryRequest_TestData()
+            public SearchTextQueryRequest_TestData()
             {
                 SetupPathParamters();
             }
-            
+
             private void SetupPathParamters()
             {
                 var strResultTypes = _resultTypes.UriName;

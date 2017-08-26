@@ -701,7 +701,7 @@
     <Compile Include="Requests\Scrobbles\OAuth\ScrobbleStopRequest%272.cs" />
     <Compile Include="Requests\Search\ASearchRequest.cs" />
     <Compile Include="Requests\Search\SearchIdLookupRequest.cs" />
-    <Compile Include="Requests\Search\TraktSearchTextQueryRequest.cs" />
+    <Compile Include="Requests\Search\SearchTextQueryRequest.cs" />
     <Compile Include="Requests\Seasons\ATraktSeasonRequest%271.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonCommentsRequest.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonListsRequest.cs" />

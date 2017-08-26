@@ -68,7 +68,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktSearchTextQueryRequest
+            return requestHandler.ExecutePagedRequestAsync(new SearchTextQueryRequest
             {
                 ResultTypes = searchResultTypes,
                 Query = searchQuery,
