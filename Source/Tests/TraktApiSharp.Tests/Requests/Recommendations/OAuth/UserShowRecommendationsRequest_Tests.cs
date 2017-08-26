@@ -10,51 +10,51 @@
     using Xunit;
 
     [Category("Requests.Recommendations.OAuth")]
-    public class TraktUserShowRecommendationsRequest_Tests
+    public class UserShowRecommendationsRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserShowRecommendationsRequest_IsNotAbstract()
+        public void Test_UserShowRecommendationsRequest_IsNotAbstract()
         {
-            typeof(TraktUserShowRecommendationsRequest).IsAbstract.Should().BeFalse();
+            typeof(UserShowRecommendationsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserShowRecommendationsRequest_IsSealed()
+        public void Test_UserShowRecommendationsRequest_IsSealed()
         {
-            typeof(TraktUserShowRecommendationsRequest).IsSealed.Should().BeTrue();
+            typeof(UserShowRecommendationsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserShowRecommendationsRequest_Inherits_ATraktUserRecommendationsRequest_1()
+        public void Test_UserShowRecommendationsRequest_Inherits_ATraktUserRecommendationsRequest_1()
         {
-            typeof(TraktUserShowRecommendationsRequest).IsSubclassOf(typeof(AUserRecommendationsRequest<ITraktShow>)).Should().BeTrue();
+            typeof(UserShowRecommendationsRequest).IsSubclassOf(typeof(AUserRecommendationsRequest<ITraktShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserShowRecommendationsRequest_Has_AuthorizationRequirement_Required()
+        public void Test_UserShowRecommendationsRequest_Has_AuthorizationRequirement_Required()
         {
-            var request = new TraktUserShowRecommendationsRequest();
+            var request = new UserShowRecommendationsRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktUserShowRecommendationsRequest_Has_Valid_UriTemplate()
+        public void Test_UserShowRecommendationsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserShowRecommendationsRequest();
+            var request = new UserShowRecommendationsRequest();
             request.UriTemplate.Should().Be("recommendations/shows{?extended,limit}");
         }
 
         [Fact]
-        public void Test_TraktUserShowRecommendationsRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserShowRecommendationsRequest_Returns_Valid_UriPathParameters()
         {
             // no parameters
-            var requestMock = new TraktUserShowRecommendationsRequest();
+            var requestMock = new UserShowRecommendationsRequest();
 
             requestMock.GetUriPathParameters().Should().NotBeNull().And.BeEmpty().And.HaveCount(0);
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            requestMock = new TraktUserShowRecommendationsRequest { ExtendedInfo = extendedInfo };
+            requestMock = new UserShowRecommendationsRequest { ExtendedInfo = extendedInfo };
 
             requestMock.GetUriPathParameters().Should().NotBeNull()
                                                        .And.HaveCount(1)
@@ -65,7 +65,7 @@
 
             // with extended info and limit
             var limit = 123U;
-            requestMock = new TraktUserShowRecommendationsRequest { ExtendedInfo = extendedInfo, Limit = limit };
+            requestMock = new UserShowRecommendationsRequest { ExtendedInfo = extendedInfo, Limit = limit };
 
             requestMock.GetUriPathParameters().Should().NotBeNull()
                                                        .And.HaveCount(2)

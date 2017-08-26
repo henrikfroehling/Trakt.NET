@@ -105,7 +105,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktUserShowRecommendationsRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserShowRecommendationsRequest
             {
                 ExtendedInfo = extendedInfo,
                 Limit = limit

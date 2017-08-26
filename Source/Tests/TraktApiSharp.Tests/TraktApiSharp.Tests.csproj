@@ -1200,7 +1200,7 @@
     <Compile Include="Requests\Recommendations\OAuth\UserMovieRecommendationsRequest_Tests.cs" />
     <Compile Include="Requests\Recommendations\OAuth\UserRecommendationHideMovieRequest_Tests.cs" />
     <Compile Include="Requests\Recommendations\OAuth\UserRecommendationHideShowRequest_Tests.cs" />
-    <Compile Include="Requests\Recommendations\OAuth\TraktUserShowRecommendationsRequest_Tests.cs" />
+    <Compile Include="Requests\Recommendations\OAuth\UserShowRecommendationsRequest_Tests.cs" />
     <Compile Include="Requests\Scrobbles\OAuth\TraktScrobblePauseRequest%272_Tests.cs" />
     <Compile Include="Requests\Scrobbles\OAuth\TraktScrobbleStartRequest%272_Tests.cs" />
     <Compile Include="Requests\Scrobbles\OAuth\TraktScrobbleStopRequest%272_Tests.cs" />
