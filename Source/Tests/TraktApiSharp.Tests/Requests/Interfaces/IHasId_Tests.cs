@@ -7,24 +7,24 @@
     using Xunit;
 
     [Category("Requests.Interfaces")]
-    public class ITraktHasId_Tests
+    public class IHasId_Tests
     {
         [Fact]
-        public void Test_ITraktHasId_Is_Interface()
+        public void Test_IHasId_Is_Interface()
         {
-            typeof(ITraktHasId).IsInterface.Should().BeTrue();
+            typeof(IHasId).IsInterface.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ITraktHasId_Inherits_ITraktObjectRequest_Interface()
+        public void Test_IHasId_Inherits_ITraktObjectRequest_Interface()
         {
-            typeof(ITraktHasId).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
+            typeof(IHasId).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
         }
 
         [Fact]
-        public void Test_ITraktHasId_Has_Id_Property()
+        public void Test_IHasId_Has_Id_Property()
         {
-            var propertyInfo = typeof(ITraktHasId).GetProperties()
+            var propertyInfo = typeof(IHasId).GetProperties()
                                                   .Where(p => p.Name == "Id")
                                                   .FirstOrDefault();
 

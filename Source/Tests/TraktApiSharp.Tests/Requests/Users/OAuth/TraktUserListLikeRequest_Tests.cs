@@ -35,7 +35,7 @@
         [Fact]
         public void Test_TraktUserListLikeRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktUserListLikeRequest).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(TraktUserListLikeRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]

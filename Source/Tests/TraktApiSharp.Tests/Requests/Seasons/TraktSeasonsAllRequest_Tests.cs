@@ -38,7 +38,7 @@
         [Fact]
         public void Test_TraktSeasonsAllRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktSeasonsAllRequest).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(TraktSeasonsAllRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]

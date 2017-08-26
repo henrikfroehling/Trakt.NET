@@ -41,7 +41,7 @@
         [Fact]
         public void Test_ATraktSeasonRequest_1_Implements_ITraktHasId_Interface()
         {
-            typeof(ATraktSeasonRequest<>).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(ATraktSeasonRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]

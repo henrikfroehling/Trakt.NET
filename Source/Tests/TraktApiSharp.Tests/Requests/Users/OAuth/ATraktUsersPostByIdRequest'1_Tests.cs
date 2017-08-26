@@ -41,7 +41,7 @@
         [Fact]
         public void Test_ATraktUsersPostByIdRequest_1_Implements_ITraktHasId_Interface()
         {
-            typeof(ATraktUsersPostByIdRequest<,>).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(ATraktUsersPostByIdRequest<,>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]

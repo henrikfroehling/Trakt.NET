@@ -623,7 +623,7 @@
     <Compile Include="Requests\Handler\ITraktPostRequestHandler.cs" />
     <Compile Include="Requests\Handler\ITraktPutRequestHandler.cs" />
     <Compile Include="Requests\Handler\ITraktRequestHandler.cs" />
-    <Compile Include="Requests\Interfaces\ITraktHasId.cs" />
+    <Compile Include="Requests\Interfaces\IHasId.cs" />
     <Compile Include="Requests\Interfaces\Base\IHasRequestBody%271.cs" />
     <Compile Include="Requests\Calendars\ATraktCalendarRequest%271.cs" />
     <Compile Include="Requests\Calendars\OAuth\ATraktCalendarUserRequest%271.cs" />

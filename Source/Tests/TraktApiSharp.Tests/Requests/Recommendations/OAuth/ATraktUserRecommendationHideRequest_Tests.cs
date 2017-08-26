@@ -34,7 +34,7 @@
         [Fact]
         public void Test_ATraktUserRecommendationHideRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(ATraktUserRecommendationHideRequest).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(ATraktUserRecommendationHideRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]

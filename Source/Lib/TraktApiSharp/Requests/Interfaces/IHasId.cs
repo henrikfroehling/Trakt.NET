@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Interfaces
 {
-    internal interface ITraktHasId : ITraktObjectRequest
+    internal interface IHasId : ITraktObjectRequest
     {
         string Id { get; set; }
     }

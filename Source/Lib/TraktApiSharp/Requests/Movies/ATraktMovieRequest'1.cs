@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal abstract class ATraktMovieRequest<TResponseContentType> : AGetRequest<TResponseContentType>, ITraktHasId
+    internal abstract class ATraktMovieRequest<TResponseContentType> : AGetRequest<TResponseContentType>, IHasId
     {
         public string Id { get; set; }
 

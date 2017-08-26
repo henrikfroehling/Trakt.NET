@@ -33,7 +33,7 @@
         [Fact]
         public void Test_TraktCommentUnlikeRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktCommentUnlikeRequest).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(TraktCommentUnlikeRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]

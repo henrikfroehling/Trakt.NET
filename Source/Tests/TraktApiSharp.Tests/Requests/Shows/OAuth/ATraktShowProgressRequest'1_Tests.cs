@@ -42,7 +42,7 @@
         [Fact]
         public void Test_ATraktShowProgressRequest_1_Implements_ITraktHasId_Interface()
         {
-            typeof(ATraktShowProgressRequest<>).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(ATraktShowProgressRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]

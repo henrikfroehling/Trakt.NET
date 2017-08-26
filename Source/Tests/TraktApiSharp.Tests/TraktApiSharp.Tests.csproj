@@ -1162,7 +1162,7 @@
     <Compile Include="Requests\Handler\ITraktPostRequestHandler_Tests.cs" />
     <Compile Include="Requests\Handler\ITraktPutRequestHandler_Tests.cs" />
     <Compile Include="Requests\Handler\ITraktRequestHandler_Tests.cs" />
-    <Compile Include="Requests\Interfaces\ITraktHasId_Tests.cs" />
+    <Compile Include="Requests\Interfaces\IHasId_Tests.cs" />
     <Compile Include="Requests\Interfaces\ITraktObjectRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\ITraktSupportsExtendedInfo_Tests.cs" />
     <Compile Include="Requests\Interfaces\ITraktSupportsFilter_Tests.cs" />

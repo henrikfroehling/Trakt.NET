@@ -35,7 +35,7 @@
         [Fact]
         public void Test_TraktCommentReplyRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktCommentReplyRequest).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(TraktCommentReplyRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]

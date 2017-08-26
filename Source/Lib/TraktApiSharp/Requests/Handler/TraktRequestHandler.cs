@@ -378,9 +378,9 @@
             string url = BuildUrl(request);
             var requestMessage = new TraktHttpRequestMessage(request.Method, url) { Url = url };
 
-            if (request is ITraktHasId)
+            if (request is IHasId)
             {
-                var idRequest = request as ITraktHasId;
+                var idRequest = request as IHasId;
 
                 requestMessage.ObjectId = idRequest?.Id;
                 requestMessage.RequestObjectType = idRequest?.RequestObjectType;

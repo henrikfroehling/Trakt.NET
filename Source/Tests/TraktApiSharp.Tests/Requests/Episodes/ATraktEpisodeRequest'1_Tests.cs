@@ -41,7 +41,7 @@
         [Fact]
         public void Test_ATraktEpisodeRequest_1_Implements_ITraktHasId_Interface()
         {
-            typeof(ATraktEpisodeRequest<>).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(ATraktEpisodeRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]

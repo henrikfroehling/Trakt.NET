@@ -33,7 +33,7 @@
         [Fact]
         public void Test_TraktSyncPlaybackDeleteRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktSyncPlaybackDeleteRequest).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(TraktSyncPlaybackDeleteRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]

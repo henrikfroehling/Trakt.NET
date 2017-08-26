@@ -8,7 +8,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktSeasonsAllRequest : AGetRequest<ITraktSeason>, ITraktHasId, ITraktSupportsExtendedInfo
+    internal sealed class TraktSeasonsAllRequest : AGetRequest<ITraktSeason>, IHasId, ITraktSupportsExtendedInfo
     {
         public string Id { get; set; }
 

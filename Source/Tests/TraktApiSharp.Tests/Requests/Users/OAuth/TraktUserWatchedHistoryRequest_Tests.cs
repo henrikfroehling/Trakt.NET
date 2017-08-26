@@ -40,7 +40,7 @@
         [Fact]
         public void Test_TraktUserWatchedHistoryRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktUserWatchedHistoryRequest).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(TraktUserWatchedHistoryRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]

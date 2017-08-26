@@ -34,7 +34,7 @@
         [Fact]
         public void Test_TraktUserApproveFollowerRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktUserApproveFollowerRequest).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(TraktUserApproveFollowerRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]

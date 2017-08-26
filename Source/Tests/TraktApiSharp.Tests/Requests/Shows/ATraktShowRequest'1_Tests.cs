@@ -39,7 +39,7 @@
         [Fact]
         public void Test_ATraktShowRequest_1_Implements_ITraktHasId_Interface()
         {
-            typeof(ATraktShowRequest<>).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(ATraktShowRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]

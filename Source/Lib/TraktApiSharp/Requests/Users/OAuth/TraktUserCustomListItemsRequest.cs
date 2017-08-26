@@ -8,7 +8,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserCustomListItemsRequest : ATraktUsersPagedGetRequest<ITraktListItem>, ITraktHasId
+    internal sealed class TraktUserCustomListItemsRequest : ATraktUsersPagedGetRequest<ITraktListItem>, IHasId
     {
         internal string Username { get; set; }
 

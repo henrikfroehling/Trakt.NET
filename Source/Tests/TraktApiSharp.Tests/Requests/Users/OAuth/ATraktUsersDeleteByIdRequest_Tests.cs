@@ -34,7 +34,7 @@
         [Fact]
         public void Test_ATraktUsersDeleteByIdRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(ATraktUsersDeleteByIdRequest).GetInterfaces().Should().Contain(typeof(ITraktHasId));
+            typeof(ATraktUsersDeleteByIdRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
