@@ -306,7 +306,7 @@
         public Task<TraktResponse<ITraktStatistics>> GetShowStatisticsAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowStatisticsRequest { Id = showIdOrSlug }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new ShowStatisticsRequest { Id = showIdOrSlug }, cancellationToken);
         }
 
         /// <summary>

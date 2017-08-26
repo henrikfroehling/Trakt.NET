@@ -9,37 +9,37 @@
     using Xunit;
 
     [Category("Requests.Shows")]
-    public class TraktShowStatisticsRequest_Tests
+    public class ShowStatisticsRequest_Tests
     {
         [Fact]
-        public void Test_TraktShowStatisticsRequest_Is_Not_Abstract()
+        public void Test_ShowStatisticsRequest_Is_Not_Abstract()
         {
-            typeof(TraktShowStatisticsRequest).IsAbstract.Should().BeFalse();
+            typeof(ShowStatisticsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktShowStatisticsRequest_Is_Sealed()
+        public void Test_ShowStatisticsRequest_Is_Sealed()
         {
-            typeof(TraktShowStatisticsRequest).IsSealed.Should().BeTrue();
+            typeof(ShowStatisticsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowStatisticsRequest_Inherits_ATraktShowRequest_1()
+        public void Test_ShowStatisticsRequest_Inherits_ATraktShowRequest_1()
         {
-            typeof(TraktShowStatisticsRequest).IsSubclassOf(typeof(AShowRequest<ITraktStatistics>)).Should().BeTrue();
+            typeof(ShowStatisticsRequest).IsSubclassOf(typeof(AShowRequest<ITraktStatistics>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowStatisticsRequest_Has_Valid_UriTemplate()
+        public void Test_ShowStatisticsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktShowStatisticsRequest();
+            var request = new ShowStatisticsRequest();
             request.UriTemplate.Should().Be("shows/{id}/stats");
         }
 
         [Fact]
-        public void Test_TraktShowStatisticsRequest_Returns_Valid_UriPathParameters()
+        public void Test_ShowStatisticsRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new TraktShowStatisticsRequest { Id = "123" };
+            var request = new ShowStatisticsRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -50,22 +50,22 @@
         }
 
         [Fact]
-        public void Test_TraktShowStatisticsRequest_Validate_Throws_Exceptions()
+        public void Test_ShowStatisticsRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktShowStatisticsRequest();
+            var request = new ShowStatisticsRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktShowStatisticsRequest { Id = string.Empty };
+            request = new ShowStatisticsRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktShowStatisticsRequest { Id = "invalid id" };
+            request = new ShowStatisticsRequest { Id = "invalid id" };
             act.ShouldThrow<ArgumentException>();
         }
     }
