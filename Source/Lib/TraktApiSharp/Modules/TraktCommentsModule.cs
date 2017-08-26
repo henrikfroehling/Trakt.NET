@@ -414,7 +414,7 @@
         {
             ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktCommentLikeRequest { Id = commentId.ToString() }, cancellationToken);
+            return requestHandler.ExecuteNoContentRequestAsync(new CommentLikeRequest { Id = commentId.ToString() }, cancellationToken);
         }
 
         /// <summary>

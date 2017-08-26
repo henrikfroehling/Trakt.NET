@@ -641,7 +641,7 @@
     <Compile Include="Requests\Checkins\OAuth\CheckinsDeleteRequest.cs" />
     <Compile Include="Requests\Comments\OAuth\TraktCommentPostRequest%271.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentDeleteRequest.cs" />
-    <Compile Include="Requests\Comments\OAuth\TraktCommentLikeRequest.cs" />
+    <Compile Include="Requests\Comments\OAuth\CommentLikeRequest.cs" />
     <Compile Include="Requests\Comments\OAuth\TraktCommentReplyRequest.cs" />
     <Compile Include="Requests\Comments\OAuth\TraktCommentUnlikeRequest.cs" />
     <Compile Include="Requests\Comments\OAuth\TraktCommentUpdateRequest.cs" />
