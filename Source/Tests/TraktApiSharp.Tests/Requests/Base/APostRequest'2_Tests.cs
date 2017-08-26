@@ -42,7 +42,7 @@
         [Fact]
         public void Test_APostRequest_2_Implements_ITraktPostRequest_2_Interface()
         {
-            typeof(APostRequest<int, float>).GetInterfaces().Should().Contain(typeof(ITraktPostRequest<int, float>));
+            typeof(APostRequest<int, float>).GetInterfaces().Should().Contain(typeof(IPostRequest<int, float>));
         }
 
         [Fact]

@@ -4,7 +4,7 @@
     using System;
     using System.Net.Http;
 
-    internal abstract class APostRequest<TResponseContentType, TRequestBodyType> : ARequest<TResponseContentType>, ITraktPostRequest<TResponseContentType, TRequestBodyType>
+    internal abstract class APostRequest<TResponseContentType, TRequestBodyType> : ARequest<TResponseContentType>, IPostRequest<TResponseContentType, TRequestBodyType>
     {
         public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
 
