@@ -4,7 +4,7 @@
     using Objects.Basic;
     using System.Collections.Generic;
 
-    internal sealed class TraktGenresShowsRequest : AGetRequest<ITraktGenre>
+    internal sealed class GenresShowsRequest : AGetRequest<ITraktGenre>
     {
         public override string UriTemplate => "genres/shows";
 
