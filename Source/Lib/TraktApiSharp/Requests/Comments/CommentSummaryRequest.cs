@@ -7,7 +7,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktCommentSummaryRequest : AGetRequest<ITraktComment>, IHasId
+    internal sealed class CommentSummaryRequest : AGetRequest<ITraktComment>, IHasId
     {
         public string Id { get; set; }
 

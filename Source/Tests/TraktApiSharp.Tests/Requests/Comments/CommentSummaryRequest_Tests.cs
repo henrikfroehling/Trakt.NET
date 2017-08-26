@@ -11,58 +11,58 @@
     using Xunit;
 
     [Category("Requests.Comments")]
-    public class TraktCommentSummaryRequest_Tests
+    public class CommentSummaryRequest_Tests
     {
         [Fact]
-        public void Test_TraktCommentSummaryRequest_IsNotAbstract()
+        public void Test_CommentSummaryRequest_IsNotAbstract()
         {
-            typeof(TraktCommentSummaryRequest).IsAbstract.Should().BeFalse();
+            typeof(CommentSummaryRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktCommentSummaryRequest_IsSealed()
+        public void Test_CommentSummaryRequest_IsSealed()
         {
-            typeof(TraktCommentSummaryRequest).IsSealed.Should().BeTrue();
+            typeof(CommentSummaryRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCommentSummaryRequest_Inherits_ATraktGetRequest_1()
+        public void Test_CommentSummaryRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktCommentSummaryRequest).IsSubclassOf(typeof(AGetRequest<ITraktComment>)).Should().BeTrue();
+            typeof(CommentSummaryRequest).IsSubclassOf(typeof(AGetRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCommentSummaryRequest_Implements_ITraktHasId_Interface()
+        public void Test_CommentSummaryRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktCommentSummaryRequest).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(CommentSummaryRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_TraktCommentSummaryRequest_Has_AuthorizationRequirement_NotRequired()
+        public void Test_CommentSummaryRequest_Has_AuthorizationRequirement_NotRequired()
         {
-            var request = new TraktCommentSummaryRequest();
+            var request = new CommentSummaryRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_TraktCommentSummaryRequest_Returns_Valid_RequestObjectType()
+        public void Test_CommentSummaryRequest_Returns_Valid_RequestObjectType()
         {
-            var request = new TraktCommentSummaryRequest();
+            var request = new CommentSummaryRequest();
             request.RequestObjectType.Should().Be(RequestObjectType.Comments);
         }
 
         [Fact]
-        public void Test_TraktCommentSummaryRequest_Has_Valid_UriTemplate()
+        public void Test_CommentSummaryRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktCommentSummaryRequest();
+            var request = new CommentSummaryRequest();
             request.UriTemplate.Should().Be("comments/{id}");
         }
 
         [Fact]
-        public void Test_TraktCommentSummaryRequest_Returns_Valid_UriPathParameters()
+        public void Test_CommentSummaryRequest_Returns_Valid_UriPathParameters()
         {
             // only id
-            var requestMock = new TraktCommentSummaryRequest { Id = "123" };
+            var requestMock = new CommentSummaryRequest { Id = "123" };
 
             requestMock.GetUriPathParameters().Should().NotBeNull()
                                                        .And.HaveCount(1)
@@ -73,22 +73,22 @@
         }
 
         [Fact]
-        public void Test_TraktCommentSummaryRequest_Validate_Throws_Exceptions()
+        public void Test_CommentSummaryRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktCommentSummaryRequest();
+            var request = new CommentSummaryRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktCommentSummaryRequest { Id = string.Empty };
+            request = new CommentSummaryRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktCommentSummaryRequest { Id = "invalid id" };
+            request = new CommentSummaryRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

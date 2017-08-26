@@ -55,7 +55,7 @@
         {
             ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentSummaryRequest { Id = commentId.ToString() }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentSummaryRequest { Id = commentId.ToString() }, cancellationToken);
         }
 
         /// <summary>
