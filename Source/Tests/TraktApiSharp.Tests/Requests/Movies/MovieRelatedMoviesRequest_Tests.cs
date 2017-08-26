@@ -12,69 +12,69 @@
     using Xunit;
 
     [Category("Requests.Movies")]
-    public class TraktMovieRelatedMoviesRequest_Tests
+    public class MovieRelatedMoviesRequest_Tests
     {
         [Fact]
-        public void Test_TraktMovieRelatedMoviesRequest_IsNotAbstract()
+        public void Test_MovieRelatedMoviesRequest_IsNotAbstract()
         {
-            typeof(TraktMovieRelatedMoviesRequest).IsAbstract.Should().BeFalse();
+            typeof(MovieRelatedMoviesRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktMovieRelatedMoviesRequest_IsSealed()
+        public void Test_MovieRelatedMoviesRequest_IsSealed()
         {
-            typeof(TraktMovieRelatedMoviesRequest).IsSealed.Should().BeTrue();
+            typeof(MovieRelatedMoviesRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMovieRelatedMoviesRequest_Inherits_ATraktMovieRequest_1()
+        public void Test_MovieRelatedMoviesRequest_Inherits_ATraktMovieRequest_1()
         {
-            typeof(TraktMovieRelatedMoviesRequest).IsSubclassOf(typeof(AMovieRequest<ITraktMovie>)).Should().BeTrue();
+            typeof(MovieRelatedMoviesRequest).IsSubclassOf(typeof(AMovieRequest<ITraktMovie>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMovieRelatedMoviesRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_MovieRelatedMoviesRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktMovieRelatedMoviesRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(MovieRelatedMoviesRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_TraktMovieRelatedMoviesRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_MovieRelatedMoviesRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktMovieRelatedMoviesRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
+            typeof(MovieRelatedMoviesRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]
-        public void Test_TraktMovieRelatedMoviesRequest_Has_Valid_UriTemplate()
+        public void Test_MovieRelatedMoviesRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktMovieRelatedMoviesRequest();
+            var request = new MovieRelatedMoviesRequest();
             request.UriTemplate.Should().Be("movies/{id}/related{?extended,page,limit}");
         }
 
         [Fact]
-        public void Test_TraktMovieRelatedMoviesRequest_Validate_Throws_Exceptions()
+        public void Test_MovieRelatedMoviesRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktMovieRelatedMoviesRequest();
+            var request = new MovieRelatedMoviesRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktMovieRelatedMoviesRequest { Id = string.Empty };
+            request = new MovieRelatedMoviesRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktMovieRelatedMoviesRequest { Id = "invalid id" };
+            request = new MovieRelatedMoviesRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktMovieRelatedMoviesRequest_TestData))]
-        public void Test_TraktMovieRelatedMoviesRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(MovieRelatedMoviesRequest_TestData))]
+        public void Test_MovieRelatedMoviesRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                         IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -83,58 +83,58 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktMovieRelatedMoviesRequest_TestData : IEnumerable<object[]>
+        public class MovieRelatedMoviesRequest_TestData : IEnumerable<object[]>
         {
             private const string _id = "123";
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktMovieRelatedMoviesRequest _request1 = new TraktMovieRelatedMoviesRequest
+            private static readonly MovieRelatedMoviesRequest _request1 = new MovieRelatedMoviesRequest
             {
                 Id = _id
             };
 
-            private static readonly TraktMovieRelatedMoviesRequest _request2 = new TraktMovieRelatedMoviesRequest
+            private static readonly MovieRelatedMoviesRequest _request2 = new MovieRelatedMoviesRequest
             {
                 Id = _id,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktMovieRelatedMoviesRequest _request3 = new TraktMovieRelatedMoviesRequest
+            private static readonly MovieRelatedMoviesRequest _request3 = new MovieRelatedMoviesRequest
             {
                 Id = _id,
                 Page = _page
             };
 
-            private static readonly TraktMovieRelatedMoviesRequest _request4 = new TraktMovieRelatedMoviesRequest
+            private static readonly MovieRelatedMoviesRequest _request4 = new MovieRelatedMoviesRequest
             {
                 Id = _id,
                 Limit = _limit
             };
 
-            private static readonly TraktMovieRelatedMoviesRequest _request5 = new TraktMovieRelatedMoviesRequest
+            private static readonly MovieRelatedMoviesRequest _request5 = new MovieRelatedMoviesRequest
             {
                 Id = _id,
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktMovieRelatedMoviesRequest _request6 = new TraktMovieRelatedMoviesRequest
+            private static readonly MovieRelatedMoviesRequest _request6 = new MovieRelatedMoviesRequest
             {
                 Id = _id,
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktMovieRelatedMoviesRequest _request7 = new TraktMovieRelatedMoviesRequest
+            private static readonly MovieRelatedMoviesRequest _request7 = new MovieRelatedMoviesRequest
             {
                 Id = _id,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMovieRelatedMoviesRequest _request8 = new TraktMovieRelatedMoviesRequest
+            private static readonly MovieRelatedMoviesRequest _request8 = new MovieRelatedMoviesRequest
             {
                 Id = _id,
                 ExtendedInfo = _extendedInfo,
@@ -144,7 +144,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktMovieRelatedMoviesRequest_TestData()
+            public MovieRelatedMoviesRequest_TestData()
             {
                 SetupPathParamters();
             }

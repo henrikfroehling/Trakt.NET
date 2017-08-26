@@ -297,7 +297,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMovieRelatedMoviesRequest
+            return requestHandler.ExecutePagedRequestAsync(new MovieRelatedMoviesRequest
             {
                 Id = movieIdOrSlug,
                 ExtendedInfo = extendedInfo,
