@@ -14,43 +14,43 @@
     using Xunit;
 
     [Category("Requests.Seasons")]
-    public class TraktSeasonSingleRequest_Tests
+    public class SeasonSingleRequest_Tests
     {
         [Fact]
-        public void Test_TraktSeasonSingleRequest_IsNotAbstract()
+        public void Test_SeasonSingleRequest_IsNotAbstract()
         {
-            typeof(TraktSeasonSingleRequest).IsAbstract.Should().BeFalse();
+            typeof(SeasonSingleRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktSeasonSingleRequest_IsSealed()
+        public void Test_SeasonSingleRequest_IsSealed()
         {
-            typeof(TraktSeasonSingleRequest).IsSealed.Should().BeTrue();
+            typeof(SeasonSingleRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSeasonSingleRequest_Inherits_ATraktSeasonRequest_1()
+        public void Test_SeasonSingleRequest_Inherits_ATraktSeasonRequest_1()
         {
-            typeof(TraktSeasonSingleRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktEpisode>)).Should().BeTrue();
+            typeof(SeasonSingleRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktEpisode>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSeasonSingleRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_SeasonSingleRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktSeasonSingleRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(SeasonSingleRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_TraktSeasonSingleRequest_Has_Valid_UriTemplate()
+        public void Test_SeasonSingleRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktSeasonSingleRequest();
+            var request = new SeasonSingleRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}{?extended,translations}");
         }
 
         [Fact]
-        public void Test_TraktSeasonSingleRequest_Has_TranslationLanguageCode_Property()
+        public void Test_SeasonSingleRequest_Has_TranslationLanguageCode_Property()
         {
-            var propertyInfo = typeof(TraktSeasonSingleRequest)
+            var propertyInfo = typeof(SeasonSingleRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "TranslationLanguageCode")
                     .FirstOrDefault();
@@ -61,45 +61,45 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonSingleRequest_Validate_Throws_Exceptions()
+        public void Test_SeasonSingleRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktSeasonSingleRequest();
+            var request = new SeasonSingleRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktSeasonSingleRequest { Id = string.Empty };
+            request = new SeasonSingleRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktSeasonSingleRequest { Id = "invalid id" };
+            request = new SeasonSingleRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // wrong translation language code format
-            request = new TraktSeasonSingleRequest { Id = "123", TranslationLanguageCode = "eng" };
+            request = new SeasonSingleRequest { Id = "123", TranslationLanguageCode = "eng" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            request = new TraktSeasonSingleRequest { Id = "123", TranslationLanguageCode = "e" };
+            request = new SeasonSingleRequest { Id = "123", TranslationLanguageCode = "e" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            request = new TraktSeasonSingleRequest { Id = "123", TranslationLanguageCode = "all" };
+            request = new SeasonSingleRequest { Id = "123", TranslationLanguageCode = "all" };
 
             act = () => request.Validate();
             act.ShouldNotThrow();
         }
 
-        [Theory, ClassData(typeof(TraktSeasonSingleRequest_TestData))]
-        public void Test_TraktSeasonSingleRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(SeasonSingleRequest_TestData))]
+        public void Test_SeasonSingleRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                   IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -108,34 +108,34 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktSeasonSingleRequest_TestData : IEnumerable<object[]>
+        public class SeasonSingleRequest_TestData : IEnumerable<object[]>
         {
             private const string _id = "123";
             private const uint _seasonNumber = 1;
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private const string _languageCode = "en";
 
-            private static readonly TraktSeasonSingleRequest _request1 = new TraktSeasonSingleRequest
+            private static readonly SeasonSingleRequest _request1 = new SeasonSingleRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber
             };
 
-            private static readonly TraktSeasonSingleRequest _request2 = new TraktSeasonSingleRequest
+            private static readonly SeasonSingleRequest _request2 = new SeasonSingleRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktSeasonSingleRequest _request3 = new TraktSeasonSingleRequest
+            private static readonly SeasonSingleRequest _request3 = new SeasonSingleRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
                 TranslationLanguageCode = _languageCode
             };
 
-            private static readonly TraktSeasonSingleRequest _request4 = new TraktSeasonSingleRequest
+            private static readonly SeasonSingleRequest _request4 = new SeasonSingleRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -145,7 +145,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktSeasonSingleRequest_TestData()
+            public SeasonSingleRequest_TestData()
             {
                 SetupPathParamters();
             }
