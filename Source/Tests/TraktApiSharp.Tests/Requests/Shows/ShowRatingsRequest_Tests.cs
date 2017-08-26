@@ -9,37 +9,37 @@
     using Xunit;
 
     [Category("Requests.Shows")]
-    public class TraktShowRatingsRequest_Tests
+    public class ShowRatingsRequest_Tests
     {
         [Fact]
-        public void Test_TraktShowRatingsRequest_Is_Not_Abstract()
+        public void Test_ShowRatingsRequest_Is_Not_Abstract()
         {
-            typeof(TraktShowRatingsRequest).IsAbstract.Should().BeFalse();
+            typeof(ShowRatingsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktShowRatingsRequest_Is_Sealed()
+        public void Test_ShowRatingsRequest_Is_Sealed()
         {
-            typeof(TraktShowRatingsRequest).IsSealed.Should().BeTrue();
+            typeof(ShowRatingsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowRatingsRequest_Inherits_ATraktShowRequest_1()
+        public void Test_ShowRatingsRequest_Inherits_ATraktShowRequest_1()
         {
-            typeof(TraktShowRatingsRequest).IsSubclassOf(typeof(AShowRequest<ITraktRating>)).Should().BeTrue();
+            typeof(ShowRatingsRequest).IsSubclassOf(typeof(AShowRequest<ITraktRating>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowRatingsRequest_Has_Valid_UriTemplate()
+        public void Test_ShowRatingsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktShowRatingsRequest();
+            var request = new ShowRatingsRequest();
             request.UriTemplate.Should().Be("shows/{id}/ratings");
         }
 
         [Fact]
-        public void Test_TraktShowRatingsRequest_Returns_Valid_UriPathParameters()
+        public void Test_ShowRatingsRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new TraktShowRatingsRequest { Id = "123" };
+            var request = new ShowRatingsRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -50,22 +50,22 @@
         }
 
         [Fact]
-        public void Test_TraktShowRatingsRequest_Validate_Throws_Exceptions()
+        public void Test_ShowRatingsRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktShowRatingsRequest();
+            var request = new ShowRatingsRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktShowRatingsRequest { Id = string.Empty };
+            request = new ShowRatingsRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktShowRatingsRequest { Id = "invalid id" };
+            request = new ShowRatingsRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

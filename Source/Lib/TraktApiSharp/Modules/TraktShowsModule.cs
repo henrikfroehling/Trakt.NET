@@ -250,7 +250,7 @@
         public Task<TraktResponse<ITraktRating>> GetShowRatingsAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowRatingsRequest { Id = showIdOrSlug }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new ShowRatingsRequest { Id = showIdOrSlug }, cancellationToken);
         }
 
         /// <summary>

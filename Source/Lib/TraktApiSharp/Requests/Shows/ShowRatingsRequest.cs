@@ -2,7 +2,7 @@
 {
     using Objects.Basic;
 
-    internal sealed class TraktShowRatingsRequest : AShowRequest<ITraktRating>
+    internal sealed class ShowRatingsRequest : AShowRequest<ITraktRating>
     {
         public override string UriTemplate => "shows/{id}/ratings";
     }
