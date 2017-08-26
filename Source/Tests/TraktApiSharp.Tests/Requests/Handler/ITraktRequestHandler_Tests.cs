@@ -17,7 +17,7 @@
         [Fact]
         public void Test_ITraktRequestHandler_Inherits_ITraktPostRequestHandler_Interface()
         {
-            typeof(ITraktRequestHandler).GetInterfaces().Should().Contain(typeof(ITraktPostRequestHandler));
+            typeof(ITraktRequestHandler).GetInterfaces().Should().Contain(typeof(IPostRequestHandler));
         }
 
         [Fact]

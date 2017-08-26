@@ -6,12 +6,12 @@
     using Xunit;
 
     [Category("Requests.Handler")]
-    public class ITraktPostRequestHandler_Tests
+    public class IPostRequestHandler_Tests
     {
         [Fact]
-        public void Test_ITraktPostRequestHandler_Is_Interface()
+        public void Test_IPostRequestHandler_Is_Interface()
         {
-            typeof(ITraktPostRequestHandler).IsInterface.Should().BeTrue();
+            typeof(IPostRequestHandler).IsInterface.Should().BeTrue();
         }
     }
 }
