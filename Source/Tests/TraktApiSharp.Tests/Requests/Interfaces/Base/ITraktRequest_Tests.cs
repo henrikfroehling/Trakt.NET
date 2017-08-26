@@ -24,7 +24,7 @@
         [Fact]
         public void Test_ITraktRequest_Inherits_ITraktHasRequestAuthorization_Interface()
         {
-            typeof(ITraktRequest).GetInterfaces().Should().Contain(typeof(ITraktHasRequestAuthorization));
+            typeof(ITraktRequest).GetInterfaces().Should().Contain(typeof(IHasRequestAuthorization));
         }
 
         [Fact]

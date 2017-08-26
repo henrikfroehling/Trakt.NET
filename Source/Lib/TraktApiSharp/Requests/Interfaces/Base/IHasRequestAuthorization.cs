@@ -2,7 +2,7 @@
 {
     using Requests.Base;
 
-    internal interface ITraktHasRequestAuthorization
+    internal interface IHasRequestAuthorization
     {
         AuthorizationRequirement AuthorizationRequirement { get; }
     }

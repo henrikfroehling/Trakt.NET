@@ -1148,7 +1148,7 @@
     <Compile Include="Requests\Interfaces\Base\IBodylessPostRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\IDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\IGetRequest%271_Tests.cs" />
-    <Compile Include="Requests\Interfaces\Base\ITraktHasRequestAuthorization_Tests.cs" />
+    <Compile Include="Requests\Interfaces\Base\IHasRequestAuthorization_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktHasRequestBody%271_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktHasUriPathParameters_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktHasUri_Tests.cs" />

@@ -8,18 +8,18 @@
     using Xunit;
 
     [Category("Requests.Interfaces.Base")]
-    public class ITraktHasRequestAuthorization_Tests
+    public class IHasRequestAuthorization_Tests
     {
         [Fact]
-        public void Test_ITraktHasRequestAuthorization_Is_Interface()
+        public void Test_IHasRequestAuthorization_Is_Interface()
         {
-            typeof(ITraktHasRequestAuthorization).IsInterface.Should().BeTrue();
+            typeof(IHasRequestAuthorization).IsInterface.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ITraktHasRequestAuthorization_Has_AuthorizationRequirement_Property()
+        public void Test_IHasRequestAuthorization_Has_AuthorizationRequirement_Property()
         {
-            var propertyInfo = typeof(ITraktHasRequestAuthorization).GetProperties()
+            var propertyInfo = typeof(IHasRequestAuthorization).GetProperties()
                                                                     .Where(p => p.Name == "AuthorizationRequirement")
                                                                     .FirstOrDefault();
 
