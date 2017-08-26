@@ -600,7 +600,7 @@
     <Compile Include="Requests\Base\ABodylessPostRequest.cs" />
     <Compile Include="Requests\Base\ADeleteRequest.cs" />
     <Compile Include="Requests\Base\AGetRequest%271.cs" />
-    <Compile Include="Requests\Base\ATraktPostRequest%271.cs" />
+    <Compile Include="Requests\Base\APostRequest%271.cs" />
     <Compile Include="Requests\Base\ATraktPostRequest%272.cs" />
     <Compile Include="Requests\Base\ATraktPutRequest%271.cs" />
     <Compile Include="Requests\Base\ATraktPutRequest%272.cs" />
