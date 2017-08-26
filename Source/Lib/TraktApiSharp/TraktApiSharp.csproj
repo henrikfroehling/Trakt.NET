@@ -726,7 +726,7 @@
     <Compile Include="Requests\Shows\ShowRelatedShowsRequest.cs" />
     <Compile Include="Requests\Shows\ShowsMostAnticipatedRequest.cs" />
     <Compile Include="Requests\Shows\ShowsMostCollectedRequest.cs" />
-    <Compile Include="Requests\Shows\TraktShowsMostPlayedRequest.cs" />
+    <Compile Include="Requests\Shows\ShowsMostPlayedRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowsMostWatchedRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowsPopularRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowsRecentlyUpdatedRequest.cs" />

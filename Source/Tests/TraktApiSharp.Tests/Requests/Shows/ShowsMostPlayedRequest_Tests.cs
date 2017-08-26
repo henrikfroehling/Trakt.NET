@@ -11,35 +11,35 @@
     using Xunit;
 
     [Category("Requests.Shows.Lists")]
-    public class TraktShowsMostPlayedRequest_Tests
+    public class ShowsMostPlayedRequest_Tests
     {
         [Fact]
-        public void Test_TraktShowsMostPlayedRequest_Is_Not_Abstract()
+        public void Test_ShowsMostPlayedRequest_Is_Not_Abstract()
         {
-            typeof(TraktShowsMostPlayedRequest).IsAbstract.Should().BeFalse();
+            typeof(ShowsMostPlayedRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktShowsMostPlayedRequest_Is_Sealed()
+        public void Test_ShowsMostPlayedRequest_Is_Sealed()
         {
-            typeof(TraktShowsMostPlayedRequest).IsSealed.Should().BeTrue();
+            typeof(ShowsMostPlayedRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowsMostPlayedRequest_Inherits_ATraktShowsMostPWCRequest_1()
+        public void Test_ShowsMostPlayedRequest_Inherits_ATraktShowsMostPWCRequest_1()
         {
-            typeof(TraktShowsMostPlayedRequest).IsSubclassOf(typeof(AShowsMostPWCRequest<ITraktMostPWCShow>)).Should().BeTrue();
+            typeof(ShowsMostPlayedRequest).IsSubclassOf(typeof(AShowsMostPWCRequest<ITraktMostPWCShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowsMostPlayedRequest_Has_Valid_UriTemplate()
+        public void Test_ShowsMostPlayedRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktShowsMostPlayedRequest();
+            var request = new ShowsMostPlayedRequest();
             request.UriTemplate.Should().Be("shows/played{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}");
         }
 
-        [Theory, ClassData(typeof(TraktShowsMostPlayedRequest_TestData))]
-        public void Test_TraktShowsMostPlayedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(ShowsMostPlayedRequest_TestData))]
+        public void Test_ShowsMostPlayedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                      IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -48,7 +48,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktShowsMostPlayedRequest_TestData : IEnumerable<object[]>
+        public class ShowsMostPlayedRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktShowFilter _filter = new TraktShowFilter().WithYears(2005, 2016);
@@ -56,115 +56,115 @@
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktShowsMostPlayedRequest _request1 = new TraktShowsMostPlayedRequest();
+            private static readonly ShowsMostPlayedRequest _request1 = new ShowsMostPlayedRequest();
 
-            private static readonly TraktShowsMostPlayedRequest _request2 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request2 = new ShowsMostPlayedRequest
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request3 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request3 = new ShowsMostPlayedRequest
             {
                 Filter = _filter
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request4 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request4 = new ShowsMostPlayedRequest
             {
                 Period = _timePeriod
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request5 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request5 = new ShowsMostPlayedRequest
             {
                 Page = _page
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request6 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request6 = new ShowsMostPlayedRequest
             {
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request7 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request7 = new ShowsMostPlayedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request8 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request8 = new ShowsMostPlayedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Period = _timePeriod
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request9 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request9 = new ShowsMostPlayedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request10 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request10 = new ShowsMostPlayedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request11 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request11 = new ShowsMostPlayedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request12 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request12 = new ShowsMostPlayedRequest
             {
                 Filter = _filter,
                 Period = _timePeriod
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request13 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request13 = new ShowsMostPlayedRequest
             {
                 Filter = _filter,
                 Page = _page
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request14 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request14 = new ShowsMostPlayedRequest
             {
                 Filter = _filter,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request15 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request15 = new ShowsMostPlayedRequest
             {
                 Filter = _filter,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request16 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request16 = new ShowsMostPlayedRequest
             {
                 Period = _timePeriod,
                 Page = _page
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request17 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request17 = new ShowsMostPlayedRequest
             {
                 Period = _timePeriod,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request18 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request18 = new ShowsMostPlayedRequest
             {
                 Period = _timePeriod,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request19 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request19 = new ShowsMostPlayedRequest
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostPlayedRequest _request20 = new TraktShowsMostPlayedRequest
+            private static readonly ShowsMostPlayedRequest _request20 = new ShowsMostPlayedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter,
@@ -175,7 +175,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktShowsMostPlayedRequest_TestData()
+            public ShowsMostPlayedRequest_TestData()
             {
                 SetupPathParamters();
             }

@@ -557,7 +557,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowsMostPlayedRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowsMostPlayedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
