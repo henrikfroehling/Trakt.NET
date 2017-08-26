@@ -10,58 +10,58 @@
     using Xunit;
 
     [Category("Requests.Comments.OAuth")]
-    public class TraktCommentDeleteRequest_Tests
+    public class CommentDeleteRequest_Tests
     {
         [Fact]
-        public void Test_TraktCommentDeleteRequest_IsNotAbstract()
+        public void Test_CommentDeleteRequest_IsNotAbstract()
         {
-            typeof(TraktCommentDeleteRequest).IsAbstract.Should().BeFalse();
+            typeof(CommentDeleteRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktCommentDeleteRequest_IsSealed()
+        public void Test_CommentDeleteRequest_IsSealed()
         {
-            typeof(TraktCommentDeleteRequest).IsSealed.Should().BeTrue();
+            typeof(CommentDeleteRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCommentDeleteRequest_Inherits_ATraktDeleteRequest()
+        public void Test_CommentDeleteRequest_Inherits_ATraktDeleteRequest()
         {
-            typeof(TraktCommentDeleteRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
+            typeof(CommentDeleteRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCommentDeleteRequest_Implements_ITraktHasId_Interface()
+        public void Test_CommentDeleteRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktCommentDeleteRequest).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(CommentDeleteRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_TraktCommentDeleteRequest_Has_Valid_UriTemplate()
+        public void Test_CommentDeleteRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktCommentDeleteRequest();
+            var request = new CommentDeleteRequest();
             request.UriTemplate.Should().Be("comments/{id}");
         }
 
         [Fact]
-        public void Test_TraktCommentDeleteRequest_Has_AuthorizationRequirement_Required()
+        public void Test_CommentDeleteRequest_Has_AuthorizationRequirement_Required()
         {
-            var requestMock = new TraktCommentDeleteRequest();
+            var requestMock = new CommentDeleteRequest();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktCommentDeleteRequest_Returns_Valid_RequestObjectType()
+        public void Test_CommentDeleteRequest_Returns_Valid_RequestObjectType()
         {
-            var request = new TraktCommentDeleteRequest();
+            var request = new CommentDeleteRequest();
             request.RequestObjectType.Should().Be(RequestObjectType.Comments);
         }
 
         [Fact]
-        public void Test_TraktCommentDeleteRequest_Returns_Valid_UriPathParameters()
+        public void Test_CommentDeleteRequest_Returns_Valid_UriPathParameters()
         {
             // only id
-            var request = new TraktCommentDeleteRequest { Id = "123" };
+            var request = new CommentDeleteRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -72,22 +72,22 @@
         }
 
         [Fact]
-        public void Test_TraktCommentDeleteRequest_Validate_Throws_Exceptions()
+        public void Test_CommentDeleteRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktCommentDeleteRequest();
+            var request = new CommentDeleteRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktCommentDeleteRequest { Id = string.Empty };
+            request = new CommentDeleteRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktCommentDeleteRequest { Id = "invalid id" };
+            request = new CommentDeleteRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

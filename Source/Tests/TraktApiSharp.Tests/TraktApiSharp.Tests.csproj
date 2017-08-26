@@ -1125,7 +1125,7 @@
     <Compile Include="Requests\Calendars\CalendarAllShowsRequest_Tests.cs" />
     <Compile Include="Requests\Checkins\OAuth\CheckinRequest%272_Tests.cs" />
     <Compile Include="Requests\Checkins\OAuth\CheckinsDeleteRequest_Tests.cs" />
-    <Compile Include="Requests\Comments\OAuth\TraktCommentDeleteRequest_Tests.cs" />
+    <Compile Include="Requests\Comments\OAuth\CommentDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\TraktCommentLikeRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\TraktCommentPostRequest%271_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\TraktCommentReplyRequest_Tests.cs" />
