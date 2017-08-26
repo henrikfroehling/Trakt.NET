@@ -432,7 +432,7 @@
         {
             ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktCommentUnlikeRequest { Id = commentId.ToString() }, cancellationToken);
+            return requestHandler.ExecuteNoContentRequestAsync(new CommentUnlikeRequest { Id = commentId.ToString() }, cancellationToken);
         }
 
         /// <summary>

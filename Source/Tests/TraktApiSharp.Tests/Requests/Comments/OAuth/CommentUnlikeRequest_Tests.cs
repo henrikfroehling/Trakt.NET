@@ -10,58 +10,58 @@
     using Xunit;
 
     [Category("Requests.Comments.OAuth")]
-    public class TraktCommentUnlikeRequest_Tests
+    public class CommentUnlikeRequest_Tests
     {
         [Fact]
-        public void Test_TraktCommentUnlikeRequest_IsNotAbstract()
+        public void Test_CommentUnlikeRequest_IsNotAbstract()
         {
-            typeof(TraktCommentUnlikeRequest).IsAbstract.Should().BeFalse();
+            typeof(CommentUnlikeRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktCommentUnlikeRequest_IsSealed()
+        public void Test_CommentUnlikeRequest_IsSealed()
         {
-            typeof(TraktCommentUnlikeRequest).IsSealed.Should().BeTrue();
+            typeof(CommentUnlikeRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCommentUnlikeRequest_Inherits_ATraktDeleteRequest()
+        public void Test_CommentUnlikeRequest_Inherits_ATraktDeleteRequest()
         {
-            typeof(TraktCommentUnlikeRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
+            typeof(CommentUnlikeRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCommentUnlikeRequest_Implements_ITraktHasId_Interface()
+        public void Test_CommentUnlikeRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktCommentUnlikeRequest).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(CommentUnlikeRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_TraktCommentUnlikeRequest_Has_Valid_UriTemplate()
+        public void Test_CommentUnlikeRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktCommentUnlikeRequest();
+            var request = new CommentUnlikeRequest();
             request.UriTemplate.Should().Be("comments/{id}/like");
         }
 
         [Fact]
-        public void Test_TraktCommentUnlikeRequest_Has_AuthorizationRequirement_Required()
+        public void Test_CommentUnlikeRequest_Has_AuthorizationRequirement_Required()
         {
-            var requestMock = new TraktCommentUnlikeRequest();
+            var requestMock = new CommentUnlikeRequest();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktCommentUnlikeRequest_Returns_Valid_RequestObjectType()
+        public void Test_CommentUnlikeRequest_Returns_Valid_RequestObjectType()
         {
-            var request = new TraktCommentUnlikeRequest();
+            var request = new CommentUnlikeRequest();
             request.RequestObjectType.Should().Be(RequestObjectType.Comments);
         }
 
         [Fact]
-        public void Test_TraktCommentUnlikeRequest_Returns_Valid_UriPathParameters()
+        public void Test_CommentUnlikeRequest_Returns_Valid_UriPathParameters()
         {
             // only id
-            var request = new TraktCommentUnlikeRequest { Id = "123" };
+            var request = new CommentUnlikeRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -72,22 +72,22 @@
         }
 
         [Fact]
-        public void Test_TraktCommentUnlikeRequest_Validate_Throws_Exceptions()
+        public void Test_CommentUnlikeRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktCommentUnlikeRequest();
+            var request = new CommentUnlikeRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktCommentUnlikeRequest { Id = string.Empty };
+            request = new CommentUnlikeRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktCommentUnlikeRequest { Id = "invalid id" };
+            request = new CommentUnlikeRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

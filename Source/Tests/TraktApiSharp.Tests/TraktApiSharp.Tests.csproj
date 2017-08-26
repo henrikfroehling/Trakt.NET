@@ -1129,7 +1129,7 @@
     <Compile Include="Requests\Comments\OAuth\CommentLikeRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentPostRequest%271_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentReplyRequest_Tests.cs" />
-    <Compile Include="Requests\Comments\OAuth\TraktCommentUnlikeRequest_Tests.cs" />
+    <Compile Include="Requests\Comments\OAuth\CommentUnlikeRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\TraktCommentUpdateRequest_Tests.cs" />
     <Compile Include="Requests\Comments\TraktCommentRepliesRequest_Tests.cs" />
     <Compile Include="Requests\Comments\TraktCommentSummaryRequest_Tests.cs" />

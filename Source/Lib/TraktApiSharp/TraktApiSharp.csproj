@@ -643,7 +643,7 @@
     <Compile Include="Requests\Comments\OAuth\CommentDeleteRequest.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentLikeRequest.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentReplyRequest.cs" />
-    <Compile Include="Requests\Comments\OAuth\TraktCommentUnlikeRequest.cs" />
+    <Compile Include="Requests\Comments\OAuth\CommentUnlikeRequest.cs" />
     <Compile Include="Requests\Comments\OAuth\TraktCommentUpdateRequest.cs" />
     <Compile Include="Requests\Comments\TraktCommentRepliesRequest.cs" />
     <Compile Include="Requests\Comments\TraktCommentSummaryRequest.cs" />
