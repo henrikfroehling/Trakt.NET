@@ -140,7 +140,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktEpisodeCommentsRequest
+            return requestHandler.ExecutePagedRequestAsync(new EpisodeCommentsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,

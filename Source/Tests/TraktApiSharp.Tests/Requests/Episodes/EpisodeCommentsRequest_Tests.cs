@@ -14,43 +14,43 @@
     using Xunit;
 
     [Category("Requests.Episodes")]
-    public class TraktEpisodeCommentsRequest_Tests
+    public class EpisodeCommentsRequest_Tests
     {
         [Fact]
-        public void Test_TraktEpisodeCommentsRequest_IsNotAbstract()
+        public void Test_EpisodeCommentsRequest_IsNotAbstract()
         {
-            typeof(TraktEpisodeCommentsRequest).IsAbstract.Should().BeFalse();
+            typeof(EpisodeCommentsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktEpisodeCommentsRequest_IsSealed()
+        public void Test_EpisodeCommentsRequest_IsSealed()
         {
-            typeof(TraktEpisodeCommentsRequest).IsSealed.Should().BeTrue();
+            typeof(EpisodeCommentsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktEpisodeCommentsRequest_Inherits_ATraktEpisodeRequest_1()
+        public void Test_EpisodeCommentsRequest_Inherits_ATraktEpisodeRequest_1()
         {
-            typeof(TraktEpisodeCommentsRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktComment>)).Should().BeTrue();
+            typeof(EpisodeCommentsRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktEpisodeCommentsRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_EpisodeCommentsRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktEpisodeCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
+            typeof(EpisodeCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
         
         [Fact]
-        public void Test_TraktEpisodeCommentsRequest_Has_Valid_UriTemplate()
+        public void Test_EpisodeCommentsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktEpisodeCommentsRequest();
+            var request = new EpisodeCommentsRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/episodes/{episode}/comments{/sort_order}{?page,limit}");
         }
         
         [Fact]
-        public void Test_TraktEpisodeCommentsRequest_Has_SortOrder_Property()
+        public void Test_EpisodeCommentsRequest_Has_SortOrder_Property()
         {
-            var propertyInfo = typeof(TraktEpisodeCommentsRequest)
+            var propertyInfo = typeof(EpisodeCommentsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "SortOrder")
                     .FirstOrDefault();
@@ -61,35 +61,35 @@
         }
 
         [Fact]
-        public void Test_TraktEpisodeCommentsRequest_Validate_Throws_Exceptions()
+        public void Test_EpisodeCommentsRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktEpisodeCommentsRequest { EpisodeNumber = 1 };
+            var request = new EpisodeCommentsRequest { EpisodeNumber = 1 };
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktEpisodeCommentsRequest { Id = string.Empty, EpisodeNumber = 1 };
+            request = new EpisodeCommentsRequest { Id = string.Empty, EpisodeNumber = 1 };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktEpisodeCommentsRequest { Id = "invalid id", EpisodeNumber = 1 };
+            request = new EpisodeCommentsRequest { Id = "invalid id", EpisodeNumber = 1 };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // episode number == 0
-            request = new TraktEpisodeCommentsRequest { EpisodeNumber = 0 };
+            request = new EpisodeCommentsRequest { EpisodeNumber = 0 };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktEpisodeCommentsRequest_TestData))]
-        public void Test_TraktEpisodeCommentsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(EpisodeCommentsRequest_TestData))]
+        public void Test_EpisodeCommentsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                      IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -98,7 +98,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktEpisodeCommentsRequest_TestData : IEnumerable<object[]>
+        public class EpisodeCommentsRequest_TestData : IEnumerable<object[]>
         {
             private const string _id = "123";
             private const uint _seasonNumber = 1;
@@ -107,14 +107,14 @@
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktEpisodeCommentsRequest _request1 = new TraktEpisodeCommentsRequest
+            private static readonly EpisodeCommentsRequest _request1 = new EpisodeCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
                 EpisodeNumber = _episodeNumber
             };
 
-            private static readonly TraktEpisodeCommentsRequest _request2 = new TraktEpisodeCommentsRequest
+            private static readonly EpisodeCommentsRequest _request2 = new EpisodeCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -122,7 +122,7 @@
                 SortOrder = _sortOrder
             };
 
-            private static readonly TraktEpisodeCommentsRequest _request3 = new TraktEpisodeCommentsRequest
+            private static readonly EpisodeCommentsRequest _request3 = new EpisodeCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -130,7 +130,7 @@
                 Page = _page
             };
 
-            private static readonly TraktEpisodeCommentsRequest _request4 = new TraktEpisodeCommentsRequest
+            private static readonly EpisodeCommentsRequest _request4 = new EpisodeCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -138,7 +138,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktEpisodeCommentsRequest _request5 = new TraktEpisodeCommentsRequest
+            private static readonly EpisodeCommentsRequest _request5 = new EpisodeCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -147,7 +147,7 @@
                 Page = _page
             };
 
-            private static readonly TraktEpisodeCommentsRequest _request6 = new TraktEpisodeCommentsRequest
+            private static readonly EpisodeCommentsRequest _request6 = new EpisodeCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -156,7 +156,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktEpisodeCommentsRequest _request7 = new TraktEpisodeCommentsRequest
+            private static readonly EpisodeCommentsRequest _request7 = new EpisodeCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -165,7 +165,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktEpisodeCommentsRequest _request8 = new TraktEpisodeCommentsRequest
+            private static readonly EpisodeCommentsRequest _request8 = new EpisodeCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -177,7 +177,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktEpisodeCommentsRequest_TestData()
+            public EpisodeCommentsRequest_TestData()
             {
                 SetupPathParamters();
             }

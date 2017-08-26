@@ -5,7 +5,7 @@
     using Objects.Basic;
     using System.Collections.Generic;
 
-    internal sealed class TraktEpisodeCommentsRequest : AEpisodeRequest<ITraktComment>, ISupportsPagination
+    internal sealed class EpisodeCommentsRequest : AEpisodeRequest<ITraktComment>, ISupportsPagination
     {
         internal TraktCommentSortOrder SortOrder { get; set; }
 
