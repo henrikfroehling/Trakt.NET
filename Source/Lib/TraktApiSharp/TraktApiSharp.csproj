@@ -670,7 +670,7 @@
     <Compile Include="Requests\Movies\MovieCommentsRequest.cs" />
     <Compile Include="Requests\Movies\MovieListsRequest.cs" />
     <Compile Include="Requests\Movies\MoviePeopleRequest.cs" />
-    <Compile Include="Requests\Movies\TraktMovieRatingsRequest.cs" />
+    <Compile Include="Requests\Movies\MovieRatingsRequest.cs" />
     <Compile Include="Requests\Movies\TraktMovieRelatedMoviesRequest.cs" />
     <Compile Include="Requests\Movies\TraktMovieReleasesRequest.cs" />
     <Compile Include="Requests\Movies\TraktMoviesBoxOfficeRequest.cs" />

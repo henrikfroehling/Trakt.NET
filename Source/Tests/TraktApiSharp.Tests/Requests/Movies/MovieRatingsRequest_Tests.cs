@@ -9,37 +9,37 @@
     using Xunit;
 
     [Category("Requests.Movies")]
-    public class TraktMovieRatingsRequest_Tests
+    public class MovieRatingsRequest_Tests
     {
         [Fact]
-        public void Test_TraktMovieRatingsRequest_IsNotAbstract()
+        public void Test_MovieRatingsRequest_IsNotAbstract()
         {
-            typeof(TraktMovieRatingsRequest).IsAbstract.Should().BeFalse();
+            typeof(MovieRatingsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktMovieRatingsRequest_IsSealed()
+        public void Test_MovieRatingsRequest_IsSealed()
         {
-            typeof(TraktMovieRatingsRequest).IsSealed.Should().BeTrue();
+            typeof(MovieRatingsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMovieRatingsRequest_Inherits_ATraktMovieRequest_1()
+        public void Test_MovieRatingsRequest_Inherits_ATraktMovieRequest_1()
         {
-            typeof(TraktMovieRatingsRequest).IsSubclassOf(typeof(AMovieRequest<ITraktRating>)).Should().BeTrue();
+            typeof(MovieRatingsRequest).IsSubclassOf(typeof(AMovieRequest<ITraktRating>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMovieRatingsRequest_Has_Valid_UriTemplate()
+        public void Test_MovieRatingsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktMovieRatingsRequest();
+            var request = new MovieRatingsRequest();
             request.UriTemplate.Should().Be("movies/{id}/ratings");
         }
 
         [Fact]
-        public void Test_TraktMovieRatingsRequest_Returns_Valid_UriPathParameters()
+        public void Test_MovieRatingsRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new TraktMovieRatingsRequest { Id = "123" };
+            var request = new MovieRatingsRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -50,22 +50,22 @@
         }
 
         [Fact]
-        public void Test_TraktMovieRatingsRequest_Validate_Throws_Exceptions()
+        public void Test_MovieRatingsRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktMovieRatingsRequest();
+            var request = new MovieRatingsRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktMovieRatingsRequest { Id = string.Empty };
+            request = new MovieRatingsRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktMovieRatingsRequest { Id = "invalid id" };
+            request = new MovieRatingsRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
