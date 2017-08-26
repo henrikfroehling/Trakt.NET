@@ -652,7 +652,7 @@
     <Compile Include="Requests\Episodes\EpisodeStatisticsRequest.cs" />
     <Compile Include="Requests\Episodes\EpisodeSummaryRequest.cs" />
     <Compile Include="Requests\Episodes\EpisodeWatchingUsersRequest.cs" />
-    <Compile Include="Requests\Genres\TraktGenresMoviesRequest.cs" />
+    <Compile Include="Requests\Genres\GenresMoviesRequest.cs" />
     <Compile Include="Requests\Genres\TraktGenresShowsRequest.cs" />
     <Compile Include="Requests\Interfaces\Base\IHasUriPathParameters.cs" />
     <Compile Include="Requests\Interfaces\Base\IHasRequestAuthorization.cs" />

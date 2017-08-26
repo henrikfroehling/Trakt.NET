@@ -38,7 +38,7 @@
         public async Task<TraktListResponse<ITraktGenre>> GetMovieGenresAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            var response = await requestHandler.ExecuteListRequestAsync(new TraktGenresMoviesRequest(), cancellationToken);
+            var response = await requestHandler.ExecuteListRequestAsync(new GenresMoviesRequest(), cancellationToken);
 
             if (response)
             {
