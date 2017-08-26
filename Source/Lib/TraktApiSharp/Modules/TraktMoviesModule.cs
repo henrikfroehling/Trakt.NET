@@ -414,7 +414,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesPopularRequest
+            return requestHandler.ExecutePagedRequestAsync(new MoviesPopularRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,

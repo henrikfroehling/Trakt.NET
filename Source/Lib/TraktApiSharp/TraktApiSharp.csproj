@@ -678,7 +678,7 @@
     <Compile Include="Requests\Movies\MoviesMostCollectedRequest.cs" />
     <Compile Include="Requests\Movies\MoviesMostPlayedRequest.cs" />
     <Compile Include="Requests\Movies\MoviesMostWatchedRequest.cs" />
-    <Compile Include="Requests\Movies\TraktMoviesPopularRequest.cs" />
+    <Compile Include="Requests\Movies\MoviesPopularRequest.cs" />
     <Compile Include="Requests\Movies\TraktMoviesRecentlyUpdatedRequest.cs" />
     <Compile Include="Requests\Movies\TraktMovieStatisticsRequest.cs" />
     <Compile Include="Requests\Movies\TraktMoviesTrendingRequest.cs" />

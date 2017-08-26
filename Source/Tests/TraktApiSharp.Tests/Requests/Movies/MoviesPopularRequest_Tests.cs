@@ -10,35 +10,35 @@
     using Xunit;
 
     [Category("Requests.Movies.Lists")]
-    public class TraktMoviesPopularRequest_Tests
+    public class MoviesPopularRequest_Tests
     {
         [Fact]
-        public void Test_TraktMoviesPopularRequest_IsNotAbstract()
+        public void Test_MoviesPopularRequest_IsNotAbstract()
         {
-            typeof(TraktMoviesPopularRequest).IsAbstract.Should().BeFalse();
+            typeof(MoviesPopularRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktMoviesPopularRequest_IsSealed()
+        public void Test_MoviesPopularRequest_IsSealed()
         {
-            typeof(TraktMoviesPopularRequest).IsSealed.Should().BeTrue();
+            typeof(MoviesPopularRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMoviesPopularRequest_Inherits_ATraktMoviesRequest_1()
+        public void Test_MoviesPopularRequest_Inherits_ATraktMoviesRequest_1()
         {
-            typeof(TraktMoviesPopularRequest).IsSubclassOf(typeof(AMoviesRequest<ITraktMovie>)).Should().BeTrue();
+            typeof(MoviesPopularRequest).IsSubclassOf(typeof(AMoviesRequest<ITraktMovie>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMoviesPopularRequest_Has_Valid_UriTemplate()
+        public void Test_MoviesPopularRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktMoviesPopularRequest();
+            var request = new MoviesPopularRequest();
             request.UriTemplate.Should().Be("movies/popular{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}");
         }
 
-        [Theory, ClassData(typeof(TraktMoviesPopularRequest_TestData))]
-        public void Test_TraktMoviesPopularRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(MoviesPopularRequest_TestData))]
+        public void Test_MoviesPopularRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                    IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -47,86 +47,86 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktMoviesPopularRequest_TestData : IEnumerable<object[]>
+        public class MoviesPopularRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktMovieFilter _filter = new TraktMovieFilter().WithYears(2005, 2016);
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktMoviesPopularRequest _request1 = new TraktMoviesPopularRequest();
+            private static readonly MoviesPopularRequest _request1 = new MoviesPopularRequest();
 
-            private static readonly TraktMoviesPopularRequest _request2 = new TraktMoviesPopularRequest
+            private static readonly MoviesPopularRequest _request2 = new MoviesPopularRequest
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktMoviesPopularRequest _request3 = new TraktMoviesPopularRequest
+            private static readonly MoviesPopularRequest _request3 = new MoviesPopularRequest
             {
                 Filter = _filter
             };
 
-            private static readonly TraktMoviesPopularRequest _request4 = new TraktMoviesPopularRequest
+            private static readonly MoviesPopularRequest _request4 = new MoviesPopularRequest
             {
                 Page = _page
             };
 
-            private static readonly TraktMoviesPopularRequest _request5 = new TraktMoviesPopularRequest
+            private static readonly MoviesPopularRequest _request5 = new MoviesPopularRequest
             {
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesPopularRequest _request6 = new TraktMoviesPopularRequest
+            private static readonly MoviesPopularRequest _request6 = new MoviesPopularRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter
             };
 
-            private static readonly TraktMoviesPopularRequest _request7 = new TraktMoviesPopularRequest
+            private static readonly MoviesPopularRequest _request7 = new MoviesPopularRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktMoviesPopularRequest _request8 = new TraktMoviesPopularRequest
+            private static readonly MoviesPopularRequest _request8 = new MoviesPopularRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesPopularRequest _request9 = new TraktMoviesPopularRequest
+            private static readonly MoviesPopularRequest _request9 = new MoviesPopularRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesPopularRequest _request10 = new TraktMoviesPopularRequest
+            private static readonly MoviesPopularRequest _request10 = new MoviesPopularRequest
             {
                 Filter = _filter,
                 Page = _page
             };
 
-            private static readonly TraktMoviesPopularRequest _request11 = new TraktMoviesPopularRequest
+            private static readonly MoviesPopularRequest _request11 = new MoviesPopularRequest
             {
                 Filter = _filter,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesPopularRequest _request12 = new TraktMoviesPopularRequest
+            private static readonly MoviesPopularRequest _request12 = new MoviesPopularRequest
             {
                 Filter = _filter,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesPopularRequest _request13 = new TraktMoviesPopularRequest
+            private static readonly MoviesPopularRequest _request13 = new MoviesPopularRequest
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesPopularRequest _request14 = new TraktMoviesPopularRequest
+            private static readonly MoviesPopularRequest _request14 = new MoviesPopularRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter,
@@ -136,7 +136,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktMoviesPopularRequest_TestData()
+            public MoviesPopularRequest_TestData()
             {
                 SetupPathParamters();
             }
