@@ -13,42 +13,42 @@
     using Xunit;
 
     [Category("Requests.Calendars.OAuth.Movies")]
-    public class TraktCalendarUserDVDMoviesRequest_Tests
+    public class CalendarUserDVDMoviesRequest_Tests
     {
         [Fact]
-        public void Test_TraktCalendarUserDVDMoviesRequest_IsNotAbstract()
+        public void Test_CalendarUserDVDMoviesRequest_IsNotAbstract()
         {
-            typeof(TraktCalendarUserDVDMoviesRequest).IsAbstract.Should().BeFalse();
+            typeof(CalendarUserDVDMoviesRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktCalendarUserDVDMoviesRequest_IsSealed()
+        public void Test_CalendarUserDVDMoviesRequest_IsSealed()
         {
-            typeof(TraktCalendarUserDVDMoviesRequest).IsSealed.Should().BeTrue();
+            typeof(CalendarUserDVDMoviesRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarUserDVDMoviesRequest_Inherits_ATraktCalendarUserRequest()
+        public void Test_CalendarUserDVDMoviesRequest_Inherits_ATraktCalendarUserRequest()
         {
-            typeof(TraktCalendarUserDVDMoviesRequest).IsSubclassOf(typeof(ACalendarUserRequest<ITraktCalendarMovie>)).Should().BeTrue();
+            typeof(CalendarUserDVDMoviesRequest).IsSubclassOf(typeof(ACalendarUserRequest<ITraktCalendarMovie>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarUserDVDMoviesRequest_Has_AuthorizationRequirement_Required()
+        public void Test_CalendarUserDVDMoviesRequest_Has_AuthorizationRequirement_Required()
         {
-            var request = new TraktCalendarUserDVDMoviesRequest();
+            var request = new CalendarUserDVDMoviesRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktCalendarUserDVDMoviesRequest_Has_Valid_UriTemplate()
+        public void Test_CalendarUserDVDMoviesRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktCalendarUserDVDMoviesRequest();
+            var request = new CalendarUserDVDMoviesRequest();
             request.UriTemplate.Should().Be("calendars/my/dvd{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}");
         }
 
-        [Theory, ClassData(typeof(TraktCalendarUserDVDMoviesRequest_TestData))]
-        public void Test_TraktCalendarUserDVDMoviesRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(CalendarUserDVDMoviesRequest_TestData))]
+        public void Test_CalendarUserDVDMoviesRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                            IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -57,66 +57,66 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktCalendarUserDVDMoviesRequest_TestData : IEnumerable<object[]>
+        public class CalendarUserDVDMoviesRequest_TestData : IEnumerable<object[]>
         {
             private static readonly DateTime _startDate = DateTime.Now.AddDays(-7);
             private const int _days = 14;
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktMovieFilter _filter = new TraktMovieFilter().WithYears(2010, 2017);
 
-            private static readonly TraktCalendarUserDVDMoviesRequest _request1 = new TraktCalendarUserDVDMoviesRequest();
+            private static readonly CalendarUserDVDMoviesRequest _request1 = new CalendarUserDVDMoviesRequest();
 
-            private static readonly TraktCalendarUserDVDMoviesRequest _request2 = new TraktCalendarUserDVDMoviesRequest
+            private static readonly CalendarUserDVDMoviesRequest _request2 = new CalendarUserDVDMoviesRequest
             { StartDate = _startDate };
 
-            private static readonly TraktCalendarUserDVDMoviesRequest _request3 = new TraktCalendarUserDVDMoviesRequest
+            private static readonly CalendarUserDVDMoviesRequest _request3 = new CalendarUserDVDMoviesRequest
             { StartDate = _startDate, Days = _days };
 
-            private static readonly TraktCalendarUserDVDMoviesRequest _request4 = new TraktCalendarUserDVDMoviesRequest
+            private static readonly CalendarUserDVDMoviesRequest _request4 = new CalendarUserDVDMoviesRequest
             { Days = _days };
 
             // with extended info
-            private static readonly TraktCalendarUserDVDMoviesRequest _request5 = new TraktCalendarUserDVDMoviesRequest
+            private static readonly CalendarUserDVDMoviesRequest _request5 = new CalendarUserDVDMoviesRequest
             { ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarUserDVDMoviesRequest _request6 = new TraktCalendarUserDVDMoviesRequest
+            private static readonly CalendarUserDVDMoviesRequest _request6 = new CalendarUserDVDMoviesRequest
             { StartDate = _startDate, ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarUserDVDMoviesRequest _request7 = new TraktCalendarUserDVDMoviesRequest
+            private static readonly CalendarUserDVDMoviesRequest _request7 = new CalendarUserDVDMoviesRequest
             { StartDate = _startDate, Days = _days, ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarUserDVDMoviesRequest _request8 = new TraktCalendarUserDVDMoviesRequest
+            private static readonly CalendarUserDVDMoviesRequest _request8 = new CalendarUserDVDMoviesRequest
             { Days = _days, ExtendedInfo = _extendedInfo };
 
             // with filter
-            private static readonly TraktCalendarUserDVDMoviesRequest _request9 = new TraktCalendarUserDVDMoviesRequest
+            private static readonly CalendarUserDVDMoviesRequest _request9 = new CalendarUserDVDMoviesRequest
             { Filter = _filter };
 
-            private static readonly TraktCalendarUserDVDMoviesRequest _request10 = new TraktCalendarUserDVDMoviesRequest
+            private static readonly CalendarUserDVDMoviesRequest _request10 = new CalendarUserDVDMoviesRequest
             { StartDate = _startDate, Filter = _filter };
 
-            private static readonly TraktCalendarUserDVDMoviesRequest _request11 = new TraktCalendarUserDVDMoviesRequest
+            private static readonly CalendarUserDVDMoviesRequest _request11 = new CalendarUserDVDMoviesRequest
             { StartDate = _startDate, Days = _days, Filter = _filter };
 
-            private static readonly TraktCalendarUserDVDMoviesRequest _request12 = new TraktCalendarUserDVDMoviesRequest
+            private static readonly CalendarUserDVDMoviesRequest _request12 = new CalendarUserDVDMoviesRequest
             { Days = _days, Filter = _filter };
 
             // with extended info and filter
-            private static readonly TraktCalendarUserDVDMoviesRequest _request13 = new TraktCalendarUserDVDMoviesRequest
+            private static readonly CalendarUserDVDMoviesRequest _request13 = new CalendarUserDVDMoviesRequest
             { ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarUserDVDMoviesRequest _request14 = new TraktCalendarUserDVDMoviesRequest
+            private static readonly CalendarUserDVDMoviesRequest _request14 = new CalendarUserDVDMoviesRequest
             { StartDate = _startDate, ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarUserDVDMoviesRequest _request15 = new TraktCalendarUserDVDMoviesRequest
+            private static readonly CalendarUserDVDMoviesRequest _request15 = new CalendarUserDVDMoviesRequest
             { StartDate = _startDate, Days = _days, ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarUserDVDMoviesRequest _request16 = new TraktCalendarUserDVDMoviesRequest
+            private static readonly CalendarUserDVDMoviesRequest _request16 = new CalendarUserDVDMoviesRequest
             { Days = _days, ExtendedInfo = _extendedInfo, Filter = _filter };
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktCalendarUserDVDMoviesRequest_TestData()
+            public CalendarUserDVDMoviesRequest_TestData()
             {
                 SetupPathParamters();
             }
@@ -128,7 +128,7 @@
                 var strExtendedInfo = _extendedInfo.ToString();
                 var filterParameters = _filter.GetParameters();
 
-                _data.Add(new object[] { _request1.GetUriPathParameters(), new Dictionary<string, object> { } });
+                _data.Add(new object[] { _request1.GetUriPathParameters(), new Dictionary<string, object>() });
 
                 _data.Add(new object[] { _request2.GetUriPathParameters(), new Dictionary<string, object>
                     {
@@ -176,7 +176,7 @@
                     }});
 
                 // with filter
-                _data.Add(new object[] { _request9.GetUriPathParameters(), new Dictionary<string, object>(filterParameters) { } });
+                _data.Add(new object[] { _request9.GetUriPathParameters(), new Dictionary<string, object>(filterParameters) });
 
                 _data.Add(new object[] { _request10.GetUriPathParameters(), new Dictionary<string, object>(filterParameters)
                     {
