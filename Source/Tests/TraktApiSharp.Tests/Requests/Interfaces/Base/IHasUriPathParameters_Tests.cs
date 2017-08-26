@@ -8,18 +8,18 @@
     using Xunit;
 
     [Category("Requests.Interfaces.Base")]
-    public class ITraktHasUriPathParameters_Tests
+    public class IHasUriPathParameters_Tests
     {
         [Fact]
-        public void Test_ITraktHasUriPathParameters_Is_Interface()
+        public void Test_IHasUriPathParameters_Is_Interface()
         {
-            typeof(ITraktHasUriPathParameters).IsInterface.Should().BeTrue();
+            typeof(IHasUriPathParameters).IsInterface.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ITraktHasUriPathParameters_Has_GetUriPathParameters_Method()
+        public void Test_IHasUriPathParameters_Has_GetUriPathParameters_Method()
         {
-            var methodInfo = typeof(ITraktHasUriPathParameters).GetMethods()
+            var methodInfo = typeof(IHasUriPathParameters).GetMethods()
                                                                .Where(m => m.Name == "GetUriPathParameters")
                                                                .FirstOrDefault();
 

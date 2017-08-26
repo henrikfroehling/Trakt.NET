@@ -18,7 +18,7 @@
         [Fact]
         public void Test_IHasUri_Inherits_IHasUriPathParameters_Interface()
         {
-            typeof(IHasUri).GetInterfaces().Should().Contain(typeof(ITraktHasUriPathParameters));
+            typeof(IHasUri).GetInterfaces().Should().Contain(typeof(IHasUriPathParameters));
         }
 
         [Fact]

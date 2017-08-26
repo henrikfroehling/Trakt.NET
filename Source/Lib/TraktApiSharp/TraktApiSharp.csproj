@@ -654,7 +654,7 @@
     <Compile Include="Requests\Episodes\TraktEpisodeWatchingUsersRequest.cs" />
     <Compile Include="Requests\Genres\TraktGenresMoviesRequest.cs" />
     <Compile Include="Requests\Genres\TraktGenresShowsRequest.cs" />
-    <Compile Include="Requests\Interfaces\Base\ITraktHasUriPathParameters.cs" />
+    <Compile Include="Requests\Interfaces\Base\IHasUriPathParameters.cs" />
     <Compile Include="Requests\Interfaces\Base\IHasRequestAuthorization.cs" />
     <Compile Include="Requests\Interfaces\ITraktSupportsExtendedInfo.cs" />
     <Compile Include="Requests\Interfaces\ITraktSupportsFilter.cs" />

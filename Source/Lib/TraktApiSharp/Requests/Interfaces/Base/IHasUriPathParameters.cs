@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    internal interface ITraktHasUriPathParameters
+    internal interface IHasUriPathParameters
     {
         IDictionary<string, object> GetUriPathParameters();
     }
