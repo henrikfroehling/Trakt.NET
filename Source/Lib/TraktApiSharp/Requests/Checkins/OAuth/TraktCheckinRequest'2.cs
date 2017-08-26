@@ -3,7 +3,7 @@
     using Base;
     using System.Collections.Generic;
 
-    internal sealed class TraktCheckinRequest<TResponseContentType, TRequestBodyType> : ATraktPostRequest<TResponseContentType, TRequestBodyType>
+    internal sealed class TraktCheckinRequest<TResponseContentType, TRequestBodyType> : APostRequest<TResponseContentType, TRequestBodyType>
     {
         public override TRequestBodyType RequestBody { get; set; }
 

@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal abstract class ATraktUsersPostByIdRequest<TResponseContentType, TRequestBodyType> : ATraktPostRequest<TResponseContentType, TRequestBodyType>, ITraktHasId
+    internal abstract class ATraktUsersPostByIdRequest<TResponseContentType, TRequestBodyType> : APostRequest<TResponseContentType, TRequestBodyType>, ITraktHasId
     {
         public string Id { get; set; }
 

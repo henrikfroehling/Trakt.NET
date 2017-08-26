@@ -7,7 +7,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserCustomListAddRequest : ATraktPostRequest<ITraktList, TraktUserCustomListPost>
+    internal sealed class TraktUserCustomListAddRequest : APostRequest<ITraktList, TraktUserCustomListPost>
     {
         internal string Username { get; set; }
 

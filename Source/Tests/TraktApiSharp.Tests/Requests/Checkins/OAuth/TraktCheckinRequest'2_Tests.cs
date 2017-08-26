@@ -31,7 +31,7 @@
         [Fact]
         public void Test_TraktCheckinRequest_2_Inherits_ATraktPostRequest_2()
         {
-            typeof(TraktCheckinRequest<int, float>).IsSubclassOf(typeof(ATraktPostRequest<int, float>)).Should().BeTrue();
+            typeof(TraktCheckinRequest<int, float>).IsSubclassOf(typeof(APostRequest<int, float>)).Should().BeTrue();
         }
 
         [Fact]

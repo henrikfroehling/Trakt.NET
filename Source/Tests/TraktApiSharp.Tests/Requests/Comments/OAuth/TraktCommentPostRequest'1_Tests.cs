@@ -34,7 +34,7 @@
         [Fact]
         public void Test_TraktCommentPostRequest_1_Inherits_ATraktPostRequest_2()
         {
-            typeof(TraktCommentPostRequest<TraktCommentPost>).IsSubclassOf(typeof(ATraktPostRequest<ITraktCommentPostResponse, TraktCommentPost>)).Should().BeTrue();
+            typeof(TraktCommentPostRequest<TraktCommentPost>).IsSubclassOf(typeof(APostRequest<ITraktCommentPostResponse, TraktCommentPost>)).Should().BeTrue();
         }
 
         [Fact]

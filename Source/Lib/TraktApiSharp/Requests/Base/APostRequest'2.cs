@@ -4,7 +4,7 @@
     using System;
     using System.Net.Http;
 
-    internal abstract class ATraktPostRequest<TResponseContentType, TRequestBodyType> : ATraktRequest<TResponseContentType>, ITraktPostRequest<TResponseContentType, TRequestBodyType>
+    internal abstract class APostRequest<TResponseContentType, TRequestBodyType> : ATraktRequest<TResponseContentType>, ITraktPostRequest<TResponseContentType, TRequestBodyType>
     {
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 

@@ -31,7 +31,7 @@
         [Fact]
         public void Test_TraktScrobbleStopRequest_2_Inherits_ATraktPostRequest_2()
         {
-            typeof(TraktScrobbleStopRequest<int, float>).IsSubclassOf(typeof(ATraktPostRequest<int, float>)).Should().BeTrue();
+            typeof(TraktScrobbleStopRequest<int, float>).IsSubclassOf(typeof(APostRequest<int, float>)).Should().BeTrue();
         }
 
         [Fact]
