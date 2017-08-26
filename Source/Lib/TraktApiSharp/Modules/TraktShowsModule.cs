@@ -716,7 +716,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowsRecentlyUpdatedRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowsRecentlyUpdatedRequest
             {
                 StartDate = startDate,
                 ExtendedInfo = extendedInfo,

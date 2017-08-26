@@ -8,7 +8,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktShowsRecentlyUpdatedRequest : AGetRequest<ITraktRecentlyUpdatedShow>, ISupportsExtendedInfo, ISupportsPagination
+    internal sealed class ShowsRecentlyUpdatedRequest : AGetRequest<ITraktRecentlyUpdatedShow>, ISupportsExtendedInfo, ISupportsPagination
     {
         internal DateTime? StartDate { get; set; }
 

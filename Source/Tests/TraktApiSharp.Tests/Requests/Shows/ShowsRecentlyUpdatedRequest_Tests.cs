@@ -16,56 +16,56 @@
     using Xunit;
 
     [Category("Requests.Shows.Lists")]
-    public class TraktShowsRecentlyUpdatedRequest_Tests
+    public class ShowsRecentlyUpdatedRequest_Tests
     {
         [Fact]
-        public void Test_TraktShowsRecentlyUpdatedRequest_Is_Not_Abstract()
+        public void Test_ShowsRecentlyUpdatedRequest_Is_Not_Abstract()
         {
-            typeof(TraktShowsRecentlyUpdatedRequest).IsAbstract.Should().BeFalse();
+            typeof(ShowsRecentlyUpdatedRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktShowsRecentlyUpdatedRequest_Is_Sealed()
+        public void Test_ShowsRecentlyUpdatedRequest_Is_Sealed()
         {
-            typeof(TraktShowsRecentlyUpdatedRequest).IsSealed.Should().BeTrue();
+            typeof(ShowsRecentlyUpdatedRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowsRecentlyUpdatedRequest_Inherits_ATraktGetRequest_1()
+        public void Test_ShowsRecentlyUpdatedRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktShowsRecentlyUpdatedRequest).IsSubclassOf(typeof(AGetRequest<ITraktRecentlyUpdatedShow>)).Should().BeTrue();
+            typeof(ShowsRecentlyUpdatedRequest).IsSubclassOf(typeof(AGetRequest<ITraktRecentlyUpdatedShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowsRecentlyUpdatedRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_ShowsRecentlyUpdatedRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktShowsRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(ShowsRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_TraktShowsRecentlyUpdatedRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_ShowsRecentlyUpdatedRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktShowsRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
+            typeof(ShowsRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]
-        public void Test_TraktShowsRecentlyUpdatedRequest_Has_AuthorizationRequirement_NotRequired()
+        public void Test_ShowsRecentlyUpdatedRequest_Has_AuthorizationRequirement_NotRequired()
         {
-            var requestMock = new TraktShowsRecentlyUpdatedRequest();
+            var requestMock = new ShowsRecentlyUpdatedRequest();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_TraktShowsRecentlyUpdatedRequest_Has_Valid_UriTemplate()
+        public void Test_ShowsRecentlyUpdatedRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktShowsRecentlyUpdatedRequest();
+            var request = new ShowsRecentlyUpdatedRequest();
             request.UriTemplate.Should().Be("shows/updates{/start_date}{?extended,page,limit}");
         }
 
         [Fact]
-        public void Test_TraktShowsRecentlyUpdatedRequest_Has_StartDate_Property()
+        public void Test_ShowsRecentlyUpdatedRequest_Has_StartDate_Property()
         {
-            var propertyInfo = typeof(TraktShowsRecentlyUpdatedRequest)
+            var propertyInfo = typeof(ShowsRecentlyUpdatedRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "StartDate")
                     .FirstOrDefault();
@@ -75,8 +75,8 @@
             propertyInfo.PropertyType.Should().Be(typeof(DateTime?));
         }
 
-        [Theory, ClassData(typeof(TraktShowsRecentlyUpdatedRequest_TestData))]
-        public void Test_TraktShowsRecentlyUpdatedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(ShowsRecentlyUpdatedRequest_TestData))]
+        public void Test_ShowsRecentlyUpdatedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                           IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -85,86 +85,86 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktShowsRecentlyUpdatedRequest_TestData : IEnumerable<object[]>
+        public class ShowsRecentlyUpdatedRequest_TestData : IEnumerable<object[]>
         {
             private static readonly DateTime _startDate = DateTime.Now;
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktShowsRecentlyUpdatedRequest _request1 = new TraktShowsRecentlyUpdatedRequest();
+            private static readonly ShowsRecentlyUpdatedRequest _request1 = new ShowsRecentlyUpdatedRequest();
 
-            private static readonly TraktShowsRecentlyUpdatedRequest _request2 = new TraktShowsRecentlyUpdatedRequest
+            private static readonly ShowsRecentlyUpdatedRequest _request2 = new ShowsRecentlyUpdatedRequest
             {
                 StartDate = _startDate
             };
 
-            private static readonly TraktShowsRecentlyUpdatedRequest _request3 = new TraktShowsRecentlyUpdatedRequest
+            private static readonly ShowsRecentlyUpdatedRequest _request3 = new ShowsRecentlyUpdatedRequest
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktShowsRecentlyUpdatedRequest _request4 = new TraktShowsRecentlyUpdatedRequest
+            private static readonly ShowsRecentlyUpdatedRequest _request4 = new ShowsRecentlyUpdatedRequest
             {
                 Page = _page
             };
 
-            private static readonly TraktShowsRecentlyUpdatedRequest _request5 = new TraktShowsRecentlyUpdatedRequest
+            private static readonly ShowsRecentlyUpdatedRequest _request5 = new ShowsRecentlyUpdatedRequest
             {
                 Limit = _limit
             };
 
-            private static readonly TraktShowsRecentlyUpdatedRequest _request6 = new TraktShowsRecentlyUpdatedRequest
+            private static readonly ShowsRecentlyUpdatedRequest _request6 = new ShowsRecentlyUpdatedRequest
             {
                 StartDate = _startDate,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktShowsRecentlyUpdatedRequest _request7 = new TraktShowsRecentlyUpdatedRequest
+            private static readonly ShowsRecentlyUpdatedRequest _request7 = new ShowsRecentlyUpdatedRequest
             {
                 StartDate = _startDate,
                 Page = _page
             };
 
-            private static readonly TraktShowsRecentlyUpdatedRequest _request8 = new TraktShowsRecentlyUpdatedRequest
+            private static readonly ShowsRecentlyUpdatedRequest _request8 = new ShowsRecentlyUpdatedRequest
             {
                 StartDate = _startDate,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsRecentlyUpdatedRequest _request9 = new TraktShowsRecentlyUpdatedRequest
+            private static readonly ShowsRecentlyUpdatedRequest _request9 = new ShowsRecentlyUpdatedRequest
             {
                 StartDate = _startDate,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsRecentlyUpdatedRequest _request10 = new TraktShowsRecentlyUpdatedRequest
+            private static readonly ShowsRecentlyUpdatedRequest _request10 = new ShowsRecentlyUpdatedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktShowsRecentlyUpdatedRequest _request11 = new TraktShowsRecentlyUpdatedRequest
+            private static readonly ShowsRecentlyUpdatedRequest _request11 = new ShowsRecentlyUpdatedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsRecentlyUpdatedRequest _request12 = new TraktShowsRecentlyUpdatedRequest
+            private static readonly ShowsRecentlyUpdatedRequest _request12 = new ShowsRecentlyUpdatedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsRecentlyUpdatedRequest _request13 = new TraktShowsRecentlyUpdatedRequest
+            private static readonly ShowsRecentlyUpdatedRequest _request13 = new ShowsRecentlyUpdatedRequest
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsRecentlyUpdatedRequest _request14 = new TraktShowsRecentlyUpdatedRequest
+            private static readonly ShowsRecentlyUpdatedRequest _request14 = new ShowsRecentlyUpdatedRequest
             {
                 StartDate = _startDate,
                 ExtendedInfo = _extendedInfo,
@@ -174,7 +174,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktShowsRecentlyUpdatedRequest_TestData()
+            public ShowsRecentlyUpdatedRequest_TestData()
             {
                 SetupPathParamters();
             }
