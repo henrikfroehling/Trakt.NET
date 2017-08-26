@@ -1161,7 +1161,7 @@
     <Compile Include="Requests\Interfaces\Base\IRequest_Tests.cs" />
     <Compile Include="Requests\Handler\IPostRequestHandler_Tests.cs" />
     <Compile Include="Requests\Handler\IPutRequestHandler_Tests.cs" />
-    <Compile Include="Requests\Handler\ITraktRequestHandler_Tests.cs" />
+    <Compile Include="Requests\Handler\IRequestHandler_Tests.cs" />
     <Compile Include="Requests\Interfaces\IHasId_Tests.cs" />
     <Compile Include="Requests\Interfaces\IObjectRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\ISupportsExtendedInfo_Tests.cs" />

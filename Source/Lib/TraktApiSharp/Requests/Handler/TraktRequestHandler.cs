@@ -25,7 +25,7 @@
     using UriTemplates;
     using Utils;
 
-    internal sealed class TraktRequestHandler : ITraktRequestHandler
+    internal sealed class TraktRequestHandler : IRequestHandler
     {
         private const string HEADER_PAGINATION_PAGE_KEY = "X-Pagination-Page";
         private const string HEADER_PAGINATION_LIMIT_KEY = "X-Pagination-Limit";
