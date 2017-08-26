@@ -10,35 +10,35 @@
     using Xunit;
 
     [Category("Requests.Movies.Lists")]
-    public class TraktMoviesMostAnticipatedRequest_Tests
+    public class MoviesMostAnticipatedRequest_Tests
     {
         [Fact]
-        public void Test_TraktMoviesMostAnticipatedRequest_IsNotAbstract()
+        public void Test_MoviesMostAnticipatedRequest_IsNotAbstract()
         {
-            typeof(TraktMoviesMostAnticipatedRequest).IsAbstract.Should().BeFalse();
+            typeof(MoviesMostAnticipatedRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktMoviesMostAnticipatedRequest_IsSealed()
+        public void Test_MoviesMostAnticipatedRequest_IsSealed()
         {
-            typeof(TraktMoviesMostAnticipatedRequest).IsSealed.Should().BeTrue();
+            typeof(MoviesMostAnticipatedRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMoviesMostAnticipatedRequest_Inherits_ATraktMoviesRequest_1()
+        public void Test_MoviesMostAnticipatedRequest_Inherits_ATraktMoviesRequest_1()
         {
-            typeof(TraktMoviesMostAnticipatedRequest).IsSubclassOf(typeof(AMoviesRequest<ITraktMostAnticipatedMovie>)).Should().BeTrue();
+            typeof(MoviesMostAnticipatedRequest).IsSubclassOf(typeof(AMoviesRequest<ITraktMostAnticipatedMovie>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMoviesMostAnticipatedRequest_Has_Valid_UriTemplate()
+        public void Test_MoviesMostAnticipatedRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktMoviesMostAnticipatedRequest();
+            var request = new MoviesMostAnticipatedRequest();
             request.UriTemplate.Should().Be("movies/anticipated{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}");
         }
 
-        [Theory, ClassData(typeof(TraktMoviesMostAnticipatedRequest_TestData))]
-        public void Test_TraktMoviesMostAnticipatedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(MoviesMostAnticipatedRequest_TestData))]
+        public void Test_MoviesMostAnticipatedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                            IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -47,86 +47,86 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktMoviesMostAnticipatedRequest_TestData : IEnumerable<object[]>
+        public class MoviesMostAnticipatedRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktMovieFilter _filter = new TraktMovieFilter().WithYears(2005, 2016);
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktMoviesMostAnticipatedRequest _request1 = new TraktMoviesMostAnticipatedRequest();
+            private static readonly MoviesMostAnticipatedRequest _request1 = new MoviesMostAnticipatedRequest();
 
-            private static readonly TraktMoviesMostAnticipatedRequest _request2 = new TraktMoviesMostAnticipatedRequest
+            private static readonly MoviesMostAnticipatedRequest _request2 = new MoviesMostAnticipatedRequest
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktMoviesMostAnticipatedRequest _request3 = new TraktMoviesMostAnticipatedRequest
+            private static readonly MoviesMostAnticipatedRequest _request3 = new MoviesMostAnticipatedRequest
             {
                 Filter = _filter
             };
 
-            private static readonly TraktMoviesMostAnticipatedRequest _request4 = new TraktMoviesMostAnticipatedRequest
+            private static readonly MoviesMostAnticipatedRequest _request4 = new MoviesMostAnticipatedRequest
             {
                 Page = _page
             };
 
-            private static readonly TraktMoviesMostAnticipatedRequest _request5 = new TraktMoviesMostAnticipatedRequest
+            private static readonly MoviesMostAnticipatedRequest _request5 = new MoviesMostAnticipatedRequest
             {
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostAnticipatedRequest _request6 = new TraktMoviesMostAnticipatedRequest
+            private static readonly MoviesMostAnticipatedRequest _request6 = new MoviesMostAnticipatedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter
             };
 
-            private static readonly TraktMoviesMostAnticipatedRequest _request7 = new TraktMoviesMostAnticipatedRequest
+            private static readonly MoviesMostAnticipatedRequest _request7 = new MoviesMostAnticipatedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktMoviesMostAnticipatedRequest _request8 = new TraktMoviesMostAnticipatedRequest
+            private static readonly MoviesMostAnticipatedRequest _request8 = new MoviesMostAnticipatedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostAnticipatedRequest _request9 = new TraktMoviesMostAnticipatedRequest
+            private static readonly MoviesMostAnticipatedRequest _request9 = new MoviesMostAnticipatedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostAnticipatedRequest _request10 = new TraktMoviesMostAnticipatedRequest
+            private static readonly MoviesMostAnticipatedRequest _request10 = new MoviesMostAnticipatedRequest
             {
                 Filter = _filter,
                 Page = _page
             };
 
-            private static readonly TraktMoviesMostAnticipatedRequest _request11 = new TraktMoviesMostAnticipatedRequest
+            private static readonly MoviesMostAnticipatedRequest _request11 = new MoviesMostAnticipatedRequest
             {
                 Filter = _filter,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostAnticipatedRequest _request12 = new TraktMoviesMostAnticipatedRequest
+            private static readonly MoviesMostAnticipatedRequest _request12 = new MoviesMostAnticipatedRequest
             {
                 Filter = _filter,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostAnticipatedRequest _request13 = new TraktMoviesMostAnticipatedRequest
+            private static readonly MoviesMostAnticipatedRequest _request13 = new MoviesMostAnticipatedRequest
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostAnticipatedRequest _request14 = new TraktMoviesMostAnticipatedRequest
+            private static readonly MoviesMostAnticipatedRequest _request14 = new MoviesMostAnticipatedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter,
@@ -136,7 +136,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktMoviesMostAnticipatedRequest_TestData()
+            public MoviesMostAnticipatedRequest_TestData()
             {
                 SetupPathParamters();
             }

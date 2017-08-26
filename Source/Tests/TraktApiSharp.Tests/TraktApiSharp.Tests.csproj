@@ -1179,7 +1179,7 @@
     <Compile Include="Requests\Movies\MovieRelatedMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Movies\MovieReleasesRequest_Tests.cs" />
     <Compile Include="Requests\Movies\MoviesBoxOfficeRequest_Tests.cs" />
-    <Compile Include="Requests\Movies\TraktMoviesMostAnticipatedRequest_Tests.cs" />
+    <Compile Include="Requests\Movies\MoviesMostAnticipatedRequest_Tests.cs" />
     <Compile Include="Requests\Movies\TraktMoviesMostCollectedRequest_Tests.cs" />
     <Compile Include="Requests\Movies\TraktMoviesMostPlayedRequest_Tests.cs" />
     <Compile Include="Requests\Movies\TraktMoviesMostWatchedRequest_Tests.cs" />

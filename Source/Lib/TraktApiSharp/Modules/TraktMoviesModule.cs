@@ -575,7 +575,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesMostAnticipatedRequest
+            return requestHandler.ExecutePagedRequestAsync(new MoviesMostAnticipatedRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
