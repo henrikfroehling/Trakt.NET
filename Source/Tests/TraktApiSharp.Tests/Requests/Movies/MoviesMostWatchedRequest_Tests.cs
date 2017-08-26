@@ -11,35 +11,35 @@
     using Xunit;
 
     [Category("Requests.Movies.Lists")]
-    public class TraktMoviesMostWatchedRequest_Tests
+    public class MoviesMostWatchedRequest_Tests
     {
         [Fact]
-        public void Test_TraktMoviesMostWatchedRequest_IsNotAbstract()
+        public void Test_MoviesMostWatchedRequest_IsNotAbstract()
         {
-            typeof(TraktMoviesMostWatchedRequest).IsAbstract.Should().BeFalse();
+            typeof(MoviesMostWatchedRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktMoviesMostWatchedRequest_IsSealed()
+        public void Test_MoviesMostWatchedRequest_IsSealed()
         {
-            typeof(TraktMoviesMostWatchedRequest).IsSealed.Should().BeTrue();
+            typeof(MoviesMostWatchedRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMoviesMostWatchedRequest_Inherits_ATraktMoviesMostPWCRequest_1()
+        public void Test_MoviesMostWatchedRequest_Inherits_ATraktMoviesMostPWCRequest_1()
         {
-            typeof(TraktMoviesMostWatchedRequest).IsSubclassOf(typeof(AMoviesMostPWCRequest<ITraktMostPWCMovie>)).Should().BeTrue();
+            typeof(MoviesMostWatchedRequest).IsSubclassOf(typeof(AMoviesMostPWCRequest<ITraktMostPWCMovie>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMoviesMostWatchedRequest_Has_Valid_UriTemplate()
+        public void Test_MoviesMostWatchedRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktMoviesMostWatchedRequest();
+            var request = new MoviesMostWatchedRequest();
             request.UriTemplate.Should().Be("movies/watched{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}");
         }
 
-        [Theory, ClassData(typeof(TraktMoviesMostWatchedRequest_TestData))]
-        public void Test_TraktMoviesMostWatchedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(MoviesMostWatchedRequest_TestData))]
+        public void Test_MoviesMostWatchedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                        IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -48,7 +48,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktMoviesMostWatchedRequest_TestData : IEnumerable<object[]>
+        public class MoviesMostWatchedRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktMovieFilter _filter = new TraktMovieFilter().WithYears(2005, 2016);
@@ -56,115 +56,115 @@
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktMoviesMostWatchedRequest _request1 = new TraktMoviesMostWatchedRequest();
+            private static readonly MoviesMostWatchedRequest _request1 = new MoviesMostWatchedRequest();
 
-            private static readonly TraktMoviesMostWatchedRequest _request2 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request2 = new MoviesMostWatchedRequest
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request3 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request3 = new MoviesMostWatchedRequest
             {
                 Filter = _filter
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request4 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request4 = new MoviesMostWatchedRequest
             {
                 Period = _timePeriod
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request5 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request5 = new MoviesMostWatchedRequest
             {
                 Page = _page
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request6 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request6 = new MoviesMostWatchedRequest
             {
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request7 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request7 = new MoviesMostWatchedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request8 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request8 = new MoviesMostWatchedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Period = _timePeriod
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request9 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request9 = new MoviesMostWatchedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request10 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request10 = new MoviesMostWatchedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request11 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request11 = new MoviesMostWatchedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request12 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request12 = new MoviesMostWatchedRequest
             {
                 Filter = _filter,
                 Period = _timePeriod
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request13 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request13 = new MoviesMostWatchedRequest
             {
                 Filter = _filter,
                 Page = _page
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request14 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request14 = new MoviesMostWatchedRequest
             {
                 Filter = _filter,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request15 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request15 = new MoviesMostWatchedRequest
             {
                 Filter = _filter,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request16 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request16 = new MoviesMostWatchedRequest
             {
                 Period = _timePeriod,
                 Page = _page
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request17 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request17 = new MoviesMostWatchedRequest
             {
                 Period = _timePeriod,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request18 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request18 = new MoviesMostWatchedRequest
             {
                 Period = _timePeriod,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request19 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request19 = new MoviesMostWatchedRequest
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostWatchedRequest _request20 = new TraktMoviesMostWatchedRequest
+            private static readonly MoviesMostWatchedRequest _request20 = new MoviesMostWatchedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter,
@@ -175,7 +175,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktMoviesMostWatchedRequest_TestData()
+            public MoviesMostWatchedRequest_TestData()
             {
                 SetupPathParamters();
             }

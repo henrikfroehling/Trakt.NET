@@ -495,7 +495,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesMostWatchedRequest
+            return requestHandler.ExecutePagedRequestAsync(new MoviesMostWatchedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
