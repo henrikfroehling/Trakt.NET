@@ -9,38 +9,38 @@
     using Xunit;
 
     [Category("Requests.Episodes")]
-    public class TraktEpisodeStatisticsRequest_Tests
+    public class EpisodeStatisticsRequest_Tests
     {
         [Fact]
-        public void Test_TraktEpisodeStatisticsRequest_IsNotAbstract()
+        public void Test_EpisodeStatisticsRequest_IsNotAbstract()
         {
-            typeof(TraktEpisodeStatisticsRequest).IsAbstract.Should().BeFalse();
+            typeof(EpisodeStatisticsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktEpisodeStatisticsRequest_IsSealed()
+        public void Test_EpisodeStatisticsRequest_IsSealed()
         {
-            typeof(TraktEpisodeStatisticsRequest).IsSealed.Should().BeTrue();
+            typeof(EpisodeStatisticsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktEpisodeStatisticsRequest_Inherits_ATraktEpisodeRequest_1()
+        public void Test_EpisodeStatisticsRequest_Inherits_ATraktEpisodeRequest_1()
         {
-            typeof(TraktEpisodeStatisticsRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktStatistics>)).Should().BeTrue();
+            typeof(EpisodeStatisticsRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktStatistics>)).Should().BeTrue();
         }
         
         [Fact]
-        public void Test_TraktEpisodeStatisticsRequest_Has_Valid_UriTemplate()
+        public void Test_EpisodeStatisticsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktEpisodeStatisticsRequest();
+            var request = new EpisodeStatisticsRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/episodes/{episode}/stats");
         }
         
         [Fact]
-        public void Test_TraktEpisodeStatisticsRequest_Returns_Valid_UriPathParameters()
+        public void Test_EpisodeStatisticsRequest_Returns_Valid_UriPathParameters()
         {
             // with implicit season number
-            var request = new TraktEpisodeStatisticsRequest { Id = "123", EpisodeNumber = 1 };
+            var request = new EpisodeStatisticsRequest { Id = "123", EpisodeNumber = 1 };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(3)
@@ -52,7 +52,7 @@
                                                    });
 
             // with explicit season number
-            request = new TraktEpisodeStatisticsRequest { Id = "123", SeasonNumber = 2, EpisodeNumber = 1 };
+            request = new EpisodeStatisticsRequest { Id = "123", SeasonNumber = 2, EpisodeNumber = 1 };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(3)
@@ -65,28 +65,28 @@
         }
 
         [Fact]
-        public void Test_TraktEpisodeStatisticsRequest_Validate_Throws_Exceptions()
+        public void Test_EpisodeStatisticsRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktEpisodeStatisticsRequest { EpisodeNumber = 1 };
+            var request = new EpisodeStatisticsRequest { EpisodeNumber = 1 };
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktEpisodeStatisticsRequest { Id = string.Empty, EpisodeNumber = 1 };
+            request = new EpisodeStatisticsRequest { Id = string.Empty, EpisodeNumber = 1 };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktEpisodeStatisticsRequest { Id = "invalid id", EpisodeNumber = 1 };
+            request = new EpisodeStatisticsRequest { Id = "invalid id", EpisodeNumber = 1 };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // episode number == 0
-            request = new TraktEpisodeStatisticsRequest { EpisodeNumber = 0 };
+            request = new EpisodeStatisticsRequest { EpisodeNumber = 0 };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
