@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal abstract class ATraktShowProgressRequest<TResponseContentType> : AGetRequest<TResponseContentType>, IHasId
+    internal abstract class AShowProgressRequest<TResponseContentType> : AGetRequest<TResponseContentType>, IHasId
     {
         public string Id { get; set; }
 

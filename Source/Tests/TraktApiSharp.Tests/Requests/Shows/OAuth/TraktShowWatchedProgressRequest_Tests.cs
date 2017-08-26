@@ -26,7 +26,7 @@
         [Fact]
         public void Test_TraktShowWatchedProgressRequest_Inherits_ATraktShowProgressRequest_1()
         {
-            typeof(TraktShowWatchedProgressRequest).IsSubclassOf(typeof(ATraktShowProgressRequest<ITraktShowWatchedProgress>)).Should().BeTrue();
+            typeof(TraktShowWatchedProgressRequest).IsSubclassOf(typeof(AShowProgressRequest<ITraktShowWatchedProgress>)).Should().BeTrue();
         }
 
         [Fact]
