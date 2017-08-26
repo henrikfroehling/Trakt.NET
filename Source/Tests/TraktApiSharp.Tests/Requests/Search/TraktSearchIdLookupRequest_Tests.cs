@@ -31,7 +31,7 @@
         [Fact]
         public void Test_TraktSearchIdLookupRequest_Inherits_ATraktSearchRequest()
         {
-            typeof(TraktSearchIdLookupRequest).IsSubclassOf(typeof(ATraktSearchRequest)).Should().BeTrue();
+            typeof(TraktSearchIdLookupRequest).IsSubclassOf(typeof(ASearchRequest)).Should().BeTrue();
         }
 
         [Fact]

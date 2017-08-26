@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktSearchTextQueryRequest : ATraktSearchRequest, ISupportsFilter
+    internal sealed class TraktSearchTextQueryRequest : ASearchRequest, ISupportsFilter
     {
         public TraktCommonFilter Filter { get; set; }
 

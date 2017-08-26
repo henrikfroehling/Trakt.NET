@@ -5,7 +5,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktSearchIdLookupRequest : ATraktSearchRequest
+    internal sealed class TraktSearchIdLookupRequest : ASearchRequest
     {
         internal TraktSearchIdType IdType { get; set; }
 

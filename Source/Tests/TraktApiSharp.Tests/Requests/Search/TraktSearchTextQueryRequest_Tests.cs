@@ -32,7 +32,7 @@
         [Fact]
         public void Test_TraktSearchTextQueryRequest_Inherits_ATraktSearchRequest()
         {
-            typeof(TraktSearchTextQueryRequest).IsSubclassOf(typeof(ATraktSearchRequest)).Should().BeTrue();
+            typeof(TraktSearchTextQueryRequest).IsSubclassOf(typeof(ASearchRequest)).Should().BeTrue();
         }
 
         [Fact]

@@ -16,53 +16,49 @@
     using Xunit;
 
     [Category("Requests.Search")]
-    public class ATraktSearchRequest_Tests
+    public class ASearchRequest_Tests
     {
-        internal class TraktSearchRequestMock : ATraktSearchRequest
+        internal class SearchRequestMock : ASearchRequest
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
-
-            public override void Validate()
-            {
-                throw new NotImplementedException();
-            }
+            public override void Validate() => throw new NotImplementedException();
         }
 
         [Fact]
-        public void Test_ATraktSearchRequest_IsAbstract()
+        public void Test_ASearchRequest_IsAbstract()
         {
-            typeof(ATraktSearchRequest).IsAbstract.Should().BeTrue();
+            typeof(ASearchRequest).IsAbstract.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktSearchRequest_Inherits_ATraktGetRequest_1()
+        public void Test_ASearchRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(ATraktSearchRequest).IsSubclassOf(typeof(AGetRequest<ITraktSearchResult>)).Should().BeTrue();
+            typeof(ASearchRequest).IsSubclassOf(typeof(AGetRequest<ITraktSearchResult>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktSearchRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_ASearchRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(ATraktSearchRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(ASearchRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_ATraktSearchRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_ASearchRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(ATraktSearchRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
+            typeof(ASearchRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]
-        public void Test_ATraktSearchRequest_Has_AuthorizationRequirement_NotRequired()
+        public void Test_ASearchRequest_Has_AuthorizationRequirement_NotRequired()
         {
-            var requestMock = new TraktSearchRequestMock();
+            var requestMock = new SearchRequestMock();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_ATraktSearchRequest_Has_ResultTypes_Property()
+        public void Test_ASearchRequest_Has_ResultTypes_Property()
         {
-            var propertyInfo = typeof(ATraktSearchRequest)
+            var propertyInfo = typeof(ASearchRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "ResultTypes")
                     .FirstOrDefault();
@@ -71,9 +67,9 @@
             propertyInfo.CanWrite.Should().BeTrue();
             propertyInfo.PropertyType.Should().Be(typeof(TraktSearchResultType));
         }
-        
+
         [Theory, ClassData(typeof(TraktSearchRequestMock_TestData))]
-        public void Test_ATraktSearchRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        public void Test_ASearchRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                              IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -88,27 +84,27 @@
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktSearchRequestMock _request1 = new TraktSearchRequestMock();
+            private static readonly SearchRequestMock _request1 = new SearchRequestMock();
 
-            private static readonly TraktSearchRequestMock _request2 = new TraktSearchRequestMock
+            private static readonly SearchRequestMock _request2 = new SearchRequestMock
             { ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktSearchRequestMock _request3 = new TraktSearchRequestMock
+            private static readonly SearchRequestMock _request3 = new SearchRequestMock
             { Page = _page };
 
-            private static readonly TraktSearchRequestMock _request4 = new TraktSearchRequestMock
+            private static readonly SearchRequestMock _request4 = new SearchRequestMock
             { Limit = _limit };
-            
-            private static readonly TraktSearchRequestMock _request5 = new TraktSearchRequestMock
+
+            private static readonly SearchRequestMock _request5 = new SearchRequestMock
             { ExtendedInfo = _extendedInfo, Page = _page };
 
-            private static readonly TraktSearchRequestMock _request6 = new TraktSearchRequestMock
+            private static readonly SearchRequestMock _request6 = new SearchRequestMock
             { ExtendedInfo = _extendedInfo, Limit = _limit };
 
-            private static readonly TraktSearchRequestMock _request7 = new TraktSearchRequestMock
+            private static readonly SearchRequestMock _request7 = new SearchRequestMock
             { ExtendedInfo = _extendedInfo, Page = _page, Limit = _limit };
 
-            private static readonly TraktSearchRequestMock _request8 = new TraktSearchRequestMock
+            private static readonly SearchRequestMock _request8 = new SearchRequestMock
             { Page = _page, Limit = _limit };
 
             private static readonly List<object[]> _data = new List<object[]>();
@@ -124,7 +120,7 @@
                 var strPage = _page.ToString();
                 var strLimit = _limit.ToString();
 
-                _data.Add(new object[] { _request1.GetUriPathParameters(), new Dictionary<string, object> { } });
+                _data.Add(new object[] { _request1.GetUriPathParameters(), new Dictionary<string, object>() });
 
                 _data.Add(new object[] { _request2.GetUriPathParameters(), new Dictionary<string, object>
                     {
@@ -135,12 +131,12 @@
                     {
                         ["page"] = strPage
                     }});
-                
+
                 _data.Add(new object[] { _request4.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["limit"] = strLimit
                     }});
-                
+
                 _data.Add(new object[] { _request5.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["extended"] = strExtendedInfo,
@@ -159,7 +155,7 @@
                         ["page"] = strPage,
                         ["limit"] = strLimit
                     }});
-                
+
                 _data.Add(new object[] { _request8.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["page"] = strPage,
