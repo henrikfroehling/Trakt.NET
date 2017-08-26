@@ -1110,7 +1110,7 @@
     <Compile Include="Requests\Base\APutRequest%271_Tests.cs" />
     <Compile Include="Requests\Base\APutRequest%272_Tests.cs" />
     <Compile Include="Requests\Base\ARequest%271_Tests.cs" />
-    <Compile Include="Requests\Base\ATraktRequest_Tests.cs" />
+    <Compile Include="Requests\Base\ARequest_Tests.cs" />
     <Compile Include="Requests\Calendars\ATraktCalendarRequest%271_Tests.cs" />
     <Compile Include="Requests\Calendars\OAuth\ATraktCalendarUserRequest%271_Tests.cs" />
     <Compile Include="Requests\Calendars\OAuth\TraktCalendarUserDVDMoviesRequest_Tests.cs" />

@@ -29,7 +29,7 @@
         [Fact]
         public void Test_ADeleteRequest_Inherits_ATraktRequest()
         {
-            typeof(ADeleteRequest).IsSubclassOf(typeof(ATraktRequest)).Should().BeTrue();
+            typeof(ADeleteRequest).IsSubclassOf(typeof(ARequest)).Should().BeTrue();
         }
 
         [Fact]

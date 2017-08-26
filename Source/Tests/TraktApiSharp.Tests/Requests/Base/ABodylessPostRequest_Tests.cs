@@ -29,7 +29,7 @@
         [Fact]
         public void Test_ABodylessPostRequest_Inherits_ATraktRequest()
         {
-            typeof(ABodylessPostRequest).IsSubclassOf(typeof(ATraktRequest)).Should().BeTrue();
+            typeof(ABodylessPostRequest).IsSubclassOf(typeof(ARequest)).Should().BeTrue();
         }
 
         [Fact]

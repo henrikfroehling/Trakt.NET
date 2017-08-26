@@ -36,7 +36,7 @@
         [Fact]
         public void Test_APutRequest_1_Inherits_ATraktRequest()
         {
-            typeof(APutRequest<>).IsSubclassOf(typeof(ATraktRequest)).Should().BeTrue();
+            typeof(APutRequest<>).IsSubclassOf(typeof(ARequest)).Should().BeTrue();
         }
 
         [Fact]
