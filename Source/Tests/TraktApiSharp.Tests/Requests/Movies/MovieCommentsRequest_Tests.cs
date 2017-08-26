@@ -14,43 +14,43 @@
     using Xunit;
 
     [Category("Requests.Movies")]
-    public class TraktMovieCommentsRequest_Tests
+    public class MovieCommentsRequest_Tests
     {
         [Fact]
-        public void Test_TraktMovieCommentsRequest_IsNotAbstract()
+        public void Test_MovieCommentsRequest_IsNotAbstract()
         {
-            typeof(TraktMovieCommentsRequest).IsAbstract.Should().BeFalse();
+            typeof(MovieCommentsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktMovieCommentsRequest_IsSealed()
+        public void Test_MovieCommentsRequest_IsSealed()
         {
-            typeof(TraktMovieCommentsRequest).IsSealed.Should().BeTrue();
+            typeof(MovieCommentsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMovieCommentsRequest_Inherits_ATraktMovieRequest_1()
+        public void Test_MovieCommentsRequest_Inherits_ATraktMovieRequest_1()
         {
-            typeof(TraktMovieCommentsRequest).IsSubclassOf(typeof(AMovieRequest<ITraktComment>)).Should().BeTrue();
+            typeof(MovieCommentsRequest).IsSubclassOf(typeof(AMovieRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMovieCommentsRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_MovieCommentsRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktMovieCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
+            typeof(MovieCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]
-        public void Test_TraktMovieCommentsRequest_Has_Valid_UriTemplate()
+        public void Test_MovieCommentsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktMovieCommentsRequest();
+            var request = new MovieCommentsRequest();
             request.UriTemplate.Should().Be("movies/{id}/comments{/sort_order}{?page,limit}");
         }
 
         [Fact]
-        public void Test_TraktMovieCommentsRequest_Has_SortOrder_Property()
+        public void Test_MovieCommentsRequest_Has_SortOrder_Property()
         {
-            var propertyInfo = typeof(TraktMovieCommentsRequest)
+            var propertyInfo = typeof(MovieCommentsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "SortOrder")
                     .FirstOrDefault();
@@ -61,29 +61,29 @@
         }
 
         [Fact]
-        public void Test_TraktMovieCommentsRequest_Validate_Throws_Exceptions()
+        public void Test_MovieCommentsRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktMovieCommentsRequest();
+            var request = new MovieCommentsRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktMovieCommentsRequest { Id = string.Empty };
+            request = new MovieCommentsRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktMovieCommentsRequest { Id = "invalid id" };
+            request = new MovieCommentsRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktMovieCommentsRequest_TestData))]
-        public void Test_TraktMovieCommentsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(MovieCommentsRequest_TestData))]
+        public void Test_MovieCommentsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                    IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -92,58 +92,58 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktMovieCommentsRequest_TestData : IEnumerable<object[]>
+        public class MovieCommentsRequest_TestData : IEnumerable<object[]>
         {
             private const string _id = "123";
             private static readonly TraktCommentSortOrder _sortOrder = TraktCommentSortOrder.Newest;
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktMovieCommentsRequest _request1 = new TraktMovieCommentsRequest
+            private static readonly MovieCommentsRequest _request1 = new MovieCommentsRequest
             {
                 Id = _id
             };
 
-            private static readonly TraktMovieCommentsRequest _request2 = new TraktMovieCommentsRequest
+            private static readonly MovieCommentsRequest _request2 = new MovieCommentsRequest
             {
                 Id = _id,
                 SortOrder = _sortOrder
             };
 
-            private static readonly TraktMovieCommentsRequest _request3 = new TraktMovieCommentsRequest
+            private static readonly MovieCommentsRequest _request3 = new MovieCommentsRequest
             {
                 Id = _id,
                 Page = _page
             };
 
-            private static readonly TraktMovieCommentsRequest _request4 = new TraktMovieCommentsRequest
+            private static readonly MovieCommentsRequest _request4 = new MovieCommentsRequest
             {
                 Id = _id,
                 Limit = _limit
             };
 
-            private static readonly TraktMovieCommentsRequest _request5 = new TraktMovieCommentsRequest
+            private static readonly MovieCommentsRequest _request5 = new MovieCommentsRequest
             {
                 Id = _id,
                 SortOrder = _sortOrder,
                 Page = _page
             };
 
-            private static readonly TraktMovieCommentsRequest _request6 = new TraktMovieCommentsRequest
+            private static readonly MovieCommentsRequest _request6 = new MovieCommentsRequest
             {
                 Id = _id,
                 SortOrder = _sortOrder,
                 Limit = _limit
             };
 
-            private static readonly TraktMovieCommentsRequest _request7 = new TraktMovieCommentsRequest
+            private static readonly MovieCommentsRequest _request7 = new MovieCommentsRequest
             {
                 Id = _id,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMovieCommentsRequest _request8 = new TraktMovieCommentsRequest
+            private static readonly MovieCommentsRequest _request8 = new MovieCommentsRequest
             {
                 Id = _id,
                 SortOrder = _sortOrder,
@@ -153,7 +153,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktMovieCommentsRequest_TestData()
+            public MovieCommentsRequest_TestData()
             {
                 SetupPathParamters();
             }

@@ -180,7 +180,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMovieCommentsRequest
+            return requestHandler.ExecutePagedRequestAsync(new MovieCommentsRequest
             {
                 Id = movieIdOrSlug,
                 SortOrder = commentSortOrder,
