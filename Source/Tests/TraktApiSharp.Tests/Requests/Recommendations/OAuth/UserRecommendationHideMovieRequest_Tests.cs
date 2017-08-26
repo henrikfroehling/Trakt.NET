@@ -9,52 +9,52 @@
     using Xunit;
 
     [Category("Requests.Recommendations.OAuth")]
-    public class TraktUserRecommendationHideMovieRequest_Tests
+    public class UserRecommendationHideMovieRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserRecommendationHideMovieRequest_IsNotAbstract()
+        public void Test_UserRecommendationHideMovieRequest_IsNotAbstract()
         {
-            typeof(TraktUserRecommendationHideMovieRequest).IsAbstract.Should().BeFalse();
+            typeof(UserRecommendationHideMovieRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserRecommendationHideMovieRequest_IsSealed()
+        public void Test_UserRecommendationHideMovieRequest_IsSealed()
         {
-            typeof(TraktUserRecommendationHideMovieRequest).IsSealed.Should().BeTrue();
+            typeof(UserRecommendationHideMovieRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserRecommendationHideMovieRequest_Inherits_ATraktUserRecommendationHideRequest()
+        public void Test_UserRecommendationHideMovieRequest_Inherits_ATraktUserRecommendationHideRequest()
         {
-            typeof(TraktUserRecommendationHideMovieRequest).IsSubclassOf(typeof(AUserRecommendationHideRequest)).Should().BeTrue();
+            typeof(UserRecommendationHideMovieRequest).IsSubclassOf(typeof(AUserRecommendationHideRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserRecommendationHideMovieRequest_Has_AuthorizationRequirement_Required()
+        public void Test_UserRecommendationHideMovieRequest_Has_AuthorizationRequirement_Required()
         {
-            var request = new TraktUserRecommendationHideMovieRequest();
+            var request = new UserRecommendationHideMovieRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktUserRecommendationHideMovieRequest_Returns_Valid_RequestObjectType()
+        public void Test_UserRecommendationHideMovieRequest_Returns_Valid_RequestObjectType()
         {
-            var request = new TraktUserRecommendationHideMovieRequest();
+            var request = new UserRecommendationHideMovieRequest();
             request.RequestObjectType.Should().Be(RequestObjectType.Movies);
         }
 
         [Fact]
-        public void Test_TraktUserRecommendationHideMovieRequest_Has_Valid_UriTemplate()
+        public void Test_UserRecommendationHideMovieRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserRecommendationHideMovieRequest();
+            var request = new UserRecommendationHideMovieRequest();
             request.UriTemplate.Should().Be("recommendations/movies/{id}");
         }
 
         [Fact]
-        public void Test_TraktUserRecommendationHideMovieRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserRecommendationHideMovieRequest_Returns_Valid_UriPathParameters()
         {
             // only id
-            var request = new TraktUserRecommendationHideMovieRequest { Id = "123" };
+            var request = new UserRecommendationHideMovieRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -65,22 +65,22 @@
         }
 
         [Fact]
-        public void Test_TraktUserRecommendationHideMovieRequest_Validate_Throws_Exceptions()
+        public void Test_UserRecommendationHideMovieRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktUserRecommendationHideMovieRequest();
+            var request = new UserRecommendationHideMovieRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktUserRecommendationHideMovieRequest { Id = string.Empty };
+            request = new UserRecommendationHideMovieRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktUserRecommendationHideMovieRequest { Id = "invalid id" };
+            request = new UserRecommendationHideMovieRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

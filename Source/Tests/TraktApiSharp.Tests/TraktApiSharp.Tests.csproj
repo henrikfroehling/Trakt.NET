@@ -1198,7 +1198,7 @@
     <Compile Include="Requests\Recommendations\OAuth\AUserRecommendationHideRequest_Tests.cs" />
     <Compile Include="Requests\Recommendations\OAuth\AUserRecommendationsRequest%271_Tests.cs" />
     <Compile Include="Requests\Recommendations\OAuth\UserMovieRecommendationsRequest_Tests.cs" />
-    <Compile Include="Requests\Recommendations\OAuth\TraktUserRecommendationHideMovieRequest_Tests.cs" />
+    <Compile Include="Requests\Recommendations\OAuth\UserRecommendationHideMovieRequest_Tests.cs" />
     <Compile Include="Requests\Recommendations\OAuth\TraktUserRecommendationHideShowRequest_Tests.cs" />
     <Compile Include="Requests\Recommendations\OAuth\TraktUserShowRecommendationsRequest_Tests.cs" />
     <Compile Include="Requests\Scrobbles\OAuth\TraktScrobblePauseRequest%272_Tests.cs" />

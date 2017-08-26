@@ -75,7 +75,7 @@
         public Task<TraktNoContentResponse> HideMovieRecommendationAsync(string movieIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktUserRecommendationHideMovieRequest { Id = movieIdOrSlug }, cancellationToken);
+            return requestHandler.ExecuteNoContentRequestAsync(new UserRecommendationHideMovieRequest { Id = movieIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
