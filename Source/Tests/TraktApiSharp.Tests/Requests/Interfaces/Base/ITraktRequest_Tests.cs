@@ -30,7 +30,7 @@
         [Fact]
         public void Test_ITraktRequest_Inherits_ITraktHasUri_Interface()
         {
-            typeof(ITraktRequest).GetInterfaces().Should().Contain(typeof(ITraktHasUri));
+            typeof(ITraktRequest).GetInterfaces().Should().Contain(typeof(IHasUri));
         }
 
         [Fact]

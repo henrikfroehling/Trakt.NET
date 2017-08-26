@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Interfaces.Base
 {
-    internal interface ITraktHasUri : ITraktHasUriPathParameters
+    internal interface IHasUri : ITraktHasUriPathParameters
     {
         string UriTemplate { get; }
     }

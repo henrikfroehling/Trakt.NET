@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Interfaces.Base
 {
-    internal interface ITraktRequest : ITraktHttpRequest, IHasRequestAuthorization, ITraktHasUri, ITraktValidatable
+    internal interface ITraktRequest : ITraktHttpRequest, IHasRequestAuthorization, IHasUri, ITraktValidatable
     {
     }
 }

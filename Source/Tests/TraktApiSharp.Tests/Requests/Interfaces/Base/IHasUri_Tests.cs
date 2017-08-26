@@ -7,24 +7,24 @@
     using Xunit;
 
     [Category("Requests.Interfaces.Base")]
-    public class ITraktHasUri_Tests
+    public class IHasUri_Tests
     {
         [Fact]
-        public void Test_ITraktHasUri_Is_Interface()
+        public void Test_IHasUri_Is_Interface()
         {
-            typeof(ITraktHasUri).IsInterface.Should().BeTrue();
+            typeof(IHasUri).IsInterface.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ITraktHasUri_Inherits_ITraktHasUriPathParameters_Interface()
+        public void Test_IHasUri_Inherits_IHasUriPathParameters_Interface()
         {
-            typeof(ITraktHasUri).GetInterfaces().Should().Contain(typeof(ITraktHasUriPathParameters));
+            typeof(IHasUri).GetInterfaces().Should().Contain(typeof(ITraktHasUriPathParameters));
         }
 
         [Fact]
-        public void Test_ITraktHasUri_Has_UriTemplate_Property()
+        public void Test_IHasUri_Has_UriTemplate_Property()
         {
-            var propertyInfo = typeof(ITraktHasUri).GetProperties()
+            var propertyInfo = typeof(IHasUri).GetProperties()
                                                    .Where(p => p.Name == "UriTemplate")
                                                    .FirstOrDefault();
 

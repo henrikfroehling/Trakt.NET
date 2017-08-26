@@ -661,7 +661,7 @@
     <Compile Include="Requests\Interfaces\ITraktSupportsPagination.cs" />
     <Compile Include="Requests\Interfaces\ITraktObjectRequest.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktHttpRequest.cs" />
-    <Compile Include="Requests\Interfaces\Base\ITraktHasUri.cs" />
+    <Compile Include="Requests\Interfaces\Base\IHasUri.cs" />
     <Compile Include="Requests\Interfaces\ITraktValidatable.cs" />
     <Compile Include="Requests\Movies\ATraktMovieRequest%271.cs" />
     <Compile Include="Requests\Movies\ATraktMoviesMostPWCRequest%271.cs" />
