@@ -443,7 +443,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowLastEpisodeRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new ShowLastEpisodeRequest
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
