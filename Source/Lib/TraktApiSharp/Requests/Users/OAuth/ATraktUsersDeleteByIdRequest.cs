@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal abstract class ATraktUsersDeleteByIdRequest : ATraktDeleteRequest, ITraktHasId
+    internal abstract class ATraktUsersDeleteByIdRequest : ADeleteRequest, ITraktHasId
     {
         public string Id { get; set; }
 

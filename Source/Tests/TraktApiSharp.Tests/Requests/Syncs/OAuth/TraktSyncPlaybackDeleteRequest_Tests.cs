@@ -27,7 +27,7 @@
         [Fact]
         public void Test_TraktSyncPlaybackDeleteRequest_Inherits_ATraktDeleteRequest()
         {
-            typeof(TraktSyncPlaybackDeleteRequest).IsSubclassOf(typeof(ATraktDeleteRequest)).Should().BeTrue();
+            typeof(TraktSyncPlaybackDeleteRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
         }
 
         [Fact]

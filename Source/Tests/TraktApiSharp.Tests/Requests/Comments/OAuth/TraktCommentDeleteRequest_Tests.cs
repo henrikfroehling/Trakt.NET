@@ -27,7 +27,7 @@
         [Fact]
         public void Test_TraktCommentDeleteRequest_Inherits_ATraktDeleteRequest()
         {
-            typeof(TraktCommentDeleteRequest).IsSubclassOf(typeof(ATraktDeleteRequest)).Should().BeTrue();
+            typeof(TraktCommentDeleteRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
         }
 
         [Fact]

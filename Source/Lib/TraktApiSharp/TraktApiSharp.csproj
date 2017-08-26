@@ -598,7 +598,7 @@
     <Compile Include="Objects\Post\Users\Responses\JsonReader\TraktUserFollowUserPostResponseObjectJsonReader.cs" />
     <Compile Include="Requests\Base\ABodylessPostRequest%271.cs" />
     <Compile Include="Requests\Base\ABodylessPostRequest.cs" />
-    <Compile Include="Requests\Base\ATraktDeleteRequest.cs" />
+    <Compile Include="Requests\Base\ADeleteRequest.cs" />
     <Compile Include="Requests\Base\ATraktGetRequest%271.cs" />
     <Compile Include="Requests\Base\ATraktPostRequest%271.cs" />
     <Compile Include="Requests\Base\ATraktPostRequest%272.cs" />

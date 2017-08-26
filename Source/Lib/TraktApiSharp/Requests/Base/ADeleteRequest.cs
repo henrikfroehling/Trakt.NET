@@ -3,7 +3,7 @@
     using Interfaces.Base;
     using System.Net.Http;
 
-    internal abstract class ATraktDeleteRequest : ATraktRequest, ITraktDeleteRequest
+    internal abstract class ADeleteRequest : ATraktRequest, ITraktDeleteRequest
     {
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 

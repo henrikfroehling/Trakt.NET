@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktUserUnfollowUserRequest_Inherits_ATraktDeleteRequest()
         {
-            typeof(TraktUserUnfollowUserRequest).IsSubclassOf(typeof(ATraktDeleteRequest)).Should().BeTrue();
+            typeof(TraktUserUnfollowUserRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
         }
 
         [Fact]

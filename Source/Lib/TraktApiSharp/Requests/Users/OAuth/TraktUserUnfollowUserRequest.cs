@@ -5,7 +5,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserUnfollowUserRequest : ATraktDeleteRequest
+    internal sealed class TraktUserUnfollowUserRequest : ADeleteRequest
     {
         internal string Username { get; set; }
 

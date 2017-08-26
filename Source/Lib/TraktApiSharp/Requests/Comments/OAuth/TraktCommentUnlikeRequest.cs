@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktCommentUnlikeRequest : ATraktDeleteRequest, ITraktHasId
+    internal sealed class TraktCommentUnlikeRequest : ADeleteRequest, ITraktHasId
     {
         public string Id { get; set; }
 

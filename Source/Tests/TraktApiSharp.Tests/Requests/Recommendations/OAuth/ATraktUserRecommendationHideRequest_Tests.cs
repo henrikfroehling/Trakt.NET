@@ -28,7 +28,7 @@
         [Fact]
         public void Test_ATraktUserRecommendationHideRequest_Inherits_ATraktDeleteRequest()
         {
-            typeof(ATraktUserRecommendationHideRequest).IsSubclassOf(typeof(ATraktDeleteRequest)).Should().BeTrue();
+            typeof(ATraktUserRecommendationHideRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
         }
 
         [Fact]
