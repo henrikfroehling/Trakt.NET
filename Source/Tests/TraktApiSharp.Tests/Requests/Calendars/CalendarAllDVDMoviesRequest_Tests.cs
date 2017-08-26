@@ -13,42 +13,42 @@
     using Xunit;
 
     [Category("Requests.Calendars.Movies")]
-    public class TraktCalendarAllDVDMoviesRequest_Tests
+    public class CalendarAllDVDMoviesRequest_Tests
     {
         [Fact]
-        public void Test_TraktCalendarAllDVDMoviesRequest_IsNotAbstract()
+        public void Test_CalendarAllDVDMoviesRequest_IsNotAbstract()
         {
-            typeof(TraktCalendarAllDVDMoviesRequest).IsAbstract.Should().BeFalse();
+            typeof(CalendarAllDVDMoviesRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktCalendarAllDVDMoviesRequest_IsSealed()
+        public void Test_CalendarAllDVDMoviesRequest_IsSealed()
         {
-            typeof(TraktCalendarAllDVDMoviesRequest).IsSealed.Should().BeTrue();
+            typeof(CalendarAllDVDMoviesRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarAllDVDMoviesRequest_Inherits_ATraktCalendarRequest()
+        public void Test_CalendarAllDVDMoviesRequest_Inherits_ATraktCalendarRequest()
         {
-            typeof(TraktCalendarAllDVDMoviesRequest).IsSubclassOf(typeof(ACalendarRequest<ITraktCalendarMovie>)).Should().BeTrue();
+            typeof(CalendarAllDVDMoviesRequest).IsSubclassOf(typeof(ACalendarRequest<ITraktCalendarMovie>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarAllDVDMoviesRequest_Has_AuthorizationRequirement_NotRequired()
+        public void Test_CalendarAllDVDMoviesRequest_Has_AuthorizationRequirement_NotRequired()
         {
-            var request = new TraktCalendarAllDVDMoviesRequest();
+            var request = new CalendarAllDVDMoviesRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_TraktCalendarAllDVDMoviesRequest_Has_Valid_UriTemplate()
+        public void Test_CalendarAllDVDMoviesRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktCalendarAllDVDMoviesRequest();
+            var request = new CalendarAllDVDMoviesRequest();
             request.UriTemplate.Should().Be("calendars/all/dvd{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}");
         }
 
-        [Theory, ClassData(typeof(TraktCalendarAllDVDMoviesRequest_TestData))]
-        public void Test_TraktCalendarAllDVDMoviesRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(CalendarAllDVDMoviesRequest_TestData))]
+        public void Test_CalendarAllDVDMoviesRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                           IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -57,66 +57,66 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktCalendarAllDVDMoviesRequest_TestData : IEnumerable<object[]>
+        public class CalendarAllDVDMoviesRequest_TestData : IEnumerable<object[]>
         {
             private static readonly DateTime _startDate = DateTime.Now.AddDays(-7);
             private const int _days = 14;
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktMovieFilter _filter = new TraktMovieFilter().WithYears(2010, 2017);
 
-            private static readonly TraktCalendarAllDVDMoviesRequest _request1 = new TraktCalendarAllDVDMoviesRequest();
+            private static readonly CalendarAllDVDMoviesRequest _request1 = new CalendarAllDVDMoviesRequest();
 
-            private static readonly TraktCalendarAllDVDMoviesRequest _request2 = new TraktCalendarAllDVDMoviesRequest
+            private static readonly CalendarAllDVDMoviesRequest _request2 = new CalendarAllDVDMoviesRequest
             { StartDate = _startDate };
 
-            private static readonly TraktCalendarAllDVDMoviesRequest _request3 = new TraktCalendarAllDVDMoviesRequest
+            private static readonly CalendarAllDVDMoviesRequest _request3 = new CalendarAllDVDMoviesRequest
             { StartDate = _startDate, Days = _days };
 
-            private static readonly TraktCalendarAllDVDMoviesRequest _request4 = new TraktCalendarAllDVDMoviesRequest
+            private static readonly CalendarAllDVDMoviesRequest _request4 = new CalendarAllDVDMoviesRequest
             { Days = _days };
 
             // with extended info
-            private static readonly TraktCalendarAllDVDMoviesRequest _request5 = new TraktCalendarAllDVDMoviesRequest
+            private static readonly CalendarAllDVDMoviesRequest _request5 = new CalendarAllDVDMoviesRequest
             { ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarAllDVDMoviesRequest _request6 = new TraktCalendarAllDVDMoviesRequest
+            private static readonly CalendarAllDVDMoviesRequest _request6 = new CalendarAllDVDMoviesRequest
             { StartDate = _startDate, ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarAllDVDMoviesRequest _request7 = new TraktCalendarAllDVDMoviesRequest
+            private static readonly CalendarAllDVDMoviesRequest _request7 = new CalendarAllDVDMoviesRequest
             { StartDate = _startDate, Days = _days, ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarAllDVDMoviesRequest _request8 = new TraktCalendarAllDVDMoviesRequest
+            private static readonly CalendarAllDVDMoviesRequest _request8 = new CalendarAllDVDMoviesRequest
             { Days = _days, ExtendedInfo = _extendedInfo };
 
             // with filter
-            private static readonly TraktCalendarAllDVDMoviesRequest _request9 = new TraktCalendarAllDVDMoviesRequest
+            private static readonly CalendarAllDVDMoviesRequest _request9 = new CalendarAllDVDMoviesRequest
             { Filter = _filter };
 
-            private static readonly TraktCalendarAllDVDMoviesRequest _request10 = new TraktCalendarAllDVDMoviesRequest
+            private static readonly CalendarAllDVDMoviesRequest _request10 = new CalendarAllDVDMoviesRequest
             { StartDate = _startDate, Filter = _filter };
 
-            private static readonly TraktCalendarAllDVDMoviesRequest _request11 = new TraktCalendarAllDVDMoviesRequest
+            private static readonly CalendarAllDVDMoviesRequest _request11 = new CalendarAllDVDMoviesRequest
             { StartDate = _startDate, Days = _days, Filter = _filter };
 
-            private static readonly TraktCalendarAllDVDMoviesRequest _request12 = new TraktCalendarAllDVDMoviesRequest
+            private static readonly CalendarAllDVDMoviesRequest _request12 = new CalendarAllDVDMoviesRequest
             { Days = _days, Filter = _filter };
 
             // with extended info and filter
-            private static readonly TraktCalendarAllDVDMoviesRequest _request13 = new TraktCalendarAllDVDMoviesRequest
+            private static readonly CalendarAllDVDMoviesRequest _request13 = new CalendarAllDVDMoviesRequest
             { ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarAllDVDMoviesRequest _request14 = new TraktCalendarAllDVDMoviesRequest
+            private static readonly CalendarAllDVDMoviesRequest _request14 = new CalendarAllDVDMoviesRequest
             { StartDate = _startDate, ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarAllDVDMoviesRequest _request15 = new TraktCalendarAllDVDMoviesRequest
+            private static readonly CalendarAllDVDMoviesRequest _request15 = new CalendarAllDVDMoviesRequest
             { StartDate = _startDate, Days = _days, ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarAllDVDMoviesRequest _request16 = new TraktCalendarAllDVDMoviesRequest
+            private static readonly CalendarAllDVDMoviesRequest _request16 = new CalendarAllDVDMoviesRequest
             { Days = _days, ExtendedInfo = _extendedInfo, Filter = _filter };
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktCalendarAllDVDMoviesRequest_TestData()
+            public CalendarAllDVDMoviesRequest_TestData()
             {
                 SetupPathParamters();
             }
