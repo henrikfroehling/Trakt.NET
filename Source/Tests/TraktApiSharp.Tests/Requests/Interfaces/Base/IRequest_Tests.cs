@@ -36,7 +36,7 @@
         [Fact]
         public void Test_IRequest_Inherits_ITraktValidatable_Interface()
         {
-            typeof(IRequest).GetInterfaces().Should().Contain(typeof(ITraktValidatable));
+            typeof(IRequest).GetInterfaces().Should().Contain(typeof(IValidatable));
         }
     }
 }

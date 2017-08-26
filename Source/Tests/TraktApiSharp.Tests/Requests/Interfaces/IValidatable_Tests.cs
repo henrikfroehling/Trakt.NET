@@ -7,18 +7,18 @@
     using Xunit;
 
     [Category("Requests.Interfaces")]
-    public class ITraktValidatable_Tests
+    public class IValidatable_Tests
     {
         [Fact]
-        public void Test_ITraktValidatable_Is_Interface()
+        public void Test_IValidatable_Is_Interface()
         {
-            typeof(ITraktValidatable).IsInterface.Should().BeTrue();
+            typeof(IValidatable).IsInterface.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ITraktValidatable_Has_Validate_Method()
+        public void Test_IValidatable_Has_Validate_Method()
         {
-            var methodInfo = typeof(ITraktValidatable).GetMethods()
+            var methodInfo = typeof(IValidatable).GetMethods()
                                                       .Where(m => m.Name == "Validate")
                                                       .FirstOrDefault();
 
