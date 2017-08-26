@@ -9,10 +9,10 @@
     {
         Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(ITraktRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
-        Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType>(ITraktRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken));
+        Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken));
 
-        Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType>(ITraktRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken));
+        Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken));
 
-        Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(ITraktRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken));
+        Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

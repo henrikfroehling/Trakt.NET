@@ -57,19 +57,19 @@
             return QueryNoContentAsync(SetupRequestMessage(request), cancellationToken);
         }
 
-        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType>(ITraktRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
             return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request), false, cancellationToken);
         }
 
-        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType>(ITraktRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
             return QueryListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
         }
 
-        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(ITraktRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
             return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
