@@ -2,7 +2,7 @@
 {
     using Objects.Get.Shows;
 
-    internal sealed class TraktUserShowRecommendationsRequest : ATraktUserRecommendationsRequest<ITraktShow>
+    internal sealed class TraktUserShowRecommendationsRequest : AUserRecommendationsRequest<ITraktShow>
     {
         public override string UriTemplate => "recommendations/shows{?extended,limit}";
 

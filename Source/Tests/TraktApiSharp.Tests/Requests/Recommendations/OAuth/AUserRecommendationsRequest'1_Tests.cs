@@ -13,54 +13,50 @@
     using Xunit;
 
     [Category("Requests.Recommendations.OAuth")]
-    public class ATraktUserRecommendationsRequest_1_Tests
+    public class AUserRecommendationsRequest_1_Tests
     {
-        internal class TraktUserRecommendationsRequestMock : ATraktUserRecommendationsRequest<int>
+        internal class UserRecommendationsRequestMock : AUserRecommendationsRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
-
-            public override void Validate()
-            {
-                throw new NotImplementedException();
-            }
+            public override void Validate() => throw new NotImplementedException();
         }
 
         [Fact]
-        public void Test_ATraktUserRecommendationsRequest_1_IsAbstract()
+        public void Test_AUserRecommendationsRequest_1_IsAbstract()
         {
-            typeof(ATraktUserRecommendationsRequest<>).IsAbstract.Should().BeTrue();
+            typeof(AUserRecommendationsRequest<>).IsAbstract.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktUserRecommendationsRequest_1_Has_GenericTypeParameter()
+        public void Test_AUserRecommendationsRequest_1_Has_GenericTypeParameter()
         {
-            typeof(ATraktUserRecommendationsRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ATraktUserRecommendationsRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+            typeof(AUserRecommendationsRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(AUserRecommendationsRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
         [Fact]
-        public void Test_ATraktUserRecommendationsRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_AUserRecommendationsRequest_1_Inherits_ATraktGetRequest_1()
         {
-            typeof(ATraktUserRecommendationsRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
+            typeof(AUserRecommendationsRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktUserRecommendationsRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_AUserRecommendationsRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(ATraktUserRecommendationsRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(AUserRecommendationsRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_ATraktUserRecommendationsRequest_1_Has_AuthorizationRequirement_Required()
+        public void Test_AUserRecommendationsRequest_1_Has_AuthorizationRequirement_Required()
         {
-            var requestMock = new TraktUserRecommendationsRequestMock();
+            var requestMock = new UserRecommendationsRequestMock();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_ATraktUserRecommendationsRequest_1_Has_Limit_Property()
+        public void Test_AUserRecommendationsRequest_1_Has_Limit_Property()
         {
-            var propertyInfo = typeof(ATraktUserRecommendationsRequest<>)
+            var propertyInfo = typeof(AUserRecommendationsRequest<>)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Limit")
                     .FirstOrDefault();
@@ -71,16 +67,16 @@
         }
 
         [Fact]
-        public void Test_ATraktUserRecommendationsRequest_1_Returns_Valid_UriPathParameters()
+        public void Test_AUserRecommendationsRequest_1_Returns_Valid_UriPathParameters()
         {
             // no parameters
-            var requestMock = new TraktUserRecommendationsRequestMock();
+            var requestMock = new UserRecommendationsRequestMock();
 
             requestMock.GetUriPathParameters().Should().NotBeNull().And.BeEmpty().And.HaveCount(0);
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            requestMock = new TraktUserRecommendationsRequestMock { ExtendedInfo = extendedInfo };
+            requestMock = new UserRecommendationsRequestMock { ExtendedInfo = extendedInfo };
 
             requestMock.GetUriPathParameters().Should().NotBeNull()
                                                        .And.HaveCount(1)
@@ -91,7 +87,7 @@
 
             // with extended info and limit
             var limit = 123U;
-            requestMock = new TraktUserRecommendationsRequestMock { ExtendedInfo = extendedInfo, Limit = limit };
+            requestMock = new UserRecommendationsRequestMock { ExtendedInfo = extendedInfo, Limit = limit };
 
             requestMock.GetUriPathParameters().Should().NotBeNull()
                                                        .And.HaveCount(2)
