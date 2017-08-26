@@ -77,7 +77,7 @@
 
         // post requests
 
-        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TResponseContentType>(ITraktPostRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TResponseContentType>(IPostRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
             return QueryNoContentAsync(SetupRequestMessage(request), cancellationToken);
@@ -338,7 +338,7 @@
             return requestMessage;
         }
 
-        private TraktHttpRequestMessage SetupRequestMessage<TRequestBodyType>(ITraktPostRequest<TRequestBodyType> request)
+        private TraktHttpRequestMessage SetupRequestMessage<TRequestBodyType>(IPostRequest<TRequestBodyType> request)
         {
             TraktHttpRequestMessage requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);

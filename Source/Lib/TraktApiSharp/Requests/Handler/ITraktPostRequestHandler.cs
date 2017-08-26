@@ -7,7 +7,7 @@
 
     internal interface ITraktPostRequestHandler
     {
-        Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(ITraktPostRequest<TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken));
+        Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(IPostRequest<TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken));
 
         Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(ITraktPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken));
 

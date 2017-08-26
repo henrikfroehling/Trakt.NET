@@ -1153,7 +1153,7 @@
     <Compile Include="Requests\Interfaces\Base\IHasUriPathParameters_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\IHasUri_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\IHttpRequest_Tests.cs" />
-    <Compile Include="Requests\Interfaces\Base\ITraktPostRequest%271_Tests.cs" />
+    <Compile Include="Requests\Interfaces\Base\IPostRequest%271_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktPostRequest%272_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktPutRequest%271_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktPutRequest%272_Tests.cs" />
