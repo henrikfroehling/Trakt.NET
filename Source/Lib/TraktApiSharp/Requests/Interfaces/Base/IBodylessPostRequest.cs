@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Interfaces.Base
 {
-    internal interface ITraktBodylessPostRequest : ITraktRequest
+    internal interface IBodylessPostRequest : ITraktRequest
     {
     }
 }

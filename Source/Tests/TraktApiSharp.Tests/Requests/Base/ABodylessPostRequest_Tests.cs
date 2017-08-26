@@ -35,7 +35,7 @@
         [Fact]
         public void Test_ABodylessPostRequest_Implements_ITraktBodylessPostRequest_Interface()
         {
-            typeof(ABodylessPostRequest).GetInterfaces().Should().Contain(typeof(ITraktBodylessPostRequest));
+            typeof(ABodylessPostRequest).GetInterfaces().Should().Contain(typeof(IBodylessPostRequest));
         }
 
         [Fact]
