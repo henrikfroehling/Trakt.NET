@@ -1127,7 +1127,7 @@
     <Compile Include="Requests\Checkins\OAuth\CheckinsDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentLikeRequest_Tests.cs" />
-    <Compile Include="Requests\Comments\OAuth\TraktCommentPostRequest%271_Tests.cs" />
+    <Compile Include="Requests\Comments\OAuth\CommentPostRequest%271_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\TraktCommentReplyRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\TraktCommentUnlikeRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\TraktCommentUpdateRequest_Tests.cs" />

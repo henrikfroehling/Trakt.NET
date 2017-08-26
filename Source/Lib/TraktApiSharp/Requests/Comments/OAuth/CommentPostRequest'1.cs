@@ -5,7 +5,7 @@
     using Objects.Post.Comments.Responses;
     using System.Collections.Generic;
 
-    internal sealed class TraktCommentPostRequest<TRequestBodyType> : APostRequest<ITraktCommentPostResponse, TRequestBodyType> where TRequestBodyType : TraktCommentPost
+    internal sealed class CommentPostRequest<TRequestBodyType> : APostRequest<ITraktCommentPostResponse, TRequestBodyType> where TRequestBodyType : TraktCommentPost
     {
         public override TRequestBodyType RequestBody { get; set; }
 

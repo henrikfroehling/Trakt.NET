@@ -121,7 +121,7 @@
 
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktMovieCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<TraktMovieCommentPost>
             {
                 RequestBody = new TraktMovieCommentPost
                 {
@@ -168,7 +168,7 @@
 
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktShowCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<TraktShowCommentPost>
             {
                 RequestBody = new TraktShowCommentPost
                 {
@@ -213,7 +213,7 @@
 
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktSeasonCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<TraktSeasonCommentPost>
             {
                 RequestBody = new TraktSeasonCommentPost
                 {
@@ -254,7 +254,7 @@
 
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktEpisodeCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<TraktEpisodeCommentPost>
             {
                 RequestBody = new TraktEpisodeCommentPost
                 {
@@ -295,7 +295,7 @@
 
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktListCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<TraktListCommentPost>
             {
                 RequestBody = new TraktListCommentPost
                 {
