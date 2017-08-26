@@ -630,7 +630,7 @@
     <Compile Include="Requests\Calendars\OAuth\CalendarUserDVDMoviesRequest.cs" />
     <Compile Include="Requests\Calendars\OAuth\CalendarUserMoviesRequest.cs" />
     <Compile Include="Requests\Calendars\OAuth\CalendarUserNewShowsRequest.cs" />
-    <Compile Include="Requests\Calendars\OAuth\TraktCalendarUserSeasonPremieresRequest.cs" />
+    <Compile Include="Requests\Calendars\OAuth\CalendarUserSeasonPremieresRequest.cs" />
     <Compile Include="Requests\Calendars\OAuth\TraktCalendarUserShowsRequest.cs" />
     <Compile Include="Requests\Calendars\TraktCalendarAllDVDMoviesRequest.cs" />
     <Compile Include="Requests\Calendars\TraktCalendarAllMoviesRequest.cs" />
