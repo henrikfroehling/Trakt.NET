@@ -274,7 +274,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSeasonStatisticsRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new SeasonStatisticsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber

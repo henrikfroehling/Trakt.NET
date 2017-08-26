@@ -2,7 +2,7 @@
 {
     using Objects.Basic;
 
-    internal sealed class TraktSeasonStatisticsRequest : ASeasonRequest<ITraktStatistics>
+    internal sealed class SeasonStatisticsRequest : ASeasonRequest<ITraktStatistics>
     {
         public override string UriTemplate => "shows/{id}/seasons/{season}/stats";
     }

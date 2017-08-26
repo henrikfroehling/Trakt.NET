@@ -9,38 +9,38 @@
     using Xunit;
 
     [Category("Requests.Seasons")]
-    public class TraktSeasonStatisticsRequest_Tests
+    public class SeasonStatisticsRequest_Tests
     {
         [Fact]
-        public void Test_TraktSeasonStatisticsRequest_IsNotAbstract()
+        public void Test_SeasonStatisticsRequest_IsNotAbstract()
         {
-            typeof(TraktSeasonStatisticsRequest).IsAbstract.Should().BeFalse();
+            typeof(SeasonStatisticsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktSeasonStatisticsRequest_IsSealed()
+        public void Test_SeasonStatisticsRequest_IsSealed()
         {
-            typeof(TraktSeasonStatisticsRequest).IsSealed.Should().BeTrue();
+            typeof(SeasonStatisticsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSeasonStatisticsRequest_Inherits_ATraktSeasonRequest_1()
+        public void Test_SeasonStatisticsRequest_Inherits_ATraktSeasonRequest_1()
         {
-            typeof(TraktSeasonStatisticsRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktStatistics>)).Should().BeTrue();
+            typeof(SeasonStatisticsRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktStatistics>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSeasonStatisticsRequest_Has_Valid_UriTemplate()
+        public void Test_SeasonStatisticsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktSeasonStatisticsRequest();
+            var request = new SeasonStatisticsRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/stats");
         }
 
         [Fact]
-        public void Test_TraktSeasonStatisticsRequest_Returns_Valid_UriPathParameters()
+        public void Test_SeasonStatisticsRequest_Returns_Valid_UriPathParameters()
         {
             // with implicit season number
-            var request = new TraktSeasonStatisticsRequest { Id = "123" };
+            var request = new SeasonStatisticsRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -51,7 +51,7 @@
                                                    });
 
             // with explicit season number
-            request = new TraktSeasonStatisticsRequest { Id = "123", SeasonNumber = 2 };
+            request = new SeasonStatisticsRequest { Id = "123", SeasonNumber = 2 };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -63,22 +63,22 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonStatisticsRequest_Validate_Throws_Exceptions()
+        public void Test_SeasonStatisticsRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktSeasonStatisticsRequest();
+            var request = new SeasonStatisticsRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktSeasonStatisticsRequest { Id = string.Empty };
+            request = new SeasonStatisticsRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktSeasonStatisticsRequest { Id = "invalid id" };
+            request = new SeasonStatisticsRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
