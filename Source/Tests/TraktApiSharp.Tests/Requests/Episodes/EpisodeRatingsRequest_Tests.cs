@@ -9,38 +9,38 @@
     using Xunit;
 
     [Category("Requests.Episodes")]
-    public class TraktEpisodeRatingsRequest_Tests
+    public class EpisodeRatingsRequest_Tests
     {
         [Fact]
-        public void Test_TraktEpisodeRatingsRequest_IsNotAbstract()
+        public void Test_EpisodeRatingsRequest_IsNotAbstract()
         {
-            typeof(TraktEpisodeRatingsRequest).IsAbstract.Should().BeFalse();
+            typeof(EpisodeRatingsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktEpisodeRatingsRequest_IsSealed()
+        public void Test_EpisodeRatingsRequest_IsSealed()
         {
-            typeof(TraktEpisodeRatingsRequest).IsSealed.Should().BeTrue();
+            typeof(EpisodeRatingsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktEpisodeRatingsRequest_Inherits_ATraktEpisodeRequest_1()
+        public void Test_EpisodeRatingsRequest_Inherits_ATraktEpisodeRequest_1()
         {
-            typeof(TraktEpisodeRatingsRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktRating>)).Should().BeTrue();
+            typeof(EpisodeRatingsRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktRating>)).Should().BeTrue();
         }
         
         [Fact]
-        public void Test_TraktEpisodeRatingsRequest_Has_Valid_UriTemplate()
+        public void Test_EpisodeRatingsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktEpisodeRatingsRequest();
+            var request = new EpisodeRatingsRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/episodes/{episode}/ratings");
         }
         
         [Fact]
-        public void Test_TraktEpisodeRatingsRequest_Returns_Valid_UriPathParameters()
+        public void Test_EpisodeRatingsRequest_Returns_Valid_UriPathParameters()
         {
             // with implicit season number
-            var request = new TraktEpisodeRatingsRequest { Id = "123", EpisodeNumber = 1 };
+            var request = new EpisodeRatingsRequest { Id = "123", EpisodeNumber = 1 };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(3)
@@ -52,7 +52,7 @@
                                                    });
             
             // with explicit season number
-            request = new TraktEpisodeRatingsRequest { Id = "123", SeasonNumber = 2, EpisodeNumber = 1 };
+            request = new EpisodeRatingsRequest { Id = "123", SeasonNumber = 2, EpisodeNumber = 1 };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(3)
@@ -65,28 +65,28 @@
         }
 
         [Fact]
-        public void Test_TraktEpisodeRatingsRequest_Validate_Throws_Exceptions()
+        public void Test_EpisodeRatingsRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktEpisodeRatingsRequest { EpisodeNumber = 1 };
+            var request = new EpisodeRatingsRequest { EpisodeNumber = 1 };
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktEpisodeRatingsRequest { Id = string.Empty, EpisodeNumber = 1 };
+            request = new EpisodeRatingsRequest { Id = string.Empty, EpisodeNumber = 1 };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktEpisodeRatingsRequest { Id = "invalid id", EpisodeNumber = 1 };
+            request = new EpisodeRatingsRequest { Id = "invalid id", EpisodeNumber = 1 };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // episode number == 0
-            request = new TraktEpisodeRatingsRequest { EpisodeNumber = 0 };
+            request = new EpisodeRatingsRequest { EpisodeNumber = 0 };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

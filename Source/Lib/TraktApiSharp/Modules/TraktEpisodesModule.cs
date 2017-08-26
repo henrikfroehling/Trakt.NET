@@ -220,7 +220,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktEpisodeRatingsRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new EpisodeRatingsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
