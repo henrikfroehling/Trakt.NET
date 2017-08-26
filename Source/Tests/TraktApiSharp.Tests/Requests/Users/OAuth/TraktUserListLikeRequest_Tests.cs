@@ -29,7 +29,7 @@
         [Fact]
         public void Test_TraktUserListLikeRequest_Inherits_ATraktBodylessPostRequest()
         {
-            typeof(TraktUserListLikeRequest).IsSubclassOf(typeof(ATraktBodylessPostRequest)).Should().BeTrue();
+            typeof(TraktUserListLikeRequest).IsSubclassOf(typeof(ABodylessPostRequest)).Should().BeTrue();
         }
 
         [Fact]

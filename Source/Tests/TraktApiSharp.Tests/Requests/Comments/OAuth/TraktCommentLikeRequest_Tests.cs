@@ -27,7 +27,7 @@
         [Fact]
         public void Test_TraktCommentLikeRequest_Inherits_ATraktBodylessPostRequest()
         {
-            typeof(TraktCommentLikeRequest).IsSubclassOf(typeof(ATraktBodylessPostRequest)).Should().BeTrue();
+            typeof(TraktCommentLikeRequest).IsSubclassOf(typeof(ABodylessPostRequest)).Should().BeTrue();
         }
 
         [Fact]

@@ -3,7 +3,7 @@
     using Interfaces.Base;
     using System.Net.Http;
 
-    internal abstract class ATraktBodylessPostRequest : ATraktRequest, ITraktBodylessPostRequest
+    internal abstract class ABodylessPostRequest : ATraktRequest, ITraktBodylessPostRequest
     {
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
