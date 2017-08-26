@@ -723,7 +723,7 @@
     <Compile Include="Requests\Shows\ShowNextEpisodeRequest.cs" />
     <Compile Include="Requests\Shows\ShowPeopleRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowRatingsRequest.cs" />
-    <Compile Include="Requests\Shows\TraktShowRelatedShowsRequest.cs" />
+    <Compile Include="Requests\Shows\ShowRelatedShowsRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowsMostAnticipatedRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowsMostCollectedRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowsMostPlayedRequest.cs" />

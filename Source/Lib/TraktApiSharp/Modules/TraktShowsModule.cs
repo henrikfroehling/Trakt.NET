@@ -282,7 +282,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowRelatedShowsRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowRelatedShowsRequest
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo,

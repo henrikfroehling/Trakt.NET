@@ -12,69 +12,69 @@
     using Xunit;
 
     [Category("Requests.Shows")]
-    public class TraktShowRelatedShowsRequest_Tests
+    public class ShowRelatedShowsRequest_Tests
     {
         [Fact]
-        public void Test_TraktShowRelatedShowsRequest_Is_Not_Abstract()
+        public void Test_ShowRelatedShowsRequest_Is_Not_Abstract()
         {
-            typeof(TraktShowRelatedShowsRequest).IsAbstract.Should().BeFalse();
+            typeof(ShowRelatedShowsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktShowRelatedShowsRequest_Is_Sealed()
+        public void Test_ShowRelatedShowsRequest_Is_Sealed()
         {
-            typeof(TraktShowRelatedShowsRequest).IsSealed.Should().BeTrue();
+            typeof(ShowRelatedShowsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowRelatedShowsRequest_Inherits_ATraktShowRequest_1()
+        public void Test_ShowRelatedShowsRequest_Inherits_ATraktShowRequest_1()
         {
-            typeof(TraktShowRelatedShowsRequest).IsSubclassOf(typeof(AShowRequest<ITraktShow>)).Should().BeTrue();
+            typeof(ShowRelatedShowsRequest).IsSubclassOf(typeof(AShowRequest<ITraktShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowRelatedShowsRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_ShowRelatedShowsRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktShowRelatedShowsRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(ShowRelatedShowsRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_TraktShowRelatedShowsRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_ShowRelatedShowsRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktShowRelatedShowsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
+            typeof(ShowRelatedShowsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]
-        public void Test_TraktShowRelatedShowsRequest_Has_Valid_UriTemplate()
+        public void Test_ShowRelatedShowsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktShowRelatedShowsRequest();
+            var request = new ShowRelatedShowsRequest();
             request.UriTemplate.Should().Be("shows/{id}/related{?extended,page,limit}");
         }
 
         [Fact]
-        public void Test_TraktShowRelatedShowsRequest_Validate_Throws_Exceptions()
+        public void Test_ShowRelatedShowsRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktShowRelatedShowsRequest();
+            var request = new ShowRelatedShowsRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktShowRelatedShowsRequest { Id = string.Empty };
+            request = new ShowRelatedShowsRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktShowRelatedShowsRequest { Id = "invalid id" };
+            request = new ShowRelatedShowsRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktShowRelatedShowsRequest_TestData))]
-        public void Test_TraktShowRelatedShowsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(ShowRelatedShowsRequest_TestData))]
+        public void Test_ShowRelatedShowsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                       IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -83,58 +83,58 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktShowRelatedShowsRequest_TestData : IEnumerable<object[]>
+        public class ShowRelatedShowsRequest_TestData : IEnumerable<object[]>
         {
             private const string _id = "123";
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktShowRelatedShowsRequest _request1 = new TraktShowRelatedShowsRequest
+            private static readonly ShowRelatedShowsRequest _request1 = new ShowRelatedShowsRequest
             {
                 Id = _id
             };
 
-            private static readonly TraktShowRelatedShowsRequest _request2 = new TraktShowRelatedShowsRequest
+            private static readonly ShowRelatedShowsRequest _request2 = new ShowRelatedShowsRequest
             {
                 Id = _id,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktShowRelatedShowsRequest _request3 = new TraktShowRelatedShowsRequest
+            private static readonly ShowRelatedShowsRequest _request3 = new ShowRelatedShowsRequest
             {
                 Id = _id,
                 Page = _page
             };
 
-            private static readonly TraktShowRelatedShowsRequest _request4 = new TraktShowRelatedShowsRequest
+            private static readonly ShowRelatedShowsRequest _request4 = new ShowRelatedShowsRequest
             {
                 Id = _id,
                 Limit = _limit
             };
 
-            private static readonly TraktShowRelatedShowsRequest _request5 = new TraktShowRelatedShowsRequest
+            private static readonly ShowRelatedShowsRequest _request5 = new ShowRelatedShowsRequest
             {
                 Id = _id,
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktShowRelatedShowsRequest _request6 = new TraktShowRelatedShowsRequest
+            private static readonly ShowRelatedShowsRequest _request6 = new ShowRelatedShowsRequest
             {
                 Id = _id,
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktShowRelatedShowsRequest _request7 = new TraktShowRelatedShowsRequest
+            private static readonly ShowRelatedShowsRequest _request7 = new ShowRelatedShowsRequest
             {
                 Id = _id,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowRelatedShowsRequest _request8 = new TraktShowRelatedShowsRequest
+            private static readonly ShowRelatedShowsRequest _request8 = new ShowRelatedShowsRequest
             {
                 Id = _id,
                 ExtendedInfo = _extendedInfo,
@@ -144,7 +144,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktShowRelatedShowsRequest_TestData()
+            public ShowRelatedShowsRequest_TestData()
             {
                 SetupPathParamters();
             }
