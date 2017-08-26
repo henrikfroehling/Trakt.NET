@@ -11,56 +11,56 @@
     using Xunit;
 
     [Category("Requests.Movies.Lists")]
-    public class TraktMoviesBoxOfficeRequest_Tests
+    public class MoviesBoxOfficeRequest_Tests
     {
         [Fact]
-        public void Test_TraktMoviesBoxOfficeRequest_IsNotAbstract()
+        public void Test_MoviesBoxOfficeRequest_IsNotAbstract()
         {
-            typeof(TraktMoviesBoxOfficeRequest).IsAbstract.Should().BeFalse();
+            typeof(MoviesBoxOfficeRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktMoviesBoxOfficeRequest_IsSealed()
+        public void Test_MoviesBoxOfficeRequest_IsSealed()
         {
-            typeof(TraktMoviesBoxOfficeRequest).IsSealed.Should().BeTrue();
+            typeof(MoviesBoxOfficeRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMoviesBoxOfficeRequest_Inherits_ATraktGetRequest_1()
+        public void Test_MoviesBoxOfficeRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktMoviesBoxOfficeRequest).IsSubclassOf(typeof(AGetRequest<ITraktBoxOfficeMovie>)).Should().BeTrue();
+            typeof(MoviesBoxOfficeRequest).IsSubclassOf(typeof(AGetRequest<ITraktBoxOfficeMovie>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMoviesBoxOfficeRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_MoviesBoxOfficeRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktMoviesBoxOfficeRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(MoviesBoxOfficeRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_TraktMoviesBoxOfficeRequest_Has_AuthorizationRequirement_NotRequired()
+        public void Test_MoviesBoxOfficeRequest_Has_AuthorizationRequirement_NotRequired()
         {
-            var requestMock = new TraktMoviesBoxOfficeRequest();
+            var requestMock = new MoviesBoxOfficeRequest();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_TraktMoviesBoxOfficeRequest_Has_Valid_UriTemplate()
+        public void Test_MoviesBoxOfficeRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktMoviesBoxOfficeRequest();
+            var request = new MoviesBoxOfficeRequest();
             request.UriTemplate.Should().Be("movies/boxoffice{?extended}");
         }
 
         [Fact]
-        public void Test_TraktMoviesBoxOfficeRequest_Returns_Valid_UriPathParameters()
+        public void Test_MoviesBoxOfficeRequest_Returns_Valid_UriPathParameters()
         {
             // without extended info
-            var request = new TraktMoviesBoxOfficeRequest();
+            var request = new MoviesBoxOfficeRequest();
             request.GetUriPathParameters().Should().NotBeNull().And.BeEmpty().And.HaveCount(0);
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktMoviesBoxOfficeRequest { ExtendedInfo = extendedInfo };
+            request = new MoviesBoxOfficeRequest { ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)

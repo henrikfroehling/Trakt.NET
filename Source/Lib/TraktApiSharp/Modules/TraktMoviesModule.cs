@@ -602,7 +602,7 @@
                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktMoviesBoxOfficeRequest { ExtendedInfo = extendedInfo }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new MoviesBoxOfficeRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
