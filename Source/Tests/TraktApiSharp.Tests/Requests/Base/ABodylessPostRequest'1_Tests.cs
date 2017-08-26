@@ -42,7 +42,7 @@
         [Fact]
         public void Test_ABodylessPostRequest_1_Implements_ITraktBodylessPostRequest_1_Interface()
         {
-            typeof(ABodylessPostRequest<int>).GetInterfaces().Should().Contain(typeof(ITraktBodylessPostRequest<int>));
+            typeof(ABodylessPostRequest<int>).GetInterfaces().Should().Contain(typeof(IBodylessPostRequest<int>));
         }
 
         [Fact]

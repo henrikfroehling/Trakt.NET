@@ -610,7 +610,7 @@
     <Compile Include="Requests\Episodes\TraktEpisodeListsRequest.cs" />
     <Compile Include="Requests\Episodes\TraktEpisodeTranslationsRequest.cs" />
     <Compile Include="Requests\Handler\TraktHttpRequestMessage.cs" />
-    <Compile Include="Requests\Interfaces\Base\ITraktBodylessPostRequest%271.cs" />
+    <Compile Include="Requests\Interfaces\Base\IBodylessPostRequest%271.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktBodylessPostRequest.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktDeleteRequest.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktGetRequest%271.cs" />

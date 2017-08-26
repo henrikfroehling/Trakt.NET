@@ -1144,7 +1144,7 @@
     <Compile Include="Requests\Genres\TraktGenresMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Genres\TraktGenresShowsRequest_Tests.cs" />
     <Compile Include="Requests\Handler\TraktHttpRequestMessage_Tests.cs" />
-    <Compile Include="Requests\Interfaces\Base\ITraktBodylessPostRequest%271_Tests.cs" />
+    <Compile Include="Requests\Interfaces\Base\IBodylessPostRequest%271_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktBodylessPostRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\ITraktGetRequest%271_Tests.cs" />
