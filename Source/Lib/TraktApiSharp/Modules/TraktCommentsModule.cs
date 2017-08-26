@@ -370,7 +370,7 @@
 
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentReplyRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentReplyRequest
             {
                 Id = commentId.ToString(),
                 RequestBody = new TraktCommentReplyPost

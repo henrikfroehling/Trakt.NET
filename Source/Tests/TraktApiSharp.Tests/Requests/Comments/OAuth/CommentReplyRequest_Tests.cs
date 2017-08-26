@@ -12,58 +12,58 @@
     using Xunit;
 
     [Category("Requests.Comments.OAuth")]
-    public class TraktCommentReplyRequest_Tests
+    public class CommentReplyRequest_Tests
     {
         [Fact]
-        public void Test_TraktCommentReplyRequest_IsNotAbstract()
+        public void Test_CommentReplyRequest_IsNotAbstract()
         {
-            typeof(TraktCommentReplyRequest).IsAbstract.Should().BeFalse();
+            typeof(CommentReplyRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktCommentReplyRequest_IsSealed()
+        public void Test_CommentReplyRequest_IsSealed()
         {
-            typeof(TraktCommentReplyRequest).IsSealed.Should().BeTrue();
+            typeof(CommentReplyRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCommentReplyRequest_Inherits_ATraktPostRequest_2()
+        public void Test_CommentReplyRequest_Inherits_ATraktPostRequest_2()
         {
-            typeof(TraktCommentReplyRequest).IsSubclassOf(typeof(APostRequest<ITraktCommentPostResponse, TraktCommentReplyPost>)).Should().BeTrue();
+            typeof(CommentReplyRequest).IsSubclassOf(typeof(APostRequest<ITraktCommentPostResponse, TraktCommentReplyPost>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCommentReplyRequest_Implements_ITraktHasId_Interface()
+        public void Test_CommentReplyRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktCommentReplyRequest).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(CommentReplyRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_TraktCommentReplyRequest_Has_Valid_UriTemplate()
+        public void Test_CommentReplyRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktCommentReplyRequest();
+            var request = new CommentReplyRequest();
             request.UriTemplate.Should().Be("comments/{id}/replies");
         }
 
         [Fact]
-        public void Test_TraktCommentReplyRequest_Has_AuthorizationRequirement_Required()
+        public void Test_CommentReplyRequest_Has_AuthorizationRequirement_Required()
         {
-            var requestMock = new TraktCommentReplyRequest();
+            var requestMock = new CommentReplyRequest();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktCommentReplyRequest_Returns_Valid_RequestObjectType()
+        public void Test_CommentReplyRequest_Returns_Valid_RequestObjectType()
         {
-            var request = new TraktCommentReplyRequest();
+            var request = new CommentReplyRequest();
             request.RequestObjectType.Should().Be(RequestObjectType.Comments);
         }
 
         [Fact]
-        public void Test_TraktCommentReplyRequest_Returns_Valid_UriPathParameters()
+        public void Test_CommentReplyRequest_Returns_Valid_UriPathParameters()
         {
             // only id
-            var request = new TraktCommentReplyRequest { Id = "123", RequestBody = new TraktCommentReplyPost() };
+            var request = new CommentReplyRequest { Id = "123", RequestBody = new TraktCommentReplyPost() };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -74,28 +74,28 @@
         }
 
         [Fact]
-        public void Test_TraktCommentReplyRequest_Validate_Throws_Exceptions()
+        public void Test_CommentReplyRequest_Validate_Throws_Exceptions()
         {
             // request body is null
-            var request = new TraktCommentReplyRequest { Id = "123" };
+            var request = new CommentReplyRequest { Id = "123" };
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // id is null
-            request = new TraktCommentReplyRequest { RequestBody = null };
+            request = new CommentReplyRequest { RequestBody = null };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktCommentReplyRequest { Id = string.Empty, RequestBody = new TraktCommentReplyPost() };
+            request = new CommentReplyRequest { Id = string.Empty, RequestBody = new TraktCommentReplyPost() };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktCommentReplyRequest { Id = "invalid id", RequestBody = new TraktCommentReplyPost() };
+            request = new CommentReplyRequest { Id = "invalid id", RequestBody = new TraktCommentReplyPost() };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
