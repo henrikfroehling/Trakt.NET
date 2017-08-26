@@ -1143,7 +1143,7 @@
     <Compile Include="Requests\Episodes\TraktEpisodeWatchingUsersRequest_Tests.cs" />
     <Compile Include="Requests\Genres\TraktGenresMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Genres\TraktGenresShowsRequest_Tests.cs" />
-    <Compile Include="Requests\Handler\TraktHttpRequestMessage_Tests.cs" />
+    <Compile Include="Requests\Handler\ExtendedHttpRequestMessage_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\IBodylessPostRequest%271_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\IBodylessPostRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\Base\IDeleteRequest_Tests.cs" />

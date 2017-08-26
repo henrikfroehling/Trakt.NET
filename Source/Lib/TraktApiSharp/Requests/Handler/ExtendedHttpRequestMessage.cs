@@ -4,13 +4,13 @@
     using System;
     using System.Net.Http;
 
-    internal sealed class TraktHttpRequestMessage : HttpRequestMessage
+    internal sealed class ExtendedHttpRequestMessage : HttpRequestMessage
     {
-        internal TraktHttpRequestMessage() { }
+        internal ExtendedHttpRequestMessage() { }
 
-        internal TraktHttpRequestMessage(HttpMethod method, string requestUri) : base(method, requestUri) { }
+        internal ExtendedHttpRequestMessage(HttpMethod method, string requestUri) : base(method, requestUri) { }
 
-        internal TraktHttpRequestMessage(HttpMethod method, Uri requestUri) : base(method, requestUri) { }
+        internal ExtendedHttpRequestMessage(HttpMethod method, Uri requestUri) : base(method, requestUri) { }
 
         public string ObjectId { get; set; }
 

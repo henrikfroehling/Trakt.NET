@@ -10,30 +10,30 @@
     using Xunit;
 
     [Category("Requests.Handler")]
-    public class TraktHttpRequestMessage_Tests
+    public class ExtendedHttpRequestMessage_Tests
     {
         [Fact]
-        public void Test_TraktHttpRequestMessage_Is_Not_Abstract()
+        public void Test_ExtendedHttpRequestMessage_Is_Not_Abstract()
         {
-            typeof(TraktHttpRequestMessage).IsAbstract.Should().BeFalse();
+            typeof(ExtendedHttpRequestMessage).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktHttpRequestMessage_Is_Sealed()
+        public void Test_ExtendedHttpRequestMessage_Is_Sealed()
         {
-            typeof(TraktHttpRequestMessage).IsSealed.Should().BeTrue();
+            typeof(ExtendedHttpRequestMessage).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktHttpRequestMessage_Inherits_HttpRequestMessage()
+        public void Test_ExtendedHttpRequestMessage_Inherits_HttpRequestMessage()
         {
-            typeof(TraktHttpRequestMessage).IsSubclassOf(typeof(HttpRequestMessage)).Should().BeTrue();
+            typeof(ExtendedHttpRequestMessage).IsSubclassOf(typeof(HttpRequestMessage)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktHttpRequestMessage_Has_ObjectId_Property()
+        public void Test_ExtendedHttpRequestMessage_Has_ObjectId_Property()
         {
-            var propertyInfo = typeof(TraktHttpRequestMessage)
+            var propertyInfo = typeof(ExtendedHttpRequestMessage)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "ObjectId")
                     .FirstOrDefault();
@@ -44,9 +44,9 @@
         }
 
         [Fact]
-        public void Test_TraktHttpRequestMessage_Has_SeasonNumber_Property()
+        public void Test_ExtendedHttpRequestMessage_Has_SeasonNumber_Property()
         {
-            var propertyInfo = typeof(TraktHttpRequestMessage)
+            var propertyInfo = typeof(ExtendedHttpRequestMessage)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "SeasonNumber")
                     .FirstOrDefault();
@@ -57,9 +57,9 @@
         }
 
         [Fact]
-        public void Test_TraktHttpRequestMessage_Has_EpisodeNumber_Property()
+        public void Test_ExtendedHttpRequestMessage_Has_EpisodeNumber_Property()
         {
-            var propertyInfo = typeof(TraktHttpRequestMessage)
+            var propertyInfo = typeof(ExtendedHttpRequestMessage)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "EpisodeNumber")
                     .FirstOrDefault();
@@ -70,9 +70,9 @@
         }
 
         [Fact]
-        public void Test_TraktHttpRequestMessage_Has_Url_Property()
+        public void Test_ExtendedHttpRequestMessage_Has_Url_Property()
         {
-            var propertyInfo = typeof(TraktHttpRequestMessage)
+            var propertyInfo = typeof(ExtendedHttpRequestMessage)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Url")
                     .FirstOrDefault();
@@ -83,9 +83,9 @@
         }
 
         [Fact]
-        public void Test_TraktHttpRequestMessage_Has_RequestObjectType_Property()
+        public void Test_ExtendedHttpRequestMessage_Has_RequestObjectType_Property()
         {
-            var propertyInfo = typeof(TraktHttpRequestMessage)
+            var propertyInfo = typeof(ExtendedHttpRequestMessage)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "RequestObjectType")
                     .FirstOrDefault();
@@ -96,9 +96,9 @@
         }
 
         [Fact]
-        public void Test_TraktHttpRequestMessage_Has_RequestBodyJson_Property()
+        public void Test_ExtendedHttpRequestMessage_Has_RequestBodyJson_Property()
         {
-            var propertyInfo = typeof(TraktHttpRequestMessage)
+            var propertyInfo = typeof(ExtendedHttpRequestMessage)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "RequestBodyJson")
                     .FirstOrDefault();

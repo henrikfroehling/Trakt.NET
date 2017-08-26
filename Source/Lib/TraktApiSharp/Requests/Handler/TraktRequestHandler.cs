@@ -130,7 +130,7 @@
 
         // query response helper methods
 
-        private async Task<TraktNoContentResponse> QueryNoContentAsync(TraktHttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task<TraktNoContentResponse> QueryNoContentAsync(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
         {
             HttpResponseMessage responseMessage = null;
 
@@ -154,7 +154,7 @@
             }
         }
 
-        private async Task<TraktResponse<TResponseContentType>> QuerySingleItemAsync<TResponseContentType>(TraktHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task<TraktResponse<TResponseContentType>> QuerySingleItemAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default(CancellationToken))
         {
             HttpResponseMessage responseMessage = null;
 
@@ -197,7 +197,7 @@
             }
         }
 
-        private async Task<TraktListResponse<TResponseContentType>> QueryListAsync<TResponseContentType>(TraktHttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task<TraktListResponse<TResponseContentType>> QueryListAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
         {
             HttpResponseMessage responseMessage = null;
 
@@ -239,7 +239,7 @@
             }
         }
 
-        private async Task<TraktPagedResponse<TResponseContentType>> QueryPagedListAsync<TResponseContentType>(TraktHttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task<TraktPagedResponse<TResponseContentType>> QueryPagedListAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
         {
             HttpResponseMessage responseMessage = null;
 
@@ -284,7 +284,7 @@
             }
         }
 
-        private async Task<HttpResponseMessage> ExecuteRequestAsync(TraktHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task<HttpResponseMessage> ExecuteRequestAsync(ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default(CancellationToken))
         {
             HttpResponseMessage responseMessage = await s_httpClient.SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
@@ -331,52 +331,52 @@
             return $"{_client.Configuration.BaseUrl}{uri}";
         }
 
-        private TraktHttpRequestMessage SetupRequestMessage(IRequest request)
+        private ExtendedHttpRequestMessage SetupRequestMessage(IRequest request)
         {
-            TraktHttpRequestMessage requestMessage = CreateRequestMessage(request);
+            ExtendedHttpRequestMessage requestMessage = CreateRequestMessage(request);
             SetRequestMessageHeadersForAuthorization(requestMessage, request.AuthorizationRequirement);
             return requestMessage;
         }
 
-        private TraktHttpRequestMessage SetupRequestMessage<TRequestBodyType>(IPostRequest<TRequestBodyType> request)
+        private ExtendedHttpRequestMessage SetupRequestMessage<TRequestBodyType>(IPostRequest<TRequestBodyType> request)
         {
-            TraktHttpRequestMessage requestMessage = CreateRequestMessage(request);
+            ExtendedHttpRequestMessage requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);
             SetRequestMessageHeadersForAuthorization(requestMessage, request.AuthorizationRequirement);
             return requestMessage;
         }
 
-        private TraktHttpRequestMessage SetupRequestMessage<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request)
+        private ExtendedHttpRequestMessage SetupRequestMessage<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request)
         {
-            TraktHttpRequestMessage requestMessage = CreateRequestMessage(request);
+            ExtendedHttpRequestMessage requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);
             SetRequestMessageHeadersForAuthorization(requestMessage, request.AuthorizationRequirement);
             return requestMessage;
         }
 
-        private TraktHttpRequestMessage SetupRequestMessage<TRequestBodyType>(IPutRequest<TRequestBodyType> request)
+        private ExtendedHttpRequestMessage SetupRequestMessage<TRequestBodyType>(IPutRequest<TRequestBodyType> request)
         {
-            TraktHttpRequestMessage requestMessage = CreateRequestMessage(request);
+            ExtendedHttpRequestMessage requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);
             SetRequestMessageHeadersForAuthorization(requestMessage, request.AuthorizationRequirement);
             return requestMessage;
         }
 
-        private TraktHttpRequestMessage SetupRequestMessage<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request)
+        private ExtendedHttpRequestMessage SetupRequestMessage<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request)
         {
-            TraktHttpRequestMessage requestMessage = CreateRequestMessage(request);
+            ExtendedHttpRequestMessage requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);
             SetRequestMessageHeadersForAuthorization(requestMessage, request.AuthorizationRequirement);
             return requestMessage;
         }
 
-        private TraktHttpRequestMessage CreateRequestMessage(IRequest request)
+        private ExtendedHttpRequestMessage CreateRequestMessage(IRequest request)
         {
             const string seasonKey = "season";
             const string episodeKey = "episode";
 
             string url = BuildUrl(request);
-            var requestMessage = new TraktHttpRequestMessage(request.Method, url) { Url = url };
+            var requestMessage = new ExtendedHttpRequestMessage(request.Method, url) { Url = url };
 
             if (request is IHasId)
             {
@@ -410,7 +410,7 @@
             return requestMessage;
         }
 
-        private void AddRequestBodyContent<TRequestBodyType>(TraktHttpRequestMessage requestMessage, IHasRequestBody<TRequestBodyType> request)
+        private void AddRequestBodyContent<TRequestBodyType>(ExtendedHttpRequestMessage requestMessage, IHasRequestBody<TRequestBodyType> request)
         {
             if (requestMessage == null)
                 throw new ArgumentNullException(nameof(requestMessage));
@@ -449,7 +449,7 @@
                 httpClient.DefaultRequestHeaders.Accept.Add(appJsonHeader);
         }
 
-        private void SetRequestMessageHeadersForAuthorization(TraktHttpRequestMessage requestMessage, AuthorizationRequirement authorizationRequirement)
+        private void SetRequestMessageHeadersForAuthorization(ExtendedHttpRequestMessage requestMessage, AuthorizationRequirement authorizationRequirement)
         {
             if (requestMessage == null)
                 throw new ArgumentNullException(nameof(requestMessage));
@@ -542,7 +542,7 @@
             }
         }
 
-        private async Task ErrorHandlingAsync(HttpResponseMessage response, TraktHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task ErrorHandlingAsync(HttpResponseMessage response, ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default(CancellationToken))
         {
             var responseContent = string.Empty;
 
@@ -660,7 +660,7 @@
             await HandleUnknownError(responseContent, code, url, requestBodyJson, reasonPhrase, cancellationToken);
         }
 
-        private static void HandleNotFoundStatusCode(TraktHttpRequestMessage requestMessage, string responseContent, string url, string requestBodyJson, string reasonPhrase)
+        private static void HandleNotFoundStatusCode(ExtendedHttpRequestMessage requestMessage, string responseContent, string url, string requestBodyJson, string reasonPhrase)
         {
             RequestObjectType? requestObjectType = requestMessage.RequestObjectType;
 
