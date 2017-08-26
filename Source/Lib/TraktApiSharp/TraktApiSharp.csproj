@@ -719,7 +719,7 @@
     <Compile Include="Requests\Shows\ShowAliasesRequest.cs" />
     <Compile Include="Requests\Shows\ShowCommentsRequest.cs" />
     <Compile Include="Requests\Shows\ShowLastEpisodeRequest.cs" />
-    <Compile Include="Requests\Shows\TraktShowListsRequest.cs" />
+    <Compile Include="Requests\Shows\ShowListsRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowNextEpisodeRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowPeopleRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowRatingsRequest.cs" />

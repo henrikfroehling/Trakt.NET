@@ -197,7 +197,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowListsRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowListsRequest
             {
                 Id = showIdOrSlug,
                 Type = listType,
