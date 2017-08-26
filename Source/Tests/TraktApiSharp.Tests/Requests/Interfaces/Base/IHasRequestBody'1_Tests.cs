@@ -7,25 +7,25 @@
     using Xunit;
 
     [Category("Requests.Interfaces.Base")]
-    public class ITraktHasRequestBody_Tests
+    public class IHasRequestBody_Tests
     {
         [Fact]
-        public void Test_ITraktHasRequestBody_1_Is_Interface()
+        public void Test_IHasRequestBody_1_Is_Interface()
         {
-            typeof(ITraktHasRequestBody<>).IsInterface.Should().BeTrue();
+            typeof(IHasRequestBody<>).IsInterface.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ITraktHasRequestBody_1_Has_GenericTypeParameter()
+        public void Test_IHasRequestBody_1_Has_GenericTypeParameter()
         {
-            typeof(ITraktHasRequestBody<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ITraktHasRequestBody<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+            typeof(IHasRequestBody<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(IHasRequestBody<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
         [Fact]
-        public void Test_ITraktHasRequestBody_1_Has_RequestBody_Property()
+        public void Test_IHasRequestBody_1_Has_RequestBody_Property()
         {
-            var propertyInfo = typeof(ITraktHasRequestBody<int>).GetProperties()
+            var propertyInfo = typeof(IHasRequestBody<int>).GetProperties()
                                                                 .Where(p => p.Name == "RequestBody")
                                                                 .FirstOrDefault();
 

@@ -410,7 +410,7 @@
             return requestMessage;
         }
 
-        private void AddRequestBodyContent<TRequestBodyType>(TraktHttpRequestMessage requestMessage, ITraktHasRequestBody<TRequestBodyType> request)
+        private void AddRequestBodyContent<TRequestBodyType>(TraktHttpRequestMessage requestMessage, IHasRequestBody<TRequestBodyType> request)
         {
             if (requestMessage == null)
                 throw new ArgumentNullException(nameof(requestMessage));
@@ -419,7 +419,7 @@
             requestMessage.RequestBodyJson = requestBodyJson;
         }
 
-        private HttpContent GetRequestBodyContent<TRequestBodyType>(ITraktHasRequestBody<TRequestBodyType> request, out string requestBodyJson)
+        private HttpContent GetRequestBodyContent<TRequestBodyType>(IHasRequestBody<TRequestBodyType> request, out string requestBodyJson)
         {
             TRequestBodyType requestBody = request.RequestBody;
             bool requestBodyIsNull = EqualityComparer<TRequestBodyType>.Default.Equals(requestBody, default(TRequestBodyType));

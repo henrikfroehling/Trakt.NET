@@ -30,7 +30,7 @@
         [Fact]
         public void Test_ITraktPutRequest_2_Inherits_ITraktHasRequestBody_1_Interface()
         {
-            typeof(ITraktPutRequest<int, float>).GetInterfaces().Should().Contain(typeof(ITraktHasRequestBody<float>));
+            typeof(ITraktPutRequest<int, float>).GetInterfaces().Should().Contain(typeof(IHasRequestBody<float>));
         }
     }
 }
