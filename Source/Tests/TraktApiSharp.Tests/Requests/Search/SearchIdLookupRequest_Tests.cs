@@ -14,44 +14,44 @@
     using Xunit;
 
     [Category("Requests.Search")]
-    public class TraktSearchIdLookupRequest_Tests
+    public class SearchIdLookupRequest_Tests
     {
         [Fact]
-        public void Test_TraktSearchIdLookupRequest_IsNotAbstract()
+        public void Test_SearchIdLookupRequest_IsNotAbstract()
         {
-            typeof(TraktSearchIdLookupRequest).IsAbstract.Should().BeFalse();
+            typeof(SearchIdLookupRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktSearchIdLookupRequest_IsSealed()
+        public void Test_SearchIdLookupRequest_IsSealed()
         {
-            typeof(TraktSearchIdLookupRequest).IsSealed.Should().BeTrue();
+            typeof(SearchIdLookupRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSearchIdLookupRequest_Inherits_ATraktSearchRequest()
+        public void Test_SearchIdLookupRequest_Inherits_ATraktSearchRequest()
         {
-            typeof(TraktSearchIdLookupRequest).IsSubclassOf(typeof(ASearchRequest)).Should().BeTrue();
+            typeof(SearchIdLookupRequest).IsSubclassOf(typeof(ASearchRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSearchIdLookupRequest_Has_AuthorizationRequirement_NotRequired()
+        public void Test_SearchIdLookupRequest_Has_AuthorizationRequirement_NotRequired()
         {
-            var request = new TraktSearchIdLookupRequest();
+            var request = new SearchIdLookupRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_TraktSearchIdLookupRequest_Has_Valid_UriTemplate()
+        public void Test_SearchIdLookupRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktSearchIdLookupRequest();
+            var request = new SearchIdLookupRequest();
             request.UriTemplate.Should().Be("search/{id_type}/{id}{?type,extended,page,limit}");
         }
 
         [Fact]
-        public void Test_TraktSearchIdLookupRequest_Has_IdType_Property()
+        public void Test_SearchIdLookupRequest_Has_IdType_Property()
         {
-            var propertyInfo = typeof(TraktSearchIdLookupRequest)
+            var propertyInfo = typeof(SearchIdLookupRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "IdType")
                     .FirstOrDefault();
@@ -62,9 +62,9 @@
         }
 
         [Fact]
-        public void Test_TraktSearchIdLookupRequest_Has_LookupId_Property()
+        public void Test_SearchIdLookupRequest_Has_LookupId_Property()
         {
-            var propertyInfo = typeof(TraktSearchIdLookupRequest)
+            var propertyInfo = typeof(SearchIdLookupRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "LookupId")
                     .FirstOrDefault();
@@ -75,45 +75,45 @@
         }
 
         [Fact]
-        public void Test_TraktSearchIdLookupRequest_Validate_Throws_ArgumentNullException()
+        public void Test_SearchIdLookupRequest_Validate_Throws_ArgumentNullException()
         {
             // no id type set
-            var request = new TraktSearchIdLookupRequest { LookupId = "lookupId" };
+            var request = new SearchIdLookupRequest { LookupId = "lookupId" };
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // no lookup id set
-            request = new TraktSearchIdLookupRequest { IdType = TraktSearchIdType.Trakt };
+            request = new SearchIdLookupRequest { IdType = TraktSearchIdType.Trakt };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
         }
 
         [Fact]
-        public void Test_TraktSearchIdLookupRequest_Validate_Throws_ArgumentException()
+        public void Test_SearchIdLookupRequest_Validate_Throws_ArgumentException()
         {
             // id type is unspecified
-            var request = new TraktSearchIdLookupRequest { LookupId = "lookupId", IdType = TraktSearchIdType.Unspecified };
+            var request = new SearchIdLookupRequest { LookupId = "lookupId", IdType = TraktSearchIdType.Unspecified };
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // lookup id is empty
-            request = new TraktSearchIdLookupRequest { LookupId = string.Empty, IdType = TraktSearchIdType.Trakt };
+            request = new SearchIdLookupRequest { LookupId = string.Empty, IdType = TraktSearchIdType.Trakt };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // lookup id contains spaces
-            request = new TraktSearchIdLookupRequest { LookupId = "lookup id", IdType = TraktSearchIdType.Trakt };
+            request = new SearchIdLookupRequest { LookupId = "lookup id", IdType = TraktSearchIdType.Trakt };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktSearchIdLookupRequest_TestData))]
-        public void Test_TraktSearchIdLookupRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(SearchIdLookupRequest_TestData))]
+        public void Test_SearchIdLookupRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                     IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -122,7 +122,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktSearchIdLookupRequest_TestData : IEnumerable<object[]>
+        public class SearchIdLookupRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktSearchIdType _idType = TraktSearchIdType.Trakt;
             private const string _lookupId = "searchQuery";
@@ -132,41 +132,41 @@
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktSearchIdLookupRequest _request1 = new TraktSearchIdLookupRequest
+            private static readonly SearchIdLookupRequest _request1 = new SearchIdLookupRequest
             {
                 IdType = _idType,
                 LookupId = _lookupId
             };
 
-            private static readonly TraktSearchIdLookupRequest _request2 = new TraktSearchIdLookupRequest
+            private static readonly SearchIdLookupRequest _request2 = new SearchIdLookupRequest
             {
                 IdType = _idType,
                 LookupId = _lookupId,
                 ResultTypes = _resultTypes
             };
 
-            private static readonly TraktSearchIdLookupRequest _request3 = new TraktSearchIdLookupRequest
+            private static readonly SearchIdLookupRequest _request3 = new SearchIdLookupRequest
             {
                 IdType = _idType,
                 LookupId = _lookupId,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktSearchIdLookupRequest _request4 = new TraktSearchIdLookupRequest
+            private static readonly SearchIdLookupRequest _request4 = new SearchIdLookupRequest
             {
                 IdType = _idType,
                 LookupId = _lookupId,
                 Page = _page
             };
 
-            private static readonly TraktSearchIdLookupRequest _request5 = new TraktSearchIdLookupRequest
+            private static readonly SearchIdLookupRequest _request5 = new SearchIdLookupRequest
             {
                 IdType = _idType,
                 LookupId = _lookupId,
                 Limit = _limit
             };
 
-            private static readonly TraktSearchIdLookupRequest _request6 = new TraktSearchIdLookupRequest
+            private static readonly SearchIdLookupRequest _request6 = new SearchIdLookupRequest
             {
                 IdType = _idType,
                 LookupId = _lookupId,
@@ -174,7 +174,7 @@
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktSearchIdLookupRequest _request7 = new TraktSearchIdLookupRequest
+            private static readonly SearchIdLookupRequest _request7 = new SearchIdLookupRequest
             {
                 IdType = _idType,
                 LookupId = _lookupId,
@@ -183,7 +183,7 @@
                 Page = _page
             };
 
-            private static readonly TraktSearchIdLookupRequest _request8 = new TraktSearchIdLookupRequest
+            private static readonly SearchIdLookupRequest _request8 = new SearchIdLookupRequest
             {
                 IdType = _idType,
                 LookupId = _lookupId,
@@ -193,7 +193,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktSearchIdLookupRequest _request9 = new TraktSearchIdLookupRequest
+            private static readonly SearchIdLookupRequest _request9 = new SearchIdLookupRequest
             {
                 IdType = _idType,
                 LookupId = _lookupId,
@@ -201,7 +201,7 @@
                 Page = _page
             };
 
-            private static readonly TraktSearchIdLookupRequest _request10 = new TraktSearchIdLookupRequest
+            private static readonly SearchIdLookupRequest _request10 = new SearchIdLookupRequest
             {
                 IdType = _idType,
                 LookupId = _lookupId,
@@ -210,7 +210,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktSearchIdLookupRequest _request11 = new TraktSearchIdLookupRequest
+            private static readonly SearchIdLookupRequest _request11 = new SearchIdLookupRequest
             {
                 IdType = _idType,
                 LookupId = _lookupId,
@@ -220,7 +220,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktSearchIdLookupRequest_TestData()
+            public SearchIdLookupRequest_TestData()
             {
                 SetupPathParamters();
             }

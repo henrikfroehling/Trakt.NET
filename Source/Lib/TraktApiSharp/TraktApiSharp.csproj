@@ -700,7 +700,7 @@
     <Compile Include="Requests\Scrobbles\OAuth\ScrobbleStartRequest%272.cs" />
     <Compile Include="Requests\Scrobbles\OAuth\ScrobbleStopRequest%272.cs" />
     <Compile Include="Requests\Search\ASearchRequest.cs" />
-    <Compile Include="Requests\Search\TraktSearchIdLookupRequest.cs" />
+    <Compile Include="Requests\Search\SearchIdLookupRequest.cs" />
     <Compile Include="Requests\Search\TraktSearchTextQueryRequest.cs" />
     <Compile Include="Requests\Seasons\ATraktSeasonRequest%271.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonCommentsRequest.cs" />

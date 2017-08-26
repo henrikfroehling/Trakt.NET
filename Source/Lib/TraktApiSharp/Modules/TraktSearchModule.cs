@@ -117,7 +117,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktSearchIdLookupRequest
+            return requestHandler.ExecutePagedRequestAsync(new SearchIdLookupRequest
             {
                 IdType = searchIdType,
                 LookupId = lookupId,
