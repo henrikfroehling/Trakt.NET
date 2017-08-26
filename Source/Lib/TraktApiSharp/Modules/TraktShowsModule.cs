@@ -130,7 +130,7 @@
                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktShowTranslationsRequest { Id = showIdOrSlug, LanguageCode = languageCode }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new ShowTranslationsRequest { Id = showIdOrSlug, LanguageCode = languageCode }, cancellationToken);
         }
 
         /// <summary>

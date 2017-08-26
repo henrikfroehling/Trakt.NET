@@ -11,37 +11,37 @@
     using Xunit;
 
     [Category("Requests.Shows")]
-    public class TraktShowTranslationsRequest_Tests
+    public class ShowTranslationsRequest_Tests
     {
         [Fact]
-        public void Test_TraktShowTranslationsRequest_Is_Not_Abstract()
+        public void Test_ShowTranslationsRequest_Is_Not_Abstract()
         {
-            typeof(TraktShowTranslationsRequest).IsAbstract.Should().BeFalse();
+            typeof(ShowTranslationsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktShowTranslationsRequest_Is_Sealed()
+        public void Test_ShowTranslationsRequest_Is_Sealed()
         {
-            typeof(TraktShowTranslationsRequest).IsSealed.Should().BeTrue();
+            typeof(ShowTranslationsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowTranslationsRequest_Inherits_ATraktShowRequest_1()
+        public void Test_ShowTranslationsRequest_Inherits_ATraktShowRequest_1()
         {
-            typeof(TraktShowTranslationsRequest).IsSubclassOf(typeof(AShowRequest<ITraktShowTranslation>)).Should().BeTrue();
+            typeof(ShowTranslationsRequest).IsSubclassOf(typeof(AShowRequest<ITraktShowTranslation>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowTranslationsRequest_Has_Valid_UriTemplate()
+        public void Test_ShowTranslationsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktShowTranslationsRequest();
+            var request = new ShowTranslationsRequest();
             request.UriTemplate.Should().Be("shows/{id}/translations{/language}");
         }
 
         [Fact]
-        public void Test_TraktShowTranslationsRequest_Has_LanguageCode_Property()
+        public void Test_ShowTranslationsRequest_Has_LanguageCode_Property()
         {
-            var propertyInfo = typeof(TraktShowTranslationsRequest)
+            var propertyInfo = typeof(ShowTranslationsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "LanguageCode")
                     .FirstOrDefault();
@@ -52,10 +52,10 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationsRequest_Returns_Valid_UriPathParameters()
+        public void Test_ShowTranslationsRequest_Returns_Valid_UriPathParameters()
         {
             // without language code
-            var request = new TraktShowTranslationsRequest { Id = "123" };
+            var request = new ShowTranslationsRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -65,7 +65,7 @@
                                                    });
 
             // with language code
-            request = new TraktShowTranslationsRequest { Id = "123", LanguageCode = "en" };
+            request = new ShowTranslationsRequest { Id = "123", LanguageCode = "en" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -77,31 +77,31 @@
         }
 
         [Fact]
-        public void Test_TraktShowTranslationsRequest_Validate_Throws_Exceptions()
+        public void Test_ShowTranslationsRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktShowTranslationsRequest();
+            var request = new ShowTranslationsRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktShowTranslationsRequest { Id = string.Empty };
+            request = new ShowTranslationsRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktShowTranslationsRequest { Id = "invalid id" };
+            request = new ShowTranslationsRequest { Id = "invalid id" };
             act.ShouldThrow<ArgumentException>();
 
             // language code with wrong length
-            request = new TraktShowTranslationsRequest { Id = "123", LanguageCode = "eng" };
+            request = new ShowTranslationsRequest { Id = "123", LanguageCode = "eng" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            request = new TraktShowTranslationsRequest { Id = "123", LanguageCode = "e" };
+            request = new ShowTranslationsRequest { Id = "123", LanguageCode = "e" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentOutOfRangeException>();

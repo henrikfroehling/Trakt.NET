@@ -4,7 +4,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktShowTranslationsRequest : AShowRequest<ITraktShowTranslation>
+    internal sealed class ShowTranslationsRequest : AShowRequest<ITraktShowTranslation>
     {
         internal string LanguageCode { get; set; }
 

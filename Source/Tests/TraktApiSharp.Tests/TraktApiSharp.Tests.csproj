@@ -1238,7 +1238,7 @@
     <Compile Include="Requests\Shows\ShowStatisticsRequest_Tests.cs" />
     <Compile Include="Requests\Shows\ShowsTrendingRequest_Tests.cs" />
     <Compile Include="Requests\Shows\ShowSummaryRequest_Tests.cs" />
-    <Compile Include="Requests\Shows\TraktShowTranslationsRequest_Tests.cs" />
+    <Compile Include="Requests\Shows\ShowTranslationsRequest_Tests.cs" />
     <Compile Include="Requests\Shows\TraktShowWatchingUsersRequest_Tests.cs" />
     <Compile Include="Requests\Handler\RequestHandler_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\ATraktSyncGetRequest%271_Tests.cs" />
