@@ -9,37 +9,37 @@
     using Xunit;
 
     [Category("Requests.Movies")]
-    public class TraktMovieAliasesRequest_Tests
+    public class MovieAliasesRequest_Tests
     {
         [Fact]
-        public void Test_TraktMovieAliasesRequest_IsNotAbstract()
+        public void Test_MovieAliasesRequest_IsNotAbstract()
         {
-            typeof(TraktMovieAliasesRequest).IsAbstract.Should().BeFalse();
+            typeof(MovieAliasesRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktMovieAliasesRequest_IsSealed()
+        public void Test_MovieAliasesRequest_IsSealed()
         {
-            typeof(TraktMovieAliasesRequest).IsSealed.Should().BeTrue();
+            typeof(MovieAliasesRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMovieAliasesRequest_Inherits_ATraktMovieRequest_1()
+        public void Test_MovieAliasesRequest_Inherits_ATraktMovieRequest_1()
         {
-            typeof(TraktMovieAliasesRequest).IsSubclassOf(typeof(AMovieRequest<ITraktMovieAlias>)).Should().BeTrue();
+            typeof(MovieAliasesRequest).IsSubclassOf(typeof(AMovieRequest<ITraktMovieAlias>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMovieAliasesRequest_Has_Valid_UriTemplate()
+        public void Test_MovieAliasesRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktMovieAliasesRequest();
+            var request = new MovieAliasesRequest();
             request.UriTemplate.Should().Be("movies/{id}/aliases");
         }
 
         [Fact]
-        public void Test_TraktMovieAliasesRequest_Returns_Valid_UriPathParameters()
+        public void Test_MovieAliasesRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new TraktMovieAliasesRequest { Id = "123" };
+            var request = new MovieAliasesRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -50,22 +50,22 @@
         }
 
         [Fact]
-        public void Test_TraktMovieAliasesRequest_Validate_Throws_Exceptions()
+        public void Test_MovieAliasesRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktMovieAliasesRequest();
+            var request = new MovieAliasesRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktMovieAliasesRequest { Id = string.Empty };
+            request = new MovieAliasesRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktMovieAliasesRequest { Id = "invalid id" };
+            request = new MovieAliasesRequest { Id = "invalid id" };
             act.ShouldThrow<ArgumentException>();
         }
     }

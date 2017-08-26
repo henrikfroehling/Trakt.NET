@@ -2,7 +2,7 @@
 {
     using Objects.Get.Movies;
 
-    internal sealed class TraktMovieAliasesRequest : AMovieRequest<ITraktMovieAlias>
+    internal sealed class MovieAliasesRequest : AMovieRequest<ITraktMovieAlias>
     {
         public override string UriTemplate => "movies/{id}/aliases";
     }
