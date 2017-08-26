@@ -16,56 +16,56 @@
     using Xunit;
 
     [Category("Requests.Movies.Lists")]
-    public class TraktMoviesRecentlyUpdatedRequest_Tests
+    public class MoviesRecentlyUpdatedRequest_Tests
     {
         [Fact]
-        public void Test_TraktMoviesRecentlyUpdatedRequest_IsNotAbstract()
+        public void Test_MoviesRecentlyUpdatedRequest_IsNotAbstract()
         {
-            typeof(TraktMoviesRecentlyUpdatedRequest).IsAbstract.Should().BeFalse();
+            typeof(MoviesRecentlyUpdatedRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktMoviesRecentlyUpdatedRequest_IsSealed()
+        public void Test_MoviesRecentlyUpdatedRequest_IsSealed()
         {
-            typeof(TraktMoviesRecentlyUpdatedRequest).IsSealed.Should().BeTrue();
+            typeof(MoviesRecentlyUpdatedRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMoviesRecentlyUpdatedRequest_Inherits_ATraktGetRequest_1()
+        public void Test_MoviesRecentlyUpdatedRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktMoviesRecentlyUpdatedRequest).IsSubclassOf(typeof(AGetRequest<ITraktRecentlyUpdatedMovie>)).Should().BeTrue();
+            typeof(MoviesRecentlyUpdatedRequest).IsSubclassOf(typeof(AGetRequest<ITraktRecentlyUpdatedMovie>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMoviesRecentlyUpdatedRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_MoviesRecentlyUpdatedRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktMoviesRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(MoviesRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_TraktMoviesRecentlyUpdatedRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_MoviesRecentlyUpdatedRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktMoviesRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
+            typeof(MoviesRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]
-        public void Test_TraktMoviesRecentlyUpdatedRequest_Has_AuthorizationRequirement_NotRequired()
+        public void Test_MoviesRecentlyUpdatedRequest_Has_AuthorizationRequirement_NotRequired()
         {
-            var requestMock = new TraktMoviesRecentlyUpdatedRequest();
+            var requestMock = new MoviesRecentlyUpdatedRequest();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_TraktMoviesRecentlyUpdatedRequest_Has_Valid_UriTemplate()
+        public void Test_MoviesRecentlyUpdatedRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktMoviesRecentlyUpdatedRequest();
+            var request = new MoviesRecentlyUpdatedRequest();
             request.UriTemplate.Should().Be("movies/updates{/start_date}{?extended,page,limit}");
         }
 
         [Fact]
-        public void Test_TraktMoviesRecentlyUpdatedRequest_Has_StartDate_Property()
+        public void Test_MoviesRecentlyUpdatedRequest_Has_StartDate_Property()
         {
-            var propertyInfo = typeof(TraktMoviesRecentlyUpdatedRequest)
+            var propertyInfo = typeof(MoviesRecentlyUpdatedRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "StartDate")
                     .FirstOrDefault();
@@ -75,8 +75,8 @@
             propertyInfo.PropertyType.Should().Be(typeof(DateTime?));
         }
 
-        [Theory, ClassData(typeof(TraktMoviesRecentlyUpdatedRequest_TestData))]
-        public void Test_TraktMoviesRecentlyUpdatedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(MoviesRecentlyUpdatedRequest_TestData))]
+        public void Test_MoviesRecentlyUpdatedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                            IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -85,86 +85,86 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktMoviesRecentlyUpdatedRequest_TestData : IEnumerable<object[]>
+        public class MoviesRecentlyUpdatedRequest_TestData : IEnumerable<object[]>
         {
             private static readonly DateTime _startDate = DateTime.Now;
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktMoviesRecentlyUpdatedRequest _request1 = new TraktMoviesRecentlyUpdatedRequest();
+            private static readonly MoviesRecentlyUpdatedRequest _request1 = new MoviesRecentlyUpdatedRequest();
 
-            private static readonly TraktMoviesRecentlyUpdatedRequest _request2 = new TraktMoviesRecentlyUpdatedRequest
+            private static readonly MoviesRecentlyUpdatedRequest _request2 = new MoviesRecentlyUpdatedRequest
             {
                 StartDate = _startDate
             };
 
-            private static readonly TraktMoviesRecentlyUpdatedRequest _request3 = new TraktMoviesRecentlyUpdatedRequest
+            private static readonly MoviesRecentlyUpdatedRequest _request3 = new MoviesRecentlyUpdatedRequest
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktMoviesRecentlyUpdatedRequest _request4 = new TraktMoviesRecentlyUpdatedRequest
+            private static readonly MoviesRecentlyUpdatedRequest _request4 = new MoviesRecentlyUpdatedRequest
             {
                 Page = _page
             };
 
-            private static readonly TraktMoviesRecentlyUpdatedRequest _request5 = new TraktMoviesRecentlyUpdatedRequest
+            private static readonly MoviesRecentlyUpdatedRequest _request5 = new MoviesRecentlyUpdatedRequest
             {
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesRecentlyUpdatedRequest _request6 = new TraktMoviesRecentlyUpdatedRequest
+            private static readonly MoviesRecentlyUpdatedRequest _request6 = new MoviesRecentlyUpdatedRequest
             {
                 StartDate = _startDate,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktMoviesRecentlyUpdatedRequest _request7 = new TraktMoviesRecentlyUpdatedRequest
+            private static readonly MoviesRecentlyUpdatedRequest _request7 = new MoviesRecentlyUpdatedRequest
             {
                 StartDate = _startDate,
                 Page = _page
             };
 
-            private static readonly TraktMoviesRecentlyUpdatedRequest _request8 = new TraktMoviesRecentlyUpdatedRequest
+            private static readonly MoviesRecentlyUpdatedRequest _request8 = new MoviesRecentlyUpdatedRequest
             {
                 StartDate = _startDate,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesRecentlyUpdatedRequest _request9 = new TraktMoviesRecentlyUpdatedRequest
+            private static readonly MoviesRecentlyUpdatedRequest _request9 = new MoviesRecentlyUpdatedRequest
             {
                 StartDate = _startDate,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesRecentlyUpdatedRequest _request10 = new TraktMoviesRecentlyUpdatedRequest
+            private static readonly MoviesRecentlyUpdatedRequest _request10 = new MoviesRecentlyUpdatedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktMoviesRecentlyUpdatedRequest _request11 = new TraktMoviesRecentlyUpdatedRequest
+            private static readonly MoviesRecentlyUpdatedRequest _request11 = new MoviesRecentlyUpdatedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesRecentlyUpdatedRequest _request12 = new TraktMoviesRecentlyUpdatedRequest
+            private static readonly MoviesRecentlyUpdatedRequest _request12 = new MoviesRecentlyUpdatedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesRecentlyUpdatedRequest _request13 = new TraktMoviesRecentlyUpdatedRequest
+            private static readonly MoviesRecentlyUpdatedRequest _request13 = new MoviesRecentlyUpdatedRequest
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesRecentlyUpdatedRequest _request14 = new TraktMoviesRecentlyUpdatedRequest
+            private static readonly MoviesRecentlyUpdatedRequest _request14 = new MoviesRecentlyUpdatedRequest
             {
                 StartDate = _startDate,
                 ExtendedInfo = _extendedInfo,
@@ -174,7 +174,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktMoviesRecentlyUpdatedRequest_TestData()
+            public MoviesRecentlyUpdatedRequest_TestData()
             {
                 SetupPathParamters();
             }

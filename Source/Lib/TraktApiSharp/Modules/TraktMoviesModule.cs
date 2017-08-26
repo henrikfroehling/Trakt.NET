@@ -634,7 +634,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesRecentlyUpdatedRequest
+            return requestHandler.ExecutePagedRequestAsync(new MoviesRecentlyUpdatedRequest
             {
                 StartDate = startDate,
                 ExtendedInfo = extendedInfo,
