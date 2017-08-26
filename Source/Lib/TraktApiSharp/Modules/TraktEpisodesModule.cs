@@ -62,7 +62,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktEpisodeSummaryRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new EpisodeSummaryRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
