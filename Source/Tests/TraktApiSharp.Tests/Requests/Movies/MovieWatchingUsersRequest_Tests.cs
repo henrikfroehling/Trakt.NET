@@ -11,44 +11,44 @@
     using Xunit;
 
     [Category("Requests.Movies")]
-    public class TraktMovieWatchingUsersRequest_Tests
+    public class MovieWatchingUsersRequest_Tests
     {
         [Fact]
-        public void Test_TraktMovieWatchingUsersRequest_IsNotAbstract()
+        public void Test_MovieWatchingUsersRequest_IsNotAbstract()
         {
-            typeof(TraktMovieWatchingUsersRequest).IsAbstract.Should().BeFalse();
+            typeof(MovieWatchingUsersRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktMovieWatchingUsersRequest_IsSealed()
+        public void Test_MovieWatchingUsersRequest_IsSealed()
         {
-            typeof(TraktMovieWatchingUsersRequest).IsSealed.Should().BeTrue();
+            typeof(MovieWatchingUsersRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMovieWatchingUsersRequest_Inherits_ATraktMovieRequest_1()
+        public void Test_MovieWatchingUsersRequest_Inherits_ATraktMovieRequest_1()
         {
-            typeof(TraktMovieWatchingUsersRequest).IsSubclassOf(typeof(AMovieRequest<ITraktUser>)).Should().BeTrue();
+            typeof(MovieWatchingUsersRequest).IsSubclassOf(typeof(AMovieRequest<ITraktUser>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMovieWatchingUsersRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_MovieWatchingUsersRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktMovieWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(MovieWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_TraktMovieWatchingUsersRequest_Has_Valid_UriTemplate()
+        public void Test_MovieWatchingUsersRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktMovieWatchingUsersRequest();
+            var request = new MovieWatchingUsersRequest();
             request.UriTemplate.Should().Be("movies/{id}/watching{?extended}");
         }
 
         [Fact]
-        public void Test_TraktMovieWatchingUsersRequest_Returns_Valid_UriPathParameters()
+        public void Test_MovieWatchingUsersRequest_Returns_Valid_UriPathParameters()
         {
             // without extended info
-            var request = new TraktMovieWatchingUsersRequest { Id = "123" };
+            var request = new MovieWatchingUsersRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -59,7 +59,7 @@
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktMovieWatchingUsersRequest { Id = "123", ExtendedInfo = extendedInfo };
+            request = new MovieWatchingUsersRequest { Id = "123", ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -71,22 +71,22 @@
         }
 
         [Fact]
-        public void Test_TraktMovieWatchingUsersRequest_Validate_Throws_Exceptions()
+        public void Test_MovieWatchingUsersRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktMovieWatchingUsersRequest();
+            var request = new MovieWatchingUsersRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktMovieWatchingUsersRequest { Id = string.Empty };
+            request = new MovieWatchingUsersRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktMovieWatchingUsersRequest { Id = "invalid id" };
+            request = new MovieWatchingUsersRequest { Id = "invalid id" };
             act.ShouldThrow<ArgumentException>();
         }
     }
