@@ -42,7 +42,7 @@
         public void Test_TraktPersonMovieCreditsRequest_Returns_Valid_RequestObjectType()
         {
             var request = new TraktPersonMovieCreditsRequest();
-            request.RequestObjectType.Should().Be(TraktRequestObjectType.People);
+            request.RequestObjectType.Should().Be(RequestObjectType.People);
         }
 
         [Fact]

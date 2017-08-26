@@ -4,7 +4,7 @@
 
     internal sealed class TraktUserRecommendationHideMovieRequest : ATraktUserRecommendationHideRequest
     {
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Movies;
+        public override RequestObjectType RequestObjectType => RequestObjectType.Movies;
 
         public override string UriTemplate => "recommendations/movies/{id}";
     }

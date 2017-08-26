@@ -56,7 +56,7 @@
         public void Test_TraktCommentReplyRequest_Returns_Valid_RequestObjectType()
         {
             var request = new TraktCommentReplyRequest();
-            request.RequestObjectType.Should().Be(TraktRequestObjectType.Comments);
+            request.RequestObjectType.Should().Be(RequestObjectType.Comments);
         }
 
         [Fact]

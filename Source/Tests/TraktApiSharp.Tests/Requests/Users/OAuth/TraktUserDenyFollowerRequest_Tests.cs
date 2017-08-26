@@ -40,7 +40,7 @@
         public void Test_TraktUserDenyFollowerRequest_Returns_Valid_RequestObjectType()
         {
             var requestMock = new TraktUserDenyFollowerRequest();
-            requestMock.RequestObjectType.Should().Be(TraktRequestObjectType.Unspecified);
+            requestMock.RequestObjectType.Should().Be(RequestObjectType.Unspecified);
         }
 
         [Fact]

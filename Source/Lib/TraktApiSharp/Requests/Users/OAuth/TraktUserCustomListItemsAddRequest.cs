@@ -14,7 +14,7 @@
 
         internal TraktListItemType Type { get; set; }
 
-        public override TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
+        public override RequestObjectType RequestObjectType => RequestObjectType.Lists;
 
         public override string UriTemplate => "users/{username}/lists/{id}/items{/type}";
 

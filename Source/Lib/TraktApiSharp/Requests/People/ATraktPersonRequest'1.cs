@@ -13,7 +13,7 @@
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.People;
+        public RequestObjectType RequestObjectType => RequestObjectType.People;
 
         public override IDictionary<string, object> GetUriPathParameters()
         {

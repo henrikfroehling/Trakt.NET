@@ -55,7 +55,7 @@
         public void Test_TraktUserListUnlikeRequest_Returns_Valid_RequestObjectType()
         {
             var requestMock = new TraktUserListUnlikeRequest();
-            requestMock.RequestObjectType.Should().Be(TraktRequestObjectType.Lists);
+            requestMock.RequestObjectType.Should().Be(RequestObjectType.Lists);
         }
 
         [Fact]

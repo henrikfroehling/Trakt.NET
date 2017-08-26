@@ -1019,7 +1019,7 @@
     <Compile Include="Requests\UriTemplates\VarSpec.cs" />
     <Compile Include="Requests\Base\AuthorizationRequirement.cs" />
     <Compile Include="Requests\Parameters\TraktExtendedInfo.cs" />
-    <Compile Include="Requests\Base\TraktRequestObjectType.cs" />
+    <Compile Include="Requests\Base\RequestObjectType.cs" />
     <Compile Include="Services\TraktLanguageService.cs" />
     <Compile Include="TraktClient.cs" />
   </ItemGroup>

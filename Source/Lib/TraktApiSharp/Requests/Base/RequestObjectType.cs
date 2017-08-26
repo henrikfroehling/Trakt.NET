@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Base
 {
-    internal enum TraktRequestObjectType
+    internal enum RequestObjectType
     {
         Unspecified,
         Movies,

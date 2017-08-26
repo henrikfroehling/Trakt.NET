@@ -42,7 +42,7 @@
         public void Test_TraktPersonShowCreditsRequest_Returns_Valid_RequestObjectType()
         {
             var request = new TraktPersonShowCreditsRequest();
-            request.RequestObjectType.Should().Be(TraktRequestObjectType.People);
+            request.RequestObjectType.Should().Be(RequestObjectType.People);
         }
 
         [Fact]

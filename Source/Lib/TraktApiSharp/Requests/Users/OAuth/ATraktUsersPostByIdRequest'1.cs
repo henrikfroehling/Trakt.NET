@@ -10,7 +10,7 @@
     {
         public string Id { get; set; }
 
-        public abstract TraktRequestObjectType RequestObjectType { get; }
+        public abstract RequestObjectType RequestObjectType { get; }
 
         public override TRequestBodyType RequestBody { get; set; }
 

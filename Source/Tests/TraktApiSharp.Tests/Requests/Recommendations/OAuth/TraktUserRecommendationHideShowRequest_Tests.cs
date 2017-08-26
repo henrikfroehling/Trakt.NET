@@ -40,7 +40,7 @@
         public void Test_TraktUserRecommendationHideShowRequest_Returns_Valid_RequestObjectType()
         {
             var request = new TraktUserRecommendationHideShowRequest();
-            request.RequestObjectType.Should().Be(TraktRequestObjectType.Shows);
+            request.RequestObjectType.Should().Be(RequestObjectType.Shows);
         }
 
         [Fact]

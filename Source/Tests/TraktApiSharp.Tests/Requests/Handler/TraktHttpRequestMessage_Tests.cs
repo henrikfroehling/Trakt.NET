@@ -92,7 +92,7 @@
 
             propertyInfo.CanRead.Should().BeTrue();
             propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktRequestObjectType?));
+            propertyInfo.PropertyType.Should().Be(typeof(RequestObjectType?));
         }
 
         [Fact]

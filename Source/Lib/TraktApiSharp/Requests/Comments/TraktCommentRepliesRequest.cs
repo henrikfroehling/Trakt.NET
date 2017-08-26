@@ -11,7 +11,7 @@
     {
         public string Id { get; set; }
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Comments;
+        public RequestObjectType RequestObjectType => RequestObjectType.Comments;
 
         public uint? Page { get; set; }
 

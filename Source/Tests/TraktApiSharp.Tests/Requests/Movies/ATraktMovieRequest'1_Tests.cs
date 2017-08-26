@@ -53,7 +53,7 @@
         public void Test_ATraktMovieRequest_1_Returns_Valid_RequestObjectType()
         {
             var requestMock = new TraktMovieRequestMock();
-            requestMock.RequestObjectType.Should().Be(TraktRequestObjectType.Movies);
+            requestMock.RequestObjectType.Should().Be(RequestObjectType.Movies);
         }
 
         [Fact]

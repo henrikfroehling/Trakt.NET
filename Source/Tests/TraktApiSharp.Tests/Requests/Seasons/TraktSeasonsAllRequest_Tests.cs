@@ -78,7 +78,7 @@
         public void Test_TraktSeasonsAllRequest_Returns_Valid_RequestObjectType()
         {
             var requestMock = new TraktSeasonsAllRequest();
-            requestMock.RequestObjectType.Should().Be(TraktRequestObjectType.Shows);
+            requestMock.RequestObjectType.Should().Be(RequestObjectType.Shows);
         }
 
         [Fact]

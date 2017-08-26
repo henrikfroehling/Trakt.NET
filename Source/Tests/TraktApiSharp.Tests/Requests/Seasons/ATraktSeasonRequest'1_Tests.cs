@@ -55,7 +55,7 @@
         public void Test_ATraktSeasonRequest_1_Returns_Valid_RequestObjectType()
         {
             var requestMock = new TraktSeasonRequestMock();
-            requestMock.RequestObjectType.Should().Be(TraktRequestObjectType.Seasons);
+            requestMock.RequestObjectType.Should().Be(RequestObjectType.Seasons);
         }
 
         [Fact]

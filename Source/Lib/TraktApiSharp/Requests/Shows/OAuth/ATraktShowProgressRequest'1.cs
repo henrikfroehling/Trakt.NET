@@ -18,7 +18,7 @@
 
         public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+        public RequestObjectType RequestObjectType => RequestObjectType.Shows;
 
         public override IDictionary<string, object> GetUriPathParameters()
         {

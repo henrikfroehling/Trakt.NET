@@ -55,7 +55,7 @@
         public void Test_ATraktEpisodeRequest_1_Returns_Valid_RequestObjectType()
         {
             var requestMock = new TraktEpisodeRequestMock();
-            requestMock.RequestObjectType.Should().Be(TraktRequestObjectType.Episodes);
+            requestMock.RequestObjectType.Should().Be(RequestObjectType.Episodes);
         }
 
         [Fact]

@@ -10,7 +10,7 @@
     {
         public string Id { get; set; }
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Unspecified;
+        public RequestObjectType RequestObjectType => RequestObjectType.Unspecified;
 
         public override string UriTemplate => "sync/playback/{id}";
 

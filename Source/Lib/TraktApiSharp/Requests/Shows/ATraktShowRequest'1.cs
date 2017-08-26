@@ -10,7 +10,7 @@
     {
         public string Id { get; set; }
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+        public RequestObjectType RequestObjectType => RequestObjectType.Shows;
 
         public override IDictionary<string, object> GetUriPathParameters()
             => new Dictionary<string, object>

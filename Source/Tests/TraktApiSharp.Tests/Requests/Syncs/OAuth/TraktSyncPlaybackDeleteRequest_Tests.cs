@@ -47,7 +47,7 @@
         public void Test_TraktSyncPlaybackDeleteRequest_Returns_Valid_RequestObjectType()
         {
             var requestMock = new TraktSyncPlaybackDeleteRequest();
-            requestMock.RequestObjectType.Should().Be(TraktRequestObjectType.Unspecified);
+            requestMock.RequestObjectType.Should().Be(RequestObjectType.Unspecified);
         }
 
         [Fact]

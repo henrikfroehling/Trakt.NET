@@ -16,7 +16,7 @@
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Shows;
+        public RequestObjectType RequestObjectType => RequestObjectType.Shows;
 
         public override string UriTemplate => "shows/{id}/seasons{?extended,translations}";
 

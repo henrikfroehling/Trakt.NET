@@ -4,6 +4,6 @@
 
     internal interface ITraktObjectRequest
     {
-        TraktRequestObjectType RequestObjectType { get; }
+        RequestObjectType RequestObjectType { get; }
     }
 }

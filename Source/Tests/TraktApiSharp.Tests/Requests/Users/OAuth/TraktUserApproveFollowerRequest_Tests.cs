@@ -48,7 +48,7 @@
         public void Test_TraktUserApproveFollowerRequest_Returns_Valid_RequestObjectType()
         {
             var requestMock = new TraktUserApproveFollowerRequest();
-            requestMock.RequestObjectType.Should().Be(TraktRequestObjectType.Unspecified);
+            requestMock.RequestObjectType.Should().Be(RequestObjectType.Unspecified);
         }
 
         [Fact]

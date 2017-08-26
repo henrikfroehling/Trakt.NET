@@ -56,7 +56,7 @@
         public void Test_ATraktShowProgressRequest_1_Returns_Valid_RequestObjectType()
         {
             var requestMock = new TraktShowProgressRequestMock();
-            requestMock.RequestObjectType.Should().Be(TraktRequestObjectType.Shows);
+            requestMock.RequestObjectType.Should().Be(RequestObjectType.Shows);
         }
 
         [Fact]

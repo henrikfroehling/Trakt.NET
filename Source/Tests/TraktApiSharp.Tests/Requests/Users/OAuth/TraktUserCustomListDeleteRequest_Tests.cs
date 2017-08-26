@@ -55,7 +55,7 @@
         public void Test_TraktUserCustomListDeleteRequest_Returns_Valid_RequestObjectType()
         {
             var requestMock = new TraktUserCustomListDeleteRequest();
-            requestMock.RequestObjectType.Should().Be(TraktRequestObjectType.Lists);
+            requestMock.RequestObjectType.Should().Be(RequestObjectType.Lists);
         }
 
         [Fact]

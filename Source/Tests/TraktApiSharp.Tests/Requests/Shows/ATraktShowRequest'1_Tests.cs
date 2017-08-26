@@ -53,7 +53,7 @@
         public void Test_ATraktShowRequest_1_Returns_Valid_RequestObjectType()
         {
             var requestMock = new TraktShowRequestMock();
-            requestMock.RequestObjectType.Should().Be(TraktRequestObjectType.Shows);
+            requestMock.RequestObjectType.Should().Be(RequestObjectType.Shows);
         }
 
         [Fact]

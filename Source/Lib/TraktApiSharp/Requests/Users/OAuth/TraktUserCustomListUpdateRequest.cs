@@ -16,7 +16,7 @@
 
         public override TraktUserCustomListPost RequestBody { get; set; }
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Lists;
+        public RequestObjectType RequestObjectType => RequestObjectType.Lists;
 
         public override string UriTemplate => "users/{username}/lists/{id}";
 

@@ -14,7 +14,7 @@
 
         internal uint EpisodeNumber { get; set; }
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Episodes;
+        public RequestObjectType RequestObjectType => RequestObjectType.Episodes;
 
         public override IDictionary<string, object> GetUriPathParameters()
             => new Dictionary<string, object>

@@ -71,7 +71,7 @@
         public void Test_TraktUserCustomListItemsAddRequest_Returns_Valid_RequestObjectType()
         {
             var requestMock = new TraktUserCustomListItemsAddRequest();
-            requestMock.RequestObjectType.Should().Be(TraktRequestObjectType.Lists);
+            requestMock.RequestObjectType.Should().Be(RequestObjectType.Lists);
         }
 
         [Fact]

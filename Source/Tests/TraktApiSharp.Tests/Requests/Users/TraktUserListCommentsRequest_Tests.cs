@@ -58,7 +58,7 @@
         public void Test_TraktUserListCommentsRequest_Returns_Valid_RequestObjectType()
         {
             var requestMock = new TraktUserListCommentsRequest();
-            requestMock.RequestObjectType.Should().Be(TraktRequestObjectType.Lists);
+            requestMock.RequestObjectType.Should().Be(RequestObjectType.Lists);
         }
 
         [Fact]

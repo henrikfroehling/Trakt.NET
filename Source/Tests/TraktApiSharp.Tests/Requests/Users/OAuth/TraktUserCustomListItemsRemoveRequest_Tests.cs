@@ -57,7 +57,7 @@
         public void Test_TraktUserCustomListItemsRemoveRequest_Returns_Valid_RequestObjectType()
         {
             var requestMock = new TraktUserCustomListItemsRemoveRequest();
-            requestMock.RequestObjectType.Should().Be(TraktRequestObjectType.Lists);
+            requestMock.RequestObjectType.Should().Be(RequestObjectType.Lists);
         }
 
         [Fact]

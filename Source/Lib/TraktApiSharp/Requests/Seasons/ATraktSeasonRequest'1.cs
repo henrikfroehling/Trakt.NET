@@ -12,7 +12,7 @@
 
         internal uint SeasonNumber { get; set; }
 
-        public virtual TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Seasons;
+        public virtual RequestObjectType RequestObjectType => RequestObjectType.Seasons;
 
         public override IDictionary<string, object> GetUriPathParameters()
             => new Dictionary<string, object>

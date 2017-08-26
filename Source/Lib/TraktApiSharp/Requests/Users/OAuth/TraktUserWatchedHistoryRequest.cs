@@ -22,7 +22,7 @@
 
         public string Id { get; set; }
 
-        public TraktRequestObjectType RequestObjectType => TraktRequestObjectType.Unspecified;
+        public RequestObjectType RequestObjectType => RequestObjectType.Unspecified;
 
         public override string UriTemplate => "users/{username}/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}";
 

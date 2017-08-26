@@ -48,7 +48,7 @@
         public void Test_TraktCommentSummaryRequest_Returns_Valid_RequestObjectType()
         {
             var request = new TraktCommentSummaryRequest();
-            request.RequestObjectType.Should().Be(TraktRequestObjectType.Comments);
+            request.RequestObjectType.Should().Be(RequestObjectType.Comments);
         }
 
         [Fact]

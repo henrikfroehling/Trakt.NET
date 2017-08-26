@@ -40,7 +40,7 @@
         public void Test_TraktUserRecommendationHideMovieRequest_Returns_Valid_RequestObjectType()
         {
             var request = new TraktUserRecommendationHideMovieRequest();
-            request.RequestObjectType.Should().Be(TraktRequestObjectType.Movies);
+            request.RequestObjectType.Should().Be(RequestObjectType.Movies);
         }
 
         [Fact]

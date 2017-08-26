@@ -662,7 +662,7 @@
 
         private static void HandleNotFoundStatusCode(TraktHttpRequestMessage requestMessage, string responseContent, string url, string requestBodyJson, string reasonPhrase)
         {
-            TraktRequestObjectType? requestObjectType = requestMessage.RequestObjectType;
+            RequestObjectType? requestObjectType = requestMessage.RequestObjectType;
 
             if (requestObjectType.HasValue)
             {
@@ -672,7 +672,7 @@
 
                 switch (requestObjectType.Value)
                 {
-                    case TraktRequestObjectType.Episodes:
+                    case RequestObjectType.Episodes:
                         throw new TraktEpisodeNotFoundException(objectId, seasonNr, episodeNr)
                         {
                             RequestUrl = url,
@@ -680,7 +680,7 @@
                             Response = responseContent,
                             ServerReasonPhrase = reasonPhrase
                         };
-                    case TraktRequestObjectType.Seasons:
+                    case RequestObjectType.Seasons:
                         throw new TraktSeasonNotFoundException(objectId, seasonNr)
                         {
                             RequestUrl = url,
@@ -688,7 +688,7 @@
                             Response = responseContent,
                             ServerReasonPhrase = reasonPhrase
                         };
-                    case TraktRequestObjectType.Shows:
+                    case RequestObjectType.Shows:
                         throw new TraktShowNotFoundException(objectId)
                         {
                             RequestUrl = url,
@@ -696,7 +696,7 @@
                             Response = responseContent,
                             ServerReasonPhrase = reasonPhrase
                         };
-                    case TraktRequestObjectType.Movies:
+                    case RequestObjectType.Movies:
                         throw new TraktMovieNotFoundException(objectId)
                         {
                             RequestUrl = url,
@@ -704,7 +704,7 @@
                             Response = responseContent,
                             ServerReasonPhrase = reasonPhrase
                         };
-                    case TraktRequestObjectType.People:
+                    case RequestObjectType.People:
                         throw new TraktPersonNotFoundException(objectId)
                         {
                             RequestUrl = url,
@@ -712,7 +712,7 @@
                             Response = responseContent,
                             ServerReasonPhrase = reasonPhrase
                         };
-                    case TraktRequestObjectType.Comments:
+                    case RequestObjectType.Comments:
                         throw new TraktCommentNotFoundException(objectId)
                         {
                             RequestUrl = url,
@@ -720,7 +720,7 @@
                             Response = responseContent,
                             ServerReasonPhrase = reasonPhrase
                         };
-                    case TraktRequestObjectType.Lists:
+                    case RequestObjectType.Lists:
                         throw new TraktListNotFoundException(objectId)
                         {
                             RequestUrl = url,

@@ -60,7 +60,7 @@
         public void Test_ATraktPersonRequest_1_Returns_Valid_RequestObjectType()
         {
             var requestMock = new TraktPersonRequestMock();
-            requestMock.RequestObjectType.Should().Be(TraktRequestObjectType.People);
+            requestMock.RequestObjectType.Should().Be(RequestObjectType.People);
         }
 
         [Fact]

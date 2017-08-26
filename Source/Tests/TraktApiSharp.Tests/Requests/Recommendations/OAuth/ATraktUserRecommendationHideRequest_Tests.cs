@@ -14,7 +14,7 @@
     {
         internal class TraktUserRecommendationHideRequestMock : ATraktUserRecommendationHideRequest
         {
-            public override TraktRequestObjectType RequestObjectType { get { throw new NotImplementedException(); } }
+            public override RequestObjectType RequestObjectType { get { throw new NotImplementedException(); } }
 
             public override string UriTemplate { get { throw new NotImplementedException(); } }
         }
