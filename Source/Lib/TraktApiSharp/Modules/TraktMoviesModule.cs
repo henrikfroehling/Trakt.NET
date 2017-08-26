@@ -376,7 +376,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesTrendingRequest
+            return requestHandler.ExecutePagedRequestAsync(new MoviesTrendingRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
