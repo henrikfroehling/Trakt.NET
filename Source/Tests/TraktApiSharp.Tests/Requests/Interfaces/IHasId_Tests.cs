@@ -18,7 +18,7 @@
         [Fact]
         public void Test_IHasId_Inherits_ITraktObjectRequest_Interface()
         {
-            typeof(IHasId).GetInterfaces().Should().Contain(typeof(ITraktObjectRequest));
+            typeof(IHasId).GetInterfaces().Should().Contain(typeof(IObjectRequest));
         }
 
         [Fact]

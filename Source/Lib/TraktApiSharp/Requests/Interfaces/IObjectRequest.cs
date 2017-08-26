@@ -2,7 +2,7 @@
 {
     using Requests.Base;
 
-    internal interface ITraktObjectRequest
+    internal interface IObjectRequest
     {
         RequestObjectType RequestObjectType { get; }
     }

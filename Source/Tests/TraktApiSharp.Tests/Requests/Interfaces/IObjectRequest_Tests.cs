@@ -8,18 +8,18 @@
     using Xunit;
 
     [Category("Requests.Interfaces")]
-    public class ITraktObjectRequest_Tests
+    public class IObjectRequest_Tests
     {
         [Fact]
-        public void Test_ITraktObjectRequest_Is_Interface()
+        public void Test_IObjectRequest_Is_Interface()
         {
-            typeof(ITraktObjectRequest).IsInterface.Should().BeTrue();
+            typeof(IObjectRequest).IsInterface.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ITraktObjectRequest_Has_RequestObjectType_Property()
+        public void Test_IObjectRequest_Has_RequestObjectType_Property()
         {
-            var propertyInfo = typeof(ITraktObjectRequest).GetProperties()
+            var propertyInfo = typeof(IObjectRequest).GetProperties()
                                                           .Where(p => p.Name == "RequestObjectType")
                                                           .FirstOrDefault();
 
