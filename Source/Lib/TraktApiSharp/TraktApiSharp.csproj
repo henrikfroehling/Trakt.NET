@@ -706,7 +706,7 @@
     <Compile Include="Requests\Seasons\SeasonCommentsRequest.cs" />
     <Compile Include="Requests\Seasons\SeasonListsRequest.cs" />
     <Compile Include="Requests\Seasons\SeasonRatingsRequest.cs" />
-    <Compile Include="Requests\Seasons\TraktSeasonsAllRequest.cs" />
+    <Compile Include="Requests\Seasons\SeasonsAllRequest.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonSingleRequest.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonStatisticsRequest.cs" />
     <Compile Include="Requests\Seasons\TraktSeasonWatchingUsersRequest.cs" />

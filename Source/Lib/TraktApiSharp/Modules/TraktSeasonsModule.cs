@@ -64,7 +64,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktSeasonsAllRequest
+            return requestHandler.ExecuteListRequestAsync(new SeasonsAllRequest
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo,
