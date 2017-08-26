@@ -110,7 +110,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktPersonMovieCreditsRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new PersonMovieCreditsRequest
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo

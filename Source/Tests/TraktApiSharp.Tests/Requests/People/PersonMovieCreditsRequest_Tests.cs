@@ -11,52 +11,52 @@
     using Xunit;
 
     [Category("Requests.People")]
-    public class TraktPersonMovieCreditsRequest_Tests
+    public class PersonMovieCreditsRequest_Tests
     {
         [Fact]
-        public void Test_TraktPersonMovieCreditsRequest_IsNotAbstract()
+        public void Test_PersonMovieCreditsRequest_IsNotAbstract()
         {
-            typeof(TraktPersonMovieCreditsRequest).IsAbstract.Should().BeFalse();
+            typeof(PersonMovieCreditsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktPersonMovieCreditsRequest_IsSealed()
+        public void Test_PersonMovieCreditsRequest_IsSealed()
         {
-            typeof(TraktPersonMovieCreditsRequest).IsSealed.Should().BeTrue();
+            typeof(PersonMovieCreditsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktPersonMovieCreditsRequest_Inherits_ATraktPersonRequest_1()
+        public void Test_PersonMovieCreditsRequest_Inherits_ATraktPersonRequest_1()
         {
-            typeof(TraktPersonMovieCreditsRequest).IsSubclassOf(typeof(APersonRequest<ITraktPersonMovieCredits>)).Should().BeTrue();
+            typeof(PersonMovieCreditsRequest).IsSubclassOf(typeof(APersonRequest<ITraktPersonMovieCredits>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktPersonMovieCreditsRequest_Has_AuthorizationRequirement_NotRequired()
+        public void Test_PersonMovieCreditsRequest_Has_AuthorizationRequirement_NotRequired()
         {
-            var request = new TraktPersonMovieCreditsRequest();
+            var request = new PersonMovieCreditsRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_TraktPersonMovieCreditsRequest_Returns_Valid_RequestObjectType()
+        public void Test_PersonMovieCreditsRequest_Returns_Valid_RequestObjectType()
         {
-            var request = new TraktPersonMovieCreditsRequest();
+            var request = new PersonMovieCreditsRequest();
             request.RequestObjectType.Should().Be(RequestObjectType.People);
         }
 
         [Fact]
-        public void Test_TraktPersonMovieCreditsRequest_Has_Valid_UriTemplate()
+        public void Test_PersonMovieCreditsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktPersonMovieCreditsRequest();
+            var request = new PersonMovieCreditsRequest();
             request.UriTemplate.Should().Be("people/{id}/movies{?extended}");
         }
 
         [Fact]
-        public void Test_TraktPersonMovieCreditsRequest_Returns_Valid_UriPathParameters()
+        public void Test_PersonMovieCreditsRequest_Returns_Valid_UriPathParameters()
         {
             // only id
-            var request = new TraktPersonMovieCreditsRequest { Id = "123" };
+            var request = new PersonMovieCreditsRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -67,7 +67,7 @@
 
             // id and extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktPersonMovieCreditsRequest { Id = "123", ExtendedInfo = extendedInfo };
+            request = new PersonMovieCreditsRequest { Id = "123", ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -79,22 +79,22 @@
         }
 
         [Fact]
-        public void Test_TraktPersonMovieCreditsRequest_Validate_Throws_Exceptions()
+        public void Test_PersonMovieCreditsRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktPersonMovieCreditsRequest();
+            var request = new PersonMovieCreditsRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktPersonMovieCreditsRequest { Id = string.Empty };
+            request = new PersonMovieCreditsRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktPersonMovieCreditsRequest { Id = "invalid id" };
+            request = new PersonMovieCreditsRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

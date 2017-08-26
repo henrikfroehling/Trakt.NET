@@ -687,7 +687,7 @@
     <Compile Include="Requests\Movies\MovieWatchingUsersRequest.cs" />
     <Compile Include="Requests\Parameters\TraktPagedParameters.cs" />
     <Compile Include="Requests\People\APersonRequest%271.cs" />
-    <Compile Include="Requests\People\TraktPersonMovieCreditsRequest.cs" />
+    <Compile Include="Requests\People\PersonMovieCreditsRequest.cs" />
     <Compile Include="Requests\People\TraktPersonShowCreditsRequest.cs" />
     <Compile Include="Requests\People\TraktPersonSummaryRequest.cs" />
     <Compile Include="Requests\Recommendations\OAuth\ATraktUserRecommendationHideRequest.cs" />
