@@ -517,7 +517,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowsPopularRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowsPopularRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,

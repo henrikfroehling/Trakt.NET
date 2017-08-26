@@ -10,35 +10,35 @@
     using Xunit;
 
     [Category("Requests.Shows.Lists")]
-    public class TraktShowsPopularRequest_Tests
+    public class ShowsPopularRequest_Tests
     {
         [Fact]
-        public void Test_TraktShowsPopularRequest_Is_Not_Abstract()
+        public void Test_ShowsPopularRequest_Is_Not_Abstract()
         {
-            typeof(TraktShowsPopularRequest).IsAbstract.Should().BeFalse();
+            typeof(ShowsPopularRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktShowsPopularRequest_Is_Sealed()
+        public void Test_ShowsPopularRequest_Is_Sealed()
         {
-            typeof(TraktShowsPopularRequest).IsSealed.Should().BeTrue();
+            typeof(ShowsPopularRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowsPopularRequest_Inherits_ATraktShowsRequest_1()
+        public void Test_ShowsPopularRequest_Inherits_ATraktShowsRequest_1()
         {
-            typeof(TraktShowsPopularRequest).IsSubclassOf(typeof(AShowsRequest<ITraktShow>)).Should().BeTrue();
+            typeof(ShowsPopularRequest).IsSubclassOf(typeof(AShowsRequest<ITraktShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowsPopularRequest_Has_Valid_UriTemplate()
+        public void Test_ShowsPopularRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktShowsPopularRequest();
+            var request = new ShowsPopularRequest();
             request.UriTemplate.Should().Be("shows/popular{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}");
         }
 
-        [Theory, ClassData(typeof(TraktShowsPopularRequest_TestData))]
-        public void Test_TraktShowsPopularRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(ShowsPopularRequest_TestData))]
+        public void Test_ShowsPopularRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                   IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -47,86 +47,86 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktShowsPopularRequest_TestData : IEnumerable<object[]>
+        public class ShowsPopularRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktShowFilter _filter = new TraktShowFilter().WithYears(2005, 2016);
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktShowsPopularRequest _request1 = new TraktShowsPopularRequest();
+            private static readonly ShowsPopularRequest _request1 = new ShowsPopularRequest();
 
-            private static readonly TraktShowsPopularRequest _request2 = new TraktShowsPopularRequest
+            private static readonly ShowsPopularRequest _request2 = new ShowsPopularRequest
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktShowsPopularRequest _request3 = new TraktShowsPopularRequest
+            private static readonly ShowsPopularRequest _request3 = new ShowsPopularRequest
             {
                 Filter = _filter
             };
 
-            private static readonly TraktShowsPopularRequest _request4 = new TraktShowsPopularRequest
+            private static readonly ShowsPopularRequest _request4 = new ShowsPopularRequest
             {
                 Page = _page
             };
 
-            private static readonly TraktShowsPopularRequest _request5 = new TraktShowsPopularRequest
+            private static readonly ShowsPopularRequest _request5 = new ShowsPopularRequest
             {
                 Limit = _limit
             };
 
-            private static readonly TraktShowsPopularRequest _request6 = new TraktShowsPopularRequest
+            private static readonly ShowsPopularRequest _request6 = new ShowsPopularRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter
             };
 
-            private static readonly TraktShowsPopularRequest _request7 = new TraktShowsPopularRequest
+            private static readonly ShowsPopularRequest _request7 = new ShowsPopularRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktShowsPopularRequest _request8 = new TraktShowsPopularRequest
+            private static readonly ShowsPopularRequest _request8 = new ShowsPopularRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsPopularRequest _request9 = new TraktShowsPopularRequest
+            private static readonly ShowsPopularRequest _request9 = new ShowsPopularRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsPopularRequest _request10 = new TraktShowsPopularRequest
+            private static readonly ShowsPopularRequest _request10 = new ShowsPopularRequest
             {
                 Filter = _filter,
                 Page = _page
             };
 
-            private static readonly TraktShowsPopularRequest _request11 = new TraktShowsPopularRequest
+            private static readonly ShowsPopularRequest _request11 = new ShowsPopularRequest
             {
                 Filter = _filter,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsPopularRequest _request12 = new TraktShowsPopularRequest
+            private static readonly ShowsPopularRequest _request12 = new ShowsPopularRequest
             {
                 Filter = _filter,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsPopularRequest _request13 = new TraktShowsPopularRequest
+            private static readonly ShowsPopularRequest _request13 = new ShowsPopularRequest
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsPopularRequest _request14 = new TraktShowsPopularRequest
+            private static readonly ShowsPopularRequest _request14 = new ShowsPopularRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter,
@@ -136,7 +136,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktShowsPopularRequest_TestData()
+            public ShowsPopularRequest_TestData()
             {
                 SetupPathParamters();
             }
