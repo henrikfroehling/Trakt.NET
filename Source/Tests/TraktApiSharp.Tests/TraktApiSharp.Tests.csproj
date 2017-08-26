@@ -1139,7 +1139,7 @@
     <Compile Include="Requests\Episodes\EpisodeRatingsRequest_Tests.cs" />
     <Compile Include="Requests\Episodes\EpisodeStatisticsRequest_Tests.cs" />
     <Compile Include="Requests\Episodes\EpisodeSummaryRequest_Tests.cs" />
-    <Compile Include="Requests\Episodes\TraktEpisodeTranslationsRequest_Tests.cs" />
+    <Compile Include="Requests\Episodes\EpisodeTranslationsRequest_Tests.cs" />
     <Compile Include="Requests\Episodes\TraktEpisodeWatchingUsersRequest_Tests.cs" />
     <Compile Include="Requests\Genres\TraktGenresMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Genres\TraktGenresShowsRequest_Tests.cs" />

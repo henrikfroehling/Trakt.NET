@@ -4,7 +4,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktEpisodeTranslationsRequest : AEpisodeRequest<ITraktEpisodeTranslation>
+    internal sealed class EpisodeTranslationsRequest : AEpisodeRequest<ITraktEpisodeTranslation>
     {
         internal string LanguageCode { get; set; }
 

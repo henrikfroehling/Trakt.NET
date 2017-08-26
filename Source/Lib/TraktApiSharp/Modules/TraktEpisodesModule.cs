@@ -285,7 +285,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktEpisodeTranslationsRequest
+            return requestHandler.ExecuteListRequestAsync(new EpisodeTranslationsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
