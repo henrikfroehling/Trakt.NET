@@ -711,7 +711,7 @@
     <Compile Include="Requests\Seasons\SeasonStatisticsRequest.cs" />
     <Compile Include="Requests\Seasons\SeasonWatchingUsersRequest.cs" />
     <Compile Include="Requests\Shows\AShowRequest%271.cs" />
-    <Compile Include="Requests\Shows\ATraktShowsMostPWCRequest%271.cs" />
+    <Compile Include="Requests\Shows\AShowsMostPWCRequest%271.cs" />
     <Compile Include="Requests\Shows\ATraktShowsRequest%271.cs" />
     <Compile Include="Requests\Shows\OAuth\AShowProgressRequest%271.cs" />
     <Compile Include="Requests\Shows\OAuth\ShowCollectionProgressRequest.cs" />

@@ -14,41 +14,37 @@
     using Xunit;
 
     [Category("Requests.Shows.Lists")]
-    public class ATraktShowsMostPWCRequest_1_Tests
+    public class AShowsMostPWCRequest_1_Tests
     {
-        internal class TraktShowsMostPWCRequestMock : ATraktShowsMostPWCRequest<int>
+        internal class ShowsMostPWCRequestMock : AShowsMostPWCRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
-
-            public override void Validate()
-            {
-                throw new NotImplementedException();
-            }
+            public override void Validate() => throw new NotImplementedException();
         }
 
         [Fact]
-        public void Test_ATraktShowsMostPWCRequest_1_Is_Abstract()
+        public void Test_AShowsMostPWCRequest_1_Is_Abstract()
         {
-            typeof(ATraktShowsMostPWCRequest<>).IsAbstract.Should().BeTrue();
+            typeof(AShowsMostPWCRequest<>).IsAbstract.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktShowsMostPWCRequest_1_Has_GenericTypeParameter()
+        public void Test_AShowsMostPWCRequest_1_Has_GenericTypeParameter()
         {
-            typeof(ATraktShowsMostPWCRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ATraktShowsMostPWCRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+            typeof(AShowsMostPWCRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(AShowsMostPWCRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
         [Fact]
-        public void Test_ATraktShowsMostPWCRequest_1_Inherits_ATraktShowsRequest_1()
+        public void Test_AShowsMostPWCRequest_1_Inherits_ATraktShowsRequest_1()
         {
-            typeof(ATraktShowsMostPWCRequest<int>).IsSubclassOf(typeof(ATraktShowsRequest<int>)).Should().BeTrue();
+            typeof(AShowsMostPWCRequest<int>).IsSubclassOf(typeof(ATraktShowsRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktShowsMostPWCRequest_1_Has_Period_Property()
+        public void Test_AShowsMostPWCRequest_1_Has_Period_Property()
         {
-            var propertyInfo = typeof(ATraktShowsMostPWCRequest<>)
+            var propertyInfo = typeof(AShowsMostPWCRequest<>)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Period")
                     .FirstOrDefault();
@@ -59,14 +55,14 @@
         }
 
         [Fact]
-        public void Test_ATraktShowsMostPWCRequest_1_Has_AuthorizationRequirement_NotRequired()
+        public void Test_AShowsMostPWCRequest_1_Has_AuthorizationRequirement_NotRequired()
         {
-            var requestMock = new TraktShowsMostPWCRequestMock();
+            var requestMock = new ShowsMostPWCRequestMock();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Theory, ClassData(typeof(TraktShowsMostPWCRequestMock_TestData))]
-        public void Test_ATraktShowsMostPWCRequest_1_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        public void Test_AShowsMostPWCRequest_1_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                      IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -83,115 +79,115 @@
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktShowsMostPWCRequestMock _request1 = new TraktShowsMostPWCRequestMock();
+            private static readonly ShowsMostPWCRequestMock _request1 = new ShowsMostPWCRequestMock();
 
-            private static readonly TraktShowsMostPWCRequestMock _request2 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request2 = new ShowsMostPWCRequestMock
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request3 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request3 = new ShowsMostPWCRequestMock
             {
                 Filter = _filter
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request4 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request4 = new ShowsMostPWCRequestMock
             {
                 Period = _timePeriod
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request5 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request5 = new ShowsMostPWCRequestMock
             {
                 Page = _page
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request6 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request6 = new ShowsMostPWCRequestMock
             {
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request7 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request7 = new ShowsMostPWCRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request8 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request8 = new ShowsMostPWCRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Period = _timePeriod
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request9 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request9 = new ShowsMostPWCRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request10 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request10 = new ShowsMostPWCRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request11 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request11 = new ShowsMostPWCRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request12 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request12 = new ShowsMostPWCRequestMock
             {
                 Filter = _filter,
                 Period = _timePeriod
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request13 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request13 = new ShowsMostPWCRequestMock
             {
                 Filter = _filter,
                 Page = _page
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request14 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request14 = new ShowsMostPWCRequestMock
             {
                 Filter = _filter,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request15 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request15 = new ShowsMostPWCRequestMock
             {
                 Filter = _filter,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request16 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request16 = new ShowsMostPWCRequestMock
             {
                 Period = _timePeriod,
                 Page = _page
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request17 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request17 = new ShowsMostPWCRequestMock
             {
                 Period = _timePeriod,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request18 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request18 = new ShowsMostPWCRequestMock
             {
                 Period = _timePeriod,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request19 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request19 = new ShowsMostPWCRequestMock
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostPWCRequestMock _request20 = new TraktShowsMostPWCRequestMock
+            private static readonly ShowsMostPWCRequestMock _request20 = new ShowsMostPWCRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter,
