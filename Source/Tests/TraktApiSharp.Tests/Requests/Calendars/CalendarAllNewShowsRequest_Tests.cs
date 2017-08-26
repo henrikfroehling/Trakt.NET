@@ -13,42 +13,42 @@
     using Xunit;
 
     [Category("Requests.Calendars.Shows")]
-    public class TraktCalendarAllNewShowsRequest_Tests
+    public class CalendarAllNewShowsRequest_Tests
     {
         [Fact]
-        public void Test_TraktCalendarAllNewShowsRequest_IsNotAbstract()
+        public void Test_CalendarAllNewShowsRequest_IsNotAbstract()
         {
-            typeof(TraktCalendarAllNewShowsRequest).IsAbstract.Should().BeFalse();
+            typeof(CalendarAllNewShowsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktCalendarAllNewShowsRequest_IsSealed()
+        public void Test_CalendarAllNewShowsRequest_IsSealed()
         {
-            typeof(TraktCalendarAllNewShowsRequest).IsSealed.Should().BeTrue();
+            typeof(CalendarAllNewShowsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarAllNewShowsRequest_Inherits_ATraktCalendarRequest()
+        public void Test_CalendarAllNewShowsRequest_Inherits_ATraktCalendarRequest()
         {
-            typeof(TraktCalendarAllNewShowsRequest).IsSubclassOf(typeof(ACalendarRequest<ITraktCalendarShow>)).Should().BeTrue();
+            typeof(CalendarAllNewShowsRequest).IsSubclassOf(typeof(ACalendarRequest<ITraktCalendarShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarAllNewShowsRequest_Has_AuthorizationRequirement_NotRequired()
+        public void Test_CalendarAllNewShowsRequest_Has_AuthorizationRequirement_NotRequired()
         {
-            var request = new TraktCalendarAllNewShowsRequest();
+            var request = new CalendarAllNewShowsRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_TraktCalendarAllNewShowsRequest_Has_Valid_UriTemplate()
+        public void Test_CalendarAllNewShowsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktCalendarAllNewShowsRequest();
+            var request = new CalendarAllNewShowsRequest();
             request.UriTemplate.Should().Be("calendars/all/shows/new{/start_date}{/days}{?extended,query,years,genres,languages,countries,runtimes,ratings}");
         }
 
-        [Theory, ClassData(typeof(TraktCalendarAllNewShowsRequest_TestData))]
-        public void Test_TraktCalendarAllNewShowsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(CalendarAllNewShowsRequest_TestData))]
+        public void Test_CalendarAllNewShowsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                          IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -57,66 +57,66 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktCalendarAllNewShowsRequest_TestData : IEnumerable<object[]>
+        public class CalendarAllNewShowsRequest_TestData : IEnumerable<object[]>
         {
             private static readonly DateTime _startDate = DateTime.Now.AddDays(-7);
             private const int _days = 14;
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktMovieFilter _filter = new TraktMovieFilter().WithYears(2010, 2017);
 
-            private static readonly TraktCalendarAllNewShowsRequest _request1 = new TraktCalendarAllNewShowsRequest();
+            private static readonly CalendarAllNewShowsRequest _request1 = new CalendarAllNewShowsRequest();
 
-            private static readonly TraktCalendarAllNewShowsRequest _request2 = new TraktCalendarAllNewShowsRequest
+            private static readonly CalendarAllNewShowsRequest _request2 = new CalendarAllNewShowsRequest
             { StartDate = _startDate };
 
-            private static readonly TraktCalendarAllNewShowsRequest _request3 = new TraktCalendarAllNewShowsRequest
+            private static readonly CalendarAllNewShowsRequest _request3 = new CalendarAllNewShowsRequest
             { StartDate = _startDate, Days = _days };
 
-            private static readonly TraktCalendarAllNewShowsRequest _request4 = new TraktCalendarAllNewShowsRequest
+            private static readonly CalendarAllNewShowsRequest _request4 = new CalendarAllNewShowsRequest
             { Days = _days };
 
             // with extended info
-            private static readonly TraktCalendarAllNewShowsRequest _request5 = new TraktCalendarAllNewShowsRequest
+            private static readonly CalendarAllNewShowsRequest _request5 = new CalendarAllNewShowsRequest
             { ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarAllNewShowsRequest _request6 = new TraktCalendarAllNewShowsRequest
+            private static readonly CalendarAllNewShowsRequest _request6 = new CalendarAllNewShowsRequest
             { StartDate = _startDate, ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarAllNewShowsRequest _request7 = new TraktCalendarAllNewShowsRequest
+            private static readonly CalendarAllNewShowsRequest _request7 = new CalendarAllNewShowsRequest
             { StartDate = _startDate, Days = _days, ExtendedInfo = _extendedInfo };
 
-            private static readonly TraktCalendarAllNewShowsRequest _request8 = new TraktCalendarAllNewShowsRequest
+            private static readonly CalendarAllNewShowsRequest _request8 = new CalendarAllNewShowsRequest
             { Days = _days, ExtendedInfo = _extendedInfo };
 
             // with filter
-            private static readonly TraktCalendarAllNewShowsRequest _request9 = new TraktCalendarAllNewShowsRequest
+            private static readonly CalendarAllNewShowsRequest _request9 = new CalendarAllNewShowsRequest
             { Filter = _filter };
 
-            private static readonly TraktCalendarAllNewShowsRequest _request10 = new TraktCalendarAllNewShowsRequest
+            private static readonly CalendarAllNewShowsRequest _request10 = new CalendarAllNewShowsRequest
             { StartDate = _startDate, Filter = _filter };
 
-            private static readonly TraktCalendarAllNewShowsRequest _request11 = new TraktCalendarAllNewShowsRequest
+            private static readonly CalendarAllNewShowsRequest _request11 = new CalendarAllNewShowsRequest
             { StartDate = _startDate, Days = _days, Filter = _filter };
 
-            private static readonly TraktCalendarAllNewShowsRequest _request12 = new TraktCalendarAllNewShowsRequest
+            private static readonly CalendarAllNewShowsRequest _request12 = new CalendarAllNewShowsRequest
             { Days = _days, Filter = _filter };
 
             // with extended info and filter
-            private static readonly TraktCalendarAllNewShowsRequest _request13 = new TraktCalendarAllNewShowsRequest
+            private static readonly CalendarAllNewShowsRequest _request13 = new CalendarAllNewShowsRequest
             { ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarAllNewShowsRequest _request14 = new TraktCalendarAllNewShowsRequest
+            private static readonly CalendarAllNewShowsRequest _request14 = new CalendarAllNewShowsRequest
             { StartDate = _startDate, ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarAllNewShowsRequest _request15 = new TraktCalendarAllNewShowsRequest
+            private static readonly CalendarAllNewShowsRequest _request15 = new CalendarAllNewShowsRequest
             { StartDate = _startDate, Days = _days, ExtendedInfo = _extendedInfo, Filter = _filter };
 
-            private static readonly TraktCalendarAllNewShowsRequest _request16 = new TraktCalendarAllNewShowsRequest
+            private static readonly CalendarAllNewShowsRequest _request16 = new CalendarAllNewShowsRequest
             { Days = _days, ExtendedInfo = _extendedInfo, Filter = _filter };
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktCalendarAllNewShowsRequest_TestData()
+            public CalendarAllNewShowsRequest_TestData()
             {
                 SetupPathParamters();
             }
