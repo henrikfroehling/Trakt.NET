@@ -3,7 +3,7 @@
     using Base;
     using System.Collections.Generic;
 
-    internal sealed class TraktCheckinsDeleteRequest : ADeleteRequest
+    internal sealed class CheckinsDeleteRequest : ADeleteRequest
     {
         public override string UriTemplate => "checkin";
 

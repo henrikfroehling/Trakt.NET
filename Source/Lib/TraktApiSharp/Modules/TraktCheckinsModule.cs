@@ -214,7 +214,7 @@
         public Task<TraktNoContentResponse> DeleteAnyActiveCheckinsAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktCheckinsDeleteRequest(), cancellationToken);
+            return requestHandler.ExecuteNoContentRequestAsync(new CheckinsDeleteRequest(), cancellationToken);
         }
 
         private void Validate(TraktMovie movie)
