@@ -322,7 +322,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktEpisodeWatchingUsersRequest
+            return requestHandler.ExecuteListRequestAsync(new EpisodeWatchingUsersRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,

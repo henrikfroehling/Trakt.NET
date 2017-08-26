@@ -11,44 +11,44 @@
     using Xunit;
 
     [Category("Requests.Episodes")]
-    public class TraktEpisodeWatchingUsersRequest_Tests
+    public class EpisodeWatchingUsersRequest_Tests
     {
         [Fact]
-        public void Test_TraktEpisodeWatchingUsersRequest_IsNotAbstract()
+        public void Test_EpisodeWatchingUsersRequest_IsNotAbstract()
         {
-            typeof(TraktEpisodeWatchingUsersRequest).IsAbstract.Should().BeFalse();
+            typeof(EpisodeWatchingUsersRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktEpisodeWatchingUsersRequest_IsSealed()
+        public void Test_EpisodeWatchingUsersRequest_IsSealed()
         {
-            typeof(TraktEpisodeWatchingUsersRequest).IsSealed.Should().BeTrue();
+            typeof(EpisodeWatchingUsersRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktEpisodeWatchingUsersRequest_Inherits_ATraktEpisodeRequest_1()
+        public void Test_EpisodeWatchingUsersRequest_Inherits_ATraktEpisodeRequest_1()
         {
-            typeof(TraktEpisodeWatchingUsersRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktUser>)).Should().BeTrue();
+            typeof(EpisodeWatchingUsersRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktUser>)).Should().BeTrue();
         }
         
         [Fact]
-        public void Test_TraktEpisodeWatchingUsersRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_EpisodeWatchingUsersRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktEpisodeWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(EpisodeWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
         
         [Fact]
-        public void Test_TraktEpisodeWatchingUsersRequest_Has_Valid_UriTemplate()
+        public void Test_EpisodeWatchingUsersRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktEpisodeWatchingUsersRequest();
+            var request = new EpisodeWatchingUsersRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/episodes/{episode}/watching{?extended}");
         }
         
         [Fact]
-        public void Test_TraktEpisodeWatchingUsersRequest_Returns_Valid_UriPathParameters()
+        public void Test_EpisodeWatchingUsersRequest_Returns_Valid_UriPathParameters()
         {
             // with implicit season number / without extended info
-            var request = new TraktEpisodeWatchingUsersRequest { Id = "123", EpisodeNumber = 1 };
+            var request = new EpisodeWatchingUsersRequest { Id = "123", EpisodeNumber = 1 };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(3)
@@ -60,7 +60,7 @@
                                                    });
 
             // with explicit season number / without extended info
-            request = new TraktEpisodeWatchingUsersRequest { Id = "123", SeasonNumber = 2, EpisodeNumber = 1 };
+            request = new EpisodeWatchingUsersRequest { Id = "123", SeasonNumber = 2, EpisodeNumber = 1 };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(3)
@@ -75,7 +75,7 @@
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             // with implicit season number / with extended info
-            request = new TraktEpisodeWatchingUsersRequest { Id = "123", EpisodeNumber = 1, ExtendedInfo = extendedInfo };
+            request = new EpisodeWatchingUsersRequest { Id = "123", EpisodeNumber = 1, ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(4)
@@ -88,7 +88,7 @@
                                                    });
 
             // with explicit season number / with extended info
-            request = new TraktEpisodeWatchingUsersRequest { Id = "123", SeasonNumber = 2, EpisodeNumber = 1, ExtendedInfo = extendedInfo };
+            request = new EpisodeWatchingUsersRequest { Id = "123", SeasonNumber = 2, EpisodeNumber = 1, ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(4)
@@ -102,28 +102,28 @@
         }
 
         [Fact]
-        public void Test_TraktEpisodeWatchingUsersRequest_Validate_Throws_Exceptions()
+        public void Test_EpisodeWatchingUsersRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktEpisodeWatchingUsersRequest { EpisodeNumber = 1 };
+            var request = new EpisodeWatchingUsersRequest { EpisodeNumber = 1 };
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktEpisodeWatchingUsersRequest { Id = string.Empty, EpisodeNumber = 1 };
+            request = new EpisodeWatchingUsersRequest { Id = string.Empty, EpisodeNumber = 1 };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktEpisodeWatchingUsersRequest { Id = "invalid id", EpisodeNumber = 1 };
+            request = new EpisodeWatchingUsersRequest { Id = "invalid id", EpisodeNumber = 1 };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // episode number == 0
-            request = new TraktEpisodeWatchingUsersRequest { EpisodeNumber = 0 };
+            request = new EpisodeWatchingUsersRequest { EpisodeNumber = 0 };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
