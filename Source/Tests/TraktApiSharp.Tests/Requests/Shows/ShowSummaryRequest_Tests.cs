@@ -11,44 +11,44 @@
     using Xunit;
 
     [Category("Requests.Shows")]
-    public class TraktShowSummaryRequest_Tests
+    public class ShowSummaryRequest_Tests
     {
         [Fact]
-        public void Test_TraktShowSummaryRequest_Is_Not_Abstract()
+        public void Test_ShowSummaryRequest_Is_Not_Abstract()
         {
-            typeof(TraktShowSummaryRequest).IsAbstract.Should().BeFalse();
+            typeof(ShowSummaryRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktShowSummaryRequest_Is_Sealed()
+        public void Test_ShowSummaryRequest_Is_Sealed()
         {
-            typeof(TraktShowSummaryRequest).IsSealed.Should().BeTrue();
+            typeof(ShowSummaryRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowSummaryRequest_Inherits_ATraktShowRequest_1()
+        public void Test_ShowSummaryRequest_Inherits_ATraktShowRequest_1()
         {
-            typeof(TraktShowSummaryRequest).IsSubclassOf(typeof(AShowRequest<ITraktShow>)).Should().BeTrue();
+            typeof(ShowSummaryRequest).IsSubclassOf(typeof(AShowRequest<ITraktShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowSummaryRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_ShowSummaryRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktShowSummaryRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(ShowSummaryRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_TraktShowSummaryRequest_Has_Valid_UriTemplate()
+        public void Test_ShowSummaryRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktShowSummaryRequest();
+            var request = new ShowSummaryRequest();
             request.UriTemplate.Should().Be("shows/{id}{?extended}");
         }
 
         [Fact]
-        public void Test_TraktShowSummaryRequest_Returns_Valid_UriPathParameters()
+        public void Test_ShowSummaryRequest_Returns_Valid_UriPathParameters()
         {
             // without extended info
-            var request = new TraktShowSummaryRequest { Id = "123" };
+            var request = new ShowSummaryRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -59,7 +59,7 @@
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktShowSummaryRequest { Id = "123", ExtendedInfo = extendedInfo };
+            request = new ShowSummaryRequest { Id = "123", ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -71,22 +71,22 @@
         }
 
         [Fact]
-        public void Test_TraktShowSummaryRequest_Validate_Throws_Exceptions()
+        public void Test_ShowSummaryRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktShowSummaryRequest();
+            var request = new ShowSummaryRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktShowSummaryRequest { Id = string.Empty };
+            request = new ShowSummaryRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktShowSummaryRequest { Id = "invalid id" };
+            request = new ShowSummaryRequest { Id = "invalid id" };
             act.ShouldThrow<ArgumentException>();
         }
     }
