@@ -11,44 +11,44 @@
     using Xunit;
 
     [Category("Requests.Shows")]
-    public class TraktShowNextEpisodeRequest_Tests
+    public class ShowNextEpisodeRequest_Tests
     {
         [Fact]
-        public void Test_TraktShowNextEpisodeRequest_Is_Not_Abstract()
+        public void Test_ShowNextEpisodeRequest_Is_Not_Abstract()
         {
-            typeof(TraktShowNextEpisodeRequest).IsAbstract.Should().BeFalse();
+            typeof(ShowNextEpisodeRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktShowNextEpisodeRequest_Is_Sealed()
+        public void Test_ShowNextEpisodeRequest_Is_Sealed()
         {
-            typeof(TraktShowNextEpisodeRequest).IsSealed.Should().BeTrue();
+            typeof(ShowNextEpisodeRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowNextEpisodeRequest_Inherits_ATraktShowRequest_1()
+        public void Test_ShowNextEpisodeRequest_Inherits_ATraktShowRequest_1()
         {
-            typeof(TraktShowNextEpisodeRequest).IsSubclassOf(typeof(AShowRequest<ITraktEpisode>)).Should().BeTrue();
+            typeof(ShowNextEpisodeRequest).IsSubclassOf(typeof(AShowRequest<ITraktEpisode>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowNextEpisodeRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_ShowNextEpisodeRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktShowNextEpisodeRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(ShowNextEpisodeRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_TraktShowNextEpisodeRequest_Has_Valid_UriTemplate()
+        public void Test_ShowNextEpisodeRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktShowNextEpisodeRequest();
+            var request = new ShowNextEpisodeRequest();
             request.UriTemplate.Should().Be("shows/{id}/next_episode{?extended}");
         }
 
         [Fact]
-        public void Test_TraktShowNextEpisodeRequest_Returns_Valid_UriPathParameters()
+        public void Test_ShowNextEpisodeRequest_Returns_Valid_UriPathParameters()
         {
             // without extended info
-            var request = new TraktShowNextEpisodeRequest { Id = "123" };
+            var request = new ShowNextEpisodeRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -59,7 +59,7 @@
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktShowNextEpisodeRequest { Id = "123", ExtendedInfo = extendedInfo };
+            request = new ShowNextEpisodeRequest { Id = "123", ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -71,22 +71,22 @@
         }
 
         [Fact]
-        public void Test_TraktShowNextEpisodeRequest_Validate_Throws_Exceptions()
+        public void Test_ShowNextEpisodeRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktShowNextEpisodeRequest();
+            var request = new ShowNextEpisodeRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktShowNextEpisodeRequest { Id = string.Empty };
+            request = new ShowNextEpisodeRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktShowNextEpisodeRequest { Id = "invalid id" };
+            request = new ShowNextEpisodeRequest { Id = "invalid id" };
             act.ShouldThrow<ArgumentException>();
         }
     }

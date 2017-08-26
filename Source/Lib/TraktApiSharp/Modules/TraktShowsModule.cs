@@ -415,7 +415,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowNextEpisodeRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new ShowNextEpisodeRequest
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
