@@ -7,7 +7,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserApproveFollowerRequest : ATraktBodylessPostRequest<ITraktUserFollower>, ITraktHasId
+    internal sealed class TraktUserApproveFollowerRequest : ABodylessPostRequest<ITraktUserFollower>, ITraktHasId
     {
         public string Id { get; set; }
 

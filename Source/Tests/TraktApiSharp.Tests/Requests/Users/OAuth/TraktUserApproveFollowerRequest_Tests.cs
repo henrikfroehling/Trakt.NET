@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktUserApproveFollowerRequest_Inherits_ATraktBodylessPostRequest_1()
         {
-            typeof(TraktUserApproveFollowerRequest).IsSubclassOf(typeof(ATraktBodylessPostRequest<ITraktUserFollower>)).Should().BeTrue();
+            typeof(TraktUserApproveFollowerRequest).IsSubclassOf(typeof(ABodylessPostRequest<ITraktUserFollower>)).Should().BeTrue();
         }
 
         [Fact]
