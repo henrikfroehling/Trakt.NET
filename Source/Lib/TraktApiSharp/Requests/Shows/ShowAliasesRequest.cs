@@ -2,7 +2,7 @@
 {
     using Objects.Get.Shows;
 
-    internal sealed class TraktShowAliasesRequest : AShowRequest<ITraktShowAlias>
+    internal sealed class ShowAliasesRequest : AShowRequest<ITraktShowAlias>
     {
         public override string UriTemplate => "shows/{id}/aliases";
     }

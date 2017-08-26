@@ -109,7 +109,7 @@
         public Task<TraktListResponse<ITraktShowAlias>> GetShowAliasesAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktShowAliasesRequest { Id = showIdOrSlug }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new ShowAliasesRequest { Id = showIdOrSlug }, cancellationToken);
         }
 
         /// <summary>

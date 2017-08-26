@@ -716,7 +716,7 @@
     <Compile Include="Requests\Shows\OAuth\AShowProgressRequest%271.cs" />
     <Compile Include="Requests\Shows\OAuth\ShowCollectionProgressRequest.cs" />
     <Compile Include="Requests\Shows\OAuth\ShowWatchedProgressRequest.cs" />
-    <Compile Include="Requests\Shows\TraktShowAliasesRequest.cs" />
+    <Compile Include="Requests\Shows\ShowAliasesRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowCommentsRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowLastEpisodeRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowListsRequest.cs" />

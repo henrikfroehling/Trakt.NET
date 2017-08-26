@@ -9,37 +9,37 @@
     using Xunit;
 
     [Category("Requests.Shows")]
-    public class TraktShowAliasesRequest_Tests
+    public class ShowAliasesRequest_Tests
     {
         [Fact]
-        public void Test_TraktShowAliasesRequest_Is_Not_Abstract()
+        public void Test_ShowAliasesRequest_Is_Not_Abstract()
         {
-            typeof(TraktShowAliasesRequest).IsAbstract.Should().BeFalse();
+            typeof(ShowAliasesRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktShowAliasesRequest_Is_Sealed()
+        public void Test_ShowAliasesRequest_Is_Sealed()
         {
-            typeof(TraktShowAliasesRequest).IsSealed.Should().BeTrue();
+            typeof(ShowAliasesRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowAliasesRequest_Inherits_ATraktShowRequest_1()
+        public void Test_ShowAliasesRequest_Inherits_ATraktShowRequest_1()
         {
-            typeof(TraktShowAliasesRequest).IsSubclassOf(typeof(AShowRequest<ITraktShowAlias>)).Should().BeTrue();
+            typeof(ShowAliasesRequest).IsSubclassOf(typeof(AShowRequest<ITraktShowAlias>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowAliasesRequest_Has_Valid_UriTemplate()
+        public void Test_ShowAliasesRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktShowAliasesRequest();
+            var request = new ShowAliasesRequest();
             request.UriTemplate.Should().Be("shows/{id}/aliases");
         }
 
         [Fact]
-        public void Test_TraktShowAliasesRequest_Returns_Valid_UriPathParameters()
+        public void Test_ShowAliasesRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new TraktShowAliasesRequest { Id = "123" };
+            var request = new ShowAliasesRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -50,22 +50,22 @@
         }
 
         [Fact]
-        public void Test_TraktShowAliasesRequest_Validate_Throws_Exceptions()
+        public void Test_ShowAliasesRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktShowAliasesRequest();
+            var request = new ShowAliasesRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktShowAliasesRequest { Id = string.Empty };
+            request = new ShowAliasesRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktShowAliasesRequest { Id = "invalid id" };
+            request = new ShowAliasesRequest { Id = "invalid id" };
             act.ShouldThrow<ArgumentException>();
         }
     }
