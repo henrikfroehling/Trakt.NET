@@ -50,7 +50,7 @@
                                                                              TraktCalendarFilter filter = null,
                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteListRequestAsync(new TraktCalendarUserShowsRequest
             {
@@ -84,7 +84,7 @@
                                                                                 TraktCalendarFilter filter = null,
                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteListRequestAsync(new TraktCalendarUserNewShowsRequest
             {
@@ -118,7 +118,7 @@
                                                                                        TraktCalendarFilter filter = null,
                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteListRequestAsync(new TraktCalendarUserSeasonPremieresRequest
             {
@@ -152,7 +152,7 @@
                                                                                TraktCalendarFilter filter = null,
                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteListRequestAsync(new TraktCalendarUserMoviesRequest
             {
@@ -186,7 +186,7 @@
                                                                                   TraktCalendarFilter filter = null,
                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteListRequestAsync(new TraktCalendarUserDVDMoviesRequest
             {
@@ -220,7 +220,7 @@
                                                                             TraktCalendarFilter filter = null,
                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteListRequestAsync(new TraktCalendarAllShowsRequest
             {
@@ -254,7 +254,7 @@
                                                                                TraktCalendarFilter filter = null,
                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteListRequestAsync(new TraktCalendarAllNewShowsRequest
             {
@@ -288,7 +288,7 @@
                                                                                       TraktCalendarFilter filter = null,
                                                                                       CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteListRequestAsync(new TraktCalendarAllSeasonPremieresRequest
             {
@@ -322,7 +322,7 @@
                                                                               TraktCalendarFilter filter = null,
                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteListRequestAsync(new TraktCalendarAllMoviesRequest
             {
@@ -356,7 +356,7 @@
                                                                                  TraktCalendarFilter filter = null,
                                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteListRequestAsync(new TraktCalendarAllDVDMoviesRequest
             {

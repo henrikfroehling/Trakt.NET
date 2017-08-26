@@ -62,7 +62,7 @@
                                                                         string translationLanguageCode = null,
                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteListRequestAsync(new TraktSeasonsAllRequest
             {
@@ -103,7 +103,7 @@
                                                                      string translationLanguageCode = null,
                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteListRequestAsync(new TraktSeasonSingleRequest
             {
@@ -176,7 +176,7 @@
                                                                               TraktPagedParameters pagedParameters = null,
                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecutePagedRequestAsync(new TraktSeasonCommentsRequest
             {
@@ -216,7 +216,7 @@
                                                                         TraktPagedParameters pagedParameters = null,
                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecutePagedRequestAsync(new TraktSeasonListsRequest
             {
@@ -246,7 +246,7 @@
         public Task<TraktResponse<ITraktRating>> GetSeasonRatingsAsync(string showIdOrSlug, uint seasonNumber,
                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new TraktSeasonRatingsRequest
             {
@@ -272,7 +272,7 @@
         public Task<TraktResponse<ITraktStatistics>> GetSeasonStatisticsAsync(string showIdOrSlug, uint seasonNumber,
                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new TraktSeasonStatisticsRequest
             {
@@ -303,7 +303,7 @@
                                                                                TraktExtendedInfo extendedInfo = null,
                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteListRequestAsync(new TraktSeasonWatchingUsersRequest
             {

@@ -66,7 +66,7 @@
                                                                                      TraktPagedParameters pagedParameters = null,
                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecutePagedRequestAsync(new TraktSearchTextQueryRequest
             {
@@ -115,7 +115,7 @@
                                                                                     TraktPagedParameters pagedParameters = null,
                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecutePagedRequestAsync(new TraktSearchIdLookupRequest
             {

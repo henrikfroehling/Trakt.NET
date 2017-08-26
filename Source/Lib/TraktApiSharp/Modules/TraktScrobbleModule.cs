@@ -51,7 +51,7 @@
                                                                                     string appVersion = null, DateTime? appBuildDate = null,
                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             TraktMovieScrobblePost requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(
@@ -79,7 +79,7 @@
                                                                                     string appVersion = null, DateTime? appBuildDate = null,
                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             TraktMovieScrobblePost requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(
@@ -107,7 +107,7 @@
                                                                                    string appVersion = null, DateTime? appBuildDate = null,
                                                                                    CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             TraktMovieScrobblePost requestBody = CreateMovieScrobblePost(movie, progress, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(
@@ -139,7 +139,7 @@
                                                                                         string appVersion = null, DateTime? appBuildDate = null,
                                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             TraktEpisodeScrobblePost requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(
@@ -171,7 +171,7 @@
                                                                                         string appVersion = null, DateTime? appBuildDate = null,
                                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             TraktEpisodeScrobblePost requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(
@@ -203,7 +203,7 @@
                                                                                        string appVersion = null, DateTime? appBuildDate = null,
                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             TraktEpisodeScrobblePost requestBody = CreateEpisodeScrobblePost(episode, progress, null, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(
@@ -235,7 +235,7 @@
                                                                                                 string appVersion = null, DateTime? appBuildDate = null,
                                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             TraktEpisodeScrobblePost requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(
@@ -267,7 +267,7 @@
                                                                                                 string appVersion = null, DateTime? appBuildDate = null,
                                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             TraktEpisodeScrobblePost requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(
@@ -299,7 +299,7 @@
                                                                                                string appVersion = null, DateTime? appBuildDate = null,
                                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             TraktEpisodeScrobblePost requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
 
             return requestHandler.ExecuteSingleItemRequestAsync(

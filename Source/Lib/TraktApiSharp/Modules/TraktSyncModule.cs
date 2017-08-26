@@ -55,7 +55,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktResponse<ITraktSyncLastActivities>> GetLastActivitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncLastActivitiesRequest(), cancellationToken);
         }
 
@@ -74,7 +74,7 @@
         public Task<TraktListResponse<ITraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null, uint? limit = null,
                                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteListRequestAsync(new TraktSyncPlaybackProgressRequest
             {
@@ -99,7 +99,7 @@
             if (playbackId == 0)
                 throw new ArgumentOutOfRangeException(nameof(playbackId), "playback id not valid");
 
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteNoContentRequestAsync(new TraktSyncPlaybackDeleteRequest { Id = playbackId.ToString() }, cancellationToken);
         }
 
@@ -120,7 +120,7 @@
         public Task<TraktListResponse<ITraktCollectionMovie>> GetCollectionMoviesAsync(TraktExtendedInfo extendedInfo = null,
                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteListRequestAsync(new TraktSyncCollectionMoviesRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
@@ -141,7 +141,7 @@
         public Task<TraktListResponse<ITraktCollectionShow>> GetCollectionShowsAsync(TraktExtendedInfo extendedInfo = null,
                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteListRequestAsync(new TraktSyncCollectionShowsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
@@ -167,7 +167,7 @@
                                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateCollectionPost(collectionPost);
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncCollectionAddRequest { RequestBody = collectionPost }, cancellationToken);
         }
 
@@ -193,7 +193,7 @@
                                                                                                       CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateCollectionPost(collectionRemovePost);
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncCollectionRemoveRequest { RequestBody = collectionRemovePost }, cancellationToken);
         }
 
@@ -214,7 +214,7 @@
         public Task<TraktListResponse<ITraktWatchedMovie>> GetWatchedMoviesAsync(TraktExtendedInfo extendedInfo = null,
                                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteListRequestAsync(new TraktSyncWatchedMoviesRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
@@ -235,7 +235,7 @@
         public Task<TraktListResponse<ITraktWatchedShow>> GetWatchedShowsAsync(TraktExtendedInfo extendedInfo = null,
                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteListRequestAsync(new TraktSyncWatchedShowsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
@@ -270,7 +270,7 @@
                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecutePagedRequestAsync(new TraktSyncWatchedHistoryRequest
             {
@@ -306,7 +306,7 @@
                                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateHistoryPost(historyPost);
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchedHistoryAddRequest { RequestBody = historyPost }, cancellationToken);
         }
 
@@ -332,7 +332,7 @@
                                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateHistoryPost(historyRemovePost);
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchedHistoryRemoveRequest { RequestBody = historyRemovePost }, cancellationToken);
         }
 
@@ -361,7 +361,7 @@
                                                                           TraktExtendedInfo extendedInfo = null,
                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteListRequestAsync(new TraktSyncRatingsRequest
             {
@@ -393,7 +393,7 @@
                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateRatingsPost(ratingsPost);
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncRatingsAddRequest { RequestBody = ratingsPost }, cancellationToken);
         }
 
@@ -419,7 +419,7 @@
                                                                                            CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateRatingsPost(ratingsRemovePost);
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncRatingsRemoveRequest { RequestBody = ratingsRemovePost }, cancellationToken);
         }
 
@@ -450,7 +450,7 @@
                                                                                TraktPagedParameters pagedParameters = null,
                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecutePagedRequestAsync(new TraktSyncWatchlistRequest
             {
@@ -483,7 +483,7 @@
                                                                                            CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateWatchlistPost(watchlistPost);
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchlistAddRequest { RequestBody = watchlistPost }, cancellationToken);
         }
 
@@ -509,7 +509,7 @@
                                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateWatchlistPost(watchlistRemovePost);
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchlistRemoveRequest { RequestBody = watchlistRemovePost }, cancellationToken);
         }
 

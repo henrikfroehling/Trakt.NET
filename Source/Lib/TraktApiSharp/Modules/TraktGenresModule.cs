@@ -37,7 +37,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public async Task<TraktListResponse<ITraktGenre>> GetMovieGenresAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             var response = await requestHandler.ExecuteListRequestAsync(new TraktGenresMoviesRequest(), cancellationToken);
 
             if (response)
@@ -61,7 +61,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public async Task<TraktListResponse<ITraktGenre>> GetShowGenresAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             var response = await requestHandler.ExecuteListRequestAsync(new TraktGenresShowsRequest(), cancellationToken);
 
             if (response)

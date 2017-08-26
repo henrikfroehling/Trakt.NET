@@ -52,7 +52,7 @@
                                                                                   TraktExtendedInfo extendedInfo = null,
                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecutePagedRequestAsync(new TraktUserMovieRecommendationsRequest
             {
@@ -74,7 +74,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         public Task<TraktNoContentResponse> HideMovieRecommendationAsync(string movieIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteNoContentRequestAsync(new TraktUserRecommendationHideMovieRequest { Id = movieIdOrSlug }, cancellationToken);
         }
 
@@ -103,7 +103,7 @@
                                                                                 TraktExtendedInfo extendedInfo = null,
                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecutePagedRequestAsync(new TraktUserShowRecommendationsRequest
             {
@@ -125,7 +125,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         public Task<TraktNoContentResponse> HideShowRecommendationAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteNoContentRequestAsync(new TraktUserRecommendationHideShowRequest { Id = showIdOrSlug }, cancellationToken);
         }
     }
