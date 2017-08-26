@@ -14,43 +14,43 @@
     using Xunit;
 
     [Category("Requests.Seasons")]
-    public class TraktSeasonCommentsRequest_Tests
+    public class SeasonCommentsRequest_Tests
     {
         [Fact]
-        public void Test_TraktSeasonCommentsRequest_IsNotAbstract()
+        public void Test_SeasonCommentsRequest_IsNotAbstract()
         {
-            typeof(TraktSeasonCommentsRequest).IsAbstract.Should().BeFalse();
+            typeof(SeasonCommentsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktSeasonCommentsRequest_IsSealed()
+        public void Test_SeasonCommentsRequest_IsSealed()
         {
-            typeof(TraktSeasonCommentsRequest).IsSealed.Should().BeTrue();
+            typeof(SeasonCommentsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSeasonCommentsRequest_Inherits_ATraktSeasonRequest_1()
+        public void Test_SeasonCommentsRequest_Inherits_ATraktSeasonRequest_1()
         {
-            typeof(TraktSeasonCommentsRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktComment>)).Should().BeTrue();
+            typeof(SeasonCommentsRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSeasonCommentsRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_SeasonCommentsRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktSeasonCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
+            typeof(SeasonCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]
-        public void Test_TraktSeasonCommentsRequest_Has_Valid_UriTemplate()
+        public void Test_SeasonCommentsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktSeasonCommentsRequest();
+            var request = new SeasonCommentsRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/comments{/sort_order}{?page,limit}");
         }
 
         [Fact]
-        public void Test_TraktSeasonCommentsRequest_Has_SortOrder_Property()
+        public void Test_SeasonCommentsRequest_Has_SortOrder_Property()
         {
-            var propertyInfo = typeof(TraktSeasonCommentsRequest)
+            var propertyInfo = typeof(SeasonCommentsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "SortOrder")
                     .FirstOrDefault();
@@ -61,29 +61,29 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonCommentsRequest_Validate_Throws_Exceptions()
+        public void Test_SeasonCommentsRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktSeasonCommentsRequest();
+            var request = new SeasonCommentsRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktSeasonCommentsRequest { Id = string.Empty };
+            request = new SeasonCommentsRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktSeasonCommentsRequest { Id = "invalid id" };
+            request = new SeasonCommentsRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktSeasonCommentsRequest_TestData))]
-        public void Test_TraktSeasonCommentsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(SeasonCommentsRequest_TestData))]
+        public void Test_SeasonCommentsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                     IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -92,7 +92,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktSeasonCommentsRequest_TestData : IEnumerable<object[]>
+        public class SeasonCommentsRequest_TestData : IEnumerable<object[]>
         {
             private const string _id = "123";
             private const uint _seasonNumber = 1;
@@ -100,34 +100,34 @@
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktSeasonCommentsRequest _request1 = new TraktSeasonCommentsRequest
+            private static readonly SeasonCommentsRequest _request1 = new SeasonCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber
             };
 
-            private static readonly TraktSeasonCommentsRequest _request2 = new TraktSeasonCommentsRequest
+            private static readonly SeasonCommentsRequest _request2 = new SeasonCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
                 SortOrder = _sortOrder
             };
 
-            private static readonly TraktSeasonCommentsRequest _request3 = new TraktSeasonCommentsRequest
+            private static readonly SeasonCommentsRequest _request3 = new SeasonCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
                 Page = _page
             };
 
-            private static readonly TraktSeasonCommentsRequest _request4 = new TraktSeasonCommentsRequest
+            private static readonly SeasonCommentsRequest _request4 = new SeasonCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
                 Limit = _limit
             };
 
-            private static readonly TraktSeasonCommentsRequest _request5 = new TraktSeasonCommentsRequest
+            private static readonly SeasonCommentsRequest _request5 = new SeasonCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -135,7 +135,7 @@
                 Page = _page
             };
 
-            private static readonly TraktSeasonCommentsRequest _request6 = new TraktSeasonCommentsRequest
+            private static readonly SeasonCommentsRequest _request6 = new SeasonCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -143,7 +143,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktSeasonCommentsRequest _request7 = new TraktSeasonCommentsRequest
+            private static readonly SeasonCommentsRequest _request7 = new SeasonCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -151,7 +151,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktSeasonCommentsRequest _request8 = new TraktSeasonCommentsRequest
+            private static readonly SeasonCommentsRequest _request8 = new SeasonCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
@@ -162,7 +162,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktSeasonCommentsRequest_TestData()
+            public SeasonCommentsRequest_TestData()
             {
                 SetupPathParamters();
             }
