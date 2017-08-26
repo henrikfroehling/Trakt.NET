@@ -30,7 +30,7 @@
         [Fact]
         public void Test_TraktCalendarAllDVDMoviesRequest_Inherits_ATraktCalendarRequest()
         {
-            typeof(TraktCalendarAllDVDMoviesRequest).IsSubclassOf(typeof(ATraktCalendarRequest<ITraktCalendarMovie>)).Should().BeTrue();
+            typeof(TraktCalendarAllDVDMoviesRequest).IsSubclassOf(typeof(ACalendarRequest<ITraktCalendarMovie>)).Should().BeTrue();
         }
 
         [Fact]

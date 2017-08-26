@@ -1111,7 +1111,7 @@
     <Compile Include="Requests\Base\APutRequest%272_Tests.cs" />
     <Compile Include="Requests\Base\ARequest%271_Tests.cs" />
     <Compile Include="Requests\Base\ARequest_Tests.cs" />
-    <Compile Include="Requests\Calendars\ATraktCalendarRequest%271_Tests.cs" />
+    <Compile Include="Requests\Calendars\ACalendarRequest%271_Tests.cs" />
     <Compile Include="Requests\Calendars\OAuth\ACalendarUserRequest%271_Tests.cs" />
     <Compile Include="Requests\Calendars\OAuth\CalendarUserDVDMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Calendars\OAuth\CalendarUserMoviesRequest_Tests.cs" />

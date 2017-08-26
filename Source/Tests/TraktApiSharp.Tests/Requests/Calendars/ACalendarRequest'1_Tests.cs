@@ -11,48 +11,48 @@
     using Xunit;
 
     [Category("Requests.Calendars")]
-    public class ATraktCalendarRequest_1_Tests
+    public class ACalendarRequest_1_Tests
     {
-        internal class TraktCalendarRequestMock : ATraktCalendarRequest<int>
+        internal class CalendarRequestMock : ACalendarRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
         }
 
         [Fact]
-        public void Test_ATraktCalendarRequest_1_IsAbstract()
+        public void Test_ACalendarRequest_1_IsAbstract()
         {
-            typeof(ATraktCalendarRequest<>).IsAbstract.Should().BeTrue();
+            typeof(ACalendarRequest<>).IsAbstract.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktCalendarRequest_1_Has_GenericTypeParameter()
+        public void Test_ACalendarRequest_1_Has_GenericTypeParameter()
         {
-            typeof(ATraktCalendarRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ATraktCalendarRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+            typeof(ACalendarRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(ACalendarRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
         [Fact]
-        public void Test_ATraktCalendarRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_ACalendarRequest_1_Inherits_ATraktGetRequest_1()
         {
-            typeof(ATraktCalendarRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
+            typeof(ACalendarRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktCalendarRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_ACalendarRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(ATraktCalendarRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(ACalendarRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_ATraktCalendarRequest_1_Implements_ITraktSupportsFilter_Interface()
+        public void Test_ACalendarRequest_1_Implements_ITraktSupportsFilter_Interface()
         {
-            typeof(ATraktCalendarRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
+            typeof(ACalendarRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
         }
 
         [Fact]
-        public void Test_ATraktCalendarRequest_1_Has_StartDate_Property()
+        public void Test_ACalendarRequest_1_Has_StartDate_Property()
         {
-            var propertyInfo = typeof(ATraktCalendarRequest<>)
+            var propertyInfo = typeof(ACalendarRequest<>)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "StartDate")
                     .FirstOrDefault();
@@ -63,9 +63,9 @@
         }
 
         [Fact]
-        public void Test_ATraktCalendarRequest_1_Has_Days_Property()
+        public void Test_ACalendarRequest_1_Has_Days_Property()
         {
-            var propertyInfo = typeof(ATraktCalendarRequest<>)
+            var propertyInfo = typeof(ACalendarRequest<>)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Days")
                     .FirstOrDefault();
@@ -76,14 +76,14 @@
         }
 
         [Fact]
-        public void Test_ATraktCalendarRequest_1_Validate_Throws_Exceptions()
+        public void Test_ACalendarRequest_1_Validate_Throws_Exceptions()
         {
-            var requestMock = new TraktCalendarRequestMock { Days = 0 };
+            var requestMock = new CalendarRequestMock { Days = 0 };
 
             Action act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentOutOfRangeException>();
 
-            requestMock = new TraktCalendarRequestMock { Days = 32 };
+            requestMock = new CalendarRequestMock { Days = 32 };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentOutOfRangeException>();
