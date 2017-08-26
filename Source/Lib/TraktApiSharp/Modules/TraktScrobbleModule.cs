@@ -312,8 +312,8 @@
         private ScrobblePauseRequest<T, U> CreateScrobblePauseRequest<T, U>(U requestBody) where U : TraktScrobblePost
             => new ScrobblePauseRequest<T, U> { RequestBody = requestBody };
 
-        private TraktScrobbleStopRequest<T, U> CreateScrobbleStopRequest<T, U>(U requestBody) where U : TraktScrobblePost
-            => new TraktScrobbleStopRequest<T, U> { RequestBody = requestBody };
+        private ScrobbleStopRequest<T, U> CreateScrobbleStopRequest<T, U>(U requestBody) where U : TraktScrobblePost
+            => new ScrobbleStopRequest<T, U> { RequestBody = requestBody };
 
         private TraktMovieScrobblePost CreateMovieScrobblePost(TraktMovie movie, float progress,
                                                                string appVersion = null, DateTime? appDate = null)
