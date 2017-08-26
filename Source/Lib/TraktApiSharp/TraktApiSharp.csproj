@@ -714,7 +714,7 @@
     <Compile Include="Requests\Shows\ATraktShowsMostPWCRequest%271.cs" />
     <Compile Include="Requests\Shows\ATraktShowsRequest%271.cs" />
     <Compile Include="Requests\Shows\OAuth\AShowProgressRequest%271.cs" />
-    <Compile Include="Requests\Shows\OAuth\TraktShowCollectionProgressRequest.cs" />
+    <Compile Include="Requests\Shows\OAuth\ShowCollectionProgressRequest.cs" />
     <Compile Include="Requests\Shows\OAuth\TraktShowWatchedProgressRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowAliasesRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowCommentsRequest.cs" />

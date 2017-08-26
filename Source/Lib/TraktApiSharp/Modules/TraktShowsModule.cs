@@ -354,7 +354,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowCollectionProgressRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new ShowCollectionProgressRequest
             {
                 Id = showIdOrSlug,
                 Hidden = includingHiddenSeasons,
