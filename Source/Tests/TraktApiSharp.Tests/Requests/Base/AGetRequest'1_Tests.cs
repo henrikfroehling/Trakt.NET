@@ -42,7 +42,7 @@
         [Fact]
         public void Test_AGetRequest_1_Implements_ITraktGetRequest_1_Interface()
         {
-            typeof(AGetRequest<int>).GetInterfaces().Should().Contain(typeof(ITraktGetRequest<int>));
+            typeof(AGetRequest<int>).GetInterfaces().Should().Contain(typeof(IGetRequest<int>));
         }
 
         [Fact]
