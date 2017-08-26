@@ -479,7 +479,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowsTrendingRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowsTrendingRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,

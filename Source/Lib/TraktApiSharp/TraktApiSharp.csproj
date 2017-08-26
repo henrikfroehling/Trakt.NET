@@ -731,7 +731,7 @@
     <Compile Include="Requests\Shows\ShowsPopularRequest.cs" />
     <Compile Include="Requests\Shows\ShowsRecentlyUpdatedRequest.cs" />
     <Compile Include="Requests\Shows\ShowStatisticsRequest.cs" />
-    <Compile Include="Requests\Shows\TraktShowsTrendingRequest.cs" />
+    <Compile Include="Requests\Shows\ShowsTrendingRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowSummaryRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowTranslationsRequest.cs" />
     <Compile Include="Requests\Shows\TraktShowWatchingUsersRequest.cs" />

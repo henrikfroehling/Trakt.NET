@@ -10,35 +10,35 @@
     using Xunit;
 
     [Category("Requests.Shows.Lists")]
-    public class TraktShowsTrendingRequest_Tests
+    public class ShowsTrendingRequest_Tests
     {
         [Fact]
-        public void Test_TraktShowsTrendingRequest_Is_Not_Abstract()
+        public void Test_ShowsTrendingRequest_Is_Not_Abstract()
         {
-            typeof(TraktShowsTrendingRequest).IsAbstract.Should().BeFalse();
+            typeof(ShowsTrendingRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktShowsTrendingRequest_Is_Sealed()
+        public void Test_ShowsTrendingRequest_Is_Sealed()
         {
-            typeof(TraktShowsTrendingRequest).IsSealed.Should().BeTrue();
+            typeof(ShowsTrendingRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowsTrendingRequest_Inherits_ATraktShowsRequest_1()
+        public void Test_ShowsTrendingRequest_Inherits_ATraktShowsRequest_1()
         {
-            typeof(TraktShowsTrendingRequest).IsSubclassOf(typeof(AShowsRequest<ITraktTrendingShow>)).Should().BeTrue();
+            typeof(ShowsTrendingRequest).IsSubclassOf(typeof(AShowsRequest<ITraktTrendingShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowsTrendingRequest_Has_Valid_UriTemplate()
+        public void Test_ShowsTrendingRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktShowsTrendingRequest();
+            var request = new ShowsTrendingRequest();
             request.UriTemplate.Should().Be("shows/trending{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}");
         }
 
-        [Theory, ClassData(typeof(TraktShowsTrendingRequest_TestData))]
-        public void Test_TraktShowsTrendingRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(ShowsTrendingRequest_TestData))]
+        public void Test_ShowsTrendingRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                    IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -47,86 +47,86 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktShowsTrendingRequest_TestData : IEnumerable<object[]>
+        public class ShowsTrendingRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktShowFilter _filter = new TraktShowFilter().WithYears(2005, 2016);
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktShowsTrendingRequest _request1 = new TraktShowsTrendingRequest();
+            private static readonly ShowsTrendingRequest _request1 = new ShowsTrendingRequest();
 
-            private static readonly TraktShowsTrendingRequest _request2 = new TraktShowsTrendingRequest
+            private static readonly ShowsTrendingRequest _request2 = new ShowsTrendingRequest
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktShowsTrendingRequest _request3 = new TraktShowsTrendingRequest
+            private static readonly ShowsTrendingRequest _request3 = new ShowsTrendingRequest
             {
                 Filter = _filter
             };
 
-            private static readonly TraktShowsTrendingRequest _request4 = new TraktShowsTrendingRequest
+            private static readonly ShowsTrendingRequest _request4 = new ShowsTrendingRequest
             {
                 Page = _page
             };
 
-            private static readonly TraktShowsTrendingRequest _request5 = new TraktShowsTrendingRequest
+            private static readonly ShowsTrendingRequest _request5 = new ShowsTrendingRequest
             {
                 Limit = _limit
             };
 
-            private static readonly TraktShowsTrendingRequest _request6 = new TraktShowsTrendingRequest
+            private static readonly ShowsTrendingRequest _request6 = new ShowsTrendingRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter
             };
 
-            private static readonly TraktShowsTrendingRequest _request7 = new TraktShowsTrendingRequest
+            private static readonly ShowsTrendingRequest _request7 = new ShowsTrendingRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktShowsTrendingRequest _request8 = new TraktShowsTrendingRequest
+            private static readonly ShowsTrendingRequest _request8 = new ShowsTrendingRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsTrendingRequest _request9 = new TraktShowsTrendingRequest
+            private static readonly ShowsTrendingRequest _request9 = new ShowsTrendingRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsTrendingRequest _request10 = new TraktShowsTrendingRequest
+            private static readonly ShowsTrendingRequest _request10 = new ShowsTrendingRequest
             {
                 Filter = _filter,
                 Page = _page
             };
 
-            private static readonly TraktShowsTrendingRequest _request11 = new TraktShowsTrendingRequest
+            private static readonly ShowsTrendingRequest _request11 = new ShowsTrendingRequest
             {
                 Filter = _filter,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsTrendingRequest _request12 = new TraktShowsTrendingRequest
+            private static readonly ShowsTrendingRequest _request12 = new ShowsTrendingRequest
             {
                 Filter = _filter,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsTrendingRequest _request13 = new TraktShowsTrendingRequest
+            private static readonly ShowsTrendingRequest _request13 = new ShowsTrendingRequest
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsTrendingRequest _request14 = new TraktShowsTrendingRequest
+            private static readonly ShowsTrendingRequest _request14 = new ShowsTrendingRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter,
@@ -136,7 +136,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktShowsTrendingRequest_TestData()
+            public ShowsTrendingRequest_TestData()
             {
                 SetupPathParamters();
             }
