@@ -4,7 +4,7 @@
     using System;
     using System.Net.Http;
 
-    internal abstract class ATraktPutRequest<TRequestBodyType> : ATraktRequest, ITraktPutRequest<TRequestBodyType>
+    internal abstract class APutRequest<TRequestBodyType> : ATraktRequest, ITraktPutRequest<TRequestBodyType>
     {
         public override TraktAuthorizationRequirement AuthorizationRequirement => TraktAuthorizationRequirement.Required;
 
