@@ -217,7 +217,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMovieListsRequest
+            return requestHandler.ExecutePagedRequestAsync(new MovieListsRequest
             {
                 Id = movieIdOrSlug,
                 Type = listType,

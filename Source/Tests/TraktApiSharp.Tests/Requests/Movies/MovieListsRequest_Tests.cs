@@ -14,43 +14,43 @@
     using Xunit;
 
     [Category("Requests.Movies")]
-    public class TraktMovieListsRequest_Tests
+    public class MovieListsRequest_Tests
     {
         [Fact]
-        public void Test_TraktMovieListsRequest_IsNotAbstract()
+        public void Test_MovieListsRequest_IsNotAbstract()
         {
-            typeof(TraktMovieListsRequest).IsAbstract.Should().BeFalse();
+            typeof(MovieListsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktMovieListsRequest_IsSealed()
+        public void Test_MovieListsRequest_IsSealed()
         {
-            typeof(TraktMovieListsRequest).IsSealed.Should().BeTrue();
+            typeof(MovieListsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMovieListsRequest_Inherits_ATraktMovieRequest_1()
+        public void Test_MovieListsRequest_Inherits_ATraktMovieRequest_1()
         {
-            typeof(TraktMovieListsRequest).IsSubclassOf(typeof(AMovieRequest<ITraktList>)).Should().BeTrue();
+            typeof(MovieListsRequest).IsSubclassOf(typeof(AMovieRequest<ITraktList>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMovieListsRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_MovieListsRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktMovieListsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
+            typeof(MovieListsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]
-        public void Test_TraktMovieListsRequest_Has_Valid_UriTemplate()
+        public void Test_MovieListsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktMovieListsRequest();
+            var request = new MovieListsRequest();
             request.UriTemplate.Should().Be("movies/{id}/lists{/type}{/sort_order}{?page,limit}");
         }
 
         [Fact]
-        public void Test_TraktMovieListsRequest_Has_Type_Property()
+        public void Test_MovieListsRequest_Has_Type_Property()
         {
-            var propertyInfo = typeof(TraktMovieListsRequest)
+            var propertyInfo = typeof(MovieListsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
@@ -61,9 +61,9 @@
         }
 
         [Fact]
-        public void Test_TraktMovieListsRequest_Has_SortOrder_Property()
+        public void Test_MovieListsRequest_Has_SortOrder_Property()
         {
-            var propertyInfo = typeof(TraktMovieListsRequest)
+            var propertyInfo = typeof(MovieListsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "SortOrder")
                     .FirstOrDefault();
@@ -74,29 +74,29 @@
         }
 
         [Fact]
-        public void Test_TraktMovieListsRequest_Validate_Throws_Exceptions()
+        public void Test_MovieListsRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktMovieListsRequest();
+            var request = new MovieListsRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktMovieListsRequest { Id = string.Empty };
+            request = new MovieListsRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktMovieListsRequest { Id = "invalid id" };
+            request = new MovieListsRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktMovieListsRequest_TestData))]
-        public void Test_TraktMovieListsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(MovieListsRequest_TestData))]
+        public void Test_MovieListsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                 IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -105,7 +105,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktMovieListsRequest_TestData : IEnumerable<object[]>
+        public class MovieListsRequest_TestData : IEnumerable<object[]>
         {
             private const string _id = "123";
             private static readonly TraktListType _type = TraktListType.Official;
@@ -113,57 +113,57 @@
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktMovieListsRequest _request1 = new TraktMovieListsRequest
+            private static readonly MovieListsRequest _request1 = new MovieListsRequest
             {
                 Id = _id
             };
 
-            private static readonly TraktMovieListsRequest _request2 = new TraktMovieListsRequest
+            private static readonly MovieListsRequest _request2 = new MovieListsRequest
             {
                 Id = _id,
                 Type = _type
             };
 
-            private static readonly TraktMovieListsRequest _request3 = new TraktMovieListsRequest
+            private static readonly MovieListsRequest _request3 = new MovieListsRequest
             {
                 Id = _id,
                 SortOrder = _sortOrder
             };
 
-            private static readonly TraktMovieListsRequest _request4 = new TraktMovieListsRequest
+            private static readonly MovieListsRequest _request4 = new MovieListsRequest
             {
                 Id = _id,
                 Page = _page
             };
 
-            private static readonly TraktMovieListsRequest _request5 = new TraktMovieListsRequest
+            private static readonly MovieListsRequest _request5 = new MovieListsRequest
             {
                 Id = _id,
                 Limit = _limit
             };
 
-            private static readonly TraktMovieListsRequest _request6 = new TraktMovieListsRequest
+            private static readonly MovieListsRequest _request6 = new MovieListsRequest
             {
                 Id = _id,
                 Type = _type,
                 SortOrder = _sortOrder
             };
 
-            private static readonly TraktMovieListsRequest _request7 = new TraktMovieListsRequest
+            private static readonly MovieListsRequest _request7 = new MovieListsRequest
             {
                 Id = _id,
                 Type = _type,
                 Page = _page
             };
 
-            private static readonly TraktMovieListsRequest _request8 = new TraktMovieListsRequest
+            private static readonly MovieListsRequest _request8 = new MovieListsRequest
             {
                 Id = _id,
                 Type = _type,
                 Limit = _limit
             };
 
-            private static readonly TraktMovieListsRequest _request9 = new TraktMovieListsRequest
+            private static readonly MovieListsRequest _request9 = new MovieListsRequest
             {
                 Id = _id,
                 Type = _type,
@@ -171,21 +171,21 @@
                 Limit = _limit
             };
 
-            private static readonly TraktMovieListsRequest _request10 = new TraktMovieListsRequest
+            private static readonly MovieListsRequest _request10 = new MovieListsRequest
             {
                 Id = _id,
                 SortOrder = _sortOrder,
                 Page = _page
             };
 
-            private static readonly TraktMovieListsRequest _request11 = new TraktMovieListsRequest
+            private static readonly MovieListsRequest _request11 = new MovieListsRequest
             {
                 Id = _id,
                 SortOrder = _sortOrder,
                 Limit = _limit
             };
 
-            private static readonly TraktMovieListsRequest _request12 = new TraktMovieListsRequest
+            private static readonly MovieListsRequest _request12 = new MovieListsRequest
             {
                 Id = _id,
                 SortOrder = _sortOrder,
@@ -193,14 +193,14 @@
                 Limit = _limit
             };
 
-            private static readonly TraktMovieListsRequest _request13 = new TraktMovieListsRequest
+            private static readonly MovieListsRequest _request13 = new MovieListsRequest
             {
                 Id = _id,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMovieListsRequest _request14 = new TraktMovieListsRequest
+            private static readonly MovieListsRequest _request14 = new MovieListsRequest
             {
                 Id = _id,
                 Type = _type,
@@ -208,7 +208,7 @@
                 Page = _page
             };
 
-            private static readonly TraktMovieListsRequest _request15 = new TraktMovieListsRequest
+            private static readonly MovieListsRequest _request15 = new MovieListsRequest
             {
                 Id = _id,
                 Type = _type,
@@ -216,7 +216,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktMovieListsRequest _request16 = new TraktMovieListsRequest
+            private static readonly MovieListsRequest _request16 = new MovieListsRequest
             {
                 Id = _id,
                 Type = _type,
@@ -227,7 +227,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktMovieListsRequest_TestData()
+            public MovieListsRequest_TestData()
             {
                 SetupPathParamters();
             }

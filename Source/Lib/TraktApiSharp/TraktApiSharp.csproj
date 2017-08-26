@@ -668,7 +668,7 @@
     <Compile Include="Requests\Movies\AMoviesRequest%271.cs" />
     <Compile Include="Requests\Movies\MovieAliasesRequest.cs" />
     <Compile Include="Requests\Movies\MovieCommentsRequest.cs" />
-    <Compile Include="Requests\Movies\TraktMovieListsRequest.cs" />
+    <Compile Include="Requests\Movies\MovieListsRequest.cs" />
     <Compile Include="Requests\Movies\TraktMoviePeopleRequest.cs" />
     <Compile Include="Requests\Movies\TraktMovieRatingsRequest.cs" />
     <Compile Include="Requests\Movies\TraktMovieRelatedMoviesRequest.cs" />
