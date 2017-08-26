@@ -639,7 +639,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowsMostCollectedRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowsMostCollectedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
