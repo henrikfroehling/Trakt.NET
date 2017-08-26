@@ -14,43 +14,43 @@
     using Xunit;
 
     [Category("Requests.Shows")]
-    public class TraktShowCommentsRequest_Tests
+    public class ShowCommentsRequest_Tests
     {
         [Fact]
-        public void Test_TraktShowCommentsRequest_Is_Not_Abstract()
+        public void Test_ShowCommentsRequest_Is_Not_Abstract()
         {
-            typeof(TraktShowCommentsRequest).IsAbstract.Should().BeFalse();
+            typeof(ShowCommentsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktShowCommentsRequest_Is_Sealed()
+        public void Test_ShowCommentsRequest_Is_Sealed()
         {
-            typeof(TraktShowCommentsRequest).IsSealed.Should().BeTrue();
+            typeof(ShowCommentsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowCommentsRequest_Inherits_ATraktShowRequest_1()
+        public void Test_ShowCommentsRequest_Inherits_ATraktShowRequest_1()
         {
-            typeof(TraktShowCommentsRequest).IsSubclassOf(typeof(AShowRequest<ITraktComment>)).Should().BeTrue();
+            typeof(ShowCommentsRequest).IsSubclassOf(typeof(AShowRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowCommentsRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_ShowCommentsRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktShowCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
+            typeof(ShowCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]
-        public void Test_TraktShowCommentsRequest_Has_Valid_UriTemplate()
+        public void Test_ShowCommentsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktShowCommentsRequest();
+            var request = new ShowCommentsRequest();
             request.UriTemplate.Should().Be("shows/{id}/comments{/sort_order}{?page,limit}");
         }
 
         [Fact]
-        public void Test_TraktShowCommentsRequest_Has_SortOrder_Property()
+        public void Test_ShowCommentsRequest_Has_SortOrder_Property()
         {
-            var propertyInfo = typeof(TraktShowCommentsRequest)
+            var propertyInfo = typeof(ShowCommentsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "SortOrder")
                     .FirstOrDefault();
@@ -61,29 +61,29 @@
         }
 
         [Fact]
-        public void Test_TraktShowCommentsRequest_Validate_Throws_Exceptions()
+        public void Test_ShowCommentsRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktShowCommentsRequest();
+            var request = new ShowCommentsRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktShowCommentsRequest { Id = string.Empty };
+            request = new ShowCommentsRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktShowCommentsRequest { Id = "invalid id" };
+            request = new ShowCommentsRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktShowCommentsRequest_TestData))]
-        public void Test_TraktShowCommentsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(ShowCommentsRequest_TestData))]
+        public void Test_ShowCommentsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                   IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -92,58 +92,58 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktShowCommentsRequest_TestData : IEnumerable<object[]>
+        public class ShowCommentsRequest_TestData : IEnumerable<object[]>
         {
             private const string _id = "123";
             private static readonly TraktCommentSortOrder _sortOrder = TraktCommentSortOrder.Newest;
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktShowCommentsRequest _request1 = new TraktShowCommentsRequest
+            private static readonly ShowCommentsRequest _request1 = new ShowCommentsRequest
             {
                 Id = _id
             };
 
-            private static readonly TraktShowCommentsRequest _request2 = new TraktShowCommentsRequest
+            private static readonly ShowCommentsRequest _request2 = new ShowCommentsRequest
             {
                 Id = _id,
                 SortOrder = _sortOrder
             };
 
-            private static readonly TraktShowCommentsRequest _request3 = new TraktShowCommentsRequest
+            private static readonly ShowCommentsRequest _request3 = new ShowCommentsRequest
             {
                 Id = _id,
                 Page = _page
             };
 
-            private static readonly TraktShowCommentsRequest _request4 = new TraktShowCommentsRequest
+            private static readonly ShowCommentsRequest _request4 = new ShowCommentsRequest
             {
                 Id = _id,
                 Limit = _limit
             };
 
-            private static readonly TraktShowCommentsRequest _request5 = new TraktShowCommentsRequest
+            private static readonly ShowCommentsRequest _request5 = new ShowCommentsRequest
             {
                 Id = _id,
                 SortOrder = _sortOrder,
                 Page = _page
             };
 
-            private static readonly TraktShowCommentsRequest _request6 = new TraktShowCommentsRequest
+            private static readonly ShowCommentsRequest _request6 = new ShowCommentsRequest
             {
                 Id = _id,
                 SortOrder = _sortOrder,
                 Limit = _limit
             };
 
-            private static readonly TraktShowCommentsRequest _request7 = new TraktShowCommentsRequest
+            private static readonly ShowCommentsRequest _request7 = new ShowCommentsRequest
             {
                 Id = _id,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowCommentsRequest _request8 = new TraktShowCommentsRequest
+            private static readonly ShowCommentsRequest _request8 = new ShowCommentsRequest
             {
                 Id = _id,
                 SortOrder = _sortOrder,
@@ -153,7 +153,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktShowCommentsRequest_TestData()
+            public ShowCommentsRequest_TestData()
             {
                 SetupPathParamters();
             }

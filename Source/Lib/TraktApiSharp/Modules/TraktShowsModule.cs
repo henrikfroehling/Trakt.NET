@@ -160,7 +160,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowCommentsRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowCommentsRequest
             {
                 Id = showIdOrSlug,
                 SortOrder = commentSortOrder,
