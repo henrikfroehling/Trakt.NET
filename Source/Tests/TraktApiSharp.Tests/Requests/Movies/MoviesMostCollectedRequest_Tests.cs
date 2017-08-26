@@ -11,35 +11,35 @@
     using Xunit;
 
     [Category("Requests.Movies.Lists")]
-    public class TraktMoviesMostCollectedRequest_Tests
+    public class MoviesMostCollectedRequest_Tests
     {
         [Fact]
-        public void Test_TraktMoviesMostCollectedRequest_IsNotAbstract()
+        public void Test_MoviesMostCollectedRequest_IsNotAbstract()
         {
-            typeof(TraktMoviesMostCollectedRequest).IsAbstract.Should().BeFalse();
+            typeof(MoviesMostCollectedRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktMoviesMostCollectedRequest_IsSealed()
+        public void Test_MoviesMostCollectedRequest_IsSealed()
         {
-            typeof(TraktMoviesMostCollectedRequest).IsSealed.Should().BeTrue();
+            typeof(MoviesMostCollectedRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMoviesMostCollectedRequest_Inherits_ATraktMoviesMostPWCRequest_1()
+        public void Test_MoviesMostCollectedRequest_Inherits_ATraktMoviesMostPWCRequest_1()
         {
-            typeof(TraktMoviesMostCollectedRequest).IsSubclassOf(typeof(AMoviesMostPWCRequest<ITraktMostPWCMovie>)).Should().BeTrue();
+            typeof(MoviesMostCollectedRequest).IsSubclassOf(typeof(AMoviesMostPWCRequest<ITraktMostPWCMovie>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktMoviesMostCollectedRequest_Has_Valid_UriTemplate()
+        public void Test_MoviesMostCollectedRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktMoviesMostCollectedRequest();
+            var request = new MoviesMostCollectedRequest();
             request.UriTemplate.Should().Be("movies/collected{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}");
         }
 
-        [Theory, ClassData(typeof(TraktMoviesMostCollectedRequest_TestData))]
-        public void Test_TraktMoviesMostCollectedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(MoviesMostCollectedRequest_TestData))]
+        public void Test_MoviesMostCollectedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                          IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -48,7 +48,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktMoviesMostCollectedRequest_TestData : IEnumerable<object[]>
+        public class MoviesMostCollectedRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktMovieFilter _filter = new TraktMovieFilter().WithYears(2005, 2016);
@@ -56,115 +56,115 @@
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktMoviesMostCollectedRequest _request1 = new TraktMoviesMostCollectedRequest();
+            private static readonly MoviesMostCollectedRequest _request1 = new MoviesMostCollectedRequest();
 
-            private static readonly TraktMoviesMostCollectedRequest _request2 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request2 = new MoviesMostCollectedRequest
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request3 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request3 = new MoviesMostCollectedRequest
             {
                 Filter = _filter
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request4 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request4 = new MoviesMostCollectedRequest
             {
                 Period = _timePeriod
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request5 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request5 = new MoviesMostCollectedRequest
             {
                 Page = _page
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request6 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request6 = new MoviesMostCollectedRequest
             {
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request7 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request7 = new MoviesMostCollectedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request8 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request8 = new MoviesMostCollectedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Period = _timePeriod
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request9 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request9 = new MoviesMostCollectedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request10 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request10 = new MoviesMostCollectedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request11 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request11 = new MoviesMostCollectedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request12 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request12 = new MoviesMostCollectedRequest
             {
                 Filter = _filter,
                 Period = _timePeriod
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request13 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request13 = new MoviesMostCollectedRequest
             {
                 Filter = _filter,
                 Page = _page
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request14 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request14 = new MoviesMostCollectedRequest
             {
                 Filter = _filter,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request15 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request15 = new MoviesMostCollectedRequest
             {
                 Filter = _filter,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request16 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request16 = new MoviesMostCollectedRequest
             {
                 Period = _timePeriod,
                 Page = _page
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request17 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request17 = new MoviesMostCollectedRequest
             {
                 Period = _timePeriod,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request18 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request18 = new MoviesMostCollectedRequest
             {
                 Period = _timePeriod,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request19 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request19 = new MoviesMostCollectedRequest
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktMoviesMostCollectedRequest _request20 = new TraktMoviesMostCollectedRequest
+            private static readonly MoviesMostCollectedRequest _request20 = new MoviesMostCollectedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter,
@@ -175,7 +175,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktMoviesMostCollectedRequest_TestData()
+            public MoviesMostCollectedRequest_TestData()
             {
                 SetupPathParamters();
             }
