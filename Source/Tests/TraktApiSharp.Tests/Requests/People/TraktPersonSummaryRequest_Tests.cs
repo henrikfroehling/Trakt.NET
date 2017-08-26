@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktPersonSummaryRequest_Inherits_ATraktPersonRequest_1()
         {
-            typeof(TraktPersonSummaryRequest).IsSubclassOf(typeof(ATraktPersonRequest<ITraktPerson>)).Should().BeTrue();
+            typeof(TraktPersonSummaryRequest).IsSubclassOf(typeof(APersonRequest<ITraktPerson>)).Should().BeTrue();
         }
 
         [Fact]

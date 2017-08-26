@@ -1191,7 +1191,7 @@
     <Compile Include="Requests\Movies\MovieTranslationsRequest_Tests.cs" />
     <Compile Include="Requests\Movies\MovieWatchingUsersRequest_Tests.cs" />
     <Compile Include="Requests\Parameters\TraktExtendedInfo_Tests.cs" />
-    <Compile Include="Requests\People\ATraktPersonRequest%271_Tests.cs" />
+    <Compile Include="Requests\People\APersonRequest%271_Tests.cs" />
     <Compile Include="Requests\People\TraktPersonMovieCreditsRequest_Tests.cs" />
     <Compile Include="Requests\People\TraktPersonShowCreditsRequest_Tests.cs" />
     <Compile Include="Requests\People\TraktPersonSummaryRequest_Tests.cs" />

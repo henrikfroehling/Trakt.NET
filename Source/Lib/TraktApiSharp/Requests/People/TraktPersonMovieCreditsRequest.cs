@@ -2,7 +2,7 @@
 {
     using Objects.Get.People.Credits;
 
-    internal sealed class TraktPersonMovieCreditsRequest : ATraktPersonRequest<ITraktPersonMovieCredits>
+    internal sealed class TraktPersonMovieCreditsRequest : APersonRequest<ITraktPersonMovieCredits>
     {
         public override string UriTemplate => "people/{id}/movies{?extended}";
     }
