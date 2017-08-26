@@ -1220,7 +1220,7 @@
     <Compile Include="Requests\Shows\ATraktShowsRequest%271_Tests.cs" />
     <Compile Include="Requests\Shows\OAuth\AShowProgressRequest%271_Tests.cs" />
     <Compile Include="Requests\Shows\OAuth\ShowCollectionProgressRequest_Tests.cs" />
-    <Compile Include="Requests\Shows\OAuth\TraktShowWatchedProgressRequest_Tests.cs" />
+    <Compile Include="Requests\Shows\OAuth\ShowWatchedProgressRequest_Tests.cs" />
     <Compile Include="Requests\Shows\TraktShowAliasesRequest_Tests.cs" />
     <Compile Include="Requests\Shows\TraktShowCommentsRequest_Tests.cs" />
     <Compile Include="Requests\Shows\TraktShowLastEpisodeRequest_Tests.cs" />

@@ -2,7 +2,7 @@
 {
     using Objects.Get.Shows;
 
-    internal sealed class TraktShowWatchedProgressRequest : AShowProgressRequest<ITraktShowWatchedProgress>
+    internal sealed class ShowWatchedProgressRequest : AShowProgressRequest<ITraktShowWatchedProgress>
     {
         public override string UriTemplate => "shows/{id}/progress/watched{?hidden,specials,count_specials}";
     }

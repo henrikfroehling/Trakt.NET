@@ -9,35 +9,35 @@
     using Xunit;
 
     [Category("Requests.Shows.OAuth")]
-    public class TraktShowWatchedProgressRequest_Tests
+    public class ShowWatchedProgressRequest_Tests
     {
         [Fact]
-        public void Test_TraktShowWatchedProgressRequest_Is_Not_Abstract()
+        public void Test_ShowWatchedProgressRequest_Is_Not_Abstract()
         {
-            typeof(TraktShowWatchedProgressRequest).IsAbstract.Should().BeFalse();
+            typeof(ShowWatchedProgressRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktShowWatchedProgressRequest_Is_Sealed()
+        public void Test_ShowWatchedProgressRequest_Is_Sealed()
         {
-            typeof(TraktShowWatchedProgressRequest).IsSealed.Should().BeTrue();
+            typeof(ShowWatchedProgressRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowWatchedProgressRequest_Inherits_ATraktShowProgressRequest_1()
+        public void Test_ShowWatchedProgressRequest_Inherits_ATraktShowProgressRequest_1()
         {
-            typeof(TraktShowWatchedProgressRequest).IsSubclassOf(typeof(AShowProgressRequest<ITraktShowWatchedProgress>)).Should().BeTrue();
+            typeof(ShowWatchedProgressRequest).IsSubclassOf(typeof(AShowProgressRequest<ITraktShowWatchedProgress>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowWatchedProgressRequest_Has_Valid_UriTemplate()
+        public void Test_ShowWatchedProgressRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktShowWatchedProgressRequest();
+            var request = new ShowWatchedProgressRequest();
             request.UriTemplate.Should().Be("shows/{id}/progress/watched{?hidden,specials,count_specials}");
         }
 
-        [Theory, ClassData(typeof(TraktShowWatchedProgressRequest_TestData))]
-        public void Test_TraktShowWatchedProgressRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(ShowWatchedProgressRequest_TestData))]
+        public void Test_ShowWatchedProgressRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                          IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -46,58 +46,58 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktShowWatchedProgressRequest_TestData : IEnumerable<object[]>
+        public class ShowWatchedProgressRequest_TestData : IEnumerable<object[]>
         {
             private const string _id = "123";
             private const bool _hidden = true;
             private const bool _specials = true;
             private const bool _countSpecials = true;
 
-            private static readonly TraktShowWatchedProgressRequest _request1 = new TraktShowWatchedProgressRequest
+            private static readonly ShowWatchedProgressRequest _request1 = new ShowWatchedProgressRequest
             {
                 Id = _id
             };
 
-            private static readonly TraktShowWatchedProgressRequest _request2 = new TraktShowWatchedProgressRequest
+            private static readonly ShowWatchedProgressRequest _request2 = new ShowWatchedProgressRequest
             {
                 Id = _id,
                 Hidden = _hidden
             };
 
-            private static readonly TraktShowWatchedProgressRequest _request3 = new TraktShowWatchedProgressRequest
+            private static readonly ShowWatchedProgressRequest _request3 = new ShowWatchedProgressRequest
             {
                 Id = _id,
                 Specials = _specials
             };
 
-            private static readonly TraktShowWatchedProgressRequest _request4 = new TraktShowWatchedProgressRequest
+            private static readonly ShowWatchedProgressRequest _request4 = new ShowWatchedProgressRequest
             {
                 Id = _id,
                 CountSpecials = _countSpecials
             };
 
-            private static readonly TraktShowWatchedProgressRequest _request5 = new TraktShowWatchedProgressRequest
+            private static readonly ShowWatchedProgressRequest _request5 = new ShowWatchedProgressRequest
             {
                 Id = _id,
                 Hidden = _hidden,
                 Specials = _specials
             };
 
-            private static readonly TraktShowWatchedProgressRequest _request6 = new TraktShowWatchedProgressRequest
+            private static readonly ShowWatchedProgressRequest _request6 = new ShowWatchedProgressRequest
             {
                 Id = _id,
                 Hidden = _hidden,
                 CountSpecials = _countSpecials
             };
 
-            private static readonly TraktShowWatchedProgressRequest _request7 = new TraktShowWatchedProgressRequest
+            private static readonly ShowWatchedProgressRequest _request7 = new ShowWatchedProgressRequest
             {
                 Id = _id,
                 Specials = _specials,
                 CountSpecials = _countSpecials
             };
 
-            private static readonly TraktShowWatchedProgressRequest _request8 = new TraktShowWatchedProgressRequest
+            private static readonly ShowWatchedProgressRequest _request8 = new ShowWatchedProgressRequest
             {
                 Id = _id,
                 Hidden = _hidden,
@@ -107,7 +107,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktShowWatchedProgressRequest_TestData()
+            public ShowWatchedProgressRequest_TestData()
             {
                 SetupPathParamters();
             }
