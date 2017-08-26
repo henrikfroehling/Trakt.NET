@@ -83,7 +83,7 @@
 
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktMovieCheckinPostResponse, TraktMovieCheckinPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CheckinRequest<ITraktMovieCheckinPostResponse, TraktMovieCheckinPost>
             {
                 RequestBody = requestBody
             }, cancellationToken);
@@ -138,7 +138,7 @@
 
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CheckinRequest<ITraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
             {
                 RequestBody = requestBody
             }, cancellationToken);
@@ -196,7 +196,7 @@
 
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CheckinRequest<ITraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
             {
                 RequestBody = requestBody
             }, cancellationToken);

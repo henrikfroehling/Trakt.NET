@@ -1123,7 +1123,7 @@
     <Compile Include="Requests\Calendars\CalendarAllNewShowsRequest_Tests.cs" />
     <Compile Include="Requests\Calendars\CalendarAllSeasonPremieresRequest_Tests.cs" />
     <Compile Include="Requests\Calendars\CalendarAllShowsRequest_Tests.cs" />
-    <Compile Include="Requests\Checkins\OAuth\TraktCheckinRequest%272_Tests.cs" />
+    <Compile Include="Requests\Checkins\OAuth\CheckinRequest%272_Tests.cs" />
     <Compile Include="Requests\Checkins\OAuth\TraktCheckinsDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\TraktCommentDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\TraktCommentLikeRequest_Tests.cs" />

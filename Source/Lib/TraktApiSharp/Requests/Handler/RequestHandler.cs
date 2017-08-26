@@ -86,7 +86,7 @@
         public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
             PreExecuteRequest(request);
-            var isCheckinRequest = request is TraktCheckinRequest<TResponseContentType, TRequestBodyType>;
+            var isCheckinRequest = request is CheckinRequest<TResponseContentType, TRequestBodyType>;
             return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request), isCheckinRequest, cancellationToken);
         }
 
