@@ -27,7 +27,7 @@
         [Fact]
         public void Test_TraktShowsPopularRequest_Inherits_ATraktShowsRequest_1()
         {
-            typeof(TraktShowsPopularRequest).IsSubclassOf(typeof(ATraktShowsRequest<ITraktShow>)).Should().BeTrue();
+            typeof(TraktShowsPopularRequest).IsSubclassOf(typeof(AShowsRequest<ITraktShow>)).Should().BeTrue();
         }
 
         [Fact]

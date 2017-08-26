@@ -12,64 +12,60 @@
     using Xunit;
 
     [Category("Requests.Shows.Lists")]
-    public class ATraktShowsRequest_1_Tests
+    public class AShowsRequest_1_Tests
     {
-        internal class TraktShowsRequestMock : ATraktShowsRequest<int>
+        internal class ShowsRequestMock : AShowsRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
-
-            public override void Validate()
-            {
-                throw new NotImplementedException();
-            }
+            public override void Validate() => throw new NotImplementedException();
         }
 
         [Fact]
-        public void Test_ATraktShowsRequest_1_Is_Abstract()
+        public void Test_AShowsRequest_1_Is_Abstract()
         {
-            typeof(ATraktShowsRequest<>).IsAbstract.Should().BeTrue();
+            typeof(AShowsRequest<>).IsAbstract.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktShowsRequest_1_Has_GenericTypeParameter()
+        public void Test_AShowsRequest_1_Has_GenericTypeParameter()
         {
-            typeof(ATraktShowsRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ATraktShowsRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+            typeof(AShowsRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(AShowsRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
         [Fact]
-        public void Test_ATraktShowsRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_AShowsRequest_1_Inherits_ATraktGetRequest_1()
         {
-            typeof(ATraktShowsRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
+            typeof(AShowsRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktShowsRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_AShowsRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(ATraktShowsRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(AShowsRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_ATraktShowsRequest_1_Implements_ITraktSupportsFilter_Interface()
+        public void Test_AShowsRequest_1_Implements_ITraktSupportsFilter_Interface()
         {
-            typeof(ATraktShowsRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
+            typeof(AShowsRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
         }
 
         [Fact]
-        public void Test_ATraktShowsRequest_1_Implements_ITraktSupportsPagination_Interface()
+        public void Test_AShowsRequest_1_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(ATraktShowsRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
+            typeof(AShowsRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]
-        public void Test_ATraktShowsRequest_1_Has_AuthorizationRequirement_NotRequired()
+        public void Test_AShowsRequest_1_Has_AuthorizationRequirement_NotRequired()
         {
-            var requestMock = new TraktShowsRequestMock();
+            var requestMock = new ShowsRequestMock();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
-        [Theory, ClassData(typeof(TraktShowsRequestMock_TestData))]
-        public void Test_ATraktShowsRequest_1_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(ShowsRequestMock_TestData))]
+        public void Test_AShowsRequest_1_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                               IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -78,86 +74,86 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktShowsRequestMock_TestData : IEnumerable<object[]>
+        public class ShowsRequestMock_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktShowFilter _filter = new TraktShowFilter().WithYears(2005, 2016);
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktShowsRequestMock _request1 = new TraktShowsRequestMock();
+            private static readonly ShowsRequestMock _request1 = new ShowsRequestMock();
 
-            private static readonly TraktShowsRequestMock _request2 = new TraktShowsRequestMock
+            private static readonly ShowsRequestMock _request2 = new ShowsRequestMock
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktShowsRequestMock _request3 = new TraktShowsRequestMock
+            private static readonly ShowsRequestMock _request3 = new ShowsRequestMock
             {
                 Filter = _filter
             };
 
-            private static readonly TraktShowsRequestMock _request4 = new TraktShowsRequestMock
+            private static readonly ShowsRequestMock _request4 = new ShowsRequestMock
             {
                 Page = _page
             };
 
-            private static readonly TraktShowsRequestMock _request5 = new TraktShowsRequestMock
+            private static readonly ShowsRequestMock _request5 = new ShowsRequestMock
             {
                 Limit = _limit
             };
 
-            private static readonly TraktShowsRequestMock _request6 = new TraktShowsRequestMock
+            private static readonly ShowsRequestMock _request6 = new ShowsRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter
             };
 
-            private static readonly TraktShowsRequestMock _request7 = new TraktShowsRequestMock
+            private static readonly ShowsRequestMock _request7 = new ShowsRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktShowsRequestMock _request8 = new TraktShowsRequestMock
+            private static readonly ShowsRequestMock _request8 = new ShowsRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsRequestMock _request9 = new TraktShowsRequestMock
+            private static readonly ShowsRequestMock _request9 = new ShowsRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsRequestMock _request10 = new TraktShowsRequestMock
+            private static readonly ShowsRequestMock _request10 = new ShowsRequestMock
             {
                 Filter = _filter,
                 Page = _page
             };
 
-            private static readonly TraktShowsRequestMock _request11 = new TraktShowsRequestMock
+            private static readonly ShowsRequestMock _request11 = new ShowsRequestMock
             {
                 Filter = _filter,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsRequestMock _request12 = new TraktShowsRequestMock
+            private static readonly ShowsRequestMock _request12 = new ShowsRequestMock
             {
                 Filter = _filter,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsRequestMock _request13 = new TraktShowsRequestMock
+            private static readonly ShowsRequestMock _request13 = new ShowsRequestMock
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsRequestMock _request14 = new TraktShowsRequestMock
+            private static readonly ShowsRequestMock _request14 = new ShowsRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter,
@@ -167,7 +163,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktShowsRequestMock_TestData()
+            public ShowsRequestMock_TestData()
             {
                 SetupPathParamters();
             }

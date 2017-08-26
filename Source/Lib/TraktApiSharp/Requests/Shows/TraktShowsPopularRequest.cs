@@ -2,7 +2,7 @@
 {
     using Objects.Get.Shows;
 
-    internal sealed class TraktShowsPopularRequest : ATraktShowsRequest<ITraktShow>
+    internal sealed class TraktShowsPopularRequest : AShowsRequest<ITraktShow>
     {
         public override string UriTemplate => "shows/popular{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}";
 
