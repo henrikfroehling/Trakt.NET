@@ -7,7 +7,7 @@
     using Parameters;
     using System.Collections.Generic;
 
-    internal abstract class ATraktSearchRequest : AGetRequest<ITraktSearchResult>, ISupportsExtendedInfo, ITraktSupportsPagination
+    internal abstract class ATraktSearchRequest : AGetRequest<ITraktSearchResult>, ISupportsExtendedInfo, ISupportsPagination
     {
         public TraktExtendedInfo ExtendedInfo { get; set; }
 

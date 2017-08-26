@@ -46,7 +46,7 @@
         [Fact]
         public void Test_ATraktUsersPagedGetRequest_1_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(ATraktUsersPagedGetRequest<>).GetInterfaces().Should().Contain(typeof(ITraktSupportsPagination));
+            typeof(ATraktUsersPagedGetRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]

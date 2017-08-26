@@ -6,7 +6,7 @@
     using Objects.Get.Users;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserLikesRequest : AGetRequest<ITraktUserLikeItem>, ITraktSupportsPagination
+    internal sealed class TraktUserLikesRequest : AGetRequest<ITraktUserLikeItem>, ISupportsPagination
     {
         internal TraktUserLikeType Type { get; set; }
 

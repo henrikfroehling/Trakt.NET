@@ -41,7 +41,7 @@
         [Fact]
         public void Test_TraktShowRelatedShowsRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktShowRelatedShowsRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsPagination));
+            typeof(TraktShowRelatedShowsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]

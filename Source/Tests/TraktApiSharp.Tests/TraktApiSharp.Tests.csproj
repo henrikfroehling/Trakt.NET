@@ -1166,7 +1166,7 @@
     <Compile Include="Requests\Interfaces\IObjectRequest_Tests.cs" />
     <Compile Include="Requests\Interfaces\ISupportsExtendedInfo_Tests.cs" />
     <Compile Include="Requests\Interfaces\ISupportsFilter_Tests.cs" />
-    <Compile Include="Requests\Interfaces\ITraktSupportsPagination_Tests.cs" />
+    <Compile Include="Requests\Interfaces\ISupportsPagination_Tests.cs" />
     <Compile Include="Requests\Interfaces\ITraktValidatable_Tests.cs" />
     <Compile Include="Requests\Movies\ATraktMovieRequest%271_Tests.cs" />
     <Compile Include="Requests\Movies\ATraktMoviesMostPWCRequest%271_Tests.cs" />

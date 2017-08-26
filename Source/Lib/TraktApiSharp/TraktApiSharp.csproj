@@ -658,7 +658,7 @@
     <Compile Include="Requests\Interfaces\Base\IHasRequestAuthorization.cs" />
     <Compile Include="Requests\Interfaces\ISupportsExtendedInfo.cs" />
     <Compile Include="Requests\Interfaces\ISupportsFilter.cs" />
-    <Compile Include="Requests\Interfaces\ITraktSupportsPagination.cs" />
+    <Compile Include="Requests\Interfaces\ISupportsPagination.cs" />
     <Compile Include="Requests\Interfaces\IObjectRequest.cs" />
     <Compile Include="Requests\Interfaces\Base\IHttpRequest.cs" />
     <Compile Include="Requests\Interfaces\Base\IHasUri.cs" />

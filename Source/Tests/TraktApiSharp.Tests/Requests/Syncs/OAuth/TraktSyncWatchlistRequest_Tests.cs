@@ -43,7 +43,7 @@
         [Fact]
         public void Test_TraktSyncWatchlistRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktSyncWatchlistRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsPagination));
+            typeof(TraktSyncWatchlistRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]

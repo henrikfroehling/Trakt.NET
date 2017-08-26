@@ -3,7 +3,7 @@
     using Interfaces;
     using System.Collections.Generic;
 
-    internal abstract class ATraktUsersPagedGetRequest<TResponseContentType> : ATraktUsersGetRequest<TResponseContentType>, ITraktSupportsPagination
+    internal abstract class ATraktUsersPagedGetRequest<TResponseContentType> : ATraktUsersGetRequest<TResponseContentType>, ISupportsPagination
     {
         public uint? Page { get; set; }
 

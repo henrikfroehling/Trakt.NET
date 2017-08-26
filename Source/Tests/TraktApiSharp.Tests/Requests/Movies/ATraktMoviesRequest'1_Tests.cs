@@ -58,7 +58,7 @@
         [Fact]
         public void Test_ATraktMoviesRequest_1_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(ATraktMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ITraktSupportsPagination));
+            typeof(ATraktMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]

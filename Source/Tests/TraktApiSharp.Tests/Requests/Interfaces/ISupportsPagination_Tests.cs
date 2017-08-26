@@ -7,18 +7,18 @@
     using Xunit;
 
     [Category("Requests.Interfaces")]
-    public class ITraktSupportsPagination_Tests
+    public class ISupportsPagination_Tests
     {
         [Fact]
-        public void Test_ITraktSupportsPagination_Is_Interface()
+        public void Test_ISupportsPagination_Is_Interface()
         {
-            typeof(ITraktSupportsPagination).IsInterface.Should().BeTrue();
+            typeof(ISupportsPagination).IsInterface.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ITraktSupportsPagination_Has_Page_Property()
+        public void Test_ISupportsPagination_Has_Page_Property()
         {
-            var propertyInfo = typeof(ITraktSupportsPagination).GetProperties()
+            var propertyInfo = typeof(ISupportsPagination).GetProperties()
                                                                .Where(p => p.Name == "Page")
                                                                .FirstOrDefault();
 
@@ -28,9 +28,9 @@
         }
 
         [Fact]
-        public void Test_ITraktSupportsPagination_Has_Limit_Property()
+        public void Test_ISupportsPagination_Has_Limit_Property()
         {
-            var propertyInfo = typeof(ITraktSupportsPagination).GetProperties()
+            var propertyInfo = typeof(ISupportsPagination).GetProperties()
                                                                .Where(p => p.Name == "Limit")
                                                                .FirstOrDefault();
 

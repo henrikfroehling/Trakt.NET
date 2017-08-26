@@ -5,7 +5,7 @@
     using Objects.Get.Users.Lists;
     using System.Collections.Generic;
 
-    internal sealed class TraktShowListsRequest : ATraktShowRequest<ITraktList>, ITraktSupportsPagination
+    internal sealed class TraktShowListsRequest : ATraktShowRequest<ITraktList>, ISupportsPagination
     {
         internal TraktListType Type { get; set; }
 

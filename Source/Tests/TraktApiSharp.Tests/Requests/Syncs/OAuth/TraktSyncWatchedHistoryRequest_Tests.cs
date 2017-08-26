@@ -45,7 +45,7 @@
         [Fact]
         public void Test_TraktSyncWatchedHistoryRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktSyncWatchedHistoryRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsPagination));
+            typeof(TraktSyncWatchedHistoryRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]

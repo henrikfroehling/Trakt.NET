@@ -49,7 +49,7 @@
         [Fact]
         public void Test_ATraktSearchRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(ATraktSearchRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsPagination));
+            typeof(ATraktSearchRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]

@@ -45,7 +45,7 @@
         [Fact]
         public void Test_TraktMoviesRecentlyUpdatedRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktMoviesRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsPagination));
+            typeof(TraktMoviesRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]

@@ -37,7 +37,7 @@
         [Fact]
         public void Test_TraktSeasonCommentsRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktSeasonCommentsRequest).GetInterfaces().Should().Contain(typeof(ITraktSupportsPagination));
+            typeof(TraktSeasonCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]
