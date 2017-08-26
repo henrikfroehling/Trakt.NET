@@ -10,35 +10,35 @@
     using Xunit;
 
     [Category("Requests.Shows.Lists")]
-    public class TraktShowsMostAnticipatedRequest_Tests
+    public class ShowsMostAnticipatedRequest_Tests
     {
         [Fact]
-        public void Test_TraktShowsMostAnticipatedRequest_Is_Not_Abstract()
+        public void Test_ShowsMostAnticipatedRequest_Is_Not_Abstract()
         {
-            typeof(TraktShowsMostAnticipatedRequest).IsAbstract.Should().BeFalse();
+            typeof(ShowsMostAnticipatedRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktShowsMostAnticipatedRequest_Is_Sealed()
+        public void Test_ShowsMostAnticipatedRequest_Is_Sealed()
         {
-            typeof(TraktShowsMostAnticipatedRequest).IsSealed.Should().BeTrue();
+            typeof(ShowsMostAnticipatedRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowsMostAnticipatedRequest_Inherits_ATraktShowsRequest_1()
+        public void Test_ShowsMostAnticipatedRequest_Inherits_ATraktShowsRequest_1()
         {
-            typeof(TraktShowsMostAnticipatedRequest).IsSubclassOf(typeof(AShowsRequest<ITraktMostAnticipatedShow>)).Should().BeTrue();
+            typeof(ShowsMostAnticipatedRequest).IsSubclassOf(typeof(AShowsRequest<ITraktMostAnticipatedShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktShowsMostAnticipatedRequest_Has_Valid_UriTemplate()
+        public void Test_ShowsMostAnticipatedRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktShowsMostAnticipatedRequest();
+            var request = new ShowsMostAnticipatedRequest();
             request.UriTemplate.Should().Be("shows/anticipated{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}");
         }
 
-        [Theory, ClassData(typeof(TraktShowsMostAnticipatedRequest_TestData))]
-        public void Test_TraktShowsMostAnticipatedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(ShowsMostAnticipatedRequest_TestData))]
+        public void Test_ShowsMostAnticipatedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                           IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -47,86 +47,86 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktShowsMostAnticipatedRequest_TestData : IEnumerable<object[]>
+        public class ShowsMostAnticipatedRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktShowFilter _filter = new TraktShowFilter().WithYears(2005, 2016);
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktShowsMostAnticipatedRequest _request1 = new TraktShowsMostAnticipatedRequest();
+            private static readonly ShowsMostAnticipatedRequest _request1 = new ShowsMostAnticipatedRequest();
 
-            private static readonly TraktShowsMostAnticipatedRequest _request2 = new TraktShowsMostAnticipatedRequest
+            private static readonly ShowsMostAnticipatedRequest _request2 = new ShowsMostAnticipatedRequest
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktShowsMostAnticipatedRequest _request3 = new TraktShowsMostAnticipatedRequest
+            private static readonly ShowsMostAnticipatedRequest _request3 = new ShowsMostAnticipatedRequest
             {
                 Filter = _filter
             };
 
-            private static readonly TraktShowsMostAnticipatedRequest _request4 = new TraktShowsMostAnticipatedRequest
+            private static readonly ShowsMostAnticipatedRequest _request4 = new ShowsMostAnticipatedRequest
             {
                 Page = _page
             };
 
-            private static readonly TraktShowsMostAnticipatedRequest _request5 = new TraktShowsMostAnticipatedRequest
+            private static readonly ShowsMostAnticipatedRequest _request5 = new ShowsMostAnticipatedRequest
             {
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostAnticipatedRequest _request6 = new TraktShowsMostAnticipatedRequest
+            private static readonly ShowsMostAnticipatedRequest _request6 = new ShowsMostAnticipatedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter
             };
 
-            private static readonly TraktShowsMostAnticipatedRequest _request7 = new TraktShowsMostAnticipatedRequest
+            private static readonly ShowsMostAnticipatedRequest _request7 = new ShowsMostAnticipatedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktShowsMostAnticipatedRequest _request8 = new TraktShowsMostAnticipatedRequest
+            private static readonly ShowsMostAnticipatedRequest _request8 = new ShowsMostAnticipatedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostAnticipatedRequest _request9 = new TraktShowsMostAnticipatedRequest
+            private static readonly ShowsMostAnticipatedRequest _request9 = new ShowsMostAnticipatedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostAnticipatedRequest _request10 = new TraktShowsMostAnticipatedRequest
+            private static readonly ShowsMostAnticipatedRequest _request10 = new ShowsMostAnticipatedRequest
             {
                 Filter = _filter,
                 Page = _page
             };
 
-            private static readonly TraktShowsMostAnticipatedRequest _request11 = new TraktShowsMostAnticipatedRequest
+            private static readonly ShowsMostAnticipatedRequest _request11 = new ShowsMostAnticipatedRequest
             {
                 Filter = _filter,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostAnticipatedRequest _request12 = new TraktShowsMostAnticipatedRequest
+            private static readonly ShowsMostAnticipatedRequest _request12 = new ShowsMostAnticipatedRequest
             {
                 Filter = _filter,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostAnticipatedRequest _request13 = new TraktShowsMostAnticipatedRequest
+            private static readonly ShowsMostAnticipatedRequest _request13 = new ShowsMostAnticipatedRequest
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktShowsMostAnticipatedRequest _request14 = new TraktShowsMostAnticipatedRequest
+            private static readonly ShowsMostAnticipatedRequest _request14 = new ShowsMostAnticipatedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter,
@@ -136,7 +136,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktShowsMostAnticipatedRequest_TestData()
+            public ShowsMostAnticipatedRequest_TestData()
             {
                 SetupPathParamters();
             }

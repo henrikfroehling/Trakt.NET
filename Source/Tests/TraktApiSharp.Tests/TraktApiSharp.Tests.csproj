@@ -1229,7 +1229,7 @@
     <Compile Include="Requests\Shows\ShowPeopleRequest_Tests.cs" />
     <Compile Include="Requests\Shows\ShowRatingsRequest_Tests.cs" />
     <Compile Include="Requests\Shows\ShowRelatedShowsRequest_Tests.cs" />
-    <Compile Include="Requests\Shows\TraktShowsMostAnticipatedRequest_Tests.cs" />
+    <Compile Include="Requests\Shows\ShowsMostAnticipatedRequest_Tests.cs" />
     <Compile Include="Requests\Shows\TraktShowsMostCollectedRequest_Tests.cs" />
     <Compile Include="Requests\Shows\TraktShowsMostPlayedRequest_Tests.cs" />
     <Compile Include="Requests\Shows\TraktShowsMostWatchedRequest_Tests.cs" />

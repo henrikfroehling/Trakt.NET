@@ -678,7 +678,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowsMostAnticipatedRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowsMostAnticipatedRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
