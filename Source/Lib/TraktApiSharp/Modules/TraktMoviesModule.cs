@@ -247,7 +247,7 @@
                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktMoviePeopleRequest { Id = movieIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new MoviePeopleRequest { Id = movieIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
