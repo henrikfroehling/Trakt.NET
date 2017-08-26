@@ -6,12 +6,12 @@
     using Xunit;
 
     [Category("Requests.Handler")]
-    public class ITraktPutRequestHandler_Tests
+    public class IPutRequestHandler_Tests
     {
         [Fact]
-        public void Test_ITraktPutRequestHandler_Is_Interface()
+        public void Test_IPutRequestHandler_Is_Interface()
         {
-            typeof(ITraktPutRequestHandler).IsInterface.Should().BeTrue();
+            typeof(IPutRequestHandler).IsInterface.Should().BeTrue();
         }
     }
 }

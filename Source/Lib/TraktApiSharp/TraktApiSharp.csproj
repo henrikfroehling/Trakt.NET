@@ -621,7 +621,7 @@
     <Compile Include="Requests\Interfaces\Base\IRequest%271.cs" />
     <Compile Include="Requests\Interfaces\Base\IRequest.cs" />
     <Compile Include="Requests\Handler\IPostRequestHandler.cs" />
-    <Compile Include="Requests\Handler\ITraktPutRequestHandler.cs" />
+    <Compile Include="Requests\Handler\IPutRequestHandler.cs" />
     <Compile Include="Requests\Handler\ITraktRequestHandler.cs" />
     <Compile Include="Requests\Interfaces\IHasId.cs" />
     <Compile Include="Requests\Interfaces\Base\IHasRequestBody%271.cs" />

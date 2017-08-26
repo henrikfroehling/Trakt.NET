@@ -5,7 +5,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal interface ITraktRequestHandler : IPostRequestHandler, ITraktPutRequestHandler
+    internal interface ITraktRequestHandler : IPostRequestHandler, IPutRequestHandler
     {
         Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(IRequest request, CancellationToken cancellationToken = default(CancellationToken));
 

@@ -23,7 +23,7 @@
         [Fact]
         public void Test_ITraktRequestHandler_Inherits_ITraktPutRequestHandler_Interface()
         {
-            typeof(ITraktRequestHandler).GetInterfaces().Should().Contain(typeof(ITraktPutRequestHandler));
+            typeof(ITraktRequestHandler).GetInterfaces().Should().Contain(typeof(IPutRequestHandler));
         }
     }
 }
