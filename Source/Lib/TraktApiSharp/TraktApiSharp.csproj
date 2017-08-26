@@ -690,7 +690,7 @@
     <Compile Include="Requests\People\PersonMovieCreditsRequest.cs" />
     <Compile Include="Requests\People\PersonShowCreditsRequest.cs" />
     <Compile Include="Requests\People\PersonSummaryRequest.cs" />
-    <Compile Include="Requests\Recommendations\OAuth\ATraktUserRecommendationHideRequest.cs" />
+    <Compile Include="Requests\Recommendations\OAuth\AUserRecommendationHideRequest.cs" />
     <Compile Include="Requests\Recommendations\OAuth\ATraktUserRecommendationsRequest%271.cs" />
     <Compile Include="Requests\Recommendations\OAuth\TraktUserMovieRecommendationsRequest.cs" />
     <Compile Include="Requests\Recommendations\OAuth\TraktUserRecommendationHideMovieRequest.cs" />

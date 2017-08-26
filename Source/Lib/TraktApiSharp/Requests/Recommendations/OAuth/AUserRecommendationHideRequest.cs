@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal abstract class ATraktUserRecommendationHideRequest : ADeleteRequest, IHasId
+    internal abstract class AUserRecommendationHideRequest : ADeleteRequest, IHasId
     {
         public string Id { get; set; }
 

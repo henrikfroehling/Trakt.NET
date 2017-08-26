@@ -10,45 +10,44 @@
     using Xunit;
 
     [Category("Requests.Recommendations.OAuth")]
-    public class ATraktUserRecommendationHideRequest_Tests
+    public class AUserRecommendationHideRequest_Tests
     {
-        internal class TraktUserRecommendationHideRequestMock : ATraktUserRecommendationHideRequest
+        internal class UserRecommendationHideRequestMock : AUserRecommendationHideRequest
         {
             public override RequestObjectType RequestObjectType { get { throw new NotImplementedException(); } }
-
             public override string UriTemplate { get { throw new NotImplementedException(); } }
         }
 
         [Fact]
-        public void Test_ATraktUserRecommendationHideRequest_IsAbstract()
+        public void Test_AUserRecommendationHideRequest_IsAbstract()
         {
-            typeof(ATraktUserRecommendationHideRequest).IsAbstract.Should().BeTrue();
-        }
-        
-        [Fact]
-        public void Test_ATraktUserRecommendationHideRequest_Inherits_ATraktDeleteRequest()
-        {
-            typeof(ATraktUserRecommendationHideRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
+            typeof(AUserRecommendationHideRequest).IsAbstract.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktUserRecommendationHideRequest_Implements_ITraktHasId_Interface()
+        public void Test_AUserRecommendationHideRequest_Inherits_ATraktDeleteRequest()
         {
-            typeof(ATraktUserRecommendationHideRequest).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(AUserRecommendationHideRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktUserRecommendationHideRequest_Has_AuthorizationRequirement_Required()
+        public void Test_AUserRecommendationHideRequest_Implements_ITraktHasId_Interface()
         {
-            var requestMock = new TraktUserRecommendationHideRequestMock();
+            typeof(AUserRecommendationHideRequest).GetInterfaces().Should().Contain(typeof(IHasId));
+        }
+
+        [Fact]
+        public void Test_AUserRecommendationHideRequest_Has_AuthorizationRequirement_Required()
+        {
+            var requestMock = new UserRecommendationHideRequestMock();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_ATraktUserRecommendationHideRequest_Returns_Valid_UriPathParameters()
+        public void Test_AUserRecommendationHideRequest_Returns_Valid_UriPathParameters()
         {
             // only id
-            var requestMock = new TraktUserRecommendationHideRequestMock { Id = "123" };
+            var requestMock = new UserRecommendationHideRequestMock { Id = "123" };
 
             requestMock.GetUriPathParameters().Should().NotBeNull()
                                                        .And.HaveCount(1)
@@ -59,22 +58,22 @@
         }
 
         [Fact]
-        public void Test_ATraktUserRecommendationHideRequest_Validate_Throws_Exceptions()
+        public void Test_AUserRecommendationHideRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var requestMock = new TraktUserRecommendationHideRequestMock();
+            var requestMock = new UserRecommendationHideRequestMock();
 
             Action act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            requestMock = new TraktUserRecommendationHideRequestMock { Id = string.Empty };
+            requestMock = new UserRecommendationHideRequestMock { Id = string.Empty };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            requestMock = new TraktUserRecommendationHideRequestMock { Id = "invalid id" };
+            requestMock = new UserRecommendationHideRequestMock { Id = "invalid id" };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();

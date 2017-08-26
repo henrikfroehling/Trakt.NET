@@ -1195,7 +1195,7 @@
     <Compile Include="Requests\People\PersonMovieCreditsRequest_Tests.cs" />
     <Compile Include="Requests\People\PersonShowCreditsRequest_Tests.cs" />
     <Compile Include="Requests\People\PersonSummaryRequest_Tests.cs" />
-    <Compile Include="Requests\Recommendations\OAuth\ATraktUserRecommendationHideRequest_Tests.cs" />
+    <Compile Include="Requests\Recommendations\OAuth\AUserRecommendationHideRequest_Tests.cs" />
     <Compile Include="Requests\Recommendations\OAuth\ATraktUserRecommendationsRequest%271_Tests.cs" />
     <Compile Include="Requests\Recommendations\OAuth\TraktUserMovieRecommendationsRequest_Tests.cs" />
     <Compile Include="Requests\Recommendations\OAuth\TraktUserRecommendationHideMovieRequest_Tests.cs" />

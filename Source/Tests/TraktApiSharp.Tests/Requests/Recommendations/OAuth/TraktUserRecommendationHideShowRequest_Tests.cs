@@ -26,7 +26,7 @@
         [Fact]
         public void Test_TraktUserRecommendationHideShowRequest_Inherits_ATraktUserRecommendationHideRequest()
         {
-            typeof(TraktUserRecommendationHideShowRequest).IsSubclassOf(typeof(ATraktUserRecommendationHideRequest)).Should().BeTrue();
+            typeof(TraktUserRecommendationHideShowRequest).IsSubclassOf(typeof(AUserRecommendationHideRequest)).Should().BeTrue();
         }
 
         [Fact]
