@@ -683,7 +683,7 @@
     <Compile Include="Requests\Movies\MovieStatisticsRequest.cs" />
     <Compile Include="Requests\Movies\MoviesTrendingRequest.cs" />
     <Compile Include="Requests\Movies\MovieSummaryRequest.cs" />
-    <Compile Include="Requests\Movies\TraktMovieTranslationsRequest.cs" />
+    <Compile Include="Requests\Movies\MovieTranslationsRequest.cs" />
     <Compile Include="Requests\Movies\TraktMovieWatchingUsersRequest.cs" />
     <Compile Include="Requests\Parameters\TraktPagedParameters.cs" />
     <Compile Include="Requests\People\ATraktPersonRequest%271.cs" />
