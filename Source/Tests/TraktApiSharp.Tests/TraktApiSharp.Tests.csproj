@@ -1131,7 +1131,7 @@
     <Compile Include="Requests\Comments\OAuth\CommentReplyRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentUnlikeRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentUpdateRequest_Tests.cs" />
-    <Compile Include="Requests\Comments\TraktCommentRepliesRequest_Tests.cs" />
+    <Compile Include="Requests\Comments\CommentRepliesRequest_Tests.cs" />
     <Compile Include="Requests\Comments\TraktCommentSummaryRequest_Tests.cs" />
     <Compile Include="Requests\Episodes\ATraktEpisodeRequest%271_Tests.cs" />
     <Compile Include="Requests\Episodes\TraktEpisodeCommentsRequest_Tests.cs" />

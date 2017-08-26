@@ -12,83 +12,83 @@
     using Xunit;
 
     [Category("Requests.Comments")]
-    public class TraktCommentRepliesRequest_Tests
+    public class CommentRepliesRequest_Tests
     {
         [Fact]
-        public void Test_TraktCommentRepliesRequest_IsNotAbstract()
+        public void Test_CommentRepliesRequest_IsNotAbstract()
         {
-            typeof(TraktCommentRepliesRequest).IsAbstract.Should().BeFalse();
+            typeof(CommentRepliesRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktCommentRepliesRequest_IsSealed()
+        public void Test_CommentRepliesRequest_IsSealed()
         {
-            typeof(TraktCommentRepliesRequest).IsSealed.Should().BeTrue();
+            typeof(CommentRepliesRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCommentRepliesRequest_Inherits_ATraktGetRequest_1()
+        public void Test_CommentRepliesRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktCommentRepliesRequest).IsSubclassOf(typeof(AGetRequest<ITraktComment>)).Should().BeTrue();
+            typeof(CommentRepliesRequest).IsSubclassOf(typeof(AGetRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCommentRepliesRequest_Implements_ITraktHasId_Interface()
+        public void Test_CommentRepliesRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktCommentRepliesRequest).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(CommentRepliesRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_TraktCommentRepliesRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_CommentRepliesRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktCommentRepliesRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
+            typeof(CommentRepliesRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]
-        public void Test_TraktCommentRepliesRequest_Has_AuthorizationRequirement_NotRequired()
+        public void Test_CommentRepliesRequest_Has_AuthorizationRequirement_NotRequired()
         {
-            var request = new TraktCommentRepliesRequest();
+            var request = new CommentRepliesRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_TraktCommentRepliesRequest_Returns_Valid_RequestObjectType()
+        public void Test_CommentRepliesRequest_Returns_Valid_RequestObjectType()
         {
-            var request = new TraktCommentRepliesRequest();
+            var request = new CommentRepliesRequest();
             request.RequestObjectType.Should().Be(RequestObjectType.Comments);
         }
 
         [Fact]
-        public void Test_TraktCommentRepliesRequest_Has_Valid_UriTemplate()
+        public void Test_CommentRepliesRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktCommentRepliesRequest();
+            var request = new CommentRepliesRequest();
             request.UriTemplate.Should().Be("comments/{id}/replies{?page,limit}");
         }
         
         [Fact]
-        public void Test_TraktCommentRepliesRequest_Validate_Throws_Exceptions()
+        public void Test_CommentRepliesRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktCommentRepliesRequest();
+            var request = new CommentRepliesRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktCommentRepliesRequest { Id = string.Empty };
+            request = new CommentRepliesRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktCommentRepliesRequest { Id = "invalid id" };
+            request = new CommentRepliesRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktCommentRepliesRequest_TestData))]
-        public void Test_TraktCommentRepliesRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(CommentRepliesRequest_TestData))]
+        public void Test_CommentRepliesRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                     IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -97,30 +97,30 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktCommentRepliesRequest_TestData : IEnumerable<object[]>
+        public class CommentRepliesRequest_TestData : IEnumerable<object[]>
         {
             private const string _id = "123";
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly TraktCommentRepliesRequest _request1 = new TraktCommentRepliesRequest
+            private static readonly CommentRepliesRequest _request1 = new CommentRepliesRequest
             {
                 Id = _id
             };
 
-            private static readonly TraktCommentRepliesRequest _request2 = new TraktCommentRepliesRequest
+            private static readonly CommentRepliesRequest _request2 = new CommentRepliesRequest
             {
                 Id = _id,
                 Page = _page
             };
 
-            private static readonly TraktCommentRepliesRequest _request3 = new TraktCommentRepliesRequest
+            private static readonly CommentRepliesRequest _request3 = new CommentRepliesRequest
             {
                 Id = _id,
                 Limit = _limit
             };
 
-            private static readonly TraktCommentRepliesRequest _request4 = new TraktCommentRepliesRequest
+            private static readonly CommentRepliesRequest _request4 = new CommentRepliesRequest
             {
                 Id = _id,
                 Page = _page,
@@ -129,7 +129,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktCommentRepliesRequest_TestData()
+            public CommentRepliesRequest_TestData()
             {
                 SetupPathParamters();
             }

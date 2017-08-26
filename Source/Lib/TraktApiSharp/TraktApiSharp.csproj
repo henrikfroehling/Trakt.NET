@@ -645,7 +645,7 @@
     <Compile Include="Requests\Comments\OAuth\CommentReplyRequest.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentUnlikeRequest.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentUpdateRequest.cs" />
-    <Compile Include="Requests\Comments\TraktCommentRepliesRequest.cs" />
+    <Compile Include="Requests\Comments\CommentRepliesRequest.cs" />
     <Compile Include="Requests\Comments\TraktCommentSummaryRequest.cs" />
     <Compile Include="Requests\Episodes\TraktEpisodeCommentsRequest.cs" />
     <Compile Include="Requests\Episodes\TraktEpisodeRatingsRequest.cs" />

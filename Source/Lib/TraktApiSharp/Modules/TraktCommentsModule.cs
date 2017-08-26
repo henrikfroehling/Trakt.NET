@@ -460,7 +460,7 @@
             ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktCommentRepliesRequest
+            return requestHandler.ExecutePagedRequestAsync(new CommentRepliesRequest
             {
                 Id = commentId.ToString(),
                 Page = pagedParameters?.Page,
