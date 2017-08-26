@@ -228,7 +228,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowPeopleRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new ShowPeopleRequest
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
