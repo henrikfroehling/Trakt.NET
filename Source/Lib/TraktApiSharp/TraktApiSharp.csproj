@@ -697,7 +697,7 @@
     <Compile Include="Requests\Recommendations\OAuth\UserRecommendationHideShowRequest.cs" />
     <Compile Include="Requests\Recommendations\OAuth\UserShowRecommendationsRequest.cs" />
     <Compile Include="Requests\Scrobbles\OAuth\ScrobblePauseRequest%272.cs" />
-    <Compile Include="Requests\Scrobbles\OAuth\TraktScrobbleStartRequest%272.cs" />
+    <Compile Include="Requests\Scrobbles\OAuth\ScrobbleStartRequest%272.cs" />
     <Compile Include="Requests\Scrobbles\OAuth\TraktScrobbleStopRequest%272.cs" />
     <Compile Include="Requests\Search\ATraktSearchRequest.cs" />
     <Compile Include="Requests\Search\TraktSearchIdLookupRequest.cs" />

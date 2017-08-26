@@ -1202,7 +1202,7 @@
     <Compile Include="Requests\Recommendations\OAuth\UserRecommendationHideShowRequest_Tests.cs" />
     <Compile Include="Requests\Recommendations\OAuth\UserShowRecommendationsRequest_Tests.cs" />
     <Compile Include="Requests\Scrobbles\OAuth\ScrobblePauseRequest%272_Tests.cs" />
-    <Compile Include="Requests\Scrobbles\OAuth\TraktScrobbleStartRequest%272_Tests.cs" />
+    <Compile Include="Requests\Scrobbles\OAuth\ScrobbleStartRequest%272_Tests.cs" />
     <Compile Include="Requests\Scrobbles\OAuth\TraktScrobbleStopRequest%272_Tests.cs" />
     <Compile Include="Requests\Search\ATraktSearchRequest_Tests.cs" />
     <Compile Include="Requests\Search\TraktSearchIdLookupRequest_Tests.cs" />

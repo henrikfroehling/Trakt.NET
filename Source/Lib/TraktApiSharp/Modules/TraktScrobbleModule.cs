@@ -306,8 +306,8 @@
                 CreateScrobbleStopRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
         }
 
-        private TraktScrobbleStartRequest<T, U> CreateScrobbleStartRequest<T, U>(U requestBody) where U : TraktScrobblePost
-            => new TraktScrobbleStartRequest<T, U> { RequestBody = requestBody };
+        private ScrobbleStartRequest<T, U> CreateScrobbleStartRequest<T, U>(U requestBody) where U : TraktScrobblePost
+            => new ScrobbleStartRequest<T, U> { RequestBody = requestBody };
 
         private ScrobblePauseRequest<T, U> CreateScrobblePauseRequest<T, U>(U requestBody) where U : TraktScrobblePost
             => new ScrobblePauseRequest<T, U> { RequestBody = requestBody };
