@@ -51,7 +51,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktPersonSummaryRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new PersonSummaryRequest
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo

@@ -2,7 +2,7 @@
 {
     using Objects.Get.People;
 
-    internal sealed class TraktPersonSummaryRequest : APersonRequest<ITraktPerson>
+    internal sealed class PersonSummaryRequest : APersonRequest<ITraktPerson>
     {
         public override string UriTemplate => "people/{id}{?extended}";
     }

@@ -11,52 +11,52 @@
     using Xunit;
 
     [Category("Requests.People")]
-    public class TraktPersonSummaryRequest_Tests
+    public class PersonSummaryRequest_Tests
     {
         [Fact]
-        public void Test_TraktPersonSummaryRequest_IsNotAbstract()
+        public void Test_PersonSummaryRequest_IsNotAbstract()
         {
-            typeof(TraktPersonSummaryRequest).IsAbstract.Should().BeFalse();
+            typeof(PersonSummaryRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktPersonSummaryRequest_IsSealed()
+        public void Test_PersonSummaryRequest_IsSealed()
         {
-            typeof(TraktPersonSummaryRequest).IsSealed.Should().BeTrue();
+            typeof(PersonSummaryRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktPersonSummaryRequest_Inherits_ATraktPersonRequest_1()
+        public void Test_PersonSummaryRequest_Inherits_ATraktPersonRequest_1()
         {
-            typeof(TraktPersonSummaryRequest).IsSubclassOf(typeof(APersonRequest<ITraktPerson>)).Should().BeTrue();
+            typeof(PersonSummaryRequest).IsSubclassOf(typeof(APersonRequest<ITraktPerson>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktPersonSummaryRequest_Has_AuthorizationRequirement_NotRequired()
+        public void Test_PersonSummaryRequest_Has_AuthorizationRequirement_NotRequired()
         {
-            var request = new TraktPersonSummaryRequest();
+            var request = new PersonSummaryRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_TraktPersonSummaryRequest_Returns_Valid_RequestObjectType()
+        public void Test_PersonSummaryRequest_Returns_Valid_RequestObjectType()
         {
-            var request = new TraktPersonSummaryRequest();
+            var request = new PersonSummaryRequest();
             request.RequestObjectType.Should().Be(RequestObjectType.People);
         }
 
         [Fact]
-        public void Test_TraktPersonSummaryRequest_Has_Valid_UriTemplate()
+        public void Test_PersonSummaryRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktPersonSummaryRequest();
+            var request = new PersonSummaryRequest();
             request.UriTemplate.Should().Be("people/{id}{?extended}");
         }
 
         [Fact]
-        public void Test_TraktPersonSummaryRequest_Returns_Valid_UriPathParameters()
+        public void Test_PersonSummaryRequest_Returns_Valid_UriPathParameters()
         {
             // only id
-            var request = new TraktPersonSummaryRequest { Id = "123" };
+            var request = new PersonSummaryRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -67,7 +67,7 @@
 
             // id and extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktPersonSummaryRequest { Id = "123", ExtendedInfo = extendedInfo };
+            request = new PersonSummaryRequest { Id = "123", ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -79,22 +79,22 @@
         }
 
         [Fact]
-        public void Test_TraktPersonSummaryRequest_Validate_Throws_Exceptions()
+        public void Test_PersonSummaryRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktPersonSummaryRequest();
+            var request = new PersonSummaryRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktPersonSummaryRequest { Id = string.Empty };
+            request = new PersonSummaryRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktPersonSummaryRequest { Id = "invalid id" };
+            request = new PersonSummaryRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
