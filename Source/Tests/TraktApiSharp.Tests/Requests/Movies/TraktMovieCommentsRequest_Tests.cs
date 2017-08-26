@@ -31,7 +31,7 @@
         [Fact]
         public void Test_TraktMovieCommentsRequest_Inherits_ATraktMovieRequest_1()
         {
-            typeof(TraktMovieCommentsRequest).IsSubclassOf(typeof(ATraktMovieRequest<ITraktComment>)).Should().BeTrue();
+            typeof(TraktMovieCommentsRequest).IsSubclassOf(typeof(AMovieRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]

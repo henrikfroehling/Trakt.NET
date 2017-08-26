@@ -4,7 +4,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktMovieTranslationsRequest : ATraktMovieRequest<ITraktMovieTranslation>
+    internal sealed class TraktMovieTranslationsRequest : AMovieRequest<ITraktMovieTranslation>
     {
         internal string LanguageCode { get; set; }
 

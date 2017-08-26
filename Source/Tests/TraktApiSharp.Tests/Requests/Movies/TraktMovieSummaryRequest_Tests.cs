@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktMovieSummaryRequest_Inherits_ATraktMovieRequest_1()
         {
-            typeof(TraktMovieSummaryRequest).IsSubclassOf(typeof(ATraktMovieRequest<ITraktMovie>)).Should().BeTrue();
+            typeof(TraktMovieSummaryRequest).IsSubclassOf(typeof(AMovieRequest<ITraktMovie>)).Should().BeTrue();
         }
 
         [Fact]

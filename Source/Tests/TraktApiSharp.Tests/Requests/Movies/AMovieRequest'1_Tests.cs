@@ -10,56 +10,56 @@
     using Xunit;
 
     [Category("Requests.Movies")]
-    public class ATraktMovieRequest_1_Tests
+    public class AMovieRequest_1_Tests
     {
-        internal class TraktMovieRequestMock : ATraktMovieRequest<int>
+        internal class MovieRequestMock : AMovieRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
         }
 
         [Fact]
-        public void Test_ATraktMovieRequest_1_IsAbstract()
+        public void Test_AMovieRequest_1_IsAbstract()
         {
-            typeof(ATraktMovieRequest<>).IsAbstract.Should().BeTrue();
+            typeof(AMovieRequest<>).IsAbstract.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktMovieRequest_1_Has_GenericTypeParameter()
+        public void Test_AMovieRequest_1_Has_GenericTypeParameter()
         {
-            typeof(ATraktMovieRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ATraktMovieRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+            typeof(AMovieRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(AMovieRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
         [Fact]
-        public void Test_ATraktMovieRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_AMovieRequest_1_Inherits_ATraktGetRequest_1()
         {
-            typeof(ATraktMovieRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
+            typeof(AMovieRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktMovieRequest_1_Implements_ITraktHasId_Interface()
+        public void Test_AMovieRequest_1_Implements_ITraktHasId_Interface()
         {
-            typeof(ATraktMovieRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(AMovieRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_ATraktMovieRequest_1_Has_AuthorizationRequirement_NotRequired()
+        public void Test_AMovieRequest_1_Has_AuthorizationRequirement_NotRequired()
         {
-            var requestMock = new TraktMovieRequestMock();
+            var requestMock = new MovieRequestMock();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
-        public void Test_ATraktMovieRequest_1_Returns_Valid_RequestObjectType()
+        public void Test_AMovieRequest_1_Returns_Valid_RequestObjectType()
         {
-            var requestMock = new TraktMovieRequestMock();
+            var requestMock = new MovieRequestMock();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Movies);
         }
 
         [Fact]
-        public void Test_ATraktMovieRequest_1_Returns_Valid_UriPathParameters()
+        public void Test_AMovieRequest_1_Returns_Valid_UriPathParameters()
         {
-            var requestMock = new TraktMovieRequestMock { Id = "123" };
+            var requestMock = new MovieRequestMock { Id = "123" };
 
             requestMock.GetUriPathParameters().Should().NotBeNull()
                                                        .And.HaveCount(1)
@@ -70,22 +70,22 @@
         }
 
         [Fact]
-        public void Test_ATraktMovieRequest_1_Validate_Throws_Exceptions()
+        public void Test_AMovieRequest_1_Validate_Throws_Exceptions()
         {
             // id is null
-            var requestMock = new TraktMovieRequestMock();
+            var requestMock = new MovieRequestMock();
 
             Action act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            requestMock = new TraktMovieRequestMock { Id = string.Empty };
+            requestMock = new MovieRequestMock { Id = string.Empty };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            requestMock = new TraktMovieRequestMock { Id = "invalid id" };
+            requestMock = new MovieRequestMock { Id = "invalid id" };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
