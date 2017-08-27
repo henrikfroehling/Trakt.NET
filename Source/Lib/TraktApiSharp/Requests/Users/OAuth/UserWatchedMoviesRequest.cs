@@ -5,7 +5,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserWatchedMoviesRequest : AUsersGetRequest<ITraktWatchedMovie>
+    internal sealed class UserWatchedMoviesRequest : AUsersGetRequest<ITraktWatchedMovie>
     {
         internal string Username { get; set; }
 

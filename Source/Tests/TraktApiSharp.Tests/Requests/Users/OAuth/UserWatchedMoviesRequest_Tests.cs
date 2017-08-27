@@ -13,30 +13,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserWatchedMoviesRequest_Tests
+    public class UserWatchedMoviesRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserWatchedMoviesRequest_Is_Not_Abstract()
+        public void Test_UserWatchedMoviesRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserWatchedMoviesRequest).IsAbstract.Should().BeFalse();
+            typeof(UserWatchedMoviesRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserWatchedMoviesRequest_Is_Sealed()
+        public void Test_UserWatchedMoviesRequest_Is_Sealed()
         {
-            typeof(TraktUserWatchedMoviesRequest).IsSealed.Should().BeTrue();
+            typeof(UserWatchedMoviesRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserWatchedMoviesRequest_Inherits_ATraktUsersGetRequest_1()
+        public void Test_UserWatchedMoviesRequest_Inherits_ATraktUsersGetRequest_1()
         {
-            typeof(TraktUserWatchedMoviesRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktWatchedMovie>)).Should().BeTrue();
+            typeof(UserWatchedMoviesRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktWatchedMovie>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserWatchedMoviesRequest_Has_Username_Property()
+        public void Test_UserWatchedMoviesRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserWatchedMoviesRequest)
+            var propertyInfo = typeof(UserWatchedMoviesRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -47,24 +47,24 @@
         }
 
         [Fact]
-        public void Test_TraktUserWatchedMoviesRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserWatchedMoviesRequest_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUserWatchedMoviesRequest();
+            var request = new UserWatchedMoviesRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
-        public void Test_TraktUserWatchedMoviesRequest_Has_Valid_UriTemplate()
+        public void Test_UserWatchedMoviesRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserWatchedMoviesRequest();
+            var request = new UserWatchedMoviesRequest();
             request.UriTemplate.Should().Be("users/{username}/watched/movies{?extended}");
         }
 
         [Fact]
-        public void Test_TraktUserWatchedMoviesRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserWatchedMoviesRequest_Returns_Valid_UriPathParameters()
         {
             // without extended info
-            var request = new TraktUserWatchedMoviesRequest { Username = "username" };
+            var request = new UserWatchedMoviesRequest { Username = "username" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -75,7 +75,7 @@
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktUserWatchedMoviesRequest { Username = "username", ExtendedInfo = extendedInfo };
+            request = new UserWatchedMoviesRequest { Username = "username", ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -87,22 +87,22 @@
         }
 
         [Fact]
-        public void Test_TraktUserWatchedMoviesRequest_Validate_Throws_Exceptions()
+        public void Test_UserWatchedMoviesRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserWatchedMoviesRequest();
+            var request = new UserWatchedMoviesRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserWatchedMoviesRequest { Username = string.Empty };
+            request = new UserWatchedMoviesRequest { Username = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserWatchedMoviesRequest { Username = "invalid username" };
+            request = new UserWatchedMoviesRequest { Username = "invalid username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

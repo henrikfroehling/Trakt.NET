@@ -1038,7 +1038,7 @@
                                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktUserWatchedMoviesRequest
+            return requestHandler.ExecuteListRequestAsync(new UserWatchedMoviesRequest
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
