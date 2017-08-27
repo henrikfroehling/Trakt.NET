@@ -9,12 +9,12 @@
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
-    public partial class TraktGenreObjectJsonReader_Tests
+    public partial class GenreObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktGenreObjectJsonReader_ReadObject_From_Stream_Complete()
+        public async Task Test_GenreObjectJsonReader_ReadObject_From_Stream_Complete()
         {
-            var traktJsonReader = new TraktGenreObjectJsonReader();
+            var traktJsonReader = new GenreObjectJsonReader();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -28,9 +28,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktGenreObjectJsonReader_ReadObject_From_Stream_Incomplete_1()
+        public async Task Test_GenreObjectJsonReader_ReadObject_From_Stream_Incomplete_1()
         {
-            var traktJsonReader = new TraktGenreObjectJsonReader();
+            var traktJsonReader = new GenreObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
@@ -44,9 +44,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktGenreObjectJsonReader_ReadObject_From_Stream_Incomplete_2()
+        public async Task Test_GenreObjectJsonReader_ReadObject_From_Stream_Incomplete_2()
         {
-            var traktJsonReader = new TraktGenreObjectJsonReader();
+            var traktJsonReader = new GenreObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
@@ -60,9 +60,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktGenreObjectJsonReader_ReadObject_From_Stream_Not_Valid_1()
+        public async Task Test_GenreObjectJsonReader_ReadObject_From_Stream_Not_Valid_1()
         {
-            var traktJsonReader = new TraktGenreObjectJsonReader();
+            var traktJsonReader = new GenreObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
@@ -76,9 +76,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktGenreObjectJsonReader_ReadObject_From_Stream_Not_Valid_2()
+        public async Task Test_GenreObjectJsonReader_ReadObject_From_Stream_Not_Valid_2()
         {
-            var traktJsonReader = new TraktGenreObjectJsonReader();
+            var traktJsonReader = new GenreObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
@@ -92,9 +92,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktGenreObjectJsonReader_ReadObject_From_Stream_Not_Valid_3()
+        public async Task Test_GenreObjectJsonReader_ReadObject_From_Stream_Not_Valid_3()
         {
-            var traktJsonReader = new TraktGenreObjectJsonReader();
+            var traktJsonReader = new GenreObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
@@ -108,18 +108,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktGenreObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_GenreObjectJsonReader_ReadObject_From_Stream_Null()
         {
-            var traktJsonReader = new TraktGenreObjectJsonReader();
+            var traktJsonReader = new GenreObjectJsonReader();
 
             var traktGenre = await traktJsonReader.ReadObjectAsync(default(Stream));
             traktGenre.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktGenreObjectJsonReader_ReadObject_From_Stream_Empty()
+        public async Task Test_GenreObjectJsonReader_ReadObject_From_Stream_Empty()
         {
-            var traktJsonReader = new TraktGenreObjectJsonReader();
+            var traktJsonReader = new GenreObjectJsonReader();
 
             using (var stream = string.Empty.ToStream())
             {

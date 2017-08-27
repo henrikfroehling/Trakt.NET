@@ -40,7 +40,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var genreReader = new TraktGenreObjectJsonReader();
+                var genreReader = new GenreObjectJsonReader();
                 //var genreReadingTasks = new List<Task<ITraktGenre>>();
                 var genres = new List<ITraktGenre>();
 

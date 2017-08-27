@@ -4,7 +4,7 @@
 
     internal class GenreJsonReaderFactory : IJsonReaderFactory<ITraktGenre>
     {
-        public IObjectJsonReader<ITraktGenre> CreateObjectReader() => new TraktGenreObjectJsonReader();
+        public IObjectJsonReader<ITraktGenre> CreateObjectReader() => new GenreObjectJsonReader();
 
         public IArrayJsonReader<ITraktGenre> CreateArrayReader() => new GenreArrayJsonReader();
     }
