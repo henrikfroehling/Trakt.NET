@@ -2,7 +2,7 @@
 {
     using Objects.JsonReader;
 
-    internal class TraktSearchResultJsonReaderFactory : IJsonReaderFactory<ITraktSearchResult>
+    internal class SearchResultJsonReaderFactory : IJsonReaderFactory<ITraktSearchResult>
     {
         public IObjectJsonReader<ITraktSearchResult> CreateObjectReader() => new TraktSearchResultObjectJsonReader();
 
