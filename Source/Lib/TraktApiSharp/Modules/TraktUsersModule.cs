@@ -1088,7 +1088,7 @@
         public Task<TraktResponse<ITraktUserStatistics>> GetStatisticsAsync(string usernameOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserStatisticsRequest { Username = usernameOrSlug }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserStatisticsRequest { Username = usernameOrSlug }, cancellationToken);
         }
 
         private void ValidateCustomListItemsPost(TraktUserCustomListItemsPost customListItemsPost)

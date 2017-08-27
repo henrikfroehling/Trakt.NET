@@ -12,30 +12,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserStatisticsRequest_Tests
+    public class UserStatisticsRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserStatisticsRequest_Is_Not_Abstract()
+        public void Test_UserStatisticsRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserStatisticsRequest).IsAbstract.Should().BeFalse();
+            typeof(UserStatisticsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserStatisticsRequest_Is_Sealed()
+        public void Test_UserStatisticsRequest_Is_Sealed()
         {
-            typeof(TraktUserStatisticsRequest).IsSealed.Should().BeTrue();
+            typeof(UserStatisticsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserStatisticsRequest_Inherits_ATraktGetRequest_1()
+        public void Test_UserStatisticsRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktUserStatisticsRequest).IsSubclassOf(typeof(AGetRequest<ITraktUserStatistics>)).Should().BeTrue();
+            typeof(UserStatisticsRequest).IsSubclassOf(typeof(AGetRequest<ITraktUserStatistics>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserStatisticsRequest_Has_Username_Property()
+        public void Test_UserStatisticsRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserStatisticsRequest)
+            var propertyInfo = typeof(UserStatisticsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -46,23 +46,23 @@
         }
 
         [Fact]
-        public void Test_TraktUserStatisticsRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserStatisticsRequest_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUserStatisticsRequest();
+            var request = new UserStatisticsRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
-        public void Test_TraktUserStatisticsRequest_Has_Valid_UriTemplate()
+        public void Test_UserStatisticsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserStatisticsRequest();
+            var request = new UserStatisticsRequest();
             request.UriTemplate.Should().Be("users/{username}/stats");
         }
 
         [Fact]
-        public void Test_TraktUserStatisticsRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserStatisticsRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new TraktUserStatisticsRequest { Username = "username" };
+            var request = new UserStatisticsRequest { Username = "username" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -73,22 +73,22 @@
         }
 
         [Fact]
-        public void Test_TraktUserStatisticsRequest_Validate_Throws_Exceptions()
+        public void Test_UserStatisticsRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserStatisticsRequest();
+            var request = new UserStatisticsRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserStatisticsRequest { Username = string.Empty };
+            request = new UserStatisticsRequest { Username = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserStatisticsRequest { Username = "invalid username" };
+            request = new UserStatisticsRequest { Username = "invalid username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
