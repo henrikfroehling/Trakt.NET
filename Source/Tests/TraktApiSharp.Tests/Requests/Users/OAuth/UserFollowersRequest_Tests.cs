@@ -13,30 +13,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserFollowersRequest_Tests
+    public class UserFollowersRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserFollowersRequest_Is_Not_Abstract()
+        public void Test_UserFollowersRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserFollowersRequest).IsAbstract.Should().BeFalse();
+            typeof(UserFollowersRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserFollowersRequest_Is_Sealed()
+        public void Test_UserFollowersRequest_Is_Sealed()
         {
-            typeof(TraktUserFollowersRequest).IsSealed.Should().BeTrue();
+            typeof(UserFollowersRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserFollowersRequest_Inherits_ATraktUsersGetRequest_1()
+        public void Test_UserFollowersRequest_Inherits_ATraktUsersGetRequest_1()
         {
-            typeof(TraktUserFollowersRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktUserFollower>)).Should().BeTrue();
+            typeof(UserFollowersRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktUserFollower>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserFollowersRequest_Has_Username_Property()
+        public void Test_UserFollowersRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserFollowersRequest)
+            var propertyInfo = typeof(UserFollowersRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -47,24 +47,24 @@
         }
 
         [Fact]
-        public void Test_TraktUserFollowersRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserFollowersRequest_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUserFollowersRequest();
+            var request = new UserFollowersRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
-        public void Test_TraktUserFollowersRequest_Has_Valid_UriTemplate()
+        public void Test_UserFollowersRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserFollowersRequest();
+            var request = new UserFollowersRequest();
             request.UriTemplate.Should().Be("users/{username}/followers{?extended}");
         }
 
         [Fact]
-        public void Test_TraktUserFollowersRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserFollowersRequest_Returns_Valid_UriPathParameters()
         {
             // without extended info
-            var request = new TraktUserFollowersRequest { Username = "username" };
+            var request = new UserFollowersRequest { Username = "username" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -75,7 +75,7 @@
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktUserFollowersRequest { Username = "username", ExtendedInfo = extendedInfo };
+            request = new UserFollowersRequest { Username = "username", ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -87,22 +87,22 @@
         }
 
         [Fact]
-        public void Test_TraktUserFollowersRequest_Validate_Throws_Exceptions()
+        public void Test_UserFollowersRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserFollowersRequest();
+            var request = new UserFollowersRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserFollowersRequest { Username = string.Empty };
+            request = new UserFollowersRequest { Username = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserFollowersRequest { Username = "invalid username" };
+            request = new UserFollowersRequest { Username = "invalid username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
