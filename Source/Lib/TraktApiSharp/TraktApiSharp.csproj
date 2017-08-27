@@ -145,7 +145,7 @@
     <Compile Include="Objects\Basic\JsonReader\Factories\MetadataJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\RatingJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\SearchResultJsonReaderFactory.cs" />
-    <Compile Include="Objects\Basic\JsonReader\Factories\TraktSharingJsonReaderFactory.cs" />
+    <Compile Include="Objects\Basic\JsonReader\Factories\SharingJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\TraktStatisticsJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\CastAndCrewObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktCastMemberArrayJsonReader.cs" />

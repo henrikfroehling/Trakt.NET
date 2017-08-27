@@ -105,7 +105,7 @@
             s_readerFactories.Add(typeof(ITraktMetadata), new MetadataJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktRating), new RatingJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSearchResult), new SearchResultJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSharing), new TraktSharingJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSharing), new SharingJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktStatistics), new TraktStatisticsJsonReaderFactory());
 
             // calendar objects
