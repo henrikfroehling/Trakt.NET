@@ -232,7 +232,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktUserCollectionShowsRequest
+            return requestHandler.ExecuteListRequestAsync(new UserCollectionShowsRequest
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo

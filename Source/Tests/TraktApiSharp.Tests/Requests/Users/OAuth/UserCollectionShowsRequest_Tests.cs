@@ -13,30 +13,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserCollectionShowsRequest_Tests
+    public class UserCollectionShowsRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserCollectionShowsRequest_Is_Not_Abstract()
+        public void Test_UserCollectionShowsRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserCollectionShowsRequest).IsAbstract.Should().BeFalse();
+            typeof(UserCollectionShowsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserCollectionShowsRequest_Is_Sealed()
+        public void Test_UserCollectionShowsRequest_Is_Sealed()
         {
-            typeof(TraktUserCollectionShowsRequest).IsSealed.Should().BeTrue();
+            typeof(UserCollectionShowsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCollectionShowsRequest_Inherits_ATraktUsersGetRequest_1()
+        public void Test_UserCollectionShowsRequest_Inherits_ATraktUsersGetRequest_1()
         {
-            typeof(TraktUserCollectionShowsRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktCollectionShow>)).Should().BeTrue();
+            typeof(UserCollectionShowsRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktCollectionShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCollectionShowsRequest_Has_Username_Property()
+        public void Test_UserCollectionShowsRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserCollectionShowsRequest)
+            var propertyInfo = typeof(UserCollectionShowsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -47,24 +47,24 @@
         }
 
         [Fact]
-        public void Test_TraktUserCollectionShowsRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserCollectionShowsRequest_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUserCollectionShowsRequest();
+            var request = new UserCollectionShowsRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
-        public void Test_TraktUserCollectionShowsRequest_Has_Valid_UriTemplate()
+        public void Test_UserCollectionShowsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserCollectionShowsRequest();
+            var request = new UserCollectionShowsRequest();
             request.UriTemplate.Should().Be("users/{username}/collection/shows{?extended}");
         }
 
         [Fact]
-        public void Test_TraktUserCollectionShowsRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserCollectionShowsRequest_Returns_Valid_UriPathParameters()
         {
             // without extended info
-            var request = new TraktUserCollectionShowsRequest { Username = "username" };
+            var request = new UserCollectionShowsRequest { Username = "username" };
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
                                                    .And.Contain(new Dictionary<string, object>
@@ -74,7 +74,7 @@
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktUserCollectionShowsRequest { Username = "username", ExtendedInfo = extendedInfo };
+            request = new UserCollectionShowsRequest { Username = "username", ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -86,22 +86,22 @@
         }
 
         [Fact]
-        public void Test_TraktUserCollectionShowsRequest_Validate_Throws_Exceptions()
+        public void Test_UserCollectionShowsRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var requestMock = new TraktUserCollectionShowsRequest();
+            var requestMock = new UserCollectionShowsRequest();
 
             Action act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            requestMock = new TraktUserCollectionShowsRequest { Username = string.Empty };
+            requestMock = new UserCollectionShowsRequest { Username = string.Empty };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            requestMock = new TraktUserCollectionShowsRequest { Username = "invalid username" };
+            requestMock = new UserCollectionShowsRequest { Username = "invalid username" };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
