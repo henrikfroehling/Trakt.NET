@@ -55,7 +55,7 @@
         public Task<TraktResponse<ITraktUserSettings>> GetSettingsAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserSettingsRequest(), cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserSettingsRequest(), cancellationToken);
         }
 
         /// <summary>

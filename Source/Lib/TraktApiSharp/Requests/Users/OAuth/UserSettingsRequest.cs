@@ -4,7 +4,7 @@
     using Objects.Get.Users;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserSettingsRequest : AGetRequest<ITraktUserSettings>
+    internal sealed class UserSettingsRequest : AGetRequest<ITraktUserSettings>
     {
         public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
 

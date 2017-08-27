@@ -1289,7 +1289,7 @@
     <Compile Include="Requests\Users\OAuth\UserListUnlikeRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserProfileRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserRatingsRequest_Tests.cs" />
-    <Compile Include="Requests\Users\OAuth\TraktUserSettingsRequest_Tests.cs" />
+    <Compile Include="Requests\Users\OAuth\UserSettingsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserStatisticsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserUnfollowUserRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserWatchedHistoryRequest_Tests.cs" />
