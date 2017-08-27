@@ -1269,7 +1269,7 @@
     <Compile Include="Requests\Users\OAuth\UserCollectionMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserCollectionShowsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserCommentsRequest_Tests.cs" />
-    <Compile Include="Requests\Users\OAuth\TraktUserCustomListAddRequest_Tests.cs" />
+    <Compile Include="Requests\Users\OAuth\UserCustomListAddRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCustomListDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCustomListItemsAddRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCustomListItemsRemoveRequest_Tests.cs" />
