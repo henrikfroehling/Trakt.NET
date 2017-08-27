@@ -1279,7 +1279,7 @@
     <Compile Include="Requests\Users\OAuth\UserCustomSingleListRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserDenyFollowerRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserFollowersRequest_Tests.cs" />
-    <Compile Include="Requests\Users\OAuth\TraktUserFollowingRequest_Tests.cs" />
+    <Compile Include="Requests\Users\OAuth\UserFollowingRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserFollowRequestsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserFollowUserRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserFriendsRequest_Tests.cs" />
