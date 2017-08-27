@@ -11,30 +11,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserListUnlikeRequest_Tests
+    public class UserListUnlikeRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserListUnlikeRequest_Is_Not_Abstract()
+        public void Test_UserListUnlikeRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserListUnlikeRequest).IsAbstract.Should().BeFalse();
+            typeof(UserListUnlikeRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserListUnlikeRequest_Is_Sealed()
+        public void Test_UserListUnlikeRequest_Is_Sealed()
         {
-            typeof(TraktUserListUnlikeRequest).IsSealed.Should().BeTrue();
+            typeof(UserListUnlikeRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserListUnlikeRequest_Inherits_ATraktUsersDeleteByIdRequest()
+        public void Test_UserListUnlikeRequest_Inherits_ATraktUsersDeleteByIdRequest()
         {
-            typeof(TraktUserListUnlikeRequest).IsSubclassOf(typeof(AUsersDeleteByIdRequest)).Should().BeTrue();
+            typeof(UserListUnlikeRequest).IsSubclassOf(typeof(AUsersDeleteByIdRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserListUnlikeRequest_Has_Username_Property()
+        public void Test_UserListUnlikeRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserListUnlikeRequest)
+            var propertyInfo = typeof(UserListUnlikeRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -45,30 +45,30 @@
         }
 
         [Fact]
-        public void Test_TraktUserListUnlikeRequest_Has_AuthorizationRequirement_Required()
+        public void Test_UserListUnlikeRequest_Has_AuthorizationRequirement_Required()
         {
-            var request = new TraktUserListUnlikeRequest();
+            var request = new UserListUnlikeRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktUserListUnlikeRequest_Returns_Valid_RequestObjectType()
+        public void Test_UserListUnlikeRequest_Returns_Valid_RequestObjectType()
         {
-            var requestMock = new TraktUserListUnlikeRequest();
+            var requestMock = new UserListUnlikeRequest();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Lists);
         }
 
         [Fact]
-        public void Test_TraktUserListUnlikeRequest_Has_Valid_UriTemplate()
+        public void Test_UserListUnlikeRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserListUnlikeRequest();
+            var request = new UserListUnlikeRequest();
             request.UriTemplate.Should().Be("users/{username}/lists/{id}/like");
         }
 
         [Fact]
-        public void Test_TraktUserListUnlikeRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserListUnlikeRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new TraktUserListUnlikeRequest { Username = "username", Id = "123" };
+            var request = new UserListUnlikeRequest { Username = "username", Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -80,40 +80,40 @@
         }
 
         [Fact]
-        public void Test_TraktUserListUnlikeRequest_Validate_Throws_Exceptions()
+        public void Test_UserListUnlikeRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserListUnlikeRequest { Id = "123" };
+            var request = new UserListUnlikeRequest { Id = "123" };
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserListUnlikeRequest { Username = string.Empty, Id = "123" };
+            request = new UserListUnlikeRequest { Username = string.Empty, Id = "123" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserListUnlikeRequest { Username = "invalid username", Id = "123" };
+            request = new UserListUnlikeRequest { Username = "invalid username", Id = "123" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id is null
-            request = new TraktUserListUnlikeRequest { Username = "username" };
+            request = new UserListUnlikeRequest { Username = "username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktUserListUnlikeRequest { Username = "username", Id = string.Empty };
+            request = new UserListUnlikeRequest { Username = "username", Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktUserListUnlikeRequest { Username = "username", Id = "invalid id" };
+            request = new UserListUnlikeRequest { Username = "username", Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

@@ -781,7 +781,7 @@
     <Compile Include="Requests\Users\OAuth\UserHiddenItemsRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserLikesRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserListLikeRequest.cs" />
-    <Compile Include="Requests\Users\OAuth\TraktUserListUnlikeRequest.cs" />
+    <Compile Include="Requests\Users\OAuth\UserListUnlikeRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserProfileRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserRatingsRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserSettingsRequest.cs" />
