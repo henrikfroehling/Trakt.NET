@@ -182,11 +182,11 @@
     <Compile Include="Objects\Basic\JsonReader\SearchResultObjectJsonReader\SearchResultObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\SearchResultObjectJsonReader\SearchResultObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\SearchResultObjectJsonReader\SearchResultObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktSharingObjectJsonReader_Tests\TraktSharingObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktSharingObjectJsonReader_Tests\TraktSharingObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktSharingObjectJsonReader_Tests\TraktSharingObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktSharingObjectJsonReader_Tests\TraktSharingObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktSharingObjectJsonReader_Tests\TraktSharingObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\JsonReader\SharingObjectJsonReader\SharingObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\SharingObjectJsonReader\SharingObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\SharingObjectJsonReader\SharingObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\SharingObjectJsonReader\SharingObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\SharingObjectJsonReader\SharingObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktStatisticsObjectJsonReader_Tests\TraktStatisticsObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktStatisticsObjectJsonReader_Tests\TraktStatisticsObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktStatisticsObjectJsonReader_Tests\TraktStatisticsObjectJsonReader_Stream_Tests.cs" />

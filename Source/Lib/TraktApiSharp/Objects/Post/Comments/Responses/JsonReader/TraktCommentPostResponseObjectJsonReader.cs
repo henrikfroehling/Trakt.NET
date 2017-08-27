@@ -56,7 +56,7 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var userReader = new TraktUserObjectJsonReader();
-                var sharingReader = new TraktSharingObjectJsonReader();
+                var sharingReader = new SharingObjectJsonReader();
                 ITraktCommentPostResponse traktCommentPostResponse = new TraktCommentPostResponse();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)

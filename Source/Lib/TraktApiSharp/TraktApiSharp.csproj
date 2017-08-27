@@ -428,7 +428,7 @@
     <Compile Include="Objects\Basic\JsonReader\ImageObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\MetadataObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\RatingObjectJsonReader.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktSharingObjectJsonReader.cs" />
+    <Compile Include="Objects\Basic\JsonReader\SharingObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktStatisticsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeCollectionProgressArrayJsonReader.cs" />
