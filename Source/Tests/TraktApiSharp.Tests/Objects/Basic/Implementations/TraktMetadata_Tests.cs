@@ -33,7 +33,7 @@
         [Fact]
         public async Task Test_TraktMetadata_From_Json()
         {
-            var jsonReader = new TraktMetadataObjectJsonReader();
+            var jsonReader = new MetadataObjectJsonReader();
             var traktMetadata = await jsonReader.ReadObjectAsync(JSON) as TraktMetadata;
 
             traktMetadata.Should().NotBeNull();

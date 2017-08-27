@@ -45,7 +45,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var metadataObjectReader = new TraktMetadataObjectJsonReader();
+                var metadataObjectReader = new MetadataObjectJsonReader();
 
                 ITraktCollectionShowEpisode traktCollectionShowEpisode = new TraktCollectionShowEpisode();
 
