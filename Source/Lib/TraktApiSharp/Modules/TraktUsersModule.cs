@@ -1011,7 +1011,7 @@
                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserWatchingRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserWatchingRequest
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo

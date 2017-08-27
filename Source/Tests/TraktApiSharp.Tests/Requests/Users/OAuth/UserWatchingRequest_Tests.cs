@@ -13,30 +13,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserWatchingRequest_Tests
+    public class UserWatchingRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserWatchingRequest_Is_Not_Abstract()
+        public void Test_UserWatchingRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserWatchingRequest).IsAbstract.Should().BeFalse();
+            typeof(UserWatchingRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserWatchingRequest_Is_Sealed()
+        public void Test_UserWatchingRequest_Is_Sealed()
         {
-            typeof(TraktUserWatchingRequest).IsSealed.Should().BeTrue();
+            typeof(UserWatchingRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserWatchingRequest_Inherits_ATraktUsersGetRequest_1()
+        public void Test_UserWatchingRequest_Inherits_ATraktUsersGetRequest_1()
         {
-            typeof(TraktUserWatchingRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktUserWatchingItem>)).Should().BeTrue();
+            typeof(UserWatchingRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktUserWatchingItem>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserWatchingRequest_Has_Username_Property()
+        public void Test_UserWatchingRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserWatchingRequest)
+            var propertyInfo = typeof(UserWatchingRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -47,24 +47,24 @@
         }
 
         [Fact]
-        public void Test_TraktUserWatchingRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserWatchingRequest_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUserWatchingRequest();
+            var request = new UserWatchingRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
-        public void Test_TraktUserWatchingRequest_Has_Valid_UriTemplate()
+        public void Test_UserWatchingRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserWatchingRequest();
+            var request = new UserWatchingRequest();
             request.UriTemplate.Should().Be("users/{username}/watching{?extended}");
         }
 
         [Fact]
-        public void Test_TraktUserWatchingRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserWatchingRequest_Returns_Valid_UriPathParameters()
         {
             // without extended info
-            var request = new TraktUserWatchingRequest { Username = "username" };
+            var request = new UserWatchingRequest { Username = "username" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -75,7 +75,7 @@
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktUserWatchingRequest { Username = "username", ExtendedInfo = extendedInfo };
+            request = new UserWatchingRequest { Username = "username", ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -87,22 +87,22 @@
         }
 
         [Fact]
-        public void Test_TraktUserWatchingRequest_Validate_Throws_Exceptions()
+        public void Test_UserWatchingRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserWatchingRequest();
+            var request = new UserWatchingRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserWatchingRequest { Username = string.Empty };
+            request = new UserWatchingRequest { Username = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserWatchingRequest { Username = "invalid username" };
+            request = new UserWatchingRequest { Username = "invalid username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
