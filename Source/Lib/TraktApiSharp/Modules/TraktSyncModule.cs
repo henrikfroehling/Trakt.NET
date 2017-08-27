@@ -307,7 +307,7 @@
         {
             ValidateHistoryPost(historyPost);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchedHistoryAddRequest { RequestBody = historyPost }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchedHistoryAddRequest { RequestBody = historyPost }, cancellationToken);
         }
 
         /// <summary>

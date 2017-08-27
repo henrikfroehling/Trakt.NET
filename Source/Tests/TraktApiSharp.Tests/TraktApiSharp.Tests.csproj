@@ -1253,7 +1253,7 @@
     <Compile Include="Requests\Syncs\OAuth\SyncRatingsAddRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\SyncRatingsRemoveRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\SyncRatingsRequest_Tests.cs" />
-    <Compile Include="Requests\Syncs\OAuth\TraktSyncWatchedHistoryAddRequest_Tests.cs" />
+    <Compile Include="Requests\Syncs\OAuth\SyncWatchedHistoryAddRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncWatchedHistoryRemoveRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncWatchedHistoryRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncWatchedMoviesRequest_Tests.cs" />
