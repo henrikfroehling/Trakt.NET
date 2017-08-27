@@ -778,7 +778,7 @@
     <Compile Include="Requests\Users\OAuth\UserFollowRequestsRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserFollowUserRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserFriendsRequest.cs" />
-    <Compile Include="Requests\Users\OAuth\TraktUserHiddenItemsRequest.cs" />
+    <Compile Include="Requests\Users\OAuth\UserHiddenItemsRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserLikesRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserListLikeRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserListUnlikeRequest.cs" />

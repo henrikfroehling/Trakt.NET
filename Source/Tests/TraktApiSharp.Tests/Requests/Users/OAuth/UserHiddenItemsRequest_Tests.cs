@@ -15,30 +15,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserHiddenItemsRequest_Tests
+    public class UserHiddenItemsRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserHiddenItemsRequest_Is_Not_Abstract()
+        public void Test_UserHiddenItemsRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserHiddenItemsRequest).IsAbstract.Should().BeFalse();
+            typeof(UserHiddenItemsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserHiddenItemsRequest_Is_Sealed()
+        public void Test_UserHiddenItemsRequest_Is_Sealed()
         {
-            typeof(TraktUserHiddenItemsRequest).IsSealed.Should().BeTrue();
+            typeof(UserHiddenItemsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserHiddenItemsRequest_Inherits_ATraktUsersPagedGetRequest_1()
+        public void Test_UserHiddenItemsRequest_Inherits_ATraktUsersPagedGetRequest_1()
         {
-            typeof(TraktUserHiddenItemsRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktUserHiddenItem>)).Should().BeTrue();
+            typeof(UserHiddenItemsRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktUserHiddenItem>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserHiddenItemsRequest_Has_Section_Property()
+        public void Test_UserHiddenItemsRequest_Has_Section_Property()
         {
-            var propertyInfo = typeof(TraktUserHiddenItemsRequest)
+            var propertyInfo = typeof(UserHiddenItemsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Section")
                     .FirstOrDefault();
@@ -49,9 +49,9 @@
         }
 
         [Fact]
-        public void Test_TraktUserHiddenItemsRequest_Has_Type_Property()
+        public void Test_UserHiddenItemsRequest_Has_Type_Property()
         {
-            var propertyInfo = typeof(TraktUserHiddenItemsRequest)
+            var propertyInfo = typeof(UserHiddenItemsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
@@ -62,37 +62,37 @@
         }
 
         [Fact]
-        public void Test_TraktUserHiddenItemsRequest_Has_AuthorizationRequirement_Required()
+        public void Test_UserHiddenItemsRequest_Has_AuthorizationRequirement_Required()
         {
-            var request = new TraktUserHiddenItemsRequest();
+            var request = new UserHiddenItemsRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktUserHiddenItemsRequest_Has_Valid_UriTemplate()
+        public void Test_UserHiddenItemsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserHiddenItemsRequest();
+            var request = new UserHiddenItemsRequest();
             request.UriTemplate.Should().Be("users/hidden/{section}{?type,extended,page,limit}");
         }
 
         [Fact]
-        public void Test_TraktUserHiddenItemsRequest_Validate_Throws_Exceptions()
+        public void Test_UserHiddenItemsRequest_Validate_Throws_Exceptions()
         {
             // section is null
-            var requestMock = new TraktUserHiddenItemsRequest();
+            var requestMock = new UserHiddenItemsRequest();
 
             Action act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // section is unspecified
-            requestMock = new TraktUserHiddenItemsRequest { Section = TraktHiddenItemsSection.Unspecified };
+            requestMock = new UserHiddenItemsRequest { Section = TraktHiddenItemsSection.Unspecified };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktUserHiddenItemsRequest_TestData))]
-        public void Test_TraktUserHiddenItemsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(UserHiddenItemsRequest_TestData))]
+        public void Test_UserHiddenItemsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                      IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -101,7 +101,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktUserHiddenItemsRequest_TestData : IEnumerable<object[]>
+        public class UserHiddenItemsRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktHiddenItemsSection _section = TraktHiddenItemsSection.ProgressWatched;
             private static readonly TraktHiddenItemType _itemType = TraktHiddenItemType.Season;
@@ -109,64 +109,64 @@
             private const int _page = 4;
             private const int _limit = 20;
 
-            private static readonly TraktUserHiddenItemsRequest _request1 = new TraktUserHiddenItemsRequest
+            private static readonly UserHiddenItemsRequest _request1 = new UserHiddenItemsRequest
             {
                 Section = _section
             };
 
-            private static readonly TraktUserHiddenItemsRequest _request2 = new TraktUserHiddenItemsRequest
+            private static readonly UserHiddenItemsRequest _request2 = new UserHiddenItemsRequest
             {
                 Section = _section,
                 Type = _itemType
             };
 
-            private static readonly TraktUserHiddenItemsRequest _request3 = new TraktUserHiddenItemsRequest
+            private static readonly UserHiddenItemsRequest _request3 = new UserHiddenItemsRequest
             {
                 Section = _section,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktUserHiddenItemsRequest _request4 = new TraktUserHiddenItemsRequest
+            private static readonly UserHiddenItemsRequest _request4 = new UserHiddenItemsRequest
             {
                 Section = _section,
                 Page = _page
             };
 
-            private static readonly TraktUserHiddenItemsRequest _request5 = new TraktUserHiddenItemsRequest
+            private static readonly UserHiddenItemsRequest _request5 = new UserHiddenItemsRequest
             {
                 Section = _section,
                 Limit = _limit
             };
 
-            private static readonly TraktUserHiddenItemsRequest _request6 = new TraktUserHiddenItemsRequest
+            private static readonly UserHiddenItemsRequest _request6 = new UserHiddenItemsRequest
             {
                 Section = _section,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktUserHiddenItemsRequest _request7 = new TraktUserHiddenItemsRequest
+            private static readonly UserHiddenItemsRequest _request7 = new UserHiddenItemsRequest
             {
                 Section = _section,
                 Type = _itemType,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktUserHiddenItemsRequest _request8 = new TraktUserHiddenItemsRequest
+            private static readonly UserHiddenItemsRequest _request8 = new UserHiddenItemsRequest
             {
                 Section = _section,
                 Type = _itemType,
                 Page = _page
             };
 
-            private static readonly TraktUserHiddenItemsRequest _request9 = new TraktUserHiddenItemsRequest
+            private static readonly UserHiddenItemsRequest _request9 = new UserHiddenItemsRequest
             {
                 Section = _section,
                 Type = _itemType,
                 Limit = _limit
             };
 
-            private static readonly TraktUserHiddenItemsRequest _request10 = new TraktUserHiddenItemsRequest
+            private static readonly UserHiddenItemsRequest _request10 = new UserHiddenItemsRequest
             {
                 Section = _section,
                 Type = _itemType,
@@ -174,21 +174,21 @@
                 Limit = _limit
             };
 
-            private static readonly TraktUserHiddenItemsRequest _request11 = new TraktUserHiddenItemsRequest
+            private static readonly UserHiddenItemsRequest _request11 = new UserHiddenItemsRequest
             {
                 Section = _section,
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktUserHiddenItemsRequest _request12 = new TraktUserHiddenItemsRequest
+            private static readonly UserHiddenItemsRequest _request12 = new UserHiddenItemsRequest
             {
                 Section = _section,
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktUserHiddenItemsRequest _request13 = new TraktUserHiddenItemsRequest
+            private static readonly UserHiddenItemsRequest _request13 = new UserHiddenItemsRequest
             {
                 Section = _section,
                 ExtendedInfo = _extendedInfo,
@@ -196,7 +196,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktUserHiddenItemsRequest _request14 = new TraktUserHiddenItemsRequest
+            private static readonly UserHiddenItemsRequest _request14 = new UserHiddenItemsRequest
             {
                 Section = _section,
                 Type = _itemType,
@@ -207,7 +207,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktUserHiddenItemsRequest_TestData()
+            public UserHiddenItemsRequest_TestData()
             {
                 SetupPathParamters();
             }

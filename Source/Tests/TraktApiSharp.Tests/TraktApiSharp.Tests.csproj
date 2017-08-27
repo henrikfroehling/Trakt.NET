@@ -1283,7 +1283,7 @@
     <Compile Include="Requests\Users\OAuth\UserFollowRequestsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserFollowUserRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserFriendsRequest_Tests.cs" />
-    <Compile Include="Requests\Users\OAuth\TraktUserHiddenItemsRequest_Tests.cs" />
+    <Compile Include="Requests\Users\OAuth\UserHiddenItemsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserLikesRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserListLikeRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserListUnlikeRequest_Tests.cs" />

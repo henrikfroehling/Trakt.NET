@@ -111,7 +111,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktUserHiddenItemsRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserHiddenItemsRequest
             {
                 Section = hiddenItemsSection,
                 Type = hiddenItemType,
