@@ -230,11 +230,11 @@
     <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowEpisodeObjectJsonReader\CollectionShowEpisodeObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowEpisodeObjectJsonReader\CollectionShowEpisodeObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowEpisodeObjectJsonReader\CollectionShowEpisodeObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowObjectJsonReader\TraktCollectionShowObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowObjectJsonReader\TraktCollectionShowObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowObjectJsonReader\TraktCollectionShowObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowObjectJsonReader\TraktCollectionShowObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowObjectJsonReader\TraktCollectionShowObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowObjectJsonReader\CollectionShowObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowObjectJsonReader\CollectionShowObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowObjectJsonReader\CollectionShowObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowObjectJsonReader\CollectionShowObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowObjectJsonReader\CollectionShowObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowSeasonArrayJsonReader\TraktCollectionShowSeasonArrayJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowSeasonArrayJsonReader\TraktCollectionShowSeasonArrayJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowSeasonArrayJsonReader\TraktCollectionShowSeasonArrayJsonReader_Stream_Tests.cs" />

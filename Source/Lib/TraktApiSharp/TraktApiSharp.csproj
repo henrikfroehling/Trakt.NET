@@ -180,7 +180,7 @@
     <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowEpisodeArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowEpisodeObjectJsonReader.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowSeasonArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowSeasonObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Episodes\ITraktEpisode.cs" />
