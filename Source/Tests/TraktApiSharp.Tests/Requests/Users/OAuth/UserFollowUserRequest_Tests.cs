@@ -12,30 +12,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserFollowUserRequest_Tests
+    public class UserFollowUserRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserFollowUserRequest_Is_Not_Abstract()
+        public void Test_UserFollowUserRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserFollowUserRequest).IsAbstract.Should().BeFalse();
+            typeof(UserFollowUserRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserFollowUserRequest_Is_Sealed()
+        public void Test_UserFollowUserRequest_Is_Sealed()
         {
-            typeof(TraktUserFollowUserRequest).IsSealed.Should().BeTrue();
+            typeof(UserFollowUserRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserFollowUserRequest_Inherits_ATraktBodylessPostRequest_1()
+        public void Test_UserFollowUserRequest_Inherits_ATraktBodylessPostRequest_1()
         {
-            typeof(TraktUserFollowUserRequest).IsSubclassOf(typeof(ABodylessPostRequest<ITraktUserFollowUserPostResponse>)).Should().BeTrue();
+            typeof(UserFollowUserRequest).IsSubclassOf(typeof(ABodylessPostRequest<ITraktUserFollowUserPostResponse>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserFollowUserRequest_Has_Username_Property()
+        public void Test_UserFollowUserRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserFollowUserRequest)
+            var propertyInfo = typeof(UserFollowUserRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -46,23 +46,23 @@
         }
 
         [Fact]
-        public void Test_TraktUserFollowUserRequest_Has_AuthorizationRequirement_Required()
+        public void Test_UserFollowUserRequest_Has_AuthorizationRequirement_Required()
         {
-            var request = new TraktUserFollowUserRequest();
+            var request = new UserFollowUserRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktUserFollowUserRequest_Has_Valid_UriTemplate()
+        public void Test_UserFollowUserRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserFollowUserRequest();
+            var request = new UserFollowUserRequest();
             request.UriTemplate.Should().Be("users/{username}/follow");
         }
 
         [Fact]
-        public void Test_TraktUserFollowUserRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserFollowUserRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new TraktUserFollowUserRequest { Username = "username" };
+            var request = new UserFollowUserRequest { Username = "username" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -73,22 +73,22 @@
         }
 
         [Fact]
-        public void Test_TraktUserFollowUserRequest_Validate_Throws_Exceptions()
+        public void Test_UserFollowUserRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserFollowUserRequest();
+            var request = new UserFollowUserRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserFollowUserRequest { Username = string.Empty };
+            request = new UserFollowUserRequest { Username = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserFollowUserRequest { Username = "invalid username" };
+            request = new UserFollowUserRequest { Username = "invalid username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

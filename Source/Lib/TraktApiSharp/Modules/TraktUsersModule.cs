@@ -808,7 +808,7 @@
                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserFollowUserRequest { Username = usernameOrSlug }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserFollowUserRequest { Username = usernameOrSlug }, cancellationToken);
         }
 
         /// <summary>
