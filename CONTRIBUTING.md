@@ -25,7 +25,6 @@ TraktApiSharp is an open source project and there are many ways to contribute, f
 - Ensure [cross-platform compatibility](https://github.com/henrikfroehling/TraktApiSharp/blob/dev/CONTRIBUTING.md#cross-platform-compatibility) for new features.
 - New features must have accompanying [unit tests](https://github.com/henrikfroehling/TraktApiSharp/blob/dev/CONTRIBUTING.md#unit-tests) with "good" code coverage.
 - Changes to existing functionality needs to be checked that it does not break any existing [unit tests](https://github.com/henrikfroehling/TraktApiSharp/blob/dev/CONTRIBUTING.md#unit-tests).
-- If you use Visual Studio 2017, please make sure you are not using any language features only available in C# 7.
 
 ---
 
@@ -35,7 +34,7 @@ There are currently two branches you can choose to target for your pull request:
 - **dev**: This branch tracks the current development of all **versions below 1.0.0**
 - **next-version**: This branch tracks the current development of the next major **(1.0.0) version**
 
-If you want to implement a new feature (e.g. a new Trakt API endpoint), you have to target the dev-branch. All bug fixes targeting TraktApiSharp **versions below 1.0.0** go into the **dev**-branch.
+All bug fixes targeting TraktApiSharp **versions below 1.0.0** go into the **dev**-branch.
 
 Bug fixes targeting TraktApiSharp **version 1.0.0** go into the **next-version**-branch.
 New features, which are meant to be released in the next major version (1.0.0), go into the next-version-branch.
@@ -67,13 +66,13 @@ if (argument == null)
 ---
 
 ### **Build requirements**
-- at least Visual Studio 2015 with support for C# 6
+- at least Visual Studio 2017 with support for C# 7
 
 ---
 
 ### **Cross-platform compatibility**
 - TraktApiSharp is built against the PCL Profile 111 on the *dev*-branch
-- on branch *next-version*, the library is built against .NET Standard 1.2
+- on branch *next-version*, the library is built against .NET Standard 1.1
 
 ---
 
