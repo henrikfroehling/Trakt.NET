@@ -11,30 +11,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserUnfollowUserRequest_Tests
+    public class UserUnfollowUserRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserUnfollowUserRequest_Is_Not_Abstract()
+        public void Test_UserUnfollowUserRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserUnfollowUserRequest).IsAbstract.Should().BeFalse();
+            typeof(UserUnfollowUserRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserUnfollowUserRequest_Is_Sealed()
+        public void Test_UserUnfollowUserRequest_Is_Sealed()
         {
-            typeof(TraktUserUnfollowUserRequest).IsSealed.Should().BeTrue();
+            typeof(UserUnfollowUserRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserUnfollowUserRequest_Inherits_ATraktDeleteRequest()
+        public void Test_UserUnfollowUserRequest_Inherits_ATraktDeleteRequest()
         {
-            typeof(TraktUserUnfollowUserRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
+            typeof(UserUnfollowUserRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserUnfollowUserRequest_Has_Username_Property()
+        public void Test_UserUnfollowUserRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserUnfollowUserRequest)
+            var propertyInfo = typeof(UserUnfollowUserRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -45,23 +45,23 @@
         }
 
         [Fact]
-        public void Test_TraktUserUnfollowUserRequest_Has_AuthorizationRequirement_Required()
+        public void Test_UserUnfollowUserRequest_Has_AuthorizationRequirement_Required()
         {
-            var request = new TraktUserUnfollowUserRequest();
+            var request = new UserUnfollowUserRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktUserUnfollowUserRequest_Has_Valid_UriTemplate()
+        public void Test_UserUnfollowUserRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserUnfollowUserRequest();
+            var request = new UserUnfollowUserRequest();
             request.UriTemplate.Should().Be("users/{username}/follow");
         }
 
         [Fact]
-        public void Test_TraktUserUnfollowUserRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserUnfollowUserRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new TraktUserUnfollowUserRequest { Username = "username" };
+            var request = new UserUnfollowUserRequest { Username = "username" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -72,22 +72,22 @@
         }
 
         [Fact]
-        public void Test_TraktUserUnfollowUserRequest_Validate_Throws_Exceptions()
+        public void Test_UserUnfollowUserRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserUnfollowUserRequest();
+            var request = new UserUnfollowUserRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserUnfollowUserRequest { Username = string.Empty };
+            request = new UserUnfollowUserRequest { Username = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserUnfollowUserRequest { Username = "invalid username" };
+            request = new UserUnfollowUserRequest { Username = "invalid username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

@@ -825,7 +825,7 @@
         public Task<TraktNoContentResponse> UnfollowUserAsync(string usernameOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktUserUnfollowUserRequest { Username = usernameOrSlug }, cancellationToken);
+            return requestHandler.ExecuteNoContentRequestAsync(new UserUnfollowUserRequest { Username = usernameOrSlug }, cancellationToken);
         }
 
         /// <summary>

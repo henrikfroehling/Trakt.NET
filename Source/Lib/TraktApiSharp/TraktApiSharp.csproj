@@ -786,7 +786,7 @@
     <Compile Include="Requests\Users\OAuth\UserRatingsRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserSettingsRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserStatisticsRequest.cs" />
-    <Compile Include="Requests\Users\OAuth\TraktUserUnfollowUserRequest.cs" />
+    <Compile Include="Requests\Users\OAuth\UserUnfollowUserRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserWatchedHistoryRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserWatchedMoviesRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserWatchedShowsRequest.cs" />
