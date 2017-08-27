@@ -5,7 +5,7 @@
 
     internal class EpisodeIdsJsonReaderFactory : IJsonReaderFactory<ITraktEpisodeIds>
     {
-        public IObjectJsonReader<ITraktEpisodeIds> CreateObjectReader() => new TraktEpisodeIdsObjectJsonReader();
+        public IObjectJsonReader<ITraktEpisodeIds> CreateObjectReader() => new EpisodeIdsObjectJsonReader();
 
         public IArrayJsonReader<ITraktEpisodeIds> CreateArrayReader()
         {
