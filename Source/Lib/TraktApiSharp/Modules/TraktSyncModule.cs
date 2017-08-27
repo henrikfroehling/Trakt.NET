@@ -420,7 +420,7 @@
         {
             ValidateRatingsPost(ratingsRemovePost);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncRatingsRemoveRequest { RequestBody = ratingsRemovePost }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncRatingsRemoveRequest { RequestBody = ratingsRemovePost }, cancellationToken);
         }
 
         /// <summary>
