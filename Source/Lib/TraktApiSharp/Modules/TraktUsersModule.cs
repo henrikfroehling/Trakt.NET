@@ -617,7 +617,7 @@
 
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserCustomListItemsRemoveRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserCustomListItemsRemoveRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
