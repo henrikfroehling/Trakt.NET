@@ -14,36 +14,36 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserCustomListUpdateRequest_Tests
+    public class UserCustomListUpdateRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserCustomListUpdateRequest_Is_Not_Abstract()
+        public void Test_UserCustomListUpdateRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserCustomListUpdateRequest).IsAbstract.Should().BeFalse();
+            typeof(UserCustomListUpdateRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserCustomListUpdateRequest_Is_Sealed()
+        public void Test_UserCustomListUpdateRequest_Is_Sealed()
         {
-            typeof(TraktUserCustomListUpdateRequest).IsSealed.Should().BeTrue();
+            typeof(UserCustomListUpdateRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCustomListUpdateRequest_Inherits_ATraktPutRequest_2()
+        public void Test_UserCustomListUpdateRequest_Inherits_ATraktPutRequest_2()
         {
-            typeof(TraktUserCustomListUpdateRequest).IsSubclassOf(typeof(APutRequest<ITraktList, TraktUserCustomListPost>)).Should().BeTrue();
+            typeof(UserCustomListUpdateRequest).IsSubclassOf(typeof(APutRequest<ITraktList, TraktUserCustomListPost>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCustomListUpdateRequest_Implements_ITraktHasId_Interface()
+        public void Test_UserCustomListUpdateRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktUserCustomListUpdateRequest).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(UserCustomListUpdateRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_TraktUserCustomListUpdateRequest_Has_Username_Property()
+        public void Test_UserCustomListUpdateRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserCustomListUpdateRequest)
+            var propertyInfo = typeof(UserCustomListUpdateRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -54,30 +54,30 @@
         }
 
         [Fact]
-        public void Test_TraktUserCustomListUpdateRequest_Has_AuthorizationRequirement_Required()
+        public void Test_UserCustomListUpdateRequest_Has_AuthorizationRequirement_Required()
         {
-            var request = new TraktUserCustomListUpdateRequest();
+            var request = new UserCustomListUpdateRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktUserCustomListUpdateRequest_Returns_Valid_RequestObjectType()
+        public void Test_UserCustomListUpdateRequest_Returns_Valid_RequestObjectType()
         {
-            var requestMock = new TraktUserCustomListUpdateRequest();
+            var requestMock = new UserCustomListUpdateRequest();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Lists);
         }
 
         [Fact]
-        public void Test_TraktUserCustomListUpdateRequest_Has_Valid_UriTemplate()
+        public void Test_UserCustomListUpdateRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserCustomListUpdateRequest();
+            var request = new UserCustomListUpdateRequest();
             request.UriTemplate.Should().Be("users/{username}/lists/{id}");
         }
 
         [Fact]
-        public void Test_TraktUserCustomListUpdateRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserCustomListUpdateRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new TraktUserCustomListUpdateRequest { Username = "username", Id = "123" };
+            var request = new UserCustomListUpdateRequest { Username = "username", Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -89,40 +89,40 @@
         }
 
         [Fact]
-        public void Test_TraktUserCustomListUpdateRequest_Validate_Throws_Exceptions()
+        public void Test_UserCustomListUpdateRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserCustomListUpdateRequest { Id = "123" };
+            var request = new UserCustomListUpdateRequest { Id = "123" };
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserCustomListUpdateRequest { Username = string.Empty, Id = "123" };
+            request = new UserCustomListUpdateRequest { Username = string.Empty, Id = "123" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserCustomListUpdateRequest { Username = "invalid username", Id = "123" };
+            request = new UserCustomListUpdateRequest { Username = "invalid username", Id = "123" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id is null
-            request = new TraktUserCustomListUpdateRequest { Username = "username" };
+            request = new UserCustomListUpdateRequest { Username = "username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktUserCustomListUpdateRequest { Username = "username", Id = string.Empty };
+            request = new UserCustomListUpdateRequest { Username = "username", Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktUserCustomListUpdateRequest { Username = "username", Id = "invalid id" };
+            request = new UserCustomListUpdateRequest { Username = "username", Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

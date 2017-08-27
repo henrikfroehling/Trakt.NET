@@ -1275,7 +1275,7 @@
     <Compile Include="Requests\Users\OAuth\UserCustomListItemsRemoveRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserCustomListItemsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserCustomListsRequest_Tests.cs" />
-    <Compile Include="Requests\Users\OAuth\TraktUserCustomListUpdateRequest_Tests.cs" />
+    <Compile Include="Requests\Users\OAuth\UserCustomListUpdateRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCustomSingleListRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserDenyFollowerRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserFollowersRequest_Tests.cs" />
