@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktEpisodeTranslationArrayJsonReader : IArrayJsonReader<ITraktEpisodeTranslation>
+    internal class EpisodeTranslationArrayJsonReader : IArrayJsonReader<ITraktEpisodeTranslation>
     {
         public Task<IEnumerable<ITraktEpisodeTranslation>> ReadArrayAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
