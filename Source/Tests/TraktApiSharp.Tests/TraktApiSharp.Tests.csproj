@@ -240,11 +240,11 @@
     <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowSeasonArrayJsonReader\CollectionShowSeasonArrayJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowSeasonArrayJsonReader\CollectionShowSeasonArrayJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowSeasonArrayJsonReader\CollectionShowSeasonArrayJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowSeasonObjectJsonReader\TraktCollectionShowSeasonObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowSeasonObjectJsonReader\TraktCollectionShowSeasonObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowSeasonObjectJsonReader\TraktCollectionShowSeasonObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowSeasonObjectJsonReader\TraktCollectionShowSeasonObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowSeasonObjectJsonReader\TraktCollectionShowSeasonObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowSeasonObjectJsonReader\CollectionShowSeasonObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowSeasonObjectJsonReader\CollectionShowSeasonObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowSeasonObjectJsonReader\CollectionShowSeasonObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowSeasonObjectJsonReader\CollectionShowSeasonObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowSeasonObjectJsonReader\CollectionShowSeasonObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Episodes\Implementations\TraktEpisodeProgress_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\Interfaces\ITraktEpisodeCollectionProgress_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\Interfaces\ITraktEpisodeIds_Tests.cs" />

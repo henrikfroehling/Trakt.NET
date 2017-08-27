@@ -182,7 +182,7 @@
     <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowEpisodeObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowSeasonArrayJsonReader.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowSeasonObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\CollectionShowSeasonObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Episodes\ITraktEpisode.cs" />
     <Compile Include="Objects\Get\Episodes\ITraktEpisodeCollectionProgress.cs" />
     <Compile Include="Objects\Get\Episodes\ITraktEpisodeIds.cs" />
