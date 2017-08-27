@@ -25,7 +25,7 @@
         [Fact]
         public void Test_TraktSyncWatchlistAddRequest_Inherits_ATraktSyncPostRequest_2()
         {
-            typeof(TraktSyncWatchlistAddRequest).IsSubclassOf(typeof(ATraktSyncPostRequest<ITraktSyncWatchlistPostResponse, TraktSyncWatchlistPost>)).Should().BeTrue();
+            typeof(TraktSyncWatchlistAddRequest).IsSubclassOf(typeof(ASyncPostRequest<ITraktSyncWatchlistPostResponse, TraktSyncWatchlistPost>)).Should().BeTrue();
         }
 
         [Fact]

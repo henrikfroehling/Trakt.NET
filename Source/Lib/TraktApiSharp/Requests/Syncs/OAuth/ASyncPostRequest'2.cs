@@ -3,7 +3,7 @@
     using Base;
     using System.Collections.Generic;
 
-    internal abstract class ATraktSyncPostRequest<TResponseContentType, TRequestBodyType> : APostRequest<TResponseContentType, TRequestBodyType>
+    internal abstract class ASyncPostRequest<TResponseContentType, TRequestBodyType> : APostRequest<TResponseContentType, TRequestBodyType>
     {
         public override TRequestBodyType RequestBody { get; set; }
 

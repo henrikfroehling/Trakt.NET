@@ -25,7 +25,7 @@
         [Fact]
         public void Test_TraktSyncRatingsRemoveRequest_Inherits_ATraktSyncPostRequest_2()
         {
-            typeof(TraktSyncRatingsRemoveRequest).IsSubclassOf(typeof(ATraktSyncPostRequest<ITraktSyncRatingsRemovePostResponse, TraktSyncRatingsPost>)).Should().BeTrue();
+            typeof(TraktSyncRatingsRemoveRequest).IsSubclassOf(typeof(ASyncPostRequest<ITraktSyncRatingsRemovePostResponse, TraktSyncRatingsPost>)).Should().BeTrue();
         }
 
         [Fact]

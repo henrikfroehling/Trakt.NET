@@ -736,7 +736,7 @@
     <Compile Include="Requests\Shows\ShowTranslationsRequest.cs" />
     <Compile Include="Requests\Shows\ShowWatchingUsersRequest.cs" />
     <Compile Include="Requests\Syncs\OAuth\ASyncGetRequest%271.cs" />
-    <Compile Include="Requests\Syncs\OAuth\ATraktSyncPostRequest%272.cs" />
+    <Compile Include="Requests\Syncs\OAuth\ASyncPostRequest%272.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncCollectionAddRequest.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncCollectionMoviesRequest.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncCollectionRemoveRequest.cs" />

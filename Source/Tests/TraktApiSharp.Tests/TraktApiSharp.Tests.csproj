@@ -1242,7 +1242,7 @@
     <Compile Include="Requests\Shows\ShowWatchingUsersRequest_Tests.cs" />
     <Compile Include="Requests\Handler\RequestHandler_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\ASyncGetRequest%271_Tests.cs" />
-    <Compile Include="Requests\Syncs\OAuth\ATraktSyncPostRequest%272_Tests.cs" />
+    <Compile Include="Requests\Syncs\OAuth\ASyncPostRequest%272_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncCollectionAddRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncCollectionMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncCollectionRemoveRequest_Tests.cs" />
