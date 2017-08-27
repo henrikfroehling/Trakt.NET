@@ -14,30 +14,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserCustomListItemsAddRequest_Tests
+    public class UserCustomListItemsAddRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserCustomListItemsAddRequest_Is_Not_Abstract()
+        public void Test_UserCustomListItemsAddRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserCustomListItemsAddRequest).IsAbstract.Should().BeFalse();
+            typeof(UserCustomListItemsAddRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsAddRequest_Is_Sealed()
+        public void Test_UserCustomListItemsAddRequest_Is_Sealed()
         {
-            typeof(TraktUserCustomListItemsAddRequest).IsSealed.Should().BeTrue();
+            typeof(UserCustomListItemsAddRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsAddRequest_Inherits_ATraktUsersPostByIdRequest_2()
+        public void Test_UserCustomListItemsAddRequest_Inherits_ATraktUsersPostByIdRequest_2()
         {
-            typeof(TraktUserCustomListItemsAddRequest).IsSubclassOf(typeof(AUsersPostByIdRequest<ITraktUserCustomListItemsPostResponse, TraktUserCustomListItemsPost>)).Should().BeTrue();
+            typeof(UserCustomListItemsAddRequest).IsSubclassOf(typeof(AUsersPostByIdRequest<ITraktUserCustomListItemsPostResponse, TraktUserCustomListItemsPost>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsAddRequest_Has_Username_Property()
+        public void Test_UserCustomListItemsAddRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserCustomListItemsAddRequest)
+            var propertyInfo = typeof(UserCustomListItemsAddRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -48,9 +48,9 @@
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsAddRequest_Has_Type_Property()
+        public void Test_UserCustomListItemsAddRequest_Has_Type_Property()
         {
-            var propertyInfo = typeof(TraktUserCustomListItemsAddRequest)
+            var propertyInfo = typeof(UserCustomListItemsAddRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
@@ -61,31 +61,31 @@
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsAddRequest_Has_AuthorizationRequirement_Required()
+        public void Test_UserCustomListItemsAddRequest_Has_AuthorizationRequirement_Required()
         {
-            var request = new TraktUserCustomListItemsAddRequest();
+            var request = new UserCustomListItemsAddRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsAddRequest_Returns_Valid_RequestObjectType()
+        public void Test_UserCustomListItemsAddRequest_Returns_Valid_RequestObjectType()
         {
-            var requestMock = new TraktUserCustomListItemsAddRequest();
+            var requestMock = new UserCustomListItemsAddRequest();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Lists);
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsAddRequest_Has_Valid_UriTemplate()
+        public void Test_UserCustomListItemsAddRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserCustomListItemsAddRequest();
+            var request = new UserCustomListItemsAddRequest();
             request.UriTemplate.Should().Be("users/{username}/lists/{id}/items{/type}");
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsAddRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserCustomListItemsAddRequest_Returns_Valid_UriPathParameters()
         {
             // without type
-            var request = new TraktUserCustomListItemsAddRequest { Username = "username", Id = "123" };
+            var request = new UserCustomListItemsAddRequest { Username = "username", Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -97,7 +97,7 @@
 
             // with type
             var type = TraktListItemType.Episode;
-            request = new TraktUserCustomListItemsAddRequest { Username = "username", Id = "123", Type = type };
+            request = new UserCustomListItemsAddRequest { Username = "username", Id = "123", Type = type };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(3)
@@ -110,40 +110,40 @@
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsAddRequest_Validate_Throws_Exceptions()
+        public void Test_UserCustomListItemsAddRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserCustomListItemsAddRequest { Id = "123" };
+            var request = new UserCustomListItemsAddRequest { Id = "123" };
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserCustomListItemsAddRequest { Username = string.Empty, Id = "123" };
+            request = new UserCustomListItemsAddRequest { Username = string.Empty, Id = "123" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserCustomListItemsAddRequest { Username = "invalid username", Id = "123" };
+            request = new UserCustomListItemsAddRequest { Username = "invalid username", Id = "123" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id is null
-            request = new TraktUserCustomListItemsAddRequest { Username = "username" };
+            request = new UserCustomListItemsAddRequest { Username = "username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktUserCustomListItemsAddRequest { Username = "username", Id = string.Empty };
+            request = new UserCustomListItemsAddRequest { Username = "username", Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktUserCustomListItemsAddRequest { Username = "username", Id = "invalid id" };
+            request = new UserCustomListItemsAddRequest { Username = "username", Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
