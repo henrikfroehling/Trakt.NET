@@ -33,7 +33,7 @@
         [Fact]
         public async Task Test_TraktIds_From_Json()
         {
-            var jsonReader = new TraktIdsObjectJsonReader();
+            var jsonReader = new IdsObjectJsonReader();
             var traktIds = await jsonReader.ReadObjectAsync(JSON) as TraktIds;
 
             traktIds.Should().NotBeNull();
