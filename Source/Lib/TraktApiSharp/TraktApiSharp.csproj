@@ -171,7 +171,7 @@
     <Compile Include="Objects\Get\Calendars\ITraktCalendarEpisode.cs" />
     <Compile Include="Objects\Get\Collections\ITraktCollectionShowEpisode.cs" />
     <Compile Include="Objects\Get\Collections\ITraktCollectionShowSeason.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\Factories\TraktCollectionShowJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\Factories\CollectionShowJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\Factories\CollectionMovieJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\Factories\CollectionShowEpisodeJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\Factories\TraktCollectionShowSeasonJsonReaderFactory.cs" />
