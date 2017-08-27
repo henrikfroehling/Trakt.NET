@@ -769,7 +769,7 @@
     <Compile Include="Requests\Users\OAuth\UserCustomListItemsAddRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserCustomListItemsRemoveRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserCustomListItemsRequest.cs" />
-    <Compile Include="Requests\Users\OAuth\TraktUserCustomListsRequest.cs" />
+    <Compile Include="Requests\Users\OAuth\UserCustomListsRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCustomListUpdateRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCustomSingleListRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserDenyFollowerRequest.cs" />

@@ -12,30 +12,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserCustomListsRequest_Tests
+    public class UserCustomListsRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserCustomListsRequest_Is_Not_Abstract()
+        public void Test_UserCustomListsRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserCustomListsRequest).IsAbstract.Should().BeFalse();
+            typeof(UserCustomListsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserCustomListsRequest_Is_Sealed()
+        public void Test_UserCustomListsRequest_Is_Sealed()
         {
-            typeof(TraktUserCustomListsRequest).IsSealed.Should().BeTrue();
+            typeof(UserCustomListsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCustomListsRequest_Inherits_ATraktGetRequest_1()
+        public void Test_UserCustomListsRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktUserCustomListsRequest).IsSubclassOf(typeof(AGetRequest<ITraktList>)).Should().BeTrue();
+            typeof(UserCustomListsRequest).IsSubclassOf(typeof(AGetRequest<ITraktList>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCustomListsRequest_Has_Username_Property()
+        public void Test_UserCustomListsRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserCustomListsRequest)
+            var propertyInfo = typeof(UserCustomListsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -46,23 +46,23 @@
         }
 
         [Fact]
-        public void Test_TraktUserCustomListsRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserCustomListsRequest_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUserCustomListsRequest();
+            var request = new UserCustomListsRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
-        public void Test_TraktUserCustomListsRequest_Has_Valid_UriTemplate()
+        public void Test_UserCustomListsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserCustomListsRequest();
+            var request = new UserCustomListsRequest();
             request.UriTemplate.Should().Be("users/{username}/lists");
         }
 
         [Fact]
-        public void Test_TraktUserCustomListsRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserCustomListsRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new TraktUserCustomListsRequest { Username = "username" };
+            var request = new UserCustomListsRequest { Username = "username" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -73,22 +73,22 @@
         }
 
         [Fact]
-        public void Test_TraktUserCustomListsRequest_Validate_Throws_Exceptions()
+        public void Test_UserCustomListsRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserCustomListsRequest();
+            var request = new UserCustomListsRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserCustomListsRequest { Username = string.Empty };
+            request = new UserCustomListsRequest { Username = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserCustomListsRequest { Username = "invalid username" };
+            request = new UserCustomListsRequest { Username = "invalid username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

@@ -299,7 +299,7 @@
         public Task<TraktListResponse<ITraktList>> GetCustomListsAsync(string usernameOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktUserCustomListsRequest { Username = usernameOrSlug }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new UserCustomListsRequest { Username = usernameOrSlug }, cancellationToken);
         }
 
         /// <summary>
