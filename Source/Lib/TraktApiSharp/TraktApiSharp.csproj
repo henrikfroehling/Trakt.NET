@@ -756,7 +756,7 @@
     <Compile Include="Requests\Syncs\OAuth\SyncWatchlistRemoveRequest.cs" />
     <Compile Include="Requests\Syncs\OAuth\SyncWatchlistRequest.cs" />
     <Compile Include="Requests\Handler\RequestHandler.cs" />
-    <Compile Include="Requests\Users\OAuth\ATraktUsersDeleteByIdRequest.cs" />
+    <Compile Include="Requests\Users\OAuth\AUsersDeleteByIdRequest.cs" />
     <Compile Include="Requests\Users\OAuth\ATraktUsersGetRequest%271.cs" />
     <Compile Include="Requests\Users\OAuth\ATraktUsersPagedGetRequest%271.cs" />
     <Compile Include="Requests\Users\OAuth\ATraktUsersPostByIdRequest%271.cs" />

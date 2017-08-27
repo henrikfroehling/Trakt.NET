@@ -2,7 +2,7 @@
 {
     using Base;
 
-    internal sealed class TraktUserDenyFollowerRequest : ATraktUsersDeleteByIdRequest
+    internal sealed class TraktUserDenyFollowerRequest : AUsersDeleteByIdRequest
     {
         public override RequestObjectType RequestObjectType => RequestObjectType.Unspecified;
 

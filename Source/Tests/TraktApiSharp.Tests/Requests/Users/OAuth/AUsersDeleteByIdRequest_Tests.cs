@@ -10,44 +10,43 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class ATraktUsersDeleteByIdRequest_Tests
+    public class AUsersDeleteByIdRequest_Tests
     {
-        internal class TraktUsersDeleteByIdRequestMock : ATraktUsersDeleteByIdRequest
+        internal class UsersDeleteByIdRequestMock : AUsersDeleteByIdRequest
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
-
             public override RequestObjectType RequestObjectType { get { throw new NotImplementedException(); } }
         }
 
         [Fact]
-        public void Test_ATraktUsersDeleteByIdRequest_Is_Abstract()
+        public void Test_AUsersDeleteByIdRequest_Is_Abstract()
         {
-            typeof(ATraktUsersDeleteByIdRequest).IsAbstract.Should().BeTrue();
+            typeof(AUsersDeleteByIdRequest).IsAbstract.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktUsersDeleteByIdRequest_Inherits_ATraktDeleteRequest()
+        public void Test_AUsersDeleteByIdRequest_Inherits_ATraktDeleteRequest()
         {
-            typeof(ATraktUsersDeleteByIdRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
+            typeof(AUsersDeleteByIdRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktUsersDeleteByIdRequest_Implements_ITraktHasId_Interface()
+        public void Test_AUsersDeleteByIdRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(ATraktUsersDeleteByIdRequest).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(AUsersDeleteByIdRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_ATraktUsersDeleteByIdRequest_Has_AuthorizationRequirement_Required()
+        public void Test_AUsersDeleteByIdRequest_Has_AuthorizationRequirement_Required()
         {
-            var request = new TraktUsersDeleteByIdRequestMock();
+            var request = new UsersDeleteByIdRequestMock();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_ATraktUsersDeleteByIdRequest_Returns_Valid_UriPathParameters()
+        public void Test_AUsersDeleteByIdRequest_Returns_Valid_UriPathParameters()
         {
-            var requestMock = new TraktUsersDeleteByIdRequestMock { Id = "123" };
+            var requestMock = new UsersDeleteByIdRequestMock { Id = "123" };
 
             requestMock.GetUriPathParameters().Should().NotBeNull()
                                                        .And.HaveCount(1)
@@ -58,22 +57,22 @@
         }
 
         [Fact]
-        public void Test_ATraktUsersDeleteByIdRequest_Validate_Throws_Exceptions()
+        public void Test_AUsersDeleteByIdRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var requestMock = new TraktUsersDeleteByIdRequestMock();
+            var requestMock = new UsersDeleteByIdRequestMock();
 
             Action act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            requestMock = new TraktUsersDeleteByIdRequestMock { Id = string.Empty };
+            requestMock = new UsersDeleteByIdRequestMock { Id = string.Empty };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            requestMock = new TraktUsersDeleteByIdRequestMock { Id = "invalid id" };
+            requestMock = new UsersDeleteByIdRequestMock { Id = "invalid id" };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();

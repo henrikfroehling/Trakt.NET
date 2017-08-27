@@ -1261,7 +1261,7 @@
     <Compile Include="Requests\Syncs\OAuth\SyncWatchlistAddRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\SyncWatchlistRemoveRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\SyncWatchlistRequest_Tests.cs" />
-    <Compile Include="Requests\Users\OAuth\ATraktUsersDeleteByIdRequest_Tests.cs" />
+    <Compile Include="Requests\Users\OAuth\AUsersDeleteByIdRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\ATraktUsersGetRequest%271_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\ATraktUsersPagedGetRequest%271_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\ATraktUsersPostByIdRequest%271_Tests.cs" />

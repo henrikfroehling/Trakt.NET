@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktUserListUnlikeRequest_Inherits_ATraktUsersDeleteByIdRequest()
         {
-            typeof(TraktUserListUnlikeRequest).IsSubclassOf(typeof(ATraktUsersDeleteByIdRequest)).Should().BeTrue();
+            typeof(TraktUserListUnlikeRequest).IsSubclassOf(typeof(AUsersDeleteByIdRequest)).Should().BeTrue();
         }
 
         [Fact]
