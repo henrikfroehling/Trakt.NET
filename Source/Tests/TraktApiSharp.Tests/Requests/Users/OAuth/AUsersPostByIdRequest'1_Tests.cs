@@ -10,51 +10,50 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class ATraktUsersPostByIdRequest_1_Tests
+    public class AUsersPostByIdRequest_1_Tests
     {
-        internal class TraktUsersPostByIdRequestMock : ATraktUsersPostByIdRequest<int, float>
+        internal class UsersPostByIdRequestMock : AUsersPostByIdRequest<int, float>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
-
             public override RequestObjectType RequestObjectType { get { throw new NotImplementedException(); } }
         }
 
         [Fact]
-        public void Test_ATraktUsersPostByIdRequest_1_Is_Abstract()
+        public void Test_AUsersPostByIdRequest_1_Is_Abstract()
         {
-            typeof(ATraktUsersPostByIdRequest<,>).IsAbstract.Should().BeTrue();
+            typeof(AUsersPostByIdRequest<,>).IsAbstract.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktUsersPostByIdRequest_1_Has_GenericTypeParameter()
+        public void Test_AUsersPostByIdRequest_1_Has_GenericTypeParameter()
         {
-            typeof(ATraktUsersPostByIdRequest<,>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ATraktUsersPostByIdRequest<int, float>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(2);
+            typeof(AUsersPostByIdRequest<,>).ContainsGenericParameters.Should().BeTrue();
+            typeof(AUsersPostByIdRequest<int, float>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(2);
         }
 
         [Fact]
-        public void Test_ATraktUsersPostByIdRequest_1_Inherits_ATraktPostRequest_2()
+        public void Test_AUsersPostByIdRequest_1_Inherits_ATraktPostRequest_2()
         {
-            typeof(ATraktUsersPostByIdRequest<int, float>).IsSubclassOf(typeof(APostRequest<int, float>)).Should().BeTrue();
+            typeof(AUsersPostByIdRequest<int, float>).IsSubclassOf(typeof(APostRequest<int, float>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktUsersPostByIdRequest_1_Implements_ITraktHasId_Interface()
+        public void Test_AUsersPostByIdRequest_1_Implements_ITraktHasId_Interface()
         {
-            typeof(ATraktUsersPostByIdRequest<,>).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(AUsersPostByIdRequest<,>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_ATraktUsersPostByIdRequest_1_Has_AuthorizationRequirement_Required()
+        public void Test_AUsersPostByIdRequest_1_Has_AuthorizationRequirement_Required()
         {
-            var request = new TraktUsersPostByIdRequestMock();
+            var request = new UsersPostByIdRequestMock();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_ATraktUsersPostByIdRequest_1_Returns_Valid_UriPathParameters()
+        public void Test_AUsersPostByIdRequest_1_Returns_Valid_UriPathParameters()
         {
-            var requestMock = new TraktUsersPostByIdRequestMock { Id = "123" };
+            var requestMock = new UsersPostByIdRequestMock { Id = "123" };
 
             requestMock.GetUriPathParameters().Should().NotBeNull()
                                                        .And.HaveCount(1)
@@ -65,22 +64,22 @@
         }
 
         [Fact]
-        public void Test_ATraktUsersPostByIdRequest_1_Validate_Throws_Exceptions()
+        public void Test_AUsersPostByIdRequest_1_Validate_Throws_Exceptions()
         {
             // id is null
-            var requestMock = new TraktUsersPostByIdRequestMock();
+            var requestMock = new UsersPostByIdRequestMock();
 
             Action act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            requestMock = new TraktUsersPostByIdRequestMock { Id = string.Empty };
+            requestMock = new UsersPostByIdRequestMock { Id = string.Empty };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            requestMock = new TraktUsersPostByIdRequestMock { Id = "invalid id" };
+            requestMock = new UsersPostByIdRequestMock { Id = "invalid id" };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
