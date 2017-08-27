@@ -192,7 +192,7 @@
     <Compile Include="Objects\Get\Episodes\JsonReader\Factories\EpisodeCollectionProgressJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\Factories\EpisodeIdsJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\Factories\EpisodeJsonReaderFactory.cs" />
-    <Compile Include="Objects\Get\Episodes\JsonReader\Factories\TraktEpisodeTranslationJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Episodes\JsonReader\Factories\EpisodeTranslationJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\Factories\TraktEpisodeWatchedProgressJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\History\ITraktHistoryItem.cs" />
     <Compile Include="Objects\Get\History\JsonReader\Factories\TraktHistoryItemJsonReaderFactory.cs" />
