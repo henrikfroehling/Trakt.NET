@@ -145,7 +145,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktUserLikesRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserLikesRequest
             {
                 Type = likeType,
                 Page = pagedParameters?.Page,
