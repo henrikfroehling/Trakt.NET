@@ -16,49 +16,49 @@
     using Xunit;
 
     [Category("Requests.Syncs.OAuth")]
-    public class TraktSyncWatchedHistoryRequest_Tests
+    public class SyncWatchedHistoryRequest_Tests
     {
         [Fact]
-        public void Test_TraktSyncWatchedHistoryRequest_Is_Not_Abstract()
+        public void Test_SyncWatchedHistoryRequest_Is_Not_Abstract()
         {
-            typeof(TraktSyncWatchedHistoryRequest).IsAbstract.Should().BeFalse();
+            typeof(SyncWatchedHistoryRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktSyncWatchedHistoryRequest_Is_Sealed()
+        public void Test_SyncWatchedHistoryRequest_Is_Sealed()
         {
-            typeof(TraktSyncWatchedHistoryRequest).IsSealed.Should().BeTrue();
+            typeof(SyncWatchedHistoryRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSyncWatchedHistoryRequest_Inherits_ATraktSyncGetRequest_1()
+        public void Test_SyncWatchedHistoryRequest_Inherits_ATraktSyncGetRequest_1()
         {
-            typeof(TraktSyncWatchedHistoryRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktHistoryItem>)).Should().BeTrue();
+            typeof(SyncWatchedHistoryRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktHistoryItem>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSyncWatchedHistoryRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_SyncWatchedHistoryRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktSyncWatchedHistoryRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(SyncWatchedHistoryRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_TraktSyncWatchedHistoryRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_SyncWatchedHistoryRequest_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(TraktSyncWatchedHistoryRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
+            typeof(SyncWatchedHistoryRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]
-        public void Test_TraktSyncWatchedHistoryRequest_Has_Valid_UriTemplate()
+        public void Test_SyncWatchedHistoryRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktSyncWatchedHistoryRequest();
+            var request = new SyncWatchedHistoryRequest();
             request.UriTemplate.Should().Be("sync/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}");
         }
 
         [Fact]
-        public void Test_TraktSyncWatchedHistoryRequest_Has_Type_Property()
+        public void Test_SyncWatchedHistoryRequest_Has_Type_Property()
         {
-            var propertyInfo = typeof(TraktSyncWatchedHistoryRequest)
+            var propertyInfo = typeof(SyncWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
@@ -69,9 +69,9 @@
         }
 
         [Fact]
-        public void Test_TraktSyncWatchedHistoryRequest_Has_ItemId_Property()
+        public void Test_SyncWatchedHistoryRequest_Has_ItemId_Property()
         {
-            var propertyInfo = typeof(TraktSyncWatchedHistoryRequest)
+            var propertyInfo = typeof(SyncWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "ItemId")
                     .FirstOrDefault();
@@ -82,9 +82,9 @@
         }
 
         [Fact]
-        public void Test_TraktSyncWatchedHistoryRequest_Has_StartAt_Property()
+        public void Test_SyncWatchedHistoryRequest_Has_StartAt_Property()
         {
-            var propertyInfo = typeof(TraktSyncWatchedHistoryRequest)
+            var propertyInfo = typeof(SyncWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "StartAt")
                     .FirstOrDefault();
@@ -95,9 +95,9 @@
         }
 
         [Fact]
-        public void Test_TraktSyncWatchedHistoryRequest_Has_EndAt_Property()
+        public void Test_SyncWatchedHistoryRequest_Has_EndAt_Property()
         {
-            var propertyInfo = typeof(TraktSyncWatchedHistoryRequest)
+            var propertyInfo = typeof(SyncWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "EndAt")
                     .FirstOrDefault();
@@ -107,8 +107,8 @@
             propertyInfo.PropertyType.Should().Be(typeof(DateTime?));
         }
 
-        [Theory, ClassData(typeof(TraktSyncWatchedHistoryRequest_TestData))]
-        public void Test_TraktSyncWatchedHistoryRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(SyncWatchedHistoryRequest_TestData))]
+        public void Test_SyncWatchedHistoryRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                         IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -117,7 +117,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktSyncWatchedHistoryRequest_TestData : IEnumerable<object[]>
+        public class SyncWatchedHistoryRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktSyncItemType _type = TraktSyncItemType.Episode;
             private const uint _id = 123;
@@ -127,186 +127,186 @@
             private const int _page = 4;
             private const int _limit = 20;
 
-            private static readonly TraktSyncWatchedHistoryRequest _request1 = new TraktSyncWatchedHistoryRequest();
+            private static readonly SyncWatchedHistoryRequest _request1 = new SyncWatchedHistoryRequest();
 
-            private static readonly TraktSyncWatchedHistoryRequest _request2 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request2 = new SyncWatchedHistoryRequest
             {
                 Type = _type
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request3 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request3 = new SyncWatchedHistoryRequest
             {
                 ItemId = _id
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request4 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request4 = new SyncWatchedHistoryRequest
             {
                 StartAt = _startAt
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request5 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request5 = new SyncWatchedHistoryRequest
             {
                 EndAt = _endAt
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request6 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request6 = new SyncWatchedHistoryRequest
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request7 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request7 = new SyncWatchedHistoryRequest
             {
                 Page = _page
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request8 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request8 = new SyncWatchedHistoryRequest
             {
                 Limit = _limit
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request9 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request9 = new SyncWatchedHistoryRequest
             {
                 Type = _type,
                 ItemId = _id
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request10 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request10 = new SyncWatchedHistoryRequest
             {
                 Type = _type,
                 StartAt = _startAt
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request11 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request11 = new SyncWatchedHistoryRequest
             {
                 Type = _type,
                 EndAt = _endAt
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request12 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request12 = new SyncWatchedHistoryRequest
             {
                 Type = _type,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request13 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request13 = new SyncWatchedHistoryRequest
             {
                 Type = _type,
                 Page = _page
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request14 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request14 = new SyncWatchedHistoryRequest
             {
                 Type = _type,
                 Limit = _limit
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request15 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request15 = new SyncWatchedHistoryRequest
             {
                 Type = _type,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request16 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request16 = new SyncWatchedHistoryRequest
             {
                 ItemId = _id,
                 StartAt = _startAt
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request17 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request17 = new SyncWatchedHistoryRequest
             {
                 ItemId = _id,
                 EndAt = _endAt
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request18 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request18 = new SyncWatchedHistoryRequest
             {
                 ItemId = _id,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request19 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request19 = new SyncWatchedHistoryRequest
             {
                 ItemId = _id,
                 Page = _page
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request20 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request20 = new SyncWatchedHistoryRequest
             {
                 ItemId = _id,
                 Limit = _limit
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request21 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request21 = new SyncWatchedHistoryRequest
             {
                 ItemId = _id,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request22 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request22 = new SyncWatchedHistoryRequest
             {
                 StartAt = _startAt,
                 EndAt = _endAt
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request23 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request23 = new SyncWatchedHistoryRequest
             {
                 StartAt = _startAt,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request24 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request24 = new SyncWatchedHistoryRequest
             {
                 StartAt = _startAt,
                 Page = _page
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request25 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request25 = new SyncWatchedHistoryRequest
             {
                 StartAt = _startAt,
                 Limit = _limit
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request26 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request26 = new SyncWatchedHistoryRequest
             {
                 StartAt = _startAt,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request27 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request27 = new SyncWatchedHistoryRequest
             {
                 EndAt = _endAt,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request28 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request28 = new SyncWatchedHistoryRequest
             {
                 EndAt = _endAt,
                 Page = _page
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request29 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request29 = new SyncWatchedHistoryRequest
             {
                 EndAt = _endAt,
                 Limit = _limit
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request30 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request30 = new SyncWatchedHistoryRequest
             {
                 EndAt = _endAt,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request31 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request31 = new SyncWatchedHistoryRequest
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktSyncWatchedHistoryRequest _request32 = new TraktSyncWatchedHistoryRequest
+            private static readonly SyncWatchedHistoryRequest _request32 = new SyncWatchedHistoryRequest
             {
                 Type = _type,
                 ItemId = _id,
@@ -319,7 +319,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktSyncWatchedHistoryRequest_TestData()
+            public SyncWatchedHistoryRequest_TestData()
             {
                 SetupPathParamters();
             }

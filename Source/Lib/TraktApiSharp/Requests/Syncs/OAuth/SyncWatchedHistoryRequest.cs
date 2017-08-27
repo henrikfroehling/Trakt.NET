@@ -8,7 +8,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktSyncWatchedHistoryRequest : ASyncGetRequest<ITraktHistoryItem>, ISupportsExtendedInfo, ISupportsPagination
+    internal sealed class SyncWatchedHistoryRequest : ASyncGetRequest<ITraktHistoryItem>, ISupportsExtendedInfo, ISupportsPagination
     {
         internal TraktSyncItemType Type { get; set; }
 

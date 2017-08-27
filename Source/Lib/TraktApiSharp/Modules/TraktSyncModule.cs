@@ -272,7 +272,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktSyncWatchedHistoryRequest
+            return requestHandler.ExecutePagedRequestAsync(new SyncWatchedHistoryRequest
             {
                 Type = historyItemType,
                 ItemId = itemId,
