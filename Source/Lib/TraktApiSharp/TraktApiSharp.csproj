@@ -173,7 +173,7 @@
     <Compile Include="Objects\Get\Collections\ITraktCollectionShowSeason.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\Factories\TraktCollectionShowJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\Factories\CollectionMovieJsonReaderFactory.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\Factories\TraktCollectionShowEpisodeJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\Factories\CollectionShowEpisodeJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\Factories\TraktCollectionShowSeasonJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionMovieArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionMovieObjectJsonReader.cs" />
