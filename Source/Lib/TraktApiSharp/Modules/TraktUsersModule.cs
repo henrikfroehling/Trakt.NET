@@ -862,7 +862,7 @@
         {
             ValidateFollowerRequestId(followerRequestId);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktUserDenyFollowerRequest { Id = followerRequestId.ToString() }, cancellationToken);
+            return requestHandler.ExecuteNoContentRequestAsync(new UserDenyFollowerRequest { Id = followerRequestId.ToString() }, cancellationToken);
         }
 
         /// <summary>

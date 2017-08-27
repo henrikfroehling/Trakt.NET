@@ -9,51 +9,51 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserDenyFollowerRequest_Tests
+    public class UserDenyFollowerRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserDenyFollowerRequest_Is_Not_Abstract()
+        public void Test_UserDenyFollowerRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserDenyFollowerRequest).IsAbstract.Should().BeFalse();
+            typeof(UserDenyFollowerRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserDenyFollowerRequest_Is_Sealed()
+        public void Test_UserDenyFollowerRequest_Is_Sealed()
         {
-            typeof(TraktUserDenyFollowerRequest).IsSealed.Should().BeTrue();
+            typeof(UserDenyFollowerRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserDenyFollowerRequest_Inherits_ATraktUsersDeleteByIdRequest()
+        public void Test_UserDenyFollowerRequest_Inherits_ATraktUsersDeleteByIdRequest()
         {
-            typeof(TraktUserDenyFollowerRequest).IsSubclassOf(typeof(AUsersDeleteByIdRequest)).Should().BeTrue();
+            typeof(UserDenyFollowerRequest).IsSubclassOf(typeof(AUsersDeleteByIdRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserDenyFollowerRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserDenyFollowerRequest_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUserDenyFollowerRequest();
+            var request = new UserDenyFollowerRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktUserDenyFollowerRequest_Returns_Valid_RequestObjectType()
+        public void Test_UserDenyFollowerRequest_Returns_Valid_RequestObjectType()
         {
-            var requestMock = new TraktUserDenyFollowerRequest();
+            var requestMock = new UserDenyFollowerRequest();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Unspecified);
         }
 
         [Fact]
-        public void Test_TraktUserDenyFollowerRequest_Has_Valid_UriTemplate()
+        public void Test_UserDenyFollowerRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserDenyFollowerRequest();
+            var request = new UserDenyFollowerRequest();
             request.UriTemplate.Should().Be("users/requests/{id}");
         }
 
         [Fact]
-        public void Test_TraktUserDenyFollowerRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserDenyFollowerRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new TraktUserDenyFollowerRequest { Id = "123" };
+            var request = new UserDenyFollowerRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -64,22 +64,22 @@
         }
 
         [Fact]
-        public void Test_TraktUserDenyFollowerRequest_Validate_Throws_Exceptions()
+        public void Test_UserDenyFollowerRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktUserDenyFollowerRequest();
+            var request = new UserDenyFollowerRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktUserDenyFollowerRequest { Id = string.Empty };
+            request = new UserDenyFollowerRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktUserDenyFollowerRequest { Id = "invalid id" };
+            request = new UserDenyFollowerRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
