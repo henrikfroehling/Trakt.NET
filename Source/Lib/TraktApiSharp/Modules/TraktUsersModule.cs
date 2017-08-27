@@ -76,7 +76,7 @@
                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktUserFollowRequestsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new UserFollowRequestsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
