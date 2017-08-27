@@ -5,7 +5,7 @@
 
     internal class RatingJsonReaderFactory : IJsonReaderFactory<ITraktRating>
     {
-        public IObjectJsonReader<ITraktRating> CreateObjectReader() => new TraktRatingObjectJsonReader();
+        public IObjectJsonReader<ITraktRating> CreateObjectReader() => new RatingObjectJsonReader();
 
         public IArrayJsonReader<ITraktRating> CreateArrayReader()
         {

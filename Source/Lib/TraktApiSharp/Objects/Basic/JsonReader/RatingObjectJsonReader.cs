@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktRatingObjectJsonReader : IObjectJsonReader<ITraktRating>
+    internal class RatingObjectJsonReader : IObjectJsonReader<ITraktRating>
     {
         private const string PROPERTY_NAME_RATING = "rating";
         private const string PROPERTY_NAME_VOTES = "votes";
