@@ -194,7 +194,7 @@
         {
             ValidateCollectionPost(collectionRemovePost);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncCollectionRemoveRequest { RequestBody = collectionRemovePost }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncCollectionRemoveRequest { RequestBody = collectionRemovePost }, cancellationToken);
         }
 
         /// <summary>
