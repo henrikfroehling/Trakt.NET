@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserListLikeRequest : ABodylessPostRequest, IHasId
+    internal sealed class UserListLikeRequest : ABodylessPostRequest, IHasId
     {
         internal string Username { get; set; }
 

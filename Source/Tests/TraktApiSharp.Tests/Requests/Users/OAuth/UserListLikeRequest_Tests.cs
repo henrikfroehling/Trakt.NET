@@ -12,36 +12,36 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserListLikeRequest_Tests
+    public class UserListLikeRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserListLikeRequest_Is_Not_Abstract()
+        public void Test_UserListLikeRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserListLikeRequest).IsAbstract.Should().BeFalse();
+            typeof(UserListLikeRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserListLikeRequest_Is_Sealed()
+        public void Test_UserListLikeRequest_Is_Sealed()
         {
-            typeof(TraktUserListLikeRequest).IsSealed.Should().BeTrue();
+            typeof(UserListLikeRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserListLikeRequest_Inherits_ATraktBodylessPostRequest()
+        public void Test_UserListLikeRequest_Inherits_ATraktBodylessPostRequest()
         {
-            typeof(TraktUserListLikeRequest).IsSubclassOf(typeof(ABodylessPostRequest)).Should().BeTrue();
+            typeof(UserListLikeRequest).IsSubclassOf(typeof(ABodylessPostRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserListLikeRequest_Implements_ITraktHasId_Interface()
+        public void Test_UserListLikeRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktUserListLikeRequest).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(UserListLikeRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_TraktUserListLikeRequest_Has_Username_Property()
+        public void Test_UserListLikeRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserListLikeRequest)
+            var propertyInfo = typeof(UserListLikeRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -52,30 +52,30 @@
         }
 
         [Fact]
-        public void Test_TraktUserListLikeRequest_Has_AuthorizationRequirement_Required()
+        public void Test_UserListLikeRequest_Has_AuthorizationRequirement_Required()
         {
-            var request = new TraktUserListLikeRequest();
+            var request = new UserListLikeRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktUserListLikeRequest_Returns_Valid_RequestObjectType()
+        public void Test_UserListLikeRequest_Returns_Valid_RequestObjectType()
         {
-            var requestMock = new TraktUserListLikeRequest();
+            var requestMock = new UserListLikeRequest();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Lists);
         }
 
         [Fact]
-        public void Test_TraktUserListLikeRequest_Has_Valid_UriTemplate()
+        public void Test_UserListLikeRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserListLikeRequest();
+            var request = new UserListLikeRequest();
             request.UriTemplate.Should().Be("users/{username}/lists/{id}/like");
         }
 
         [Fact]
-        public void Test_TraktUserListLikeRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserListLikeRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new TraktUserListLikeRequest { Username = "username", Id = "123" };
+            var request = new UserListLikeRequest { Username = "username", Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -87,40 +87,40 @@
         }
 
         [Fact]
-        public void Test_TraktUserListLikeRequest_Validate_Throws_Exceptions()
+        public void Test_UserListLikeRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserListLikeRequest { Id = "123" };
+            var request = new UserListLikeRequest { Id = "123" };
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserListLikeRequest { Username = string.Empty, Id = "123" };
+            request = new UserListLikeRequest { Username = string.Empty, Id = "123" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserListLikeRequest { Username = "invalid username", Id = "123" };
+            request = new UserListLikeRequest { Username = "invalid username", Id = "123" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id is null
-            request = new TraktUserListLikeRequest { Username = "username" };
+            request = new UserListLikeRequest { Username = "username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktUserListLikeRequest { Username = "username", Id = string.Empty };
+            request = new UserListLikeRequest { Username = "username", Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktUserListLikeRequest { Username = "username", Id = "invalid id" };
+            request = new UserListLikeRequest { Username = "username", Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

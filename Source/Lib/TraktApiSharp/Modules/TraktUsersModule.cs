@@ -686,7 +686,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktUserListLikeRequest
+            return requestHandler.ExecuteNoContentRequestAsync(new UserListLikeRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug
