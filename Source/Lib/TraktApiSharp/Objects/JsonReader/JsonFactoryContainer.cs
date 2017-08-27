@@ -110,7 +110,7 @@
 
             // calendar objects
             s_readerFactories.Add(typeof(ITraktCalendarMovie), new CalendarMovieJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktCalendarShow), new TraktCalendarShowJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktCalendarShow), new CalendarShowJsonReaderFactory());
 
             // checkin post response objects
             s_readerFactories.Add(typeof(ITraktCheckinPostErrorResponse), new TraktCheckinPostErrorResponseJsonReaderFactory());

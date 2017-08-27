@@ -161,7 +161,7 @@
     <Compile Include="Objects\Get\Calendars\ITraktCalendarMovie.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarShow.cs" />
     <Compile Include="Objects\Get\Calendars\JsonReader\Factories\CalendarMovieJsonReaderFactory.cs" />
-    <Compile Include="Objects\Get\Calendars\JsonReader\Factories\TraktCalendarShowJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Calendars\JsonReader\Factories\CalendarShowJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Calendars\JsonReader\TraktCalendarMovieArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Calendars\JsonReader\TraktCalendarMovieObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Calendars\JsonReader\TraktCalendarShowArrayJsonReader.cs" />
