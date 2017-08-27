@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserWatchlistRequest : AUsersPagedGetRequest<ITraktWatchlistItem>
+    internal sealed class UserWatchlistRequest : AUsersPagedGetRequest<ITraktWatchlistItem>
     {
         internal string Username { get; set; }
 

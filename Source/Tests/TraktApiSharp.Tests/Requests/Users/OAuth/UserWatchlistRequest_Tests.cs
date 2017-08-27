@@ -15,30 +15,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserWatchlistRequest_Tests
+    public class UserWatchlistRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserWatchlistRequest_Is_Not_Abstract()
+        public void Test_UserWatchlistRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserWatchlistRequest).IsAbstract.Should().BeFalse();
+            typeof(UserWatchlistRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserWatchlistRequest_Is_Sealed()
+        public void Test_UserWatchlistRequest_Is_Sealed()
         {
-            typeof(TraktUserWatchlistRequest).IsSealed.Should().BeTrue();
+            typeof(UserWatchlistRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserWatchlistRequest_Inherits_ATraktUsersPagedGetRequest_1()
+        public void Test_UserWatchlistRequest_Inherits_ATraktUsersPagedGetRequest_1()
         {
-            typeof(TraktUserWatchlistRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktWatchlistItem>)).Should().BeTrue();
+            typeof(UserWatchlistRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktWatchlistItem>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserWatchlistRequest_Has_Username_Property()
+        public void Test_UserWatchlistRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserWatchlistRequest)
+            var propertyInfo = typeof(UserWatchlistRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -49,9 +49,9 @@
         }
 
         [Fact]
-        public void Test_TraktUserWatchlistRequest_Has_Type_Property()
+        public void Test_UserWatchlistRequest_Has_Type_Property()
         {
-            var propertyInfo = typeof(TraktUserWatchlistRequest)
+            var propertyInfo = typeof(UserWatchlistRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
@@ -62,43 +62,43 @@
         }
 
         [Fact]
-        public void Test_TraktUserWatchlistRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserWatchlistRequest_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUserWatchlistRequest();
+            var request = new UserWatchlistRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
-        public void Test_TraktUserWatchlistRequest_Has_Valid_UriTemplate()
+        public void Test_UserWatchlistRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserWatchlistRequest();
+            var request = new UserWatchlistRequest();
             request.UriTemplate.Should().Be("users/{username}/watchlist{/type}{?extended,page,limit}");
         }
 
         [Fact]
-        public void Test_TraktUserWatchlistRequest_Validate_Throws_Exceptions()
+        public void Test_UserWatchlistRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserWatchlistRequest();
+            var request = new UserWatchlistRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserWatchlistRequest { Username = string.Empty };
+            request = new UserWatchlistRequest { Username = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserWatchlistRequest { Username = "invalid username" };
+            request = new UserWatchlistRequest { Username = "invalid username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktUserWatchlistRequest_TestData))]
-        public void Test_TraktUserWatchlistRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(UserWatchlistRequest_TestData))]
+        public void Test_UserWatchlistRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                    IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -107,7 +107,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktUserWatchlistRequest_TestData : IEnumerable<object[]>
+        public class UserWatchlistRequest_TestData : IEnumerable<object[]>
         {
             private const string _username = "username";
             private static readonly TraktSyncItemType _type = TraktSyncItemType.Episode;
@@ -115,64 +115,64 @@
             private const int _page = 4;
             private const int _limit = 20;
 
-            private static readonly TraktUserWatchlistRequest _request1 = new TraktUserWatchlistRequest
+            private static readonly UserWatchlistRequest _request1 = new UserWatchlistRequest
             {
                 Username = _username
             };
 
-            private static readonly TraktUserWatchlistRequest _request2 = new TraktUserWatchlistRequest
+            private static readonly UserWatchlistRequest _request2 = new UserWatchlistRequest
             {
                 Username = _username,
                 Type = _type
             };
 
-            private static readonly TraktUserWatchlistRequest _request3 = new TraktUserWatchlistRequest
+            private static readonly UserWatchlistRequest _request3 = new UserWatchlistRequest
             {
                 Username = _username,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktUserWatchlistRequest _request4 = new TraktUserWatchlistRequest
+            private static readonly UserWatchlistRequest _request4 = new UserWatchlistRequest
             {
                 Username = _username,
                 Page = _page
             };
 
-            private static readonly TraktUserWatchlistRequest _request5 = new TraktUserWatchlistRequest
+            private static readonly UserWatchlistRequest _request5 = new UserWatchlistRequest
             {
                 Username = _username,
                 Limit = _limit
             };
 
-            private static readonly TraktUserWatchlistRequest _request6 = new TraktUserWatchlistRequest
+            private static readonly UserWatchlistRequest _request6 = new UserWatchlistRequest
             {
                 Username = _username,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktUserWatchlistRequest _request7 = new TraktUserWatchlistRequest
+            private static readonly UserWatchlistRequest _request7 = new UserWatchlistRequest
             {
                 Username = _username,
                 Type = _type,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktUserWatchlistRequest _request8 = new TraktUserWatchlistRequest
+            private static readonly UserWatchlistRequest _request8 = new UserWatchlistRequest
             {
                 Username = _username,
                 Type = _type,
                 Page = _page
             };
 
-            private static readonly TraktUserWatchlistRequest _request9 = new TraktUserWatchlistRequest
+            private static readonly UserWatchlistRequest _request9 = new UserWatchlistRequest
             {
                 Username = _username,
                 Type = _type,
                 Limit = _limit
             };
 
-            private static readonly TraktUserWatchlistRequest _request10 = new TraktUserWatchlistRequest
+            private static readonly UserWatchlistRequest _request10 = new UserWatchlistRequest
             {
                 Username = _username,
                 Type = _type,
@@ -180,21 +180,21 @@
                 Limit = _limit
             };
 
-            private static readonly TraktUserWatchlistRequest _request11 = new TraktUserWatchlistRequest
+            private static readonly UserWatchlistRequest _request11 = new UserWatchlistRequest
             {
                 Username = _username,
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktUserWatchlistRequest _request12 = new TraktUserWatchlistRequest
+            private static readonly UserWatchlistRequest _request12 = new UserWatchlistRequest
             {
                 Username = _username,
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktUserWatchlistRequest _request13 = new TraktUserWatchlistRequest
+            private static readonly UserWatchlistRequest _request13 = new UserWatchlistRequest
             {
                 Username = _username,
                 ExtendedInfo = _extendedInfo,
@@ -202,7 +202,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktUserWatchlistRequest _request14 = new TraktUserWatchlistRequest
+            private static readonly UserWatchlistRequest _request14 = new UserWatchlistRequest
             {
                 Username = _username,
                 Type = _type,
@@ -210,10 +210,10 @@
                 Page = _page,
                 Limit = _limit
             };
-            
+
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktUserWatchlistRequest_TestData()
+            public UserWatchlistRequest_TestData()
             {
                 SetupPathParamters();
             }

@@ -981,7 +981,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktUserWatchlistRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserWatchlistRequest
             {
                 Username = usernameOrSlug,
                 Type = watchlistItemType,
