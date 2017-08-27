@@ -510,7 +510,7 @@
         {
             ValidateWatchlistPost(watchlistRemovePost);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchlistRemoveRequest { RequestBody = watchlistRemovePost }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchlistRemoveRequest { RequestBody = watchlistRemovePost }, cancellationToken);
         }
 
         private void ValidateCollectionPost(TraktSyncCollectionPost collectionPost)
