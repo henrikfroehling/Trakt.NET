@@ -394,7 +394,7 @@
         {
             ValidateRatingsPost(ratingsPost);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncRatingsAddRequest { RequestBody = ratingsPost }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncRatingsAddRequest { RequestBody = ratingsPost }, cancellationToken);
         }
 
         /// <summary>
