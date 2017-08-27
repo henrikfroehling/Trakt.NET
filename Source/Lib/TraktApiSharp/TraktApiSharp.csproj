@@ -431,7 +431,7 @@
     <Compile Include="Objects\Basic\JsonReader\SharingObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\StatisticsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeArrayJsonReader.cs" />
-    <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeCollectionProgressArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeCollectionProgressArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeCollectionProgressObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeIdsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeObjectJsonReader.cs" />
