@@ -13,30 +13,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserProfileRequest_Tests
+    public class UserProfileRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserProfileRequest_Is_Not_Abstract()
+        public void Test_UserProfileRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserProfileRequest).IsAbstract.Should().BeFalse();
+            typeof(UserProfileRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserProfileRequest_Is_Sealed()
+        public void Test_UserProfileRequest_Is_Sealed()
         {
-            typeof(TraktUserProfileRequest).IsSealed.Should().BeTrue();
+            typeof(UserProfileRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserProfileRequest_Inherits_ATraktUsersGetRequest_1()
+        public void Test_UserProfileRequest_Inherits_ATraktUsersGetRequest_1()
         {
-            typeof(TraktUserProfileRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktUser>)).Should().BeTrue();
+            typeof(UserProfileRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktUser>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserProfileRequest_Has_Username_Property()
+        public void Test_UserProfileRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserProfileRequest)
+            var propertyInfo = typeof(UserProfileRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -47,24 +47,24 @@
         }
 
         [Fact]
-        public void Test_TraktUserProfileRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserProfileRequest_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUserProfileRequest();
+            var request = new UserProfileRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
-        public void Test_TraktUserProfileRequest_Has_Valid_UriTemplate()
+        public void Test_UserProfileRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserProfileRequest();
+            var request = new UserProfileRequest();
             request.UriTemplate.Should().Be("users/{username}{?extended}");
         }
 
         [Fact]
-        public void Test_TraktUserProfileRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserProfileRequest_Returns_Valid_UriPathParameters()
         {
             // without extended info
-            var request = new TraktUserProfileRequest { Username = "username" };
+            var request = new UserProfileRequest { Username = "username" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -75,7 +75,7 @@
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktUserProfileRequest { Username = "username", ExtendedInfo = extendedInfo };
+            request = new UserProfileRequest { Username = "username", ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -87,22 +87,22 @@
         }
 
         [Fact]
-        public void Test_TraktUserProfileRequest_Validate_Throws_Exceptions()
+        public void Test_UserProfileRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserProfileRequest();
+            var request = new UserProfileRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserProfileRequest { Username = string.Empty };
+            request = new UserProfileRequest { Username = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserProfileRequest { Username = "invalid username" };
+            request = new UserProfileRequest { Username = "invalid username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

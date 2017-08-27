@@ -1287,7 +1287,7 @@
     <Compile Include="Requests\Users\OAuth\UserLikesRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserListLikeRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserListUnlikeRequest_Tests.cs" />
-    <Compile Include="Requests\Users\OAuth\TraktUserProfileRequest_Tests.cs" />
+    <Compile Include="Requests\Users\OAuth\UserProfileRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserRatingsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserSettingsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserStatisticsRequest_Tests.cs" />

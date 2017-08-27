@@ -174,7 +174,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserProfileRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserProfileRequest
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
