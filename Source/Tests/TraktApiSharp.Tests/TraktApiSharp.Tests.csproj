@@ -187,11 +187,11 @@
     <Compile Include="Objects\Basic\JsonReader\SharingObjectJsonReader\SharingObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\SharingObjectJsonReader\SharingObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\SharingObjectJsonReader\SharingObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktStatisticsObjectJsonReader_Tests\TraktStatisticsObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktStatisticsObjectJsonReader_Tests\TraktStatisticsObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktStatisticsObjectJsonReader_Tests\TraktStatisticsObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktStatisticsObjectJsonReader_Tests\TraktStatisticsObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktStatisticsObjectJsonReader_Tests\TraktStatisticsObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\JsonReader\StatisticsObjectJsonReader\StatisticsObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\StatisticsObjectJsonReader\StatisticsObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\StatisticsObjectJsonReader\StatisticsObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\StatisticsObjectJsonReader\StatisticsObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\StatisticsObjectJsonReader\StatisticsObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Calendars\Interfaces\ITraktCalendarMovie_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\Interfaces\ITraktCalendarShow_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\Implementations\TraktCalendarMovie_Tests.cs" />

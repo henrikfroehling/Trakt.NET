@@ -429,7 +429,7 @@
     <Compile Include="Objects\Basic\JsonReader\MetadataObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\RatingObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\SharingObjectJsonReader.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktStatisticsObjectJsonReader.cs" />
+    <Compile Include="Objects\Basic\JsonReader\StatisticsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeCollectionProgressArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeCollectionProgressObjectJsonReader.cs" />
