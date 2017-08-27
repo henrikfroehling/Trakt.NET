@@ -13,7 +13,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktSearchResultObjectJsonReader : IObjectJsonReader<ITraktSearchResult>
+    internal class SearchResultObjectJsonReader : IObjectJsonReader<ITraktSearchResult>
     {
         private const string PROPERTY_NAME_TYPE = "type";
         private const string PROPERTY_NAME_SCORE = "score";

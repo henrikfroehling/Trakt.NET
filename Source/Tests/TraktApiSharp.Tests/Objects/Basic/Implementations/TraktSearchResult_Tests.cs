@@ -36,7 +36,7 @@
         [Fact]
         public async Task Test_TraktSearchResult_With_Type_Movie_From_Json()
         {
-            var jsonReader = new TraktSearchResultObjectJsonReader();
+            var jsonReader = new SearchResultObjectJsonReader();
             var traktSearchResultItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_JSON) as TraktSearchResult;
 
             traktSearchResultItem.Should().NotBeNull();
@@ -60,7 +60,7 @@
         [Fact]
         public async Task Test_TraktSearchResult_With_Type_Show_From_Json()
         {
-            var jsonReader = new TraktSearchResultObjectJsonReader();
+            var jsonReader = new SearchResultObjectJsonReader();
             var traktSearchResultItem = await jsonReader.ReadObjectAsync(TYPE_SHOW_JSON) as TraktSearchResult;
 
             traktSearchResultItem.Should().NotBeNull();
@@ -86,7 +86,7 @@
         [Fact]
         public async Task Test_TraktSearchResult_With_Type_Episode_From_Minimal_Json()
         {
-            var jsonReader = new TraktSearchResultObjectJsonReader();
+            var jsonReader = new SearchResultObjectJsonReader();
             var traktSearchResultItem = await jsonReader.ReadObjectAsync(TYPE_EPISODE_JSON) as TraktSearchResult;
 
             traktSearchResultItem.Should().NotBeNull();
@@ -121,7 +121,7 @@
         [Fact]
         public async Task Test_TraktSearchResult_With_Type_Person_From_Json()
         {
-            var jsonReader = new TraktSearchResultObjectJsonReader();
+            var jsonReader = new SearchResultObjectJsonReader();
             var traktSearchResultItem = await jsonReader.ReadObjectAsync(TYPE_PERSON_JSON) as TraktSearchResult;
 
             traktSearchResultItem.Should().NotBeNull();
@@ -145,7 +145,7 @@
         [Fact]
         public async Task Test_TraktSearchResult_With_Type_List_From_Json()
         {
-            var jsonReader = new TraktSearchResultObjectJsonReader();
+            var jsonReader = new SearchResultObjectJsonReader();
             var traktSearchResultItem = await jsonReader.ReadObjectAsync(TYPE_LIST_JSON) as TraktSearchResult;
 
             traktSearchResultItem.Should().NotBeNull();
