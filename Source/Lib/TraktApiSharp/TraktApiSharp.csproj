@@ -150,7 +150,7 @@
     <Compile Include="Objects\Basic\JsonReader\CastAndCrewObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\CastMemberArrayJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\CastMemberObjectJsonReader.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktCommentArrayJsonReader.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CommentArrayJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktCommentObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktCrewMemberArrayJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktCrewMemberObjectJsonReader.cs" />

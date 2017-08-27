@@ -6,6 +6,6 @@
     {
         public IObjectJsonReader<ITraktComment> CreateObjectReader() => new TraktCommentObjectJsonReader();
 
-        public IArrayJsonReader<ITraktComment> CreateArrayReader() => new TraktCommentArrayJsonReader();
+        public IArrayJsonReader<ITraktComment> CreateArrayReader() => new CommentArrayJsonReader();
     }
 }
