@@ -9,12 +9,12 @@
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
-    public partial class TraktImageObjectJsonReader_Tests
+    public partial class ImageObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktImageObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public async Task Test_ImageObjectJsonReader_ReadObject_From_JsonReader_Complete()
         {
-            var traktJsonReader = new TraktImageObjectJsonReader();
+            var traktJsonReader = new ImageObjectJsonReader();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -27,9 +27,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktImageObjectJsonReader_ReadObject_From_JsonReader_Not_Valid()
+        public async Task Test_ImageObjectJsonReader_ReadObject_From_JsonReader_Not_Valid()
         {
-            var traktJsonReader = new TraktImageObjectJsonReader();
+            var traktJsonReader = new ImageObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID))
             using (var jsonReader = new JsonTextReader(reader))
@@ -42,18 +42,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktImageObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_ImageObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var traktJsonReader = new TraktImageObjectJsonReader();
+            var traktJsonReader = new ImageObjectJsonReader();
 
             var traktImage = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktImage.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktImageObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public async Task Test_ImageObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var traktJsonReader = new TraktImageObjectJsonReader();
+            var traktJsonReader = new ImageObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

@@ -9,12 +9,12 @@
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
-    public partial class TraktImageObjectJsonReader_Tests
+    public partial class ImageObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktImageObjectJsonReader_ReadObject_From_Stream_Complete()
+        public async Task Test_ImageObjectJsonReader_ReadObject_From_Stream_Complete()
         {
-            var traktJsonReader = new TraktImageObjectJsonReader();
+            var traktJsonReader = new ImageObjectJsonReader();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -26,9 +26,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktImageObjectJsonReader_ReadObject_From_Stream_Not_Valid()
+        public async Task Test_ImageObjectJsonReader_ReadObject_From_Stream_Not_Valid()
         {
-            var traktJsonReader = new TraktImageObjectJsonReader();
+            var traktJsonReader = new ImageObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID.ToStream())
             {
@@ -40,18 +40,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktImageObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_ImageObjectJsonReader_ReadObject_From_Stream_Null()
         {
-            var traktJsonReader = new TraktImageObjectJsonReader();
+            var traktJsonReader = new ImageObjectJsonReader();
 
             var traktImage = await traktJsonReader.ReadObjectAsync(default(Stream));
             traktImage.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktImageObjectJsonReader_ReadObject_From_Stream_Empty()
+        public async Task Test_ImageObjectJsonReader_ReadObject_From_Stream_Empty()
         {
-            var traktJsonReader = new TraktImageObjectJsonReader();
+            var traktJsonReader = new ImageObjectJsonReader();
 
             using (var stream = string.Empty.ToStream())
             {

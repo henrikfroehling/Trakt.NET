@@ -28,7 +28,7 @@
         [Fact]
         public async Task Test_TraktImage_From_Json()
         {
-            var jsonReader = new TraktImageObjectJsonReader();
+            var jsonReader = new ImageObjectJsonReader();
             var traktImage = await jsonReader.ReadObjectAsync(JSON) as TraktImage;
 
             traktImage.Should().NotBeNull();
