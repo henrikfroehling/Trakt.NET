@@ -844,7 +844,7 @@
         {
             ValidateFollowerRequestId(followerRequestId);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserApproveFollowerRequest { Id = followerRequestId.ToString() }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserApproveFollowerRequest { Id = followerRequestId.ToString() }, cancellationToken);
         }
 
         /// <summary>

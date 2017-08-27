@@ -11,57 +11,57 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserApproveFollowerRequest_Tests
+    public class UserApproveFollowerRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserApproveFollowerRequest_Is_Not_Abstract()
+        public void Test_UserApproveFollowerRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserApproveFollowerRequest).IsAbstract.Should().BeFalse();
+            typeof(UserApproveFollowerRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserApproveFollowerRequest_Is_Sealed()
+        public void Test_UserApproveFollowerRequest_Is_Sealed()
         {
-            typeof(TraktUserApproveFollowerRequest).IsSealed.Should().BeTrue();
+            typeof(UserApproveFollowerRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserApproveFollowerRequest_Inherits_ATraktBodylessPostRequest_1()
+        public void Test_UserApproveFollowerRequest_Inherits_ATraktBodylessPostRequest_1()
         {
-            typeof(TraktUserApproveFollowerRequest).IsSubclassOf(typeof(ABodylessPostRequest<ITraktUserFollower>)).Should().BeTrue();
+            typeof(UserApproveFollowerRequest).IsSubclassOf(typeof(ABodylessPostRequest<ITraktUserFollower>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserApproveFollowerRequest_Implements_ITraktHasId_Interface()
+        public void Test_UserApproveFollowerRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktUserApproveFollowerRequest).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(UserApproveFollowerRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_TraktUserApproveFollowerRequest_Has_AuthorizationRequirement_Required()
+        public void Test_UserApproveFollowerRequest_Has_AuthorizationRequirement_Required()
         {
-            var request = new TraktUserApproveFollowerRequest();
+            var request = new UserApproveFollowerRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktUserApproveFollowerRequest_Returns_Valid_RequestObjectType()
+        public void Test_UserApproveFollowerRequest_Returns_Valid_RequestObjectType()
         {
-            var requestMock = new TraktUserApproveFollowerRequest();
+            var requestMock = new UserApproveFollowerRequest();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Unspecified);
         }
 
         [Fact]
-        public void Test_TraktUserApproveFollowerRequest_Has_Valid_UriTemplate()
+        public void Test_UserApproveFollowerRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserApproveFollowerRequest();
+            var request = new UserApproveFollowerRequest();
             request.UriTemplate.Should().Be("users/requests/{id}");
         }
 
         [Fact]
-        public void Test_TraktUserApproveFollowerRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserApproveFollowerRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new TraktUserApproveFollowerRequest { Id = "123" };
+            var request = new UserApproveFollowerRequest { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -72,22 +72,22 @@
         }
 
         [Fact]
-        public void Test_TraktUserApproveFollowerRequest_Validate_Throws_Exceptions()
+        public void Test_UserApproveFollowerRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var request = new TraktUserApproveFollowerRequest();
+            var request = new UserApproveFollowerRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktUserApproveFollowerRequest { Id = string.Empty };
+            request = new UserApproveFollowerRequest { Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktUserApproveFollowerRequest { Id = "invalid id" };
+            request = new UserApproveFollowerRequest { Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
