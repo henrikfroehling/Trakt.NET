@@ -3,7 +3,7 @@
     using Objects.JsonReader;
     using System;
 
-    internal class TraktErrorJsonReaderFactory : IJsonReaderFactory<ITraktError>
+    internal class ErrorJsonReaderFactory : IJsonReaderFactory<ITraktError>
     {
         public IObjectJsonReader<ITraktError> CreateObjectReader() => new TraktErrorObjectJsonReader();
 

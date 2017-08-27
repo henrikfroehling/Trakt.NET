@@ -138,7 +138,7 @@
     <Compile Include="Objects\Basic\JsonReader\Factories\CommentJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\CrewJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\CrewMemberJsonReaderFactory.cs" />
-    <Compile Include="Objects\Basic\JsonReader\Factories\TraktErrorJsonReaderFactory.cs" />
+    <Compile Include="Objects\Basic\JsonReader\Factories\ErrorJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\TraktGenreJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\TraktIdsJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\TraktImageJsonReaderFactory.cs" />
