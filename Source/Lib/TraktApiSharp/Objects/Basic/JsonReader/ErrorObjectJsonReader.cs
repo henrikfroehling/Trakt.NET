@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktErrorObjectJsonReader : IObjectJsonReader<ITraktError>
+    internal class ErrorObjectJsonReader : IObjectJsonReader<ITraktError>
     {
         private const string PROPERTY_NAME_ERROR = "error";
         private const string PROPERTY_NAME_ERROR_DESCRIPTION = "error_description";

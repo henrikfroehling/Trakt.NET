@@ -7,12 +7,12 @@
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
-    public partial class TraktErrorObjectJsonReader_Tests
+    public partial class ErrorObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktErrorObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_ErrorObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktErrorObjectJsonReader();
+            var jsonReader = new ErrorObjectJsonReader();
 
             var traktError = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
@@ -22,9 +22,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktErrorObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public async Task Test_ErrorObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new TraktErrorObjectJsonReader();
+            var jsonReader = new ErrorObjectJsonReader();
 
             var traktError = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_1);
 
@@ -34,9 +34,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktErrorObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public async Task Test_ErrorObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new TraktErrorObjectJsonReader();
+            var jsonReader = new ErrorObjectJsonReader();
 
             var traktError = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_2);
 
@@ -46,9 +46,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktErrorObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public async Task Test_ErrorObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new TraktErrorObjectJsonReader();
+            var jsonReader = new ErrorObjectJsonReader();
 
             var traktError = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_1);
 
@@ -58,9 +58,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktErrorObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public async Task Test_ErrorObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new TraktErrorObjectJsonReader();
+            var jsonReader = new ErrorObjectJsonReader();
 
             var traktError = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_2);
 
@@ -70,9 +70,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktErrorObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public async Task Test_ErrorObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new TraktErrorObjectJsonReader();
+            var jsonReader = new ErrorObjectJsonReader();
 
             var traktError = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_3);
 
@@ -82,18 +82,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktErrorObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_ErrorObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktErrorObjectJsonReader();
+            var jsonReader = new ErrorObjectJsonReader();
 
             var traktError = await jsonReader.ReadObjectAsync(default(string));
             traktError.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktErrorObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_ErrorObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktErrorObjectJsonReader();
+            var jsonReader = new ErrorObjectJsonReader();
 
             var traktError = await jsonReader.ReadObjectAsync(string.Empty);
             traktError.Should().BeNull();

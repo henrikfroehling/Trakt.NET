@@ -29,7 +29,7 @@
         [Fact]
         public async Task Test_TraktError_From_Json()
         {
-            var jsonReader = new TraktErrorObjectJsonReader();
+            var jsonReader = new ErrorObjectJsonReader();
             var traktError = await jsonReader.ReadObjectAsync(JSON) as TraktError;
 
             traktError.Should().NotBeNull();

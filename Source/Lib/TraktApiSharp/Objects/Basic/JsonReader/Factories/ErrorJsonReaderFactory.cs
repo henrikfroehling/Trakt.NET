@@ -5,7 +5,7 @@
 
     internal class ErrorJsonReaderFactory : IJsonReaderFactory<ITraktError>
     {
-        public IObjectJsonReader<ITraktError> CreateObjectReader() => new TraktErrorObjectJsonReader();
+        public IObjectJsonReader<ITraktError> CreateObjectReader() => new ErrorObjectJsonReader();
 
         public IArrayJsonReader<ITraktError> CreateArrayReader()
         {
