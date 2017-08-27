@@ -394,7 +394,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktUserCustomListItemsRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserCustomListItemsRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,

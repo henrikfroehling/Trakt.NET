@@ -1273,7 +1273,7 @@
     <Compile Include="Requests\Users\OAuth\UserCustomListDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserCustomListItemsAddRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserCustomListItemsRemoveRequest_Tests.cs" />
-    <Compile Include="Requests\Users\OAuth\TraktUserCustomListItemsRequest_Tests.cs" />
+    <Compile Include="Requests\Users\OAuth\UserCustomListItemsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCustomListsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCustomListUpdateRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCustomSingleListRequest_Tests.cs" />

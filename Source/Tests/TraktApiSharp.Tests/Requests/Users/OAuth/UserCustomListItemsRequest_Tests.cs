@@ -16,36 +16,36 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserCustomListItemsRequest_Tests
+    public class UserCustomListItemsRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserCustomListItemsRequest_Is_Not_Abstract()
+        public void Test_UserCustomListItemsRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserCustomListItemsRequest).IsAbstract.Should().BeFalse();
+            typeof(UserCustomListItemsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsRequest_Is_Sealed()
+        public void Test_UserCustomListItemsRequest_Is_Sealed()
         {
-            typeof(TraktUserCustomListItemsRequest).IsSealed.Should().BeTrue();
+            typeof(UserCustomListItemsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsRequest_Inherits_ATraktUsersPagedGetRequest_1()
+        public void Test_UserCustomListItemsRequest_Inherits_ATraktUsersPagedGetRequest_1()
         {
-            typeof(TraktUserCustomListItemsRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktListItem>)).Should().BeTrue();
+            typeof(UserCustomListItemsRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktListItem>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsRequest_Implements_ITraktHasId_Interface()
+        public void Test_UserCustomListItemsRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktUserCustomListItemsRequest).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(UserCustomListItemsRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsRequest_Has_Username_Property()
+        public void Test_UserCustomListItemsRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserCustomListItemsRequest)
+            var propertyInfo = typeof(UserCustomListItemsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -56,9 +56,9 @@
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsRequest_Has_Type_Property()
+        public void Test_UserCustomListItemsRequest_Has_Type_Property()
         {
-            var propertyInfo = typeof(TraktUserCustomListItemsRequest)
+            var propertyInfo = typeof(UserCustomListItemsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
@@ -69,68 +69,68 @@
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserCustomListItemsRequest_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUserCustomListItemsRequest();
+            var request = new UserCustomListItemsRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsRequest_Returns_Valid_RequestObjectType()
+        public void Test_UserCustomListItemsRequest_Returns_Valid_RequestObjectType()
         {
-            var requestMock = new TraktUserCustomListItemsRequest();
+            var requestMock = new UserCustomListItemsRequest();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Lists);
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsRequest_Has_Valid_UriTemplate()
+        public void Test_UserCustomListItemsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserCustomListItemsRequest();
+            var request = new UserCustomListItemsRequest();
             request.UriTemplate.Should().Be("users/{username}/lists/{id}/items{/type}{?extended,page,limit}");
         }
 
         [Fact]
-        public void Test_TraktUserCustomListItemsRequest_Validate_Throws_Exceptions()
+        public void Test_UserCustomListItemsRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserCustomListItemsRequest { Id = "123" };
+            var request = new UserCustomListItemsRequest { Id = "123" };
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserCustomListItemsRequest { Username = string.Empty, Id = "123" };
+            request = new UserCustomListItemsRequest { Username = string.Empty, Id = "123" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserCustomListItemsRequest { Username = "invalid username", Id = "123" };
+            request = new UserCustomListItemsRequest { Username = "invalid username", Id = "123" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id is null
-            request = new TraktUserCustomListItemsRequest { Username = "username" };
+            request = new UserCustomListItemsRequest { Username = "username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktUserCustomListItemsRequest { Username = "username", Id = string.Empty };
+            request = new UserCustomListItemsRequest { Username = "username", Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktUserCustomListItemsRequest { Username = "username", Id = "invalid id" };
+            request = new UserCustomListItemsRequest { Username = "username", Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktUserCustomListItemsRequest_TestData))]
-        public void Test_TraktUserCustomListItemsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(UserCustomListItemsRequest_TestData))]
+        public void Test_UserCustomListItemsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                          IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -139,7 +139,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktUserCustomListItemsRequest_TestData : IEnumerable<object[]>
+        public class UserCustomListItemsRequest_TestData : IEnumerable<object[]>
         {
             private const string _username = "username";
             private const string _id = "123";
@@ -148,41 +148,41 @@
             private const int _page = 4;
             private const int _limit = 20;
 
-            private static readonly TraktUserCustomListItemsRequest _request1 = new TraktUserCustomListItemsRequest
+            private static readonly UserCustomListItemsRequest _request1 = new UserCustomListItemsRequest
             {
                 Username = _username,
                 Id = _id
             };
 
-            private static readonly TraktUserCustomListItemsRequest _request2 = new TraktUserCustomListItemsRequest
+            private static readonly UserCustomListItemsRequest _request2 = new UserCustomListItemsRequest
             {
                 Username = _username,
                 Id = _id,
                 Type = _type
             };
 
-            private static readonly TraktUserCustomListItemsRequest _request3 = new TraktUserCustomListItemsRequest
+            private static readonly UserCustomListItemsRequest _request3 = new UserCustomListItemsRequest
             {
                 Username = _username,
                 Id = _id,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktUserCustomListItemsRequest _request4 = new TraktUserCustomListItemsRequest
+            private static readonly UserCustomListItemsRequest _request4 = new UserCustomListItemsRequest
             {
                 Username = _username,
                 Id = _id,
                 Page = _page
             };
 
-            private static readonly TraktUserCustomListItemsRequest _request5 = new TraktUserCustomListItemsRequest
+            private static readonly UserCustomListItemsRequest _request5 = new UserCustomListItemsRequest
             {
                 Username = _username,
                 Id = _id,
                 Limit = _limit
             };
 
-            private static readonly TraktUserCustomListItemsRequest _request6 = new TraktUserCustomListItemsRequest
+            private static readonly UserCustomListItemsRequest _request6 = new UserCustomListItemsRequest
             {
                 Username = _username,
                 Id = _id,
@@ -190,7 +190,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktUserCustomListItemsRequest _request7 = new TraktUserCustomListItemsRequest
+            private static readonly UserCustomListItemsRequest _request7 = new UserCustomListItemsRequest
             {
                 Username = _username,
                 Id = _id,
@@ -198,7 +198,7 @@
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktUserCustomListItemsRequest _request8 = new TraktUserCustomListItemsRequest
+            private static readonly UserCustomListItemsRequest _request8 = new UserCustomListItemsRequest
             {
                 Username = _username,
                 Id = _id,
@@ -206,7 +206,7 @@
                 Page = _page
             };
 
-            private static readonly TraktUserCustomListItemsRequest _request9 = new TraktUserCustomListItemsRequest
+            private static readonly UserCustomListItemsRequest _request9 = new UserCustomListItemsRequest
             {
                 Username = _username,
                 Id = _id,
@@ -214,7 +214,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktUserCustomListItemsRequest _request10 = new TraktUserCustomListItemsRequest
+            private static readonly UserCustomListItemsRequest _request10 = new UserCustomListItemsRequest
             {
                 Username = _username,
                 Id = _id,
@@ -223,7 +223,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktUserCustomListItemsRequest _request11 = new TraktUserCustomListItemsRequest
+            private static readonly UserCustomListItemsRequest _request11 = new UserCustomListItemsRequest
             {
                 Username = _username,
                 Id = _id,
@@ -231,7 +231,7 @@
                 Page = _page
             };
 
-            private static readonly TraktUserCustomListItemsRequest _request12 = new TraktUserCustomListItemsRequest
+            private static readonly UserCustomListItemsRequest _request12 = new UserCustomListItemsRequest
             {
                 Username = _username,
                 Id = _id,
@@ -239,7 +239,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktUserCustomListItemsRequest _request13 = new TraktUserCustomListItemsRequest
+            private static readonly UserCustomListItemsRequest _request13 = new UserCustomListItemsRequest
             {
                 Username = _username,
                 Id = _id,
@@ -248,7 +248,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktUserCustomListItemsRequest _request14 = new TraktUserCustomListItemsRequest
+            private static readonly UserCustomListItemsRequest _request14 = new UserCustomListItemsRequest
             {
                 Username = _username,
                 Id = _id,
@@ -260,7 +260,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktUserCustomListItemsRequest_TestData()
+            public UserCustomListItemsRequest_TestData()
             {
                 SetupPathParamters();
             }
