@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    internal sealed class TraktUserRatingsRequest : AUsersGetRequest<ITraktRatingsItem>
+    internal sealed class UserRatingsRequest : AUsersGetRequest<ITraktRatingsItem>
     {
         internal string Username { get; set; }
 

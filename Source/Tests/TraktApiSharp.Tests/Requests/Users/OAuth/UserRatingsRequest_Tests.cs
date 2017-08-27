@@ -15,30 +15,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserRatingsRequest_Tests
+    public class UserRatingsRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserRatingsRequest_Is_Not_Abstract()
+        public void Test_UserRatingsRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserRatingsRequest).IsAbstract.Should().BeFalse();
+            typeof(UserRatingsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserRatingsRequest_Is_Sealed()
+        public void Test_UserRatingsRequest_Is_Sealed()
         {
-            typeof(TraktUserRatingsRequest).IsSealed.Should().BeTrue();
+            typeof(UserRatingsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserRatingsRequest_Inherits_ATraktUsersGetRequest_1()
+        public void Test_UserRatingsRequest_Inherits_ATraktUsersGetRequest_1()
         {
-            typeof(TraktUserRatingsRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktRatingsItem>)).Should().BeTrue();
+            typeof(UserRatingsRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktRatingsItem>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserRatingsRequest_Has_Username_Property()
+        public void Test_UserRatingsRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserRatingsRequest)
+            var propertyInfo = typeof(UserRatingsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -49,9 +49,9 @@
         }
 
         [Fact]
-        public void Test_TraktUserRatingsRequest_Has_Type_Property()
+        public void Test_UserRatingsRequest_Has_Type_Property()
         {
-            var propertyInfo = typeof(TraktUserRatingsRequest)
+            var propertyInfo = typeof(UserRatingsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
@@ -62,9 +62,9 @@
         }
 
         [Fact]
-        public void Test_TraktUserRatingsRequest_Has_RatingFilter_Property()
+        public void Test_UserRatingsRequest_Has_RatingFilter_Property()
         {
-            var propertyInfo = typeof(TraktUserRatingsRequest)
+            var propertyInfo = typeof(UserRatingsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "RatingFilter")
                     .FirstOrDefault();
@@ -75,43 +75,43 @@
         }
 
         [Fact]
-        public void Test_TraktUserRatingsRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserRatingsRequest_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUserRatingsRequest();
+            var request = new UserRatingsRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
-        public void Test_TraktUserRatingsRequest_Has_Valid_UriTemplate()
+        public void Test_UserRatingsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserRatingsRequest();
+            var request = new UserRatingsRequest();
             request.UriTemplate.Should().Be("users/{username}/ratings{/type}{/rating}{?extended}");
         }
 
         [Fact]
-        public void Test_TraktUserRatingsRequest_Validate_Throws_Exceptions()
+        public void Test_UserRatingsRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserRatingsRequest();
+            var request = new UserRatingsRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserRatingsRequest { Username = string.Empty };
+            request = new UserRatingsRequest { Username = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserRatingsRequest { Username = "invalid username" };
+            request = new UserRatingsRequest { Username = "invalid username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktUserRatingsRequest_TestData))]
-        public void Test_TraktUserRatingsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(UserRatingsRequest_TestData))]
+        public void Test_UserRatingsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                  IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -120,7 +120,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktUserRatingsRequest_TestData : IEnumerable<object[]>
+        public class UserRatingsRequest_TestData : IEnumerable<object[]>
         {
             private const string _username = "username";
             private static readonly TraktRatingsItemType _type = TraktRatingsItemType.Episode;
@@ -132,44 +132,44 @@
             private static readonly int[] _invalidRatingFilter4 = new int[] { 0, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             private static readonly int[] _invalidRatingFilter5 = new int[] { 1, 2, 3, 4, 5, 11, 7, 8, 9, 10 };
 
-            private static readonly TraktUserRatingsRequest _request1 = new TraktUserRatingsRequest
+            private static readonly UserRatingsRequest _request1 = new UserRatingsRequest
             {
                 Username = _username
             };
 
-            private static readonly TraktUserRatingsRequest _request2 = new TraktUserRatingsRequest
+            private static readonly UserRatingsRequest _request2 = new UserRatingsRequest
             {
                 Username = _username,
                 Type = _type
             };
 
-            private static readonly TraktUserRatingsRequest _request3 = new TraktUserRatingsRequest
+            private static readonly UserRatingsRequest _request3 = new UserRatingsRequest
             {
                 Username = _username,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktUserRatingsRequest _request4 = new TraktUserRatingsRequest
+            private static readonly UserRatingsRequest _request4 = new UserRatingsRequest
             {
                 Username = _username,
                 RatingFilter = _validRatingFilter
             };
 
-            private static readonly TraktUserRatingsRequest _request5 = new TraktUserRatingsRequest
+            private static readonly UserRatingsRequest _request5 = new UserRatingsRequest
             {
                 Username = _username,
                 Type = _type,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktUserRatingsRequest _request6 = new TraktUserRatingsRequest
+            private static readonly UserRatingsRequest _request6 = new UserRatingsRequest
             {
                 Username = _username,
                 Type = _type,
                 RatingFilter = _validRatingFilter
             };
 
-            private static readonly TraktUserRatingsRequest _request7 = new TraktUserRatingsRequest
+            private static readonly UserRatingsRequest _request7 = new UserRatingsRequest
             {
                 Username = _username,
                 Type = _type,
@@ -177,14 +177,14 @@
                 RatingFilter = _validRatingFilter
             };
 
-            private static readonly TraktUserRatingsRequest _request8 = new TraktUserRatingsRequest
+            private static readonly UserRatingsRequest _request8 = new UserRatingsRequest
             {
                 Username = _username,
                 Type = _type,
                 RatingFilter = _invalidRatingFilter1
             };
 
-            private static readonly TraktUserRatingsRequest _request9 = new TraktUserRatingsRequest
+            private static readonly UserRatingsRequest _request9 = new UserRatingsRequest
             {
                 Username = _username,
                 Type = _type,
@@ -192,14 +192,14 @@
                 RatingFilter = _invalidRatingFilter1
             };
 
-            private static readonly TraktUserRatingsRequest _request10 = new TraktUserRatingsRequest
+            private static readonly UserRatingsRequest _request10 = new UserRatingsRequest
             {
                 Username = _username,
                 Type = _type,
                 RatingFilter = _invalidRatingFilter2
             };
 
-            private static readonly TraktUserRatingsRequest _request11 = new TraktUserRatingsRequest
+            private static readonly UserRatingsRequest _request11 = new UserRatingsRequest
             {
                 Username = _username,
                 Type = _type,
@@ -207,14 +207,14 @@
                 RatingFilter = _invalidRatingFilter2
             };
 
-            private static readonly TraktUserRatingsRequest _request12 = new TraktUserRatingsRequest
+            private static readonly UserRatingsRequest _request12 = new UserRatingsRequest
             {
                 Username = _username,
                 Type = _type,
                 RatingFilter = _invalidRatingFilter3
             };
 
-            private static readonly TraktUserRatingsRequest _request13 = new TraktUserRatingsRequest
+            private static readonly UserRatingsRequest _request13 = new UserRatingsRequest
             {
                 Username = _username,
                 Type = _type,
@@ -222,14 +222,14 @@
                 RatingFilter = _invalidRatingFilter3
             };
 
-            private static readonly TraktUserRatingsRequest _request14 = new TraktUserRatingsRequest
+            private static readonly UserRatingsRequest _request14 = new UserRatingsRequest
             {
                 Username = _username,
                 Type = _type,
                 RatingFilter = _invalidRatingFilter4
             };
 
-            private static readonly TraktUserRatingsRequest _request15 = new TraktUserRatingsRequest
+            private static readonly UserRatingsRequest _request15 = new UserRatingsRequest
             {
                 Username = _username,
                 Type = _type,
@@ -237,14 +237,14 @@
                 RatingFilter = _invalidRatingFilter4
             };
 
-            private static readonly TraktUserRatingsRequest _request16 = new TraktUserRatingsRequest
+            private static readonly UserRatingsRequest _request16 = new UserRatingsRequest
             {
                 Username = _username,
                 Type = _type,
                 RatingFilter = _invalidRatingFilter5
             };
 
-            private static readonly TraktUserRatingsRequest _request17 = new TraktUserRatingsRequest
+            private static readonly UserRatingsRequest _request17 = new UserRatingsRequest
             {
                 Username = _username,
                 Type = _type,
@@ -254,7 +254,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktUserRatingsRequest_TestData()
+            public UserRatingsRequest_TestData()
             {
                 SetupPathParamters();
             }

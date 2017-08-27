@@ -941,7 +941,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktUserRatingsRequest
+            return requestHandler.ExecuteListRequestAsync(new UserRatingsRequest
             {
                 Username = usernameOrSlug,
                 Type = ratingsItemType,
