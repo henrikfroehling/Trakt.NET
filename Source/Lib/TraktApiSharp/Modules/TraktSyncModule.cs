@@ -333,7 +333,7 @@
         {
             ValidateHistoryPost(historyRemovePost);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchedHistoryRemoveRequest { RequestBody = historyRemovePost }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchedHistoryRemoveRequest { RequestBody = historyRemovePost }, cancellationToken);
         }
 
         /// <summary>
