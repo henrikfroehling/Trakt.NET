@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktCrewMemberObjectJsonReader : IObjectJsonReader<ITraktCrewMember>
+    internal class CrewMemberObjectJsonReader : IObjectJsonReader<ITraktCrewMember>
     {
         private const string PROPERTY_NAME_JOB = "job";
         private const string PROPERTY_NAME_PERSON = "person";

@@ -4,7 +4,7 @@
 
     internal class CrewMemberJsonReaderFactory : IJsonReaderFactory<ITraktCrewMember>
     {
-        public IObjectJsonReader<ITraktCrewMember> CreateObjectReader() => new TraktCrewMemberObjectJsonReader();
+        public IObjectJsonReader<ITraktCrewMember> CreateObjectReader() => new CrewMemberObjectJsonReader();
 
         public IArrayJsonReader<ITraktCrewMember> CreateArrayReader() => new CrewMemberArrayJsonReader();
     }
