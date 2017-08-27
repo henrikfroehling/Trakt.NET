@@ -8,12 +8,12 @@
     using Xunit;
 
     [Category("Objects.Get.Calendars.JsonReader")]
-    public partial class TraktCalendarShowObjectJsonReader_Tests
+    public partial class CalendarShowObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_TraktCalendarShowObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
+        public void Test_CalendarShowObjectJsonReader_Implements_IObjectJsonReader_Interface()
         {
-            typeof(TraktCalendarShowObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktCalendarShow>));
+            typeof(CalendarShowObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktCalendarShow>));
         }
     }
 }

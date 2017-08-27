@@ -201,11 +201,11 @@
     <Compile Include="Objects\Get\Calendars\JsonReader\CalendarMovieObjectJsonReader\CalendarMovieObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\JsonReader\CalendarMovieObjectJsonReader\CalendarMovieObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\JsonReader\CalendarMovieObjectJsonReader\CalendarMovieObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Calendars\JsonReader\TraktCalendarShowObjectJsonReader\TraktCalendarShowObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Calendars\JsonReader\TraktCalendarShowObjectJsonReader\TraktCalendarShowObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Calendars\JsonReader\TraktCalendarShowObjectJsonReader\TraktCalendarShowObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Calendars\JsonReader\TraktCalendarShowObjectJsonReader\TraktCalendarShowObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Calendars\JsonReader\TraktCalendarShowObjectJsonReader\TraktCalendarShowObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Calendars\JsonReader\CalendarShowObjectJsonReader\CalendarShowObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Calendars\JsonReader\CalendarShowObjectJsonReader\CalendarShowObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Calendars\JsonReader\CalendarShowObjectJsonReader\CalendarShowObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Calendars\JsonReader\CalendarShowObjectJsonReader\CalendarShowObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Calendars\JsonReader\CalendarShowObjectJsonReader\CalendarShowObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Collections\Implementations\TraktCollectionShowEpisode_Tests.cs" />
     <Compile Include="Objects\Get\Collections\Implementations\TraktCollectionShowSeason_Tests.cs" />
     <Compile Include="Objects\Get\Collections\Interfaces\ITraktCollectionMovie_Tests.cs" />
