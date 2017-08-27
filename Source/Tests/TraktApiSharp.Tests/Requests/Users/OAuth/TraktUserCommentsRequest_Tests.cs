@@ -32,7 +32,7 @@
         [Fact]
         public void Test_TraktUserCommentsRequest_Inherits_ATraktUsersPagedGetRequest_1()
         {
-            typeof(TraktUserCommentsRequest).IsSubclassOf(typeof(ATraktUsersPagedGetRequest<ITraktUserComment>)).Should().BeTrue();
+            typeof(TraktUserCommentsRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktUserComment>)).Should().BeTrue();
         }
 
         [Fact]

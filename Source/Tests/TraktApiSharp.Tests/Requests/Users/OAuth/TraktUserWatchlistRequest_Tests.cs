@@ -32,7 +32,7 @@
         [Fact]
         public void Test_TraktUserWatchlistRequest_Inherits_ATraktUsersPagedGetRequest_1()
         {
-            typeof(TraktUserWatchlistRequest).IsSubclassOf(typeof(ATraktUsersPagedGetRequest<ITraktWatchlistItem>)).Should().BeTrue();
+            typeof(TraktUserWatchlistRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktWatchlistItem>)).Should().BeTrue();
         }
 
         [Fact]

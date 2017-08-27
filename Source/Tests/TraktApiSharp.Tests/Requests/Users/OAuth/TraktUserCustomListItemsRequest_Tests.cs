@@ -33,7 +33,7 @@
         [Fact]
         public void Test_TraktUserCustomListItemsRequest_Inherits_ATraktUsersPagedGetRequest_1()
         {
-            typeof(TraktUserCustomListItemsRequest).IsSubclassOf(typeof(ATraktUsersPagedGetRequest<ITraktListItem>)).Should().BeTrue();
+            typeof(TraktUserCustomListItemsRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktListItem>)).Should().BeTrue();
         }
 
         [Fact]

@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserHiddenItemsRequest : ATraktUsersPagedGetRequest<ITraktUserHiddenItem>
+    internal sealed class TraktUserHiddenItemsRequest : AUsersPagedGetRequest<ITraktUserHiddenItem>
     {
         internal TraktHiddenItemsSection Section { get; set; }
 

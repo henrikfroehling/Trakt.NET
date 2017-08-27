@@ -34,7 +34,7 @@
         [Fact]
         public void Test_TraktUserWatchedHistoryRequest_Inherits_ATraktUsersPagedGetRequest_1()
         {
-            typeof(TraktUserWatchedHistoryRequest).IsSubclassOf(typeof(ATraktUsersPagedGetRequest<ITraktHistoryItem>)).Should().BeTrue();
+            typeof(TraktUserWatchedHistoryRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktHistoryItem>)).Should().BeTrue();
         }
 
         [Fact]

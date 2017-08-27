@@ -8,7 +8,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserWatchedHistoryRequest : ATraktUsersPagedGetRequest<ITraktHistoryItem>, IHasId
+    internal sealed class TraktUserWatchedHistoryRequest : AUsersPagedGetRequest<ITraktHistoryItem>, IHasId
     {
         internal string Username { get; set; }
 

@@ -12,52 +12,48 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class ATraktUsersPagedGetRequest_1_Tests
+    public class AUsersPagedGetRequest_1_Tests
     {
-        internal class TraktUsersPagedGetRequestMock : ATraktUsersPagedGetRequest<int>
+        internal class UsersPagedGetRequestMock : AUsersPagedGetRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
-
-            public override void Validate()
-            {
-                throw new NotImplementedException();
-            }
+            public override void Validate() => throw new NotImplementedException();
         }
 
         [Fact]
-        public void Test_ATraktUsersPagedGetRequest_1_Is_Abstract()
+        public void Test_AUsersPagedGetRequest_1_Is_Abstract()
         {
-            typeof(ATraktUsersPagedGetRequest<>).IsAbstract.Should().BeTrue();
+            typeof(AUsersPagedGetRequest<>).IsAbstract.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktUsersPagedGetRequest_1_Has_GenericTypeParameter()
+        public void Test_AUsersPagedGetRequest_1_Has_GenericTypeParameter()
         {
-            typeof(ATraktUsersPagedGetRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ATraktUsersPagedGetRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+            typeof(AUsersPagedGetRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(AUsersPagedGetRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
         [Fact]
-        public void Test_ATraktUsersPagedGetRequest_1_Inherits_ATraktUsersGetRequest_1()
+        public void Test_AUsersPagedGetRequest_1_Inherits_ATraktUsersGetRequest_1()
         {
-            typeof(ATraktUsersPagedGetRequest<int>).IsSubclassOf(typeof(AUsersGetRequest<int>)).Should().BeTrue();
+            typeof(AUsersPagedGetRequest<int>).IsSubclassOf(typeof(AUsersGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktUsersPagedGetRequest_1_Implements_ITraktSupportsPagination_Interface()
+        public void Test_AUsersPagedGetRequest_1_Implements_ITraktSupportsPagination_Interface()
         {
-            typeof(ATraktUsersPagedGetRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
+            typeof(AUsersPagedGetRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]
-        public void Test_ATraktUsersPagedGetRequest_1_Has_AuthorizationRequirement_Optional()
+        public void Test_AUsersPagedGetRequest_1_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUsersPagedGetRequestMock();
+            var request = new UsersPagedGetRequestMock();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Theory, ClassData(typeof(TraktUsersPagedGetRequestMock_TestData))]
-        public void Test_ATraktUsersPagedGetRequest_1_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        public void Test_AUsersPagedGetRequest_1_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                       IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -72,42 +68,42 @@
             private const int _page = 4;
             private const int _limit = 20;
 
-            private static readonly TraktUsersPagedGetRequestMock _request1 = new TraktUsersPagedGetRequestMock();
+            private static readonly UsersPagedGetRequestMock _request1 = new UsersPagedGetRequestMock();
 
-            private static readonly TraktUsersPagedGetRequestMock _request2 = new TraktUsersPagedGetRequestMock
+            private static readonly UsersPagedGetRequestMock _request2 = new UsersPagedGetRequestMock
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktUsersPagedGetRequestMock _request3 = new TraktUsersPagedGetRequestMock
+            private static readonly UsersPagedGetRequestMock _request3 = new UsersPagedGetRequestMock
             {
                 Page = _page
             };
 
-            private static readonly TraktUsersPagedGetRequestMock _request4 = new TraktUsersPagedGetRequestMock
+            private static readonly UsersPagedGetRequestMock _request4 = new UsersPagedGetRequestMock
             {
                 Limit = _limit
             };
 
-            private static readonly TraktUsersPagedGetRequestMock _request5 = new TraktUsersPagedGetRequestMock
+            private static readonly UsersPagedGetRequestMock _request5 = new UsersPagedGetRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktUsersPagedGetRequestMock _request6 = new TraktUsersPagedGetRequestMock
+            private static readonly UsersPagedGetRequestMock _request6 = new UsersPagedGetRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktUsersPagedGetRequestMock _request7 = new TraktUsersPagedGetRequestMock
+            private static readonly UsersPagedGetRequestMock _request7 = new UsersPagedGetRequestMock
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktUsersPagedGetRequestMock _request8 = new TraktUsersPagedGetRequestMock
+            private static readonly UsersPagedGetRequestMock _request8 = new UsersPagedGetRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
