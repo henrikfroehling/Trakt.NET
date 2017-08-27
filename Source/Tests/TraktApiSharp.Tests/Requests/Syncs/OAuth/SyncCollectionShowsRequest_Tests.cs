@@ -10,49 +10,49 @@
     using Xunit;
 
     [Category("Requests.Syncs.OAuth")]
-    public class TraktSyncCollectionShowsRequest_Tests
+    public class SyncCollectionShowsRequest_Tests
     {
         [Fact]
-        public void Test_TraktSyncCollectionShowsRequest_Is_Not_Abstract()
+        public void Test_SyncCollectionShowsRequest_Is_Not_Abstract()
         {
-            typeof(TraktSyncCollectionShowsRequest).IsAbstract.Should().BeFalse();
+            typeof(SyncCollectionShowsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktSyncCollectionShowsRequest_Is_Sealed()
+        public void Test_SyncCollectionShowsRequest_Is_Sealed()
         {
-            typeof(TraktSyncCollectionShowsRequest).IsSealed.Should().BeTrue();
+            typeof(SyncCollectionShowsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSyncCollectionShowsRequest_Inherits_ATraktSyncGetRequest_1()
+        public void Test_SyncCollectionShowsRequest_Inherits_ATraktSyncGetRequest_1()
         {
-            typeof(TraktSyncCollectionShowsRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktCollectionShow>)).Should().BeTrue();
+            typeof(SyncCollectionShowsRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktCollectionShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSyncCollectionShowsRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_SyncCollectionShowsRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktSyncCollectionShowsRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(SyncCollectionShowsRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_TraktSyncCollectionShowsRequest_Has_Valid_UriTemplate()
+        public void Test_SyncCollectionShowsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktSyncCollectionShowsRequest();
+            var request = new SyncCollectionShowsRequest();
             request.UriTemplate.Should().Be("sync/collection/shows{?extended}");
         }
 
         [Fact]
-        public void Test_TraktSyncCollectionShowsRequest_Returns_Valid_UriPathParameters()
+        public void Test_SyncCollectionShowsRequest_Returns_Valid_UriPathParameters()
         {
             // without extended info
-            var request = new TraktSyncCollectionShowsRequest();
+            var request = new SyncCollectionShowsRequest();
             request.GetUriPathParameters().Should().NotBeNull().And.BeEmpty();
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktSyncCollectionShowsRequest { ExtendedInfo = extendedInfo };
+            request = new SyncCollectionShowsRequest { ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)

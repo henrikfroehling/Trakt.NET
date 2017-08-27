@@ -740,7 +740,7 @@
     <Compile Include="Requests\Syncs\OAuth\SyncCollectionAddRequest.cs" />
     <Compile Include="Requests\Syncs\OAuth\SyncCollectionMoviesRequest.cs" />
     <Compile Include="Requests\Syncs\OAuth\SyncCollectionRemoveRequest.cs" />
-    <Compile Include="Requests\Syncs\OAuth\TraktSyncCollectionShowsRequest.cs" />
+    <Compile Include="Requests\Syncs\OAuth\SyncCollectionShowsRequest.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncLastActivitiesRequest.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncPlaybackDeleteRequest.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncPlaybackProgressRequest.cs" />
