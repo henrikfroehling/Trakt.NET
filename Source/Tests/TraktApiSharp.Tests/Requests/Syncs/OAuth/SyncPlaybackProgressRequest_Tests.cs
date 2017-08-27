@@ -11,37 +11,37 @@
     using Xunit;
 
     [Category("Requests.Syncs.OAuth")]
-    public class TraktSyncPlaybackProgressRequest_Tests
+    public class SyncPlaybackProgressRequest_Tests
     {
         [Fact]
-        public void Test_TraktSyncPlaybackProgressRequest_Is_Not_Abstract()
+        public void Test_SyncPlaybackProgressRequest_Is_Not_Abstract()
         {
-            typeof(TraktSyncPlaybackProgressRequest).IsAbstract.Should().BeFalse();
+            typeof(SyncPlaybackProgressRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktSyncPlaybackProgressRequest_Is_Sealed()
+        public void Test_SyncPlaybackProgressRequest_Is_Sealed()
         {
-            typeof(TraktSyncPlaybackProgressRequest).IsSealed.Should().BeTrue();
+            typeof(SyncPlaybackProgressRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSyncPlaybackProgressRequest_Inherits_ATraktSyncGetRequest_1()
+        public void Test_SyncPlaybackProgressRequest_Inherits_ATraktSyncGetRequest_1()
         {
-            typeof(TraktSyncPlaybackProgressRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktSyncPlaybackProgressItem>)).Should().BeTrue();
+            typeof(SyncPlaybackProgressRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktSyncPlaybackProgressItem>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSyncPlaybackProgressRequest_Has_Valid_UriTemplate()
+        public void Test_SyncPlaybackProgressRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktSyncPlaybackProgressRequest();
+            var request = new SyncPlaybackProgressRequest();
             request.UriTemplate.Should().Be("sync/playback{/type}{?limit}");
         }
 
         [Fact]
-        public void Test_TraktSyncPlaybackProgressRequest_Has_Type_Property()
+        public void Test_SyncPlaybackProgressRequest_Has_Type_Property()
         {
-            var propertyInfo = typeof(TraktSyncPlaybackProgressRequest)
+            var propertyInfo = typeof(SyncPlaybackProgressRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
@@ -52,9 +52,9 @@
         }
 
         [Fact]
-        public void Test_TraktSyncPlaybackProgressRequest_Has_Limit_Property()
+        public void Test_SyncPlaybackProgressRequest_Has_Limit_Property()
         {
-            var propertyInfo = typeof(TraktSyncPlaybackProgressRequest)
+            var propertyInfo = typeof(SyncPlaybackProgressRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Limit")
                     .FirstOrDefault();
@@ -65,16 +65,16 @@
         }
 
         [Fact]
-        public void Test_TraktSyncPlaybackProgressRequest_Returns_Valid_UriPathParameters()
+        public void Test_SyncPlaybackProgressRequest_Returns_Valid_UriPathParameters()
         {
             // without any properties
-            var request = new TraktSyncPlaybackProgressRequest();
+            var request = new SyncPlaybackProgressRequest();
 
             request.GetUriPathParameters().Should().NotBeNull().And.BeEmpty();
 
             // with sync type
             var type = TraktSyncType.Episode;
-            request = new TraktSyncPlaybackProgressRequest { Type = type };
+            request = new SyncPlaybackProgressRequest { Type = type };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -85,7 +85,7 @@
 
             // with limit
             uint limit = 10;
-            request = new TraktSyncPlaybackProgressRequest { Limit = limit };
+            request = new SyncPlaybackProgressRequest { Limit = limit };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -95,7 +95,7 @@
                                                    });
 
             // with sync type and limit
-            request = new TraktSyncPlaybackProgressRequest { Type = type, Limit = limit };
+            request = new SyncPlaybackProgressRequest { Type = type, Limit = limit };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)

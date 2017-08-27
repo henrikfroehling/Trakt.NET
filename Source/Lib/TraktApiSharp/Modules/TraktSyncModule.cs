@@ -76,7 +76,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktSyncPlaybackProgressRequest
+            return requestHandler.ExecuteListRequestAsync(new SyncPlaybackProgressRequest
             {
                 Type = objectType,
                 Limit = limit
