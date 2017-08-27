@@ -27,7 +27,7 @@
         [Fact]
         public void Test_TraktSyncWatchedShowsRequest_Inherits_ATraktSyncGetRequest_1()
         {
-            typeof(TraktSyncWatchedShowsRequest).IsSubclassOf(typeof(ATraktSyncGetRequest<ITraktWatchedShow>)).Should().BeTrue();
+            typeof(TraktSyncWatchedShowsRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktWatchedShow>)).Should().BeTrue();
         }
 
         [Fact]

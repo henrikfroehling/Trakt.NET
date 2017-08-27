@@ -3,7 +3,7 @@
     using Base;
     using System.Collections.Generic;
 
-    internal abstract class ATraktSyncGetRequest<TResponseContentType> : AGetRequest<TResponseContentType>
+    internal abstract class ASyncGetRequest<TResponseContentType> : AGetRequest<TResponseContentType>
     {
         public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
 

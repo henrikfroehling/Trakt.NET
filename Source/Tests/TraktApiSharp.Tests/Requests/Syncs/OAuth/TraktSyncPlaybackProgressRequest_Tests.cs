@@ -28,7 +28,7 @@
         [Fact]
         public void Test_TraktSyncPlaybackProgressRequest_Inherits_ATraktSyncGetRequest_1()
         {
-            typeof(TraktSyncPlaybackProgressRequest).IsSubclassOf(typeof(ATraktSyncGetRequest<ITraktSyncPlaybackProgressItem>)).Should().BeTrue();
+            typeof(TraktSyncPlaybackProgressRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktSyncPlaybackProgressItem>)).Should().BeTrue();
         }
 
         [Fact]

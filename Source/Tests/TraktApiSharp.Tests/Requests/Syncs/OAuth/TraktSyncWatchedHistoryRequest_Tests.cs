@@ -33,7 +33,7 @@
         [Fact]
         public void Test_TraktSyncWatchedHistoryRequest_Inherits_ATraktSyncGetRequest_1()
         {
-            typeof(TraktSyncWatchedHistoryRequest).IsSubclassOf(typeof(ATraktSyncGetRequest<ITraktHistoryItem>)).Should().BeTrue();
+            typeof(TraktSyncWatchedHistoryRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktHistoryItem>)).Should().BeTrue();
         }
 
         [Fact]

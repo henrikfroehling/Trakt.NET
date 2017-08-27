@@ -24,7 +24,7 @@
         [Fact]
         public void Test_TraktSyncLastActivitiesRequest_Inherits_ATraktSyncGetRequest_1()
         {
-            typeof(TraktSyncLastActivitiesRequest).IsSubclassOf(typeof(ATraktSyncGetRequest<ITraktSyncLastActivities>)).Should().BeTrue();
+            typeof(TraktSyncLastActivitiesRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktSyncLastActivities>)).Should().BeTrue();
         }
 
         [Fact]

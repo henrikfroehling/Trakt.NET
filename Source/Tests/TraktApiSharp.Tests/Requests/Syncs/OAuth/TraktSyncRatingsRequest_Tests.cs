@@ -31,7 +31,7 @@
         [Fact]
         public void Test_TraktSyncRatingsRequest_Inherits_ATraktSyncGetRequest_1()
         {
-            typeof(TraktSyncRatingsRequest).IsSubclassOf(typeof(ATraktSyncGetRequest<ITraktRatingsItem>)).Should().BeTrue();
+            typeof(TraktSyncRatingsRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktRatingsItem>)).Should().BeTrue();
         }
 
         [Fact]

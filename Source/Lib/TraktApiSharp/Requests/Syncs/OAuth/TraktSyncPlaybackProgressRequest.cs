@@ -4,7 +4,7 @@
     using Objects.Get.Syncs.Playback;
     using System.Collections.Generic;
 
-    internal sealed class TraktSyncPlaybackProgressRequest : ATraktSyncGetRequest<ITraktSyncPlaybackProgressItem>
+    internal sealed class TraktSyncPlaybackProgressRequest : ASyncGetRequest<ITraktSyncPlaybackProgressItem>
     {
         internal TraktSyncType Type { get; set; }
 
