@@ -30,7 +30,7 @@
         [Fact]
         public void Test_TraktUserProfileRequest_Inherits_ATraktUsersGetRequest_1()
         {
-            typeof(TraktUserProfileRequest).IsSubclassOf(typeof(ATraktUsersGetRequest<ITraktUser>)).Should().BeTrue();
+            typeof(TraktUserProfileRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktUser>)).Should().BeTrue();
         }
 
         [Fact]

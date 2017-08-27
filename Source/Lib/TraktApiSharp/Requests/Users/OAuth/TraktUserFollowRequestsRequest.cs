@@ -3,7 +3,7 @@
     using Base;
     using TraktApiSharp.Objects.Get.Users;
 
-    internal sealed class TraktUserFollowRequestsRequest : ATraktUsersGetRequest<ITraktUserFollowRequest>
+    internal sealed class TraktUserFollowRequestsRequest : AUsersGetRequest<ITraktUserFollowRequest>
     {
         public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
 

@@ -11,60 +11,56 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class ATraktUsersGetRequest_1_Tests
+    public class AUsersGetRequest_1_Tests
     {
-        internal class TraktUsersGetRequestMock : ATraktUsersGetRequest<int>
+        internal class UsersGetRequestMock : AUsersGetRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
-
-            public override void Validate()
-            {
-                throw new NotImplementedException();
-            }
+            public override void Validate() => throw new NotImplementedException();
         }
 
         [Fact]
-        public void Test_ATraktUsersGetRequest_1_Is_Abstract()
+        public void Test_AUsersGetRequest_1_Is_Abstract()
         {
-            typeof(ATraktUsersGetRequest<>).IsAbstract.Should().BeTrue();
+            typeof(AUsersGetRequest<>).IsAbstract.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktUsersGetRequest_1_Has_GenericTypeParameter()
+        public void Test_AUsersGetRequest_1_Has_GenericTypeParameter()
         {
-            typeof(ATraktUsersGetRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ATraktUsersGetRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
+            typeof(AUsersGetRequest<>).ContainsGenericParameters.Should().BeTrue();
+            typeof(AUsersGetRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
         }
 
         [Fact]
-        public void Test_ATraktUsersGetRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_AUsersGetRequest_1_Inherits_ATraktGetRequest_1()
         {
-            typeof(ATraktUsersGetRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
+            typeof(AUsersGetRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ATraktUsersGetRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_AUsersGetRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(ATraktUsersGetRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(AUsersGetRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_ATraktUsersGetRequest_1_Has_AuthorizationRequirement_Optional()
+        public void Test_AUsersGetRequest_1_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUsersGetRequestMock();
+            var request = new UsersGetRequestMock();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
-        public void Test_ATraktUsersGetRequest_1_Returns_Valid_UriPathParameters()
+        public void Test_AUsersGetRequest_1_Returns_Valid_UriPathParameters()
         {
             // without extended info
-            var requestMock = new TraktUsersGetRequestMock();
+            var requestMock = new UsersGetRequestMock();
             requestMock.GetUriPathParameters().Should().NotBeNull().And.BeEmpty();
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            requestMock = new TraktUsersGetRequestMock { ExtendedInfo = extendedInfo };
+            requestMock = new UsersGetRequestMock { ExtendedInfo = extendedInfo };
 
             requestMock.GetUriPathParameters().Should().NotBeNull()
                                                        .And.HaveCount(1)

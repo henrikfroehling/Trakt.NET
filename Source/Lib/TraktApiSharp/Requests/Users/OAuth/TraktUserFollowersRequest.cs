@@ -5,7 +5,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserFollowersRequest : ATraktUsersGetRequest<ITraktUserFollower>
+    internal sealed class TraktUserFollowersRequest : AUsersGetRequest<ITraktUserFollower>
     {
         internal string Username { get; set; }
 
