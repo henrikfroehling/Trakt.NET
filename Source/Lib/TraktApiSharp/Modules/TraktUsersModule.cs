@@ -203,7 +203,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktUserCollectionMoviesRequest
+            return requestHandler.ExecuteListRequestAsync(new UserCollectionMoviesRequest
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo

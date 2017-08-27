@@ -761,7 +761,7 @@
     <Compile Include="Requests\Users\OAuth\AUsersPagedGetRequest%271.cs" />
     <Compile Include="Requests\Users\OAuth\AUsersPostByIdRequest%271.cs" />
     <Compile Include="Requests\Users\OAuth\UserApproveFollowerRequest.cs" />
-    <Compile Include="Requests\Users\OAuth\TraktUserCollectionMoviesRequest.cs" />
+    <Compile Include="Requests\Users\OAuth\UserCollectionMoviesRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCollectionShowsRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCommentsRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCustomListAddRequest.cs" />

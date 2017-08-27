@@ -13,30 +13,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserCollectionMoviesRequest_Tests
+    public class UserCollectionMoviesRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserCollectionMoviesRequest_Is_Not_Abstract()
+        public void Test_UserCollectionMoviesRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserCollectionMoviesRequest).IsAbstract.Should().BeFalse();
+            typeof(UserCollectionMoviesRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserCollectionMoviesRequest_Is_Sealed()
+        public void Test_UserCollectionMoviesRequest_Is_Sealed()
         {
-            typeof(TraktUserCollectionMoviesRequest).IsSealed.Should().BeTrue();
+            typeof(UserCollectionMoviesRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCollectionMoviesRequest_Inherits_ATraktUsersGetRequest_1()
+        public void Test_UserCollectionMoviesRequest_Inherits_ATraktUsersGetRequest_1()
         {
-            typeof(TraktUserCollectionMoviesRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktCollectionMovie>)).Should().BeTrue();
+            typeof(UserCollectionMoviesRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktCollectionMovie>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCollectionMoviesRequest_Has_Username_Property()
+        public void Test_UserCollectionMoviesRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserCollectionMoviesRequest)
+            var propertyInfo = typeof(UserCollectionMoviesRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -47,24 +47,24 @@
         }
 
         [Fact]
-        public void Test_TraktUserCollectionMoviesRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserCollectionMoviesRequest_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUserCollectionMoviesRequest();
+            var request = new UserCollectionMoviesRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
-        public void Test_TraktUserCollectionMoviesRequest_Has_Valid_UriTemplate()
+        public void Test_UserCollectionMoviesRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserCollectionMoviesRequest();
+            var request = new UserCollectionMoviesRequest();
             request.UriTemplate.Should().Be("users/{username}/collection/movies{?extended}");
         }
 
         [Fact]
-        public void Test_TraktUserCollectionMoviesRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserCollectionMoviesRequest_Returns_Valid_UriPathParameters()
         {
             // without extended info
-            var request = new TraktUserCollectionMoviesRequest { Username = "username" };
+            var request = new UserCollectionMoviesRequest { Username = "username" };
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
                                                    .And.Contain(new Dictionary<string, object>
@@ -74,7 +74,7 @@
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktUserCollectionMoviesRequest { Username = "username", ExtendedInfo = extendedInfo };
+            request = new UserCollectionMoviesRequest { Username = "username", ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -86,22 +86,22 @@
         }
 
         [Fact]
-        public void Test_TraktUserCollectionMoviesRequest_Validate_Throws_Exceptions()
+        public void Test_UserCollectionMoviesRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var requestMock = new TraktUserCollectionMoviesRequest();
+            var requestMock = new UserCollectionMoviesRequest();
 
             Action act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            requestMock = new TraktUserCollectionMoviesRequest { Username = string.Empty };
+            requestMock = new UserCollectionMoviesRequest { Username = string.Empty };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            requestMock = new TraktUserCollectionMoviesRequest { Username = "invalid username" };
+            requestMock = new UserCollectionMoviesRequest { Username = "invalid username" };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();

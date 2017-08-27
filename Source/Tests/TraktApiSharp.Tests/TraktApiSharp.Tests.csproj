@@ -1266,7 +1266,7 @@
     <Compile Include="Requests\Users\OAuth\AUsersPagedGetRequest%271_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\AUsersPostByIdRequest%271_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserApproveFollowerRequest_Tests.cs" />
-    <Compile Include="Requests\Users\OAuth\TraktUserCollectionMoviesRequest_Tests.cs" />
+    <Compile Include="Requests\Users\OAuth\UserCollectionMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCollectionShowsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCommentsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCustomListAddRequest_Tests.cs" />
