@@ -746,7 +746,7 @@
     <Compile Include="Requests\Syncs\OAuth\SyncPlaybackProgressRequest.cs" />
     <Compile Include="Requests\Syncs\OAuth\SyncRatingsAddRequest.cs" />
     <Compile Include="Requests\Syncs\OAuth\SyncRatingsRemoveRequest.cs" />
-    <Compile Include="Requests\Syncs\OAuth\TraktSyncRatingsRequest.cs" />
+    <Compile Include="Requests\Syncs\OAuth\SyncRatingsRequest.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncWatchedHistoryAddRequest.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncWatchedHistoryRemoveRequest.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncWatchedHistoryRequest.cs" />

@@ -363,7 +363,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktSyncRatingsRequest
+            return requestHandler.ExecuteListRequestAsync(new SyncRatingsRequest
             {
                 Type = ratingsItemType,
                 RatingFilter = ratingsFilter,
