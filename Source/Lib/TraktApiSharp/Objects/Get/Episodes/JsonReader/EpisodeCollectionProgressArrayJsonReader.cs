@@ -40,7 +40,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var episodeCollectionProgressReader = new TraktEpisodeCollectionProgressObjectJsonReader();
+                var episodeCollectionProgressReader = new EpisodeCollectionProgressObjectJsonReader();
                 //var traktEpisodeCollectionProgressReadingTasks = new List<Task<ITraktEpisodeCollectionProgress>>();
                 var traktEpisodeCollectionProgresses = new List<ITraktEpisodeCollectionProgress>();
 

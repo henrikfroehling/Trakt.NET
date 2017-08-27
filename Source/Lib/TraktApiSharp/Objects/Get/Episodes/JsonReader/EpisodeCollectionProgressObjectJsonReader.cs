@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktEpisodeCollectionProgressObjectJsonReader : IObjectJsonReader<ITraktEpisodeCollectionProgress>
+    internal class EpisodeCollectionProgressObjectJsonReader : IObjectJsonReader<ITraktEpisodeCollectionProgress>
     {
         private const string PROPERTY_NAME_NUMBER = "number";
         private const string PROPERTY_NAME_COMPLETED = "completed";

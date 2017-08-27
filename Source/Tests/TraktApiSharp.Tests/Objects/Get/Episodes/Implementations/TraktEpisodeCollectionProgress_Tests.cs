@@ -37,7 +37,7 @@
         [Fact]
         public async Task Test_TraktEpisodeCollectionProgressCollectionProgress_From_Json()
         {
-            var jsonReader = new TraktEpisodeCollectionProgressObjectJsonReader();
+            var jsonReader = new EpisodeCollectionProgressObjectJsonReader();
             var episodeCollectionProgress = await jsonReader.ReadObjectAsync(JSON) as TraktEpisodeCollectionProgress;
 
             episodeCollectionProgress.Should().NotBeNull();
