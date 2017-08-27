@@ -215,7 +215,7 @@
                                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktSyncWatchedMoviesRequest { ExtendedInfo = extendedInfo }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new SyncWatchedMoviesRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
