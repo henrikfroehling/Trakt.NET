@@ -13,30 +13,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserWatchedShowsRequest_Tests
+    public class UserWatchedShowsRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserWatchedShowsRequest_Is_Not_Abstract()
+        public void Test_UserWatchedShowsRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserWatchedShowsRequest).IsAbstract.Should().BeFalse();
+            typeof(UserWatchedShowsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserWatchedShowsRequest_Is_Sealed()
+        public void Test_UserWatchedShowsRequest_Is_Sealed()
         {
-            typeof(TraktUserWatchedShowsRequest).IsSealed.Should().BeTrue();
+            typeof(UserWatchedShowsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserWatchedShowsRequest_Inherits_ATraktUsersGetRequest_1()
+        public void Test_UserWatchedShowsRequest_Inherits_ATraktUsersGetRequest_1()
         {
-            typeof(TraktUserWatchedShowsRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktWatchedShow>)).Should().BeTrue();
+            typeof(UserWatchedShowsRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktWatchedShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserWatchedShowsRequest_Has_Username_Property()
+        public void Test_UserWatchedShowsRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserWatchedShowsRequest)
+            var propertyInfo = typeof(UserWatchedShowsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -47,24 +47,24 @@
         }
 
         [Fact]
-        public void Test_TraktUserWatchedShowsRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserWatchedShowsRequest_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUserWatchedShowsRequest();
+            var request = new UserWatchedShowsRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
-        public void Test_TraktUserWatchedShowsRequest_Has_Valid_UriTemplate()
+        public void Test_UserWatchedShowsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserWatchedShowsRequest();
+            var request = new UserWatchedShowsRequest();
             request.UriTemplate.Should().Be("users/{username}/watched/shows{?extended}");
         }
 
         [Fact]
-        public void Test_TraktUserWatchedShowsRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserWatchedShowsRequest_Returns_Valid_UriPathParameters()
         {
             // without extended info
-            var request = new TraktUserWatchedShowsRequest { Username = "username" };
+            var request = new UserWatchedShowsRequest { Username = "username" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -75,7 +75,7 @@
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktUserWatchedShowsRequest { Username = "username", ExtendedInfo = extendedInfo };
+            request = new UserWatchedShowsRequest { Username = "username", ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -87,22 +87,22 @@
         }
 
         [Fact]
-        public void Test_TraktUserWatchedShowsRequest_Validate_Throws_Exceptions()
+        public void Test_UserWatchedShowsRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserWatchedShowsRequest();
+            var request = new UserWatchedShowsRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserWatchedShowsRequest { Username = string.Empty };
+            request = new UserWatchedShowsRequest { Username = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserWatchedShowsRequest { Username = "invalid username" };
+            request = new UserWatchedShowsRequest { Username = "invalid username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

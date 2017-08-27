@@ -1066,7 +1066,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktUserWatchedShowsRequest
+            return requestHandler.ExecuteListRequestAsync(new UserWatchedShowsRequest
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
