@@ -135,7 +135,7 @@
     <Compile Include="Objects\Basic\ITraktTranslation.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\CastAndCrewJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\CastMemberJsonReaderFactory.cs" />
-    <Compile Include="Objects\Basic\JsonReader\Factories\TraktCommentJsonReaderFactory.cs" />
+    <Compile Include="Objects\Basic\JsonReader\Factories\CommentJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\TraktCrewJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\TraktCrewMemberJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\TraktErrorJsonReaderFactory.cs" />
