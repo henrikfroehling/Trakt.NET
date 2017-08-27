@@ -452,7 +452,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktSyncWatchlistRequest
+            return requestHandler.ExecutePagedRequestAsync(new SyncWatchlistRequest
             {
                 Type = watchlistItemType,
                 ExtendedInfo = extendedInfo,

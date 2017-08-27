@@ -6,7 +6,7 @@
     using Parameters;
     using System.Collections.Generic;
 
-    internal sealed class TraktSyncWatchlistRequest : ASyncGetRequest<ITraktWatchlistItem>, ISupportsExtendedInfo, ISupportsPagination
+    internal sealed class SyncWatchlistRequest : ASyncGetRequest<ITraktWatchlistItem>, ISupportsExtendedInfo, ISupportsPagination
     {
         internal TraktSyncItemType Type { get; set; }
 
