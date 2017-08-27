@@ -168,7 +168,7 @@
         {
             ValidateCollectionPost(collectionPost);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncCollectionAddRequest { RequestBody = collectionPost }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncCollectionAddRequest { RequestBody = collectionPost }, cancellationToken);
         }
 
         /// <summary>
