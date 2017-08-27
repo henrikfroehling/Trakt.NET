@@ -215,11 +215,11 @@
     <Compile Include="Objects\Get\Collections\Implementations\TraktCollectionMovie_Tests.cs" />
     <Compile Include="Objects\Get\Collections\Implementations\TraktCollectionShow_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\Interfaces\ITraktCalendarEpisode_Tests.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionMovieObjectJsonReader\TraktCollectionMovieObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionMovieObjectJsonReader\TraktCollectionMovieObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionMovieObjectJsonReader\TraktCollectionMovieObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionMovieObjectJsonReader\TraktCollectionMovieObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionMovieObjectJsonReader\TraktCollectionMovieObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\CollectionMovieObjectJsonReader\CollectionMovieObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\CollectionMovieObjectJsonReader\CollectionMovieObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\CollectionMovieObjectJsonReader\CollectionMovieObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\CollectionMovieObjectJsonReader\CollectionMovieObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Collections\JsonReader\CollectionMovieObjectJsonReader\CollectionMovieObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowEpisodeArrayJsonReader\TraktCollectionShowEpisodeArrayJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowEpisodeArrayJsonReader\TraktCollectionShowEpisodeArrayJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Collections\JsonReader\TraktCollectionShowEpisodeArrayJsonReader\TraktCollectionShowEpisodeArrayJsonReader_Stream_Tests.cs" />
