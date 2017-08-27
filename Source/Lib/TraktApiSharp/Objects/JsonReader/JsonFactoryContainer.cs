@@ -119,7 +119,7 @@
 
             // collection objects
             s_readerFactories.Add(typeof(ITraktCollectionShowEpisode), new CollectionShowEpisodeJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktCollectionShowSeason), new TraktCollectionShowSeasonJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktCollectionShowSeason), new CollectionShowSeasonJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktCollectionShow), new CollectionShowJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktCollectionMovie), new CollectionMovieJsonReaderFactory());
 
