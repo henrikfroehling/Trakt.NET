@@ -121,7 +121,7 @@
             s_readerFactories.Add(typeof(ITraktCollectionShowEpisode), new TraktCollectionShowEpisodeJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktCollectionShowSeason), new TraktCollectionShowSeasonJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktCollectionShow), new TraktCollectionShowJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktCollectionMovie), new TraktCollectionMovieJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktCollectionMovie), new CollectionMovieJsonReaderFactory());
 
             // comment post response objects
             s_readerFactories.Add(typeof(ITraktCommentPostResponse), new TraktCommentPostResponseJsonReaderFactory());
