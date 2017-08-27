@@ -13,30 +13,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserFriendsRequest_Tests
+    public class UserFriendsRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserFriendsRequest_Is_Not_Abstract()
+        public void Test_UserFriendsRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserFriendsRequest).IsAbstract.Should().BeFalse();
+            typeof(UserFriendsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserFriendsRequest_Is_Sealed()
+        public void Test_UserFriendsRequest_Is_Sealed()
         {
-            typeof(TraktUserFriendsRequest).IsSealed.Should().BeTrue();
+            typeof(UserFriendsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserFriendsRequest_Inherits_ATraktUsersGetRequest_1()
+        public void Test_UserFriendsRequest_Inherits_ATraktUsersGetRequest_1()
         {
-            typeof(TraktUserFriendsRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktUserFriend>)).Should().BeTrue();
+            typeof(UserFriendsRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktUserFriend>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserFriendsRequest_Has_Username_Property()
+        public void Test_UserFriendsRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserFriendsRequest)
+            var propertyInfo = typeof(UserFriendsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -47,24 +47,24 @@
         }
 
         [Fact]
-        public void Test_TraktUserFriendsRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserFriendsRequest_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUserFriendsRequest();
+            var request = new UserFriendsRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
-        public void Test_TraktUserFriendsRequest_Has_Valid_UriTemplate()
+        public void Test_UserFriendsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserFriendsRequest();
+            var request = new UserFriendsRequest();
             request.UriTemplate.Should().Be("users/{username}/friends{?extended}");
         }
 
         [Fact]
-        public void Test_TraktUserFriendsRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserFriendsRequest_Returns_Valid_UriPathParameters()
         {
             // without extended info
-            var request = new TraktUserFriendsRequest { Username = "username" };
+            var request = new UserFriendsRequest { Username = "username" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
@@ -75,7 +75,7 @@
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktUserFriendsRequest { Username = "username", ExtendedInfo = extendedInfo };
+            request = new UserFriendsRequest { Username = "username", ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -87,22 +87,22 @@
         }
 
         [Fact]
-        public void Test_TraktUserFriendsRequest_Validate_Throws_Exceptions()
+        public void Test_UserFriendsRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserFriendsRequest();
+            var request = new UserFriendsRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserFriendsRequest { Username = string.Empty };
+            request = new UserFriendsRequest { Username = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserFriendsRequest { Username = "invalid username" };
+            request = new UserFriendsRequest { Username = "invalid username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

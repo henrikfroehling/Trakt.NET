@@ -786,7 +786,7 @@
                                                                          CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktUserFriendsRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new UserFriendsRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
