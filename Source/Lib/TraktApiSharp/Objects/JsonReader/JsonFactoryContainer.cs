@@ -109,7 +109,7 @@
             s_readerFactories.Add(typeof(ITraktStatistics), new StatisticsJsonReaderFactory());
 
             // calendar objects
-            s_readerFactories.Add(typeof(ITraktCalendarMovie), new TraktCalendarMovieJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktCalendarMovie), new CalendarMovieJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktCalendarShow), new TraktCalendarShowJsonReaderFactory());
 
             // checkin post response objects
