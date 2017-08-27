@@ -54,7 +54,7 @@
             {
                 var movieObjectReader = new TraktMovieObjectJsonReader();
                 var showObjectReader = new TraktShowObjectJsonReader();
-                var episodeObjectReader = new TraktEpisodeObjectJsonReader();
+                var episodeObjectReader = new EpisodeObjectJsonReader();
 
                 ITraktSyncPlaybackProgressItem traktPlaybackProgressItem = new TraktSyncPlaybackProgressItem();
 

@@ -56,7 +56,7 @@
                 var movieObjectReader = new TraktMovieObjectJsonReader();
                 var showObjectReader = new TraktShowObjectJsonReader();
                 var seasonObjectReader = new TraktSeasonObjectJsonReader();
-                var episodeObjectReader = new TraktEpisodeObjectJsonReader();
+                var episodeObjectReader = new EpisodeObjectJsonReader();
 
                 ITraktRatingsItem traktRatingItem = new TraktRatingsItem();
 

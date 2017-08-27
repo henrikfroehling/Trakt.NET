@@ -50,7 +50,7 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var sharingReader = new SharingObjectJsonReader();
-                var episodeReader = new TraktEpisodeObjectJsonReader();
+                var episodeReader = new EpisodeObjectJsonReader();
                 var showReader = new TraktShowObjectJsonReader();
                 ITraktEpisodeCheckinPostResponse checkinEpisodeResponse = new TraktEpisodeCheckinPostResponse();
 

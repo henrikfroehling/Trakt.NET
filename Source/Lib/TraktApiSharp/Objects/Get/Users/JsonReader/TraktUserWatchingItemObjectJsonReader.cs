@@ -54,7 +54,7 @@
             {
                 var movieReader = new TraktMovieObjectJsonReader();
                 var showReader = new TraktShowObjectJsonReader();
-                var episodeReader = new TraktEpisodeObjectJsonReader();
+                var episodeReader = new EpisodeObjectJsonReader();
                 ITraktUserWatchingItem traktUserWatchingItem = new TraktUserWatchingItem();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
