@@ -100,7 +100,7 @@
             s_readerFactories.Add(typeof(ITraktCrewMember), new CrewMemberJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktError), new ErrorJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktGenre), new GenreJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktIds), new TraktIdsJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktIds), new IdsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktImage), new TraktImageJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktMetadata), new TraktMetadataJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktRating), new TraktRatingJsonReaderFactory());

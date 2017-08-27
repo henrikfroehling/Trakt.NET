@@ -140,7 +140,7 @@
     <Compile Include="Objects\Basic\JsonReader\Factories\CrewMemberJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\ErrorJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\GenreJsonReaderFactory.cs" />
-    <Compile Include="Objects\Basic\JsonReader\Factories\TraktIdsJsonReaderFactory.cs" />
+    <Compile Include="Objects\Basic\JsonReader\Factories\IdsJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\TraktImageJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\TraktMetadataJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\TraktRatingJsonReaderFactory.cs" />
