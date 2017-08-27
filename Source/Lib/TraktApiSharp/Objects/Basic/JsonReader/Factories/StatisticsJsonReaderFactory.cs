@@ -3,7 +3,7 @@
     using Objects.JsonReader;
     using System;
 
-    internal class TraktStatisticsJsonReaderFactory : IJsonReaderFactory<ITraktStatistics>
+    internal class StatisticsJsonReaderFactory : IJsonReaderFactory<ITraktStatistics>
     {
         public IObjectJsonReader<ITraktStatistics> CreateObjectReader() => new TraktStatisticsObjectJsonReader();
 
