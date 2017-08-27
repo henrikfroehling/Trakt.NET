@@ -1292,7 +1292,7 @@
     <Compile Include="Requests\Users\OAuth\UserSettingsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserStatisticsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserUnfollowUserRequest_Tests.cs" />
-    <Compile Include="Requests\Users\OAuth\TraktUserWatchedHistoryRequest_Tests.cs" />
+    <Compile Include="Requests\Users\OAuth\UserWatchedHistoryRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserWatchedMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserWatchedShowsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserWatchingRequest_Tests.cs" />

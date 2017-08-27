@@ -900,7 +900,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktUserWatchedHistoryRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserWatchedHistoryRequest
             {
                 Username = usernameOrSlug,
                 Type = historyItemType,

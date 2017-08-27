@@ -17,36 +17,36 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserWatchedHistoryRequest_Tests
+    public class UserWatchedHistoryRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserWatchedHistoryRequest_Is_Not_Abstract()
+        public void Test_UserWatchedHistoryRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserWatchedHistoryRequest).IsAbstract.Should().BeFalse();
+            typeof(UserWatchedHistoryRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserWatchedHistoryRequest_Is_Sealed()
+        public void Test_UserWatchedHistoryRequest_Is_Sealed()
         {
-            typeof(TraktUserWatchedHistoryRequest).IsSealed.Should().BeTrue();
+            typeof(UserWatchedHistoryRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserWatchedHistoryRequest_Inherits_ATraktUsersPagedGetRequest_1()
+        public void Test_UserWatchedHistoryRequest_Inherits_ATraktUsersPagedGetRequest_1()
         {
-            typeof(TraktUserWatchedHistoryRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktHistoryItem>)).Should().BeTrue();
+            typeof(UserWatchedHistoryRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktHistoryItem>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserWatchedHistoryRequest_Implements_ITraktHasId_Interface()
+        public void Test_UserWatchedHistoryRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktUserWatchedHistoryRequest).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(UserWatchedHistoryRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_TraktUserWatchedHistoryRequest_Has_Username_Property()
+        public void Test_UserWatchedHistoryRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserWatchedHistoryRequest)
+            var propertyInfo = typeof(UserWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -57,9 +57,9 @@
         }
 
         [Fact]
-        public void Test_TraktUserWatchedHistoryRequest_Has_Type_Property()
+        public void Test_UserWatchedHistoryRequest_Has_Type_Property()
         {
-            var propertyInfo = typeof(TraktUserWatchedHistoryRequest)
+            var propertyInfo = typeof(UserWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Type")
                     .FirstOrDefault();
@@ -70,9 +70,9 @@
         }
 
         [Fact]
-        public void Test_TraktUserWatchedHistoryRequest_Has_ItemId_Property()
+        public void Test_UserWatchedHistoryRequest_Has_ItemId_Property()
         {
-            var propertyInfo = typeof(TraktUserWatchedHistoryRequest)
+            var propertyInfo = typeof(UserWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "ItemId")
                     .FirstOrDefault();
@@ -83,9 +83,9 @@
         }
 
         [Fact]
-        public void Test_TraktUserWatchedHistoryRequest_Has_StartAt_Property()
+        public void Test_UserWatchedHistoryRequest_Has_StartAt_Property()
         {
-            var propertyInfo = typeof(TraktUserWatchedHistoryRequest)
+            var propertyInfo = typeof(UserWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "StartAt")
                     .FirstOrDefault();
@@ -96,9 +96,9 @@
         }
 
         [Fact]
-        public void Test_TraktUserWatchedHistoryRequest_Has_EndAt_Property()
+        public void Test_UserWatchedHistoryRequest_Has_EndAt_Property()
         {
-            var propertyInfo = typeof(TraktUserWatchedHistoryRequest)
+            var propertyInfo = typeof(UserWatchedHistoryRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "EndAt")
                     .FirstOrDefault();
@@ -109,43 +109,43 @@
         }
 
         [Fact]
-        public void Test_TraktUserWatchedHistoryRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserWatchedHistoryRequest_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUserWatchedHistoryRequest();
+            var request = new UserWatchedHistoryRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
-        public void Test_TraktUserWatchedHistoryRequest_Has_Valid_UriTemplate()
+        public void Test_UserWatchedHistoryRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserWatchedHistoryRequest();
+            var request = new UserWatchedHistoryRequest();
             request.UriTemplate.Should().Be("users/{username}/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}");
         }
 
         [Fact]
-        public void Test_TraktUserWatchedHistoryRequest_Validate_Throws_Exceptions()
+        public void Test_UserWatchedHistoryRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserWatchedHistoryRequest();
+            var request = new UserWatchedHistoryRequest();
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserWatchedHistoryRequest { Username = string.Empty };
+            request = new UserWatchedHistoryRequest { Username = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserWatchedHistoryRequest { Username = "invalid username" };
+            request = new UserWatchedHistoryRequest { Username = "invalid username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktUserWatchedHistoryRequest_TestData))]
-        public void Test_TraktUserWatchedHistoryRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(UserWatchedHistoryRequest_TestData))]
+        public void Test_UserWatchedHistoryRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                         IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -154,7 +154,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktUserWatchedHistoryRequest_TestData : IEnumerable<object[]>
+        public class UserWatchedHistoryRequest_TestData : IEnumerable<object[]>
         {
             private const string _username = "username";
             private static readonly TraktSyncItemType _type = TraktSyncItemType.Episode;
@@ -165,96 +165,96 @@
             private const int _page = 4;
             private const int _limit = 20;
 
-            private static readonly TraktUserWatchedHistoryRequest _request1 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request1 = new UserWatchedHistoryRequest
             {
                 Username = _username
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request2 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request2 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 Type = _type
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request3 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request3 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 ItemId = _id
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request4 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request4 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 StartAt = _startAt
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request5 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request5 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 EndAt = _endAt
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request6 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request6 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request7 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request7 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 Page = _page
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request8 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request8 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 Limit = _limit
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request9 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request9 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 Type = _type,
                 ItemId = _id
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request10 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request10 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 Type = _type,
                 StartAt = _startAt
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request11 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request11 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 Type = _type,
                 EndAt = _endAt
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request12 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request12 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 Type = _type,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request13 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request13 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 Type = _type,
                 Page = _page
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request14 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request14 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 Type = _type,
                 Limit = _limit
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request15 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request15 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 Type = _type,
@@ -262,42 +262,42 @@
                 Limit = _limit
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request16 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request16 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 ItemId = _id,
                 StartAt = _startAt
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request17 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request17 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 ItemId = _id,
                 EndAt = _endAt
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request18 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request18 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 ItemId = _id,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request19 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request19 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 ItemId = _id,
                 Page = _page
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request20 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request20 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 ItemId = _id,
                 Limit = _limit
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request21 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request21 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 ItemId = _id,
@@ -305,35 +305,35 @@
                 Limit = _limit
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request22 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request22 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 StartAt = _startAt,
                 EndAt = _endAt
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request23 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request23 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 StartAt = _startAt,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request24 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request24 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 StartAt = _startAt,
                 Page = _page
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request25 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request25 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 StartAt = _startAt,
                 Limit = _limit
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request26 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request26 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 StartAt = _startAt,
@@ -341,28 +341,28 @@
                 Limit = _limit
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request27 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request27 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 EndAt = _endAt,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request28 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request28 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 EndAt = _endAt,
                 Page = _page
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request29 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request29 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 EndAt = _endAt,
                 Limit = _limit
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request30 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request30 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 EndAt = _endAt,
@@ -370,14 +370,14 @@
                 Limit = _limit
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request31 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request31 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktUserWatchedHistoryRequest _request32 = new TraktUserWatchedHistoryRequest
+            private static readonly UserWatchedHistoryRequest _request32 = new UserWatchedHistoryRequest
             {
                 Username = _username,
                 Type = _type,
@@ -391,7 +391,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktUserWatchedHistoryRequest_TestData()
+            public UserWatchedHistoryRequest_TestData()
             {
                 SetupPathParamters();
             }
