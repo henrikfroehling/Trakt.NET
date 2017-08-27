@@ -8,12 +8,12 @@
     using Xunit;
 
     [Category("Objects.Get.Episodes.JsonReader")]
-    public partial class TraktEpisodeWatchedProgressObjectJsonReader_Tests
+    public partial class EpisodeWatchedProgressObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_TraktEpisodeWatchedProgressObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
+        public void Test_EpisodeWatchedProgressObjectJsonReader_Implements_IObjectJsonReader_Interface()
         {
-            typeof(TraktEpisodeWatchedProgressObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktEpisodeWatchedProgress>));
+            typeof(EpisodeWatchedProgressObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktEpisodeWatchedProgress>));
         }
     }
 }
