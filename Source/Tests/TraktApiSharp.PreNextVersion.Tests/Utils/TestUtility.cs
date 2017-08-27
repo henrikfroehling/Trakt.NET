@@ -52,12 +52,12 @@
 
             // ------------------------------------------------------
 
-            TraktRequestHandler.s_httpClient = new HttpClient(MOCK_HTTP);
+            RequestHandler.s_httpClient = new HttpClient(MOCK_HTTP);
 
-            TraktRequestHandler.s_httpClient.DefaultRequestHeaders.Add("trakt-api-key", $"{TRAKT_CLIENT_ID}");
-            TraktRequestHandler.s_httpClient.DefaultRequestHeaders.Add("trakt-api-version", "2");
+            RequestHandler.s_httpClient.DefaultRequestHeaders.Add("trakt-api-key", $"{TRAKT_CLIENT_ID}");
+            RequestHandler.s_httpClient.DefaultRequestHeaders.Add("trakt-api-version", "2");
 
-            TraktRequestHandler.s_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            RequestHandler.s_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         public static void SetupMockAuthenticationHttpClient()
@@ -69,8 +69,8 @@
 
             // ------------------------------------------------------
 
-            TraktRequestHandler.s_httpClient = new HttpClient(MOCK_HTTP);
-            TraktRequestHandler.s_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            RequestHandler.s_httpClient = new HttpClient(MOCK_HTTP);
+            RequestHandler.s_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         public static void ResetMockHttpClient()
@@ -80,7 +80,7 @@
 
             // ------------------------------------------------------
 
-            TraktRequestHandler.s_httpClient = null;
+            RequestHandler.s_httpClient = null;
         }
 
         public static void ClearMockHttpClient()

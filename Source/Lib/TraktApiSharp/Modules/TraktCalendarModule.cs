@@ -50,9 +50,9 @@
                                                                              TraktCalendarFilter filter = null,
                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktCalendarUserShowsRequest
+            return requestHandler.ExecuteListRequestAsync(new CalendarUserShowsRequest
             {
                 StartDate = startDate,
                 Days = days,
@@ -84,9 +84,9 @@
                                                                                 TraktCalendarFilter filter = null,
                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktCalendarUserNewShowsRequest
+            return requestHandler.ExecuteListRequestAsync(new CalendarUserNewShowsRequest
             {
                 StartDate = startDate,
                 Days = days,
@@ -118,9 +118,9 @@
                                                                                        TraktCalendarFilter filter = null,
                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktCalendarUserSeasonPremieresRequest
+            return requestHandler.ExecuteListRequestAsync(new CalendarUserSeasonPremieresRequest
             {
                 StartDate = startDate,
                 Days = days,
@@ -152,9 +152,9 @@
                                                                                TraktCalendarFilter filter = null,
                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktCalendarUserMoviesRequest
+            return requestHandler.ExecuteListRequestAsync(new CalendarUserMoviesRequest
             {
                 StartDate = startDate,
                 Days = days,
@@ -186,9 +186,9 @@
                                                                                   TraktCalendarFilter filter = null,
                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktCalendarUserDVDMoviesRequest
+            return requestHandler.ExecuteListRequestAsync(new CalendarUserDVDMoviesRequest
             {
                 StartDate = startDate,
                 Days = days,
@@ -220,9 +220,9 @@
                                                                             TraktCalendarFilter filter = null,
                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktCalendarAllShowsRequest
+            return requestHandler.ExecuteListRequestAsync(new CalendarAllShowsRequest
             {
                 StartDate = startDate,
                 Days = days,
@@ -254,9 +254,9 @@
                                                                                TraktCalendarFilter filter = null,
                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktCalendarAllNewShowsRequest
+            return requestHandler.ExecuteListRequestAsync(new CalendarAllNewShowsRequest
             {
                 StartDate = startDate,
                 Days = days,
@@ -288,9 +288,9 @@
                                                                                       TraktCalendarFilter filter = null,
                                                                                       CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktCalendarAllSeasonPremieresRequest
+            return requestHandler.ExecuteListRequestAsync(new CalendarAllSeasonPremieresRequest
             {
                 StartDate = startDate,
                 Days = days,
@@ -322,9 +322,9 @@
                                                                               TraktCalendarFilter filter = null,
                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktCalendarAllMoviesRequest
+            return requestHandler.ExecuteListRequestAsync(new CalendarAllMoviesRequest
             {
                 StartDate = startDate,
                 Days = days,
@@ -356,9 +356,9 @@
                                                                                  TraktCalendarFilter filter = null,
                                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktCalendarAllDVDMoviesRequest
+            return requestHandler.ExecuteListRequestAsync(new CalendarAllDVDMoviesRequest
             {
                 StartDate = startDate,
                 Days = days,

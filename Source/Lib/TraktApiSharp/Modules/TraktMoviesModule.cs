@@ -52,9 +52,9 @@
         public Task<TraktResponse<ITraktMovie>> GetMovieAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktMovieSummaryRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new MovieSummaryRequest
             {
                 Id = movieIdOrSlug,
                 ExtendedInfo = extendedInfo
@@ -107,8 +107,8 @@
         public Task<TraktListResponse<ITraktMovieAlias>> GetMovieAliasesAsync(string movieIdOrSlug,
                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktMovieAliasesRequest { Id = movieIdOrSlug }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteListRequestAsync(new MovieAliasesRequest { Id = movieIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -128,8 +128,8 @@
         public Task<TraktListResponse<ITraktMovieRelease>> GetMovieReleasesAsync(string movieIdOrSlug, string countryCode = null,
                                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktMovieReleasesRequest { Id = movieIdOrSlug, CountryCode = countryCode }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteListRequestAsync(new MovieReleasesRequest { Id = movieIdOrSlug, CountryCode = countryCode }, cancellationToken);
         }
 
         /// <summary>
@@ -149,8 +149,8 @@
         public Task<TraktListResponse<ITraktMovieTranslation>> GetMovieTranslationsAsync(string movieIdOrSlug, string languageCode = null,
                                                                                          CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktMovieTranslationsRequest { Id = movieIdOrSlug, LanguageCode = languageCode }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteListRequestAsync(new MovieTranslationsRequest { Id = movieIdOrSlug, LanguageCode = languageCode }, cancellationToken);
         }
 
         /// <summary>
@@ -178,9 +178,9 @@
                                                                              TraktPagedParameters pagedParameters = null,
                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMovieCommentsRequest
+            return requestHandler.ExecutePagedRequestAsync(new MovieCommentsRequest
             {
                 Id = movieIdOrSlug,
                 SortOrder = commentSortOrder,
@@ -215,9 +215,9 @@
                                                                        TraktPagedParameters pagedParameters = null,
                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMovieListsRequest
+            return requestHandler.ExecutePagedRequestAsync(new MovieListsRequest
             {
                 Id = movieIdOrSlug,
                 Type = listType,
@@ -246,8 +246,8 @@
         public Task<TraktResponse<ITraktCastAndCrew>> GetMoviePeopleAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktMoviePeopleRequest { Id = movieIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteSingleItemRequestAsync(new MoviePeopleRequest { Id = movieIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -264,8 +264,8 @@
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         public Task<TraktResponse<ITraktRating>> GetMovieRatingsAsync(string movieIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktMovieRatingsRequest { Id = movieIdOrSlug }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteSingleItemRequestAsync(new MovieRatingsRequest { Id = movieIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -295,9 +295,9 @@
                                                                                 TraktPagedParameters pagedParameters = null,
                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMovieRelatedMoviesRequest
+            return requestHandler.ExecutePagedRequestAsync(new MovieRelatedMoviesRequest
             {
                 Id = movieIdOrSlug,
                 ExtendedInfo = extendedInfo,
@@ -320,8 +320,8 @@
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
         public Task<TraktResponse<ITraktStatistics>> GetMovieStatisticsAsync(string movieIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktMovieStatisticsRequest { Id = movieIdOrSlug }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteSingleItemRequestAsync(new MovieStatisticsRequest { Id = movieIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -343,8 +343,8 @@
         public Task<TraktListResponse<ITraktUser>> GetMovieWatchingUsersAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktMovieWatchingUsersRequest { Id = movieIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteListRequestAsync(new MovieWatchingUsersRequest { Id = movieIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -374,9 +374,9 @@
                                                                                     TraktPagedParameters pagedParameters = null,
                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesTrendingRequest
+            return requestHandler.ExecutePagedRequestAsync(new MoviesTrendingRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
@@ -412,9 +412,9 @@
                                                                            TraktPagedParameters pagedParameters = null,
                                                                            CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesPopularRequest
+            return requestHandler.ExecutePagedRequestAsync(new MoviesPopularRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
@@ -452,9 +452,9 @@
                                                                                      TraktPagedParameters pagedParameters = null,
                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesMostPlayedRequest
+            return requestHandler.ExecutePagedRequestAsync(new MoviesMostPlayedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
@@ -493,9 +493,9 @@
                                                                                       TraktPagedParameters pagedParameters = null,
                                                                                       CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesMostWatchedRequest
+            return requestHandler.ExecutePagedRequestAsync(new MoviesMostWatchedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
@@ -534,9 +534,9 @@
                                                                                         TraktPagedParameters pagedParameters = null,
                                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesMostCollectedRequest
+            return requestHandler.ExecutePagedRequestAsync(new MoviesMostCollectedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
@@ -573,9 +573,9 @@
                                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesMostAnticipatedRequest
+            return requestHandler.ExecutePagedRequestAsync(new MoviesMostAnticipatedRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
@@ -601,8 +601,8 @@
         public Task<TraktListResponse<ITraktBoxOfficeMovie>> GetBoxOfficeMoviesAsync(TraktExtendedInfo extendedInfo = null,
                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktMoviesBoxOfficeRequest { ExtendedInfo = extendedInfo }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteListRequestAsync(new MoviesBoxOfficeRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -632,9 +632,9 @@
                                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktMoviesRecentlyUpdatedRequest
+            return requestHandler.ExecutePagedRequestAsync(new MoviesRecentlyUpdatedRequest
             {
                 StartDate = startDate,
                 ExtendedInfo = extendedInfo,

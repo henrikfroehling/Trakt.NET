@@ -54,8 +54,8 @@
         public Task<TraktResponse<ITraktComment>> GetCommentAsync(uint commentId, CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateId(commentId);
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentSummaryRequest { Id = commentId.ToString() }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentSummaryRequest { Id = commentId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -119,9 +119,9 @@
             ValidateMovie(movie);
             ValidateComment(comment);
 
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktMovieCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<TraktMovieCommentPost>
             {
                 RequestBody = new TraktMovieCommentPost
                 {
@@ -166,9 +166,9 @@
             ValidateShow(show);
             ValidateComment(comment);
 
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktShowCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<TraktShowCommentPost>
             {
                 RequestBody = new TraktShowCommentPost
                 {
@@ -211,9 +211,9 @@
             ValidateSeason(season);
             ValidateComment(comment);
 
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktSeasonCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<TraktSeasonCommentPost>
             {
                 RequestBody = new TraktSeasonCommentPost
                 {
@@ -252,9 +252,9 @@
             ValidateEpisode(episode);
             ValidateComment(comment);
 
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktEpisodeCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<TraktEpisodeCommentPost>
             {
                 RequestBody = new TraktEpisodeCommentPost
                 {
@@ -293,9 +293,9 @@
             ValidateList(list);
             ValidateComment(comment);
 
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentPostRequest<TraktListCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<TraktListCommentPost>
             {
                 RequestBody = new TraktListCommentPost
                 {
@@ -331,9 +331,9 @@
             ValidateId(commentId);
             ValidateComment(comment);
 
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentUpdateRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentUpdateRequest
             {
                 Id = commentId.ToString(),
                 RequestBody = new TraktCommentUpdatePost
@@ -368,9 +368,9 @@
             ValidateId(commentId);
             ValidateComment(comment);
 
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCommentReplyRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentReplyRequest
             {
                 Id = commentId.ToString(),
                 RequestBody = new TraktCommentReplyPost
@@ -395,8 +395,8 @@
         public Task<TraktNoContentResponse> DeleteCommentAsync(uint commentId, CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateId(commentId);
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktCommentDeleteRequest { Id = commentId.ToString() }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteNoContentRequestAsync(new CommentDeleteRequest { Id = commentId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -413,8 +413,8 @@
         public Task<TraktNoContentResponse> LikeCommentAsync(uint commentId, CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateId(commentId);
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktCommentLikeRequest { Id = commentId.ToString() }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteNoContentRequestAsync(new CommentLikeRequest { Id = commentId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -431,8 +431,8 @@
         public Task<TraktNoContentResponse> UnlikeCommentAsync(uint commentId, CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateId(commentId);
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktCommentUnlikeRequest { Id = commentId.ToString() }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteNoContentRequestAsync(new CommentUnlikeRequest { Id = commentId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -458,9 +458,9 @@
                                                                               CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateId(commentId);
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktCommentRepliesRequest
+            return requestHandler.ExecutePagedRequestAsync(new CommentRepliesRequest
             {
                 Id = commentId.ToString(),
                 Page = pagedParameters?.Page,

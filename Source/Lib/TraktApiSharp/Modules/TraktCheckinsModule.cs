@@ -81,9 +81,9 @@
             if (appBuildDate.HasValue)
                 requestBody.AppDate = appBuildDate.Value.ToTraktDateString();
 
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktMovieCheckinPostResponse, TraktMovieCheckinPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CheckinRequest<ITraktMovieCheckinPostResponse, TraktMovieCheckinPost>
             {
                 RequestBody = requestBody
             }, cancellationToken);
@@ -136,9 +136,9 @@
             if (appBuildDate.HasValue)
                 requestBody.AppDate = appBuildDate.Value.ToTraktDateString();
 
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CheckinRequest<ITraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
             {
                 RequestBody = requestBody
             }, cancellationToken);
@@ -194,9 +194,9 @@
             if (appBuildDate.HasValue)
                 requestBody.AppDate = appBuildDate.Value.ToTraktDateString();
 
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktCheckinRequest<ITraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CheckinRequest<ITraktEpisodeCheckinPostResponse, TraktEpisodeCheckinPost>
             {
                 RequestBody = requestBody
             }, cancellationToken);
@@ -213,8 +213,8 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktNoContentResponse> DeleteAnyActiveCheckinsAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktCheckinsDeleteRequest(), cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteNoContentRequestAsync(new CheckinsDeleteRequest(), cancellationToken);
         }
 
         private void Validate(TraktMovie movie)

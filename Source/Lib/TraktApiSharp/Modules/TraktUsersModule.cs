@@ -54,8 +54,8 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktResponse<ITraktUserSettings>> GetSettingsAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserSettingsRequest(), cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserSettingsRequest(), cancellationToken);
         }
 
         /// <summary>
@@ -75,8 +75,8 @@
         public Task<TraktListResponse<ITraktUserFollowRequest>> GetFollowRequestsAsync(TraktExtendedInfo extendedInfo = null,
                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktUserFollowRequestsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteListRequestAsync(new UserFollowRequestsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -109,9 +109,9 @@
                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktUserHiddenItemsRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserHiddenItemsRequest
             {
                 Section = hiddenItemsSection,
                 Type = hiddenItemType,
@@ -143,9 +143,9 @@
                                                                           TraktPagedParameters pagedParameters = null,
                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktUserLikesRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserLikesRequest
             {
                 Type = likeType,
                 Page = pagedParameters?.Page,
@@ -172,9 +172,9 @@
         public Task<TraktResponse<ITraktUser>> GetUserProfileAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                    CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserProfileRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserProfileRequest
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
@@ -201,9 +201,9 @@
                                                                                        TraktExtendedInfo extendedInfo = null,
                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktUserCollectionMoviesRequest
+            return requestHandler.ExecuteListRequestAsync(new UserCollectionMoviesRequest
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
@@ -230,9 +230,9 @@
                                                                                      TraktExtendedInfo extendedInfo = null,
                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktUserCollectionShowsRequest
+            return requestHandler.ExecuteListRequestAsync(new UserCollectionShowsRequest
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
@@ -271,9 +271,9 @@
                                                                             TraktPagedParameters pagedParameters = null,
                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktUserCommentsRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserCommentsRequest
             {
                 Username = usernameOrSlug,
                 CommentType = commentType,
@@ -298,8 +298,8 @@
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         public Task<TraktListResponse<ITraktList>> GetCustomListsAsync(string usernameOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktUserCustomListsRequest { Username = usernameOrSlug }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteListRequestAsync(new UserCustomListsRequest { Username = usernameOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -322,9 +322,9 @@
         public Task<TraktResponse<ITraktList>> GetCustomSingleListAsync(string usernameOrSlug, string listIdOrSlug,
                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserCustomSingleListRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserCustomSingleListRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug
@@ -392,9 +392,9 @@
                                                                                 TraktPagedParameters pagedParameters = null,
                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktUserCustomListItemsRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserCustomListItemsRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
@@ -447,9 +447,9 @@
             if (privacy != null && privacy != TraktAccessScope.Unspecified)
                 requestBody.Privacy = privacy;
 
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserCustomListAddRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserCustomListAddRequest
             {
                 Username = usernameOrSlug,
                 RequestBody = requestBody
@@ -505,9 +505,9 @@
             if (!isPrivacyNotSetOrValid)
                 requestBody.Privacy = privacy;
 
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserCustomListUpdateRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserCustomListUpdateRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
@@ -533,9 +533,9 @@
         public Task<TraktNoContentResponse> DeleteCustomListAsync(string usernameOrSlug, string listIdOrSlug,
                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktUserCustomListDeleteRequest
+            return requestHandler.ExecuteNoContentRequestAsync(new UserCustomListDeleteRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug
@@ -574,9 +574,9 @@
         {
             ValidateCustomListItemsPost(listItemsPost);
 
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserCustomListItemsAddRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserCustomListItemsAddRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
@@ -615,9 +615,9 @@
         {
             ValidateCustomListItemsPost(listItemsRemovePost);
 
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserCustomListItemsRemoveRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserCustomListItemsRemoveRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
@@ -654,9 +654,9 @@
                                                                             TraktPagedParameters pagedParameters = null,
                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktUserListCommentsRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserListCommentsRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
@@ -684,9 +684,9 @@
         public Task<TraktNoContentResponse> LikeListAsync(string usernameOrSlug, string listIdOrSlug,
                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktUserListLikeRequest
+            return requestHandler.ExecuteNoContentRequestAsync(new UserListLikeRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug
@@ -711,9 +711,9 @@
         public Task<TraktNoContentResponse> UnlikeListAsync(string usernameOrSlug, string listIdOrSlug,
                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktUserListUnlikeRequest
+            return requestHandler.ExecuteNoContentRequestAsync(new UserListUnlikeRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug
@@ -739,8 +739,8 @@
         public Task<TraktListResponse<ITraktUserFollower>> GetFollowersAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktUserFollowersRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteListRequestAsync(new UserFollowersRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -762,8 +762,8 @@
         public Task<TraktListResponse<ITraktUserFollower>> GetFollowingAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktUserFollowingRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteListRequestAsync(new UserFollowingRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -785,8 +785,8 @@
         public Task<TraktListResponse<ITraktUserFriend>> GetFriendsAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                          CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktUserFriendsRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteListRequestAsync(new UserFriendsRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -807,8 +807,8 @@
         public Task<TraktResponse<ITraktUserFollowUserPostResponse>> FollowUserAsync(string usernameOrSlug,
                                                                                      CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserFollowUserRequest { Username = usernameOrSlug }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserFollowUserRequest { Username = usernameOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -824,8 +824,8 @@
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         public Task<TraktNoContentResponse> UnfollowUserAsync(string usernameOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktUserUnfollowUserRequest { Username = usernameOrSlug }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteNoContentRequestAsync(new UserUnfollowUserRequest { Username = usernameOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -843,8 +843,8 @@
         public Task<TraktResponse<ITraktUserFollower>> ApproveFollowRequestAsync(uint followerRequestId, CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateFollowerRequestId(followerRequestId);
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserApproveFollowerRequest { Id = followerRequestId.ToString() }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserApproveFollowerRequest { Id = followerRequestId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -861,8 +861,8 @@
         public Task<TraktNoContentResponse> DenyFollowRequestAsync(uint followerRequestId, CancellationToken cancellationToken = default(CancellationToken))
         {
             ValidateFollowerRequestId(followerRequestId);
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktUserDenyFollowerRequest { Id = followerRequestId.ToString() }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteNoContentRequestAsync(new UserDenyFollowerRequest { Id = followerRequestId.ToString() }, cancellationToken);
         }
 
         /// <summary>
@@ -898,9 +898,9 @@
                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktUserWatchedHistoryRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserWatchedHistoryRequest
             {
                 Username = usernameOrSlug,
                 Type = historyItemType,
@@ -939,9 +939,9 @@
                                                                           int[] ratingsFilter = null, TraktExtendedInfo extendedInfo = null,
                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktUserRatingsRequest
+            return requestHandler.ExecuteListRequestAsync(new UserRatingsRequest
             {
                 Username = usernameOrSlug,
                 Type = ratingsItemType,
@@ -979,9 +979,9 @@
                                                                                TraktPagedParameters pagedParameters = null,
                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktUserWatchlistRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserWatchlistRequest
             {
                 Username = usernameOrSlug,
                 Type = watchlistItemType,
@@ -1010,8 +1010,8 @@
         public Task<TraktResponse<ITraktUserWatchingItem>> GetWatchingAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserWatchingRequest
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserWatchingRequest
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
@@ -1037,8 +1037,8 @@
         public Task<TraktListResponse<ITraktWatchedMovie>> GetWatchedMoviesAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                                  CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktUserWatchedMoviesRequest
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteListRequestAsync(new UserWatchedMoviesRequest
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
@@ -1064,9 +1064,9 @@
         public Task<TraktListResponse<ITraktWatchedShow>> GetWatchedShowsAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktUserWatchedShowsRequest
+            return requestHandler.ExecuteListRequestAsync(new UserWatchedShowsRequest
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
@@ -1087,8 +1087,8 @@
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         public Task<TraktResponse<ITraktUserStatistics>> GetStatisticsAsync(string usernameOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserStatisticsRequest { Username = usernameOrSlug }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserStatisticsRequest { Username = usernameOrSlug }, cancellationToken);
         }
 
         private void ValidateCustomListItemsPost(TraktUserCustomListItemsPost customListItemsPost)

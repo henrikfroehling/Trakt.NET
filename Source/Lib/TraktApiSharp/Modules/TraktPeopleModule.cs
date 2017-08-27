@@ -49,9 +49,9 @@
         public Task<TraktResponse<ITraktPerson>> GetPersonAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktPersonSummaryRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new PersonSummaryRequest
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo
@@ -108,9 +108,9 @@
         public Task<TraktResponse<ITraktPersonMovieCredits>> GetPersonMovieCreditsAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktPersonMovieCreditsRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new PersonMovieCreditsRequest
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo
@@ -136,9 +136,9 @@
         public Task<TraktResponse<ITraktPersonShowCredits>> GetPersonShowCreditsAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                                       CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktPersonShowCreditsRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new PersonShowCreditsRequest
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo

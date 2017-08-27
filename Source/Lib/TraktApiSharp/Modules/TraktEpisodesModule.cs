@@ -60,9 +60,9 @@
                                                                   TraktExtendedInfo extendedInfo = null,
                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktEpisodeSummaryRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new EpisodeSummaryRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
@@ -138,9 +138,9 @@
                                                                                TraktPagedParameters pagedParameters = null,
                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktEpisodeCommentsRequest
+            return requestHandler.ExecutePagedRequestAsync(new EpisodeCommentsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
@@ -183,9 +183,9 @@
                                                                          TraktPagedParameters pagedParameters = null,
                                                                          CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktEpisodeListsRequest
+            return requestHandler.ExecutePagedRequestAsync(new EpisodeListsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
@@ -218,9 +218,9 @@
         public Task<TraktResponse<ITraktRating>> GetEpisodeRatingsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                         CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktEpisodeRatingsRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new EpisodeRatingsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
@@ -249,9 +249,9 @@
         public Task<TraktResponse<ITraktStatistics>> GetEpisodeStatisticsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktEpisodeStatisticsRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new EpisodeStatisticsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
@@ -283,9 +283,9 @@
                                                                                              string languageCode = null,
                                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktEpisodeTranslationsRequest
+            return requestHandler.ExecuteListRequestAsync(new EpisodeTranslationsRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
@@ -320,9 +320,9 @@
                                                                                 TraktExtendedInfo extendedInfo = null,
                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new TraktEpisodeWatchingUsersRequest
+            return requestHandler.ExecuteListRequestAsync(new EpisodeWatchingUsersRequest
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,

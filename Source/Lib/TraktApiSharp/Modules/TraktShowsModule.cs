@@ -54,9 +54,9 @@
         public Task<TraktResponse<ITraktShow>> GetShowAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowSummaryRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new ShowSummaryRequest
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
@@ -108,8 +108,8 @@
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         public Task<TraktListResponse<ITraktShowAlias>> GetShowAliasesAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktShowAliasesRequest { Id = showIdOrSlug }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteListRequestAsync(new ShowAliasesRequest { Id = showIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -129,8 +129,8 @@
         public Task<TraktListResponse<ITraktShowTranslation>> GetShowTranslationsAsync(string showIdOrSlug, string languageCode = null,
                                                                                        CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktShowTranslationsRequest { Id = showIdOrSlug, LanguageCode = languageCode }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteListRequestAsync(new ShowTranslationsRequest { Id = showIdOrSlug, LanguageCode = languageCode }, cancellationToken);
         }
 
         /// <summary>
@@ -158,9 +158,9 @@
                                                                             TraktPagedParameters pagedParameters = null,
                                                                             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowCommentsRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowCommentsRequest
             {
                 Id = showIdOrSlug,
                 SortOrder = commentSortOrder,
@@ -195,9 +195,9 @@
                                                                       TraktPagedParameters pagedParameters = null,
                                                                       CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowListsRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowListsRequest
             {
                 Id = showIdOrSlug,
                 Type = listType,
@@ -226,9 +226,9 @@
         public Task<TraktResponse<ITraktCastAndCrew>> GetShowPeopleAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                          CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowPeopleRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new ShowPeopleRequest
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
@@ -249,8 +249,8 @@
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         public Task<TraktResponse<ITraktRating>> GetShowRatingsAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowRatingsRequest { Id = showIdOrSlug }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteSingleItemRequestAsync(new ShowRatingsRequest { Id = showIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -280,9 +280,9 @@
                                                                              TraktPagedParameters pagedParameters = null,
                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowRelatedShowsRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowRelatedShowsRequest
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo,
@@ -305,8 +305,8 @@
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
         public Task<TraktResponse<ITraktStatistics>> GetShowStatisticsAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowStatisticsRequest { Id = showIdOrSlug }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteSingleItemRequestAsync(new ShowStatisticsRequest { Id = showIdOrSlug }, cancellationToken);
         }
 
         /// <summary>
@@ -328,8 +328,8 @@
         public Task<TraktListResponse<ITraktUser>> GetShowWatchingUsersAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                              CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktShowWatchingUsersRequest { Id = showIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+            var requestHandler = new RequestHandler(Client);
+            return requestHandler.ExecuteListRequestAsync(new ShowWatchingUsersRequest { Id = showIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>
@@ -352,9 +352,9 @@
                                                                                                 bool? countSpecialSeasons = null,
                                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowCollectionProgressRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new ShowCollectionProgressRequest
             {
                 Id = showIdOrSlug,
                 Hidden = includingHiddenSeasons,
@@ -383,9 +383,9 @@
                                                                                           bool? countSpecialSeasons = null,
                                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowWatchedProgressRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new ShowWatchedProgressRequest
             {
                 Id = showIdOrSlug,
                 Hidden = includingHiddenSeasons,
@@ -413,9 +413,9 @@
         public Task<TraktResponse<ITraktEpisode>> GetShowNextEpisodeAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowNextEpisodeRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new ShowNextEpisodeRequest
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
@@ -441,9 +441,9 @@
         public Task<TraktResponse<ITraktEpisode>> GetShowLastEpisodeAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                           CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktShowLastEpisodeRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new ShowLastEpisodeRequest
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
@@ -477,9 +477,9 @@
                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                   CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowsTrendingRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowsTrendingRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
@@ -515,9 +515,9 @@
                                                                          TraktPagedParameters pagedParameters = null,
                                                                          CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowsPopularRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowsPopularRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
@@ -555,9 +555,9 @@
                                                                                    TraktPagedParameters pagedParameters = null,
                                                                                    CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowsMostPlayedRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowsMostPlayedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
@@ -596,9 +596,9 @@
                                                                                     TraktPagedParameters pagedParameters = null,
                                                                                     CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowsMostWatchedRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowsMostWatchedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
@@ -637,9 +637,9 @@
                                                                                       TraktPagedParameters pagedParameters = null,
                                                                                       CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowsMostCollectedRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowsMostCollectedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
@@ -676,9 +676,9 @@
                                                                                                 TraktPagedParameters pagedParameters = null,
                                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowsMostAnticipatedRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowsMostAnticipatedRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
@@ -714,9 +714,9 @@
                                                                                                 TraktPagedParameters pagedParameters = null,
                                                                                                 CancellationToken cancellationToken = default(CancellationToken))
         {
-            var requestHandler = new TraktRequestHandler(Client);
+            var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktShowsRecentlyUpdatedRequest
+            return requestHandler.ExecutePagedRequestAsync(new ShowsRecentlyUpdatedRequest
             {
                 StartDate = startDate,
                 ExtendedInfo = extendedInfo,
