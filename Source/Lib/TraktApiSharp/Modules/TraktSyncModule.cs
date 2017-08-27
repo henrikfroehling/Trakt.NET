@@ -100,7 +100,7 @@
                 throw new ArgumentOutOfRangeException(nameof(playbackId), "playback id not valid");
 
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktSyncPlaybackDeleteRequest { Id = playbackId.ToString() }, cancellationToken);
+            return requestHandler.ExecuteNoContentRequestAsync(new SyncPlaybackDeleteRequest { Id = playbackId.ToString() }, cancellationToken);
         }
 
         /// <summary>

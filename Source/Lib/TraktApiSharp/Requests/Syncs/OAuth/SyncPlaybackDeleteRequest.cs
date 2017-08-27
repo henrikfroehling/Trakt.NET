@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktSyncPlaybackDeleteRequest : ADeleteRequest, IHasId
+    internal sealed class SyncPlaybackDeleteRequest : ADeleteRequest, IHasId
     {
         public string Id { get; set; }
 

@@ -10,57 +10,57 @@
     using Xunit;
 
     [Category("Requests.Syncs.OAuth")]
-    public class TraktSyncPlaybackDeleteRequest_Tests
+    public class SyncPlaybackDeleteRequest_Tests
     {
         [Fact]
-        public void Test_TraktSyncPlaybackDeleteRequest_Is_Not_Abstract()
+        public void Test_SyncPlaybackDeleteRequest_Is_Not_Abstract()
         {
-            typeof(TraktSyncPlaybackDeleteRequest).IsAbstract.Should().BeFalse();
+            typeof(SyncPlaybackDeleteRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktSyncPlaybackDeleteRequest_Is_Sealed()
+        public void Test_SyncPlaybackDeleteRequest_Is_Sealed()
         {
-            typeof(TraktSyncPlaybackDeleteRequest).IsSealed.Should().BeTrue();
+            typeof(SyncPlaybackDeleteRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSyncPlaybackDeleteRequest_Inherits_ATraktDeleteRequest()
+        public void Test_SyncPlaybackDeleteRequest_Inherits_ATraktDeleteRequest()
         {
-            typeof(TraktSyncPlaybackDeleteRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
+            typeof(SyncPlaybackDeleteRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSyncPlaybackDeleteRequest_Implements_ITraktHasId_Interface()
+        public void Test_SyncPlaybackDeleteRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktSyncPlaybackDeleteRequest).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(SyncPlaybackDeleteRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_TraktSyncPlaybackDeleteRequest_Has_AuthorizationRequirement_Required()
+        public void Test_SyncPlaybackDeleteRequest_Has_AuthorizationRequirement_Required()
         {
-            var request = new TraktSyncPlaybackDeleteRequest();
+            var request = new SyncPlaybackDeleteRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktSyncPlaybackDeleteRequest_Returns_Valid_RequestObjectType()
+        public void Test_SyncPlaybackDeleteRequest_Returns_Valid_RequestObjectType()
         {
-            var requestMock = new TraktSyncPlaybackDeleteRequest();
+            var requestMock = new SyncPlaybackDeleteRequest();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Unspecified);
         }
 
         [Fact]
-        public void Test_TraktSyncPlaybackDeleteRequest_Has_Valid_UriTemplate()
+        public void Test_SyncPlaybackDeleteRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktSyncPlaybackDeleteRequest();
+            var request = new SyncPlaybackDeleteRequest();
             request.UriTemplate.Should().Be("sync/playback/{id}");
         }
 
         [Fact]
-        public void Test_TraktSyncPlaybackDeleteRequest_Returns_Valid_UriPathParameters()
+        public void Test_SyncPlaybackDeleteRequest_Returns_Valid_UriPathParameters()
         {
-            var requestMock = new TraktSyncPlaybackDeleteRequest { Id = "123" };
+            var requestMock = new SyncPlaybackDeleteRequest { Id = "123" };
 
             requestMock.GetUriPathParameters().Should().NotBeNull()
                                                        .And.HaveCount(1)
@@ -71,22 +71,22 @@
         }
 
         [Fact]
-        public void Test_TraktSyncPlaybackDeleteRequest_Validate_Throws_Exceptions()
+        public void Test_SyncPlaybackDeleteRequest_Validate_Throws_Exceptions()
         {
             // id is null
-            var requestMock = new TraktSyncPlaybackDeleteRequest();
+            var requestMock = new SyncPlaybackDeleteRequest();
 
             Action act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            requestMock = new TraktSyncPlaybackDeleteRequest { Id = string.Empty };
+            requestMock = new SyncPlaybackDeleteRequest { Id = string.Empty };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            requestMock = new TraktSyncPlaybackDeleteRequest { Id = "invalid id" };
+            requestMock = new SyncPlaybackDeleteRequest { Id = "invalid id" };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
