@@ -236,7 +236,7 @@
                                                                                CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new TraktSyncWatchedShowsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
+            return requestHandler.ExecuteListRequestAsync(new SyncWatchedShowsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
         }
 
         /// <summary>

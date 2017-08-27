@@ -10,49 +10,49 @@
     using Xunit;
 
     [Category("Requests.Syncs.OAuth")]
-    public class TraktSyncWatchedShowsRequest_Tests
+    public class SyncWatchedShowsRequest_Tests
     {
         [Fact]
-        public void Test_TraktSyncWatchedShowsRequest_Is_Not_Abstract()
+        public void Test_SyncWatchedShowsRequest_Is_Not_Abstract()
         {
-            typeof(TraktSyncWatchedShowsRequest).IsAbstract.Should().BeFalse();
+            typeof(SyncWatchedShowsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktSyncWatchedShowsRequest_Is_Sealed()
+        public void Test_SyncWatchedShowsRequest_Is_Sealed()
         {
-            typeof(TraktSyncWatchedShowsRequest).IsSealed.Should().BeTrue();
+            typeof(SyncWatchedShowsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSyncWatchedShowsRequest_Inherits_ATraktSyncGetRequest_1()
+        public void Test_SyncWatchedShowsRequest_Inherits_ATraktSyncGetRequest_1()
         {
-            typeof(TraktSyncWatchedShowsRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktWatchedShow>)).Should().BeTrue();
+            typeof(SyncWatchedShowsRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktWatchedShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSyncWatchedShowsRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_SyncWatchedShowsRequest_Implements_ITraktSupportsExtendedInfo_Interface()
         {
-            typeof(TraktSyncWatchedShowsRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
+            typeof(SyncWatchedShowsRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_TraktSyncWatchedShowsRequest_Has_Valid_UriTemplate()
+        public void Test_SyncWatchedShowsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktSyncWatchedShowsRequest();
+            var request = new SyncWatchedShowsRequest();
             request.UriTemplate.Should().Be("sync/watched/shows{?extended}");
         }
 
         [Fact]
-        public void Test_TraktSyncWatchedShowsRequest_Returns_Valid_UriPathParameters()
+        public void Test_SyncWatchedShowsRequest_Returns_Valid_UriPathParameters()
         {
             // without extended info
-            var request = new TraktSyncWatchedShowsRequest();
+            var request = new SyncWatchedShowsRequest();
             request.GetUriPathParameters().Should().NotBeNull().And.BeEmpty();
 
             // with extended info
             var extendedInfo = new TraktExtendedInfo { Full = true };
-            request = new TraktSyncWatchedShowsRequest { ExtendedInfo = extendedInfo };
+            request = new SyncWatchedShowsRequest { ExtendedInfo = extendedInfo };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
