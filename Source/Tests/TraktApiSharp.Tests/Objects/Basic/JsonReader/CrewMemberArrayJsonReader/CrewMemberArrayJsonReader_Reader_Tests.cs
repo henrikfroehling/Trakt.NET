@@ -1,37 +1,39 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Basic.JsonReader
 {
     using FluentAssertions;
+    using Newtonsoft.Json;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using TestUtils;
     using Traits;
     using TraktApiSharp.Objects.Basic.JsonReader;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
-    public partial class TraktCrewMemberArrayJsonReader_Tests
+    public partial class CrewMemberArrayJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktCrewMemberArrayJsonReader_ReadArray_From_Stream_Empty_Array()
+        public async Task Test_CrewMemberArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
         {
-            var jsonReader = new TraktCrewMemberArrayJsonReader();
+            var traktJsonReader = new CrewMemberArrayJsonReader();
 
-            using (var stream = JSON_EMPTY_ARRAY.ToStream())
+            using (var reader = new StringReader(JSON_EMPTY_ARRAY))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCrewMembers = await jsonReader.ReadArrayAsync(stream);
+                var traktCrewMembers = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktCrewMembers.Should().NotBeNull().And.BeEmpty();
             }
         }
 
         [Fact]
-        public async Task Test_TraktCrewMemberArrayJsonReader_ReadObject_From_Stream_Complete()
+        public async Task Test_CrewMemberArrayJsonReader_ReadObject_From_JsonReader_Complete()
         {
-            var jsonReader = new TraktCrewMemberArrayJsonReader();
+            var traktJsonReader = new CrewMemberArrayJsonReader();
 
-            using (var stream = JSON_COMPLETE.ToStream())
+            using (var reader = new StringReader(JSON_COMPLETE))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCrewMembers = await jsonReader.ReadArrayAsync(stream);
+                var traktCrewMembers = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCrewMembers.Should().NotBeNull();
                 var items = traktCrewMembers.ToArray();
@@ -61,13 +63,14 @@
         }
 
         [Fact]
-        public async Task Test_TraktCrewMemberArrayJsonReader_ReadObject_From_Stream_Incomplete_1()
+        public async Task Test_CrewMemberArrayJsonReader_ReadObject_From_JsonReader_Incomplete_1()
         {
-            var jsonReader = new TraktCrewMemberArrayJsonReader();
+            var traktJsonReader = new CrewMemberArrayJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_1.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_1))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCrewMembers = await jsonReader.ReadArrayAsync(stream);
+                var traktCrewMembers = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCrewMembers.Should().NotBeNull();
                 var items = traktCrewMembers.ToArray();
@@ -97,13 +100,14 @@
         }
 
         [Fact]
-        public async Task Test_TraktCrewMemberArrayJsonReader_ReadObject_From_Stream_Incomplete_2()
+        public async Task Test_CrewMemberArrayJsonReader_ReadObject_From_JsonReader_Incomplete_2()
         {
-            var jsonReader = new TraktCrewMemberArrayJsonReader();
+            var traktJsonReader = new CrewMemberArrayJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_2.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_2))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCrewMembers = await jsonReader.ReadArrayAsync(stream);
+                var traktCrewMembers = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCrewMembers.Should().NotBeNull();
                 var items = traktCrewMembers.ToArray();
@@ -126,13 +130,14 @@
         }
 
         [Fact]
-        public async Task Test_TraktCrewMemberArrayJsonReader_ReadObject_From_Stream_Not_Valid_1()
+        public async Task Test_CrewMemberArrayJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
         {
-            var jsonReader = new TraktCrewMemberArrayJsonReader();
+            var traktJsonReader = new CrewMemberArrayJsonReader();
 
-            using (var stream = JSON_NOT_VALID_1.ToStream())
+            using (var reader = new StringReader(JSON_NOT_VALID_1))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCrewMembers = await jsonReader.ReadArrayAsync(stream);
+                var traktCrewMembers = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCrewMembers.Should().NotBeNull();
                 var items = traktCrewMembers.ToArray();
@@ -162,13 +167,14 @@
         }
 
         [Fact]
-        public async Task Test_TraktCrewMemberArrayJsonReader_ReadObject_From_Stream_Not_Valid_2()
+        public async Task Test_CrewMemberArrayJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
         {
-            var jsonReader = new TraktCrewMemberArrayJsonReader();
+            var traktJsonReader = new CrewMemberArrayJsonReader();
 
-            using (var stream = JSON_NOT_VALID_2.ToStream())
+            using (var reader = new StringReader(JSON_NOT_VALID_2))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCrewMembers = await jsonReader.ReadArrayAsync(stream);
+                var traktCrewMembers = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCrewMembers.Should().NotBeNull();
                 var items = traktCrewMembers.ToArray();
@@ -191,13 +197,14 @@
         }
 
         [Fact]
-        public async Task Test_TraktCrewMemberArrayJsonReader_ReadObject_From_Stream_Not_Valid_3()
+        public async Task Test_CrewMemberArrayJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
         {
-            var jsonReader = new TraktCrewMemberArrayJsonReader();
+            var traktJsonReader = new CrewMemberArrayJsonReader();
 
-            using (var stream = JSON_NOT_VALID_3.ToStream())
+            using (var reader = new StringReader(JSON_NOT_VALID_3))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCrewMembers = await jsonReader.ReadArrayAsync(stream);
+                var traktCrewMembers = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCrewMembers.Should().NotBeNull();
                 var items = traktCrewMembers.ToArray();
@@ -220,22 +227,23 @@
         }
 
         [Fact]
-        public async Task Test_TraktCrewMemberArrayJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_CrewMemberArrayJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new TraktCrewMemberArrayJsonReader();
+            var traktJsonReader = new CrewMemberArrayJsonReader();
 
-            var traktCrewMembers = await jsonReader.ReadArrayAsync(default(Stream));
+            var traktCrewMembers = await traktJsonReader.ReadArrayAsync(default(JsonTextReader));
             traktCrewMembers.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktCrewMemberArrayJsonReader_ReadObject_From_Stream_Empty()
+        public async Task Test_CrewMemberArrayJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var jsonReader = new TraktCrewMemberArrayJsonReader();
+            var traktJsonReader = new CrewMemberArrayJsonReader();
 
-            using (var stream = string.Empty.ToStream())
+            using (var reader = new StringReader(string.Empty))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCrewMembers = await jsonReader.ReadArrayAsync(stream);
+                var traktCrewMembers = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktCrewMembers.Should().BeNull();
             }
         }
