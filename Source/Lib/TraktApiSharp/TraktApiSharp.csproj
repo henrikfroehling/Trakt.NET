@@ -190,7 +190,7 @@
     <Compile Include="Objects\Get\Episodes\ITraktEpisodeTranslation.cs" />
     <Compile Include="Objects\Get\Episodes\ITraktEpisodeWatchedProgress.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\Factories\EpisodeCollectionProgressJsonReaderFactory.cs" />
-    <Compile Include="Objects\Get\Episodes\JsonReader\Factories\TraktEpisodeIdsJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Episodes\JsonReader\Factories\EpisodeIdsJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\Factories\TraktEpisodeJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\Factories\TraktEpisodeTranslationJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\Factories\TraktEpisodeWatchedProgressJsonReaderFactory.cs" />
