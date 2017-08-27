@@ -4,7 +4,7 @@
 
     internal class CastMemberJsonReaderFactory : IJsonReaderFactory<ITraktCastMember>
     {
-        public IObjectJsonReader<ITraktCastMember> CreateObjectReader() => new TraktCastMemberObjectJsonReader();
+        public IObjectJsonReader<ITraktCastMember> CreateObjectReader() => new CastMemberObjectJsonReader();
 
         public IArrayJsonReader<ITraktCastMember> CreateArrayReader() => new CastMemberArrayJsonReader();
     }
