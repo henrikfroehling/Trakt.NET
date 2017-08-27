@@ -156,7 +156,7 @@
     <Compile Include="Objects\Basic\JsonReader\CrewMemberObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\CrewObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\GenreArrayJsonReader.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktSearchResultArrayJsonReader.cs" />
+    <Compile Include="Objects\Basic\JsonReader\SearchResultArrayJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktSearchResultObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarMovie.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarShow.cs" />
