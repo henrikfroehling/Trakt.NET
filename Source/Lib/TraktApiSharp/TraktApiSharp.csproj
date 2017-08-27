@@ -437,7 +437,7 @@
     <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeTranslationArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeTranslationObjectJsonReader.cs" />
-    <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeWatchedProgressArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeWatchedProgressArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeWatchedProgressObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktBoxOfficeMovieObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMostAnticipatedMovieObjectJsonReader.cs" />

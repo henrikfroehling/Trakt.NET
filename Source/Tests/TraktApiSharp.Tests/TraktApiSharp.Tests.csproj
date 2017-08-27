@@ -292,11 +292,11 @@
     <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeTranslationObjectJsonReader\EpisodeTranslationObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeTranslationObjectJsonReader\EpisodeTranslationObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeTranslationObjectJsonReader\EpisodeTranslationObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeWatchedProgressArrayJsonReader_Tests\TraktEpisodeWatchedProgressArrayJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeWatchedProgressArrayJsonReader_Tests\TraktEpisodeWatchedProgressArrayJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeWatchedProgressArrayJsonReader_Tests\TraktEpisodeWatchedProgressArrayJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeWatchedProgressArrayJsonReader_Tests\TraktEpisodeWatchedProgressArrayJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeWatchedProgressArrayJsonReader_Tests\TraktEpisodeWatchedProgressArrayJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeWatchedProgressArrayJsonReader\EpisodeWatchedProgressArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeWatchedProgressArrayJsonReader\EpisodeWatchedProgressArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeWatchedProgressArrayJsonReader\EpisodeWatchedProgressArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeWatchedProgressArrayJsonReader\EpisodeWatchedProgressArrayJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeWatchedProgressArrayJsonReader\EpisodeWatchedProgressArrayJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeWatchedProgressObjectJsonReader_Tests\TraktEpisodeWatchedProgressObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeWatchedProgressObjectJsonReader_Tests\TraktEpisodeWatchedProgressObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeWatchedProgressObjectJsonReader_Tests\TraktEpisodeWatchedProgressObjectJsonReader_Stream_Tests.cs" />

@@ -46,7 +46,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var episodeWatchedProgressArrayReader = new TraktEpisodeWatchedProgressArrayJsonReader();
+                var episodeWatchedProgressArrayReader = new EpisodeWatchedProgressArrayJsonReader();
                 ITraktSeasonWatchedProgress traktSeasonWatchedProgress = new TraktSeasonWatchedProgress();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
