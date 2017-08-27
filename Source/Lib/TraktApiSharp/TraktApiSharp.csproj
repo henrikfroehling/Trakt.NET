@@ -154,7 +154,7 @@
     <Compile Include="Objects\Basic\JsonReader\CommentObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\CrewMemberArrayJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\CrewMemberObjectJsonReader.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktCrewObjectJsonReader.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CrewObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktGenreArrayJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktSearchResultArrayJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktSearchResultObjectJsonReader.cs" />

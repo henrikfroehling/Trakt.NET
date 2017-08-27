@@ -39,7 +39,7 @@
         [Fact]
         public async Task Test_TraktCrew_From_Json()
         {
-            var jsonReader = new TraktCrewObjectJsonReader();
+            var jsonReader = new CrewObjectJsonReader();
             var traktCrew = await jsonReader.ReadObjectAsync(JSON) as TraktCrew;
 
             traktCrew.Should().NotBeNull();
