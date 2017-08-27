@@ -656,7 +656,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktUserListCommentsRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserListCommentsRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
