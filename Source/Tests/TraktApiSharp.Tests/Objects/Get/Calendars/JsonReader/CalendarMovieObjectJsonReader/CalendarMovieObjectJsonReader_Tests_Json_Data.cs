@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Calendars.JsonReader
 {
-    public partial class TraktCalendarMovieObjectJsonReader_Tests
+    public partial class CalendarMovieObjectJsonReader_Tests
     {
         private const string JSON_COMPLETE =
             @"{

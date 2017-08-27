@@ -8,12 +8,12 @@
     using Xunit;
 
     [Category("Objects.Get.Calendars.JsonReader")]
-    public partial class TraktCalendarMovieObjectJsonReader_Tests
+    public partial class CalendarMovieObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktCalendarMovieObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_CalendarMovieObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktCalendarMovieObjectJsonReader();
+            var jsonReader = new CalendarMovieObjectJsonReader();
 
             var traktCalendarMovie = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
@@ -30,9 +30,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktCalendarMovieObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public async Task Test_CalendarMovieObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new TraktCalendarMovieObjectJsonReader();
+            var jsonReader = new CalendarMovieObjectJsonReader();
 
             var traktCalendarMovie = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_1);
 
@@ -42,9 +42,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktCalendarMovieObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public async Task Test_CalendarMovieObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new TraktCalendarMovieObjectJsonReader();
+            var jsonReader = new CalendarMovieObjectJsonReader();
 
             var traktCalendarMovie = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_2);
 
@@ -61,9 +61,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktCalendarMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public async Task Test_CalendarMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new TraktCalendarMovieObjectJsonReader();
+            var jsonReader = new CalendarMovieObjectJsonReader();
 
             var traktCalendarMovie = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_1);
 
@@ -80,9 +80,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktCalendarMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public async Task Test_CalendarMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new TraktCalendarMovieObjectJsonReader();
+            var jsonReader = new CalendarMovieObjectJsonReader();
 
             var traktCalendarMovie = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_2);
 
@@ -92,9 +92,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktCalendarMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public async Task Test_CalendarMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new TraktCalendarMovieObjectJsonReader();
+            var jsonReader = new CalendarMovieObjectJsonReader();
 
             var traktCalendarMovie = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_3);
 
@@ -104,18 +104,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktCalendarMovieObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_CalendarMovieObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktCalendarMovieObjectJsonReader();
+            var jsonReader = new CalendarMovieObjectJsonReader();
 
             var traktCalendarMovie = await jsonReader.ReadObjectAsync(default(string));
             traktCalendarMovie.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktCalendarMovieObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_CalendarMovieObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktCalendarMovieObjectJsonReader();
+            var jsonReader = new CalendarMovieObjectJsonReader();
 
             var traktCalendarMovie = await jsonReader.ReadObjectAsync(string.Empty);
             traktCalendarMovie.Should().BeNull();

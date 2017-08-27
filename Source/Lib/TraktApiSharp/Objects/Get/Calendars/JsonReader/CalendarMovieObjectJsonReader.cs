@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktCalendarMovieObjectJsonReader : IObjectJsonReader<ITraktCalendarMovie>
+    internal class CalendarMovieObjectJsonReader : IObjectJsonReader<ITraktCalendarMovie>
     {
         private const string PROPERTY_NAME_RELEASED = "released";
         private const string PROPERTY_NAME_MOVIE = "movie";

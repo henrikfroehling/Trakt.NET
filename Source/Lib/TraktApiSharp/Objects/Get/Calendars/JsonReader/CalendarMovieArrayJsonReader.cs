@@ -40,7 +40,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var calendarMovieReader = new TraktCalendarMovieObjectJsonReader();
+                var calendarMovieReader = new CalendarMovieObjectJsonReader();
                 //var calendarMovieReadingTasks = new List<Task<ITraktCalendarMovie>>();
                 var calendarMovies = new List<ITraktCalendarMovie>();
 
