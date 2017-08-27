@@ -29,19 +29,19 @@
         }
 
         [Fact]
-        public void Test_SyncWatchlistRequest_Inherits_ATraktSyncGetRequest_1()
+        public void Test_SyncWatchlistRequest_Inherits_ASyncGetRequest_1()
         {
             typeof(SyncWatchlistRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktWatchlistItem>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_SyncWatchlistRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_SyncWatchlistRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(SyncWatchlistRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_SyncWatchlistRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_SyncWatchlistRequest_Implements_ISupportsPagination_Interface()
         {
             typeof(SyncWatchlistRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
@@ -68,7 +68,7 @@
 
         [Theory, ClassData(typeof(SyncWatchlistRequest_TestData))]
         public void Test_SyncWatchlistRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                   IDictionary<string, object> expected)
+                                                                              IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

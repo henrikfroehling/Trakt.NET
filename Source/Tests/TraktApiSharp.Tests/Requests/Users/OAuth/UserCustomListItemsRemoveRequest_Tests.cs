@@ -28,7 +28,7 @@
         }
 
         [Fact]
-        public void Test_UserCustomListItemsRemoveRequest_Inherits_ATraktUsersPostByIdRequest_2()
+        public void Test_UserCustomListItemsRemoveRequest_Inherits_AUsersPostByIdRequest_2()
         {
             typeof(UserCustomListItemsRemoveRequest).IsSubclassOf(typeof(AUsersPostByIdRequest<ITraktUserCustomListItemsRemovePostResponse, TraktUserCustomListItemsPost>)).Should().BeTrue();
         }

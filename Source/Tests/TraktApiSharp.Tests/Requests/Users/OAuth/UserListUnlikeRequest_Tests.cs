@@ -26,7 +26,7 @@
         }
 
         [Fact]
-        public void Test_UserListUnlikeRequest_Inherits_ATraktUsersDeleteByIdRequest()
+        public void Test_UserListUnlikeRequest_Inherits_AUsersDeleteByIdRequest()
         {
             typeof(UserListUnlikeRequest).IsSubclassOf(typeof(AUsersDeleteByIdRequest)).Should().BeTrue();
         }

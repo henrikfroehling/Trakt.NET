@@ -30,7 +30,7 @@
         }
 
         [Fact]
-        public void Test_UserRatingsRequest_Inherits_ATraktUsersGetRequest_1()
+        public void Test_UserRatingsRequest_Inherits_AUsersGetRequest_1()
         {
             typeof(UserRatingsRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktRatingsItem>)).Should().BeTrue();
         }
@@ -112,7 +112,7 @@
 
         [Theory, ClassData(typeof(UserRatingsRequest_TestData))]
         public void Test_UserRatingsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                 IDictionary<string, object> expected)
+                                                                            IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

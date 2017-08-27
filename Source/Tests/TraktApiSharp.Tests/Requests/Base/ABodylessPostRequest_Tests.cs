@@ -27,13 +27,13 @@
         }
 
         [Fact]
-        public void Test_ABodylessPostRequest_Inherits_ATraktRequest()
+        public void Test_ABodylessPostRequest_Inherits_ARequest()
         {
             typeof(ABodylessPostRequest).IsSubclassOf(typeof(ARequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ABodylessPostRequest_Implements_ITraktBodylessPostRequest_Interface()
+        public void Test_ABodylessPostRequest_Implements_IBodylessPostRequest_Interface()
         {
             typeof(ABodylessPostRequest).GetInterfaces().Should().Contain(typeof(IBodylessPostRequest));
         }

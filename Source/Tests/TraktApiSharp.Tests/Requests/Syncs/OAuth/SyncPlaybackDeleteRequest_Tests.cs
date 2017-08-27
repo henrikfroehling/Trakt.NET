@@ -25,13 +25,13 @@
         }
 
         [Fact]
-        public void Test_SyncPlaybackDeleteRequest_Inherits_ATraktDeleteRequest()
+        public void Test_SyncPlaybackDeleteRequest_Inherits_ADeleteRequest()
         {
             typeof(SyncPlaybackDeleteRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_SyncPlaybackDeleteRequest_Implements_ITraktHasId_Interface()
+        public void Test_SyncPlaybackDeleteRequest_Implements_IHasId_Interface()
         {
             typeof(SyncPlaybackDeleteRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }

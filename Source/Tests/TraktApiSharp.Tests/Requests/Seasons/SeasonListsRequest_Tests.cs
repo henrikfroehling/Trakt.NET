@@ -29,13 +29,13 @@
         }
 
         [Fact]
-        public void Test_SeasonListsRequest_Inherits_ATraktSeasonRequest_1()
+        public void Test_SeasonListsRequest_Inherits_ASeasonRequest_1()
         {
             typeof(SeasonListsRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktList>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_SeasonListsRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_SeasonListsRequest_Implements_ISupportsPagination_Interface()
         {
             typeof(SeasonListsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
@@ -97,7 +97,7 @@
 
         [Theory, ClassData(typeof(SeasonListsRequest_TestData))]
         public void Test_SeasonListsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                 IDictionary<string, object> expected)
+                                                                            IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

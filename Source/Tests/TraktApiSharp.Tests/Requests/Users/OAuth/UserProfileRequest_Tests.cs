@@ -28,7 +28,7 @@
         }
 
         [Fact]
-        public void Test_UserProfileRequest_Inherits_ATraktUsersGetRequest_1()
+        public void Test_UserProfileRequest_Inherits_AUsersGetRequest_1()
         {
             typeof(UserProfileRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktUser>)).Should().BeTrue();
         }

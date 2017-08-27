@@ -24,7 +24,7 @@
         }
 
         [Fact]
-        public void Test_UserRecommendationHideMovieRequest_Inherits_ATraktUserRecommendationHideRequest()
+        public void Test_UserRecommendationHideMovieRequest_Inherits_AUserRecommendationHideRequest()
         {
             typeof(UserRecommendationHideMovieRequest).IsSubclassOf(typeof(AUserRecommendationHideRequest)).Should().BeTrue();
         }

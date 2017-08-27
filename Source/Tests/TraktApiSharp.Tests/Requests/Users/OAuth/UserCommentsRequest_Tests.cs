@@ -30,7 +30,7 @@
         }
 
         [Fact]
-        public void Test_UserCommentsRequest_Inherits_ATraktUsersPagedGetRequest_1()
+        public void Test_UserCommentsRequest_Inherits_AUsersPagedGetRequest_1()
         {
             typeof(UserCommentsRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktUserComment>)).Should().BeTrue();
         }
@@ -112,7 +112,7 @@
 
         [Theory, ClassData(typeof(UserCommentsRequest_TestData))]
         public void Test_UserCommentsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                  IDictionary<string, object> expected)
+                                                                             IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

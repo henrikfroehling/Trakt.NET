@@ -23,7 +23,7 @@
         }
 
         [Fact]
-        public void Test_ACalendarUserRequest_1_Inherits_ATraktCalendarRequest()
+        public void Test_ACalendarUserRequest_1_Inherits_ACalendarRequest()
         {
             typeof(ACalendarUserRequest<int>).IsSubclassOf(typeof(ACalendarRequest<int>)).Should().BeTrue();
         }

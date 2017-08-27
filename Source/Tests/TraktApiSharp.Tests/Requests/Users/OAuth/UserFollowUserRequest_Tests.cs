@@ -27,7 +27,7 @@
         }
 
         [Fact]
-        public void Test_UserFollowUserRequest_Inherits_ATraktBodylessPostRequest_1()
+        public void Test_UserFollowUserRequest_Inherits_ABodylessPostRequest_1()
         {
             typeof(UserFollowUserRequest).IsSubclassOf(typeof(ABodylessPostRequest<ITraktUserFollowUserPostResponse>)).Should().BeTrue();
         }

@@ -26,7 +26,7 @@
         }
 
         [Fact]
-        public void Test_ShowsMostPlayedRequest_Inherits_ATraktShowsMostPWCRequest_1()
+        public void Test_ShowsMostPlayedRequest_Inherits_AShowsMostPWCRequest_1()
         {
             typeof(ShowsMostPlayedRequest).IsSubclassOf(typeof(AShowsMostPWCRequest<ITraktMostPWCShow>)).Should().BeTrue();
         }
@@ -40,7 +40,7 @@
 
         [Theory, ClassData(typeof(ShowsMostPlayedRequest_TestData))]
         public void Test_ShowsMostPlayedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                     IDictionary<string, object> expected)
+                                                                                IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

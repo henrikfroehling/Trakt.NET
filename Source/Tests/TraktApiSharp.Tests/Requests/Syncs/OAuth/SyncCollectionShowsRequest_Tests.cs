@@ -25,13 +25,13 @@
         }
 
         [Fact]
-        public void Test_SyncCollectionShowsRequest_Inherits_ATraktSyncGetRequest_1()
+        public void Test_SyncCollectionShowsRequest_Inherits_ASyncGetRequest_1()
         {
             typeof(SyncCollectionShowsRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktCollectionShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_SyncCollectionShowsRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_SyncCollectionShowsRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(SyncCollectionShowsRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }

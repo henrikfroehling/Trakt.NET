@@ -26,24 +26,24 @@
         }
 
         [Fact]
-        public void Test_EpisodeSummaryRequest_Inherits_ATraktEpisodeRequest_1()
+        public void Test_EpisodeSummaryRequest_Inherits_AEpisodeRequest_1()
         {
             typeof(EpisodeSummaryRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktEpisode>)).Should().BeTrue();
         }
-        
+
         [Fact]
-        public void Test_EpisodeSummaryRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_EpisodeSummaryRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(EpisodeSummaryRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
-        
+
         [Fact]
         public void Test_EpisodeSummaryRequest_Has_Valid_UriTemplate()
         {
             var request = new EpisodeSummaryRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/episodes/{episode}{?extended}");
         }
-        
+
         [Fact]
         public void Test_EpisodeSummaryRequest_Returns_Valid_UriPathParameters()
         {

@@ -26,13 +26,13 @@
         }
 
         [Fact]
-        public void Test_ShowWatchingUsersRequest_Inherits_ATraktShowRequest_1()
+        public void Test_ShowWatchingUsersRequest_Inherits_AShowRequest_1()
         {
             typeof(ShowWatchingUsersRequest).IsSubclassOf(typeof(AShowRequest<ITraktUser>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ShowWatchingUsersRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_ShowWatchingUsersRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(ShowWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }

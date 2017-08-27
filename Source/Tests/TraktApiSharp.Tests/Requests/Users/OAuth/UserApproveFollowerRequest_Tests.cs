@@ -26,13 +26,13 @@
         }
 
         [Fact]
-        public void Test_UserApproveFollowerRequest_Inherits_ATraktBodylessPostRequest_1()
+        public void Test_UserApproveFollowerRequest_Inherits_ABodylessPostRequest_1()
         {
             typeof(UserApproveFollowerRequest).IsSubclassOf(typeof(ABodylessPostRequest<ITraktUserFollower>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_UserApproveFollowerRequest_Implements_ITraktHasId_Interface()
+        public void Test_UserApproveFollowerRequest_Implements_IHasId_Interface()
         {
             typeof(UserApproveFollowerRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }

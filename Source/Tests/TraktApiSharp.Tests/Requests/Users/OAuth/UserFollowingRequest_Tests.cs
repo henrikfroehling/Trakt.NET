@@ -28,7 +28,7 @@
         }
 
         [Fact]
-        public void Test_UserFollowingRequest_Inherits_ATraktUsersGetRequest_1()
+        public void Test_UserFollowingRequest_Inherits_AUsersGetRequest_1()
         {
             typeof(UserFollowingRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktUserFollower>)).Should().BeTrue();
         }

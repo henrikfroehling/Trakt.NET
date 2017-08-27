@@ -32,19 +32,19 @@
         }
 
         [Fact]
-        public void Test_ACalendarRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_ACalendarRequest_1_Inherits_AGetRequest_1()
         {
             typeof(ACalendarRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ACalendarRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_ACalendarRequest_1_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(ACalendarRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_ACalendarRequest_1_Implements_ITraktSupportsFilter_Interface()
+        public void Test_ACalendarRequest_1_Implements_ISupportsFilter_Interface()
         {
             typeof(ACalendarRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
         }

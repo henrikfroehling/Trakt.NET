@@ -32,13 +32,13 @@
         }
 
         [Fact]
-        public void Test_UserWatchedHistoryRequest_Inherits_ATraktUsersPagedGetRequest_1()
+        public void Test_UserWatchedHistoryRequest_Inherits_AUsersPagedGetRequest_1()
         {
             typeof(UserWatchedHistoryRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktHistoryItem>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_UserWatchedHistoryRequest_Implements_ITraktHasId_Interface()
+        public void Test_UserWatchedHistoryRequest_Implements_IHasId_Interface()
         {
             typeof(UserWatchedHistoryRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
@@ -146,7 +146,7 @@
 
         [Theory, ClassData(typeof(UserWatchedHistoryRequest_TestData))]
         public void Test_UserWatchedHistoryRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                        IDictionary<string, object> expected)
+                                                                                   IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

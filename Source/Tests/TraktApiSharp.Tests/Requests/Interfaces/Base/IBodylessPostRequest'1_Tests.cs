@@ -22,7 +22,7 @@
         }
 
         [Fact]
-        public void Test_IBodylessPostRequest_1_Inherits_ITraktRequest_1_Interface()
+        public void Test_IBodylessPostRequest_1_Inherits_IRequest_1_Interface()
         {
             typeof(IBodylessPostRequest<int>).GetInterfaces().Should().Contain(typeof(IRequest<int>));
         }

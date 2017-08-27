@@ -31,13 +31,13 @@
         }
 
         [Fact]
-        public void Test_AShowRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_AShowRequest_1_Inherits_AGetRequest_1()
         {
             typeof(AShowRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_AShowRequest_1_Implements_ITraktHasId_Interface()
+        public void Test_AShowRequest_1_Implements_IHasId_Interface()
         {
             typeof(AShowRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }

@@ -36,7 +36,7 @@
         }
 
         [Fact]
-        public void Test_AShowsMostPWCRequest_1_Inherits_ATraktShowsRequest_1()
+        public void Test_AShowsMostPWCRequest_1_Inherits_AShowsRequest_1()
         {
             typeof(AShowsMostPWCRequest<int>).IsSubclassOf(typeof(AShowsRequest<int>)).Should().BeTrue();
         }
@@ -61,9 +61,9 @@
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
-        [Theory, ClassData(typeof(TraktShowsMostPWCRequestMock_TestData))]
+        [Theory, ClassData(typeof(ShowsMostPWCRequestMock_TestData))]
         public void Test_AShowsMostPWCRequest_1_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                     IDictionary<string, object> expected)
+                                                                                IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 
@@ -71,7 +71,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktShowsMostPWCRequestMock_TestData : IEnumerable<object[]>
+        public class ShowsMostPWCRequestMock_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktShowFilter _filter = new TraktShowFilter().WithYears(2005, 2016);
@@ -198,7 +198,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktShowsMostPWCRequestMock_TestData()
+            public ShowsMostPWCRequestMock_TestData()
             {
                 SetupPathParamters();
             }

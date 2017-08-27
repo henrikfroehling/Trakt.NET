@@ -23,7 +23,7 @@
         }
 
         [Fact]
-        public void Test_SyncWatchlistRemoveRequest_Inherits_ATraktSyncPostRequest_2()
+        public void Test_SyncWatchlistRemoveRequest_Inherits_ASyncPostRequest_2()
         {
             typeof(SyncWatchlistRemoveRequest).IsSubclassOf(typeof(ASyncPostRequest<ITraktSyncWatchlistRemovePostResponse, TraktSyncWatchlistPost>)).Should().BeTrue();
         }

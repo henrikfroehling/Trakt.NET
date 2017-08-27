@@ -26,13 +26,13 @@
         }
 
         [Fact]
-        public void Test_ShowSummaryRequest_Inherits_ATraktShowRequest_1()
+        public void Test_ShowSummaryRequest_Inherits_AShowRequest_1()
         {
             typeof(ShowSummaryRequest).IsSubclassOf(typeof(AShowRequest<ITraktShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ShowSummaryRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_ShowSummaryRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(ShowSummaryRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }

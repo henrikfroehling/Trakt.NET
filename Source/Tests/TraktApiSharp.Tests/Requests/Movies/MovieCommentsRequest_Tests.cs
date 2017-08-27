@@ -29,13 +29,13 @@
         }
 
         [Fact]
-        public void Test_MovieCommentsRequest_Inherits_ATraktMovieRequest_1()
+        public void Test_MovieCommentsRequest_Inherits_AMovieRequest_1()
         {
             typeof(MovieCommentsRequest).IsSubclassOf(typeof(AMovieRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_MovieCommentsRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_MovieCommentsRequest_Implements_ISupportsPagination_Interface()
         {
             typeof(MovieCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
@@ -84,7 +84,7 @@
 
         [Theory, ClassData(typeof(MovieCommentsRequest_TestData))]
         public void Test_MovieCommentsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                   IDictionary<string, object> expected)
+                                                                              IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

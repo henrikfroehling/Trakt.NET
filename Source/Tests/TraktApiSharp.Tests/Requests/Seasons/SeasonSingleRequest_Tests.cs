@@ -29,13 +29,13 @@
         }
 
         [Fact]
-        public void Test_SeasonSingleRequest_Inherits_ATraktSeasonRequest_1()
+        public void Test_SeasonSingleRequest_Inherits_ASeasonRequest_1()
         {
             typeof(SeasonSingleRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktEpisode>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_SeasonSingleRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_SeasonSingleRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(SeasonSingleRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
@@ -100,7 +100,7 @@
 
         [Theory, ClassData(typeof(SeasonSingleRequest_TestData))]
         public void Test_SeasonSingleRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                  IDictionary<string, object> expected)
+                                                                             IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

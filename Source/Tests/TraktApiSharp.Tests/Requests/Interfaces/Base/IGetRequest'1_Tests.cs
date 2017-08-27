@@ -22,7 +22,7 @@
         }
 
         [Fact]
-        public void Test_IGetRequest_1_Inherits_ITraktRequest_1_Interface()
+        public void Test_IGetRequest_1_Inherits_IRequest_1_Interface()
         {
             typeof(IGetRequest<int>).GetInterfaces().Should().Contain(typeof(IRequest<int>));
         }

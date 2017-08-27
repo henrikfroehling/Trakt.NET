@@ -25,13 +25,13 @@
         }
 
         [Fact]
-        public void Test_SyncWatchedMoviesRequest_Inherits_ATraktSyncGetRequest_1()
+        public void Test_SyncWatchedMoviesRequest_Inherits_ASyncGetRequest_1()
         {
             typeof(SyncWatchedMoviesRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktWatchedMovie>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_SyncWatchedMoviesRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_SyncWatchedMoviesRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(SyncWatchedMoviesRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }

@@ -25,13 +25,13 @@
         }
 
         [Fact]
-        public void Test_AUserRecommendationHideRequest_Inherits_ATraktDeleteRequest()
+        public void Test_AUserRecommendationHideRequest_Inherits_ADeleteRequest()
         {
             typeof(AUserRecommendationHideRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_AUserRecommendationHideRequest_Implements_ITraktHasId_Interface()
+        public void Test_AUserRecommendationHideRequest_Implements_IHasId_Interface()
         {
             typeof(AUserRecommendationHideRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }

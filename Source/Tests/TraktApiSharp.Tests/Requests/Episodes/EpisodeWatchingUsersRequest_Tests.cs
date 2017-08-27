@@ -26,13 +26,13 @@
         }
 
         [Fact]
-        public void Test_EpisodeWatchingUsersRequest_Inherits_ATraktEpisodeRequest_1()
+        public void Test_EpisodeWatchingUsersRequest_Inherits_AEpisodeRequest_1()
         {
             typeof(EpisodeWatchingUsersRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktUser>)).Should().BeTrue();
         }
         
         [Fact]
-        public void Test_EpisodeWatchingUsersRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_EpisodeWatchingUsersRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(EpisodeWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }

@@ -26,13 +26,13 @@
         }
 
         [Fact]
-        public void Test_ShowPeopleRequest_Inherits_ATraktShowRequest_1()
+        public void Test_ShowPeopleRequest_Inherits_AShowRequest_1()
         {
             typeof(ShowPeopleRequest).IsSubclassOf(typeof(AShowRequest<ITraktCastAndCrew>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ShowPeopleRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_ShowPeopleRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(ShowPeopleRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }

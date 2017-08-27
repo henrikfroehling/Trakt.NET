@@ -33,13 +33,13 @@
         }
 
         [Fact]
-        public void Test_AEpisodeRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_AEpisodeRequest_1_Inherits_AGetRequest_1()
         {
             typeof(AEpisodeRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_AEpisodeRequest_1_Implements_ITraktHasId_Interface()
+        public void Test_AEpisodeRequest_1_Implements_IHasId_Interface()
         {
             typeof(AEpisodeRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }

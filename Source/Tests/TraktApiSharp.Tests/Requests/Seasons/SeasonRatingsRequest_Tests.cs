@@ -24,7 +24,7 @@
         }
 
         [Fact]
-        public void Test_SeasonRatingsRequest_Inherits_ATraktSeasonRequest_1()
+        public void Test_SeasonRatingsRequest_Inherits_ASeasonRequest_1()
         {
             typeof(SeasonRatingsRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktRating>)).Should().BeTrue();
         }

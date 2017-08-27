@@ -27,13 +27,13 @@
         }
 
         [Fact]
-        public void Test_UserListLikeRequest_Inherits_ATraktBodylessPostRequest()
+        public void Test_UserListLikeRequest_Inherits_ABodylessPostRequest()
         {
             typeof(UserListLikeRequest).IsSubclassOf(typeof(ABodylessPostRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_UserListLikeRequest_Implements_ITraktHasId_Interface()
+        public void Test_UserListLikeRequest_Implements_IHasId_Interface()
         {
             typeof(UserListLikeRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }

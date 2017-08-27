@@ -25,7 +25,7 @@
         }
 
         [Fact]
-        public void Test_MoviesTrendingRequest_Inherits_ATraktMoviesRequest_1()
+        public void Test_MoviesTrendingRequest_Inherits_AMoviesRequest_1()
         {
             typeof(MoviesTrendingRequest).IsSubclassOf(typeof(AMoviesRequest<ITraktTrendingMovie>)).Should().BeTrue();
         }
@@ -39,7 +39,7 @@
 
         [Theory, ClassData(typeof(MoviesTrendingRequest_TestData))]
         public void Test_MoviesTrendingRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                    IDictionary<string, object> expected)
+                                                                               IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

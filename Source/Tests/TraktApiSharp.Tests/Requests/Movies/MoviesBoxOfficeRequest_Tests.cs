@@ -26,13 +26,13 @@
         }
 
         [Fact]
-        public void Test_MoviesBoxOfficeRequest_Inherits_ATraktGetRequest_1()
+        public void Test_MoviesBoxOfficeRequest_Inherits_AGetRequest_1()
         {
             typeof(MoviesBoxOfficeRequest).IsSubclassOf(typeof(AGetRequest<ITraktBoxOfficeMovie>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_MoviesBoxOfficeRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_MoviesBoxOfficeRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(MoviesBoxOfficeRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }

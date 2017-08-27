@@ -29,13 +29,13 @@
         }
 
         [Fact]
-        public void Test_EpisodeListsRequest_Inherits_ATraktEpisodeRequest_1()
+        public void Test_EpisodeListsRequest_Inherits_AEpisodeRequest_1()
         {
             typeof(EpisodeListsRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktList>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_EpisodeListsRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_EpisodeListsRequest_Implements_ISupportsPagination_Interface()
         {
             typeof(EpisodeListsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
@@ -103,7 +103,7 @@
 
         [Theory, ClassData(typeof(EpisodeListsRequest_TestData))]
         public void Test_EpisodeListsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                  IDictionary<string, object> expected)
+                                                                             IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

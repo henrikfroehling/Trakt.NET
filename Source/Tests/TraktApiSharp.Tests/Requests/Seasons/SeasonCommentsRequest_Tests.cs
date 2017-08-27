@@ -29,13 +29,13 @@
         }
 
         [Fact]
-        public void Test_SeasonCommentsRequest_Inherits_ATraktSeasonRequest_1()
+        public void Test_SeasonCommentsRequest_Inherits_ASeasonRequest_1()
         {
             typeof(SeasonCommentsRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_SeasonCommentsRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_SeasonCommentsRequest_Implements_ISupportsPagination_Interface()
         {
             typeof(SeasonCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
@@ -84,7 +84,7 @@
 
         [Theory, ClassData(typeof(SeasonCommentsRequest_TestData))]
         public void Test_SeasonCommentsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                    IDictionary<string, object> expected)
+                                                                               IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

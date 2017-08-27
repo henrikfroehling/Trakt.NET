@@ -25,13 +25,13 @@
         }
 
         [Fact]
-        public void Test_CommentLikeRequest_Inherits_ATraktBodylessPostRequest()
+        public void Test_CommentLikeRequest_Inherits_ABodylessPostRequest()
         {
             typeof(CommentLikeRequest).IsSubclassOf(typeof(ABodylessPostRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_CommentLikeRequest_Implements_ITraktHasId_Interface()
+        public void Test_CommentLikeRequest_Implements_IHasId_Interface()
         {
             typeof(CommentLikeRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }

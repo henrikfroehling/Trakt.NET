@@ -29,7 +29,7 @@
         }
 
         [Fact]
-        public void Test_CheckinRequest_2_Inherits_ATraktPostRequest_2()
+        public void Test_CheckinRequest_2_Inherits_APostRequest_2()
         {
             typeof(CheckinRequest<int, float>).IsSubclassOf(typeof(APostRequest<int, float>)).Should().BeTrue();
         }

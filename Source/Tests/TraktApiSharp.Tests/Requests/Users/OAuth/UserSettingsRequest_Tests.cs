@@ -23,7 +23,7 @@
         }
 
         [Fact]
-        public void Test_UserSettingsRequest_Inherits_ATraktGetRequest_1()
+        public void Test_UserSettingsRequest_Inherits_AGetRequest_1()
         {
             typeof(UserSettingsRequest).IsSubclassOf(typeof(AGetRequest<ITraktUserSettings>)).Should().BeTrue();
         }

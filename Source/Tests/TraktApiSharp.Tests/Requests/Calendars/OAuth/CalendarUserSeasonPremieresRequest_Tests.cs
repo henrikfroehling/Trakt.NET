@@ -28,7 +28,7 @@
         }
 
         [Fact]
-        public void Test_CalendarUserSeasonPremieresRequest_Inherits_ATraktCalendarUserRequest()
+        public void Test_CalendarUserSeasonPremieresRequest_Inherits_ACalendarUserRequest()
         {
             typeof(CalendarUserSeasonPremieresRequest).IsSubclassOf(typeof(ACalendarUserRequest<ITraktCalendarShow>)).Should().BeTrue();
         }
@@ -49,7 +49,7 @@
 
         [Theory, ClassData(typeof(CalendarUserSeasonPremieresRequest_TestData))]
         public void Test_CalendarUserSeasonPremieresRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                                 IDictionary<string, object> expected)
+                                                                                            IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

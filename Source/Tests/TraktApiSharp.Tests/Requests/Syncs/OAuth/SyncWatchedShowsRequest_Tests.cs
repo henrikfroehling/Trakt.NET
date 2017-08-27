@@ -25,13 +25,13 @@
         }
 
         [Fact]
-        public void Test_SyncWatchedShowsRequest_Inherits_ATraktSyncGetRequest_1()
+        public void Test_SyncWatchedShowsRequest_Inherits_ASyncGetRequest_1()
         {
             typeof(SyncWatchedShowsRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktWatchedShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_SyncWatchedShowsRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_SyncWatchedShowsRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(SyncWatchedShowsRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }

@@ -30,7 +30,7 @@
         }
 
         [Fact]
-        public void Test_UserHiddenItemsRequest_Inherits_ATraktUsersPagedGetRequest_1()
+        public void Test_UserHiddenItemsRequest_Inherits_AUsersPagedGetRequest_1()
         {
             typeof(UserHiddenItemsRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktUserHiddenItem>)).Should().BeTrue();
         }
@@ -93,7 +93,7 @@
 
         [Theory, ClassData(typeof(UserHiddenItemsRequest_TestData))]
         public void Test_UserHiddenItemsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                     IDictionary<string, object> expected)
+                                                                                IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

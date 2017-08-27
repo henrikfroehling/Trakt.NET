@@ -22,7 +22,7 @@
         }
 
         [Fact]
-        public void Test_CheckinsDeleteRequest_Inherits_ATraktDeleteRequest()
+        public void Test_CheckinsDeleteRequest_Inherits_ADeleteRequest()
         {
             typeof(CheckinsDeleteRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
         }

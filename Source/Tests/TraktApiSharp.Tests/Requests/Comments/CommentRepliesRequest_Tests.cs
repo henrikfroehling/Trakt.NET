@@ -27,19 +27,19 @@
         }
 
         [Fact]
-        public void Test_CommentRepliesRequest_Inherits_ATraktGetRequest_1()
+        public void Test_CommentRepliesRequest_Inherits_AGetRequest_1()
         {
             typeof(CommentRepliesRequest).IsSubclassOf(typeof(AGetRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_CommentRepliesRequest_Implements_ITraktHasId_Interface()
+        public void Test_CommentRepliesRequest_Implements_IHasId_Interface()
         {
             typeof(CommentRepliesRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_CommentRepliesRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_CommentRepliesRequest_Implements_ISupportsPagination_Interface()
         {
             typeof(CommentRepliesRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
@@ -64,7 +64,7 @@
             var request = new CommentRepliesRequest();
             request.UriTemplate.Should().Be("comments/{id}/replies{?page,limit}");
         }
-        
+
         [Fact]
         public void Test_CommentRepliesRequest_Validate_Throws_Exceptions()
         {
@@ -89,7 +89,7 @@
 
         [Theory, ClassData(typeof(CommentRepliesRequest_TestData))]
         public void Test_CommentRepliesRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                    IDictionary<string, object> expected)
+                                                                               IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

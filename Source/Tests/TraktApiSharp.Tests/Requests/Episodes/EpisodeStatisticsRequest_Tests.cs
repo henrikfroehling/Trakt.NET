@@ -24,18 +24,18 @@
         }
 
         [Fact]
-        public void Test_EpisodeStatisticsRequest_Inherits_ATraktEpisodeRequest_1()
+        public void Test_EpisodeStatisticsRequest_Inherits_AEpisodeRequest_1()
         {
             typeof(EpisodeStatisticsRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktStatistics>)).Should().BeTrue();
         }
-        
+
         [Fact]
         public void Test_EpisodeStatisticsRequest_Has_Valid_UriTemplate()
         {
             var request = new EpisodeStatisticsRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/episodes/{episode}/stats");
         }
-        
+
         [Fact]
         public void Test_EpisodeStatisticsRequest_Returns_Valid_UriPathParameters()
         {

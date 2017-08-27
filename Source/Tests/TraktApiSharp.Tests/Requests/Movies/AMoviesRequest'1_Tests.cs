@@ -34,25 +34,25 @@
         }
 
         [Fact]
-        public void Test_AMoviesRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_AMoviesRequest_1_Inherits_AGetRequest_1()
         {
             typeof(AMoviesRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_AMoviesRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_AMoviesRequest_1_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(AMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_AMoviesRequest_1_Implements_ITraktSupportsFilter_Interface()
+        public void Test_AMoviesRequest_1_Implements_ISupportsFilter_Interface()
         {
             typeof(AMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
         }
 
         [Fact]
-        public void Test_AMoviesRequest_1_Implements_ITraktSupportsPagination_Interface()
+        public void Test_AMoviesRequest_1_Implements_ISupportsPagination_Interface()
         {
             typeof(AMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
@@ -64,9 +64,9 @@
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
-        [Theory, ClassData(typeof(TraktMoviesRequestMock_TestData))]
+        [Theory, ClassData(typeof(MoviesRequestMock_TestData))]
         public void Test_AMoviesRequest_1_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                               IDictionary<string, object> expected)
+                                                                          IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 
@@ -74,7 +74,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktMoviesRequestMock_TestData : IEnumerable<object[]>
+        public class MoviesRequestMock_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktMovieFilter _filter = new TraktMovieFilter().WithYears(2005, 2016);
@@ -163,7 +163,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktMoviesRequestMock_TestData()
+            public MoviesRequestMock_TestData()
             {
                 SetupPathParamters();
             }

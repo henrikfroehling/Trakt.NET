@@ -26,13 +26,13 @@
         }
 
         [Fact]
-        public void Test_MovieWatchingUsersRequest_Inherits_ATraktMovieRequest_1()
+        public void Test_MovieWatchingUsersRequest_Inherits_AMovieRequest_1()
         {
             typeof(MovieWatchingUsersRequest).IsSubclassOf(typeof(AMovieRequest<ITraktUser>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_MovieWatchingUsersRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_MovieWatchingUsersRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(MovieWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }

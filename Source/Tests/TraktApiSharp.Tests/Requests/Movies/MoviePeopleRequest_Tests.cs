@@ -26,13 +26,13 @@
         }
 
         [Fact]
-        public void Test_MoviePeopleRequest_Inherits_ATraktMovieRequest_1()
+        public void Test_MoviePeopleRequest_Inherits_AMovieRequest_1()
         {
             typeof(MoviePeopleRequest).IsSubclassOf(typeof(AMovieRequest<ITraktCastAndCrew>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_MoviePeopleRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_MoviePeopleRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(MoviePeopleRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }

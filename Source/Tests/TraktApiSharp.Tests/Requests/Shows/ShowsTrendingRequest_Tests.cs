@@ -25,7 +25,7 @@
         }
 
         [Fact]
-        public void Test_ShowsTrendingRequest_Inherits_ATraktShowsRequest_1()
+        public void Test_ShowsTrendingRequest_Inherits_AShowsRequest_1()
         {
             typeof(ShowsTrendingRequest).IsSubclassOf(typeof(AShowsRequest<ITraktTrendingShow>)).Should().BeTrue();
         }
@@ -39,7 +39,7 @@
 
         [Theory, ClassData(typeof(ShowsTrendingRequest_TestData))]
         public void Test_ShowsTrendingRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                   IDictionary<string, object> expected)
+                                                                              IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

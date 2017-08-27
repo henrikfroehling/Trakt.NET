@@ -36,7 +36,7 @@
         }
 
         [Fact]
-        public void Test_AMoviesMostPWCRequest_1_Inherits_ATraktMoviesRequest_1()
+        public void Test_AMoviesMostPWCRequest_1_Inherits_AMoviesRequest_1()
         {
             typeof(AMoviesMostPWCRequest<int>).IsSubclassOf(typeof(AMoviesRequest<int>)).Should().BeTrue();
         }
@@ -61,9 +61,9 @@
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
-        [Theory, ClassData(typeof(TraktMoviesMostPWCRequestMock_TestData))]
+        [Theory, ClassData(typeof(MoviesMostPWCRequestMock_TestData))]
         public void Test_AMoviesMostPWCRequest_1_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                      IDictionary<string, object> expected)
+                                                                                 IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 
@@ -71,7 +71,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktMoviesMostPWCRequestMock_TestData : IEnumerable<object[]>
+        public class MoviesMostPWCRequestMock_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly TraktMovieFilter _filter = new TraktMovieFilter().WithYears(2005, 2016);
@@ -198,7 +198,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktMoviesMostPWCRequestMock_TestData()
+            public MoviesMostPWCRequestMock_TestData()
             {
                 SetupPathParamters();
             }

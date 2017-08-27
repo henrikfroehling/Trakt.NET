@@ -29,7 +29,7 @@
         }
 
         [Fact]
-        public void Test_SearchIdLookupRequest_Inherits_ATraktSearchRequest()
+        public void Test_SearchIdLookupRequest_Inherits_ASearchRequest()
         {
             typeof(SearchIdLookupRequest).IsSubclassOf(typeof(ASearchRequest)).Should().BeTrue();
         }
@@ -114,7 +114,7 @@
 
         [Theory, ClassData(typeof(SearchIdLookupRequest_TestData))]
         public void Test_SearchIdLookupRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                    IDictionary<string, object> expected)
+                                                                               IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

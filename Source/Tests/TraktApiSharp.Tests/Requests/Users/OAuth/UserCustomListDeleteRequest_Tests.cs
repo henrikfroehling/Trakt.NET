@@ -26,7 +26,7 @@
         }
 
         [Fact]
-        public void Test_UserCustomListDeleteRequest_Inherits_ATraktUsersDeleteByIdRequest()
+        public void Test_UserCustomListDeleteRequest_Inherits_AUsersDeleteByIdRequest()
         {
             typeof(UserCustomListDeleteRequest).IsSubclassOf(typeof(AUsersDeleteByIdRequest)).Should().BeTrue();
         }

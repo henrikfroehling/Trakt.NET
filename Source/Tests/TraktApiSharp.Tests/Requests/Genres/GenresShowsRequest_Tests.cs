@@ -23,7 +23,7 @@
         }
 
         [Fact]
-        public void Test_GenresMoviesRequest_Inherits_ATraktGetRequest_1()
+        public void Test_GenresMoviesRequest_Inherits_AGetRequest_1()
         {
             typeof(GenresShowsRequest).IsSubclassOf(typeof(AGetRequest<ITraktGenre>)).Should().BeTrue();
         }

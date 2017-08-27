@@ -28,7 +28,7 @@
         }
 
         [Fact]
-        public void Test_UserWatchedMoviesRequest_Inherits_ATraktUsersGetRequest_1()
+        public void Test_UserWatchedMoviesRequest_Inherits_AUsersGetRequest_1()
         {
             typeof(UserWatchedMoviesRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktWatchedMovie>)).Should().BeTrue();
         }

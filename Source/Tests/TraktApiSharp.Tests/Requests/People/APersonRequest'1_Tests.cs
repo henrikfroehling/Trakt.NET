@@ -32,19 +32,19 @@
         }
 
         [Fact]
-        public void Test_APersonRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_APersonRequest_1_Inherits_AGetRequest_1()
         {
             typeof(APersonRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_APersonRequest_1_Implements_ITraktHasId_Interface()
+        public void Test_APersonRequest_1_Implements_IHasId_Interface()
         {
             typeof(APersonRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_APersonRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_APersonRequest_1_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(APersonRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }

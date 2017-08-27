@@ -26,13 +26,13 @@
         }
 
         [Fact]
-        public void Test_SeasonWatchingUsersRequest_Inherits_ATraktSeasonRequest_1()
+        public void Test_SeasonWatchingUsersRequest_Inherits_ASeasonRequest_1()
         {
             typeof(SeasonWatchingUsersRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktUser>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_SeasonWatchingUsersRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_SeasonWatchingUsersRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(SeasonWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }

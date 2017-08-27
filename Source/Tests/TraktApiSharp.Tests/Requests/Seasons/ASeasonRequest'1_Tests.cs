@@ -14,7 +14,7 @@
     [Category("Requests.Seasons")]
     public class ASeasonRequest_1_Tests
     {
-        internal class TraktSeasonRequestMock : ASeasonRequest<int>
+        internal class SeasonRequestMock : ASeasonRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
         }
@@ -33,13 +33,13 @@
         }
 
         [Fact]
-        public void Test_ASeasonRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_ASeasonRequest_1_Inherits_AGetRequest_1()
         {
             typeof(ASeasonRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ASeasonRequest_1_Implements_ITraktHasId_Interface()
+        public void Test_ASeasonRequest_1_Implements_IHasId_Interface()
         {
             typeof(ASeasonRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
@@ -47,14 +47,14 @@
         [Fact]
         public void Test_ASeasonRequest_1_Has_AuthorizationRequirement_NotRequired()
         {
-            var requestMock = new TraktSeasonRequestMock();
+            var requestMock = new SeasonRequestMock();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
         [Fact]
         public void Test_ASeasonRequest_1_Returns_Valid_RequestObjectType()
         {
-            var requestMock = new TraktSeasonRequestMock();
+            var requestMock = new SeasonRequestMock();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Seasons);
         }
 
@@ -75,7 +75,7 @@
         public void Test_ASeasonRequest_1_Returns_Valid_UriPathParameters()
         {
             // with implicit season number
-            var requestMock = new TraktSeasonRequestMock { Id = "123" };
+            var requestMock = new SeasonRequestMock { Id = "123" };
 
             requestMock.GetUriPathParameters().Should().NotBeNull()
                                                        .And.HaveCount(2)
@@ -86,7 +86,7 @@
                                                        });
 
             // with explicit season number
-            requestMock = new TraktSeasonRequestMock { Id = "123", SeasonNumber = 2 };
+            requestMock = new SeasonRequestMock { Id = "123", SeasonNumber = 2 };
 
             requestMock.GetUriPathParameters().Should().NotBeNull()
                                                        .And.HaveCount(2)
@@ -101,19 +101,19 @@
         public void Test_ASeasonRequest_1_Validate_Throws_Exceptions()
         {
             // id is null
-            var requestMock = new TraktSeasonRequestMock();
+            var requestMock = new SeasonRequestMock();
 
             Action act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            requestMock = new TraktSeasonRequestMock { Id = string.Empty };
+            requestMock = new SeasonRequestMock { Id = string.Empty };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            requestMock = new TraktSeasonRequestMock { Id = "invalid id" };
+            requestMock = new SeasonRequestMock { Id = "invalid id" };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();

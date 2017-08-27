@@ -15,9 +15,9 @@
         {
             typeof(ARequest).IsAbstract.Should().BeTrue();
         }
-        
+
         [Fact]
-        public void Test_ARequest_Implements_ITraktRequest_Interface()
+        public void Test_ARequest_Implements_IRequest_Interface()
         {
             typeof(ARequest).GetInterfaces().Should().Contain(typeof(IRequest));
         }

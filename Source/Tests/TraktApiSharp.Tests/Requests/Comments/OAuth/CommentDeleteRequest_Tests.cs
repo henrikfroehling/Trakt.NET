@@ -25,13 +25,13 @@
         }
 
         [Fact]
-        public void Test_CommentDeleteRequest_Inherits_ATraktDeleteRequest()
+        public void Test_CommentDeleteRequest_Inherits_ADeleteRequest()
         {
             typeof(CommentDeleteRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_CommentDeleteRequest_Implements_ITraktHasId_Interface()
+        public void Test_CommentDeleteRequest_Implements_IHasId_Interface()
         {
             typeof(CommentDeleteRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }

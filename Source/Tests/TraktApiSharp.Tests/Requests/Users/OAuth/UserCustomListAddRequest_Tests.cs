@@ -28,7 +28,7 @@
         }
 
         [Fact]
-        public void Test_UserCustomListAddRequest_Inherits_ATraktPostRequest_2()
+        public void Test_UserCustomListAddRequest_Inherits_APostRequest_2()
         {
             typeof(UserCustomListAddRequest).IsSubclassOf(typeof(APostRequest<ITraktList, TraktUserCustomListPost>)).Should().BeTrue();
         }

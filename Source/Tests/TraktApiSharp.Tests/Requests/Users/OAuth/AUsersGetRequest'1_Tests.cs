@@ -33,13 +33,13 @@
         }
 
         [Fact]
-        public void Test_AUsersGetRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_AUsersGetRequest_1_Inherits_AGetRequest_1()
         {
             typeof(AUsersGetRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_AUsersGetRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_AUsersGetRequest_1_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(AUsersGetRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }

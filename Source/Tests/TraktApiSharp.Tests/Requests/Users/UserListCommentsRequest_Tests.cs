@@ -30,19 +30,19 @@
         }
 
         [Fact]
-        public void Test_UserListCommentsRequest_Inherits_ATraktGetRequest_1()
+        public void Test_UserListCommentsRequest_Inherits_AGetRequest_1()
         {
             typeof(UserListCommentsRequest).IsSubclassOf(typeof(AGetRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_UserListCommentsRequest_Implements_ITraktHasId_Interface()
+        public void Test_UserListCommentsRequest_Implements_IHasId_Interface()
         {
             typeof(UserListCommentsRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_UserListCommentsRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_UserListCommentsRequest_Implements_ISupportsPagination_Interface()
         {
             typeof(UserListCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
@@ -136,7 +136,7 @@
 
         [Theory, ClassData(typeof(UserListCommentsRequest_TestData))]
         public void Test_UserListCommentsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                      IDictionary<string, object> expected)
+                                                                                 IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

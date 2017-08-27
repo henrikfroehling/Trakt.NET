@@ -23,7 +23,7 @@
         }
 
         [Fact]
-        public void Test_SyncRatingsAddRequest_Inherits_ATraktSyncPostRequest_2()
+        public void Test_SyncRatingsAddRequest_Inherits_ASyncPostRequest_2()
         {
             typeof(SyncRatingsAddRequest).IsSubclassOf(typeof(ASyncPostRequest<ITraktSyncRatingsPostResponse, TraktSyncRatingsPost>)).Should().BeTrue();
         }

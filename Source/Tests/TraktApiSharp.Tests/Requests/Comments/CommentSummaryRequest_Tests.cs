@@ -26,13 +26,13 @@
         }
 
         [Fact]
-        public void Test_CommentSummaryRequest_Inherits_ATraktGetRequest_1()
+        public void Test_CommentSummaryRequest_Inherits_AGetRequest_1()
         {
             typeof(CommentSummaryRequest).IsSubclassOf(typeof(AGetRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_CommentSummaryRequest_Implements_ITraktHasId_Interface()
+        public void Test_CommentSummaryRequest_Implements_IHasId_Interface()
         {
             typeof(CommentSummaryRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }

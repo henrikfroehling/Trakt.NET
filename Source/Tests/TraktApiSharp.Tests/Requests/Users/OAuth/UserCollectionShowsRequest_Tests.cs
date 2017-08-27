@@ -28,7 +28,7 @@
         }
 
         [Fact]
-        public void Test_UserCollectionShowsRequest_Inherits_ATraktUsersGetRequest_1()
+        public void Test_UserCollectionShowsRequest_Inherits_AUsersGetRequest_1()
         {
             typeof(UserCollectionShowsRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktCollectionShow>)).Should().BeTrue();
         }

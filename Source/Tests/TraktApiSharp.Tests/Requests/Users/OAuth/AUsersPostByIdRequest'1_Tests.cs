@@ -32,13 +32,13 @@
         }
 
         [Fact]
-        public void Test_AUsersPostByIdRequest_1_Inherits_ATraktPostRequest_2()
+        public void Test_AUsersPostByIdRequest_1_Inherits_APostRequest_2()
         {
             typeof(AUsersPostByIdRequest<int, float>).IsSubclassOf(typeof(APostRequest<int, float>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_AUsersPostByIdRequest_1_Implements_ITraktHasId_Interface()
+        public void Test_AUsersPostByIdRequest_1_Implements_IHasId_Interface()
         {
             typeof(AUsersPostByIdRequest<,>).GetInterfaces().Should().Contain(typeof(IHasId));
         }

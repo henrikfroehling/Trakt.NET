@@ -27,13 +27,13 @@
         }
 
         [Fact]
-        public void Test_ADeleteRequest_Inherits_ATraktRequest()
+        public void Test_ADeleteRequest_Inherits_ARequest()
         {
             typeof(ADeleteRequest).IsSubclassOf(typeof(ARequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ADeleteRequest_Implements_ITraktDeleteRequest_Interface()
+        public void Test_ADeleteRequest_Implements_IDeleteRequest_Interface()
         {
             typeof(ADeleteRequest).GetInterfaces().Should().Contain(typeof(IDeleteRequest));
         }

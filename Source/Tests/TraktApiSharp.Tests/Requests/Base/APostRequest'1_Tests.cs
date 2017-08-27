@@ -34,13 +34,13 @@
         }
 
         [Fact]
-        public void Test_APostRequest_1_Inherits_ATraktRequest()
+        public void Test_APostRequest_1_Inherits_ARequest()
         {
             typeof(APostRequest<>).IsSubclassOf(typeof(ARequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_APostRequest_1_Implements_ITraktPostRequest_1_Interface()
+        public void Test_APostRequest_1_Implements_IPostRequest_1_Interface()
         {
             typeof(APostRequest<int>).GetInterfaces().Should().Contain(typeof(IPostRequest<int>));
         }

@@ -26,7 +26,7 @@
         }
 
         [Fact]
-        public void Test_MoviesMostWatchedRequest_Inherits_ATraktMoviesMostPWCRequest_1()
+        public void Test_MoviesMostWatchedRequest_Inherits_AMoviesMostPWCRequest_1()
         {
             typeof(MoviesMostWatchedRequest).IsSubclassOf(typeof(AMoviesMostPWCRequest<ITraktMostPWCMovie>)).Should().BeTrue();
         }
@@ -40,7 +40,7 @@
 
         [Theory, ClassData(typeof(MoviesMostWatchedRequest_TestData))]
         public void Test_MoviesMostWatchedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                       IDictionary<string, object> expected)
+                                                                                  IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

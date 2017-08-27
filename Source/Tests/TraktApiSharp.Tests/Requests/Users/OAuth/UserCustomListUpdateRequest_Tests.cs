@@ -29,13 +29,13 @@
         }
 
         [Fact]
-        public void Test_UserCustomListUpdateRequest_Inherits_ATraktPutRequest_2()
+        public void Test_UserCustomListUpdateRequest_Inherits_APutRequest_2()
         {
             typeof(UserCustomListUpdateRequest).IsSubclassOf(typeof(APutRequest<ITraktList, TraktUserCustomListPost>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_UserCustomListUpdateRequest_Implements_ITraktHasId_Interface()
+        public void Test_UserCustomListUpdateRequest_Implements_IHasId_Interface()
         {
             typeof(UserCustomListUpdateRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }

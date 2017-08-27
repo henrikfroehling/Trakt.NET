@@ -27,13 +27,13 @@
         }
 
         [Fact]
-        public void Test_CommentUpdateRequest_Inherits_ATraktPutRequest_2()
+        public void Test_CommentUpdateRequest_Inherits_APutRequest_2()
         {
             typeof(CommentUpdateRequest).IsSubclassOf(typeof(APutRequest<ITraktCommentPostResponse, TraktCommentUpdatePost>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_CommentUpdateRequest_Implements_ITraktHasId_Interface()
+        public void Test_CommentUpdateRequest_Implements_IHasId_Interface()
         {
             typeof(CommentUpdateRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }

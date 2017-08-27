@@ -29,13 +29,13 @@
         }
 
         [Fact]
-        public void Test_ShowCommentsRequest_Inherits_ATraktShowRequest_1()
+        public void Test_ShowCommentsRequest_Inherits_AShowRequest_1()
         {
             typeof(ShowCommentsRequest).IsSubclassOf(typeof(AShowRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ShowCommentsRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_ShowCommentsRequest_Implements_ISupportsPagination_Interface()
         {
             typeof(ShowCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
@@ -84,7 +84,7 @@
 
         [Theory, ClassData(typeof(ShowCommentsRequest_TestData))]
         public void Test_ShowCommentsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                  IDictionary<string, object> expected)
+                                                                             IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

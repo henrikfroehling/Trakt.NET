@@ -25,13 +25,13 @@
         }
 
         [Fact]
-        public void Test_AUsersDeleteByIdRequest_Inherits_ATraktDeleteRequest()
+        public void Test_AUsersDeleteByIdRequest_Inherits_ADeleteRequest()
         {
             typeof(AUsersDeleteByIdRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_AUsersDeleteByIdRequest_Implements_ITraktHasId_Interface()
+        public void Test_AUsersDeleteByIdRequest_Implements_IHasId_Interface()
         {
             typeof(AUsersDeleteByIdRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }

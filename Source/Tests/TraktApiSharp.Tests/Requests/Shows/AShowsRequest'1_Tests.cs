@@ -34,25 +34,25 @@
         }
 
         [Fact]
-        public void Test_AShowsRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_AShowsRequest_1_Inherits_AGetRequest_1()
         {
             typeof(AShowsRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_AShowsRequest_1_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_AShowsRequest_1_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(AShowsRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_AShowsRequest_1_Implements_ITraktSupportsFilter_Interface()
+        public void Test_AShowsRequest_1_Implements_ISupportsFilter_Interface()
         {
             typeof(AShowsRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
         }
 
         [Fact]
-        public void Test_AShowsRequest_1_Implements_ITraktSupportsPagination_Interface()
+        public void Test_AShowsRequest_1_Implements_ISupportsPagination_Interface()
         {
             typeof(AShowsRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
@@ -66,7 +66,7 @@
 
         [Theory, ClassData(typeof(ShowsRequestMock_TestData))]
         public void Test_AShowsRequest_1_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                              IDictionary<string, object> expected)
+                                                                         IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

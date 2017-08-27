@@ -28,7 +28,7 @@
         }
 
         [Fact]
-        public void Test_CalendarUserShowsRequest_Inherits_ATraktCalendarUserRequest()
+        public void Test_CalendarUserShowsRequest_Inherits_ACalendarUserRequest()
         {
             typeof(CalendarUserShowsRequest).IsSubclassOf(typeof(ACalendarUserRequest<ITraktCalendarShow>)).Should().BeTrue();
         }
@@ -49,7 +49,7 @@
 
         [Theory, ClassData(typeof(CalendarUserShowsRequest_TestData))]
         public void Test_CalendarUserShowsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                       IDictionary<string, object> expected)
+                                                                                  IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

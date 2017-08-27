@@ -27,19 +27,19 @@
         }
 
         [Fact]
-        public void Test_ShowRelatedShowsRequest_Inherits_ATraktShowRequest_1()
+        public void Test_ShowRelatedShowsRequest_Inherits_AShowRequest_1()
         {
             typeof(ShowRelatedShowsRequest).IsSubclassOf(typeof(AShowRequest<ITraktShow>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ShowRelatedShowsRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_ShowRelatedShowsRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(ShowRelatedShowsRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_ShowRelatedShowsRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_ShowRelatedShowsRequest_Implements_ISupportsPagination_Interface()
         {
             typeof(ShowRelatedShowsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
@@ -75,7 +75,7 @@
 
         [Theory, ClassData(typeof(ShowRelatedShowsRequest_TestData))]
         public void Test_ShowRelatedShowsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                      IDictionary<string, object> expected)
+                                                                                 IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

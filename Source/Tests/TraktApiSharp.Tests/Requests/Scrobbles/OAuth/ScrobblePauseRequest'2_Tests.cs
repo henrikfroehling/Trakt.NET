@@ -29,7 +29,7 @@
         }
 
         [Fact]
-        public void Test_ScrobblePauseRequest_2_Inherits_ATraktPostRequest_2()
+        public void Test_ScrobblePauseRequest_2_Inherits_APostRequest_2()
         {
             typeof(ScrobblePauseRequest<int, float>).IsSubclassOf(typeof(APostRequest<int, float>)).Should().BeTrue();
         }

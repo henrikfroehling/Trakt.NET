@@ -26,13 +26,13 @@
         }
 
         [Fact]
-        public void Test_ShowLastEpisodeRequest_Inherits_ATraktShowRequest_1()
+        public void Test_ShowLastEpisodeRequest_Inherits_AShowRequest_1()
         {
             typeof(ShowLastEpisodeRequest).IsSubclassOf(typeof(AShowRequest<ITraktEpisode>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ShowLastEpisodeRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_ShowLastEpisodeRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(ShowLastEpisodeRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }

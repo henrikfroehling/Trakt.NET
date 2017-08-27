@@ -22,13 +22,13 @@
         }
 
         [Fact]
-        public void Test_IPutRequest_2_Inherits_ITraktRequest_1_Interface()
+        public void Test_IPutRequest_2_Inherits_IRequest_1_Interface()
         {
             typeof(IPutRequest<int, float>).GetInterfaces().Should().Contain(typeof(IRequest<int>));
         }
 
         [Fact]
-        public void Test_IPutRequest_2_Inherits_ITraktHasRequestBody_1_Interface()
+        public void Test_IPutRequest_2_Inherits_IHasRequestBody_1_Interface()
         {
             typeof(IPutRequest<int, float>).GetInterfaces().Should().Contain(typeof(IHasRequestBody<float>));
         }

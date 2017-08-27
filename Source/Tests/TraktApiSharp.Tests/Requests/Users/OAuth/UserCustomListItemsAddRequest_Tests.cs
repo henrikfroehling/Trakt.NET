@@ -29,7 +29,7 @@
         }
 
         [Fact]
-        public void Test_UserCustomListItemsAddRequest_Inherits_ATraktUsersPostByIdRequest_2()
+        public void Test_UserCustomListItemsAddRequest_Inherits_AUsersPostByIdRequest_2()
         {
             typeof(UserCustomListItemsAddRequest).IsSubclassOf(typeof(AUsersPostByIdRequest<ITraktUserCustomListItemsPostResponse, TraktUserCustomListItemsPost>)).Should().BeTrue();
         }

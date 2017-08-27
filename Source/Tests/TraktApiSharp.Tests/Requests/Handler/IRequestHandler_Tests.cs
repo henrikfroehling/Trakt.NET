@@ -15,13 +15,13 @@
         }
 
         [Fact]
-        public void Test_IRequestHandler_Inherits_ITraktPostRequestHandler_Interface()
+        public void Test_IRequestHandler_Inherits_IPostRequestHandler_Interface()
         {
             typeof(IRequestHandler).GetInterfaces().Should().Contain(typeof(IPostRequestHandler));
         }
 
         [Fact]
-        public void Test_IRequestHandler_Inherits_ITraktPutRequestHandler_Interface()
+        public void Test_IRequestHandler_Inherits_IPutRequestHandler_Interface()
         {
             typeof(IRequestHandler).GetInterfaces().Should().Contain(typeof(IPutRequestHandler));
         }

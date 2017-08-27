@@ -29,7 +29,7 @@
         }
 
         [Fact]
-        public void Test_ASyncGetRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_ASyncGetRequest_1_Inherits_AGetRequest_1()
         {
             typeof(ASyncGetRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }

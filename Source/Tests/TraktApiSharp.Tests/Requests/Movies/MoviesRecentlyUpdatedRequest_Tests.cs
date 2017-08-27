@@ -31,19 +31,19 @@
         }
 
         [Fact]
-        public void Test_MoviesRecentlyUpdatedRequest_Inherits_ATraktGetRequest_1()
+        public void Test_MoviesRecentlyUpdatedRequest_Inherits_AGetRequest_1()
         {
             typeof(MoviesRecentlyUpdatedRequest).IsSubclassOf(typeof(AGetRequest<ITraktRecentlyUpdatedMovie>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_MoviesRecentlyUpdatedRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_MoviesRecentlyUpdatedRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(MoviesRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_MoviesRecentlyUpdatedRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_MoviesRecentlyUpdatedRequest_Implements_ISupportsPagination_Interface()
         {
             typeof(MoviesRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
@@ -77,7 +77,7 @@
 
         [Theory, ClassData(typeof(MoviesRecentlyUpdatedRequest_TestData))]
         public void Test_MoviesRecentlyUpdatedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                           IDictionary<string, object> expected)
+                                                                                      IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

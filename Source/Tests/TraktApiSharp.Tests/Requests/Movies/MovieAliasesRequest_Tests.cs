@@ -24,7 +24,7 @@
         }
 
         [Fact]
-        public void Test_MovieAliasesRequest_Inherits_ATraktMovieRequest_1()
+        public void Test_MovieAliasesRequest_Inherits_AMovieRequest_1()
         {
             typeof(MovieAliasesRequest).IsSubclassOf(typeof(AMovieRequest<ITraktMovieAlias>)).Should().BeTrue();
         }

@@ -34,13 +34,13 @@
         }
 
         [Fact]
-        public void Test_AShowProgressRequest_1_Inherits_ATraktGetRequest_1()
+        public void Test_AShowProgressRequest_1_Inherits_AGetRequest_1()
         {
             typeof(AShowProgressRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_AShowProgressRequest_1_Implements_ITraktHasId_Interface()
+        public void Test_AShowProgressRequest_1_Implements_IHasId_Interface()
         {
             typeof(AShowProgressRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
@@ -120,9 +120,9 @@
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktShowProgressRequestMock_TestData))]
+        [Theory, ClassData(typeof(ShowProgressRequestMock_TestData))]
         public void Test_AShowProgressRequest_1_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                     IDictionary<string, object> expected)
+                                                                                IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 
@@ -130,7 +130,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktShowProgressRequestMock_TestData : IEnumerable<object[]>
+        public class ShowProgressRequestMock_TestData : IEnumerable<object[]>
         {
             private const string _id = "123";
             private const bool _hidden = true;
@@ -191,7 +191,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktShowProgressRequestMock_TestData()
+            public ShowProgressRequestMock_TestData()
             {
                 SetupPathParamters();
             }

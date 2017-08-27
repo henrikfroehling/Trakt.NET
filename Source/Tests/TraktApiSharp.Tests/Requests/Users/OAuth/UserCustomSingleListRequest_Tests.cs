@@ -28,13 +28,13 @@
         }
 
         [Fact]
-        public void Test_UserCustomSingleListRequest_Inherits_ATraktGetRequest_1()
+        public void Test_UserCustomSingleListRequest_Inherits_AGetRequest_1()
         {
             typeof(UserCustomSingleListRequest).IsSubclassOf(typeof(AGetRequest<ITraktList>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_UserCustomSingleListRequest_Implements_ITraktHasId_Interface()
+        public void Test_UserCustomSingleListRequest_Implements_IHasId_Interface()
         {
             typeof(UserCustomSingleListRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }

@@ -24,7 +24,7 @@
         }
 
         [Fact]
-        public void Test_UserDenyFollowerRequest_Inherits_ATraktUsersDeleteByIdRequest()
+        public void Test_UserDenyFollowerRequest_Inherits_AUsersDeleteByIdRequest()
         {
             typeof(UserDenyFollowerRequest).IsSubclassOf(typeof(AUsersDeleteByIdRequest)).Should().BeTrue();
         }

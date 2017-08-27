@@ -16,25 +16,25 @@
         }
 
         [Fact]
-        public void Test_IRequest_Inherits_ITraktHttpRequest_Interface()
+        public void Test_IRequest_Inherits_IHttpRequest_Interface()
         {
             typeof(IRequest).GetInterfaces().Should().Contain(typeof(IHttpRequest));
         }
 
         [Fact]
-        public void Test_IRequest_Inherits_ITraktHasRequestAuthorization_Interface()
+        public void Test_IRequest_Inherits_IHasRequestAuthorization_Interface()
         {
             typeof(IRequest).GetInterfaces().Should().Contain(typeof(IHasRequestAuthorization));
         }
 
         [Fact]
-        public void Test_IRequest_Inherits_ITraktHasUri_Interface()
+        public void Test_IRequest_Inherits_IHasUri_Interface()
         {
             typeof(IRequest).GetInterfaces().Should().Contain(typeof(IHasUri));
         }
 
         [Fact]
-        public void Test_IRequest_Inherits_ITraktValidatable_Interface()
+        public void Test_IRequest_Inherits_IValidatable_Interface()
         {
             typeof(IRequest).GetInterfaces().Should().Contain(typeof(IValidatable));
         }

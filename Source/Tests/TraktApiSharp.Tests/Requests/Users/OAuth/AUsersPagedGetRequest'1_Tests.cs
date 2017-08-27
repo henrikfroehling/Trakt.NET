@@ -34,13 +34,13 @@
         }
 
         [Fact]
-        public void Test_AUsersPagedGetRequest_1_Inherits_ATraktUsersGetRequest_1()
+        public void Test_AUsersPagedGetRequest_1_Inherits_AUsersGetRequest_1()
         {
             typeof(AUsersPagedGetRequest<int>).IsSubclassOf(typeof(AUsersGetRequest<int>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_AUsersPagedGetRequest_1_Implements_ITraktSupportsPagination_Interface()
+        public void Test_AUsersPagedGetRequest_1_Implements_ISupportsPagination_Interface()
         {
             typeof(AUsersPagedGetRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
@@ -52,9 +52,9 @@
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
-        [Theory, ClassData(typeof(TraktUsersPagedGetRequestMock_TestData))]
+        [Theory, ClassData(typeof(UsersPagedGetRequestMock_TestData))]
         public void Test_AUsersPagedGetRequest_1_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                      IDictionary<string, object> expected)
+                                                                                 IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 
@@ -62,7 +62,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktUsersPagedGetRequestMock_TestData : IEnumerable<object[]>
+        public class UsersPagedGetRequestMock_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private const int _page = 4;
@@ -112,7 +112,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktUsersPagedGetRequestMock_TestData()
+            public UsersPagedGetRequestMock_TestData()
             {
                 SetupPathParamters();
             }

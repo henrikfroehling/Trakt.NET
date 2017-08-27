@@ -31,19 +31,19 @@
         }
 
         [Fact]
-        public void Test_ASearchRequest_Inherits_ATraktGetRequest_1()
+        public void Test_ASearchRequest_Inherits_AGetRequest_1()
         {
             typeof(ASearchRequest).IsSubclassOf(typeof(AGetRequest<ITraktSearchResult>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_ASearchRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_ASearchRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(ASearchRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]
-        public void Test_ASearchRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_ASearchRequest_Implements_ISupportsPagination_Interface()
         {
             typeof(ASearchRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
@@ -70,7 +70,7 @@
 
         [Theory, ClassData(typeof(TraktSearchRequestMock_TestData))]
         public void Test_ASearchRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                             IDictionary<string, object> expected)
+                                                                        IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

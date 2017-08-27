@@ -29,13 +29,13 @@
         }
 
         [Fact]
-        public void Test_UserLikesRequest_Inherits_ATraktGetRequest_1()
+        public void Test_UserLikesRequest_Inherits_AGetRequest_1()
         {
             typeof(UserLikesRequest).IsSubclassOf(typeof(AGetRequest<ITraktUserLikeItem>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_UserLikesRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_UserLikesRequest_Implements_ISupportsPagination_Interface()
         {
             typeof(UserLikesRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
@@ -69,7 +69,7 @@
 
         [Theory, ClassData(typeof(UserLikesRequest_TestData))]
         public void Test_UserLikesRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                               IDictionary<string, object> expected)
+                                                                          IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

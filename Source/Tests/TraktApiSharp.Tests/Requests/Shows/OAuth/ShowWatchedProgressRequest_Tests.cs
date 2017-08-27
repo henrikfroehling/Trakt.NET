@@ -24,7 +24,7 @@
         }
 
         [Fact]
-        public void Test_ShowWatchedProgressRequest_Inherits_ATraktShowProgressRequest_1()
+        public void Test_ShowWatchedProgressRequest_Inherits_AShowProgressRequest_1()
         {
             typeof(ShowWatchedProgressRequest).IsSubclassOf(typeof(AShowProgressRequest<ITraktShowWatchedProgress>)).Should().BeTrue();
         }
@@ -38,7 +38,7 @@
 
         [Theory, ClassData(typeof(ShowWatchedProgressRequest_TestData))]
         public void Test_ShowWatchedProgressRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                         IDictionary<string, object> expected)
+                                                                                    IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

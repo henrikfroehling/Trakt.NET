@@ -29,13 +29,13 @@
         }
 
         [Fact]
-        public void Test_SyncRatingsRequest_Inherits_ATraktSyncGetRequest_1()
+        public void Test_SyncRatingsRequest_Inherits_ASyncGetRequest_1()
         {
             typeof(SyncRatingsRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktRatingsItem>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_SyncRatingsRequest_Implements_ITraktSupportsExtendedInfo_Interface()
+        public void Test_SyncRatingsRequest_Implements_ISupportsExtendedInfo_Interface()
         {
             typeof(SyncRatingsRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
@@ -75,7 +75,7 @@
 
         [Theory, ClassData(typeof(SyncRatingsRequest_TestData))]
         public void Test_SyncRatingsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                 IDictionary<string, object> expected)
+                                                                            IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

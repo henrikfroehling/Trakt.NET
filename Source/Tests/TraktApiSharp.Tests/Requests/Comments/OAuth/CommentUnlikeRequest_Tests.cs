@@ -25,13 +25,13 @@
         }
 
         [Fact]
-        public void Test_CommentUnlikeRequest_Inherits_ATraktDeleteRequest()
+        public void Test_CommentUnlikeRequest_Inherits_ADeleteRequest()
         {
             typeof(CommentUnlikeRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_CommentUnlikeRequest_Implements_ITraktHasId_Interface()
+        public void Test_CommentUnlikeRequest_Implements_IHasId_Interface()
         {
             typeof(CommentUnlikeRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }

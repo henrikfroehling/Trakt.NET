@@ -22,7 +22,7 @@
         }
 
         [Fact]
-        public void Test_SyncLastActivitiesRequest_Inherits_ATraktSyncGetRequest_1()
+        public void Test_SyncLastActivitiesRequest_Inherits_ASyncGetRequest_1()
         {
             typeof(SyncLastActivitiesRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktSyncLastActivities>)).Should().BeTrue();
         }

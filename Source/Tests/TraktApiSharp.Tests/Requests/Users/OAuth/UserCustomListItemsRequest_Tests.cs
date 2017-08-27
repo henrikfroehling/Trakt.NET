@@ -31,13 +31,13 @@
         }
 
         [Fact]
-        public void Test_UserCustomListItemsRequest_Inherits_ATraktUsersPagedGetRequest_1()
+        public void Test_UserCustomListItemsRequest_Inherits_AUsersPagedGetRequest_1()
         {
             typeof(UserCustomListItemsRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktListItem>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_UserCustomListItemsRequest_Implements_ITraktHasId_Interface()
+        public void Test_UserCustomListItemsRequest_Implements_IHasId_Interface()
         {
             typeof(UserCustomListItemsRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
@@ -131,7 +131,7 @@
 
         [Theory, ClassData(typeof(UserCustomListItemsRequest_TestData))]
         public void Test_UserCustomListItemsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                         IDictionary<string, object> expected)
+                                                                                    IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

@@ -30,13 +30,13 @@
         }
 
         [Fact]
-        public void Test_SearchTextQueryRequest_Inherits_ATraktSearchRequest()
+        public void Test_SearchTextQueryRequest_Inherits_ASearchRequest()
         {
             typeof(SearchTextQueryRequest).IsSubclassOf(typeof(ASearchRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_SearchTextQueryRequest_Implements_ITraktSupportsFilter_Interface()
+        public void Test_SearchTextQueryRequest_Implements_ISupportsFilter_Interface()
         {
             typeof(SearchTextQueryRequest).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
         }
@@ -115,7 +115,7 @@
 
         [Theory, ClassData(typeof(SearchTextQueryRequest_TestData))]
         public void Test_SearchTextQueryRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                     IDictionary<string, object> expected)
+                                                                                IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

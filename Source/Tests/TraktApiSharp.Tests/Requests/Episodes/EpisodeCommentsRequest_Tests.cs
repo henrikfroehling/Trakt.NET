@@ -29,24 +29,24 @@
         }
 
         [Fact]
-        public void Test_EpisodeCommentsRequest_Inherits_ATraktEpisodeRequest_1()
+        public void Test_EpisodeCommentsRequest_Inherits_AEpisodeRequest_1()
         {
             typeof(EpisodeCommentsRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktComment>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_EpisodeCommentsRequest_Implements_ITraktSupportsPagination_Interface()
+        public void Test_EpisodeCommentsRequest_Implements_ISupportsPagination_Interface()
         {
             typeof(EpisodeCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
-        
+
         [Fact]
         public void Test_EpisodeCommentsRequest_Has_Valid_UriTemplate()
         {
             var request = new EpisodeCommentsRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/episodes/{episode}/comments{/sort_order}{?page,limit}");
         }
-        
+
         [Fact]
         public void Test_EpisodeCommentsRequest_Has_SortOrder_Property()
         {
@@ -90,7 +90,7 @@
 
         [Theory, ClassData(typeof(EpisodeCommentsRequest_TestData))]
         public void Test_EpisodeCommentsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                     IDictionary<string, object> expected)
+                                                                                IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 

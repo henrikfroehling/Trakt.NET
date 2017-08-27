@@ -25,7 +25,7 @@
         }
 
         [Fact]
-        public void Test_UserShowRecommendationsRequest_Inherits_ATraktUserRecommendationsRequest_1()
+        public void Test_UserShowRecommendationsRequest_Inherits_AUserRecommendationsRequest_1()
         {
             typeof(UserShowRecommendationsRequest).IsSubclassOf(typeof(AUserRecommendationsRequest<ITraktShow>)).Should().BeTrue();
         }

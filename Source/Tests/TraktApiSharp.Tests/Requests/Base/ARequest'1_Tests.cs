@@ -24,7 +24,7 @@
         }
 
         [Fact]
-        public void Test_ARequest_1_Implements_ITraktRequest_1_Interface()
+        public void Test_ARequest_1_Implements_IRequest_1_Interface()
         {
             typeof(ARequest<int>).GetInterfaces().Should().Contain(typeof(IRequest<int>));
         }

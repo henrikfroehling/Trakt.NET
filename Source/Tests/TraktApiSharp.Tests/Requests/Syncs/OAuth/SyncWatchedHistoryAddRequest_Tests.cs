@@ -23,7 +23,7 @@
         }
 
         [Fact]
-        public void Test_SyncWatchedHistoryAddRequest_Inherits_ATraktSyncPostRequest_2()
+        public void Test_SyncWatchedHistoryAddRequest_Inherits_ASyncPostRequest_2()
         {
             typeof(SyncWatchedHistoryAddRequest).IsSubclassOf(typeof(ASyncPostRequest<ITraktSyncHistoryPostResponse, TraktSyncHistoryPost>)).Should().BeTrue();
         }
