@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Basic.JsonReader
 {
-    public partial class TraktCastMemberArrayJsonReader_Tests
+    public partial class CastMemberArrayJsonReader_Tests
     {
         private const string JSON_EMPTY_ARRAY = @"[]";
 

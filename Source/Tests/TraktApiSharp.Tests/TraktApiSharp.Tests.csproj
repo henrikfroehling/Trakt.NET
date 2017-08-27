@@ -102,11 +102,11 @@
     <Compile Include="Objects\Basic\JsonReader\CastAndCrewObjectJsonReader\CastAndCrewObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\CastAndCrewObjectJsonReader\CastAndCrewObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\CastAndCrewObjectJsonReader\CastAndCrewObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktCastMemberArrayJsonReader\TraktCastMemberArrayJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktCastMemberArrayJsonReader\TraktCastMemberArrayJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktCastMemberArrayJsonReader\TraktCastMemberArrayJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktCastMemberArrayJsonReader\TraktCastMemberArrayJsonReader_Tests.cs" />
-    <Compile Include="Objects\Basic\JsonReader\TraktCastMemberArrayJsonReader\TraktCastMemberArrayJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CastMemberArrayJsonReader\CastMemberArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CastMemberArrayJsonReader\CastMemberArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CastMemberArrayJsonReader\CastMemberArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CastMemberArrayJsonReader\CastMemberArrayJsonReader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CastMemberArrayJsonReader\CastMemberArrayJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktCastMemberObjectJsonReader\TraktCastMemberObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktCastMemberObjectJsonReader\TraktCastMemberObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\TraktCastMemberObjectJsonReader\TraktCastMemberObjectJsonReader_Stream_Tests.cs" />
