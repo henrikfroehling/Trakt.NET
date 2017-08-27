@@ -56,7 +56,7 @@
         public Task<TraktResponse<ITraktSyncLastActivities>> GetLastActivitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncLastActivitiesRequest(), cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncLastActivitiesRequest(), cancellationToken);
         }
 
         /// <summary>

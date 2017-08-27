@@ -1247,7 +1247,7 @@
     <Compile Include="Requests\Syncs\OAuth\SyncCollectionMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\SyncCollectionRemoveRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\SyncCollectionShowsRequest_Tests.cs" />
-    <Compile Include="Requests\Syncs\OAuth\TraktSyncLastActivitiesRequest_Tests.cs" />
+    <Compile Include="Requests\Syncs\OAuth\SyncLastActivitiesRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncPlaybackDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncPlaybackProgressRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncRatingsAddRequest_Tests.cs" />
