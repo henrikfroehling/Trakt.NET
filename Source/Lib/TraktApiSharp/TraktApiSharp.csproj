@@ -763,7 +763,7 @@
     <Compile Include="Requests\Users\OAuth\UserApproveFollowerRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserCollectionMoviesRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserCollectionShowsRequest.cs" />
-    <Compile Include="Requests\Users\OAuth\TraktUserCommentsRequest.cs" />
+    <Compile Include="Requests\Users\OAuth\UserCommentsRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCustomListAddRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCustomListDeleteRequest.cs" />
     <Compile Include="Requests\Users\OAuth\TraktUserCustomListItemsAddRequest.cs" />

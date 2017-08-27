@@ -15,30 +15,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserCommentsRequest_Tests
+    public class UserCommentsRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserCommentsRequest_Is_Not_Abstract()
+        public void Test_UserCommentsRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserCommentsRequest).IsAbstract.Should().BeFalse();
+            typeof(UserCommentsRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserCommentsRequest_Is_Sealed()
+        public void Test_UserCommentsRequest_Is_Sealed()
         {
-            typeof(TraktUserCommentsRequest).IsSealed.Should().BeTrue();
+            typeof(UserCommentsRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCommentsRequest_Inherits_ATraktUsersPagedGetRequest_1()
+        public void Test_UserCommentsRequest_Inherits_ATraktUsersPagedGetRequest_1()
         {
-            typeof(TraktUserCommentsRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktUserComment>)).Should().BeTrue();
+            typeof(UserCommentsRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktUserComment>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCommentsRequest_Has_Username_Property()
+        public void Test_UserCommentsRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserCommentsRequest)
+            var propertyInfo = typeof(UserCommentsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -49,9 +49,9 @@
         }
 
         [Fact]
-        public void Test_TraktUserCommentsRequest_Has_CommentType_Property()
+        public void Test_UserCommentsRequest_Has_CommentType_Property()
         {
-            var propertyInfo = typeof(TraktUserCommentsRequest)
+            var propertyInfo = typeof(UserCommentsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "CommentType")
                     .FirstOrDefault();
@@ -62,9 +62,9 @@
         }
 
         [Fact]
-        public void Test_TraktUserCommentsRequest_Has_ObjectType_Property()
+        public void Test_UserCommentsRequest_Has_ObjectType_Property()
         {
-            var propertyInfo = typeof(TraktUserCommentsRequest)
+            var propertyInfo = typeof(UserCommentsRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "ObjectType")
                     .FirstOrDefault();
@@ -75,43 +75,43 @@
         }
 
         [Fact]
-        public void Test_TraktUserCommentsRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserCommentsRequest_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUserCommentsRequest();
+            var request = new UserCommentsRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
-        public void Test_TraktUserCommentsRequest_Has_Valid_UriTemplate()
+        public void Test_UserCommentsRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserCommentsRequest();
+            var request = new UserCommentsRequest();
             request.UriTemplate.Should().Be("users/{username}/comments{/comment_type}{/object_type}{?extended,page,limit}");
         }
 
         [Fact]
-        public void Test_TraktUserCommentsRequest_Validate_Throws_Exceptions()
+        public void Test_UserCommentsRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var requestMock = new TraktUserCommentsRequest();
+            var requestMock = new UserCommentsRequest();
 
             Action act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            requestMock = new TraktUserCommentsRequest { Username = string.Empty };
+            requestMock = new UserCommentsRequest { Username = string.Empty };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            requestMock = new TraktUserCommentsRequest { Username = "invalid username" };
+            requestMock = new UserCommentsRequest { Username = "invalid username" };
 
             act = () => requestMock.Validate();
             act.ShouldThrow<ArgumentException>();
         }
 
-        [Theory, ClassData(typeof(TraktUserCommentsRequest_TestData))]
-        public void Test_TraktUserCommentsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+        [Theory, ClassData(typeof(UserCommentsRequest_TestData))]
+        public void Test_UserCommentsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
                                                                                   IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
@@ -120,7 +120,7 @@
                 values.Should().Contain(expected);
         }
 
-        public class TraktUserCommentsRequest_TestData : IEnumerable<object[]>
+        public class UserCommentsRequest_TestData : IEnumerable<object[]>
         {
             private const string _username = "username";
             private static readonly TraktCommentType _commentType = TraktCommentType.Shout;
@@ -129,77 +129,77 @@
             private const int _page = 4;
             private const int _limit = 20;
 
-            private static readonly TraktUserCommentsRequest _request1 = new TraktUserCommentsRequest
+            private static readonly UserCommentsRequest _request1 = new UserCommentsRequest
             {
                 Username = _username
             };
 
-            private static readonly TraktUserCommentsRequest _request2 = new TraktUserCommentsRequest
+            private static readonly UserCommentsRequest _request2 = new UserCommentsRequest
             {
                 Username = _username,
                 CommentType = _commentType
             };
 
-            private static readonly TraktUserCommentsRequest _request3 = new TraktUserCommentsRequest
+            private static readonly UserCommentsRequest _request3 = new UserCommentsRequest
             {
                 Username = _username,
                 ObjectType = _objectType
             };
 
-            private static readonly TraktUserCommentsRequest _request4 = new TraktUserCommentsRequest
+            private static readonly UserCommentsRequest _request4 = new UserCommentsRequest
             {
                 Username = _username,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktUserCommentsRequest _request5 = new TraktUserCommentsRequest
+            private static readonly UserCommentsRequest _request5 = new UserCommentsRequest
             {
                 Username = _username,
                 Page = _page
             };
 
-            private static readonly TraktUserCommentsRequest _request6 = new TraktUserCommentsRequest
+            private static readonly UserCommentsRequest _request6 = new UserCommentsRequest
             {
                 Username = _username,
                 Limit = _limit
             };
 
-            private static readonly TraktUserCommentsRequest _request7 = new TraktUserCommentsRequest
+            private static readonly UserCommentsRequest _request7 = new UserCommentsRequest
             {
                 Username = _username,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly TraktUserCommentsRequest _request8 = new TraktUserCommentsRequest
+            private static readonly UserCommentsRequest _request8 = new UserCommentsRequest
             {
                 Username = _username,
                 CommentType = _commentType,
                 ObjectType = _objectType
             };
 
-            private static readonly TraktUserCommentsRequest _request9 = new TraktUserCommentsRequest
+            private static readonly UserCommentsRequest _request9 = new UserCommentsRequest
             {
                 Username = _username,
                 CommentType = _commentType,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly TraktUserCommentsRequest _request10 = new TraktUserCommentsRequest
+            private static readonly UserCommentsRequest _request10 = new UserCommentsRequest
             {
                 Username = _username,
                 CommentType = _commentType,
                 Page = _page
             };
 
-            private static readonly TraktUserCommentsRequest _request11 = new TraktUserCommentsRequest
+            private static readonly UserCommentsRequest _request11 = new UserCommentsRequest
             {
                 Username = _username,
                 CommentType = _commentType,
                 Limit = _limit
             };
 
-            private static readonly TraktUserCommentsRequest _request12 = new TraktUserCommentsRequest
+            private static readonly UserCommentsRequest _request12 = new UserCommentsRequest
             {
                 Username = _username,
                 CommentType = _commentType,
@@ -207,21 +207,21 @@
                 Limit = _limit
             };
 
-            private static readonly TraktUserCommentsRequest _request13 = new TraktUserCommentsRequest
+            private static readonly UserCommentsRequest _request13 = new UserCommentsRequest
             {
                 Username = _username,
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly TraktUserCommentsRequest _request14 = new TraktUserCommentsRequest
+            private static readonly UserCommentsRequest _request14 = new UserCommentsRequest
             {
                 Username = _username,
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly TraktUserCommentsRequest _request15 = new TraktUserCommentsRequest
+            private static readonly UserCommentsRequest _request15 = new UserCommentsRequest
             {
                 Username = _username,
                 ExtendedInfo = _extendedInfo,
@@ -229,7 +229,7 @@
                 Limit = _limit
             };
 
-            private static readonly TraktUserCommentsRequest _request16 = new TraktUserCommentsRequest
+            private static readonly UserCommentsRequest _request16 = new UserCommentsRequest
             {
                 Username = _username,
                 CommentType = _commentType,
@@ -241,7 +241,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public TraktUserCommentsRequest_TestData()
+            public UserCommentsRequest_TestData()
             {
                 SetupPathParamters();
             }

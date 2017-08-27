@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserCommentsRequest : AUsersPagedGetRequest<ITraktUserComment>
+    internal sealed class UserCommentsRequest : AUsersPagedGetRequest<ITraktUserComment>
     {
         internal string Username { get; set; }
 

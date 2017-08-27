@@ -273,7 +273,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new TraktUserCommentsRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserCommentsRequest
             {
                 Username = usernameOrSlug,
                 CommentType = commentType,
