@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktCommentObjectJsonReader : IObjectJsonReader<ITraktComment>
+    internal class CommentObjectJsonReader : IObjectJsonReader<ITraktComment>
     {
         private const string PROPERTY_NAME_ID = "id";
         private const string PROPERTY_NAME_PARENT_ID = "parent_id";

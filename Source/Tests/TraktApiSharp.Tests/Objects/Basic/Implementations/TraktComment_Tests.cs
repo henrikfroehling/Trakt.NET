@@ -39,7 +39,7 @@
         [Fact]
         public async Task Test_TraktComment_From_Json()
         {
-            var jsonReader = new TraktCommentObjectJsonReader();
+            var jsonReader = new CommentObjectJsonReader();
             var traktComment = await jsonReader.ReadObjectAsync(JSON) as TraktComment;
 
             traktComment.Should().NotBeNull();
