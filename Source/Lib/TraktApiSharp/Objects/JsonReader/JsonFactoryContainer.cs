@@ -131,7 +131,7 @@
             s_readerFactories.Add(typeof(ITraktEpisodeIds), new EpisodeIdsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktEpisodeTranslation), new EpisodeTranslationJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktEpisodeCollectionProgress), new EpisodeCollectionProgressJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktEpisodeWatchedProgress), new TraktEpisodeWatchedProgressJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktEpisodeWatchedProgress), new EpisodeWatchedProgressJsonReaderFactory());
 
             // history objects
             s_readerFactories.Add(typeof(ITraktHistoryItem), new TraktHistoryItemJsonReaderFactory());
