@@ -535,7 +535,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteNoContentRequestAsync(new TraktUserCustomListDeleteRequest
+            return requestHandler.ExecuteNoContentRequestAsync(new UserCustomListDeleteRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug

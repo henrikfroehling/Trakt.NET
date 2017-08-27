@@ -5,7 +5,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class TraktUserCustomListDeleteRequest : AUsersDeleteByIdRequest
+    internal sealed class UserCustomListDeleteRequest : AUsersDeleteByIdRequest
     {
         internal string Username { get; set; }
 

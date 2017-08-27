@@ -11,30 +11,30 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserCustomListDeleteRequest_Tests
+    public class UserCustomListDeleteRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserCustomListDeleteRequest_Is_Not_Abstract()
+        public void Test_UserCustomListDeleteRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserCustomListDeleteRequest).IsAbstract.Should().BeFalse();
+            typeof(UserCustomListDeleteRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserCustomListDeleteRequest_Is_Sealed()
+        public void Test_UserCustomListDeleteRequest_Is_Sealed()
         {
-            typeof(TraktUserCustomListDeleteRequest).IsSealed.Should().BeTrue();
+            typeof(UserCustomListDeleteRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCustomListDeleteRequest_Inherits_ATraktUsersDeleteByIdRequest()
+        public void Test_UserCustomListDeleteRequest_Inherits_ATraktUsersDeleteByIdRequest()
         {
-            typeof(TraktUserCustomListDeleteRequest).IsSubclassOf(typeof(AUsersDeleteByIdRequest)).Should().BeTrue();
+            typeof(UserCustomListDeleteRequest).IsSubclassOf(typeof(AUsersDeleteByIdRequest)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCustomListDeleteRequest_Has_Username_Property()
+        public void Test_UserCustomListDeleteRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserCustomListDeleteRequest)
+            var propertyInfo = typeof(UserCustomListDeleteRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -45,30 +45,30 @@
         }
 
         [Fact]
-        public void Test_TraktUserCustomListDeleteRequest_Has_AuthorizationRequirement_Required()
+        public void Test_UserCustomListDeleteRequest_Has_AuthorizationRequirement_Required()
         {
-            var request = new TraktUserCustomListDeleteRequest();
+            var request = new UserCustomListDeleteRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_TraktUserCustomListDeleteRequest_Returns_Valid_RequestObjectType()
+        public void Test_UserCustomListDeleteRequest_Returns_Valid_RequestObjectType()
         {
-            var requestMock = new TraktUserCustomListDeleteRequest();
+            var requestMock = new UserCustomListDeleteRequest();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Lists);
         }
 
         [Fact]
-        public void Test_TraktUserCustomListDeleteRequest_Has_Valid_UriTemplate()
+        public void Test_UserCustomListDeleteRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserCustomListDeleteRequest();
+            var request = new UserCustomListDeleteRequest();
             request.UriTemplate.Should().Be("users/{username}/lists/{id}");
         }
 
         [Fact]
-        public void Test_TraktUserCustomListDeleteRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserCustomListDeleteRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new TraktUserCustomListDeleteRequest { Username = "username", Id = "123" };
+            var request = new UserCustomListDeleteRequest { Username = "username", Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -80,40 +80,40 @@
         }
 
         [Fact]
-        public void Test_TraktUserCustomListDeleteRequest_Validate_Throws_Exceptions()
+        public void Test_UserCustomListDeleteRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserCustomListDeleteRequest { Id = "123" };
+            var request = new UserCustomListDeleteRequest { Id = "123" };
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserCustomListDeleteRequest { Username = string.Empty, Id = "123" };
+            request = new UserCustomListDeleteRequest { Username = string.Empty, Id = "123" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserCustomListDeleteRequest { Username = "invalid username", Id = "123" };
+            request = new UserCustomListDeleteRequest { Username = "invalid username", Id = "123" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id is null
-            request = new TraktUserCustomListDeleteRequest { Username = "username" };
+            request = new UserCustomListDeleteRequest { Username = "username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktUserCustomListDeleteRequest { Username = "username", Id = string.Empty };
+            request = new UserCustomListDeleteRequest { Username = "username", Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktUserCustomListDeleteRequest { Username = "username", Id = "invalid id" };
+            request = new UserCustomListDeleteRequest { Username = "username", Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
