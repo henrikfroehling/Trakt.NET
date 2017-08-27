@@ -1258,7 +1258,7 @@
     <Compile Include="Requests\Syncs\OAuth\SyncWatchedHistoryRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\SyncWatchedMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\SyncWatchedShowsRequest_Tests.cs" />
-    <Compile Include="Requests\Syncs\OAuth\TraktSyncWatchlistAddRequest_Tests.cs" />
+    <Compile Include="Requests\Syncs\OAuth\SyncWatchlistAddRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncWatchlistRemoveRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\TraktSyncWatchlistRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\ATraktUsersDeleteByIdRequest_Tests.cs" />

@@ -3,7 +3,7 @@
     using Objects.Post.Syncs.Watchlist;
     using Objects.Post.Syncs.Watchlist.Responses;
 
-    internal sealed class TraktSyncWatchlistAddRequest : ASyncPostRequest<ITraktSyncWatchlistPostResponse, TraktSyncWatchlistPost>
+    internal sealed class SyncWatchlistAddRequest : ASyncPostRequest<ITraktSyncWatchlistPostResponse, TraktSyncWatchlistPost>
     {
         public override string UriTemplate => "sync/watchlist";
     }

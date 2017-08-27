@@ -484,7 +484,7 @@
         {
             ValidateWatchlistPost(watchlistPost);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktSyncWatchlistAddRequest { RequestBody = watchlistPost }, cancellationToken);
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchlistAddRequest { RequestBody = watchlistPost }, cancellationToken);
         }
 
         /// <summary>
