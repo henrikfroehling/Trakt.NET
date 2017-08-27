@@ -13,36 +13,36 @@
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
-    public class TraktUserCustomSingleListRequest_Tests
+    public class UserCustomSingleListRequest_Tests
     {
         [Fact]
-        public void Test_TraktUserCustomSingleListRequest_Is_Not_Abstract()
+        public void Test_UserCustomSingleListRequest_Is_Not_Abstract()
         {
-            typeof(TraktUserCustomSingleListRequest).IsAbstract.Should().BeFalse();
+            typeof(UserCustomSingleListRequest).IsAbstract.Should().BeFalse();
         }
 
         [Fact]
-        public void Test_TraktUserCustomSingleListRequest_Is_Sealed()
+        public void Test_UserCustomSingleListRequest_Is_Sealed()
         {
-            typeof(TraktUserCustomSingleListRequest).IsSealed.Should().BeTrue();
+            typeof(UserCustomSingleListRequest).IsSealed.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCustomSingleListRequest_Inherits_ATraktGetRequest_1()
+        public void Test_UserCustomSingleListRequest_Inherits_ATraktGetRequest_1()
         {
-            typeof(TraktUserCustomSingleListRequest).IsSubclassOf(typeof(AGetRequest<ITraktList>)).Should().BeTrue();
+            typeof(UserCustomSingleListRequest).IsSubclassOf(typeof(AGetRequest<ITraktList>)).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUserCustomSingleListRequest_Implements_ITraktHasId_Interface()
+        public void Test_UserCustomSingleListRequest_Implements_ITraktHasId_Interface()
         {
-            typeof(TraktUserCustomSingleListRequest).GetInterfaces().Should().Contain(typeof(IHasId));
+            typeof(UserCustomSingleListRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
-        public void Test_TraktUserCustomSingleListRequest_Has_Username_Property()
+        public void Test_UserCustomSingleListRequest_Has_Username_Property()
         {
-            var propertyInfo = typeof(TraktUserCustomSingleListRequest)
+            var propertyInfo = typeof(UserCustomSingleListRequest)
                     .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
                     .Where(p => p.Name == "Username")
                     .FirstOrDefault();
@@ -53,30 +53,30 @@
         }
 
         [Fact]
-        public void Test_TraktUserCustomSingleListRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserCustomSingleListRequest_Has_AuthorizationRequirement_Optional()
         {
-            var request = new TraktUserCustomSingleListRequest();
+            var request = new UserCustomSingleListRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
-        public void Test_TraktUserCustomSingleListRequest_Returns_Valid_RequestObjectType()
+        public void Test_UserCustomSingleListRequest_Returns_Valid_RequestObjectType()
         {
-            var requestMock = new TraktUserCustomSingleListRequest();
+            var requestMock = new UserCustomSingleListRequest();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Lists);
         }
 
         [Fact]
-        public void Test_TraktUserCustomSingleListRequest_Has_Valid_UriTemplate()
+        public void Test_UserCustomSingleListRequest_Has_Valid_UriTemplate()
         {
-            var request = new TraktUserCustomSingleListRequest();
+            var request = new UserCustomSingleListRequest();
             request.UriTemplate.Should().Be("users/{username}/lists/{id}");
         }
 
         [Fact]
-        public void Test_TraktUserCustomSingleListRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserCustomSingleListRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new TraktUserCustomSingleListRequest { Username = "username", Id = "123" };
+            var request = new UserCustomSingleListRequest { Username = "username", Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(2)
@@ -88,40 +88,40 @@
         }
 
         [Fact]
-        public void Test_TraktUserCustomSingleListRequest_Validate_Throws_Exceptions()
+        public void Test_UserCustomSingleListRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new TraktUserCustomSingleListRequest { Id = "123" };
+            var request = new UserCustomSingleListRequest { Id = "123" };
 
             Action act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty username
-            request = new TraktUserCustomSingleListRequest { Username = string.Empty, Id = "123" };
+            request = new UserCustomSingleListRequest { Username = string.Empty, Id = "123" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // username with spaces
-            request = new TraktUserCustomSingleListRequest { Username = "invalid username", Id = "123" };
+            request = new UserCustomSingleListRequest { Username = "invalid username", Id = "123" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id is null
-            request = new TraktUserCustomSingleListRequest { Username = "username" };
+            request = new UserCustomSingleListRequest { Username = "username" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentNullException>();
 
             // empty id
-            request = new TraktUserCustomSingleListRequest { Username = "username", Id = string.Empty };
+            request = new UserCustomSingleListRequest { Username = "username", Id = string.Empty };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();
 
             // id with spaces
-            request = new TraktUserCustomSingleListRequest { Username = "username", Id = "invalid id" };
+            request = new UserCustomSingleListRequest { Username = "username", Id = "invalid id" };
 
             act = () => request.Validate();
             act.ShouldThrow<ArgumentException>();

@@ -324,7 +324,7 @@
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new TraktUserCustomSingleListRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserCustomSingleListRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug
