@@ -257,11 +257,11 @@
     <Compile Include="Objects\Get\Episodes\Implementations\TraktEpisodeTranslation_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\Implementations\TraktEpisodeWatchedProgress_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\Implementations\TraktEpisode_Tests.cs" />
-    <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeArrayJsonReader_Tests\TraktEpisodeArrayJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeArrayJsonReader_Tests\TraktEpisodeArrayJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeArrayJsonReader_Tests\TraktEpisodeArrayJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeArrayJsonReader_Tests\TraktEpisodeArrayJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeArrayJsonReader_Tests\TraktEpisodeArrayJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeArrayJsonReader\EpisodeArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeArrayJsonReader\EpisodeArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeArrayJsonReader\EpisodeArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeArrayJsonReader\EpisodeArrayJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Episodes\JsonReader\EpisodeArrayJsonReader\EpisodeArrayJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeCollectionProgressArrayJsonReader_Tests\TraktEpisodeCollectionProgressArrayJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeCollectionProgressArrayJsonReader_Tests\TraktEpisodeCollectionProgressArrayJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Episodes\JsonReader\TraktEpisodeCollectionProgressArrayJsonReader_Tests\TraktEpisodeCollectionProgressArrayJsonReader_Stream_Tests.cs" />
