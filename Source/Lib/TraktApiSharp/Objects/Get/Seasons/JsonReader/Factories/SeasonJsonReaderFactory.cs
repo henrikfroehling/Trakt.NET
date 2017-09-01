@@ -2,7 +2,7 @@
 {
     using Objects.JsonReader;
 
-    internal class TraktSeasonJsonReaderFactory : IJsonReaderFactory<ITraktSeason>
+    internal class SeasonJsonReaderFactory : IJsonReaderFactory<ITraktSeason>
     {
         public IObjectJsonReader<ITraktSeason> CreateObjectReader() => new TraktSeasonObjectJsonReader();
 
