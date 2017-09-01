@@ -471,11 +471,11 @@
     <Compile Include="Objects\Get\People\Interfaces\ITraktPerson_Tests.cs" />
     <Compile Include="Objects\Get\People\Implementations\TraktPersonIds_Tests.cs" />
     <Compile Include="Objects\Get\People\Implementations\TraktPerson_Tests.cs" />
-    <Compile Include="Objects\Get\People\JsonReader\TraktPersonIdsObjectJsonReader_Tests\TraktPersonIdsObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\People\JsonReader\TraktPersonIdsObjectJsonReader_Tests\TraktPersonIdsObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\People\JsonReader\TraktPersonIdsObjectJsonReader_Tests\TraktPersonIdsObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\People\JsonReader\TraktPersonIdsObjectJsonReader_Tests\TraktPersonIdsObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\People\JsonReader\TraktPersonIdsObjectJsonReader_Tests\TraktPersonIdsObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\People\JsonReader\PersonIdsObjectJsonReader\PersonIdsObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\People\JsonReader\PersonIdsObjectJsonReader\PersonIdsObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\People\JsonReader\PersonIdsObjectJsonReader\PersonIdsObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\People\JsonReader\PersonIdsObjectJsonReader\PersonIdsObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\People\JsonReader\PersonIdsObjectJsonReader\PersonIdsObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\People\JsonReader\TraktPersonObjectJsonReader_Tests\TraktPersonObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\People\JsonReader\TraktPersonObjectJsonReader_Tests\TraktPersonObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\People\JsonReader\TraktPersonObjectJsonReader_Tests\TraktPersonObjectJsonReader_Stream_Tests.cs" />
