@@ -219,7 +219,7 @@
     <Compile Include="Objects\Get\Movies\JsonReader\Factories\RecentlyUpdatedMovieJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\Factories\TrendingMovieJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\BoxOfficeMovieArrayJsonReader.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktMostAnticipatedMovieArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\MostAnticipatedMovieArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMostPWCMovieArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieAliasArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieArrayJsonReader.cs" />

@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktMostAnticipatedMovieArrayJsonReader : IArrayJsonReader<ITraktMostAnticipatedMovie>
+    internal class MostAnticipatedMovieArrayJsonReader : IArrayJsonReader<ITraktMostAnticipatedMovie>
     {
         public Task<IEnumerable<ITraktMostAnticipatedMovie>> ReadArrayAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
