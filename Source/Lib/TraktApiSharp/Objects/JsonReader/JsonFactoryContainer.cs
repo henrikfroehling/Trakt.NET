@@ -189,7 +189,7 @@
             s_readerFactories.Add(typeof(ITraktShowIds), new ShowIdsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktShowTranslation), new ShowTranslationJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktShowCollectionProgress), new ShowCollectionProgressJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktShowWatchedProgress), new TraktShowWatchedProgressJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktShowWatchedProgress), new ShowWatchedProgressJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktMostAnticipatedShow), new MostAnticipatedShowJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktMostPWCShow), new MostPWCShowJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktRecentlyUpdatedShow), new RecentlyUpdatedShowJsonReaderFactory());
