@@ -184,7 +184,7 @@
 
             // show objects
             s_readerFactories.Add(typeof(ITraktShow), new TraktShowJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktShowAirs), new TraktShowAirsJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktShowAirs), new ShowAirsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktShowAlias), new TraktShowAliasJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktShowIds), new TraktShowIdsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktShowTranslation), new TraktShowTranslationJsonReaderFactory());
