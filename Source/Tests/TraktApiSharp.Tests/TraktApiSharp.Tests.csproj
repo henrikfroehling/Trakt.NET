@@ -422,11 +422,11 @@
     <Compile Include="Objects\Get\People\Credits\JsonReader\PersonMovieCreditsCrewItemArrayJsonReader\PersonMovieCreditsCrewItemArrayJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\JsonReader\PersonMovieCreditsCrewItemArrayJsonReader\PersonMovieCreditsCrewItemArrayJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\JsonReader\PersonMovieCreditsCrewItemArrayJsonReader\PersonMovieCreditsCrewItemArrayJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonMovieCreditsCrewItemObjectJsonReader\TraktPersonMovieCreditsCrewItemObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonMovieCreditsCrewItemObjectJsonReader\TraktPersonMovieCreditsCrewItemObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonMovieCreditsCrewItemObjectJsonReader\TraktPersonMovieCreditsCrewItemObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonMovieCreditsCrewItemObjectJsonReader\TraktPersonMovieCreditsCrewItemObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonMovieCreditsCrewItemObjectJsonReader\TraktPersonMovieCreditsCrewItemObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\People\Credits\JsonReader\PersonMovieCreditsCrewItemObjectJsonReader\PersonMovieCreditsCrewItemObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\People\Credits\JsonReader\PersonMovieCreditsCrewItemObjectJsonReader\PersonMovieCreditsCrewItemObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\People\Credits\JsonReader\PersonMovieCreditsCrewItemObjectJsonReader\PersonMovieCreditsCrewItemObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\People\Credits\JsonReader\PersonMovieCreditsCrewItemObjectJsonReader\PersonMovieCreditsCrewItemObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\People\Credits\JsonReader\PersonMovieCreditsCrewItemObjectJsonReader\PersonMovieCreditsCrewItemObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonMovieCreditsCrewObjectJsonReader\TraktPersonMovieCreditsCrewObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonMovieCreditsCrewObjectJsonReader\TraktPersonMovieCreditsCrewObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonMovieCreditsCrewObjectJsonReader\TraktPersonMovieCreditsCrewObjectJsonReader_Stream_Tests.cs" />
