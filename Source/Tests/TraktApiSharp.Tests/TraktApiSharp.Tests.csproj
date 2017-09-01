@@ -569,11 +569,11 @@
     <Compile Include="Objects\Get\Shows\Implementations\TraktShowWatchedProgress_Tests.cs" />
     <Compile Include="Objects\Get\Shows\Implementations\TraktShow_Tests.cs" />
     <Compile Include="Objects\Get\Shows\Implementations\TraktTrendingShow_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktMostAnticipatedShowObjectJsonReader_Tests\TraktMostAnticipatedShowObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktMostAnticipatedShowObjectJsonReader_Tests\TraktMostAnticipatedShowObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktMostAnticipatedShowObjectJsonReader_Tests\TraktMostAnticipatedShowObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktMostAnticipatedShowObjectJsonReader_Tests\TraktMostAnticipatedShowObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktMostAnticipatedShowObjectJsonReader_Tests\TraktMostAnticipatedShowObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\MostAnticipatedShowObjectJsonReader\MostAnticipatedShowObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\MostAnticipatedShowObjectJsonReader\MostAnticipatedShowObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\MostAnticipatedShowObjectJsonReader\MostAnticipatedShowObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\MostAnticipatedShowObjectJsonReader\MostAnticipatedShowObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\MostAnticipatedShowObjectJsonReader\MostAnticipatedShowObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktMostPWCShowObjectJsonReader_Tests\TraktMostPWCShowObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktMostPWCShowObjectJsonReader_Tests\TraktMostPWCShowObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktMostPWCShowObjectJsonReader_Tests\TraktMostPWCShowObjectJsonReader_Stream_Tests.cs" />
