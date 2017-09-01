@@ -584,11 +584,11 @@
     <Compile Include="Objects\Get\Shows\JsonReader\RecentlyUpdatedShowObjectJsonReader\RecentlyUpdatedShowObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\RecentlyUpdatedShowObjectJsonReader\RecentlyUpdatedShowObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\RecentlyUpdatedShowObjectJsonReader\RecentlyUpdatedShowObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktShowAirsObjectJsonReader_Tests\TraktShowAirsObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktShowAirsObjectJsonReader_Tests\TraktShowAirsObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktShowAirsObjectJsonReader_Tests\TraktShowAirsObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktShowAirsObjectJsonReader_Tests\TraktShowAirsObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktShowAirsObjectJsonReader_Tests\TraktShowAirsObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\ShowAirsObjectJsonReader\ShowAirsObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\ShowAirsObjectJsonReader\ShowAirsObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\ShowAirsObjectJsonReader\ShowAirsObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\ShowAirsObjectJsonReader\ShowAirsObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\ShowAirsObjectJsonReader\ShowAirsObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktShowAliasObjectJsonReader_Tests\TraktShowAliasObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktShowAliasObjectJsonReader_Tests\TraktShowAliasObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktShowAliasObjectJsonReader_Tests\TraktShowAliasObjectJsonReader_Stream_Tests.cs" />

@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktShowAirsObjectJsonReader : IObjectJsonReader<ITraktShowAirs>
+    internal class ShowAirsObjectJsonReader : IObjectJsonReader<ITraktShowAirs>
     {
         private const string PROPERTY_NAME_DAY = "day";
         private const string PROPERTY_NAME_TIME = "time";

@@ -30,7 +30,7 @@
         [Fact]
         public async Task Test_TraktShowAirs_From_Json()
         {
-            var jsonReader = new TraktShowAirsObjectJsonReader();
+            var jsonReader = new ShowAirsObjectJsonReader();
             var showAirs = await jsonReader.ReadObjectAsync(JSON) as TraktShowAirs;
 
             showAirs.Should().NotBeNull();

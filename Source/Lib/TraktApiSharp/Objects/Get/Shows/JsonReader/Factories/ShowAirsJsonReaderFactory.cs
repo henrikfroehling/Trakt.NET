@@ -5,7 +5,7 @@
 
     internal class ShowAirsJsonReaderFactory : IJsonReaderFactory<ITraktShowAirs>
     {
-        public IObjectJsonReader<ITraktShowAirs> CreateObjectReader() => new TraktShowAirsObjectJsonReader();
+        public IObjectJsonReader<ITraktShowAirs> CreateObjectReader() => new ShowAirsObjectJsonReader();
 
         public IArrayJsonReader<ITraktShowAirs> CreateArrayReader()
         {
