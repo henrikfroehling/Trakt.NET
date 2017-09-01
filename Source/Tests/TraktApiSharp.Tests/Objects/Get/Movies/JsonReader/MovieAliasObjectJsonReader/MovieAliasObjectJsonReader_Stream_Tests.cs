@@ -9,12 +9,12 @@
     using Xunit;
 
     [Category("Objects.Get.Movies.JsonReader")]
-    public partial class TraktMovieAliasObjectJsonReader_Tests
+    public partial class MovieAliasObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktMovieAliasObjectJsonReader_ReadObject_From_Stream_Complete()
+        public async Task Test_MovieAliasObjectJsonReader_ReadObject_From_Stream_Complete()
         {
-            var traktJsonReader = new TraktMovieAliasObjectJsonReader();
+            var traktJsonReader = new MovieAliasObjectJsonReader();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -27,9 +27,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktMovieAliasObjectJsonReader_ReadObject_From_Stream_Incomplete_1()
+        public async Task Test_MovieAliasObjectJsonReader_ReadObject_From_Stream_Incomplete_1()
         {
-            var traktJsonReader = new TraktMovieAliasObjectJsonReader();
+            var traktJsonReader = new MovieAliasObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
@@ -42,9 +42,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktMovieAliasObjectJsonReader_ReadObject_From_Stream_Incomplete_2()
+        public async Task Test_MovieAliasObjectJsonReader_ReadObject_From_Stream_Incomplete_2()
         {
-            var traktJsonReader = new TraktMovieAliasObjectJsonReader();
+            var traktJsonReader = new MovieAliasObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
@@ -57,9 +57,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktMovieAliasObjectJsonReader_ReadObject_From_Stream_Not_Valid_1()
+        public async Task Test_MovieAliasObjectJsonReader_ReadObject_From_Stream_Not_Valid_1()
         {
-            var traktJsonReader = new TraktMovieAliasObjectJsonReader();
+            var traktJsonReader = new MovieAliasObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
@@ -72,9 +72,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktMovieAliasObjectJsonReader_ReadObject_From_Stream_Not_Valid_2()
+        public async Task Test_MovieAliasObjectJsonReader_ReadObject_From_Stream_Not_Valid_2()
         {
-            var traktJsonReader = new TraktMovieAliasObjectJsonReader();
+            var traktJsonReader = new MovieAliasObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
@@ -87,9 +87,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktMovieAliasObjectJsonReader_ReadObject_From_Stream_Not_Valid_3()
+        public async Task Test_MovieAliasObjectJsonReader_ReadObject_From_Stream_Not_Valid_3()
         {
-            var traktJsonReader = new TraktMovieAliasObjectJsonReader();
+            var traktJsonReader = new MovieAliasObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
@@ -102,18 +102,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktMovieAliasObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_MovieAliasObjectJsonReader_ReadObject_From_Stream_Null()
         {
-            var traktJsonReader = new TraktMovieAliasObjectJsonReader();
+            var traktJsonReader = new MovieAliasObjectJsonReader();
 
             var traktMovieAlias = await traktJsonReader.ReadObjectAsync(default(Stream));
             traktMovieAlias.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktMovieAliasObjectJsonReader_ReadObject_From_Stream_Empty()
+        public async Task Test_MovieAliasObjectJsonReader_ReadObject_From_Stream_Empty()
         {
-            var traktJsonReader = new TraktMovieAliasObjectJsonReader();
+            var traktJsonReader = new MovieAliasObjectJsonReader();
 
             using (var stream = string.Empty.ToStream())
             {

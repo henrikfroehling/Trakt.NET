@@ -29,7 +29,7 @@
         [Fact]
         public async Task Test_TraktMovieAlias_From_Json()
         {
-            var jsonReader = new TraktMovieAliasObjectJsonReader();
+            var jsonReader = new MovieAliasObjectJsonReader();
             var movieAlias = await jsonReader.ReadObjectAsync(JSON) as TraktMovieAlias;
 
             movieAlias.Should().NotBeNull();

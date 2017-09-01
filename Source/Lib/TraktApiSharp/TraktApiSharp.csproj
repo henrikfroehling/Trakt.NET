@@ -445,7 +445,7 @@
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktRecentlyUpdatedMovieObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktTrendingMovieObjectJsonReader.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieAliasObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\MovieAliasObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieIdsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieReleaseObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieTranslationObjectJsonReader.cs" />
