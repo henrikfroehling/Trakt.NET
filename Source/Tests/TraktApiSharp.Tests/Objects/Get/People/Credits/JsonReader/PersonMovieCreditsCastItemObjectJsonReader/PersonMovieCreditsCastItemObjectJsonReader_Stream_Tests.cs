@@ -1,25 +1,24 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.People.Credits.JsonReader
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System.IO;
     using System.Threading.Tasks;
+    using TestUtils;
     using Traits;
     using TraktApiSharp.Objects.Get.People.Credits.JsonReader;
     using Xunit;
 
     [Category("Objects.Get.People.Credits.JsonReader")]
-    public partial class TraktPersonMovieCreditsCastItemObjectJsonReader_Tests
+    public partial class PersonMovieCreditsCastItemObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktPersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public async Task Test_PersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_Stream_Complete()
         {
-            var traktJsonReader = new TraktPersonMovieCreditsCastItemObjectJsonReader();
+            var jsonReader = new PersonMovieCreditsCastItemObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_COMPLETE))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_COMPLETE.ToStream())
             {
-                var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var movieCreditsCastItem = await jsonReader.ReadObjectAsync(stream);
 
                 movieCreditsCastItem.Should().NotBeNull();
                 movieCreditsCastItem.Character.Should().Be("Joe Brody");
@@ -35,14 +34,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktPersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
+        public async Task Test_PersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_Stream_Incomplete_1()
         {
-            var traktJsonReader = new TraktPersonMovieCreditsCastItemObjectJsonReader();
+            var jsonReader = new PersonMovieCreditsCastItemObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_INCOMPLETE_1))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var movieCreditsCastItem = await jsonReader.ReadObjectAsync(stream);
 
                 movieCreditsCastItem.Should().NotBeNull();
                 movieCreditsCastItem.Character.Should().BeNull();
@@ -58,14 +56,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktPersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
+        public async Task Test_PersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_Stream_Incomplete_2()
         {
-            var traktJsonReader = new TraktPersonMovieCreditsCastItemObjectJsonReader();
+            var jsonReader = new PersonMovieCreditsCastItemObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_INCOMPLETE_2))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var movieCreditsCastItem = await jsonReader.ReadObjectAsync(stream);
 
                 movieCreditsCastItem.Should().NotBeNull();
                 movieCreditsCastItem.Character.Should().Be("Joe Brody");
@@ -74,14 +71,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktPersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
+        public async Task Test_PersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_Stream_Not_Valid_1()
         {
-            var traktJsonReader = new TraktPersonMovieCreditsCastItemObjectJsonReader();
+            var jsonReader = new PersonMovieCreditsCastItemObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_NOT_VALID_1))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var movieCreditsCastItem = await jsonReader.ReadObjectAsync(stream);
 
                 movieCreditsCastItem.Should().NotBeNull();
                 movieCreditsCastItem.Character.Should().BeNull();
@@ -97,14 +93,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktPersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
+        public async Task Test_PersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_Stream_Not_Valid_2()
         {
-            var traktJsonReader = new TraktPersonMovieCreditsCastItemObjectJsonReader();
+            var jsonReader = new PersonMovieCreditsCastItemObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_NOT_VALID_2))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var movieCreditsCastItem = await jsonReader.ReadObjectAsync(stream);
 
                 movieCreditsCastItem.Should().NotBeNull();
                 movieCreditsCastItem.Character.Should().Be("Joe Brody");
@@ -113,14 +108,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktPersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
+        public async Task Test_PersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_Stream_Not_Valid_3()
         {
-            var traktJsonReader = new TraktPersonMovieCreditsCastItemObjectJsonReader();
+            var jsonReader = new PersonMovieCreditsCastItemObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_NOT_VALID_3))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var movieCreditsCastItem = await jsonReader.ReadObjectAsync(stream);
 
                 movieCreditsCastItem.Should().NotBeNull();
                 movieCreditsCastItem.Character.Should().BeNull();
@@ -129,23 +123,22 @@
         }
 
         [Fact]
-        public async Task Test_TraktPersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_PersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_Stream_Null()
         {
-            var traktJsonReader = new TraktPersonMovieCreditsCastItemObjectJsonReader();
+            var jsonReader = new PersonMovieCreditsCastItemObjectJsonReader();
 
-            var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            var movieCreditsCastItem = await jsonReader.ReadObjectAsync(default(Stream));
             movieCreditsCastItem.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktPersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public async Task Test_PersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_Stream_Empty()
         {
-            var traktJsonReader = new TraktPersonMovieCreditsCastItemObjectJsonReader();
+            var jsonReader = new PersonMovieCreditsCastItemObjectJsonReader();
 
-            using (var reader = new StringReader(string.Empty))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = string.Empty.ToStream())
             {
-                var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var movieCreditsCastItem = await jsonReader.ReadObjectAsync(stream);
                 movieCreditsCastItem.Should().BeNull();
             }
         }

@@ -30,7 +30,7 @@
         [Fact]
         public async Task Test_TraktPersonMovieCreditsCastItem_From_Minimal_Json()
         {
-            var jsonReader = new TraktPersonMovieCreditsCastItemObjectJsonReader();
+            var jsonReader = new PersonMovieCreditsCastItemObjectJsonReader();
             var creditsCastItem = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktPersonMovieCreditsCastItem;
 
             creditsCastItem.Should().NotBeNull();
@@ -61,7 +61,7 @@
         [Fact]
         public async Task Test_TraktPersonMovieCreditsCastItem_From_Full_Json()
         {
-            var jsonReader = new TraktPersonMovieCreditsCastItemObjectJsonReader();
+            var jsonReader = new PersonMovieCreditsCastItemObjectJsonReader();
             var creditsCastItem = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktPersonMovieCreditsCastItem;
 
             creditsCastItem.Should().NotBeNull();
