@@ -297,7 +297,7 @@
     <Compile Include="Objects\Get\Shows\JsonReader\Factories\TrendingShowJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\MostAnticipatedShowArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\MostPWCShowArrayJsonReader.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktRecentlyUpdatedShowArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\RecentlyUpdatedShowArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktShowAliasArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktShowArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktShowTranslationArrayJsonReader.cs" />
