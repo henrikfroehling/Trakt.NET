@@ -210,7 +210,7 @@
     <Compile Include="Objects\Get\Movies\ITraktTrendingMovie.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\Factories\BoxOfficeMovieJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\Factories\MostAnticipatedMovieJsonReaderFactory.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\Factories\TraktMostPWCMovieJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\Factories\MostPWCMovieJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\Factories\TraktMovieAliasJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\Factories\TraktMovieIdsJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\Factories\TraktMovieJsonReaderFactory.cs" />
