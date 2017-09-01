@@ -6,6 +6,6 @@
     {
         public IObjectJsonReader<ITraktMostAnticipatedShow> CreateObjectReader() => new TraktMostAnticipatedShowObjectJsonReader();
 
-        public IArrayJsonReader<ITraktMostAnticipatedShow> CreateArrayReader() => new TraktMostAnticipatedShowArrayJsonReader();
+        public IArrayJsonReader<ITraktMostAnticipatedShow> CreateArrayReader() => new MostAnticipatedShowArrayJsonReader();
     }
 }
