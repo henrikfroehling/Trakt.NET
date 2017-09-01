@@ -221,7 +221,7 @@
     <Compile Include="Objects\Get\Movies\JsonReader\BoxOfficeMovieArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\MostAnticipatedMovieArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\MostPWCMovieArrayJsonReader.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieAliasArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\MovieAliasArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieReleaseArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieTranslationArrayJsonReader.cs" />
