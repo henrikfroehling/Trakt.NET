@@ -4,7 +4,7 @@
 
     internal class ShowAliasJsonReaderFactory : IJsonReaderFactory<ITraktShowAlias>
     {
-        public IObjectJsonReader<ITraktShowAlias> CreateObjectReader() => new TraktShowAliasObjectJsonReader();
+        public IObjectJsonReader<ITraktShowAlias> CreateObjectReader() => new ShowAliasObjectJsonReader();
 
         public IArrayJsonReader<ITraktShowAlias> CreateArrayReader() => new ShowAliasArrayJsonReader();
     }

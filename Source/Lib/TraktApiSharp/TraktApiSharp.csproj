@@ -464,7 +464,7 @@
     <Compile Include="Objects\Get\Shows\JsonReader\TraktShowObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktTrendingShowObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\ShowAirsObjectJsonReader.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktShowAliasObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\ShowAliasObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktShowCollectionProgressObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktShowIdsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktShowTranslationObjectJsonReader.cs" />
