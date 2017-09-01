@@ -619,11 +619,11 @@
     <Compile Include="Objects\Get\Shows\JsonReader\ShowWatchedProgressObjectJsonReader\ShowWatchedProgressObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\ShowWatchedProgressObjectJsonReader\ShowWatchedProgressObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\ShowWatchedProgressObjectJsonReader\ShowWatchedProgressObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktTrendingShowObjectJsonReader_Tests\TraktTrendingShowObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktTrendingShowObjectJsonReader_Tests\TraktTrendingShowObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktTrendingShowObjectJsonReader_Tests\TraktTrendingShowObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktTrendingShowObjectJsonReader_Tests\TraktTrendingShowObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktTrendingShowObjectJsonReader_Tests\TraktTrendingShowObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\TrendingShowObjectJsonReader\TrendingShowObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\TrendingShowObjectJsonReader\TrendingShowObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\TrendingShowObjectJsonReader\TrendingShowObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\TrendingShowObjectJsonReader\TrendingShowObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\TrendingShowObjectJsonReader\TrendingShowObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\Implementations\TraktSyncCommentsLastActivities_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\Implementations\TraktSyncEpisodesLastActivities_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\Implementations\TraktSyncLastActivities_Tests.cs" />

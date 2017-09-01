@@ -462,7 +462,7 @@
     <Compile Include="Objects\Get\Shows\JsonReader\MostPWCShowObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\RecentlyUpdatedShowObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\ShowObjectJsonReader.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktTrendingShowObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\TrendingShowObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\ShowAirsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\ShowAliasObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\ShowCollectionProgressObjectJsonReader.cs" />

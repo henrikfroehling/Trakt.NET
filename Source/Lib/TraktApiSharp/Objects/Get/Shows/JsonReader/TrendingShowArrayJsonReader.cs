@@ -40,7 +40,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var trendingShowReader = new TraktTrendingShowObjectJsonReader();
+                var trendingShowReader = new TrendingShowObjectJsonReader();
                 //var traktTrendingShowReadingTasks = new List<Task<ITraktTrendingShow>>();
                 var traktTrendingShows = new List<ITraktTrendingShow>();
 
