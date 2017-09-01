@@ -40,7 +40,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var movieTranslationReader = new TraktShowTranslationObjectJsonReader();
+                var movieTranslationReader = new ShowTranslationObjectJsonReader();
                 //var traktShowTranslationReadingTasks = new List<Task<ITraktShowTranslation>>();
                 var traktShowTranslations = new List<ITraktShowTranslation>();
 
