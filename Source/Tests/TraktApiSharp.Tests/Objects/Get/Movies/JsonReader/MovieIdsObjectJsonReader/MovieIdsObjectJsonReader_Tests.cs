@@ -8,12 +8,12 @@
     using Xunit;
 
     [Category("Objects.Get.Movies.JsonReader")]
-    public partial class TraktMovieIdsObjectJsonReader_Tests
+    public partial class MovieIdsObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_TraktMovieIdsObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
+        public void Test_MovieIdsObjectJsonReader_Implements_IObjectJsonReader_Interface()
         {
-            typeof(TraktMovieIdsObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktMovieIds>));
+            typeof(MovieIdsObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktMovieIds>));
         }
     }
 }
