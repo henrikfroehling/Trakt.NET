@@ -510,11 +510,11 @@
     <Compile Include="Objects\Get\Seasons\Implementations\TraktSeasonIds_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\Implementations\TraktSeasonWatchedProgress_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\Implementations\TraktSeason_Tests.cs" />
-    <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonArrayJsonReader_Tests\TraktSeasonArrayJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonArrayJsonReader_Tests\TraktSeasonArrayJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonArrayJsonReader_Tests\TraktSeasonArrayJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonArrayJsonReader_Tests\TraktSeasonArrayJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonArrayJsonReader_Tests\TraktSeasonArrayJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\SeasonArrayJsonReader\SeasonArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\SeasonArrayJsonReader\SeasonArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\SeasonArrayJsonReader\SeasonArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\SeasonArrayJsonReader\SeasonArrayJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\SeasonArrayJsonReader\SeasonArrayJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonCollectionProgressArrayJsonReader_Tests\TraktSeasonCollectionProgressArrayJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonCollectionProgressArrayJsonReader_Tests\TraktSeasonCollectionProgressArrayJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonCollectionProgressArrayJsonReader_Tests\TraktSeasonCollectionProgressArrayJsonReader_Stream_Tests.cs" />

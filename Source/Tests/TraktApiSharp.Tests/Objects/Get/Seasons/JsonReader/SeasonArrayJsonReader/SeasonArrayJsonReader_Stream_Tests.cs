@@ -11,12 +11,12 @@
     using Xunit;
 
     [Category("Objects.Get.Seasons.JsonReader")]
-    public partial class TraktSeasonArrayJsonReader_Tests
+    public partial class SeasonArrayJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktSeasonArrayJsonReader_ReadArray_From_Stream_Empty_Array()
+        public async Task Test_SeasonArrayJsonReader_ReadArray_From_Stream_Empty_Array()
         {
-            var traktJsonReader = new TraktSeasonArrayJsonReader();
+            var traktJsonReader = new SeasonArrayJsonReader();
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
@@ -26,9 +26,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktSeasonArrayJsonReader_ReadArray_From_Stream_Minimal_Complete()
+        public async Task Test_SeasonArrayJsonReader_ReadArray_From_Stream_Minimal_Complete()
         {
-            var traktJsonReader = new TraktSeasonArrayJsonReader();
+            var traktJsonReader = new SeasonArrayJsonReader();
 
             using (var stream = MINIMAL_JSON_COMPLETE.ToStream())
             {
@@ -70,9 +70,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktSeasonArrayJsonReader_ReadArray_From_Stream_Full_Complete()
+        public async Task Test_SeasonArrayJsonReader_ReadArray_From_Stream_Full_Complete()
         {
-            var traktJsonReader = new TraktSeasonArrayJsonReader();
+            var traktJsonReader = new SeasonArrayJsonReader();
 
             using (var stream = FULL_JSON_COMPLETE.ToStream())
             {
@@ -200,18 +200,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktSeasonArrayJsonReader_ReadArray_From_Stream_Null()
+        public async Task Test_SeasonArrayJsonReader_ReadArray_From_Stream_Null()
         {
-            var traktJsonReader = new TraktSeasonArrayJsonReader();
+            var traktJsonReader = new SeasonArrayJsonReader();
 
             var traktSeasons = await traktJsonReader.ReadArrayAsync(default(Stream));
             traktSeasons.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktSeasonArrayJsonReader_ReadArray_From_Stream_Empty()
+        public async Task Test_SeasonArrayJsonReader_ReadArray_From_Stream_Empty()
         {
-            var traktJsonReader = new TraktSeasonArrayJsonReader();
+            var traktJsonReader = new SeasonArrayJsonReader();
 
             using (var stream = string.Empty.ToStream())
             {
