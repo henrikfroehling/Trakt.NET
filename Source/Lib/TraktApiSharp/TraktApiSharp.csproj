@@ -243,7 +243,7 @@
     <Compile Include="Objects\Get\People\Credits\JsonReader\Factories\PersonShowCreditsCrewItemJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\People\Credits\JsonReader\Factories\PersonShowCreditsCrewJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\People\Credits\JsonReader\Factories\PersonShowCreditsJsonReaderFactory.cs" />
-    <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonMovieCreditsCastItemArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\People\Credits\JsonReader\PersonMovieCreditsCastItemArrayJsonReader.cs" />
     <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonMovieCreditsCastItemObjectJsonReader.cs" />
     <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonMovieCreditsCrewItemArrayJsonReader.cs" />
     <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonMovieCreditsCrewItemObjectJsonReader.cs" />

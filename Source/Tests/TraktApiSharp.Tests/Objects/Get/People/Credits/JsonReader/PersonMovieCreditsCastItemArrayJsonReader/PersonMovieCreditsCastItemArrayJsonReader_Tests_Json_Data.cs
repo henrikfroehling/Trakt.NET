@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.People.Credits.JsonReader
 {
-    public partial class TraktPersonMovieCreditsCastItemArrayJsonReader_Tests
+    public partial class PersonMovieCreditsCastItemArrayJsonReader_Tests
     {
         private const string JSON_EMPTY_ARRAY = @"[]";
 
