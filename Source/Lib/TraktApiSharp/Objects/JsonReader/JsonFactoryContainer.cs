@@ -153,7 +153,7 @@
             s_readerFactories.Add(typeof(ITraktPersonIds), new PersonIdsJsonReaderFactory());
 
             // people credit objects
-            s_readerFactories.Add(typeof(ITraktPersonMovieCredits), new TraktPersonMovieCreditsJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktPersonMovieCredits), new PersonMovieCreditsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktPersonMovieCreditsCastItem), new PersonMovieCreditsCastItemJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktPersonMovieCreditsCrew), new PersonMovieCreditsCrewJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktPersonMovieCreditsCrewItem), new PersonMovieCreditsCrewItemJsonReaderFactory());
