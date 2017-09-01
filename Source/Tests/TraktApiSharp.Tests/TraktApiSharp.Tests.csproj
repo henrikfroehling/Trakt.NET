@@ -462,11 +462,11 @@
     <Compile Include="Objects\Get\People\Credits\JsonReader\PersonShowCreditsCrewObjectJsonReader\PersonShowCreditsCrewObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\JsonReader\PersonShowCreditsCrewObjectJsonReader\PersonShowCreditsCrewObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\JsonReader\PersonShowCreditsCrewObjectJsonReader\PersonShowCreditsCrewObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonShowCreditsObjectJsonReader\TraktPersonShowCreditsObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonShowCreditsObjectJsonReader\TraktPersonShowCreditsObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonShowCreditsObjectJsonReader\TraktPersonShowCreditsObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonShowCreditsObjectJsonReader\TraktPersonShowCreditsObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonShowCreditsObjectJsonReader\TraktPersonShowCreditsObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\People\Credits\JsonReader\PersonShowCreditsObjectJsonReader\PersonShowCreditsObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\People\Credits\JsonReader\PersonShowCreditsObjectJsonReader\PersonShowCreditsObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\People\Credits\JsonReader\PersonShowCreditsObjectJsonReader\PersonShowCreditsObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\People\Credits\JsonReader\PersonShowCreditsObjectJsonReader\PersonShowCreditsObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\People\Credits\JsonReader\PersonShowCreditsObjectJsonReader\PersonShowCreditsObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\People\Interfaces\ITraktPersonIds_Tests.cs" />
     <Compile Include="Objects\Get\People\Interfaces\ITraktPerson_Tests.cs" />
     <Compile Include="Objects\Get\People\Implementations\TraktPersonIds_Tests.cs" />
