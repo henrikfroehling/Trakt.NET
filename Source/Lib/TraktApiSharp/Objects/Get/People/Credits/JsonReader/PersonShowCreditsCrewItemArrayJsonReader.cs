@@ -40,7 +40,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var creditsCrewItemReader = new TraktPersonShowCreditsCrewItemObjectJsonReader();
+                var creditsCrewItemReader = new PersonShowCreditsCrewItemObjectJsonReader();
                 //var creditsCrewItemReadingTasks = new List<Task<ITraktPersonShowCreditsCrewItem>>();
                 var creditsCrewItems = new List<ITraktPersonShowCreditsCrewItem>();
 
