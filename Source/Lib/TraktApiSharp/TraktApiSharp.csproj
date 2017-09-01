@@ -459,7 +459,7 @@
     <Compile Include="Objects\Get\Seasons\JsonReader\SeasonWatchedProgressArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Seasons\JsonReader\SeasonWatchedProgressObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\MostAnticipatedShowObjectJsonReader.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktMostPWCShowObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\MostPWCShowObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktRecentlyUpdatedShowObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktShowObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktTrendingShowObjectJsonReader.cs" />

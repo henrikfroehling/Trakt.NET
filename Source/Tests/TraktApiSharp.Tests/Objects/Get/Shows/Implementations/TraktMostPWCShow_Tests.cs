@@ -56,7 +56,7 @@
         [Fact]
         public async Task Test_TraktMostPWCShow_From_Minimal_Json()
         {
-            var jsonReader = new TraktMostPWCShowObjectJsonReader();
+            var jsonReader = new MostPWCShowObjectJsonReader();
             var mostPWCShow = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktMostPWCShow;
 
             mostPWCShow.Should().NotBeNull();
@@ -126,7 +126,7 @@
         [Fact]
         public async Task Test_TraktMostPWCShow_From_Full_Json()
         {
-            var jsonReader = new TraktMostPWCShowObjectJsonReader();
+            var jsonReader = new MostPWCShowObjectJsonReader();
             var mostPWCShow = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktMostPWCShow;
 
             mostPWCShow.Should().NotBeNull();
