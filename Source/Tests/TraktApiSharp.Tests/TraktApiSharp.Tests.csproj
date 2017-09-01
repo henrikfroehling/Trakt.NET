@@ -540,11 +540,11 @@
     <Compile Include="Objects\Get\Seasons\JsonReader\SeasonWatchedProgressArrayJsonReader\SeasonWatchedProgressArrayJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\JsonReader\SeasonWatchedProgressArrayJsonReader\SeasonWatchedProgressArrayJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\JsonReader\SeasonWatchedProgressArrayJsonReader\SeasonWatchedProgressArrayJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonWatchedProgressObjectJsonReader_Tests\TraktSeasonWatchedProgressObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonWatchedProgressObjectJsonReader_Tests\TraktSeasonWatchedProgressObjectJsonReader_Reader-Tests.cs" />
-    <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonWatchedProgressObjectJsonReader_Tests\TraktSeasonWatchedProgressObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonWatchedProgressObjectJsonReader_Tests\TraktSeasonWatchedProgressObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonWatchedProgressObjectJsonReader_Tests\TraktSeasonWatchedProgressObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\SeasonWatchedProgressObjectJsonReader\SeasonWatchedProgressObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\SeasonWatchedProgressObjectJsonReader\SeasonWatchedProgressObjectJsonReader_Reader-Tests.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\SeasonWatchedProgressObjectJsonReader\SeasonWatchedProgressObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\SeasonWatchedProgressObjectJsonReader\SeasonWatchedProgressObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\SeasonWatchedProgressObjectJsonReader\SeasonWatchedProgressObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Shows\Implementations\TraktShowProgress_Tests.cs" />
     <Compile Include="Objects\Get\Shows\Interfaces\ITraktMostAnticipatedShow_Tests.cs" />
     <Compile Include="Objects\Get\Shows\Interfaces\ITraktMostPWCShow_Tests.cs" />
