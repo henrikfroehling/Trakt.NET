@@ -5,7 +5,7 @@
 
     internal class PersonShowCreditsCrewJsonReaderFactory : IJsonReaderFactory<ITraktPersonShowCreditsCrew>
     {
-        public IObjectJsonReader<ITraktPersonShowCreditsCrew> CreateObjectReader() => new TraktPersonShowCreditsCrewObjectJsonReader();
+        public IObjectJsonReader<ITraktPersonShowCreditsCrew> CreateObjectReader() => new PersonShowCreditsCrewObjectJsonReader();
 
         public IArrayJsonReader<ITraktPersonShowCreditsCrew> CreateArrayReader()
         {
