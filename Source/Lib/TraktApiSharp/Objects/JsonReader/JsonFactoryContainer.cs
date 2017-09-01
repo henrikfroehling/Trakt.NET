@@ -134,7 +134,7 @@
             s_readerFactories.Add(typeof(ITraktEpisodeWatchedProgress), new EpisodeWatchedProgressJsonReaderFactory());
 
             // history objects
-            s_readerFactories.Add(typeof(ITraktHistoryItem), new TraktHistoryItemJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktHistoryItem), new HistoryItemJsonReaderFactory());
 
             // movie objects
             s_readerFactories.Add(typeof(ITraktMovie), new TraktMovieJsonReaderFactory());
