@@ -604,11 +604,11 @@
     <Compile Include="Objects\Get\Shows\JsonReader\ShowIdsObjectJsonReader\ShowIdsObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\ShowIdsObjectJsonReader\ShowIdsObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\ShowIdsObjectJsonReader\ShowIdsObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktShowObjectJsonReader_Tests\TraktShowObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktShowObjectJsonReader_Tests\TraktShowObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktShowObjectJsonReader_Tests\TraktShowObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktShowObjectJsonReader_Tests\TraktShowObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktShowObjectJsonReader_Tests\TraktShowObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\ShowObjectJsonReader\ShowObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\ShowObjectJsonReader\ShowObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\ShowObjectJsonReader\ShowObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\ShowObjectJsonReader\ShowObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\ShowObjectJsonReader\ShowObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktShowTranslationObjectJsonReader_Tests\TraktShowTranslationObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktShowTranslationObjectJsonReader_Tests\TraktShowTranslationObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktShowTranslationObjectJsonReader_Tests\TraktShowTranslationObjectJsonReader_Stream_Tests.cs" />

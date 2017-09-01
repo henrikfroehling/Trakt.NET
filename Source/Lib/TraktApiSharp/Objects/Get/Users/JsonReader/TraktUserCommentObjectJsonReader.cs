@@ -57,7 +57,7 @@
             {
                 var commentReader = new CommentObjectJsonReader();
                 var movieReader = new MovieObjectJsonReader();
-                var showReader = new TraktShowObjectJsonReader();
+                var showReader = new ShowObjectJsonReader();
                 var seasonReader = new SeasonObjectJsonReader();
                 var episodeReader = new EpisodeObjectJsonReader();
                 var listReader = new TraktListObjectJsonReader();

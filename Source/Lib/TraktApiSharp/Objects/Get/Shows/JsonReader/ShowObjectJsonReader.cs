@@ -10,7 +10,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktShowObjectJsonReader : IObjectJsonReader<ITraktShow>
+    internal class ShowObjectJsonReader : IObjectJsonReader<ITraktShow>
     {
         private const string PROPERTY_NAME_TITLE = "title";
         private const string PROPERTY_NAME_YEAR = "year";

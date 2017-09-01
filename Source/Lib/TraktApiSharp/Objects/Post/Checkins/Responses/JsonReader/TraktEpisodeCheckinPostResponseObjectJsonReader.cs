@@ -51,7 +51,7 @@
             {
                 var sharingReader = new SharingObjectJsonReader();
                 var episodeReader = new EpisodeObjectJsonReader();
-                var showReader = new TraktShowObjectJsonReader();
+                var showReader = new ShowObjectJsonReader();
                 ITraktEpisodeCheckinPostResponse checkinEpisodeResponse = new TraktEpisodeCheckinPostResponse();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)

@@ -12,12 +12,12 @@
     using Xunit;
 
     [Category("Objects.Get.Shows.JsonReader")]
-    public partial class TraktShowObjectJsonReader_Tests
+    public partial class ShowObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Complete()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Complete()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -56,9 +56,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Incomplete_1()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Incomplete_1()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -97,9 +97,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Incomplete_2()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Incomplete_2()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -138,9 +138,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Incomplete_3()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Incomplete_3()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_INCOMPLETE_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -173,9 +173,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Incomplete_4()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Incomplete_4()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_INCOMPLETE_4))
             using (var jsonReader = new JsonTextReader(reader))
@@ -208,9 +208,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Incomplete_5()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Incomplete_5()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_INCOMPLETE_5))
             using (var jsonReader = new JsonTextReader(reader))
@@ -243,9 +243,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Incomplete_6()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Incomplete_6()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_INCOMPLETE_6))
             using (var jsonReader = new JsonTextReader(reader))
@@ -284,9 +284,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Not_Valid_1()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Not_Valid_1()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -325,9 +325,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Not_Valid_2()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Not_Valid_2()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -366,9 +366,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Not_Valid_3()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Not_Valid_3()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -401,9 +401,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Not_Valid_4()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Minimal_Not_Valid_4()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(MINIMAL_JSON_NOT_VALID_4))
             using (var jsonReader = new JsonTextReader(reader))
@@ -436,9 +436,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Complete()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Complete()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -512,9 +512,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_1()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_1()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -588,9 +588,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_2()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_2()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -664,9 +664,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_3()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_3()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -734,9 +734,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_4()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_4()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_4))
             using (var jsonReader = new JsonTextReader(reader))
@@ -810,9 +810,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_5()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_5()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_5))
             using (var jsonReader = new JsonTextReader(reader))
@@ -886,9 +886,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_6()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_6()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_6))
             using (var jsonReader = new JsonTextReader(reader))
@@ -959,9 +959,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_7()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_7()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_7))
             using (var jsonReader = new JsonTextReader(reader))
@@ -1035,9 +1035,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_8()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_8()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_8))
             using (var jsonReader = new JsonTextReader(reader))
@@ -1111,9 +1111,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_9()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_9()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_9))
             using (var jsonReader = new JsonTextReader(reader))
@@ -1187,9 +1187,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_10()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_10()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_10))
             using (var jsonReader = new JsonTextReader(reader))
@@ -1263,9 +1263,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_11()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_11()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_11))
             using (var jsonReader = new JsonTextReader(reader))
@@ -1339,9 +1339,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_12()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_12()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_12))
             using (var jsonReader = new JsonTextReader(reader))
@@ -1415,9 +1415,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_13()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_13()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_13))
             using (var jsonReader = new JsonTextReader(reader))
@@ -1491,9 +1491,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_14()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_14()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_14))
             using (var jsonReader = new JsonTextReader(reader))
@@ -1567,9 +1567,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_15()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_15()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_15))
             using (var jsonReader = new JsonTextReader(reader))
@@ -1643,9 +1643,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_16()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_16()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_16))
             using (var jsonReader = new JsonTextReader(reader))
@@ -1719,9 +1719,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_17()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_17()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_17))
             using (var jsonReader = new JsonTextReader(reader))
@@ -1795,9 +1795,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_18()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_18()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_18))
             using (var jsonReader = new JsonTextReader(reader))
@@ -1871,9 +1871,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_19()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_19()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_19))
             using (var jsonReader = new JsonTextReader(reader))
@@ -1947,9 +1947,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_20()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_20()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_20))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2023,9 +2023,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_21()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_21()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_21))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2067,9 +2067,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_22()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_22()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_22))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2102,9 +2102,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_23()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_23()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_23))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2137,9 +2137,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_24()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_24()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_24))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2178,9 +2178,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_25()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_25()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_25))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2213,9 +2213,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_26()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_26()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_26))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2248,9 +2248,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_27()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_27()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_27))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2286,9 +2286,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_28()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_28()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_28))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2321,9 +2321,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_29()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_29()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_29))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2356,9 +2356,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_30()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_30()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_30))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2391,9 +2391,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_31()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_31()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_31))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2426,9 +2426,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_32()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_32()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_32))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2461,9 +2461,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_33()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_33()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_33))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2496,9 +2496,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_34()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_34()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_34))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2531,9 +2531,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_35()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_35()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_35))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2566,9 +2566,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_36()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_36()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_36))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2601,9 +2601,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_37()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_37()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_37))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2636,9 +2636,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_38()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_38()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_38))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2671,9 +2671,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_39()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_39()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_39))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2706,9 +2706,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_40()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_40()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_40))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2741,9 +2741,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_41()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_41()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_41))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2776,9 +2776,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_42()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Incomplete_42()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_INCOMPLETE_42))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2843,9 +2843,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_1()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_1()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2919,9 +2919,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_2()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_2()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -2995,9 +2995,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_3()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_3()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -3065,9 +3065,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_4()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_4()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_4))
             using (var jsonReader = new JsonTextReader(reader))
@@ -3141,9 +3141,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_5()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_5()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_5))
             using (var jsonReader = new JsonTextReader(reader))
@@ -3217,9 +3217,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_6()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_6()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_6))
             using (var jsonReader = new JsonTextReader(reader))
@@ -3290,9 +3290,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_7()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_7()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_7))
             using (var jsonReader = new JsonTextReader(reader))
@@ -3366,9 +3366,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_8()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_8()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_8))
             using (var jsonReader = new JsonTextReader(reader))
@@ -3442,9 +3442,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_9()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_9()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_9))
             using (var jsonReader = new JsonTextReader(reader))
@@ -3518,9 +3518,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_10()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_10()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_10))
             using (var jsonReader = new JsonTextReader(reader))
@@ -3594,9 +3594,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_11()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_11()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_11))
             using (var jsonReader = new JsonTextReader(reader))
@@ -3670,9 +3670,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_12()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_12()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_12))
             using (var jsonReader = new JsonTextReader(reader))
@@ -3746,9 +3746,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_13()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_13()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_13))
             using (var jsonReader = new JsonTextReader(reader))
@@ -3822,9 +3822,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_14()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_14()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_14))
             using (var jsonReader = new JsonTextReader(reader))
@@ -3898,9 +3898,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_15()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_15()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_15))
             using (var jsonReader = new JsonTextReader(reader))
@@ -3974,9 +3974,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_16()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_16()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_16))
             using (var jsonReader = new JsonTextReader(reader))
@@ -4050,9 +4050,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_17()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_17()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_17))
             using (var jsonReader = new JsonTextReader(reader))
@@ -4126,9 +4126,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_18()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_18()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_18))
             using (var jsonReader = new JsonTextReader(reader))
@@ -4202,9 +4202,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_19()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_19()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_19))
             using (var jsonReader = new JsonTextReader(reader))
@@ -4278,9 +4278,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_20()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_20()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_20))
             using (var jsonReader = new JsonTextReader(reader))
@@ -4354,9 +4354,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_21()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_21()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_21))
             using (var jsonReader = new JsonTextReader(reader))
@@ -4398,9 +4398,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_22()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Full_Not_Valid_22()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(FULL_JSON_NOT_VALID_22))
             using (var jsonReader = new JsonTextReader(reader))
@@ -4433,18 +4433,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             var traktShow = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktShow.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktShowObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var traktJsonReader = new TraktShowObjectJsonReader();
+            var traktJsonReader = new ShowObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
