@@ -193,7 +193,7 @@
             s_readerFactories.Add(typeof(ITraktMostAnticipatedShow), new MostAnticipatedShowJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktMostPWCShow), new MostPWCShowJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktRecentlyUpdatedShow), new RecentlyUpdatedShowJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktTrendingShow), new TraktTrendingShowJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktTrendingShow), new TrendingShowJsonReaderFactory());
 
             // sync activities objects
             s_readerFactories.Add(typeof(ITraktSyncLastActivities), new TraktSyncLastActivitiesJsonReaderFactory());
