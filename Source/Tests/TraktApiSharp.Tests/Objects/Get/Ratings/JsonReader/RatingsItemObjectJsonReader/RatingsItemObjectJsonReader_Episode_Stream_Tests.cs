@@ -10,12 +10,12 @@
     using Xunit;
 
     [Category("Objects.Get.Ratings.JsonReader")]
-    public partial class TraktRatingsItemObjectJsonReader_Tests
+    public partial class RatingsItemObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktRatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Complete()
+        public async Task Test_RatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Complete()
         {
-            var jsonReader = new TraktRatingsItemObjectJsonReader();
+            var jsonReader = new RatingsItemObjectJsonReader();
 
             using (var stream = TYPE_EPISODE_JSON_COMPLETE.ToStream())
             {
@@ -52,9 +52,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktRatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_1()
+        public async Task Test_RatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_1()
         {
-            var jsonReader = new TraktRatingsItemObjectJsonReader();
+            var jsonReader = new RatingsItemObjectJsonReader();
 
             using (var stream = TYPE_EPISODE_JSON_INCOMPLETE_1.ToStream())
             {
@@ -91,9 +91,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktRatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_2()
+        public async Task Test_RatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_2()
         {
-            var jsonReader = new TraktRatingsItemObjectJsonReader();
+            var jsonReader = new RatingsItemObjectJsonReader();
 
             using (var stream = TYPE_EPISODE_JSON_INCOMPLETE_2.ToStream())
             {
@@ -130,9 +130,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktRatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_3()
+        public async Task Test_RatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_3()
         {
-            var jsonReader = new TraktRatingsItemObjectJsonReader();
+            var jsonReader = new RatingsItemObjectJsonReader();
 
             using (var stream = TYPE_EPISODE_JSON_INCOMPLETE_3.ToStream())
             {
@@ -169,9 +169,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktRatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_4()
+        public async Task Test_RatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_4()
         {
-            var jsonReader = new TraktRatingsItemObjectJsonReader();
+            var jsonReader = new RatingsItemObjectJsonReader();
 
             using (var stream = TYPE_EPISODE_JSON_INCOMPLETE_4.ToStream())
             {
@@ -199,9 +199,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktRatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_5()
+        public async Task Test_RatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_5()
         {
-            var jsonReader = new TraktRatingsItemObjectJsonReader();
+            var jsonReader = new RatingsItemObjectJsonReader();
 
             using (var stream = TYPE_EPISODE_JSON_INCOMPLETE_5.ToStream())
             {
@@ -229,9 +229,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktRatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_6()
+        public async Task Test_RatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_6()
         {
-            var jsonReader = new TraktRatingsItemObjectJsonReader();
+            var jsonReader = new RatingsItemObjectJsonReader();
 
             using (var stream = TYPE_EPISODE_JSON_INCOMPLETE_6.ToStream())
             {
@@ -250,9 +250,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktRatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_7()
+        public async Task Test_RatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_7()
         {
-            var jsonReader = new TraktRatingsItemObjectJsonReader();
+            var jsonReader = new RatingsItemObjectJsonReader();
 
             using (var stream = TYPE_EPISODE_JSON_INCOMPLETE_7.ToStream())
             {
@@ -271,9 +271,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktRatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_8()
+        public async Task Test_RatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_8()
         {
-            var jsonReader = new TraktRatingsItemObjectJsonReader();
+            var jsonReader = new RatingsItemObjectJsonReader();
 
             using (var stream = TYPE_EPISODE_JSON_INCOMPLETE_8.ToStream())
             {
@@ -292,9 +292,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktRatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_9()
+        public async Task Test_RatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_9()
         {
-            var jsonReader = new TraktRatingsItemObjectJsonReader();
+            var jsonReader = new RatingsItemObjectJsonReader();
 
             using (var stream = TYPE_EPISODE_JSON_INCOMPLETE_9.ToStream())
             {
@@ -322,9 +322,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktRatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_10()
+        public async Task Test_RatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Incomplete_10()
         {
-            var jsonReader = new TraktRatingsItemObjectJsonReader();
+            var jsonReader = new RatingsItemObjectJsonReader();
 
             using (var stream = TYPE_EPISODE_JSON_INCOMPLETE_10.ToStream())
             {
@@ -352,9 +352,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktRatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Not_Valid_1()
+        public async Task Test_RatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Not_Valid_1()
         {
-            var jsonReader = new TraktRatingsItemObjectJsonReader();
+            var jsonReader = new RatingsItemObjectJsonReader();
 
             using (var stream = TYPE_EPISODE_JSON_NOT_VALID_1.ToStream())
             {
@@ -391,9 +391,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktRatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Not_Valid_2()
+        public async Task Test_RatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Not_Valid_2()
         {
-            var jsonReader = new TraktRatingsItemObjectJsonReader();
+            var jsonReader = new RatingsItemObjectJsonReader();
 
             using (var stream = TYPE_EPISODE_JSON_NOT_VALID_2.ToStream())
             {
@@ -430,9 +430,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktRatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Not_Valid_3()
+        public async Task Test_RatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Not_Valid_3()
         {
-            var jsonReader = new TraktRatingsItemObjectJsonReader();
+            var jsonReader = new RatingsItemObjectJsonReader();
 
             using (var stream = TYPE_EPISODE_JSON_NOT_VALID_3.ToStream())
             {
@@ -469,9 +469,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktRatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Not_Valid_4()
+        public async Task Test_RatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Not_Valid_4()
         {
-            var jsonReader = new TraktRatingsItemObjectJsonReader();
+            var jsonReader = new RatingsItemObjectJsonReader();
 
             using (var stream = TYPE_EPISODE_JSON_NOT_VALID_4.ToStream())
             {
@@ -499,9 +499,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktRatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Not_Valid_5()
+        public async Task Test_RatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Not_Valid_5()
         {
-            var jsonReader = new TraktRatingsItemObjectJsonReader();
+            var jsonReader = new RatingsItemObjectJsonReader();
 
             using (var stream = TYPE_EPISODE_JSON_NOT_VALID_5.ToStream())
             {
@@ -529,9 +529,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktRatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Not_Valid_6()
+        public async Task Test_RatingsItemObjectJsonReader_Episode_ReadObject_From_Stream_Not_Valid_6()
         {
-            var jsonReader = new TraktRatingsItemObjectJsonReader();
+            var jsonReader = new RatingsItemObjectJsonReader();
 
             using (var stream = TYPE_EPISODE_JSON_NOT_VALID_6.ToStream())
             {

@@ -4,7 +4,7 @@
 
     internal class RatingsItemJsonReaderFactory : IJsonReaderFactory<ITraktRatingsItem>
     {
-        public IObjectJsonReader<ITraktRatingsItem> CreateObjectReader() => new TraktRatingsItemObjectJsonReader();
+        public IObjectJsonReader<ITraktRatingsItem> CreateObjectReader() => new RatingsItemObjectJsonReader();
 
         public IArrayJsonReader<ITraktRatingsItem> CreateArrayReader() => new RatingsItemArrayJsonReader();
     }
