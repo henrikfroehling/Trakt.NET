@@ -59,7 +59,7 @@
                 var showReader = new TraktShowObjectJsonReader();
                 var seasonReader = new TraktSeasonObjectJsonReader();
                 var episodeReader = new EpisodeObjectJsonReader();
-                var personReader = new TraktPersonObjectJsonReader();
+                var personReader = new PersonObjectJsonReader();
 
                 ITraktListItem traktListItem = new TraktListItem();
 

@@ -57,7 +57,7 @@
                 var movieObjectReader = new MovieObjectJsonReader();
                 var showObjectReader = new TraktShowObjectJsonReader();
                 var episodeObjectReader = new EpisodeObjectJsonReader();
-                var personObjectReader = new TraktPersonObjectJsonReader();
+                var personObjectReader = new PersonObjectJsonReader();
                 var listObjectReader = new TraktListObjectJsonReader();
                 ITraktSearchResult traktSearchResult = new TraktSearchResult();
 

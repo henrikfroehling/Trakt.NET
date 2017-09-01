@@ -44,7 +44,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var personReader = new TraktPersonObjectJsonReader();
+                var personReader = new PersonObjectJsonReader();
                 ITraktCrewMember traktCrewMember = new TraktCrewMember();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
