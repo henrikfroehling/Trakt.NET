@@ -149,7 +149,7 @@
             s_readerFactories.Add(typeof(ITraktTrendingMovie), new TrendingMovieJsonReaderFactory());
 
             // people objects
-            s_readerFactories.Add(typeof(ITraktPerson), new TraktPersonJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktPerson), new PersonJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktPersonIds), new PersonIdsJsonReaderFactory());
 
             // people credit objects
