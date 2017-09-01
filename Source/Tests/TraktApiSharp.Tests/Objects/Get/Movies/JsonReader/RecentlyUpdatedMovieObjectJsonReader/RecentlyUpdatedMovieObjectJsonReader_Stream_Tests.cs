@@ -1,26 +1,25 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Movies.JsonReader
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using System.IO;
     using System.Threading.Tasks;
+    using TestUtils;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies.JsonReader;
     using Xunit;
 
     [Category("Objects.Get.Movies.JsonReader")]
-    public partial class TraktRecentlyUpdatedMovieObjectJsonReader_Tests
+    public partial class RecentlyUpdatedMovieObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktRecentlyUpdatedMovieObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public async Task Test_RecentlyUpdatedMovieObjectJsonReader_ReadObject_From_Stream_Complete()
         {
-            var traktJsonReader = new TraktRecentlyUpdatedMovieObjectJsonReader();
+            var traktJsonReader = new RecentlyUpdatedMovieObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_COMPLETE))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_COMPLETE.ToStream())
             {
-                var traktRecentlyUpdatedMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var traktRecentlyUpdatedMovie = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktRecentlyUpdatedMovie.Should().NotBeNull();
                 traktRecentlyUpdatedMovie.RecentlyUpdatedAt.Should().Be(DateTime.Parse("2016-03-31T01:29:13Z").ToUniversalTime());
@@ -36,14 +35,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktRecentlyUpdatedMovieObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
+        public async Task Test_RecentlyUpdatedMovieObjectJsonReader_ReadObject_From_Stream_Incomplete_1()
         {
-            var traktJsonReader = new TraktRecentlyUpdatedMovieObjectJsonReader();
+            var traktJsonReader = new RecentlyUpdatedMovieObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_INCOMPLETE_1))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                var traktRecentlyUpdatedMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var traktRecentlyUpdatedMovie = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktRecentlyUpdatedMovie.Should().NotBeNull();
                 traktRecentlyUpdatedMovie.RecentlyUpdatedAt.Should().Be(DateTime.Parse("2016-03-31T01:29:13Z").ToUniversalTime());
@@ -52,14 +50,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktRecentlyUpdatedMovieObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
+        public async Task Test_RecentlyUpdatedMovieObjectJsonReader_ReadObject_From_Stream_Incomplete_2()
         {
-            var traktJsonReader = new TraktRecentlyUpdatedMovieObjectJsonReader();
+            var traktJsonReader = new RecentlyUpdatedMovieObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_INCOMPLETE_2))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                var traktRecentlyUpdatedMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var traktRecentlyUpdatedMovie = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktRecentlyUpdatedMovie.Should().NotBeNull();
                 traktRecentlyUpdatedMovie.RecentlyUpdatedAt.Should().BeNull();
@@ -75,14 +72,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktRecentlyUpdatedMovieObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
+        public async Task Test_RecentlyUpdatedMovieObjectJsonReader_ReadObject_From_Stream_Not_Valid_1()
         {
-            var traktJsonReader = new TraktRecentlyUpdatedMovieObjectJsonReader();
+            var traktJsonReader = new RecentlyUpdatedMovieObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_NOT_VALID_1))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                var traktRecentlyUpdatedMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var traktRecentlyUpdatedMovie = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktRecentlyUpdatedMovie.Should().NotBeNull();
                 traktRecentlyUpdatedMovie.RecentlyUpdatedAt.Should().BeNull();
@@ -98,14 +94,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktRecentlyUpdatedMovieObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
+        public async Task Test_RecentlyUpdatedMovieObjectJsonReader_ReadObject_From_Stream_Not_Valid_2()
         {
-            var traktJsonReader = new TraktRecentlyUpdatedMovieObjectJsonReader();
+            var traktJsonReader = new RecentlyUpdatedMovieObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_NOT_VALID_2))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                var traktRecentlyUpdatedMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var traktRecentlyUpdatedMovie = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktRecentlyUpdatedMovie.Should().NotBeNull();
                 traktRecentlyUpdatedMovie.RecentlyUpdatedAt.Should().Be(DateTime.Parse("2016-03-31T01:29:13Z").ToUniversalTime());
@@ -114,14 +109,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktRecentlyUpdatedMovieObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
+        public async Task Test_RecentlyUpdatedMovieObjectJsonReader_ReadObject_From_Stream_Not_Valid_3()
         {
-            var traktJsonReader = new TraktRecentlyUpdatedMovieObjectJsonReader();
+            var traktJsonReader = new RecentlyUpdatedMovieObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_NOT_VALID_3))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                var traktRecentlyUpdatedMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var traktRecentlyUpdatedMovie = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktRecentlyUpdatedMovie.Should().NotBeNull();
                 traktRecentlyUpdatedMovie.RecentlyUpdatedAt.Should().BeNull();
@@ -130,23 +124,22 @@
         }
 
         [Fact]
-        public async Task Test_TraktRecentlyUpdatedMovieObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_RecentlyUpdatedMovieObjectJsonReader_ReadObject_From_Stream_Null()
         {
-            var traktJsonReader = new TraktRecentlyUpdatedMovieObjectJsonReader();
+            var traktJsonReader = new RecentlyUpdatedMovieObjectJsonReader();
 
-            var traktRecentlyUpdatedMovie = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            var traktRecentlyUpdatedMovie = await traktJsonReader.ReadObjectAsync(default(Stream));
             traktRecentlyUpdatedMovie.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktRecentlyUpdatedMovieObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public async Task Test_RecentlyUpdatedMovieObjectJsonReader_ReadObject_From_Stream_Empty()
         {
-            var traktJsonReader = new TraktRecentlyUpdatedMovieObjectJsonReader();
+            var traktJsonReader = new RecentlyUpdatedMovieObjectJsonReader();
 
-            using (var reader = new StringReader(string.Empty))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = string.Empty.ToStream())
             {
-                var traktRecentlyUpdatedMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var traktRecentlyUpdatedMovie = await traktJsonReader.ReadObjectAsync(stream);
                 traktRecentlyUpdatedMovie.Should().BeNull();
             }
         }

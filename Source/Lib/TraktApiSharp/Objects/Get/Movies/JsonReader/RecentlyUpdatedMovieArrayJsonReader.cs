@@ -40,7 +40,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var recentlyUpdatedMovieReader = new TraktRecentlyUpdatedMovieObjectJsonReader();
+                var recentlyUpdatedMovieReader = new RecentlyUpdatedMovieObjectJsonReader();
                 //var traktRecentlyUpdatedMovieReadingTasks = new List<Task<ITraktRecentlyUpdatedMovie>>();
                 var traktRecentlyUpdatedMovies = new List<ITraktRecentlyUpdatedMovie>();
 

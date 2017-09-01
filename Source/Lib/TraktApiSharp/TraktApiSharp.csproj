@@ -443,7 +443,7 @@
     <Compile Include="Objects\Get\Movies\JsonReader\MostAnticipatedMovieObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\MostPWCMovieObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\MovieObjectJsonReader.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktRecentlyUpdatedMovieObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\RecentlyUpdatedMovieObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktTrendingMovieObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\MovieAliasObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\MovieIdsObjectJsonReader.cs" />
