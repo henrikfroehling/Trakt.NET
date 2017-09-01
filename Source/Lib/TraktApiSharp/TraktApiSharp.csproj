@@ -452,7 +452,7 @@
     <Compile Include="Objects\Get\People\JsonReader\PersonIdsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\People\JsonReader\PersonObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Seasons\JsonReader\SeasonArrayJsonReader.cs" />
-    <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonCollectionProgressArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\SeasonCollectionProgressArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonCollectionProgressObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonIdsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonObjectJsonReader.cs" />
