@@ -65,7 +65,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var idsObjectReader = new TraktShowIdsObjectJsonReader();
+                var idsObjectReader = new ShowIdsObjectJsonReader();
                 var airsObjectReader = new ShowAirsObjectJsonReader();
                 var seasonsArrayReader = new SeasonArrayJsonReader();
 

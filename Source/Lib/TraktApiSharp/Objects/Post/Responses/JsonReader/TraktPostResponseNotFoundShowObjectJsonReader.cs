@@ -43,7 +43,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var showIdsReader = new TraktShowIdsObjectJsonReader();
+                var showIdsReader = new ShowIdsObjectJsonReader();
                 ITraktPostResponseNotFoundShow postResponseNotFoundShow = new TraktPostResponseNotFoundShow();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
