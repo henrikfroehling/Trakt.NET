@@ -141,7 +141,7 @@
             s_readerFactories.Add(typeof(ITraktMovieAlias), new MovieAliasJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktMovieIds), new MovieIdsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktMovieRelease), new MovieReleaseJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktMovieTranslation), new TraktMovieTranslationJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktMovieTranslation), new MovieTranslationJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktBoxOfficeMovie), new BoxOfficeMovieJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktMostAnticipatedMovie), new MostAnticipatedMovieJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktMostPWCMovie), new MostPWCMovieJsonReaderFactory());
