@@ -7,12 +7,12 @@
     using Xunit;
 
     [Category("Objects.Get.Movies.JsonReader")]
-    public partial class TraktMostAnticipatedMovieObjectJsonReader_Tests
+    public partial class MostAnticipatedMovieObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktMostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_MostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktMostAnticipatedMovieObjectJsonReader();
+            var jsonReader = new MostAnticipatedMovieObjectJsonReader();
 
             var traktMostAnticipatedMovie = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
@@ -29,9 +29,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktMostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public async Task Test_MostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new TraktMostAnticipatedMovieObjectJsonReader();
+            var jsonReader = new MostAnticipatedMovieObjectJsonReader();
 
             var traktMostAnticipatedMovie = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_1);
 
@@ -41,9 +41,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktMostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public async Task Test_MostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new TraktMostAnticipatedMovieObjectJsonReader();
+            var jsonReader = new MostAnticipatedMovieObjectJsonReader();
 
             var traktMostAnticipatedMovie = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_2);
 
@@ -60,9 +60,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktMostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public async Task Test_MostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new TraktMostAnticipatedMovieObjectJsonReader();
+            var jsonReader = new MostAnticipatedMovieObjectJsonReader();
 
             var traktMostAnticipatedMovie = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_1);
 
@@ -79,9 +79,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktMostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public async Task Test_MostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new TraktMostAnticipatedMovieObjectJsonReader();
+            var jsonReader = new MostAnticipatedMovieObjectJsonReader();
 
             var traktMostAnticipatedMovie = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_2);
 
@@ -91,9 +91,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktMostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public async Task Test_MostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new TraktMostAnticipatedMovieObjectJsonReader();
+            var jsonReader = new MostAnticipatedMovieObjectJsonReader();
 
             var traktMostAnticipatedMovie = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_3);
 
@@ -103,18 +103,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktMostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_MostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktMostAnticipatedMovieObjectJsonReader();
+            var jsonReader = new MostAnticipatedMovieObjectJsonReader();
 
             var traktMostAnticipatedMovie = await jsonReader.ReadObjectAsync(default(string));
             traktMostAnticipatedMovie.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktMostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_MostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktMostAnticipatedMovieObjectJsonReader();
+            var jsonReader = new MostAnticipatedMovieObjectJsonReader();
 
             var traktMostAnticipatedMovie = await jsonReader.ReadObjectAsync(string.Empty);
             traktMostAnticipatedMovie.Should().BeNull();
