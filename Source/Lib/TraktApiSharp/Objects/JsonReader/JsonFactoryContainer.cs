@@ -156,7 +156,7 @@
             s_readerFactories.Add(typeof(ITraktPersonMovieCredits), new TraktPersonMovieCreditsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktPersonMovieCreditsCastItem), new PersonMovieCreditsCastItemJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktPersonMovieCreditsCrew), new TraktPersonMovieCreditsCrewJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktPersonMovieCreditsCrewItem), new TraktPersonMovieCreditsCrewItemJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktPersonMovieCreditsCrewItem), new PersonMovieCreditsCrewItemJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktPersonShowCredits), new TraktPersonShowCreditsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktPersonShowCreditsCastItem), new TraktPersonShowCreditsCastItemJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktPersonShowCreditsCrew), new TraktPersonShowCreditsCrewJsonReaderFactory());
