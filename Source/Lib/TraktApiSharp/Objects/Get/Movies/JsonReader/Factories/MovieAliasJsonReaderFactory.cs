@@ -2,7 +2,7 @@
 {
     using Objects.JsonReader;
 
-    internal class TraktMovieAliasJsonReaderFactory : IJsonReaderFactory<ITraktMovieAlias>
+    internal class MovieAliasJsonReaderFactory : IJsonReaderFactory<ITraktMovieAlias>
     {
         public IObjectJsonReader<ITraktMovieAlias> CreateObjectReader() => new TraktMovieAliasObjectJsonReader();
 
