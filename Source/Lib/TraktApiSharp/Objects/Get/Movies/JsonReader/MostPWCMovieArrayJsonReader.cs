@@ -40,7 +40,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var mostPWCMovieReader = new TraktMostPWCMovieObjectJsonReader();
+                var mostPWCMovieReader = new MostPWCMovieObjectJsonReader();
                 //var traktMostPWCMovieReadingTasks = new List<Task<ITraktMostPWCMovie>>();
                 var traktMostPWCMovies = new List<ITraktMostPWCMovie>();
 

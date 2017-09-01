@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktMostPWCMovieObjectJsonReader : IObjectJsonReader<ITraktMostPWCMovie>
+    internal class MostPWCMovieObjectJsonReader : IObjectJsonReader<ITraktMostPWCMovie>
     {
         private const string PROPERTY_NAME_WATCHER_COUNT = "watcher_count";
         private const string PROPERTY_NAME_PLAY_COUNT = "play_count";
