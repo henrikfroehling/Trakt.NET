@@ -170,7 +170,7 @@
             s_readerFactories.Add(typeof(ITraktPostResponseNotFoundShow), new TraktPostResponseNotFoundShowJsonReaderFactory());
 
             // rating objects
-            s_readerFactories.Add(typeof(ITraktRatingsItem), new TraktRatingsItemJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktRatingsItem), new RatingsItemJsonReaderFactory());
 
             // season objects
             s_readerFactories.Add(typeof(ITraktSeason), new TraktSeasonJsonReaderFactory());

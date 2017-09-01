@@ -260,7 +260,7 @@
     <Compile Include="Objects\Get\People\JsonReader\Factories\PersonIdsJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\People\JsonReader\Factories\PersonJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Ratings\ITraktRatingsItem.cs" />
-    <Compile Include="Objects\Get\Ratings\JsonReader\Factories\TraktRatingsItemJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Ratings\JsonReader\Factories\RatingsItemJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Ratings\JsonReader\TraktRatingsItemArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Ratings\JsonReader\TraktRatingsItemObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Seasons\ITraktSeason.cs" />
