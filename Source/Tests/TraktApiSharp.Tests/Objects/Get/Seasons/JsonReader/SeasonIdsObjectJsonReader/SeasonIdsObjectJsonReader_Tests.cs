@@ -8,12 +8,12 @@
     using Xunit;
 
     [Category("Objects.Get.Seasons.JsonReader")]
-    public partial class TraktSeasonIdsObjectJsonReader_Tests
+    public partial class SeasonIdsObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_TraktSeasonIdsObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
+        public void Test_SeasonIdsObjectJsonReader_Implements_IObjectJsonReader_Interface()
         {
-            typeof(TraktSeasonIdsObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktSeasonIds>));
+            typeof(SeasonIdsObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktSeasonIds>));
         }
     }
 }

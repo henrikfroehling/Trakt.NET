@@ -43,7 +43,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var seasonIdsReader = new TraktSeasonIdsObjectJsonReader();
+                var seasonIdsReader = new SeasonIdsObjectJsonReader();
                 ITraktPostResponseNotFoundSeason postResponseNotFoundSeason = new TraktPostResponseNotFoundSeason();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
