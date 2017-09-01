@@ -40,7 +40,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var boxOfficeMovieReader = new TraktBoxOfficeMovieObjectJsonReader();
+                var boxOfficeMovieReader = new BoxOfficeMovieObjectJsonReader();
                 //var traktBoxOfficeMovieReadingTasks = new List<Task<ITraktBoxOfficeMovie>>();
                 var traktBoxOfficeMovies = new List<ITraktBoxOfficeMovie>();
 

@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktBoxOfficeMovieObjectJsonReader : IObjectJsonReader<ITraktBoxOfficeMovie>
+    internal class BoxOfficeMovieObjectJsonReader : IObjectJsonReader<ITraktBoxOfficeMovie>
     {
         private const string PROPERTY_NAME_REVENUE = "revenue";
         private const string PROPERTY_NAME_MOVIE = "movie";

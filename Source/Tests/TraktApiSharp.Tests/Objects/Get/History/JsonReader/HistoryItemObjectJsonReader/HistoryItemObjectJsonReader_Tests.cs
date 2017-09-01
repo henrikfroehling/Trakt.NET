@@ -11,7 +11,7 @@
     public partial class HistoryItemObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_HistoryItemObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
+        public void Test_HistoryItemObjectJsonReader_Implements_IObjectJsonReader_Interface()
         {
             typeof(HistoryItemObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktHistoryItem>));
         }
