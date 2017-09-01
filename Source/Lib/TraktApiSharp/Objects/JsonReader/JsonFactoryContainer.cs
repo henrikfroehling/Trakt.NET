@@ -183,7 +183,7 @@
             s_readerFactories.Add(typeof(ITraktMovieScrobblePostResponse), new TraktMovieScrobblePostResponseJsonReaderFactory());
 
             // show objects
-            s_readerFactories.Add(typeof(ITraktShow), new TraktShowJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktShow), new ShowJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktShowAirs), new ShowAirsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktShowAlias), new ShowAliasJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktShowIds), new ShowIdsJsonReaderFactory());
