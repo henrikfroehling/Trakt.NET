@@ -437,11 +437,11 @@
     <Compile Include="Objects\Get\People\Credits\JsonReader\PersonMovieCreditsObjectJsonReader\PersonMovieCreditsObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\JsonReader\PersonMovieCreditsObjectJsonReader\PersonMovieCreditsObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\JsonReader\PersonMovieCreditsObjectJsonReader\PersonMovieCreditsObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonShowCreditsCastItemArrayJsonReader\TraktPersonShowCreditsCastItemArrayJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonShowCreditsCastItemArrayJsonReader\TraktPersonShowCreditsCastItemArrayJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonShowCreditsCastItemArrayJsonReader\TraktPersonShowCreditsCastItemArrayJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonShowCreditsCastItemArrayJsonReader\TraktPersonShowCreditsCastItemArrayJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonShowCreditsCastItemArrayJsonReader\TraktPersonShowCreditsCastItemArrayJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\People\Credits\JsonReader\PersonShowCreditsCastItemArrayJsonReader\PersonShowCreditsCastItemArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\People\Credits\JsonReader\PersonShowCreditsCastItemArrayJsonReader\PersonShowCreditsCastItemArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\People\Credits\JsonReader\PersonShowCreditsCastItemArrayJsonReader\PersonShowCreditsCastItemArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\People\Credits\JsonReader\PersonShowCreditsCastItemArrayJsonReader\PersonShowCreditsCastItemArrayJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\People\Credits\JsonReader\PersonShowCreditsCastItemArrayJsonReader\PersonShowCreditsCastItemArrayJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonShowCreditsCastItemObjectJsonReader\TraktPersonShowCreditsCastItemObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonShowCreditsCastItemObjectJsonReader\TraktPersonShowCreditsCastItemObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonShowCreditsCastItemObjectJsonReader\TraktPersonShowCreditsCastItemObjectJsonReader_Stream_Tests.cs" />

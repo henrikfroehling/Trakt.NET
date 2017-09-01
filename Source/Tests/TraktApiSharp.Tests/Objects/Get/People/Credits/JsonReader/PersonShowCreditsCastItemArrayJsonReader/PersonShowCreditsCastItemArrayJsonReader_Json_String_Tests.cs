@@ -8,21 +8,21 @@
     using Xunit;
 
     [Category("Objects.Get.People.Credits.JsonReader")]
-    public partial class TraktPersonShowCreditsCastItemArrayJsonReader_Tests
+    public partial class PersonShowCreditsCastItemArrayJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktPersonShowCreditsCastItemArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
+        public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new TraktPersonShowCreditsCastItemArrayJsonReader();
+            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
 
             var showCreditsCastItems = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             showCreditsCastItems.Should().NotBeNull().And.BeEmpty();
         }
 
         [Fact]
-        public async Task Test_TraktPersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktPersonShowCreditsCastItemArrayJsonReader();
+            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
 
             var showCreditsCastItems = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
 
@@ -57,9 +57,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktPersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new TraktPersonShowCreditsCastItemArrayJsonReader();
+            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
 
             var showCreditsCastItems = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
 
@@ -94,9 +94,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktPersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new TraktPersonShowCreditsCastItemArrayJsonReader();
+            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
 
             var showCreditsCastItems = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
 
@@ -122,9 +122,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktPersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new TraktPersonShowCreditsCastItemArrayJsonReader();
+            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
 
             var showCreditsCastItems = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
@@ -159,9 +159,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktPersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new TraktPersonShowCreditsCastItemArrayJsonReader();
+            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
 
             var showCreditsCastItems = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
 
@@ -187,9 +187,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktPersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new TraktPersonShowCreditsCastItemArrayJsonReader();
+            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
 
             var showCreditsCastItems = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
 
@@ -215,18 +215,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktPersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktPersonShowCreditsCastItemArrayJsonReader();
+            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
 
             var showCreditsCastItems = await jsonReader.ReadArrayAsync(default(string));
             showCreditsCastItems.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktPersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktPersonShowCreditsCastItemArrayJsonReader();
+            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
 
             var showCreditsCastItems = await jsonReader.ReadArrayAsync(string.Empty);
             showCreditsCastItems.Should().BeNull();
