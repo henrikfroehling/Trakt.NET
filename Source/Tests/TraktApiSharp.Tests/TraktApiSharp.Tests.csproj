@@ -520,11 +520,11 @@
     <Compile Include="Objects\Get\Seasons\JsonReader\SeasonCollectionProgressArrayJsonReader\SeasonCollectionProgressArrayJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\JsonReader\SeasonCollectionProgressArrayJsonReader\SeasonCollectionProgressArrayJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\JsonReader\SeasonCollectionProgressArrayJsonReader\SeasonCollectionProgressArrayJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonCollectionProgressObjectJsonReader_Tests\TraktSeasonCollectionProgressObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonCollectionProgressObjectJsonReader_Tests\TraktSeasonCollectionProgressObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonCollectionProgressObjectJsonReader_Tests\TraktSeasonCollectionProgressObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonCollectionProgressObjectJsonReader_Tests\TraktSeasonCollectionProgressObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonCollectionProgressObjectJsonReader_Tests\TraktSeasonCollectionProgressObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\SeasonCollectionProgressObjectJsonReader\SeasonCollectionProgressObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\SeasonCollectionProgressObjectJsonReader\SeasonCollectionProgressObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\SeasonCollectionProgressObjectJsonReader\SeasonCollectionProgressObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\SeasonCollectionProgressObjectJsonReader\SeasonCollectionProgressObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Seasons\JsonReader\SeasonCollectionProgressObjectJsonReader\SeasonCollectionProgressObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonIdsObjectJsonReader_Tests\TraktSeasonIdsObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonIdsObjectJsonReader_Tests\TraktSeasonIdsObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Seasons\JsonReader\TraktSeasonIdsObjectJsonReader_Tests\TraktSeasonIdsObjectJsonReader_Stream_Tests.cs" />
