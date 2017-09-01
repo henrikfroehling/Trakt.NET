@@ -300,7 +300,7 @@
     <Compile Include="Objects\Get\Shows\JsonReader\RecentlyUpdatedShowArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\ShowAliasArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\ShowArrayJsonReader.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\TraktShowTranslationArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\ShowTranslationArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\TraktTrendingShowArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\ITraktSyncCommentsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\ITraktSyncEpisodesLastActivities.cs" />
