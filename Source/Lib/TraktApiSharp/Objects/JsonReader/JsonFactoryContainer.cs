@@ -145,7 +145,7 @@
             s_readerFactories.Add(typeof(ITraktBoxOfficeMovie), new BoxOfficeMovieJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktMostAnticipatedMovie), new MostAnticipatedMovieJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktMostPWCMovie), new MostPWCMovieJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktRecentlyUpdatedMovie), new TraktRecentlyUpdatedMovieJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktRecentlyUpdatedMovie), new RecentlyUpdatedMovieJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktTrendingMovie), new TraktTrendingMovieJsonReaderFactory());
 
             // people objects
