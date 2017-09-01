@@ -150,7 +150,7 @@
 
             // people objects
             s_readerFactories.Add(typeof(ITraktPerson), new TraktPersonJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktPersonIds), new TraktPersonIdsJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktPersonIds), new PersonIdsJsonReaderFactory());
 
             // people credit objects
             s_readerFactories.Add(typeof(ITraktPersonMovieCredits), new TraktPersonMovieCreditsJsonReaderFactory());

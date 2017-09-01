@@ -257,7 +257,7 @@
     <Compile Include="Objects\Get\People\Credits\JsonReader\TraktPersonShowCreditsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\People\ITraktPerson.cs" />
     <Compile Include="Objects\Get\People\ITraktPersonIds.cs" />
-    <Compile Include="Objects\Get\People\JsonReader\Factories\TraktPersonIdsJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\People\JsonReader\Factories\PersonIdsJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\People\JsonReader\Factories\TraktPersonJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Ratings\ITraktRatingsItem.cs" />
     <Compile Include="Objects\Get\Ratings\JsonReader\Factories\TraktRatingsItemJsonReaderFactory.cs" />
