@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktTrendingMovieObjectJsonReader : IObjectJsonReader<ITraktTrendingMovie>
+    internal class TrendingMovieObjectJsonReader : IObjectJsonReader<ITraktTrendingMovie>
     {
         private const string PROPERTY_NAME_WATCHERS = "watchers";
         private const string PROPERTY_NAME_MOVIE = "movie";

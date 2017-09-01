@@ -386,11 +386,11 @@
     <Compile Include="Objects\Get\Movies\JsonReader\RecentlyUpdatedMovieObjectJsonReader\RecentlyUpdatedMovieObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\RecentlyUpdatedMovieObjectJsonReader\RecentlyUpdatedMovieObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\RecentlyUpdatedMovieObjectJsonReader\RecentlyUpdatedMovieObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktTrendingMovieObjectJsonReader_Tests\TraktTrendingMovieObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktTrendingMovieObjectJsonReader_Tests\TraktTrendingMovieObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktTrendingMovieObjectJsonReader_Tests\TraktTrendingMovieObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktTrendingMovieObjectJsonReader_Tests\TraktTrendingMovieObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktTrendingMovieObjectJsonReader_Tests\TraktTrendingMovieObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\TrendingMovieObjectJsonReader\TrendingMovieObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\TrendingMovieObjectJsonReader\TrendingMovieObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\TrendingMovieObjectJsonReader\TrendingMovieObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\TrendingMovieObjectJsonReader\TrendingMovieObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\TrendingMovieObjectJsonReader\TrendingMovieObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\People\Credits\Interfaces\ITraktPersonMovieCreditsCastItem_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\Interfaces\ITraktPersonMovieCreditsCrewItem_Tests.cs" />
     <Compile Include="Objects\Get\People\Credits\Interfaces\ITraktPersonMovieCreditsCrew_Tests.cs" />

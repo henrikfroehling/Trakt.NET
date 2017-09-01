@@ -4,7 +4,7 @@
 
     internal class TrendingMovieJsonReaderFactory : IJsonReaderFactory<ITraktTrendingMovie>
     {
-        public IObjectJsonReader<ITraktTrendingMovie> CreateObjectReader() => new TraktTrendingMovieObjectJsonReader();
+        public IObjectJsonReader<ITraktTrendingMovie> CreateObjectReader() => new TrendingMovieObjectJsonReader();
 
         public IArrayJsonReader<ITraktTrendingMovie> CreateArrayReader() => new TrendingMovieArrayJsonReader();
     }
