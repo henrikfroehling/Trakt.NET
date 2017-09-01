@@ -371,11 +371,11 @@
     <Compile Include="Objects\Get\Movies\JsonReader\MovieObjectJsonReader\MovieObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\MovieObjectJsonReader\MovieObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\MovieObjectJsonReader\MovieObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieReleaseObjectJsonReader_Tests\TraktMovieReleaseObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieReleaseObjectJsonReader_Tests\TraktMovieReleaseObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieReleaseObjectJsonReader_Tests\TraktMovieReleaseObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieReleaseObjectJsonReader_Tests\TraktMovieReleaseObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieReleaseObjectJsonReader_Tests\TraktMovieReleaseObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\MovieReleaseObjectJsonReader\MovieReleaseObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\MovieReleaseObjectJsonReader\MovieReleaseObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\MovieReleaseObjectJsonReader\MovieReleaseObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\MovieReleaseObjectJsonReader\MovieReleaseObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\MovieReleaseObjectJsonReader\MovieReleaseObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieTranslationObjectJsonReader_Tests\TraktMovieTranslationObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieTranslationObjectJsonReader_Tests\TraktMovieTranslationObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieTranslationObjectJsonReader_Tests\TraktMovieTranslationObjectJsonReader_Stream_Tests.cs" />
