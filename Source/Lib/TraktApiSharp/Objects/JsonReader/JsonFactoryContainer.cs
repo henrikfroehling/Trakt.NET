@@ -176,7 +176,7 @@
             s_readerFactories.Add(typeof(ITraktSeason), new SeasonJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSeasonIds), new SeasonIdsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSeasonCollectionProgress), new SeasonCollectionProgressJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSeasonWatchedProgress), new TraktSeasonWatchedProgressJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSeasonWatchedProgress), new SeasonWatchedProgressJsonReaderFactory());
 
             // scrobble post response objects
             s_readerFactories.Add(typeof(ITraktEpisodeScrobblePostResponse), new TraktEpisodeScrobblePostResponseJsonReaderFactory());
