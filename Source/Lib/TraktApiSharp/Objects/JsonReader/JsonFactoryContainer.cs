@@ -174,7 +174,7 @@
 
             // season objects
             s_readerFactories.Add(typeof(ITraktSeason), new TraktSeasonJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSeasonIds), new TraktSeasonIdsJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSeasonIds), new SeasonIdsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSeasonCollectionProgress), new SeasonCollectionProgressJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSeasonWatchedProgress), new TraktSeasonWatchedProgressJsonReaderFactory());
 
