@@ -52,7 +52,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var movieReader = new TraktMovieObjectJsonReader();
+                var movieReader = new MovieObjectJsonReader();
                 var showReader = new TraktShowObjectJsonReader();
                 var episodeReader = new EpisodeObjectJsonReader();
                 ITraktUserWatchingItem traktUserWatchingItem = new TraktUserWatchingItem();

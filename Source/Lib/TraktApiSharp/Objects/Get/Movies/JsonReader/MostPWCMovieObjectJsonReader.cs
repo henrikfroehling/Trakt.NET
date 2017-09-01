@@ -46,7 +46,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var movieObjectReader = new TraktMovieObjectJsonReader();
+                var movieObjectReader = new MovieObjectJsonReader();
                 ITraktMostPWCMovie traktMostPWCMovie = new TraktMostPWCMovie();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)

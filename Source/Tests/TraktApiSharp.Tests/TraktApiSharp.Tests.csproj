@@ -366,11 +366,11 @@
     <Compile Include="Objects\Get\Movies\JsonReader\MovieIdsObjectJsonReader\MovieIdsObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\MovieIdsObjectJsonReader\MovieIdsObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\MovieIdsObjectJsonReader\MovieIdsObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieObjectJsonReader_Tests\TraktMovieObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieObjectJsonReader_Tests\TraktMovieObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieObjectJsonReader_Tests\TraktMovieObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieObjectJsonReader_Tests\TraktMovieObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieObjectJsonReader_Tests\TraktMovieObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\MovieObjectJsonReader\MovieObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\MovieObjectJsonReader\MovieObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\MovieObjectJsonReader\MovieObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\MovieObjectJsonReader\MovieObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Movies\JsonReader\MovieObjectJsonReader\MovieObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieReleaseObjectJsonReader_Tests\TraktMovieReleaseObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieReleaseObjectJsonReader_Tests\TraktMovieReleaseObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Movies\JsonReader\TraktMovieReleaseObjectJsonReader_Tests\TraktMovieReleaseObjectJsonReader_Stream_Tests.cs" />
