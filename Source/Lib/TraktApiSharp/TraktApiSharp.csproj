@@ -286,7 +286,7 @@
     <Compile Include="Objects\Get\Shows\ITraktTrendingShow.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\Factories\MostAnticipatedShowJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\Factories\MostPWCShowJsonReaderFactory.cs" />
-    <Compile Include="Objects\Get\Shows\JsonReader\Factories\TraktRecentlyUpdatedShowJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Shows\JsonReader\Factories\RecentlyUpdatedShowJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\Factories\TraktShowAirsJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\Factories\TraktShowAliasJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Shows\JsonReader\Factories\TraktShowCollectionProgressJsonReaderFactory.cs" />
