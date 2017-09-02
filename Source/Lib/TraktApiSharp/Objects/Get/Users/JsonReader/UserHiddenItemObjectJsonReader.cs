@@ -11,7 +11,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktUserHiddenItemObjectJsonReader : IObjectJsonReader<ITraktUserHiddenItem>
+    internal class UserHiddenItemObjectJsonReader : IObjectJsonReader<ITraktUserHiddenItem>
     {
         private const string PROPERTY_NAME_HIDDEN_AT = "hidden_at";
         private const string PROPERTY_NAME_TYPE = "type";

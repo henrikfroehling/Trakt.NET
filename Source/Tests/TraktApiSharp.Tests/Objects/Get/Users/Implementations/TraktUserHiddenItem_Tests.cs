@@ -35,7 +35,7 @@
         [Fact]
         public async Task Test_TraktUserHiddenItem_With_Type_Movie_From_Minimal_Json()
         {
-            var jsonReader = new TraktUserHiddenItemObjectJsonReader();
+            var jsonReader = new UserHiddenItemObjectJsonReader();
             var hiddenItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_MINIMAL_JSON) as TraktUserHiddenItem;
 
             hiddenItem.Should().NotBeNull();
@@ -69,7 +69,7 @@
         [Fact]
         public async Task Test_TraktUserHiddenItem_With_Type_Show_From_Minimal_Json()
         {
-            var jsonReader = new TraktUserHiddenItemObjectJsonReader();
+            var jsonReader = new UserHiddenItemObjectJsonReader();
             var hiddenItem = await jsonReader.ReadObjectAsync(TYPE_SHOW_MINIMAL_JSON) as TraktUserHiddenItem;
 
             hiddenItem.Should().NotBeNull();
@@ -110,7 +110,7 @@
         [Fact]
         public async Task Test_TraktUserHiddenItem_With_Type_Season_From_Minimal_Json()
         {
-            var jsonReader = new TraktUserHiddenItemObjectJsonReader();
+            var jsonReader = new UserHiddenItemObjectJsonReader();
             var hiddenItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_MINIMAL_JSON) as TraktUserHiddenItem;
 
             hiddenItem.Should().NotBeNull();
@@ -137,7 +137,7 @@
         [Fact]
         public async Task Test_TraktUserHiddenItem_With_Type_Movie_From_Full_Json()
         {
-            var jsonReader = new TraktUserHiddenItemObjectJsonReader();
+            var jsonReader = new UserHiddenItemObjectJsonReader();
             var hiddenItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_FULL_JSON) as TraktUserHiddenItem;
 
             hiddenItem.Should().NotBeNull();
@@ -171,7 +171,7 @@
         [Fact]
         public async Task Test_TraktUserHiddenItem_With_Type_Show_From_Full_Json()
         {
-            var jsonReader = new TraktUserHiddenItemObjectJsonReader();
+            var jsonReader = new UserHiddenItemObjectJsonReader();
             var hiddenItem = await jsonReader.ReadObjectAsync(TYPE_SHOW_FULL_JSON) as TraktUserHiddenItem;
 
             hiddenItem.Should().NotBeNull();
@@ -215,7 +215,7 @@
         [Fact]
         public async Task Test_TraktUserHiddenItem_With_Type_Season_From_Full_Json()
         {
-            var jsonReader = new TraktUserHiddenItemObjectJsonReader();
+            var jsonReader = new UserHiddenItemObjectJsonReader();
             var hiddenItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_FULL_JSON) as TraktUserHiddenItem;
 
             hiddenItem.Should().NotBeNull();
