@@ -224,7 +224,7 @@
             s_readerFactories.Add(typeof(ITraktSyncRatingsRemovePostResponse), new TraktSyncRatingsRemovePostResponseJsonReaderFactory());
 
             // sync playback objects
-            s_readerFactories.Add(typeof(ITraktSyncPlaybackProgressItem), new TraktSyncPlaybackProgressItemJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncPlaybackProgressItem), new SyncPlaybackProgressItemJsonReaderFactory());
 
             // sync response objects
             s_readerFactories.Add(typeof(ITraktSyncPostResponseGroup), new TraktSyncPostResponseGroupJsonReaderFactory());

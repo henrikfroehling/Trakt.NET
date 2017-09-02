@@ -324,7 +324,7 @@
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncSeasonsLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncShowsLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\ITraktSyncPlaybackProgressItem.cs" />
-    <Compile Include="Objects\Get\Syncs\Playback\JsonReader\Factories\TraktSyncPlaybackProgressItemJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Syncs\Playback\JsonReader\Factories\SyncPlaybackProgressItemJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\JsonReader\TraktSyncPlaybackProgressItemArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\JsonReader\TraktSyncPlaybackProgressItemObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\ITraktAccountSettings.cs" />
