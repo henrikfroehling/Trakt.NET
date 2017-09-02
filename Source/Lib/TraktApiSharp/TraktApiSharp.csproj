@@ -361,7 +361,7 @@
     <Compile Include="Objects\Get\Users\JsonReader\UserFollowerArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\UserFollowerObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\UserFollowRequestArrayJsonReader.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserFollowRequestObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserFollowRequestObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserFriendArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserFriendObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserHiddenItemArrayJsonReader.cs" />
