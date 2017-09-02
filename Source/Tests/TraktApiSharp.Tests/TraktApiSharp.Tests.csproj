@@ -883,11 +883,11 @@
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserRatingsStatisticsObjectJsonReader\UserRatingsStatisticsObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserRatingsStatisticsObjectJsonReader\UserRatingsStatisticsObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserRatingsStatisticsObjectJsonReader\UserRatingsStatisticsObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserSeasonsStatisticsObjectJsonReader\TraktUserSeasonsStatisticsObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserSeasonsStatisticsObjectJsonReader\TraktUserSeasonsStatisticsObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserSeasonsStatisticsObjectJsonReader\TraktUserSeasonsStatisticsObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserSeasonsStatisticsObjectJsonReader\TraktUserSeasonsStatisticsObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserSeasonsStatisticsObjectJsonReader\TraktUserSeasonsStatisticsObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserSeasonsStatisticsObjectJsonReader\UserSeasonsStatisticsObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserSeasonsStatisticsObjectJsonReader\UserSeasonsStatisticsObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserSeasonsStatisticsObjectJsonReader\UserSeasonsStatisticsObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserSeasonsStatisticsObjectJsonReader\UserSeasonsStatisticsObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserSeasonsStatisticsObjectJsonReader\UserSeasonsStatisticsObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserShowsStatisticsObjectJsonReader\TraktUserShowsStatisticsObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserShowsStatisticsObjectJsonReader\TraktUserShowsStatisticsObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserShowsStatisticsObjectJsonReader\TraktUserShowsStatisticsObjectJsonReader_Stream_Tests.cs" />

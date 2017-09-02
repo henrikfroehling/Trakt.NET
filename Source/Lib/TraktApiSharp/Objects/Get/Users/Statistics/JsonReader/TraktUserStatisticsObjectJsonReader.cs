@@ -49,7 +49,7 @@
             {
                 var moviesStatisticsReader = new UserMoviesStatisticsObjectJsonReader();
                 var showsStatisticsReader = new TraktUserShowsStatisticsObjectJsonReader();
-                var seasonsStatisticsReader = new TraktUserSeasonsStatisticsObjectJsonReader();
+                var seasonsStatisticsReader = new UserSeasonsStatisticsObjectJsonReader();
                 var episodesStatisticsReader = new UserEpisodesStatisticsObjectJsonReader();
                 var networkStatisticsReader = new UserNetworkStatisticsObjectJsonReader();
                 var ratingsStatisticsReader = new UserRatingsStatisticsObjectJsonReader();
