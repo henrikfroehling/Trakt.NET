@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktSyncHistoryRemovePostResponseGroupObjectJsonReader : IObjectJsonReader<ITraktSyncHistoryRemovePostResponseGroup>
+    internal class SyncHistoryRemovePostResponseGroupObjectJsonReader : IObjectJsonReader<ITraktSyncHistoryRemovePostResponseGroup>
     {
         private const string PROPERTY_NAME_MOVIES = "movies";
         private const string PROPERTY_NAME_SHOWS = "shows";

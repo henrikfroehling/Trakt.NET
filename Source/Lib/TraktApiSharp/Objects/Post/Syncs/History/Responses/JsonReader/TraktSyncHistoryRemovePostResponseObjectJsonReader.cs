@@ -43,7 +43,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var groupReader = new TraktSyncHistoryRemovePostResponseGroupObjectJsonReader();
+                var groupReader = new SyncHistoryRemovePostResponseGroupObjectJsonReader();
                 var notFoundGroupReader = new TraktSyncHistoryRemovePostResponseNotFoundGroupObjectJsonReader();
                 ITraktSyncHistoryRemovePostResponse syncHistoryRemovePostResponse = new TraktSyncHistoryRemovePostResponse();
 
