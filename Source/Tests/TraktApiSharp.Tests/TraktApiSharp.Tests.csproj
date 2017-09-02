@@ -709,11 +709,11 @@
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUserSettings_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUserWatchingItem_Tests.cs" />
     <Compile Include="Objects\Get\Users\Interfaces\ITraktUser_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktAccountSettingsObjectJsonReader\TraktAccountSettingsObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktAccountSettingsObjectJsonReader\TraktAccountSettingsObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktAccountSettingsObjectJsonReader\TraktAccountSettingsObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktAccountSettingsObjectJsonReader\TraktAccountSettingsObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktAccountSettingsObjectJsonReader\TraktAccountSettingsObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\AccountSettingsObjectJsonReader\AccountSettingsObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\AccountSettingsObjectJsonReader\AccountSettingsObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\AccountSettingsObjectJsonReader\AccountSettingsObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\AccountSettingsObjectJsonReader\AccountSettingsObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\AccountSettingsObjectJsonReader\AccountSettingsObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktSharingTextObjectJsonReader\TraktSharingTextObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktSharingTextObjectJsonReader\TraktSharingTextObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktSharingTextObjectJsonReader\TraktSharingTextObjectJsonReader_Stream_Tests.cs" />

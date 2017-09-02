@@ -5,7 +5,7 @@
 
     internal class AccountSettingsJsonReaderFactory : IJsonReaderFactory<ITraktAccountSettings>
     {
-        public IObjectJsonReader<ITraktAccountSettings> CreateObjectReader() => new TraktAccountSettingsObjectJsonReader();
+        public IObjectJsonReader<ITraktAccountSettings> CreateObjectReader() => new AccountSettingsObjectJsonReader();
 
         public IArrayJsonReader<ITraktAccountSettings> CreateArrayReader()
         {

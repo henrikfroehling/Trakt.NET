@@ -30,7 +30,7 @@
         [Fact]
         public async Task Test_TraktAccountSettings_From_Json()
         {
-            var jsonReader = new TraktAccountSettingsObjectJsonReader();
+            var jsonReader = new AccountSettingsObjectJsonReader();
             var accountSettings = await jsonReader.ReadObjectAsync(JSON) as TraktAccountSettings;
 
             accountSettings.Should().NotBeNull();
