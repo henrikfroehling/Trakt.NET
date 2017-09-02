@@ -379,7 +379,7 @@
     <Compile Include="Objects\Get\Users\Lists\JsonReader\Factories\ListIdsJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\Lists\JsonReader\Factories\ListItemJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\Lists\JsonReader\Factories\ListJsonReaderFactory.cs" />
-    <Compile Include="Objects\Get\Users\Lists\JsonReader\TraktListArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Users\Lists\JsonReader\ListArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Lists\JsonReader\TraktListIdsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Lists\JsonReader\TraktListItemArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Lists\JsonReader\TraktListItemObjectJsonReader.cs" />
