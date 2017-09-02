@@ -10,7 +10,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktUserLikeItemObjectJsonReader : IObjectJsonReader<ITraktUserLikeItem>
+    internal class UserLikeItemObjectJsonReader : IObjectJsonReader<ITraktUserLikeItem>
     {
         private const string PROPERTY_NAME_LIKED_AT = "liked_at";
         private const string PROPERTY_NAME_TYPE = "type";

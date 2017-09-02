@@ -9,21 +9,21 @@
     using Xunit;
 
     [Category("Objects.Get.Users.JsonReader")]
-    public partial class TraktUserLikeItemObjectJsonReader_Tests
+    public partial class UserLikeItemObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktUserLikeItemObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_UserLikeItemObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var traktJsonReader = new TraktUserLikeItemObjectJsonReader();
+            var traktJsonReader = new UserLikeItemObjectJsonReader();
 
             var traktUserLikeItem = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktUserLikeItem.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktUserLikeItemObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public async Task Test_UserLikeItemObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var traktJsonReader = new TraktUserLikeItemObjectJsonReader();
+            var traktJsonReader = new UserLikeItemObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

@@ -33,7 +33,7 @@
         [Fact]
         public async Task Test_TraktUserLikeItem_With_Type_Comment_From_Json()
         {
-            var jsonReader = new TraktUserLikeItemObjectJsonReader();
+            var jsonReader = new UserLikeItemObjectJsonReader();
             var likeItem = await jsonReader.ReadObjectAsync(TYPE_COMMENT_JSON) as TraktUserLikeItem;
 
             likeItem.Should().NotBeNull();
@@ -65,7 +65,7 @@
         [Fact]
         public async Task Test_TraktUserLikeItem_With_Type_Episode_From_Json()
         {
-            var jsonReader = new TraktUserLikeItemObjectJsonReader();
+            var jsonReader = new UserLikeItemObjectJsonReader();
             var likeItem = await jsonReader.ReadObjectAsync(TYPE_LIST_JSON) as TraktUserLikeItem;
 
             likeItem.Should().NotBeNull();
