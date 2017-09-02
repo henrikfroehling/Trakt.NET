@@ -5,7 +5,7 @@
 
     internal class CheckinPostErrorResponseJsonReaderFactory : IJsonReaderFactory<ITraktCheckinPostErrorResponse>
     {
-        public IObjectJsonReader<ITraktCheckinPostErrorResponse> CreateObjectReader() => new TraktCheckinPostErrorResponseObjectJsonReader();
+        public IObjectJsonReader<ITraktCheckinPostErrorResponse> CreateObjectReader() => new CheckinPostErrorResponseObjectJsonReader();
 
         public IArrayJsonReader<ITraktCheckinPostErrorResponse> CreateArrayReader()
         {

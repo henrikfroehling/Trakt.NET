@@ -484,7 +484,7 @@
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\Factories\CheckinPostErrorResponseJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\Factories\EpisodeCheckinPostResponseJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\Factories\MovieCheckinPostResponseJsonReaderFactory.cs" />
-    <Compile Include="Objects\Post\Checkins\Responses\JsonReader\TraktCheckinPostErrorResponseObjectJsonReader.cs" />
+    <Compile Include="Objects\Post\Checkins\Responses\JsonReader\CheckinPostErrorResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\TraktEpisodeCheckinPostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\TraktMovieCheckinPostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Comments\Responses\ITraktCommentPostResponse.cs" />

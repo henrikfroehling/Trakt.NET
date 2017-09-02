@@ -8,12 +8,12 @@
     using Xunit;
 
     [Category("Objects.Post.Checkins.Responses.JsonReader")]
-    public partial class TraktCheckinPostErrorResponseObjectJsonReader_Tests
+    public partial class CheckinPostErrorResponseObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktCheckinPostErrorResponseObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_CheckinPostErrorResponseObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktCheckinPostErrorResponseObjectJsonReader();
+            var jsonReader = new CheckinPostErrorResponseObjectJsonReader();
 
             var checkinErrorResponse = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
@@ -22,9 +22,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktCheckinPostErrorResponseObjectJsonReader_ReadObject_From_Json_String_Not_Valid()
+        public async Task Test_CheckinPostErrorResponseObjectJsonReader_ReadObject_From_Json_String_Not_Valid()
         {
-            var jsonReader = new TraktCheckinPostErrorResponseObjectJsonReader();
+            var jsonReader = new CheckinPostErrorResponseObjectJsonReader();
 
             var checkinErrorResponse = await jsonReader.ReadObjectAsync(JSON_NOT_VALID);
 
@@ -33,18 +33,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktCheckinPostErrorResponseObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_CheckinPostErrorResponseObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktCheckinPostErrorResponseObjectJsonReader();
+            var jsonReader = new CheckinPostErrorResponseObjectJsonReader();
 
             var checkinErrorResponse = await jsonReader.ReadObjectAsync(default(string));
             checkinErrorResponse.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktCheckinPostErrorResponseObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_CheckinPostErrorResponseObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktCheckinPostErrorResponseObjectJsonReader();
+            var jsonReader = new CheckinPostErrorResponseObjectJsonReader();
 
             var checkinErrorResponse = await jsonReader.ReadObjectAsync(string.Empty);
             checkinErrorResponse.Should().BeNull();
