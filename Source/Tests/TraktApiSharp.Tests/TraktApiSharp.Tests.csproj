@@ -794,11 +794,11 @@
     <Compile Include="Objects\Get\Users\JsonReader\UserObjectJsonReader\UserObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\UserObjectJsonReader\UserObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\UserObjectJsonReader\UserObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserSettingsObjectJsonReader\TraktUserSettingsObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserSettingsObjectJsonReader\TraktUserSettingsObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserSettingsObjectJsonReader\TraktUserSettingsObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserSettingsObjectJsonReader\TraktUserSettingsObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserSettingsObjectJsonReader\TraktUserSettingsObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserSettingsObjectJsonReader\UserSettingsObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserSettingsObjectJsonReader\UserSettingsObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserSettingsObjectJsonReader\UserSettingsObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserSettingsObjectJsonReader\UserSettingsObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserSettingsObjectJsonReader\UserSettingsObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserWatchingItemObjectJsonReader\TraktUserWatchingItemObjectJsonReader_Episode_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserWatchingItemObjectJsonReader\TraktUserWatchingItemObjectJsonReader_Episode_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserWatchingItemObjectJsonReader\TraktUserWatchingItemObjectJsonReader_Episode_Stream_Tests.cs" />

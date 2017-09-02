@@ -32,7 +32,7 @@
         [Fact]
         public async Task Test_TraktUserSettings_From_Json()
         {
-            var jsonReader = new TraktUserSettingsObjectJsonReader();
+            var jsonReader = new UserSettingsObjectJsonReader();
             var userSettings = await jsonReader.ReadObjectAsync(JSON) as TraktUserSettings;
 
             userSettings.Should().NotBeNull();

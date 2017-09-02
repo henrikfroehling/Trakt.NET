@@ -371,7 +371,7 @@
     <Compile Include="Objects\Get\Users\JsonReader\UserLikeItemArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\UserLikeItemObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\UserObjectJsonReader.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserSettingsObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserSettingsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserWatchingItemObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Lists\ITraktList.cs" />
     <Compile Include="Objects\Get\Users\Lists\ITraktListIds.cs" />
