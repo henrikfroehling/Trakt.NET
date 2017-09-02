@@ -264,7 +264,7 @@
             s_readerFactories.Add(typeof(ITraktUserFollowUserPostResponse), new TraktUserFollowUserPostResponseJsonReaderFactory());
 
             // user statistic objects
-            s_readerFactories.Add(typeof(ITraktUserStatistics), new TraktUserStatisticsJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktUserStatistics), new UserStatisticsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserEpisodesStatistics), new UserEpisodesStatisticsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserMoviesStatistics), new UserMoviesStatisticsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserNetworkStatistics), new UserNetworkStatisticsJsonReaderFactory());
