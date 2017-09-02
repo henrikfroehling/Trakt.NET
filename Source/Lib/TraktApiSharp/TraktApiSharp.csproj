@@ -415,7 +415,7 @@
     <Compile Include="Objects\Get\Watched\JsonReader\Factories\WatchedShowSeasonJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Watched\JsonReader\WatchedMovieArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Watched\JsonReader\WatchedMovieObjectJsonReader.cs" />
-    <Compile Include="Objects\Get\Watched\JsonReader\TraktWatchedShowArrayJsonReader.cs" />
+    <Compile Include="Objects\Get\Watched\JsonReader\WatchedShowArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Watched\JsonReader\TraktWatchedShowEpisodeArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Watched\JsonReader\TraktWatchedShowEpisodeObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Watched\JsonReader\TraktWatchedShowObjectJsonReader.cs" />
