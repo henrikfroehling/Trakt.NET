@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Post.Checkins.Responses.JsonReader
 {
-    public partial class TraktMovieCheckinPostResponseObjectJsonReader_Tests
+    public partial class MovieCheckinPostResponseObjectJsonReader_Tests
     {
         private const string JSON_COMPLETE =
             @"{
