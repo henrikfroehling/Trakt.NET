@@ -5,7 +5,7 @@
 
     internal class SyncCollectionPostResponseJsonReaderFactory : IJsonReaderFactory<ITraktSyncCollectionPostResponse>
     {
-        public IObjectJsonReader<ITraktSyncCollectionPostResponse> CreateObjectReader() => new TraktSyncCollectionPostResponseObjectJsonReader();
+        public IObjectJsonReader<ITraktSyncCollectionPostResponse> CreateObjectReader() => new SyncCollectionPostResponseObjectJsonReader();
 
         public IArrayJsonReader<ITraktSyncCollectionPostResponse> CreateArrayReader()
         {
