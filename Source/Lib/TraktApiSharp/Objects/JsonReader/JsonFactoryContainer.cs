@@ -265,7 +265,7 @@
 
             // user statistic objects
             s_readerFactories.Add(typeof(ITraktUserStatistics), new TraktUserStatisticsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserEpisodesStatistics), new TraktUserEpisodesStatisticsJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktUserEpisodesStatistics), new UserEpisodesStatisticsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserMoviesStatistics), new TraktUserMoviesStatisticsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserNetworkStatistics), new TraktUserNetworkStatisticsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserRatingsStatistics), new TraktUserRatingsStatisticsJsonReaderFactory());
