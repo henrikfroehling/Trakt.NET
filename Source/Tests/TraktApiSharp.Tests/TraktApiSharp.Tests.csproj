@@ -1060,11 +1060,11 @@
     <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\EpisodeScrobblePostResponseObjectJsonReader\EpisodeScrobblePostResponseObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\EpisodeScrobblePostResponseObjectJsonReader\EpisodeScrobblePostResponseObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\EpisodeScrobblePostResponseObjectJsonReader\EpisodeScrobblePostResponseObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\TraktMovieScrobblePostResponseObjectJsonReader\TraktMovieScrobblePostResponseObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\TraktMovieScrobblePostResponseObjectJsonReader\TraktMovieScrobblePostResponseObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\TraktMovieScrobblePostResponseObjectJsonReader\TraktMovieScrobblePostResponseObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\TraktMovieScrobblePostResponseObjectJsonReader\TraktMovieScrobblePostResponseObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\TraktMovieScrobblePostResponseObjectJsonReader\TraktMovieScrobblePostResponseObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\MovieScrobblePostResponseObjectJsonReader\MovieScrobblePostResponseObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\MovieScrobblePostResponseObjectJsonReader\MovieScrobblePostResponseObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\MovieScrobblePostResponseObjectJsonReader\MovieScrobblePostResponseObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\MovieScrobblePostResponseObjectJsonReader\MovieScrobblePostResponseObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\MovieScrobblePostResponseObjectJsonReader\MovieScrobblePostResponseObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\Implementations\TraktUserCustomListItemsPostResponseGroup_Tests.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\Implementations\TraktUserCustomListItemsPostResponseNotFoundGroup_Tests.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\Implementations\TraktUserCustomListItemsPostResponse_Tests.cs" />

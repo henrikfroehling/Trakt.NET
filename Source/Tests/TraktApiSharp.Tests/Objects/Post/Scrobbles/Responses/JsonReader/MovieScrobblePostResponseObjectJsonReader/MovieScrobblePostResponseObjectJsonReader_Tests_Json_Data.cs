@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Post.Scrobbles.Responses.JsonReader
 {
-    public partial class TraktMovieScrobblePostResponseObjectJsonReader_Tests
+    public partial class MovieScrobblePostResponseObjectJsonReader_Tests
     {
         private const string JSON_COMPLETE =
             @"{

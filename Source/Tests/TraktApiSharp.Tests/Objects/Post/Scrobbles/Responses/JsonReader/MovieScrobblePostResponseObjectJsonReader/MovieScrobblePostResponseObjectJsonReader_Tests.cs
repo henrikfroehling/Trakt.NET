@@ -8,12 +8,12 @@
     using Xunit;
 
     [Category("Objects.Post.Scrobbles.Responses.JsonReader")]
-    public partial class TraktMovieScrobblePostResponseObjectJsonReader_Tests
+    public partial class MovieScrobblePostResponseObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_TraktMovieScrobblePostResponseObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
+        public void Test_MovieScrobblePostResponseObjectJsonReader_Implements_IObjectJsonReader_Interface()
         {
-            typeof(TraktMovieScrobblePostResponseObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktMovieScrobblePostResponse>));
+            typeof(MovieScrobblePostResponseObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktMovieScrobblePostResponse>));
         }
     }
 }

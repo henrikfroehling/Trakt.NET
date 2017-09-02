@@ -33,7 +33,7 @@
         [Fact]
         public async Task Test_TraktMovieScrobblePostResponse_From_Json()
         {
-            var jsonReader = new TraktMovieScrobblePostResponseObjectJsonReader();
+            var jsonReader = new MovieScrobblePostResponseObjectJsonReader();
             var movieScrobbleResponse = await jsonReader.ReadObjectAsync(JSON) as TraktMovieScrobblePostResponse;
 
             movieScrobbleResponse.Should().NotBeNull();
