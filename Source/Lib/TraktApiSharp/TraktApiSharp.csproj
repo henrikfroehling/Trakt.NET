@@ -482,7 +482,7 @@
     <Compile Include="Objects\Post\Checkins\Responses\ITraktEpisodeCheckinPostResponse.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\ITraktMovieCheckinPostResponse.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\Factories\CheckinPostErrorResponseJsonReaderFactory.cs" />
-    <Compile Include="Objects\Post\Checkins\Responses\JsonReader\Factories\TraktEpisodeCheckinPostResponseJsonReaderFactory.cs" />
+    <Compile Include="Objects\Post\Checkins\Responses\JsonReader\Factories\EpisodeCheckinPostResponseJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\Factories\TraktMovieCheckinPostResponseJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\TraktCheckinPostErrorResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\TraktEpisodeCheckinPostResponseObjectJsonReader.cs" />
