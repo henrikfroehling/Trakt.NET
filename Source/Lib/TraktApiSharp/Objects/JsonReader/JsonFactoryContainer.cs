@@ -180,7 +180,7 @@
 
             // scrobble post response objects
             s_readerFactories.Add(typeof(ITraktEpisodeScrobblePostResponse), new EpisodeScrobblePostResponseJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktMovieScrobblePostResponse), new TraktMovieScrobblePostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktMovieScrobblePostResponse), new MovieScrobblePostResponseJsonReaderFactory());
 
             // show objects
             s_readerFactories.Add(typeof(ITraktShow), new ShowJsonReaderFactory());
