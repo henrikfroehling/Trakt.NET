@@ -48,7 +48,7 @@
             {
                 var notFoundMoviesReader = new PostResponseNotFoundMovieArrayJsonReader();
                 var notFoundShowsReader = new TraktPostResponseNotFoundShowArrayJsonReader();
-                var notFoundSeasonsReader = new TraktPostResponseNotFoundSeasonArrayJsonReader();
+                var notFoundSeasonsReader = new PostResponseNotFoundSeasonArrayJsonReader();
                 var notFoundEpisodesReader = new PostResponseNotFoundEpisodeArrayJsonReader();
                 ITraktSyncPostResponseNotFoundGroup syncPostResponseNotFoundGroup = new TraktSyncPostResponseNotFoundGroup();
 

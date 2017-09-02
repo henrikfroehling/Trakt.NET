@@ -8,21 +8,21 @@
     using Xunit;
 
     [Category("Objects.Post.Responses.JsonReader")]
-    public partial class TraktPostResponseNotFoundSeasonArrayJsonReader_Tests
+    public partial class PostResponseNotFoundSeasonArrayJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
+        public async Task Test_PostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new TraktPostResponseNotFoundSeasonArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundSeasonArrayJsonReader();
 
             var notFoundSeasons = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             notFoundSeasons.Should().NotBeNull().And.BeEmpty();
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Json_String_Complete()
+        public async Task Test_PostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
-            var jsonReader = new TraktPostResponseNotFoundSeasonArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundSeasonArrayJsonReader();
 
             var notFoundSeasons = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
             notFoundSeasons.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -45,9 +45,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Json_String_Not_Valid()
+        public async Task Test_PostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Json_String_Not_Valid()
         {
-            var jsonReader = new TraktPostResponseNotFoundSeasonArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundSeasonArrayJsonReader();
 
             var notFoundSeasons = await jsonReader.ReadArrayAsync(JSON_NOT_VALID);
             notFoundSeasons.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -66,18 +66,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Json_String_Null()
+        public async Task Test_PostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Json_String_Null()
         {
-            var jsonReader = new TraktPostResponseNotFoundSeasonArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundSeasonArrayJsonReader();
 
             var notFoundSeasons = await jsonReader.ReadArrayAsync(default(string));
             notFoundSeasons.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Json_String_Empty()
+        public async Task Test_PostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
-            var jsonReader = new TraktPostResponseNotFoundSeasonArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundSeasonArrayJsonReader();
 
             var notFoundSeasons = await jsonReader.ReadArrayAsync(string.Empty);
             notFoundSeasons.Should().BeNull();
