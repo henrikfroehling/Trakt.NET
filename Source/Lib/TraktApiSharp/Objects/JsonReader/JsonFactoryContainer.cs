@@ -199,7 +199,7 @@
             s_readerFactories.Add(typeof(ITraktSyncLastActivities), new SyncLastActivitiesJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncCommentsLastActivities), new SyncCommentsLastActivitiesJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncEpisodesLastActivities), new SyncEpisodesLastActivitiesJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncListsLastActivities), new TraktSyncListsLastActivitiesJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncListsLastActivities), new SyncListsLastActivitiesJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncMoviesLastActivities), new TraktSyncMoviesLastActivitiesJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncSeasonsLastActivities), new TraktSyncSeasonsLastActivitiesJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncShowsLastActivities), new TraktSyncShowsLastActivitiesJsonReaderFactory());
