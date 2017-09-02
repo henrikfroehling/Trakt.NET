@@ -789,11 +789,11 @@
     <Compile Include="Objects\Get\Users\JsonReader\UserLikeItemObjectJsonReader\UserLikeItemObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\UserLikeItemObjectJsonReader\UserLikeItemObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\UserLikeItemObjectJsonReader\UserLikeItemObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserObjectJsonReader\TraktUserObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserObjectJsonReader\TraktUserObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserObjectJsonReader\TraktUserObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserObjectJsonReader\TraktUserObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserObjectJsonReader\TraktUserObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserObjectJsonReader\UserObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserObjectJsonReader\UserObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserObjectJsonReader\UserObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserObjectJsonReader\UserObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserObjectJsonReader\UserObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserSettingsObjectJsonReader\TraktUserSettingsObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserSettingsObjectJsonReader\TraktUserSettingsObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserSettingsObjectJsonReader\TraktUserSettingsObjectJsonReader_Stream_Tests.cs" />

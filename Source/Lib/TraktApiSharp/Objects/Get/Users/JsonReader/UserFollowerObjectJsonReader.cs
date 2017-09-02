@@ -43,7 +43,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var userReader = new TraktUserObjectJsonReader();
+                var userReader = new UserObjectJsonReader();
                 ITraktUserFollower traktUserFollower = new TraktUserFollower();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)

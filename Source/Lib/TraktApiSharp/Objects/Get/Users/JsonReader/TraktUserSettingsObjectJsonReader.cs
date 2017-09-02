@@ -46,7 +46,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var userReader = new TraktUserObjectJsonReader();
+                var userReader = new UserObjectJsonReader();
                 var accountSettingsReader = new AccountSettingsObjectJsonReader();
                 var sharingReader = new SharingObjectJsonReader();
                 var sharingTextReader = new SharingTextObjectJsonReader();
