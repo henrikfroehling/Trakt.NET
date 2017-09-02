@@ -269,7 +269,7 @@
             s_readerFactories.Add(typeof(ITraktUserMoviesStatistics), new UserMoviesStatisticsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserNetworkStatistics), new UserNetworkStatisticsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserRatingsStatistics), new UserRatingsStatisticsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserSeasonsStatistics), new TraktUserSeasonsStatisticsJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktUserSeasonsStatistics), new UserSeasonsStatisticsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserShowsStatistics), new TraktUserShowsStatisticsJsonReaderFactory());
 
             // watched objects
