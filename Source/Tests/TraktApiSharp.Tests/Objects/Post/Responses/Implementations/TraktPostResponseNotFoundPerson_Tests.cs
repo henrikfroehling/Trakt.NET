@@ -28,7 +28,7 @@
         [Fact]
         public async Task Test_TraktPostResponseNotFoundPerson_From_Json()
         {
-            var jsonReader = new TraktPostResponseNotFoundPersonObjectJsonReader();
+            var jsonReader = new PostResponseNotFoundPersonObjectJsonReader();
             var postResponseNotFoundPerson = await jsonReader.ReadObjectAsync(JSON) as TraktPostResponseNotFoundPerson;
 
             postResponseNotFoundPerson.Should().NotBeNull();
