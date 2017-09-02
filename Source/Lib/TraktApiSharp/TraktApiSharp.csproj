@@ -504,7 +504,7 @@
     <Compile Include="Objects\Post\Responses\JsonReader\Factories\PostResponseNotFoundMovieJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\Factories\PostResponseNotFoundPersonJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\Factories\PostResponseNotFoundSeasonJsonReaderFactory.cs" />
-    <Compile Include="Objects\Post\Responses\JsonReader\Factories\TraktPostResponseNotFoundShowJsonReaderFactory.cs" />
+    <Compile Include="Objects\Post\Responses\JsonReader\Factories\PostResponseNotFoundShowJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundEpisodeArrayJsonReader.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundEpisodeObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundMovieArrayJsonReader.cs" />

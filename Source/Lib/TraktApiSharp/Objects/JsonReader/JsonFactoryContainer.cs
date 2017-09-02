@@ -167,7 +167,7 @@
             s_readerFactories.Add(typeof(ITraktPostResponseNotFoundMovie), new PostResponseNotFoundMovieJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktPostResponseNotFoundPerson), new PostResponseNotFoundPersonJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktPostResponseNotFoundSeason), new PostResponseNotFoundSeasonJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktPostResponseNotFoundShow), new TraktPostResponseNotFoundShowJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktPostResponseNotFoundShow), new PostResponseNotFoundShowJsonReaderFactory());
 
             // rating objects
             s_readerFactories.Add(typeof(ITraktRatingsItem), new RatingsItemJsonReaderFactory());
