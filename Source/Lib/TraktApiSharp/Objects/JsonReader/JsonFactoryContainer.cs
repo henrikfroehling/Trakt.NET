@@ -163,7 +163,7 @@
             s_readerFactories.Add(typeof(ITraktPersonShowCreditsCrewItem), new PersonShowCreditsCrewItemJsonReaderFactory());
 
             // post response objects
-            s_readerFactories.Add(typeof(ITraktPostResponseNotFoundEpisode), new TraktPostResponseNotFoundEpisodeJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktPostResponseNotFoundEpisode), new PostResponseNotFoundEpisodeJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktPostResponseNotFoundMovie), new TraktPostResponseNotFoundMovieJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktPostResponseNotFoundPerson), new TraktPostResponseNotFoundPersonJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktPostResponseNotFoundSeason), new TraktPostResponseNotFoundSeasonJsonReaderFactory());

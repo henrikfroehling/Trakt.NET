@@ -500,7 +500,7 @@
     <Compile Include="Objects\Post\Responses\ITraktPostResponseNotFoundPerson.cs" />
     <Compile Include="Objects\Post\Responses\ITraktPostResponseNotFoundSeason.cs" />
     <Compile Include="Objects\Post\Responses\ITraktPostResponseNotFoundShow.cs" />
-    <Compile Include="Objects\Post\Responses\JsonReader\Factories\TraktPostResponseNotFoundEpisodeJsonReaderFactory.cs" />
+    <Compile Include="Objects\Post\Responses\JsonReader\Factories\PostResponseNotFoundEpisodeJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\Factories\TraktPostResponseNotFoundMovieJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\Factories\TraktPostResponseNotFoundPersonJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\Factories\TraktPostResponseNotFoundSeasonJsonReaderFactory.cs" />
