@@ -205,7 +205,7 @@
             s_readerFactories.Add(typeof(ITraktSyncShowsLastActivities), new SyncShowsLastActivitiesJsonReaderFactory());
 
             // sync collection post response objects
-            s_readerFactories.Add(typeof(ITraktSyncCollectionPostResponse), new TraktSyncCollectionPostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncCollectionPostResponse), new SyncCollectionPostResponseJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncCollectionRemovePostResponse), new TraktSyncCollectionRemovePostResponseJsonReaderFactory());
 
             // sync history post response objects
