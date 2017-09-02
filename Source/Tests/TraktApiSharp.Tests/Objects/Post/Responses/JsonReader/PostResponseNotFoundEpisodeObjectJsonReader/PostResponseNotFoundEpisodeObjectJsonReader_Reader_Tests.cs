@@ -9,12 +9,12 @@
     using Xunit;
 
     [Category("Objects.Post.Responses.JsonReader")]
-    public partial class TraktPostResponseNotFoundEpisodeObjectJsonReader_Tests
+    public partial class PostResponseNotFoundEpisodeObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundEpisodeObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public async Task Test_PostResponseNotFoundEpisodeObjectJsonReader_ReadObject_From_JsonReader_Complete()
         {
-            var traktJsonReader = new TraktPostResponseNotFoundEpisodeObjectJsonReader();
+            var traktJsonReader = new PostResponseNotFoundEpisodeObjectJsonReader();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -32,9 +32,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundEpisodeObjectJsonReader_ReadObject_From_JsonReader_Not_Valid()
+        public async Task Test_PostResponseNotFoundEpisodeObjectJsonReader_ReadObject_From_JsonReader_Not_Valid()
         {
-            var traktJsonReader = new TraktPostResponseNotFoundEpisodeObjectJsonReader();
+            var traktJsonReader = new PostResponseNotFoundEpisodeObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID))
             using (var jsonReader = new JsonTextReader(reader))
@@ -47,18 +47,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundEpisodeObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_PostResponseNotFoundEpisodeObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var traktJsonReader = new TraktPostResponseNotFoundEpisodeObjectJsonReader();
+            var traktJsonReader = new PostResponseNotFoundEpisodeObjectJsonReader();
 
             var postResponseNotFoundEpisode = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             postResponseNotFoundEpisode.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundEpisodeObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public async Task Test_PostResponseNotFoundEpisodeObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var traktJsonReader = new TraktPostResponseNotFoundEpisodeObjectJsonReader();
+            var traktJsonReader = new PostResponseNotFoundEpisodeObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
