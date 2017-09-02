@@ -49,7 +49,7 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var moviesLastActivitiesReader = new SyncMoviesLastActivitiesObjectJsonReader();
-                var showsLastActivitiesReader = new TraktSyncShowsLastActivitiesObjectJsonReader();
+                var showsLastActivitiesReader = new SyncShowsLastActivitiesObjectJsonReader();
                 var seasonsLastActivitiesReader = new SyncSeasonsLastActivitiesObjectJsonReader();
                 var episodesLastActivitiesReader = new SyncEpisodesLastActivitiesObjectJsonReader();
                 var commentsLastActivitiesReader = new SyncCommentsLastActivitiesObjectJsonReader();

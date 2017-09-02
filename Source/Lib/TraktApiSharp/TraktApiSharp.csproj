@@ -322,7 +322,7 @@
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncListsLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncMoviesLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncSeasonsLastActivitiesObjectJsonReader.cs" />
-    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncShowsLastActivitiesObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncShowsLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\ITraktSyncPlaybackProgressItem.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\JsonReader\Factories\TraktSyncPlaybackProgressItemJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\JsonReader\TraktSyncPlaybackProgressItemArrayJsonReader.cs" />
