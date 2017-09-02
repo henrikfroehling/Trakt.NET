@@ -1009,11 +1009,11 @@
     <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundEpisodeObjectJsonReader\PostResponseNotFoundEpisodeObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundEpisodeObjectJsonReader\PostResponseNotFoundEpisodeObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundEpisodeObjectJsonReader\PostResponseNotFoundEpisodeObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundMovieArrayJsonReader\TraktPostResponseNotFoundMovieArrayJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundMovieArrayJsonReader\TraktPostResponseNotFoundMovieArrayJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundMovieArrayJsonReader\TraktPostResponseNotFoundMovieArrayJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundMovieArrayJsonReader\TraktPostResponseNotFoundMovieArrayJsonReader_Tests.cs" />
-    <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundMovieArrayJsonReader\TraktPostResponseNotFoundMovieArrayJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundMovieArrayJsonReader\PostResponseNotFoundMovieArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundMovieArrayJsonReader\PostResponseNotFoundMovieArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundMovieArrayJsonReader\PostResponseNotFoundMovieArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundMovieArrayJsonReader\PostResponseNotFoundMovieArrayJsonReader_Tests.cs" />
+    <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundMovieArrayJsonReader\PostResponseNotFoundMovieArrayJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundMovieObjectJsonReader\TraktPostResponseNotFoundMovieObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundMovieObjectJsonReader\TraktPostResponseNotFoundMovieObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundMovieObjectJsonReader\TraktPostResponseNotFoundMovieObjectJsonReader_Stream_Tests.cs" />

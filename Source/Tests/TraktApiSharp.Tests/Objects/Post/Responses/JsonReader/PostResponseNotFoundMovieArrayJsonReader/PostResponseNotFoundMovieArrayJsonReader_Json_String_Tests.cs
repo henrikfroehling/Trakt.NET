@@ -8,21 +8,21 @@
     using Xunit;
 
     [Category("Objects.Post.Responses.JsonReader")]
-    public partial class TraktPostResponseNotFoundMovieArrayJsonReader_Tests
+    public partial class PostResponseNotFoundMovieArrayJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
+        public async Task Test_PostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new TraktPostResponseNotFoundMovieArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundMovieArrayJsonReader();
 
             var notFoundMovies = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             notFoundMovies.Should().NotBeNull().And.BeEmpty();
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Json_String_Complete()
+        public async Task Test_PostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
-            var jsonReader = new TraktPostResponseNotFoundMovieArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundMovieArrayJsonReader();
 
             var notFoundMovies = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
             notFoundMovies.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -45,9 +45,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Json_String_Not_Valid()
+        public async Task Test_PostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Json_String_Not_Valid()
         {
-            var jsonReader = new TraktPostResponseNotFoundMovieArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundMovieArrayJsonReader();
 
             var notFoundMovies = await jsonReader.ReadArrayAsync(JSON_NOT_VALID);
             notFoundMovies.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -66,18 +66,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Json_String_Null()
+        public async Task Test_PostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Json_String_Null()
         {
-            var jsonReader = new TraktPostResponseNotFoundMovieArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundMovieArrayJsonReader();
 
             var notFoundMovies = await jsonReader.ReadArrayAsync(default(string));
             notFoundMovies.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Json_String_Empty()
+        public async Task Test_PostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
-            var jsonReader = new TraktPostResponseNotFoundMovieArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundMovieArrayJsonReader();
 
             var notFoundMovies = await jsonReader.ReadArrayAsync(string.Empty);
             notFoundMovies.Should().BeNull();
