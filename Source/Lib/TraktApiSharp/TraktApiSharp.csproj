@@ -513,7 +513,7 @@
     <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundPersonObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundSeasonArrayJsonReader.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundSeasonObjectJsonReader.cs" />
-    <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundShowArrayJsonReader.cs" />
+    <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundShowArrayJsonReader.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundShowObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\ITraktEpisodeScrobblePostResponse.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\ITraktMovieScrobblePostResponse.cs" />

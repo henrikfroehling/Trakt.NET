@@ -10,12 +10,12 @@
     using Xunit;
 
     [Category("Objects.Post.Responses.JsonReader")]
-    public partial class TraktPostResponseNotFoundShowArrayJsonReader_Tests
+    public partial class PostResponseNotFoundShowArrayJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundShowArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
+        public async Task Test_PostResponseNotFoundShowArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
         {
-            var traktJsonReader = new TraktPostResponseNotFoundShowArrayJsonReader();
+            var traktJsonReader = new PostResponseNotFoundShowArrayJsonReader();
 
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
@@ -26,9 +26,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundShowArrayJsonReader_ReadArray_From_JsonReader_Complete()
+        public async Task Test_PostResponseNotFoundShowArrayJsonReader_ReadArray_From_JsonReader_Complete()
         {
-            var traktJsonReader = new TraktPostResponseNotFoundShowArrayJsonReader();
+            var traktJsonReader = new PostResponseNotFoundShowArrayJsonReader();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -59,9 +59,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundShowArrayJsonReader_ReadArray_From_JsonReader_Not_Valid()
+        public async Task Test_PostResponseNotFoundShowArrayJsonReader_ReadArray_From_JsonReader_Not_Valid()
         {
-            var traktJsonReader = new TraktPostResponseNotFoundShowArrayJsonReader();
+            var traktJsonReader = new PostResponseNotFoundShowArrayJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID))
             using (var jsonReader = new JsonTextReader(reader))
@@ -86,18 +86,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundShowArrayJsonReader_ReadArray_From_JsonReader_Null()
+        public async Task Test_PostResponseNotFoundShowArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
-            var traktJsonReader = new TraktPostResponseNotFoundShowArrayJsonReader();
+            var traktJsonReader = new PostResponseNotFoundShowArrayJsonReader();
 
             var traktShowCollectionProgress = await traktJsonReader.ReadArrayAsync(default(JsonTextReader));
             traktShowCollectionProgress.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundShowArrayJsonReader_ReadArray_From_JsonReader_Empty()
+        public async Task Test_PostResponseNotFoundShowArrayJsonReader_ReadArray_From_JsonReader_Empty()
         {
-            var traktJsonReader = new TraktPostResponseNotFoundShowArrayJsonReader();
+            var traktJsonReader = new PostResponseNotFoundShowArrayJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
