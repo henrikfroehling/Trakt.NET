@@ -210,7 +210,7 @@
 
             // sync history post response objects
             s_readerFactories.Add(typeof(ITraktSyncHistoryPostResponse), new SyncHistoryPostResponseJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncHistoryRemovePostResponse), new TraktSyncHistoryRemovePostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncHistoryRemovePostResponse), new SyncHistoryRemovePostResponseJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncHistoryRemovePostResponseGroup), new SyncHistoryRemovePostResponseGroupJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncHistoryRemovePostResponseNotFoundGroup), new TraktSyncHistoryRemovePostResponseNotFoundGroupJsonReaderFactory());
 
