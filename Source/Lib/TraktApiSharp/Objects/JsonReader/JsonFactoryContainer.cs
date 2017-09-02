@@ -179,7 +179,7 @@
             s_readerFactories.Add(typeof(ITraktSeasonWatchedProgress), new SeasonWatchedProgressJsonReaderFactory());
 
             // scrobble post response objects
-            s_readerFactories.Add(typeof(ITraktEpisodeScrobblePostResponse), new TraktEpisodeScrobblePostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktEpisodeScrobblePostResponse), new EpisodeScrobblePostResponseJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktMovieScrobblePostResponse), new TraktMovieScrobblePostResponseJsonReaderFactory());
 
             // show objects
