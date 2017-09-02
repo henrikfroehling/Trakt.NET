@@ -1,26 +1,25 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Users.JsonReader
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using System.IO;
     using System.Threading.Tasks;
+    using TestUtils;
     using Traits;
     using TraktApiSharp.Objects.Get.Users.JsonReader;
     using Xunit;
 
     [Category("Objects.Get.Users.JsonReader")]
-    public partial class TraktUserFriendObjectJsonReader_Tests
+    public partial class UserFriendObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktUserFriendObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public async Task Test_UserFriendObjectJsonReader_ReadObject_From_Stream_Complete()
         {
-            var traktJsonReader = new TraktUserFriendObjectJsonReader();
+            var jsonReader = new UserFriendObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_COMPLETE))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_COMPLETE.ToStream())
             {
-                var userFriend = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var userFriend = await jsonReader.ReadObjectAsync(stream);
 
                 userFriend.Should().NotBeNull();
                 userFriend.FriendsAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
@@ -45,14 +44,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserFriendObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
+        public async Task Test_UserFriendObjectJsonReader_ReadObject_From_Stream_Incomplete_1()
         {
-            var traktJsonReader = new TraktUserFriendObjectJsonReader();
+            var jsonReader = new UserFriendObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_INCOMPLETE_1))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                var userFriend = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var userFriend = await jsonReader.ReadObjectAsync(stream);
 
                 userFriend.Should().NotBeNull();
                 userFriend.FriendsAt.Should().BeNull();
@@ -77,14 +75,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserFriendObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
+        public async Task Test_UserFriendObjectJsonReader_ReadObject_From_Stream_Incomplete_2()
         {
-            var traktJsonReader = new TraktUserFriendObjectJsonReader();
+            var jsonReader = new UserFriendObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_INCOMPLETE_2))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                var userFriend = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var userFriend = await jsonReader.ReadObjectAsync(stream);
 
                 userFriend.Should().NotBeNull();
                 userFriend.FriendsAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
@@ -94,14 +91,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserFriendObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
+        public async Task Test_UserFriendObjectJsonReader_ReadObject_From_Stream_Not_Valid_1()
         {
-            var traktJsonReader = new TraktUserFriendObjectJsonReader();
+            var jsonReader = new UserFriendObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_NOT_VALID_1))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                var userFriend = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var userFriend = await jsonReader.ReadObjectAsync(stream);
 
                 userFriend.Should().NotBeNull();
                 userFriend.FriendsAt.Should().BeNull();
@@ -126,14 +122,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserFriendObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
+        public async Task Test_UserFriendObjectJsonReader_ReadObject_From_Stream_Not_Valid_2()
         {
-            var traktJsonReader = new TraktUserFriendObjectJsonReader();
+            var jsonReader = new UserFriendObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_NOT_VALID_2))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                var userFriend = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var userFriend = await jsonReader.ReadObjectAsync(stream);
 
                 userFriend.Should().NotBeNull();
                 userFriend.FriendsAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
@@ -143,14 +138,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserFriendObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
+        public async Task Test_UserFriendObjectJsonReader_ReadObject_From_Stream_Not_Valid_3()
         {
-            var traktJsonReader = new TraktUserFriendObjectJsonReader();
+            var jsonReader = new UserFriendObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_NOT_VALID_3))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                var userFriend = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var userFriend = await jsonReader.ReadObjectAsync(stream);
 
                 userFriend.Should().NotBeNull();
                 userFriend.FriendsAt.Should().BeNull();
@@ -159,23 +153,22 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserFriendObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_UserFriendObjectJsonReader_ReadObject_From_Stream_Null()
         {
-            var traktJsonReader = new TraktUserFriendObjectJsonReader();
+            var jsonReader = new UserFriendObjectJsonReader();
 
-            var userFriend = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            var userFriend = await jsonReader.ReadObjectAsync(default(Stream));
             userFriend.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktUserFriendObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public async Task Test_UserFriendObjectJsonReader_ReadObject_From_Stream_Empty()
         {
-            var traktJsonReader = new TraktUserFriendObjectJsonReader();
+            var jsonReader = new UserFriendObjectJsonReader();
 
-            using (var reader = new StringReader(string.Empty))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = string.Empty.ToStream())
             {
-                var userFriend = await traktJsonReader.ReadObjectAsync(jsonReader);
+                var userFriend = await jsonReader.ReadObjectAsync(stream);
                 userFriend.Should().BeNull();
             }
         }

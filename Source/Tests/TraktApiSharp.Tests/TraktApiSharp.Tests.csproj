@@ -749,11 +749,11 @@
     <Compile Include="Objects\Get\Users\JsonReader\UserFollowRequestObjectJsonReader\UserFollowRequestObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\UserFollowRequestObjectJsonReader\UserFollowRequestObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\UserFollowRequestObjectJsonReader\UserFollowRequestObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserFriendObjectJsonReader\TraktUserFriendObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserFriendObjectJsonReader\TraktUserFriendObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserFriendObjectJsonReader\TraktUserFriendObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserFriendObjectJsonReader\TraktUserFriendObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserFriendObjectJsonReader\TraktUserFriendObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserFriendObjectJsonReader\UserFriendObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserFriendObjectJsonReader\UserFriendObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserFriendObjectJsonReader\UserFriendObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserFriendObjectJsonReader\UserFriendObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserFriendObjectJsonReader\UserFriendObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserHiddenItemObjectJsonReader\TraktUserHiddenItemObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserHiddenItemObjectJsonReader\TraktUserHiddenItemObjectJsonReader_Movie_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserHiddenItemObjectJsonReader\TraktUserHiddenItemObjectJsonReader_Movie_Reader_Tests.cs" />
