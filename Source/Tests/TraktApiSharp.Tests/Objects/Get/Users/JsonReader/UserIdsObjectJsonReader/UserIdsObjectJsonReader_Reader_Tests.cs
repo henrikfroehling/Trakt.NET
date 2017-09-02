@@ -9,12 +9,12 @@
     using Xunit;
 
     [Category("Objects.Get.Users.JsonReader")]
-    public partial class TraktUserIdsObjectJsonReader_Tests
+    public partial class UserIdsObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktUserIdsObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public async Task Test_UserIdsObjectJsonReader_ReadObject_From_JsonReader_Complete()
         {
-            var traktJsonReader = new TraktUserIdsObjectJsonReader();
+            var traktJsonReader = new UserIdsObjectJsonReader();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -27,9 +27,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserIdsObjectJsonReader_ReadObject_From_JsonReader_Not_Valid()
+        public async Task Test_UserIdsObjectJsonReader_ReadObject_From_JsonReader_Not_Valid()
         {
-            var traktJsonReader = new TraktUserIdsObjectJsonReader();
+            var traktJsonReader = new UserIdsObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID))
             using (var jsonReader = new JsonTextReader(reader))
@@ -42,18 +42,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserIdsObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_UserIdsObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var traktJsonReader = new TraktUserIdsObjectJsonReader();
+            var traktJsonReader = new UserIdsObjectJsonReader();
 
             var userIds = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             userIds.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktUserIdsObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public async Task Test_UserIdsObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var traktJsonReader = new TraktUserIdsObjectJsonReader();
+            var traktJsonReader = new UserIdsObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

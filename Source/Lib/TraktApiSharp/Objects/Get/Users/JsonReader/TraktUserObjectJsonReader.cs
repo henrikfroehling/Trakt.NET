@@ -53,7 +53,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var idsReader = new TraktUserIdsObjectJsonReader();
+                var idsReader = new UserIdsObjectJsonReader();
                 var imagesReader = new TraktUserImagesObjectJsonReader();
 
                 ITraktUser traktUser = new TraktUser();
