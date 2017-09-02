@@ -273,7 +273,7 @@
             s_readerFactories.Add(typeof(ITraktUserShowsStatistics), new TraktUserShowsStatisticsJsonReaderFactory());
 
             // watched objects
-            s_readerFactories.Add(typeof(ITraktWatchedShowEpisode), new TraktWatchedShowEpisodeJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktWatchedShowEpisode), new WatchedShowEpisodeJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktWatchedShowSeason), new TraktWatchedShowSeasonJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktWatchedShow), new TraktWatchedShowJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktWatchedMovie), new WatchedMovieJsonReaderFactory());
