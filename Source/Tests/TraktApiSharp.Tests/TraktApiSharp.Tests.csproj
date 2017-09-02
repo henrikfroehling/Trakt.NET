@@ -739,11 +739,11 @@
     <Compile Include="Objects\Get\Users\JsonReader\UserCommentObjectJsonReader\UserCommentObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\UserCommentObjectJsonReader\UserCommentObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\UserCommentObjectJsonReader\UserCommentObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserFollowerObjectJsonReader\TraktUserFollowerObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserFollowerObjectJsonReader\TraktUserFollowerObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserFollowerObjectJsonReader\TraktUserFollowerObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserFollowerObjectJsonReader\TraktUserFollowerObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserFollowerObjectJsonReader\TraktUserFollowerObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserFollowerObjectJsonReader\UserFollowerObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserFollowerObjectJsonReader\UserFollowerObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserFollowerObjectJsonReader\UserFollowerObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserFollowerObjectJsonReader\UserFollowerObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserFollowerObjectJsonReader\UserFollowerObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserFollowRequestObjectJsonReader\TraktUserFollowRequestObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserFollowRequestObjectJsonReader\TraktUserFollowRequestObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserFollowRequestObjectJsonReader\TraktUserFollowRequestObjectJsonReader_Stream_Tests.cs" />

@@ -4,7 +4,7 @@
 
     internal class UserFollowerJsonReaderFactory : IJsonReaderFactory<ITraktUserFollower>
     {
-        public IObjectJsonReader<ITraktUserFollower> CreateObjectReader() => new TraktUserFollowerObjectJsonReader();
+        public IObjectJsonReader<ITraktUserFollower> CreateObjectReader() => new UserFollowerObjectJsonReader();
 
         public IArrayJsonReader<ITraktUserFollower> CreateArrayReader() => new UserFollowerArrayJsonReader();
     }

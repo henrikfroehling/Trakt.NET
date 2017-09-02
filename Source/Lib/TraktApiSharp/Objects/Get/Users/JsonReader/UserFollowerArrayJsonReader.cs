@@ -40,7 +40,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var userFollowerReader = new TraktUserFollowerObjectJsonReader();
+                var userFollowerReader = new UserFollowerObjectJsonReader();
                 //var userFollowerReadingTasks = new List<Task<ITraktUserFollower>>();
                 var userFollowers = new List<ITraktUserFollower>();
 
