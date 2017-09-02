@@ -115,7 +115,7 @@
             // checkin post response objects
             s_readerFactories.Add(typeof(ITraktCheckinPostErrorResponse), new CheckinPostErrorResponseJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktEpisodeCheckinPostResponse), new EpisodeCheckinPostResponseJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktMovieCheckinPostResponse), new TraktMovieCheckinPostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktMovieCheckinPostResponse), new MovieCheckinPostResponseJsonReaderFactory());
 
             // collection objects
             s_readerFactories.Add(typeof(ITraktCollectionShowEpisode), new CollectionShowEpisodeJsonReaderFactory());
