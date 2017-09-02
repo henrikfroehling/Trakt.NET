@@ -398,7 +398,7 @@
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\Factories\UserSeasonsStatisticsJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\Factories\UserShowsStatisticsJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\Factories\UserStatisticsJsonReaderFactory.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserEpisodesStatisticsObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserEpisodesStatisticsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserMoviesStatisticsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserNetworkStatisticsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserRatingsStatisticsObjectJsonReader.cs" />

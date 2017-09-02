@@ -863,11 +863,11 @@
     <Compile Include="Objects\Get\Users\Implementations\TraktUserFollower_Tests.cs" />
     <Compile Include="Objects\Get\Users\Implementations\TraktUserFriend_Tests.cs" />
     <Compile Include="Objects\Get\Users\Implementations\TraktUser_Tests.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserEpisodesStatisticsObjectJsonReader\TraktUserEpisodesStatisticsObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserEpisodesStatisticsObjectJsonReader\TraktUserEpisodesStatisticsObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserEpisodesStatisticsObjectJsonReader\TraktUserEpisodesStatisticsObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserEpisodesStatisticsObjectJsonReader\TraktUserEpisodesStatisticsObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserEpisodesStatisticsObjectJsonReader\TraktUserEpisodesStatisticsObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserEpisodesStatisticsObjectJsonReader\UserEpisodesStatisticsObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserEpisodesStatisticsObjectJsonReader\UserEpisodesStatisticsObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserEpisodesStatisticsObjectJsonReader\UserEpisodesStatisticsObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserEpisodesStatisticsObjectJsonReader\UserEpisodesStatisticsObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserEpisodesStatisticsObjectJsonReader\UserEpisodesStatisticsObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserMoviesStatisticsObjectJsonReader\TraktUserMoviesStatisticsObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserMoviesStatisticsObjectJsonReader\TraktUserMoviesStatisticsObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserMoviesStatisticsObjectJsonReader\TraktUserMoviesStatisticsObjectJsonReader_Stream_Tests.cs" />
