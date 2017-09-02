@@ -9,12 +9,12 @@
     using Xunit;
 
     [Category("Objects.Get.Watched.JsonReader")]
-    public partial class TraktWatchedShowSeasonObjectJsonReader_Tests
+    public partial class WatchedShowSeasonObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktWatchedShowSeasonObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_WatchedShowSeasonObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktWatchedShowSeasonObjectJsonReader();
+            var jsonReader = new WatchedShowSeasonObjectJsonReader();
 
             var traktWatchedShowSeason = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
@@ -34,9 +34,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowSeasonObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public async Task Test_WatchedShowSeasonObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new TraktWatchedShowSeasonObjectJsonReader();
+            var jsonReader = new WatchedShowSeasonObjectJsonReader();
 
             var traktWatchedShowSeason = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_1);
 
@@ -56,9 +56,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowSeasonObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public async Task Test_WatchedShowSeasonObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new TraktWatchedShowSeasonObjectJsonReader();
+            var jsonReader = new WatchedShowSeasonObjectJsonReader();
 
             var traktWatchedShowSeason = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_2);
 
@@ -68,9 +68,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowSeasonObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public async Task Test_WatchedShowSeasonObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new TraktWatchedShowSeasonObjectJsonReader();
+            var jsonReader = new WatchedShowSeasonObjectJsonReader();
 
             var traktWatchedShowSeason = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_1);
 
@@ -90,9 +90,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowSeasonObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public async Task Test_WatchedShowSeasonObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new TraktWatchedShowSeasonObjectJsonReader();
+            var jsonReader = new WatchedShowSeasonObjectJsonReader();
 
             var traktWatchedShowSeason = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_2);
 
@@ -102,9 +102,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowSeasonObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public async Task Test_WatchedShowSeasonObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new TraktWatchedShowSeasonObjectJsonReader();
+            var jsonReader = new WatchedShowSeasonObjectJsonReader();
 
             var traktWatchedShowSeason = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_3);
 
@@ -114,18 +114,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowSeasonObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_WatchedShowSeasonObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktWatchedShowSeasonObjectJsonReader();
+            var jsonReader = new WatchedShowSeasonObjectJsonReader();
 
             var traktWatchedShowSeason = await jsonReader.ReadObjectAsync(default(string));
             traktWatchedShowSeason.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowSeasonObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_WatchedShowSeasonObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktWatchedShowSeasonObjectJsonReader();
+            var jsonReader = new WatchedShowSeasonObjectJsonReader();
 
             var traktWatchedShowSeason = await jsonReader.ReadObjectAsync(string.Empty);
             traktWatchedShowSeason.Should().BeNull();

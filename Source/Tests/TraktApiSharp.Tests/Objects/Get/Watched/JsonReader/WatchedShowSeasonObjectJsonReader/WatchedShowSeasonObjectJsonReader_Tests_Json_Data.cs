@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Watched.JsonReader
 {
-    public partial class TraktWatchedShowSeasonObjectJsonReader_Tests
+    public partial class WatchedShowSeasonObjectJsonReader_Tests
     {
         private const string JSON_COMPLETE =
             @"{
