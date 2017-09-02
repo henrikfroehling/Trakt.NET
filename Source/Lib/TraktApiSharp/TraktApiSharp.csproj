@@ -503,7 +503,7 @@
     <Compile Include="Objects\Post\Responses\JsonReader\Factories\PostResponseNotFoundEpisodeJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\Factories\PostResponseNotFoundMovieJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\Factories\PostResponseNotFoundPersonJsonReaderFactory.cs" />
-    <Compile Include="Objects\Post\Responses\JsonReader\Factories\TraktPostResponseNotFoundSeasonJsonReaderFactory.cs" />
+    <Compile Include="Objects\Post\Responses\JsonReader\Factories\PostResponseNotFoundSeasonJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\Factories\TraktPostResponseNotFoundShowJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundEpisodeArrayJsonReader.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundEpisodeObjectJsonReader.cs" />
