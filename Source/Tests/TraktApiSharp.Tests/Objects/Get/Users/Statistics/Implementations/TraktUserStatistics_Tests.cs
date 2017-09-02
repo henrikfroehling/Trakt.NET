@@ -34,7 +34,7 @@
         [Fact]
         public async Task Test_TraktUserStatistics_From_Json()
         {
-            var jsonReader = new TraktUserStatisticsObjectJsonReader();
+            var jsonReader = new UserStatisticsObjectJsonReader();
             var userStatistics = await jsonReader.ReadObjectAsync(JSON) as TraktUserStatistics;
 
             userStatistics.Should().NotBeNull();

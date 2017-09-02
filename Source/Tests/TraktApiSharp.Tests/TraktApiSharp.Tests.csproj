@@ -893,11 +893,11 @@
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserShowsStatisticsObjectJsonReader\UserShowsStatisticsObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserShowsStatisticsObjectJsonReader\UserShowsStatisticsObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserShowsStatisticsObjectJsonReader\UserShowsStatisticsObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserStatisticsObjectJsonReader\TraktUserStatisticsObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserStatisticsObjectJsonReader\TraktUserStatisticsObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserStatisticsObjectJsonReader\TraktUserStatisticsObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserStatisticsObjectJsonReader\TraktUserStatisticsObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserStatisticsObjectJsonReader\TraktUserStatisticsObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserStatisticsObjectJsonReader\UserStatisticsObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserStatisticsObjectJsonReader\UserStatisticsObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserStatisticsObjectJsonReader\UserStatisticsObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserStatisticsObjectJsonReader\UserStatisticsObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserStatisticsObjectJsonReader\UserStatisticsObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Watched\Implementations\TraktWatchedShowEpisode_Tests.cs" />
     <Compile Include="Objects\Get\Watched\Implementations\TraktWatchedShowSeason_Tests.cs" />
     <Compile Include="Objects\Get\Watched\Interfaces\ITraktWatchedMovie_Tests.cs" />
