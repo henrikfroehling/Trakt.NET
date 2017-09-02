@@ -209,7 +209,7 @@
             s_readerFactories.Add(typeof(ITraktSyncCollectionRemovePostResponse), new SyncCollectionRemovePostResponseJsonReaderFactory());
 
             // sync history post response objects
-            s_readerFactories.Add(typeof(ITraktSyncHistoryPostResponse), new TraktSyncHistoryPostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncHistoryPostResponse), new SyncHistoryPostResponseJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncHistoryRemovePostResponse), new TraktSyncHistoryRemovePostResponseJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncHistoryRemovePostResponseGroup), new TraktSyncHistoryRemovePostResponseGroupJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncHistoryRemovePostResponseNotFoundGroup), new TraktSyncHistoryRemovePostResponseNotFoundGroupJsonReaderFactory());
