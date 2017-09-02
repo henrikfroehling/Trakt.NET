@@ -376,7 +376,7 @@
     <Compile Include="Objects\Get\Users\Lists\ITraktList.cs" />
     <Compile Include="Objects\Get\Users\Lists\ITraktListIds.cs" />
     <Compile Include="Objects\Get\Users\Lists\ITraktListItem.cs" />
-    <Compile Include="Objects\Get\Users\Lists\JsonReader\Factories\TraktListIdsJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Users\Lists\JsonReader\Factories\ListIdsJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\Lists\JsonReader\Factories\TraktListItemJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\Lists\JsonReader\Factories\TraktListJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\Lists\JsonReader\TraktListArrayJsonReader.cs" />
