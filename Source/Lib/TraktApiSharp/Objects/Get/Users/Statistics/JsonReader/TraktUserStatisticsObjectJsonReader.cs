@@ -51,7 +51,7 @@
                 var showsStatisticsReader = new TraktUserShowsStatisticsObjectJsonReader();
                 var seasonsStatisticsReader = new TraktUserSeasonsStatisticsObjectJsonReader();
                 var episodesStatisticsReader = new UserEpisodesStatisticsObjectJsonReader();
-                var networkStatisticsReader = new TraktUserNetworkStatisticsObjectJsonReader();
+                var networkStatisticsReader = new UserNetworkStatisticsObjectJsonReader();
                 var ratingsStatisticsReader = new TraktUserRatingsStatisticsObjectJsonReader();
 
                 ITraktUserStatistics userStatistics = new TraktUserStatistics();
