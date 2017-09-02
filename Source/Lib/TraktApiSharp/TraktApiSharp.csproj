@@ -382,7 +382,7 @@
     <Compile Include="Objects\Get\Users\Lists\JsonReader\ListArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Lists\JsonReader\ListIdsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Lists\JsonReader\ListItemArrayJsonReader.cs" />
-    <Compile Include="Objects\Get\Users\Lists\JsonReader\TraktListItemObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Users\Lists\JsonReader\ListItemObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Lists\JsonReader\TraktListObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Statistics\ITraktUserEpisodesStatistics.cs" />
     <Compile Include="Objects\Get\Users\Statistics\ITraktUserMoviesStatistics.cs" />

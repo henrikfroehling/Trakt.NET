@@ -4,7 +4,7 @@
 
     internal class ListItemJsonReaderFactory : IJsonReaderFactory<ITraktListItem>
     {
-        public IObjectJsonReader<ITraktListItem> CreateObjectReader() => new TraktListItemObjectJsonReader();
+        public IObjectJsonReader<ITraktListItem> CreateObjectReader() => new ListItemObjectJsonReader();
 
         public IArrayJsonReader<ITraktListItem> CreateArrayReader() => new ListItemArrayJsonReader();
     }

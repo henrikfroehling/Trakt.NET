@@ -13,7 +13,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktListItemObjectJsonReader : IObjectJsonReader<ITraktListItem>
+    internal class ListItemObjectJsonReader : IObjectJsonReader<ITraktListItem>
     {
         private const string PROPERTY_NAME_RANK = "rank";
         private const string PROPERTY_NAME_LISTED_AT = "listed_at";

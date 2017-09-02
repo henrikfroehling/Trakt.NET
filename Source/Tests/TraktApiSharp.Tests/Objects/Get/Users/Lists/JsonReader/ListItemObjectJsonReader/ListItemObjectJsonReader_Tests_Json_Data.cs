@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Users.Lists.JsonReader
 {
-    public partial class TraktListItemObjectJsonReader_Tests
+    public partial class ListItemObjectJsonReader_Tests
     {
         private const string TYPE_MOVIE_JSON_COMPLETE =
             @"{
