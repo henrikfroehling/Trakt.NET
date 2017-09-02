@@ -345,7 +345,7 @@
     <Compile Include="Objects\Get\Users\JsonReader\Factories\UserCommentJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\Factories\UserFollowerJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\Factories\UserFollowRequestJsonReaderFactory.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\Factories\TraktUserFriendJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\Factories\UserFriendJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\Factories\TraktUserHiddenItemJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\Factories\TraktUserIdsJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\Factories\TraktUserImagesJsonReaderFactory.cs" />
