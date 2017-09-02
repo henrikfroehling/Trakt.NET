@@ -40,7 +40,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var watchlistItemReader = new TraktWatchlistItemObjectJsonReader();
+                var watchlistItemReader = new WatchlistItemObjectJsonReader();
                 //var watchlistItemReadingTasks = new List<Task<ITraktWatchlistItem>>();
                 var watchlistItems = new List<ITraktWatchlistItem>();
 

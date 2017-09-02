@@ -12,7 +12,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktWatchlistItemObjectJsonReader : IObjectJsonReader<ITraktWatchlistItem>
+    internal class WatchlistItemObjectJsonReader : IObjectJsonReader<ITraktWatchlistItem>
     {
         private const string PROPERTY_NAME_LISTED_AT = "listed_at";
         private const string PROPERTY_NAME_TYPE = "type";

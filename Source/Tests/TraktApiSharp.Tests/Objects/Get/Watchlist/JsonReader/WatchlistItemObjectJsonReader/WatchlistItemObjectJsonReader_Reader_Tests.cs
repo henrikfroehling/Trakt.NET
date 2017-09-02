@@ -9,21 +9,21 @@
     using Xunit;
 
     [Category("Objects.Get.Watchlist.JsonReader")]
-    public partial class TraktWatchlistItemObjectJsonReader_Tests
+    public partial class WatchlistItemObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktWatchlistItemObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_WatchlistItemObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var traktJsonReader = new TraktWatchlistItemObjectJsonReader();
+            var traktJsonReader = new WatchlistItemObjectJsonReader();
 
             var traktWatchlistItem = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktWatchlistItem.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktWatchlistItemObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public async Task Test_WatchlistItemObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var traktJsonReader = new TraktWatchlistItemObjectJsonReader();
+            var traktJsonReader = new WatchlistItemObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

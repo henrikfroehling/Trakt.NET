@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Watchlist.JsonReader
 {
-    public partial class TraktWatchlistItemObjectJsonReader_Tests
+    public partial class WatchlistItemObjectJsonReader_Tests
     {
         private const string TYPE_MOVIE_JSON_COMPLETE =
             @"{

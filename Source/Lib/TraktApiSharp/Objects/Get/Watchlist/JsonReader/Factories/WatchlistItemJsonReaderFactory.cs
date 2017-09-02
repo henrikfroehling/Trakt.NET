@@ -4,7 +4,7 @@
 
     internal class WatchlistItemJsonReaderFactory : IJsonReaderFactory<ITraktWatchlistItem>
     {
-        public IObjectJsonReader<ITraktWatchlistItem> CreateObjectReader() => new TraktWatchlistItemObjectJsonReader();
+        public IObjectJsonReader<ITraktWatchlistItem> CreateObjectReader() => new WatchlistItemObjectJsonReader();
 
         public IArrayJsonReader<ITraktWatchlistItem> CreateArrayReader() => new WatchlistItemArrayJsonReader();
     }

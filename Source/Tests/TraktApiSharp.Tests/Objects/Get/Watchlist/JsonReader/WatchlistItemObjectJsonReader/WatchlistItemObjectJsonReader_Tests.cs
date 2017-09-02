@@ -8,12 +8,12 @@
     using Xunit;
 
     [Category("Objects.Get.Watchlist.JsonReader")]
-    public partial class TraktWatchlistItemObjectJsonReader_Tests
+    public partial class WatchlistItemObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_TraktWatchlistItemObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
+        public void Test_WatchlistItemObjectJsonReader_Implements_IObjectJsonReader_Interface()
         {
-            typeof(TraktWatchlistItemObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktWatchlistItem>));
+            typeof(WatchlistItemObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktWatchlistItem>));
         }
     }
 }
