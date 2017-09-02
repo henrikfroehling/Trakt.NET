@@ -56,7 +56,7 @@
         [Fact]
         public async Task Test_TraktWatchedShow_From_Minimal_Json()
         {
-            var jsonReader = new TraktWatchedShowObjectJsonReader();
+            var jsonReader = new WatchedShowObjectJsonReader();
             var watchedShow = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktWatchedShow;
 
             watchedShow.Should().NotBeNull();
@@ -166,7 +166,7 @@
         [Fact]
         public async Task Test_TraktWatchedShow_From_Full_Json()
         {
-            var jsonReader = new TraktWatchedShowObjectJsonReader();
+            var jsonReader = new WatchedShowObjectJsonReader();
             var watchedShow = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktWatchedShow;
 
             watchedShow.Should().NotBeNull();
