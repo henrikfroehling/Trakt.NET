@@ -243,7 +243,7 @@
             // user objects
             s_readerFactories.Add(typeof(ITraktUser), new TraktUserJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserComment), new UserCommentJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserFollower), new TraktUserFollowerJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktUserFollower), new UserFollowerJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserFollowRequest), new TraktUserFollowRequestJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserFriend), new TraktUserFriendJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserHiddenItem), new TraktUserHiddenItemJsonReaderFactory());
