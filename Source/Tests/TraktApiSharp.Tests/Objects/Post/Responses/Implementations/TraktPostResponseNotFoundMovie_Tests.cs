@@ -28,7 +28,7 @@
         [Fact]
         public async Task Test_TraktPostResponseNotFoundMovie_From_Json()
         {
-            var jsonReader = new TraktPostResponseNotFoundMovieObjectJsonReader();
+            var jsonReader = new PostResponseNotFoundMovieObjectJsonReader();
             var postResponseNotFoundMovie = await jsonReader.ReadObjectAsync(JSON) as TraktPostResponseNotFoundMovie;
 
             postResponseNotFoundMovie.Should().NotBeNull();

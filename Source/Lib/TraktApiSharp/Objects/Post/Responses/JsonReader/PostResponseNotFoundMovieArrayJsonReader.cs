@@ -40,7 +40,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var postResponseNotFoundMovieObjectReader = new TraktPostResponseNotFoundMovieObjectJsonReader();
+                var postResponseNotFoundMovieObjectReader = new PostResponseNotFoundMovieObjectJsonReader();
                 //var postResponseNotFoundMovieReadingTasks = new List<Task<ITraktPostResponseNotFoundMovie>>();
                 var postResponseNotFoundMovies = new List<ITraktPostResponseNotFoundMovie>();
 

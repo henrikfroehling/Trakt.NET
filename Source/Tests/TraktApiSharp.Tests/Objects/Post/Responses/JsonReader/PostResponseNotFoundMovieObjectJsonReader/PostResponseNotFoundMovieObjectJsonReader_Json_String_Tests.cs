@@ -7,12 +7,12 @@
     using Xunit;
 
     [Category("Objects.Post.Responses.JsonReader")]
-    public partial class TraktPostResponseNotFoundMovieObjectJsonReader_Tests
+    public partial class PostResponseNotFoundMovieObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundMovieObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_PostResponseNotFoundMovieObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktPostResponseNotFoundMovieObjectJsonReader();
+            var jsonReader = new PostResponseNotFoundMovieObjectJsonReader();
 
             var postResponseNotFoundMovie = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
@@ -25,9 +25,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid()
+        public async Task Test_PostResponseNotFoundMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid()
         {
-            var jsonReader = new TraktPostResponseNotFoundMovieObjectJsonReader();
+            var jsonReader = new PostResponseNotFoundMovieObjectJsonReader();
 
             var postResponseNotFoundMovie = await jsonReader.ReadObjectAsync(JSON_NOT_VALID);
 
@@ -36,18 +36,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundMovieObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_PostResponseNotFoundMovieObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktPostResponseNotFoundMovieObjectJsonReader();
+            var jsonReader = new PostResponseNotFoundMovieObjectJsonReader();
 
             var postResponseNotFoundMovie = await jsonReader.ReadObjectAsync(default(string));
             postResponseNotFoundMovie.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundMovieObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_PostResponseNotFoundMovieObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktPostResponseNotFoundMovieObjectJsonReader();
+            var jsonReader = new PostResponseNotFoundMovieObjectJsonReader();
 
             var postResponseNotFoundMovie = await jsonReader.ReadObjectAsync(string.Empty);
             postResponseNotFoundMovie.Should().BeNull();
