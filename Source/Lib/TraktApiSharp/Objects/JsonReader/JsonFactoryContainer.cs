@@ -241,7 +241,7 @@
             s_readerFactories.Add(typeof(ITraktUserCustomListItemsRemovePostResponse), new TraktUserCustomListItemsRemovePostResponseJsonReaderFactory());
 
             // user objects
-            s_readerFactories.Add(typeof(ITraktUser), new TraktUserJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktUser), new UserJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserComment), new UserCommentJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserFollower), new UserFollowerJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserFollowRequest), new UserFollowRequestJsonReaderFactory());
