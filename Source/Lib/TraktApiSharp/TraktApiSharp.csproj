@@ -342,7 +342,7 @@
     <Compile Include="Objects\Get\Users\ITraktUserWatchingItem.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\Factories\AccountSettingsJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\Factories\SharingTextJsonReaderFactory.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\Factories\TraktUserCommentJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\Factories\UserCommentJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\Factories\TraktUserFollowerJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\Factories\TraktUserFollowRequestJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\Factories\TraktUserFriendJsonReaderFactory.cs" />
