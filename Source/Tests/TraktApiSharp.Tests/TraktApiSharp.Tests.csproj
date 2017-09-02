@@ -972,11 +972,11 @@
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\CheckinPostErrorResponseObjectJsonReader\CheckinPostErrorResponseObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\CheckinPostErrorResponseObjectJsonReader\CheckinPostErrorResponseObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\CheckinPostErrorResponseObjectJsonReader\CheckinPostErrorResponseObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Post\Checkins\Responses\JsonReader\TraktEpisodeCheckinPostResponseObjectJsonReader\TraktEpisodeCheckinPostResponseObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Post\Checkins\Responses\JsonReader\TraktEpisodeCheckinPostResponseObjectJsonReader\TraktEpisodeCheckinPostResponseObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Post\Checkins\Responses\JsonReader\TraktEpisodeCheckinPostResponseObjectJsonReader\TraktEpisodeCheckinPostResponseObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Post\Checkins\Responses\JsonReader\TraktEpisodeCheckinPostResponseObjectJsonReader\TraktEpisodeCheckinPostResponseObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Post\Checkins\Responses\JsonReader\TraktEpisodeCheckinPostResponseObjectJsonReader\TraktEpisodeCheckinPostResponseObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Post\Checkins\Responses\JsonReader\EpisodeCheckinPostResponseObjectJsonReader\EpisodeCheckinPostResponseObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Post\Checkins\Responses\JsonReader\EpisodeCheckinPostResponseObjectJsonReader\EpisodeCheckinPostResponseObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Post\Checkins\Responses\JsonReader\EpisodeCheckinPostResponseObjectJsonReader\EpisodeCheckinPostResponseObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Post\Checkins\Responses\JsonReader\EpisodeCheckinPostResponseObjectJsonReader\EpisodeCheckinPostResponseObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Post\Checkins\Responses\JsonReader\EpisodeCheckinPostResponseObjectJsonReader\EpisodeCheckinPostResponseObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\TraktMovieCheckinPostResponseObjectJsonReader\TraktMovieCheckinPostResponseObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\TraktMovieCheckinPostResponseObjectJsonReader\TraktMovieCheckinPostResponseObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\TraktMovieCheckinPostResponseObjectJsonReader\TraktMovieCheckinPostResponseObjectJsonReader_Stream_Tests.cs" />
