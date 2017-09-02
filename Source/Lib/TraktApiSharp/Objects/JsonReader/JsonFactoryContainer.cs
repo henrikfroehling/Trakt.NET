@@ -202,7 +202,7 @@
             s_readerFactories.Add(typeof(ITraktSyncListsLastActivities), new SyncListsLastActivitiesJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncMoviesLastActivities), new SyncMoviesLastActivitiesJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncSeasonsLastActivities), new SyncSeasonsLastActivitiesJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncShowsLastActivities), new TraktSyncShowsLastActivitiesJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncShowsLastActivities), new SyncShowsLastActivitiesJsonReaderFactory());
 
             // sync collection post response objects
             s_readerFactories.Add(typeof(ITraktSyncCollectionPostResponse), new TraktSyncCollectionPostResponseJsonReaderFactory());
