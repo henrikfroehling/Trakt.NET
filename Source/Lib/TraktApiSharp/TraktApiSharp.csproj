@@ -316,7 +316,7 @@
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\Factories\SyncMoviesLastActivitiesJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\Factories\SyncSeasonsLastActivitiesJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\Factories\SyncShowsLastActivitiesJsonReaderFactory.cs" />
-    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncCommentsLastActivitiesObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncCommentsLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncEpisodesLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncListsLastActivitiesObjectJsonReader.cs" />

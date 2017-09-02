@@ -8,12 +8,12 @@
     using Xunit;
 
     [Category("Objects.Get.Syncs.Activities.JsonReader")]
-    public partial class TraktSyncCommentsLastActivitiesObjectJsonReader_Tests
+    public partial class SyncCommentsLastActivitiesObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktSyncCommentsLastActivitiesObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_SyncCommentsLastActivitiesObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktSyncCommentsLastActivitiesObjectJsonReader();
+            var jsonReader = new SyncCommentsLastActivitiesObjectJsonReader();
 
             var commentsLastActivities = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
@@ -22,9 +22,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktSyncCommentsLastActivitiesObjectJsonReader_ReadObject_From_Json_String_Not_Valid()
+        public async Task Test_SyncCommentsLastActivitiesObjectJsonReader_ReadObject_From_Json_String_Not_Valid()
         {
-            var jsonReader = new TraktSyncCommentsLastActivitiesObjectJsonReader();
+            var jsonReader = new SyncCommentsLastActivitiesObjectJsonReader();
 
             var commentsLastActivities = await jsonReader.ReadObjectAsync(JSON_NOT_VALID);
 
@@ -33,18 +33,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktSyncCommentsLastActivitiesObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_SyncCommentsLastActivitiesObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktSyncCommentsLastActivitiesObjectJsonReader();
+            var jsonReader = new SyncCommentsLastActivitiesObjectJsonReader();
 
             var commentsLastActivities = await jsonReader.ReadObjectAsync(default(string));
             commentsLastActivities.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktSyncCommentsLastActivitiesObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_SyncCommentsLastActivitiesObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktSyncCommentsLastActivitiesObjectJsonReader();
+            var jsonReader = new SyncCommentsLastActivitiesObjectJsonReader();
 
             var commentsLastActivities = await jsonReader.ReadObjectAsync(string.Empty);
             commentsLastActivities.Should().BeNull();

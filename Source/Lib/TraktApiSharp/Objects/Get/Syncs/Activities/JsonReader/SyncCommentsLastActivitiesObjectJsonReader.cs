@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktSyncCommentsLastActivitiesObjectJsonReader : IObjectJsonReader<ITraktSyncCommentsLastActivities>
+    internal class SyncCommentsLastActivitiesObjectJsonReader : IObjectJsonReader<ITraktSyncCommentsLastActivities>
     {
         private const string PROPERTY_NAME_LIKED_AT = "liked_at";
 
