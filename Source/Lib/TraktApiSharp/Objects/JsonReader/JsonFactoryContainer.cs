@@ -258,7 +258,7 @@
             // user list objects
             s_readerFactories.Add(typeof(ITraktList), new TraktListJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktListIds), new ListIdsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktListItem), new TraktListItemJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktListItem), new ListItemJsonReaderFactory());
 
             // user response post objects
             s_readerFactories.Add(typeof(ITraktUserFollowUserPostResponse), new TraktUserFollowUserPostResponseJsonReaderFactory());
