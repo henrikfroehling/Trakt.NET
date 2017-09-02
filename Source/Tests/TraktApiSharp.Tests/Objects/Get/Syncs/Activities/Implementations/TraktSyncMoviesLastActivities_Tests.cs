@@ -35,7 +35,7 @@
         [Fact]
         public async Task Test_TraktSyncMoviesLastActivities_From_Json()
         {
-            var jsonReader = new TraktSyncMoviesLastActivitiesObjectJsonReader();
+            var jsonReader = new SyncMoviesLastActivitiesObjectJsonReader();
             var moviesLastActivities = await jsonReader.ReadObjectAsync(JSON) as TraktSyncMoviesLastActivities;
 
             moviesLastActivities.Should().NotBeNull();

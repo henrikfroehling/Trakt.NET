@@ -320,7 +320,7 @@
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncEpisodesLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncListsLastActivitiesObjectJsonReader.cs" />
-    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncMoviesLastActivitiesObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncMoviesLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncSeasonsLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncShowsLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\ITraktSyncPlaybackProgressItem.cs" />
