@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Users.Statistics.JsonReader
 {
-    public partial class TraktUserMoviesStatisticsObjectJsonReader_Tests
+    public partial class UserMoviesStatisticsObjectJsonReader_Tests
     {
         private const string JSON_COMPLETE =
             @"{
