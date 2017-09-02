@@ -51,7 +51,7 @@
                 var notFoundShowsReader = new TraktPostResponseNotFoundShowArrayJsonReader();
                 var notFoundSeasonsReader = new TraktPostResponseNotFoundSeasonArrayJsonReader();
                 var notFoundEpisodesReader = new PostResponseNotFoundEpisodeArrayJsonReader();
-                var notFoundPeopleReader = new TraktPostResponseNotFoundPersonArrayJsonReader();
+                var notFoundPeopleReader = new PostResponseNotFoundPersonArrayJsonReader();
                 ITraktUserCustomListItemsPostResponseNotFoundGroup customListItemsPostResponseNotFoundGroup = new TraktUserCustomListItemsPostResponseNotFoundGroup();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)

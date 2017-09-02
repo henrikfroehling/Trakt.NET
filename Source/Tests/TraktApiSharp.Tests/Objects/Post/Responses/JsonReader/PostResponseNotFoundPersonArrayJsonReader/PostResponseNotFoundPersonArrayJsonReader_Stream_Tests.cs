@@ -1,39 +1,37 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Post.Responses.JsonReader
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+    using TestUtils;
     using Traits;
     using TraktApiSharp.Objects.Post.Responses.JsonReader;
     using Xunit;
 
     [Category("Objects.Post.Responses.JsonReader")]
-    public partial class TraktPostResponseNotFoundPersonArrayJsonReader_Tests
+    public partial class PostResponseNotFoundPersonArrayJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundPersonArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
+        public async Task Test_PostResponseNotFoundPersonArrayJsonReader_ReadArray_From_Stream_Empty_Array()
         {
-            var traktJsonReader = new TraktPostResponseNotFoundPersonArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundPersonArrayJsonReader();
 
-            using (var reader = new StringReader(JSON_EMPTY_ARRAY))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
-                var notFoundPersons = await traktJsonReader.ReadArrayAsync(jsonReader);
+                var notFoundPersons = await jsonReader.ReadArrayAsync(stream);
                 notFoundPersons.Should().NotBeNull().And.BeEmpty();
             }
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundPersonArrayJsonReader_ReadArray_From_JsonReader_Complete()
+        public async Task Test_PostResponseNotFoundPersonArrayJsonReader_ReadArray_From_Stream_Complete()
         {
-            var traktJsonReader = new TraktPostResponseNotFoundPersonArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundPersonArrayJsonReader();
 
-            using (var reader = new StringReader(JSON_COMPLETE))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_COMPLETE.ToStream())
             {
-                var notFoundPersons = await traktJsonReader.ReadArrayAsync(jsonReader);
+                var notFoundPersons = await jsonReader.ReadArrayAsync(stream);
                 notFoundPersons.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
 
                 var notFoundPerson = notFoundPersons.ToArray();
@@ -57,14 +55,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundPersonArrayJsonReader_ReadArray_From_JsonReader_Not_Valid()
+        public async Task Test_PostResponseNotFoundPersonArrayJsonReader_ReadArray_From_Stream_Not_Valid()
         {
-            var traktJsonReader = new TraktPostResponseNotFoundPersonArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundPersonArrayJsonReader();
 
-            using (var reader = new StringReader(JSON_NOT_VALID))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = JSON_NOT_VALID.ToStream())
             {
-                var notFoundPersons = await traktJsonReader.ReadArrayAsync(jsonReader);
+                var notFoundPersons = await jsonReader.ReadArrayAsync(stream);
                 notFoundPersons.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
 
                 var notFoundPerson = notFoundPersons.ToArray();
@@ -83,23 +80,22 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundPersonArrayJsonReader_ReadArray_From_JsonReader_Null()
+        public async Task Test_PostResponseNotFoundPersonArrayJsonReader_ReadArray_From_Stream_Null()
         {
-            var traktJsonReader = new TraktPostResponseNotFoundPersonArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundPersonArrayJsonReader();
 
-            var notFoundPersons = await traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            var notFoundPersons = await jsonReader.ReadArrayAsync(default(Stream));
             notFoundPersons.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundPersonArrayJsonReader_ReadArray_From_JsonReader_Empty()
+        public async Task Test_PostResponseNotFoundPersonArrayJsonReader_ReadArray_From_Stream_Empty()
         {
-            var traktJsonReader = new TraktPostResponseNotFoundPersonArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundPersonArrayJsonReader();
 
-            using (var reader = new StringReader(string.Empty))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var stream = string.Empty.ToStream())
             {
-                var notFoundPersons = await traktJsonReader.ReadArrayAsync(jsonReader);
+                var notFoundPersons = await jsonReader.ReadArrayAsync(stream);
                 notFoundPersons.Should().BeNull();
             }
         }

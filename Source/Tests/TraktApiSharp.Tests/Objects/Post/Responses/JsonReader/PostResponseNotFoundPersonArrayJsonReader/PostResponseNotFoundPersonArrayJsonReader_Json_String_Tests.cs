@@ -8,21 +8,21 @@
     using Xunit;
 
     [Category("Objects.Post.Responses.JsonReader")]
-    public partial class TraktPostResponseNotFoundPersonArrayJsonReader_Tests
+    public partial class PostResponseNotFoundPersonArrayJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundPersonArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
+        public async Task Test_PostResponseNotFoundPersonArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new TraktPostResponseNotFoundPersonArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundPersonArrayJsonReader();
 
             var notFoundPersons = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             notFoundPersons.Should().NotBeNull().And.BeEmpty();
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundPersonArrayJsonReader_ReadArray_From_Json_String_Complete()
+        public async Task Test_PostResponseNotFoundPersonArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
-            var jsonReader = new TraktPostResponseNotFoundPersonArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundPersonArrayJsonReader();
 
             var notFoundPersons = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
             notFoundPersons.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -47,9 +47,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundPersonArrayJsonReader_ReadArray_From_Json_String_Not_Valid()
+        public async Task Test_PostResponseNotFoundPersonArrayJsonReader_ReadArray_From_Json_String_Not_Valid()
         {
-            var jsonReader = new TraktPostResponseNotFoundPersonArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundPersonArrayJsonReader();
 
             var notFoundPersons = await jsonReader.ReadArrayAsync(JSON_NOT_VALID);
             notFoundPersons.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -69,18 +69,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundPersonArrayJsonReader_ReadArray_From_Json_String_Null()
+        public async Task Test_PostResponseNotFoundPersonArrayJsonReader_ReadArray_From_Json_String_Null()
         {
-            var jsonReader = new TraktPostResponseNotFoundPersonArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundPersonArrayJsonReader();
 
             var notFoundPersons = await jsonReader.ReadArrayAsync(default(string));
             notFoundPersons.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundPersonArrayJsonReader_ReadArray_From_Json_String_Empty()
+        public async Task Test_PostResponseNotFoundPersonArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
-            var jsonReader = new TraktPostResponseNotFoundPersonArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundPersonArrayJsonReader();
 
             var notFoundPersons = await jsonReader.ReadArrayAsync(string.Empty);
             notFoundPersons.Should().BeNull();
