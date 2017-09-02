@@ -251,7 +251,7 @@
             s_readerFactories.Add(typeof(ITraktUserImages), new UserImagesJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserLikeItem), new UserLikeItemJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserSettings), new UserSettingsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserWatchingItem), new TraktUserWatchingItemJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktUserWatchingItem), new UserWatchingItemJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktAccountSettings), new AccountSettingsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSharingText), new SharingTextJsonReaderFactory());
 
