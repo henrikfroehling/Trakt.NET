@@ -275,7 +275,7 @@
             // watched objects
             s_readerFactories.Add(typeof(ITraktWatchedShowEpisode), new WatchedShowEpisodeJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktWatchedShowSeason), new TraktWatchedShowSeasonJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktWatchedShow), new TraktWatchedShowJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktWatchedShow), new WatchedShowJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktWatchedMovie), new WatchedMovieJsonReaderFactory());
 
             // watchlist objects
