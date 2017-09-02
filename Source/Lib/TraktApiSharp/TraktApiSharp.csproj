@@ -310,7 +310,7 @@
     <Compile Include="Objects\Get\Syncs\Activities\ITraktSyncSeasonsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\ITraktSyncShowsLastActivities.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\Factories\SyncCommentsLastActivitiesJsonReaderFactory.cs" />
-    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\Factories\TraktSyncEpisodesLastActivitiesJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\Factories\SyncEpisodesLastActivitiesJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\Factories\TraktSyncLastActivitiesJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\Factories\TraktSyncListsLastActivitiesJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\Factories\TraktSyncMoviesLastActivitiesJsonReaderFactory.cs" />
