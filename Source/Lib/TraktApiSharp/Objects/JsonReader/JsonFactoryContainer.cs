@@ -256,7 +256,7 @@
             s_readerFactories.Add(typeof(ITraktSharingText), new TraktSharingTextJsonReaderFactory());
 
             // user list objects
-            s_readerFactories.Add(typeof(ITraktList), new TraktListJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktList), new ListJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktListIds), new ListIdsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktListItem), new ListItemJsonReaderFactory());
 
