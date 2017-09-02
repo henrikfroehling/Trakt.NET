@@ -535,7 +535,7 @@
     <Compile Include="Objects\Post\Syncs\History\Responses\JsonReader\Factories\SyncHistoryPostResponseJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\JsonReader\Factories\SyncHistoryRemovePostResponseGroupJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\JsonReader\Factories\SyncHistoryRemovePostResponseJsonReaderFactory.cs" />
-    <Compile Include="Objects\Post\Syncs\History\Responses\JsonReader\Factories\TraktSyncHistoryRemovePostResponseNotFoundGroupJsonReaderFactory.cs" />
+    <Compile Include="Objects\Post\Syncs\History\Responses\JsonReader\Factories\SyncHistoryRemovePostResponseNotFoundGroupJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\JsonReader\TraktSyncHistoryPostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\JsonReader\TraktSyncHistoryRemovePostResponseGroupObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\JsonReader\TraktSyncHistoryRemovePostResponseNotFoundGroupObjectJsonReader.cs" />

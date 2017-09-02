@@ -212,7 +212,7 @@
             s_readerFactories.Add(typeof(ITraktSyncHistoryPostResponse), new SyncHistoryPostResponseJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncHistoryRemovePostResponse), new SyncHistoryRemovePostResponseJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncHistoryRemovePostResponseGroup), new SyncHistoryRemovePostResponseGroupJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncHistoryRemovePostResponseNotFoundGroup), new TraktSyncHistoryRemovePostResponseNotFoundGroupJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncHistoryRemovePostResponseNotFoundGroup), new SyncHistoryRemovePostResponseNotFoundGroupJsonReaderFactory());
 
             // sync rating post response objects
             s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponse), new TraktSyncRatingsPostResponseJsonReaderFactory());
