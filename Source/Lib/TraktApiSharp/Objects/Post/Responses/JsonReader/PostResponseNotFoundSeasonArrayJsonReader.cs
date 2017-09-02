@@ -40,7 +40,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var postResponseNotFoundSeasonObjectReader = new TraktPostResponseNotFoundSeasonObjectJsonReader();
+                var postResponseNotFoundSeasonObjectReader = new PostResponseNotFoundSeasonObjectJsonReader();
                 //var postResponseNotFoundSeasonReadingTasks = new List<Task<ITraktPostResponseNotFoundSeason>>();
                 var postResponseNotFoundSeasons = new List<ITraktPostResponseNotFoundSeason>();
 

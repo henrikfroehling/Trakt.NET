@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Post.Responses.JsonReader
 {
-    public partial class TraktPostResponseNotFoundSeasonObjectJsonReader_Tests
+    public partial class PostResponseNotFoundSeasonObjectJsonReader_Tests
     {
         private const string JSON_COMPLETE =
             @"{

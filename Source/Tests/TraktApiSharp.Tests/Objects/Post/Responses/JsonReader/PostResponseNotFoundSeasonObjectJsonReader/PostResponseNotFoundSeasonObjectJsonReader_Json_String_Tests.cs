@@ -7,12 +7,12 @@
     using Xunit;
 
     [Category("Objects.Post.Responses.JsonReader")]
-    public partial class TraktPostResponseNotFoundSeasonObjectJsonReader_Tests
+    public partial class PostResponseNotFoundSeasonObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundSeasonObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_PostResponseNotFoundSeasonObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktPostResponseNotFoundSeasonObjectJsonReader();
+            var jsonReader = new PostResponseNotFoundSeasonObjectJsonReader();
 
             var postResponseNotFoundSeason = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
@@ -25,9 +25,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundSeasonObjectJsonReader_ReadObject_From_Json_String_Not_Valid()
+        public async Task Test_PostResponseNotFoundSeasonObjectJsonReader_ReadObject_From_Json_String_Not_Valid()
         {
-            var jsonReader = new TraktPostResponseNotFoundSeasonObjectJsonReader();
+            var jsonReader = new PostResponseNotFoundSeasonObjectJsonReader();
 
             var postResponseNotFoundSeason = await jsonReader.ReadObjectAsync(JSON_NOT_VALID);
 
@@ -36,18 +36,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundSeasonObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_PostResponseNotFoundSeasonObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktPostResponseNotFoundSeasonObjectJsonReader();
+            var jsonReader = new PostResponseNotFoundSeasonObjectJsonReader();
 
             var postResponseNotFoundSeason = await jsonReader.ReadObjectAsync(default(string));
             postResponseNotFoundSeason.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundSeasonObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_PostResponseNotFoundSeasonObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktPostResponseNotFoundSeasonObjectJsonReader();
+            var jsonReader = new PostResponseNotFoundSeasonObjectJsonReader();
 
             var postResponseNotFoundSeason = await jsonReader.ReadObjectAsync(string.Empty);
             postResponseNotFoundSeason.Should().BeNull();
