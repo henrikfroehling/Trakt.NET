@@ -403,7 +403,7 @@
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserNetworkStatisticsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserRatingsStatisticsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserSeasonsStatisticsObjectJsonReader.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserShowsStatisticsObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserShowsStatisticsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserStatisticsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Watched\ITraktWatchedMovie.cs" />
     <Compile Include="Objects\Get\Watched\ITraktWatchedShow.cs" />

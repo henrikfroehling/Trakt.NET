@@ -48,7 +48,7 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var moviesStatisticsReader = new UserMoviesStatisticsObjectJsonReader();
-                var showsStatisticsReader = new TraktUserShowsStatisticsObjectJsonReader();
+                var showsStatisticsReader = new UserShowsStatisticsObjectJsonReader();
                 var seasonsStatisticsReader = new UserSeasonsStatisticsObjectJsonReader();
                 var episodesStatisticsReader = new UserEpisodesStatisticsObjectJsonReader();
                 var networkStatisticsReader = new UserNetworkStatisticsObjectJsonReader();
