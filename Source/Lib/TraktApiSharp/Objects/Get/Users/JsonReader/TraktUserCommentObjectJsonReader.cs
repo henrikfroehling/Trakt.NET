@@ -60,7 +60,7 @@
                 var showReader = new ShowObjectJsonReader();
                 var seasonReader = new SeasonObjectJsonReader();
                 var episodeReader = new EpisodeObjectJsonReader();
-                var listReader = new TraktListObjectJsonReader();
+                var listReader = new ListObjectJsonReader();
                 ITraktUserComment traktUserComment = new TraktUserComment();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)

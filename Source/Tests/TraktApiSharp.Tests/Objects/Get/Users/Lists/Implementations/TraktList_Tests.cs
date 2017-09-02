@@ -44,7 +44,7 @@
         [Fact]
         public async Task Test_TraktList_From_Json()
         {
-            var jsonReader = new TraktListObjectJsonReader();
+            var jsonReader = new ListObjectJsonReader();
             var list = await jsonReader.ReadObjectAsync(JSON) as TraktList;
 
             list.Should().NotBeNull();

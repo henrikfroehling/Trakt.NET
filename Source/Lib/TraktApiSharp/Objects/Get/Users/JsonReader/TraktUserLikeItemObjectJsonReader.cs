@@ -49,7 +49,7 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var commentReader = new CommentObjectJsonReader();
-                var listReader = new TraktListObjectJsonReader();
+                var listReader = new ListObjectJsonReader();
                 ITraktUserLikeItem traktUserLikeItem = new TraktUserLikeItem();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)

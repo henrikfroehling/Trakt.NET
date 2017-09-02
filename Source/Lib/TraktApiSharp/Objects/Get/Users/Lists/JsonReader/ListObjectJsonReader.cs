@@ -9,7 +9,7 @@
     using System.Threading.Tasks;
     using Users.JsonReader;
 
-    internal class TraktListObjectJsonReader : IObjectJsonReader<ITraktList>
+    internal class ListObjectJsonReader : IObjectJsonReader<ITraktList>
     {
         private const string PROPERTY_NAME_NAME = "name";
         private const string PROPERTY_NAME_DESCRIPTION = "description";
