@@ -249,7 +249,7 @@
             s_readerFactories.Add(typeof(ITraktUserHiddenItem), new UserHiddenItemJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserIds), new UserIdsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserImages), new UserImagesJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserLikeItem), new TraktUserLikeItemJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktUserLikeItem), new UserLikeItemJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserSettings), new TraktUserSettingsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserWatchingItem), new TraktUserWatchingItemJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktAccountSettings), new AccountSettingsJsonReaderFactory());
