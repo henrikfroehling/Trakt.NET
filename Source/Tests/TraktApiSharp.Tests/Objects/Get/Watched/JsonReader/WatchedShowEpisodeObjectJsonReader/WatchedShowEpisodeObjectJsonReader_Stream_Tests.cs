@@ -10,12 +10,12 @@
     using Xunit;
 
     [Category("Objects.Get.Watched.JsonReader")]
-    public partial class TraktWatchedShowEpisodeObjectJsonReader_Tests
+    public partial class WatchedShowEpisodeObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktWatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Complete()
+        public async Task Test_WatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Complete()
         {
-            var jsonReader = new TraktWatchedShowEpisodeObjectJsonReader();
+            var jsonReader = new WatchedShowEpisodeObjectJsonReader();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -29,9 +29,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Incomplete_1()
+        public async Task Test_WatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Incomplete_1()
         {
-            var jsonReader = new TraktWatchedShowEpisodeObjectJsonReader();
+            var jsonReader = new WatchedShowEpisodeObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
@@ -45,9 +45,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Incomplete_2()
+        public async Task Test_WatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Incomplete_2()
         {
-            var jsonReader = new TraktWatchedShowEpisodeObjectJsonReader();
+            var jsonReader = new WatchedShowEpisodeObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
@@ -61,9 +61,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Incomplete_3()
+        public async Task Test_WatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Incomplete_3()
         {
-            var jsonReader = new TraktWatchedShowEpisodeObjectJsonReader();
+            var jsonReader = new WatchedShowEpisodeObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_3.ToStream())
             {
@@ -77,9 +77,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Incomplete_4()
+        public async Task Test_WatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Incomplete_4()
         {
-            var jsonReader = new TraktWatchedShowEpisodeObjectJsonReader();
+            var jsonReader = new WatchedShowEpisodeObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_4.ToStream())
             {
@@ -93,9 +93,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Incomplete_5()
+        public async Task Test_WatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Incomplete_5()
         {
-            var jsonReader = new TraktWatchedShowEpisodeObjectJsonReader();
+            var jsonReader = new WatchedShowEpisodeObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_5.ToStream())
             {
@@ -109,9 +109,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Incomplete_6()
+        public async Task Test_WatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Incomplete_6()
         {
-            var jsonReader = new TraktWatchedShowEpisodeObjectJsonReader();
+            var jsonReader = new WatchedShowEpisodeObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_6.ToStream())
             {
@@ -125,9 +125,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Not_Valid_1()
+        public async Task Test_WatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Not_Valid_1()
         {
-            var jsonReader = new TraktWatchedShowEpisodeObjectJsonReader();
+            var jsonReader = new WatchedShowEpisodeObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
@@ -141,9 +141,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Not_Valid_2()
+        public async Task Test_WatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Not_Valid_2()
         {
-            var jsonReader = new TraktWatchedShowEpisodeObjectJsonReader();
+            var jsonReader = new WatchedShowEpisodeObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
@@ -157,9 +157,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Not_Valid_3()
+        public async Task Test_WatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Not_Valid_3()
         {
-            var jsonReader = new TraktWatchedShowEpisodeObjectJsonReader();
+            var jsonReader = new WatchedShowEpisodeObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
@@ -173,9 +173,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Not_Valid_4()
+        public async Task Test_WatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Not_Valid_4()
         {
-            var jsonReader = new TraktWatchedShowEpisodeObjectJsonReader();
+            var jsonReader = new WatchedShowEpisodeObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_4.ToStream())
             {
@@ -189,18 +189,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_WatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Null()
         {
-            var jsonReader = new TraktWatchedShowEpisodeObjectJsonReader();
+            var jsonReader = new WatchedShowEpisodeObjectJsonReader();
 
             var traktWatchedShowEpisode = await jsonReader.ReadObjectAsync(default(Stream));
             traktWatchedShowEpisode.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktWatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Empty()
+        public async Task Test_WatchedShowEpisodeObjectJsonReader_ReadObject_From_Stream_Empty()
         {
-            var jsonReader = new TraktWatchedShowEpisodeObjectJsonReader();
+            var jsonReader = new WatchedShowEpisodeObjectJsonReader();
 
             using (var stream = string.Empty.ToStream())
             {
