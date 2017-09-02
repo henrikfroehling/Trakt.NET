@@ -1044,11 +1044,11 @@
     <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundShowArrayJsonReader\PostResponseNotFoundShowArrayJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundShowArrayJsonReader\PostResponseNotFoundShowArrayJsonReader_Tests.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundShowArrayJsonReader\PostResponseNotFoundShowArrayJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundShowObjectJsonReader\TraktPostResponseNotFoundShowObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundShowObjectJsonReader\TraktPostResponseNotFoundShowObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundShowObjectJsonReader\TraktPostResponseNotFoundShowObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundShowObjectJsonReader\TraktPostResponseNotFoundShowObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundShowObjectJsonReader\TraktPostResponseNotFoundShowObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundShowObjectJsonReader\PostResponseNotFoundShowObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundShowObjectJsonReader\PostResponseNotFoundShowObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundShowObjectJsonReader\PostResponseNotFoundShowObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundShowObjectJsonReader\PostResponseNotFoundShowObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundShowObjectJsonReader\PostResponseNotFoundShowObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\Implementations\TraktEpisodeScrobblePostResponse_Tests.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\Implementations\TraktMovieScrobblePostResponse_Tests.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\Implementations\TraktScrobblePostResponse_Tests.cs" />

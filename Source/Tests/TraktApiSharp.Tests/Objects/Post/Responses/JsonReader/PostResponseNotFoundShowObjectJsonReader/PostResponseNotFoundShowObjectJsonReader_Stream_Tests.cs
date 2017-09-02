@@ -9,12 +9,12 @@
     using Xunit;
 
     [Category("Objects.Post.Responses.JsonReader")]
-    public partial class TraktPostResponseNotFoundShowObjectJsonReader_Tests
+    public partial class PostResponseNotFoundShowObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundShowObjectJsonReader_ReadObject_From_Stream_Complete()
+        public async Task Test_PostResponseNotFoundShowObjectJsonReader_ReadObject_From_Stream_Complete()
         {
-            var jsonReader = new TraktPostResponseNotFoundShowObjectJsonReader();
+            var jsonReader = new PostResponseNotFoundShowObjectJsonReader();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -31,9 +31,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundShowObjectJsonReader_ReadObject_From_Stream_Not_Valid()
+        public async Task Test_PostResponseNotFoundShowObjectJsonReader_ReadObject_From_Stream_Not_Valid()
         {
-            var jsonReader = new TraktPostResponseNotFoundShowObjectJsonReader();
+            var jsonReader = new PostResponseNotFoundShowObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID.ToStream())
             {
@@ -45,18 +45,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundShowObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_PostResponseNotFoundShowObjectJsonReader_ReadObject_From_Stream_Null()
         {
-            var jsonReader = new TraktPostResponseNotFoundShowObjectJsonReader();
+            var jsonReader = new PostResponseNotFoundShowObjectJsonReader();
 
             var postResponseNotFoundShow = await jsonReader.ReadObjectAsync(default(Stream));
             postResponseNotFoundShow.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundShowObjectJsonReader_ReadObject_From_Stream_Empty()
+        public async Task Test_PostResponseNotFoundShowObjectJsonReader_ReadObject_From_Stream_Empty()
         {
-            var jsonReader = new TraktPostResponseNotFoundShowObjectJsonReader();
+            var jsonReader = new PostResponseNotFoundShowObjectJsonReader();
 
             using (var stream = string.Empty.ToStream())
             {

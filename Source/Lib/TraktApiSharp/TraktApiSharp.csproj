@@ -514,7 +514,7 @@
     <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundSeasonArrayJsonReader.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundSeasonObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundShowArrayJsonReader.cs" />
-    <Compile Include="Objects\Post\Responses\JsonReader\TraktPostResponseNotFoundShowObjectJsonReader.cs" />
+    <Compile Include="Objects\Post\Responses\JsonReader\PostResponseNotFoundShowObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\ITraktEpisodeScrobblePostResponse.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\ITraktMovieScrobblePostResponse.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\ITraktScrobblePostResponse.cs" />
