@@ -520,7 +520,7 @@
     <Compile Include="Objects\Post\Scrobbles\Responses\ITraktScrobblePostResponse.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\Factories\EpisodeScrobblePostResponseJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\Factories\MovieScrobblePostResponseJsonReaderFactory.cs" />
-    <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\TraktEpisodeScrobblePostResponseObjectJsonReader.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\EpisodeScrobblePostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\JsonReader\TraktMovieScrobblePostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\Responses\ITraktSyncCollectionPostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\Responses\ITraktSyncCollectionRemovePostResponse.cs" />

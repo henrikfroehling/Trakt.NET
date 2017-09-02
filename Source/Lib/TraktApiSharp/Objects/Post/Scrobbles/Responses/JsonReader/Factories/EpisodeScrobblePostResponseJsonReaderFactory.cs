@@ -5,7 +5,7 @@
 
     internal class EpisodeScrobblePostResponseJsonReaderFactory : IJsonReaderFactory<ITraktEpisodeScrobblePostResponse>
     {
-        public IObjectJsonReader<ITraktEpisodeScrobblePostResponse> CreateObjectReader() => new TraktEpisodeScrobblePostResponseObjectJsonReader();
+        public IObjectJsonReader<ITraktEpisodeScrobblePostResponse> CreateObjectReader() => new EpisodeScrobblePostResponseObjectJsonReader();
 
         public IArrayJsonReader<ITraktEpisodeScrobblePostResponse> CreateArrayReader()
         {
