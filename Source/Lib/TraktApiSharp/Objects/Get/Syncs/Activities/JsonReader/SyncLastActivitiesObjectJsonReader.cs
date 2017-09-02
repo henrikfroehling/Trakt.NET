@@ -53,7 +53,7 @@
                 var seasonsLastActivitiesReader = new TraktSyncSeasonsLastActivitiesObjectJsonReader();
                 var episodesLastActivitiesReader = new SyncEpisodesLastActivitiesObjectJsonReader();
                 var commentsLastActivitiesReader = new SyncCommentsLastActivitiesObjectJsonReader();
-                var listsLastActivitiesReader = new TraktSyncListsLastActivitiesObjectJsonReader();
+                var listsLastActivitiesReader = new SyncListsLastActivitiesObjectJsonReader();
 
                 ITraktSyncLastActivities moviesLastActivities = new TraktSyncLastActivities();
 

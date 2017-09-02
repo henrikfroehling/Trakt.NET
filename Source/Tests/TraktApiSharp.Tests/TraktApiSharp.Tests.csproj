@@ -653,11 +653,11 @@
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncLastActivitiesObjectJsonReader\SyncLastActivitiesObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncLastActivitiesObjectJsonReader\SyncLastActivitiesObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncLastActivitiesObjectJsonReader\SyncLastActivitiesObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncListsLastActivitiesObjectJsonReader\TraktSyncListsLastActivitiesObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncListsLastActivitiesObjectJsonReader\TraktSyncListsLastActivitiesObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncListsLastActivitiesObjectJsonReader\TraktSyncListsLastActivitiesObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncListsLastActivitiesObjectJsonReader\TraktSyncListsLastActivitiesObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncListsLastActivitiesObjectJsonReader\TraktSyncListsLastActivitiesObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncListsLastActivitiesObjectJsonReader\SyncListsLastActivitiesObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncListsLastActivitiesObjectJsonReader\SyncListsLastActivitiesObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncListsLastActivitiesObjectJsonReader\SyncListsLastActivitiesObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncListsLastActivitiesObjectJsonReader\SyncListsLastActivitiesObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\JsonReader\SyncListsLastActivitiesObjectJsonReader\SyncListsLastActivitiesObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncMoviesLastActivitiesObjectJsonReader\TraktSyncMoviesLastActivitiesObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncMoviesLastActivitiesObjectJsonReader\TraktSyncMoviesLastActivitiesObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\JsonReader\TraktSyncMoviesLastActivitiesObjectJsonReader\TraktSyncMoviesLastActivitiesObjectJsonReader_Stream_Tests.cs" />
