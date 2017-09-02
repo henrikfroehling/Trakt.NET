@@ -984,11 +984,11 @@
     <Compile Include="Objects\Post\Checkins\Responses\JsonReader\MovieCheckinPostResponseObjectJsonReader\MovieCheckinPostResponseObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Post\Comments\Responses\Implementations\TraktCommentPostResponse_Tests.cs" />
     <Compile Include="Objects\Post\Comments\Responses\Interfaces\ITraktCommentPostResponse_Tests.cs" />
-    <Compile Include="Objects\Post\Comments\Responses\JsonReader\TraktCommentPostResponseObjectJsonReader\TraktCommentPostResponseObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Post\Comments\Responses\JsonReader\TraktCommentPostResponseObjectJsonReader\TraktCommentPostResponseObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Post\Comments\Responses\JsonReader\TraktCommentPostResponseObjectJsonReader\TraktCommentPostResponseObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Post\Comments\Responses\JsonReader\TraktCommentPostResponseObjectJsonReader\TraktCommentPostResponseObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Post\Comments\Responses\JsonReader\TraktCommentPostResponseObjectJsonReader\TraktCommentPostResponseObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Post\Comments\Responses\JsonReader\CommentPostResponseObjectJsonReader\CommentPostResponseObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Post\Comments\Responses\JsonReader\CommentPostResponseObjectJsonReader\CommentPostResponseObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Post\Comments\Responses\JsonReader\CommentPostResponseObjectJsonReader\CommentPostResponseObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Post\Comments\Responses\JsonReader\CommentPostResponseObjectJsonReader\CommentPostResponseObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Post\Comments\Responses\JsonReader\CommentPostResponseObjectJsonReader\CommentPostResponseObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Post\Responses\Implementations\TraktPostResponseNotFoundEpisode_Tests.cs" />
     <Compile Include="Objects\Post\Responses\Implementations\TraktPostResponseNotFoundMovie_Tests.cs" />
     <Compile Include="Objects\Post\Responses\Implementations\TraktPostResponseNotFoundPerson_Tests.cs" />

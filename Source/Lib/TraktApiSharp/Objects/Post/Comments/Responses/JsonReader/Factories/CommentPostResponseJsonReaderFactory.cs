@@ -5,7 +5,7 @@
 
     internal class CommentPostResponseJsonReaderFactory : IJsonReaderFactory<ITraktCommentPostResponse>
     {
-        public IObjectJsonReader<ITraktCommentPostResponse> CreateObjectReader() => new TraktCommentPostResponseObjectJsonReader();
+        public IObjectJsonReader<ITraktCommentPostResponse> CreateObjectReader() => new CommentPostResponseObjectJsonReader();
 
         public IArrayJsonReader<ITraktCommentPostResponse> CreateArrayReader()
         {

@@ -9,7 +9,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktCommentPostResponseObjectJsonReader : IObjectJsonReader<ITraktCommentPostResponse>
+    internal class CommentPostResponseObjectJsonReader : IObjectJsonReader<ITraktCommentPostResponse>
     {
         private const string PROPERTY_NAME_ID = "id";
         private const string PROPERTY_NAME_PARENT_ID = "parent_id";
