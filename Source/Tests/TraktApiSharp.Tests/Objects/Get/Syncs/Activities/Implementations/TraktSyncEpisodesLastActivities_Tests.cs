@@ -34,7 +34,7 @@
         [Fact]
         public async Task Test_TraktSyncEpisodesLastActivities_From_Json()
         {
-            var jsonReader = new TraktSyncEpisodesLastActivitiesObjectJsonReader();
+            var jsonReader = new SyncEpisodesLastActivitiesObjectJsonReader();
             var episodesLastActivities = await jsonReader.ReadObjectAsync(JSON) as TraktSyncEpisodesLastActivities;
 
             episodesLastActivities.Should().NotBeNull();

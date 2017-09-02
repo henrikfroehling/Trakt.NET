@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Syncs.Activities.JsonReader
 {
-    public partial class TraktSyncEpisodesLastActivitiesObjectJsonReader_Tests
+    public partial class SyncEpisodesLastActivitiesObjectJsonReader_Tests
     {
         private const string JSON_COMPLETE =
             @"{
