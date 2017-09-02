@@ -5,7 +5,7 @@
 
     internal class UserImagesJsonReaderFactory : IJsonReaderFactory<ITraktUserImages>
     {
-        public IObjectJsonReader<ITraktUserImages> CreateObjectReader() => new TraktUserImagesObjectJsonReader();
+        public IObjectJsonReader<ITraktUserImages> CreateObjectReader() => new UserImagesObjectJsonReader();
 
         public IArrayJsonReader<ITraktUserImages> CreateArrayReader()
         {

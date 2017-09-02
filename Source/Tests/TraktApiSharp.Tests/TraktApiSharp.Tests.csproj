@@ -773,11 +773,11 @@
     <Compile Include="Objects\Get\Users\JsonReader\UserIdsObjectJsonReader\UserIdsObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\UserIdsObjectJsonReader\UserIdsObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\UserIdsObjectJsonReader\UserIdsObjectJsonReader_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserImagesObjectJsonReader\TraktUserImagesObjectJsonReader_Json_String_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserImagesObjectJsonReader\TraktUserImagesObjectJsonReader_Reader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserImagesObjectJsonReader\TraktUserImagesObjectJsonReader_Stream_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserImagesObjectJsonReader\TraktUserImagesObjectJsonReader_Tests.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\TraktUserImagesObjectJsonReader\TraktUserImagesObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserImagesObjectJsonReader\UserImagesObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserImagesObjectJsonReader\UserImagesObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserImagesObjectJsonReader\UserImagesObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserImagesObjectJsonReader\UserImagesObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\UserImagesObjectJsonReader\UserImagesObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserLikeItemObjectJsonReader\TraktUserLikeItemObjectJsonReader_Comment_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserLikeItemObjectJsonReader\TraktUserLikeItemObjectJsonReader_Comment_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\TraktUserLikeItemObjectJsonReader\TraktUserLikeItemObjectJsonReader_Comment_Stream_Tests.cs" />

@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktUserImagesObjectJsonReader : IObjectJsonReader<ITraktUserImages>
+    internal class UserImagesObjectJsonReader : IObjectJsonReader<ITraktUserImages>
     {
         private const string PROPERTY_NAME_AVATAR = "avatar";
 

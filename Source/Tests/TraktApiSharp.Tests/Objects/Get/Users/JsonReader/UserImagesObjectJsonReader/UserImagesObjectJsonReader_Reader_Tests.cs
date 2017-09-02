@@ -9,12 +9,12 @@
     using Xunit;
 
     [Category("Objects.Get.Users.JsonReader")]
-    public partial class TraktUserImagesObjectJsonReader_Tests
+    public partial class UserImagesObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktUserImagesObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public async Task Test_UserImagesObjectJsonReader_ReadObject_From_JsonReader_Complete()
         {
-            var traktJsonReader = new TraktUserImagesObjectJsonReader();
+            var traktJsonReader = new UserImagesObjectJsonReader();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -28,9 +28,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserImagesObjectJsonReader_ReadObject_From_JsonReader_Not_Valid()
+        public async Task Test_UserImagesObjectJsonReader_ReadObject_From_JsonReader_Not_Valid()
         {
-            var traktJsonReader = new TraktUserImagesObjectJsonReader();
+            var traktJsonReader = new UserImagesObjectJsonReader();
 
             using (var reader = new StringReader(JSON_NOT_VALID))
             using (var jsonReader = new JsonTextReader(reader))
@@ -43,18 +43,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserImagesObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_UserImagesObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var traktJsonReader = new TraktUserImagesObjectJsonReader();
+            var traktJsonReader = new UserImagesObjectJsonReader();
 
             var userImages = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             userImages.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktUserImagesObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public async Task Test_UserImagesObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var traktJsonReader = new TraktUserImagesObjectJsonReader();
+            var traktJsonReader = new UserImagesObjectJsonReader();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

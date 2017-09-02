@@ -7,12 +7,12 @@
     using Xunit;
 
     [Category("Objects.Get.Users.JsonReader")]
-    public partial class TraktUserImagesObjectJsonReader_Tests
+    public partial class UserImagesObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktUserImagesObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_UserImagesObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktUserImagesObjectJsonReader();
+            var jsonReader = new UserImagesObjectJsonReader();
 
             var userImages = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
@@ -22,9 +22,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserImagesObjectJsonReader_ReadObject_From_Json_String_Not_Valid()
+        public async Task Test_UserImagesObjectJsonReader_ReadObject_From_Json_String_Not_Valid()
         {
-            var jsonReader = new TraktUserImagesObjectJsonReader();
+            var jsonReader = new UserImagesObjectJsonReader();
 
             var userImages = await jsonReader.ReadObjectAsync(JSON_NOT_VALID);
 
@@ -33,18 +33,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserImagesObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_UserImagesObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktUserImagesObjectJsonReader();
+            var jsonReader = new UserImagesObjectJsonReader();
 
             var userImages = await jsonReader.ReadObjectAsync(default(string));
             userImages.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktUserImagesObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_UserImagesObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktUserImagesObjectJsonReader();
+            var jsonReader = new UserImagesObjectJsonReader();
 
             var userImages = await jsonReader.ReadObjectAsync(string.Empty);
             userImages.Should().BeNull();
