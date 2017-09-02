@@ -341,7 +341,7 @@
     <Compile Include="Objects\Get\Users\ITraktUserSettings.cs" />
     <Compile Include="Objects\Get\Users\ITraktUserWatchingItem.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\Factories\AccountSettingsJsonReaderFactory.cs" />
-    <Compile Include="Objects\Get\Users\JsonReader\Factories\TraktSharingTextJsonReaderFactory.cs" />
+    <Compile Include="Objects\Get\Users\JsonReader\Factories\SharingTextJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\Factories\TraktUserCommentJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\Factories\TraktUserFollowerJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Users\JsonReader\Factories\TraktUserFollowRequestJsonReaderFactory.cs" />

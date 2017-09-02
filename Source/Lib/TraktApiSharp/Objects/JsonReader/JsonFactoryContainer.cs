@@ -253,7 +253,7 @@
             s_readerFactories.Add(typeof(ITraktUserSettings), new TraktUserSettingsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserWatchingItem), new TraktUserWatchingItemJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktAccountSettings), new AccountSettingsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSharingText), new TraktSharingTextJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSharingText), new SharingTextJsonReaderFactory());
 
             // user list objects
             s_readerFactories.Add(typeof(ITraktList), new ListJsonReaderFactory());

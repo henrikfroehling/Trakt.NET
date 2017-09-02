@@ -3,7 +3,7 @@
     using Objects.JsonReader;
     using System;
 
-    internal class TraktSharingTextJsonReaderFactory : IJsonReaderFactory<ITraktSharingText>
+    internal class SharingTextJsonReaderFactory : IJsonReaderFactory<ITraktSharingText>
     {
         public IObjectJsonReader<ITraktSharingText> CreateObjectReader() => new TraktSharingTextObjectJsonReader();
 
