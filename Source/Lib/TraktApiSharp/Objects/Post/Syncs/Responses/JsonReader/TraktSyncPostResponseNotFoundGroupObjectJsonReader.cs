@@ -49,7 +49,7 @@
                 var notFoundMoviesReader = new TraktPostResponseNotFoundMovieArrayJsonReader();
                 var notFoundShowsReader = new TraktPostResponseNotFoundShowArrayJsonReader();
                 var notFoundSeasonsReader = new TraktPostResponseNotFoundSeasonArrayJsonReader();
-                var notFoundEpisodesReader = new TraktPostResponseNotFoundEpisodeArrayJsonReader();
+                var notFoundEpisodesReader = new PostResponseNotFoundEpisodeArrayJsonReader();
                 ITraktSyncPostResponseNotFoundGroup syncPostResponseNotFoundGroup = new TraktSyncPostResponseNotFoundGroup();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)

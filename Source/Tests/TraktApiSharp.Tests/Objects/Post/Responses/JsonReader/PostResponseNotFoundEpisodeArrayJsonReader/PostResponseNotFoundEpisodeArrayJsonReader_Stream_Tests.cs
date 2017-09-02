@@ -10,12 +10,12 @@
     using Xunit;
 
     [Category("Objects.Post.Responses.JsonReader")]
-    public partial class TraktPostResponseNotFoundEpisodeArrayJsonReader_Tests
+    public partial class PostResponseNotFoundEpisodeArrayJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Stream_Empty_Array()
+        public async Task Test_PostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Stream_Empty_Array()
         {
-            var jsonReader = new TraktPostResponseNotFoundEpisodeArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundEpisodeArrayJsonReader();
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
@@ -25,9 +25,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Stream_Complete()
+        public async Task Test_PostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Stream_Complete()
         {
-            var jsonReader = new TraktPostResponseNotFoundEpisodeArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundEpisodeArrayJsonReader();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -55,9 +55,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Stream_Not_Valid()
+        public async Task Test_PostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Stream_Not_Valid()
         {
-            var jsonReader = new TraktPostResponseNotFoundEpisodeArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundEpisodeArrayJsonReader();
 
             using (var stream = JSON_NOT_VALID.ToStream())
             {
@@ -80,18 +80,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Stream_Null()
+        public async Task Test_PostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Stream_Null()
         {
-            var jsonReader = new TraktPostResponseNotFoundEpisodeArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundEpisodeArrayJsonReader();
 
             var notFoundEpisodes = await jsonReader.ReadArrayAsync(default(Stream));
             notFoundEpisodes.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Stream_Empty()
+        public async Task Test_PostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Stream_Empty()
         {
-            var jsonReader = new TraktPostResponseNotFoundEpisodeArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundEpisodeArrayJsonReader();
 
             using (var stream = string.Empty.ToStream())
             {

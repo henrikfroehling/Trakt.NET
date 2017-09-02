@@ -8,21 +8,21 @@
     using Xunit;
 
     [Category("Objects.Post.Responses.JsonReader")]
-    public partial class TraktPostResponseNotFoundEpisodeArrayJsonReader_Tests
+    public partial class PostResponseNotFoundEpisodeArrayJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
+        public async Task Test_PostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new TraktPostResponseNotFoundEpisodeArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundEpisodeArrayJsonReader();
 
             var notFoundEpisodes = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             notFoundEpisodes.Should().NotBeNull().And.BeEmpty();
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Json_String_Complete()
+        public async Task Test_PostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
-            var jsonReader = new TraktPostResponseNotFoundEpisodeArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundEpisodeArrayJsonReader();
 
             var notFoundEpisodes = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
             notFoundEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -47,9 +47,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Json_String_Not_Valid()
+        public async Task Test_PostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Json_String_Not_Valid()
         {
-            var jsonReader = new TraktPostResponseNotFoundEpisodeArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundEpisodeArrayJsonReader();
 
             var notFoundEpisodes = await jsonReader.ReadArrayAsync(JSON_NOT_VALID);
             notFoundEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -69,18 +69,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Json_String_Null()
+        public async Task Test_PostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Json_String_Null()
         {
-            var jsonReader = new TraktPostResponseNotFoundEpisodeArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundEpisodeArrayJsonReader();
 
             var notFoundEpisodes = await jsonReader.ReadArrayAsync(default(string));
             notFoundEpisodes.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktPostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Json_String_Empty()
+        public async Task Test_PostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
-            var jsonReader = new TraktPostResponseNotFoundEpisodeArrayJsonReader();
+            var jsonReader = new PostResponseNotFoundEpisodeArrayJsonReader();
 
             var notFoundEpisodes = await jsonReader.ReadArrayAsync(string.Empty);
             notFoundEpisodes.Should().BeNull();

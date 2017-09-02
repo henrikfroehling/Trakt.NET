@@ -50,7 +50,7 @@
                 var notFoundMoviesReader = new TraktPostResponseNotFoundMovieArrayJsonReader();
                 var notFoundShowsReader = new TraktPostResponseNotFoundShowArrayJsonReader();
                 var notFoundSeasonsReader = new TraktPostResponseNotFoundSeasonArrayJsonReader();
-                var notFoundEpisodesReader = new TraktPostResponseNotFoundEpisodeArrayJsonReader();
+                var notFoundEpisodesReader = new PostResponseNotFoundEpisodeArrayJsonReader();
                 var notFoundPeopleReader = new TraktPostResponseNotFoundPersonArrayJsonReader();
                 ITraktUserCustomListItemsPostResponseNotFoundGroup customListItemsPostResponseNotFoundGroup = new TraktUserCustomListItemsPostResponseNotFoundGroup();
 

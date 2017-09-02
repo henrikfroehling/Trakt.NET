@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Post.Responses.JsonReader
 {
-    public partial class TraktPostResponseNotFoundEpisodeArrayJsonReader_Tests
+    public partial class PostResponseNotFoundEpisodeArrayJsonReader_Tests
     {
         private const string JSON_EMPTY_ARRAY = @"[]";
 
