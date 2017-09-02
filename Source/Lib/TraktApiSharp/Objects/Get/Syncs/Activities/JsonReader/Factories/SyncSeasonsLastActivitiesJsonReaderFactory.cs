@@ -5,7 +5,7 @@
 
     internal class SyncSeasonsLastActivitiesJsonReaderFactory : IJsonReaderFactory<ITraktSyncSeasonsLastActivities>
     {
-        public IObjectJsonReader<ITraktSyncSeasonsLastActivities> CreateObjectReader() => new TraktSyncSeasonsLastActivitiesObjectJsonReader();
+        public IObjectJsonReader<ITraktSyncSeasonsLastActivities> CreateObjectReader() => new SyncSeasonsLastActivitiesObjectJsonReader();
 
         public IArrayJsonReader<ITraktSyncSeasonsLastActivities> CreateArrayReader()
         {

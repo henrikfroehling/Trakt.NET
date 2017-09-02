@@ -50,7 +50,7 @@
             {
                 var moviesLastActivitiesReader = new SyncMoviesLastActivitiesObjectJsonReader();
                 var showsLastActivitiesReader = new TraktSyncShowsLastActivitiesObjectJsonReader();
-                var seasonsLastActivitiesReader = new TraktSyncSeasonsLastActivitiesObjectJsonReader();
+                var seasonsLastActivitiesReader = new SyncSeasonsLastActivitiesObjectJsonReader();
                 var episodesLastActivitiesReader = new SyncEpisodesLastActivitiesObjectJsonReader();
                 var commentsLastActivitiesReader = new SyncCommentsLastActivitiesObjectJsonReader();
                 var listsLastActivitiesReader = new SyncListsLastActivitiesObjectJsonReader();
