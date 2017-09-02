@@ -14,7 +14,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktUserCommentObjectJsonReader : IObjectJsonReader<ITraktUserComment>
+    internal class UserCommentObjectJsonReader : IObjectJsonReader<ITraktUserComment>
     {
         private const string PROPERTY_NAME_TYPE = "type";
         private const string PROPERTY_NAME_COMMENT = "comment";

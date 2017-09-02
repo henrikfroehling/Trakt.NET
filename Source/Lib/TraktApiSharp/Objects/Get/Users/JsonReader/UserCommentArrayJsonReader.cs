@@ -40,7 +40,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var userCommentReader = new TraktUserCommentObjectJsonReader();
+                var userCommentReader = new UserCommentObjectJsonReader();
                 //var userCommentReadingTasks = new List<Task<ITraktUserComment>>();
                 var userComments = new List<ITraktUserComment>();
 
