@@ -37,7 +37,7 @@
         [Fact]
         public async Task Test_TraktSyncPlaybackProgressItem_With_Type_Movie_From_Minimal_Json()
         {
-            var jsonReader = new TraktSyncPlaybackProgressItemObjectJsonReader();
+            var jsonReader = new SyncPlaybackProgressItemObjectJsonReader();
             var playbackProgressItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_MINIMAL_JSON) as TraktSyncPlaybackProgressItem;
 
             playbackProgressItem.Should().NotBeNull();
@@ -73,7 +73,7 @@
         [Fact]
         public async Task Test_TraktSyncPlaybackProgressItem_With_Type_Episode_From_Minimal_Json()
         {
-            var jsonReader = new TraktSyncPlaybackProgressItemObjectJsonReader();
+            var jsonReader = new SyncPlaybackProgressItemObjectJsonReader();
             var playbackProgressItem = await jsonReader.ReadObjectAsync(TYPE_EPISODE_MINIMAL_JSON) as TraktSyncPlaybackProgressItem;
 
             playbackProgressItem.Should().NotBeNull();
@@ -134,7 +134,7 @@
         [Fact]
         public async Task Test_TraktSyncPlaybackProgressItem_With_Type_Movie_From_Full_Json()
         {
-            var jsonReader = new TraktSyncPlaybackProgressItemObjectJsonReader();
+            var jsonReader = new SyncPlaybackProgressItemObjectJsonReader();
             var playbackProgressItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_FULL_JSON) as TraktSyncPlaybackProgressItem;
 
             playbackProgressItem.Should().NotBeNull();
@@ -170,7 +170,7 @@
         [Fact]
         public async Task Test_TraktSyncPlaybackProgressItem_With_Type_Episode_From_Full_Json()
         {
-            var jsonReader = new TraktSyncPlaybackProgressItemObjectJsonReader();
+            var jsonReader = new SyncPlaybackProgressItemObjectJsonReader();
             var playbackProgressItem = await jsonReader.ReadObjectAsync(TYPE_EPISODE_FULL_JSON) as TraktSyncPlaybackProgressItem;
 
             playbackProgressItem.Should().NotBeNull();

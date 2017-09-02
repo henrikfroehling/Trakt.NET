@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Syncs.Playback.JsonReader
 {
-    public partial class TraktSyncPlaybackProgressItemObjectJsonReader_Tests
+    public partial class SyncPlaybackProgressItemObjectJsonReader_Tests
     {
         private const string TYPE_MOVIE_JSON_COMPLETE =
             @"{

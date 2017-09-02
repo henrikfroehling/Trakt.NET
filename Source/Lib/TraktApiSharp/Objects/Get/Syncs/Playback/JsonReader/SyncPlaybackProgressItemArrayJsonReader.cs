@@ -40,7 +40,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var playbackProgressItemReader = new TraktSyncPlaybackProgressItemObjectJsonReader();
+                var playbackProgressItemReader = new SyncPlaybackProgressItemObjectJsonReader();
                 //var playbackProgressItemReadingTasks = new List<Task<ITraktSyncPlaybackProgressItem>>();
                 var playbackProgressItems = new List<ITraktSyncPlaybackProgressItem>();
 

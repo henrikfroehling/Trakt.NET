@@ -8,12 +8,12 @@
     using Xunit;
 
     [Category("Objects.Get.Syncs.Playback.JsonReader")]
-    public partial class TraktSyncPlaybackProgressItemObjectJsonReader_Tests
+    public partial class SyncPlaybackProgressItemObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_TraktSyncPlaybackProgressItemObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
+        public void Test_SyncPlaybackProgressItemObjectJsonReader_Implements_IObjectJsonReader_Interface()
         {
-            typeof(TraktSyncPlaybackProgressItemObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktSyncPlaybackProgressItem>));
+            typeof(SyncPlaybackProgressItemObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktSyncPlaybackProgressItem>));
         }
     }
 }

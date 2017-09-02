@@ -9,21 +9,21 @@
     using Xunit;
 
     [Category("Objects.Get.Syncs.Playback.JsonReader")]
-    public partial class TraktSyncPlaybackProgressItemObjectJsonReader_Tests
+    public partial class SyncPlaybackProgressItemObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktSyncPlaybackProgressItemObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_SyncPlaybackProgressItemObjectJsonReader_ReadObject_From_Stream_Null()
         {
-            var jsonReader = new TraktSyncPlaybackProgressItemObjectJsonReader();
+            var jsonReader = new SyncPlaybackProgressItemObjectJsonReader();
 
             var traktPlaybackProgressItem = await jsonReader.ReadObjectAsync(default(Stream));
             traktPlaybackProgressItem.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktSyncPlaybackProgressItemObjectJsonReader_ReadObject_From_Stream_Empty()
+        public async Task Test_SyncPlaybackProgressItemObjectJsonReader_ReadObject_From_Stream_Empty()
         {
-            var jsonReader = new TraktSyncPlaybackProgressItemObjectJsonReader();
+            var jsonReader = new SyncPlaybackProgressItemObjectJsonReader();
 
             using (var stream = string.Empty.ToStream())
             {
