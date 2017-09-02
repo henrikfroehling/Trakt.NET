@@ -279,7 +279,7 @@
             s_readerFactories.Add(typeof(ITraktWatchedMovie), new WatchedMovieJsonReaderFactory());
 
             // watchlist objects
-            s_readerFactories.Add(typeof(ITraktWatchlistItem), new TraktWatchlistItemJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktWatchlistItem), new WatchlistItemJsonReaderFactory());
         }
     }
 }
