@@ -7,12 +7,12 @@
     using Xunit;
 
     [Category("Objects.Get.Users.Lists.JsonReader")]
-    public partial class TraktListIdsObjectJsonReader_Tests
+    public partial class ListIdsObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktListIdsObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_ListIdsObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktListIdsObjectJsonReader();
+            var jsonReader = new ListIdsObjectJsonReader();
 
             var traktListIds = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
@@ -22,9 +22,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktListIdsObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public async Task Test_ListIdsObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new TraktListIdsObjectJsonReader();
+            var jsonReader = new ListIdsObjectJsonReader();
 
             var traktListIds = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_1);
 
@@ -34,9 +34,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktListIdsObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public async Task Test_ListIdsObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new TraktListIdsObjectJsonReader();
+            var jsonReader = new ListIdsObjectJsonReader();
 
             var traktListIds = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_2);
 
@@ -46,9 +46,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktListIdsObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public async Task Test_ListIdsObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new TraktListIdsObjectJsonReader();
+            var jsonReader = new ListIdsObjectJsonReader();
 
             var traktListIds = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_1);
 
@@ -58,9 +58,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktListIdsObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public async Task Test_ListIdsObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new TraktListIdsObjectJsonReader();
+            var jsonReader = new ListIdsObjectJsonReader();
 
             var traktListIds = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_2);
 
@@ -70,9 +70,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktListIdsObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public async Task Test_ListIdsObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new TraktListIdsObjectJsonReader();
+            var jsonReader = new ListIdsObjectJsonReader();
 
             var traktListIds = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_3);
 
@@ -82,18 +82,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktListIdsObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_ListIdsObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktListIdsObjectJsonReader();
+            var jsonReader = new ListIdsObjectJsonReader();
 
             var traktListIds = await jsonReader.ReadObjectAsync(default(string));
             traktListIds.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktListIdsObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_ListIdsObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktListIdsObjectJsonReader();
+            var jsonReader = new ListIdsObjectJsonReader();
 
             var traktListIds = await jsonReader.ReadObjectAsync(string.Empty);
             traktListIds.Should().BeNull();
