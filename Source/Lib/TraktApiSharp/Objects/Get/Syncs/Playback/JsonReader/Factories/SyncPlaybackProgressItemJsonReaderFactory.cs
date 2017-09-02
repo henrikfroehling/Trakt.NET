@@ -6,6 +6,6 @@
     {
         public IObjectJsonReader<ITraktSyncPlaybackProgressItem> CreateObjectReader() => new TraktSyncPlaybackProgressItemObjectJsonReader();
 
-        public IArrayJsonReader<ITraktSyncPlaybackProgressItem> CreateArrayReader() => new TraktSyncPlaybackProgressItemArrayJsonReader();
+        public IArrayJsonReader<ITraktSyncPlaybackProgressItem> CreateArrayReader() => new SyncPlaybackProgressItemArrayJsonReader();
     }
 }
