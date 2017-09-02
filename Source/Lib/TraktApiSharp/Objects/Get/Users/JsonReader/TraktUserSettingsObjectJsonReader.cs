@@ -49,7 +49,7 @@
                 var userReader = new TraktUserObjectJsonReader();
                 var accountSettingsReader = new AccountSettingsObjectJsonReader();
                 var sharingReader = new SharingObjectJsonReader();
-                var sharingTextReader = new TraktSharingTextObjectJsonReader();
+                var sharingTextReader = new SharingTextObjectJsonReader();
 
                 ITraktUserSettings traktUserSettings = new TraktUserSettings();
 
