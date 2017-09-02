@@ -55,7 +55,7 @@
         [Fact]
         public async Task Test_TraktCollectionShow_From_Minimal_Json()
         {
-            var jsonReader = new TraktCollectionShowObjectJsonReader();
+            var jsonReader = new CollectionShowObjectJsonReader();
             var collectionShow = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktCollectionShow;
 
             collectionShow.Should().NotBeNull();
@@ -184,7 +184,7 @@
         [Fact]
         public async Task Test_TraktCollectionShow_From_Full_Json()
         {
-            var jsonReader = new TraktCollectionShowObjectJsonReader();
+            var jsonReader = new CollectionShowObjectJsonReader();
             var collectionShow = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktCollectionShow;
 
             collectionShow.Should().NotBeNull();

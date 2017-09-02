@@ -55,11 +55,11 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var commentReader = new TraktCommentObjectJsonReader();
-                var movieReader = new TraktMovieObjectJsonReader();
-                var showReader = new TraktShowObjectJsonReader();
-                var seasonReader = new TraktSeasonObjectJsonReader();
-                var episodeReader = new TraktEpisodeObjectJsonReader();
+                var commentReader = new CommentObjectJsonReader();
+                var movieReader = new MovieObjectJsonReader();
+                var showReader = new ShowObjectJsonReader();
+                var seasonReader = new SeasonObjectJsonReader();
+                var episodeReader = new EpisodeObjectJsonReader();
                 var listReader = new TraktListObjectJsonReader();
                 ITraktUserComment traktUserComment = new TraktUserComment();
 

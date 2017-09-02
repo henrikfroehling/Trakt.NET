@@ -36,7 +36,7 @@
         [Fact]
         public async Task Test_TraktPerson_From_Minimal_Json()
         {
-            var jsonReader = new TraktPersonObjectJsonReader();
+            var jsonReader = new PersonObjectJsonReader();
             var person = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktPerson;
 
             person.Should().NotBeNull();
@@ -58,7 +58,7 @@
         [Fact]
         public async Task Test_TraktPerson_From_Full_Json()
         {
-            var jsonReader = new TraktPersonObjectJsonReader();
+            var jsonReader = new PersonObjectJsonReader();
             var person = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktPerson;
 
             person.Should().NotBeNull();

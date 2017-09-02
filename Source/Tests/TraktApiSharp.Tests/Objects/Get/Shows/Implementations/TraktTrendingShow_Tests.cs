@@ -53,7 +53,7 @@
         [Fact]
         public async Task Test_TraktTrendingShow_From_Minimal_Json()
         {
-            var jsonReader = new TraktTrendingShowObjectJsonReader();
+            var jsonReader = new TrendingShowObjectJsonReader();
             var trendingShow = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktTrendingShow;
 
             trendingShow.Should().NotBeNull();
@@ -120,7 +120,7 @@
         [Fact]
         public async Task Test_TraktTrendingShow_From_Full_Json()
         {
-            var jsonReader = new TraktTrendingShowObjectJsonReader();
+            var jsonReader = new TrendingShowObjectJsonReader();
             var trendingShow = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktTrendingShow;
 
             trendingShow.Should().NotBeNull();

@@ -30,7 +30,7 @@
         [Fact]
         public async Task Test_TraktGenre_From_Json()
         {
-            var jsonReader = new TraktGenreObjectJsonReader();
+            var jsonReader = new GenreObjectJsonReader();
             var traktGenre = await jsonReader.ReadObjectAsync(JSON) as TraktGenre;
 
             traktGenre.Should().NotBeNull();

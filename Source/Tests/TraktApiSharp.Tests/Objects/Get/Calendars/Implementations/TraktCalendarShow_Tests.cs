@@ -69,7 +69,7 @@
         [Fact]
         public async Task Test_TraktCalendarShow_From_Minimal_Json()
         {
-            var jsonReader = new TraktCalendarShowObjectJsonReader();
+            var jsonReader = new CalendarShowObjectJsonReader();
             var calendarShow = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktCalendarShow;
 
             calendarShow.Should().NotBeNull();
@@ -176,7 +176,7 @@
         [Fact]
         public async Task Test_TraktCalendarShow_From_Full_Json()
         {
-            var jsonReader = new TraktCalendarShowObjectJsonReader();
+            var jsonReader = new CalendarShowObjectJsonReader();
             var calendarShow = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktCalendarShow;
 
             calendarShow.Should().NotBeNull();

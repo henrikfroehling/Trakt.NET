@@ -52,9 +52,9 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var movieObjectReader = new TraktMovieObjectJsonReader();
-                var showObjectReader = new TraktShowObjectJsonReader();
-                var episodeObjectReader = new TraktEpisodeObjectJsonReader();
+                var movieObjectReader = new MovieObjectJsonReader();
+                var showObjectReader = new ShowObjectJsonReader();
+                var episodeObjectReader = new EpisodeObjectJsonReader();
 
                 ITraktSyncPlaybackProgressItem traktPlaybackProgressItem = new TraktSyncPlaybackProgressItem();
 

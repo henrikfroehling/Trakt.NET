@@ -53,7 +53,7 @@
         [Fact]
         public async Task Test_TraktMostAnticipatedShow_From_Minimal_Json()
         {
-            var jsonReader = new TraktMostAnticipatedShowObjectJsonReader();
+            var jsonReader = new MostAnticipatedShowObjectJsonReader();
             var anticipatedShow = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktMostAnticipatedShow;
 
             anticipatedShow.Should().NotBeNull();
@@ -120,7 +120,7 @@
         [Fact]
         public async Task Test_TraktMostAnticipatedShow_From_Full_Json()
         {
-            var jsonReader = new TraktMostAnticipatedShowObjectJsonReader();
+            var jsonReader = new MostAnticipatedShowObjectJsonReader();
             var anticipatedShow = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktMostAnticipatedShow;
 
             anticipatedShow.Should().NotBeNull();

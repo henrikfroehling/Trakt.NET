@@ -43,8 +43,8 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var castReader = new TraktCastMemberArrayJsonReader();
-                var crewReader = new TraktCrewObjectJsonReader();
+                var castReader = new CastMemberArrayJsonReader();
+                var crewReader = new CrewObjectJsonReader();
                 ITraktCastAndCrew traktCastAndCrew = new TraktCastAndCrew();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)

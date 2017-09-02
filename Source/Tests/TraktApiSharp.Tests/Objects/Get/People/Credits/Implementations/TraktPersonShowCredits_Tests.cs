@@ -32,7 +32,7 @@
         [Fact]
         public async Task Test_TraktPersonShowCredits_From_Minimal_Json()
         {
-            var jsonReader = new TraktPersonShowCreditsObjectJsonReader();
+            var jsonReader = new PersonShowCreditsObjectJsonReader();
             var credits = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktPersonShowCredits;
 
             credits.Should().NotBeNull();
@@ -835,7 +835,7 @@
         [Fact]
         public async Task Test_TraktPersonShowCredits_From_Full_Json()
         {
-            var jsonReader = new TraktPersonShowCreditsObjectJsonReader();
+            var jsonReader = new PersonShowCreditsObjectJsonReader();
             var credits = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktPersonShowCredits;
 
             credits.Should().NotBeNull();

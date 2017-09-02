@@ -47,8 +47,8 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var sharingReader = new TraktSharingObjectJsonReader();
-                var movieReader = new TraktMovieObjectJsonReader();
+                var sharingReader = new SharingObjectJsonReader();
+                var movieReader = new MovieObjectJsonReader();
                 ITraktMovieCheckinPostResponse checkinMovieResponse = new TraktMovieCheckinPostResponse();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
