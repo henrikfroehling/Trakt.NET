@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.Watched.JsonReader
 {
-    public partial class TraktWatchedShowEpisodeArrayJsonReader_Tests
+    public partial class WatchedShowEpisodeArrayJsonReader_Tests
     {
         private const string JSON_EMPTY_ARRAY = @"[]";
 
