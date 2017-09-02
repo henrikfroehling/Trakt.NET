@@ -30,7 +30,7 @@
         [Fact]
         public async Task Test_TraktUserRatingsStatistics_From_Json()
         {
-            var jsonReader = new TraktUserRatingsStatisticsObjectJsonReader();
+            var jsonReader = new UserRatingsStatisticsObjectJsonReader();
             var userRatingsStatistics = await jsonReader.ReadObjectAsync(JSON) as TraktUserRatingsStatistics;
 
             userRatingsStatistics.Should().NotBeNull();

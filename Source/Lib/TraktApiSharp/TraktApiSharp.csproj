@@ -401,7 +401,7 @@
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserEpisodesStatisticsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserMoviesStatisticsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserNetworkStatisticsObjectJsonReader.cs" />
-    <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserRatingsStatisticsObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\JsonReader\UserRatingsStatisticsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserSeasonsStatisticsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserShowsStatisticsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Statistics\JsonReader\TraktUserStatisticsObjectJsonReader.cs" />
