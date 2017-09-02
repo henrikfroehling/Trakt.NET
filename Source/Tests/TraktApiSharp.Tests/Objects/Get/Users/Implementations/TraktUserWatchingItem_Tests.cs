@@ -37,7 +37,7 @@
         [Fact]
         public async Task Test_TraktUserWatchingItem_With_Type_Movie_From_Minimal_Json()
         {
-            var jsonReader = new TraktUserWatchingItemObjectJsonReader();
+            var jsonReader = new UserWatchingItemObjectJsonReader();
             var watchingItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_MINIMAL_JSON) as TraktUserWatchingItem;
 
             watchingItem.Should().NotBeNull();
@@ -73,7 +73,7 @@
         [Fact]
         public async Task Test_TraktUserWatchingItem_With_Type_Episode_From_Minimal_Json()
         {
-            var jsonReader = new TraktUserWatchingItemObjectJsonReader();
+            var jsonReader = new UserWatchingItemObjectJsonReader();
             var watchingItem = await jsonReader.ReadObjectAsync(TYPE_EPISODE_MINIMAL_JSON) as TraktUserWatchingItem;
 
             watchingItem.Should().NotBeNull();
@@ -134,7 +134,7 @@
         [Fact]
         public async Task Test_TraktUserWatchingItem_With_Type_Movie_From_Full_Json()
         {
-            var jsonReader = new TraktUserWatchingItemObjectJsonReader();
+            var jsonReader = new UserWatchingItemObjectJsonReader();
             var watchingItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_FULL_JSON) as TraktUserWatchingItem;
 
             watchingItem.Should().NotBeNull();
@@ -170,7 +170,7 @@
         [Fact]
         public async Task Test_TraktUserWatchingItem_With_Type_Episode_From_Full_Json()
         {
-            var jsonReader = new TraktUserWatchingItemObjectJsonReader();
+            var jsonReader = new UserWatchingItemObjectJsonReader();
             var watchingItem = await jsonReader.ReadObjectAsync(TYPE_EPISODE_FULL_JSON) as TraktUserWatchingItem;
 
             watchingItem.Should().NotBeNull();
