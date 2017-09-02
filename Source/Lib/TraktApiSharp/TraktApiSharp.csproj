@@ -527,7 +527,7 @@
     <Compile Include="Objects\Post\Syncs\Collection\Responses\JsonReader\Factories\SyncCollectionPostResponseJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\Responses\JsonReader\Factories\SyncCollectionRemovePostResponseJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\Responses\JsonReader\SyncCollectionPostResponseObjectJsonReader.cs" />
-    <Compile Include="Objects\Post\Syncs\Collection\Responses\JsonReader\TraktSyncCollectionRemovePostResponseObjectJsonReader.cs" />
+    <Compile Include="Objects\Post\Syncs\Collection\Responses\JsonReader\SyncCollectionRemovePostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\ITraktSyncHistoryPostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\ITraktSyncHistoryRemovePostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\ITraktSyncHistoryRemovePostResponseGroup.cs" />
