@@ -539,7 +539,7 @@
     <Compile Include="Objects\Post\Syncs\History\Responses\JsonReader\SyncHistoryPostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\JsonReader\SyncHistoryRemovePostResponseGroupObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\JsonReader\SyncHistoryRemovePostResponseNotFoundGroupObjectJsonReader.cs" />
-    <Compile Include="Objects\Post\Syncs\History\Responses\JsonReader\TraktSyncHistoryRemovePostResponseObjectJsonReader.cs" />
+    <Compile Include="Objects\Post\Syncs\History\Responses\JsonReader\SyncHistoryRemovePostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Syncs\Ratings\Responses\Implementations\TraktSyncRatingsPostResponseNotFoundEpisode.cs" />
     <Compile Include="Objects\Post\Syncs\Ratings\Responses\Implementations\TraktSyncRatingsPostResponseNotFoundMovie.cs" />
     <Compile Include="Objects\Post\Syncs\Ratings\Responses\Implementations\TraktSyncRatingsPostResponseNotFoundSeason.cs" />
