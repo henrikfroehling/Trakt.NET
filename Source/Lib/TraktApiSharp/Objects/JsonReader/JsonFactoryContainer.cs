@@ -124,7 +124,7 @@
             s_readerFactories.Add(typeof(ITraktCollectionMovie), new CollectionMovieJsonReaderFactory());
 
             // comment post response objects
-            s_readerFactories.Add(typeof(ITraktCommentPostResponse), new TraktCommentPostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktCommentPostResponse), new CommentPostResponseJsonReaderFactory());
 
             // episode objects
             s_readerFactories.Add(typeof(ITraktEpisode), new EpisodeJsonReaderFactory());
