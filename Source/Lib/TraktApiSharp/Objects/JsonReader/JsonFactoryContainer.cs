@@ -236,7 +236,7 @@
 
             // user custom list items post response objects
             s_readerFactories.Add(typeof(ITraktUserCustomListItemsPostResponse), new TraktUserCustomListItemsPostResponseJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserCustomListItemsPostResponseGroup), new TraktUserCustomListItemsPostResponseGroupJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktUserCustomListItemsPostResponseGroup), new UserCustomListItemsPostResponseGroupJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserCustomListItemsPostResponseNotFoundGroup), new TraktUserCustomListItemsPostResponseNotFoundGroupJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserCustomListItemsRemovePostResponse), new TraktUserCustomListItemsRemovePostResponseJsonReaderFactory());
 
