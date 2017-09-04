@@ -48,7 +48,7 @@
                 var postResponseMoviesReader = new TraktSyncRatingsPostResponseNotFoundMovieArrayJsonReader();
                 var postResponseShowsReader = new TraktSyncRatingsPostResponseNotFoundShowArrayJsonReader();
                 var postResponseSeasonsReader = new TraktSyncRatingsPostResponseNotFoundSeasonArrayJsonReader();
-                var postResponseEpisodesReader = new TraktSyncRatingsPostResponseNotFoundEpisodeArrayJsonReader();
+                var postResponseEpisodesReader = new SyncRatingsPostResponseNotFoundEpisodeArrayJsonReader();
                 ITraktSyncRatingsPostResponseNotFoundGroup syncRatingsPostResponseNotFoundGroup = new TraktSyncRatingsPostResponseNotFoundGroup();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
