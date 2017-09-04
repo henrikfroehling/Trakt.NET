@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktSyncRatingsPostResponseNotFoundSeasonObjectJsonReader : IObjectJsonReader<ITraktSyncRatingsPostResponseNotFoundSeason>
+    internal class SyncRatingsPostResponseNotFoundSeasonObjectJsonReader : IObjectJsonReader<ITraktSyncRatingsPostResponseNotFoundSeason>
     {
         private const string PROPERTY_NAME_RATING = "rating";
         private const string PROPERTY_NAME_IDS = "ids";
