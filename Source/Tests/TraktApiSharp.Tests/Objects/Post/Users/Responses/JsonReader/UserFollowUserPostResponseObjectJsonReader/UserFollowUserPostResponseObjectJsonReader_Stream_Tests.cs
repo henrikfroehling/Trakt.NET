@@ -10,12 +10,12 @@
     using Xunit;
 
     [Category("Objects.Post.Users.Responses.JsonReader")]
-    public partial class TraktUserFollowUserPostResponseObjectJsonReader_Tests
+    public partial class UserFollowUserPostResponseObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktUserFollowUserPostResponseObjectJsonReader_ReadObject_From_Stream_Complete()
+        public async Task Test_UserFollowUserPostResponseObjectJsonReader_ReadObject_From_Stream_Complete()
         {
-            var jsonReader = new TraktUserFollowUserPostResponseObjectJsonReader();
+            var jsonReader = new UserFollowUserPostResponseObjectJsonReader();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -45,9 +45,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserFollowUserPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_1()
+        public async Task Test_UserFollowUserPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_1()
         {
-            var jsonReader = new TraktUserFollowUserPostResponseObjectJsonReader();
+            var jsonReader = new UserFollowUserPostResponseObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
@@ -77,9 +77,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserFollowUserPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_2()
+        public async Task Test_UserFollowUserPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_2()
         {
-            var jsonReader = new TraktUserFollowUserPostResponseObjectJsonReader();
+            var jsonReader = new UserFollowUserPostResponseObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
@@ -94,9 +94,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserFollowUserPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_1()
+        public async Task Test_UserFollowUserPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_1()
         {
-            var jsonReader = new TraktUserFollowUserPostResponseObjectJsonReader();
+            var jsonReader = new UserFollowUserPostResponseObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
@@ -126,9 +126,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserFollowUserPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_2()
+        public async Task Test_UserFollowUserPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_2()
         {
-            var jsonReader = new TraktUserFollowUserPostResponseObjectJsonReader();
+            var jsonReader = new UserFollowUserPostResponseObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
@@ -143,9 +143,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserFollowUserPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_3()
+        public async Task Test_UserFollowUserPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_3()
         {
-            var jsonReader = new TraktUserFollowUserPostResponseObjectJsonReader();
+            var jsonReader = new UserFollowUserPostResponseObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
@@ -159,18 +159,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserFollowUserPostResponseObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_UserFollowUserPostResponseObjectJsonReader_ReadObject_From_Stream_Null()
         {
-            var jsonReader = new TraktUserFollowUserPostResponseObjectJsonReader();
+            var jsonReader = new UserFollowUserPostResponseObjectJsonReader();
 
             var userFollowUserPostResponse = await jsonReader.ReadObjectAsync(default(Stream));
             userFollowUserPostResponse.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktUserFollowUserPostResponseObjectJsonReader_ReadObject_From_Stream_Empty()
+        public async Task Test_UserFollowUserPostResponseObjectJsonReader_ReadObject_From_Stream_Empty()
         {
-            var jsonReader = new TraktUserFollowUserPostResponseObjectJsonReader();
+            var jsonReader = new UserFollowUserPostResponseObjectJsonReader();
 
             using (var stream = string.Empty.ToStream())
             {
