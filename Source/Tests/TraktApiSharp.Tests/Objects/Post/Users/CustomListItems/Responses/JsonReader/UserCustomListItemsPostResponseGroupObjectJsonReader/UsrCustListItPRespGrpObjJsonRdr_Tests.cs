@@ -8,12 +8,12 @@
     using Xunit;
 
     [Category("Objects.Post.Users.CustomListItems.Responses.JsonReader")]
-    public partial class TraktUserCustomListItemsPostResponseGroupObjectJsonReader_Tests
+    public partial class UserCustomListItemsPostResponseGroupObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_TraktUserCustomListItemsPostResponseGroupObjectJsonReader_Implements_ITraktObjectJsonReader_Interface()
+        public void Test_UserCustomListItemsPostResponseGroupObjectJsonReader_Implements_IObjectJsonReader_Interface()
         {
-            typeof(TraktUserCustomListItemsPostResponseGroupObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktUserCustomListItemsPostResponseGroup>));
+            typeof(UserCustomListItemsPostResponseGroupObjectJsonReader).GetInterfaces().Should().Contain(typeof(IObjectJsonReader<ITraktUserCustomListItemsPostResponseGroup>));
         }
     }
 }

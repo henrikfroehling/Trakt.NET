@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Post.Users.CustomListItems.Responses.JsonReader
 {
-    public partial class TraktUserCustomListItemsPostResponseGroupObjectJsonReader_Tests
+    public partial class UserCustomListItemsPostResponseGroupObjectJsonReader_Tests
     {
         private const string JSON_COMPLETE =
             @"{

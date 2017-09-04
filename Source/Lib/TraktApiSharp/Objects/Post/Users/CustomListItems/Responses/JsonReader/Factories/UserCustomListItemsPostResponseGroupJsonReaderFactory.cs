@@ -5,7 +5,7 @@
 
     internal class UserCustomListItemsPostResponseGroupJsonReaderFactory : IJsonReaderFactory<ITraktUserCustomListItemsPostResponseGroup>
     {
-        public IObjectJsonReader<ITraktUserCustomListItemsPostResponseGroup> CreateObjectReader() => new TraktUserCustomListItemsPostResponseGroupObjectJsonReader();
+        public IObjectJsonReader<ITraktUserCustomListItemsPostResponseGroup> CreateObjectReader() => new UserCustomListItemsPostResponseGroupObjectJsonReader();
 
         public IArrayJsonReader<ITraktUserCustomListItemsPostResponseGroup> CreateArrayReader()
         {
