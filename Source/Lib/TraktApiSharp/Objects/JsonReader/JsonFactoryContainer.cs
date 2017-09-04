@@ -216,7 +216,7 @@
 
             // sync rating post response objects
             s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponse), new SyncRatingsPostResponseJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundEpisode), new TraktSyncRatingsPostResponseNotFoundEpisodeJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundEpisode), new SyncRatingsPostResponseNotFoundEpisodeJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundGroup), new TraktSyncRatingsPostResponseNotFoundGroupJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundMovie), new TraktSyncRatingsPostResponseNotFoundMovieJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundSeason), new TraktSyncRatingsPostResponseNotFoundSeasonJsonReaderFactory());
