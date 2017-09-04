@@ -238,7 +238,7 @@
             s_readerFactories.Add(typeof(ITraktUserCustomListItemsPostResponse), new UserCustomListItemsPostResponseJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserCustomListItemsPostResponseGroup), new UserCustomListItemsPostResponseGroupJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktUserCustomListItemsPostResponseNotFoundGroup), new UserCustomListItemsPostResponseNotFoundGroupJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserCustomListItemsRemovePostResponse), new TraktUserCustomListItemsRemovePostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktUserCustomListItemsRemovePostResponse), new UserCustomListItemsRemovePostResponseJsonReaderFactory());
 
             // user objects
             s_readerFactories.Add(typeof(ITraktUser), new UserJsonReaderFactory());
