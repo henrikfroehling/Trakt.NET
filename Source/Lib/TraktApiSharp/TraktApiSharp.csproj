@@ -568,7 +568,7 @@
     <Compile Include="Objects\Post\Syncs\Ratings\Responses\JsonReader\SyncRatingsPostResponseNotFoundShowArrayJsonReader.cs" />
     <Compile Include="Objects\Post\Syncs\Ratings\Responses\JsonReader\SyncRatingsPostResponseNotFoundShowObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Syncs\Ratings\Responses\JsonReader\SyncRatingsPostResponseObjectJsonReader.cs" />
-    <Compile Include="Objects\Post\Syncs\Ratings\Responses\JsonReader\TraktSyncRatingsRemovePostResponseObjectJsonReader.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\Responses\JsonReader\SyncRatingsRemovePostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Syncs\Responses\ITraktSyncPostResponseGroup.cs" />
     <Compile Include="Objects\Post\Syncs\Responses\ITraktSyncPostResponseNotFoundGroup.cs" />
     <Compile Include="Objects\Post\Syncs\Responses\JsonReader\Factories\TraktSyncPostResponseNotFoundGroupJsonReaderFactory.cs" />
