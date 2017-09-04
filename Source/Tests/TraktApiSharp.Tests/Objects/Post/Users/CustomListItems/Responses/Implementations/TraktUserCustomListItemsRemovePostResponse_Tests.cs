@@ -30,7 +30,7 @@
         [Fact]
         public async Task Test_TraktUserCustomListItemsRemovePostResponse_From_Json()
         {
-            var jsonReader = new TraktUserCustomListItemsRemovePostResponseObjectJsonReader();
+            var jsonReader = new UserCustomListItemsRemovePostResponseObjectJsonReader();
             var customListItemsRemovePostResponse = await jsonReader.ReadObjectAsync(JSON) as TraktUserCustomListItemsRemovePostResponse;
 
             customListItemsRemovePostResponse.Should().NotBeNull();

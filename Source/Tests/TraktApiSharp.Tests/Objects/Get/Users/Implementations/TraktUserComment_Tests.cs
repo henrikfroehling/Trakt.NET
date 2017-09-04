@@ -36,7 +36,7 @@
         [Fact]
         public async Task Test_TraktUserComment_With_Type_Movie_From_Json()
         {
-            var jsonReader = new TraktUserCommentObjectJsonReader();
+            var jsonReader = new UserCommentObjectJsonReader();
             var userComment = await jsonReader.ReadObjectAsync(TYPE_MOVIE_JSON) as TraktUserComment;
 
             userComment.Should().NotBeNull();
@@ -77,7 +77,7 @@
         [Fact]
         public async Task Test_TraktUserComment_With_Type_Show_From_Json()
         {
-            var jsonReader = new TraktUserCommentObjectJsonReader();
+            var jsonReader = new UserCommentObjectJsonReader();
             var userComment = await jsonReader.ReadObjectAsync(TYPE_SHOW_JSON) as TraktUserComment;
 
             userComment.Should().NotBeNull();
@@ -120,7 +120,7 @@
         [Fact]
         public async Task Test_TraktUserComment_With_Type_Season_From_Json()
         {
-            var jsonReader = new TraktUserCommentObjectJsonReader();
+            var jsonReader = new UserCommentObjectJsonReader();
             var userComment = await jsonReader.ReadObjectAsync(TYPE_SEASON_JSON) as TraktUserComment;
 
             userComment.Should().NotBeNull();
@@ -161,7 +161,7 @@
         [Fact]
         public async Task Test_TraktUserComment_With_Type_Episode_From_Json()
         {
-            var jsonReader = new TraktUserCommentObjectJsonReader();
+            var jsonReader = new UserCommentObjectJsonReader();
             var userComment = await jsonReader.ReadObjectAsync(TYPE_EPISODE_JSON) as TraktUserComment;
 
             userComment.Should().NotBeNull();
@@ -213,7 +213,7 @@
         [Fact]
         public async Task Test_TraktUserComment_With_Type_List_From_Json()
         {
-            var jsonReader = new TraktUserCommentObjectJsonReader();
+            var jsonReader = new UserCommentObjectJsonReader();
             var userComment = await jsonReader.ReadObjectAsync(TYPE_LIST_JSON) as TraktUserComment;
 
             userComment.Should().NotBeNull();

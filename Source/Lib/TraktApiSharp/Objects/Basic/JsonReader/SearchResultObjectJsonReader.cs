@@ -58,7 +58,7 @@
                 var showObjectReader = new ShowObjectJsonReader();
                 var episodeObjectReader = new EpisodeObjectJsonReader();
                 var personObjectReader = new PersonObjectJsonReader();
-                var listObjectReader = new TraktListObjectJsonReader();
+                var listObjectReader = new ListObjectJsonReader();
                 ITraktSearchResult traktSearchResult = new TraktSearchResult();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)

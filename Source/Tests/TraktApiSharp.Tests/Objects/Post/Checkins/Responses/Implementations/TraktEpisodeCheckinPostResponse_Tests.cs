@@ -33,7 +33,7 @@
         [Fact]
         public async Task Test_TraktEpisodeCheckinPostResponse_From_Json()
         {
-            var jsonReader = new TraktEpisodeCheckinPostResponseObjectJsonReader();
+            var jsonReader = new EpisodeCheckinPostResponseObjectJsonReader();
             var checkinEpisodeResponse = await jsonReader.ReadObjectAsync(JSON) as TraktEpisodeCheckinPostResponse;
 
             checkinEpisodeResponse.Should().NotBeNull();

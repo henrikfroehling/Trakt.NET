@@ -31,7 +31,7 @@
         [Fact]
         public async Task Test_TraktWatchedShowEpisode_From_Json()
         {
-            var jsonReader = new TraktWatchedShowEpisodeObjectJsonReader();
+            var jsonReader = new WatchedShowEpisodeObjectJsonReader();
             var watchedShowEpisode = await jsonReader.ReadObjectAsync(JSON) as TraktWatchedShowEpisode;
 
             watchedShowEpisode.Should().NotBeNull();

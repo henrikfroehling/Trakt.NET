@@ -33,7 +33,7 @@
         [Fact]
         public async Task Test_TraktUserCustomListItemsPostResponseNotFoundGroup_From_Json()
         {
-            var jsonReader = new TraktUserCustomListItemsPostResponseNotFoundGroupObjectJsonReader();
+            var jsonReader = new UserCustomListItemsPostResponseNotFoundGroupObjectJsonReader();
             var customListItemsPostResponseNotFoundGroup = await jsonReader.ReadObjectAsync(JSON) as TraktUserCustomListItemsPostResponseNotFoundGroup;
 
             customListItemsPostResponseNotFoundGroup.Should().NotBeNull();

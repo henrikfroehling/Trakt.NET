@@ -29,7 +29,7 @@
         [Fact]
         public async Task Test_TraktSharingText_From_Json()
         {
-            var jsonReader = new TraktSharingTextObjectJsonReader();
+            var jsonReader = new SharingTextObjectJsonReader();
             var sharingText = await jsonReader.ReadObjectAsync(JSON) as TraktSharingText;
 
             sharingText.Should().NotBeNull();

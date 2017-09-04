@@ -28,7 +28,7 @@
         [Fact]
         public async Task Test_TraktPostResponseNotFoundSeason_From_Json()
         {
-            var jsonReader = new TraktPostResponseNotFoundSeasonObjectJsonReader();
+            var jsonReader = new PostResponseNotFoundSeasonObjectJsonReader();
             var postResponseNotFoundSeason = await jsonReader.ReadObjectAsync(JSON) as TraktPostResponseNotFoundSeason;
 
             postResponseNotFoundSeason.Should().NotBeNull();

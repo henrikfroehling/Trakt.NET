@@ -40,7 +40,7 @@
         [Fact]
         public async Task Test_TraktMovieCheckinPostResponse_From_Json()
         {
-            var jsonReader = new TraktCommentPostResponseObjectJsonReader();
+            var jsonReader = new CommentPostResponseObjectJsonReader();
             var traktCommentPostResponse = await jsonReader.ReadObjectAsync(JSON) as TraktCommentPostResponse;
 
             traktCommentPostResponse.Should().NotBeNull();

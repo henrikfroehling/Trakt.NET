@@ -40,7 +40,7 @@
         [Fact]
         public async Task Test_TraktUser_From_Minimal_Json()
         {
-            var jsonReader = new TraktUserObjectJsonReader();
+            var jsonReader = new UserObjectJsonReader();
             var user = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktUser;
 
             user.Should().NotBeNull();
@@ -62,7 +62,7 @@
         [Fact]
         public async Task Test_TraktUser_From_Full_Json()
         {
-            var jsonReader = new TraktUserObjectJsonReader();
+            var jsonReader = new UserObjectJsonReader();
             var user = await jsonReader.ReadObjectAsync(FULL_JSON) as TraktUser;
 
             user.Should().NotBeNull();

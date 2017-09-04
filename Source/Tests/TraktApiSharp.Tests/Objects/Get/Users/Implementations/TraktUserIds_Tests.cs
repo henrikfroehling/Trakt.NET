@@ -28,7 +28,7 @@
         [Fact]
         public async Task Test_TraktUserIds_From_Json()
         {
-            var jsonReader = new TraktUserIdsObjectJsonReader();
+            var jsonReader = new UserIdsObjectJsonReader();
             var userIds = await jsonReader.ReadObjectAsync(JSON) as TraktUserIds;
 
             userIds.Should().NotBeNull();

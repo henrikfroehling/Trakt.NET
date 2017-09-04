@@ -34,7 +34,7 @@
         [Fact]
         public async Task Test_TraktEpisodeScrobblePostResponse_From_Json()
         {
-            var jsonReader = new TraktEpisodeScrobblePostResponseObjectJsonReader();
+            var jsonReader = new EpisodeScrobblePostResponseObjectJsonReader();
             var episodeScrobbleResponse = await jsonReader.ReadObjectAsync(JSON) as TraktEpisodeScrobblePostResponse;
 
             episodeScrobbleResponse.Should().NotBeNull();

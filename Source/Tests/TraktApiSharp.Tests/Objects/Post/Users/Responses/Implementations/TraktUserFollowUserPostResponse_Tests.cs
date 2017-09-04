@@ -30,7 +30,7 @@
         [Fact]
         public async Task Test_TraktUserFollowUserPostResponse_From_Json()
         {
-            var jsonReader = new TraktUserFollowUserPostResponseObjectJsonReader();
+            var jsonReader = new UserFollowUserPostResponseObjectJsonReader();
             var userFollowUserPostResponse = await jsonReader.ReadObjectAsync(JSON) as TraktUserFollowUserPostResponse;
 
             userFollowUserPostResponse.Should().NotBeNull();

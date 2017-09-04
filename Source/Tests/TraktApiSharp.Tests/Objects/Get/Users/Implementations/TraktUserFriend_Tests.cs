@@ -30,7 +30,7 @@
         [Fact]
         public async Task Test_TraktUserFriend_From_Json()
         {
-            var jsonReader = new TraktUserFriendObjectJsonReader();
+            var jsonReader = new UserFriendObjectJsonReader();
             var userFriend = await jsonReader.ReadObjectAsync(JSON) as TraktUserFriend;
 
             userFriend.Should().NotBeNull();
