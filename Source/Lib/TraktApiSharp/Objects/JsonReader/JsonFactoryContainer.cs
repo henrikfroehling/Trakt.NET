@@ -232,7 +232,7 @@
 
             // sync watchlist post response objects
             s_readerFactories.Add(typeof(ITraktSyncWatchlistPostResponse), new SyncWatchlistPostResponseJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncWatchlistRemovePostResponse), new TraktSyncWatchlistRemovePostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncWatchlistRemovePostResponse), new SyncWatchlistRemovePostResponseJsonReaderFactory());
 
             // user custom list items post response objects
             s_readerFactories.Add(typeof(ITraktUserCustomListItemsPostResponse), new TraktUserCustomListItemsPostResponseJsonReaderFactory());

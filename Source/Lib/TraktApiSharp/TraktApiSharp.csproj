@@ -578,7 +578,7 @@
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\ITraktSyncWatchlistPostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\ITraktSyncWatchlistRemovePostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\JsonReader\Factories\SyncWatchlistPostResponseJsonReaderFactory.cs" />
-    <Compile Include="Objects\Post\Syncs\Watchlist\Responses\JsonReader\Factories\TraktSyncWatchlistRemovePostResponseJsonReaderFactory.cs" />
+    <Compile Include="Objects\Post\Syncs\Watchlist\Responses\JsonReader\Factories\SyncWatchlistRemovePostResponseJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\JsonReader\TraktSyncWatchlistPostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\JsonReader\TraktSyncWatchlistRemovePostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\ITraktUserCustomListItemsPostResponse.cs" />
