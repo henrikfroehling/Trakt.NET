@@ -45,7 +45,7 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var groupReader = new SyncPostResponseGroupObjectJsonReader();
-                var notFoundGroupReader = new TraktSyncPostResponseNotFoundGroupObjectJsonReader();
+                var notFoundGroupReader = new SyncPostResponseNotFoundGroupObjectJsonReader();
                 ITraktSyncWatchlistRemovePostResponse syncWatchlistRemovePostResponse = new TraktSyncWatchlistRemovePostResponse();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
