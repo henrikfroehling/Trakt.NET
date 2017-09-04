@@ -227,7 +227,7 @@
             s_readerFactories.Add(typeof(ITraktSyncPlaybackProgressItem), new SyncPlaybackProgressItemJsonReaderFactory());
 
             // sync response objects
-            s_readerFactories.Add(typeof(ITraktSyncPostResponseGroup), new TraktSyncPostResponseGroupJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncPostResponseGroup), new SyncPostResponseGroupJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncPostResponseNotFoundGroup), new TraktSyncPostResponseNotFoundGroupJsonReaderFactory());
 
             // sync watchlist post response objects
