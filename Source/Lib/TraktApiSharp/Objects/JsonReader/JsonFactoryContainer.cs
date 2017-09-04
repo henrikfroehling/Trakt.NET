@@ -221,7 +221,7 @@
             s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundMovie), new SyncRatingsPostResponseNotFoundMovieJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundSeason), new SyncRatingsPostResponseNotFoundSeasonJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundShow), new SyncRatingsPostResponseNotFoundShowJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncRatingsRemovePostResponse), new TraktSyncRatingsRemovePostResponseJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktSyncRatingsRemovePostResponse), new SyncRatingsRemovePostResponseJsonReaderFactory());
 
             // sync playback objects
             s_readerFactories.Add(typeof(ITraktSyncPlaybackProgressItem), new SyncPlaybackProgressItemJsonReaderFactory());
