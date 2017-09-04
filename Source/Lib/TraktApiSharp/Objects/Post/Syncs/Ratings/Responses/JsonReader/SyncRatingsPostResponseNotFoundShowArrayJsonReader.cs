@@ -40,7 +40,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var syncRatingsPostResponseNotFoundShowObjectReader = new TraktSyncRatingsPostResponseNotFoundShowObjectJsonReader();
+                var syncRatingsPostResponseNotFoundShowObjectReader = new SyncRatingsPostResponseNotFoundShowObjectJsonReader();
                 //var syncRatingsPostResponseNotFoundShowReadingTasks = new List<Task<ITraktSyncRatingsPostResponseNotFoundShow>>();
                 var syncRatingsPostResponseNotFoundShows = new List<ITraktSyncRatingsPostResponseNotFoundShow>();
 
