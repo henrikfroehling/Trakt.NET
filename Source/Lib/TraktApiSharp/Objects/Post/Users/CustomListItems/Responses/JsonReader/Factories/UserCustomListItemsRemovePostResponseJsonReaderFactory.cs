@@ -5,7 +5,7 @@
 
     internal class UserCustomListItemsRemovePostResponseJsonReaderFactory : IJsonReaderFactory<ITraktUserCustomListItemsRemovePostResponse>
     {
-        public IObjectJsonReader<ITraktUserCustomListItemsRemovePostResponse> CreateObjectReader() => new TraktUserCustomListItemsRemovePostResponseObjectJsonReader();
+        public IObjectJsonReader<ITraktUserCustomListItemsRemovePostResponse> CreateObjectReader() => new UserCustomListItemsRemovePostResponseObjectJsonReader();
 
         public IArrayJsonReader<ITraktUserCustomListItemsRemovePostResponse> CreateArrayReader()
         {

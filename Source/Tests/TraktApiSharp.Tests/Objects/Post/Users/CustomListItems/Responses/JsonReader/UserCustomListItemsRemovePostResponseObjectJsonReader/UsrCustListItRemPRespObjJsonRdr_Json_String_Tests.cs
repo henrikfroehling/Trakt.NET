@@ -8,12 +8,12 @@
     using Xunit;
 
     [Category("Objects.Post.Users.CustomListItems.Responses.JsonReader")]
-    public partial class TraktUserCustomListItemsRemovePostResponseObjectJsonReader_Tests
+    public partial class UserCustomListItemsRemovePostResponseObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_TraktUserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_UserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new TraktUserCustomListItemsRemovePostResponseObjectJsonReader();
+            var jsonReader = new UserCustomListItemsRemovePostResponseObjectJsonReader();
 
             var customListItemsRemovePostResponse = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
@@ -137,9 +137,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public async Task Test_UserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new TraktUserCustomListItemsRemovePostResponseObjectJsonReader();
+            var jsonReader = new UserCustomListItemsRemovePostResponseObjectJsonReader();
 
             var customListItemsRemovePostResponse = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_1);
 
@@ -258,9 +258,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public async Task Test_UserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new TraktUserCustomListItemsRemovePostResponseObjectJsonReader();
+            var jsonReader = new UserCustomListItemsRemovePostResponseObjectJsonReader();
 
             var customListItemsRemovePostResponse = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_2);
 
@@ -277,9 +277,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public async Task Test_UserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new TraktUserCustomListItemsRemovePostResponseObjectJsonReader();
+            var jsonReader = new UserCustomListItemsRemovePostResponseObjectJsonReader();
 
             var customListItemsRemovePostResponse = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_1);
 
@@ -398,9 +398,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public async Task Test_UserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new TraktUserCustomListItemsRemovePostResponseObjectJsonReader();
+            var jsonReader = new UserCustomListItemsRemovePostResponseObjectJsonReader();
 
             var customListItemsRemovePostResponse = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_2);
 
@@ -417,9 +417,9 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public async Task Test_UserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new TraktUserCustomListItemsRemovePostResponseObjectJsonReader();
+            var jsonReader = new UserCustomListItemsRemovePostResponseObjectJsonReader();
 
             var customListItemsRemovePostResponse = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_3);
 
@@ -429,18 +429,18 @@
         }
 
         [Fact]
-        public async Task Test_TraktUserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_UserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new TraktUserCustomListItemsRemovePostResponseObjectJsonReader();
+            var jsonReader = new UserCustomListItemsRemovePostResponseObjectJsonReader();
 
             var customListItemsRemovePostResponse = await jsonReader.ReadObjectAsync(default(string));
             customListItemsRemovePostResponse.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_TraktUserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_UserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new TraktUserCustomListItemsRemovePostResponseObjectJsonReader();
+            var jsonReader = new UserCustomListItemsRemovePostResponseObjectJsonReader();
 
             var customListItemsRemovePostResponse = await jsonReader.ReadObjectAsync(string.Empty);
             customListItemsRemovePostResponse.Should().BeNull();
