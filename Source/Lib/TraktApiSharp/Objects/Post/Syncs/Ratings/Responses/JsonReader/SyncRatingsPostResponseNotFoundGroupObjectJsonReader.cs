@@ -47,7 +47,7 @@
             {
                 var postResponseMoviesReader = new SyncRatingsPostResponseNotFoundMovieArrayJsonReader();
                 var postResponseShowsReader = new TraktSyncRatingsPostResponseNotFoundShowArrayJsonReader();
-                var postResponseSeasonsReader = new TraktSyncRatingsPostResponseNotFoundSeasonArrayJsonReader();
+                var postResponseSeasonsReader = new SyncRatingsPostResponseNotFoundSeasonArrayJsonReader();
                 var postResponseEpisodesReader = new SyncRatingsPostResponseNotFoundEpisodeArrayJsonReader();
                 ITraktSyncRatingsPostResponseNotFoundGroup syncRatingsPostResponseNotFoundGroup = new TraktSyncRatingsPostResponseNotFoundGroup();
 
