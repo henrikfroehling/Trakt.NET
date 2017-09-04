@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktSyncRatingsPostResponseNotFoundGroupObjectJsonReader : IObjectJsonReader<ITraktSyncRatingsPostResponseNotFoundGroup>
+    internal class SyncRatingsPostResponseNotFoundGroupObjectJsonReader : IObjectJsonReader<ITraktSyncRatingsPostResponseNotFoundGroup>
     {
         private const string PROPERTY_NAME_MOVIES = "movies";
         private const string PROPERTY_NAME_SHOWS = "shows";
