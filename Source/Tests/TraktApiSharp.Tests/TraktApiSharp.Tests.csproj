@@ -1083,11 +1083,11 @@
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\UserCustomListItemsPostResponseNotFoundGroupObjectJsonReader\UsrCustListItPRespNFGrpObjJsonRdr_Stream_Tests.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\UserCustomListItemsPostResponseNotFoundGroupObjectJsonReader\UsrCustListItPRespNFGrpObjJsonRdr_Tests.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\UserCustomListItemsPostResponseNotFoundGroupObjectJsonReader\UsrCustListItPRespNFGrpObjJsonRdr_Tests_Json_Data.cs" />
-    <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\TraktUserCustomListItemsPostResponseObjectJsonReader\TraktUsrCustListItPRespObjJsonRdr_Json_String_Tests.cs" />
-    <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\TraktUserCustomListItemsPostResponseObjectJsonReader\TraktUsrCustListItPRespObjJsonRdr_Reader_Tests.cs" />
-    <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\TraktUserCustomListItemsPostResponseObjectJsonReader\TraktUsrCustListItPRespObjJsonRdr_Stream_Tests.cs" />
-    <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\TraktUserCustomListItemsPostResponseObjectJsonReader\TraktUsrCustListItPRespObjJsonRdr_Tests.cs" />
-    <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\TraktUserCustomListItemsPostResponseObjectJsonReader\TraktUsrCustListItPRespObjJsonRdr_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\UserCustomListItemsPostResponseObjectJsonReader\UsrCustListItPRespObjJsonRdr_Json_String_Tests.cs" />
+    <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\UserCustomListItemsPostResponseObjectJsonReader\UsrCustListItPRespObjJsonRdr_Reader_Tests.cs" />
+    <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\UserCustomListItemsPostResponseObjectJsonReader\UsrCustListItPRespObjJsonRdr_Stream_Tests.cs" />
+    <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\UserCustomListItemsPostResponseObjectJsonReader\UsrCustListItPRespObjJsonRdr_Tests.cs" />
+    <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\UserCustomListItemsPostResponseObjectJsonReader\UsrCustListItPRespObjJsonRdr_Tests_Json_Data.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\TraktUserCustomListItemsRemovePostResponseObjectJsonReader\TraktUsrCustListItRemPRespObjJsonRdr_Json_String_Tests.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\TraktUserCustomListItemsRemovePostResponseObjectJsonReader\TraktUsrCustListItRemPRespObjJsonRdr_Reader_Tests.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\TraktUserCustomListItemsRemovePostResponseObjectJsonReader\TraktUsrCustListItRemPRespObjJsonRdr_Stream_Tests.cs" />

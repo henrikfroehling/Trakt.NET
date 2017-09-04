@@ -31,7 +31,7 @@
         [Fact]
         public async Task Test_TraktUserCustomListItemsPostResponse_From_Json()
         {
-            var jsonReader = new TraktUserCustomListItemsPostResponseObjectJsonReader();
+            var jsonReader = new UserCustomListItemsPostResponseObjectJsonReader();
             var customListItemsPostResponse = await jsonReader.ReadObjectAsync(JSON) as TraktUserCustomListItemsPostResponse;
 
             customListItemsPostResponse.Should().NotBeNull();
