@@ -565,7 +565,7 @@
     <Compile Include="Objects\Post\Syncs\Ratings\Responses\JsonReader\SyncRatingsPostResponseNotFoundMovieObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Syncs\Ratings\Responses\JsonReader\SyncRatingsPostResponseNotFoundSeasonArrayJsonReader.cs" />
     <Compile Include="Objects\Post\Syncs\Ratings\Responses\JsonReader\SyncRatingsPostResponseNotFoundSeasonObjectJsonReader.cs" />
-    <Compile Include="Objects\Post\Syncs\Ratings\Responses\JsonReader\TraktSyncRatingsPostResponseNotFoundShowArrayJsonReader.cs" />
+    <Compile Include="Objects\Post\Syncs\Ratings\Responses\JsonReader\SyncRatingsPostResponseNotFoundShowArrayJsonReader.cs" />
     <Compile Include="Objects\Post\Syncs\Ratings\Responses\JsonReader\TraktSyncRatingsPostResponseNotFoundShowObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Syncs\Ratings\Responses\JsonReader\TraktSyncRatingsPostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Syncs\Ratings\Responses\JsonReader\TraktSyncRatingsRemovePostResponseObjectJsonReader.cs" />
