@@ -590,7 +590,7 @@
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\Factories\UserCustomListItemsPostResponseNotFoundGroupJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\Factories\UserCustomListItemsRemovePostResponseJsonReaderFactory.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\UserCustomListItemsPostResponseGroupObjectJsonReader.cs" />
-    <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\TraktUserCustomListItemsPostResponseNotFoundGroupObjectJsonReader.cs" />
+    <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\UserCustomListItemsPostResponseNotFoundGroupObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\TraktUserCustomListItemsPostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\JsonReader\TraktUserCustomListItemsRemovePostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Users\Responses\ITraktUserFollowUserPostResponse.cs" />

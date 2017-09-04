@@ -45,7 +45,7 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var responseGroupReader = new UserCustomListItemsPostResponseGroupObjectJsonReader();
-                var responseNotFoundGroupReader = new TraktUserCustomListItemsPostResponseNotFoundGroupObjectJsonReader();
+                var responseNotFoundGroupReader = new UserCustomListItemsPostResponseNotFoundGroupObjectJsonReader();
                 ITraktUserCustomListItemsPostResponse customListItemsPostResponse = new TraktUserCustomListItemsPostResponse();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
