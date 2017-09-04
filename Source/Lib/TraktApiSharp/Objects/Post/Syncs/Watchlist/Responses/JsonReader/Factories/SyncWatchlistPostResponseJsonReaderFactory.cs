@@ -5,7 +5,7 @@
 
     internal class SyncWatchlistPostResponseJsonReaderFactory : IJsonReaderFactory<ITraktSyncWatchlistPostResponse>
     {
-        public IObjectJsonReader<ITraktSyncWatchlistPostResponse> CreateObjectReader() => new TraktSyncWatchlistPostResponseObjectJsonReader();
+        public IObjectJsonReader<ITraktSyncWatchlistPostResponse> CreateObjectReader() => new SyncWatchlistPostResponseObjectJsonReader();
 
         public IArrayJsonReader<ITraktSyncWatchlistPostResponse> CreateArrayReader()
         {

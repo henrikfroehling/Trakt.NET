@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TraktSyncWatchlistPostResponseObjectJsonReader : IObjectJsonReader<ITraktSyncWatchlistPostResponse>
+    internal class SyncWatchlistPostResponseObjectJsonReader : IObjectJsonReader<ITraktSyncWatchlistPostResponse>
     {
         private const string PROPERTY_NAME_ADDED = "added";
         private const string PROPERTY_NAME_EXISTING = "existing";
