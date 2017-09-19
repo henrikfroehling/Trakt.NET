@@ -76,6 +76,7 @@
     <Compile Include="Objects\Basic\Implementations\TraktIds_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktImage_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktMetadata_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktNetwork_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktRating_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktSearchResult_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktSharing_Tests.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Objects\Basic\Interfaces\ITraktIds_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktImage_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktMetadata_Tests.cs" />
+    <Compile Include="Objects\Basic\Interfaces\ITraktNetwork_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktRating_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktSearchResult_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktSharing_Tests.cs" />
@@ -157,6 +159,16 @@
     <Compile Include="Objects\Basic\JsonReader\MetadataObjectJsonReader\MetadataObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\MetadataObjectJsonReader\MetadataObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\MetadataObjectJsonReader\MetadataObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkArrayJsonReader\NetworkArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkArrayJsonReader\NetworkArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkArrayJsonReader\NetworkArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkArrayJsonReader\NetworkArrayJsonReader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkArrayJsonReader\NetworkArrayJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkObjectJsonReader\NetworkObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkObjectJsonReader\NetworkObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkObjectJsonReader\NetworkObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkObjectJsonReader\NetworkObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkObjectJsonReader\NetworkObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\JsonReader\RatingObjectJsonReader\RatingObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\RatingObjectJsonReader\RatingObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\RatingObjectJsonReader\RatingObjectJsonReader_Stream_Tests.cs" />

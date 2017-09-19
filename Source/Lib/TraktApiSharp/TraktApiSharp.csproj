@@ -118,6 +118,7 @@
     <Compile Include="Exceptions\TraktValidationException.cs" />
     <Compile Include="Modules\ITraktModule.cs" />
     <Compile Include="Objects\Basic\IIds.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktNetwork.cs" />
     <Compile Include="Objects\Basic\ITraktCastAndCrew.cs" />
     <Compile Include="Objects\Basic\ITraktCastMember.cs" />
     <Compile Include="Objects\Basic\ITraktComment.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Objects\Basic\ITraktIds.cs" />
     <Compile Include="Objects\Basic\ITraktImage.cs" />
     <Compile Include="Objects\Basic\ITraktMetadata.cs" />
+    <Compile Include="Objects\Basic\ITraktNetwork.cs" />
     <Compile Include="Objects\Basic\ITraktRating.cs" />
     <Compile Include="Objects\Basic\ITraktSearchResult.cs" />
     <Compile Include="Objects\Basic\ITraktSharing.cs" />
@@ -143,6 +145,7 @@
     <Compile Include="Objects\Basic\JsonReader\Factories\IdsJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\ImageJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\MetadataJsonReaderFactory.cs" />
+    <Compile Include="Objects\Basic\JsonReader\Factories\NetworkJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\RatingJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\SearchResultJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\SharingJsonReaderFactory.cs" />
@@ -156,6 +159,8 @@
     <Compile Include="Objects\Basic\JsonReader\CrewMemberObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\CrewObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\GenreArrayJsonReader.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkArrayJsonReader.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\SearchResultArrayJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\SearchResultObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarMovie.cs" />
