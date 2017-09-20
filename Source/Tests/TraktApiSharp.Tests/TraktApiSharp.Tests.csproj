@@ -33,22 +33,39 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentAssertions, Version=4.19.3.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\FluentAssertions.4.19.3\lib\net45\FluentAssertions.dll</HintPath>
+    <Reference Include="FluentAssertions, Version=4.19.4.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\FluentAssertions.4.19.4\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
-    <Reference Include="FluentAssertions.Core, Version=4.19.3.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\FluentAssertions.4.19.3\lib\net45\FluentAssertions.Core.dll</HintPath>
+    <Reference Include="FluentAssertions.Core, Version=4.19.4.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\FluentAssertions.4.19.4\lib\net45\FluentAssertions.Core.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="RichardSzalay.MockHttp, Version=3.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\RichardSzalay.MockHttp.3.2.1\lib\net45\RichardSzalay.MockHttp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Net.Http.4.3.3\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Security.Cryptography.X509Certificates.4.3.1\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\xunit.abstractions.2.0.1\lib\net35\xunit.abstractions.dll</HintPath>
@@ -65,7 +82,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\TraktClient_Tests.cs" />
     <Compile Include="Modules\ITraktModule_Tests.cs" />
+    <Compile Include="Modules\TraktNetworksModule\TraktNetworksModule_GetNetworks_Tests.cs" />
+    <Compile Include="Modules\TraktNetworksModule\TraktNetworksModule_Tests.cs" />
+    <Compile Include="Modules\TraktNetworksModule\TraktNetworksModule_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCastAndCrew_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCastMember_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktComment_Tests.cs" />
@@ -76,6 +97,7 @@
     <Compile Include="Objects\Basic\Implementations\TraktIds_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktImage_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktMetadata_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktNetwork_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktRating_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktSearchResult_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktSharing_Tests.cs" />
@@ -92,6 +114,7 @@
     <Compile Include="Objects\Basic\Interfaces\ITraktIds_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktImage_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktMetadata_Tests.cs" />
+    <Compile Include="Objects\Basic\Interfaces\ITraktNetwork_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktRating_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktSearchResult_Tests.cs" />
     <Compile Include="Objects\Basic\Interfaces\ITraktSharing_Tests.cs" />
@@ -157,6 +180,16 @@
     <Compile Include="Objects\Basic\JsonReader\MetadataObjectJsonReader\MetadataObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\MetadataObjectJsonReader\MetadataObjectJsonReader_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\MetadataObjectJsonReader\MetadataObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkArrayJsonReader\NetworkArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkArrayJsonReader\NetworkArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkArrayJsonReader\NetworkArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkArrayJsonReader\NetworkArrayJsonReader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkArrayJsonReader\NetworkArrayJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkObjectJsonReader\NetworkObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkObjectJsonReader\NetworkObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkObjectJsonReader\NetworkObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkObjectJsonReader\NetworkObjectJsonReader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\NetworkObjectJsonReader\NetworkObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\JsonReader\RatingObjectJsonReader\RatingObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\RatingObjectJsonReader\RatingObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\RatingObjectJsonReader\RatingObjectJsonReader_Stream_Tests.cs" />
@@ -1190,6 +1223,7 @@
     <Compile Include="Requests\Movies\MovieSummaryRequest_Tests.cs" />
     <Compile Include="Requests\Movies\MovieTranslationsRequest_Tests.cs" />
     <Compile Include="Requests\Movies\MovieWatchingUsersRequest_Tests.cs" />
+    <Compile Include="Requests\Networks\NetworksRequest_Tests.cs" />
     <Compile Include="Requests\Parameters\TraktExtendedInfo_Tests.cs" />
     <Compile Include="Requests\People\APersonRequest%271_Tests.cs" />
     <Compile Include="Requests\People\PersonMovieCreditsRequest_Tests.cs" />
@@ -1320,6 +1354,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="xunit.runner.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
