@@ -65,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\TraktClient_Tests.cs" />
     <Compile Include="Modules\ITraktModule_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCastAndCrew_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCastMember_Tests.cs" />

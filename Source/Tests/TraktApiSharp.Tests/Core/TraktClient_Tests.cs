@@ -1,17 +1,18 @@
-﻿namespace TraktApiSharp.Tests
+﻿namespace TraktApiSharp.Tests.Core
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Traits;
     using TraktApiSharp.Authentication;
+    using Xunit;
 
-    [TestClass]
-    public class TraktClientTests
+    [Category("Core")]
+    public class TraktClient_Tests
     {
         private const string CLIENT_ID = "CLIENT_ID";
         private const string CLIENT_SECRET = "CLIENT_SECRET";
 
-        [TestMethod]
-        public void TestTraktClientDefaultConstructor()
+        [Fact]
+        public void Test_TraktClient_Default_Constructor()
         {
             var client = new TraktClient();
 
@@ -21,8 +22,8 @@
             client.Authorization.IsExpired.Should().BeTrue();
         }
 
-        [TestMethod]
-        public void TestTraktClientParameterConstructor()
+        [Fact]
+        public void Test_TraktClient_Parameter_Constructor()
         {
             var client1 = new TraktClient(CLIENT_ID);
 
@@ -39,8 +40,8 @@
             client2.Authorization.IsExpired.Should().BeTrue();
         }
 
-        [TestMethod]
-        public void TestTraktClientIsValidForUseWithoutAuthorization()
+        [Fact]
+        public void Test_TraktClient_Is_Valid_For_Use_Without_Authorization()
         {
             var client = new TraktClient();
             client.IsValidForUseWithoutAuthorization.Should().BeFalse();
@@ -52,8 +53,8 @@
             client.IsValidForUseWithoutAuthorization.Should().BeTrue();
         }
 
-        [TestMethod]
-        public void TestTraktClientIsValidForAuthenticationProcess()
+        [Fact]
+        public void Test_TraktClient_Is_Valid_For_Authentication_Process()
         {
             var client = new TraktClient();
             client.IsValidForAuthenticationProcess.Should().BeFalse();
@@ -71,8 +72,8 @@
             client.IsValidForAuthenticationProcess.Should().BeTrue();
         }
 
-        [TestMethod]
-        public void TestTraktClientIsValidForUseWithAuthorization()
+        [Fact]
+        public void Test_TraktClient_Is_Valid_For_Use_With_Authorization()
         {
             var client = new TraktClient();
             client.IsValidForUseWithAuthorization.Should().BeFalse();
@@ -90,144 +91,144 @@
             client.IsValidForUseWithAuthorization.Should().BeTrue();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetConfiguration()
+        [Fact]
+        public void Test_Trakt_Client_Get_Configuration()
         {
             var client = new TraktClient();
 
             client.Configuration.Should().NotBeNull();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetAuthentication()
+        [Fact]
+        public void Test_TraktClient_Get_Authentication()
         {
             var client = new TraktClient();
 
             client.Authentication.Should().NotBeNull();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetOAuth()
+        [Fact]
+        public void Test_TraktClient_Get_OAuth()
         {
             var client = new TraktClient();
 
             client.OAuth.Should().NotBeNull();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetDeviceAuth()
+        [Fact]
+        public void Test_TraktClient_Get_DeviceAuth()
         {
             var client = new TraktClient();
 
             client.DeviceAuth.Should().NotBeNull();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetShowsModule()
+        [Fact]
+        public void Test_TraktClient_Get_ShowsModule()
         {
             var client = new TraktClient();
 
             client.Shows.Should().NotBeNull();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetSeasonsModule()
+        [Fact]
+        public void Test_TraktClient_Get_SeasonsModule()
         {
             var client = new TraktClient();
 
             client.Seasons.Should().NotBeNull();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetEpisodesModule()
+        [Fact]
+        public void Test_TraktClient_Get_EpisodesModule()
         {
             var client = new TraktClient();
 
             client.Episodes.Should().NotBeNull();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetMoviesModule()
+        [Fact]
+        public void Test_TraktClient_Get_MoviesModule()
         {
             var client = new TraktClient();
 
             client.Movies.Should().NotBeNull();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetCalendarModule()
+        [Fact]
+        public void Test_TraktClient_Get_CalendarModule()
         {
             var client = new TraktClient();
 
             client.Calendar.Should().NotBeNull();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetCommentsModule()
+        [Fact]
+        public void Test_TraktClient_Get_CommentsModule()
         {
             var client = new TraktClient();
 
             client.Comments.Should().NotBeNull();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetPeopleModule()
+        [Fact]
+        public void Test_TraktClient_Get_PeopleModule()
         {
             var client = new TraktClient();
 
             client.People.Should().NotBeNull();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetGenresModule()
+        [Fact]
+        public void Test_TraktClient_Get_GenresModule()
         {
             var client = new TraktClient();
 
             client.Genres.Should().NotBeNull();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetSearchModule()
+        [Fact]
+        public void Test_TraktClient_Get_SearchModule()
         {
             var client = new TraktClient();
 
             client.Search.Should().NotBeNull();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetRecommendationsModule()
+        [Fact]
+        public void Test_TraktClient_Get_RecommendationsModule()
         {
             var client = new TraktClient();
 
             client.Recommendations.Should().NotBeNull();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetSyncModule()
+        [Fact]
+        public void Test_TraktClient_Get_SyncModule()
         {
             var client = new TraktClient();
 
             client.Sync.Should().NotBeNull();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetUsersModule()
+        [Fact]
+        public void Test_TraktClient_Get_UsersModule()
         {
             var client = new TraktClient();
 
             client.Users.Should().NotBeNull();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetCheckinsModule()
+        [Fact]
+        public void Test_TraktClient_Get_CheckinsModule()
         {
             var client = new TraktClient();
 
             client.Checkins.Should().NotBeNull();
         }
 
-        [TestMethod]
-        public void TestTraktClientGetScrobbleModule()
+        [Fact]
+        public void Test_TraktClient_Get_ScrobbleModule()
         {
             var client = new TraktClient();
 
