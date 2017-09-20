@@ -92,7 +92,7 @@
         }
 
         [Fact]
-        public void Test_Trakt_Client_Get_Configuration()
+        public void Test_TraktClient_Get_Configuration()
         {
             var client = new TraktClient();
 
@@ -185,6 +185,14 @@
             var client = new TraktClient();
 
             client.Genres.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void Test_TraktClient_Get_NetworksModule()
+        {
+            var client = new TraktClient();
+
+            client.Networks.Should().NotBeNull();
         }
 
         [Fact]
