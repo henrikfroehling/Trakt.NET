@@ -42,6 +42,7 @@
                   ""aired_episodes"": 10,
                   ""overview"": ""Trouble is brewing in the Seven Kingdoms of Westeros. For the driven inhabitants of this visionary world, control of Westeros' Iron Throne holds the lure of great power. But in a land where the seasons can last a lifetime, winter is coming...and beyond the Great Wall that protects them, an ancient evil has returned. In Season One, the story centers on three primary areas: the Stark and the Lannister families, whose designs on controlling the throne threaten a tenuous peace; the dragon princess Daenerys, heir to the former dynasty, who waits just over the Narrow Sea with her malevolent brother Viserys; and the Great Wall--a massive barrier of ice where a forgotten danger is stirring."",
                   ""first_aired"": ""2011-04-18T01:00:00.000Z"",
+                  ""network"": ""The CW"",
                   ""episodes"": [
                     {
                       ""season"": 1,
@@ -83,6 +84,7 @@
                   ""aired_episodes"": 10,
                   ""overview"": ""The cold winds of winter are rising in Westeros...war is coming...and five kings continue their savage quest for control of the all-powerful Iron Throne. With winter fast approaching, the coveted Iron Throne is occupied by the cruel Joffrey, counseled by his conniving mother Cersei and uncle Tyrion. But the Lannister hold on the Throne is under assault on many fronts. Meanwhile, a new leader is rising among the wildings outside the Great Wall, adding new perils for Jon Snow and the order of the Night's Watch."",
                   ""first_aired"": ""2012-04-02T01:00:00.000Z"",
+                  ""network"": ""The CW"",
                   ""episodes"": [
                     {
                       ""season"": 2,

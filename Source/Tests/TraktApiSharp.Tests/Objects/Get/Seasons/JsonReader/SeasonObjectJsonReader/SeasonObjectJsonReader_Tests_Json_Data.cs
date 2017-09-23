@@ -77,6 +77,7 @@
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -120,6 +121,7 @@
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -163,6 +165,7 @@
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -201,6 +204,7 @@
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -244,6 +248,7 @@
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -287,6 +292,7 @@
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -330,6 +336,7 @@
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -373,6 +380,7 @@
                 ""episode_count"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -416,6 +424,7 @@
                 ""episode_count"": 23,
                 ""aired_episodes"": 23,
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -459,6 +468,7 @@
                 ""episode_count"": 23,
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -502,20 +512,65 @@
                 ""episode_count"": 23,
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
-                ""first_aired"": ""2014-10-08T00:00:00.000Z""
+                ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""episodes"": [
+                  {
+                    ""season"": 1,
+                    ""number"": 1,
+                    ""title"": ""Winter Is Coming"",
+                    ""ids"": {
+                      ""trakt"": 73640,
+                      ""tvdb"": 3254641,
+                      ""imdb"": ""tt1480055"",
+                      ""tmdb"": 63056,
+                      ""tvrage"": 1065008299
+                    }
+                  },
+                  {
+                    ""season"": 1,
+                    ""number"": 2,
+                    ""title"": ""The Kingsroad"",
+                    ""ids"": {
+                      ""trakt"": 74138,
+                      ""tvdb"": 3436411,
+                      ""imdb"": ""tt1668746"",
+                      ""tmdb"": 63141,
+                      ""tvrage"": 1325718577
+                    }
+                  }
+                ]
               }";
 
         private const string FULL_JSON_INCOMPLETE_11 =
             @"{
-                ""number"": 1
+                ""number"": 1,
+                ""title"": ""Season 1"",
+                ""ids"": {
+                  ""trakt"": 61430,
+                  ""tvdb"": 279121,
+                  ""tmdb"": 60523,
+                  ""tvrage"": 36939
+                },
+                ""rating"": 8.57053,
+                ""votes"": 794,
+                ""episode_count"": 23,
+                ""aired_episodes"": 23,
+                ""overview"": ""Text text text"",
+                ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW""
               }";
 
         private const string FULL_JSON_INCOMPLETE_12 =
             @"{
-                ""title"": ""Season 1""
+                ""number"": 1
               }";
 
         private const string FULL_JSON_INCOMPLETE_13 =
+            @"{
+                ""title"": ""Season 1""
+              }";
+
+        private const string FULL_JSON_INCOMPLETE_14 =
             @"{
                 ""ids"": {
                   ""trakt"": 61430,
@@ -525,37 +580,42 @@
                 }
               }";
 
-        private const string FULL_JSON_INCOMPLETE_14 =
+        private const string FULL_JSON_INCOMPLETE_15 =
             @"{
                 ""rating"": 8.57053
               }";
 
-        private const string FULL_JSON_INCOMPLETE_15 =
+        private const string FULL_JSON_INCOMPLETE_16 =
             @"{
                 ""votes"": 794
               }";
 
-        private const string FULL_JSON_INCOMPLETE_16 =
+        private const string FULL_JSON_INCOMPLETE_17 =
             @"{
                 ""episode_count"": 23
               }";
 
-        private const string FULL_JSON_INCOMPLETE_17 =
+        private const string FULL_JSON_INCOMPLETE_18 =
             @"{
                 ""aired_episodes"": 23
               }";
 
-        private const string FULL_JSON_INCOMPLETE_18 =
+        private const string FULL_JSON_INCOMPLETE_19 =
             @"{
                 ""overview"": ""Text text text""
               }";
 
-        private const string FULL_JSON_INCOMPLETE_19 =
+        private const string FULL_JSON_INCOMPLETE_20 =
             @"{
                 ""first_aired"": ""2014-10-08T00:00:00.000Z""
               }";
 
-        private const string FULL_JSON_INCOMPLETE_20 =
+        private const string FULL_JSON_INCOMPLETE_21 =
+            @"{
+                ""network"": ""The CW""
+              }";
+
+        private const string FULL_JSON_INCOMPLETE_22 =
             @"{
                 ""episodes"": [
                   {
@@ -601,6 +661,7 @@
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -645,6 +706,7 @@
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -689,6 +751,7 @@
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -733,6 +796,7 @@
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -777,6 +841,7 @@
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -821,6 +886,7 @@
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -865,6 +931,7 @@
                 ""aireps"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -909,6 +976,7 @@
                 ""aired_episodes"": 23,
                 ""ov"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -953,6 +1021,7 @@
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""fa"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
                 ""episodes"": [
                   {
                     ""season"": 1,
@@ -997,7 +1066,8 @@
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
-                ""eps"": [
+                ""nw"": ""The CW"",
+                ""episodes"": [
                   {
                     ""season"": 1,
                     ""number"": 1,
@@ -1027,6 +1097,51 @@
 
         private const string FULL_JSON_NOT_VALID_11 =
             @"{
+                ""number"": 1,
+                ""title"": ""Season 1"",
+                ""ids"": {
+                  ""trakt"": 61430,
+                  ""tvdb"": 279121,
+                  ""tmdb"": 60523,
+                  ""tvrage"": 36939
+                },
+                ""rating"": 8.57053,
+                ""votes"": 794,
+                ""episode_count"": 23,
+                ""aired_episodes"": 23,
+                ""overview"": ""Text text text"",
+                ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""network"": ""The CW"",
+                ""eps"": [
+                  {
+                    ""season"": 1,
+                    ""number"": 1,
+                    ""title"": ""Winter Is Coming"",
+                    ""ids"": {
+                      ""trakt"": 73640,
+                      ""tvdb"": 3254641,
+                      ""imdb"": ""tt1480055"",
+                      ""tmdb"": 63056,
+                      ""tvrage"": 1065008299
+                    }
+                  },
+                  {
+                    ""season"": 1,
+                    ""number"": 2,
+                    ""title"": ""The Kingsroad"",
+                    ""ids"": {
+                      ""trakt"": 74138,
+                      ""tvdb"": 3436411,
+                      ""imdb"": ""tt1668746"",
+                      ""tmdb"": 63141,
+                      ""tvrage"": 1325718577
+                    }
+                  }
+                ]
+              }";
+
+        private const string FULL_JSON_NOT_VALID_12 =
+            @"{
                 ""nu"": 1,
                 ""ti"": ""Season 1"",
                 ""id"": {
@@ -1041,6 +1156,7 @@
                 ""aireps"": 23,
                 ""ov"": ""Text text text"",
                 ""fa"": ""2014-10-08T00:00:00.000Z"",
+                ""nw"": ""The CW"",
                 ""eps"": [
                   {
                     ""season"": 1,

@@ -24,6 +24,8 @@
 
         DateTime? FirstAired { get; set; }
 
+        string Network { get; set; }
+
         IEnumerable<ITraktEpisode> Episodes { get; set; }
     }
 }

@@ -44,6 +44,9 @@
         /// <summary>Gets or sets the UTC datetime when the season was first aired.</summary>
         public DateTime? FirstAired { get; set; }
 
+        /// <summary>Gets or sets the network on which the season airs.</summary>
+        public string Network { get; set; }
+
         /// <summary>Gets or sets the collection of Trakt episodes in the season. See also <seealso cref="ITraktEpisode" />.<para>Nullable</para></summary>
         /// <remarks>
         /// This property is set automatically if this season is in a collection

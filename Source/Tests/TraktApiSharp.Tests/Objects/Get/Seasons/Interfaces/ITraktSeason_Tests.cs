@@ -109,6 +109,16 @@
         }
 
         [Fact]
+        public void Test_ITraktSeason_Has_Network_Property()
+        {
+            var propertyInfo = typeof(ITraktSeason).GetProperties().FirstOrDefault(p => p.Name == "Network");
+
+            propertyInfo.CanRead.Should().BeTrue();
+            propertyInfo.CanWrite.Should().BeTrue();
+            propertyInfo.PropertyType.Should().Be(typeof(string));
+        }
+
+        [Fact]
         public void Test_ITraktSeason_Has_Episodes_Property()
         {
             var propertyInfo = typeof(ITraktSeason).GetProperties().FirstOrDefault(p => p.Name == "Episodes");
