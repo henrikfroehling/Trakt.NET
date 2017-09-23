@@ -52,6 +52,7 @@
                 seasons[0].AiredEpisodesCount.Should().NotHaveValue();
                 seasons[0].Overview.Should().BeNullOrEmpty();
                 seasons[0].FirstAired.Should().NotHaveValue();
+                seasons[0].Network.Should().BeNull();
                 seasons[0].Episodes.Should().BeNull();
 
                 seasons[1].Should().NotBeNull();
@@ -67,6 +68,7 @@
                 seasons[1].AiredEpisodesCount.Should().NotHaveValue();
                 seasons[1].Overview.Should().BeNullOrEmpty();
                 seasons[1].FirstAired.Should().NotHaveValue();
+                seasons[1].Network.Should().BeNull();
                 seasons[1].Episodes.Should().BeNull();
             }
         }
@@ -97,6 +99,7 @@
                 seasons[0].AiredEpisodesCount.Should().Be(10);
                 seasons[0].Overview.Should().Be("Trouble is brewing in the Seven Kingdoms of Westeros. For the driven inhabitants of this visionary world, control of Westeros' Iron Throne holds the lure of great power. But in a land where the seasons can last a lifetime, winter is coming...and beyond the Great Wall that protects them, an ancient evil has returned. In Season One, the story centers on three primary areas: the Stark and the Lannister families, whose designs on controlling the throne threaten a tenuous peace; the dragon princess Daenerys, heir to the former dynasty, who waits just over the Narrow Sea with her malevolent brother Viserys; and the Great Wall--a massive barrier of ice where a forgotten danger is stirring.");
                 seasons[0].FirstAired.Should().Be(DateTime.Parse("2011-04-18T01:00:00.000Z").ToUniversalTime());
+                seasons[0].Network.Should().Be("The CW");
                 seasons[0].Episodes.Should().NotBeNull().And.HaveCount(2);
 
                 var episodes = seasons[0].Episodes.ToArray();
@@ -156,6 +159,7 @@
                 seasons[1].AiredEpisodesCount.Should().Be(10);
                 seasons[1].Overview.Should().Be("The cold winds of winter are rising in Westeros...war is coming...and five kings continue their savage quest for control of the all-powerful Iron Throne. With winter fast approaching, the coveted Iron Throne is occupied by the cruel Joffrey, counseled by his conniving mother Cersei and uncle Tyrion. But the Lannister hold on the Throne is under assault on many fronts. Meanwhile, a new leader is rising among the wildings outside the Great Wall, adding new perils for Jon Snow and the order of the Night's Watch.");
                 seasons[1].FirstAired.Should().Be(DateTime.Parse("2012-04-02T01:00:00.000Z").ToUniversalTime());
+                seasons[1].Network.Should().Be("The CW");
                 seasons[1].Episodes.Should().NotBeNull().And.HaveCount(2);
 
                 episodes = seasons[1].Episodes.ToArray();

@@ -19,6 +19,7 @@
         private const string PROPERTY_NAME_AIRED_EPISODES = "aired_episodes";
         private const string PROPERTY_NAME_OVERVIEW = "overview";
         private const string PROPERTY_NAME_FIRST_AIRED = "first_aired";
+        private const string PROPERTY_NAME_NETWORK = "network";
         private const string PROPERTY_NAME_EPISODES = "episodes";
 
         public Task<ITraktSeason> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
@@ -95,6 +96,9 @@
 
                                 break;
                             }
+                        case PROPERTY_NAME_NETWORK:
+                            traktSeason.Network = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            break;
                         case PROPERTY_NAME_EPISODES:
                             traktSeason.Episodes = await episodesArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
