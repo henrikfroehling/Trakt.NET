@@ -4,7 +4,6 @@
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Calendars;
     using TraktApiSharp.Objects.Get.Calendars.Implementations;
     using TraktApiSharp.Objects.Get.Calendars.JsonReader;
     using Xunit;
@@ -12,12 +11,6 @@
     [Category("Objects.Get.Calendars.Implementations")]
     public class TraktCalendarMovie_Tests
     {
-        [Fact]
-        public void Test_TraktCalendarMovie_Implements_ITraktCalendarMovie_Interface()
-        {
-            typeof(TraktCalendarMovie).GetInterfaces().Should().Contain(typeof(ITraktCalendarMovie));
-        }
-
         [Fact]
         public void Test_TraktCalendarMovie_Default_Constructor()
         {

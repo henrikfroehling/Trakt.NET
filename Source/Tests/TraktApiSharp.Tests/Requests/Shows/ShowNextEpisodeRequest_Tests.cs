@@ -4,8 +4,6 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Shows;
     using Xunit;
@@ -13,30 +11,6 @@
     [Category("Requests.Shows")]
     public class ShowNextEpisodeRequest_Tests
     {
-        [Fact]
-        public void Test_ShowNextEpisodeRequest_Is_Not_Abstract()
-        {
-            typeof(ShowNextEpisodeRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_ShowNextEpisodeRequest_Is_Sealed()
-        {
-            typeof(ShowNextEpisodeRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowNextEpisodeRequest_Inherits_AShowRequest_1()
-        {
-            typeof(ShowNextEpisodeRequest).IsSubclassOf(typeof(AShowRequest<ITraktEpisode>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowNextEpisodeRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(ShowNextEpisodeRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
         [Fact]
         public void Test_ShowNextEpisodeRequest_Has_Valid_UriTemplate()
         {

@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Genres;
     using Xunit;
@@ -10,24 +9,6 @@
     [Category("Requests.Genres")]
     public class GenresMoviesRequest_Tests
     {
-        [Fact]
-        public void Test_GenresMoviesRequest_IsNotAbstract()
-        {
-            typeof(GenresMoviesRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_GenresMoviesRequest_IsSealed()
-        {
-            typeof(GenresMoviesRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_GenresMoviesRequest_Inherits_AGetRequest_1()
-        {
-            typeof(GenresMoviesRequest).IsSubclassOf(typeof(AGetRequest<ITraktGenre>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_GenresMoviesRequest_Has_AuthorizationRequirement_NotRequired()
         {

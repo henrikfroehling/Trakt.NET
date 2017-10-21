@@ -8,14 +8,6 @@
     public class TraktServerExceptionTests
     {
         [TestMethod]
-        public void TestTraktServerExceptionBaseClass()
-        {
-            var exception = new TraktServerException();
-
-            exception.Should().BeAssignableTo<TraktException>();
-        }
-
-        [TestMethod]
         public void TestTraktServerExceptionDefaultConstructor()
         {
             var exception = new TraktServerException();

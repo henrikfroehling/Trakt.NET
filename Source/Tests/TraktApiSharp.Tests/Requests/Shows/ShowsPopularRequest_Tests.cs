@@ -4,7 +4,6 @@
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Shows;
     using Xunit;
@@ -12,24 +11,6 @@
     [Category("Requests.Shows.Lists")]
     public class ShowsPopularRequest_Tests
     {
-        [Fact]
-        public void Test_ShowsPopularRequest_Is_Not_Abstract()
-        {
-            typeof(ShowsPopularRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_ShowsPopularRequest_Is_Sealed()
-        {
-            typeof(ShowsPopularRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowsPopularRequest_Inherits_AShowsRequest_1()
-        {
-            typeof(ShowsPopularRequest).IsSubclassOf(typeof(AShowsRequest<ITraktShow>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_ShowsPopularRequest_Has_Valid_UriTemplate()
         {

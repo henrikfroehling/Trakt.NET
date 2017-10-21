@@ -3,10 +3,7 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Requests.Movies;
     using Xunit;
 
@@ -14,41 +11,10 @@
     public class MovieTranslationsRequest_Tests
     {
         [Fact]
-        public void Test_MovieTranslationsRequest_IsNotAbstract()
-        {
-            typeof(MovieTranslationsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_MovieTranslationsRequest_IsSealed()
-        {
-            typeof(MovieTranslationsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_MovieTranslationsRequest_Inherits_AMovieRequest_1()
-        {
-            typeof(MovieTranslationsRequest).IsSubclassOf(typeof(AMovieRequest<ITraktMovieTranslation>)).Should().BeTrue();
-        }
-
-        [Fact]
         public void Test_MovieTranslationsRequest_Has_Valid_UriTemplate()
         {
             var request = new MovieTranslationsRequest();
             request.UriTemplate.Should().Be("movies/{id}/translations{/language}");
-        }
-
-        [Fact]
-        public void Test_MovieTranslationsRequest_Has_LanguageCode_Property()
-        {
-            var propertyInfo = typeof(MovieTranslationsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "LanguageCode")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]

@@ -4,11 +4,8 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Watchlist;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Users.OAuth;
@@ -17,50 +14,6 @@
     [Category("Requests.Users.OAuth")]
     public class UserWatchlistRequest_Tests
     {
-        [Fact]
-        public void Test_UserWatchlistRequest_Is_Not_Abstract()
-        {
-            typeof(UserWatchlistRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserWatchlistRequest_Is_Sealed()
-        {
-            typeof(UserWatchlistRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserWatchlistRequest_Inherits_AUsersPagedGetRequest_1()
-        {
-            typeof(UserWatchlistRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktWatchlistItem>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserWatchlistRequest_Has_Username_Property()
-        {
-            var propertyInfo = typeof(UserWatchlistRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Username")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
-        }
-
-        [Fact]
-        public void Test_UserWatchlistRequest_Has_Type_Property()
-        {
-            var propertyInfo = typeof(UserWatchlistRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Type")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktSyncItemType));
-        }
-
         [Fact]
         public void Test_UserWatchlistRequest_Has_AuthorizationRequirement_Optional()
         {

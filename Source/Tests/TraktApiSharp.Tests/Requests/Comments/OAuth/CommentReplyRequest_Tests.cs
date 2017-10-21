@@ -5,39 +5,13 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Objects.Post.Comments;
-    using TraktApiSharp.Objects.Post.Comments.Responses;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Comments.OAuth;
-    using TraktApiSharp.Requests.Interfaces;
     using Xunit;
 
     [Category("Requests.Comments.OAuth")]
     public class CommentReplyRequest_Tests
     {
-        [Fact]
-        public void Test_CommentReplyRequest_IsNotAbstract()
-        {
-            typeof(CommentReplyRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_CommentReplyRequest_IsSealed()
-        {
-            typeof(CommentReplyRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_CommentReplyRequest_Inherits_APostRequest_2()
-        {
-            typeof(CommentReplyRequest).IsSubclassOf(typeof(APostRequest<ITraktCommentPostResponse, TraktCommentReplyPost>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_CommentReplyRequest_Implements_IHasId_Interface()
-        {
-            typeof(CommentReplyRequest).GetInterfaces().Should().Contain(typeof(IHasId));
-        }
-
         [Fact]
         public void Test_CommentReplyRequest_Has_Valid_UriTemplate()
         {

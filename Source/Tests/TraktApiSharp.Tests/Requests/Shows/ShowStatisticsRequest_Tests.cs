@@ -4,31 +4,12 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests.Shows;
     using Xunit;
 
     [Category("Requests.Shows")]
     public class ShowStatisticsRequest_Tests
     {
-        [Fact]
-        public void Test_ShowStatisticsRequest_Is_Not_Abstract()
-        {
-            typeof(ShowStatisticsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_ShowStatisticsRequest_Is_Sealed()
-        {
-            typeof(ShowStatisticsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowStatisticsRequest_Inherits_AShowRequest_1()
-        {
-            typeof(ShowStatisticsRequest).IsSubclassOf(typeof(AShowRequest<ITraktStatistics>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_ShowStatisticsRequest_Has_Valid_UriTemplate()
         {

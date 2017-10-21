@@ -4,39 +4,13 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Requests.Episodes;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using Xunit;
 
     [Category("Requests.Episodes")]
     public class EpisodeSummaryRequest_Tests
     {
-        [Fact]
-        public void Test_EpisodeSummaryRequest_IsNotAbstract()
-        {
-            typeof(EpisodeSummaryRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_EpisodeSummaryRequest_IsSealed()
-        {
-            typeof(EpisodeSummaryRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_EpisodeSummaryRequest_Inherits_AEpisodeRequest_1()
-        {
-            typeof(EpisodeSummaryRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktEpisode>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_EpisodeSummaryRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(EpisodeSummaryRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
         [Fact]
         public void Test_EpisodeSummaryRequest_Has_Valid_UriTemplate()
         {

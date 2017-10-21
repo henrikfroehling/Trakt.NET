@@ -8,14 +8,6 @@
     public class TraktForbiddenExceptionTests
     {
         [TestMethod]
-        public void TestTraktForbiddenExceptionBaseClass()
-        {
-            var exception = new TraktForbiddenException();
-
-            exception.Should().BeAssignableTo<TraktException>();
-        }
-
-        [TestMethod]
         public void TestTraktForbiddenExceptionDefaultConstructor()
         {
             var exception = new TraktForbiddenException();

@@ -9,13 +9,6 @@
     public class TraktTimePeriodTests
     {
         [TestMethod]
-        public void TestTraktTimePeriodIsTraktEnumeration()
-        {
-            var enumeration = new TraktTimePeriod();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktTimePeriodGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktTimePeriod>();

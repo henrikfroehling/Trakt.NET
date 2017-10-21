@@ -5,7 +5,6 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
 
@@ -16,24 +15,6 @@
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
             public override RequestObjectType RequestObjectType { get { throw new NotImplementedException(); } }
-        }
-
-        [Fact]
-        public void Test_AUsersDeleteByIdRequest_Is_Abstract()
-        {
-            typeof(AUsersDeleteByIdRequest).IsAbstract.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AUsersDeleteByIdRequest_Inherits_ADeleteRequest()
-        {
-            typeof(AUsersDeleteByIdRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AUsersDeleteByIdRequest_Implements_IHasId_Interface()
-        {
-            typeof(AUsersDeleteByIdRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]

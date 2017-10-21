@@ -4,7 +4,6 @@
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Post.Checkins.Responses;
     using TraktApiSharp.Objects.Post.Checkins.Responses.Implementations;
     using TraktApiSharp.Objects.Post.Checkins.Responses.JsonReader;
     using Xunit;
@@ -12,12 +11,6 @@
     [Category("Objects.Post.Checkins.Responses.Implementations")]
     public class TraktEpisodeCheckinPostResponse_Tests
     {
-        [Fact]
-        public void Test_TraktEpisodeCheckinPostResponse_Implements_ITraktEpisodeCheckinPostResponse_Interface()
-        {
-            typeof(TraktEpisodeCheckinPostResponse).GetInterfaces().Should().Contain(typeof(ITraktEpisodeCheckinPostResponse));
-        }
-
         [Fact]
         public void Test_TraktEpisodeCheckinPostResponse_Default_Constructor()
         {

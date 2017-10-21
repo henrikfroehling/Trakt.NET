@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Get.Shows.JsonReader;
     using Xunit;
@@ -13,18 +12,6 @@
     [Category("Objects.Get.Shows.Implementations")]
     public class TraktShowWatchedProgress_Tests
     {
-        [Fact]
-        public void Test_TraktShowWatchedProgress_Inherits_TraktShowProgress()
-        {
-            typeof(TraktShowWatchedProgress).IsSubclassOf(typeof(TraktShowProgress)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_TraktShowWatchedProgress_Implements_ITraktShowWatchedProgress_Interface()
-        {
-            typeof(TraktShowWatchedProgress).GetInterfaces().Should().Contain(typeof(ITraktShowWatchedProgress));
-        }
-
         [Fact]
         public void Test_TraktShowWatchedProgress_Default_Constructor()
         {

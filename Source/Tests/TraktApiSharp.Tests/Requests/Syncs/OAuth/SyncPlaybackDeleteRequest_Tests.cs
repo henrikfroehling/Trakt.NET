@@ -5,37 +5,12 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;
 
     [Category("Requests.Syncs.OAuth")]
     public class SyncPlaybackDeleteRequest_Tests
     {
-        [Fact]
-        public void Test_SyncPlaybackDeleteRequest_Is_Not_Abstract()
-        {
-            typeof(SyncPlaybackDeleteRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_SyncPlaybackDeleteRequest_Is_Sealed()
-        {
-            typeof(SyncPlaybackDeleteRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SyncPlaybackDeleteRequest_Inherits_ADeleteRequest()
-        {
-            typeof(SyncPlaybackDeleteRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SyncPlaybackDeleteRequest_Implements_IHasId_Interface()
-        {
-            typeof(SyncPlaybackDeleteRequest).GetInterfaces().Should().Contain(typeof(IHasId));
-        }
-
         [Fact]
         public void Test_SyncPlaybackDeleteRequest_Has_AuthorizationRequirement_Required()
         {

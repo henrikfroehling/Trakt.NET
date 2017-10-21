@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.People.Credits;
     using TraktApiSharp.Objects.Get.People.Credits.Implementations;
     using TraktApiSharp.Objects.Get.People.Credits.JsonReader;
     using Xunit;
@@ -13,12 +12,6 @@
     [Category("Objects.Get.People.Credits.Implementations")]
     public class TraktPersonMovieCreditsCrew_Tests
     {
-        [Fact]
-        public void Test_TraktPersonMovieCreditsCrew_Implements_ITraktPersonMovieCreditsCrew_Interface()
-        {
-            typeof(TraktPersonMovieCreditsCrew).GetInterfaces().Should().Contain(typeof(ITraktPersonMovieCreditsCrew));
-        }
-
         [Fact]
         public void Test_TraktPersonMovieCreditsCrew_Default_Constructor()
         {

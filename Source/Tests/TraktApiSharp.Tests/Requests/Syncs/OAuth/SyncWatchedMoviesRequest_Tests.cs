@@ -3,8 +3,6 @@
     using FluentAssertions;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Watched;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;
@@ -12,30 +10,6 @@
     [Category("Requests.Syncs.OAuth")]
     public class SyncWatchedMoviesRequest_Tests
     {
-        [Fact]
-        public void Test_SyncWatchedMoviesRequest_Is_Not_Abstract()
-        {
-            typeof(SyncWatchedMoviesRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_SyncWatchedMoviesRequest_Is_Sealed()
-        {
-            typeof(SyncWatchedMoviesRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SyncWatchedMoviesRequest_Inherits_ASyncGetRequest_1()
-        {
-            typeof(SyncWatchedMoviesRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktWatchedMovie>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SyncWatchedMoviesRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(SyncWatchedMoviesRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
         [Fact]
         public void Test_SyncWatchedMoviesRequest_Has_Valid_UriTemplate()
         {

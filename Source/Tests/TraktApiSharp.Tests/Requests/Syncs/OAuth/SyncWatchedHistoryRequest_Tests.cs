@@ -4,13 +4,9 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.History;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;
@@ -19,92 +15,10 @@
     public class SyncWatchedHistoryRequest_Tests
     {
         [Fact]
-        public void Test_SyncWatchedHistoryRequest_Is_Not_Abstract()
-        {
-            typeof(SyncWatchedHistoryRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_SyncWatchedHistoryRequest_Is_Sealed()
-        {
-            typeof(SyncWatchedHistoryRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SyncWatchedHistoryRequest_Inherits_ASyncGetRequest_1()
-        {
-            typeof(SyncWatchedHistoryRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktHistoryItem>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SyncWatchedHistoryRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(SyncWatchedHistoryRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
-        [Fact]
-        public void Test_SyncWatchedHistoryRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(SyncWatchedHistoryRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
-        [Fact]
         public void Test_SyncWatchedHistoryRequest_Has_Valid_UriTemplate()
         {
             var request = new SyncWatchedHistoryRequest();
             request.UriTemplate.Should().Be("sync/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}");
-        }
-
-        [Fact]
-        public void Test_SyncWatchedHistoryRequest_Has_Type_Property()
-        {
-            var propertyInfo = typeof(SyncWatchedHistoryRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Type")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktSyncItemType));
-        }
-
-        [Fact]
-        public void Test_SyncWatchedHistoryRequest_Has_ItemId_Property()
-        {
-            var propertyInfo = typeof(SyncWatchedHistoryRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "ItemId")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(uint?));
-        }
-
-        [Fact]
-        public void Test_SyncWatchedHistoryRequest_Has_StartAt_Property()
-        {
-            var propertyInfo = typeof(SyncWatchedHistoryRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "StartAt")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(DateTime?));
-        }
-
-        [Fact]
-        public void Test_SyncWatchedHistoryRequest_Has_EndAt_Property()
-        {
-            var propertyInfo = typeof(SyncWatchedHistoryRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "EndAt")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(DateTime?));
         }
 
         [Theory, ClassData(typeof(SyncWatchedHistoryRequest_TestData))]

@@ -4,7 +4,6 @@
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Episodes.JsonReader;
     using Xunit;
@@ -12,18 +11,6 @@
     [Category("Objects.Get.Episodes.Implementations")]
     public class TraktEpisodeCollectionProgress_Tests
     {
-        [Fact]
-        public void Test_TraktEpisodeCollectionProgress_Inherits_TraktEpisodeProgress()
-        {
-            typeof(TraktEpisodeCollectionProgress).IsSubclassOf(typeof(TraktEpisodeProgress)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_TraktEpisodeCollectionProgress_Implements_ITraktEpisodeCollectionProgress_Interface()
-        {
-            typeof(TraktEpisodeCollectionProgress).GetInterfaces().Should().Contain(typeof(ITraktEpisodeCollectionProgress));
-        }
-
         [Fact]
         public void Test_TraktEpisodeCollectionProgressCollectionProgress_Default_Constructor()
         {

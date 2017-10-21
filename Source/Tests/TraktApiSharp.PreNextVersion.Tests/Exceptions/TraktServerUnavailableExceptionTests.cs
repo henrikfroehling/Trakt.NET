@@ -8,14 +8,6 @@
     public class TraktServerUnavailableExceptionTests
     {
         [TestMethod]
-        public void TestTraktServerUnavailableExceptionBaseClass()
-        {
-            var exception = new TraktServerUnavailableException();
-
-            exception.Should().BeAssignableTo<TraktException>();
-        }
-
-        [TestMethod]
         public void TestTraktServerUnavailableExceptionDefaultConstructor()
         {
             var exception = new TraktServerUnavailableException();

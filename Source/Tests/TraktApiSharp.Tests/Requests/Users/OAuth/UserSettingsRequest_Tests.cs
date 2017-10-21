@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
@@ -10,24 +9,6 @@
     [Category("Requests.Users.OAuth")]
     public class UserSettingsRequest_Tests
     {
-        [Fact]
-        public void Test_UserSettingsRequest_Is_Not_Abstract()
-        {
-            typeof(UserSettingsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserSettingsRequest_Is_Sealed()
-        {
-            typeof(UserSettingsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserSettingsRequest_Inherits_AGetRequest_1()
-        {
-            typeof(UserSettingsRequest).IsSubclassOf(typeof(AGetRequest<ITraktUserSettings>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_UserSettingsRequest_Has_AuthorizationRequirement_Required()
         {

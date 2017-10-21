@@ -5,7 +5,6 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Shows;
     using Xunit;
@@ -13,24 +12,6 @@
     [Category("Requests.Shows.Lists")]
     public class ShowsMostPlayedRequest_Tests
     {
-        [Fact]
-        public void Test_ShowsMostPlayedRequest_Is_Not_Abstract()
-        {
-            typeof(ShowsMostPlayedRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_ShowsMostPlayedRequest_Is_Sealed()
-        {
-            typeof(ShowsMostPlayedRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowsMostPlayedRequest_Inherits_AShowsMostPWCRequest_1()
-        {
-            typeof(ShowsMostPlayedRequest).IsSubclassOf(typeof(AShowsMostPWCRequest<ITraktMostPWCShow>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_ShowsMostPlayedRequest_Has_Valid_UriTemplate()
         {

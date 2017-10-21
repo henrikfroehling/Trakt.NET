@@ -8,14 +8,6 @@
     public class TraktDeniedExceptionTests
     {
         [TestMethod]
-        public void TestTraktDeniedExceptionBaseClass()
-        {
-            var exception = new TraktDeniedException();
-
-            exception.Should().BeAssignableTo<TraktException>();
-        }
-
-        [TestMethod]
         public void TestTraktDeniedExceptionDefaultConstructor()
         {
             var exception = new TraktDeniedException();

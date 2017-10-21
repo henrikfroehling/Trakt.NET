@@ -4,31 +4,12 @@
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Shows.OAuth;
     using Xunit;
 
     [Category("Requests.Shows.OAuth")]
     public class ShowWatchedProgressRequest_Tests
     {
-        [Fact]
-        public void Test_ShowWatchedProgressRequest_Is_Not_Abstract()
-        {
-            typeof(ShowWatchedProgressRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_ShowWatchedProgressRequest_Is_Sealed()
-        {
-            typeof(ShowWatchedProgressRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowWatchedProgressRequest_Inherits_AShowProgressRequest_1()
-        {
-            typeof(ShowWatchedProgressRequest).IsSubclassOf(typeof(AShowProgressRequest<ITraktShowWatchedProgress>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_ShowWatchedProgressRequest_Has_Valid_UriTemplate()
         {

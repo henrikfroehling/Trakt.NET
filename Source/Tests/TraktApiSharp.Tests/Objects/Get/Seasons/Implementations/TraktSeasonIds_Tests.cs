@@ -3,7 +3,6 @@
     using FluentAssertions;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Objects.Get.Seasons.Implementations;
     using TraktApiSharp.Objects.Get.Seasons.JsonReader;
     using Xunit;
@@ -11,12 +10,6 @@
     [Category("Objects.Get.Seasons.Implementations")]
     public class TraktSeasonIds_Tests
     {
-        [Fact]
-        public void Test_TraktSeasonIds_Implements_ITraktSeasonIds_Interface()
-        {
-            typeof(TraktSeasonIds).GetInterfaces().Should().Contain(typeof(ITraktSeasonIds));
-        }
-
         [Fact]
         public void Test_TraktSeasonIds_Default_Constructor()
         {

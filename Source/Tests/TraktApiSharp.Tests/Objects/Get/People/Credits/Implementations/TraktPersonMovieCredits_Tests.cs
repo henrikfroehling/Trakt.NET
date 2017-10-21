@@ -1,12 +1,10 @@
 ﻿namespace TraktApiSharp.Tests.Objects.Get.People.Credits.Implementations
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.People.Credits;
     using TraktApiSharp.Objects.Get.People.Credits.Implementations;
     using TraktApiSharp.Objects.Get.People.Credits.JsonReader;
     using Xunit;
@@ -14,12 +12,6 @@
     [Category("Objects.Get.People.Credits.Implementations")]
     public class TraktPersonMovieCredits_Tests
     {
-        [Fact]
-        public void Test_TraktPersonMovieCredits_Implements_ITraktPersonMovieCredits_Interface()
-        {
-            typeof(TraktPersonMovieCredits).GetInterfaces().Should().Contain(typeof(ITraktPersonMovieCredits));
-        }
-
         [Fact]
         public void Test_TraktPersonMovieCredits_Default_Constructor()
         {

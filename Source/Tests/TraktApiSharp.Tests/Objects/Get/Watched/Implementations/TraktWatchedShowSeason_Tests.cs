@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Watched;
     using TraktApiSharp.Objects.Get.Watched.Implementations;
     using TraktApiSharp.Objects.Get.Watched.JsonReader;
     using Xunit;
@@ -13,12 +12,6 @@
     [Category("Objects.Get.Watched.Implementations")]
     public class TraktWatchedShowSeason_Tests
     {
-        [Fact]
-        public void Test_TraktWatchedShowSeason_Implements_ITraktWatchedShowSeason_Interface()
-        {
-            typeof(TraktWatchedShowSeason).GetInterfaces().Should().Contain(typeof(ITraktWatchedShowSeason));
-        }
-
         [Fact]
         public void Test_TraktWatchedShowSeason_Default_Constructor()
         {

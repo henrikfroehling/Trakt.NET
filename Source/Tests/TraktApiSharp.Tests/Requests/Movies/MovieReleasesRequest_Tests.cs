@@ -3,10 +3,7 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Requests.Movies;
     using Xunit;
 
@@ -14,41 +11,10 @@
     public class MovieReleasesRequest_Tests
     {
         [Fact]
-        public void Test_MovieReleasesRequest_IsNotAbstract()
-        {
-            typeof(MovieReleasesRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_MovieReleasesRequest_IsSealed()
-        {
-            typeof(MovieReleasesRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_MovieReleasesRequest_Inherits_AMovieRequest_1()
-        {
-            typeof(MovieReleasesRequest).IsSubclassOf(typeof(AMovieRequest<ITraktMovieRelease>)).Should().BeTrue();
-        }
-
-        [Fact]
         public void Test_MovieReleasesRequest_Has_Valid_UriTemplate()
         {
             var request = new MovieReleasesRequest();
             request.UriTemplate.Should().Be("movies/{id}/releases{/country}");
-        }
-
-        [Fact]
-        public void Test_MovieReleasesRequest_Has_CountryCode_Property()
-        {
-            var propertyInfo = typeof(MovieReleasesRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "CountryCode")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]

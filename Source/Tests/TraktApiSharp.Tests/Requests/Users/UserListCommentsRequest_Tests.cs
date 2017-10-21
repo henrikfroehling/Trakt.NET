@@ -4,49 +4,15 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Users;
     using Xunit;
 
     [Category("Requests.Users")]
     public class UserListCommentsRequest_Tests
     {
-        [Fact]
-        public void Test_UserListCommentsRequest_Is_Not_Abstract()
-        {
-            typeof(UserListCommentsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserListCommentsRequest_Is_Sealed()
-        {
-            typeof(UserListCommentsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserListCommentsRequest_Inherits_AGetRequest_1()
-        {
-            typeof(UserListCommentsRequest).IsSubclassOf(typeof(AGetRequest<ITraktComment>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserListCommentsRequest_Implements_IHasId_Interface()
-        {
-            typeof(UserListCommentsRequest).GetInterfaces().Should().Contain(typeof(IHasId));
-        }
-
-        [Fact]
-        public void Test_UserListCommentsRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(UserListCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
         [Fact]
         public void Test_UserListCommentsRequest_Has_AuthorizationRequirement_Not_Required()
         {
@@ -66,32 +32,6 @@
         {
             var request = new UserListCommentsRequest();
             request.UriTemplate.Should().Be("users/{username}/lists/{id}/comments{/sort_order}{?page,limit}");
-        }
-
-        [Fact]
-        public void Test_UserListCommentsRequest_Has_Username_Property()
-        {
-            var propertyInfo = typeof(UserListCommentsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Username")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
-        }
-
-        [Fact]
-        public void Test_UserListCommentsRequest_Has_SortOrder_Property()
-        {
-            var propertyInfo = typeof(UserListCommentsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "SortOrder")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktCommentSortOrder));
         }
 
         [Fact]

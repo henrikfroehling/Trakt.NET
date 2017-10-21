@@ -4,7 +4,6 @@
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.Movies.JsonReader;
     using Xunit;
@@ -12,12 +11,6 @@
     [Category("Objects.Get.Movies.Implementations")]
     public class TraktTrendingMovie_Tests
     {
-        [Fact]
-        public void Test_TraktTrendingMovie_Implements_ITraktTrendingMovie_Interface()
-        {
-            typeof(TraktTrendingMovie).GetInterfaces().Should().Contain(typeof(ITraktTrendingMovie));
-        }
-
         [Fact]
         public void Test_TraktTrendingMovie_Default_Constructor()
         {

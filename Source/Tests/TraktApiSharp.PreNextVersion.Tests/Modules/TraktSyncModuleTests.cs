@@ -10,7 +10,6 @@
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Extensions;
-    using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Collections;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.History;
@@ -36,12 +35,6 @@
     [TestClass]
     public class TraktSyncModuleTests
     {
-        [TestMethod]
-        public void TestTraktSyncModuleIsModule()
-        {
-            typeof(TraktSyncModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
-        }
-
         [ClassInitialize]
         public static void InitializeTests(TestContext context)
         {

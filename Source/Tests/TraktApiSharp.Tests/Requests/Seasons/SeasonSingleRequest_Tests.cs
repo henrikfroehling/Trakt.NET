@@ -4,11 +4,7 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Seasons;
     using Xunit;
@@ -17,47 +13,10 @@
     public class SeasonSingleRequest_Tests
     {
         [Fact]
-        public void Test_SeasonSingleRequest_IsNotAbstract()
-        {
-            typeof(SeasonSingleRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_SeasonSingleRequest_IsSealed()
-        {
-            typeof(SeasonSingleRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SeasonSingleRequest_Inherits_ASeasonRequest_1()
-        {
-            typeof(SeasonSingleRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktEpisode>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SeasonSingleRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(SeasonSingleRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
-        [Fact]
         public void Test_SeasonSingleRequest_Has_Valid_UriTemplate()
         {
             var request = new SeasonSingleRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}{?extended,translations}");
-        }
-
-        [Fact]
-        public void Test_SeasonSingleRequest_Has_TranslationLanguageCode_Property()
-        {
-            var propertyInfo = typeof(SeasonSingleRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "TranslationLanguageCode")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]

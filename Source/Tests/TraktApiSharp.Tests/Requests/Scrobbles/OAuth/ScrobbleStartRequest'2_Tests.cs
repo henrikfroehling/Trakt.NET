@@ -10,31 +10,6 @@
     public class ScrobbleStartRequest_2_Tests
     {
         [Fact]
-        public void Test_ScrobbleStartRequest_2_IsNotAbstract()
-        {
-            typeof(ScrobbleStartRequest<,>).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_ScrobbleStartRequest_2_IsSealed()
-        {
-            typeof(ScrobbleStartRequest<,>).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ScrobbleStartRequest_2_Has_GenericTypeParameter()
-        {
-            typeof(ScrobbleStartRequest<,>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ScrobbleStartRequest<int, float>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(2);
-        }
-
-        [Fact]
-        public void Test_ScrobbleStartRequest_2_Inherits_APostRequest_2()
-        {
-            typeof(ScrobbleStartRequest<int, float>).IsSubclassOf(typeof(APostRequest<int, float>)).Should().BeTrue();
-        }
-
-        [Fact]
         public void Test_ScrobbleStartRequest_2_Has_AuthorizationRequirement_Required()
         {
             var request = new ScrobbleStartRequest<int, float>();

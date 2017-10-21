@@ -4,39 +4,13 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
     public class UserApproveFollowerRequest_Tests
     {
-        [Fact]
-        public void Test_UserApproveFollowerRequest_Is_Not_Abstract()
-        {
-            typeof(UserApproveFollowerRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserApproveFollowerRequest_Is_Sealed()
-        {
-            typeof(UserApproveFollowerRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserApproveFollowerRequest_Inherits_ABodylessPostRequest_1()
-        {
-            typeof(UserApproveFollowerRequest).IsSubclassOf(typeof(ABodylessPostRequest<ITraktUserFollower>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserApproveFollowerRequest_Implements_IHasId_Interface()
-        {
-            typeof(UserApproveFollowerRequest).GetInterfaces().Should().Contain(typeof(IHasId));
-        }
-
         [Fact]
         public void Test_UserApproveFollowerRequest_Has_AuthorizationRequirement_Required()
         {

@@ -4,31 +4,12 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests.Seasons;
     using Xunit;
 
     [Category("Requests.Seasons")]
     public class SeasonStatisticsRequest_Tests
     {
-        [Fact]
-        public void Test_SeasonStatisticsRequest_IsNotAbstract()
-        {
-            typeof(SeasonStatisticsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_SeasonStatisticsRequest_IsSealed()
-        {
-            typeof(SeasonStatisticsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SeasonStatisticsRequest_Inherits_ASeasonRequest_1()
-        {
-            typeof(SeasonStatisticsRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktStatistics>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_SeasonStatisticsRequest_Has_Valid_UriTemplate()
         {

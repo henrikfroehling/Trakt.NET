@@ -4,7 +4,6 @@
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Syncs.Activities;
     using TraktApiSharp.Objects.Get.Syncs.Activities.Implementations;
     using TraktApiSharp.Objects.Get.Syncs.Activities.JsonReader;
     using Xunit;
@@ -12,12 +11,6 @@
     [Category("Objects.Get.Syncs.Activities.Implementations")]
     public class TraktSyncCommentsLastActivities_Tests
     {
-        [Fact]
-        public void Test_TraktSyncCommentsLastActivities_Implements_ITraktSyncCommentsLastActivities_Interface()
-        {
-            typeof(TraktSyncCommentsLastActivities).GetInterfaces().Should().Contain(typeof(ITraktSyncCommentsLastActivities));
-        }
-
         [Fact]
         public void Test_TraktSyncCommentsLastActivities_Default_Constructor()
         {

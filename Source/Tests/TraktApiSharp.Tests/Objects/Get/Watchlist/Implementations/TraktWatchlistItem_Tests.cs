@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Watchlist;
     using TraktApiSharp.Objects.Get.Watchlist.Implementations;
     using TraktApiSharp.Objects.Get.Watchlist.JsonReader;
     using Xunit;
@@ -14,12 +13,6 @@
     [Category("Objects.Get.Watchlist.Implementations")]
     public class TraktWatchlistItem_Tests
     {
-        [Fact]
-        public void Test_TraktWatchlistItem_Implements_ITraktWatchlistItem_Interface()
-        {
-            typeof(TraktWatchlistItem).GetInterfaces().Should().Contain(typeof(ITraktWatchlistItem));
-        }
-
         [Fact]
         public void Test_TraktWatchlistItem_Default_Constructor()
         {

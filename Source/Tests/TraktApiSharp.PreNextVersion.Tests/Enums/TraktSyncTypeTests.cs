@@ -16,13 +16,6 @@
         }
 
         [TestMethod]
-        public void TestTraktSyncTypeIsTraktEnumeration()
-        {
-            var enumeration = new TraktSyncType();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktSyncTypeGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktSyncType>();

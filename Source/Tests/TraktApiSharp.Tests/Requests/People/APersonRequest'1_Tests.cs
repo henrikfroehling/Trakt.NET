@@ -5,7 +5,6 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.People;
     using Xunit;
@@ -16,37 +15,6 @@
         internal class PersonRequestMock : APersonRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
-        }
-
-        [Fact]
-        public void Test_APersonRequest_1_IsAbstract()
-        {
-            typeof(APersonRequest<>).IsAbstract.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_APersonRequest_1_Has_GenericTypeParameter()
-        {
-            typeof(APersonRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(APersonRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
-        }
-
-        [Fact]
-        public void Test_APersonRequest_1_Inherits_AGetRequest_1()
-        {
-            typeof(APersonRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_APersonRequest_1_Implements_IHasId_Interface()
-        {
-            typeof(APersonRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
-        }
-
-        [Fact]
-        public void Test_APersonRequest_1_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(APersonRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
         }
 
         [Fact]

@@ -5,7 +5,6 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Shows;
     using Xunit;
 
@@ -15,31 +14,6 @@
         internal class ShowRequestMock : AShowRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
-        }
-
-        [Fact]
-        public void Test_AShowRequest_1_Is_Abstract()
-        {
-            typeof(AShowRequest<>).IsAbstract.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AShowRequest_1_Has_GenericTypeParameter()
-        {
-            typeof(AShowRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(AShowRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
-        }
-
-        [Fact]
-        public void Test_AShowRequest_1_Inherits_AGetRequest_1()
-        {
-            typeof(AShowRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AShowRequest_1_Implements_IHasId_Interface()
-        {
-            typeof(AShowRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]

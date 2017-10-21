@@ -4,31 +4,12 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests.Movies;
     using Xunit;
 
     [Category("Requests.Movies")]
     public class MovieStatisticsRequest_Tests
     {
-        [Fact]
-        public void Test_MovieStatisticsRequest_IsNotAbstract()
-        {
-            typeof(MovieStatisticsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_MovieStatisticsRequest_IsSealed()
-        {
-            typeof(MovieStatisticsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_MovieStatisticsRequest_Inherits_AMovieRequest_1()
-        {
-            typeof(MovieStatisticsRequest).IsSubclassOf(typeof(AMovieRequest<ITraktStatistics>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_MovieStatisticsRequest_Has_Valid_UriTemplate()
         {

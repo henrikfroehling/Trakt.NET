@@ -21,12 +21,6 @@
     [TestClass]
     public class TraktMoviesModuleTests
     {
-        [TestMethod]
-        public void TestTraktMoviesModuleIsModule()
-        {
-            typeof(TraktMoviesModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
-        }
-
         [ClassInitialize]
         public static void InitializeTests(TestContext context)
         {

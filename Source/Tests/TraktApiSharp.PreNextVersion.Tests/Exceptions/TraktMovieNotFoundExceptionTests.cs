@@ -8,15 +8,6 @@
     public class TraktMovieNotFoundExceptionTests
     {
         [TestMethod]
-        public void TestTraktMovieNotFoundExceptionBaseClass()
-        {
-            var exception = new TraktMovieNotFoundException("");
-
-            exception.Should().BeAssignableTo<TraktException>();
-            exception.Should().BeAssignableTo<TraktObjectNotFoundException>();
-        }
-
-        [TestMethod]
         public void TestTraktMovieNotFoundExceptionDefaultConstructor()
         {
             var movieId = "movie id";

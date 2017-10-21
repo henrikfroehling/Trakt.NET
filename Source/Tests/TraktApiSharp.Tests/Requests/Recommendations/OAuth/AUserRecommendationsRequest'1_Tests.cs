@@ -3,11 +3,8 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Recommendations.OAuth;
     using Xunit;
@@ -22,48 +19,10 @@
         }
 
         [Fact]
-        public void Test_AUserRecommendationsRequest_1_IsAbstract()
-        {
-            typeof(AUserRecommendationsRequest<>).IsAbstract.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AUserRecommendationsRequest_1_Has_GenericTypeParameter()
-        {
-            typeof(AUserRecommendationsRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(AUserRecommendationsRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
-        }
-
-        [Fact]
-        public void Test_AUserRecommendationsRequest_1_Inherits_AGetRequest_1()
-        {
-            typeof(AUserRecommendationsRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AUserRecommendationsRequest_1_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(AUserRecommendationsRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
-        [Fact]
         public void Test_AUserRecommendationsRequest_1_Has_AuthorizationRequirement_Required()
         {
             var requestMock = new UserRecommendationsRequestMock();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
-        }
-
-        [Fact]
-        public void Test_AUserRecommendationsRequest_1_Has_Limit_Property()
-        {
-            var propertyInfo = typeof(AUserRecommendationsRequest<>)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Limit")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(uint?));
         }
 
         [Fact]

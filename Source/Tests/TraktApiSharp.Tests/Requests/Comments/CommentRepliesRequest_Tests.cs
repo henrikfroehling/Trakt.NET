@@ -5,45 +5,13 @@
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Comments;
-    using TraktApiSharp.Requests.Interfaces;
     using Xunit;
 
     [Category("Requests.Comments")]
     public class CommentRepliesRequest_Tests
     {
-        [Fact]
-        public void Test_CommentRepliesRequest_IsNotAbstract()
-        {
-            typeof(CommentRepliesRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_CommentRepliesRequest_IsSealed()
-        {
-            typeof(CommentRepliesRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_CommentRepliesRequest_Inherits_AGetRequest_1()
-        {
-            typeof(CommentRepliesRequest).IsSubclassOf(typeof(AGetRequest<ITraktComment>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_CommentRepliesRequest_Implements_IHasId_Interface()
-        {
-            typeof(CommentRepliesRequest).GetInterfaces().Should().Contain(typeof(IHasId));
-        }
-
-        [Fact]
-        public void Test_CommentRepliesRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(CommentRepliesRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
         [Fact]
         public void Test_CommentRepliesRequest_Has_AuthorizationRequirement_NotRequired()
         {

@@ -5,8 +5,6 @@
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Movies;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Movies;
     using TraktApiSharp.Requests.Parameters;
     using Xunit;
@@ -14,36 +12,6 @@
     [Category("Requests.Movies")]
     public class MovieRelatedMoviesRequest_Tests
     {
-        [Fact]
-        public void Test_MovieRelatedMoviesRequest_IsNotAbstract()
-        {
-            typeof(MovieRelatedMoviesRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_MovieRelatedMoviesRequest_IsSealed()
-        {
-            typeof(MovieRelatedMoviesRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_MovieRelatedMoviesRequest_Inherits_AMovieRequest_1()
-        {
-            typeof(MovieRelatedMoviesRequest).IsSubclassOf(typeof(AMovieRequest<ITraktMovie>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_MovieRelatedMoviesRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(MovieRelatedMoviesRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
-        [Fact]
-        public void Test_MovieRelatedMoviesRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(MovieRelatedMoviesRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
         [Fact]
         public void Test_MovieRelatedMoviesRequest_Has_Valid_UriTemplate()
         {

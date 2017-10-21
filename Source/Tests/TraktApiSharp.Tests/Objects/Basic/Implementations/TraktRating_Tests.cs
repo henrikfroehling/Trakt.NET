@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Basic.JsonReader;
     using Xunit;
@@ -12,12 +11,6 @@
     [Category("Objects.Basic.Implementations")]
     public class TraktRating_Tests
     {
-        [Fact]
-        public void Test_TraktRating_Implements_ITraktRating_Interface()
-        {
-            typeof(TraktRating).GetInterfaces().Should().Contain(typeof(ITraktRating));
-        }
-
         [Fact]
         public void Test_TraktRating_Default_Constructor()
         {

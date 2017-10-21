@@ -4,11 +4,8 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Users.OAuth;
@@ -17,63 +14,6 @@
     [Category("Requests.Users.OAuth")]
     public class UserCommentsRequest_Tests
     {
-        [Fact]
-        public void Test_UserCommentsRequest_Is_Not_Abstract()
-        {
-            typeof(UserCommentsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserCommentsRequest_Is_Sealed()
-        {
-            typeof(UserCommentsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserCommentsRequest_Inherits_AUsersPagedGetRequest_1()
-        {
-            typeof(UserCommentsRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktUserComment>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserCommentsRequest_Has_Username_Property()
-        {
-            var propertyInfo = typeof(UserCommentsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Username")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
-        }
-
-        [Fact]
-        public void Test_UserCommentsRequest_Has_CommentType_Property()
-        {
-            var propertyInfo = typeof(UserCommentsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "CommentType")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktCommentType));
-        }
-
-        [Fact]
-        public void Test_UserCommentsRequest_Has_ObjectType_Property()
-        {
-            var propertyInfo = typeof(UserCommentsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "ObjectType")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktObjectType));
-        }
-
         [Fact]
         public void Test_UserCommentsRequest_Has_AuthorizationRequirement_Optional()
         {

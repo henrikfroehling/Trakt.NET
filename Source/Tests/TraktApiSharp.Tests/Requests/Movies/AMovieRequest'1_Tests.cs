@@ -5,7 +5,6 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Movies;
     using Xunit;
 
@@ -15,31 +14,6 @@
         internal class MovieRequestMock : AMovieRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
-        }
-
-        [Fact]
-        public void Test_AMovieRequest_1_IsAbstract()
-        {
-            typeof(AMovieRequest<>).IsAbstract.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AMovieRequest_1_Has_GenericTypeParameter()
-        {
-            typeof(AMovieRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(AMovieRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
-        }
-
-        [Fact]
-        public void Test_AMovieRequest_1_Inherits_AGetRequest_1()
-        {
-            typeof(AMovieRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AMovieRequest_1_Implements_IHasId_Interface()
-        {
-            typeof(AMovieRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]

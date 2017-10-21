@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
     using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses.Implementations;
     using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses.JsonReader;
     using Xunit;
@@ -12,12 +11,6 @@
     [Category("Objects.Post.Users.CustomListItems.Responses.Implementations")]
     public class TraktUserCustomListItemsPostResponseNotFoundGroup_Tests
     {
-        [Fact]
-        public void Test_TraktUserCustomListItemsPostResponseNotFoundGroup_Implements_ITraktUserCustomListItemsPostResponseNotFoundGroup_Interface()
-        {
-            typeof(TraktUserCustomListItemsPostResponseNotFoundGroup).GetInterfaces().Should().Contain(typeof(ITraktUserCustomListItemsPostResponseNotFoundGroup));
-        }
-
         [Fact]
         public void Test_TraktUserCustomListItemsPostResponseNotFoundGroup_Default_Constructor()
         {

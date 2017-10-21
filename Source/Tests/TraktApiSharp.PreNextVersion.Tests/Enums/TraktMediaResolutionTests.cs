@@ -16,13 +16,6 @@
         }
 
         [TestMethod]
-        public void TestTraktMediaResolutionIsTraktEnumeration()
-        {
-            var enumeration = new TraktMediaResolution();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktMediaResolutionGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktMediaResolution>();

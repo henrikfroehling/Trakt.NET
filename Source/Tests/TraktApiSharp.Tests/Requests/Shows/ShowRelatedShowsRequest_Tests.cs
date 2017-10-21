@@ -5,8 +5,6 @@
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Shows;
     using Xunit;
@@ -14,36 +12,6 @@
     [Category("Requests.Shows")]
     public class ShowRelatedShowsRequest_Tests
     {
-        [Fact]
-        public void Test_ShowRelatedShowsRequest_Is_Not_Abstract()
-        {
-            typeof(ShowRelatedShowsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_ShowRelatedShowsRequest_Is_Sealed()
-        {
-            typeof(ShowRelatedShowsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowRelatedShowsRequest_Inherits_AShowRequest_1()
-        {
-            typeof(ShowRelatedShowsRequest).IsSubclassOf(typeof(AShowRequest<ITraktShow>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowRelatedShowsRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(ShowRelatedShowsRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
-        [Fact]
-        public void Test_ShowRelatedShowsRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(ShowRelatedShowsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
         [Fact]
         public void Test_ShowRelatedShowsRequest_Has_Valid_UriTemplate()
         {

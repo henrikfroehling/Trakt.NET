@@ -16,13 +16,6 @@
         }
 
         [TestMethod]
-        public void TestTraktUserLikeTypeIsTraktEnumeration()
-        {
-            var enumeration = new TraktUserLikeType();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktUserLikeTypeGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktUserLikeType>();

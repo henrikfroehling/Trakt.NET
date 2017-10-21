@@ -4,8 +4,6 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Requests.Base;
@@ -20,38 +18,6 @@
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
             public override void Validate() => throw new NotImplementedException();
-        }
-
-        [Fact]
-        public void Test_AShowsMostPWCRequest_1_Is_Abstract()
-        {
-            typeof(AShowsMostPWCRequest<>).IsAbstract.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AShowsMostPWCRequest_1_Has_GenericTypeParameter()
-        {
-            typeof(AShowsMostPWCRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(AShowsMostPWCRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
-        }
-
-        [Fact]
-        public void Test_AShowsMostPWCRequest_1_Inherits_AShowsRequest_1()
-        {
-            typeof(AShowsMostPWCRequest<int>).IsSubclassOf(typeof(AShowsRequest<int>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AShowsMostPWCRequest_1_Has_Period_Property()
-        {
-            var propertyInfo = typeof(AShowsMostPWCRequest<>)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Period")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktTimePeriod));
         }
 
         [Fact]

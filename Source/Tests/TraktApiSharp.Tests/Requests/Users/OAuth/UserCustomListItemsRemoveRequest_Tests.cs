@@ -3,11 +3,7 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Post.Users.CustomListItems;
-    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
@@ -15,37 +11,6 @@
     [Category("Requests.Users.OAuth")]
     public class UserCustomListItemsRemoveRequest_Tests
     {
-        [Fact]
-        public void Test_UserCustomListItemsRemoveRequest_Is_Not_Abstract()
-        {
-            typeof(UserCustomListItemsRemoveRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserCustomListItemsRemoveRequest_Is_Sealed()
-        {
-            typeof(UserCustomListItemsRemoveRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserCustomListItemsRemoveRequest_Inherits_AUsersPostByIdRequest_2()
-        {
-            typeof(UserCustomListItemsRemoveRequest).IsSubclassOf(typeof(AUsersPostByIdRequest<ITraktUserCustomListItemsRemovePostResponse, TraktUserCustomListItemsPost>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserCustomListItemsRemoveRequest_Has_Username_Property()
-        {
-            var propertyInfo = typeof(UserCustomListItemsRemoveRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Username")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
-        }
-
         [Fact]
         public void Test_UserCustomListItemsRemoveRequest_Has_AuthorizationRequirement_Required()
         {

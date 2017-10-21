@@ -3,54 +3,14 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
     public class UserListLikeRequest_Tests
     {
-        [Fact]
-        public void Test_UserListLikeRequest_Is_Not_Abstract()
-        {
-            typeof(UserListLikeRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserListLikeRequest_Is_Sealed()
-        {
-            typeof(UserListLikeRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserListLikeRequest_Inherits_ABodylessPostRequest()
-        {
-            typeof(UserListLikeRequest).IsSubclassOf(typeof(ABodylessPostRequest)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserListLikeRequest_Implements_IHasId_Interface()
-        {
-            typeof(UserListLikeRequest).GetInterfaces().Should().Contain(typeof(IHasId));
-        }
-
-        [Fact]
-        public void Test_UserListLikeRequest_Has_Username_Property()
-        {
-            var propertyInfo = typeof(UserListLikeRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Username")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
-        }
-
         [Fact]
         public void Test_UserListLikeRequest_Has_AuthorizationRequirement_Required()
         {

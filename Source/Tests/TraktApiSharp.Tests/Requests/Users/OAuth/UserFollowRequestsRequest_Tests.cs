@@ -3,7 +3,6 @@
     using FluentAssertions;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Users.OAuth;
@@ -12,24 +11,6 @@
     [Category("Requests.Users.OAuth")]
     public class UserFollowRequestsRequest_Tests
     {
-        [Fact]
-        public void Test_UserFollowRequestsRequest_Is_Not_Abstract()
-        {
-            typeof(UserFollowRequestsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserFollowRequestsRequest_Is_Sealed()
-        {
-            typeof(UserFollowRequestsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserFollowRequestsRequest_Inherits_AUsersGetRequest_1()
-        {
-            typeof(UserFollowRequestsRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktUserFollowRequest>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_UserFollowRequestsRequest_Has_AuthorizationRequirement_Required()
         {

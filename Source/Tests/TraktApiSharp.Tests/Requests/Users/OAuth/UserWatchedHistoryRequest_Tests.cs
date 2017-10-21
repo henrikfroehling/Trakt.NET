@@ -4,14 +4,10 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
@@ -19,95 +15,6 @@
     [Category("Requests.Users.OAuth")]
     public class UserWatchedHistoryRequest_Tests
     {
-        [Fact]
-        public void Test_UserWatchedHistoryRequest_Is_Not_Abstract()
-        {
-            typeof(UserWatchedHistoryRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserWatchedHistoryRequest_Is_Sealed()
-        {
-            typeof(UserWatchedHistoryRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserWatchedHistoryRequest_Inherits_AUsersPagedGetRequest_1()
-        {
-            typeof(UserWatchedHistoryRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktHistoryItem>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserWatchedHistoryRequest_Implements_IHasId_Interface()
-        {
-            typeof(UserWatchedHistoryRequest).GetInterfaces().Should().Contain(typeof(IHasId));
-        }
-
-        [Fact]
-        public void Test_UserWatchedHistoryRequest_Has_Username_Property()
-        {
-            var propertyInfo = typeof(UserWatchedHistoryRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Username")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
-        }
-
-        [Fact]
-        public void Test_UserWatchedHistoryRequest_Has_Type_Property()
-        {
-            var propertyInfo = typeof(UserWatchedHistoryRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Type")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktSyncItemType));
-        }
-
-        [Fact]
-        public void Test_UserWatchedHistoryRequest_Has_ItemId_Property()
-        {
-            var propertyInfo = typeof(UserWatchedHistoryRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "ItemId")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(uint?));
-        }
-
-        [Fact]
-        public void Test_UserWatchedHistoryRequest_Has_StartAt_Property()
-        {
-            var propertyInfo = typeof(UserWatchedHistoryRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "StartAt")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(DateTime?));
-        }
-
-        [Fact]
-        public void Test_UserWatchedHistoryRequest_Has_EndAt_Property()
-        {
-            var propertyInfo = typeof(UserWatchedHistoryRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "EndAt")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(DateTime?));
-        }
-
         [Fact]
         public void Test_UserWatchedHistoryRequest_Has_AuthorizationRequirement_Optional()
         {

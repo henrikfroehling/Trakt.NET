@@ -6,7 +6,6 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Movies;
     using TraktApiSharp.Requests.Parameters;
     using Xunit;
@@ -18,43 +17,6 @@
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
             public override void Validate() => throw new NotImplementedException();
-        }
-
-        [Fact]
-        public void Test_AMoviesRequest_1_IsAbstract()
-        {
-            typeof(AMoviesRequest<>).IsAbstract.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AMoviesRequest_1_Has_GenericTypeParameter()
-        {
-            typeof(AMoviesRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(AMoviesRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
-        }
-
-        [Fact]
-        public void Test_AMoviesRequest_1_Inherits_AGetRequest_1()
-        {
-            typeof(AMoviesRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AMoviesRequest_1_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(AMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
-        [Fact]
-        public void Test_AMoviesRequest_1_Implements_ISupportsFilter_Interface()
-        {
-            typeof(AMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
-        }
-
-        [Fact]
-        public void Test_AMoviesRequest_1_Implements_ISupportsPagination_Interface()
-        {
-            typeof(AMoviesRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]

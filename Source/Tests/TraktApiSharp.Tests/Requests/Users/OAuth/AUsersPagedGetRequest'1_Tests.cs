@@ -6,7 +6,6 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
@@ -18,31 +17,6 @@
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
             public override void Validate() => throw new NotImplementedException();
-        }
-
-        [Fact]
-        public void Test_AUsersPagedGetRequest_1_Is_Abstract()
-        {
-            typeof(AUsersPagedGetRequest<>).IsAbstract.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AUsersPagedGetRequest_1_Has_GenericTypeParameter()
-        {
-            typeof(AUsersPagedGetRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(AUsersPagedGetRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
-        }
-
-        [Fact]
-        public void Test_AUsersPagedGetRequest_1_Inherits_AUsersGetRequest_1()
-        {
-            typeof(AUsersPagedGetRequest<int>).IsSubclassOf(typeof(AUsersGetRequest<int>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AUsersPagedGetRequest_1_Implements_ISupportsPagination_Interface()
-        {
-            typeof(AUsersPagedGetRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
         }
 
         [Fact]

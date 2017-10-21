@@ -3,7 +3,6 @@
     using FluentAssertions;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Recommendations.OAuth;
@@ -12,24 +11,6 @@
     [Category("Requests.Recommendations.OAuth")]
     public class UserShowRecommendationsRequest_Tests
     {
-        [Fact]
-        public void Test_UserShowRecommendationsRequest_IsNotAbstract()
-        {
-            typeof(UserShowRecommendationsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserShowRecommendationsRequest_IsSealed()
-        {
-            typeof(UserShowRecommendationsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserShowRecommendationsRequest_Inherits_AUserRecommendationsRequest_1()
-        {
-            typeof(UserShowRecommendationsRequest).IsSubclassOf(typeof(AUserRecommendationsRequest<ITraktShow>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_UserShowRecommendationsRequest_Has_AuthorizationRequirement_Required()
         {

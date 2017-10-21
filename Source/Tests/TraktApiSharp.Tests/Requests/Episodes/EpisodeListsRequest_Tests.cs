@@ -4,73 +4,19 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Requests.Episodes;
-    using TraktApiSharp.Requests.Interfaces;
     using Xunit;
 
     [Category("Requests.Episodes")]
     public class EpisodeListsRequest_Tests
     {
         [Fact]
-        public void Test_EpisodeListsRequest_IsNotAbstract()
-        {
-            typeof(EpisodeListsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_EpisodeListsRequest_IsSealed()
-        {
-            typeof(EpisodeListsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_EpisodeListsRequest_Inherits_AEpisodeRequest_1()
-        {
-            typeof(EpisodeListsRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktList>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_EpisodeListsRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(EpisodeListsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
-        [Fact]
         public void Test_EpisodeListsRequest_Has_Valid_UriTemplate()
         {
             var request = new EpisodeListsRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/episodes/{episode}/lists{/type}{/sort_order}{?page,limit}");
-        }
-
-        [Fact]
-        public void Test_EpisodeListsRequest_Has_Type_Property()
-        {
-            var propertyInfo = typeof(EpisodeListsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Type")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktListType));
-        }
-
-        [Fact]
-        public void Test_EpisodeListsRequest_Has_SortOrder_Property()
-        {
-            var propertyInfo = typeof(EpisodeListsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "SortOrder")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktListSortOrder));
         }
 
         [Fact]

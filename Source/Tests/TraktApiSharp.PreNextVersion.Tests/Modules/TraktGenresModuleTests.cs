@@ -8,7 +8,6 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Responses;
     using Utils;
@@ -16,12 +15,6 @@
     [TestClass]
     public class TraktGenresModuleTests
     {
-        [TestMethod]
-        public void TestTraktGenresModuleIsModule()
-        {
-            typeof(TraktGenresModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
-        }
-
         [ClassInitialize]
         public static void InitializeTests(TestContext context)
         {

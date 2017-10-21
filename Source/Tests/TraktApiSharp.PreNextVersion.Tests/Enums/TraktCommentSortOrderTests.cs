@@ -9,13 +9,6 @@
     public class TraktCommentSortOrderTests
     {
         [TestMethod]
-        public void TestTraktCommentSortOrderIsTraktEnumeration()
-        {
-            var enumeration = new TraktCommentSortOrder();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktCommentSortOrderGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktCommentSortOrder>();

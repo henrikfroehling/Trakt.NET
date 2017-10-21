@@ -8,14 +8,6 @@
     public class TraktRateLimitExceptionTests
     {
         [TestMethod]
-        public void TestTraktRateLimitExceptionBaseClass()
-        {
-            var exception = new TraktRateLimitException();
-
-            exception.Should().BeAssignableTo<TraktException>();
-        }
-
-        [TestMethod]
         public void TestTraktRateLimitExceptionDefaultConstructor()
         {
             var exception = new TraktRateLimitException();

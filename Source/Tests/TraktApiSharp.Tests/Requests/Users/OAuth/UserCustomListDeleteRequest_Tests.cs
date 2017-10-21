@@ -3,8 +3,6 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Users.OAuth;
@@ -13,37 +11,6 @@
     [Category("Requests.Users.OAuth")]
     public class UserCustomListDeleteRequest_Tests
     {
-        [Fact]
-        public void Test_UserCustomListDeleteRequest_Is_Not_Abstract()
-        {
-            typeof(UserCustomListDeleteRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserCustomListDeleteRequest_Is_Sealed()
-        {
-            typeof(UserCustomListDeleteRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserCustomListDeleteRequest_Inherits_AUsersDeleteByIdRequest()
-        {
-            typeof(UserCustomListDeleteRequest).IsSubclassOf(typeof(AUsersDeleteByIdRequest)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserCustomListDeleteRequest_Has_Username_Property()
-        {
-            var propertyInfo = typeof(UserCustomListDeleteRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Username")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
-        }
-
         [Fact]
         public void Test_UserCustomListDeleteRequest_Has_AuthorizationRequirement_Required()
         {

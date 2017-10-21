@@ -4,13 +4,8 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Search;
     using Xunit;
@@ -25,47 +20,10 @@
         }
 
         [Fact]
-        public void Test_ASearchRequest_IsAbstract()
-        {
-            typeof(ASearchRequest).IsAbstract.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ASearchRequest_Inherits_AGetRequest_1()
-        {
-            typeof(ASearchRequest).IsSubclassOf(typeof(AGetRequest<ITraktSearchResult>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ASearchRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(ASearchRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
-        [Fact]
-        public void Test_ASearchRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(ASearchRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
-        [Fact]
         public void Test_ASearchRequest_Has_AuthorizationRequirement_NotRequired()
         {
             var requestMock = new SearchRequestMock();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
-        }
-
-        [Fact]
-        public void Test_ASearchRequest_Has_ResultTypes_Property()
-        {
-            var propertyInfo = typeof(ASearchRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "ResultTypes")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktSearchResultType));
         }
 
         [Theory, ClassData(typeof(TraktSearchRequestMock_TestData))]

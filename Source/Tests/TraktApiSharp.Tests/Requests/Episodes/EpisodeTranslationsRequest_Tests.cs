@@ -3,10 +3,7 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Requests.Episodes;
     using Xunit;
 
@@ -14,41 +11,10 @@
     public class EpisodeTranslationsRequest_Tests
     {
         [Fact]
-        public void Test_EpisodeTranslationsRequest_IsNotAbstract()
-        {
-            typeof(EpisodeTranslationsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_EpisodeTranslationsRequest_IsSealed()
-        {
-            typeof(EpisodeTranslationsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_EpisodeTranslationsRequest_Inherits_AEpisodeRequest_1()
-        {
-            typeof(EpisodeTranslationsRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktEpisodeTranslation>)).Should().BeTrue();
-        }
-
-        [Fact]
         public void Test_EpisodeTranslationsRequest_Has_Valid_UriTemplate()
         {
             var request = new EpisodeTranslationsRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/episodes/{episode}/translations{/language}");
-        }
-
-        [Fact]
-        public void Test_EpisodeTranslationsRequest_Has_LanguageCode_Property()
-        {
-            var propertyInfo = typeof(EpisodeTranslationsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "LanguageCode")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]

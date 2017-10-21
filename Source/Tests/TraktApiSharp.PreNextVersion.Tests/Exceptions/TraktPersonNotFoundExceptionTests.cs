@@ -8,15 +8,6 @@
     public class TraktPersonNotFoundExceptionTests
     {
         [TestMethod]
-        public void TestTraktPersonNotFoundExceptionBaseClass()
-        {
-            var exception = new TraktPersonNotFoundException("");
-
-            exception.Should().BeAssignableTo<TraktException>();
-            exception.Should().BeAssignableTo<TraktObjectNotFoundException>();
-        }
-
-        [TestMethod]
         public void TestTraktPersonNotFoundExceptionDefaultConstructor()
         {
             var personId = "person id";

@@ -4,13 +4,9 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
@@ -18,56 +14,6 @@
     [Category("Requests.Users.OAuth")]
     public class UserCustomListItemsRequest_Tests
     {
-        [Fact]
-        public void Test_UserCustomListItemsRequest_Is_Not_Abstract()
-        {
-            typeof(UserCustomListItemsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserCustomListItemsRequest_Is_Sealed()
-        {
-            typeof(UserCustomListItemsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserCustomListItemsRequest_Inherits_AUsersPagedGetRequest_1()
-        {
-            typeof(UserCustomListItemsRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktListItem>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserCustomListItemsRequest_Implements_IHasId_Interface()
-        {
-            typeof(UserCustomListItemsRequest).GetInterfaces().Should().Contain(typeof(IHasId));
-        }
-
-        [Fact]
-        public void Test_UserCustomListItemsRequest_Has_Username_Property()
-        {
-            var propertyInfo = typeof(UserCustomListItemsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Username")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
-        }
-
-        [Fact]
-        public void Test_UserCustomListItemsRequest_Has_Type_Property()
-        {
-            var propertyInfo = typeof(UserCustomListItemsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Type")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktListItemType));
-        }
-
         [Fact]
         public void Test_UserCustomListItemsRequest_Has_AuthorizationRequirement_Optional()
         {

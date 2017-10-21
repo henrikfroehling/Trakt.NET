@@ -4,7 +4,6 @@
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Post.Comments.Responses;
     using TraktApiSharp.Objects.Post.Comments.Responses.Implementations;
     using TraktApiSharp.Objects.Post.Comments.Responses.JsonReader;
     using Xunit;
@@ -12,12 +11,6 @@
     [Category("Objects.Post.Comments.Responses.Implementations")]
     public class TraktCommentPostResponse_Tests
     {
-        [Fact]
-        public void Test_TraktCommentPostResponse_Implements_ITraktCommentPostResponse_Interface()
-        {
-            typeof(TraktCommentPostResponse).GetInterfaces().Should().Contain(typeof(ITraktCommentPostResponse));
-        }
-
         [Fact]
         public void Test_TraktCommentPostResponse_Default_Constructor()
         {

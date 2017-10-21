@@ -10,24 +10,6 @@
     public class CheckinsDeleteRequest_Tests
     {
         [Fact]
-        public void Test_CheckinsDeleteRequest_IsNotAbstract()
-        {
-            typeof(CheckinsDeleteRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_CheckinsDeleteRequest_IsSealed()
-        {
-            typeof(CheckinsDeleteRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_CheckinsDeleteRequest_Inherits_ADeleteRequest()
-        {
-            typeof(CheckinsDeleteRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
-        }
-
-        [Fact]
         public void Test_CheckinsDeleteRequest_Has_AuthorizationRequirement_Required()
         {
             var request = new CheckinsDeleteRequest();

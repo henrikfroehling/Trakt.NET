@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Collections;
     using TraktApiSharp.Objects.Get.Collections.Implementations;
     using TraktApiSharp.Objects.Get.Collections.JsonReader;
     using Xunit;
@@ -14,12 +13,6 @@
     [Category("Objects.Get.Collections.Implementations")]
     public class TraktCollectionShowSeason_Tests
     {
-        [Fact]
-        public void Test_TraktCollectionShowSeason_Implements_ITraktCollectionShowSeason_Interface()
-        {
-            typeof(TraktCollectionShowSeason).GetInterfaces().Should().Contain(typeof(ITraktCollectionShowSeason));
-        }
-
         [Fact]
         public void Test_TraktCollectionShowSeason_Default_Constructor()
         {

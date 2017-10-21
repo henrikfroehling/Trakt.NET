@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Objects.Get.History.Implementations;
     using TraktApiSharp.Objects.Get.History.JsonReader;
     using Xunit;
@@ -14,12 +13,6 @@
     [Category("Objects.Get.History.Implementations")]
     public class TraktHistoryItem_Tests
     {
-        [Fact]
-        public void Test_TraktHistoryItem_Implements_ITraktHistoryItem_Interface()
-        {
-            typeof(TraktHistoryItem).GetInterfaces().Should().Contain(typeof(ITraktHistoryItem));
-        }
-
         [Fact]
         public void Test_TraktHistoryItem_Default_Constructor()
         {

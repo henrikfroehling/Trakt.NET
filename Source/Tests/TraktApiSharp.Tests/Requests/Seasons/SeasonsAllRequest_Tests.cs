@@ -4,12 +4,8 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Seasons;
     using Xunit;
@@ -18,53 +14,10 @@
     public class SeasonsAllRequest_Tests
     {
         [Fact]
-        public void Test_SeasonsAllRequest_IsNotAbstract()
-        {
-            typeof(SeasonsAllRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_SeasonsAllRequest_IsSealed()
-        {
-            typeof(SeasonsAllRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SeasonsAllRequest_Inherits_AGetRequest_1()
-        {
-            typeof(SeasonsAllRequest).IsSubclassOf(typeof(AGetRequest<ITraktSeason>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SeasonsAllRequest_Implements_IHasId_Interface()
-        {
-            typeof(SeasonsAllRequest).GetInterfaces().Should().Contain(typeof(IHasId));
-        }
-
-        [Fact]
-        public void Test_SeasonsAllRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(SeasonsAllRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
-        [Fact]
         public void Test_SeasonsAllRequest_Has_Valid_UriTemplate()
         {
             var request = new SeasonsAllRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons{?extended,translations}");
-        }
-
-        [Fact]
-        public void Test_SeasonsAllRequest_Has_TranslationLanguageCode_Property()
-        {
-            var propertyInfo = typeof(SeasonsAllRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "TranslationLanguageCode")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]

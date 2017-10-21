@@ -3,7 +3,6 @@
     using FluentAssertions;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Get.Shows.JsonReader;
     using Xunit;
@@ -11,12 +10,6 @@
     [Category("Objects.Get.Shows.Implementations")]
     public class TraktShowAirs_Tests
     {
-        [Fact]
-        public void Test_TraktShowAirs_Implements_ITraktShowAirs_Interface()
-        {
-            typeof(TraktShowAirs).GetInterfaces().Should().Contain(typeof(ITraktShowAirs));
-        }
-
         [Fact]
         public void Test_TraktShowAirs_Default_Constructor()
         {

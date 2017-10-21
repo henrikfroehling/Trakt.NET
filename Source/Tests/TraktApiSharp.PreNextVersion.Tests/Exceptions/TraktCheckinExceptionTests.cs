@@ -8,14 +8,6 @@
     public class TraktCheckinExceptionTests
     {
         [TestMethod]
-        public void TestTraktCheckinEExceptionBaseClass()
-        {
-            var exception = new TraktCheckinException("");
-
-            exception.Should().BeAssignableTo<TraktException>();
-        }
-
-        [TestMethod]
         public void TestTraktExpiredEExceptionDefaultConstructor()
         {
             var message = "exception message";

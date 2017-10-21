@@ -12,24 +12,6 @@
     public class UserRecommendationHideMovieRequest_Tests
     {
         [Fact]
-        public void Test_UserRecommendationHideMovieRequest_IsNotAbstract()
-        {
-            typeof(UserRecommendationHideMovieRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserRecommendationHideMovieRequest_IsSealed()
-        {
-            typeof(UserRecommendationHideMovieRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserRecommendationHideMovieRequest_Inherits_AUserRecommendationHideRequest()
-        {
-            typeof(UserRecommendationHideMovieRequest).IsSubclassOf(typeof(AUserRecommendationHideRequest)).Should().BeTrue();
-        }
-
-        [Fact]
         public void Test_UserRecommendationHideMovieRequest_Has_AuthorizationRequirement_Required()
         {
             var request = new UserRecommendationHideMovieRequest();

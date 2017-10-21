@@ -16,13 +16,6 @@
         }
 
         [TestMethod]
-        public void TestTraktAccessTokenTypeIsTraktEnumeration()
-        {
-            var enumeration = new TraktAccessTokenType();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktAccessTokenTypeGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktAccessTokenType>();

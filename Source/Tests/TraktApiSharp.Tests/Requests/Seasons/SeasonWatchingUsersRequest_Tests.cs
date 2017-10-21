@@ -4,8 +4,6 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Seasons;
     using Xunit;
@@ -13,30 +11,6 @@
     [Category("Requests.Seasons")]
     public class SeasonWatchingUsersRequest_Tests
     {
-        [Fact]
-        public void Test_SeasonWatchingUsersRequest_IsNotAbstract()
-        {
-            typeof(SeasonWatchingUsersRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_SeasonWatchingUsersRequest_IsSealed()
-        {
-            typeof(SeasonWatchingUsersRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SeasonWatchingUsersRequest_Inherits_ASeasonRequest_1()
-        {
-            typeof(SeasonWatchingUsersRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktUser>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SeasonWatchingUsersRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(SeasonWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
         [Fact]
         public void Test_SeasonWatchingUsersRequest_Has_Valid_UriTemplate()
         {

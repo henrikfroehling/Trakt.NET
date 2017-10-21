@@ -3,12 +3,9 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Episodes;
-    using TraktApiSharp.Requests.Interfaces;
     using Xunit;
 
     [Category("Requests.Episodes")]
@@ -17,31 +14,6 @@
         internal class TraktEpisodeRequestMock : AEpisodeRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
-        }
-
-        [Fact]
-        public void Test_AEpisodeRequest_1_IsAbstract()
-        {
-            typeof(AEpisodeRequest<>).IsAbstract.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AEpisodeRequest_1_Has_GenericTypeParameter()
-        {
-            typeof(AEpisodeRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(AEpisodeRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
-        }
-
-        [Fact]
-        public void Test_AEpisodeRequest_1_Inherits_AGetRequest_1()
-        {
-            typeof(AEpisodeRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AEpisodeRequest_1_Implements_IHasId_Interface()
-        {
-            typeof(AEpisodeRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
@@ -56,32 +28,6 @@
         {
             var requestMock = new TraktEpisodeRequestMock();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Episodes);
-        }
-
-        [Fact]
-        public void Test_AEpisodeRequest_1_Has_SeasonNumber_Property()
-        {
-            var propertyInfo = typeof(AEpisodeRequest<>)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "SeasonNumber")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(uint));
-        }
-
-        [Fact]
-        public void Test_AEpisodeRequest_1_Has_EpisodeNumber_Property()
-        {
-            var propertyInfo = typeof(AEpisodeRequest<>)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "EpisodeNumber")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(uint));
         }
 
         [Fact]

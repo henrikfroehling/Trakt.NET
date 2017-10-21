@@ -16,13 +16,6 @@
         }
 
         [TestMethod]
-        public void TestTraktSearchFieldIsTraktEnumeration()
-        {
-            var enumeration = new TraktSearchField();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktSearchFieldGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktSearchField>();

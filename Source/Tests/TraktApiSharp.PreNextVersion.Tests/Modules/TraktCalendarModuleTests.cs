@@ -7,7 +7,6 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Extensions;
-    using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Calendars;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
@@ -21,12 +20,6 @@
 
         private static DateTime DT_START_DATE;
         private static DateTime DT_END_DATE;
-
-        [TestMethod]
-        public void TestTraktCalendarModuleIsModule()
-        {
-            typeof(TraktCalendarModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
-        }
 
         [ClassInitialize]
         public static void InitializeTests(TestContext context)

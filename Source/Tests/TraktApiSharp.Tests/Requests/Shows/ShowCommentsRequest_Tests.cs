@@ -4,12 +4,8 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Shows;
     using Xunit;
 
@@ -17,47 +13,10 @@
     public class ShowCommentsRequest_Tests
     {
         [Fact]
-        public void Test_ShowCommentsRequest_Is_Not_Abstract()
-        {
-            typeof(ShowCommentsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_ShowCommentsRequest_Is_Sealed()
-        {
-            typeof(ShowCommentsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowCommentsRequest_Inherits_AShowRequest_1()
-        {
-            typeof(ShowCommentsRequest).IsSubclassOf(typeof(AShowRequest<ITraktComment>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowCommentsRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(ShowCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
-        [Fact]
         public void Test_ShowCommentsRequest_Has_Valid_UriTemplate()
         {
             var request = new ShowCommentsRequest();
             request.UriTemplate.Should().Be("shows/{id}/comments{/sort_order}{?page,limit}");
-        }
-
-        [Fact]
-        public void Test_ShowCommentsRequest_Has_SortOrder_Property()
-        {
-            var propertyInfo = typeof(ShowCommentsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "SortOrder")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktCommentSortOrder));
         }
 
         [Fact]

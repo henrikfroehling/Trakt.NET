@@ -23,12 +23,6 @@
     [TestClass]
     public class TraktShowsModuleTests
     {
-        [TestMethod]
-        public void TestTraktShowsModuleIsModule()
-        {
-            typeof(TraktShowsModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
-        }
-
         [ClassInitialize]
         public static void InitializeTests(TestContext context)
         {

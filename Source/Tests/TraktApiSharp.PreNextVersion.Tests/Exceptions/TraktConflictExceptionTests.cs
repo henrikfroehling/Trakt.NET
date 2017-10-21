@@ -8,14 +8,6 @@
     public class TraktConflictExceptionTests
     {
         [TestMethod]
-        public void TestTraktConflictExceptionBaseClass()
-        {
-            var exception = new TraktConflictException();
-
-            exception.Should().BeAssignableTo<TraktException>();
-        }
-
-        [TestMethod]
         public void TestTraktConflictExceptionDefaultConstructor()
         {
             var exception = new TraktConflictException();

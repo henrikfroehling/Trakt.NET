@@ -6,7 +6,6 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.Calendars;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Calendars;
     using TraktApiSharp.Requests.Parameters;
@@ -15,24 +14,6 @@
     [Category("Requests.Calendars.Movies")]
     public class CalendarAllMoviesRequest_Tests
     {
-        [Fact]
-        public void Test_CalendarAllMoviesRequest_IsNotAbstract()
-        {
-            typeof(CalendarAllMoviesRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_CalendarAllMoviesRequest_IsSealed()
-        {
-            typeof(CalendarAllMoviesRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_CalendarAllMoviesRequest_Inherits_ACalendarRequest()
-        {
-            typeof(CalendarAllMoviesRequest).IsSubclassOf(typeof(ACalendarRequest<ITraktCalendarMovie>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_CalendarAllMoviesRequest_Has_AuthorizationRequirement_NotRequired()
         {

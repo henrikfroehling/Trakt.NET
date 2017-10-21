@@ -4,11 +4,8 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Users.OAuth;
@@ -17,50 +14,6 @@
     [Category("Requests.Users.OAuth")]
     public class UserHiddenItemsRequest_Tests
     {
-        [Fact]
-        public void Test_UserHiddenItemsRequest_Is_Not_Abstract()
-        {
-            typeof(UserHiddenItemsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserHiddenItemsRequest_Is_Sealed()
-        {
-            typeof(UserHiddenItemsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserHiddenItemsRequest_Inherits_AUsersPagedGetRequest_1()
-        {
-            typeof(UserHiddenItemsRequest).IsSubclassOf(typeof(AUsersPagedGetRequest<ITraktUserHiddenItem>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserHiddenItemsRequest_Has_Section_Property()
-        {
-            var propertyInfo = typeof(UserHiddenItemsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Section")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktHiddenItemsSection));
-        }
-
-        [Fact]
-        public void Test_UserHiddenItemsRequest_Has_Type_Property()
-        {
-            var propertyInfo = typeof(UserHiddenItemsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Type")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktHiddenItemType));
-        }
-
         [Fact]
         public void Test_UserHiddenItemsRequest_Has_AuthorizationRequirement_Required()
         {

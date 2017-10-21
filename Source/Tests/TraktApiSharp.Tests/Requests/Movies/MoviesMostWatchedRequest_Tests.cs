@@ -5,7 +5,6 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Requests.Movies;
     using TraktApiSharp.Requests.Parameters;
     using Xunit;
@@ -13,24 +12,6 @@
     [Category("Requests.Movies.Lists")]
     public class MoviesMostWatchedRequest_Tests
     {
-        [Fact]
-        public void Test_MoviesMostWatchedRequest_IsNotAbstract()
-        {
-            typeof(MoviesMostWatchedRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_MoviesMostWatchedRequest_IsSealed()
-        {
-            typeof(MoviesMostWatchedRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_MoviesMostWatchedRequest_Inherits_AMoviesMostPWCRequest_1()
-        {
-            typeof(MoviesMostWatchedRequest).IsSubclassOf(typeof(AMoviesMostPWCRequest<ITraktMostPWCMovie>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_MoviesMostWatchedRequest_Has_Valid_UriTemplate()
         {

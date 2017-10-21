@@ -8,14 +8,6 @@
     public class TraktBadGatewayExceptionTests
     {
         [TestMethod]
-        public void TestTraktBadGatewayExceptionBaseClass()
-        {
-            var exception = new TraktBadGatewayException();
-
-            exception.Should().BeAssignableTo<TraktException>();
-        }
-
-        [TestMethod]
         public void TestTraktBadGatewayExceptionDefaultConstructor()
         {
             var exception = new TraktBadGatewayException();

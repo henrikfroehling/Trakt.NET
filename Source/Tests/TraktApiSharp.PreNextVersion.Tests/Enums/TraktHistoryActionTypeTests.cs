@@ -16,13 +16,6 @@
         }
 
         [TestMethod]
-        public void TestTraktHistoryActionTypeIsTraktEnumeration()
-        {
-            var enumeration = new TraktHistoryActionType();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktHistoryActionTypeGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktHistoryActionType>();

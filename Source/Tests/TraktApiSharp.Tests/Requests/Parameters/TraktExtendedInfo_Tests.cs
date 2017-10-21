@@ -1,8 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Requests.Parameters
 {
     using FluentAssertions;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Requests.Parameters;
     using Xunit;
@@ -10,58 +8,6 @@
     [Category("Requests.Parameters")]
     public class TraktExtendedInfo_Tests
     {
-        [Fact]
-        public void Test_TraktExtendedInfo_Has_Metadata_Property()
-        {
-            var propertyInfo = typeof(TraktExtendedInfo)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Metadata")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(bool));
-        }
-
-        [Fact]
-        public void Test_TraktExtendedInfo_Has_Full_Property()
-        {
-            var propertyInfo = typeof(TraktExtendedInfo)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Full")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(bool));
-        }
-
-        [Fact]
-        public void Test_TraktExtendedInfo_Has_NoSeasons_Property()
-        {
-            var propertyInfo = typeof(TraktExtendedInfo)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "NoSeasons")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(bool));
-        }
-
-        [Fact]
-        public void Test_TraktExtendedInfo_Has_Episodes_Property()
-        {
-            var propertyInfo = typeof(TraktExtendedInfo)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Episodes")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(bool));
-        }
-
         [Fact]
         public void Test_TraktExtendedInfo_Default_Constructor()
         {

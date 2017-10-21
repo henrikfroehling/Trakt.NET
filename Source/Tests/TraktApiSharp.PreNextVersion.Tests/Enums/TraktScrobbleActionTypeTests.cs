@@ -16,13 +16,6 @@
         }
 
         [TestMethod]
-        public void TestTraktScrobbleActionTypeIsTraktEnumeration()
-        {
-            var enumeration = new TraktScrobbleActionType();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktScrobbleActionTypeGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktScrobbleActionType>();

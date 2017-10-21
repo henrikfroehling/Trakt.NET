@@ -8,17 +8,6 @@
     public class TraktEpisodeNotFoundExceptionTests
     {
         [TestMethod]
-        public void TestTraktEpisodeNotFoundExceptionBaseClass()
-        {
-            var exception = new TraktEpisodeNotFoundException("", 1, 1);
-
-            exception.Should().BeAssignableTo<TraktSeasonNotFoundException>();
-            exception.Should().BeAssignableTo<TraktShowNotFoundException>();
-            exception.Should().BeAssignableTo<TraktObjectNotFoundException>();
-            exception.Should().BeAssignableTo<TraktException>();
-        }
-
-        [TestMethod]
         public void TestTraktEpisodeNotFoundExceptionDefaultConstructor()
         {
             var showId = "show id";

@@ -3,12 +3,8 @@
     using FluentAssertions;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Ratings;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;
@@ -17,60 +13,10 @@
     public class SyncRatingsRequest_Tests
     {
         [Fact]
-        public void Test_SyncRatingsRequest_Is_Not_Abstract()
-        {
-            typeof(SyncRatingsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_SyncRatingsRequest_Is_Sealed()
-        {
-            typeof(SyncRatingsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SyncRatingsRequest_Inherits_ASyncGetRequest_1()
-        {
-            typeof(SyncRatingsRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktRatingsItem>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SyncRatingsRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(SyncRatingsRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
-        [Fact]
         public void Test_SyncRatingsRequest_Has_Valid_UriTemplate()
         {
             var request = new SyncRatingsRequest();
             request.UriTemplate.Should().Be("sync/ratings{/type}{/rating}{?extended}");
-        }
-
-        [Fact]
-        public void Test_SyncRatingsRequest_Has_Type_Property()
-        {
-            var propertyInfo = typeof(SyncRatingsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Type")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktRatingsItemType));
-        }
-
-        [Fact]
-        public void Test_SyncRatingsRequest_Has_RatingFilter_Property()
-        {
-            var propertyInfo = typeof(SyncRatingsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "RatingFilter")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(int[]));
         }
 
         [Theory, ClassData(typeof(SyncRatingsRequest_TestData))]

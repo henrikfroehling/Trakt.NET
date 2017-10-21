@@ -4,7 +4,6 @@
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Shows;
     using Xunit;
@@ -12,24 +11,6 @@
     [Category("Requests.Shows.Lists")]
     public class ShowsMostAnticipatedRequest_Tests
     {
-        [Fact]
-        public void Test_ShowsMostAnticipatedRequest_Is_Not_Abstract()
-        {
-            typeof(ShowsMostAnticipatedRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_ShowsMostAnticipatedRequest_Is_Sealed()
-        {
-            typeof(ShowsMostAnticipatedRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowsMostAnticipatedRequest_Inherits_AShowsRequest_1()
-        {
-            typeof(ShowsMostAnticipatedRequest).IsSubclassOf(typeof(AShowsRequest<ITraktMostAnticipatedShow>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_ShowsMostAnticipatedRequest_Has_Valid_UriTemplate()
         {

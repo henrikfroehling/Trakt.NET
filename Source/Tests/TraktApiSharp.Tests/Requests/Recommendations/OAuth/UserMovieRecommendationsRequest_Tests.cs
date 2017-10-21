@@ -3,7 +3,6 @@
     using FluentAssertions;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Recommendations.OAuth;
@@ -12,24 +11,6 @@
     [Category("Requests.Recommendations.OAuth")]
     public class UserMovieRecommendationsRequest_Tests
     {
-        [Fact]
-        public void Test_UserMovieRecommendationsRequest_IsNotAbstract()
-        {
-            typeof(UserMovieRecommendationsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserMovieRecommendationsRequest_IsSealed()
-        {
-            typeof(UserMovieRecommendationsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserMovieRecommendationsRequest_Inherits_AUserRecommendationsRequest_1()
-        {
-            typeof(UserMovieRecommendationsRequest).IsSubclassOf(typeof(AUserRecommendationsRequest<ITraktMovie>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_UserMovieRecommendationsRequest_Has_AuthorizationRequirement_Required()
         {

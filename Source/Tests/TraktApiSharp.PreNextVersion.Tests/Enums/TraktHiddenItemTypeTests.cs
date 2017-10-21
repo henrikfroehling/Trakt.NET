@@ -16,13 +16,6 @@
         }
 
         [TestMethod]
-        public void TestTraktHiddenItemTypeIsTraktEnumeration()
-        {
-            var enumeration = new TraktHiddenItemType();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktHiddenItemTypeGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktHiddenItemType>();

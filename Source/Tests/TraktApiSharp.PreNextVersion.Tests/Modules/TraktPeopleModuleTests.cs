@@ -18,12 +18,6 @@
     [TestClass]
     public class TraktPeopleModuleTests
     {
-        [TestMethod]
-        public void TestTraktPeopleModuleIsModule()
-        {
-            typeof(TraktPeopleModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
-        }
-
         [ClassInitialize]
         public static void InitializeTests(TestContext context)
         {

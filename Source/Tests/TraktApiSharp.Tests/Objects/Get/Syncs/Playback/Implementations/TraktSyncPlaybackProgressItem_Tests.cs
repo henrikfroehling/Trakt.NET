@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Syncs.Playback;
     using TraktApiSharp.Objects.Get.Syncs.Playback.Implementations;
     using TraktApiSharp.Objects.Get.Syncs.Playback.JsonReader;
     using Xunit;
@@ -14,12 +13,6 @@
     [Category("Objects.Get.Syncs.Playback.Implementations")]
     public class TraktSyncPlaybackProgressItem_Tests
     {
-        [Fact]
-        public void Test_TraktSyncPlaybackProgressItem_Implements_ITraktSyncPlaybackProgressItem_Interface()
-        {
-            typeof(TraktSyncPlaybackProgressItem).GetInterfaces().Should().Contain(typeof(ITraktSyncPlaybackProgressItem));
-        }
-
         [Fact]
         public void Test_TraktSyncPlaybackProgressItem_Default_Constructor()
         {

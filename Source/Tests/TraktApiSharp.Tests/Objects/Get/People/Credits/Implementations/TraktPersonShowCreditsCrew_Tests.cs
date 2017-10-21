@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.People.Credits;
     using TraktApiSharp.Objects.Get.People.Credits.Implementations;
     using TraktApiSharp.Objects.Get.People.Credits.JsonReader;
     using Xunit;
@@ -14,12 +13,6 @@
     [Category("Objects.Get.People.Credits.Implementations")]
     public class TraktPersonShowCreditsCrew_Tests
     {
-        [Fact]
-        public void Test_TraktPersonShowCreditsCrew_Implements_ITraktPersonShowCreditsCrew_Interface()
-        {
-            typeof(TraktPersonShowCreditsCrew).GetInterfaces().Should().Contain(typeof(ITraktPersonShowCreditsCrew));
-        }
-
         [Fact]
         public void Test_TraktPersonShowCreditsCrew_Default_Constructor()
         {

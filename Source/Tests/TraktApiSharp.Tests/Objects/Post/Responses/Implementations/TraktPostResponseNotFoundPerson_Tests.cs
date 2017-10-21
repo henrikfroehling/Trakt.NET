@@ -3,7 +3,6 @@
     using FluentAssertions;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Post.Responses;
     using TraktApiSharp.Objects.Post.Responses.Implementations;
     using TraktApiSharp.Objects.Post.Responses.JsonReader;
     using Xunit;
@@ -11,12 +10,6 @@
     [Category("Objects.Post.Responses.Implementations")]
     public class TraktPostResponseNotFoundPerson_Tests
     {
-        [Fact]
-        public void Test_TraktPostResponseNotFoundPerson_Implements_ITraktPostResponseNotFoundPerson_Interface()
-        {
-            typeof(TraktPostResponseNotFoundPerson).GetInterfaces().Should().Contain(typeof(ITraktPostResponseNotFoundPerson));
-        }
-
         [Fact]
         public void Test_TraktPostResponseNotFoundPerson_Default_Constructor()
         {

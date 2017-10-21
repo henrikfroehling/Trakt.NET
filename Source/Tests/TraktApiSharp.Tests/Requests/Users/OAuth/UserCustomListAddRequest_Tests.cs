@@ -3,11 +3,7 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users.Lists;
-    using TraktApiSharp.Objects.Post.Users;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
@@ -15,37 +11,6 @@
     [Category("Requests.Users.OAuth")]
     public class UserCustomListAddRequest_Tests
     {
-        [Fact]
-        public void Test_UserCustomListAddRequest_Is_Not_Abstract()
-        {
-            typeof(UserCustomListAddRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserCustomListAddRequest_Is_Sealed()
-        {
-            typeof(UserCustomListAddRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserCustomListAddRequest_Inherits_APostRequest_2()
-        {
-            typeof(UserCustomListAddRequest).IsSubclassOf(typeof(APostRequest<ITraktList, TraktUserCustomListPost>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserCustomListAddRequest_Has_Username_Property()
-        {
-            var propertyInfo = typeof(UserCustomListAddRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Username")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
-        }
-
         [Fact]
         public void Test_UserCustomListAddRequest_Has_AuthorizationRequirement_Required()
         {

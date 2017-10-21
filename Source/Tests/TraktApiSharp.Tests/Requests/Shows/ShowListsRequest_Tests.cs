@@ -4,12 +4,8 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Users.Lists;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Shows;
     using Xunit;
 
@@ -17,60 +13,10 @@
     public class ShowListsRequest_Tests
     {
         [Fact]
-        public void Test_ShowListsRequest_Is_Not_Abstract()
-        {
-            typeof(ShowListsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_ShowListsRequest_Is_Sealed()
-        {
-            typeof(ShowListsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowListsRequest_Inherits_AShowRequest_1()
-        {
-            typeof(ShowListsRequest).IsSubclassOf(typeof(AShowRequest<ITraktList>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowListsRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(ShowListsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
-        [Fact]
         public void Test_ShowListsRequest_Has_Valid_UriTemplate()
         {
             var request = new ShowListsRequest();
             request.UriTemplate.Should().Be("shows/{id}/lists{/type}{/sort_order}{?page,limit}");
-        }
-
-        [Fact]
-        public void Test_ShowListsRequest_Has_Type_Property()
-        {
-            var propertyInfo = typeof(ShowListsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Type")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktListType));
-        }
-
-        [Fact]
-        public void Test_ShowListsRequest_Has_SortOrder_Property()
-        {
-            var propertyInfo = typeof(ShowListsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "SortOrder")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktListSortOrder));
         }
 
         [Fact]

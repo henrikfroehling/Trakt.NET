@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Basic.JsonReader;
     using Xunit;
@@ -12,12 +11,6 @@
     [Category("Objects.Basic.Implementations")]
     public class TraktMetadata_Tests
     {
-        [Fact]
-        public void Test_TraktMetadata_Implements_ITraktMetadata_Interface()
-        {
-            typeof(TraktMetadata).GetInterfaces().Should().Contain(typeof(ITraktMetadata));
-        }
-
         [Fact]
         public void Test_TraktMetadata_Default_Constructor()
         {

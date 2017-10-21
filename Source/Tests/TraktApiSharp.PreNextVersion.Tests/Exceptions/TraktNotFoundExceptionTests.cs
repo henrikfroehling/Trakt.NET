@@ -8,14 +8,6 @@
     public class TraktNotFoundExceptionTests
     {
         [TestMethod]
-        public void TestTraktNotFoundExceptionBaseClass()
-        {
-            var exception = new TraktNotFoundException("");
-
-            exception.Should().BeAssignableTo<TraktException>();
-        }
-
-        [TestMethod]
         public void TestTraktNotFoundExceptionConstructor()
         {
             var message = "exception message";

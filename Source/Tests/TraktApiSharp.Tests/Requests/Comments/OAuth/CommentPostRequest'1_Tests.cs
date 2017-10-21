@@ -4,7 +4,6 @@
     using System;
     using Traits;
     using TraktApiSharp.Objects.Post.Comments;
-    using TraktApiSharp.Objects.Post.Comments.Responses;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Comments.OAuth;
     using Xunit;
@@ -12,31 +11,6 @@
     [Category("Requests.Comments.OAuth")]
     public class CommentPostRequest_1_Tests
     {
-        [Fact]
-        public void Test_CommentPostRequest_1_IsNotAbstract()
-        {
-            typeof(CommentPostRequest<>).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_CommentPostRequest_1_IsSealed()
-        {
-            typeof(CommentPostRequest<>).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_CommentPostRequest_1_Has_GenericTypeParameter()
-        {
-            typeof(CommentPostRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(CommentPostRequest<TraktCommentPost>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
-        }
-
-        [Fact]
-        public void Test_CommentPostRequest_1_Inherits_APostRequest_2()
-        {
-            typeof(CommentPostRequest<TraktCommentPost>).IsSubclassOf(typeof(APostRequest<ITraktCommentPostResponse, TraktCommentPost>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_CommentPostRequest_1_Has_AuthorizationRequirement_Required()
         {

@@ -3,7 +3,6 @@
     using FluentAssertions;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.Movies.JsonReader;
     using Xunit;
@@ -11,12 +10,6 @@
     [Category("Objects.Get.Movies.Implementations")]
     public class TraktMovieIds_Tests
     {
-        [Fact]
-        public void Test_TraktMovieIds_Implements_ITraktMovieIds_Interface()
-        {
-            typeof(TraktMovieIds).GetInterfaces().Should().Contain(typeof(ITraktMovieIds));
-        }
-
         [Fact]
         public void Test_TraktMovieIds_Default_Constructor()
         {

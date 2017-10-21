@@ -2,11 +2,8 @@
 {
     using FluentAssertions;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Syncs.Playback;
     using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;
 
@@ -14,54 +11,10 @@
     public class SyncPlaybackProgressRequest_Tests
     {
         [Fact]
-        public void Test_SyncPlaybackProgressRequest_Is_Not_Abstract()
-        {
-            typeof(SyncPlaybackProgressRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_SyncPlaybackProgressRequest_Is_Sealed()
-        {
-            typeof(SyncPlaybackProgressRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SyncPlaybackProgressRequest_Inherits_ASyncGetRequest_1()
-        {
-            typeof(SyncPlaybackProgressRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktSyncPlaybackProgressItem>)).Should().BeTrue();
-        }
-
-        [Fact]
         public void Test_SyncPlaybackProgressRequest_Has_Valid_UriTemplate()
         {
             var request = new SyncPlaybackProgressRequest();
             request.UriTemplate.Should().Be("sync/playback{/type}{?limit}");
-        }
-
-        [Fact]
-        public void Test_SyncPlaybackProgressRequest_Has_Type_Property()
-        {
-            var propertyInfo = typeof(SyncPlaybackProgressRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Type")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktSyncType));
-        }
-
-        [Fact]
-        public void Test_SyncPlaybackProgressRequest_Has_Limit_Property()
-        {
-            var propertyInfo = typeof(SyncPlaybackProgressRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Limit")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(uint?));
         }
 
         [Fact]

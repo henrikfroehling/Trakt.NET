@@ -4,12 +4,8 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Users.Lists;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Seasons;
     using Xunit;
 
@@ -17,60 +13,10 @@
     public class SeasonListsRequest_Tests
     {
         [Fact]
-        public void Test_SeasonListsRequest_IsNotAbstract()
-        {
-            typeof(SeasonListsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_SeasonListsRequest_IsSealed()
-        {
-            typeof(SeasonListsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SeasonListsRequest_Inherits_ASeasonRequest_1()
-        {
-            typeof(SeasonListsRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktList>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SeasonListsRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(SeasonListsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
-        [Fact]
         public void Test_SeasonListsRequest_Has_Valid_UriTemplate()
         {
             var request = new SeasonListsRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/lists{/type}{/sort_order}{?page,limit}");
-        }
-
-        [Fact]
-        public void Test_SeasonListsRequest_Has_Type_Property()
-        {
-            var propertyInfo = typeof(SeasonListsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Type")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktListType));
-        }
-
-        [Fact]
-        public void Test_SeasonListsRequest_Has_SortOrder_Property()
-        {
-            var propertyInfo = typeof(SeasonListsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "SortOrder")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktListSortOrder));
         }
 
         [Fact]

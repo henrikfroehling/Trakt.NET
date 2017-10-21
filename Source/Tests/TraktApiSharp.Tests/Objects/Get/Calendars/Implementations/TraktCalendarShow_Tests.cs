@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Calendars;
     using TraktApiSharp.Objects.Get.Calendars.Implementations;
     using TraktApiSharp.Objects.Get.Calendars.JsonReader;
     using Xunit;
@@ -14,12 +13,6 @@
     [Category("Objects.Get.Calendars.Implementations")]
     public class TraktCalendarShow_Tests
     {
-        [Fact]
-        public void Test_TraktCalendarShow_Implements_ITraktCalendarShow_Interface()
-        {
-            typeof(TraktCalendarShow).GetInterfaces().Should().Contain(typeof(ITraktCalendarShow));
-        }
-
         [Fact]
         public void Test_TraktCalendarShow_Default_Constructor()
         {

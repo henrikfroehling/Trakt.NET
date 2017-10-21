@@ -8,14 +8,6 @@
     public class TraktPreconditionFailedExceptionTests
     {
         [TestMethod]
-        public void TestTraktPreconditionFailedExceptionBaseClass()
-        {
-            var exception = new TraktPreconditionFailedException();
-
-            exception.Should().BeAssignableTo<TraktException>();
-        }
-
-        [TestMethod]
         public void TestTraktPreconditionFailedExceptionDefaultConstructor()
         {
             var exception = new TraktPreconditionFailedException();

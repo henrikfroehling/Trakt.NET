@@ -3,55 +3,14 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
     public class UserCustomSingleListRequest_Tests
     {
-        [Fact]
-        public void Test_UserCustomSingleListRequest_Is_Not_Abstract()
-        {
-            typeof(UserCustomSingleListRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserCustomSingleListRequest_Is_Sealed()
-        {
-            typeof(UserCustomSingleListRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserCustomSingleListRequest_Inherits_AGetRequest_1()
-        {
-            typeof(UserCustomSingleListRequest).IsSubclassOf(typeof(AGetRequest<ITraktList>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserCustomSingleListRequest_Implements_IHasId_Interface()
-        {
-            typeof(UserCustomSingleListRequest).GetInterfaces().Should().Contain(typeof(IHasId));
-        }
-
-        [Fact]
-        public void Test_UserCustomSingleListRequest_Has_Username_Property()
-        {
-            var propertyInfo = typeof(UserCustomSingleListRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Username")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
-        }
-
         [Fact]
         public void Test_UserCustomSingleListRequest_Has_AuthorizationRequirement_Optional()
         {

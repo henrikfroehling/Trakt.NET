@@ -4,7 +4,6 @@
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Basic.JsonReader;
     using Xunit;
@@ -12,12 +11,6 @@
     [Category("Objects.Basic.Implementations")]
     public class TraktComment_Tests
     {
-        [Fact]
-        public void Test_TraktComment_Implements_ITraktComment_Interface()
-        {
-            typeof(TraktComment).GetInterfaces().Should().Contain(typeof(ITraktComment));
-        }
-
         [Fact]
         public void Test_TraktComment_Default_Constructor()
         {

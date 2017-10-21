@@ -5,7 +5,6 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Recommendations.OAuth;
     using Xunit;
 
@@ -16,24 +15,6 @@
         {
             public override RequestObjectType RequestObjectType { get { throw new NotImplementedException(); } }
             public override string UriTemplate { get { throw new NotImplementedException(); } }
-        }
-
-        [Fact]
-        public void Test_AUserRecommendationHideRequest_IsAbstract()
-        {
-            typeof(AUserRecommendationHideRequest).IsAbstract.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AUserRecommendationHideRequest_Inherits_ADeleteRequest()
-        {
-            typeof(AUserRecommendationHideRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AUserRecommendationHideRequest_Implements_IHasId_Interface()
-        {
-            typeof(AUserRecommendationHideRequest).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]

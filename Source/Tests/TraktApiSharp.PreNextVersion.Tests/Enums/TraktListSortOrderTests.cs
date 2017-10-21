@@ -9,13 +9,6 @@
     public class TraktListSortOrderTests
     {
         [TestMethod]
-        public void TestTraktListSortOrderIsTraktEnumeration()
-        {
-            var enumeration = new TraktListSortOrder();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktListSortOrderGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktListSortOrder>();

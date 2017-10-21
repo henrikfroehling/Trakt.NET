@@ -5,7 +5,6 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Shows;
     using Xunit;
@@ -13,24 +12,6 @@
     [Category("Requests.Shows.Lists")]
     public class ShowsMostCollectedRequest_Tests
     {
-        [Fact]
-        public void Test_ShowsMostCollectedRequest_Is_Not_Abstract()
-        {
-            typeof(ShowsMostCollectedRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_ShowsMostCollectedRequest_Is_Sealed()
-        {
-            typeof(ShowsMostCollectedRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowsMostCollectedRequest_Inherits_AShowsMostPWCRequest_1()
-        {
-            typeof(ShowsMostCollectedRequest).IsSubclassOf(typeof(AShowsMostPWCRequest<ITraktMostPWCShow>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_ShowsMostCollectedRequest_Has_Valid_UriTemplate()
         {

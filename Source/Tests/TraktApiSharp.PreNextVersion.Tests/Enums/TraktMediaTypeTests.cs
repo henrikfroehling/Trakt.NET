@@ -16,13 +16,6 @@
         }
 
         [TestMethod]
-        public void TestTraktMediaTypeIsTraktEnumeration()
-        {
-            var enumeration = new TraktMediaType();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktMediaTypeGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktMediaType>();

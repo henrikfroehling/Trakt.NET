@@ -4,11 +4,8 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Ratings;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Users.OAuth;
@@ -17,63 +14,6 @@
     [Category("Requests.Users.OAuth")]
     public class UserRatingsRequest_Tests
     {
-        [Fact]
-        public void Test_UserRatingsRequest_Is_Not_Abstract()
-        {
-            typeof(UserRatingsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserRatingsRequest_Is_Sealed()
-        {
-            typeof(UserRatingsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserRatingsRequest_Inherits_AUsersGetRequest_1()
-        {
-            typeof(UserRatingsRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktRatingsItem>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserRatingsRequest_Has_Username_Property()
-        {
-            var propertyInfo = typeof(UserRatingsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Username")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
-        }
-
-        [Fact]
-        public void Test_UserRatingsRequest_Has_Type_Property()
-        {
-            var propertyInfo = typeof(UserRatingsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Type")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktRatingsItemType));
-        }
-
-        [Fact]
-        public void Test_UserRatingsRequest_Has_RatingFilter_Property()
-        {
-            var propertyInfo = typeof(UserRatingsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "RatingFilter")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(int[]));
-        }
-
         [Fact]
         public void Test_UserRatingsRequest_Has_AuthorizationRequirement_Optional()
         {

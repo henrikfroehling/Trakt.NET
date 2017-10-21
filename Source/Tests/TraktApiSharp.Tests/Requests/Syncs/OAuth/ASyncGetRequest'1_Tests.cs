@@ -16,25 +16,6 @@
         }
 
         [Fact]
-        public void Test_ASyncGetRequest_1_Is_Abstract()
-        {
-            typeof(ASyncGetRequest<>).IsAbstract.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ASyncGetRequest_1_Has_GenericTypeParameter()
-        {
-            typeof(ASyncGetRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ASyncGetRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
-        }
-
-        [Fact]
-        public void Test_ASyncGetRequest_1_Inherits_AGetRequest_1()
-        {
-            typeof(ASyncGetRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
-        }
-
-        [Fact]
         public void Test_ASyncGetRequest_1_Has_AuthorizationRequirement_Required()
         {
             var request = new SyncGetRequestMock();

@@ -16,13 +16,6 @@
         }
 
         [TestMethod]
-        public void TestTraktShowStatusIsTraktEnumeration()
-        {
-            var enumeration = new TraktShowStatus();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktShowStatusGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktShowStatus>();

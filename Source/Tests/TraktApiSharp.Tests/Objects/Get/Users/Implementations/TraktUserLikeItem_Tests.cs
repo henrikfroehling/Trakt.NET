@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Objects.Get.Users.Implementations;
     using TraktApiSharp.Objects.Get.Users.JsonReader;
     using Xunit;
@@ -13,12 +12,6 @@
     [Category("Objects.Get.Users.Implementations")]
     public class TraktUserLikeItem_Tests
     {
-        [Fact]
-        public void Test_TraktUserLikeItem_Implements_ITraktUserLikeItem_Interface()
-        {
-            typeof(TraktUserLikeItem).GetInterfaces().Should().Contain(typeof(ITraktUserLikeItem));
-        }
-
         [Fact]
         public void Test_TraktUserLikeItem_Default_Constructor()
         {

@@ -4,13 +4,9 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Shows;
     using Xunit;
@@ -18,36 +14,6 @@
     [Category("Requests.Shows.Lists")]
     public class ShowsRecentlyUpdatedRequest_Tests
     {
-        [Fact]
-        public void Test_ShowsRecentlyUpdatedRequest_Is_Not_Abstract()
-        {
-            typeof(ShowsRecentlyUpdatedRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_ShowsRecentlyUpdatedRequest_Is_Sealed()
-        {
-            typeof(ShowsRecentlyUpdatedRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowsRecentlyUpdatedRequest_Inherits_AGetRequest_1()
-        {
-            typeof(ShowsRecentlyUpdatedRequest).IsSubclassOf(typeof(AGetRequest<ITraktRecentlyUpdatedShow>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowsRecentlyUpdatedRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(ShowsRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
-        [Fact]
-        public void Test_ShowsRecentlyUpdatedRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(ShowsRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
         [Fact]
         public void Test_ShowsRecentlyUpdatedRequest_Has_AuthorizationRequirement_NotRequired()
         {
@@ -60,19 +26,6 @@
         {
             var request = new ShowsRecentlyUpdatedRequest();
             request.UriTemplate.Should().Be("shows/updates{/start_date}{?extended,page,limit}");
-        }
-
-        [Fact]
-        public void Test_ShowsRecentlyUpdatedRequest_Has_StartDate_Property()
-        {
-            var propertyInfo = typeof(ShowsRecentlyUpdatedRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "StartDate")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(DateTime?));
         }
 
         [Theory, ClassData(typeof(ShowsRecentlyUpdatedRequest_TestData))]

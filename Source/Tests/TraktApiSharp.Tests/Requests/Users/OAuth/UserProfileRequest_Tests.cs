@@ -3,10 +3,7 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Users.OAuth;
@@ -15,37 +12,6 @@
     [Category("Requests.Users.OAuth")]
     public class UserProfileRequest_Tests
     {
-        [Fact]
-        public void Test_UserProfileRequest_Is_Not_Abstract()
-        {
-            typeof(UserProfileRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserProfileRequest_Is_Sealed()
-        {
-            typeof(UserProfileRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserProfileRequest_Inherits_AUsersGetRequest_1()
-        {
-            typeof(UserProfileRequest).IsSubclassOf(typeof(AUsersGetRequest<ITraktUser>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserProfileRequest_Has_Username_Property()
-        {
-            var propertyInfo = typeof(UserProfileRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Username")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
-        }
-
         [Fact]
         public void Test_UserProfileRequest_Has_AuthorizationRequirement_Optional()
         {

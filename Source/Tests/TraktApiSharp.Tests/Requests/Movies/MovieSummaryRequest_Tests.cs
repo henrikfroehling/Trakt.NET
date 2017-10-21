@@ -4,8 +4,6 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Movies;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Movies;
     using TraktApiSharp.Requests.Parameters;
     using Xunit;
@@ -13,30 +11,6 @@
     [Category("Requests.Movies")]
     public class MovieSummaryRequest_Tests
     {
-        [Fact]
-        public void Test_MovieSummaryRequest_IsNotAbstract()
-        {
-            typeof(MovieSummaryRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_MovieSummaryRequest_IsSealed()
-        {
-            typeof(MovieSummaryRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_MovieSummaryRequest_Inherits_AMovieRequest_1()
-        {
-            typeof(MovieSummaryRequest).IsSubclassOf(typeof(AMovieRequest<ITraktMovie>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_MovieSummaryRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(MovieSummaryRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
         [Fact]
         public void Test_MovieSummaryRequest_Has_Valid_UriTemplate()
         {

@@ -7,7 +7,6 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Extensions;
-    using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Movies;
@@ -21,12 +20,6 @@
     [TestClass]
     public class TraktCheckinsModuleTests
     {
-        [TestMethod]
-        public void TestTraktCheckinsModuleIsModule()
-        {
-            typeof(TraktCheckinsModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
-        }
-
         [ClassInitialize]
         public static void InitializeTests(TestContext context)
         {

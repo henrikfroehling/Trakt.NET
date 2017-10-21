@@ -3,56 +3,15 @@
     using FluentAssertions;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
     public class UserLikesRequest_Tests
     {
-        [Fact]
-        public void Test_UserLikesRequest_Is_Not_Abstract()
-        {
-            typeof(UserLikesRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserLikesRequest_Is_Sealed()
-        {
-            typeof(UserLikesRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserLikesRequest_Inherits_AGetRequest_1()
-        {
-            typeof(UserLikesRequest).IsSubclassOf(typeof(AGetRequest<ITraktUserLikeItem>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserLikesRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(UserLikesRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
-        [Fact]
-        public void Test_UserLikesRequest_Has_Type_Property()
-        {
-            var propertyInfo = typeof(UserLikesRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Type")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktUserLikeType));
-        }
-
         [Fact]
         public void Test_UserLikesRequest_Has_AuthorizationRequirement_Required()
         {

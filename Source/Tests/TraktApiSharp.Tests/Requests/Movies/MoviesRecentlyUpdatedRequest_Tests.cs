@@ -4,13 +4,9 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Movies;
     using TraktApiSharp.Requests.Parameters;
     using Xunit;
@@ -18,36 +14,6 @@
     [Category("Requests.Movies.Lists")]
     public class MoviesRecentlyUpdatedRequest_Tests
     {
-        [Fact]
-        public void Test_MoviesRecentlyUpdatedRequest_IsNotAbstract()
-        {
-            typeof(MoviesRecentlyUpdatedRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_MoviesRecentlyUpdatedRequest_IsSealed()
-        {
-            typeof(MoviesRecentlyUpdatedRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_MoviesRecentlyUpdatedRequest_Inherits_AGetRequest_1()
-        {
-            typeof(MoviesRecentlyUpdatedRequest).IsSubclassOf(typeof(AGetRequest<ITraktRecentlyUpdatedMovie>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_MoviesRecentlyUpdatedRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(MoviesRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
-        [Fact]
-        public void Test_MoviesRecentlyUpdatedRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(MoviesRecentlyUpdatedRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
         [Fact]
         public void Test_MoviesRecentlyUpdatedRequest_Has_AuthorizationRequirement_NotRequired()
         {
@@ -60,19 +26,6 @@
         {
             var request = new MoviesRecentlyUpdatedRequest();
             request.UriTemplate.Should().Be("movies/updates{/start_date}{?extended,page,limit}");
-        }
-
-        [Fact]
-        public void Test_MoviesRecentlyUpdatedRequest_Has_StartDate_Property()
-        {
-            var propertyInfo = typeof(MoviesRecentlyUpdatedRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "StartDate")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(DateTime?));
         }
 
         [Theory, ClassData(typeof(MoviesRecentlyUpdatedRequest_TestData))]

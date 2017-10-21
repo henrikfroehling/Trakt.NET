@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Get.Shows.JsonReader;
     using Xunit;
@@ -13,12 +12,6 @@
     [Category("Objects.Get.Shows.Implementations")]
     public class TraktMostAnticipatedShow_Tests
     {
-        [Fact]
-        public void Test_TraktMostAnticipatedShow_Implements_ITraktMostAnticipatedShow_Interface()
-        {
-            typeof(TraktMostAnticipatedShow).GetInterfaces().Should().Contain(typeof(ITraktMostAnticipatedShow));
-        }
-
         [Fact]
         public void Test_TraktMostAnticipatedShow_Default_Constructor()
         {

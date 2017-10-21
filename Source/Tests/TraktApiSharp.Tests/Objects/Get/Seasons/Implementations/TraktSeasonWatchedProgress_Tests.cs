@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Objects.Get.Seasons.Implementations;
     using TraktApiSharp.Objects.Get.Seasons.JsonReader;
     using Xunit;
@@ -13,18 +12,6 @@
     [Category("Objects.Get.Seasons.Implementations")]
     public class TraktSeasonWatchedProgress_Tests
     {
-        [Fact]
-        public void Test_TraktSeasonWatchedProgress_Inherits_TraktSeasonProgress()
-        {
-            typeof(TraktSeasonWatchedProgress).IsSubclassOf(typeof(TraktSeasonProgress)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_TraktSeasonWatchedProgress_Implements_ITraktSeasonWatchedProgress_Interface()
-        {
-            typeof(TraktSeasonWatchedProgress).GetInterfaces().Should().Contain(typeof(ITraktSeasonWatchedProgress));
-        }
-
         [Fact]
         public void Test_TraktSeasonWatchedProgress_Default_Constructor()
         {

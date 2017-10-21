@@ -3,11 +3,8 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Seasons;
     using Xunit;
 
@@ -17,31 +14,6 @@
         internal class SeasonRequestMock : ASeasonRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
-        }
-
-        [Fact]
-        public void Test_ASeasonRequest_1_IsAbstract()
-        {
-            typeof(ASeasonRequest<>).IsAbstract.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ASeasonRequest_1_Has_GenericTypeParameter()
-        {
-            typeof(ASeasonRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ASeasonRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
-        }
-
-        [Fact]
-        public void Test_ASeasonRequest_1_Inherits_AGetRequest_1()
-        {
-            typeof(ASeasonRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ASeasonRequest_1_Implements_IHasId_Interface()
-        {
-            typeof(ASeasonRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
@@ -56,19 +28,6 @@
         {
             var requestMock = new SeasonRequestMock();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Seasons);
-        }
-
-        [Fact]
-        public void Test_ASeasonRequest_1_Has_SeasonNumber_Property()
-        {
-            var propertyInfo = typeof(ASeasonRequest<>)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "SeasonNumber")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(uint));
         }
 
         [Fact]

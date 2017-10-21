@@ -21,12 +21,6 @@
     [TestClass]
     public class TraktSeasonsModuleTests
     {
-        [TestMethod]
-        public void TestTraktSeasonsModuleIsModule()
-        {
-            typeof(TraktSeasonsModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
-        }
-
         [ClassInitialize]
         public static void InitializeTests(TestContext context)
         {

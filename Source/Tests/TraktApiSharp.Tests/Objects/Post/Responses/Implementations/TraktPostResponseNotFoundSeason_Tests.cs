@@ -3,7 +3,6 @@
     using FluentAssertions;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Post.Responses;
     using TraktApiSharp.Objects.Post.Responses.Implementations;
     using TraktApiSharp.Objects.Post.Responses.JsonReader;
     using Xunit;
@@ -11,12 +10,6 @@
     [Category("Objects.Post.Responses.Implementations")]
     public class TraktPostResponseNotFoundSeason_Tests
     {
-        [Fact]
-        public void Test_TraktPostResponseNotFoundSeason_Implements_ITraktPostResponseNotFoundSeason_Interface()
-        {
-            typeof(TraktPostResponseNotFoundSeason).GetInterfaces().Should().Contain(typeof(ITraktPostResponseNotFoundSeason));
-        }
-
         [Fact]
         public void Test_TraktPostResponseNotFoundSeason_Default_Constructor()
         {

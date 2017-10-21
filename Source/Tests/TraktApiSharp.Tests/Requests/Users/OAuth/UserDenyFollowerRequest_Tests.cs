@@ -12,24 +12,6 @@
     public class UserDenyFollowerRequest_Tests
     {
         [Fact]
-        public void Test_UserDenyFollowerRequest_Is_Not_Abstract()
-        {
-            typeof(UserDenyFollowerRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserDenyFollowerRequest_Is_Sealed()
-        {
-            typeof(UserDenyFollowerRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserDenyFollowerRequest_Inherits_AUsersDeleteByIdRequest()
-        {
-            typeof(UserDenyFollowerRequest).IsSubclassOf(typeof(AUsersDeleteByIdRequest)).Should().BeTrue();
-        }
-
-        [Fact]
         public void Test_UserDenyFollowerRequest_Has_AuthorizationRequirement_Optional()
         {
             var request = new UserDenyFollowerRequest();

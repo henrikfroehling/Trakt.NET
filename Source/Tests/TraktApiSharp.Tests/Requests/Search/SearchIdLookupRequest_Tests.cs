@@ -4,8 +4,6 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Requests.Base;
@@ -16,24 +14,6 @@
     [Category("Requests.Search")]
     public class SearchIdLookupRequest_Tests
     {
-        [Fact]
-        public void Test_SearchIdLookupRequest_IsNotAbstract()
-        {
-            typeof(SearchIdLookupRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_SearchIdLookupRequest_IsSealed()
-        {
-            typeof(SearchIdLookupRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SearchIdLookupRequest_Inherits_ASearchRequest()
-        {
-            typeof(SearchIdLookupRequest).IsSubclassOf(typeof(ASearchRequest)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_SearchIdLookupRequest_Has_AuthorizationRequirement_NotRequired()
         {
@@ -46,32 +26,6 @@
         {
             var request = new SearchIdLookupRequest();
             request.UriTemplate.Should().Be("search/{id_type}/{id}{?type,extended,page,limit}");
-        }
-
-        [Fact]
-        public void Test_SearchIdLookupRequest_Has_IdType_Property()
-        {
-            var propertyInfo = typeof(SearchIdLookupRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "IdType")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktSearchIdType));
-        }
-
-        [Fact]
-        public void Test_SearchIdLookupRequest_Has_LookupId_Property()
-        {
-            var propertyInfo = typeof(SearchIdLookupRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "LookupId")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]

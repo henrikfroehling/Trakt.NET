@@ -7,7 +7,6 @@
     using System.Threading.Tasks;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
@@ -17,12 +16,6 @@
     public class TraktSearchModuleTests
     {
         private const string ENCODED_COMMA = "%2C";
-
-        [TestMethod]
-        public void TestTraktSearchModuleIsModule()
-        {
-            typeof(TraktSearchModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
-        }
 
         [ClassInitialize]
         public static void InitializeTests(TestContext context)

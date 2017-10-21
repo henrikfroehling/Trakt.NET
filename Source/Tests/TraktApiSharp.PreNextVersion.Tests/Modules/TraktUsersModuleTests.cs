@@ -34,12 +34,6 @@
     [TestClass]
     public class TraktUsersModuleTests
     {
-        [TestMethod]
-        public void TestTraktUsersModuleIsModule()
-        {
-            typeof(TraktUsersModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
-        }
-
         [ClassInitialize]
         public static void InitializeTests(TestContext context)
         {

@@ -6,36 +6,11 @@
     using Traits;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Comments.OAuth;
-    using TraktApiSharp.Requests.Interfaces;
     using Xunit;
 
     [Category("Requests.Comments.OAuth")]
     public class CommentDeleteRequest_Tests
     {
-        [Fact]
-        public void Test_CommentDeleteRequest_IsNotAbstract()
-        {
-            typeof(CommentDeleteRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_CommentDeleteRequest_IsSealed()
-        {
-            typeof(CommentDeleteRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_CommentDeleteRequest_Inherits_ADeleteRequest()
-        {
-            typeof(CommentDeleteRequest).IsSubclassOf(typeof(ADeleteRequest)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_CommentDeleteRequest_Implements_IHasId_Interface()
-        {
-            typeof(CommentDeleteRequest).GetInterfaces().Should().Contain(typeof(IHasId));
-        }
-
         [Fact]
         public void Test_CommentDeleteRequest_Has_Valid_UriTemplate()
         {

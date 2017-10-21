@@ -4,8 +4,6 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Shows;
     using Xunit;
@@ -13,30 +11,6 @@
     [Category("Requests.Shows")]
     public class ShowWatchingUsersRequest_Tests
     {
-        [Fact]
-        public void Test_ShowWatchingUsersRequest_Is_Not_Abstract()
-        {
-            typeof(ShowWatchingUsersRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_ShowWatchingUsersRequest_Is_Sealed()
-        {
-            typeof(ShowWatchingUsersRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowWatchingUsersRequest_Inherits_AShowRequest_1()
-        {
-            typeof(ShowWatchingUsersRequest).IsSubclassOf(typeof(AShowRequest<ITraktUser>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowWatchingUsersRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(ShowWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
         [Fact]
         public void Test_ShowWatchingUsersRequest_Has_Valid_UriTemplate()
         {

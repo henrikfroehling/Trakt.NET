@@ -3,7 +3,6 @@
     using FluentAssertions;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.Movies.JsonReader;
@@ -12,12 +11,6 @@
     [Category("Objects.Get.Movies.Implementations")]
     public class TraktMovieTranslation_Tests
     {
-        [Fact]
-        public void Test_TraktMovieTranslation_Inherits_TraktTranslation()
-        {
-            typeof(TraktMovieTranslation).IsSubclassOf(typeof(TraktTranslation)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_TraktMovieTranslation_Implements_ITraktMovieTranslation_Interface()
         {

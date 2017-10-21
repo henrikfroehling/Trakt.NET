@@ -8,14 +8,6 @@
     public class TraktValidationExceptionTests
     {
         [TestMethod]
-        public void TestTraktValidationExceptionBaseClass()
-        {
-            var exception = new TraktValidationException();
-
-            exception.Should().BeAssignableTo<TraktException>();
-        }
-
-        [TestMethod]
         public void TestTraktValidationExceptionDefaultConstructor()
         {
             var exception = new TraktValidationException();

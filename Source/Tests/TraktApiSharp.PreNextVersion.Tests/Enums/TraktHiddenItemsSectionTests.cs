@@ -9,13 +9,6 @@
     public class TraktHiddenItemsSectionTests
     {
         [TestMethod]
-        public void TestTraktHiddenItemsSectionIsTraktEnumeration()
-        {
-            var enumeration = new TraktHiddenItemsSection();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktHiddenItemsSectionGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktHiddenItemsSection>();

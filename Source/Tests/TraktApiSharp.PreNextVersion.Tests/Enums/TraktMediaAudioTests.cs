@@ -16,13 +16,6 @@
         }
 
         [TestMethod]
-        public void TestTraktMediaAudioIsTraktEnumeration()
-        {
-            var enumeration = new TraktMediaAudio();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktMediaAudioGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktMediaAudio>();

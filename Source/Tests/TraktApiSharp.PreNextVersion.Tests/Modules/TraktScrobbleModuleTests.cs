@@ -8,7 +8,6 @@
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Extensions;
-    using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
@@ -21,12 +20,6 @@
     [TestClass]
     public class TraktScrobbleModuleTests
     {
-        [TestMethod]
-        public void TestTraktScrobbleModuleIsModule()
-        {
-            typeof(TraktScrobbleModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
-        }
-
         [ClassInitialize]
         public static void InitializeTests(TestContext context)
         {

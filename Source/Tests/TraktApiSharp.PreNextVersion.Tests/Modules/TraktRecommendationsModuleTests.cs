@@ -6,7 +6,6 @@
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Parameters;
@@ -16,12 +15,6 @@
     [TestClass]
     public class TraktRecommendationsModuleTests
     {
-        [TestMethod]
-        public void TestTraktRecommendationsModuleIsModule()
-        {
-            typeof(TraktRecommendationsModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
-        }
-
         [ClassInitialize]
         public static void InitializeTests(TestContext context)
         {

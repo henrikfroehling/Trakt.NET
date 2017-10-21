@@ -4,12 +4,8 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Seasons;
     using Xunit;
 
@@ -17,47 +13,10 @@
     public class SeasonCommentsRequest_Tests
     {
         [Fact]
-        public void Test_SeasonCommentsRequest_IsNotAbstract()
-        {
-            typeof(SeasonCommentsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_SeasonCommentsRequest_IsSealed()
-        {
-            typeof(SeasonCommentsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SeasonCommentsRequest_Inherits_ASeasonRequest_1()
-        {
-            typeof(SeasonCommentsRequest).IsSubclassOf(typeof(ASeasonRequest<ITraktComment>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SeasonCommentsRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(SeasonCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
-        [Fact]
         public void Test_SeasonCommentsRequest_Has_Valid_UriTemplate()
         {
             var request = new SeasonCommentsRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/comments{/sort_order}{?page,limit}");
-        }
-
-        [Fact]
-        public void Test_SeasonCommentsRequest_Has_SortOrder_Property()
-        {
-            var propertyInfo = typeof(SeasonCommentsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "SortOrder")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktCommentSortOrder));
         }
 
         [Fact]

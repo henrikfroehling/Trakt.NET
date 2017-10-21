@@ -4,11 +4,8 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Shows.OAuth;
     using Xunit;
 
@@ -18,31 +15,6 @@
         internal class ShowProgressRequestMock : AShowProgressRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
-        }
-
-        [Fact]
-        public void Test_AShowProgressRequest_1_Is_Abstract()
-        {
-            typeof(AShowProgressRequest<>).IsAbstract.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AShowProgressRequest_1_Has_GenericTypeParameter()
-        {
-            typeof(AShowProgressRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(AShowProgressRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
-        }
-
-        [Fact]
-        public void Test_AShowProgressRequest_1_Inherits_AGetRequest_1()
-        {
-            typeof(AShowProgressRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_AShowProgressRequest_1_Implements_IHasId_Interface()
-        {
-            typeof(AShowProgressRequest<>).GetInterfaces().Should().Contain(typeof(IHasId));
         }
 
         [Fact]
@@ -57,45 +29,6 @@
         {
             var requestMock = new ShowProgressRequestMock();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Shows);
-        }
-
-        [Fact]
-        public void Test_AShowProgressRequest_1_Has_Hidden_Property()
-        {
-            var propertyInfo = typeof(AShowProgressRequest<>)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Hidden")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(bool?));
-        }
-
-        [Fact]
-        public void Test_AShowProgressRequest_1_Has_Specials_Property()
-        {
-            var propertyInfo = typeof(AShowProgressRequest<>)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Specials")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(bool?));
-        }
-
-        [Fact]
-        public void Test_AShowProgressRequest_1_Has_CountSpecials_Property()
-        {
-            var propertyInfo = typeof(AShowProgressRequest<>)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "CountSpecials")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(bool?));
         }
 
         [Fact]

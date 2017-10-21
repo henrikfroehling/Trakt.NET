@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Post.Scrobbles.Responses;
     using TraktApiSharp.Objects.Post.Scrobbles.Responses.Implementations;
     using TraktApiSharp.Objects.Post.Scrobbles.Responses.JsonReader;
     using Xunit;
@@ -12,12 +11,6 @@
     [Category("Objects.Post.Scrobbles.Responses.Implementations")]
     public class TraktMovieScrobblePostResponse_Tests
     {
-        [Fact]
-        public void Test_TraktMovieScrobblePostResponse_Implements_ITraktMovieScrobblePostResponse_Interface()
-        {
-            typeof(TraktMovieScrobblePostResponse).GetInterfaces().Should().Contain(typeof(ITraktMovieScrobblePostResponse));
-        }
-
         [Fact]
         public void Test_TraktMovieScrobblePostResponse_Default_Constructor()
         {

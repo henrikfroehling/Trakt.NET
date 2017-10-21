@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Watched;
     using TraktApiSharp.Objects.Get.Watched.Implementations;
     using TraktApiSharp.Objects.Get.Watched.JsonReader;
     using Xunit;
@@ -14,12 +13,6 @@
     [Category("Objects.Get.Watched.Implementations")]
     public class TraktWatchedShow_Tests
     {
-        [Fact]
-        public void Test_TraktWatchedShow_Implements_ITraktWatchedShow_Interface()
-        {
-            typeof(TraktWatchedShow).GetInterfaces().Should().Contain(typeof(ITraktWatchedShow));
-        }
-
         [Fact]
         public void Test_TraktWatchedShow_Default_Constructor()
         {

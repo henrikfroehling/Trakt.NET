@@ -4,12 +4,9 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Search;
     using Xunit;
@@ -17,30 +14,6 @@
     [Category("Requests.Search")]
     public class SearchTextQueryRequest_Tests
     {
-        [Fact]
-        public void Test_SearchTextQueryRequest_IsNotAbstract()
-        {
-            typeof(SearchTextQueryRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_SearchTextQueryRequest_IsSealed()
-        {
-            typeof(SearchTextQueryRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SearchTextQueryRequest_Inherits_ASearchRequest()
-        {
-            typeof(SearchTextQueryRequest).IsSubclassOf(typeof(ASearchRequest)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SearchTextQueryRequest_Implements_ISupportsFilter_Interface()
-        {
-            typeof(SearchTextQueryRequest).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
-        }
-
         [Fact]
         public void Test_SearchTextQueryRequest_Has_AuthorizationRequirement_NotRequired()
         {
@@ -53,32 +26,6 @@
         {
             var request = new SearchTextQueryRequest();
             request.UriTemplate.Should().Be("search/{type}{?query,fields,years,genres,languages,countries,runtimes,ratings,extended,page,limit}");
-        }
-
-        [Fact]
-        public void Test_SearchTextQueryRequest_Has_SearchFields_Property()
-        {
-            var propertyInfo = typeof(SearchTextQueryRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "SearchFields")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktSearchField));
-        }
-
-        [Fact]
-        public void Test_SearchTextQueryRequest_Has_Query_Property()
-        {
-            var propertyInfo = typeof(SearchTextQueryRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Query")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
         }
 
         [Fact]

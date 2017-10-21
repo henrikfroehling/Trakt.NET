@@ -9,13 +9,6 @@
     public class TraktSearchIdTypeTests
     {
         [TestMethod]
-        public void TestTraktSearchIdTypeIsTraktEnumeration()
-        {
-            var enumeration = new TraktSearchIdType();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktSearchIdTypeGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktSearchIdType>();

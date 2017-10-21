@@ -4,7 +4,6 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.People.Credits;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.People;
@@ -13,24 +12,6 @@
     [Category("Requests.People")]
     public class PersonShowCreditsRequest_Tests
     {
-        [Fact]
-        public void Test_PersonShowCreditsRequest_IsNotAbstract()
-        {
-            typeof(PersonShowCreditsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_PersonShowCreditsRequest_IsSealed()
-        {
-            typeof(PersonShowCreditsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_PersonShowCreditsRequest_Inherits_APersonRequest_1()
-        {
-            typeof(PersonShowCreditsRequest).IsSubclassOf(typeof(APersonRequest<ITraktPersonShowCredits>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_PersonShowCreditsRequest_Has_AuthorizationRequirement_NotRequired()
         {

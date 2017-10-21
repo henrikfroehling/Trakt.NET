@@ -8,14 +8,6 @@
     public class TraktAuthorizationExceptionTests
     {
         [TestMethod]
-        public void TestTraktAuthorizationExceptionBaseClass()
-        {
-            var exception = new TraktAuthorizationException();
-
-            exception.Should().BeAssignableTo<TraktException>();
-        }
-
-        [TestMethod]
         public void TestTraktAuthorizationExceptionDefaultConstructor()
         {
             var exception = new TraktAuthorizationException();

@@ -3,7 +3,6 @@
     using FluentAssertions;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Get.Shows.JsonReader;
     using Xunit;
@@ -11,12 +10,6 @@
     [Category("Objects.Get.Shows.Implementations")]
     public class TraktShowAlias_Tests
     {
-        [Fact]
-        public void Test_TraktShowAlias_Implements_ITraktShowAlias_Interface()
-        {
-            typeof(TraktShowAlias).GetInterfaces().Should().Contain(typeof(ITraktShowAlias));
-        }
-
         [Fact]
         public void Test_TraktShowAlias_Default_Constructor()
         {

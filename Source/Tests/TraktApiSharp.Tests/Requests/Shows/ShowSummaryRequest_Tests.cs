@@ -4,8 +4,6 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Shows;
     using Xunit;
@@ -13,30 +11,6 @@
     [Category("Requests.Shows")]
     public class ShowSummaryRequest_Tests
     {
-        [Fact]
-        public void Test_ShowSummaryRequest_Is_Not_Abstract()
-        {
-            typeof(ShowSummaryRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_ShowSummaryRequest_Is_Sealed()
-        {
-            typeof(ShowSummaryRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowSummaryRequest_Inherits_AShowRequest_1()
-        {
-            typeof(ShowSummaryRequest).IsSubclassOf(typeof(AShowRequest<ITraktShow>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ShowSummaryRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(ShowSummaryRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
         [Fact]
         public void Test_ShowSummaryRequest_Has_Valid_UriTemplate()
         {

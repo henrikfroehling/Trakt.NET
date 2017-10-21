@@ -10,31 +10,6 @@
     public class CheckinRequest_2_Tests
     {
         [Fact]
-        public void Test_CheckinRequest_2_IsNotAbstract()
-        {
-            typeof(CheckinRequest<,>).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_CheckinRequest_2_IsSealed()
-        {
-            typeof(CheckinRequest<,>).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_CheckinRequest_2_Has_GenericTypeParameter()
-        {
-            typeof(CheckinRequest<,>).ContainsGenericParameters.Should().BeTrue();
-            typeof(CheckinRequest<int, float>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(2);
-        }
-
-        [Fact]
-        public void Test_CheckinRequest_2_Inherits_APostRequest_2()
-        {
-            typeof(CheckinRequest<int, float>).IsSubclassOf(typeof(APostRequest<int, float>)).Should().BeTrue();
-        }
-
-        [Fact]
         public void Test_CheckinRequest_2_Has_AuthorizationRequirement_Required()
         {
             var request = new CheckinRequest<int, float>();

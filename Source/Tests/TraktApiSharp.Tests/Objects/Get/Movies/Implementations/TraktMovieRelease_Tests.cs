@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Get.Movies.JsonReader;
     using Xunit;
@@ -13,12 +12,6 @@
     [Category("Objects.Get.Movies.Implementations")]
     public class TraktMovieRelease_Tests
     {
-        [Fact]
-        public void Test_TraktMovieRelease_Implements_ITraktMovieRelease_Interface()
-        {
-            typeof(TraktMovieRelease).GetInterfaces().Should().Contain(typeof(ITraktMovieRelease));
-        }
-
         [Fact]
         public void Test_TraktMovieRelease_Default_Constructor()
         {

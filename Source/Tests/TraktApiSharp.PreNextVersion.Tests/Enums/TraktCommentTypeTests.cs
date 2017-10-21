@@ -9,13 +9,6 @@
     public class TraktCommentTypeTests
     {
         [TestMethod]
-        public void TestTraktCommentTypeIsTraktEnumeration()
-        {
-            var enumeration = new TraktCommentType();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktCommentTypeGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktCommentType>();

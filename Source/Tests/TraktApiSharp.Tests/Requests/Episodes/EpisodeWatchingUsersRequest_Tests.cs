@@ -4,9 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests.Episodes;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using Xunit;
 
@@ -14,36 +12,12 @@
     public class EpisodeWatchingUsersRequest_Tests
     {
         [Fact]
-        public void Test_EpisodeWatchingUsersRequest_IsNotAbstract()
-        {
-            typeof(EpisodeWatchingUsersRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_EpisodeWatchingUsersRequest_IsSealed()
-        {
-            typeof(EpisodeWatchingUsersRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_EpisodeWatchingUsersRequest_Inherits_AEpisodeRequest_1()
-        {
-            typeof(EpisodeWatchingUsersRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktUser>)).Should().BeTrue();
-        }
-        
-        [Fact]
-        public void Test_EpisodeWatchingUsersRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(EpisodeWatchingUsersRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-        
-        [Fact]
         public void Test_EpisodeWatchingUsersRequest_Has_Valid_UriTemplate()
         {
             var request = new EpisodeWatchingUsersRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/episodes/{episode}/watching{?extended}");
         }
-        
+
         [Fact]
         public void Test_EpisodeWatchingUsersRequest_Returns_Valid_UriPathParameters()
         {

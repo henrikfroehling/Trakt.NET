@@ -4,12 +4,8 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Movies;
     using Xunit;
 
@@ -17,47 +13,10 @@
     public class MovieCommentsRequest_Tests
     {
         [Fact]
-        public void Test_MovieCommentsRequest_IsNotAbstract()
-        {
-            typeof(MovieCommentsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_MovieCommentsRequest_IsSealed()
-        {
-            typeof(MovieCommentsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_MovieCommentsRequest_Inherits_AMovieRequest_1()
-        {
-            typeof(MovieCommentsRequest).IsSubclassOf(typeof(AMovieRequest<ITraktComment>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_MovieCommentsRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(MovieCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
-        [Fact]
         public void Test_MovieCommentsRequest_Has_Valid_UriTemplate()
         {
             var request = new MovieCommentsRequest();
             request.UriTemplate.Should().Be("movies/{id}/comments{/sort_order}{?page,limit}");
-        }
-
-        [Fact]
-        public void Test_MovieCommentsRequest_Has_SortOrder_Property()
-        {
-            var propertyInfo = typeof(MovieCommentsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "SortOrder")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktCommentSortOrder));
         }
 
         [Fact]

@@ -3,10 +3,7 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Post.Users.Responses;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
@@ -14,37 +11,6 @@
     [Category("Requests.Users.OAuth")]
     public class UserFollowUserRequest_Tests
     {
-        [Fact]
-        public void Test_UserFollowUserRequest_Is_Not_Abstract()
-        {
-            typeof(UserFollowUserRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserFollowUserRequest_Is_Sealed()
-        {
-            typeof(UserFollowUserRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserFollowUserRequest_Inherits_ABodylessPostRequest_1()
-        {
-            typeof(UserFollowUserRequest).IsSubclassOf(typeof(ABodylessPostRequest<ITraktUserFollowUserPostResponse>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserFollowUserRequest_Has_Username_Property()
-        {
-            var propertyInfo = typeof(UserFollowUserRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Username")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
-        }
-
         [Fact]
         public void Test_UserFollowUserRequest_Has_AuthorizationRequirement_Required()
         {

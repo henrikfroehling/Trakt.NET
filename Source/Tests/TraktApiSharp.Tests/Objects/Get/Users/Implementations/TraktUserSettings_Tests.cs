@@ -4,7 +4,6 @@
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Objects.Get.Users.Implementations;
     using TraktApiSharp.Objects.Get.Users.JsonReader;
     using Xunit;
@@ -12,12 +11,6 @@
     [Category("Objects.Get.Users.Implementations")]
     public class TraktUserSettings_Tests
     {
-        [Fact]
-        public void Test_TraktUserSettings_Implements_ITraktUserSettings_Interface()
-        {
-            typeof(TraktUserSettings).GetInterfaces().Should().Contain(typeof(ITraktUserSettings));
-        }
-
         [Fact]
         public void Test_TraktUserSettings_Default_Constructor()
         {

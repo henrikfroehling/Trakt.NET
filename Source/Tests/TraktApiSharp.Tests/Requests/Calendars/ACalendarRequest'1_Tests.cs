@@ -2,12 +2,8 @@
 {
     using FluentAssertions;
     using System;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
-    using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Calendars;
-    using TraktApiSharp.Requests.Interfaces;
     using Xunit;
 
     [Category("Requests.Calendars")]
@@ -16,63 +12,6 @@
         internal class CalendarRequestMock : ACalendarRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
-        }
-
-        [Fact]
-        public void Test_ACalendarRequest_1_IsAbstract()
-        {
-            typeof(ACalendarRequest<>).IsAbstract.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ACalendarRequest_1_Has_GenericTypeParameter()
-        {
-            typeof(ACalendarRequest<>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ACalendarRequest<int>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(1);
-        }
-
-        [Fact]
-        public void Test_ACalendarRequest_1_Inherits_AGetRequest_1()
-        {
-            typeof(ACalendarRequest<int>).IsSubclassOf(typeof(AGetRequest<int>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ACalendarRequest_1_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(ACalendarRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
-        [Fact]
-        public void Test_ACalendarRequest_1_Implements_ISupportsFilter_Interface()
-        {
-            typeof(ACalendarRequest<>).GetInterfaces().Should().Contain(typeof(ISupportsFilter));
-        }
-
-        [Fact]
-        public void Test_ACalendarRequest_1_Has_StartDate_Property()
-        {
-            var propertyInfo = typeof(ACalendarRequest<>)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "StartDate")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(DateTime?));
-        }
-
-        [Fact]
-        public void Test_ACalendarRequest_1_Has_Days_Property()
-        {
-            var propertyInfo = typeof(ACalendarRequest<>)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Days")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(int?));
         }
 
         [Fact]

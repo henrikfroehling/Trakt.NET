@@ -3,56 +3,14 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users.Lists;
-    using TraktApiSharp.Objects.Post.Users;
     using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
     public class UserCustomListUpdateRequest_Tests
     {
-        [Fact]
-        public void Test_UserCustomListUpdateRequest_Is_Not_Abstract()
-        {
-            typeof(UserCustomListUpdateRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserCustomListUpdateRequest_Is_Sealed()
-        {
-            typeof(UserCustomListUpdateRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserCustomListUpdateRequest_Inherits_APutRequest_2()
-        {
-            typeof(UserCustomListUpdateRequest).IsSubclassOf(typeof(APutRequest<ITraktList, TraktUserCustomListPost>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserCustomListUpdateRequest_Implements_IHasId_Interface()
-        {
-            typeof(UserCustomListUpdateRequest).GetInterfaces().Should().Contain(typeof(IHasId));
-        }
-
-        [Fact]
-        public void Test_UserCustomListUpdateRequest_Has_Username_Property()
-        {
-            var propertyInfo = typeof(UserCustomListUpdateRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Username")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(string));
-        }
-
         [Fact]
         public void Test_UserCustomListUpdateRequest_Has_AuthorizationRequirement_Required()
         {

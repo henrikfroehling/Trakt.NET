@@ -8,14 +8,6 @@
     public class TraktExpiredExceptionTests
     {
         [TestMethod]
-        public void TestTraktExpiredEExceptionBaseClass()
-        {
-            var exception = new TraktExpiredException();
-
-            exception.Should().BeAssignableTo<TraktException>();
-        }
-
-        [TestMethod]
         public void TestTraktExpiredEExceptionDefaultConstructor()
         {
             var exception = new TraktExpiredException();

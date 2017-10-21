@@ -10,31 +10,6 @@
     public class ScrobblePauseRequest_2_Tests
     {
         [Fact]
-        public void Test_ScrobblePauseRequest_2_IsNotAbstract()
-        {
-            typeof(ScrobblePauseRequest<,>).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_ScrobblePauseRequest_2_IsSealed()
-        {
-            typeof(ScrobblePauseRequest<,>).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_ScrobblePauseRequest_2_Has_GenericTypeParameter()
-        {
-            typeof(ScrobblePauseRequest<,>).ContainsGenericParameters.Should().BeTrue();
-            typeof(ScrobblePauseRequest<int, float>).GenericTypeArguments.Should().NotBeEmpty().And.HaveCount(2);
-        }
-
-        [Fact]
-        public void Test_ScrobblePauseRequest_2_Inherits_APostRequest_2()
-        {
-            typeof(ScrobblePauseRequest<int, float>).IsSubclassOf(typeof(APostRequest<int, float>)).Should().BeTrue();
-        }
-
-        [Fact]
         public void Test_ScrobblePauseRequest_2_Has_AuthorizationRequirement_Required()
         {
             var request = new ScrobblePauseRequest<int, float>();

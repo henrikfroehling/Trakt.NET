@@ -3,12 +3,8 @@
     using FluentAssertions;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Watchlist;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;
@@ -17,53 +13,10 @@
     public class SyncWatchlistRequest_Tests
     {
         [Fact]
-        public void Test_SyncWatchlistRequest_Is_Not_Abstract()
-        {
-            typeof(SyncWatchlistRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_SyncWatchlistRequest_Is_Sealed()
-        {
-            typeof(SyncWatchlistRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SyncWatchlistRequest_Inherits_ASyncGetRequest_1()
-        {
-            typeof(SyncWatchlistRequest).IsSubclassOf(typeof(ASyncGetRequest<ITraktWatchlistItem>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_SyncWatchlistRequest_Implements_ISupportsExtendedInfo_Interface()
-        {
-            typeof(SyncWatchlistRequest).GetInterfaces().Should().Contain(typeof(ISupportsExtendedInfo));
-        }
-
-        [Fact]
-        public void Test_SyncWatchlistRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(SyncWatchlistRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
-        [Fact]
         public void Test_SyncWatchlistRequest_Has_Valid_UriTemplate()
         {
             var request = new SyncWatchlistRequest();
             request.UriTemplate.Should().Be("sync/watchlist{/type}{?extended,page,limit}");
-        }
-
-        [Fact]
-        public void Test_SyncWatchlistRequest_Has_Type_Property()
-        {
-            var propertyInfo = typeof(SyncWatchlistRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Type")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktSyncItemType));
         }
 
         [Theory, ClassData(typeof(SyncWatchlistRequest_TestData))]

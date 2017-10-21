@@ -4,60 +4,19 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Requests.Episodes;
-    using TraktApiSharp.Requests.Interfaces;
     using Xunit;
 
     [Category("Requests.Episodes")]
     public class EpisodeCommentsRequest_Tests
     {
         [Fact]
-        public void Test_EpisodeCommentsRequest_IsNotAbstract()
-        {
-            typeof(EpisodeCommentsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_EpisodeCommentsRequest_IsSealed()
-        {
-            typeof(EpisodeCommentsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_EpisodeCommentsRequest_Inherits_AEpisodeRequest_1()
-        {
-            typeof(EpisodeCommentsRequest).IsSubclassOf(typeof(AEpisodeRequest<ITraktComment>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_EpisodeCommentsRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(EpisodeCommentsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
-        [Fact]
         public void Test_EpisodeCommentsRequest_Has_Valid_UriTemplate()
         {
             var request = new EpisodeCommentsRequest();
             request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/episodes/{episode}/comments{/sort_order}{?page,limit}");
-        }
-
-        [Fact]
-        public void Test_EpisodeCommentsRequest_Has_SortOrder_Property()
-        {
-            var propertyInfo = typeof(EpisodeCommentsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "SortOrder")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktCommentSortOrder));
         }
 
         [Fact]

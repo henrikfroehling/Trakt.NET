@@ -12,24 +12,6 @@
     public class UserRecommendationHideShowRequest_Tests
     {
         [Fact]
-        public void Test_UserRecommendationHideShowRequest_IsNotAbstract()
-        {
-            typeof(UserRecommendationHideShowRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_UserRecommendationHideShowRequest_IsSealed()
-        {
-            typeof(UserRecommendationHideShowRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_UserRecommendationHideShowRequest_Inherits_AUserRecommendationHideRequest()
-        {
-            typeof(UserRecommendationHideShowRequest).IsSubclassOf(typeof(AUserRecommendationHideRequest)).Should().BeTrue();
-        }
-
-        [Fact]
         public void Test_UserRecommendationHideShowRequest_Has_AuthorizationRequirement_Required()
         {
             var request = new UserRecommendationHideShowRequest();

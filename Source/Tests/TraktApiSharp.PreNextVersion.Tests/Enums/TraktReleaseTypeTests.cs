@@ -16,13 +16,6 @@
         }
 
         [TestMethod]
-        public void TestTraktReleaseTypeIsTraktEnumeration()
-        {
-            var enumeration = new TraktReleaseType();
-            enumeration.Should().BeAssignableTo<TraktEnumeration>();
-        }
-
-        [TestMethod]
         public void TestTraktReleaseTypeGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktReleaseType>();

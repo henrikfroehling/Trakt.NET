@@ -6,7 +6,6 @@
     using System.Collections.Generic;
     using Traits;
     using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.Calendars;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Calendars.OAuth;
     using TraktApiSharp.Requests.Parameters;
@@ -15,24 +14,6 @@
     [Category("Requests.Calendars.OAuth.Shows")]
     public class CalendarUserNewShowsRequest_Tests
     {
-        [Fact]
-        public void Test_CalendarUserNewShowsRequest_IsNotAbstract()
-        {
-            typeof(CalendarUserNewShowsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_CalendarUserNewShowsRequest_IsSealed()
-        {
-            typeof(CalendarUserNewShowsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_CalendarUserNewShowsRequest_Inherits_ACalendarUserRequest()
-        {
-            typeof(CalendarUserNewShowsRequest).IsSubclassOf(typeof(ACalendarUserRequest<ITraktCalendarShow>)).Should().BeTrue();
-        }
-
         [Fact]
         public void Test_CalendarUserNewShowsRequest_Has_AuthorizationRequirement_Required()
         {

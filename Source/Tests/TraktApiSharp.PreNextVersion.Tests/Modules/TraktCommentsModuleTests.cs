@@ -7,7 +7,6 @@
     using System.Net;
     using System.Threading.Tasks;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Modules;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
@@ -26,12 +25,6 @@
     [TestClass]
     public class TraktCommentsModuleTests
     {
-        [TestMethod]
-        public void TestTraktCommentsModuleIsModule()
-        {
-            typeof(TraktCommentsModule).GetInterfaces().Should().Contain(typeof(ITraktModule));
-        }
-
         [ClassInitialize]
         public static void InitializeTests(TestContext context)
         {

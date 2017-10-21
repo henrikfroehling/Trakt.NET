@@ -8,15 +8,6 @@
     public class TraktCommentNotFoundExceptionTests
     {
         [TestMethod]
-        public void TestTraktCommentNotFoundExceptionBaseClass()
-        {
-            var exception = new TraktCommentNotFoundException("");
-
-            exception.Should().BeAssignableTo<TraktException>();
-            exception.Should().BeAssignableTo<TraktObjectNotFoundException>();
-        }
-
-        [TestMethod]
         public void TestTraktCommentNotFoundExceptionDefaultConstructor()
         {
             var commentId = "person id";

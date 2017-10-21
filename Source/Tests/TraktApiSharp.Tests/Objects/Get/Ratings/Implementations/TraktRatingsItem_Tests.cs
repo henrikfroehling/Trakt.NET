@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Ratings;
     using TraktApiSharp.Objects.Get.Ratings.Implementations;
     using TraktApiSharp.Objects.Get.Ratings.JsonReader;
     using Xunit;
@@ -14,12 +13,6 @@
     [Category("Objects.Get.Ratings.Implementations")]
     public class TraktRatingsItem_Tests
     {
-        [Fact]
-        public void Test_TraktRatingsItem_Implements_ITraktRatingsItem_Interface()
-        {
-            typeof(TraktRatingsItem).GetInterfaces().Should().Contain(typeof(ITraktRatingsItem));
-        }
-
         [Fact]
         public void Test_TraktRatingsItem_Default_Constructor()
         {

@@ -4,12 +4,8 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Users.Lists;
-    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Movies;
     using Xunit;
 
@@ -17,60 +13,10 @@
     public class MovieListsRequest_Tests
     {
         [Fact]
-        public void Test_MovieListsRequest_IsNotAbstract()
-        {
-            typeof(MovieListsRequest).IsAbstract.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Test_MovieListsRequest_IsSealed()
-        {
-            typeof(MovieListsRequest).IsSealed.Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_MovieListsRequest_Inherits_AMovieRequest_1()
-        {
-            typeof(MovieListsRequest).IsSubclassOf(typeof(AMovieRequest<ITraktList>)).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_MovieListsRequest_Implements_ISupportsPagination_Interface()
-        {
-            typeof(MovieListsRequest).GetInterfaces().Should().Contain(typeof(ISupportsPagination));
-        }
-
-        [Fact]
         public void Test_MovieListsRequest_Has_Valid_UriTemplate()
         {
             var request = new MovieListsRequest();
             request.UriTemplate.Should().Be("movies/{id}/lists{/type}{/sort_order}{?page,limit}");
-        }
-
-        [Fact]
-        public void Test_MovieListsRequest_Has_Type_Property()
-        {
-            var propertyInfo = typeof(MovieListsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "Type")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktListType));
-        }
-
-        [Fact]
-        public void Test_MovieListsRequest_Has_SortOrder_Property()
-        {
-            var propertyInfo = typeof(MovieListsRequest)
-                    .GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance)
-                    .Where(p => p.Name == "SortOrder")
-                    .FirstOrDefault();
-
-            propertyInfo.CanRead.Should().BeTrue();
-            propertyInfo.CanWrite.Should().BeTrue();
-            propertyInfo.PropertyType.Should().Be(typeof(TraktListSortOrder));
         }
 
         [Fact]

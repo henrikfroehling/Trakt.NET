@@ -9,14 +9,6 @@
     public class TraktAuthenticationOAuthExceptonTests
     {
         [TestMethod]
-        public void TestTraktAuthenticationOAuthExceptionBaseClass()
-        {
-            var exception = new TraktAuthenticationOAuthException("");
-
-            exception.Should().BeAssignableTo<TraktException>();
-        }
-
-        [TestMethod]
         public void TestTraktAuthenticationOAuthExceptionDefaultConstructor()
         {
             var message = "exception message";
