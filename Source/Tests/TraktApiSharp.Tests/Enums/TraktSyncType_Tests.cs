@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktSyncTypeTests
+    [Category("Enums")]
+    public class TraktSyncType_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktSyncType>))]
             public TraktSyncType Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktSyncTypeGetAll()
+        [Fact]
+        public void Test_TraktSyncType_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktSyncType>();
 
@@ -25,8 +26,8 @@
                                                                    TraktSyncType.Episode });
         }
 
-        [TestMethod]
-        public void TestTraktSyncTypeWriteAndReadJson_Movie()
+        [Fact]
+        public void Test_TraktSyncType_WriteAndReadJson_Movie()
         {
             var obj = new TestObject { Value = TraktSyncType.Movie };
 
@@ -38,8 +39,8 @@
             objRead.Value.Should().Be(TraktSyncType.Movie);
         }
 
-        [TestMethod]
-        public void TestTraktSyncTypeWriteAndReadJson_Episode()
+        [Fact]
+        public void Test_TraktSyncType_WriteAndReadJson_Episode()
         {
             var obj = new TestObject { Value = TraktSyncType.Episode };
 
@@ -51,8 +52,8 @@
             objRead.Value.Should().Be(TraktSyncType.Episode);
         }
 
-        [TestMethod]
-        public void TestTraktSyncTypeWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktSyncType_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktSyncType.Unspecified };
 

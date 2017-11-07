@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktRatingsItemTypeTests
+    [Category("Enums")]
+    public class TraktRatingsItemType_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktRatingsItemType>))]
             public TraktRatingsItemType Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktRatingsItemTypeGetAll()
+        [Fact]
+        public void Test_TraktRatingsItemTyp_eGetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktRatingsItemType>();
 
@@ -29,8 +30,8 @@
                                                                           TraktRatingsItemType.All });
         }
 
-        [TestMethod]
-        public void TestTraktRatingsItemTypeWriteAndReadJson_All()
+        [Fact]
+        public void Test_TraktRatingsItemType_WriteAndReadJson_All()
         {
             var obj = new TestObject { Value = TraktRatingsItemType.All };
 
@@ -42,8 +43,8 @@
             objRead.Value.Should().Be(TraktRatingsItemType.All);
         }
 
-        [TestMethod]
-        public void TestTraktRatingsItemTypeWriteAndReadJson_Movie()
+        [Fact]
+        public void Test_TraktRatingsItemType_WriteAndReadJson_Movie()
         {
             var obj = new TestObject { Value = TraktRatingsItemType.Movie };
 
@@ -55,8 +56,8 @@
             objRead.Value.Should().Be(TraktRatingsItemType.Movie);
         }
 
-        [TestMethod]
-        public void TestTraktRatingsItemTypeWriteAndReadJson_Show()
+        [Fact]
+        public void Test_TraktRatingsItemType_WriteAndReadJson_Show()
         {
             var obj = new TestObject { Value = TraktRatingsItemType.Show };
 
@@ -68,8 +69,8 @@
             objRead.Value.Should().Be(TraktRatingsItemType.Show);
         }
 
-        [TestMethod]
-        public void TestTraktRatingsItemTypeWriteAndReadJson_Season()
+        [Fact]
+        public void Test_TraktRatingsItemType_WriteAndReadJson_Season()
         {
             var obj = new TestObject { Value = TraktRatingsItemType.Season };
 
@@ -81,8 +82,8 @@
             objRead.Value.Should().Be(TraktRatingsItemType.Season);
         }
 
-        [TestMethod]
-        public void TestTraktRatingsItemTypeWriteAndReadJson_Episode()
+        [Fact]
+        public void Test_TraktRatingsItemType_WriteAndReadJson_Episode()
         {
             var obj = new TestObject { Value = TraktRatingsItemType.Episode };
 
@@ -94,8 +95,8 @@
             objRead.Value.Should().Be(TraktRatingsItemType.Episode);
         }
 
-        [TestMethod]
-        public void TestTraktRatingsItemTypeWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktRatingsItemType_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktRatingsItemType.Unspecified };
 

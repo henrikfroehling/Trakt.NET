@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktMediaAudioChannelTests
+    [Category("Enums")]
+    public class TraktMediaAudioChannel_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktMediaAudioChannel>))]
             public TraktMediaAudioChannel Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioChannelGetAll()
+        [Fact]
+        public void Test_TraktMediaAudioChannel_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktMediaAudioChannel>();
 
@@ -29,8 +30,8 @@
                                                                             TraktMediaAudioChannel.Channels_6_1, TraktMediaAudioChannel.Channels_7_1 });
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioChannelWriteAndReadJson_Channels_1_0()
+        [Fact]
+        public void Test_TraktMediaAudioChannel_WriteAndReadJson_Channels_1_0()
         {
             var obj = new TestObject { Value = TraktMediaAudioChannel.Channels_1_0 };
 
@@ -42,8 +43,8 @@
             objRead.Value.Should().Be(TraktMediaAudioChannel.Channels_1_0);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioChannelWriteAndReadJson_Channels_2_0()
+        [Fact]
+        public void Test_TraktMediaAudioChannel_WriteAndReadJson_Channels_2_0()
         {
             var obj = new TestObject { Value = TraktMediaAudioChannel.Channels_2_0 };
 
@@ -55,8 +56,8 @@
             objRead.Value.Should().Be(TraktMediaAudioChannel.Channels_2_0);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioChannelWriteAndReadJson_Channels_2_1()
+        [Fact]
+        public void Test_TraktMediaAudioChannel_WriteAndReadJson_Channels_2_1()
         {
             var obj = new TestObject { Value = TraktMediaAudioChannel.Channels_2_1 };
 
@@ -68,8 +69,8 @@
             objRead.Value.Should().Be(TraktMediaAudioChannel.Channels_2_1);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioChannelWriteAndReadJson_Channels_3_0()
+        [Fact]
+        public void Test_TraktMediaAudioChannel_WriteAndReadJson_Channels_3_0()
         {
             var obj = new TestObject { Value = TraktMediaAudioChannel.Channels_3_0 };
 
@@ -81,8 +82,8 @@
             objRead.Value.Should().Be(TraktMediaAudioChannel.Channels_3_0);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioChannelWriteAndReadJson_Channels_3_1()
+        [Fact]
+        public void Test_TraktMediaAudioChannel_WriteAndReadJson_Channels_3_1()
         {
             var obj = new TestObject { Value = TraktMediaAudioChannel.Channels_3_1 };
 
@@ -94,8 +95,8 @@
             objRead.Value.Should().Be(TraktMediaAudioChannel.Channels_3_1);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioChannelWriteAndReadJson_Channels_4_0()
+        [Fact]
+        public void Test_TraktMediaAudioChannel_WriteAndReadJson_Channels_4_0()
         {
             var obj = new TestObject { Value = TraktMediaAudioChannel.Channels_4_0 };
 
@@ -107,8 +108,8 @@
             objRead.Value.Should().Be(TraktMediaAudioChannel.Channels_4_0);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioChannelWriteAndReadJson_Channels_4_1()
+        [Fact]
+        public void Test_TraktMediaAudioChannel_WriteAndReadJson_Channels_4_1()
         {
             var obj = new TestObject { Value = TraktMediaAudioChannel.Channels_4_1 };
 
@@ -120,8 +121,8 @@
             objRead.Value.Should().Be(TraktMediaAudioChannel.Channels_4_1);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioChannelWriteAndReadJson_Channels_5_0()
+        [Fact]
+        public void Test_TraktMediaAudioChannel_WriteAndReadJson_Channels_5_0()
         {
             var obj = new TestObject { Value = TraktMediaAudioChannel.Channels_5_0 };
 
@@ -133,8 +134,8 @@
             objRead.Value.Should().Be(TraktMediaAudioChannel.Channels_5_0);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioChannelWriteAndReadJson_Channels_5_1()
+        [Fact]
+        public void Test_TraktMediaAudioChannel_WriteAndReadJson_Channels_5_1()
         {
             var obj = new TestObject { Value = TraktMediaAudioChannel.Channels_5_1 };
 
@@ -146,8 +147,8 @@
             objRead.Value.Should().Be(TraktMediaAudioChannel.Channels_5_1);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioChannelWriteAndReadJson_Channels_6_1()
+        [Fact]
+        public void Test_TraktMediaAudioChannel_WriteAndReadJson_Channels_6_1()
         {
             var obj = new TestObject { Value = TraktMediaAudioChannel.Channels_6_1 };
 
@@ -159,8 +160,8 @@
             objRead.Value.Should().Be(TraktMediaAudioChannel.Channels_6_1);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioChannelWriteAndReadJson_Channels_7_1()
+        [Fact]
+        public void Test_TraktMediaAudioChannel_WriteAndReadJson_Channels_7_1()
         {
             var obj = new TestObject { Value = TraktMediaAudioChannel.Channels_7_1 };
 
@@ -172,8 +173,8 @@
             objRead.Value.Should().Be(TraktMediaAudioChannel.Channels_7_1);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioChannelWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktMediaAudioChannel_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktMediaAudioChannel.Unspecified };
 

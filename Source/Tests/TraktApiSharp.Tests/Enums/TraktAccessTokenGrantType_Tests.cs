@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktAccessTokenGrantTypeTests
+    [Category("Enums")]
+    public class TraktAccessTokenGrantType_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktAccessTokenGrantType>))]
             public TraktAccessTokenGrantType Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktAccessTokenGrantTypeGetAll()
+        [Fact]
+        public void Test_TraktAccessTokenGrantType_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktAccessTokenGrantType>();
 
@@ -26,8 +27,8 @@
                                                                                TraktAccessTokenGrantType.RefreshToken });
         }
 
-        [TestMethod]
-        public void TestTraktAccessTokenGrantTypeWriteAndReadJson_AuthorizationCode()
+        [Fact]
+        public void Test_TraktAccessTokenGrantType_WriteAndReadJson_AuthorizationCode()
         {
             var obj = new TestObject { Value = TraktAccessTokenGrantType.AuthorizationCode };
 
@@ -39,8 +40,8 @@
             objRead.Value.Should().Be(TraktAccessTokenGrantType.AuthorizationCode);
         }
 
-        [TestMethod]
-        public void TestTraktAccessTokenGrantTypeWriteAndReadJson_RefreshToken()
+        [Fact]
+        public void Test_TraktAccessTokenGrantType_WriteAndReadJson_RefreshToken()
         {
             var obj = new TestObject { Value = TraktAccessTokenGrantType.RefreshToken };
 
@@ -52,8 +53,8 @@
             objRead.Value.Should().Be(TraktAccessTokenGrantType.RefreshToken);
         }
 
-        [TestMethod]
-        public void TestTraktAccessTokenGrantTypeWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktAccessTokenGrantType_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktAccessTokenGrantType.Unspecified };
 

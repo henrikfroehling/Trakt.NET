@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktHistoryActionTypeTests
+    [Category("Enums")]
+    public class TraktHistoryActionType_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktHistoryActionType>))]
             public TraktHistoryActionType Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktHistoryActionTypeGetAll()
+        [Fact]
+        public void Test_TraktHistoryActionType_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktHistoryActionType>();
 
@@ -25,8 +26,8 @@
                                                                             TraktHistoryActionType.Checkin, TraktHistoryActionType.Watch });
         }
 
-        [TestMethod]
-        public void TestTraktHistoryActionTypeWriteAndReadJson_Scrobble()
+        [Fact]
+        public void Test_TraktHistoryActionType_WriteAndReadJson_Scrobble()
         {
             var obj = new TestObject { Value = TraktHistoryActionType.Scrobble };
 
@@ -38,8 +39,8 @@
             objRead.Value.Should().Be(TraktHistoryActionType.Scrobble);
         }
 
-        [TestMethod]
-        public void TestTraktHistoryActionTypeWriteAndReadJson_Checkin()
+        [Fact]
+        public void Test_TraktHistoryActionType_WriteAndReadJson_Checkin()
         {
             var obj = new TestObject { Value = TraktHistoryActionType.Checkin };
 
@@ -51,8 +52,8 @@
             objRead.Value.Should().Be(TraktHistoryActionType.Checkin);
         }
 
-        [TestMethod]
-        public void TestTraktHistoryActionTypeWriteAndReadJson_Watch()
+        [Fact]
+        public void Test_TraktHistoryActionType_WriteAndReadJson_Watch()
         {
             var obj = new TestObject { Value = TraktHistoryActionType.Watch };
 
@@ -64,8 +65,8 @@
             objRead.Value.Should().Be(TraktHistoryActionType.Watch);
         }
 
-        [TestMethod]
-        public void TestTraktHistoryActionTypeWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktHistoryActionType_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktHistoryActionType.Unspecified };
 

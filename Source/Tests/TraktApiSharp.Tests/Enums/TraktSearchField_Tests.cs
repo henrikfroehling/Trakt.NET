@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktSearchFieldTests
+    [Category("Enums")]
+    public class TraktSearchField_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktSearchField>))]
             public TraktSearchField Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktSearchFieldGetAll()
+        [Fact]
+        public void Test_TraktSearchField_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktSearchField>();
 
@@ -28,8 +29,8 @@
                                                                       TraktSearchField.Biography, TraktSearchField.Description });
         }
 
-        [TestMethod]
-        public void TestTraktSearchFieldOrOperator()
+        [Fact]
+        public void Test_TraktSearchField_OrOperator()
         {
             var nullResult = default(TraktSearchField);
 
@@ -71,7 +72,7 @@
             result.DisplayName.Should().Be("Title, Tagline");
 
             oldResult = result;
-            result = result | TraktSearchField.Overview;
+            result |= TraktSearchField.Overview;
 
             result.Value.Should().Be(oldResult.Value | TraktSearchField.Overview.Value);
             result.ObjectName.Should().Be("title,tagline,overview");
@@ -79,7 +80,7 @@
             result.DisplayName.Should().Be("Title, Tagline, Overview");
 
             oldResult = result;
-            result = result | TraktSearchField.People;
+            result |= TraktSearchField.People;
 
             result.Value.Should().Be(oldResult.Value | TraktSearchField.People.Value);
             result.ObjectName.Should().Be("title,tagline,overview,people");
@@ -87,7 +88,7 @@
             result.DisplayName.Should().Be("Title, Tagline, Overview, People");
 
             oldResult = result;
-            result = result | TraktSearchField.Translations;
+            result |= TraktSearchField.Translations;
 
             result.Value.Should().Be(oldResult.Value | TraktSearchField.Translations.Value);
             result.ObjectName.Should().Be("title,tagline,overview,people,translations");
@@ -95,7 +96,7 @@
             result.DisplayName.Should().Be("Title, Tagline, Overview, People, Translations");
 
             oldResult = result;
-            result = result | TraktSearchField.Aliases;
+            result |= TraktSearchField.Aliases;
 
             result.Value.Should().Be(oldResult.Value | TraktSearchField.Aliases.Value);
             result.ObjectName.Should().Be("title,tagline,overview,people,translations,aliases");
@@ -103,7 +104,7 @@
             result.DisplayName.Should().Be("Title, Tagline, Overview, People, Translations, Aliases");
 
             oldResult = result;
-            result = result | TraktSearchField.Name;
+            result |= TraktSearchField.Name;
 
             result.Value.Should().Be(oldResult.Value | TraktSearchField.Name.Value);
             result.ObjectName.Should().Be("title,tagline,overview,people,translations,aliases,name");
@@ -111,7 +112,7 @@
             result.DisplayName.Should().Be("Title, Tagline, Overview, People, Translations, Aliases, Name");
 
             oldResult = result;
-            result = result | TraktSearchField.Biography;
+            result |= TraktSearchField.Biography;
 
             result.Value.Should().Be(oldResult.Value | TraktSearchField.Biography.Value);
             result.ObjectName.Should().Be("title,tagline,overview,people,translations,aliases,name,biography");
@@ -119,7 +120,7 @@
             result.DisplayName.Should().Be("Title, Tagline, Overview, People, Translations, Aliases, Name, Biography");
 
             oldResult = result;
-            result = result | TraktSearchField.Description;
+            result |= TraktSearchField.Description;
 
             result.Value.Should().Be(oldResult.Value | TraktSearchField.Description.Value);
             result.ObjectName.Should().Be("title,tagline,overview,people,translations,aliases,name,biography,description");
@@ -127,8 +128,8 @@
             result.DisplayName.Should().Be("Title, Tagline, Overview, People, Translations, Aliases, Name, Biography, Description");
         }
 
-        [TestMethod]
-        public void TestTraktSearchFieldWriteAndReadJson_Title()
+        [Fact]
+        public void Test_TraktSearchField_WriteAndReadJson_Title()
         {
             var obj = new TestObject { Value = TraktSearchField.Title };
 
@@ -140,8 +141,8 @@
             objRead.Value.Should().Be(TraktSearchField.Title);
         }
 
-        [TestMethod]
-        public void TestTraktSearchFieldWriteAndReadJson_Tagline()
+        [Fact]
+        public void Test_TraktSearchField_WriteAndReadJson_Tagline()
         {
             var obj = new TestObject { Value = TraktSearchField.Tagline };
 
@@ -153,8 +154,8 @@
             objRead.Value.Should().Be(TraktSearchField.Tagline);
         }
 
-        [TestMethod]
-        public void TestTraktSearchFieldWriteAndReadJson_Overview()
+        [Fact]
+        public void Test_TraktSearchField_WriteAndReadJson_Overview()
         {
             var obj = new TestObject { Value = TraktSearchField.Overview };
 
@@ -166,8 +167,8 @@
             objRead.Value.Should().Be(TraktSearchField.Overview);
         }
 
-        [TestMethod]
-        public void TestTraktSearchFieldWriteAndReadJson_People()
+        [Fact]
+        public void Test_TraktSearchField_WriteAndReadJson_People()
         {
             var obj = new TestObject { Value = TraktSearchField.People };
 
@@ -179,8 +180,8 @@
             objRead.Value.Should().Be(TraktSearchField.People);
         }
 
-        [TestMethod]
-        public void TestTraktSearchFieldWriteAndReadJson_Translations()
+        [Fact]
+        public void Test_TraktSearchField_WriteAndReadJson_Translations()
         {
             var obj = new TestObject { Value = TraktSearchField.Translations };
 
@@ -192,8 +193,8 @@
             objRead.Value.Should().Be(TraktSearchField.Translations);
         }
 
-        [TestMethod]
-        public void TestTraktSearchFieldWriteAndReadJson_Aliases()
+        [Fact]
+        public void Test_TraktSearchField_WriteAndReadJson_Aliases()
         {
             var obj = new TestObject { Value = TraktSearchField.Aliases };
 
@@ -205,8 +206,8 @@
             objRead.Value.Should().Be(TraktSearchField.Aliases);
         }
 
-        [TestMethod]
-        public void TestTraktSearchFieldWriteAndReadJson_Name()
+        [Fact]
+        public void Test_TraktSearchField_WriteAndReadJson_Name()
         {
             var obj = new TestObject { Value = TraktSearchField.Name };
 
@@ -218,8 +219,8 @@
             objRead.Value.Should().Be(TraktSearchField.Name);
         }
 
-        [TestMethod]
-        public void TestTraktSearchFieldWriteAndReadJson_Biography()
+        [Fact]
+        public void Test_TraktSearchField_WriteAndReadJson_Biography()
         {
             var obj = new TestObject { Value = TraktSearchField.Biography };
 
@@ -231,8 +232,8 @@
             objRead.Value.Should().Be(TraktSearchField.Biography);
         }
 
-        [TestMethod]
-        public void TestTraktSearchFieldWriteAndReadJson_Description()
+        [Fact]
+        public void Test_TraktSearchField_WriteAndReadJson_Description()
         {
             var obj = new TestObject { Value = TraktSearchField.Description };
 
@@ -244,8 +245,8 @@
             objRead.Value.Should().Be(TraktSearchField.Description);
         }
 
-        [TestMethod]
-        public void TestTraktSearchFieldWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktSearchField_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktSearchField.Unspecified };
 

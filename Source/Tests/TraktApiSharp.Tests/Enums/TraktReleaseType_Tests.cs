@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktReleaseTypeTests
+    [Category("Enums")]
+    public class TraktReleaseType_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktReleaseType>))]
             public TraktReleaseType Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktReleaseTypeGetAll()
+        [Fact]
+        public void Test_TraktReleaseType_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktReleaseType>();
 
@@ -27,8 +28,8 @@
                                                                       TraktReleaseType.Physical, TraktReleaseType.TV });
         }
 
-        [TestMethod]
-        public void TestTraktReleaseTypeWriteAndReadJson_Premiere()
+        [Fact]
+        public void Test_TraktReleaseType_WriteAndReadJson_Premiere()
         {
             var obj = new TestObject { Value = TraktReleaseType.Premiere };
 
@@ -40,8 +41,8 @@
             objRead.Value.Should().Be(TraktReleaseType.Premiere);
         }
 
-        [TestMethod]
-        public void TestTraktReleaseTypeWriteAndReadJson_Limited()
+        [Fact]
+        public void Test_TraktReleaseType_WriteAndReadJson_Limited()
         {
             var obj = new TestObject { Value = TraktReleaseType.Limited };
 
@@ -53,8 +54,8 @@
             objRead.Value.Should().Be(TraktReleaseType.Limited);
         }
 
-        [TestMethod]
-        public void TestTraktReleaseTypeWriteAndReadJson_Theatrical()
+        [Fact]
+        public void Test_TraktReleaseType_WriteAndReadJson_Theatrical()
         {
             var obj = new TestObject { Value = TraktReleaseType.Theatrical };
 
@@ -66,8 +67,8 @@
             objRead.Value.Should().Be(TraktReleaseType.Theatrical);
         }
 
-        [TestMethod]
-        public void TestTraktReleaseTypeWriteAndReadJson_Digital()
+        [Fact]
+        public void Test_TraktReleaseType_WriteAndReadJson_Digital()
         {
             var obj = new TestObject { Value = TraktReleaseType.Digital };
 
@@ -79,8 +80,8 @@
             objRead.Value.Should().Be(TraktReleaseType.Digital);
         }
 
-        [TestMethod]
-        public void TestTraktReleaseTypeWriteAndReadJson_Physical()
+        [Fact]
+        public void Test_TraktReleaseType_WriteAndReadJson_Physical()
         {
             var obj = new TestObject { Value = TraktReleaseType.Physical };
 
@@ -92,8 +93,8 @@
             objRead.Value.Should().Be(TraktReleaseType.Physical);
         }
 
-        [TestMethod]
-        public void TestTraktReleaseTypeWriteAndReadJson_Tv()
+        [Fact]
+        public void Test_TraktReleaseType_WriteAndReadJson_Tv()
         {
             var obj = new TestObject { Value = TraktReleaseType.TV };
 
@@ -105,8 +106,8 @@
             objRead.Value.Should().Be(TraktReleaseType.TV);
         }
 
-        [TestMethod]
-        public void TestTraktReleaseTypeWriteAndReadJson_Unknown()
+        [Fact]
+        public void Test_TraktReleaseType_WriteAndReadJson_Unknown()
         {
             var obj = new TestObject { Value = TraktReleaseType.Unknown };
 

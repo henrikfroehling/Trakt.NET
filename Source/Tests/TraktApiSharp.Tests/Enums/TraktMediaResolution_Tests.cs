@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktMediaResolutionTests
+    [Category("Enums")]
+    public class TraktMediaResolution_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktMediaResolution>))]
             public TraktMediaResolution Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktMediaResolutionGetAll()
+        [Fact]
+        public void Test_TraktMediaResolution_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktMediaResolution>();
 
@@ -28,8 +29,8 @@
                                                                           TraktMediaResolution.SD_576i });
         }
 
-        [TestMethod]
-        public void TestTraktMediaResolutionWriteAndReadJson_UHD_4k()
+        [Fact]
+        public void Test_TraktMediaResolution_WriteAndReadJson_UHD_4k()
         {
             var obj = new TestObject { Value = TraktMediaResolution.UHD_4k };
 
@@ -41,8 +42,8 @@
             objRead.Value.Should().Be(TraktMediaResolution.UHD_4k);
         }
 
-        [TestMethod]
-        public void TestTraktMediaResolutionWriteAndReadJson_HD_1080p()
+        [Fact]
+        public void Test_TraktMediaResolution_WriteAndReadJson_HD_1080p()
         {
             var obj = new TestObject { Value = TraktMediaResolution.HD_1080p };
 
@@ -54,8 +55,8 @@
             objRead.Value.Should().Be(TraktMediaResolution.HD_1080p);
         }
 
-        [TestMethod]
-        public void TestTraktMediaResolutionWriteAndReadJson_HD_1080i()
+        [Fact]
+        public void Test_TraktMediaResolution_WriteAndReadJson_HD_1080i()
         {
             var obj = new TestObject { Value = TraktMediaResolution.HD_1080i };
 
@@ -67,8 +68,8 @@
             objRead.Value.Should().Be(TraktMediaResolution.HD_1080i);
         }
 
-        [TestMethod]
-        public void TestTraktMediaResolutionWriteAndReadJson_HD_720p()
+        [Fact]
+        public void Test_TraktMediaResolution_WriteAndReadJson_HD_720p()
         {
             var obj = new TestObject { Value = TraktMediaResolution.HD_720p };
 
@@ -80,8 +81,8 @@
             objRead.Value.Should().Be(TraktMediaResolution.HD_720p);
         }
 
-        [TestMethod]
-        public void TestTraktMediaResolutionWriteAndReadJson_SD_480p()
+        [Fact]
+        public void Test_TraktMediaResolution_WriteAndReadJson_SD_480p()
         {
             var obj = new TestObject { Value = TraktMediaResolution.SD_480p };
 
@@ -93,8 +94,8 @@
             objRead.Value.Should().Be(TraktMediaResolution.SD_480p);
         }
 
-        [TestMethod]
-        public void TestTraktMediaResolutionWriteAndReadJson_SD_480i()
+        [Fact]
+        public void Test_TraktMediaResolution_WriteAndReadJson_SD_480i()
         {
             var obj = new TestObject { Value = TraktMediaResolution.SD_480i };
 
@@ -106,8 +107,8 @@
             objRead.Value.Should().Be(TraktMediaResolution.SD_480i);
         }
 
-        [TestMethod]
-        public void TestTraktMediaResolutionWriteAndReadJson_SD_576p()
+        [Fact]
+        public void Test_TraktMediaResolution_WriteAndReadJson_SD_576p()
         {
             var obj = new TestObject { Value = TraktMediaResolution.SD_576p };
 
@@ -119,8 +120,8 @@
             objRead.Value.Should().Be(TraktMediaResolution.SD_576p);
         }
 
-        [TestMethod]
-        public void TestTraktMediaResolutionWriteAndReadJson_SD_576i()
+        [Fact]
+        public void Test_TraktMediaResolution_WriteAndReadJson_SD_576i()
         {
             var obj = new TestObject { Value = TraktMediaResolution.SD_576i };
 
@@ -132,8 +133,8 @@
             objRead.Value.Should().Be(TraktMediaResolution.SD_576i);
         }
 
-        [TestMethod]
-        public void TestTraktMediaResolutionWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktMediaResolution_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktMediaResolution.Unspecified };
 

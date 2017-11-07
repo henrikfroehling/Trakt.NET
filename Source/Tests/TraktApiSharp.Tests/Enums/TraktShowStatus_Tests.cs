@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktShowStatusTests
+    [Category("Enums")]
+    public class TraktShowStatus_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktShowStatus>))]
             public TraktShowStatus Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktShowStatusGetAll()
+        [Fact]
+        public void Test_TraktShowStatus_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktShowStatus>();
 
@@ -26,8 +27,8 @@
                                                                      TraktShowStatus.Ended });
         }
 
-        [TestMethod]
-        public void TestTraktShowStatusWriteAndReadJson_ReturningSeries()
+        [Fact]
+        public void Test_TraktShowStatus_WriteAndReadJson_ReturningSeries()
         {
             var obj = new TestObject { Value = TraktShowStatus.ReturningSeries };
 
@@ -39,8 +40,8 @@
             objRead.Value.Should().Be(TraktShowStatus.ReturningSeries);
         }
 
-        [TestMethod]
-        public void TestTraktShowStatusWriteAndReadJson_InProduction()
+        [Fact]
+        public void Test_TraktShowStatus_WriteAndReadJson_InProduction()
         {
             var obj = new TestObject { Value = TraktShowStatus.InProduction };
 
@@ -52,8 +53,8 @@
             objRead.Value.Should().Be(TraktShowStatus.InProduction);
         }
 
-        [TestMethod]
-        public void TestTraktShowStatusWriteAndReadJson_Canceled()
+        [Fact]
+        public void Test_TraktShowStatus_WriteAndReadJson_Canceled()
         {
             var obj = new TestObject { Value = TraktShowStatus.Canceled };
 
@@ -65,8 +66,8 @@
             objRead.Value.Should().Be(TraktShowStatus.Canceled);
         }
 
-        [TestMethod]
-        public void TestTraktShowStatusWriteAndReadJson_Ended()
+        [Fact]
+        public void Test_TraktShowStatus_WriteAndReadJson_Ended()
         {
             var obj = new TestObject { Value = TraktShowStatus.Ended };
 
@@ -78,8 +79,8 @@
             objRead.Value.Should().Be(TraktShowStatus.Ended);
         }
 
-        [TestMethod]
-        public void TestTraktShowStatusWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktShowStatus_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktShowStatus.Unspecified };
 

@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktSyncItemTypeTests
+    [Category("Enums")]
+    public class TraktSyncItemType_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktSyncItemType>))]
             public TraktSyncItemType Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktSyncItemTypeGetAll()
+        [Fact]
+        public void Test_TraktSyncItemType_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktSyncItemType>();
 
@@ -26,8 +27,8 @@
                                                                        TraktSyncItemType.Episode });
         }
 
-        [TestMethod]
-        public void TestTraktSyncItemTypeWriteAndReadJson_Movie()
+        [Fact]
+        public void Test_TraktSyncItemType_WriteAndReadJson_Movie()
         {
             var obj = new TestObject { Value = TraktSyncItemType.Movie };
 
@@ -39,8 +40,8 @@
             objRead.Value.Should().Be(TraktSyncItemType.Movie);
         }
 
-        [TestMethod]
-        public void TestTraktSyncItemTypeWriteAndReadJson_Show()
+        [Fact]
+        public void Test_TraktSyncItemType_WriteAndReadJson_Show()
         {
             var obj = new TestObject { Value = TraktSyncItemType.Show };
 
@@ -52,8 +53,8 @@
             objRead.Value.Should().Be(TraktSyncItemType.Show);
         }
 
-        [TestMethod]
-        public void TestTraktSyncItemTypeWriteAndReadJson_Season()
+        [Fact]
+        public void Test_TraktSyncItemType_WriteAndReadJson_Season()
         {
             var obj = new TestObject { Value = TraktSyncItemType.Season };
 
@@ -65,8 +66,8 @@
             objRead.Value.Should().Be(TraktSyncItemType.Season);
         }
 
-        [TestMethod]
-        public void TestTraktSyncItemTypeWriteAndReadJson_Episode()
+        [Fact]
+        public void Test_TraktSyncItemType_WriteAndReadJson_Episode()
         {
             var obj = new TestObject { Value = TraktSyncItemType.Episode };
 
@@ -78,8 +79,8 @@
             objRead.Value.Should().Be(TraktSyncItemType.Episode);
         }
 
-        [TestMethod]
-        public void TestTraktSyncItemTypeWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktSyncItemType_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktSyncItemType.Unspecified };
 

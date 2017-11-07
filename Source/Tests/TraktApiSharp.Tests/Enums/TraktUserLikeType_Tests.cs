@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktUserLikeTypeTests
+    [Category("Enums")]
+    public class TraktUserLikeType_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktUserLikeType>))]
             public TraktUserLikeType Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktUserLikeTypeGetAll()
+        [Fact]
+        public void Test_TraktUserLikeType_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktUserLikeType>();
 
@@ -25,8 +26,8 @@
                                                                        TraktUserLikeType.List });
         }
 
-        [TestMethod]
-        public void TestTraktUserLikeTypeWriteAndReadJson_Comment()
+        [Fact]
+        public void Test_TraktUserLikeType_WriteAndReadJson_Comment()
         {
             var obj = new TestObject { Value = TraktUserLikeType.Comment };
 
@@ -38,8 +39,8 @@
             objRead.Value.Should().Be(TraktUserLikeType.Comment);
         }
 
-        [TestMethod]
-        public void TestTraktUserLikeTypeWriteAndReadJson_List()
+        [Fact]
+        public void Test_TraktUserLikeType_WriteAndReadJson_List()
         {
             var obj = new TestObject { Value = TraktUserLikeType.List };
 
@@ -51,8 +52,8 @@
             objRead.Value.Should().Be(TraktUserLikeType.List);
         }
 
-        [TestMethod]
-        public void TestTraktUserLikeTypeWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktUserLikeType_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktUserLikeType.Unspecified };
 

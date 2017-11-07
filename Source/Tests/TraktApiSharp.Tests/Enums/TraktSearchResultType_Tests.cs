@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktSearchResultTypeTests
+    [Category("Enums")]
+    public class TraktSearchResultType_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktSearchResultType>))]
             public TraktSearchResultType Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktSearchResultTypeGetAll()
+        [Fact]
+        public void Test_TraktSearchResultType_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktSearchResultType>();
 
@@ -26,8 +27,8 @@
                                                                            TraktSearchResultType.Person, TraktSearchResultType.List });
         }
 
-        [TestMethod]
-        public void TestTraktSearchResultTypeOrOperator()
+        [Fact]
+        public void Test_TraktSearchResultType_OrOperator()
         {
             var nullResult = default(TraktSearchResultType);
 
@@ -70,7 +71,7 @@
             result.DisplayName.Should().Be("Movie, Show");
 
             oldResult = result;
-            result = result | TraktSearchResultType.Episode;
+            result |= TraktSearchResultType.Episode;
 
             result.Value.Should().Be(oldResult.Value | TraktSearchResultType.Episode.Value);
             result.ObjectName.Should().Be("movie,show,episode");
@@ -78,7 +79,7 @@
             result.DisplayName.Should().Be("Movie, Show, Episode");
 
             oldResult = result;
-            result = result | TraktSearchResultType.Person;
+            result |= TraktSearchResultType.Person;
 
             result.Value.Should().Be(oldResult.Value | TraktSearchResultType.Person.Value);
             result.ObjectName.Should().Be("movie,show,episode,person");
@@ -86,7 +87,7 @@
             result.DisplayName.Should().Be("Movie, Show, Episode, Person");
 
             oldResult = result;
-            result = result | TraktSearchResultType.List;
+            result |= TraktSearchResultType.List;
 
             result.Value.Should().Be(oldResult.Value | TraktSearchResultType.List.Value);
             result.ObjectName.Should().Be("movie,show,episode,person,list");
@@ -94,8 +95,8 @@
             result.DisplayName.Should().Be("Movie, Show, Episode, Person, List");
         }
 
-        [TestMethod]
-        public void TestTraktSearchResultTypeWriteAndReadJson_Movie()
+        [Fact]
+        public void Test_TraktSearchResultType_WriteAndReadJson_Movie()
         {
             var obj = new TestObject { Value = TraktSearchResultType.Movie };
 
@@ -107,8 +108,8 @@
             objRead.Value.Should().Be(TraktSearchResultType.Movie);
         }
 
-        [TestMethod]
-        public void TestTraktSearchResultTypeWriteAndReadJson_Show()
+        [Fact]
+        public void Test_TraktSearchResultType_WriteAndReadJson_Show()
         {
             var obj = new TestObject { Value = TraktSearchResultType.Show };
 
@@ -120,8 +121,8 @@
             objRead.Value.Should().Be(TraktSearchResultType.Show);
         }
 
-        [TestMethod]
-        public void TestTraktSearchResultTypeWriteAndReadJson_Episode()
+        [Fact]
+        public void Test_TraktSearchResultType_WriteAndReadJson_Episode()
         {
             var obj = new TestObject { Value = TraktSearchResultType.Episode };
 
@@ -133,8 +134,8 @@
             objRead.Value.Should().Be(TraktSearchResultType.Episode);
         }
 
-        [TestMethod]
-        public void TestTraktSearchResultTypeWriteAndReadJson_Person()
+        [Fact]
+        public void Test_TraktSearchResultType_WriteAndReadJson_Person()
         {
             var obj = new TestObject { Value = TraktSearchResultType.Person };
 
@@ -146,8 +147,8 @@
             objRead.Value.Should().Be(TraktSearchResultType.Person);
         }
 
-        [TestMethod]
-        public void TestTraktSearchResultTypeWriteAndReadJson_List()
+        [Fact]
+        public void Test_TraktSearchResultType_WriteAndReadJson_List()
         {
             var obj = new TestObject { Value = TraktSearchResultType.List };
 
@@ -159,8 +160,8 @@
             objRead.Value.Should().Be(TraktSearchResultType.List);
         }
 
-        [TestMethod]
-        public void TestTraktSearchResultTypeWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktSearchResultType_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktSearchResultType.Unspecified };
 

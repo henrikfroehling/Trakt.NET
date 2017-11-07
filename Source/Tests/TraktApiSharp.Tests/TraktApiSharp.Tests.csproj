@@ -85,6 +85,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\TraktClient_Tests.cs" />
+    <Compile Include="Enums\TraktAccessScope_Tests.cs" />
+    <Compile Include="Enums\TraktAccessTokenGrantType_Tests.cs" />
+    <Compile Include="Enums\TraktAccessTokenType_Tests.cs" />
+    <Compile Include="Enums\TraktCommentSortOrder_Tests.cs" />
+    <Compile Include="Enums\TraktCommentType_Tests.cs" />
+    <Compile Include="Enums\TraktGenreType_Tests.cs" />
+    <Compile Include="Enums\TraktHiddenItemsSection_Tests.cs" />
+    <Compile Include="Enums\TraktHiddenItemType_Tests.cs" />
+    <Compile Include="Enums\TraktHistoryActionType_Tests.cs" />
+    <Compile Include="Enums\TraktListItemType_Tests.cs" />
+    <Compile Include="Enums\TraktListSortOrder_Tests.cs" />
+    <Compile Include="Enums\TraktListType_Tests.cs" />
+    <Compile Include="Enums\TraktMediaAudioChannel_Tests.cs" />
+    <Compile Include="Enums\TraktMediaAudio_Tests.cs" />
+    <Compile Include="Enums\TraktMediaResolution_Tests.cs" />
+    <Compile Include="Enums\TraktMediaType_Tests.cs" />
+    <Compile Include="Enums\TraktObjectType_Tests.cs" />
+    <Compile Include="Enums\TraktRatingsItemType_Tests.cs" />
+    <Compile Include="Enums\TraktReleaseType_Tests.cs" />
+    <Compile Include="Enums\TraktScrobbleActionType_Tests.cs" />
+    <Compile Include="Enums\TraktSearchField_Tests.cs" />
+    <Compile Include="Enums\TraktSearchIdType_Tests.cs" />
+    <Compile Include="Enums\TraktSearchResultType_Tests.cs" />
+    <Compile Include="Enums\TraktShowStatus_Tests.cs" />
+    <Compile Include="Enums\TraktSyncItemType_Tests.cs" />
+    <Compile Include="Enums\TraktSyncType_Tests.cs" />
+    <Compile Include="Enums\TraktTimePeriod_Tests.cs" />
+    <Compile Include="Enums\TraktUserLikeType_Tests.cs" />
     <Compile Include="Modules\TraktNetworksModule\TraktNetworksModule_GetNetworks_Tests.cs" />
     <Compile Include="Modules\TraktNetworksModule\TraktNetworksModule_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCastAndCrew_Tests.cs" />
@@ -1056,6 +1084,7 @@
   <ItemGroup>
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.7.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
