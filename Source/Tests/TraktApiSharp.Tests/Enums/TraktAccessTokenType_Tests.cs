@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktAccessTokenTypeTests
+    [Category("Enums")]
+    public class TraktAccessTokenType_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktAccessTokenType>))]
             public TraktAccessTokenType Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktAccessTokenTypeGetAll()
+        [Fact]
+        public void Test_TraktAccessTokenType_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktAccessTokenType>();
 
@@ -24,8 +25,8 @@
             allValues.Should().Contain(new List<TraktAccessTokenType>() { TraktAccessTokenType.Unspecified, TraktAccessTokenType.Bearer });
         }
 
-        [TestMethod]
-        public void TestTraktAccessTokenTypeWriteAndReadJson_Bearer()
+        [Fact]
+        public void Test_TraktAccessTokenType_WriteAndReadJson_Bearer()
         {
             var obj = new TestObject { Value = TraktAccessTokenType.Bearer };
 
@@ -37,8 +38,8 @@
             objRead.Value.Should().Be(TraktAccessTokenType.Bearer);
         }
 
-        [TestMethod]
-        public void TestTraktAccessTokenTypeWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktAccessTokenType_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktAccessTokenType.Unspecified };
 

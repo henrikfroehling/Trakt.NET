@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktHiddenItemTypeTests
+    [Category("Enums")]
+    public class TraktHiddenItemType_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktHiddenItemType>))]
             public TraktHiddenItemType Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktHiddenItemTypeGetAll()
+        [Fact]
+        public void Test_TraktHiddenItemType_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktHiddenItemType>();
 
@@ -25,8 +26,8 @@
                                                                          TraktHiddenItemType.Show, TraktHiddenItemType.Season });
         }
 
-        [TestMethod]
-        public void TestTraktHiddenItemTypeWriteAndReadJson_Movie()
+        [Fact]
+        public void Test_TraktHiddenItemType_WriteAndReadJson_Movie()
         {
             var obj = new TestObject { Value = TraktHiddenItemType.Movie };
 
@@ -38,8 +39,8 @@
             objRead.Value.Should().Be(TraktHiddenItemType.Movie);
         }
 
-        [TestMethod]
-        public void TestTraktHiddenItemTypeWriteAndReadJson_Show()
+        [Fact]
+        public void Test_TraktHiddenItemType_WriteAndReadJson_Show()
         {
             var obj = new TestObject { Value = TraktHiddenItemType.Show };
 
@@ -51,8 +52,8 @@
             objRead.Value.Should().Be(TraktHiddenItemType.Show);
         }
 
-        [TestMethod]
-        public void TestTraktHiddenItemTypeWriteAndReadJson_Season()
+        [Fact]
+        public void Test_TraktHiddenItemType_WriteAndReadJson_Season()
         {
             var obj = new TestObject { Value = TraktHiddenItemType.Season };
 
@@ -64,8 +65,8 @@
             objRead.Value.Should().Be(TraktHiddenItemType.Season);
         }
 
-        [TestMethod]
-        public void TestTraktHiddenItemTypeWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktHiddenItemType_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktHiddenItemType.Unspecified };
 

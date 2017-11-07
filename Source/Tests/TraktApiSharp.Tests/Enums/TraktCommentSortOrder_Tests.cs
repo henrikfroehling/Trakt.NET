@@ -1,15 +1,16 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktCommentSortOrderTests
+    [Category("Enums")]
+    public class TraktCommentSortOrder_Tests
     {
-        [TestMethod]
-        public void TestTraktCommentSortOrderGetAll()
+        [Fact]
+        public void Test_TraktCommentSortOrder_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktCommentSortOrder>();
 

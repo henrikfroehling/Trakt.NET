@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktMediaTypeTests
+    [Category("Enums")]
+    public class TraktMediaType_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktMediaType>))]
             public TraktMediaType Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktMediaTypeGetAll()
+        [Fact]
+        public void Test_TraktMediaType_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktMediaType>();
 
@@ -28,8 +29,8 @@
                                                                     TraktMediaType.LaserDisc });
         }
 
-        [TestMethod]
-        public void TestTraktMediaTypeWriteAndReadJson_Digital()
+        [Fact]
+        public void Test_TraktMediaType_WriteAndReadJson_Digital()
         {
             var obj = new TestObject { Value = TraktMediaType.Digital };
 
@@ -41,8 +42,8 @@
             objRead.Value.Should().Be(TraktMediaType.Digital);
         }
 
-        [TestMethod]
-        public void TestTraktMediaTypeWriteAndReadJson_Bluray()
+        [Fact]
+        public void Test_TraktMediaType_WriteAndReadJson_Bluray()
         {
             var obj = new TestObject { Value = TraktMediaType.Bluray };
 
@@ -54,8 +55,8 @@
             objRead.Value.Should().Be(TraktMediaType.Bluray);
         }
 
-        [TestMethod]
-        public void TestTraktMediaTypeWriteAndReadJson_HD_DVD()
+        [Fact]
+        public void Test_TraktMediaType_WriteAndReadJson_HD_DVD()
         {
             var obj = new TestObject { Value = TraktMediaType.HD_DVD };
 
@@ -67,8 +68,8 @@
             objRead.Value.Should().Be(TraktMediaType.HD_DVD);
         }
 
-        [TestMethod]
-        public void TestTraktMediaTypeWriteAndReadJson_DVD()
+        [Fact]
+        public void Test_TraktMediaType_WriteAndReadJson_DVD()
         {
             var obj = new TestObject { Value = TraktMediaType.DVD };
 
@@ -80,8 +81,8 @@
             objRead.Value.Should().Be(TraktMediaType.DVD);
         }
 
-        [TestMethod]
-        public void TestTraktMediaTypeWriteAndReadJson_VCD()
+        [Fact]
+        public void Test_TraktMediaType_WriteAndReadJson_VCD()
         {
             var obj = new TestObject { Value = TraktMediaType.VCD };
 
@@ -93,8 +94,8 @@
             objRead.Value.Should().Be(TraktMediaType.VCD);
         }
 
-        [TestMethod]
-        public void TestTraktMediaTypeWriteAndReadJson_VHS()
+        [Fact]
+        public void Test_TraktMediaType_WriteAndReadJson_VHS()
         {
             var obj = new TestObject { Value = TraktMediaType.VHS };
 
@@ -106,8 +107,8 @@
             objRead.Value.Should().Be(TraktMediaType.VHS);
         }
 
-        [TestMethod]
-        public void TestTraktMediaTypeWriteAndReadJson_BetaMax()
+        [Fact]
+        public void Test_TraktMediaType_WriteAndReadJson_BetaMax()
         {
             var obj = new TestObject { Value = TraktMediaType.BetaMax };
 
@@ -119,8 +120,8 @@
             objRead.Value.Should().Be(TraktMediaType.BetaMax);
         }
 
-        [TestMethod]
-        public void TestTraktMediaTypeWriteAndReadJson_LaserDisc()
+        [Fact]
+        public void Test_TraktMediaType_WriteAndReadJson_LaserDisc()
         {
             var obj = new TestObject { Value = TraktMediaType.LaserDisc };
 
@@ -132,8 +133,8 @@
             objRead.Value.Should().Be(TraktMediaType.LaserDisc);
         }
 
-        [TestMethod]
-        public void TestTraktMediaTypeWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktMediaType_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktMediaType.Unspecified };
 

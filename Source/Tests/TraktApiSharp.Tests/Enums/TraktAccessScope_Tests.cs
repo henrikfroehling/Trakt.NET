@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktAccessScopeTests
+    [Category("Enums")]
+    public class TraktAccessScope_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktAccessScope>))]
             public TraktAccessScope Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktAccessScopeGetAll()
+        [Fact]
+        public void Test_TraktAccessScope_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktAccessScope>();
 
@@ -25,8 +26,8 @@
                                                                       TraktAccessScope.Public, TraktAccessScope.Friends });
         }
 
-        [TestMethod]
-        public void TestTraktAccessScopeWriteAndReadJson_Friends()
+        [Fact]
+        public void Test_TraktAccessScope_WriteAndReadJson_Friends()
         {
             var obj = new TestObject { Value = TraktAccessScope.Friends };
 
@@ -38,8 +39,8 @@
             objRead.Value.Should().Be(TraktAccessScope.Friends);
         }
 
-        [TestMethod]
-        public void TestTraktAccessScopeWriteAndReadJson_Private()
+        [Fact]
+        public void Test_TraktAccessScope_WriteAndReadJson_Private()
         {
             var obj = new TestObject { Value = TraktAccessScope.Private };
 
@@ -51,8 +52,8 @@
             objRead.Value.Should().Be(TraktAccessScope.Private);
         }
 
-        [TestMethod]
-        public void TestTraktAccessScopeWriteAndReadJson_Public()
+        [Fact]
+        public void Test_TraktAccessScope_WriteAndReadJson_Public()
         {
             var obj = new TestObject { Value = TraktAccessScope.Public };
 
@@ -64,8 +65,8 @@
             objRead.Value.Should().Be(TraktAccessScope.Public);
         }
 
-        [TestMethod]
-        public void TestTraktAccessScopeWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktAccessScope_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktAccessScope.Unspecified };
 

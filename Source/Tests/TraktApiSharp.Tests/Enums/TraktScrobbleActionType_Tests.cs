@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktScrobbleActionTypeTests
+    [Category("Enums")]
+    public class TraktScrobbleActionType_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktScrobbleActionType>))]
             public TraktScrobbleActionType Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktScrobbleActionTypeGetAll()
+        [Fact]
+        public void Test_TraktScrobbleActionType_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktScrobbleActionType>();
 
@@ -25,8 +26,8 @@
                                                                              TraktScrobbleActionType.Pause, TraktScrobbleActionType.Stop });
         }
 
-        [TestMethod]
-        public void TestTraktScrobbleActionTypeWriteAndReadJson_Start()
+        [Fact]
+        public void Test_TraktScrobbleActionType_WriteAndReadJson_Start()
         {
             var obj = new TestObject { Value = TraktScrobbleActionType.Start };
 
@@ -38,8 +39,8 @@
             objRead.Value.Should().Be(TraktScrobbleActionType.Start);
         }
 
-        [TestMethod]
-        public void TestTraktScrobbleActionTypeWriteAndReadJson_Pause()
+        [Fact]
+        public void Test_TraktScrobbleActionType_WriteAndReadJson_Pause()
         {
             var obj = new TestObject { Value = TraktScrobbleActionType.Pause };
 
@@ -51,8 +52,8 @@
             objRead.Value.Should().Be(TraktScrobbleActionType.Pause);
         }
 
-        [TestMethod]
-        public void TestTraktScrobbleActionTypeWriteAndReadJson_Stop()
+        [Fact]
+        public void Test_TraktScrobbleActionType_WriteAndReadJson_Stop()
         {
             var obj = new TestObject { Value = TraktScrobbleActionType.Stop };
 
@@ -64,8 +65,8 @@
             objRead.Value.Should().Be(TraktScrobbleActionType.Stop);
         }
 
-        [TestMethod]
-        public void TestTraktScrobbleActionTypeWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktScrobbleActionType_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktScrobbleActionType.Unspecified };
 

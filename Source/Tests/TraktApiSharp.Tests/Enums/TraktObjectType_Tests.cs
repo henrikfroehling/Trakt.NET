@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktObjectTypeTests
+    [Category("Enums")]
+    public class TraktObjectType_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktObjectType>))]
             public TraktObjectType Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktObjectTypeGetAll()
+        [Fact]
+        public void Test_TraktObjectType_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktObjectType>();
 
@@ -27,8 +28,8 @@
                                                                      TraktObjectType.All });
         }
 
-        [TestMethod]
-        public void TestTraktObjectTypeWriteAndReadJson_Movie()
+        [Fact]
+        public void Test_TraktObjectType_WriteAndReadJson_Movie()
         {
             var obj = new TestObject { Value = TraktObjectType.Movie };
 
@@ -40,8 +41,8 @@
             objRead.Value.Should().Be(TraktObjectType.Movie);
         }
 
-        [TestMethod]
-        public void TestTraktObjectTypeWriteAndReadJson_Show()
+        [Fact]
+        public void Test_TraktObjectType_WriteAndReadJson_Show()
         {
             var obj = new TestObject { Value = TraktObjectType.Show };
 
@@ -53,8 +54,8 @@
             objRead.Value.Should().Be(TraktObjectType.Show);
         }
 
-        [TestMethod]
-        public void TestTraktObjectTypeWriteAndReadJson_Season()
+        [Fact]
+        public void Test_TraktObjectType_WriteAndReadJson_Season()
         {
             var obj = new TestObject { Value = TraktObjectType.Season };
 
@@ -66,8 +67,8 @@
             objRead.Value.Should().Be(TraktObjectType.Season);
         }
 
-        [TestMethod]
-        public void TestTraktObjectTypeWriteAndReadJson_Episode()
+        [Fact]
+        public void Test_TraktObjectType_WriteAndReadJson_Episode()
         {
             var obj = new TestObject { Value = TraktObjectType.Episode };
 
@@ -79,8 +80,8 @@
             objRead.Value.Should().Be(TraktObjectType.Episode);
         }
 
-        [TestMethod]
-        public void TestTraktObjectTypeWriteAndReadJson_List()
+        [Fact]
+        public void Test_TraktObjectType_WriteAndReadJson_List()
         {
             var obj = new TestObject { Value = TraktObjectType.List };
 
@@ -92,8 +93,8 @@
             objRead.Value.Should().Be(TraktObjectType.List);
         }
 
-        [TestMethod]
-        public void TestTraktObjectTypeWriteAndReadJson_All()
+        [Fact]
+        public void Test_TraktObjectType_WriteAndReadJson_All()
         {
             var obj = new TestObject { Value = TraktObjectType.All };
 
@@ -105,8 +106,8 @@
             objRead.Value.Should().Be(TraktObjectType.All);
         }
 
-        [TestMethod]
-        public void TestTraktObjectTypeWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktObjectType_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktObjectType.Unspecified };
 

@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktGenreTypeTests
+    [Category("Enums")]
+    public class TraktGenreType_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktGenreType>))]
             public TraktGenreType Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktGenreTypeGetAll()
+        [Fact]
+        public void Test_TraktGenreType_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktGenreType>();
 
@@ -25,8 +26,8 @@
                                                                     TraktGenreType.Movies });
         }
 
-        [TestMethod]
-        public void TestTraktGenreTypeWriteAndReadJson_Shows()
+        [Fact]
+        public void Test_TraktGenreType_WriteAndReadJson_Shows()
         {
             var obj = new TestObject { Value = TraktGenreType.Shows };
 
@@ -38,8 +39,8 @@
             objRead.Value.Should().Be(TraktGenreType.Shows);
         }
 
-        [TestMethod]
-        public void TestTraktGenreTypeWriteAndReadJson_Movies()
+        [Fact]
+        public void Test_TraktGenreType_WriteAndReadJson_Movies()
         {
             var obj = new TestObject { Value = TraktGenreType.Movies };
 
@@ -51,8 +52,8 @@
             objRead.Value.Should().Be(TraktGenreType.Movies);
         }
 
-        [TestMethod]
-        public void TestTraktGenreTypeWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktGenreType_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktGenreType.Unspecified };
 

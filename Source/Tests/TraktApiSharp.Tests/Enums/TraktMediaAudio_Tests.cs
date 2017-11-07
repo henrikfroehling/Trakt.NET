@@ -1,22 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktMediaAudioTests
+    [Category("Enums")]
+    public class TraktMediaAudio_Tests
     {
-        class TestObject
+        private class TestObject
         {
             [JsonConverter(typeof(TraktEnumerationConverter<TraktMediaAudio>))]
             public TraktMediaAudio Value { get; set; }
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioGetAll()
+        [Fact]
+        public void Test_TraktMediaAudio_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktMediaAudio>();
 
@@ -29,8 +30,8 @@
                                                                      TraktMediaAudio.DolbyDigitalPlus, TraktMediaAudio.DolbyTrueHD });
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioWriteAndReadJson_LPCM()
+        [Fact]
+        public void Test_TraktMediaAudio_WriteAndReadJson_LPCM()
         {
             var obj = new TestObject { Value = TraktMediaAudio.LPCM };
 
@@ -42,8 +43,8 @@
             objRead.Value.Should().Be(TraktMediaAudio.LPCM);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioWriteAndReadJson_MP3()
+        [Fact]
+        public void Test_TraktMediaAudio_WriteAndReadJson_MP3()
         {
             var obj = new TestObject { Value = TraktMediaAudio.MP3 };
 
@@ -55,8 +56,8 @@
             objRead.Value.Should().Be(TraktMediaAudio.MP3);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioWriteAndReadJson_AAC()
+        [Fact]
+        public void Test_TraktMediaAudio_WriteAndReadJson_AAC()
         {
             var obj = new TestObject { Value = TraktMediaAudio.AAC };
 
@@ -68,8 +69,8 @@
             objRead.Value.Should().Be(TraktMediaAudio.AAC);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioWriteAndReadJson_OGG()
+        [Fact]
+        public void Test_TraktMediaAudio_WriteAndReadJson_OGG()
         {
             var obj = new TestObject { Value = TraktMediaAudio.OGG };
 
@@ -81,8 +82,8 @@
             objRead.Value.Should().Be(TraktMediaAudio.OGG);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioWriteAndReadJson_WMA()
+        [Fact]
+        public void Test_TraktMediaAudio_WriteAndReadJson_WMA()
         {
             var obj = new TestObject { Value = TraktMediaAudio.WMA };
 
@@ -94,8 +95,8 @@
             objRead.Value.Should().Be(TraktMediaAudio.WMA);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioWriteAndReadJson_DTS()
+        [Fact]
+        public void Test_TraktMediaAudio_WriteAndReadJson_DTS()
         {
             var obj = new TestObject { Value = TraktMediaAudio.DTS };
 
@@ -107,8 +108,8 @@
             objRead.Value.Should().Be(TraktMediaAudio.DTS);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioWriteAndReadJson_DTS_MA()
+        [Fact]
+        public void Test_TraktMediaAudio_WriteAndReadJson_DTS_MA()
         {
             var obj = new TestObject { Value = TraktMediaAudio.DTS_MA };
 
@@ -120,8 +121,8 @@
             objRead.Value.Should().Be(TraktMediaAudio.DTS_MA);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioWriteAndReadJson_DolbyPrologic()
+        [Fact]
+        public void Test_TraktMediaAudio_WriteAndReadJson_DolbyPrologic()
         {
             var obj = new TestObject { Value = TraktMediaAudio.DolbyPrologic };
 
@@ -133,8 +134,8 @@
             objRead.Value.Should().Be(TraktMediaAudio.DolbyPrologic);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioWriteAndReadJson_DolbyDigital()
+        [Fact]
+        public void Test_TraktMediaAudio_WriteAndReadJson_DolbyDigital()
         {
             var obj = new TestObject { Value = TraktMediaAudio.DolbyDigital };
 
@@ -146,8 +147,8 @@
             objRead.Value.Should().Be(TraktMediaAudio.DolbyDigital);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioWriteAndReadJson_DolbyDigitalPlus()
+        [Fact]
+        public void Test_TraktMediaAudio_WriteAndReadJson_DolbyDigitalPlus()
         {
             var obj = new TestObject { Value = TraktMediaAudio.DolbyDigitalPlus };
 
@@ -159,8 +160,8 @@
             objRead.Value.Should().Be(TraktMediaAudio.DolbyDigitalPlus);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioWriteAndReadJson_DolbyTrueHD()
+        [Fact]
+        public void Test_TraktMediaAudio_WriteAndReadJson_DolbyTrueHD()
         {
             var obj = new TestObject { Value = TraktMediaAudio.DolbyTrueHD };
 
@@ -172,8 +173,8 @@
             objRead.Value.Should().Be(TraktMediaAudio.DolbyTrueHD);
         }
 
-        [TestMethod]
-        public void TestTraktMediaAudioWriteAndReadJson_Unspecified()
+        [Fact]
+        public void Test_TraktMediaAudio_WriteAndReadJson_Unspecified()
         {
             var obj = new TestObject { Value = TraktMediaAudio.Unspecified };
 

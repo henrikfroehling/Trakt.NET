@@ -1,15 +1,16 @@
 ﻿namespace TraktApiSharp.Tests.Enums
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
+    using Xunit;
 
-    [TestClass]
-    public class TraktSearchIdTypeTests
+    [Category("Enums")]
+    public class TraktSearchIdType_Tests
     {
-        [TestMethod]
-        public void TestTraktSearchIdTypeGetAll()
+        [Fact]
+        public void Test_TraktSearchIdType_GetAll()
         {
             var allValues = TraktEnumeration.GetAll<TraktSearchIdType>();
 
