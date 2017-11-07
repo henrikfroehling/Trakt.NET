@@ -27,17 +27,23 @@
         /// <summary>The collection item has DTS Master Audio.</summary>
         public static TraktMediaAudio DTS_MA { get; } = new TraktMediaAudio(64, "dts_ma", "dts_ma", "DTS Master Audio");
 
+        /// <summary>The collection item has DTS X Audio.</summary>
+        public static TraktMediaAudio DTS_X { get; } = new TraktMediaAudio(128, "dts_x", "dts_x", "DTS X");
+
         /// <summary>The collection item has Dolby Prologic audio.</summary>
-        public static TraktMediaAudio DolbyPrologic { get; } = new TraktMediaAudio(128, "dolby_prologic", "dolby_prologic", "Dolby Prologic");
+        public static TraktMediaAudio DolbyPrologic { get; } = new TraktMediaAudio(256, "dolby_prologic", "dolby_prologic", "Dolby Prologic");
 
         /// <summary>The collection item has Dolby Digital audio.</summary>
-        public static TraktMediaAudio DolbyDigital { get; } = new TraktMediaAudio(256, "dolby_digital", "dolby_digital", "Dolby Digital");
+        public static TraktMediaAudio DolbyDigital { get; } = new TraktMediaAudio(512, "dolby_digital", "dolby_digital", "Dolby Digital");
 
         /// <summary>The collection item has Dolby Digital Plus audio.</summary>
-        public static TraktMediaAudio DolbyDigitalPlus { get; } = new TraktMediaAudio(512, "dolby_digital_plus", "dolby_digital_plus", "Dolby Digital Plus");
+        public static TraktMediaAudio DolbyDigitalPlus { get; } = new TraktMediaAudio(1024, "dolby_digital_plus", "dolby_digital_plus", "Dolby Digital Plus");
 
         /// <summary>The collection item has Dolby True HD audio.</summary>
-        public static TraktMediaAudio DolbyTrueHD { get; } = new TraktMediaAudio(1024, "dolby_truehd", "dolby_truehd", "Dolby True HD");
+        public static TraktMediaAudio DolbyTrueHD { get; } = new TraktMediaAudio(2048, "dolby_truehd", "dolby_truehd", "Dolby True HD");
+
+        /// <summary>The collection item has Dolby Atmos audio.</summary>
+        public static TraktMediaAudio DolbyAtmos { get; } = new TraktMediaAudio(4096, "dolby_atmos", "dolby_atmos", "Dolby Atmos");
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TraktMediaAudio" /> class.<para />

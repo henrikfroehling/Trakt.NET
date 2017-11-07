@@ -21,13 +21,14 @@
         {
             var allValues = TraktEnumeration.GetAll<TraktMediaAudio>();
 
-            allValues.Should().NotBeNull().And.HaveCount(12);
+            allValues.Should().NotBeNull().And.HaveCount(14);
             allValues.Should().Contain(new List<TraktMediaAudio>() { TraktMediaAudio.Unspecified, TraktMediaAudio.LPCM,
                                                                      TraktMediaAudio.MP3, TraktMediaAudio.AAC,
                                                                      TraktMediaAudio.OGG, TraktMediaAudio.WMA,
                                                                      TraktMediaAudio.DTS, TraktMediaAudio.DTS_MA,
-                                                                     TraktMediaAudio.DolbyPrologic, TraktMediaAudio.DolbyDigital,
-                                                                     TraktMediaAudio.DolbyDigitalPlus, TraktMediaAudio.DolbyTrueHD });
+                                                                     TraktMediaAudio.DTS_X, TraktMediaAudio.DolbyPrologic,
+                                                                     TraktMediaAudio.DolbyDigital, TraktMediaAudio.DolbyDigitalPlus,
+                                                                     TraktMediaAudio.DolbyTrueHD, TraktMediaAudio.DolbyAtmos });
         }
 
         [Fact]
@@ -122,6 +123,19 @@
         }
 
         [Fact]
+        public void Test_TraktMediaAudio_WriteAndReadJson_DTS_X()
+        {
+            var obj = new TestObject { Value = TraktMediaAudio.DTS_X };
+
+            var objWritten = JsonConvert.SerializeObject(obj);
+            objWritten.Should().NotBeNullOrEmpty();
+
+            var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
+            objRead.Should().NotBeNull();
+            objRead.Value.Should().Be(TraktMediaAudio.DTS_X);
+        }
+
+        [Fact]
         public void Test_TraktMediaAudio_WriteAndReadJson_DolbyPrologic()
         {
             var obj = new TestObject { Value = TraktMediaAudio.DolbyPrologic };
@@ -171,6 +185,19 @@
             var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
             objRead.Should().NotBeNull();
             objRead.Value.Should().Be(TraktMediaAudio.DolbyTrueHD);
+        }
+
+        [Fact]
+        public void Test_TraktMediaAudio_WriteAndReadJson_DolbyAtmos()
+        {
+            var obj = new TestObject { Value = TraktMediaAudio.DolbyAtmos };
+
+            var objWritten = JsonConvert.SerializeObject(obj);
+            objWritten.Should().NotBeNullOrEmpty();
+
+            var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
+            objRead.Should().NotBeNull();
+            objRead.Value.Should().Be(TraktMediaAudio.DolbyAtmos);
         }
 
         [Fact]
