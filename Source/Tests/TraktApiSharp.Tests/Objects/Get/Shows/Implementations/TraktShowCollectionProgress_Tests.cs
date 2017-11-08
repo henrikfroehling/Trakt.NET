@@ -23,6 +23,7 @@
             showCollectionProgress.Seasons.Should().BeNull();
             showCollectionProgress.HiddenSeasons.Should().BeNull();
             showCollectionProgress.NextEpisode.Should().BeNull();
+            showCollectionProgress.LastEpisode.Should().BeNull();
         }
 
         [Fact]
@@ -100,6 +101,17 @@
             showCollectionProgress.NextEpisode.Ids.Imdb.Should().BeNull();
             showCollectionProgress.NextEpisode.Ids.Tmdb.Should().BeNull();
             showCollectionProgress.NextEpisode.Ids.TvRage.Should().BeNull();
+
+            showCollectionProgress.LastEpisode.Should().NotBeNull();
+            showCollectionProgress.LastEpisode.SeasonNumber.Should().Be(1);
+            showCollectionProgress.LastEpisode.Number.Should().Be(2);
+            showCollectionProgress.LastEpisode.Title.Should().Be("Storm");
+            showCollectionProgress.LastEpisode.Ids.Should().NotBeNull();
+            showCollectionProgress.LastEpisode.Ids.Trakt.Should().Be(62316U);
+            showCollectionProgress.LastEpisode.Ids.Tvdb.Should().Be(4849875U);
+            showCollectionProgress.LastEpisode.Ids.Imdb.Should().Be("tt0203245");
+            showCollectionProgress.LastEpisode.Ids.Tmdb.Should().Be(525364U);
+            showCollectionProgress.LastEpisode.Ids.TvRage.Should().Be(26414563U);
         }
 
         private const string JSON =
@@ -177,6 +189,18 @@
                     ""imdb"": null,
                     ""tmdb"": null,
                     ""tvrage"": null
+                  }
+                },
+                ""last_episode"": {
+                  ""season"": 1,
+                  ""number"": 2,
+                  ""title"": ""Storm"",
+                  ""ids"": {
+                    ""trakt"": 62316,
+                    ""tvdb"": 4849875,
+                    ""imdb"": ""tt0203245"",
+                    ""tmdb"": 525364,
+                    ""tvrage"": 26414563
                   }
                 }
               }";
