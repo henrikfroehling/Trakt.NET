@@ -119,9 +119,13 @@
     <Compile Include="Modules\ITraktModule.cs" />
     <Compile Include="Modules\TraktNetworksModule.cs" />
     <Compile Include="Objects\Basic\IIds.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktCertification.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktCertifications.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktNetwork.cs" />
     <Compile Include="Objects\Basic\ITraktCastAndCrew.cs" />
     <Compile Include="Objects\Basic\ITraktCastMember.cs" />
+    <Compile Include="Objects\Basic\ITraktCertification.cs" />
+    <Compile Include="Objects\Basic\ITraktCertifications.cs" />
     <Compile Include="Objects\Basic\ITraktComment.cs" />
     <Compile Include="Objects\Basic\ITraktCrew.cs" />
     <Compile Include="Objects\Basic\ITraktCrewMember.cs" />
