@@ -17,6 +17,7 @@
         private const string PROPERTY_NAME_SEASONS = "seasons";
         private const string PROPERTY_NAME_HIDDEN_SEASONS = "hidden_seasons";
         private const string PROPERTY_NAME_NEXT_EPISODE = "next_episode";
+        private const string PROPERTY_NAME_LAST_EPISODE = "last_episode";
 
         public Task<ITraktShowWatchedProgress> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -84,6 +85,9 @@
                             break;
                         case PROPERTY_NAME_NEXT_EPISODE:
                             traktShowWatchedProgress.NextEpisode = await episodeObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            break;
+                        case PROPERTY_NAME_LAST_EPISODE:
+                            traktShowWatchedProgress.LastEpisode = await episodeObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);

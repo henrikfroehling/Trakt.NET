@@ -13,5 +13,7 @@
         IEnumerable<ITraktSeason> HiddenSeasons { get; set; }
 
         ITraktEpisode NextEpisode { get; set; }
+
+        ITraktEpisode LastEpisode { get; set; }
     }
 }

@@ -25,5 +25,12 @@
         /// <para>Nullable</para>
         /// </summary>
         public ITraktEpisode NextEpisode { get; set; }
+
+        /// <summary>
+        /// Gets or sets the episode, which the user collected or watched last.
+        /// See also <seealso cref="ITraktEpisode" />.
+        /// <para>Nullable</para>
+        /// </summary>
+        public ITraktEpisode LastEpisode { get; set; }
     }
 }
