@@ -140,8 +140,13 @@
     <Compile Include="Objects\Basic\ITraktSharing.cs" />
     <Compile Include="Objects\Basic\ITraktStatistics.cs" />
     <Compile Include="Objects\Basic\ITraktTranslation.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CertificationArrayJsonReader.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CertificationObjectJsonReader.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CertificationsObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\CastAndCrewJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\CastMemberJsonReaderFactory.cs" />
+    <Compile Include="Objects\Basic\JsonReader\Factories\CertificationJsonReaderFactory.cs" />
+    <Compile Include="Objects\Basic\JsonReader\Factories\CertificationsJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\CommentJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\CrewJsonReaderFactory.cs" />
     <Compile Include="Objects\Basic\JsonReader\Factories\CrewMemberJsonReaderFactory.cs" />

@@ -95,6 +95,8 @@
             // basic objects
             s_readerFactories.Add(typeof(ITraktCastAndCrew), new CastAndCrewJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktCastMember), new CastMemberJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktCertification), new CertificationJsonReaderFactory());
+            s_readerFactories.Add(typeof(ITraktCertifications), new CertificationsJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktComment), new CommentJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktCrew), new CrewJsonReaderFactory());
             s_readerFactories.Add(typeof(ITraktCrewMember), new CrewMemberJsonReaderFactory());
