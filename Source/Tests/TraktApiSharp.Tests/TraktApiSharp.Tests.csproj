@@ -117,6 +117,8 @@
     <Compile Include="Modules\TraktNetworksModule\TraktNetworksModule_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCastAndCrew_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCastMember_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktCertifications_Tests.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktCertification_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktComment_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCrewMember_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCrew_Tests.cs" />
@@ -142,6 +144,18 @@
     <Compile Include="Objects\Basic\JsonReader\CastMemberObjectJsonReader\CastMemberObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\CastMemberObjectJsonReader\CastMemberObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\CastMemberObjectJsonReader\CastMemberObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CertificationArrayJsonReader\CertificationArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CertificationArrayJsonReader\CertificationArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CertificationArrayJsonReader\CertificationArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CertificationArrayJsonReader\CertificationArrayJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CertificationObjectJsonReader\CertificationObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CertificationObjectJsonReader\CertificationObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CertificationObjectJsonReader\CertificationObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CertificationObjectJsonReader\CertificationObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CertificationsObjectJsonReader\CertificationsObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CertificationsObjectJsonReader\CertificationsObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CertificationsObjectJsonReader\CertificationsObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\JsonReader\CertificationsObjectJsonReader\CertificationsObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\JsonReader\CommentObjectJsonReader\CommentObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\CommentObjectJsonReader\CommentObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\JsonReader\CommentObjectJsonReader\CommentObjectJsonReader_Stream_Tests.cs" />

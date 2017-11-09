@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Basic.JsonReader.NetworkObjectJsonReader
+﻿namespace TraktApiSharp.Tests.Objects.Basic.JsonReader
 {
     public partial class NetworkObjectJsonReader_Tests
     {
