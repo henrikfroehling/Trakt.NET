@@ -69,11 +69,8 @@
         {
             TestUtility.SetupMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(GET_MOVIE_CERTIFICATIONS_URL, HttpStatusCode.NotFound);
-
-            Func<Task<TraktResponse<ITraktCertifications>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
+            Func<Task<TraktResponse<ITraktCertifications>>> act = () => TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
             act.ShouldThrow<TraktNotFoundException>();
-
             TestUtility.ResetMockHttpClient();
         }
 
@@ -82,11 +79,8 @@
         {
             TestUtility.SetupMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(GET_MOVIE_CERTIFICATIONS_URL, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktResponse<ITraktCertifications>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
+            Func<Task<TraktResponse<ITraktCertifications>>> act = () => TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
-
             TestUtility.ResetMockHttpClient();
         }
 
@@ -95,11 +89,8 @@
         {
             TestUtility.SetupMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(GET_MOVIE_CERTIFICATIONS_URL, HttpStatusCode.BadRequest);
-
-            Func<Task<TraktResponse<ITraktCertifications>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
+            Func<Task<TraktResponse<ITraktCertifications>>> act = () => TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
             act.ShouldThrow<TraktBadRequestException>();
-
             TestUtility.ResetMockHttpClient();
         }
 
@@ -108,11 +99,8 @@
         {
             TestUtility.SetupMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(GET_MOVIE_CERTIFICATIONS_URL, HttpStatusCode.Forbidden);
-
-            Func<Task<TraktResponse<ITraktCertifications>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
+            Func<Task<TraktResponse<ITraktCertifications>>> act = () => TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
             act.ShouldThrow<TraktForbiddenException>();
-
             TestUtility.ResetMockHttpClient();
         }
 
@@ -121,11 +109,8 @@
         {
             TestUtility.SetupMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(GET_MOVIE_CERTIFICATIONS_URL, HttpStatusCode.MethodNotAllowed);
-
-            Func<Task<TraktResponse<ITraktCertifications>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
+            Func<Task<TraktResponse<ITraktCertifications>>> act = () => TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
             act.ShouldThrow<TraktMethodNotFoundException>();
-
             TestUtility.ResetMockHttpClient();
         }
 
@@ -134,11 +119,8 @@
         {
             TestUtility.SetupMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(GET_MOVIE_CERTIFICATIONS_URL, HttpStatusCode.Conflict);
-
-            Func<Task<TraktResponse<ITraktCertifications>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
+            Func<Task<TraktResponse<ITraktCertifications>>> act = () => TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
             act.ShouldThrow<TraktConflictException>();
-
             TestUtility.ResetMockHttpClient();
         }
 
@@ -147,11 +129,8 @@
         {
             TestUtility.SetupMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(GET_MOVIE_CERTIFICATIONS_URL, HttpStatusCode.InternalServerError);
-
-            Func<Task<TraktResponse<ITraktCertifications>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
+            Func<Task<TraktResponse<ITraktCertifications>>> act = () => TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
             act.ShouldThrow<TraktServerException>();
-
             TestUtility.ResetMockHttpClient();
         }
 
@@ -160,11 +139,8 @@
         {
             TestUtility.SetupMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(GET_MOVIE_CERTIFICATIONS_URL, HttpStatusCode.BadGateway);
-
-            Func<Task<TraktResponse<ITraktCertifications>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
+            Func<Task<TraktResponse<ITraktCertifications>>> act = () => TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
             act.ShouldThrow<TraktBadGatewayException>();
-
             TestUtility.ResetMockHttpClient();
         }
 
@@ -173,11 +149,8 @@
         {
             TestUtility.SetupMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(GET_MOVIE_CERTIFICATIONS_URL, (HttpStatusCode)412);
-
-            Func<Task<TraktResponse<ITraktCertifications>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
+            Func<Task<TraktResponse<ITraktCertifications>>> act = () => TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
             act.ShouldThrow<TraktPreconditionFailedException>();
-
             TestUtility.ResetMockHttpClient();
         }
 
@@ -186,11 +159,8 @@
         {
             TestUtility.SetupMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(GET_MOVIE_CERTIFICATIONS_URL, (HttpStatusCode)422);
-
-            Func<Task<TraktResponse<ITraktCertifications>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
+            Func<Task<TraktResponse<ITraktCertifications>>> act = () => TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
             act.ShouldThrow<TraktValidationException>();
-
             TestUtility.ResetMockHttpClient();
         }
 
@@ -199,11 +169,8 @@
         {
             TestUtility.SetupMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(GET_MOVIE_CERTIFICATIONS_URL, (HttpStatusCode)429);
-
-            Func<Task<TraktResponse<ITraktCertifications>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
+            Func<Task<TraktResponse<ITraktCertifications>>> act = () => TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
             act.ShouldThrow<TraktRateLimitException>();
-
             TestUtility.ResetMockHttpClient();
         }
 
@@ -212,11 +179,8 @@
         {
             TestUtility.SetupMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(GET_MOVIE_CERTIFICATIONS_URL, (HttpStatusCode)503);
-
-            Func<Task<TraktResponse<ITraktCertifications>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
+            Func<Task<TraktResponse<ITraktCertifications>>> act = () => TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
-
             TestUtility.ResetMockHttpClient();
         }
 
@@ -225,11 +189,8 @@
         {
             TestUtility.SetupMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(GET_MOVIE_CERTIFICATIONS_URL, (HttpStatusCode)504);
-
-            Func<Task<TraktResponse<ITraktCertifications>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
+            Func<Task<TraktResponse<ITraktCertifications>>> act = () => TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
-
             TestUtility.ResetMockHttpClient();
         }
 
@@ -238,11 +199,8 @@
         {
             TestUtility.SetupMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(GET_MOVIE_CERTIFICATIONS_URL, (HttpStatusCode)520);
-
-            Func<Task<TraktResponse<ITraktCertifications>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
+            Func<Task<TraktResponse<ITraktCertifications>>> act = () => TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
-
             TestUtility.ResetMockHttpClient();
         }
 
@@ -251,11 +209,8 @@
         {
             TestUtility.SetupMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(GET_MOVIE_CERTIFICATIONS_URL, (HttpStatusCode)521);
-
-            Func<Task<TraktResponse<ITraktCertifications>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
+            Func<Task<TraktResponse<ITraktCertifications>>> act = () => TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
-
             TestUtility.ResetMockHttpClient();
         }
 
@@ -264,11 +219,8 @@
         {
             TestUtility.SetupMockHttpClient();
             TestUtility.SetupMockResponseWithoutOAuth(GET_MOVIE_CERTIFICATIONS_URL, (HttpStatusCode)522);
-
-            Func<Task<TraktResponse<ITraktCertifications>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
+            Func<Task<TraktResponse<ITraktCertifications>>> act = () => TestUtility.MOCK_TEST_CLIENT.Certifications.GetMovieCertificationsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
-
             TestUtility.ResetMockHttpClient();
         }
     }
