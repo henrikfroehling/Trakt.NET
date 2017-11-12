@@ -15,11 +15,13 @@
     [Category("Modules.Networks")]
     public partial class TraktNetworksModule_Tests
     {
+        private const string GET_NETWORKS_URL = "networks";
+
         [Fact]
         public async Task Test_TraktNetworksModule_GetNetworksAsync()
         {
             TestUtility.SetupMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth("networks", GET_NETWORKS_JSON);
+            TestUtility.SetupMockResponseWithoutOAuth(GET_NETWORKS_URL, GET_NETWORKS_JSON);
 
             TraktListResponse<ITraktNetwork> response = await TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
 
@@ -42,77 +44,162 @@
         }
 
         [Fact]
-        public void Test_TraktNetworksModule_GetNetworksAsync_Exceptions()
+        public void Test_TraktNetworksModule_GetNetworksAsync_Exceptions_NotFound()
         {
-            const string uri = "networks";
-
             TestUtility.SetupMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktListResponse<ITraktNetwork>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_NETWORKS_URL, HttpStatusCode.NotFound);
+            Func<Task<TraktListResponse<ITraktNetwork>>> act = () => TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
             act.ShouldThrow<TraktNotFoundException>();
+            TestUtility.ResetMockHttpClient();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktNetworksModule_GetNetworksAsync_Exceptions_Unauthorized()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_NETWORKS_URL, HttpStatusCode.Unauthorized);
+            Func<Task<TraktListResponse<ITraktNetwork>>> act = () => TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
             act.ShouldThrow<TraktAuthorizationException>();
+            TestUtility.ResetMockHttpClient();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktNetworksModule_GetNetworksAsync_Exceptions_BadRequest()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_NETWORKS_URL, HttpStatusCode.BadRequest);
+            Func<Task<TraktListResponse<ITraktNetwork>>> act = () => TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
             act.ShouldThrow<TraktBadRequestException>();
+            TestUtility.ResetMockHttpClient();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktNetworksModule_GetNetworksAsync_Exceptions_Forbidden()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_NETWORKS_URL, HttpStatusCode.Forbidden);
+            Func<Task<TraktListResponse<ITraktNetwork>>> act = () => TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
             act.ShouldThrow<TraktForbiddenException>();
+            TestUtility.ResetMockHttpClient();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktNetworksModule_GetNetworksAsync_Exceptions_MethodNotAllowed()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_NETWORKS_URL, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktListResponse<ITraktNetwork>>> act = () => TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
             act.ShouldThrow<TraktMethodNotFoundException>();
+            TestUtility.ResetMockHttpClient();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktNetworksModule_GetNetworksAsync_Exceptions_Conflict()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_NETWORKS_URL, HttpStatusCode.Conflict);
+            Func<Task<TraktListResponse<ITraktNetwork>>> act = () => TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
             act.ShouldThrow<TraktConflictException>();
+            TestUtility.ResetMockHttpClient();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktNetworksModule_GetNetworksAsync_Exceptions_InternalServerError()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_NETWORKS_URL, HttpStatusCode.InternalServerError);
+            Func<Task<TraktListResponse<ITraktNetwork>>> act = () => TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
             act.ShouldThrow<TraktServerException>();
+            TestUtility.ResetMockHttpClient();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktNetworksModule_GetNetworksAsync_Exceptions_BadGateway()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_NETWORKS_URL, HttpStatusCode.BadGateway);
+            Func<Task<TraktListResponse<ITraktNetwork>>> act = () => TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
             act.ShouldThrow<TraktBadGatewayException>();
+            TestUtility.ResetMockHttpClient();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktNetworksModule_GetNetworksAsync_Exceptions_HttpStatusCode_412()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_NETWORKS_URL, (HttpStatusCode)412);
+            Func<Task<TraktListResponse<ITraktNetwork>>> act = () => TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
             act.ShouldThrow<TraktPreconditionFailedException>();
+            TestUtility.ResetMockHttpClient();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktNetworksModule_GetNetworksAsync_Exceptions_HttpStatusCode_422()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_NETWORKS_URL, (HttpStatusCode)422);
+            Func<Task<TraktListResponse<ITraktNetwork>>> act = () => TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
             act.ShouldThrow<TraktValidationException>();
+            TestUtility.ResetMockHttpClient();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktNetworksModule_GetNetworksAsync_Exceptions_HttpStatusCode_429()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_NETWORKS_URL, (HttpStatusCode)429);
+            Func<Task<TraktListResponse<ITraktNetwork>>> act = () => TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
             act.ShouldThrow<TraktRateLimitException>();
+            TestUtility.ResetMockHttpClient();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+        [Fact]
+        public void Test_TraktNetworksModule_GetNetworksAsync_Exceptions_HttpStatusCode_503()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_NETWORKS_URL, (HttpStatusCode)503);
+            Func<Task<TraktListResponse<ITraktNetwork>>> act = () => TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
+            TestUtility.ResetMockHttpClient();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+        [Fact]
+        public void Test_TraktNetworksModule_GetNetworksAsync_Exceptions_HttpStatusCode_504()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_NETWORKS_URL, (HttpStatusCode)504);
+            Func<Task<TraktListResponse<ITraktNetwork>>> act = () => TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
+            TestUtility.ResetMockHttpClient();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+        [Fact]
+        public void Test_TraktNetworksModule_GetNetworksAsync_Exceptions_HttpStatusCode_520()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_NETWORKS_URL, (HttpStatusCode)520);
+            Func<Task<TraktListResponse<ITraktNetwork>>> act = () => TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
+            TestUtility.ResetMockHttpClient();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+        [Fact]
+        public void Test_TraktNetworksModule_GetNetworksAsync_Exceptions_HttpStatusCode_521()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_NETWORKS_URL, (HttpStatusCode)521);
+            Func<Task<TraktListResponse<ITraktNetwork>>> act = () => TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
+            TestUtility.ResetMockHttpClient();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktNetworksModule_GetNetworksAsync_Exceptions_HttpStatusCode_522()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_NETWORKS_URL, (HttpStatusCode)522);
+            Func<Task<TraktListResponse<ITraktNetwork>>> act =() => TestUtility.MOCK_TEST_CLIENT.Networks.GetNetworksAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
-
             TestUtility.ResetMockHttpClient();
         }
     }

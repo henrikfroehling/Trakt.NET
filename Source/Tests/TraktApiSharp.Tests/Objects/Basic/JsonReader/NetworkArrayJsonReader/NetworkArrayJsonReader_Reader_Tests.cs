@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Basic.JsonReader.NetworkArrayJsonReader
+﻿namespace TraktApiSharp.Tests.Objects.Basic.JsonReader
 {
     using FluentAssertions;
     using Newtonsoft.Json;
@@ -26,7 +26,7 @@
         }
 
         [Fact]
-        public async Task Test_NetworkArrayJsonReader_ReadObject_From_JsonReader_Complete()
+        public async Task Test_NetworkArrayJsonReader_ReadArray_From_JsonReader_Complete()
         {
             var traktJsonReader = new NetworkArrayJsonReader();
 
@@ -47,7 +47,7 @@
         }
 
         [Fact]
-        public async Task Test_NetworkArrayJsonReader_ReadObject_From_JsonReader_Not_Valid()
+        public async Task Test_NetworkArrayJsonReader_ReadArray_From_JsonReader_Not_Valid()
         {
             var traktJsonReader = new NetworkArrayJsonReader();
 
@@ -68,7 +68,7 @@
         }
 
         [Fact]
-        public async Task Test_NetworkArrayJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_NetworkArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new NetworkArrayJsonReader();
 
@@ -77,7 +77,7 @@
         }
 
         [Fact]
-        public async Task Test_NetworkArrayJsonReader_ReadObject_From_JsonReader_Empty()
+        public async Task Test_NetworkArrayJsonReader_ReadArray_From_JsonReader_Empty()
         {
             var traktJsonReader = new NetworkArrayJsonReader();
 
