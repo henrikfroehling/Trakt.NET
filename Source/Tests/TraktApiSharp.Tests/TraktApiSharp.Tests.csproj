@@ -924,6 +924,9 @@
     <Compile Include="Requests\Calendars\CalendarAllNewShowsRequest_Tests.cs" />
     <Compile Include="Requests\Calendars\CalendarAllSeasonPremieresRequest_Tests.cs" />
     <Compile Include="Requests\Calendars\CalendarAllShowsRequest_Tests.cs" />
+    <Compile Include="Requests\Certifications\ACertificationsRequest_Tests.cs" />
+    <Compile Include="Requests\Certifications\MovieCertificationsRequest_Tests.cs" />
+    <Compile Include="Requests\Certifications\ShowCertificationsRequest_Tests.cs" />
     <Compile Include="Requests\Checkins\OAuth\CheckinRequest%272_Tests.cs" />
     <Compile Include="Requests\Checkins\OAuth\CheckinsDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentDeleteRequest_Tests.cs" />
