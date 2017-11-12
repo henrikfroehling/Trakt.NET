@@ -26,6 +26,7 @@
             People = new TraktPeopleModule(this);
             Genres = new TraktGenresModule(this);
             Networks = new TraktNetworksModule(this);
+            Certifications = new TraktCertificationsModule(this);
             Search = new TraktSearchModule(this);
             Recommendations = new TraktRecommendationsModule(this);
             Sync = new TraktSyncModule(this);
@@ -134,6 +135,9 @@
 
         /// <summary>Provides access to the networks module. See <seealso cref="TraktNetworksModule" />.</summary>
         public TraktNetworksModule Networks { get; }
+
+        /// <summary>Provides access to the certifications module. See <seealso cref="TraktCertificationsModule" />.</summary>
+        public TraktCertificationsModule Certifications { get; }
 
         /// <summary>Provides access to the search module. See <seealso cref="TraktSearchModule" />.</summary>
         public TraktSearchModule Search { get; }

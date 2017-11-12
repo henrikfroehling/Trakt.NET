@@ -113,6 +113,9 @@
     <Compile Include="Enums\TraktSyncType_Tests.cs" />
     <Compile Include="Enums\TraktTimePeriod_Tests.cs" />
     <Compile Include="Enums\TraktUserLikeType_Tests.cs" />
+    <Compile Include="Modules\TraktCertificationsModule\TraktCertificationsModule_GetMovieCertifications_Tests.cs" />
+    <Compile Include="Modules\TraktCertificationsModule\TraktCertificationsModule_GetShowCertifications_Tests.cs" />
+    <Compile Include="Modules\TraktCertificationsModule\TraktCertificationsModule_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktNetworksModule\TraktNetworksModule_GetNetworks_Tests.cs" />
     <Compile Include="Modules\TraktNetworksModule\TraktNetworksModule_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCastAndCrew_Tests.cs" />

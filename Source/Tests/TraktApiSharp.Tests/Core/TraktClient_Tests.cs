@@ -196,6 +196,14 @@
         }
 
         [Fact]
+        public void Test_TraktClient_Get_CertificationsModule()
+        {
+            var client = new TraktClient();
+
+            client.Certifications.Should().NotBeNull();
+        }
+
+        [Fact]
         public void Test_TraktClient_Get_SearchModule()
         {
             var client = new TraktClient();
