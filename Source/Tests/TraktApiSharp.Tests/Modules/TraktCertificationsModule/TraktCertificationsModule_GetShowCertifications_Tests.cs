@@ -15,11 +15,13 @@
     [Category("Modules.Certifications")]
     public partial class TraktCertificationsModule_Tests
     {
+        private const string GET_SHOW_CERTIFICATIONS_URL = "certifications/shows";
+
         [Fact]
         public async Task Test_TraktCertificationsModule_GetShowCertificationsAsync()
         {
             TestUtility.SetupMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth("certifications/shows", GET_SHOW_CERTIFICATIONS_JSON);
+            TestUtility.SetupMockResponseWithoutOAuth(GET_SHOW_CERTIFICATIONS_URL, GET_SHOW_CERTIFICATIONS_JSON);
 
             TraktResponse<ITraktCertifications> response = await TestUtility.MOCK_TEST_CLIENT.Certifications.GetShowCertificationsAsync();
 
@@ -73,75 +75,208 @@
         }
 
         [Fact]
-        public void Test_TraktCertificationsModule_GetShowCertificationsAsync_Exceptions()
+        public void Test_TraktCertificationsModule_GetShowCertificationsAsync_Exceptions_NotFound()
         {
-            const string uri = "certifications/shows";
-
             TestUtility.SetupMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+            TestUtility.SetupMockResponseWithoutOAuth(GET_SHOW_CERTIFICATIONS_URL, HttpStatusCode.NotFound);
 
             Func<Task<TraktResponse<ITraktCertifications>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetShowCertificationsAsync();
             act.ShouldThrow<TraktNotFoundException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+            TestUtility.ResetMockHttpClient();
+        }
+
+        [Fact]
+        public void Test_TraktCertificationsModule_GetShowCertificationsAsync_Exceptions_Unauthorized()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_SHOW_CERTIFICATIONS_URL, HttpStatusCode.Unauthorized);
+
+            Func<Task<TraktResponse<ITraktCertifications>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetShowCertificationsAsync();
             act.ShouldThrow<TraktAuthorizationException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+            TestUtility.ResetMockHttpClient();
+        }
+
+        [Fact]
+        public void Test_TraktCertificationsModule_GetShowCertificationsAsync_Exceptions_BadRequest()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_SHOW_CERTIFICATIONS_URL, HttpStatusCode.BadRequest);
+
+            Func<Task<TraktResponse<ITraktCertifications>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetShowCertificationsAsync();
             act.ShouldThrow<TraktBadRequestException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+            TestUtility.ResetMockHttpClient();
+        }
+
+        [Fact]
+        public void Test_TraktCertificationsModule_GetShowCertificationsAsync_Exceptions_Forbidden()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_SHOW_CERTIFICATIONS_URL, HttpStatusCode.Forbidden);
+
+            Func<Task<TraktResponse<ITraktCertifications>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetShowCertificationsAsync();
             act.ShouldThrow<TraktForbiddenException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+            TestUtility.ResetMockHttpClient();
+        }
+
+        [Fact]
+        public void Test_TraktCertificationsModule_GetShowCertificationsAsync_Exceptions_MethodNotAllowed()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_SHOW_CERTIFICATIONS_URL, HttpStatusCode.MethodNotAllowed);
+
+            Func<Task<TraktResponse<ITraktCertifications>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetShowCertificationsAsync();
             act.ShouldThrow<TraktMethodNotFoundException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+            TestUtility.ResetMockHttpClient();
+        }
+
+        [Fact]
+        public void Test_TraktCertificationsModule_GetShowCertificationsAsync_Exceptions_Conflict()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_SHOW_CERTIFICATIONS_URL, HttpStatusCode.Conflict);
+
+            Func<Task<TraktResponse<ITraktCertifications>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetShowCertificationsAsync();
             act.ShouldThrow<TraktConflictException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+            TestUtility.ResetMockHttpClient();
+        }
+
+        [Fact]
+        public void Test_TraktCertificationsModule_GetShowCertificationsAsync_Exceptions_InternalServerError()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_SHOW_CERTIFICATIONS_URL, HttpStatusCode.InternalServerError);
+
+            Func<Task<TraktResponse<ITraktCertifications>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetShowCertificationsAsync();
             act.ShouldThrow<TraktServerException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+            TestUtility.ResetMockHttpClient();
+        }
+
+        [Fact]
+        public void Test_TraktCertificationsModule_GetShowCertificationsAsync_Exceptions_BadGateway()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_SHOW_CERTIFICATIONS_URL, HttpStatusCode.BadGateway);
+
+            Func<Task<TraktResponse<ITraktCertifications>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetShowCertificationsAsync();
             act.ShouldThrow<TraktBadGatewayException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+            TestUtility.ResetMockHttpClient();
+        }
+
+        [Fact]
+        public void Test_TraktCertificationsModule_GetShowCertificationsAsync_Exceptions_HttpStatusCode_412()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_SHOW_CERTIFICATIONS_URL, (HttpStatusCode)412);
+
+            Func<Task<TraktResponse<ITraktCertifications>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetShowCertificationsAsync();
             act.ShouldThrow<TraktPreconditionFailedException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+            TestUtility.ResetMockHttpClient();
+        }
+
+        [Fact]
+        public void Test_TraktCertificationsModule_GetShowCertificationsAsync_Exceptions_HttpStatusCode_422()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_SHOW_CERTIFICATIONS_URL, (HttpStatusCode)422);
+
+            Func<Task<TraktResponse<ITraktCertifications>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetShowCertificationsAsync();
             act.ShouldThrow<TraktValidationException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+            TestUtility.ResetMockHttpClient();
+        }
+
+        [Fact]
+        public void Test_TraktCertificationsModule_GetShowCertificationsAsync_Exceptions_HttpStatusCode_429()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_SHOW_CERTIFICATIONS_URL, (HttpStatusCode)429);
+
+            Func<Task<TraktResponse<ITraktCertifications>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetShowCertificationsAsync();
             act.ShouldThrow<TraktRateLimitException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+            TestUtility.ResetMockHttpClient();
+        }
+
+        [Fact]
+        public void Test_TraktCertificationsModule_GetShowCertificationsAsync_Exceptions_HttpStatusCode_503()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_SHOW_CERTIFICATIONS_URL, (HttpStatusCode)503);
+
+            Func<Task<TraktResponse<ITraktCertifications>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetShowCertificationsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+            TestUtility.ResetMockHttpClient();
+        }
+
+        [Fact]
+        public void Test_TraktCertificationsModule_GetShowCertificationsAsync_Exceptions_HttpStatusCode_504()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_SHOW_CERTIFICATIONS_URL, (HttpStatusCode)504);
+
+            Func<Task<TraktResponse<ITraktCertifications>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetShowCertificationsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+            TestUtility.ResetMockHttpClient();
+        }
+
+        [Fact]
+        public void Test_TraktCertificationsModule_GetShowCertificationsAsync_Exceptions_HttpStatusCode_520()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_SHOW_CERTIFICATIONS_URL, (HttpStatusCode)520);
+
+            Func<Task<TraktResponse<ITraktCertifications>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetShowCertificationsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+            TestUtility.ResetMockHttpClient();
+        }
+
+        [Fact]
+        public void Test_TraktCertificationsModule_GetShowCertificationsAsync_Exceptions_HttpStatusCode_521()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_SHOW_CERTIFICATIONS_URL, (HttpStatusCode)521);
+
+            Func<Task<TraktResponse<ITraktCertifications>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetShowCertificationsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+            TestUtility.ResetMockHttpClient();
+        }
+
+        [Fact]
+        public void Test_TraktCertificationsModule_GetShowCertificationsAsync_Exceptions_HttpStatusCode_522()
+        {
+            TestUtility.SetupMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(GET_SHOW_CERTIFICATIONS_URL, (HttpStatusCode)522);
+
+            Func<Task<TraktResponse<ITraktCertifications>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Certifications.GetShowCertificationsAsync();
             act.ShouldThrow<TraktServerUnavailableException>();
 
             TestUtility.ResetMockHttpClient();
