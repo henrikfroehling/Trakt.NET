@@ -7,7 +7,7 @@
     using Interfaces;
     using Interfaces.Base;
     using Objects.Basic;
-    using Objects.JsonReader;
+    using Objects.Json;
     using Objects.Post.Checkins.Responses;
     using Responses;
     using Responses.Interfaces;

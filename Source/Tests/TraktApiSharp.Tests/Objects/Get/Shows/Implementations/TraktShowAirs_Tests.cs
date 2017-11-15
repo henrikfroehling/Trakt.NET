@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Shows.Implementations;
-    using TraktApiSharp.Objects.Get.Shows.JsonReader;
+    using TraktApiSharp.Objects.Get.Shows.Json;
     using Xunit;
 
     [Category("Objects.Get.Shows.Implementations")]

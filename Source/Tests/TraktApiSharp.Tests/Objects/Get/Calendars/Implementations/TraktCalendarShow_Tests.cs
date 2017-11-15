@@ -7,7 +7,7 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Calendars.Implementations;
-    using TraktApiSharp.Objects.Get.Calendars.JsonReader;
+    using TraktApiSharp.Objects.Get.Calendars.Json;
     using Xunit;
 
     [Category("Objects.Get.Calendars.Implementations")]

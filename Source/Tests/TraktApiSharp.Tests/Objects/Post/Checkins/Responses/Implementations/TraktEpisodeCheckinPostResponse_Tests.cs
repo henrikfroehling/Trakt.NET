@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Post.Checkins.Responses.Implementations;
-    using TraktApiSharp.Objects.Post.Checkins.Responses.JsonReader;
+    using TraktApiSharp.Objects.Post.Checkins.Responses.Json;
     using Xunit;
 
     [Category("Objects.Post.Checkins.Responses.Implementations")]
