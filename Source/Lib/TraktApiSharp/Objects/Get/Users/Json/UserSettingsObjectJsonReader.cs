@@ -10,11 +10,6 @@
 
     internal class UserSettingsObjectJsonReader : IObjectJsonReader<ITraktUserSettings>
     {
-        private const string PROPERTY_NAME_USER = "user";
-        private const string PROPERTY_NAME_ACCOUNT = "account";
-        private const string PROPERTY_NAME_CONNECTIONS = "connections";
-        private const string PROPERTY_NAME_SHARING_TEXT = "sharing_text";
-
         public Task<ITraktUserSettings> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -59,16 +54,16 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_USER:
+                        case JsonProperties.USER_SETTINGS_PROPERTY_NAME_USER:
                             traktUserSettings.User = await userReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_ACCOUNT:
+                        case JsonProperties.USER_SETTINGS_PROPERTY_NAME_ACCOUNT:
                             traktUserSettings.Account = await accountSettingsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_CONNECTIONS:
+                        case JsonProperties.USER_SETTINGS_PROPERTY_NAME_CONNECTIONS:
                             traktUserSettings.Connections = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SHARING_TEXT:
+                        case JsonProperties.USER_SETTINGS_PROPERTY_NAME_SHARING_TEXT:
                             traktUserSettings.SharingText = await sharingTextReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

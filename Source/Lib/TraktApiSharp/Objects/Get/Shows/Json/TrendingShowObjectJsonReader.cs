@@ -10,9 +10,6 @@
 
     internal class TrendingShowObjectJsonReader : IObjectJsonReader<ITraktTrendingShow>
     {
-        private const string PROPERTY_NAME_WATCHERS = "watchers";
-        private const string PROPERTY_NAME_SHOW = "show";
-
         public Task<ITraktTrendingShow> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,10 +50,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_WATCHERS:
+                        case JsonProperties.TRENDING_SHOW_PROPERTY_NAME_WATCHERS:
                             traktTrendingShow.Watchers = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_SHOW:
+                        case JsonProperties.TRENDING_SHOW_PROPERTY_NAME_SHOW:
                             traktTrendingShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

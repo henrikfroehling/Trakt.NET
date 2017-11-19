@@ -9,11 +9,6 @@
 
     internal class MovieTranslationObjectJsonReader : IObjectJsonReader<ITraktMovieTranslation>
     {
-        private const string PROPERTY_NAME_TITLE = "title";
-        private const string PROPERTY_NAME_OVERVIEW = "overview";
-        private const string PROPERTY_NAME_LANGUAGE_CODE = "language";
-        private const string PROPERTY_NAME_TAGLINE = "tagline";
-
         public Task<ITraktMovieTranslation> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,16 +48,16 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_TITLE:
+                        case JsonProperties.MOVIE_TRANSLATION_PROPERTY_NAME_TITLE:
                             traktMovieTranslation.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_OVERVIEW:
+                        case JsonProperties.MOVIE_TRANSLATION_PROPERTY_NAME_OVERVIEW:
                             traktMovieTranslation.Overview = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_LANGUAGE_CODE:
+                        case JsonProperties.MOVIE_TRANSLATION_PROPERTY_NAME_LANGUAGE_CODE:
                             traktMovieTranslation.LanguageCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_TAGLINE:
+                        case JsonProperties.MOVIE_TRANSLATION_PROPERTY_NAME_TAGLINE:
                             traktMovieTranslation.Tagline = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

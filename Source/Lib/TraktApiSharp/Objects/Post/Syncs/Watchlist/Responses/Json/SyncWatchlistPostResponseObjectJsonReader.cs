@@ -10,10 +10,6 @@
 
     internal class SyncWatchlistPostResponseObjectJsonReader : IObjectJsonReader<ITraktSyncWatchlistPostResponse>
     {
-        private const string PROPERTY_NAME_ADDED = "added";
-        private const string PROPERTY_NAME_EXISTING = "existing";
-        private const string PROPERTY_NAME_NOT_FOUND = "not_found";
-
         public Task<ITraktSyncWatchlistPostResponse> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -55,13 +51,13 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_ADDED:
+                        case JsonProperties.SYNC_WATCHLIST_POST_RESPONSE_PROPERTY_NAME_ADDED:
                             syncWatchlistPostResponse.Added = await groupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_EXISTING:
+                        case JsonProperties.SYNC_WATCHLIST_POST_RESPONSE_PROPERTY_NAME_EXISTING:
                             syncWatchlistPostResponse.Existing = await groupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_NOT_FOUND:
+                        case JsonProperties.SYNC_WATCHLIST_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND:
                             syncWatchlistPostResponse.NotFound = await notFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

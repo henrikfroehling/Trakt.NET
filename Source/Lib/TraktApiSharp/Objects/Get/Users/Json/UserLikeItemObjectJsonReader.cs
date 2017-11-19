@@ -12,11 +12,6 @@
 
     internal class UserLikeItemObjectJsonReader : IObjectJsonReader<ITraktUserLikeItem>
     {
-        private const string PROPERTY_NAME_LIKED_AT = "liked_at";
-        private const string PROPERTY_NAME_TYPE = "type";
-        private const string PROPERTY_NAME_COMMENT = "comment";
-        private const string PROPERTY_NAME_LIST = "list";
-
         public Task<ITraktUserLikeItem> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -58,7 +53,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_LIKED_AT:
+                        case JsonProperties.USER_LIKE_ITEM_PROPERTY_NAME_LIKED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -67,13 +62,13 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_TYPE:
+                        case JsonProperties.USER_LIKE_ITEM_PROPERTY_NAME_TYPE:
                             traktUserLikeItem.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktUserLikeType>(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_COMMENT:
+                        case JsonProperties.USER_LIKE_ITEM_PROPERTY_NAME_COMMENT:
                             traktUserLikeItem.Comment = await commentReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_LIST:
+                        case JsonProperties.USER_LIKE_ITEM_PROPERTY_NAME_LIST:
                             traktUserLikeItem.List = await listReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

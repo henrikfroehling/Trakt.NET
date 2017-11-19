@@ -9,13 +9,6 @@
 
     internal class SyncEpisodesLastActivitiesObjectJsonReader : IObjectJsonReader<ITraktSyncEpisodesLastActivities>
     {
-        private const string PROPERTY_NAME_WATCHED_AT = "watched_at";
-        private const string PROPERTY_NAME_COLLECTED_AT = "collected_at";
-        private const string PROPERTY_NAME_RATED_AT = "rated_at";
-        private const string PROPERTY_NAME_WATCHLISTED_AT = "watchlisted_at";
-        private const string PROPERTY_NAME_COMMENTED_AT = "commented_at";
-        private const string PROPERTY_NAME_PAUSED_AT = "paused_at";
-
         public Task<ITraktSyncEpisodesLastActivities> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -55,7 +48,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_WATCHED_AT:
+                        case JsonProperties.SYNC_EPISODES_LAST_ACTIVITIES_PROPERTY_NAME_WATCHED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -64,7 +57,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_COLLECTED_AT:
+                        case JsonProperties.SYNC_EPISODES_LAST_ACTIVITIES_PROPERTY_NAME_COLLECTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -73,7 +66,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_RATED_AT:
+                        case JsonProperties.SYNC_EPISODES_LAST_ACTIVITIES_PROPERTY_NAME_RATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -82,7 +75,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_WATCHLISTED_AT:
+                        case JsonProperties.SYNC_EPISODES_LAST_ACTIVITIES_PROPERTY_NAME_WATCHLISTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -91,7 +84,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_COMMENTED_AT:
+                        case JsonProperties.SYNC_EPISODES_LAST_ACTIVITIES_PROPERTY_NAME_COMMENTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -100,7 +93,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_PAUSED_AT:
+                        case JsonProperties.SYNC_EPISODES_LAST_ACTIVITIES_PROPERTY_NAME_PAUSED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 

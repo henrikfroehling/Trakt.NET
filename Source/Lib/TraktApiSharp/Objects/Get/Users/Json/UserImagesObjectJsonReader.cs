@@ -10,8 +10,6 @@
 
     internal class UserImagesObjectJsonReader : IObjectJsonReader<ITraktUserImages>
     {
-        private const string PROPERTY_NAME_AVATAR = "avatar";
-
         public Task<ITraktUserImages> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -52,7 +50,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_AVATAR:
+                        case JsonProperties.USER_IMAGES_PROPERTY_NAME_AVATAR:
                             traktUserImage.Avatar = await imageReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

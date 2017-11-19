@@ -9,10 +9,6 @@
 
     internal class UserCustomListItemsPostResponseObjectJsonReader : IObjectJsonReader<ITraktUserCustomListItemsPostResponse>
     {
-        private const string PROPERTY_NAME_ADDED = "added";
-        private const string PROPERTY_NAME_EXISTING = "existing";
-        private const string PROPERTY_NAME_NOT_FOUND = "not_found";
-
         public Task<ITraktUserCustomListItemsPostResponse> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -54,13 +50,13 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_ADDED:
+                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_PROPERTY_NAME_ADDED:
                             customListItemsPostResponse.Added = await responseGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_EXISTING:
+                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_PROPERTY_NAME_EXISTING:
                             customListItemsPostResponse.Existing = await responseGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_NOT_FOUND:
+                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND:
                             customListItemsPostResponse.NotFound = await responseNotFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -9,13 +9,6 @@
 
     internal class ShowIdsObjectJsonReader : IObjectJsonReader<ITraktShowIds>
     {
-        private const string PROPERTY_NAME_TRAKT = "trakt";
-        private const string PROPERTY_NAME_SLUG = "slug";
-        private const string PROPERTY_NAME_TVDB = "tvdb";
-        private const string PROPERTY_NAME_IMDB = "imdb";
-        private const string PROPERTY_NAME_TMDB = "tmdb";
-        private const string PROPERTY_NAME_TVRAGE = "tvrage";
-
         public Task<ITraktShowIds> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -55,7 +48,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_TRAKT:
+                        case JsonProperties.SHOW_IDS_PROPERTY_NAME_TRAKT:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -64,10 +57,10 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_SLUG:
+                        case JsonProperties.SHOW_IDS_PROPERTY_NAME_SLUG:
                             traktShowIds.Slug = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_TVDB:
+                        case JsonProperties.SHOW_IDS_PROPERTY_NAME_TVDB:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -76,10 +69,10 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_IMDB:
+                        case JsonProperties.SHOW_IDS_PROPERTY_NAME_IMDB:
                             traktShowIds.Imdb = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_TMDB:
+                        case JsonProperties.SHOW_IDS_PROPERTY_NAME_TMDB:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -88,7 +81,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_TVRAGE:
+                        case JsonProperties.SHOW_IDS_PROPERTY_NAME_TVRAGE:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 

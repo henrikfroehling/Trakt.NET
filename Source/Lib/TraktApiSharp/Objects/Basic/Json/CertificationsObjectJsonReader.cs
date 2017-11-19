@@ -9,8 +9,6 @@
 
     internal class CertificationsObjectJsonReader : IObjectJsonReader<ITraktCertifications>
     {
-        private const string PROPERTY_NAME_US = "us";
-
         public Task<ITraktCertifications> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -51,7 +49,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_US:
+                        case JsonProperties.CERTIFICATIONS_PROPERTY_NAME_US:
                             traktCertifications.US = await certificationsArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

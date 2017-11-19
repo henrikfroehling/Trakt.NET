@@ -15,14 +15,6 @@
 
     internal class SearchResultObjectJsonReader : IObjectJsonReader<ITraktSearchResult>
     {
-        private const string PROPERTY_NAME_TYPE = "type";
-        private const string PROPERTY_NAME_SCORE = "score";
-        private const string PROPERTY_NAME_MOVIE = "movie";
-        private const string PROPERTY_NAME_SHOW = "show";
-        private const string PROPERTY_NAME_EPISODE = "episode";
-        private const string PROPERTY_NAME_PERSON = "person";
-        private const string PROPERTY_NAME_LIST = "list";
-
         public Task<ITraktSearchResult> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -67,10 +59,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_TYPE:
+                        case JsonProperties.SEARCH_RESULT_PROPERTY_NAME_TYPE:
                             traktSearchResult.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktSearchResultType>(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SCORE:
+                        case JsonProperties.SEARCH_RESULT_PROPERTY_NAME_SCORE:
                             {
                                 var value = await JsonReaderHelper.ReadFloatValueAsync(jsonReader, cancellationToken);
 
@@ -79,19 +71,19 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_MOVIE:
+                        case JsonProperties.SEARCH_RESULT_PROPERTY_NAME_MOVIE:
                             traktSearchResult.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SHOW:
+                        case JsonProperties.SEARCH_RESULT_PROPERTY_NAME_SHOW:
                             traktSearchResult.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_EPISODE:
+                        case JsonProperties.SEARCH_RESULT_PROPERTY_NAME_EPISODE:
                             traktSearchResult.Episode = await episodeObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_PERSON:
+                        case JsonProperties.SEARCH_RESULT_PROPERTY_NAME_PERSON:
                             traktSearchResult.Person = await personObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_LIST:
+                        case JsonProperties.SEARCH_RESULT_PROPERTY_NAME_LIST:
                             traktSearchResult.List = await listObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

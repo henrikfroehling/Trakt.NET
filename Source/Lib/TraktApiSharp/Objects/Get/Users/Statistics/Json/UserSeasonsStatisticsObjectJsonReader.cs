@@ -9,9 +9,6 @@
 
     internal class UserSeasonsStatisticsObjectJsonReader : IObjectJsonReader<ITraktUserSeasonsStatistics>
     {
-        private const string PROPERTY_NAME_RATINGS = "ratings";
-        private const string PROPERTY_NAME_COMMENTS = "comments";
-
         public Task<ITraktUserSeasonsStatistics> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -51,10 +48,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_RATINGS:
+                        case JsonProperties.USER_SEASONS_STATISTICS_PROPERTY_NAME_RATINGS:
                             userSeasonsStatistics.Ratings = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_COMMENTS:
+                        case JsonProperties.USER_SEASONS_STATISTICS_PROPERTY_NAME_COMMENTS:
                             userSeasonsStatistics.Comments = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:

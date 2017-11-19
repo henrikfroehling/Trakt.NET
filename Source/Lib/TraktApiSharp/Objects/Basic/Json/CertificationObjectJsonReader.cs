@@ -9,10 +9,6 @@
 
     internal class CertificationObjectJsonReader : IObjectJsonReader<ITraktCertification>
     {
-        private const string PROPERTY_NAME_NAME = "name";
-        private const string PROPERTY_NAME_SLUG = "slug";
-        private const string PROPERTY_NAME_DESCRIPTION = "description";
-
         public Task<ITraktCertification> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -52,13 +48,13 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_NAME:
+                        case JsonProperties.CERTIFICATION_PROPERTY_NAME_NAME:
                             traktCertification.Name = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_SLUG:
+                        case JsonProperties.CERTIFICATION_PROPERTY_NAME_SLUG:
                             traktCertification.Slug = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_DESCRIPTION:
+                        case JsonProperties.CERTIFICATION_PROPERTY_NAME_DESCRIPTION:
                             traktCertification.Description = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

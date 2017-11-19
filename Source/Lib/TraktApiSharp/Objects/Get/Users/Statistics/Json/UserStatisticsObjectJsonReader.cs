@@ -9,13 +9,6 @@
 
     internal class UserStatisticsObjectJsonReader : IObjectJsonReader<ITraktUserStatistics>
     {
-        private const string PROPERTY_NAME_MOVIES = "movies";
-        private const string PROPERTY_NAME_SHOWS = "shows";
-        private const string PROPERTY_NAME_SEASONS = "seasons";
-        private const string PROPERTY_NAME_EPISODES = "episodes";
-        private const string PROPERTY_NAME_NETWORK = "network";
-        private const string PROPERTY_NAME_RATINGS = "ratings";
-
         public Task<ITraktUserStatistics> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -62,22 +55,22 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_MOVIES:
+                        case JsonProperties.USER_STATISTICS_PROPERTY_NAME_MOVIES:
                             userStatistics.Movies = await moviesStatisticsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SHOWS:
+                        case JsonProperties.USER_STATISTICS_PROPERTY_NAME_SHOWS:
                             userStatistics.Shows = await showsStatisticsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SEASONS:
+                        case JsonProperties.USER_STATISTICS_PROPERTY_NAME_SEASONS:
                             userStatistics.Seasons = await seasonsStatisticsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_EPISODES:
+                        case JsonProperties.USER_STATISTICS_PROPERTY_NAME_EPISODES:
                             userStatistics.Episodes = await episodesStatisticsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_NETWORK:
+                        case JsonProperties.USER_STATISTICS_PROPERTY_NAME_NETWORK:
                             userStatistics.Network = await networkStatisticsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_RATINGS:
+                        case JsonProperties.USER_STATISTICS_PROPERTY_NAME_RATINGS:
                             userStatistics.Ratings = await ratingsStatisticsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

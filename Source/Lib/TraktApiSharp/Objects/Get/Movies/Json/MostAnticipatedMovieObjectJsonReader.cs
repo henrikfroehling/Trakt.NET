@@ -10,9 +10,6 @@
 
     internal class MostAnticipatedMovieObjectJsonReader : IObjectJsonReader<ITraktMostAnticipatedMovie>
     {
-        private const string PROPERTY_NAME_LIST_COUNT = "list_count";
-        private const string PROPERTY_NAME_MOVIE = "movie";
-
         public Task<ITraktMostAnticipatedMovie> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,10 +50,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_LIST_COUNT:
+                        case JsonProperties.MOST_ANTICIPATED_MOVIE_PROPERTY_NAME_LIST_COUNT:
                             traktMostAnticipatedMovie.ListCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_MOVIE:
+                        case JsonProperties.MOST_ANTICIPATED_MOVIE_PROPERTY_NAME_MOVIE:
                             traktMostAnticipatedMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

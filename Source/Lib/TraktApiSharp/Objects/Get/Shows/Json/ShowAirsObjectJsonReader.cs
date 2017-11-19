@@ -9,10 +9,6 @@
 
     internal class ShowAirsObjectJsonReader : IObjectJsonReader<ITraktShowAirs>
     {
-        private const string PROPERTY_NAME_DAY = "day";
-        private const string PROPERTY_NAME_TIME = "time";
-        private const string PROPERTY_NAME_TIMEZONE = "timezone";
-
         public Task<ITraktShowAirs> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -52,13 +48,13 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_DAY:
+                        case JsonProperties.SHOW_AIRS_PROPERTY_NAME_DAY:
                             traktShowAirs.Day = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_TIME:
+                        case JsonProperties.SHOW_AIRS_PROPERTY_NAME_TIME:
                             traktShowAirs.Time = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_TIMEZONE:
+                        case JsonProperties.SHOW_AIRS_PROPERTY_NAME_TIMEZONE:
                             traktShowAirs.TimeZoneId = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

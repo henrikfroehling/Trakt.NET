@@ -10,9 +10,6 @@
 
     internal class RecentlyUpdatedMovieObjectJsonReader : IObjectJsonReader<ITraktRecentlyUpdatedMovie>
     {
-        private const string PROPERTY_NAME_UPDATED_AT = "updated_at";
-        private const string PROPERTY_NAME_MOVIE = "movie";
-
         public Task<ITraktRecentlyUpdatedMovie> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,7 +50,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_UPDATED_AT:
+                        case JsonProperties.RECENTLY_UPDATED_MOVIE_PROPERTY_NAME_UPDATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -62,7 +59,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_MOVIE:
+                        case JsonProperties.RECENTLY_UPDATED_MOVIE_PROPERTY_NAME_MOVIE:
                             traktRecentlyUpdatedMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

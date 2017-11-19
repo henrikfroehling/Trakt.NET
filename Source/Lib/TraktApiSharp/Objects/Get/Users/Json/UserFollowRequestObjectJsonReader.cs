@@ -9,10 +9,6 @@
 
     internal class UserFollowRequestObjectJsonReader : IObjectJsonReader<ITraktUserFollowRequest>
     {
-        private const string PROPERTY_NAME_ID = "id";
-        private const string PROPERTY_NAME_REQUESTED_AT = "requested_at";
-        private const string PROPERTY_NAME_USER = "user";
-
         public Task<ITraktUserFollowRequest> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,7 +49,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_ID:
+                        case JsonProperties.USER_FOLLOW_REQUEST_PROPERTY_NAME_ID:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -62,7 +58,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_REQUESTED_AT:
+                        case JsonProperties.USER_FOLLOW_REQUEST_PROPERTY_NAME_REQUESTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -71,7 +67,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_USER:
+                        case JsonProperties.USER_FOLLOW_REQUEST_PROPERTY_NAME_USER:
                             traktUserFollowRequest.User = await userReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

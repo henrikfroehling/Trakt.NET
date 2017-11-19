@@ -10,9 +10,6 @@
 
     internal class RecentlyUpdatedShowObjectJsonReader : IObjectJsonReader<ITraktRecentlyUpdatedShow>
     {
-        private const string PROPERTY_NAME_UPDATED_AT = "updated_at";
-        private const string PROPERTY_NAME_SHOW = "show";
-
         public Task<ITraktRecentlyUpdatedShow> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,7 +50,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_UPDATED_AT:
+                        case JsonProperties.RECENTLY_UPDATED_SHOW_PROPERTY_NAME_UPDATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -62,7 +59,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_SHOW:
+                        case JsonProperties.RECENTLY_UPDATED_SHOW_PROPERTY_NAME_SHOW:
                             traktRecentlyUpdatedShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

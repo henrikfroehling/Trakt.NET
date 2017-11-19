@@ -10,12 +10,6 @@
 
     internal class SyncHistoryRemovePostResponseNotFoundGroupObjectJsonReader : IObjectJsonReader<ITraktSyncHistoryRemovePostResponseNotFoundGroup>
     {
-        private const string PROPERTY_NAME_MOVIES = "movies";
-        private const string PROPERTY_NAME_SHOWS = "shows";
-        private const string PROPERTY_NAME_SEASONS = "seasons";
-        private const string PROPERTY_NAME_EPISODES = "episodes";
-        private const string PROPERTY_NAME_IDS = "ids";
-
         public Task<ITraktSyncHistoryRemovePostResponseNotFoundGroup> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -59,19 +53,19 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_MOVIES:
+                        case JsonProperties.SYNC_HISTORY_REMOVE_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_MOVIES:
                             syncHistoryRemovePostResponseNotFoundGroup.Movies = await notFoundMoviesReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SHOWS:
+                        case JsonProperties.SYNC_HISTORY_REMOVE_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SHOWS:
                             syncHistoryRemovePostResponseNotFoundGroup.Shows = await notFoundShowsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SEASONS:
+                        case JsonProperties.SYNC_HISTORY_REMOVE_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SEASONS:
                             syncHistoryRemovePostResponseNotFoundGroup.Seasons = await notFoundSeasonsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_EPISODES:
+                        case JsonProperties.SYNC_HISTORY_REMOVE_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_EPISODES:
                             syncHistoryRemovePostResponseNotFoundGroup.Episodes = await notFoundEpisodesReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_IDS:
+                        case JsonProperties.SYNC_HISTORY_REMOVE_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_IDS:
                             syncHistoryRemovePostResponseNotFoundGroup.HistoryIds = await JsonReaderHelper.ReadUnsignedLongArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

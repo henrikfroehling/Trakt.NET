@@ -11,19 +11,6 @@
 
     internal class CommentPostResponseObjectJsonReader : IObjectJsonReader<ITraktCommentPostResponse>
     {
-        private const string PROPERTY_NAME_ID = "id";
-        private const string PROPERTY_NAME_PARENT_ID = "parent_id";
-        private const string PROPERTY_NAME_CREATED_AT = "created_at";
-        private const string PROPERTY_NAME_UPDATED_AT = "updated_at";
-        private const string PROPERTY_NAME_COMMENT = "comment";
-        private const string PROPERTY_NAME_SPOILER = "spoiler";
-        private const string PROPERTY_NAME_REVIEW = "review";
-        private const string PROPERTY_NAME_REPLIES = "replies";
-        private const string PROPERTY_NAME_LIKES = "likes";
-        private const string PROPERTY_NAME_USER_RATING = "user_rating";
-        private const string PROPERTY_NAME_USER = "user";
-        private const string PROPERTY_NAME_SHARING = "sharing";
-
         public Task<ITraktCommentPostResponse> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -65,7 +52,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_ID:
+                        case JsonProperties.COMMENT_POST_RESPONSE_PROPERTY_NAME_ID:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -74,7 +61,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_PARENT_ID:
+                        case JsonProperties.COMMENT_POST_RESPONSE_PROPERTY_NAME_PARENT_ID:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -83,7 +70,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_CREATED_AT:
+                        case JsonProperties.COMMENT_POST_RESPONSE_PROPERTY_NAME_CREATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -92,7 +79,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_UPDATED_AT:
+                        case JsonProperties.COMMENT_POST_RESPONSE_PROPERTY_NAME_UPDATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -101,22 +88,22 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_COMMENT:
+                        case JsonProperties.COMMENT_POST_RESPONSE_PROPERTY_NAME_COMMENT:
                             traktCommentPostResponse.Comment = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_SPOILER:
+                        case JsonProperties.COMMENT_POST_RESPONSE_PROPERTY_NAME_SPOILER:
                             traktCommentPostResponse.Spoiler = (bool)await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_REVIEW:
+                        case JsonProperties.COMMENT_POST_RESPONSE_PROPERTY_NAME_REVIEW:
                             traktCommentPostResponse.Review = (bool)await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_REPLIES:
+                        case JsonProperties.COMMENT_POST_RESPONSE_PROPERTY_NAME_REPLIES:
                             traktCommentPostResponse.Replies = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_LIKES:
+                        case JsonProperties.COMMENT_POST_RESPONSE_PROPERTY_NAME_LIKES:
                             traktCommentPostResponse.Likes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_USER_RATING:
+                        case JsonProperties.COMMENT_POST_RESPONSE_PROPERTY_NAME_USER_RATING:
                             {
                                 var value = await JsonReaderHelper.ReadFloatValueAsync(jsonReader, cancellationToken);
 
@@ -125,10 +112,10 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_USER:
+                        case JsonProperties.COMMENT_POST_RESPONSE_PROPERTY_NAME_USER:
                             traktCommentPostResponse.User = await userReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SHARING:
+                        case JsonProperties.COMMENT_POST_RESPONSE_PROPERTY_NAME_SHARING:
                             traktCommentPostResponse.Sharing = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

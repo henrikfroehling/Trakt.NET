@@ -9,13 +9,6 @@
 
     internal class UserEpisodesStatisticsObjectJsonReader : IObjectJsonReader<ITraktUserEpisodesStatistics>
     {
-        private const string PROPERTY_NAME_PLAYS = "plays";
-        private const string PROPERTY_NAME_WATCHED = "watched";
-        private const string PROPERTY_NAME_MINUTES = "minutes";
-        private const string PROPERTY_NAME_COLLECTED = "collected";
-        private const string PROPERTY_NAME_RATINGS = "ratings";
-        private const string PROPERTY_NAME_COMMENTS = "comments";
-
         public Task<ITraktUserEpisodesStatistics> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -55,22 +48,22 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_PLAYS:
+                        case JsonProperties.USER_EPISODES_STATISTICS_PROPERTY_NAME_PLAYS:
                             userEpisodesStatistics.Plays = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_WATCHED:
+                        case JsonProperties.USER_EPISODES_STATISTICS_PROPERTY_NAME_WATCHED:
                             userEpisodesStatistics.Watched = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_MINUTES:
+                        case JsonProperties.USER_EPISODES_STATISTICS_PROPERTY_NAME_MINUTES:
                             userEpisodesStatistics.Minutes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_COLLECTED:
+                        case JsonProperties.USER_EPISODES_STATISTICS_PROPERTY_NAME_COLLECTED:
                             userEpisodesStatistics.Collected = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_RATINGS:
+                        case JsonProperties.USER_EPISODES_STATISTICS_PROPERTY_NAME_RATINGS:
                             userEpisodesStatistics.Ratings = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_COMMENTS:
+                        case JsonProperties.USER_EPISODES_STATISTICS_PROPERTY_NAME_COMMENTS:
                             userEpisodesStatistics.Comments = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:

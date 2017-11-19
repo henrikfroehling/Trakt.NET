@@ -10,8 +10,6 @@
 
     internal class PostResponseNotFoundMovieObjectJsonReader : IObjectJsonReader<ITraktPostResponseNotFoundMovie>
     {
-        private const string PROPERTY_NAME_IDS = "ids";
-
         public Task<ITraktPostResponseNotFoundMovie> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -52,7 +50,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_IDS:
+                        case JsonProperties.POST_RESPONSE_NOT_FOUND_MOVIE_PROPERTY_NAME_IDS:
                             postResponseNotFoundMovie.Ids = await movieIdsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

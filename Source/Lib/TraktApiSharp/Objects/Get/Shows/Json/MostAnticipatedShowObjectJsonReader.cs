@@ -10,9 +10,6 @@
 
     internal class MostAnticipatedShowObjectJsonReader : IObjectJsonReader<ITraktMostAnticipatedShow>
     {
-        private const string PROPERTY_NAME_LIST_COUNT = "list_count";
-        private const string PROPERTY_NAME_SHOW = "show";
-
         public Task<ITraktMostAnticipatedShow> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,10 +50,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_LIST_COUNT:
+                        case JsonProperties.MOST_ANTICIPATED_SHOW_PROPERTY_NAME_LIST_COUNT:
                             traktMostAnticipatedShow.ListCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_SHOW:
+                        case JsonProperties.MOST_ANTICIPATED_SHOW_PROPERTY_NAME_SHOW:
                             traktMostAnticipatedShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

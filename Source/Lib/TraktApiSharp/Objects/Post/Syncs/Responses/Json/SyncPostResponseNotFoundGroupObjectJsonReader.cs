@@ -10,11 +10,6 @@
 
     internal class SyncPostResponseNotFoundGroupObjectJsonReader : IObjectJsonReader<ITraktSyncPostResponseNotFoundGroup>
     {
-        private const string PROPERTY_NAME_MOVIES = "movies";
-        private const string PROPERTY_NAME_SHOWS = "shows";
-        private const string PROPERTY_NAME_SEASONS = "seasons";
-        private const string PROPERTY_NAME_EPISODES = "episodes";
-
         public Task<ITraktSyncPostResponseNotFoundGroup> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -58,16 +53,16 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_MOVIES:
+                        case JsonProperties.SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_MOVIES:
                             syncPostResponseNotFoundGroup.Movies = await notFoundMoviesReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SHOWS:
+                        case JsonProperties.SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SHOWS:
                             syncPostResponseNotFoundGroup.Shows = await notFoundShowsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SEASONS:
+                        case JsonProperties.SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SEASONS:
                             syncPostResponseNotFoundGroup.Seasons = await notFoundSeasonsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_EPISODES:
+                        case JsonProperties.SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_EPISODES:
                             syncPostResponseNotFoundGroup.Episodes = await notFoundEpisodesReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -9,10 +9,6 @@
 
     internal class EpisodeCollectionProgressObjectJsonReader : IObjectJsonReader<ITraktEpisodeCollectionProgress>
     {
-        private const string PROPERTY_NAME_NUMBER = "number";
-        private const string PROPERTY_NAME_COMPLETED = "completed";
-        private const string PROPERTY_NAME_COLLECTED_AT = "collected_at";
-
         public Task<ITraktEpisodeCollectionProgress> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -52,13 +48,13 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_NUMBER:
+                        case JsonProperties.EPISODE_COLLECTION_PROGRESS_PROPERTY_NAME_NUMBER:
                             traktEpisodeCollectionProgress.Number = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_COMPLETED:
+                        case JsonProperties.EPISODE_COLLECTION_PROGRESS_PROPERTY_NAME_COMPLETED:
                             traktEpisodeCollectionProgress.Completed = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_COLLECTED_AT:
+                        case JsonProperties.EPISODE_COLLECTION_PROGRESS_PROPERTY_NAME_COLLECTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 

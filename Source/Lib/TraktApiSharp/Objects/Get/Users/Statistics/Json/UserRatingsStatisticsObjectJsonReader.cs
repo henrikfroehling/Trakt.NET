@@ -9,9 +9,6 @@
 
     internal class UserRatingsStatisticsObjectJsonReader : IObjectJsonReader<ITraktUserRatingsStatistics>
     {
-        private const string PROPERTY_NAME_TOTAL = "total";
-        private const string PROPERTY_NAME_DISTRIBUTION = "distribution";
-
         public Task<ITraktUserRatingsStatistics> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -51,10 +48,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_TOTAL:
+                        case JsonProperties.USER_RATINGS_STATISTICS_PROPERTY_NAME_TOTAL:
                             userRatingsStatistics.Total = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_DISTRIBUTION:
+                        case JsonProperties.USER_RATINGS_STATISTICS_PROPERTY_NAME_DISTRIBUTION:
                             userRatingsStatistics.Distribution = await JsonReaderHelper.ReadDistributionAsync(jsonReader, cancellationToken);
                             break;
                         default:

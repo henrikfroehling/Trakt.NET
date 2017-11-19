@@ -10,9 +10,6 @@
 
     internal class SyncCollectionRemovePostResponseObjectJsonReader : IObjectJsonReader<ITraktSyncCollectionRemovePostResponse>
     {
-        private const string PROPERTY_NAME_DELETED = "deleted";
-        private const string PROPERTY_NAME_NOT_FOUND = "not_found";
-
         public Task<ITraktSyncCollectionRemovePostResponse> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -54,10 +51,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_DELETED:
+                        case JsonProperties.SYNC_COLLECTION_REMOVE_POST_RESPONSE_PROPERTY_NAME_DELETED:
                             syncCollectionPostResponse.Deleted = await groupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_NOT_FOUND:
+                        case JsonProperties.SYNC_COLLECTION_REMOVE_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND:
                             syncCollectionPostResponse.NotFound = await notFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

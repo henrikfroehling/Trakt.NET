@@ -9,11 +9,6 @@
 
     internal class SeasonIdsObjectJsonReader : IObjectJsonReader<ITraktSeasonIds>
     {
-        private const string PROPERTY_NAME_TRAKT = "trakt";
-        private const string PROPERTY_NAME_TVDB = "tvdb";
-        private const string PROPERTY_NAME_TMDB = "tmdb";
-        private const string PROPERTY_NAME_TVRAGE = "tvrage";
-
         public Task<ITraktSeasonIds> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,7 +48,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_TRAKT:
+                        case JsonProperties.SEASON_IDS_PROPERTY_NAME_TRAKT:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -62,7 +57,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_TVDB:
+                        case JsonProperties.SEASON_IDS_PROPERTY_NAME_TVDB:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -71,7 +66,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_TMDB:
+                        case JsonProperties.SEASON_IDS_PROPERTY_NAME_TMDB:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -80,7 +75,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_TVRAGE:
+                        case JsonProperties.SEASON_IDS_PROPERTY_NAME_TVRAGE:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 

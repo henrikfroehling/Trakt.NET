@@ -9,8 +9,6 @@
 
     internal class CheckinPostErrorResponseObjectJsonReader : IObjectJsonReader<ITraktCheckinPostErrorResponse>
     {
-        private const string PROPERTY_NAME_EXPIRES_AT = "expires_at";
-
         public Task<ITraktCheckinPostErrorResponse> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -50,7 +48,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_EXPIRES_AT:
+                        case JsonProperties.CHECKIN_POST_ERROR_RESPONSE_PROPERTY_NAME_EXPIRES_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 

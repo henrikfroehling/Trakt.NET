@@ -10,9 +10,6 @@
 
     internal class SyncRatingsPostResponseNotFoundMovieObjectJsonReader : IObjectJsonReader<ITraktSyncRatingsPostResponseNotFoundMovie>
     {
-        private const string PROPERTY_NAME_RATING = "rating";
-        private const string PROPERTY_NAME_IDS = "ids";
-
         public Task<ITraktSyncRatingsPostResponseNotFoundMovie> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,10 +50,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_RATING:
+                        case JsonProperties.SYNC_RATINGS_POST_RESPONSE_NOT_FOUND_MOVIE_PROPERTY_NAME_RATING:
                             syncRatingsPostResponseNotFoundMovie.Rating = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_IDS:
+                        case JsonProperties.SYNC_RATINGS_POST_RESPONSE_NOT_FOUND_MOVIE_PROPERTY_NAME_IDS:
                             syncRatingsPostResponseNotFoundMovie.Ids = await movieIdsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

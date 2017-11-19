@@ -10,11 +10,6 @@
 
     internal class SyncCollectionPostResponseObjectJsonReader : IObjectJsonReader<ITraktSyncCollectionPostResponse>
     {
-        private const string PROPERTY_NAME_ADDED = "added";
-        private const string PROPERTY_NAME_UPDATED = "updated";
-        private const string PROPERTY_NAME_EXISTING = "existing";
-        private const string PROPERTY_NAME_NOT_FOUND = "not_found";
-
         public Task<ITraktSyncCollectionPostResponse> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -56,16 +51,16 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_ADDED:
+                        case JsonProperties.SYNC_COLLECTION_POST_RESPONSE_PROPERTY_NAME_ADDED:
                             syncCollectionPostResponse.Added = await groupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_UPDATED:
+                        case JsonProperties.SYNC_COLLECTION_POST_RESPONSE_PROPERTY_NAME_UPDATED:
                             syncCollectionPostResponse.Updated = await groupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_EXISTING:
+                        case JsonProperties.SYNC_COLLECTION_POST_RESPONSE_PROPERTY_NAME_EXISTING:
                             syncCollectionPostResponse.Existing = await groupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_NOT_FOUND:
+                        case JsonProperties.SYNC_COLLECTION_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND:
                             syncCollectionPostResponse.NotFound = await notFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

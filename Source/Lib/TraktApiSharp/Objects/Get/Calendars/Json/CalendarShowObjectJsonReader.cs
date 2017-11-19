@@ -11,10 +11,6 @@
 
     internal class CalendarShowObjectJsonReader : IObjectJsonReader<ITraktCalendarShow>
     {
-        private const string PROPERTY_NAME_FIRST_AIRED = "first_aired";
-        private const string PROPERTY_NAME_SHOW = "show";
-        private const string PROPERTY_NAME_EPISODE = "episode";
-
         public Task<ITraktCalendarShow> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -57,7 +53,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_FIRST_AIRED:
+                        case JsonProperties.CALENDAR_SHOW_PROPERTY_NAME_FIRST_AIRED:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -66,10 +62,10 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_SHOW:
+                        case JsonProperties.CALENDAR_SHOW_PROPERTY_NAME_SHOW:
                             traktCalendarShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_EPISODE:
+                        case JsonProperties.CALENDAR_SHOW_PROPERTY_NAME_EPISODE:
                             traktCalendarShow.Episode = await episodeObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

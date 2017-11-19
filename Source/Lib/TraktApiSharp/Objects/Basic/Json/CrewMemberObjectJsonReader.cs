@@ -10,9 +10,6 @@
 
     internal class CrewMemberObjectJsonReader : IObjectJsonReader<ITraktCrewMember>
     {
-        private const string PROPERTY_NAME_JOB = "job";
-        private const string PROPERTY_NAME_PERSON = "person";
-
         public Task<ITraktCrewMember> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,10 +50,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_JOB:
+                        case JsonProperties.CREW_MEMBER_PROPERTY_NAME_JOB:
                             traktCrewMember.Job = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_PERSON:
+                        case JsonProperties.CREW_MEMBER_PROPERTY_NAME_PERSON:
                             traktCrewMember.Person = await personReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -9,12 +9,6 @@
 
     internal class UserCustomListItemsPostResponseGroupObjectJsonReader : IObjectJsonReader<ITraktUserCustomListItemsPostResponseGroup>
     {
-        private const string PROPERTY_NAME_MOVIES = "movies";
-        private const string PROPERTY_NAME_SHOWS = "shows";
-        private const string PROPERTY_NAME_SEASONS = "seasons";
-        private const string PROPERTY_NAME_EPISODES = "episodes";
-        private const string PROPERTY_NAME_PEOPLE = "people";
-
         public Task<ITraktUserCustomListItemsPostResponseGroup> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -54,19 +48,19 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_MOVIES:
+                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_GROUP_PROPERTY_NAME_MOVIES:
                             customListItemsPostResponseGroup.Movies = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_SHOWS:
+                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_GROUP_PROPERTY_NAME_SHOWS:
                             customListItemsPostResponseGroup.Shows = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_SEASONS:
+                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_GROUP_PROPERTY_NAME_SEASONS:
                             customListItemsPostResponseGroup.Seasons = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_EPISODES:
+                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_GROUP_PROPERTY_NAME_EPISODES:
                             customListItemsPostResponseGroup.Episodes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_PEOPLE:
+                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_GROUP_PROPERTY_NAME_PEOPLE:
                             customListItemsPostResponseGroup.People = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:

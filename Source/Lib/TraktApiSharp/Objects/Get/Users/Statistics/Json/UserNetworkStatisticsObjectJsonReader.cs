@@ -9,10 +9,6 @@
 
     internal class UserNetworkStatisticsObjectJsonReader : IObjectJsonReader<ITraktUserNetworkStatistics>
     {
-        private const string PROPERTY_NAME_FRIENDS = "friends";
-        private const string PROPERTY_NAME_FOLLOWERS = "followers";
-        private const string PROPERTY_NAME_FOLLOWING = "following";
-
         public Task<ITraktUserNetworkStatistics> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -52,13 +48,13 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_FRIENDS:
+                        case JsonProperties.USER_NETWORK_STATISTICS_PROPERTY_NAME_FRIENDS:
                             userNetworkStatistics.Friends = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_FOLLOWERS:
+                        case JsonProperties.USER_NETWORK_STATISTICS_PROPERTY_NAME_FOLLOWERS:
                             userNetworkStatistics.Followers = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_FOLLOWING:
+                        case JsonProperties.USER_NETWORK_STATISTICS_PROPERTY_NAME_FOLLOWING:
                             userNetworkStatistics.Following = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:

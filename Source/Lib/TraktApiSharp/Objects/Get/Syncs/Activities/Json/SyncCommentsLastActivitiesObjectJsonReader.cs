@@ -9,8 +9,6 @@
 
     internal class SyncCommentsLastActivitiesObjectJsonReader : IObjectJsonReader<ITraktSyncCommentsLastActivities>
     {
-        private const string PROPERTY_NAME_LIKED_AT = "liked_at";
-
         public Task<ITraktSyncCommentsLastActivities> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -50,7 +48,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_LIKED_AT:
+                        case JsonProperties.SYNC_COMMENTS_LAST_ACTIVITIES_PROPERTY_NAME_LIKED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 

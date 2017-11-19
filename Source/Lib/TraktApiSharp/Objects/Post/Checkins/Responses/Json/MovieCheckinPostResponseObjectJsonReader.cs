@@ -11,11 +11,6 @@
 
     internal class MovieCheckinPostResponseObjectJsonReader : IObjectJsonReader<ITraktMovieCheckinPostResponse>
     {
-        private const string PROPERTY_NAME_ID = "id";
-        private const string PROPERTY_NAME_WATCHED_AT = "watched_at";
-        private const string PROPERTY_NAME_SHARING = "sharing";
-        private const string PROPERTY_NAME_MOVIE = "movie";
-
         public Task<ITraktMovieCheckinPostResponse> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -57,7 +52,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_ID:
+                        case JsonProperties.MOVIE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_ID:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedLongIntegerAsync(jsonReader, cancellationToken);
 
@@ -66,7 +61,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_WATCHED_AT:
+                        case JsonProperties.MOVIE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_WATCHED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -75,10 +70,10 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_SHARING:
+                        case JsonProperties.MOVIE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_SHARING:
                             checkinMovieResponse.Sharing = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_MOVIE:
+                        case JsonProperties.MOVIE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_MOVIE:
                             checkinMovieResponse.Movie = await movieReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

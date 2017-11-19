@@ -10,12 +10,6 @@
 
     internal class UserCustomListItemsPostResponseNotFoundGroupObjectJsonReader : IObjectJsonReader<ITraktUserCustomListItemsPostResponseNotFoundGroup>
     {
-        private const string PROPERTY_NAME_MOVIES = "movies";
-        private const string PROPERTY_NAME_SHOWS = "shows";
-        private const string PROPERTY_NAME_SEASONS = "seasons";
-        private const string PROPERTY_NAME_EPISODES = "episodes";
-        private const string PROPERTY_NAME_PEOPLE = "people";
-
         public Task<ITraktUserCustomListItemsPostResponseNotFoundGroup> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -60,19 +54,19 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_MOVIES:
+                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_MOVIES:
                             customListItemsPostResponseNotFoundGroup.Movies = await notFoundMoviesReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SHOWS:
+                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SHOWS:
                             customListItemsPostResponseNotFoundGroup.Shows = await notFoundShowsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SEASONS:
+                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SEASONS:
                             customListItemsPostResponseNotFoundGroup.Seasons = await notFoundSeasonsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_EPISODES:
+                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_EPISODES:
                             customListItemsPostResponseNotFoundGroup.Episodes = await notFoundEpisodesReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_PEOPLE:
+                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_PEOPLE:
                             customListItemsPostResponseNotFoundGroup.People = await notFoundPeopleReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

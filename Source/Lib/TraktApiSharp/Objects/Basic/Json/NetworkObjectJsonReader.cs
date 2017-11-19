@@ -9,8 +9,6 @@
 
     internal class NetworkObjectJsonReader : IObjectJsonReader<ITraktNetwork>
     {
-        private const string PROPERTY_NAME_NETWORK = "network";
-
         public Task<ITraktNetwork> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -50,7 +48,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_NETWORK:
+                        case JsonProperties.NETWORK_PROPERTY_NAME_NETWORK:
                             traktNetwork.Network = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

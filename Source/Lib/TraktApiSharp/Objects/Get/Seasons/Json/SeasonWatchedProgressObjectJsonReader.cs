@@ -10,11 +10,6 @@
 
     internal class SeasonWatchedProgressObjectJsonReader : IObjectJsonReader<ITraktSeasonWatchedProgress>
     {
-        private const string PROPERTY_NAME_NUMBER = "number";
-        private const string PROPERTY_NAME_AIRED = "aired";
-        private const string PROPERTY_NAME_COMPLETED = "completed";
-        private const string PROPERTY_NAME_EPISODES = "episodes";
-
         public Task<ITraktSeasonWatchedProgress> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -55,16 +50,16 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_NUMBER:
+                        case JsonProperties.SEASON_WATCHED_PROGRESS_PROPERTY_NAME_NUMBER:
                             traktSeasonWatchedProgress.Number = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_AIRED:
+                        case JsonProperties.SEASON_WATCHED_PROGRESS_PROPERTY_NAME_AIRED:
                             traktSeasonWatchedProgress.Aired = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_COMPLETED:
+                        case JsonProperties.SEASON_WATCHED_PROGRESS_PROPERTY_NAME_COMPLETED:
                             traktSeasonWatchedProgress.Completed = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_EPISODES:
+                        case JsonProperties.SEASON_WATCHED_PROGRESS_PROPERTY_NAME_EPISODES:
                             traktSeasonWatchedProgress.Episodes = await episodeWatchedProgressArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

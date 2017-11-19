@@ -10,12 +10,6 @@
 
     internal class MostPWCShowObjectJsonReader : IObjectJsonReader<ITraktMostPWCShow>
     {
-        private const string PROPERTY_NAME_WATCHER_COUNT = "watcher_count";
-        private const string PROPERTY_NAME_PLAY_COUNT = "play_count";
-        private const string PROPERTY_NAME_COLLECTED_COUNT = "collected_count";
-        private const string PROPERTY_NAME_COLLECTOR_COUNT = "collector_count";
-        private const string PROPERTY_NAME_SHOW = "show";
-
         public Task<ITraktMostPWCShow> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -56,19 +50,19 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_WATCHER_COUNT:
+                        case JsonProperties.MOST_PWC_SHOW_PROPERTY_NAME_WATCHER_COUNT:
                             traktMostPWCShow.WatcherCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_PLAY_COUNT:
+                        case JsonProperties.MOST_PWC_SHOW_PROPERTY_NAME_PLAY_COUNT:
                             traktMostPWCShow.PlayCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_COLLECTED_COUNT:
+                        case JsonProperties.MOST_PWC_SHOW_PROPERTY_NAME_COLLECTED_COUNT:
                             traktMostPWCShow.CollectedCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_COLLECTOR_COUNT:
+                        case JsonProperties.MOST_PWC_SHOW_PROPERTY_NAME_COLLECTOR_COUNT:
                             traktMostPWCShow.CollectorCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_SHOW:
+                        case JsonProperties.MOST_PWC_SHOW_PROPERTY_NAME_SHOW:
                             traktMostPWCShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

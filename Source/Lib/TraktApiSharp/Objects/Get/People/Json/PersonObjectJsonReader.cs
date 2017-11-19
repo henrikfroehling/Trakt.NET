@@ -9,14 +9,6 @@
 
     internal class PersonObjectJsonReader : IObjectJsonReader<ITraktPerson>
     {
-        private const string PROPERTY_NAME_NAME = "name";
-        private const string PROPERTY_NAME_IDS = "ids";
-        private const string PROPERTY_NAME_BIOGRAPHY = "biography";
-        private const string PROPERTY_NAME_BIRTHDAY = "birthday";
-        private const string PROPERTY_NAME_DEATH = "death";
-        private const string PROPERTY_NAME_BIRTHPLACE = "birthplace";
-        private const string PROPERTY_NAME_HOMEPAGE = "homepage";
-
         public Task<ITraktPerson> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -57,16 +49,16 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_NAME:
+                        case JsonProperties.PERSON_PROPERTY_NAME_NAME:
                             traktPerson.Name = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_IDS:
+                        case JsonProperties.PERSON_PROPERTY_NAME_IDS:
                             traktPerson.Ids = await idsObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_BIOGRAPHY:
+                        case JsonProperties.PERSON_PROPERTY_NAME_BIOGRAPHY:
                             traktPerson.Biography = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_BIRTHDAY:
+                        case JsonProperties.PERSON_PROPERTY_NAME_BIRTHDAY:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -75,7 +67,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_DEATH:
+                        case JsonProperties.PERSON_PROPERTY_NAME_DEATH:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -84,10 +76,10 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_BIRTHPLACE:
+                        case JsonProperties.PERSON_PROPERTY_NAME_BIRTHPLACE:
                             traktPerson.Birthplace = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_HOMEPAGE:
+                        case JsonProperties.PERSON_PROPERTY_NAME_HOMEPAGE:
                             traktPerson.Homepage = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

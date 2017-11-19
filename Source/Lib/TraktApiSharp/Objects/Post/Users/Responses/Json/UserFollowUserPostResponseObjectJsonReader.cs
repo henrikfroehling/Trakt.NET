@@ -10,9 +10,6 @@
 
     internal class UserFollowUserPostResponseObjectJsonReader : IObjectJsonReader<ITraktUserFollowUserPostResponse>
     {
-        private const string PROPERTY_NAME_APPROVED_AT = "approved_at";
-        private const string PROPERTY_NAME_USER = "user";
-
         public Task<ITraktUserFollowUserPostResponse> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,7 +50,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_APPROVED_AT:
+                        case JsonProperties.USER_FOLLOW_USER_POST_RESPONSE_PROPERTY_NAME_APPROVED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -62,7 +59,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_USER:
+                        case JsonProperties.USER_FOLLOW_USER_POST_RESPONSE_PROPERTY_NAME_USER:
                             userFollowUserPostResponse.User = await userObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

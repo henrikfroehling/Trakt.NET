@@ -14,14 +14,6 @@
 
     internal class RatingsItemObjectJsonReader : IObjectJsonReader<ITraktRatingsItem>
     {
-        private const string PROPERTY_NAME_RATED_AT = "rated_at";
-        private const string PROPERTY_NAME_RATING = "rating";
-        private const string PROPERTY_NAME_TYPE = "type";
-        private const string PROPERTY_NAME_MOVIE = "movie";
-        private const string PROPERTY_NAME_SHOW = "show";
-        private const string PROPERTY_NAME_SEASON = "season";
-        private const string PROPERTY_NAME_EPISODE = "episode";
-
         public Task<ITraktRatingsItem> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -66,7 +58,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_RATED_AT:
+                        case JsonProperties.RATINGS_ITEM_PROPERTY_NAME_RATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -75,22 +67,22 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_RATING:
+                        case JsonProperties.RATINGS_ITEM_PROPERTY_NAME_RATING:
                             traktRatingItem.Rating = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_TYPE:
+                        case JsonProperties.RATINGS_ITEM_PROPERTY_NAME_TYPE:
                             traktRatingItem.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktRatingsItemType>(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_MOVIE:
+                        case JsonProperties.RATINGS_ITEM_PROPERTY_NAME_MOVIE:
                             traktRatingItem.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SHOW:
+                        case JsonProperties.RATINGS_ITEM_PROPERTY_NAME_SHOW:
                             traktRatingItem.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SEASON:
+                        case JsonProperties.RATINGS_ITEM_PROPERTY_NAME_SEASON:
                             traktRatingItem.Season = await seasonObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_EPISODE:
+                        case JsonProperties.RATINGS_ITEM_PROPERTY_NAME_EPISODE:
                             traktRatingItem.Episode = await episodeObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

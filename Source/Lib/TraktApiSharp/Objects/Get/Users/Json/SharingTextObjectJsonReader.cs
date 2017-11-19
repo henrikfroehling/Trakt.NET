@@ -9,9 +9,6 @@
 
     internal class SharingTextObjectJsonReader : IObjectJsonReader<ITraktSharingText>
     {
-        private const string PROPERTY_NAME_WATCHING = "watching";
-        private const string PROPERTY_NAME_WATCHED = "watched";
-
         public Task<ITraktSharingText> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -51,10 +48,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_WATCHING:
+                        case JsonProperties.SHARING_TEXT_PROPERTY_NAME_WATCHING:
                             traktSharingText.Watching = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_WATCHED:
+                        case JsonProperties.SHARING_TEXT_PROPERTY_NAME_WATCHED:
                             traktSharingText.Watched = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

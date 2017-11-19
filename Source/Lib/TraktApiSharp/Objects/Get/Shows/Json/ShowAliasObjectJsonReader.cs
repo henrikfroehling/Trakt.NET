@@ -9,9 +9,6 @@
 
     internal class ShowAliasObjectJsonReader : IObjectJsonReader<ITraktShowAlias>
     {
-        private const string PROPERTY_NAME_TITLE = "title";
-        private const string PROPERTY_NAME_COUNTRY = "country";
-
         public Task<ITraktShowAlias> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -51,10 +48,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_TITLE:
+                        case JsonProperties.SHOW_ALIAS_PROPERTY_NAME_TITLE:
                             traktShowAlias.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_COUNTRY:
+                        case JsonProperties.SHOW_ALIAS_PROPERTY_NAME_COUNTRY:
                             traktShowAlias.CountryCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

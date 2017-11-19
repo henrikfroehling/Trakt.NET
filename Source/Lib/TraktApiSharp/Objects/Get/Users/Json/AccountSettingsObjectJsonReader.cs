@@ -9,10 +9,6 @@
 
     internal class AccountSettingsObjectJsonReader : IObjectJsonReader<ITraktAccountSettings>
     {
-        private const string PROPERTY_NAME_TIMEZONE_ID = "timezone";
-        private const string PROPERTY_NAME_TIME_24HR = "time_24hr";
-        private const string PROPERTY_NAME_COVER_IMAGE = "cover_image";
-
         public Task<ITraktAccountSettings> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -52,13 +48,13 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_TIMEZONE_ID:
+                        case JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_TIMEZONE_ID:
                             traktAccountSettings.TimeZoneId = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_TIME_24HR:
+                        case JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_TIME_24HR:
                             traktAccountSettings.Time24Hr = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_COVER_IMAGE:
+                        case JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_COVER_IMAGE:
                             traktAccountSettings.CoverImage = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

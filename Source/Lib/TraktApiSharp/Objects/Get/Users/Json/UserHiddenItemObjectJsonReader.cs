@@ -13,12 +13,6 @@
 
     internal class UserHiddenItemObjectJsonReader : IObjectJsonReader<ITraktUserHiddenItem>
     {
-        private const string PROPERTY_NAME_HIDDEN_AT = "hidden_at";
-        private const string PROPERTY_NAME_TYPE = "type";
-        private const string PROPERTY_NAME_MOVIE = "movie";
-        private const string PROPERTY_NAME_SHOW = "show";
-        private const string PROPERTY_NAME_SEASON = "season";
-
         public Task<ITraktUserHiddenItem> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -61,7 +55,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_HIDDEN_AT:
+                        case JsonProperties.USER_HIDDEN_ITEM_PROPERTY_NAME_HIDDEN_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -70,16 +64,16 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_TYPE:
+                        case JsonProperties.USER_HIDDEN_ITEM_PROPERTY_NAME_TYPE:
                             traktUserHiddenItem.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktHiddenItemType>(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_MOVIE:
+                        case JsonProperties.USER_HIDDEN_ITEM_PROPERTY_NAME_MOVIE:
                             traktUserHiddenItem.Movie = await movieReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SHOW:
+                        case JsonProperties.USER_HIDDEN_ITEM_PROPERTY_NAME_SHOW:
                             traktUserHiddenItem.Show = await showReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SEASON:
+                        case JsonProperties.USER_HIDDEN_ITEM_PROPERTY_NAME_SEASON:
                             traktUserHiddenItem.Season = await seasonReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

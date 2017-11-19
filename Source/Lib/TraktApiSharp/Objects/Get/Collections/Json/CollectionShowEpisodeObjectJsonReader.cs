@@ -10,10 +10,6 @@
 
     internal class CollectionShowEpisodeObjectJsonReader : IObjectJsonReader<ITraktCollectionShowEpisode>
     {
-        private const string PROPERTY_NAME_NUMBER = "number";
-        private const string PROPERTY_NAME_COLLECTED_AT = "collected_at";
-        private const string PROPERTY_NAME_METADATA = "metadata";
-
         public Task<ITraktCollectionShowEpisode> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -55,10 +51,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_NUMBER:
+                        case JsonProperties.COLLECTION_SHOW_EPISODE_PROPERTY_NAME_NUMBER:
                             traktCollectionShowEpisode.Number = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_COLLECTED_AT:
+                        case JsonProperties.COLLECTION_SHOW_EPISODE_PROPERTY_NAME_COLLECTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -67,7 +63,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_METADATA:
+                        case JsonProperties.COLLECTION_SHOW_EPISODE_PROPERTY_NAME_METADATA:
                             traktCollectionShowEpisode.Metadata = await metadataObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

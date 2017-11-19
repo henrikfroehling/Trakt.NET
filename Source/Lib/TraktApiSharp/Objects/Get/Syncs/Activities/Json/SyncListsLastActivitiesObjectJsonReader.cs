@@ -9,10 +9,6 @@
 
     internal class SyncListsLastActivitiesObjectJsonReader : IObjectJsonReader<ITraktSyncListsLastActivities>
     {
-        private const string PROPERTY_NAME_LIKED_AT = "liked_at";
-        private const string PROPERTY_NAME_UPDATED_AT = "updated_at";
-        private const string PROPERTY_NAME_COMMENTED_AT = "commented_at";
-
         public Task<ITraktSyncListsLastActivities> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -52,7 +48,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_LIKED_AT:
+                        case JsonProperties.SYNC_LISTS_LAST_ACTIVITIES_PROPERTY_NAME_LIKED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -61,7 +57,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_UPDATED_AT:
+                        case JsonProperties.SYNC_LISTS_LAST_ACTIVITIES_PROPERTY_NAME_UPDATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -70,7 +66,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_COMMENTED_AT:
+                        case JsonProperties.SYNC_LISTS_LAST_ACTIVITIES_PROPERTY_NAME_COMMENTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 

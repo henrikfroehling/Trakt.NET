@@ -11,10 +11,6 @@
 
     internal class CollectionMovieObjectJsonReader : IObjectJsonReader<ITraktCollectionMovie>
     {
-        private const string PROPERTY_NAME_COLLECTED_AT = "collected_at";
-        private const string PROPERTY_NAME_MOVIE = "movie";
-        private const string PROPERTY_NAME_METADATA = "metadata";
-
         public Task<ITraktCollectionMovie> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -57,7 +53,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_COLLECTED_AT:
+                        case JsonProperties.COLLECTION_MOVIE_PROPERTY_NAME_COLLECTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -66,10 +62,10 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_MOVIE:
+                        case JsonProperties.COLLECTION_MOVIE_PROPERTY_NAME_MOVIE:
                             traktCollectionMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_METADATA:
+                        case JsonProperties.COLLECTION_MOVIE_PROPERTY_NAME_METADATA:
                             traktCollectionMovie.Metadata = await metadataObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -10,11 +10,6 @@
 
     internal class MostPWCMovieObjectJsonReader : IObjectJsonReader<ITraktMostPWCMovie>
     {
-        private const string PROPERTY_NAME_WATCHER_COUNT = "watcher_count";
-        private const string PROPERTY_NAME_PLAY_COUNT = "play_count";
-        private const string PROPERTY_NAME_COLLECTED_COUNT = "collected_count";
-        private const string PROPERTY_NAME_MOVIE = "movie";
-
         public Task<ITraktMostPWCMovie> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -55,16 +50,16 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_WATCHER_COUNT:
+                        case JsonProperties.MOST_PWC_MOVIE_PROPERTY_NAME_WATCHER_COUNT:
                             traktMostPWCMovie.WatcherCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_PLAY_COUNT:
+                        case JsonProperties.MOST_PWC_MOVIE_PROPERTY_NAME_PLAY_COUNT:
                             traktMostPWCMovie.PlayCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_COLLECTED_COUNT:
+                        case JsonProperties.MOST_PWC_MOVIE_PROPERTY_NAME_COLLECTED_COUNT:
                             traktMostPWCMovie.CollectedCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_MOVIE:
+                        case JsonProperties.MOST_PWC_MOVIE_PROPERTY_NAME_MOVIE:
                             traktMostPWCMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -9,9 +9,6 @@
 
     internal class CollectionShowSeasonObjectJsonReader : IObjectJsonReader<ITraktCollectionShowSeason>
     {
-        private const string PROPERTY_NAME_NUMBER = "number";
-        private const string PROPERTY_NAME_EPISODES = "episodes";
-
         public Task<ITraktCollectionShowSeason> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,10 +50,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_NUMBER:
+                        case JsonProperties.COLLECTION_SHOW_SEASON_PROPERTY_NAME_NUMBER:
                             traktCollectionShowSeason.Number = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_EPISODES:
+                        case JsonProperties.COLLECTION_SHOW_SEASON_PROPERTY_NAME_EPISODES:
                             traktCollectionShowSeason.Episodes = await collectionShowEpisodeArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

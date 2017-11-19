@@ -10,9 +10,6 @@
 
     internal class BoxOfficeMovieObjectJsonReader : IObjectJsonReader<ITraktBoxOfficeMovie>
     {
-        private const string PROPERTY_NAME_REVENUE = "revenue";
-        private const string PROPERTY_NAME_MOVIE = "movie";
-
         public Task<ITraktBoxOfficeMovie> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,10 +50,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_REVENUE:
+                        case JsonProperties.BOX_OFFICE_MOVIE_PROPERTY_NAME_REVENUE:
                             traktBoxOfficeMovie.Revenue = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_MOVIE:
+                        case JsonProperties.BOX_OFFICE_MOVIE_PROPERTY_NAME_MOVIE:
                             traktBoxOfficeMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

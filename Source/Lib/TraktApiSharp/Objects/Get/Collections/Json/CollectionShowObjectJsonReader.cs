@@ -10,10 +10,6 @@
 
     internal class CollectionShowObjectJsonReader : IObjectJsonReader<ITraktCollectionShow>
     {
-        private const string PROPERTY_NAME_LAST_COLLECTED_AT = "last_collected_at";
-        private const string PROPERTY_NAME_SHOW = "show";
-        private const string PROPERTY_NAME_SEASONS = "seasons";
-
         public Task<ITraktCollectionShow> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -56,7 +52,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_LAST_COLLECTED_AT:
+                        case JsonProperties.COLLECTION_SHOW_PROPERTY_NAME_LAST_COLLECTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -65,10 +61,10 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_SHOW:
+                        case JsonProperties.COLLECTION_SHOW_PROPERTY_NAME_SHOW:
                             traktCollectionShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SEASONS:
+                        case JsonProperties.COLLECTION_SHOW_PROPERTY_NAME_SEASONS:
                             traktCollectionShow.CollectionSeasons = await showSeasonsArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

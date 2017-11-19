@@ -12,12 +12,6 @@
 
     internal class MovieScrobblePostResponseObjectJsonReader : IObjectJsonReader<ITraktMovieScrobblePostResponse>
     {
-        private const string PROPERTY_NAME_ID = "id";
-        private const string PROPERTY_NAME_ACTION = "action";
-        private const string PROPERTY_NAME_PROGRESS = "progress";
-        private const string PROPERTY_NAME_SHARING = "sharing";
-        private const string PROPERTY_NAME_MOVIE = "movie";
-
         public Task<ITraktMovieScrobblePostResponse> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -59,7 +53,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_ID:
+                        case JsonProperties.MOVIE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ID:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedLongIntegerAsync(jsonReader, cancellationToken);
 
@@ -68,10 +62,10 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_ACTION:
+                        case JsonProperties.MOVIE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ACTION:
                             movieScrobbleResponse.Action = await JsonReaderHelper.ReadEnumerationValueAsync<TraktScrobbleActionType>(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_PROGRESS:
+                        case JsonProperties.MOVIE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_PROGRESS:
                             {
                                 var value = await JsonReaderHelper.ReadFloatValueAsync(jsonReader, cancellationToken);
 
@@ -80,10 +74,10 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_SHARING:
+                        case JsonProperties.MOVIE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_SHARING:
                             movieScrobbleResponse.Sharing = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_MOVIE:
+                        case JsonProperties.MOVIE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_MOVIE:
                             movieScrobbleResponse.Movie = await movieReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -9,9 +9,6 @@
 
     internal class MovieAliasObjectJsonReader : IObjectJsonReader<ITraktMovieAlias>
     {
-        private const string PROPERTY_NAME_TITLE = "title";
-        private const string PROPERTY_NAME_COUNTRY = "country";
-
         public Task<ITraktMovieAlias> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -51,10 +48,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_TITLE:
+                        case JsonProperties.MOVIE_ALIAS_PROPERTY_NAME_TITLE:
                             traktMovieAlias.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_COUNTRY:
+                        case JsonProperties.MOVIE_ALIAS_PROPERTY_NAME_COUNTRY:
                             traktMovieAlias.CountryCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

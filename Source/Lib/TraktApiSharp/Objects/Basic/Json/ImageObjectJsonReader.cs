@@ -9,8 +9,6 @@
 
     internal class ImageObjectJsonReader : IObjectJsonReader<ITraktImage>
     {
-        private const string PROPERTY_NAME_FULL = "full";
-
         public Task<ITraktImage> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -50,7 +48,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_FULL:
+                        case JsonProperties.IMAGE_PROPERTY_NAME_FULL:
                             traktImage.Full = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

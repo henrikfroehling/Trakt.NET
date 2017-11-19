@@ -15,15 +15,6 @@
 
     internal class ListItemObjectJsonReader : IObjectJsonReader<ITraktListItem>
     {
-        private const string PROPERTY_NAME_RANK = "rank";
-        private const string PROPERTY_NAME_LISTED_AT = "listed_at";
-        private const string PROPERTY_NAME_TYPE = "type";
-        private const string PROPERTY_NAME_MOVIE = "movie";
-        private const string PROPERTY_NAME_SHOW = "show";
-        private const string PROPERTY_NAME_SEASON = "season";
-        private const string PROPERTY_NAME_EPISODE = "episode";
-        private const string PROPERTY_NAME_PERSON = "person";
-
         public Task<ITraktListItem> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -69,10 +60,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_RANK:
+                        case JsonProperties.LIST_ITEM_PROPERTY_NAME_RANK:
                             traktListItem.Rank = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_LISTED_AT:
+                        case JsonProperties.LIST_ITEM_PROPERTY_NAME_LISTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -81,22 +72,22 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_TYPE:
+                        case JsonProperties.LIST_ITEM_PROPERTY_NAME_TYPE:
                             traktListItem.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktListItemType>(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_MOVIE:
+                        case JsonProperties.LIST_ITEM_PROPERTY_NAME_MOVIE:
                             traktListItem.Movie = await movieReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SHOW:
+                        case JsonProperties.LIST_ITEM_PROPERTY_NAME_SHOW:
                             traktListItem.Show = await showReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SEASON:
+                        case JsonProperties.LIST_ITEM_PROPERTY_NAME_SEASON:
                             traktListItem.Season = await seasonReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_EPISODE:
+                        case JsonProperties.LIST_ITEM_PROPERTY_NAME_EPISODE:
                             traktListItem.Episode = await episodeReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_PERSON:
+                        case JsonProperties.LIST_ITEM_PROPERTY_NAME_PERSON:
                             traktListItem.Person = await personReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

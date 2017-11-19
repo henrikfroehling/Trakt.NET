@@ -10,8 +10,6 @@
 
     internal class PostResponseNotFoundPersonObjectJsonReader : IObjectJsonReader<ITraktPostResponseNotFoundPerson>
     {
-        private const string PROPERTY_NAME_IDS = "ids";
-
         public Task<ITraktPostResponseNotFoundPerson> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -52,7 +50,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_IDS:
+                        case JsonProperties.POST_RESPONSE_NOT_FOUND_PERSON_PROPERTY_NAME_IDS:
                             postResponseNotFoundPerson.Ids = await personIdsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

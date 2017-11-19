@@ -9,9 +9,6 @@
 
     internal class UserFriendObjectJsonReader : IObjectJsonReader<ITraktUserFriend>
     {
-        private const string PROPERTY_NAME_FRIENDS_AT = "friends_at";
-        private const string PROPERTY_NAME_USER = "user";
-
         public Task<ITraktUserFriend> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -52,7 +49,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_FRIENDS_AT:
+                        case JsonProperties.USER_FRIEND_PROPERTY_NAME_FRIENDS_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -61,7 +58,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_USER:
+                        case JsonProperties.USER_FRIEND_PROPERTY_NAME_USER:
                             traktUserFriend.User = await userReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

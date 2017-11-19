@@ -9,10 +9,6 @@
 
     internal class ShowTranslationObjectJsonReader : IObjectJsonReader<ITraktShowTranslation>
     {
-        private const string PROPERTY_NAME_TITLE = "title";
-        private const string PROPERTY_NAME_OVERVIEW = "overview";
-        private const string PROPERTY_NAME_LANGUAGE_CODE = "language";
-
         public Task<ITraktShowTranslation> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -52,13 +48,13 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_TITLE:
+                        case JsonProperties.SHOW_TRANSLATION_PROPERTY_NAME_TITLE:
                             traktShowTranslation.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_OVERVIEW:
+                        case JsonProperties.SHOW_TRANSLATION_PROPERTY_NAME_OVERVIEW:
                             traktShowTranslation.Overview = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_LANGUAGE_CODE:
+                        case JsonProperties.SHOW_TRANSLATION_PROPERTY_NAME_LANGUAGE_CODE:
                             traktShowTranslation.LanguageCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

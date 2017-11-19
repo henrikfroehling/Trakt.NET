@@ -10,9 +10,6 @@
 
     internal class TrendingMovieObjectJsonReader : IObjectJsonReader<ITraktTrendingMovie>
     {
-        private const string PROPERTY_NAME_WATCHERS = "watchers";
-        private const string PROPERTY_NAME_MOVIE = "movie";
-
         public Task<ITraktTrendingMovie> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,10 +50,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_WATCHERS:
+                        case JsonProperties.TRENDING_MOVIE_PROPERTY_NAME_WATCHERS:
                             traktTrendingMovie.Watchers = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_MOVIE:
+                        case JsonProperties.TRENDING_MOVIE_PROPERTY_NAME_MOVIE:
                             traktTrendingMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

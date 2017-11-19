@@ -13,13 +13,6 @@
 
     internal class EpisodeScrobblePostResponseObjectJsonReader : IObjectJsonReader<ITraktEpisodeScrobblePostResponse>
     {
-        private const string PROPERTY_NAME_ID = "id";
-        private const string PROPERTY_NAME_ACTION = "action";
-        private const string PROPERTY_NAME_PROGRESS = "progress";
-        private const string PROPERTY_NAME_SHARING = "sharing";
-        private const string PROPERTY_NAME_EPISODE = "episode";
-        private const string PROPERTY_NAME_SHOW = "show";
-
         public Task<ITraktEpisodeScrobblePostResponse> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -62,7 +55,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_ID:
+                        case JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ID:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedLongIntegerAsync(jsonReader, cancellationToken);
 
@@ -71,10 +64,10 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_ACTION:
+                        case JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ACTION:
                             episodeScrobbleResponse.Action = await JsonReaderHelper.ReadEnumerationValueAsync<TraktScrobbleActionType>(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_PROGRESS:
+                        case JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_PROGRESS:
                             {
                                 var value = await JsonReaderHelper.ReadFloatValueAsync(jsonReader, cancellationToken);
 
@@ -83,13 +76,13 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_SHARING:
+                        case JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_SHARING:
                             episodeScrobbleResponse.Sharing = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_EPISODE:
+                        case JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_EPISODE:
                             episodeScrobbleResponse.Episode = await episodeReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SHOW:
+                        case JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_SHOW:
                             episodeScrobbleResponse.Show = await showReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

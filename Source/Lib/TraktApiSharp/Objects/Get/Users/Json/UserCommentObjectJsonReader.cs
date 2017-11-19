@@ -16,14 +16,6 @@
 
     internal class UserCommentObjectJsonReader : IObjectJsonReader<ITraktUserComment>
     {
-        private const string PROPERTY_NAME_TYPE = "type";
-        private const string PROPERTY_NAME_COMMENT = "comment";
-        private const string PROPERTY_NAME_MOVIE = "movie";
-        private const string PROPERTY_NAME_SHOW = "show";
-        private const string PROPERTY_NAME_SEASON = "season";
-        private const string PROPERTY_NAME_EPISODE = "episode";
-        private const string PROPERTY_NAME_LIST = "list";
-
         public Task<ITraktUserComment> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -69,25 +61,25 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_TYPE:
+                        case JsonProperties.USER_COMMENT_PROPERTY_NAME_TYPE:
                             traktUserComment.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktObjectType>(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_COMMENT:
+                        case JsonProperties.USER_COMMENT_PROPERTY_NAME_COMMENT:
                             traktUserComment.Comment = await commentReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_MOVIE:
+                        case JsonProperties.USER_COMMENT_PROPERTY_NAME_MOVIE:
                             traktUserComment.Movie = await movieReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SHOW:
+                        case JsonProperties.USER_COMMENT_PROPERTY_NAME_SHOW:
                             traktUserComment.Show = await showReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SEASON:
+                        case JsonProperties.USER_COMMENT_PROPERTY_NAME_SEASON:
                             traktUserComment.Season = await seasonReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_EPISODE:
+                        case JsonProperties.USER_COMMENT_PROPERTY_NAME_EPISODE:
                             traktUserComment.Episode = await episodeReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_LIST:
+                        case JsonProperties.USER_COMMENT_PROPERTY_NAME_LIST:
                             traktUserComment.List = await listReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

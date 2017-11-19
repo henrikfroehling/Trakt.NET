@@ -10,9 +10,6 @@
 
     internal class PersonMovieCreditsCastItemObjectJsonReader : IObjectJsonReader<ITraktPersonMovieCreditsCastItem>
     {
-        private const string PROPERTY_NAME_CHARACTER = "character";
-        private const string PROPERTY_NAME_MOVIE = "movie";
-
         public Task<ITraktPersonMovieCreditsCastItem> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -54,10 +51,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_CHARACTER:
+                        case JsonProperties.PERSON_MOVIE_CREDITS_CAST_ITEM_PROPERTY_NAME_CHARACTER:
                             movieCreditsCastItem.Character = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PERSON_MOVIE_CREDITS_CAST_ITEM_PROPERTY_NAME_MOVIE:
                             movieCreditsCastItem.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

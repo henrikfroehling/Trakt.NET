@@ -10,18 +10,6 @@
 
     internal class SeasonObjectJsonReader : IObjectJsonReader<ITraktSeason>
     {
-        private const string PROPERTY_NAME_NUMBER = "number";
-        private const string PROPERTY_NAME_TITLE = "title";
-        private const string PROPERTY_NAME_IDS = "ids";
-        private const string PROPERTY_NAME_RATING = "rating";
-        private const string PROPERTY_NAME_VOTES = "votes";
-        private const string PROPERTY_NAME_EPISODES_COUNT = "episode_count";
-        private const string PROPERTY_NAME_AIRED_EPISODES = "aired_episodes";
-        private const string PROPERTY_NAME_OVERVIEW = "overview";
-        private const string PROPERTY_NAME_FIRST_AIRED = "first_aired";
-        private const string PROPERTY_NAME_NETWORK = "network";
-        private const string PROPERTY_NAME_EPISODES = "episodes";
-
         public Task<ITraktSeason> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -63,31 +51,31 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_NUMBER:
+                        case JsonProperties.SEASON_PROPERTY_NAME_NUMBER:
                             traktSeason.Number = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_TITLE:
+                        case JsonProperties.SEASON_PROPERTY_NAME_TITLE:
                             traktSeason.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_IDS:
+                        case JsonProperties.SEASON_PROPERTY_NAME_IDS:
                             traktSeason.Ids = await idsObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_RATING:
+                        case JsonProperties.SEASON_PROPERTY_NAME_RATING:
                             traktSeason.Rating = (float?)await jsonReader.ReadAsDoubleAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_VOTES:
+                        case JsonProperties.SEASON_PROPERTY_NAME_VOTES:
                             traktSeason.Votes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_EPISODES_COUNT:
+                        case JsonProperties.SEASON_PROPERTY_NAME_EPISODE_COUNT:
                             traktSeason.TotalEpisodesCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_AIRED_EPISODES:
+                        case JsonProperties.SEASON_PROPERTY_NAME_AIRED_EPISODES:
                             traktSeason.AiredEpisodesCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_OVERVIEW:
+                        case JsonProperties.SEASON_PROPERTY_NAME_OVERVIEW:
                             traktSeason.Overview = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_FIRST_AIRED:
+                        case JsonProperties.SEASON_PROPERTY_NAME_FIRST_AIRED:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -96,10 +84,10 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_NETWORK:
+                        case JsonProperties.SEASON_PROPERTY_NAME_NETWORK:
                             traktSeason.Network = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_EPISODES:
+                        case JsonProperties.SEASON_PROPERTY_NAME_EPISODES:
                             traktSeason.Episodes = await episodesArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

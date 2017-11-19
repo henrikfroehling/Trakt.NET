@@ -9,11 +9,6 @@
 
     internal class MovieIdsObjectJsonReader : IObjectJsonReader<ITraktMovieIds>
     {
-        private const string PROPERTY_NAME_TRAKT = "trakt";
-        private const string PROPERTY_NAME_SLUG = "slug";
-        private const string PROPERTY_NAME_IMDB = "imdb";
-        private const string PROPERTY_NAME_TMDB = "tmdb";
-
         public Task<ITraktMovieIds> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,7 +48,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_TRAKT:
+                        case JsonProperties.MOVIE_IDS_PROPERTY_NAME_TRAKT:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -62,13 +57,13 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_SLUG:
+                        case JsonProperties.MOVIE_IDS_PROPERTY_NAME_SLUG:
                             traktMovieIds.Slug = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_IMDB:
+                        case JsonProperties.MOVIE_IDS_PROPERTY_NAME_IMDB:
                             traktMovieIds.Imdb = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_TMDB:
+                        case JsonProperties.MOVIE_IDS_PROPERTY_NAME_TMDB:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 

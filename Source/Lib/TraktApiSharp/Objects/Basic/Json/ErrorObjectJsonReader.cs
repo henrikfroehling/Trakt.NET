@@ -9,9 +9,6 @@
 
     internal class ErrorObjectJsonReader : IObjectJsonReader<ITraktError>
     {
-        private const string PROPERTY_NAME_ERROR = "error";
-        private const string PROPERTY_NAME_ERROR_DESCRIPTION = "error_description";
-
         public Task<ITraktError> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -51,10 +48,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_ERROR:
+                        case JsonProperties.ERROR_PROPERTY_NAME_ERROR:
                             traktError.Error = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_ERROR_DESCRIPTION:
+                        case JsonProperties.ERROR_PROPERTY_NAME_ERROR_DESCRIPTION:
                             traktError.Description = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

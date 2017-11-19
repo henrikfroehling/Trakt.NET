@@ -10,10 +10,6 @@
 
     internal class WatchedMovieObjectJsonReader : IObjectJsonReader<ITraktWatchedMovie>
     {
-        private const string PROPERTY_NAME_PLAYS = "plays";
-        private const string PROPERTY_NAME_LAST_WATCHED_AT = "last_watched_at";
-        private const string PROPERTY_NAME_MOVIE = "movie";
-
         public Task<ITraktWatchedMovie> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -55,10 +51,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_PLAYS:
+                        case JsonProperties.WATCHED_MOVIE_PROPERTY_NAME_PLAYS:
                             traktWatchedMovie.Plays = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_LAST_WATCHED_AT:
+                        case JsonProperties.WATCHED_MOVIE_PROPERTY_NAME_LAST_WATCHED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -67,7 +63,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_MOVIE:
+                        case JsonProperties.WATCHED_MOVIE_PROPERTY_NAME_MOVIE:
                             traktWatchedMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

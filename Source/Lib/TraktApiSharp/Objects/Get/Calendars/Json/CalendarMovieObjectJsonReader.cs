@@ -10,9 +10,6 @@
 
     internal class CalendarMovieObjectJsonReader : IObjectJsonReader<ITraktCalendarMovie>
     {
-        private const string PROPERTY_NAME_RELEASED = "released";
-        private const string PROPERTY_NAME_MOVIE = "movie";
-
         public Task<ITraktCalendarMovie> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,7 +50,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_RELEASED:
+                        case JsonProperties.CALENDAR_MOVIE_PROPERTY_NAME_RELEASED:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -62,7 +59,7 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_MOVIE:
+                        case JsonProperties.CALENDAR_MOVIE_PROPERTY_NAME_MOVIE:
                             traktCalendarMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

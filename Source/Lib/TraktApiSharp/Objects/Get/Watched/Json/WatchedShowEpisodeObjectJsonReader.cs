@@ -9,10 +9,6 @@
 
     internal class WatchedShowEpisodeObjectJsonReader : IObjectJsonReader<ITraktWatchedShowEpisode>
     {
-        private const string PROPERTY_NAME_NUMBER = "number";
-        private const string PROPERTY_NAME_PLAYS = "plays";
-        private const string PROPERTY_NAME_LAST_WATCHED_AT = "last_watched_at";
-
         public Task<ITraktWatchedShowEpisode> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -52,13 +48,13 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_NUMBER:
+                        case JsonProperties.WATCHED_SHOW_EPISODE_PROPERTY_NAME_NUMBER:
                             traktWatchedShowEpisode.Number = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_PLAYS:
+                        case JsonProperties.WATCHED_SHOW_EPISODE_PROPERTY_NAME_PLAYS:
                             traktWatchedShowEpisode.Plays = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_LAST_WATCHED_AT:
+                        case JsonProperties.WATCHED_SHOW_EPISODE_PROPERTY_NAME_LAST_WATCHED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 

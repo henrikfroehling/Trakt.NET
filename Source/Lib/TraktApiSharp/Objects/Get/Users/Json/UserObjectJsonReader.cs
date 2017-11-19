@@ -9,19 +9,6 @@
 
     internal class UserObjectJsonReader : IObjectJsonReader<ITraktUser>
     {
-        private const string PROPERTY_NAME_USERNAME = "username";
-        private const string PROPERTY_NAME_IS_PRIVATE = "private";
-        private const string PROPERTY_NAME_IDS = "ids";
-        private const string PROPERTY_NAME_NAME = "name";
-        private const string PROPERTY_NAME_IS_VIP = "vip";
-        private const string PROPERTY_NAME_IS_VIP_EP = "vip_ep";
-        private const string PROPERTY_NAME_JOINED_AT = "joined_at";
-        private const string PROPERTY_NAME_LOCATION = "location";
-        private const string PROPERTY_NAME_ABOUT = "about";
-        private const string PROPERTY_NAME_GENDER = "gender";
-        private const string PROPERTY_NAME_AGE = "age";
-        private const string PROPERTY_NAME_IMAGES = "images";
-
         public Task<ITraktUser> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -64,25 +51,25 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_USERNAME:
+                        case JsonProperties.USER_PROPERTY_NAME_USERNAME:
                             traktUser.Username = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_IS_PRIVATE:
+                        case JsonProperties.USER_PROPERTY_NAME_IS_PRIVATE:
                             traktUser.IsPrivate = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_IDS:
+                        case JsonProperties.USER_PROPERTY_NAME_IDS:
                             traktUser.Ids = await idsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_NAME:
+                        case JsonProperties.USER_PROPERTY_NAME_NAME:
                             traktUser.Name = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_IS_VIP:
+                        case JsonProperties.USER_PROPERTY_NAME_IS_VIP:
                             traktUser.IsVIP = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_IS_VIP_EP:
+                        case JsonProperties.USER_PROPERTY_NAME_IS_VIP_EP:
                             traktUser.IsVIP_EP = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_JOINED_AT:
+                        case JsonProperties.USER_PROPERTY_NAME_JOINED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -91,19 +78,19 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_LOCATION:
+                        case JsonProperties.USER_PROPERTY_NAME_LOCATION:
                             traktUser.Location = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_ABOUT:
+                        case JsonProperties.USER_PROPERTY_NAME_ABOUT:
                             traktUser.About = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_GENDER:
+                        case JsonProperties.USER_PROPERTY_NAME_GENDER:
                             traktUser.Gender = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_AGE:
+                        case JsonProperties.USER_PROPERTY_NAME_AGE:
                             traktUser.Age = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_IMAGES:
+                        case JsonProperties.USER_PROPERTY_NAME_IMAGES:
                             traktUser.Images = await imagesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

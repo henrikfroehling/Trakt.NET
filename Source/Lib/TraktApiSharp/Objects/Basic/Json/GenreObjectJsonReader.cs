@@ -9,9 +9,6 @@
 
     internal class GenreObjectJsonReader : IObjectJsonReader<ITraktGenre>
     {
-        private const string PROPERTY_NAME_NAME = "name";
-        private const string PROPERTY_NAME_SLUG = "slug";
-
         public Task<ITraktGenre> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -51,10 +48,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_NAME:
+                        case JsonProperties.GENRE_PROPERTY_NAME_NAME:
                             traktGenre.Name = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case PROPERTY_NAME_SLUG:
+                        case JsonProperties.GENRE_PROPERTY_NAME_SLUG:
                             traktGenre.Slug = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

@@ -9,9 +9,6 @@
 
     internal class UserCustomListItemsRemovePostResponseObjectJsonReader : IObjectJsonReader<ITraktUserCustomListItemsRemovePostResponse>
     {
-        private const string PROPERTY_NAME_DELETED = "deleted";
-        private const string PROPERTY_NAME_NOT_FOUND = "not_found";
-
         public Task<ITraktUserCustomListItemsRemovePostResponse> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,10 +50,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_DELETED:
+                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_REMOVE_POST_RESPONSE_PROPERTY_NAME_DELETED:
                             customListItemsRemovePostResponse.Deleted = await responseGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_NOT_FOUND:
+                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_REMOVE_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND:
                             customListItemsRemovePostResponse.NotFound = await responseNotFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

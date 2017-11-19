@@ -9,14 +9,6 @@
 
     internal class SyncLastActivitiesObjectJsonReader : IObjectJsonReader<ITraktSyncLastActivities>
     {
-        private const string PROPERTY_NAME_ALL = "all";
-        private const string PROPERTY_NAME_MOVIES = "movies";
-        private const string PROPERTY_NAME_SHOWS = "shows";
-        private const string PROPERTY_NAME_SEASONS = "seasons";
-        private const string PROPERTY_NAME_EPISODES = "episodes";
-        private const string PROPERTY_NAME_COMMENTS = "comments";
-        private const string PROPERTY_NAME_LISTS = "lists";
-
         public Task<ITraktSyncLastActivities> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -63,7 +55,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_ALL:
+                        case JsonProperties.SYNC_LAST_ACTIVITIES_PROPERTY_NAME_ALL:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -72,22 +64,22 @@
 
                                 break;
                             }
-                        case PROPERTY_NAME_MOVIES:
+                        case JsonProperties.SYNC_LAST_ACTIVITIES_PROPERTY_NAME_MOVIES:
                             moviesLastActivities.Movies = await moviesLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SHOWS:
+                        case JsonProperties.SYNC_LAST_ACTIVITIES_PROPERTY_NAME_SHOWS:
                             moviesLastActivities.Shows = await showsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_SEASONS:
+                        case JsonProperties.SYNC_LAST_ACTIVITIES_PROPERTY_NAME_SEASONS:
                             moviesLastActivities.Seasons = await seasonsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_EPISODES:
+                        case JsonProperties.SYNC_LAST_ACTIVITIES_PROPERTY_NAME_EPISODES:
                             moviesLastActivities.Episodes = await episodesLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_COMMENTS:
+                        case JsonProperties.SYNC_LAST_ACTIVITIES_PROPERTY_NAME_COMMENTS:
                             moviesLastActivities.Comments = await commentsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case PROPERTY_NAME_LISTS:
+                        case JsonProperties.SYNC_LAST_ACTIVITIES_PROPERTY_NAME_LISTS:
                             moviesLastActivities.Lists = await listsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -9,8 +9,6 @@
 
     internal class UserIdsObjectJsonReader : IObjectJsonReader<ITraktUserIds>
     {
-        private const string PROPERTY_NAME_SLUG = "slug";
-
         public Task<ITraktUserIds> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -50,7 +48,7 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_SLUG:
+                        case JsonProperties.USER_IDS_PROPERTY_NAME_SLUG:
                             traktUserIds.Slug = jsonReader.ReadAsString();
                             break;
                         default:

@@ -10,9 +10,6 @@
 
     internal class SyncRatingsPostResponseNotFoundShowObjectJsonReader : IObjectJsonReader<ITraktSyncRatingsPostResponseNotFoundShow>
     {
-        private const string PROPERTY_NAME_RATING = "rating";
-        private const string PROPERTY_NAME_IDS = "ids";
-
         public Task<ITraktSyncRatingsPostResponseNotFoundShow> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrEmpty(json))
@@ -53,10 +50,10 @@
 
                     switch (propertyName)
                     {
-                        case PROPERTY_NAME_RATING:
+                        case JsonProperties.SYNC_RATINGS_POST_RESPONSE_NOT_FOUND_SHOW_PROPERTY_NAME_RATING:
                             syncRatingsPostResponseNotFoundShow.Rating = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case PROPERTY_NAME_IDS:
+                        case JsonProperties.SYNC_RATINGS_POST_RESPONSE_NOT_FOUND_SHOW_PROPERTY_NAME_IDS:
                             syncRatingsPostResponseNotFoundShow.Ids = await showIdsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
