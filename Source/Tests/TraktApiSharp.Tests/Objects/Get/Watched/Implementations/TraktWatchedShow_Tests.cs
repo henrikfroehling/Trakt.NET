@@ -7,7 +7,7 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Watched.Implementations;
-    using TraktApiSharp.Objects.Get.Watched.Json;
+    using TraktApiSharp.Objects.Get.Watched.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Watched.Implementations")]

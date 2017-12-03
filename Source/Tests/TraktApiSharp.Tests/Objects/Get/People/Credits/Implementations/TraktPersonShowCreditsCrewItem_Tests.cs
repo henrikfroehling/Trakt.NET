@@ -6,7 +6,7 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.People.Credits.Implementations;
-    using TraktApiSharp.Objects.Get.People.Credits.Json;
+    using TraktApiSharp.Objects.Get.People.Credits.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.People.Credits.Implementations")]

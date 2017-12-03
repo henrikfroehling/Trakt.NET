@@ -7,7 +7,7 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Watchlist.Implementations;
-    using TraktApiSharp.Objects.Get.Watchlist.Json;
+    using TraktApiSharp.Objects.Get.Watchlist.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Watchlist.Implementations")]

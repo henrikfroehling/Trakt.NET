@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
-    using TraktApiSharp.Objects.Get.Movies.Json;
+    using TraktApiSharp.Objects.Get.Movies.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Movies.Implementations")]

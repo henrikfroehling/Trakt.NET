@@ -5,7 +5,7 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Post.Scrobbles.Responses.Implementations;
-    using TraktApiSharp.Objects.Post.Scrobbles.Responses.Json;
+    using TraktApiSharp.Objects.Post.Scrobbles.Responses.Json.Reader;
     using Xunit;
 
     [Category("Objects.Post.Scrobbles.Responses.Implementations")]
