@@ -7,7 +7,7 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Get.Syncs.Playback.Implementations;
-    using TraktApiSharp.Objects.Get.Syncs.Playback.JsonReader;
+    using TraktApiSharp.Objects.Get.Syncs.Playback.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Syncs.Playback.Implementations")]
