@@ -504,7 +504,9 @@
     <Compile Include="Objects\Get\Watchlist\Json\Reader\Factories\WatchlistItemJsonReaderFactory.cs" />
     <Compile Include="Objects\Get\Watchlist\Json\Reader\WatchlistItemArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Watchlist\Json\Reader\WatchlistItemObjectJsonReader.cs" />
+    <Compile Include="Objects\Json\AArrayJsonReader%271.cs" />
     <Compile Include="Objects\Json\AArrayJsonWriter%271.cs" />
+    <Compile Include="Objects\Json\AObjectJsonReader%271.cs" />
     <Compile Include="Objects\Json\AObjectJsonWriter%271.cs" />
     <Compile Include="Objects\Json\IArrayJsonReader%271.cs" />
     <Compile Include="Objects\Json\IArrayJsonWriter%271.cs" />

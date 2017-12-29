@@ -4,37 +4,12 @@
     using Implementations;
     using Newtonsoft.Json;
     using Objects.Json;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class MetadataObjectJsonReader : IObjectJsonReader<ITraktMetadata>
+    internal class MetadataObjectJsonReader : AObjectJsonReader<ITraktMetadata>
     {
-        public Task<ITraktMetadata> ReadObjectAsync(string json, CancellationToken cancellationToken = default)
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(ITraktMetadata));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<ITraktMetadata> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default)
-        {
-            if (stream == null)
-                return Task.FromResult(default(ITraktMetadata));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<ITraktMetadata> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        public override async Task<ITraktMetadata> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktMetadata));

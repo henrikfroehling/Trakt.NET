@@ -1,50 +1,20 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users.Lists.Json.Reader
 {
     using Enums;
-    using Episodes.Json;
     using Episodes.Json.Reader;
     using Implementations;
-    using Movies.Json;
     using Movies.Json.Reader;
     using Newtonsoft.Json;
     using Objects.Json;
-    using People.Json;
     using People.Json.Reader;
-    using Seasons.Json;
     using Seasons.Json.Reader;
-    using Shows.Json;
     using Shows.Json.Reader;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class ListItemObjectJsonReader : IObjectJsonReader<ITraktListItem>
+    internal class ListItemObjectJsonReader : AObjectJsonReader<ITraktListItem>
     {
-        public Task<ITraktListItem> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(ITraktListItem));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<ITraktListItem> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (stream == null)
-                return Task.FromResult(default(ITraktListItem));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<ITraktListItem> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<ITraktListItem> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktListItem));

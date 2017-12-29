@@ -1,48 +1,19 @@
 ﻿namespace TraktApiSharp.Objects.Get.History.Json.Reader
 {
     using Enums;
-    using Episodes.Json;
     using Episodes.Json.Reader;
     using Implementations;
-    using Movies.Json;
     using Movies.Json.Reader;
     using Newtonsoft.Json;
     using Objects.Json;
-    using Seasons.Json;
     using Seasons.Json.Reader;
-    using Shows.Json;
     using Shows.Json.Reader;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class HistoryItemObjectJsonReader : IObjectJsonReader<ITraktHistoryItem>
+    internal class HistoryItemObjectJsonReader : AObjectJsonReader<ITraktHistoryItem>
     {
-        public Task<ITraktHistoryItem> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(ITraktHistoryItem));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<ITraktHistoryItem> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (stream == null)
-                return Task.FromResult(default(ITraktHistoryItem));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<ITraktHistoryItem> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<ITraktHistoryItem> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktHistoryItem));

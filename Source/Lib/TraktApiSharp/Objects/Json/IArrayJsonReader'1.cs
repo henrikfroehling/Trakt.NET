@@ -8,10 +8,10 @@
 
     internal interface IArrayJsonReader<TReturnType>
     {
-        Task<IEnumerable<TReturnType>> ReadArrayAsync(string json, CancellationToken cancellationToken = default(CancellationToken));
+        Task<IEnumerable<TReturnType>> ReadArrayAsync(string json, CancellationToken cancellationToken = default);
 
-        Task<IEnumerable<TReturnType>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken));
+        Task<IEnumerable<TReturnType>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default);
 
-        Task<IEnumerable<TReturnType>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken));
+        Task<IEnumerable<TReturnType>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default);
     }
 }

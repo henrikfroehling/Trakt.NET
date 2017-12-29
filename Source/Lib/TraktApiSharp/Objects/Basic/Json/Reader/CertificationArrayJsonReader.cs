@@ -3,37 +3,12 @@
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Collections.Generic;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class CertificationArrayJsonReader : IArrayJsonReader<ITraktCertification>
+    internal class CertificationArrayJsonReader : AArrayJsonReader<ITraktCertification>
     {
-        public Task<IEnumerable<ITraktCertification>> ReadArrayAsync(string json, CancellationToken cancellationToken = default)
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(IEnumerable<ITraktCertification>));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadArrayAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<IEnumerable<ITraktCertification>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default)
-        {
-            if (stream == null)
-                return Task.FromResult(default(IEnumerable<ITraktCertification>));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadArrayAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<IEnumerable<ITraktCertification>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        public override async Task<IEnumerable<ITraktCertification>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(IEnumerable<ITraktCertification>));

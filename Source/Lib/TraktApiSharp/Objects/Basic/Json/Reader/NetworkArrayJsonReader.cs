@@ -3,37 +3,12 @@
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Collections.Generic;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class NetworkArrayJsonReader : IArrayJsonReader<ITraktNetwork>
+    internal class NetworkArrayJsonReader : AArrayJsonReader<ITraktNetwork>
     {
-        public Task<IEnumerable<ITraktNetwork>> ReadArrayAsync(string json, CancellationToken cancellationToken = default)
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(IEnumerable<ITraktNetwork>));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadArrayAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<IEnumerable<ITraktNetwork>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default)
-        {
-            if (stream == null)
-                return Task.FromResult(default(IEnumerable<ITraktNetwork>));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadArrayAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<IEnumerable<ITraktNetwork>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        public override async Task<IEnumerable<ITraktNetwork>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(IEnumerable<ITraktNetwork>));

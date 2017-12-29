@@ -3,37 +3,12 @@
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Collections.Generic;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class MovieArrayJsonReader : IArrayJsonReader<ITraktMovie>
+    internal class MovieArrayJsonReader : AArrayJsonReader<ITraktMovie>
     {
-        public Task<IEnumerable<ITraktMovie>> ReadArrayAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(IEnumerable<ITraktMovie>));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadArrayAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<IEnumerable<ITraktMovie>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (stream == null)
-                return Task.FromResult(default(IEnumerable<ITraktMovie>));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadArrayAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<IEnumerable<ITraktMovie>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<IEnumerable<ITraktMovie>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(IEnumerable<ITraktMovie>));
