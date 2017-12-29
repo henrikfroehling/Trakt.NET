@@ -9,7 +9,7 @@
 
     internal class NetworkArrayJsonReader : IArrayJsonReader<ITraktNetwork>
     {
-        public Task<IEnumerable<ITraktNetwork>> ReadArrayAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<IEnumerable<ITraktNetwork>> ReadArrayAsync(string json, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(json))
                 return Task.FromResult(default(IEnumerable<ITraktNetwork>));
@@ -21,7 +21,7 @@
             }
         }
 
-        public Task<IEnumerable<ITraktNetwork>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<IEnumerable<ITraktNetwork>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default)
         {
             if (stream == null)
                 return Task.FromResult(default(IEnumerable<ITraktNetwork>));
@@ -33,7 +33,7 @@
             }
         }
 
-        public async Task<IEnumerable<ITraktNetwork>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<IEnumerable<ITraktNetwork>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(IEnumerable<ITraktNetwork>));

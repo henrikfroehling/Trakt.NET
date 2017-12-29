@@ -9,7 +9,7 @@
 
     internal class StatisticsObjectJsonReader : IObjectJsonReader<ITraktStatistics>
     {
-        public Task<ITraktStatistics> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktStatistics> ReadObjectAsync(string json, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(json))
                 return Task.FromResult(default(ITraktStatistics));
@@ -21,7 +21,7 @@
             }
         }
 
-        public Task<ITraktStatistics> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktStatistics> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default)
         {
             if (stream == null)
                 return Task.FromResult(default(ITraktStatistics));
@@ -33,7 +33,7 @@
             }
         }
 
-        public async Task<ITraktStatistics> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<ITraktStatistics> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktStatistics));

@@ -10,7 +10,7 @@
 
     internal class MetadataObjectJsonReader : IObjectJsonReader<ITraktMetadata>
     {
-        public Task<ITraktMetadata> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktMetadata> ReadObjectAsync(string json, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(json))
                 return Task.FromResult(default(ITraktMetadata));
@@ -22,7 +22,7 @@
             }
         }
 
-        public Task<ITraktMetadata> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktMetadata> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default)
         {
             if (stream == null)
                 return Task.FromResult(default(ITraktMetadata));
@@ -34,7 +34,7 @@
             }
         }
 
-        public async Task<ITraktMetadata> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<ITraktMetadata> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktMetadata));

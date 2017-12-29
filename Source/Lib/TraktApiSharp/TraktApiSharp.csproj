@@ -27,6 +27,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\Build\Lib\Debug\TraktApiSharp.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,6 +38,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\Build\Lib\Release\TraktApiSharp.XML</DocumentationFile>
     <NoWarn>1591</NoWarn>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -174,6 +176,20 @@
     <Compile Include="Objects\Basic\Json\Reader\NetworkObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\Json\Reader\SearchResultArrayJsonReader.cs" />
     <Compile Include="Objects\Basic\Json\Reader\SearchResultObjectJsonReader.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CertificationArrayJsonWriter.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CertificationObjectJsonWriter.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CertificationsObjectJsonWriter.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\ErrorObjectJsonWriter.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\GenreArrayJsonWriter.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\GenreObjectJsonWriter.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\IdsObjectJsonWriter.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\ImageObjectJsonWriter.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\MetadataObjectJsonWriter.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\NetworkArrayJsonWriter.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\NetworkObjectJsonWriter.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\RatingObjectJsonWriter.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\SharingObjectJsonWriter.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\StatisticsObjectJsonWriter.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarMovie.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarShow.cs" />
     <Compile Include="Objects\Get\Calendars\Json\Reader\Factories\CalendarMovieJsonReaderFactory.cs" />
@@ -489,6 +505,7 @@
     <Compile Include="Objects\Get\Watchlist\Json\Reader\WatchlistItemArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Watchlist\Json\Reader\WatchlistItemObjectJsonReader.cs" />
     <Compile Include="Objects\Json\IArrayJsonReader%271.cs" />
+    <Compile Include="Objects\Json\IArrayJsonWriter%271.cs" />
     <Compile Include="Objects\Json\IJsonReaderFactory%271.cs" />
     <Compile Include="Objects\Json\IObjectJsonReader%271.cs" />
     <Compile Include="Objects\Json\IObjectJsonWriter%271.cs" />

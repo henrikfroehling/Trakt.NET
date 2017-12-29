@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Basic.Json.Reader
 {
-    using Get.People.Json;
     using Get.People.Json.Reader;
     using Implementations;
     using Newtonsoft.Json;
@@ -11,7 +10,7 @@
 
     internal class CrewMemberObjectJsonReader : IObjectJsonReader<ITraktCrewMember>
     {
-        public Task<ITraktCrewMember> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktCrewMember> ReadObjectAsync(string json, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(json))
                 return Task.FromResult(default(ITraktCrewMember));
@@ -23,7 +22,7 @@
             }
         }
 
-        public Task<ITraktCrewMember> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktCrewMember> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default)
         {
             if (stream == null)
                 return Task.FromResult(default(ITraktCrewMember));
@@ -35,7 +34,7 @@
             }
         }
 
-        public async Task<ITraktCrewMember> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<ITraktCrewMember> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktCrewMember));

@@ -9,7 +9,7 @@
 
     internal class ImageObjectJsonReader : IObjectJsonReader<ITraktImage>
     {
-        public Task<ITraktImage> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktImage> ReadObjectAsync(string json, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(json))
                 return Task.FromResult(default(ITraktImage));
@@ -21,7 +21,7 @@
             }
         }
 
-        public Task<ITraktImage> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktImage> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default)
         {
             if (stream == null)
                 return Task.FromResult(default(ITraktImage));
@@ -33,7 +33,7 @@
             }
         }
 
-        public async Task<ITraktImage> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<ITraktImage> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktImage));

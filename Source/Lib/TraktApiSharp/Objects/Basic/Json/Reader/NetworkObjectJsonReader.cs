@@ -9,7 +9,7 @@
 
     internal class NetworkObjectJsonReader : IObjectJsonReader<ITraktNetwork>
     {
-        public Task<ITraktNetwork> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktNetwork> ReadObjectAsync(string json, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(json))
                 return Task.FromResult(default(ITraktNetwork));
@@ -21,7 +21,7 @@
             }
         }
 
-        public Task<ITraktNetwork> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktNetwork> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default)
         {
             if (stream == null)
                 return Task.FromResult(default(ITraktNetwork));
@@ -33,7 +33,7 @@
             }
         }
 
-        public async Task<ITraktNetwork> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<ITraktNetwork> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktNetwork));

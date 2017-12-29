@@ -9,7 +9,7 @@
 
     internal class SearchResultArrayJsonReader : IArrayJsonReader<ITraktSearchResult>
     {
-        public Task<IEnumerable<ITraktSearchResult>> ReadArrayAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<IEnumerable<ITraktSearchResult>> ReadArrayAsync(string json, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(json))
                 return Task.FromResult(default(IEnumerable<ITraktSearchResult>));
@@ -21,7 +21,7 @@
             }
         }
 
-        public Task<IEnumerable<ITraktSearchResult>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<IEnumerable<ITraktSearchResult>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default)
         {
             if (stream == null)
                 return Task.FromResult(default(IEnumerable<ITraktSearchResult>));
@@ -33,7 +33,7 @@
             }
         }
 
-        public async Task<IEnumerable<ITraktSearchResult>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<IEnumerable<ITraktSearchResult>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(IEnumerable<ITraktSearchResult>));

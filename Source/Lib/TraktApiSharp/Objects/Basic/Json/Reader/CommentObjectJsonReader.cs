@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Basic.Json.Reader
 {
-    using Get.Users.Json;
     using Get.Users.Json.Reader;
     using Implementations;
     using Newtonsoft.Json;
@@ -11,7 +10,7 @@
 
     internal class CommentObjectJsonReader : IObjectJsonReader<ITraktComment>
     {
-        public Task<ITraktComment> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktComment> ReadObjectAsync(string json, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(json))
                 return Task.FromResult(default(ITraktComment));
@@ -23,7 +22,7 @@
             }
         }
 
-        public Task<ITraktComment> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktComment> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default)
         {
             if (stream == null)
                 return Task.FromResult(default(ITraktComment));
@@ -35,7 +34,7 @@
             }
         }
 
-        public async Task<ITraktComment> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<ITraktComment> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktComment));

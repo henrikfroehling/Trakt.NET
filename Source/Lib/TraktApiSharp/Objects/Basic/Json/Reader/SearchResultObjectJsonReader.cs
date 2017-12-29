@@ -1,15 +1,10 @@
 ﻿namespace TraktApiSharp.Objects.Basic.Json.Reader
 {
     using Enums;
-    using Get.Episodes.Json;
     using Get.Episodes.Json.Reader;
-    using Get.Movies.Json;
     using Get.Movies.Json.Reader;
-    using Get.People.Json;
     using Get.People.Json.Reader;
-    using Get.Shows.Json;
     using Get.Shows.Json.Reader;
-    using Get.Users.Lists.Json;
     using Get.Users.Lists.Json.Reader;
     using Implementations;
     using Newtonsoft.Json;

@@ -9,7 +9,7 @@
 
     internal class CastMemberArrayJsonReader : IArrayJsonReader<ITraktCastMember>
     {
-        public Task<IEnumerable<ITraktCastMember>> ReadArrayAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<IEnumerable<ITraktCastMember>> ReadArrayAsync(string json, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(json))
                 return Task.FromResult(default(IEnumerable<ITraktCastMember>));
@@ -21,7 +21,7 @@
             }
         }
 
-        public Task<IEnumerable<ITraktCastMember>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<IEnumerable<ITraktCastMember>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default)
         {
             if (stream == null)
                 return Task.FromResult(default(IEnumerable<ITraktCastMember>));
@@ -33,7 +33,7 @@
             }
         }
 
-        public async Task<IEnumerable<ITraktCastMember>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<IEnumerable<ITraktCastMember>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(IEnumerable<ITraktCastMember>));

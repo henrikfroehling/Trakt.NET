@@ -9,7 +9,7 @@
 
     internal class CertificationsObjectJsonReader : IObjectJsonReader<ITraktCertifications>
     {
-        public Task<ITraktCertifications> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktCertifications> ReadObjectAsync(string json, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(json))
                 return Task.FromResult(default(ITraktCertifications));
@@ -21,7 +21,7 @@
             }
         }
 
-        public Task<ITraktCertifications> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ITraktCertifications> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default)
         {
             if (stream == null)
                 return Task.FromResult(default(ITraktCertifications));
@@ -33,7 +33,7 @@
             }
         }
 
-        public async Task<ITraktCertifications> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<ITraktCertifications> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktCertifications));

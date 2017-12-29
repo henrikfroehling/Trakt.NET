@@ -9,7 +9,7 @@
 
     internal class CommentArrayJsonReader : IArrayJsonReader<ITraktComment>
     {
-        public Task<IEnumerable<ITraktComment>> ReadArrayAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<IEnumerable<ITraktComment>> ReadArrayAsync(string json, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(json))
                 return Task.FromResult(default(IEnumerable<ITraktComment>));
@@ -21,7 +21,7 @@
             }
         }
 
-        public Task<IEnumerable<ITraktComment>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<IEnumerable<ITraktComment>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default)
         {
             if (stream == null)
                 return Task.FromResult(default(IEnumerable<ITraktComment>));
@@ -33,7 +33,7 @@
             }
         }
 
-        public async Task<IEnumerable<ITraktComment>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<IEnumerable<ITraktComment>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(IEnumerable<ITraktComment>));
