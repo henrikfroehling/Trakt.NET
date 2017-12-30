@@ -1,9 +1,9 @@
 ﻿namespace TraktApiSharp.Objects.Json
 {
-    internal interface IJsonReaderFactory<TReturnType>
+    internal interface IJsonReaderFactory<TObjectType>
     {
-        IObjectJsonReader<TReturnType> CreateObjectReader();
+        IObjectJsonReader<TObjectType> CreateObjectReader();
 
-        IArrayJsonReader<TReturnType> CreateArrayReader();
+        IArrayJsonReader<TObjectType> CreateArrayReader();
     }
 }
