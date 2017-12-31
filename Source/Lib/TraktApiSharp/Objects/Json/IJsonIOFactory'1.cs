@@ -2,6 +2,5 @@
 {
     internal interface IJsonIOFactory<TObjectType> : IJsonReaderFactory<TObjectType>, IJsonWriterFactory<TObjectType>
     {
-
     }
 }

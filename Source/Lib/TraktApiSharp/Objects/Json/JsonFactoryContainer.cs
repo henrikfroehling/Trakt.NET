@@ -64,225 +64,239 @@
 
     internal static class JsonFactoryContainer
     {
-        private static readonly Dictionary<Type, object> s_readerFactories = new Dictionary<Type, object>();
+        private static readonly Dictionary<Type, object> s_jsonIOFactories = new Dictionary<Type, object>();
 
         public static IObjectJsonReader<TReturnType> CreateObjectReader<TReturnType>()
         {
-            var factory = GetReaderFactory<TReturnType>();
+            var factory = GetJsonIOFactory<TReturnType>();
             Debug.Assert(factory != null, $"factory for {nameof(TReturnType)} should not be null");
             return factory.CreateObjectReader();
         }
 
         public static IArrayJsonReader<TReturnType> CreateArrayReader<TReturnType>()
         {
-            var factory = GetReaderFactory<TReturnType>();
+            var factory = GetJsonIOFactory<TReturnType>();
             Debug.Assert(factory != null, $"factory for {nameof(TReturnType)} should not be null");
             return factory.CreateArrayReader();
         }
 
-        public static IJsonIOFactory<TReturnType> GetReaderFactory<TReturnType>()
+        public static IObjectJsonWriter<TObjectType> CreateObjectWriter<TObjectType>()
+        {
+            var factory = GetJsonIOFactory<TObjectType>();
+            Debug.Assert(factory != null, $"factory for {nameof(TObjectType)} should not be null");
+            return factory.CreateObjectWriter();
+        }
+
+        public static IArrayJsonWriter<TObjectType> CreateArrayWriter<TObjectType>()
+        {
+            var factory = GetJsonIOFactory<TObjectType>();
+            Debug.Assert(factory != null, $"factory for {nameof(TObjectType)} should not be null");
+            return factory.CreateArrayWriter();
+        }
+
+        public static IJsonIOFactory<TReturnType> GetJsonIOFactory<TReturnType>()
         {
             var type = typeof(TReturnType);
 
-            if (!s_readerFactories.ContainsKey(type))
-                throw new NotSupportedException($"A json reader factory for {nameof(TReturnType)} is not supported.");
+            if (!s_jsonIOFactories.ContainsKey(type))
+                throw new NotSupportedException($"A json io factory for {nameof(TReturnType)} is not supported.");
 
-            return (IJsonIOFactory<TReturnType>)s_readerFactories[type];
+            return (IJsonIOFactory<TReturnType>)s_jsonIOFactories[type];
         }
 
         static JsonFactoryContainer()
         {
             // basic objects
-            s_readerFactories.Add(typeof(ITraktCastAndCrew), new CastAndCrewJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktCastMember), new CastMemberJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktCertification), new CertificationJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktCertifications), new CertificationsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktComment), new CommentJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktCrew), new CrewJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktCrewMember), new CrewMemberJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktError), new ErrorJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktGenre), new GenreJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktIds), new IdsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktImage), new ImageJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktMetadata), new MetadataJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktNetwork), new NetworkJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktRating), new RatingJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSearchResult), new SearchResultJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSharing), new SharingJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktStatistics), new StatisticsJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktCastAndCrew), new CastAndCrewJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktCastMember), new CastMemberJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktCertification), new CertificationJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktCertifications), new CertificationsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktComment), new CommentJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktCrew), new CrewJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktCrewMember), new CrewMemberJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktError), new ErrorJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktGenre), new GenreJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktIds), new IdsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktImage), new ImageJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktMetadata), new MetadataJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktNetwork), new NetworkJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktRating), new RatingJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSearchResult), new SearchResultJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSharing), new SharingJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktStatistics), new StatisticsJsonIOFactory());
 
             // calendar objects
-            s_readerFactories.Add(typeof(ITraktCalendarMovie), new CalendarMovieJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktCalendarShow), new CalendarShowJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktCalendarMovie), new CalendarMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktCalendarShow), new CalendarShowJsonIOFactory());
 
             // checkin post response objects
-            s_readerFactories.Add(typeof(ITraktCheckinPostErrorResponse), new CheckinPostErrorResponseJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktEpisodeCheckinPostResponse), new EpisodeCheckinPostResponseJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktMovieCheckinPostResponse), new MovieCheckinPostResponseJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktCheckinPostErrorResponse), new CheckinPostErrorResponseJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktEpisodeCheckinPostResponse), new EpisodeCheckinPostResponseJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktMovieCheckinPostResponse), new MovieCheckinPostResponseJsonIOFactory());
 
             // collection objects
-            s_readerFactories.Add(typeof(ITraktCollectionShowEpisode), new CollectionShowEpisodeJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktCollectionShowSeason), new CollectionShowSeasonJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktCollectionShow), new CollectionShowJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktCollectionMovie), new CollectionMovieJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktCollectionShowEpisode), new CollectionShowEpisodeJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktCollectionShowSeason), new CollectionShowSeasonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktCollectionShow), new CollectionShowJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktCollectionMovie), new CollectionMovieJsonIOFactory());
 
             // comment post response objects
-            s_readerFactories.Add(typeof(ITraktCommentPostResponse), new CommentPostResponseJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktCommentPostResponse), new CommentPostResponseJsonIOFactory());
 
             // episode objects
-            s_readerFactories.Add(typeof(ITraktEpisode), new EpisodeJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktEpisodeIds), new EpisodeIdsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktEpisodeTranslation), new EpisodeTranslationJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktEpisodeCollectionProgress), new EpisodeCollectionProgressJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktEpisodeWatchedProgress), new EpisodeWatchedProgressJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktEpisode), new EpisodeJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktEpisodeIds), new EpisodeIdsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktEpisodeTranslation), new EpisodeTranslationJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktEpisodeCollectionProgress), new EpisodeCollectionProgressJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktEpisodeWatchedProgress), new EpisodeWatchedProgressJsonIOFactory());
 
             // history objects
-            s_readerFactories.Add(typeof(ITraktHistoryItem), new HistoryItemJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktHistoryItem), new HistoryItemJsonIOFactory());
 
             // movie objects
-            s_readerFactories.Add(typeof(ITraktMovie), new MovieJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktMovieAlias), new MovieAliasJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktMovieIds), new MovieIdsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktMovieRelease), new MovieReleaseJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktMovieTranslation), new MovieTranslationJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktBoxOfficeMovie), new BoxOfficeMovieJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktMostAnticipatedMovie), new MostAnticipatedMovieJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktMostPWCMovie), new MostPWCMovieJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktRecentlyUpdatedMovie), new RecentlyUpdatedMovieJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktTrendingMovie), new TrendingMovieJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktMovie), new MovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktMovieAlias), new MovieAliasJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktMovieIds), new MovieIdsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktMovieRelease), new MovieReleaseJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktMovieTranslation), new MovieTranslationJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktBoxOfficeMovie), new BoxOfficeMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktMostAnticipatedMovie), new MostAnticipatedMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktMostPWCMovie), new MostPWCMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktRecentlyUpdatedMovie), new RecentlyUpdatedMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktTrendingMovie), new TrendingMovieJsonIOFactory());
 
             // people objects
-            s_readerFactories.Add(typeof(ITraktPerson), new PersonJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktPersonIds), new PersonIdsJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPerson), new PersonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPersonIds), new PersonIdsJsonIOFactory());
 
             // people credit objects
-            s_readerFactories.Add(typeof(ITraktPersonMovieCredits), new PersonMovieCreditsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktPersonMovieCreditsCastItem), new PersonMovieCreditsCastItemJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktPersonMovieCreditsCrew), new PersonMovieCreditsCrewJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktPersonMovieCreditsCrewItem), new PersonMovieCreditsCrewItemJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktPersonShowCredits), new PersonShowCreditsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktPersonShowCreditsCastItem), new PersonShowCreditsCastItemJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktPersonShowCreditsCrew), new PersonShowCreditsCrewJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktPersonShowCreditsCrewItem), new PersonShowCreditsCrewItemJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPersonMovieCredits), new PersonMovieCreditsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPersonMovieCreditsCastItem), new PersonMovieCreditsCastItemJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPersonMovieCreditsCrew), new PersonMovieCreditsCrewJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPersonMovieCreditsCrewItem), new PersonMovieCreditsCrewItemJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPersonShowCredits), new PersonShowCreditsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPersonShowCreditsCastItem), new PersonShowCreditsCastItemJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPersonShowCreditsCrew), new PersonShowCreditsCrewJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPersonShowCreditsCrewItem), new PersonShowCreditsCrewItemJsonIOFactory());
 
             // post response objects
-            s_readerFactories.Add(typeof(ITraktPostResponseNotFoundEpisode), new PostResponseNotFoundEpisodeJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktPostResponseNotFoundMovie), new PostResponseNotFoundMovieJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktPostResponseNotFoundPerson), new PostResponseNotFoundPersonJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktPostResponseNotFoundSeason), new PostResponseNotFoundSeasonJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktPostResponseNotFoundShow), new PostResponseNotFoundShowJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPostResponseNotFoundEpisode), new PostResponseNotFoundEpisodeJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPostResponseNotFoundMovie), new PostResponseNotFoundMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPostResponseNotFoundPerson), new PostResponseNotFoundPersonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPostResponseNotFoundSeason), new PostResponseNotFoundSeasonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPostResponseNotFoundShow), new PostResponseNotFoundShowJsonIOFactory());
 
             // rating objects
-            s_readerFactories.Add(typeof(ITraktRatingsItem), new RatingsItemJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktRatingsItem), new RatingsItemJsonIOFactory());
 
             // season objects
-            s_readerFactories.Add(typeof(ITraktSeason), new SeasonJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSeasonIds), new SeasonIdsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSeasonCollectionProgress), new SeasonCollectionProgressJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSeasonWatchedProgress), new SeasonWatchedProgressJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSeason), new SeasonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSeasonIds), new SeasonIdsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSeasonCollectionProgress), new SeasonCollectionProgressJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSeasonWatchedProgress), new SeasonWatchedProgressJsonIOFactory());
 
             // scrobble post response objects
-            s_readerFactories.Add(typeof(ITraktEpisodeScrobblePostResponse), new EpisodeScrobblePostResponseJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktMovieScrobblePostResponse), new MovieScrobblePostResponseJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktEpisodeScrobblePostResponse), new EpisodeScrobblePostResponseJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktMovieScrobblePostResponse), new MovieScrobblePostResponseJsonIOFactory());
 
             // show objects
-            s_readerFactories.Add(typeof(ITraktShow), new ShowJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktShowAirs), new ShowAirsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktShowAlias), new ShowAliasJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktShowIds), new ShowIdsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktShowTranslation), new ShowTranslationJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktShowCollectionProgress), new ShowCollectionProgressJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktShowWatchedProgress), new ShowWatchedProgressJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktMostAnticipatedShow), new MostAnticipatedShowJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktMostPWCShow), new MostPWCShowJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktRecentlyUpdatedShow), new RecentlyUpdatedShowJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktTrendingShow), new TrendingShowJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktShow), new ShowJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktShowAirs), new ShowAirsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktShowAlias), new ShowAliasJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktShowIds), new ShowIdsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktShowTranslation), new ShowTranslationJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktShowCollectionProgress), new ShowCollectionProgressJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktShowWatchedProgress), new ShowWatchedProgressJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktMostAnticipatedShow), new MostAnticipatedShowJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktMostPWCShow), new MostPWCShowJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktRecentlyUpdatedShow), new RecentlyUpdatedShowJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktTrendingShow), new TrendingShowJsonIOFactory());
 
             // sync activities objects
-            s_readerFactories.Add(typeof(ITraktSyncLastActivities), new SyncLastActivitiesJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncCommentsLastActivities), new SyncCommentsLastActivitiesJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncEpisodesLastActivities), new SyncEpisodesLastActivitiesJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncListsLastActivities), new SyncListsLastActivitiesJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncMoviesLastActivities), new SyncMoviesLastActivitiesJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncSeasonsLastActivities), new SyncSeasonsLastActivitiesJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncShowsLastActivities), new SyncShowsLastActivitiesJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncLastActivities), new SyncLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncCommentsLastActivities), new SyncCommentsLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncEpisodesLastActivities), new SyncEpisodesLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncListsLastActivities), new SyncListsLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncMoviesLastActivities), new SyncMoviesLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncSeasonsLastActivities), new SyncSeasonsLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncShowsLastActivities), new SyncShowsLastActivitiesJsonIOFactory());
 
             // sync collection post response objects
-            s_readerFactories.Add(typeof(ITraktSyncCollectionPostResponse), new SyncCollectionPostResponseJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncCollectionRemovePostResponse), new SyncCollectionRemovePostResponseJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPostResponse), new SyncCollectionPostResponseJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncCollectionRemovePostResponse), new SyncCollectionRemovePostResponseJsonIOFactory());
 
             // sync history post response objects
-            s_readerFactories.Add(typeof(ITraktSyncHistoryPostResponse), new SyncHistoryPostResponseJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncHistoryRemovePostResponse), new SyncHistoryRemovePostResponseJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncHistoryRemovePostResponseGroup), new SyncHistoryRemovePostResponseGroupJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncHistoryRemovePostResponseNotFoundGroup), new SyncHistoryRemovePostResponseNotFoundGroupJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncHistoryPostResponse), new SyncHistoryPostResponseJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncHistoryRemovePostResponse), new SyncHistoryRemovePostResponseJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncHistoryRemovePostResponseGroup), new SyncHistoryRemovePostResponseGroupJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncHistoryRemovePostResponseNotFoundGroup), new SyncHistoryRemovePostResponseNotFoundGroupJsonIOFactory());
 
             // sync rating post response objects
-            s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponse), new SyncRatingsPostResponseJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundEpisode), new SyncRatingsPostResponseNotFoundEpisodeJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundGroup), new SyncRatingsPostResponseNotFoundGroupJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundMovie), new SyncRatingsPostResponseNotFoundMovieJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundSeason), new SyncRatingsPostResponseNotFoundSeasonJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundShow), new SyncRatingsPostResponseNotFoundShowJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncRatingsRemovePostResponse), new SyncRatingsRemovePostResponseJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostResponse), new SyncRatingsPostResponseJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundEpisode), new SyncRatingsPostResponseNotFoundEpisodeJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundGroup), new SyncRatingsPostResponseNotFoundGroupJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundMovie), new SyncRatingsPostResponseNotFoundMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundSeason), new SyncRatingsPostResponseNotFoundSeasonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundShow), new SyncRatingsPostResponseNotFoundShowJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRatingsRemovePostResponse), new SyncRatingsRemovePostResponseJsonIOFactory());
 
             // sync playback objects
-            s_readerFactories.Add(typeof(ITraktSyncPlaybackProgressItem), new SyncPlaybackProgressItemJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncPlaybackProgressItem), new SyncPlaybackProgressItemJsonIOFactory());
 
             // sync response objects
-            s_readerFactories.Add(typeof(ITraktSyncPostResponseGroup), new SyncPostResponseGroupJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncPostResponseNotFoundGroup), new SyncPostResponseNotFoundGroupJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncPostResponseGroup), new SyncPostResponseGroupJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncPostResponseNotFoundGroup), new SyncPostResponseNotFoundGroupJsonIOFactory());
 
             // sync watchlist post response objects
-            s_readerFactories.Add(typeof(ITraktSyncWatchlistPostResponse), new SyncWatchlistPostResponseJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSyncWatchlistRemovePostResponse), new SyncWatchlistRemovePostResponseJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncWatchlistPostResponse), new SyncWatchlistPostResponseJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncWatchlistRemovePostResponse), new SyncWatchlistRemovePostResponseJsonIOFactory());
 
             // user custom list items post response objects
-            s_readerFactories.Add(typeof(ITraktUserCustomListItemsPostResponse), new UserCustomListItemsPostResponseJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserCustomListItemsPostResponseGroup), new UserCustomListItemsPostResponseGroupJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserCustomListItemsPostResponseNotFoundGroup), new UserCustomListItemsPostResponseNotFoundGroupJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserCustomListItemsRemovePostResponse), new UserCustomListItemsRemovePostResponseJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserCustomListItemsPostResponse), new UserCustomListItemsPostResponseJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserCustomListItemsPostResponseGroup), new UserCustomListItemsPostResponseGroupJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserCustomListItemsPostResponseNotFoundGroup), new UserCustomListItemsPostResponseNotFoundGroupJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserCustomListItemsRemovePostResponse), new UserCustomListItemsRemovePostResponseJsonIOFactory());
 
             // user objects
-            s_readerFactories.Add(typeof(ITraktUser), new UserJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserComment), new UserCommentJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserFollower), new UserFollowerJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserFollowRequest), new UserFollowRequestJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserFriend), new UserFriendJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserHiddenItem), new UserHiddenItemJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserIds), new UserIdsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserImages), new UserImagesJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserLikeItem), new UserLikeItemJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserSettings), new UserSettingsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserWatchingItem), new UserWatchingItemJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktAccountSettings), new AccountSettingsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktSharingText), new SharingTextJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUser), new UserJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserComment), new UserCommentJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserFollower), new UserFollowerJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserFollowRequest), new UserFollowRequestJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserFriend), new UserFriendJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserHiddenItem), new UserHiddenItemJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserIds), new UserIdsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserImages), new UserImagesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserLikeItem), new UserLikeItemJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserSettings), new UserSettingsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserWatchingItem), new UserWatchingItemJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktAccountSettings), new AccountSettingsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSharingText), new SharingTextJsonIOFactory());
 
             // user list objects
-            s_readerFactories.Add(typeof(ITraktList), new ListJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktListIds), new ListIdsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktListItem), new ListItemJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktList), new ListJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktListIds), new ListIdsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktListItem), new ListItemJsonIOFactory());
 
             // user response post objects
-            s_readerFactories.Add(typeof(ITraktUserFollowUserPostResponse), new UserFollowUserPostResponseJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserFollowUserPostResponse), new UserFollowUserPostResponseJsonIOFactory());
 
             // user statistic objects
-            s_readerFactories.Add(typeof(ITraktUserStatistics), new UserStatisticsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserEpisodesStatistics), new UserEpisodesStatisticsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserMoviesStatistics), new UserMoviesStatisticsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserNetworkStatistics), new UserNetworkStatisticsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserRatingsStatistics), new UserRatingsStatisticsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserSeasonsStatistics), new UserSeasonsStatisticsJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktUserShowsStatistics), new UserShowsStatisticsJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserStatistics), new UserStatisticsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserEpisodesStatistics), new UserEpisodesStatisticsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserMoviesStatistics), new UserMoviesStatisticsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserNetworkStatistics), new UserNetworkStatisticsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserRatingsStatistics), new UserRatingsStatisticsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserSeasonsStatistics), new UserSeasonsStatisticsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserShowsStatistics), new UserShowsStatisticsJsonIOFactory());
 
             // watched objects
-            s_readerFactories.Add(typeof(ITraktWatchedShowEpisode), new WatchedShowEpisodeJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktWatchedShowSeason), new WatchedShowSeasonJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktWatchedShow), new WatchedShowJsonReaderFactory());
-            s_readerFactories.Add(typeof(ITraktWatchedMovie), new WatchedMovieJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktWatchedShowEpisode), new WatchedShowEpisodeJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktWatchedShowSeason), new WatchedShowSeasonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktWatchedShow), new WatchedShowJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktWatchedMovie), new WatchedMovieJsonIOFactory());
 
             // watchlist objects
-            s_readerFactories.Add(typeof(ITraktWatchlistItem), new WatchlistItemJsonReaderFactory());
+            s_jsonIOFactories.Add(typeof(ITraktWatchlistItem), new WatchlistItemJsonIOFactory());
         }
     }
 }
