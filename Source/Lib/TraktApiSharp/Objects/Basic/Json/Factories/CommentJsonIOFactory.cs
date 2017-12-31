@@ -9,14 +9,8 @@
 
         public IArrayJsonReader<ITraktComment> CreateArrayReader() => new CommentArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktComment> CreateObjectWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktComment> CreateObjectWriter() => throw new System.NotImplementedException();
 
-        public IArrayJsonWriter<ITraktComment> CreateArrayWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IArrayJsonWriter<ITraktComment> CreateArrayWriter() => throw new System.NotImplementedException();
     }
 }

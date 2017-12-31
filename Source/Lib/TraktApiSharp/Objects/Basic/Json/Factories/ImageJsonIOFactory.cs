@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Basic.Json.Factories
 {
     using Objects.Basic.Json.Reader;
+    using Objects.Basic.Json.Writer;
     using Objects.Json;
     using System;
 
@@ -9,18 +10,11 @@
         public IObjectJsonReader<ITraktImage> CreateObjectReader() => new ImageObjectJsonReader();
 
         public IArrayJsonReader<ITraktImage> CreateArrayReader()
-        {
-            throw new NotSupportedException($"A array json reader for {nameof(ITraktImage)} is not supported.");
-        }
+            => throw new NotSupportedException($"A array json reader for {nameof(ITraktImage)} is not supported.");
 
-        public IObjectJsonWriter<ITraktImage> CreateObjectWriter()
-        {
-            throw new NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktImage> CreateObjectWriter() => new ImageObjectJsonWriter();
 
         public IArrayJsonWriter<ITraktImage> CreateArrayWriter()
-        {
-            throw new NotImplementedException();
-        }
+            => throw new NotSupportedException($"A array json writer for {nameof(ITraktImage)} is not supported.");
     }
 }

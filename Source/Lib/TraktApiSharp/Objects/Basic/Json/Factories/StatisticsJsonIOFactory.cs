@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Basic.Json.Factories
 {
     using Objects.Basic.Json.Reader;
+    using Objects.Basic.Json.Writer;
     using Objects.Json;
     using System;
 
@@ -9,18 +10,11 @@
         public IObjectJsonReader<ITraktStatistics> CreateObjectReader() => new StatisticsObjectJsonReader();
 
         public IArrayJsonReader<ITraktStatistics> CreateArrayReader()
-        {
-            throw new NotSupportedException($"A array json reader for {nameof(ITraktStatistics)} is not supported.");
-        }
+            => throw new NotSupportedException($"A array json reader for {nameof(ITraktStatistics)} is not supported.");
 
-        public IObjectJsonWriter<ITraktStatistics> CreateObjectWriter()
-        {
-            throw new NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktStatistics> CreateObjectWriter() => new StatisticsObjectJsonWriter();
 
         public IArrayJsonWriter<ITraktStatistics> CreateArrayWriter()
-        {
-            throw new NotImplementedException();
-        }
+            => throw new NotSupportedException($"A array json reader for {nameof(ITraktStatistics)} is not supported.");
     }
 }

@@ -9,14 +9,8 @@
 
         public IArrayJsonReader<ITraktSearchResult> CreateArrayReader() => new SearchResultArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktSearchResult> CreateObjectWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktSearchResult> CreateObjectWriter() => throw new System.NotImplementedException();
 
-        public IArrayJsonWriter<ITraktSearchResult> CreateArrayWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IArrayJsonWriter<ITraktSearchResult> CreateArrayWriter() => throw new System.NotImplementedException();
     }
 }

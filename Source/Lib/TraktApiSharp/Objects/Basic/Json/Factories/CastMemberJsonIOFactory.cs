@@ -9,14 +9,8 @@
 
         public IArrayJsonReader<ITraktCastMember> CreateArrayReader() => new CastMemberArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktCastMember> CreateObjectWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktCastMember> CreateObjectWriter() => throw new System.NotImplementedException();
 
-        public IArrayJsonWriter<ITraktCastMember> CreateArrayWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IArrayJsonWriter<ITraktCastMember> CreateArrayWriter() => throw new System.NotImplementedException();
     }
 }
