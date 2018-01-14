@@ -226,6 +226,15 @@
     <Compile Include="Objects\Get\Episodes\Json\Factories\EpisodeJsonIOFactory.cs" />
     <Compile Include="Objects\Get\Episodes\Json\Factories\EpisodeTranslationJsonIOFactory.cs" />
     <Compile Include="Objects\Get\Episodes\Json\Factories\EpisodeWatchedProgressJsonIOFactory.cs" />
+    <Compile Include="Objects\Get\Episodes\Json\Writer\EpisodeArrayJsonWriter.cs" />
+    <Compile Include="Objects\Get\Episodes\Json\Writer\EpisodeCollectionProgressArrayJsonWriter.cs" />
+    <Compile Include="Objects\Get\Episodes\Json\Writer\EpisodeCollectionProgressObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Episodes\Json\Writer\EpisodeIdsObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Episodes\Json\Writer\EpisodeObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Episodes\Json\Writer\EpisodeTranslationArrayJsonWriter.cs" />
+    <Compile Include="Objects\Get\Episodes\Json\Writer\EpisodeTranslationObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Episodes\Json\Writer\EpisodeWatchedProgressArrayJsonWriter.cs" />
+    <Compile Include="Objects\Get\Episodes\Json\Writer\EpisodeWatchedProgressObjectJsonWriter.cs" />
     <Compile Include="Objects\Get\History\ITraktHistoryItem.cs" />
     <Compile Include="Objects\Get\History\Json\Factories\HistoryItemJsonIOFactory.cs" />
     <Compile Include="Objects\Get\History\Json\Reader\HistoryItemArrayJsonReader.cs" />
@@ -518,6 +527,7 @@
     <Compile Include="Objects\Json\JsonProperties.cs" />
     <Compile Include="Objects\Json\JsonReaderHelper.cs" />
     <Compile Include="Objects\Json\JsonFactoryContainer.cs" />
+    <Compile Include="Objects\Json\JsonWriterHelper.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\ITraktCheckinPostErrorResponse.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\ITraktCheckinPostResponse.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\ITraktEpisodeCheckinPostResponse.cs" />

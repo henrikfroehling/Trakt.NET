@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.Episodes.Json.Factories
 {
     using Get.Episodes.Json.Reader;
+    using Get.Episodes.Json.Writer;
     using Objects.Json;
 
     internal class EpisodeTranslationJsonIOFactory : IJsonIOFactory<ITraktEpisodeTranslation>
@@ -9,14 +10,8 @@
 
         public IArrayJsonReader<ITraktEpisodeTranslation> CreateArrayReader() => new EpisodeTranslationArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktEpisodeTranslation> CreateObjectWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktEpisodeTranslation> CreateObjectWriter() => new EpisodeTranslationObjectJsonWriter();
 
-        public IArrayJsonWriter<ITraktEpisodeTranslation> CreateArrayWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IArrayJsonWriter<ITraktEpisodeTranslation> CreateArrayWriter() => new EpisodeTranslationArrayJsonWriter();
     }
 }

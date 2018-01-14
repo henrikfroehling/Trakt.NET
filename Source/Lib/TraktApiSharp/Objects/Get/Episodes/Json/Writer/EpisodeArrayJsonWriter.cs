@@ -1,0 +1,26 @@
+﻿namespace TraktApiSharp.Objects.Get.Episodes.Json.Writer
+{
+    using Newtonsoft.Json;
+    using Objects.Json;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    internal class EpisodeArrayJsonWriter : AArrayJsonWriter<ITraktEpisode>
+    {
+        public override async Task WriteArrayAsync(JsonTextWriter jsonWriter, IEnumerable<ITraktEpisode> objects, CancellationToken cancellationToken = default)
+        {
+            if (jsonWriter == null)
+                throw new ArgumentNullException(nameof(jsonWriter));
+
+            var episodeObjectJsonWriter = new EpisodeObjectJsonWriter();
+            await jsonWriter.WriteStartArrayAsync(cancellationToken);
+
+            foreach (ITraktEpisode traktEpisode in objects)
+                await episodeObjectJsonWriter.WriteObjectAsync(jsonWriter, traktEpisode, cancellationToken);
+
+            await jsonWriter.WriteEndArrayAsync(cancellationToken);
+        }
+    }
+}
