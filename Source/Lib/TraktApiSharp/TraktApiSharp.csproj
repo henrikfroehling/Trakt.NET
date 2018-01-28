@@ -313,6 +313,13 @@
     <Compile Include="Objects\Get\Seasons\Json\Factories\SeasonIdsJsonIOFactory.cs" />
     <Compile Include="Objects\Get\Seasons\Json\Factories\SeasonJsonIOFactory.cs" />
     <Compile Include="Objects\Get\Seasons\Json\Factories\SeasonWatchedProgressJsonIOFactory.cs" />
+    <Compile Include="Objects\Get\Seasons\Json\Writer\SeasonArrayJsonWriter.cs" />
+    <Compile Include="Objects\Get\Seasons\Json\Writer\SeasonCollectionProgressArrayJsonWriter.cs" />
+    <Compile Include="Objects\Get\Seasons\Json\Writer\SeasonCollectionProgressObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Seasons\Json\Writer\SeasonIdsObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Seasons\Json\Writer\SeasonObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Seasons\Json\Writer\SeasonWatchedProgressArrayJsonWriter.cs" />
+    <Compile Include="Objects\Get\Seasons\Json\Writer\SeasonWatchedProgressObjectJsonWriter.cs" />
     <Compile Include="Objects\Get\Shows\ITraktMostAnticipatedShow.cs" />
     <Compile Include="Objects\Get\Shows\ITraktMostPWCShow.cs" />
     <Compile Include="Objects\Get\Shows\ITraktRecentlyUpdatedShow.cs" />

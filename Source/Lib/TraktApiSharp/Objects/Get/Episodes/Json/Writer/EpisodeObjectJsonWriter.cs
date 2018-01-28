@@ -36,8 +36,8 @@
 
             if (obj.Ids != null)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.EPISODE_PROPERTY_NAME_IDS, cancellationToken);
                 var episodeIdsObjectJsonWriter = new EpisodeIdsObjectJsonWriter();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.EPISODE_PROPERTY_NAME_IDS, cancellationToken);
                 await episodeIdsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Ids, cancellationToken);
             }
 
