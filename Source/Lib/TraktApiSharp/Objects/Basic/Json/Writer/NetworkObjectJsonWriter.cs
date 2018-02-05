@@ -13,15 +13,15 @@
             if (jsonWriter == null)
                 throw new ArgumentNullException(nameof(jsonWriter));
 
-            await jsonWriter.WriteStartObjectAsync(cancellationToken);
+            await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
             if (!string.IsNullOrEmpty(obj.Network))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.NETWORK_PROPERTY_NAME_NETWORK, cancellationToken);
-                await jsonWriter.WriteValueAsync(obj.Network, cancellationToken);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.NETWORK_PROPERTY_NAME_NETWORK, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Network, cancellationToken).ConfigureAwait(false);
             }
 
-            await jsonWriter.WriteEndObjectAsync(cancellationToken);
+            await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }
 }

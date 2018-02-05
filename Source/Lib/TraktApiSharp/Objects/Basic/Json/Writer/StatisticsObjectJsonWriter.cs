@@ -13,51 +13,51 @@
             if (jsonWriter == null)
                 throw new ArgumentNullException(nameof(jsonWriter));
 
-            await jsonWriter.WriteStartObjectAsync(cancellationToken);
+            await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
             if (obj.Watchers.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.STATISTICS_PROPERTY_NAME_WATCHERS, cancellationToken);
-                await jsonWriter.WriteValueAsync(obj.Watchers, cancellationToken);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.STATISTICS_PROPERTY_NAME_WATCHERS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Watchers, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Plays.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.STATISTICS_PROPERTY_NAME_PLAYS, cancellationToken);
-                await jsonWriter.WriteValueAsync(obj.Plays, cancellationToken);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.STATISTICS_PROPERTY_NAME_PLAYS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Plays, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Collectors.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.STATISTICS_PROPERTY_NAME_COLLECTORS, cancellationToken);
-                await jsonWriter.WriteValueAsync(obj.Collectors, cancellationToken);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.STATISTICS_PROPERTY_NAME_COLLECTORS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Collectors, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.CollectedEpisodes.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.STATISTICS_PROPERTY_NAME_COLLECTED_EPISODES, cancellationToken);
-                await jsonWriter.WriteValueAsync(obj.CollectedEpisodes, cancellationToken);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.STATISTICS_PROPERTY_NAME_COLLECTED_EPISODES, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.CollectedEpisodes, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Comments.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.STATISTICS_PROPERTY_NAME_COMMENTS, cancellationToken);
-                await jsonWriter.WriteValueAsync(obj.Comments, cancellationToken);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.STATISTICS_PROPERTY_NAME_COMMENTS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Comments, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Lists.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.STATISTICS_PROPERTY_NAME_LISTS, cancellationToken);
-                await jsonWriter.WriteValueAsync(obj.Lists, cancellationToken);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.STATISTICS_PROPERTY_NAME_LISTS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Lists, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Votes.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.STATISTICS_PROPERTY_NAME_VOTES, cancellationToken);
-                await jsonWriter.WriteValueAsync(obj.Votes, cancellationToken);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.STATISTICS_PROPERTY_NAME_VOTES, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Votes, cancellationToken).ConfigureAwait(false);
             }
 
-            await jsonWriter.WriteEndObjectAsync(cancellationToken);
+            await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }
 }

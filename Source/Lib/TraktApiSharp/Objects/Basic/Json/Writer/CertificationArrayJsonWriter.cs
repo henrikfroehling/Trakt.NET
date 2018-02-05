@@ -15,12 +15,14 @@
                 throw new ArgumentNullException(nameof(jsonWriter));
 
             var certificationObjectJsonWriter = new CertificationObjectJsonWriter();
-            await jsonWriter.WriteStartArrayAsync(cancellationToken);
+            var writerTasks = new List<Task>();
+            await jsonWriter.WriteStartArrayAsync(cancellationToken).ConfigureAwait(false);
 
             foreach (ITraktCertification traktCertification in objects)
-                await certificationObjectJsonWriter.WriteObjectAsync(jsonWriter, traktCertification, cancellationToken);
+                writerTasks.Add(certificationObjectJsonWriter.WriteObjectAsync(jsonWriter, traktCertification, cancellationToken));
 
-            await jsonWriter.WriteEndArrayAsync(cancellationToken);
+            await Task.WhenAll(writerTasks).ConfigureAwait(false);
+            await jsonWriter.WriteEndArrayAsync(cancellationToken).ConfigureAwait(false);
         }
     }
 }

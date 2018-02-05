@@ -13,16 +13,16 @@
             if (jsonWriter == null)
                 throw new ArgumentNullException(nameof(jsonWriter));
 
-            await jsonWriter.WriteStartObjectAsync(cancellationToken);
+            await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
             if (obj.US != null)
             {
                 var certificationArrayJsonWriter = new CertificationArrayJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.CERTIFICATIONS_PROPERTY_NAME_US, cancellationToken);
-                await certificationArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.US, cancellationToken);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.CERTIFICATIONS_PROPERTY_NAME_US, cancellationToken).ConfigureAwait(false);
+                await certificationArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.US, cancellationToken).ConfigureAwait(false);
             }
 
-            await jsonWriter.WriteEndObjectAsync(cancellationToken);
+            await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }
 }

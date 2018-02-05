@@ -27,7 +27,7 @@
 
             using (var jsonWriter = new JsonTextWriter(writer))
             {
-                await WriteObjectAsync(jsonWriter, obj, cancellationToken);
+                await WriteObjectAsync(jsonWriter, obj, cancellationToken).ConfigureAwait(false);
             }
 
             return writer.ToString();

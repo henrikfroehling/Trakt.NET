@@ -13,21 +13,21 @@
             if (jsonWriter == null)
                 throw new ArgumentNullException(nameof(jsonWriter));
 
-            await jsonWriter.WriteStartObjectAsync(cancellationToken);
+            await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
             if (!string.IsNullOrEmpty(obj.Error))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.ERROR_PROPERTY_NAME_ERROR, cancellationToken);
-                await jsonWriter.WriteValueAsync(obj.Error, cancellationToken);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.ERROR_PROPERTY_NAME_ERROR, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Error, cancellationToken).ConfigureAwait(false);
             }
 
             if (!string.IsNullOrEmpty(obj.Description))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.ERROR_PROPERTY_NAME_ERROR_DESCRIPTION, cancellationToken);
-                await jsonWriter.WriteValueAsync(obj.Description, cancellationToken);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.ERROR_PROPERTY_NAME_ERROR_DESCRIPTION, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Description, cancellationToken).ConfigureAwait(false);
             }
 
-            await jsonWriter.WriteEndObjectAsync(cancellationToken);
+            await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }
 }

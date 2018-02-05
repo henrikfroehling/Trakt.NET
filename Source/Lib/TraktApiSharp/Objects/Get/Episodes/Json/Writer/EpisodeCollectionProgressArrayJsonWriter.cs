@@ -15,12 +15,14 @@
                 throw new ArgumentNullException(nameof(jsonWriter));
 
             var episodeCollectionProgressObjectJsonWriter = new EpisodeCollectionProgressObjectJsonWriter();
-            await jsonWriter.WriteStartArrayAsync(cancellationToken);
+            var writerTasks = new List<Task>();
+            await jsonWriter.WriteStartArrayAsync(cancellationToken).ConfigureAwait(false);
 
             foreach (ITraktEpisodeCollectionProgress traktEpisodeCollectionProgress in objects)
-                await episodeCollectionProgressObjectJsonWriter.WriteObjectAsync(jsonWriter, traktEpisodeCollectionProgress, cancellationToken);
+                writerTasks.Add(episodeCollectionProgressObjectJsonWriter.WriteObjectAsync(jsonWriter, traktEpisodeCollectionProgress, cancellationToken));
 
-            await jsonWriter.WriteEndArrayAsync(cancellationToken);
+            await Task.WhenAll(writerTasks).ConfigureAwait(false);
+            await jsonWriter.WriteEndArrayAsync(cancellationToken).ConfigureAwait(false);
         }
     }
 }

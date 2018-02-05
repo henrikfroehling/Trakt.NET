@@ -15,12 +15,14 @@
                 throw new ArgumentNullException(nameof(jsonWriter));
 
             var networkObjectJsonWriter = new NetworkObjectJsonWriter();
-            await jsonWriter.WriteStartArrayAsync(cancellationToken);
+            var writerTasks = new List<Task>();
+            await jsonWriter.WriteStartArrayAsync(cancellationToken).ConfigureAwait(false);
 
             foreach (ITraktNetwork traktNetwork in objects)
-                await networkObjectJsonWriter.WriteObjectAsync(jsonWriter, traktNetwork, cancellationToken);
+                writerTasks.Add(networkObjectJsonWriter.WriteObjectAsync(jsonWriter, traktNetwork, cancellationToken));
 
-            await jsonWriter.WriteEndArrayAsync(cancellationToken);
+            await Task.WhenAll(writerTasks).ConfigureAwait(false);
+            await jsonWriter.WriteEndArrayAsync(cancellationToken).ConfigureAwait(false);
         }
     }
 }

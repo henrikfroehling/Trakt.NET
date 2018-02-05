@@ -15,12 +15,14 @@
                 throw new ArgumentNullException(nameof(jsonWriter));
 
             var genreObjectJsonWriter = new GenreObjectJsonWriter();
-            await jsonWriter.WriteStartArrayAsync(cancellationToken);
+            var writerTasks = new List<Task>();
+            await jsonWriter.WriteStartArrayAsync(cancellationToken).ConfigureAwait(false);
 
             foreach (ITraktGenre traktGenre in objects)
-                await genreObjectJsonWriter.WriteObjectAsync(jsonWriter, traktGenre, cancellationToken);
+                writerTasks.Add(genreObjectJsonWriter.WriteObjectAsync(jsonWriter, traktGenre, cancellationToken));
 
-            await jsonWriter.WriteEndArrayAsync(cancellationToken);
+            await Task.WhenAll(writerTasks).ConfigureAwait(false);
+            await jsonWriter.WriteEndArrayAsync(cancellationToken).ConfigureAwait(false);
         }
     }
 }
