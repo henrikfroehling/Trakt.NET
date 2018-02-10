@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.Shows.Json.Factories
 {
     using Get.Shows.Json.Reader;
+    using Get.Shows.Json.Writer;
     using Objects.Json;
 
     internal class TrendingShowJsonIOFactory : IJsonIOFactory<ITraktTrendingShow>
@@ -9,14 +10,8 @@
 
         public IArrayJsonReader<ITraktTrendingShow> CreateArrayReader() => new TrendingShowArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktTrendingShow> CreateObjectWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktTrendingShow> CreateObjectWriter() => new TrendingShowObjectJsonWriter();
 
-        public IArrayJsonWriter<ITraktTrendingShow> CreateArrayWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IArrayJsonWriter<ITraktTrendingShow> CreateArrayWriter() => new TrendingShowArrayJsonWriter();
     }
 }

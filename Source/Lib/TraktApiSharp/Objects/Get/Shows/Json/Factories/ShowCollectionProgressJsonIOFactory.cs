@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.Shows.Json.Factories
 {
     using Get.Shows.Json.Reader;
+    using Get.Shows.Json.Writer;
     using Objects.Json;
     using System;
 
@@ -9,18 +10,11 @@
         public IObjectJsonReader<ITraktShowCollectionProgress> CreateObjectReader() => new ShowCollectionProgressObjectJsonReader();
 
         public IArrayJsonReader<ITraktShowCollectionProgress> CreateArrayReader()
-        {
-            throw new NotSupportedException($"A array json reader for {nameof(ITraktShowCollectionProgress)} is not supported.");
-        }
+            => throw new NotSupportedException($"A array json reader for {nameof(ITraktShowCollectionProgress)} is not supported.");
 
-        public IObjectJsonWriter<ITraktShowCollectionProgress> CreateObjectWriter()
-        {
-            throw new NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktShowCollectionProgress> CreateObjectWriter() => new ShowCollectionProgressObjectJsonWriter();
 
         public IArrayJsonWriter<ITraktShowCollectionProgress> CreateArrayWriter()
-        {
-            throw new NotImplementedException();
-        }
+            => throw new NotSupportedException($"A array json writer for {nameof(ITraktShowCollectionProgress)} is not supported.");
     }
 }
