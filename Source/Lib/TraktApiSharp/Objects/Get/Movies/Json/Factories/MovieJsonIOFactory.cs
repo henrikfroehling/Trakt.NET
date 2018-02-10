@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.Movies.Json.Factories
 {
     using Get.Movies.Json.Reader;
+    using Get.Movies.Json.Writer;
     using Objects.Json;
 
     internal class MovieJsonIOFactory : IJsonIOFactory<ITraktMovie>
@@ -9,14 +10,8 @@
 
         public IArrayJsonReader<ITraktMovie> CreateArrayReader() => new MovieArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktMovie> CreateObjectWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktMovie> CreateObjectWriter() => new MovieObjectJsonWriter();
 
-        public IArrayJsonWriter<ITraktMovie> CreateArrayWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IArrayJsonWriter<ITraktMovie> CreateArrayWriter() => new MovieArrayJsonWriter();
     }
 }

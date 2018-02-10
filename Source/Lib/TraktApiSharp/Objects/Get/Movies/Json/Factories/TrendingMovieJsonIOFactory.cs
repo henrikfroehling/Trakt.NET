@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.Movies.Json.Factories
 {
     using Get.Movies.Json.Reader;
+    using Get.Movies.Json.Writer;
     using Objects.Json;
 
     internal class TrendingMovieJsonIOFactory : IJsonIOFactory<ITraktTrendingMovie>
@@ -9,14 +10,8 @@
 
         public IArrayJsonReader<ITraktTrendingMovie> CreateArrayReader() => new TrendingMovieArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktTrendingMovie> CreateObjectWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktTrendingMovie> CreateObjectWriter() => new TrendingMovieObjectJsonWriter();
 
-        public IArrayJsonWriter<ITraktTrendingMovie> CreateArrayWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IArrayJsonWriter<ITraktTrendingMovie> CreateArrayWriter() => new TrendingMovieArrayJsonWriter();
     }
 }

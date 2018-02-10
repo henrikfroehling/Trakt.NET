@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.Movies.Json.Factories
 {
     using Get.Movies.Json.Reader;
+    using Get.Movies.Json.Writer;
     using Objects.Json;
 
     internal class MostAnticipatedMovieJsonIOFactory : IJsonIOFactory<ITraktMostAnticipatedMovie>
@@ -9,14 +10,8 @@
 
         public IArrayJsonReader<ITraktMostAnticipatedMovie> CreateArrayReader() => new MostAnticipatedMovieArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktMostAnticipatedMovie> CreateObjectWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktMostAnticipatedMovie> CreateObjectWriter() => new MostAnticipatedMovieObjectJsonWriter();
 
-        public IArrayJsonWriter<ITraktMostAnticipatedMovie> CreateArrayWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IArrayJsonWriter<ITraktMostAnticipatedMovie> CreateArrayWriter() => new MostAnticipatedMovieArrayJsonWriter();
     }
 }

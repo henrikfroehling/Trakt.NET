@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.Movies.Json.Factories
 {
     using Get.Movies.Json.Reader;
+    using Get.Movies.Json.Writer;
     using Objects.Json;
 
     internal class RecentlyUpdatedMovieJsonIOFactory : IJsonIOFactory<ITraktRecentlyUpdatedMovie>
@@ -9,14 +10,8 @@
 
         public IArrayJsonReader<ITraktRecentlyUpdatedMovie> CreateArrayReader() => new RecentlyUpdatedMovieArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktRecentlyUpdatedMovie> CreateObjectWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktRecentlyUpdatedMovie> CreateObjectWriter() => new RecentlyUpdatedMovieObjectJsonWriter();
 
-        public IArrayJsonWriter<ITraktRecentlyUpdatedMovie> CreateArrayWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IArrayJsonWriter<ITraktRecentlyUpdatedMovie> CreateArrayWriter() => new RecentlyUpdatedMovieArrayJsonWriter();
     }
 }
