@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.Seasons.Json.Factories
 {
     using Get.Seasons.Json.Reader;
+    using Get.Seasons.Json.Writer;
     using Objects.Json;
 
     internal class SeasonWatchedProgressJsonIOFactory : IJsonIOFactory<ITraktSeasonWatchedProgress>
@@ -9,14 +10,8 @@
 
         public IArrayJsonReader<ITraktSeasonWatchedProgress> CreateArrayReader() => new SeasonWatchedProgressArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktSeasonWatchedProgress> CreateObjectWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktSeasonWatchedProgress> CreateObjectWriter() => new SeasonWatchedProgressObjectJsonWriter();
 
-        public IArrayJsonWriter<ITraktSeasonWatchedProgress> CreateArrayWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IArrayJsonWriter<ITraktSeasonWatchedProgress> CreateArrayWriter() => new SeasonWatchedProgressArrayJsonWriter();
     }
 }
