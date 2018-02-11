@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.People.Credits.Json.Factories
 {
     using Get.People.Credits.Json.Reader;
+    using Get.People.Credits.Json.Writer;
     using Objects.Json;
 
     internal class PersonShowCreditsCrewItemJsonIOFactory : IJsonIOFactory<ITraktPersonShowCreditsCrewItem>
@@ -9,14 +10,8 @@
 
         public IArrayJsonReader<ITraktPersonShowCreditsCrewItem> CreateArrayReader() => new PersonShowCreditsCrewItemArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktPersonShowCreditsCrewItem> CreateObjectWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktPersonShowCreditsCrewItem> CreateObjectWriter() => new PersonShowCreditsCrewItemObjectJsonWriter();
 
-        public IArrayJsonWriter<ITraktPersonShowCreditsCrewItem> CreateArrayWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IArrayJsonWriter<ITraktPersonShowCreditsCrewItem> CreateArrayWriter() => new PersonShowCreditsCrewItemArrayJsonWriter();
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.People.Credits.Json.Factories
 {
     using Get.People.Credits.Json.Reader;
+    using Get.People.Credits.Json.Writer;
     using Objects.Json;
     using System;
 
@@ -9,18 +10,11 @@
         public IObjectJsonReader<ITraktPersonShowCreditsCrew> CreateObjectReader() => new PersonShowCreditsCrewObjectJsonReader();
 
         public IArrayJsonReader<ITraktPersonShowCreditsCrew> CreateArrayReader()
-        {
-            throw new NotSupportedException($"A array json reader for {nameof(ITraktPersonShowCreditsCrew)} is not supported.");
-        }
+            => throw new NotSupportedException($"A array json reader for {nameof(ITraktPersonShowCreditsCrew)} is not supported.");
 
-        public IObjectJsonWriter<ITraktPersonShowCreditsCrew> CreateObjectWriter()
-        {
-            throw new NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktPersonShowCreditsCrew> CreateObjectWriter() => new PersonShowCreditsCrewObjectJsonWriter();
 
         public IArrayJsonWriter<ITraktPersonShowCreditsCrew> CreateArrayWriter()
-        {
-            throw new NotImplementedException();
-        }
+            => throw new NotSupportedException($"A array json writer for {nameof(ITraktPersonShowCreditsCrew)} is not supported.");
     }
 }
