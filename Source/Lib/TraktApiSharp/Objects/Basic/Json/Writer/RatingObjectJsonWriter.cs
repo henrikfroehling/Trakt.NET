@@ -30,27 +30,7 @@
             if (obj.Distribution?.Count > 0)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.RATING_PROPERTY_NAME_DISTRIBUTION, cancellationToken).ConfigureAwait(false);
-                await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
-
-                for (int i = 1; i <= 10; i++)
-                {
-                    string key = i.ToString();
-                    await jsonWriter.WritePropertyNameAsync(key, cancellationToken).ConfigureAwait(false);
-
-                    if (obj.Distribution.TryGetValue(key, out int value))
-                    {
-                        if (value > 0)
-                            await jsonWriter.WriteValueAsync(value, cancellationToken).ConfigureAwait(false);
-                        else
-                            await jsonWriter.WriteValueAsync(0, cancellationToken).ConfigureAwait(false);
-                    }
-                    else
-                    {
-                        await jsonWriter.WriteValueAsync(0, cancellationToken).ConfigureAwait(false);
-                    }
-                }
-
-                await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
+                await JsonWriterHelper.WriteDistributionAsync(jsonWriter, obj.Distribution, cancellationToken).ConfigureAwait(false);
             }
 
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);

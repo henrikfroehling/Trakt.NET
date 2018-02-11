@@ -13,15 +13,51 @@
             if (jsonWriter == null)
                 throw new ArgumentNullException(nameof(jsonWriter));
 
-            await jsonWriter.WriteStartArrayAsync(cancellationToken);
+            if (values == null)
+                throw new ArgumentNullException(nameof(values));
+
+            var writerTasks = new List<Task>();
+            await jsonWriter.WriteStartArrayAsync(cancellationToken).ConfigureAwait(false);
 
             foreach (string value in values)
             {
                 if (!string.IsNullOrEmpty(value))
-                    await jsonWriter.WriteValueAsync(value, cancellationToken);
+                    writerTasks.Add(jsonWriter.WriteValueAsync(value, cancellationToken));
             }
 
-            await jsonWriter.WriteEndArrayAsync(cancellationToken);
+            await Task.WhenAll(writerTasks).ConfigureAwait(false);
+            await jsonWriter.WriteEndArrayAsync(cancellationToken).ConfigureAwait(false);
+        }
+
+        internal static async Task WriteDistributionAsync(JsonTextWriter jsonWriter, IDictionary<string, int> distribution, CancellationToken cancellationToken = default)
+        {
+            if (jsonWriter == null)
+                throw new ArgumentNullException(nameof(jsonWriter));
+
+            if (distribution == null)
+                throw new ArgumentNullException(nameof(distribution));
+
+            await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
+
+            for (int i = 1; i <= 10; i++)
+            {
+                string key = i.ToString();
+                await jsonWriter.WritePropertyNameAsync(key, cancellationToken).ConfigureAwait(false);
+
+                if (distribution.TryGetValue(key, out int value))
+                {
+                    if (value > 0)
+                        await jsonWriter.WriteValueAsync(value, cancellationToken).ConfigureAwait(false);
+                    else
+                        await jsonWriter.WriteValueAsync(0, cancellationToken).ConfigureAwait(false);
+                }
+                else
+                {
+                    await jsonWriter.WriteValueAsync(0, cancellationToken).ConfigureAwait(false);
+                }
+            }
+
+            await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }
 }
