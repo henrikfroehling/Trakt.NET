@@ -340,6 +340,8 @@
     <Compile Include="Objects\Get\Ratings\Json\Factories\RatingsItemJsonIOFactory.cs" />
     <Compile Include="Objects\Get\Ratings\Json\Reader\RatingsItemArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Ratings\Json\Reader\RatingsItemObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Ratings\Json\Writer\RatingsItemArrayJsonWriter.cs" />
+    <Compile Include="Objects\Get\Ratings\Json\Writer\RatingsItemObjectJsonWriter.cs" />
     <Compile Include="Objects\Get\Seasons\ITraktSeason.cs" />
     <Compile Include="Objects\Get\Seasons\ITraktSeasonCollectionProgress.cs" />
     <Compile Include="Objects\Get\Seasons\ITraktSeasonIds.cs" />
