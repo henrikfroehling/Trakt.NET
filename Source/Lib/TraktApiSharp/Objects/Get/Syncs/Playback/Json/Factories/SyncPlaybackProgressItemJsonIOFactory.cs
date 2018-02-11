@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.Syncs.Playback.Json.Factories
 {
     using Get.Syncs.Playback.Json.Reader;
+    using Get.Syncs.Playback.Json.Writer;
     using Objects.Json;
 
     internal class SyncPlaybackProgressItemJsonIOFactory : IJsonIOFactory<ITraktSyncPlaybackProgressItem>
@@ -9,14 +10,8 @@
 
         public IArrayJsonReader<ITraktSyncPlaybackProgressItem> CreateArrayReader() => new SyncPlaybackProgressItemArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktSyncPlaybackProgressItem> CreateObjectWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktSyncPlaybackProgressItem> CreateObjectWriter() => new SyncPlaybackProgressItemObjectJsonWriter();
 
-        public IArrayJsonWriter<ITraktSyncPlaybackProgressItem> CreateArrayWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IArrayJsonWriter<ITraktSyncPlaybackProgressItem> CreateArrayWriter() => new SyncPlaybackProgressItemArrayJsonWriter();
     }
 }

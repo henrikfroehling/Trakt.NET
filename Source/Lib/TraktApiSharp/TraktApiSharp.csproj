@@ -440,6 +440,8 @@
     <Compile Include="Objects\Get\Syncs\Playback\Json\Factories\SyncPlaybackProgressItemJsonIOFactory.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\Json\Reader\SyncPlaybackProgressItemArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\Json\Reader\SyncPlaybackProgressItemObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Syncs\Playback\Json\Writer\SyncPlaybackProgressItemArrayJsonWriter.cs" />
+    <Compile Include="Objects\Get\Syncs\Playback\Json\Writer\SyncPlaybackProgressItemObjectJsonWriter.cs" />
     <Compile Include="Objects\Get\Users\ITraktAccountSettings.cs" />
     <Compile Include="Objects\Get\Users\ITraktSharingText.cs" />
     <Compile Include="Objects\Get\Users\ITraktUser.cs" />
