@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users.Statistics.Json.Factories
 {
     using Get.Users.Statistics.Json.Reader;
+    using Get.Users.Statistics.Json.Writer;
     using Objects.Json;
     using System;
 
@@ -9,18 +10,11 @@
         public IObjectJsonReader<ITraktUserMoviesStatistics> CreateObjectReader() => new UserMoviesStatisticsObjectJsonReader();
 
         public IArrayJsonReader<ITraktUserMoviesStatistics> CreateArrayReader()
-        {
-            throw new NotSupportedException($"A array json reader for {nameof(ITraktUserMoviesStatistics)} is not supported.");
-        }
+            => throw new NotSupportedException($"A array json reader for {nameof(ITraktUserMoviesStatistics)} is not supported.");
 
-        public IObjectJsonWriter<ITraktUserMoviesStatistics> CreateObjectWriter()
-        {
-            throw new NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktUserMoviesStatistics> CreateObjectWriter() => new UserMoviesStatisticsObjectJsonWriter();
 
         public IArrayJsonWriter<ITraktUserMoviesStatistics> CreateArrayWriter()
-        {
-            throw new NotImplementedException();
-        }
+            => throw new NotSupportedException($"A array json writer for {nameof(ITraktUserMoviesStatistics)} is not supported.");
     }
 }

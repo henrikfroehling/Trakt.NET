@@ -520,6 +520,13 @@
     <Compile Include="Objects\Get\Users\Statistics\Json\Reader\UserSeasonsStatisticsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Json\Reader\UserShowsStatisticsObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Json\Reader\UserStatisticsObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\Json\Writer\UserEpisodesStatisticsObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\Json\Writer\UserMoviesStatisticsObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\Json\Writer\UserNetworkStatisticsObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\Json\Writer\UserRatingsStatisticsObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\Json\Writer\UserSeasonsStatisticsObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\Json\Writer\UserShowsStatisticsObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Users\Statistics\Json\Writer\UserStatisticsObjectJsonWriter.cs" />
     <Compile Include="Objects\Get\Watched\ITraktWatchedMovie.cs" />
     <Compile Include="Objects\Get\Watched\ITraktWatchedShow.cs" />
     <Compile Include="Objects\Get\Watched\ITraktWatchedShowEpisode.cs" />
