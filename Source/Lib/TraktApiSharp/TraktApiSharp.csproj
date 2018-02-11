@@ -239,6 +239,8 @@
     <Compile Include="Objects\Get\History\Json\Factories\HistoryItemJsonIOFactory.cs" />
     <Compile Include="Objects\Get\History\Json\Reader\HistoryItemArrayJsonReader.cs" />
     <Compile Include="Objects\Get\History\Json\Reader\HistoryItemObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\History\Json\Writer\HistoryItemArrayJsonWriter.cs" />
+    <Compile Include="Objects\Get\History\Json\Writer\HistoryItemObjectJsonWriter.cs" />
     <Compile Include="Objects\Get\Movies\ITraktBoxOfficeMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktMostAnticipatedMovie.cs" />
     <Compile Include="Objects\Get\Movies\ITraktMostPWCMovie.cs" />
