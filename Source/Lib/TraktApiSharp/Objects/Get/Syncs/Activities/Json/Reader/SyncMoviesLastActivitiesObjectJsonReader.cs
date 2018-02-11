@@ -59,7 +59,7 @@
 
                                 break;
                             }
-                        case JsonProperties.SYNC_MOVIES_LAST_ACTIVIITES_PROPERTY_NAME_COMMENTED_AT:
+                        case JsonProperties.SYNC_MOVIES_LAST_ACTIVITIES_PROPERTY_NAME_COMMENTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 

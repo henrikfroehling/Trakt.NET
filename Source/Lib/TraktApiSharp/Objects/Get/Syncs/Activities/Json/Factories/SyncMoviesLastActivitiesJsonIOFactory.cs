@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.Syncs.Activities.Json.Factories
 {
     using Get.Syncs.Activities.Json.Reader;
+    using Get.Syncs.Activities.Json.Writer;
     using Objects.Json;
     using System;
 
@@ -9,18 +10,11 @@
         public IObjectJsonReader<ITraktSyncMoviesLastActivities> CreateObjectReader() => new SyncMoviesLastActivitiesObjectJsonReader();
 
         public IArrayJsonReader<ITraktSyncMoviesLastActivities> CreateArrayReader()
-        {
-            throw new NotSupportedException($"A array json reader for {nameof(ITraktSyncMoviesLastActivities)} is not supported.");
-        }
+            => throw new NotSupportedException($"A array json reader for {nameof(ITraktSyncMoviesLastActivities)} is not supported.");
 
-        public IObjectJsonWriter<ITraktSyncMoviesLastActivities> CreateObjectWriter()
-        {
-            throw new NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktSyncMoviesLastActivities> CreateObjectWriter() => new SyncMoviesLastActivitiesObjectJsonWriter();
 
         public IArrayJsonWriter<ITraktSyncMoviesLastActivities> CreateArrayWriter()
-        {
-            throw new NotImplementedException();
-        }
+            => throw new NotSupportedException($"A array json writer for {nameof(ITraktSyncMoviesLastActivities)} is not supported.");
     }
 }

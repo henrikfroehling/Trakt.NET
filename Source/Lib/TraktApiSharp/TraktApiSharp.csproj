@@ -429,6 +429,13 @@
     <Compile Include="Objects\Get\Syncs\Activities\Json\Reader\SyncMoviesLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\Json\Reader\SyncSeasonsLastActivitiesObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Syncs\Activities\Json\Reader\SyncShowsLastActivitiesObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\Json\Writer\SyncCommentsLastActivitiesObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\Json\Writer\SyncEpisodesLastActivitiesObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\Json\Writer\SyncLastActivitiesObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\Json\Writer\SyncListsLastActivitiesObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\Json\Writer\SyncMoviesLastActivitiesObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\Json\Writer\SyncSeasonsLastActivitiesObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Syncs\Activities\Json\Writer\SyncShowsLastActivitiesObjectJsonWriter.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\ITraktSyncPlaybackProgressItem.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\Json\Factories\SyncPlaybackProgressItemJsonIOFactory.cs" />
     <Compile Include="Objects\Get\Syncs\Playback\Json\Reader\SyncPlaybackProgressItemArrayJsonReader.cs" />
