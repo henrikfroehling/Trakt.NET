@@ -220,6 +220,10 @@
     <Compile Include="Objects\Get\Collections\Json\Reader\CollectionShowObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Collections\Json\Reader\CollectionShowSeasonArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Collections\Json\Reader\CollectionShowSeasonObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Collections\Json\Writer\CollectionMovieObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Collections\Json\Writer\CollectionShowEpisodeObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Collections\Json\Writer\CollectionShowObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Collections\Json\Writer\CollectionShowSeasonObjectJsonWriter.cs" />
     <Compile Include="Objects\Get\Episodes\ITraktEpisode.cs" />
     <Compile Include="Objects\Get\Episodes\ITraktEpisodeCollectionProgress.cs" />
     <Compile Include="Objects\Get\Episodes\ITraktEpisodeIds.cs" />
