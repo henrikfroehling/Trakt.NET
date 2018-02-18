@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktUser> CreateArrayReader() => new UserArrayJsonReader();
 
         public IObjectJsonWriter<ITraktUser> CreateObjectWriter() => new UserObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktUser> CreateArrayWriter() => new UserArrayJsonWriter();
     }
 }

@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktEpisodeWatchedProgress> CreateArrayReader() => new EpisodeWatchedProgressArrayJsonReader();
 
         public IObjectJsonWriter<ITraktEpisodeWatchedProgress> CreateObjectWriter() => new EpisodeWatchedProgressObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktEpisodeWatchedProgress> CreateArrayWriter() => new EpisodeWatchedProgressArrayJsonWriter();
     }
 }

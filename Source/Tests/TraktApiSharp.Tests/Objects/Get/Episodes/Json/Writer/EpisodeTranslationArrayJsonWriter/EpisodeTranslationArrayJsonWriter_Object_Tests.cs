@@ -7,7 +7,7 @@
     using Traits;
     using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
-    using TraktApiSharp.Objects.Get.Episodes.Json.Writer;
+    using TraktApiSharp.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.Episodes.JsonWriter")]
@@ -16,7 +16,7 @@
         [Fact]
         public void Test_EpisodeTranslationArrayJsonWriter_WriteArray_Array_Exceptions()
         {
-            var traktJsonWriter = new EpisodeTranslationArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeTranslation>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(IEnumerable<ITraktEpisodeTranslation>));
             action.ShouldThrow<ArgumentNullException>();
         }
@@ -26,7 +26,7 @@
         {
             IEnumerable<ITraktEpisodeTranslation> traktEpisodeTranslations = new List<TraktEpisodeTranslation>();
 
-            var traktJsonWriter = new EpisodeTranslationArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeTranslation>();
             string json = await traktJsonWriter.WriteArrayAsync(traktEpisodeTranslations);
             json.Should().Be("[]");
         }
@@ -44,7 +44,7 @@
                 }
             };
 
-            var traktJsonWriter = new EpisodeTranslationArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeTranslation>();
             string json = await traktJsonWriter.WriteArrayAsync(traktEpisodeTranslations);
             json.Should().Be(@"[{""title"":""title 1"",""overview"":""overview 1"",""language"":""language code 1""}]");
         }
@@ -74,7 +74,7 @@
                 }
             };
 
-            var traktJsonWriter = new EpisodeTranslationArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeTranslation>();
             string json = await traktJsonWriter.WriteArrayAsync(traktEpisodeTranslations);
             json.Should().Be(@"[{""title"":""title 1"",""overview"":""overview 1"",""language"":""language code 1""}," +
                              @"{""title"":""title 2"",""overview"":""overview 2"",""language"":""language code 2""}," +

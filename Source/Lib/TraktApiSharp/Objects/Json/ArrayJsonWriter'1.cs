@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal abstract class AArrayJsonWriter<TObjectType> : IArrayJsonWriter<TObjectType>
+    internal class ArrayJsonWriter<TObjectType> : IArrayJsonWriter<TObjectType>
     {
         public virtual Task<string> WriteArrayAsync(IEnumerable<TObjectType> objects, CancellationToken cancellationToken = default)
         {
@@ -33,6 +33,20 @@
             return writer.ToString();
         }
 
-        public abstract Task WriteArrayAsync(JsonTextWriter jsonWriter, IEnumerable<TObjectType> objects, CancellationToken cancellationToken = default);
+        public virtual async Task WriteArrayAsync(JsonTextWriter jsonWriter, IEnumerable<TObjectType> objects, CancellationToken cancellationToken = default)
+        {
+            if (jsonWriter == null)
+                throw new ArgumentNullException(nameof(jsonWriter));
+
+            var objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<TObjectType>();
+            var writerTasks = new List<Task>();
+            await jsonWriter.WriteStartArrayAsync(cancellationToken).ConfigureAwait(false);
+
+            foreach (TObjectType obj in objects)
+                writerTasks.Add(objectJsonWriter.WriteObjectAsync(jsonWriter, obj, cancellationToken));
+
+            await Task.WhenAll(writerTasks).ConfigureAwait(false);
+            await jsonWriter.WriteEndArrayAsync(cancellationToken).ConfigureAwait(false);
+        }
     }
 }

@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktMostAnticipatedShow> CreateArrayReader() => new MostAnticipatedShowArrayJsonReader();
 
         public IObjectJsonWriter<ITraktMostAnticipatedShow> CreateObjectWriter() => new MostAnticipatedShowObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktMostAnticipatedShow> CreateArrayWriter() => new MostAnticipatedShowArrayJsonWriter();
     }
 }

@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktShowTranslation> CreateArrayReader() => new ShowTranslationArrayJsonReader();
 
         public IObjectJsonWriter<ITraktShowTranslation> CreateObjectWriter() => new ShowTranslationObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktShowTranslation> CreateArrayWriter() => new ShowTranslationArrayJsonWriter();
     }
 }

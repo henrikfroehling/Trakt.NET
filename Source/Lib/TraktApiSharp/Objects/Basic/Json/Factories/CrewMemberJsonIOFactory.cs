@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktCrewMember> CreateArrayReader() => new CrewMemberArrayJsonReader();
 
         public IObjectJsonWriter<ITraktCrewMember> CreateObjectWriter() => new CrewMemberObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktCrewMember> CreateArrayWriter() => new CrewMemberArrayJsonWriter();
     }
 }

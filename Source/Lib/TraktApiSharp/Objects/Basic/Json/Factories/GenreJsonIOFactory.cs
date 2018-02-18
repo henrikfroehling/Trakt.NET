@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktGenre> CreateArrayReader() => new GenreArrayJsonReader();
 
         public IObjectJsonWriter<ITraktGenre> CreateObjectWriter() => new GenreObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktGenre> CreateArrayWriter() => new GenreArrayJsonWriter();
     }
 }

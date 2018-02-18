@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktSeasonCollectionProgress> CreateArrayReader() => new SeasonCollectionProgressArrayJsonReader();
 
         public IObjectJsonWriter<ITraktSeasonCollectionProgress> CreateObjectWriter() => new SeasonCollectionProgressObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktSeasonCollectionProgress> CreateArrayWriter() => new SeasonCollectionProgressArrayJsonWriter();
     }
 }

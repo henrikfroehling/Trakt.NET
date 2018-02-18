@@ -8,7 +8,7 @@
     using Traits;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
-    using TraktApiSharp.Objects.Basic.Json.Writer;
+    using TraktApiSharp.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonWriter")]
@@ -17,7 +17,7 @@
         [Fact]
         public void Test_GenreArrayJsonWriter_WriteArray_StringWriter_Exceptions()
         {
-            var traktJsonWriter = new GenreArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktGenre>();
             IEnumerable<ITraktGenre> traktGenres = new List<TraktGenre>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(StringWriter), traktGenres);
             action.ShouldThrow<ArgumentNullException>();
@@ -30,7 +30,7 @@
 
             using (var stringWriter = new StringWriter())
             {
-                var traktJsonWriter = new GenreArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktGenre>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktGenres);
                 json.Should().Be("[]");
             }
@@ -50,7 +50,7 @@
 
             using (var stringWriter = new StringWriter())
             {
-                var traktJsonWriter = new GenreArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktGenre>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktGenres);
                 json.Should().Be(@"[{""name"":""genre name 1"",""slug"":""genre slug 1""}]");
             }
@@ -80,7 +80,7 @@
 
             using (var stringWriter = new StringWriter())
             {
-                var traktJsonWriter = new GenreArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktGenre>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktGenres);
                 json.Should().Be(@"[{""name"":""genre name 1"",""slug"":""genre slug 1""}," +
                                  @"{""name"":""genre name 2"",""slug"":""genre slug 2""}," +

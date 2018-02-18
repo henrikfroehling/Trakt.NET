@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktUserFollowRequest> CreateArrayReader() => new UserFollowRequestArrayJsonReader();
 
         public IObjectJsonWriter<ITraktUserFollowRequest> CreateObjectWriter() => new UserFollowRequestObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktUserFollowRequest> CreateArrayWriter() => new UserFollowRequestArrayJsonWriter();
     }
 }

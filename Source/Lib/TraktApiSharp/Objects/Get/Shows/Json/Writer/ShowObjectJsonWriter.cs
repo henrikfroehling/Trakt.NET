@@ -3,7 +3,7 @@
     using Extensions;
     using Newtonsoft.Json;
     using Objects.Json;
-    using Seasons.Json.Writer;
+    using Seasons;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
@@ -141,7 +141,7 @@
 
             if (obj.Seasons != null)
             {
-                var seasonArrayJsonWriter = new SeasonArrayJsonWriter();
+                var seasonArrayJsonWriter = new ArrayJsonWriter<ITraktSeason>();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
                 await seasonArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Seasons, cancellationToken).ConfigureAwait(false);
             }

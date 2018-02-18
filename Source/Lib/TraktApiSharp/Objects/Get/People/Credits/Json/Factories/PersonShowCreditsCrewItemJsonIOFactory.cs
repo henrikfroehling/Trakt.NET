@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktPersonShowCreditsCrewItem> CreateArrayReader() => new PersonShowCreditsCrewItemArrayJsonReader();
 
         public IObjectJsonWriter<ITraktPersonShowCreditsCrewItem> CreateObjectWriter() => new PersonShowCreditsCrewItemObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktPersonShowCreditsCrewItem> CreateArrayWriter() => new PersonShowCreditsCrewItemArrayJsonWriter();
     }
 }

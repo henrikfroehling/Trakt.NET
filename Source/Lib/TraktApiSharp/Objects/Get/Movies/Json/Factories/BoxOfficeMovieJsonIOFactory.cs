@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktBoxOfficeMovie> CreateArrayReader() => new BoxOfficeMovieArrayJsonReader();
 
         public IObjectJsonWriter<ITraktBoxOfficeMovie> CreateObjectWriter() => new BoxOfficeMovieObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktBoxOfficeMovie> CreateArrayWriter() => new BoxOfficeMovieArrayJsonWriter();
     }
 }

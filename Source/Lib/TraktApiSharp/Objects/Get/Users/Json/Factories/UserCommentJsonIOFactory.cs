@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktUserComment> CreateArrayReader() => new UserCommentArrayJsonReader();
 
         public IObjectJsonWriter<ITraktUserComment> CreateObjectWriter() => new UserCommentObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktUserComment> CreateArrayWriter() => new UserCommentArrayJsonWriter();
     }
 }

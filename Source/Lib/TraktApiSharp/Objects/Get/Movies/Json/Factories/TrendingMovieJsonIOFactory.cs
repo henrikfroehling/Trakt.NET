@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktTrendingMovie> CreateArrayReader() => new TrendingMovieArrayJsonReader();
 
         public IObjectJsonWriter<ITraktTrendingMovie> CreateObjectWriter() => new TrendingMovieObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktTrendingMovie> CreateArrayWriter() => new TrendingMovieArrayJsonWriter();
     }
 }

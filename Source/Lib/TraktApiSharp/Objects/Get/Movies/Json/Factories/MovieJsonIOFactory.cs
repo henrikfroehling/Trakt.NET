@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktMovie> CreateArrayReader() => new MovieArrayJsonReader();
 
         public IObjectJsonWriter<ITraktMovie> CreateObjectWriter() => new MovieObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktMovie> CreateArrayWriter() => new MovieArrayJsonWriter();
     }
 }

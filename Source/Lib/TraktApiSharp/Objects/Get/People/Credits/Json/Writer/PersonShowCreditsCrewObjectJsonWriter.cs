@@ -13,7 +13,7 @@
             if (jsonWriter == null)
                 throw new ArgumentNullException(nameof(jsonWriter));
 
-            var personShowCreditsCrewItemArrayJsonWriter = new PersonShowCreditsCrewItemArrayJsonWriter();
+            var personShowCreditsCrewItemArrayJsonWriter = new ArrayJsonWriter<ITraktPersonShowCreditsCrewItem>();
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
             if (obj.Production != null)

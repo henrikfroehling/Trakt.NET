@@ -17,7 +17,7 @@
 
             if (obj.Cast != null)
             {
-                var castMemberArrayJsonWriter = new CastMemberArrayJsonWriter();
+                var castMemberArrayJsonWriter = new ArrayJsonWriter<ITraktCastMember>();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.CAST_AND_CREW_PROPERTY_NAME_CAST, cancellationToken).ConfigureAwait(false);
                 await castMemberArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Cast, cancellationToken).ConfigureAwait(false);
             }

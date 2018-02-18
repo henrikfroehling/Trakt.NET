@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktList> CreateArrayReader() => new ListArrayJsonReader();
 
         public IObjectJsonWriter<ITraktList> CreateObjectWriter() => new ListObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktList> CreateArrayWriter() => new ListArrayJsonWriter();
     }
 }

@@ -13,8 +13,5 @@
             => throw new NotSupportedException($"A array json reader for {nameof(ITraktSyncCommentsLastActivities)} is not supported.");
 
         public IObjectJsonWriter<ITraktSyncCommentsLastActivities> CreateObjectWriter() => new SyncCommentsLastActivitiesObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktSyncCommentsLastActivities> CreateArrayWriter()
-            => throw new NotSupportedException($"A array json writer for {nameof(ITraktSyncCommentsLastActivities)} is not supported.");
     }
 }

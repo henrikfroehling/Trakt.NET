@@ -8,7 +8,7 @@
     using Traits;
     using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
-    using TraktApiSharp.Objects.Get.Episodes.Json.Writer;
+    using TraktApiSharp.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.Episodes.JsonWriter")]
@@ -17,7 +17,7 @@
         [Fact]
         public void Test_EpisodeTranslationArrayJsonWriter_WriteArray_StringWriter_Exceptions()
         {
-            var traktJsonWriter = new EpisodeTranslationArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeTranslation>();
             IEnumerable<ITraktEpisodeTranslation> traktEpisodeTranslations = new List<TraktEpisodeTranslation>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(StringWriter), traktEpisodeTranslations);
             action.ShouldThrow<ArgumentNullException>();
@@ -30,7 +30,7 @@
 
             using (var stringWriter = new StringWriter())
             {
-                var traktJsonWriter = new EpisodeTranslationArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeTranslation>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktEpisodeTranslations);
                 json.Should().Be("[]");
             }
@@ -51,7 +51,7 @@
 
             using (var stringWriter = new StringWriter())
             {
-                var traktJsonWriter = new EpisodeTranslationArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeTranslation>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktEpisodeTranslations);
                 json.Should().Be(@"[{""title"":""title 1"",""overview"":""overview 1"",""language"":""language code 1""}]");
             }
@@ -84,7 +84,7 @@
 
             using (var stringWriter = new StringWriter())
             {
-                var traktJsonWriter = new EpisodeTranslationArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeTranslation>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktEpisodeTranslations);
                 json.Should().Be(@"[{""title"":""title 1"",""overview"":""overview 1"",""language"":""language code 1""}," +
                                  @"{""title"":""title 2"",""overview"":""overview 2"",""language"":""language code 2""}," +

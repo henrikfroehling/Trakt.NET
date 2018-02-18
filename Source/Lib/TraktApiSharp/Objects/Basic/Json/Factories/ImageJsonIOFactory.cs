@@ -13,8 +13,5 @@
             => throw new NotSupportedException($"A array json reader for {nameof(ITraktImage)} is not supported.");
 
         public IObjectJsonWriter<ITraktImage> CreateObjectWriter() => new ImageObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktImage> CreateArrayWriter()
-            => throw new NotSupportedException($"A array json writer for {nameof(ITraktImage)} is not supported.");
     }
 }

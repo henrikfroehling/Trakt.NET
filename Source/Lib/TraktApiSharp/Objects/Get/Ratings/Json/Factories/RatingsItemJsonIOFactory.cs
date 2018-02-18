@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktRatingsItem> CreateArrayReader() => new RatingsItemArrayJsonReader();
 
         public IObjectJsonWriter<ITraktRatingsItem> CreateObjectWriter() => new RatingsItemObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktRatingsItem> CreateArrayWriter() => new RatingsItemArrayJsonWriter();
     }
 }

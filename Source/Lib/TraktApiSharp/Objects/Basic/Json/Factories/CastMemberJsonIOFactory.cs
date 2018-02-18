@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktCastMember> CreateArrayReader() => new CastMemberArrayJsonReader();
 
         public IObjectJsonWriter<ITraktCastMember> CreateObjectWriter() => new CastMemberObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktCastMember> CreateArrayWriter() => new CastMemberArrayJsonWriter();
     }
 }

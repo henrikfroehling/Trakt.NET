@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktUserFriend> CreateArrayReader() => new UserFriendArrayJsonReader();
 
         public IObjectJsonWriter<ITraktUserFriend> CreateObjectWriter() => new UserFriendObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktUserFriend> CreateArrayWriter() => new UserFriendArrayJsonWriter();
     }
 }

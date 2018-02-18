@@ -9,7 +9,7 @@
     using Traits;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
-    using TraktApiSharp.Objects.Basic.Json.Writer;
+    using TraktApiSharp.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonWriter")]
@@ -18,7 +18,7 @@
         [Fact]
         public void Test_NetworkArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
-            var traktJsonWriter = new NetworkArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktNetwork>();
             IEnumerable<ITraktNetwork> traktNetworks = new List<TraktNetwork>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktNetworks);
             action.ShouldThrow<ArgumentNullException>();
@@ -32,7 +32,7 @@
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
             {
-                var traktJsonWriter = new NetworkArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktNetwork>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktNetworks);
                 stringWriter.ToString().Should().Be("[]");
             }
@@ -52,7 +52,7 @@
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
             {
-                var traktJsonWriter = new NetworkArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktNetwork>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktNetworks);
                 stringWriter.ToString().Should().Be(@"[{""network"":""network 1""}]");
             }
@@ -80,7 +80,7 @@
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
             {
-                var traktJsonWriter = new NetworkArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktNetwork>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktNetworks);
                 stringWriter.ToString().Should().Be(@"[{""network"":""network 1""}," +
                                                     @"{""network"":""network 2""}," +

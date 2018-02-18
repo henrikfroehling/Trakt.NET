@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktUserLikeItem> CreateArrayReader() => new UserLikeItemArrayJsonReader();
 
         public IObjectJsonWriter<ITraktUserLikeItem> CreateObjectWriter() => new UserLikeItemObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktUserLikeItem> CreateArrayWriter() => new UserLikeItemArrayJsonWriter();
     }
 }

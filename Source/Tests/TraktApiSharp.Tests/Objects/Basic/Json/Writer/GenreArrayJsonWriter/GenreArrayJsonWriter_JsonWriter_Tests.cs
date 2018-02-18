@@ -9,7 +9,7 @@
     using Traits;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
-    using TraktApiSharp.Objects.Basic.Json.Writer;
+    using TraktApiSharp.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonWriter")]
@@ -18,7 +18,7 @@
         [Fact]
         public void Test_GenreArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
-            var traktJsonWriter = new GenreArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktGenre>();
             IEnumerable<ITraktGenre> traktGenres = new List<TraktGenre>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktGenres);
             action.ShouldThrow<ArgumentNullException>();
@@ -32,7 +32,7 @@
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
             {
-                var traktJsonWriter = new GenreArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktGenre>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktGenres);
                 stringWriter.ToString().Should().Be("[]");
             }
@@ -53,7 +53,7 @@
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
             {
-                var traktJsonWriter = new GenreArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktGenre>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktGenres);
                 stringWriter.ToString().Should().Be(@"[{""name"":""genre name 1"",""slug"":""genre slug 1""}]");
             }
@@ -84,7 +84,7 @@
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
             {
-                var traktJsonWriter = new GenreArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktGenre>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktGenres);
                 stringWriter.ToString().Should().Be(@"[{""name"":""genre name 1"",""slug"":""genre slug 1""}," +
                                                     @"{""name"":""genre name 2"",""slug"":""genre slug 2""}," +

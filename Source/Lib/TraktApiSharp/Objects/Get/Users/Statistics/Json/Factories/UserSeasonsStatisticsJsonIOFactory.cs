@@ -13,8 +13,5 @@
             => throw new NotSupportedException($"A array json reader for {nameof(ITraktUserSeasonsStatistics)} is not supported.");
 
         public IObjectJsonWriter<ITraktUserSeasonsStatistics> CreateObjectWriter() => new UserSeasonsStatisticsObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktUserSeasonsStatistics> CreateArrayWriter()
-            => throw new NotSupportedException($"A array json writer for {nameof(ITraktUserSeasonsStatistics)} is not supported.");
     }
 }

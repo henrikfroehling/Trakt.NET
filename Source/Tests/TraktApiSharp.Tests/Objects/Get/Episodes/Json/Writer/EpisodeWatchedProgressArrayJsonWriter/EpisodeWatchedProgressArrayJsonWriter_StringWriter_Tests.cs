@@ -9,7 +9,7 @@
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
-    using TraktApiSharp.Objects.Get.Episodes.Json.Writer;
+    using TraktApiSharp.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.Episodes.JsonWriter")]
@@ -18,7 +18,7 @@
         [Fact]
         public void Test_EpisodeWatchedProgressArrayJsonWriter_WriteArray_StringWriter_Exceptions()
         {
-            var traktJsonWriter = new EpisodeWatchedProgressArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeWatchedProgress>();
             IEnumerable<ITraktEpisodeWatchedProgress> traktEpisodeWatchedProgresss = new List<TraktEpisodeWatchedProgress>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(StringWriter), traktEpisodeWatchedProgresss);
             action.ShouldThrow<ArgumentNullException>();
@@ -31,7 +31,7 @@
 
             using (var stringWriter = new StringWriter())
             {
-                var traktJsonWriter = new EpisodeWatchedProgressArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeWatchedProgress>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktEpisodeWatchedProgresss);
                 json.Should().Be("[]");
             }
@@ -52,7 +52,7 @@
 
             using (var stringWriter = new StringWriter())
             {
-                var traktJsonWriter = new EpisodeWatchedProgressArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeWatchedProgress>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktEpisodeWatchedProgresss);
                 json.Should().Be($"[{{\"number\":1,\"completed\":true,\"last_watched_at\":\"{LAST_WATCHED_AT.ToTraktLongDateTimeString()}\"}}]");
             }
@@ -85,7 +85,7 @@
 
             using (var stringWriter = new StringWriter())
             {
-                var traktJsonWriter = new EpisodeWatchedProgressArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeWatchedProgress>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktEpisodeWatchedProgresss);
                 json.Should().Be($"[{{\"number\":1,\"completed\":true,\"last_watched_at\":\"{LAST_WATCHED_AT.ToTraktLongDateTimeString()}\"}}," +
                                  $"{{\"number\":2,\"completed\":true,\"last_watched_at\":\"{LAST_WATCHED_AT.ToTraktLongDateTimeString()}\"}}," +

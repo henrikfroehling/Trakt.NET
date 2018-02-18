@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktCertification> CreateArrayReader() => new CertificationArrayJsonReader();
 
         public IObjectJsonWriter<ITraktCertification> CreateObjectWriter() => new CertificationObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktCertification> CreateArrayWriter() => new CertificationArrayJsonWriter();
     }
 }

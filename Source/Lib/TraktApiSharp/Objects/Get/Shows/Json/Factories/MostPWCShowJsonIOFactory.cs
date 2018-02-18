@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktMostPWCShow> CreateArrayReader() => new MostPWCShowArrayJsonReader();
 
         public IObjectJsonWriter<ITraktMostPWCShow> CreateObjectWriter() => new MostPWCShowObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktMostPWCShow> CreateArrayWriter() => new MostPWCShowArrayJsonWriter();
     }
 }

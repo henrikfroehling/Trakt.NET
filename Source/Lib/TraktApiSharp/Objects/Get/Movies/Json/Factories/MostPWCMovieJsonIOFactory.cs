@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktMostPWCMovie> CreateArrayReader() => new MostPWCMovieArrayJsonReader();
 
         public IObjectJsonWriter<ITraktMostPWCMovie> CreateObjectWriter() => new MostPWCMovieObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktMostPWCMovie> CreateArrayWriter() => new MostPWCMovieArrayJsonWriter();
     }
 }

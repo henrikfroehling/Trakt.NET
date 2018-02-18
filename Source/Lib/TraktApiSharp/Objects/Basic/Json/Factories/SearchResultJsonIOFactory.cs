@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktSearchResult> CreateArrayReader() => new SearchResultArrayJsonReader();
 
         public IObjectJsonWriter<ITraktSearchResult> CreateObjectWriter() => new SearchResultObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktSearchResult> CreateArrayWriter() => new SearchResultArrayJsonWriter();
     }
 }

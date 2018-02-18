@@ -12,7 +12,7 @@
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Objects.Get.Seasons.Implementations;
-    using TraktApiSharp.Objects.Get.Seasons.Json.Writer;
+    using TraktApiSharp.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.Seasons.JsonWriter")]
@@ -23,7 +23,7 @@
         [Fact]
         public void Test_SeasonWatchedProgressArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
-            var traktJsonWriter = new SeasonWatchedProgressArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktSeasonWatchedProgress>();
             IEnumerable<ITraktSeasonWatchedProgress> traktSeasonWatchedProgresses = new List<TraktSeasonWatchedProgress>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktSeasonWatchedProgresses);
             action.ShouldThrow<ArgumentNullException>();
@@ -37,7 +37,7 @@
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
             {
-                var traktJsonWriter = new SeasonWatchedProgressArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktSeasonWatchedProgress>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktSeasonWatchedProgresses);
                 stringWriter.ToString().Should().Be("[]");
             }
@@ -74,7 +74,7 @@
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
             {
-                var traktJsonWriter = new SeasonWatchedProgressArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktSeasonWatchedProgress>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktSeasonWatchedProgresses);
                 stringWriter.ToString().Should().Be(@"[{""number"":1,""aired"":24,""completed"":12," +
                                                     @"""episodes"":[" +
@@ -136,7 +136,7 @@
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
             {
-                var traktJsonWriter = new SeasonWatchedProgressArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktSeasonWatchedProgress>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktSeasonWatchedProgresses);
                 stringWriter.ToString().Should().Be(@"[{""number"":1,""aired"":24,""completed"":12," +
                                                     @"""episodes"":[" +

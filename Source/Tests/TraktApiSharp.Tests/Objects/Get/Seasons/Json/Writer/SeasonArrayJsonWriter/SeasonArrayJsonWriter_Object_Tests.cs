@@ -10,7 +10,7 @@
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Objects.Get.Seasons.Implementations;
-    using TraktApiSharp.Objects.Get.Seasons.Json.Writer;
+    using TraktApiSharp.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.Seasons.JsonWriter")]
@@ -19,7 +19,7 @@
         [Fact]
         public void Test_SeasonArrayJsonWriter_WriteArray_Array_Exceptions()
         {
-            var traktJsonWriter = new SeasonArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktSeason>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(IEnumerable<ITraktSeason>));
             action.ShouldThrow<ArgumentNullException>();
         }
@@ -29,7 +29,7 @@
         {
             IEnumerable<ITraktSeason> traktSeasons = new List<TraktSeason>();
 
-            var traktJsonWriter = new SeasonArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktSeason>();
             string json = await traktJsonWriter.WriteArrayAsync(traktSeasons);
             json.Should().Be("[]");
         }
@@ -145,7 +145,7 @@
                 }
             };
 
-            var traktJsonWriter = new SeasonArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktSeason>();
             string json = await traktJsonWriter.WriteArrayAsync(traktSeasons);
             json.Should().Be(@"[{""number"":1,""title"":""Season 1""," +
                              @"""ids"":{""trakt"":123,""tvdb"":456,""tmdb"":789,""tvrage"":101}," +
@@ -390,7 +390,7 @@
                 }
             };
 
-            var traktJsonWriter = new SeasonArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktSeason>();
             string json = await traktJsonWriter.WriteArrayAsync(traktSeasons);
             json.Should().Be(@"[{""number"":1,""title"":""Season 1""," +
                              @"""ids"":{""trakt"":123,""tvdb"":456,""tmdb"":789,""tvrage"":101}," +

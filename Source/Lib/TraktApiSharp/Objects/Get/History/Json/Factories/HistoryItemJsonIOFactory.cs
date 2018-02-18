@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktHistoryItem> CreateArrayReader() => new HistoryItemArrayJsonReader();
 
         public IObjectJsonWriter<ITraktHistoryItem> CreateObjectWriter() => new HistoryItemObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktHistoryItem> CreateArrayWriter() => new HistoryItemArrayJsonWriter();
     }
 }

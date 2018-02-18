@@ -13,8 +13,5 @@
             => throw new NotSupportedException($"A array json reader for {nameof(ITraktShowWatchedProgress)} is not supported.");
 
         public IObjectJsonWriter<ITraktShowWatchedProgress> CreateObjectWriter() => new ShowWatchedProgressObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktShowWatchedProgress> CreateArrayWriter()
-            => throw new NotSupportedException($"A array json writer for {nameof(ITraktShowWatchedProgress)} is not supported.");
     }
 }

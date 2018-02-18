@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Seasons.Json.Writer
 {
-    using Episodes.Json.Writer;
+    using Episodes;
     using Newtonsoft.Json;
     using Objects.Json;
     using System;
@@ -36,7 +36,7 @@
 
             if (obj.Episodes != null)
             {
-                var episodeCollectionProgressArrayJsonWriter = new EpisodeCollectionProgressArrayJsonWriter();
+                var episodeCollectionProgressArrayJsonWriter = new ArrayJsonWriter<ITraktEpisodeCollectionProgress>();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.SEASON_COLLECTION_PROGRESS_PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
                 await episodeCollectionProgressArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Episodes, cancellationToken).ConfigureAwait(false);
             }

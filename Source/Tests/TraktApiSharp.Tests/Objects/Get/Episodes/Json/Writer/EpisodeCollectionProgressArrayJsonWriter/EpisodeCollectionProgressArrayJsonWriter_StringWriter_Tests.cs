@@ -9,7 +9,7 @@
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
-    using TraktApiSharp.Objects.Get.Episodes.Json.Writer;
+    using TraktApiSharp.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.Episodes.JsonWriter")]
@@ -18,7 +18,7 @@
         [Fact]
         public void Test_EpisodeCollectionProgressArrayJsonWriter_WriteArray_StringWriter_Exceptions()
         {
-            var traktJsonWriter = new EpisodeCollectionProgressArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeCollectionProgress>();
             IEnumerable<ITraktEpisodeCollectionProgress> traktEpisodeCollectionProgresss = new List<TraktEpisodeCollectionProgress>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(StringWriter), traktEpisodeCollectionProgresss);
             action.ShouldThrow<ArgumentNullException>();
@@ -31,7 +31,7 @@
 
             using (var stringWriter = new StringWriter())
             {
-                var traktJsonWriter = new EpisodeCollectionProgressArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeCollectionProgress>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktEpisodeCollectionProgresss);
                 json.Should().Be("[]");
             }
@@ -52,7 +52,7 @@
 
             using (var stringWriter = new StringWriter())
             {
-                var traktJsonWriter = new EpisodeCollectionProgressArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeCollectionProgress>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktEpisodeCollectionProgresss);
                 json.Should().Be($"[{{\"number\":1,\"completed\":true,\"collected_at\":\"{COLLECTED_AT.ToTraktLongDateTimeString()}\"}}]");
             }
@@ -85,7 +85,7 @@
 
             using (var stringWriter = new StringWriter())
             {
-                var traktJsonWriter = new EpisodeCollectionProgressArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeCollectionProgress>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktEpisodeCollectionProgresss);
                 json.Should().Be($"[{{\"number\":1,\"completed\":true,\"collected_at\":\"{COLLECTED_AT.ToTraktLongDateTimeString()}\"}}," +
                                  $"{{\"number\":2,\"completed\":true,\"collected_at\":\"{COLLECTED_AT.ToTraktLongDateTimeString()}\"}}," +

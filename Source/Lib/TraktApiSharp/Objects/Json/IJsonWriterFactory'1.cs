@@ -3,7 +3,5 @@
     internal interface IJsonWriterFactory<TObjectType>
     {
         IObjectJsonWriter<TObjectType> CreateObjectWriter();
-
-        IArrayJsonWriter<TObjectType> CreateArrayWriter();
     }
 }

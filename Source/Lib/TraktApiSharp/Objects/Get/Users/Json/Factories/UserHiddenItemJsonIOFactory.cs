@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktUserHiddenItem> CreateArrayReader() => new UserHiddenItemArrayJsonReader();
 
         public IObjectJsonWriter<ITraktUserHiddenItem> CreateObjectWriter() => new UserHiddenItemObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktUserHiddenItem> CreateArrayWriter() => new UserHiddenItemArrayJsonWriter();
     }
 }

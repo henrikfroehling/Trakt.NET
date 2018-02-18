@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktEpisodeTranslation> CreateArrayReader() => new EpisodeTranslationArrayJsonReader();
 
         public IObjectJsonWriter<ITraktEpisodeTranslation> CreateObjectWriter() => new EpisodeTranslationObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktEpisodeTranslation> CreateArrayWriter() => new EpisodeTranslationArrayJsonWriter();
     }
 }

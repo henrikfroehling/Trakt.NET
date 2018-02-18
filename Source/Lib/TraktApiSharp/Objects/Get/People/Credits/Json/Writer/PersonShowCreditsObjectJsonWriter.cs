@@ -17,7 +17,7 @@
 
             if (obj.Cast != null)
             {
-                var personShowCreditsCastItemArrayJsonWriter = new PersonShowCreditsCastItemArrayJsonWriter();
+                var personShowCreditsCastItemArrayJsonWriter = new ArrayJsonWriter<ITraktPersonShowCreditsCastItem>();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PERSON_SHOW_CREDITS_PROPERTY_NAME_CAST, cancellationToken).ConfigureAwait(false);
                 await personShowCreditsCastItemArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Cast, cancellationToken).ConfigureAwait(false);
             }

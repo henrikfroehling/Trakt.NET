@@ -9,7 +9,7 @@
     using Traits;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
-    using TraktApiSharp.Objects.Basic.Json.Writer;
+    using TraktApiSharp.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonWriter")]
@@ -18,7 +18,7 @@
         [Fact]
         public void Test_CertificationArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
-            var traktJsonWriter = new CertificationArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktCertification>();
             IEnumerable<ITraktCertification> traktCertifications = new List<TraktCertification>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktCertifications);
             action.ShouldThrow<ArgumentNullException>();
@@ -32,7 +32,7 @@
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
             {
-                var traktJsonWriter = new CertificationArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktCertification>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktCertifications);
                 stringWriter.ToString().Should().Be("[]");
             }
@@ -54,7 +54,7 @@
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
             {
-                var traktJsonWriter = new CertificationArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktCertification>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktCertifications);
                 stringWriter.ToString().Should().Be(@"[{""name"":""certification name 1"",""slug"":""certification slug 1"",""description"":""certification description 1""}]");
             }
@@ -88,7 +88,7 @@
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
             {
-                var traktJsonWriter = new CertificationArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktCertification>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktCertifications);
                 stringWriter.ToString().Should().Be(@"[{""name"":""certification name 1"",""slug"":""certification slug 1"",""description"":""certification description 1""}," +
                                                     @"{""name"":""certification name 2"",""slug"":""certification slug 2"",""description"":""certification description 2""}," +

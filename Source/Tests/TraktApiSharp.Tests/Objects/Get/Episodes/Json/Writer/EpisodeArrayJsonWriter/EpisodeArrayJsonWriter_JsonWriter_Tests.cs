@@ -10,7 +10,7 @@
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
-    using TraktApiSharp.Objects.Get.Episodes.Json.Writer;
+    using TraktApiSharp.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.Episodes.JsonWriter")]
@@ -22,7 +22,7 @@
         [Fact]
         public void Test_EpisodeArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
-            var traktJsonWriter = new EpisodeArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktEpisode>();
             IEnumerable<ITraktEpisode> traktEpisodes = new List<TraktEpisode>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktEpisodes);
             action.ShouldThrow<ArgumentNullException>();
@@ -36,7 +36,7 @@
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
             {
-                var traktJsonWriter = new EpisodeArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktEpisode>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktEpisodes);
                 stringWriter.ToString().Should().Be("[]");
             }
@@ -93,7 +93,7 @@
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
             {
-                var traktJsonWriter = new EpisodeArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktEpisode>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktEpisodes);
                 stringWriter.ToString().Should().Be(@"[{""season"":1,""number"":1,""title"":""title 1""," +
                                                     @"""ids"":{""trakt"":123456,""tvdb"":234567,""imdb"":""345678"",""tmdb"":456789,""tvrage"":567890}," +
@@ -199,7 +199,7 @@
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
             {
-                var traktJsonWriter = new EpisodeArrayJsonWriter();
+                var traktJsonWriter = new ArrayJsonWriter<ITraktEpisode>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktEpisodes);
                 stringWriter.ToString().Should().Be(@"[{""season"":1,""number"":1,""title"":""title 1""," +
                                                     @"""ids"":{""trakt"":123456,""tvdb"":234567,""imdb"":""345678"",""tmdb"":456789,""tvrage"":567890}," +

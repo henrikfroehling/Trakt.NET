@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktTrendingShow> CreateArrayReader() => new TrendingShowArrayJsonReader();
 
         public IObjectJsonWriter<ITraktTrendingShow> CreateObjectWriter() => new TrendingShowObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktTrendingShow> CreateArrayWriter() => new TrendingShowArrayJsonWriter();
     }
 }

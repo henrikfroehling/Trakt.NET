@@ -7,7 +7,7 @@
     using Traits;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
-    using TraktApiSharp.Objects.Basic.Json.Writer;
+    using TraktApiSharp.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonWriter")]
@@ -16,7 +16,7 @@
         [Fact]
         public void Test_NetworkArrayJsonWriter_WriteArray_Array_Exceptions()
         {
-            var traktJsonWriter = new NetworkArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktNetwork>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(IEnumerable<ITraktNetwork>));
             action.ShouldThrow<ArgumentNullException>();
         }
@@ -26,7 +26,7 @@
         {
             IEnumerable<ITraktNetwork> traktNetworks = new List<TraktNetwork>();
 
-            var traktJsonWriter = new NetworkArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktNetwork>();
             string json = await traktJsonWriter.WriteArrayAsync(traktNetworks);
             json.Should().Be("[]");
         }
@@ -42,7 +42,7 @@
                 }
             };
 
-            var traktJsonWriter = new NetworkArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktNetwork>();
             string json = await traktJsonWriter.WriteArrayAsync(traktNetworks);
             json.Should().Be(@"[{""network"":""network 1""}]");
         }
@@ -66,7 +66,7 @@
                 }
             };
 
-            var traktJsonWriter = new NetworkArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktNetwork>();
             string json = await traktJsonWriter.WriteArrayAsync(traktNetworks);
             json.Should().Be(@"[{""network"":""network 1""}," +
                              @"{""network"":""network 2""}," +

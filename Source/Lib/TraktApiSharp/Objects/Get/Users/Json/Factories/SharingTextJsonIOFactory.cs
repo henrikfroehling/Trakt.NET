@@ -13,8 +13,5 @@
             => throw new NotSupportedException($"A array json reader for {nameof(ITraktSharingText)} is not supported.");
 
         public IObjectJsonWriter<ITraktSharingText> CreateObjectWriter() => new SharingTextObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktSharingText> CreateArrayWriter()
-            => throw new NotSupportedException($"A array json writer for {nameof(ITraktSharingText)} is not supported.");
     }
 }

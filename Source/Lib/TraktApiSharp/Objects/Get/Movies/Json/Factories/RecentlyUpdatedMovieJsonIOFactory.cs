@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktRecentlyUpdatedMovie> CreateArrayReader() => new RecentlyUpdatedMovieArrayJsonReader();
 
         public IObjectJsonWriter<ITraktRecentlyUpdatedMovie> CreateObjectWriter() => new RecentlyUpdatedMovieObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktRecentlyUpdatedMovie> CreateArrayWriter() => new RecentlyUpdatedMovieArrayJsonWriter();
     }
 }

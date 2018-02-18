@@ -7,7 +7,7 @@
     using Traits;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
-    using TraktApiSharp.Objects.Basic.Json.Writer;
+    using TraktApiSharp.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonWriter")]
@@ -16,7 +16,7 @@
         [Fact]
         public void Test_CertificationArrayJsonWriter_WriteArray_Array_Exceptions()
         {
-            var traktJsonWriter = new CertificationArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktCertification>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(IEnumerable<ITraktCertification>));
             action.ShouldThrow<ArgumentNullException>();
         }
@@ -26,7 +26,7 @@
         {
             IEnumerable<ITraktCertification> traktCertifications = new List<TraktCertification>();
 
-            var traktJsonWriter = new CertificationArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktCertification>();
             string json = await traktJsonWriter.WriteArrayAsync(traktCertifications);
             json.Should().Be("[]");
         }
@@ -44,7 +44,7 @@
                 }
             };
 
-            var traktJsonWriter = new CertificationArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktCertification>();
             string json = await traktJsonWriter.WriteArrayAsync(traktCertifications);
             json.Should().Be(@"[{""name"":""certification name 1"",""slug"":""certification slug 1"",""description"":""certification description 1""}]");
         }
@@ -74,7 +74,7 @@
                 }
             };
 
-            var traktJsonWriter = new CertificationArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktCertification>();
             string json = await traktJsonWriter.WriteArrayAsync(traktCertifications);
             json.Should().Be(@"[{""name"":""certification name 1"",""slug"":""certification slug 1"",""description"":""certification description 1""}," +
                              @"{""name"":""certification name 2"",""slug"":""certification slug 2"",""description"":""certification description 2""}," +

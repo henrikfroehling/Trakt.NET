@@ -7,7 +7,7 @@
     using Traits;
     using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
-    using TraktApiSharp.Objects.Basic.Json.Writer;
+    using TraktApiSharp.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonWriter")]
@@ -16,7 +16,7 @@
         [Fact]
         public void Test_GenreArrayJsonWriter_WriteArray_Array_Exceptions()
         {
-            var traktJsonWriter = new GenreArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktGenre>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(IEnumerable<ITraktGenre>));
             action.ShouldThrow<ArgumentNullException>();
         }
@@ -26,7 +26,7 @@
         {
             IEnumerable<ITraktGenre> traktGenres = new List<TraktGenre>();
 
-            var traktJsonWriter = new GenreArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktGenre>();
             string json = await traktJsonWriter.WriteArrayAsync(traktGenres);
             json.Should().Be("[]");
         }
@@ -43,7 +43,7 @@
                 }
             };
 
-            var traktJsonWriter = new GenreArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktGenre>();
             string json = await traktJsonWriter.WriteArrayAsync(traktGenres);
             json.Should().Be(@"[{""name"":""genre name 1"",""slug"":""genre slug 1""}]");
         }
@@ -70,7 +70,7 @@
                 }
             };
 
-            var traktJsonWriter = new GenreArrayJsonWriter();
+            var traktJsonWriter = new ArrayJsonWriter<ITraktGenre>();
             string json = await traktJsonWriter.WriteArrayAsync(traktGenres);
             json.Should().Be(@"[{""name"":""genre name 1"",""slug"":""genre slug 1""}," +
                              @"{""name"":""genre name 2"",""slug"":""genre slug 2""}," +

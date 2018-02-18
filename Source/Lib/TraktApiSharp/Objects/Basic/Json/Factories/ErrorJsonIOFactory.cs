@@ -13,8 +13,5 @@
             => throw new NotSupportedException($"A array json reader for {nameof(ITraktError)} is not supported.");
 
         public IObjectJsonWriter<ITraktError> CreateObjectWriter() => new ErrorObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktError> CreateArrayWriter()
-            => throw new NotSupportedException($"A array json writer for {nameof(ITraktError)} is not supported.");
     }
 }

@@ -91,7 +91,7 @@
 
             if (obj.Translations != null)
             {
-                var episodeTranslationArrayJsonWriter = new EpisodeTranslationArrayJsonWriter();
+                var episodeTranslationArrayJsonWriter = new ArrayJsonWriter<ITraktEpisodeTranslation>();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.EPISODE_PROPERTY_NAME_TRANSLATIONS, cancellationToken).ConfigureAwait(false);
                 await episodeTranslationArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Translations, cancellationToken).ConfigureAwait(false);
             }

@@ -4,7 +4,7 @@
     using Extensions;
     using Newtonsoft.Json;
     using Objects.Json;
-    using Seasons.Json.Writer;
+    using Seasons;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
@@ -38,14 +38,14 @@
 
             if (obj.Seasons != null)
             {
-                var seasonCollectionProgressArrayJsonWriter = new SeasonCollectionProgressArrayJsonWriter();
+                var seasonCollectionProgressArrayJsonWriter = new ArrayJsonWriter<ITraktSeasonCollectionProgress>();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_COLLECTION_PROGRESS_PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
                 await seasonCollectionProgressArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Seasons, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.HiddenSeasons != null)
             {
-                var seasonArrayJsonWriter = new SeasonArrayJsonWriter();
+                var seasonArrayJsonWriter = new ArrayJsonWriter<ITraktSeason>();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_COLLECTION_PROGRESS_PROPERTY_NAME_HIDDEN_SEASONS, cancellationToken).ConfigureAwait(false);
                 await seasonArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.HiddenSeasons, cancellationToken).ConfigureAwait(false);
             }

@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktNetwork> CreateArrayReader() => new NetworkArrayJsonReader();
 
         public IObjectJsonWriter<ITraktNetwork> CreateObjectWriter() => new NetworkObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktNetwork> CreateArrayWriter() => new NetworkArrayJsonWriter();
     }
 }

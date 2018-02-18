@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktRecentlyUpdatedShow> CreateArrayReader() => new RecentlyUpdatedShowArrayJsonReader();
 
         public IObjectJsonWriter<ITraktRecentlyUpdatedShow> CreateObjectWriter() => new RecentlyUpdatedShowObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktRecentlyUpdatedShow> CreateArrayWriter() => new RecentlyUpdatedShowArrayJsonWriter();
     }
 }

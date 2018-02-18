@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktSyncPlaybackProgressItem> CreateArrayReader() => new SyncPlaybackProgressItemArrayJsonReader();
 
         public IObjectJsonWriter<ITraktSyncPlaybackProgressItem> CreateObjectWriter() => new SyncPlaybackProgressItemObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktSyncPlaybackProgressItem> CreateArrayWriter() => new SyncPlaybackProgressItemArrayJsonWriter();
     }
 }

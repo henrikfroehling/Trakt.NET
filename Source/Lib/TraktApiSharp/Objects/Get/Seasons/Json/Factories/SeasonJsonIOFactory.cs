@@ -11,7 +11,5 @@
         public IArrayJsonReader<ITraktSeason> CreateArrayReader() => new SeasonArrayJsonReader();
 
         public IObjectJsonWriter<ITraktSeason> CreateObjectWriter() => new SeasonObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktSeason> CreateArrayWriter() => new SeasonArrayJsonWriter();
     }
 }

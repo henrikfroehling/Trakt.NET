@@ -87,13 +87,6 @@
             return factory.CreateObjectWriter();
         }
 
-        public static IArrayJsonWriter<TObjectType> CreateArrayWriter<TObjectType>()
-        {
-            var factory = GetJsonIOFactory<TObjectType>();
-            Debug.Assert(factory != null, $"factory for {nameof(TObjectType)} should not be null");
-            return factory.CreateArrayWriter();
-        }
-
         public static IJsonIOFactory<TReturnType> GetJsonIOFactory<TReturnType>()
         {
             var type = typeof(TReturnType);

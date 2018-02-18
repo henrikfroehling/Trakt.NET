@@ -13,8 +13,5 @@
             => throw new NotSupportedException($"A array json reader for {nameof(ITraktMetadata)} is not supported.");
 
         public IObjectJsonWriter<ITraktMetadata> CreateObjectWriter() => new MetadataObjectJsonWriter();
-
-        public IArrayJsonWriter<ITraktMetadata> CreateArrayWriter()
-            => throw new NotSupportedException($"A array json writer for {nameof(ITraktMetadata)} is not supported.");
     }
 }
