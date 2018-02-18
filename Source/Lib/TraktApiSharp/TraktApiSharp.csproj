@@ -535,6 +535,10 @@
     <Compile Include="Objects\Get\Watched\Json\Reader\WatchedShowObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Watched\Json\Reader\WatchedShowSeasonArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Watched\Json\Reader\WatchedShowSeasonObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Watched\Json\Writer\WatchedMovieObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Watched\Json\Writer\WatchedShowEpisodeObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Watched\Json\Writer\WatchedShowObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Watched\Json\Writer\WatchedShowSeasonObjectJsonWriter.cs" />
     <Compile Include="Objects\Get\Watchlist\ITraktWatchlistItem.cs" />
     <Compile Include="Objects\Basic\Json\Reader\ErrorObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\Json\Reader\GenreObjectJsonReader.cs" />
