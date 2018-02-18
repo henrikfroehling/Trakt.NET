@@ -201,6 +201,8 @@
     <Compile Include="Objects\Get\Calendars\Json\Reader\CalendarMovieObjectJsonReader.cs" />
     <Compile Include="Objects\Get\Calendars\Json\Reader\CalendarShowArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Calendars\Json\Reader\CalendarShowObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Calendars\Json\Writer\CalendarMovieObjectJsonWriter.cs" />
+    <Compile Include="Objects\Get\Calendars\Json\Writer\CalendarShowObjectJsonWriter.cs" />
     <Compile Include="Objects\Get\Collections\ITraktCollectionMovie.cs" />
     <Compile Include="Objects\Get\Collections\ITraktCollectionShow.cs" />
     <Compile Include="Objects\Get\Calendars\ITraktCalendarEpisode.cs" />
