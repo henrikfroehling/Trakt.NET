@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Basic.Json.Factories
 {
     using Objects.Basic.Json.Reader;
+    using Objects.Basic.Json.Writer;
     using Objects.Json;
 
     internal class SearchResultJsonIOFactory : IJsonIOFactory<ITraktSearchResult>
@@ -9,8 +10,8 @@
 
         public IArrayJsonReader<ITraktSearchResult> CreateArrayReader() => new SearchResultArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktSearchResult> CreateObjectWriter() => throw new System.NotImplementedException();
+        public IObjectJsonWriter<ITraktSearchResult> CreateObjectWriter() => new SearchResultObjectJsonWriter();
 
-        public IArrayJsonWriter<ITraktSearchResult> CreateArrayWriter() => throw new System.NotImplementedException();
+        public IArrayJsonWriter<ITraktSearchResult> CreateArrayWriter() => new SearchResultArrayJsonWriter();
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Basic.Json.Factories
 {
     using Objects.Basic.Json.Reader;
+    using Objects.Basic.Json.Writer;
     using Objects.Json;
 
     internal class CommentJsonIOFactory : IJsonIOFactory<ITraktComment>
@@ -9,8 +10,8 @@
 
         public IArrayJsonReader<ITraktComment> CreateArrayReader() => new CommentArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktComment> CreateObjectWriter() => throw new System.NotImplementedException();
+        public IObjectJsonWriter<ITraktComment> CreateObjectWriter() => new CommentObjectJsonWriter();
 
-        public IArrayJsonWriter<ITraktComment> CreateArrayWriter() => throw new System.NotImplementedException();
+        public IArrayJsonWriter<ITraktComment> CreateArrayWriter() => new CommentArrayJsonWriter();
     }
 }
