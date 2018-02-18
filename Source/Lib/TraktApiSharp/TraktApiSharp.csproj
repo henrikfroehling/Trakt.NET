@@ -509,7 +509,6 @@
     <Compile Include="Objects\Get\Users\Json\Writer\UserLikeItemObjectJsonWriter.cs" />
     <Compile Include="Objects\Get\Users\Json\Writer\UserObjectJsonWriter.cs" />
     <Compile Include="Objects\Get\Users\Json\Writer\UserSettingsObjectJsonWriter.cs" />
-    <Compile Include="Objects\Get\Users\Json\Writer\UserWatchingItemArrayJsonWriter.cs" />
     <Compile Include="Objects\Get\Users\Json\Writer\UserWatchingItemObjectJsonWriter.cs" />
     <Compile Include="Objects\Get\Users\Lists\ITraktList.cs" />
     <Compile Include="Objects\Get\Users\Lists\ITraktListIds.cs" />

@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users.Lists.Json.Factories
 {
     using Get.Users.Lists.Json.Reader;
+    using Get.Users.Lists.Json.Writer;
     using Objects.Json;
 
     internal class ListItemJsonIOFactory : IJsonIOFactory<ITraktListItem>
@@ -9,14 +10,8 @@
 
         public IArrayJsonReader<ITraktListItem> CreateArrayReader() => new ListItemArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktListItem> CreateObjectWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktListItem> CreateObjectWriter() => new ListItemObjectJsonWriter();
 
-        public IArrayJsonWriter<ITraktListItem> CreateArrayWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IArrayJsonWriter<ITraktListItem> CreateArrayWriter() => new ListItemArrayJsonWriter();
     }
 }

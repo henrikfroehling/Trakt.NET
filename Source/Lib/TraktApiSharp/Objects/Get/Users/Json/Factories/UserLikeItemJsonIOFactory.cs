@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users.Json.Factories
 {
     using Get.Users.Json.Reader;
+    using Get.Users.Json.Writer;
     using Objects.Json;
 
     internal class UserLikeItemJsonIOFactory : IJsonIOFactory<ITraktUserLikeItem>
@@ -9,14 +10,8 @@
 
         public IArrayJsonReader<ITraktUserLikeItem> CreateArrayReader() => new UserLikeItemArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktUserLikeItem> CreateObjectWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktUserLikeItem> CreateObjectWriter() => new UserLikeItemObjectJsonWriter();
 
-        public IArrayJsonWriter<ITraktUserLikeItem> CreateArrayWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IArrayJsonWriter<ITraktUserLikeItem> CreateArrayWriter() => new UserLikeItemArrayJsonWriter();
     }
 }

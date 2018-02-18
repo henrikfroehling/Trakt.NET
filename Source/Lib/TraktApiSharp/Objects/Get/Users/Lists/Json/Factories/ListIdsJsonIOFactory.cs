@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users.Lists.Json.Factories
 {
     using Get.Users.Lists.Json.Reader;
+    using Get.Users.Lists.Json.Writer;
     using Objects.Json;
     using System;
 
@@ -9,18 +10,11 @@
         public IObjectJsonReader<ITraktListIds> CreateObjectReader() => new ListIdsObjectJsonReader();
 
         public IArrayJsonReader<ITraktListIds> CreateArrayReader()
-        {
-            throw new NotSupportedException($"A array json reader for {nameof(ITraktListIds)} is not supported.");
-        }
+            => throw new NotSupportedException($"A array json reader for {nameof(ITraktListIds)} is not supported.");
 
-        public IObjectJsonWriter<ITraktListIds> CreateObjectWriter()
-        {
-            throw new NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktListIds> CreateObjectWriter() => new ListIdsObjectJsonWriter();
 
         public IArrayJsonWriter<ITraktListIds> CreateArrayWriter()
-        {
-            throw new NotImplementedException();
-        }
+            => throw new NotSupportedException($"A array json writer for {nameof(ITraktListIds)} is not supported.");
     }
 }
