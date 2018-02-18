@@ -590,6 +590,7 @@
     <Compile Include="Objects\Get\Watchlist\Json\Factories\WatchlistItemJsonIOFactory.cs" />
     <Compile Include="Objects\Get\Watchlist\Json\Reader\WatchlistItemArrayJsonReader.cs" />
     <Compile Include="Objects\Get\Watchlist\Json\Reader\WatchlistItemObjectJsonReader.cs" />
+    <Compile Include="Objects\Get\Watchlist\Json\Writer\WatchlistItemObjectJsonWriter.cs" />
     <Compile Include="Objects\Json\AArrayJsonReader%271.cs" />
     <Compile Include="Objects\Json\ArrayJsonWriter%271.cs" />
     <Compile Include="Objects\Json\AObjectJsonReader%271.cs" />
