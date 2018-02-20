@@ -7,7 +7,7 @@
     //using TraktApiSharp.Objects.Basic.Implementations;
     //using TraktApiSharp.Objects.Get.Movies;
     //using TraktApiSharp.Objects.Get.Movies.Implementations;
-    using TraktApiSharp.Objects.Post.Checkins;
+    using TraktApiSharp.Objects.Post.Checkins.Implementations;
 
     [TestClass]
     public class TraktMovieCheckinPostTests

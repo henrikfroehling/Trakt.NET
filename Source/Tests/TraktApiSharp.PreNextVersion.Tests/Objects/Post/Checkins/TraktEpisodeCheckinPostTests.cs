@@ -7,7 +7,7 @@
     //using TraktApiSharp.Objects.Basic.Implementations;
     //using TraktApiSharp.Objects.Get.Episodes.Implementations;
     //using TraktApiSharp.Objects.Get.Shows.Implementations;
-    using TraktApiSharp.Objects.Post.Checkins;
+    using TraktApiSharp.Objects.Post.Checkins.Implementations;
 
     [TestClass]
     public class TraktEpisodeCheckinPostTests

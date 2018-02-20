@@ -36,6 +36,8 @@
     using Get.Watched.Json.Factories;
     using Get.Watchlist;
     using Get.Watchlist.Json.Factories;
+    using Post.Checkins;
+    using Post.Checkins.Json.Factories;
     using Post.Checkins.Responses;
     using Post.Checkins.Responses.Json.Factories;
     using Post.Comments.Responses;
@@ -121,6 +123,10 @@
             // calendar objects
             s_jsonIOFactories.Add(typeof(ITraktCalendarMovie), new CalendarMovieJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktCalendarShow), new CalendarShowJsonIOFactory());
+
+            // checkin post objects
+            s_jsonIOFactories.Add(typeof(ITraktEpisodeCheckinPost), new EpisodeCheckinPostJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktMovieCheckinPost), new MovieCheckinPostJsonIOFactory());
 
             // checkin post response objects
             s_jsonIOFactories.Add(typeof(ITraktCheckinPostErrorResponse), new CheckinPostErrorResponseJsonIOFactory());

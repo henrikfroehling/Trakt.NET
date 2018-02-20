@@ -586,6 +586,24 @@
         internal const string WATCHLIST_ITEM_PROPERTY_NAME_SEASON = "season";
         internal const string WATCHLIST_ITEM_PROPERTY_NAME_EPISODE = "episode";
 
+        // post checkins
+        internal const string EPISODE_CHECKIN_POST_PROPERTY_NAME_SHARING = "sharing";
+        internal const string EPISODE_CHECKIN_POST_PROPERTY_NAME_MESSAGE = "message";
+        internal const string EPISODE_CHECKIN_POST_PROPERTY_NAME_APP_VERSION = "app_version";
+        internal const string EPISODE_CHECKIN_POST_PROPERTY_NAME_APP_DATE = "app_date";
+        internal const string EPISODE_CHECKIN_POST_PROPERTY_NAME_VENUE_ID = "venue_id";
+        internal const string EPISODE_CHECKIN_POST_PROPERTY_NAME_VENUE_NAME = "venue_name";
+        internal const string EPISODE_CHECKIN_POST_PROPERTY_NAME_EPISODE = "episode";
+        internal const string EPISODE_CHECKIN_POST_PROPERTY_NAME_SHOW = "show";
+
+        internal const string MOVIE_CHECKIN_POST_PROPERTY_NAME_SHARING = "sharing";
+        internal const string MOVIE_CHECKIN_POST_PROPERTY_NAME_MESSAGE = "message";
+        internal const string MOVIE_CHECKIN_POST_PROPERTY_NAME_APP_VERSION = "app_version";
+        internal const string MOVIE_CHECKIN_POST_PROPERTY_NAME_APP_DATE = "app_date";
+        internal const string MOVIE_CHECKIN_POST_PROPERTY_NAME_VENUE_ID = "venue_id";
+        internal const string MOVIE_CHECKIN_POST_PROPERTY_NAME_VENUE_NAME = "venue_name";
+        internal const string MOVIE_CHECKIN_POST_PROPERTY_NAME_MOVIE = "movie";
+
         // post checkins responses
         internal const string CHECKIN_POST_ERROR_RESPONSE_PROPERTY_NAME_EXPIRES_AT = "expires_at";
 

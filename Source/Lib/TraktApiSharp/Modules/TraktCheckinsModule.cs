@@ -6,7 +6,7 @@
     using Objects.Get.Episodes.Implementations;
     using Objects.Get.Movies.Implementations;
     using Objects.Get.Shows.Implementations;
-    using Objects.Post.Checkins;
+    using Objects.Post.Checkins.Implementations;
     using Objects.Post.Checkins.Responses;
     using Requests.Checkins.OAuth;
     using Requests.Handler;
