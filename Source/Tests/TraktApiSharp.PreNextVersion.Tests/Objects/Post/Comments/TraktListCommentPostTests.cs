@@ -5,7 +5,7 @@
     //using Newtonsoft.Json;
     //using TraktApiSharp.Objects.Basic.Implementations;
     //using TraktApiSharp.Objects.Get.Users.Lists.Implementations;
-    using TraktApiSharp.Objects.Post.Comments;
+    using TraktApiSharp.Objects.Post.Comments.Implementations;
 
     [TestClass]
     public class TraktListCommentPostTests

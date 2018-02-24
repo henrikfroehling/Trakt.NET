@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Requests.Comments.OAuth
 {
     using Base;
-    using Objects.Post.Comments;
+    using Objects.Post.Comments.Implementations;
     using Objects.Post.Comments.Responses;
     using System.Collections.Generic;
 

@@ -3,7 +3,7 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
-    using TraktApiSharp.Objects.Post.Comments;
+    using TraktApiSharp.Objects.Post.Comments.Implementations;
 
     [TestClass]
     public class TraktCommentReplyPostTests

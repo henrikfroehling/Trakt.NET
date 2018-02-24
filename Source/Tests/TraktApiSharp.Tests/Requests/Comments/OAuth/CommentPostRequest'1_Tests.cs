@@ -3,7 +3,7 @@
     using FluentAssertions;
     using System;
     using Traits;
-    using TraktApiSharp.Objects.Post.Comments;
+    using TraktApiSharp.Objects.Post.Comments.Implementations;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Comments.OAuth;
     using Xunit;
