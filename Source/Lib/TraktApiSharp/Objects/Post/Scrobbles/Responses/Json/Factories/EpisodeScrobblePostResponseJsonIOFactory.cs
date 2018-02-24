@@ -1,26 +1,17 @@
 ﻿namespace TraktApiSharp.Objects.Post.Scrobbles.Responses.Json.Factories
 {
     using Objects.Json;
-    using Post.Scrobbles.Responses.Json.Reader;
+    using Reader;
     using System;
+    using Writer;
 
     internal class EpisodeScrobblePostResponseJsonIOFactory : IJsonIOFactory<ITraktEpisodeScrobblePostResponse>
     {
         public IObjectJsonReader<ITraktEpisodeScrobblePostResponse> CreateObjectReader() => new EpisodeScrobblePostResponseObjectJsonReader();
 
         public IArrayJsonReader<ITraktEpisodeScrobblePostResponse> CreateArrayReader()
-        {
-            throw new NotSupportedException($"A array json reader for {nameof(ITraktEpisodeScrobblePostResponse)} is not supported.");
-        }
+            => throw new NotSupportedException($"A array json reader for {nameof(ITraktEpisodeScrobblePostResponse)} is not supported.");
 
-        public IObjectJsonWriter<ITraktEpisodeScrobblePostResponse> CreateObjectWriter()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IArrayJsonWriter<ITraktEpisodeScrobblePostResponse> CreateArrayWriter()
-        {
-            throw new NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktEpisodeScrobblePostResponse> CreateObjectWriter() => new EpisodeScrobblePostResponseObjectJsonWriter();
     }
 }

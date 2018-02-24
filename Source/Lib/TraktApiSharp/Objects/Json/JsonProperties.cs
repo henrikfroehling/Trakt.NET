@@ -635,18 +635,25 @@
         internal const string POST_RESPONSE_NOT_FOUND_SEASON_PROPERTY_NAME_IDS = "ids";
         internal const string POST_RESPONSE_NOT_FOUND_SHOW_PROPERTY_NAME_IDS = "ids";
 
+        // post scrobbles
+        internal const string SCROBBLE_POST_PROPERTY_NAME_PROGRESS = "progress";
+        internal const string SCROBBLE_POST_PROPERTY_NAME_APP_VERSION = "app_version";
+        internal const string SCROBBLE_POST_PROPERTY_NAME_APP_DATE = "app_date";
+
+        internal const string EPISODE_SCROBBLE_POST_PROPERTY_NAME_EPISODE = "episode";
+        internal const string EPISODE_SCROBBLE_POST_PROPERTY_NAME_SHOW = "show";
+
+        internal const string MOVIE_SCROBBLE_POST_PROPERTY_NAME_MOVIE = "movie";
+
         // post scrobbles responses
-        internal const string EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ID = "id";
-        internal const string EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ACTION = "action";
-        internal const string EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_PROGRESS = "progress";
-        internal const string EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_SHARING = "sharing";
+        internal const string SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ID = "id";
+        internal const string SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ACTION = "action";
+        internal const string SCROBBLE_POST_RESPONSE_PROPERTY_NAME_PROGRESS = "progress";
+        internal const string SCROBBLE_POST_RESPONSE_PROPERTY_NAME_SHARING = "sharing";
+
         internal const string EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_EPISODE = "episode";
         internal const string EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_SHOW = "show";
 
-        internal const string MOVIE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ID = "id";
-        internal const string MOVIE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ACTION = "action";
-        internal const string MOVIE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_PROGRESS = "progress";
-        internal const string MOVIE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_SHARING = "sharing";
         internal const string MOVIE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_MOVIE = "movie";
 
         // post syncs collection responses

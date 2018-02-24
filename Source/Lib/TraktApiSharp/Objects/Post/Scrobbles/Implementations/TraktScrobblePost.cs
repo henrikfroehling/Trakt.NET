@@ -1,19 +1,14 @@
 ﻿namespace TraktApiSharp.Objects.Post.Scrobbles
 {
-    using Newtonsoft.Json;
-
-    public abstract class TraktScrobblePost
+    public abstract class TraktScrobblePost : ITraktScrobblePost
     {
         /// <summary>Gets or sets the required progress. Should be a value between 0 and 100.</summary>
-        [JsonProperty(PropertyName = "progress")]
         public float Progress { get; set; }
 
         /// <summary>Gets or sets the app version for the scrobble post.<para>Nullable</para></summary>
-        [JsonProperty(PropertyName = "app_version")]
         public string AppVersion { get; set; }
 
         /// <summary>Gets or sets the app build date for the scrobble post.<para>Nullable</para></summary>
-        [JsonProperty(PropertyName = "app_date")]
         public string AppDate { get; set; }
     }
 }

@@ -30,7 +30,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ID:
+                        case JsonProperties.SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ID:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedLongIntegerAsync(jsonReader, cancellationToken);
 
@@ -39,10 +39,10 @@
 
                                 break;
                             }
-                        case JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ACTION:
+                        case JsonProperties.SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ACTION:
                             episodeScrobbleResponse.Action = await JsonReaderHelper.ReadEnumerationValueAsync<TraktScrobbleActionType>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_PROGRESS:
+                        case JsonProperties.SCROBBLE_POST_RESPONSE_PROPERTY_NAME_PROGRESS:
                             {
                                 var value = await JsonReaderHelper.ReadFloatValueAsync(jsonReader, cancellationToken);
 
@@ -51,7 +51,7 @@
 
                                 break;
                             }
-                        case JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_SHARING:
+                        case JsonProperties.SCROBBLE_POST_RESPONSE_PROPERTY_NAME_SHARING:
                             episodeScrobbleResponse.Sharing = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_EPISODE:

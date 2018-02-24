@@ -687,6 +687,14 @@
     <Compile Include="Objects\Post\Responses\Json\Writer\PostResponseNotFoundPersonObjectJsonWriter.cs" />
     <Compile Include="Objects\Post\Responses\Json\Writer\PostResponseNotFoundSeasonObjectJsonWriter.cs" />
     <Compile Include="Objects\Post\Responses\Json\Writer\PostResponseNotFoundShowObjectJsonWriter.cs" />
+    <Compile Include="Objects\Post\Scrobbles\ITraktEpisodeScrobblePost.cs" />
+    <Compile Include="Objects\Post\Scrobbles\ITraktMovieScrobblePost.cs" />
+    <Compile Include="Objects\Post\Scrobbles\ITraktScrobblePost.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Json\Factories\EpisodeScrobblePostJsonIOFactory.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Json\Factories\MovieScrobblePostJsonIOFactory.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Json\Writer\AScrobblePostObjectJsonWriter.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Json\Writer\EpisodeScrobblePostObjectJsonWriter.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Json\Writer\MovieScrobblePostObjectJsonWriter.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\ITraktEpisodeScrobblePostResponse.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\ITraktMovieScrobblePostResponse.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\ITraktScrobblePostResponse.cs" />
@@ -694,6 +702,9 @@
     <Compile Include="Objects\Post\Scrobbles\Responses\Json\Factories\MovieScrobblePostResponseJsonIOFactory.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\Json\Reader\EpisodeScrobblePostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\Json\Reader\MovieScrobblePostResponseObjectJsonReader.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\Json\Writer\AScrobblePostResponseObjectJsonWriter.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\Json\Writer\EpisodeScrobblePostResponseObjectJsonWriter.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Responses\Json\Writer\MovieScrobblePostResponseObjectJsonWriter.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\Responses\ITraktSyncCollectionPostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\Responses\ITraktSyncCollectionRemovePostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\Responses\Json\Factories\SyncCollectionPostResponseJsonIOFactory.cs" />
@@ -1116,9 +1127,9 @@
     <Compile Include="Objects\Post\Scrobbles\Responses\Implementations\TraktEpisodeScrobblePostResponse.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\Implementations\TraktMovieScrobblePostResponse.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\Implementations\TraktScrobblePostResponse.cs" />
-    <Compile Include="Objects\Post\Scrobbles\TraktEpisodeScrobblePost.cs" />
-    <Compile Include="Objects\Post\Scrobbles\TraktMovieScrobblePost.cs" />
-    <Compile Include="Objects\Post\Scrobbles\TraktScrobblePost.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Implementations\TraktEpisodeScrobblePost.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Implementations\TraktMovieScrobblePost.cs" />
+    <Compile Include="Objects\Post\Scrobbles\Implementations\TraktScrobblePost.cs" />
     <Compile Include="Objects\Post\PostSeasons.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\Responses\Implementations\TraktSyncCollectionPostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\History\Responses\Implementations\TraktSyncHistoryPostResponse.cs" />
