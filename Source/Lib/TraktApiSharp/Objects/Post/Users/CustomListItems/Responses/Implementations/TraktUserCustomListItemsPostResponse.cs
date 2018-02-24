@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Responses.Implementations
 {
     /// <summary>
-    /// Represents the response for an user custom list items post. See also <see cref="TraktUserCustomListItemsPost" />.
+    /// Represents the response for an user custom list items post. See also <see cref="ITraktUserCustomListItemsPost" />.
     /// <para>Contains the number of added, existing and not found movies, shows, seasons, episodes and people.</para>
     /// </summary>
     public class TraktUserCustomListItemsPostResponse : ITraktUserCustomListItemsPostResponse

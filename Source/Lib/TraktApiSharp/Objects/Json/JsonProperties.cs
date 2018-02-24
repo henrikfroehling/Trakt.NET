@@ -727,6 +727,21 @@
         internal const string SYNC_WATCHLIST_REMOVE_POST_RESPONSE_PROPERTY_NAME_DELETED = "deleted";
         internal const string SYNC_WATCHLIST_REMOVE_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND = "not_found";
 
+        // post users custom lists
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_PROPERTY_NAME_MOVIES = "movies";
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_PROPERTY_NAME_SHOWS = "shows";
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_PROPERTY_NAME_PEOPLE = "people";
+
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_MOVIE_PROPERTY_NAME_IDS = "ids";
+
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_SHOW_PROPERTY_NAME_IDS = "ids";
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_SHOW_PROPERTY_NAME_SEASONS = "seasons";
+
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_SHOW_EPISODE_PROPERTY_NAME_NUMBER = "number";
+
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_SHOW_SEASON_PROPERTY_NAME_NUMBER = "number";
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_SHOW_SEASON_PROPERTY_NAME_EPISODES = "episodes";
+
         // post users custom lists responses
         internal const string USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_GROUP_PROPERTY_NAME_MOVIES = "movies";
         internal const string USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_GROUP_PROPERTY_NAME_SHOWS = "shows";
@@ -746,6 +761,13 @@
 
         internal const string USER_CUSTOM_LIST_ITEMS_REMOVE_POST_RESPONSE_PROPERTY_NAME_DELETED = "deleted";
         internal const string USER_CUSTOM_LIST_ITEMS_REMOVE_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND = "not_found";
+
+        // post users
+        internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_NAME = "name";
+        internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_DESCRIPTION = "description";
+        internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_PRIVACY = "privacy";
+        internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_DISPLAY_NUMBERS = "display_numbers";
+        internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_ALLOW_COMMENTS = "allow_comments";
 
         // post users responses
         internal const string USER_FOLLOW_USER_POST_RESPONSE_PROPERTY_NAME_APPROVED_AT = "approved_at";

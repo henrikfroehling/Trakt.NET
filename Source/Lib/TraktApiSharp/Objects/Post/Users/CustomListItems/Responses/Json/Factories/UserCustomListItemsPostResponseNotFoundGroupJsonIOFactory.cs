@@ -1,26 +1,19 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Responses.Json.Factories
 {
     using Objects.Json;
-    using Post.Users.CustomListItems.Responses.Json.Reader;
+    using Reader;
     using System;
+    using Writer;
 
     internal class UserCustomListItemsPostResponseNotFoundGroupJsonIOFactory : IJsonIOFactory<ITraktUserCustomListItemsPostResponseNotFoundGroup>
     {
-        public IObjectJsonReader<ITraktUserCustomListItemsPostResponseNotFoundGroup> CreateObjectReader() => new UserCustomListItemsPostResponseNotFoundGroupObjectJsonReader();
+        public IObjectJsonReader<ITraktUserCustomListItemsPostResponseNotFoundGroup> CreateObjectReader()
+            => new UserCustomListItemsPostResponseNotFoundGroupObjectJsonReader();
 
         public IArrayJsonReader<ITraktUserCustomListItemsPostResponseNotFoundGroup> CreateArrayReader()
-        {
-            throw new NotSupportedException($"A array json reader for {nameof(ITraktUserCustomListItemsPostResponseNotFoundGroup)} is not supported.");
-        }
+            => throw new NotSupportedException($"A array json reader for {nameof(ITraktUserCustomListItemsPostResponseNotFoundGroup)} is not supported.");
 
         public IObjectJsonWriter<ITraktUserCustomListItemsPostResponseNotFoundGroup> CreateObjectWriter()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IArrayJsonWriter<ITraktUserCustomListItemsPostResponseNotFoundGroup> CreateArrayWriter()
-        {
-            throw new NotImplementedException();
-        }
+            => new UserCustomListItemsPostResponseNotFoundGroupObjectJsonWriter();
     }
 }

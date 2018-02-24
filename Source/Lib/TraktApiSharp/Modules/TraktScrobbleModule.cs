@@ -5,7 +5,7 @@
     using Objects.Get.Episodes.Implementations;
     using Objects.Get.Movies.Implementations;
     using Objects.Get.Shows.Implementations;
-    using Objects.Post.Scrobbles;
+    using Objects.Post.Scrobbles.Implementations;
     using Objects.Post.Scrobbles.Responses;
     using Requests.Handler;
     using Requests.Scrobbles.OAuth;

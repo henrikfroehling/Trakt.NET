@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Scrobbles
+﻿namespace TraktApiSharp.Objects.Post.Scrobbles.Implementations
 {
     public abstract class TraktScrobblePost : ITraktScrobblePost
     {

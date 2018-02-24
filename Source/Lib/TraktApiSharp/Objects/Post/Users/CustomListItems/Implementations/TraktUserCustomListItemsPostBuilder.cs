@@ -1,44 +1,11 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems
+﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Implementations
 {
-    using Get.Movies.Implementations;
-    using Get.People.Implementations;
-    using Get.Shows.Implementations;
-    using Newtonsoft.Json;
+    using Get.Movies;
+    using Get.People;
+    using Get.Shows;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
-    /// <summary>
-    /// An user custom list items post, containing all movies, shows, episodes and / or people,
-    /// which should be added to an user's custom list.
-    /// </summary>
-    public class TraktUserCustomListItemsPost
-    {
-        /// <summary>
-        /// An optional list of <see cref="TraktUserCustomListItemsPostMovie" />s.
-        /// <para>Each <see cref="TraktUserCustomListItemsPostMovie" /> must have at least a valid Trakt id.</para>
-        /// </summary>
-        [JsonProperty(PropertyName = "movies")]
-        public IEnumerable<TraktUserCustomListItemsPostMovie> Movies { get; set; }
-
-        /// <summary>
-        /// An optional list of <see cref="TraktUserCustomListItemsPostShow" />s.
-        /// <para>Each <see cref="TraktUserCustomListItemsPostShow" /> must have at least a valid Trakt id.</para>
-        /// </summary>
-        [JsonProperty(PropertyName = "shows")]
-        public IEnumerable<TraktUserCustomListItemsPostShow> Shows { get; set; }
-
-        /// <summary>
-        /// An optional list of <see cref="TraktPerson" />s.
-        /// <para>Each <see cref="TraktPerson" /> must have at least a valid Trakt id and a name.</para>
-        /// </summary>
-        [JsonProperty(PropertyName = "people")]
-        public IEnumerable<TraktPerson> People { get; set; }
-
-        /// <summary>Returns a new <see cref="TraktUserCustomListItemsPostBuilder" /> instance.</summary>
-        /// <returns>A new <see cref="TraktUserCustomListItemsPostBuilder" /> instance.</returns>
-        public static TraktUserCustomListItemsPostBuilder Builder() => new TraktUserCustomListItemsPostBuilder();
-    }
 
     /// <summary>
     /// This is a helper class to build a <see cref="TraktUserCustomListItemsPost" />.
@@ -49,7 +16,7 @@
     /// </summary>
     public class TraktUserCustomListItemsPostBuilder
     {
-        private TraktUserCustomListItemsPost _listItemsPost;
+        private readonly ITraktUserCustomListItemsPost _listItemsPost;
 
         /// <summary>Initializes a new instance of the <see cref="TraktUserCustomListItemsPostBuilder" /> class.</summary>
         public TraktUserCustomListItemsPostBuilder()
@@ -57,7 +24,7 @@
             _listItemsPost = new TraktUserCustomListItemsPost();
         }
 
-        /// <summary>Adds a <see cref="TraktMovie" />, which will be added to the user custom list items post.</summary>
+        /// <summary>Adds a <see cref="ITraktMovie" />, which will be added to the user custom list items post.</summary>
         /// <param name="movie">The Trakt movie, which will be added.</param>
         /// <returns>The current <see cref="TraktUserCustomListItemsPostBuilder" /> instance.</returns>
         /// <exception cref="ArgumentNullException">
@@ -68,7 +35,7 @@
         /// Thrown, if the given movie has no valid ids set.
         /// Thrown, if the given movie has an year set, which has more or less than four digits.
         /// </exception>
-        public TraktUserCustomListItemsPostBuilder AddMovie(TraktMovie movie)
+        public TraktUserCustomListItemsPostBuilder AddMovie(ITraktMovie movie)
         {
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie));
@@ -84,21 +51,21 @@
 
             EnsureMoviesListExists();
 
-            var existingMovie = _listItemsPost.Movies.Where(m => m.Ids == movie.Ids).FirstOrDefault();
+            var existingMovie = _listItemsPost.Movies.FirstOrDefault(m => m.Ids == movie.Ids);
 
             if (existingMovie != null)
                 return this;
 
-            (_listItemsPost.Movies as List<TraktUserCustomListItemsPostMovie>).Add(
+            (_listItemsPost.Movies as List<ITraktUserCustomListItemsPostMovie>)?.Add(
                 new TraktUserCustomListItemsPostMovie
                 {
-                    Ids = (TraktMovieIds)movie.Ids // TODO use interface
+                    Ids = movie.Ids
                 });
 
             return this;
         }
 
-        /// <summary>Adds a collection of <see cref="TraktMovie" />s, which will be added to the custom list items post.</summary>
+        /// <summary>Adds a collection of <see cref="ITraktMovie" />s, which will be added to the custom list items post.</summary>
         /// <param name="movies">A collection of Trakt movies, which will be added.</param>
         /// <returns>The current <see cref="TraktUserCustomListItemsPostBuilder" /> instance.</returns>
         /// <exception cref="ArgumentNullException">
@@ -110,12 +77,12 @@
         /// Thrown, if one of the given movies has no valid ids set.
         /// Thrown, if one of the given movies has an year set, which has more or less than four digits.
         /// </exception>
-        public TraktUserCustomListItemsPostBuilder AddMovies(IEnumerable<TraktMovie> movies)
+        public TraktUserCustomListItemsPostBuilder AddMovies(IEnumerable<ITraktMovie> movies)
         {
             if (movies == null)
                 throw new ArgumentNullException(nameof(movies));
 
-            if (movies.Count() == 0)
+            if (!movies.Any())
                 return this;
 
             foreach (var movie in movies)
@@ -124,7 +91,7 @@
             return this;
         }
 
-        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the user custom list items post.</summary>
+        /// <summary>Adds a <see cref="ITraktShow" />, which will be added to the user custom list items post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <returns>The current <see cref="TraktUserCustomListItemsPostBuilder" /> instance.</returns>
         /// <exception cref="ArgumentNullException">
@@ -135,26 +102,26 @@
         /// Thrown, if the given show has no valid ids set.
         /// Thrown, if the given show has an year set, which has more or less than four digits.
         /// </exception>
-        public TraktUserCustomListItemsPostBuilder AddShow(TraktShow show)
+        public TraktUserCustomListItemsPostBuilder AddShow(ITraktShow show)
         {
             ValidateShow(show);
             EnsureShowsListExists();
 
-            var existingShow = _listItemsPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
+            var existingShow = _listItemsPost.Shows.FirstOrDefault(s => s.Ids == show.Ids);
 
             if (existingShow != null)
                 return this;
 
-            (_listItemsPost.Shows as List<TraktUserCustomListItemsPostShow>).Add(
+            (_listItemsPost.Shows as List<ITraktUserCustomListItemsPostShow>)?.Add(
                 new TraktUserCustomListItemsPostShow
                 {
-                    Ids = (TraktShowIds)show.Ids // TODO use interface
+                    Ids = show.Ids
                 });
 
             return this;
         }
 
-        /// <summary>Adds a collection of <see cref="TraktShow" />s, which will be added to the custom list items post.</summary>
+        /// <summary>Adds a collection of <see cref="ITraktShow" />s, which will be added to the custom list items post.</summary>
         /// <param name="shows">A collection of Trakt shows, which will be added.</param>
         /// <returns>The current <see cref="TraktUserCustomListItemsPostBuilder" /> instance.</returns>
         /// <exception cref="ArgumentNullException">
@@ -166,12 +133,12 @@
         /// Thrown, if one of the given shows has no valid ids set.
         /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
         /// </exception>
-        public TraktUserCustomListItemsPostBuilder AddShows(IEnumerable<TraktShow> shows)
+        public TraktUserCustomListItemsPostBuilder AddShows(IEnumerable<ITraktShow> shows)
         {
             if (shows == null)
                 throw new ArgumentNullException(nameof(shows));
 
-            if (shows.Count() == 0)
+            if (!shows.Any())
                 return this;
 
             foreach (var show in shows)
@@ -180,7 +147,7 @@
             return this;
         }
 
-        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the user custom list items post.</summary>
+        /// <summary>Adds a <see cref="ITraktShow" />, which will be added to the user custom list items post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="season">
         /// A season number for a season in the given show. The complete season will be added to the custom list.
@@ -201,7 +168,7 @@
         /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown, if at least one of the given season numbers is below zero.
         /// </exception>
-        public TraktUserCustomListItemsPostBuilder AddShow(TraktShow show, int season, params int[] seasons)
+        public TraktUserCustomListItemsPostBuilder AddShow(ITraktShow show, int season, params int[] seasons)
         {
             ValidateShow(show);
             EnsureShowsListExists();
@@ -210,7 +177,7 @@
             seasonsToAdd[0] = season;
             seasons.CopyTo(seasonsToAdd, 1);
 
-            var showSeasons = new List<TraktUserCustomListItemsPostShowSeason>();
+            var showSeasons = new List<ITraktUserCustomListItemsPostShowSeason>();
 
             for (int i = 0; i < seasonsToAdd.Length; i++)
             {
@@ -220,23 +187,26 @@
                 showSeasons.Add(new TraktUserCustomListItemsPostShowSeason { Number = seasonsToAdd[i] });
             }
 
-            var existingShow = _listItemsPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
+            var existingShow = _listItemsPost.Shows.FirstOrDefault(s => s.Ids == show.Ids);
 
             if (existingShow != null)
+            {
                 existingShow.Seasons = showSeasons;
+            }
             else
             {
-                var listItemsShow = new TraktUserCustomListItemsPostShow();
-                listItemsShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
-
-                listItemsShow.Seasons = showSeasons;
-                (_listItemsPost.Shows as List<TraktUserCustomListItemsPostShow>).Add(listItemsShow);
+                (_listItemsPost.Shows as List<ITraktUserCustomListItemsPostShow>)?.Add(
+                    new TraktUserCustomListItemsPostShow
+                    {
+                        Ids = show.Ids,
+                        Seasons = showSeasons
+                    });
             }
 
             return this;
         }
 
-        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the custom list items post.</summary>
+        /// <summary>Adds a <see cref="ITraktShow" />, which will be added to the custom list items post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="seasons">
         /// An array of season numbers for seasons in the given show.
@@ -255,7 +225,7 @@
         /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown, if at least one of the given season numbers is below zero.
         /// </exception>
-        public TraktUserCustomListItemsPostBuilder AddShow(TraktShow show, int[] seasons)
+        public TraktUserCustomListItemsPostBuilder AddShow(ITraktShow show, int[] seasons)
         {
             ValidateShow(show);
             EnsureShowsListExists();
@@ -263,7 +233,7 @@
             if (seasons == null)
                 throw new ArgumentNullException(nameof(seasons));
 
-            var showSeasons = new List<TraktUserCustomListItemsPostShowSeason>();
+            var showSeasons = new List<ITraktUserCustomListItemsPostShowSeason>();
 
             for (int i = 0; i < seasons.Length; i++)
             {
@@ -273,23 +243,27 @@
                 showSeasons.Add(new TraktUserCustomListItemsPostShowSeason { Number = seasons[i] });
             }
 
-            var existingShow = _listItemsPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
+            var existingShow = _listItemsPost.Shows.FirstOrDefault(s => s.Ids == show.Ids);
 
             if (existingShow != null)
+            {
                 existingShow.Seasons = showSeasons;
+            }
             else
             {
-                var listItemsShow = new TraktUserCustomListItemsPostShow();
-                listItemsShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
+                (_listItemsPost.Shows as List<ITraktUserCustomListItemsPostShow>)?.Add(
+                    new TraktUserCustomListItemsPostShow
+                    {
+                        Ids = show.Ids,
 
-                listItemsShow.Seasons = showSeasons;
-                (_listItemsPost.Shows as List<TraktUserCustomListItemsPostShow>).Add(listItemsShow);
+                        Seasons = showSeasons
+                    });
             }
 
             return this;
         }
 
-        /// <summary>Adds a <see cref="TraktShow" />, which will be added to the user custom list items post.</summary>
+        /// <summary>Adds a <see cref="ITraktShow" />, which will be added to the user custom list items post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="seasons">
         /// An <see cref="PostSeasons" /> instance, containing season and episode numbers.<para />
@@ -308,7 +282,7 @@
         /// Thrown, if at least one of the given season numbers in <paramref name="seasons" /> is below zero.
         /// Thrown, if at least one of the given episode numbers in <paramref name="seasons" /> is below zero.
         /// </exception>
-        public TraktUserCustomListItemsPostBuilder AddShow(TraktShow show, PostSeasons seasons)
+        public TraktUserCustomListItemsPostBuilder AddShow(ITraktShow show, PostSeasons seasons)
         {
             ValidateShow(show);
 
@@ -317,7 +291,7 @@
 
             EnsureShowsListExists();
 
-            var showSeasons = new List<TraktUserCustomListItemsPostShowSeason>();
+            var showSeasons = new List<ITraktUserCustomListItemsPostShowSeason>();
 
             foreach (var season in seasons)
             {
@@ -326,9 +300,9 @@
 
                 var showSingleSeason = new TraktUserCustomListItemsPostShowSeason { Number = season.Number };
 
-                if (season.Episodes != null && season.Episodes.Count() > 0)
+                if (season.Episodes?.Count() > 0)
                 {
-                    var showEpisodes = new List<TraktUserCustomListItemsPostShowEpisode>();
+                    var showEpisodes = new List<ITraktUserCustomListItemsPostShowEpisode>();
 
                     foreach (var episode in season.Episodes)
                     {
@@ -344,23 +318,31 @@
                 showSeasons.Add(showSingleSeason);
             }
 
-            var existingShow = _listItemsPost.Shows.Where(s => s.Ids == show.Ids).FirstOrDefault();
+            var existingShow = _listItemsPost.Shows.FirstOrDefault(s => s.Ids == show.Ids);
 
             if (existingShow != null)
+            {
                 existingShow.Seasons = showSeasons;
+            }
             else
             {
-                var listItemsShow = new TraktUserCustomListItemsPostShow();
-                listItemsShow.Ids = (TraktShowIds)show.Ids; // TODO use interface
-
-                listItemsShow.Seasons = showSeasons;
-                (_listItemsPost.Shows as List<TraktUserCustomListItemsPostShow>).Add(listItemsShow);
+                var listItemsShow = new TraktUserCustomListItemsPostShow
+                {
+                    Ids = show.Ids,
+                    Seasons = showSeasons
+                };
+                (_listItemsPost.Shows as List<ITraktUserCustomListItemsPostShow>)?.Add(
+                    new TraktUserCustomListItemsPostShow
+                    {
+                        Ids = show.Ids,
+                        Seasons = showSeasons
+                    });
             }
 
             return this;
         }
 
-        /// <summary>Adds a <see cref="TraktPerson" />, which will be added to the user custom list items post.</summary>
+        /// <summary>Adds a <see cref="ITraktPerson" />, which will be added to the user custom list items post.</summary>
         /// <param name="person">The Trakt person, which will be added.</param>
         /// <returns>The current <see cref="TraktUserCustomListItemsPostBuilder" /> instance.</returns>
         /// <exception cref="ArgumentNullException">
@@ -371,7 +353,7 @@
         /// Thrown, if the given person has no valid ids set.
         /// Thrown, if the given person has no name.
         /// </exception>
-        public TraktUserCustomListItemsPostBuilder AddPerson(TraktPerson person)
+        public TraktUserCustomListItemsPostBuilder AddPerson(ITraktPerson person)
         {
             if (person == null)
                 throw new ArgumentNullException(nameof(person));
@@ -387,17 +369,17 @@
 
             EnsurePeopleListExists();
 
-            var existingPerson = _listItemsPost.People.Where(p => p == person).FirstOrDefault();
+            var existingPerson = _listItemsPost.People.FirstOrDefault(p => p == person);
 
             if (existingPerson != null)
                 return this;
 
-            (_listItemsPost.People as List<TraktPerson>).Add(person);
+            (_listItemsPost.People as List<ITraktPerson>)?.Add(person);
 
             return this;
         }
 
-        /// <summary>Adds a collection of <see cref="TraktPerson" />s, which will be added to the custom list items post.</summary>
+        /// <summary>Adds a collection of <see cref="ITraktPerson" />s, which will be added to the custom list items post.</summary>
         /// <param name="persons">A collection of Trakt persons, which will be added.</param>
         /// <returns>The current <see cref="TraktUserCustomListItemsPostBuilder" /> instance.</returns>
         /// <exception cref="ArgumentNullException">
@@ -409,12 +391,12 @@
         /// Thrown, if one of the given persons has no valid ids set.
         /// Thrown, if one of the given persons has an year set, which has more or less than four digits.
         /// </exception>
-        public TraktUserCustomListItemsPostBuilder AddPersons(IEnumerable<TraktPerson> persons)
+        public TraktUserCustomListItemsPostBuilder AddPersons(IEnumerable<ITraktPerson> persons)
         {
             if (persons == null)
                 throw new ArgumentNullException(nameof(persons));
 
-            if (persons.Count() == 0)
+            if (!persons.Any())
                 return this;
 
             foreach (var person in persons)
@@ -428,31 +410,31 @@
         {
             if (_listItemsPost.Movies != null)
             {
-                (_listItemsPost.Movies as List<TraktUserCustomListItemsPostMovie>).Clear();
+                (_listItemsPost.Movies as List<ITraktUserCustomListItemsPostMovie>)?.Clear();
                 _listItemsPost.Movies = null;
             }
 
             if (_listItemsPost.Shows != null)
             {
-                (_listItemsPost.Shows as List<TraktUserCustomListItemsPostShow>).Clear();
+                (_listItemsPost.Shows as List<ITraktUserCustomListItemsPostShow>)?.Clear();
                 _listItemsPost.Shows = null;
             }
 
             if (_listItemsPost.People != null)
             {
-                (_listItemsPost.People as List<TraktPerson>).Clear();
+                (_listItemsPost.People as List<ITraktPerson>)?.Clear();
                 _listItemsPost.People = null;
             }
         }
 
         /// <summary>
-        /// Returns an <see cref="TraktUserCustomListItemsPost" /> instance, which contains all
+        /// Returns an <see cref="ITraktUserCustomListItemsPost" /> instance, which contains all
         /// added movies, shows, seasons, episodes and people.
         /// </summary>
         /// <returns>An <see cref="TraktUserCustomListItemsPost" /> instance.</returns>
-        public TraktUserCustomListItemsPost Build() => _listItemsPost;
+        public ITraktUserCustomListItemsPost Build() => _listItemsPost;
 
-        private void ValidateShow(TraktShow show)
+        private void ValidateShow(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -482,8 +464,7 @@
         private void EnsurePeopleListExists()
         {
             if (_listItemsPost.People == null)
-                _listItemsPost.People = new List<TraktPerson>();
+                _listItemsPost.People = new List<ITraktPerson>();
         }
-
     }
 }
