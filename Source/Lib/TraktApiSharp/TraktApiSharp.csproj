@@ -612,6 +612,7 @@
     <Compile Include="Objects\Post\Checkins\ITraktMovieCheckinPost.cs" />
     <Compile Include="Objects\Post\Checkins\Json\Factories\EpisodeCheckinPostJsonIOFactory.cs" />
     <Compile Include="Objects\Post\Checkins\Json\Factories\MovieCheckinPostJsonIOFactory.cs" />
+    <Compile Include="Objects\Post\Checkins\Json\Writer\ACheckinPostObjectJsonWriter.cs" />
     <Compile Include="Objects\Post\Checkins\Json\Writer\EpisodeCheckinPostObjectJsonWriter.cs" />
     <Compile Include="Objects\Post\Checkins\Json\Writer\MovieCheckinPostObjectJsonWriter.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\ITraktCheckinPostErrorResponse.cs" />
@@ -624,6 +625,7 @@
     <Compile Include="Objects\Post\Checkins\Responses\Json\Reader\CheckinPostErrorResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\Json\Reader\EpisodeCheckinPostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\Json\Reader\MovieCheckinPostResponseObjectJsonReader.cs" />
+    <Compile Include="Objects\Post\Checkins\Responses\Json\Writer\ACheckinPostResponstObjectJsonWriter.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\Json\Writer\CheckinPostErrorResponseObjectJsonWriter.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\Json\Writer\EpisodeCheckinPostResponseObjectJsonWriter.cs" />
     <Compile Include="Objects\Post\Checkins\Responses\Json\Writer\MovieCheckinPostResponseObjectJsonWriter.cs" />
