@@ -1,7 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Responses.Json.Factories
 {
     using Objects.Json;
-    using Post.Responses.Json.Reader;
+    using Reader;
+    using Writer;
 
     internal class PostResponseNotFoundPersonJsonIOFactory : IJsonIOFactory<ITraktPostResponseNotFoundPerson>
     {
@@ -9,14 +10,6 @@
 
         public IArrayJsonReader<ITraktPostResponseNotFoundPerson> CreateArrayReader() => new PostResponseNotFoundPersonArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktPostResponseNotFoundPerson> CreateObjectWriter()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IArrayJsonWriter<ITraktPostResponseNotFoundPerson> CreateArrayWriter()
-        {
-            throw new System.NotImplementedException();
-        }
+        public IObjectJsonWriter<ITraktPostResponseNotFoundPerson> CreateObjectWriter() => new PostResponseNotFoundPersonObjectJsonWriter();
     }
 }

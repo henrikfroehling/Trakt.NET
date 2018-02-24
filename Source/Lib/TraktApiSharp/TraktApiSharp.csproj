@@ -682,6 +682,11 @@
     <Compile Include="Objects\Post\Responses\Json\Reader\PostResponseNotFoundSeasonObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Responses\Json\Reader\PostResponseNotFoundShowArrayJsonReader.cs" />
     <Compile Include="Objects\Post\Responses\Json\Reader\PostResponseNotFoundShowObjectJsonReader.cs" />
+    <Compile Include="Objects\Post\Responses\Json\Writer\PostResponseNotFoundEpisodeObjectJsonWriter.cs" />
+    <Compile Include="Objects\Post\Responses\Json\Writer\PostResponseNotFoundMovieObjectJsonWriter.cs" />
+    <Compile Include="Objects\Post\Responses\Json\Writer\PostResponseNotFoundPersonObjectJsonWriter.cs" />
+    <Compile Include="Objects\Post\Responses\Json\Writer\PostResponseNotFoundSeasonObjectJsonWriter.cs" />
+    <Compile Include="Objects\Post\Responses\Json\Writer\PostResponseNotFoundShowObjectJsonWriter.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\ITraktEpisodeScrobblePostResponse.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\ITraktMovieScrobblePostResponse.cs" />
     <Compile Include="Objects\Post\Scrobbles\Responses\ITraktScrobblePostResponse.cs" />
