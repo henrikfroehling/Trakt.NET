@@ -10,6 +10,7 @@
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;
     using Objects.Post.Syncs.Collection;
+    using Objects.Post.Syncs.Collection.Implementations;
     using Objects.Post.Syncs.Collection.Responses;
     using Objects.Post.Syncs.History;
     using Objects.Post.Syncs.History.Responses;
@@ -518,9 +519,9 @@
             if (collectionPost == null)
                 throw new ArgumentNullException(nameof(collectionPost), "collection post must not be null");
 
-            IEnumerable<TraktSyncCollectionPostMovie> movies = collectionPost.Movies;
-            IEnumerable<TraktSyncCollectionPostShow> shows = collectionPost.Shows;
-            IEnumerable<TraktSyncCollectionPostEpisode> episodes = collectionPost.Episodes;
+            IEnumerable<ITraktSyncCollectionPostMovie> movies = collectionPost.Movies;
+            IEnumerable<ITraktSyncCollectionPostShow> shows = collectionPost.Shows;
+            IEnumerable<ITraktSyncCollectionPostEpisode> episodes = collectionPost.Episodes;
 
             bool bHasNoMovies = movies == null || !movies.Any();
             bool bHasNoShows = shows == null || !shows.Any();

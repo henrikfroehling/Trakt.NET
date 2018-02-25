@@ -3,7 +3,7 @@
     using Syncs.Responses;
 
     /// <summary>
-    /// Represents the response for a collection post. See also <see cref="TraktSyncCollectionPost" />.
+    /// Represents the response for a collection post. See also <see cref="ITraktSyncCollectionPost" />.
     /// <para>Contains the number of added, updated, existing and not found movies, shows, seasons and episodes.</para>
     /// </summary>
     public class TraktSyncCollectionPostResponse : ITraktSyncCollectionPostResponse

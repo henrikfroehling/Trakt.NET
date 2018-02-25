@@ -656,6 +656,33 @@
 
         internal const string MOVIE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_MOVIE = "movie";
 
+        // post syncs collection
+        internal const string SYNC_COLLECTION_POST_PROPERTY_NAME_MOVIES = "movies";
+        internal const string SYNC_COLLECTION_POST_PROPERTY_NAME_SHOWS = "shows";
+        internal const string SYNC_COLLECTION_POST_PROPERTY_NAME_EPISODES = "episodes";
+
+        internal const string SYNC_COLLECTION_POST_MOVIE_PROPERTY_NAME_COLLECTED_AT = "collected_at";
+        internal const string SYNC_COLLECTION_POST_MOVIE_PROPERTY_NAME_TITLE = "title";
+        internal const string SYNC_COLLECTION_POST_MOVIE_PROPERTY_NAME_YEAR = "year";
+        internal const string SYNC_COLLECTION_POST_MOVIE_PROPERTY_NAME_IDS = "ids";
+        internal const string SYNC_COLLECTION_POST_MOVIE_PROPERTY_NAME_METADATA = "metadata";
+
+        internal const string SYNC_COLLECTION_POST_SHOW_PROPERTY_NAME_COLLECTED_AT = "collected_at";
+        internal const string SYNC_COLLECTION_POST_SHOW_PROPERTY_NAME_TITLE = "title";
+        internal const string SYNC_COLLECTION_POST_SHOW_PROPERTY_NAME_YEAR = "year";
+        internal const string SYNC_COLLECTION_POST_SHOW_PROPERTY_NAME_IDS = "ids";
+        internal const string SYNC_COLLECTION_POST_SHOW_PROPERTY_NAME_SEASONS = "seasons";
+        internal const string SYNC_COLLECTION_POST_SHOW_PROPERTY_NAME_METADATA = "metadata";
+
+        internal const string SYNC_COLLECTION_POST_SHOW_SEASON_PROPERTY_NAME_NUMBER = "number";
+        internal const string SYNC_COLLECTION_POST_SHOW_SEASON_PROPERTY_NAME_EPISODES = "episodes";
+
+        internal const string SYNC_COLLECTION_POST_SHOW_EPISODE_PROPERTY_NAME_NUMBER = "number";
+
+        internal const string SYNC_COLLECTION_POST_EPISODE_PROPERTY_NAME_COLLECTED_AT = "collected_at";
+        internal const string SYNC_COLLECTION_POST_EPISODE_PROPERTY_NAME_IDS = "ids";
+        internal const string SYNC_COLLECTION_POST_EPISODE_PROPERTY_NAME_METADATA = "metadata";
+
         // post syncs collection responses
         internal const string SYNC_COLLECTION_POST_RESPONSE_PROPERTY_NAME_ADDED = "added";
         internal const string SYNC_COLLECTION_POST_RESPONSE_PROPERTY_NAME_UPDATED = "updated";
