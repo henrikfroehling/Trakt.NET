@@ -758,6 +758,8 @@
     <Compile Include="Objects\Post\Syncs\Responses\Json\Factories\SyncPostResponseGroupJsonIOFactory.cs" />
     <Compile Include="Objects\Post\Syncs\Responses\Json\Reader\SyncPostResponseGroupObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Syncs\Responses\Json\Reader\SyncPostResponseNotFoundGroupObjectJsonReader.cs" />
+    <Compile Include="Objects\Post\Syncs\Responses\Json\Writer\SyncPostResponseGroupObjectJsonWriter.cs" />
+    <Compile Include="Objects\Post\Syncs\Responses\Json\Writer\SyncPostResponseNotFoundGroupObjectJsonWriter.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\ITraktSyncWatchlistPostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\ITraktSyncWatchlistRemovePostResponse.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\Responses\Json\Factories\SyncWatchlistPostResponseJsonIOFactory.cs" />
