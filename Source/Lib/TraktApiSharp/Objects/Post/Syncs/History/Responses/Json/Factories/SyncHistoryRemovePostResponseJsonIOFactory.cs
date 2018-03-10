@@ -1,26 +1,19 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Responses.Json.Factories
 {
     using Objects.Json;
-    using Post.Syncs.History.Responses.Json.Reader;
+    using Reader;
     using System;
+    using Writer;
 
     internal class SyncHistoryRemovePostResponseJsonIOFactory : IJsonIOFactory<ITraktSyncHistoryRemovePostResponse>
     {
-        public IObjectJsonReader<ITraktSyncHistoryRemovePostResponse> CreateObjectReader() => new SyncHistoryRemovePostResponseObjectJsonReader();
+        public IObjectJsonReader<ITraktSyncHistoryRemovePostResponse> CreateObjectReader()
+            => new SyncHistoryRemovePostResponseObjectJsonReader();
 
         public IArrayJsonReader<ITraktSyncHistoryRemovePostResponse> CreateArrayReader()
-        {
-            throw new NotSupportedException($"A array json reader for {nameof(ITraktSyncHistoryRemovePostResponse)} is not supported.");
-        }
+            => throw new NotSupportedException($"A array json reader for {nameof(ITraktSyncHistoryRemovePostResponse)} is not supported.");
 
         public IObjectJsonWriter<ITraktSyncHistoryRemovePostResponse> CreateObjectWriter()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IArrayJsonWriter<ITraktSyncHistoryRemovePostResponse> CreateArrayWriter()
-        {
-            throw new NotImplementedException();
-        }
+            => new SyncHistoryRemovePostResponseObjectJsonWriter();
     }
 }

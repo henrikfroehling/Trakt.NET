@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Responses.Implementations
 {
     /// <summary>
-    /// Represents the response for a history remove post. See also <see cref="TraktSyncHistoryRemovePost" />.
+    /// Represents the response for a history remove post. See also <see cref="ITraktSyncHistoryRemovePost" />.
     /// <para>Contains the number of deleted and not found movies, shows, seasons, episodes and history item ids.</para>
     /// </summary>
     public class TraktSyncHistoryRemovePostResponse : ITraktSyncHistoryRemovePostResponse

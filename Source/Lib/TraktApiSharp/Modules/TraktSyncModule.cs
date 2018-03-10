@@ -13,6 +13,7 @@
     using Objects.Post.Syncs.Collection.Implementations;
     using Objects.Post.Syncs.Collection.Responses;
     using Objects.Post.Syncs.History;
+    using Objects.Post.Syncs.History.Implementations;
     using Objects.Post.Syncs.History.Responses;
     using Objects.Post.Syncs.Ratings;
     using Objects.Post.Syncs.Ratings.Responses;
@@ -536,9 +537,9 @@
             if (historyPost == null)
                 throw new ArgumentNullException(nameof(historyPost), "history post must not be null");
 
-            IEnumerable<TraktSyncHistoryPostMovie> movies = historyPost.Movies;
-            IEnumerable<TraktSyncHistoryPostShow> shows = historyPost.Shows;
-            IEnumerable<TraktSyncHistoryPostEpisode> episodes = historyPost.Episodes;
+            IEnumerable<ITraktSyncHistoryPostMovie> movies = historyPost.Movies;
+            IEnumerable<ITraktSyncHistoryPostShow> shows = historyPost.Shows;
+            IEnumerable<ITraktSyncHistoryPostEpisode> episodes = historyPost.Episodes;
 
             bool bHasNoMovies = movies == null || !movies.Any();
             bool bHasNoShows = shows == null || !shows.Any();
