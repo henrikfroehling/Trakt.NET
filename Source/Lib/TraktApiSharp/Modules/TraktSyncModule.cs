@@ -19,6 +19,7 @@
     using Objects.Post.Syncs.Ratings.Implementations;
     using Objects.Post.Syncs.Ratings.Responses;
     using Objects.Post.Syncs.Watchlist;
+    using Objects.Post.Syncs.Watchlist.Implementations;
     using Objects.Post.Syncs.Watchlist.Responses;
     using Requests.Handler;
     using Requests.Parameters;
@@ -572,9 +573,9 @@
             if (watchlistPost == null)
                 throw new ArgumentNullException(nameof(watchlistPost), "watchlist post must not be null");
 
-            IEnumerable<TraktSyncWatchlistPostMovie> movies = watchlistPost.Movies;
-            IEnumerable<TraktSyncWatchlistPostShow> shows = watchlistPost.Shows;
-            IEnumerable<TraktSyncWatchlistPostEpisode> episodes = watchlistPost.Episodes;
+            IEnumerable<ITraktSyncWatchlistPostMovie> movies = watchlistPost.Movies;
+            IEnumerable<ITraktSyncWatchlistPostShow> shows = watchlistPost.Shows;
+            IEnumerable<ITraktSyncWatchlistPostEpisode> episodes = watchlistPost.Episodes;
 
             bool bHasNoMovies = movies == null || !movies.Any();
             bool bHasNoShows = shows == null || !shows.Any();

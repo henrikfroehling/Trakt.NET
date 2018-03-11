@@ -1,12 +1,9 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist
+﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist.Implementations
 {
-    using Newtonsoft.Json;
-
     /// <summary>A Trakt watchlist post episode, containing the required episode number.</summary>
-    public class TraktSyncWatchlistPostShowEpisode
+    public class TraktSyncWatchlistPostShowEpisode : ITraktSyncWatchlistPostShowEpisode
     {
         /// <summary>Gets or sets the required season number of the Trakt episode.</summary>
-        [JsonProperty(PropertyName = "number")]
         public int Number { get; set; }
     }
 }

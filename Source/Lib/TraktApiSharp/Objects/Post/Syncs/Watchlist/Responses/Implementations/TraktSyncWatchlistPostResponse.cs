@@ -3,7 +3,7 @@
     using Syncs.Responses;
 
     /// <summary>
-    /// Represents the response for a watchlist post. See also <see cref="TraktSyncWatchlistPost" />.
+    /// Represents the response for a watchlist post. See also <see cref="ITraktSyncWatchlistPost" />.
     /// <para>Contains the number of added, existing and not found movies, shows, seasons and episodes.</para>
     /// </summary>
     public class TraktSyncWatchlistPostResponse : ITraktSyncWatchlistPostResponse

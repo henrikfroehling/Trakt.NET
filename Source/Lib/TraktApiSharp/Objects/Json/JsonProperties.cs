@@ -797,6 +797,27 @@
         internal const string SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SEASONS = "seasons";
         internal const string SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_EPISODES = "episodes";
 
+        // post syncs watchlist
+        internal const string SYNC_WATCHLIST_POST_PROPERTY_NAME_MOVIES = "movies";
+        internal const string SYNC_WATCHLIST_POST_PROPERTY_NAME_SHOWS = "shows";
+        internal const string SYNC_WATCHLIST_POST_PROPERTY_NAME_EPISODES = "episodes";
+
+        internal const string SYNC_WATCHLIST_POST_MOVIE_PROPERTY_NAME_TITLE = "title";
+        internal const string SYNC_WATCHLIST_POST_MOVIE_PROPERTY_NAME_YEAR = "year";
+        internal const string SYNC_WATCHLIST_POST_MOVIE_PROPERTY_NAME_IDS = "ids";
+
+        internal const string SYNC_WATCHLIST_POST_SHOW_PROPERTY_NAME_TITLE = "title";
+        internal const string SYNC_WATCHLIST_POST_SHOW_PROPERTY_NAME_YEAR = "year";
+        internal const string SYNC_WATCHLIST_POST_SHOW_PROPERTY_NAME_IDS = "ids";
+        internal const string SYNC_WATCHLIST_POST_SHOW_PROPERTY_NAME_SEASONS = "seasons";
+
+        internal const string SYNC_WATCHLIST_POST_SHOW_SEASON_PROPERTY_NAME_NUMBER = "number";
+        internal const string SYNC_WATCHLIST_POST_SHOW_SEASON_PROPERTY_NAME_EPISODES = "episodes";
+
+        internal const string SYNC_WATCHLIST_POST_SHOW_EPISODE_PROPERTY_NAME_NUMBER = "number";
+
+        internal const string SYNC_WATCHLIST_POST_EPISODE_PROPERTY_NAME_IDS = "ids";
+
         // post syncs watchlist responses
         internal const string SYNC_WATCHLIST_POST_RESPONSE_PROPERTY_NAME_ADDED = "added";
         internal const string SYNC_WATCHLIST_POST_RESPONSE_PROPERTY_NAME_EXISTING = "existing";
