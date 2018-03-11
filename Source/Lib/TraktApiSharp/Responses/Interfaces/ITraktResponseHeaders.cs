@@ -19,5 +19,9 @@
         uint? Limit { get; set; }
 
         bool? IsPrivateUser { get; set; }
+
+        int? XItemId { get; set; }
+
+        string XItemType { get; set; }
     }
 }
