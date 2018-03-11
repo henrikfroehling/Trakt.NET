@@ -966,6 +966,7 @@
     <Compile Include="Requests\Genres\GenresShowsRequest.cs" />
     <Compile Include="Requests\Interfaces\Base\IHasUriPathParameters.cs" />
     <Compile Include="Requests\Interfaces\Base\IHasRequestAuthorization.cs" />
+    <Compile Include="Requests\Interfaces\IRequestBody.cs" />
     <Compile Include="Requests\Interfaces\ISupportsExtendedInfo.cs" />
     <Compile Include="Requests\Interfaces\ISupportsFilter.cs" />
     <Compile Include="Requests\Interfaces\ISupportsPagination.cs" />
