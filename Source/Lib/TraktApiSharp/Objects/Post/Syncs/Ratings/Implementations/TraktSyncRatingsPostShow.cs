@@ -1,7 +1,6 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings
+﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings.Implementations
 {
-    using Get.Shows.Implementations;
-    using Newtonsoft.Json;
+    using Get.Shows;
     using System;
     using System.Collections.Generic;
 
@@ -10,36 +9,30 @@
     /// an optional rating and an optional datetime, when the show was rated.
     /// <para>Can also contain optional seasons.</para>
     /// </summary>
-    public class TraktSyncRatingsPostShow
+    public class TraktSyncRatingsPostShow : ITraktSyncRatingsPostShow
     {
         /// <summary>Gets or sets the optional UTC datetime, when the Trakt show was rated.</summary>
-        [JsonProperty(PropertyName = "rated_at")]
         public DateTime? RatedAt { get; set; }
 
         /// <summary>Gets or sets an optional rating for the show.</summary>
-        [JsonProperty(PropertyName = "rating")]
         public int? Rating { get; set; }
 
         /// <summary>Gets or sets the optional title of the Trakt show.<para>Nullable</para></summary>
-        [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }
 
         /// <summary>Gets or sets the optional year of the Trakt show.</summary>
-        [JsonProperty(PropertyName = "year")]
         public int? Year { get; set; }
 
-        /// <summary>Gets or sets the required show ids. See also <seealso cref="TraktShowIds" />.</summary>
-        [JsonProperty(PropertyName = "ids")]
-        public TraktShowIds Ids { get; set; }
+        /// <summary>Gets or sets the required show ids. See also <seealso cref="ITraktShowIds" />.</summary>
+        public ITraktShowIds Ids { get; set; }
 
         /// <summary>
-        /// An optional list of <see cref="TraktSyncRatingsPostShowSeason" />s.
+        /// An optional list of <see cref="ITraktSyncRatingsPostShowSeason" />s.
         /// <para>
         /// If no seasons are set, the whole Trakt show will be added to the ratings.
         /// Otherwise, only the specified seasons and / or episodes will be added to the ratings.
         /// </para>
         /// </summary>
-        [JsonProperty(PropertyName = "seasons")]
-        public IEnumerable<TraktSyncRatingsPostShowSeason> Seasons { get; set; }
+        public IEnumerable<ITraktSyncRatingsPostShowSeason> Seasons { get; set; }
     }
 }

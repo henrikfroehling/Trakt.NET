@@ -16,6 +16,7 @@
     using Objects.Post.Syncs.History.Implementations;
     using Objects.Post.Syncs.History.Responses;
     using Objects.Post.Syncs.Ratings;
+    using Objects.Post.Syncs.Ratings.Implementations;
     using Objects.Post.Syncs.Ratings.Responses;
     using Objects.Post.Syncs.Watchlist;
     using Objects.Post.Syncs.Watchlist.Responses;
@@ -554,9 +555,9 @@
             if (ratingsPost == null)
                 throw new ArgumentNullException(nameof(ratingsPost), "ratings post must not be null");
 
-            IEnumerable<TraktSyncRatingsPostMovie> movies = ratingsPost.Movies;
-            IEnumerable<TraktSyncRatingsPostShow> shows = ratingsPost.Shows;
-            IEnumerable<TraktSyncRatingsPostEpisode> episodes = ratingsPost.Episodes;
+            IEnumerable<ITraktSyncRatingsPostMovie> movies = ratingsPost.Movies;
+            IEnumerable<ITraktSyncRatingsPostShow> shows = ratingsPost.Shows;
+            IEnumerable<ITraktSyncRatingsPostEpisode> episodes = ratingsPost.Episodes;
 
             bool bHasNoMovies = movies == null || !movies.Any();
             bool bHasNoShows = shows == null || !shows.Any();

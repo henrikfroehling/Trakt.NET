@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Json.Factories
 {
+    using Objects.Json;
     using System;
-    using TraktApiSharp.Objects.Json;
     using Writer;
 
     internal class SyncHistoryRemovePostJsonIOFactory : IJsonIOFactory<ITraktSyncHistoryRemovePost>
