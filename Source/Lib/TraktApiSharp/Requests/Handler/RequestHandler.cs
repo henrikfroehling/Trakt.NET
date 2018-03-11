@@ -37,6 +37,8 @@
         private const string HEADER_STARTDATE_KEY = "X-Start-Date";
         private const string HEADER_ENDDATE_KEY = "X-End-Date";
         private const string HEADER_PRIVATE_USER_KEY = "X-Private-User";
+        private const string HEADER_X_ITEM_ID = "X-Item-ID";
+        private const string HEADER_X_ITEM_TYPE = "X-Item-Type";
         private const string MEDIA_TYPE = "application/json";
         private const string AUTHENTICATION_SCHEME = "Bearer";
 
@@ -521,6 +523,17 @@
                 if (DateTime.TryParse(strEndDate, out DateTime endDate))
                     headerResults.EndDate = endDate.ToUniversalTime();
             }
+
+            if (responseHeaders.TryGetValues(HEADER_X_ITEM_ID, out values))
+            {
+                string strXItemId = values.First();
+
+                if (int.TryParse(strXItemId, out int id))
+                    headerResults.XItemId = id;
+            }
+
+            if (responseHeaders.TryGetValues(HEADER_X_ITEM_TYPE, out values))
+                headerResults.XItemType = values.First();
         }
 
         private void ParsePagedResponseHeaderValues(ITraktPagedResponseHeaders headerResults, HttpResponseHeaders responseHeaders)
