@@ -25,6 +25,10 @@
 
         public bool? IsPrivateUser { get; set; }
 
+        public int? XItemId { get; set; }
+
+        public string XItemType { get; set; }
+
         public bool Equals(TraktResponse<TResponseContentType> other)
         {
             if (other == null)
