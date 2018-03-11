@@ -184,10 +184,10 @@
             var state4 = TraktShowStatus.Canceled;
 
             Action act = () => filter.AddStates(state1, TraktShowStatus.Unspecified);
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             act = () => filter.AddStates(state1, state2, TraktShowStatus.Unspecified, state3);
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             filter.AddStates(TraktShowStatus.Unspecified, state1);
             filter.States.Should().NotBeNull().And.HaveCount(1);
@@ -219,10 +219,10 @@
             var state4 = TraktShowStatus.Canceled;
 
             Action act = () => filter.WithStates(state1, TraktShowStatus.Unspecified);
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             act = () => filter.WithStates(state1, state2, TraktShowStatus.Unspecified, state3);
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             filter.WithStates(TraktShowStatus.Unspecified, state1);
             filter.States.Should().NotBeNull().And.HaveCount(1);

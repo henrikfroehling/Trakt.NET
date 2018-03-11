@@ -20,7 +20,7 @@
             var traktJsonWriter = new ArrayJsonWriter<ITraktGenre>();
             IEnumerable<ITraktGenre> traktGenres = new List<TraktGenre>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(StringWriter), traktGenres);
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

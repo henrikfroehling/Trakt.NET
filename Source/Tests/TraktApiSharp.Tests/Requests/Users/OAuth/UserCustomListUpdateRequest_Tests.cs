@@ -53,37 +53,37 @@
             var request = new UserCustomListUpdateRequest { Id = "123" };
 
             Action act = () => request.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // empty username
             request = new UserCustomListUpdateRequest { Username = string.Empty, Id = "123" };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // username with spaces
             request = new UserCustomListUpdateRequest { Username = "invalid username", Id = "123" };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // id is null
             request = new UserCustomListUpdateRequest { Username = "username" };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // empty id
             request = new UserCustomListUpdateRequest { Username = "username", Id = string.Empty };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // id with spaces
             request = new UserCustomListUpdateRequest { Username = "username", Id = "invalid id" };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
     }
 }

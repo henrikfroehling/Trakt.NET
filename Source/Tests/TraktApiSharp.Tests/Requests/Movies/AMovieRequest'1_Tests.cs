@@ -50,19 +50,19 @@
             var requestMock = new MovieRequestMock();
 
             Action act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // empty id
             requestMock = new MovieRequestMock { Id = string.Empty };
 
             act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // id with spaces
             requestMock = new MovieRequestMock { Id = "invalid id" };
 
             act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
     }
 }

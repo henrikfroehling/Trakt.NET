@@ -52,25 +52,25 @@
             var request = new EpisodeRatingsRequest { EpisodeNumber = 1 };
 
             Action act = () => request.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // empty id
             request = new EpisodeRatingsRequest { Id = string.Empty, EpisodeNumber = 1 };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // id with spaces
             request = new EpisodeRatingsRequest { Id = "invalid id", EpisodeNumber = 1 };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // episode number == 0
             request = new EpisodeRatingsRequest { EpisodeNumber = 0 };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
     }
 }

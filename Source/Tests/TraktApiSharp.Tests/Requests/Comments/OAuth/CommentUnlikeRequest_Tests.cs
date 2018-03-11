@@ -53,19 +53,19 @@
             var request = new CommentUnlikeRequest();
 
             Action act = () => request.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // empty id
             request = new CommentUnlikeRequest { Id = string.Empty };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // id with spaces
             request = new CommentUnlikeRequest { Id = "invalid id" };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
     }
 }

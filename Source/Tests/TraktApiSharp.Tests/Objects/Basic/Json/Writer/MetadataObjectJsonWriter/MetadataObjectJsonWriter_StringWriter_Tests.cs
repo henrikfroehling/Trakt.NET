@@ -20,7 +20,7 @@
             var traktJsonWriter = new MetadataObjectJsonWriter();
             ITraktMetadata traktMetadata = new TraktMetadata();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktMetadata);
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

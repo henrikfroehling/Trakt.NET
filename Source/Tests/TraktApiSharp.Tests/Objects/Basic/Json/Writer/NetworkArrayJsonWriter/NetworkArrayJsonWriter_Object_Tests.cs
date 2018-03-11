@@ -18,7 +18,7 @@
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktNetwork>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(IEnumerable<ITraktNetwork>));
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

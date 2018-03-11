@@ -349,19 +349,19 @@
         //    var builder = TraktSyncRatingsPost.Builder();
 
         //    Action act = () => builder.AddMovie(null);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddMovie(new TraktMovie());
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds() });
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 }, Year = 123 });
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 }, Year = 12345 });
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
         //}
 
         //[TestMethod]
@@ -372,25 +372,25 @@
         //    var rating = 5;
 
         //    Action act = () => builder.AddMovie(null, rating);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddMovie(new TraktMovie(), rating);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds() }, rating);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 }, Year = 123 }, rating);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 }, Year = 12345 }, rating);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 } }, 0);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 } }, 11);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
         //}
 
         //[TestMethod]
@@ -402,25 +402,25 @@
         //    var ratedAt = DateTime.Now;
 
         //    Action act = () => builder.AddMovie(null, rating, ratedAt);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddMovie(new TraktMovie(), rating, ratedAt);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds() }, rating, ratedAt);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 }, Year = 123 }, rating, ratedAt);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 }, Year = 12345 }, rating, ratedAt);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 } }, 0, ratedAt);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddMovie(new TraktMovie { Ids = (ITraktMovieIds)new TraktMovieIds { Trakt = 1 } }, 11, ratedAt);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
         //}
 
         //// ----------------------------------------------------------------------------------------
@@ -529,7 +529,7 @@
         //    var builder = TraktSyncRatingsPost.Builder();
 
         //    Action act = () => builder.AddMovies(null);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    var movies = new List<TraktMovie>
         //    {
@@ -537,7 +537,7 @@
         //    };
 
         //    act = () => builder.AddMovies(movies);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    movies = new List<TraktMovie>
         //    {
@@ -545,7 +545,7 @@
         //    };
 
         //    act = () => builder.AddMovies(movies);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    movies = new List<TraktMovie>
         //    {
@@ -553,7 +553,7 @@
         //    };
 
         //    act = () => builder.AddMovies(movies);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    movies = new List<TraktMovie>
         //    {
@@ -561,7 +561,7 @@
         //    };
 
         //    act = () => builder.AddMovies(movies);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
         //}
 
         //// ----------------------------------------------------------------------------------------
@@ -878,13 +878,13 @@
         //    var builder = TraktSyncRatingsPost.Builder();
 
         //    Action act = () => builder.AddEpisode(null);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddEpisode(new TraktEpisode());
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddEpisode(new TraktEpisode { Ids = new TraktEpisodeIds() });
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
         //}
 
         //[TestMethod]
@@ -895,19 +895,19 @@
         //    var rating = 5;
 
         //    Action act = () => builder.AddEpisode(null, rating);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddEpisode(new TraktEpisode(), rating);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddEpisode(new TraktEpisode { Ids = new TraktEpisodeIds() }, rating);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddEpisode(new TraktEpisode { Ids = new TraktEpisodeIds { Trakt = 1 } }, 0);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddEpisode(new TraktEpisode { Ids = new TraktEpisodeIds { Trakt = 1 } }, 11);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
         //}
 
         //[TestMethod]
@@ -919,19 +919,19 @@
         //    var ratedAt = DateTime.Now;
 
         //    Action act = () => builder.AddEpisode(null, rating, ratedAt);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddEpisode(new TraktEpisode(), rating, ratedAt);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddEpisode(new TraktEpisode { Ids = new TraktEpisodeIds() }, rating, ratedAt);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddEpisode(new TraktEpisode { Ids = new TraktEpisodeIds { Trakt = 1 } }, 0, ratedAt);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddEpisode(new TraktEpisode { Ids = new TraktEpisodeIds { Trakt = 1 } }, 11, ratedAt);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
         //}
 
         //// ----------------------------------------------------------------------------------------
@@ -1035,7 +1035,7 @@
         //    var builder = TraktSyncRatingsPost.Builder();
 
         //    Action act = () => builder.AddEpisodes(null);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    var episodes = new List<TraktEpisode>
         //    {
@@ -1043,7 +1043,7 @@
         //    };
 
         //    act = () => builder.AddEpisodes(episodes);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    episodes = new List<TraktEpisode>
         //    {
@@ -1051,7 +1051,7 @@
         //    };
 
         //    act = () => builder.AddEpisodes(episodes);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
         //}
 
         //// ----------------------------------------------------------------------------------------
@@ -1428,19 +1428,19 @@
         //    var builder = TraktSyncRatingsPost.Builder();
 
         //    Action act = () => builder.AddShow(null);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShow(new TraktShow());
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() });
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 });
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 });
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
         //}
 
         //[TestMethod]
@@ -1451,25 +1451,25 @@
         //    var rating = 5;
 
         //    Action act = () => builder.AddShowWithRating(null, rating);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow(), rating);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, rating);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, rating);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, rating);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, 0);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, 11);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
         //}
 
         //[TestMethod]
@@ -1481,25 +1481,25 @@
         //    var ratedAt = DateTime.Now;
 
         //    Action act = () => builder.AddShowWithRating(null, rating, ratedAt);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow(), rating, ratedAt);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, rating, ratedAt);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, rating, ratedAt);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, rating, ratedAt);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, 0, ratedAt);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, 11, ratedAt);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
         //}
 
         //// ----------------------------------------------------------------------------------------
@@ -1618,7 +1618,7 @@
         //    var builder = TraktSyncRatingsPost.Builder();
 
         //    Action act = () => builder.AddShows(null);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    var shows = new List<TraktShow>
         //    {
@@ -1626,7 +1626,7 @@
         //    };
 
         //    act = () => builder.AddShows(shows);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    shows = new List<TraktShow>
         //    {
@@ -1634,7 +1634,7 @@
         //    };
 
         //    act = () => builder.AddShows(shows);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    shows = new List<TraktShow>
         //    {
@@ -1642,7 +1642,7 @@
         //    };
 
         //    act = () => builder.AddShows(shows);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    shows = new List<TraktShow>
         //    {
@@ -1650,7 +1650,7 @@
         //    };
 
         //    act = () => builder.AddShows(shows);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
         //}
 
         //// ----------------------------------------------------------------------------------------
@@ -2483,31 +2483,31 @@
         //    var builder = TraktSyncRatingsPost.Builder();
 
         //    Action act = () => builder.AddShow(null, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShow(new TraktShow(), 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, -1);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, 1, 2, -1);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, new PostRatingsSeasons { -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, new PostRatingsSeasons { 1, -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
         //}
 
         //[TestMethod]
@@ -2518,37 +2518,37 @@
         //    var rating = 5;
 
         //    Action act = () => builder.AddShowWithRating(null, rating, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow(), rating, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, rating, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, rating, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, rating, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, 0, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, 11, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, -1);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, 1, 2, -1);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, new PostRatingsSeasons { -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, new PostRatingsSeasons { 1, -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
         //}
 
         //[TestMethod]
@@ -2560,37 +2560,37 @@
         //    var ratedAt = DateTime.Now;
 
         //    Action act = () => builder.AddShowWithRating(null, rating, ratedAt, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow(), rating, ratedAt, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, rating, ratedAt, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, rating, ratedAt, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, rating, ratedAt, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, 0, ratedAt, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, 11, ratedAt, 1, 2, 3, 4);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, ratedAt, -1);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, ratedAt, 1, 2, -1);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, ratedAt, new PostRatingsSeasons { -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, ratedAt, new PostRatingsSeasons { 1, -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
         //}
 
         //// ----------------------------------------------------------------------------------------
@@ -3455,38 +3455,38 @@
         //    var seasons = new int[] { 1, 2, 3, 4 };
 
         //    Action act = () => builder.AddShow(null, seasons);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShow(new TraktShow(), seasons);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, seasons);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, seasons);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, seasons);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    seasons = new int[] { -1 };
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, seasons);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    seasons = new int[] { 1, 2, -1 };
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, seasons);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, default(int[]));
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, new PostRatingsSeasons { -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, new PostRatingsSeasons { 1, -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
         //}
 
         //[TestMethod]
@@ -3499,44 +3499,44 @@
         //    var seasons = new int[] { 1, 2, 3, 4 };
 
         //    Action act = () => builder.AddShowWithRating(null, rating, seasons);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow(), rating, seasons);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, rating, seasons);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, rating, seasons);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, rating, seasons);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, 0, seasons);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, 11, seasons);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    seasons = new int[] { -1 };
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, seasons);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    seasons = new int[] { 1, 2, -1 };
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, seasons);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, default(int[]));
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, new PostRatingsSeasons { -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, new PostRatingsSeasons { 1, -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
         //}
 
         //[TestMethod]
@@ -3550,44 +3550,44 @@
         //    var seasons = new int[] { 1, 2, 3, 4 };
 
         //    Action act = () => builder.AddShowWithRating(null, rating, ratedAt, seasons);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow(), rating, ratedAt, seasons);
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, rating, ratedAt, seasons);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, rating, ratedAt, seasons);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, rating, ratedAt, seasons);
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, 0, ratedAt, seasons);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, 11, ratedAt, seasons);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    seasons = new int[] { -1 };
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, ratedAt, seasons);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    seasons = new int[] { 1, 2, -1 };
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, ratedAt, seasons);
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, ratedAt, default(int[]));
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, ratedAt, new PostRatingsSeasons { -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, ratedAt, new PostRatingsSeasons { 1, -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
         //}
 
         //// ----------------------------------------------------------------------------------------
@@ -7414,42 +7414,42 @@
         //    var builder = TraktSyncRatingsPost.Builder();
 
         //    Action act = () => builder.AddShow(null, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShow(new TraktShow(), new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, default(PostRatingsSeasons));
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, new PostRatingsSeasons { -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, new PostRatingsSeasons { 1, -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, new PostRatingsSeasons { { -1, new PostRatingsEpisodes { 1, 2 } } });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, new PostRatingsSeasons { { 1, new PostRatingsEpisodes { 1, -1 } } });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, new PostRatingsSeasons { { 1, new PostRatingsEpisodes { 1, 2 } },
         //                                                                                                                 { 1, new PostRatingsEpisodes { 1, -1} } });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShow(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, new PostRatingsSeasons { { 1, new PostRatingsEpisodes { 1, 2 } },
         //                                                                                                                 { -1, new PostRatingsEpisodes { 1, 2} } });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
         //}
 
         //[TestMethod]
@@ -7460,48 +7460,48 @@
         //    var rating = 5;
 
         //    Action act = () => builder.AddShowWithRating(null, rating, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow(), rating, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, rating, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, rating, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, rating, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, default(PostRatingsSeasons));
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, 0, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, 11, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, new PostRatingsSeasons { -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, new PostRatingsSeasons { 1, -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, new PostRatingsSeasons { { -1, new PostRatingsEpisodes { 1, 2 } } });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, new PostRatingsSeasons { { 1, new PostRatingsEpisodes { 1, -1 } } });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, new PostRatingsSeasons { { 1, new PostRatingsEpisodes { 1, 2 } },
         //                                                                                                                                   { 1, new PostRatingsEpisodes { 1, -1} } });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, new PostRatingsSeasons { { 1, new PostRatingsEpisodes { 1, 2 } },
         //                                                                                                                                   { -1, new PostRatingsEpisodes { 1, 2} } });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
         //}
 
         //[TestMethod]
@@ -7513,48 +7513,48 @@
         //    var ratedAt = DateTime.Now;
 
         //    Action act = () => builder.AddShowWithRating(null, rating, ratedAt, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow(), rating, ratedAt, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds() }, rating, ratedAt, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 123 }, rating, ratedAt, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 }, Year = 12345 }, rating, ratedAt, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentException>();
+        //    act.Should().Throw<ArgumentException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, ratedAt, default(PostRatingsSeasons));
-        //    act.ShouldThrow<ArgumentNullException>();
+        //    act.Should().Throw<ArgumentNullException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, 0, ratedAt, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, 11, ratedAt, new PostRatingsSeasons { 1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, ratedAt, new PostRatingsSeasons { -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, ratedAt, new PostRatingsSeasons { 1, -1 });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, ratedAt, new PostRatingsSeasons { { -1, new PostRatingsEpisodes { 1, 2 } } });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, ratedAt, new PostRatingsSeasons { { 1, new PostRatingsEpisodes { 1, -1 } } });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, ratedAt, new PostRatingsSeasons { { 1, new PostRatingsEpisodes { 1, 2 } },
         //                                                                                                                                            { 1, new PostRatingsEpisodes { 1, -1} } });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
 
         //    act = () => builder.AddShowWithRating(new TraktShow { Ids = (ITraktShowIds)new TraktShowIds { Trakt = 1 } }, rating, ratedAt, new PostRatingsSeasons { { 1, new PostRatingsEpisodes { 1, 2 } },
         //                                                                                                                                            { -1, new PostRatingsEpisodes { 1, 2} } });
-        //    act.ShouldThrow<ArgumentOutOfRangeException>();
+        //    act.Should().Throw<ArgumentOutOfRangeException>();
         //}
 
         //// ----------------------------------------------------------------------------------------

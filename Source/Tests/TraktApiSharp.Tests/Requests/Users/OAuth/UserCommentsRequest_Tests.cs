@@ -35,19 +35,19 @@
             var requestMock = new UserCommentsRequest();
 
             Action act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // empty username
             requestMock = new UserCommentsRequest { Username = string.Empty };
 
             act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // username with spaces
             requestMock = new UserCommentsRequest { Username = "invalid username" };
 
             act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
 
         [Theory, ClassData(typeof(UserCommentsRequest_TestData))]

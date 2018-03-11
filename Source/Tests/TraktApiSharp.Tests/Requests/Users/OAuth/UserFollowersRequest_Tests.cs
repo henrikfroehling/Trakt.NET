@@ -59,19 +59,19 @@
             var request = new UserFollowersRequest();
 
             Action act = () => request.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // empty username
             request = new UserFollowersRequest { Username = string.Empty };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // username with spaces
             request = new UserFollowersRequest { Username = "invalid username" };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
     }
 }

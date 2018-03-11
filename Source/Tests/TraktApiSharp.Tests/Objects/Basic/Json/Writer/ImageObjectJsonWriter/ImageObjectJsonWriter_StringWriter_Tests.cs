@@ -19,7 +19,7 @@
             var traktJsonWriter = new ImageObjectJsonWriter();
             ITraktImage traktImage = new TraktImage();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktImage);
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

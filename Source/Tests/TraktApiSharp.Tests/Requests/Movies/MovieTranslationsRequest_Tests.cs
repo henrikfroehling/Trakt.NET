@@ -49,28 +49,28 @@
             var request = new MovieTranslationsRequest();
 
             Action act = () => request.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // empty id
             request = new MovieTranslationsRequest { Id = string.Empty };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // id with spaces
             request = new MovieTranslationsRequest { Id = "invalid id" };
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // language code with wrong length
             request = new MovieTranslationsRequest { Id = "123", LanguageCode = "eng" };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentOutOfRangeException>();
+            act.Should().Throw<ArgumentOutOfRangeException>();
 
             request = new MovieTranslationsRequest { Id = "123", LanguageCode = "e" };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentOutOfRangeException>();
+            act.Should().Throw<ArgumentOutOfRangeException>();
         }
     }
 }

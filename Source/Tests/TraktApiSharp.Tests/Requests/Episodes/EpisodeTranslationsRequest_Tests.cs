@@ -81,36 +81,36 @@
             var request = new EpisodeTranslationsRequest { EpisodeNumber = 1 };
 
             Action act = () => request.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // empty id
             request = new EpisodeTranslationsRequest { Id = string.Empty, EpisodeNumber = 1 };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // id with spaces
             request = new EpisodeTranslationsRequest { Id = "invalid id", EpisodeNumber = 1 };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // episode number == 0
             request = new EpisodeTranslationsRequest { EpisodeNumber = 0 };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // language code with wrong length
             request = new EpisodeTranslationsRequest { Id = "123", EpisodeNumber = 1, LanguageCode = "eng" };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentOutOfRangeException>();
+            act.Should().Throw<ArgumentOutOfRangeException>();
 
             request = new EpisodeTranslationsRequest { Id = "123", EpisodeNumber = 1, LanguageCode = "e" };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentOutOfRangeException>();
+            act.Should().Throw<ArgumentOutOfRangeException>();
         }
     }
 }

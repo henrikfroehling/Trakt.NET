@@ -26,19 +26,19 @@
             var request = new MovieRelatedMoviesRequest();
 
             Action act = () => request.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // empty id
             request = new MovieRelatedMoviesRequest { Id = string.Empty };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // id with spaces
             request = new MovieRelatedMoviesRequest { Id = "invalid id" };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
 
         [Theory, ClassData(typeof(MovieRelatedMoviesRequest_TestData))]

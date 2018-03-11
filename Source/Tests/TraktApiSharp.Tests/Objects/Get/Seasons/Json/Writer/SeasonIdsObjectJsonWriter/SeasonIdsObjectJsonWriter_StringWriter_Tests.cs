@@ -19,7 +19,7 @@
             var traktJsonWriter = new SeasonIdsObjectJsonWriter();
             ITraktSeasonIds traktSeasonIds = new TraktSeasonIds();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktSeasonIds);
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

@@ -20,12 +20,12 @@
             var requestMock = new CalendarRequestMock { Days = 0 };
 
             Action act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentOutOfRangeException>();
+            act.Should().Throw<ArgumentOutOfRangeException>();
 
             requestMock = new CalendarRequestMock { Days = 32 };
 
             act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentOutOfRangeException>();
+            act.Should().Throw<ArgumentOutOfRangeException>();
         }
     }
 }

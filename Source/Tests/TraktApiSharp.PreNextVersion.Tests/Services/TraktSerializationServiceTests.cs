@@ -60,7 +60,7 @@
             "}";
 
             Action act = () => TraktSerializationService.Serialize(emptyAuthorization);
-            act.ShouldNotThrow();
+            act.Should().NotThrow();
 
             var jsonAuthorization = TraktSerializationService.Serialize(emptyAuthorization);
 
@@ -72,7 +72,7 @@
         public void TestTraktSerializationServiceSerializeTraktAuthorizationArgumentExceptions()
         {
             Action act = () => TraktSerializationService.Serialize(default(TraktAuthorization));
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
         }
 
         [TestMethod]
@@ -94,23 +94,23 @@
         public void TestTraktSerializationServiceDeserializeTraktAuthorizationArgumentExceptions()
         {
             Action act = () => TraktSerializationService.DeserializeAuthorization(null);
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             act = () => TraktSerializationService.DeserializeAuthorization(string.Empty);
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
 
         [TestMethod]
         public void TestTraktSerializationServiceDeserializeTraktAuthorizationInvalidJson()
         {
             Action act = () => TraktSerializationService.DeserializeAuthorization("{ \"invalid\": \"json\" }");
-            act.ShouldNotThrow();
+            act.Should().NotThrow();
 
             var result = TraktSerializationService.DeserializeAuthorization("{ \"invalid\": \"json\" }");
             result.Should().BeNull();
 
             act = () => TraktSerializationService.DeserializeAuthorization("invalid\": \"json\" }");
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             string invalidAuthorizationJson =
             "{" +
@@ -124,7 +124,7 @@
             "}";
 
             act = () => TraktSerializationService.DeserializeAuthorization(invalidAuthorizationJson);
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             invalidAuthorizationJson =
             "{" +
@@ -138,7 +138,7 @@
             "}";
 
             act = () => TraktSerializationService.DeserializeAuthorization(invalidAuthorizationJson);
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
     }
 }

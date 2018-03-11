@@ -130,67 +130,67 @@
 
             Func<Task<TraktPagedResponse<ITraktMovie>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.GetMovieRecommendationsAsync();
-            act.ShouldThrow<TraktAuthorizationException>();
+            act.Should().Throw<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
-            act.ShouldThrow<TraktNotFoundException>();
+            act.Should().Throw<TraktNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
-            act.ShouldThrow<TraktBadRequestException>();
+            act.Should().Throw<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
-            act.ShouldThrow<TraktForbiddenException>();
+            act.Should().Throw<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
-            act.ShouldThrow<TraktMethodNotFoundException>();
+            act.Should().Throw<TraktMethodNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
-            act.ShouldThrow<TraktConflictException>();
+            act.Should().Throw<TraktConflictException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
-            act.ShouldThrow<TraktServerException>();
+            act.Should().Throw<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
-            act.ShouldThrow<TraktBadGatewayException>();
+            act.Should().Throw<TraktBadGatewayException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
-            act.ShouldThrow<TraktPreconditionFailedException>();
+            act.Should().Throw<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
-            act.ShouldThrow<TraktValidationException>();
+            act.Should().Throw<TraktValidationException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
-            act.ShouldThrow<TraktRateLimitException>();
+            act.Should().Throw<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
         }
 
         #endregion
@@ -222,67 +222,67 @@
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideMovieRecommendationAsync(movieId);
-            act.ShouldThrow<TraktAuthorizationException>();
+            act.Should().Throw<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
-            act.ShouldThrow<TraktMovieNotFoundException>();
+            act.Should().Throw<TraktMovieNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
-            act.ShouldThrow<TraktBadRequestException>();
+            act.Should().Throw<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
-            act.ShouldThrow<TraktForbiddenException>();
+            act.Should().Throw<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
-            act.ShouldThrow<TraktMethodNotFoundException>();
+            act.Should().Throw<TraktMethodNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
-            act.ShouldThrow<TraktConflictException>();
+            act.Should().Throw<TraktConflictException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
-            act.ShouldThrow<TraktServerException>();
+            act.Should().Throw<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
-            act.ShouldThrow<TraktBadGatewayException>();
+            act.Should().Throw<TraktBadGatewayException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
-            act.ShouldThrow<TraktPreconditionFailedException>();
+            act.Should().Throw<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
-            act.ShouldThrow<TraktValidationException>();
+            act.Should().Throw<TraktValidationException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
-            act.ShouldThrow<TraktRateLimitException>();
+            act.Should().Throw<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [TestMethod]
@@ -293,13 +293,13 @@
             TestUtility.SetupMockResponseWithOAuth($"recommendations/movies/{movieId}", HttpStatusCode.NoContent);
 
             Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideMovieRecommendationAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideMovieRecommendationAsync(string.Empty);
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideMovieRecommendationAsync("movie id");
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
 
         #endregion
@@ -401,67 +401,67 @@
 
             Func<Task<TraktPagedResponse<ITraktShow>>> act =
                 async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.GetShowRecommendationsAsync();
-            act.ShouldThrow<TraktAuthorizationException>();
+            act.Should().Throw<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
-            act.ShouldThrow<TraktNotFoundException>();
+            act.Should().Throw<TraktNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
-            act.ShouldThrow<TraktBadRequestException>();
+            act.Should().Throw<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
-            act.ShouldThrow<TraktForbiddenException>();
+            act.Should().Throw<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
-            act.ShouldThrow<TraktMethodNotFoundException>();
+            act.Should().Throw<TraktMethodNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
-            act.ShouldThrow<TraktConflictException>();
+            act.Should().Throw<TraktConflictException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
-            act.ShouldThrow<TraktServerException>();
+            act.Should().Throw<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
-            act.ShouldThrow<TraktBadGatewayException>();
+            act.Should().Throw<TraktBadGatewayException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
-            act.ShouldThrow<TraktPreconditionFailedException>();
+            act.Should().Throw<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
-            act.ShouldThrow<TraktValidationException>();
+            act.Should().Throw<TraktValidationException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
-            act.ShouldThrow<TraktRateLimitException>();
+            act.Should().Throw<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
         }
 
         #endregion
@@ -493,67 +493,67 @@
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync(showId);
-            act.ShouldThrow<TraktAuthorizationException>();
+            act.Should().Throw<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
-            act.ShouldThrow<TraktShowNotFoundException>();
+            act.Should().Throw<TraktShowNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
-            act.ShouldThrow<TraktBadRequestException>();
+            act.Should().Throw<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
-            act.ShouldThrow<TraktForbiddenException>();
+            act.Should().Throw<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
-            act.ShouldThrow<TraktMethodNotFoundException>();
+            act.Should().Throw<TraktMethodNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
-            act.ShouldThrow<TraktConflictException>();
+            act.Should().Throw<TraktConflictException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
-            act.ShouldThrow<TraktServerException>();
+            act.Should().Throw<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
-            act.ShouldThrow<TraktBadGatewayException>();
+            act.Should().Throw<TraktBadGatewayException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
-            act.ShouldThrow<TraktPreconditionFailedException>();
+            act.Should().Throw<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
-            act.ShouldThrow<TraktValidationException>();
+            act.Should().Throw<TraktValidationException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
-            act.ShouldThrow<TraktRateLimitException>();
+            act.Should().Throw<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
             TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
-            act.ShouldThrow<TraktServerUnavailableException>();
+            act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [TestMethod]
@@ -564,13 +564,13 @@
             TestUtility.SetupMockResponseWithOAuth($"recommendations/shows/{showId}", HttpStatusCode.NoContent);
 
             Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync(null);
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync(string.Empty);
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync("show id");
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
 
         #endregion

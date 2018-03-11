@@ -19,7 +19,7 @@
             var traktJsonWriter = new StatisticsObjectJsonWriter();
             ITraktStatistics traktStatistics = new TraktStatistics();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktStatistics);
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

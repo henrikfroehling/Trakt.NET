@@ -21,7 +21,7 @@
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktSeasonWatchedProgress>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(IEnumerable<ITraktSeasonWatchedProgress>));
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

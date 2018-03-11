@@ -20,7 +20,7 @@
             var traktJsonWriter = new RatingObjectJsonWriter();
             ITraktRating traktRating = new TraktRating();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktRating);
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

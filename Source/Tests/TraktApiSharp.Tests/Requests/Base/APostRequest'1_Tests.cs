@@ -38,7 +38,7 @@
             var requestMock = new PostRequestMock();
 
             Action act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
         }
     }
 }

@@ -35,13 +35,13 @@
             var request = new SearchIdLookupRequest { LookupId = "lookupId" };
 
             Action act = () => request.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // no lookup id set
             request = new SearchIdLookupRequest { IdType = TraktSearchIdType.Trakt };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
@@ -51,19 +51,19 @@
             var request = new SearchIdLookupRequest { LookupId = "lookupId", IdType = TraktSearchIdType.Unspecified };
 
             Action act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // lookup id is empty
             request = new SearchIdLookupRequest { LookupId = string.Empty, IdType = TraktSearchIdType.Trakt };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // lookup id contains spaces
             request = new SearchIdLookupRequest { LookupId = "lookup id", IdType = TraktSearchIdType.Trakt };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
 
         [Theory, ClassData(typeof(SearchIdLookupRequest_TestData))]

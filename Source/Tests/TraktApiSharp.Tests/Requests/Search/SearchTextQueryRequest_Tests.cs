@@ -35,13 +35,13 @@
             var request = new SearchTextQueryRequest { Query = "query" };
 
             Action act = () => request.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // no query set
             request = new SearchTextQueryRequest { ResultTypes = TraktSearchResultType.Episode };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
@@ -51,13 +51,13 @@
             var request = new SearchTextQueryRequest { Query = "query", ResultTypes = TraktSearchResultType.Unspecified };
 
             Action act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // query is empty
             request = new SearchTextQueryRequest { Query = string.Empty, ResultTypes = TraktSearchResultType.Episode };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
 
         [Theory, ClassData(typeof(SearchTextQueryRequest_TestData))]

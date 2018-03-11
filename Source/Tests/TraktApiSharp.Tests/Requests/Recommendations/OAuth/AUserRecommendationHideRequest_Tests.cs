@@ -45,19 +45,19 @@
             var requestMock = new UserRecommendationHideRequestMock();
 
             Action act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // empty id
             requestMock = new UserRecommendationHideRequestMock { Id = string.Empty };
 
             act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // id with spaces
             requestMock = new UserRecommendationHideRequestMock { Id = "invalid id" };
 
             act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
     }
 }

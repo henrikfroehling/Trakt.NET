@@ -44,19 +44,19 @@
             var requestMock = new UsersDeleteByIdRequestMock();
 
             Action act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // empty id
             requestMock = new UsersDeleteByIdRequestMock { Id = string.Empty };
 
             act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // id with spaces
             requestMock = new UsersDeleteByIdRequestMock { Id = "invalid id" };
 
             act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
     }
 }

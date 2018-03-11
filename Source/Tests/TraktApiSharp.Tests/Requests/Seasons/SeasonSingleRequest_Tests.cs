@@ -26,35 +26,35 @@
             var request = new SeasonSingleRequest();
 
             Action act = () => request.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // empty id
             request = new SeasonSingleRequest { Id = string.Empty };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // id with spaces
             request = new SeasonSingleRequest { Id = "invalid id" };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // wrong translation language code format
             request = new SeasonSingleRequest { Id = "123", TranslationLanguageCode = "eng" };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentOutOfRangeException>();
+            act.Should().Throw<ArgumentOutOfRangeException>();
 
             request = new SeasonSingleRequest { Id = "123", TranslationLanguageCode = "e" };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentOutOfRangeException>();
+            act.Should().Throw<ArgumentOutOfRangeException>();
 
             request = new SeasonSingleRequest { Id = "123", TranslationLanguageCode = "all" };
 
             act = () => request.Validate();
-            act.ShouldNotThrow();
+            act.Should().NotThrow();
         }
 
         [Theory, ClassData(typeof(SeasonSingleRequest_TestData))]

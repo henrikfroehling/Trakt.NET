@@ -20,7 +20,7 @@
             var traktJsonWriter = new ErrorObjectJsonWriter();
             ITraktError traktError = new TraktError();
             Func<Task> action = () => traktJsonWriter.WriteObjectAsync(default(JsonTextWriter), traktError);
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

@@ -20,7 +20,7 @@
             var traktJsonWriter = new GenreObjectJsonWriter();
             ITraktGenre traktGenre = new TraktGenre();
             Func<Task> action = () => traktJsonWriter.WriteObjectAsync(default(JsonTextWriter), traktGenre);
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

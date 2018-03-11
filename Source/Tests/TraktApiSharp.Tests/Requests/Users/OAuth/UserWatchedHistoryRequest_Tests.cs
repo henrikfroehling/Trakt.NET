@@ -36,19 +36,19 @@
             var request = new UserWatchedHistoryRequest();
 
             Action act = () => request.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // empty username
             request = new UserWatchedHistoryRequest { Username = string.Empty };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // username with spaces
             request = new UserWatchedHistoryRequest { Username = "invalid username" };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
 
         [Theory, ClassData(typeof(UserWatchedHistoryRequest_TestData))]

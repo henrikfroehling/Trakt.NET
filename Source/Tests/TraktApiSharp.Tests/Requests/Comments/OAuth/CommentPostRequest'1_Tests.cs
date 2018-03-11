@@ -31,7 +31,7 @@
             var request = new CommentPostRequest<TraktCommentPost>();
 
             Action act = () => request.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

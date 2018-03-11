@@ -25,7 +25,7 @@
             var traktJsonWriter = new EpisodeObjectJsonWriter();
             ITraktEpisode traktEpisode = new TraktEpisode();
             Func<Task> action = () => traktJsonWriter.WriteObjectAsync(default(JsonTextWriter), traktEpisode);
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

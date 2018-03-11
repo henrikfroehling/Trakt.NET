@@ -20,7 +20,7 @@
             var traktJsonWriter = new NetworkObjectJsonWriter();
             ITraktNetwork traktNetwork = new TraktNetwork();
             Func<Task> action = () => traktJsonWriter.WriteObjectAsync(default(JsonTextWriter), traktNetwork);
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

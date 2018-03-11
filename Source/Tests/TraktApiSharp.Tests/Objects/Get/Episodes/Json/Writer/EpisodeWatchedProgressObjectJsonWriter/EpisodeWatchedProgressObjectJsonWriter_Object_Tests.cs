@@ -18,7 +18,7 @@
         {
             var traktJsonWriter = new EpisodeWatchedProgressObjectJsonWriter();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(ITraktEpisodeWatchedProgress));
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

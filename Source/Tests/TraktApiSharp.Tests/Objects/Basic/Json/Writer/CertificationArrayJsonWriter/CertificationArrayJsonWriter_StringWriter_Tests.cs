@@ -20,7 +20,7 @@
             var traktJsonWriter = new ArrayJsonWriter<ITraktCertification>();
             IEnumerable<ITraktCertification> traktCertifications = new List<TraktCertification>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(StringWriter), traktCertifications);
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

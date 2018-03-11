@@ -54,25 +54,25 @@
             var request = new CommentUpdateRequest { Id = "123" };
 
             Action act = () => request.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // id is null
             request = new CommentUpdateRequest { RequestBody = null };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // empty id
             request = new CommentUpdateRequest { Id = string.Empty, RequestBody = new TraktCommentUpdatePost() };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // id with spaces
             request = new CommentUpdateRequest { Id = "invalid id", RequestBody = new TraktCommentUpdatePost() };
 
             act = () => request.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
     }
 }

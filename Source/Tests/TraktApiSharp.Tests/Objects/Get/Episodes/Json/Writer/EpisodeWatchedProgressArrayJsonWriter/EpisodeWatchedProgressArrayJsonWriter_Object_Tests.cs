@@ -19,7 +19,7 @@
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeWatchedProgress>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(IEnumerable<ITraktEpisodeWatchedProgress>));
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

@@ -35,13 +35,13 @@
             var requestMock = new UserHiddenItemsRequest();
 
             Action act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // section is unspecified
             requestMock = new UserHiddenItemsRequest { Section = TraktHiddenItemsSection.Unspecified };
 
             act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
         }
 
         [Theory, ClassData(typeof(UserHiddenItemsRequest_TestData))]

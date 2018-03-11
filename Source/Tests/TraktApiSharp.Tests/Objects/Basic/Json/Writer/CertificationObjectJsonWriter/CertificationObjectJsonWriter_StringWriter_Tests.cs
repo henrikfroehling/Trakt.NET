@@ -19,7 +19,7 @@
             var traktJsonWriter = new CertificationObjectJsonWriter();
             ITraktCertification traktCertification = new TraktCertification();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktCertification);
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

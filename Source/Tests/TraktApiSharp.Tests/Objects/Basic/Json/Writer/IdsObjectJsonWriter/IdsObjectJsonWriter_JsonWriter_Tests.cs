@@ -20,7 +20,7 @@
             var traktJsonWriter = new IdsObjectJsonWriter();
             ITraktIds traktIds = new TraktIds();
             Func<Task> action = () => traktJsonWriter.WriteObjectAsync(default(JsonTextWriter), traktIds);
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

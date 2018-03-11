@@ -20,7 +20,7 @@
             var traktJsonWriter = new SharingObjectJsonWriter();
             ITraktSharing traktSharing = new TraktSharing();
             Func<Task> action = () => traktJsonWriter.WriteObjectAsync(default(JsonTextWriter), traktSharing);
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

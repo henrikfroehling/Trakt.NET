@@ -21,7 +21,7 @@
             var traktJsonWriter = new RatingObjectJsonWriter();
             ITraktRating traktRating = new TraktRating();
             Func<Task> action = () => traktJsonWriter.WriteObjectAsync(default(JsonTextWriter), traktRating);
-            action.ShouldThrow<ArgumentNullException>();
+            action.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

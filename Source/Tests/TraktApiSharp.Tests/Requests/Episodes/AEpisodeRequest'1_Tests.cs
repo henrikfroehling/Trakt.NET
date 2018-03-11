@@ -65,25 +65,25 @@
             var requestMock = new TraktEpisodeRequestMock { EpisodeNumber = 1 };
 
             Action act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentNullException>();
+            act.Should().Throw<ArgumentNullException>();
 
             // empty id
             requestMock = new TraktEpisodeRequestMock { Id = string.Empty, EpisodeNumber = 1 };
 
             act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // id with spaces
             requestMock = new TraktEpisodeRequestMock { Id = "invalid id", EpisodeNumber = 1 };
 
             act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentException>();
+            act.Should().Throw<ArgumentException>();
 
             // episode number == 0
             requestMock = new TraktEpisodeRequestMock { Id = "123", EpisodeNumber = 0 };
 
             act = () => requestMock.Validate();
-            act.ShouldThrow<ArgumentOutOfRangeException>();
+            act.Should().Throw<ArgumentOutOfRangeException>();
         }
     }
 }
