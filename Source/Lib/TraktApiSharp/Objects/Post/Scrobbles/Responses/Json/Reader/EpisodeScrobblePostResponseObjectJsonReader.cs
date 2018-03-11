@@ -7,37 +7,12 @@
     using Implementations;
     using Newtonsoft.Json;
     using Objects.Json;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class EpisodeScrobblePostResponseObjectJsonReader : IObjectJsonReader<ITraktEpisodeScrobblePostResponse>
+    internal class EpisodeScrobblePostResponseObjectJsonReader : AObjectJsonReader<ITraktEpisodeScrobblePostResponse>
     {
-        public Task<ITraktEpisodeScrobblePostResponse> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(ITraktEpisodeScrobblePostResponse));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<ITraktEpisodeScrobblePostResponse> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (stream == null)
-                return Task.FromResult(default(ITraktEpisodeScrobblePostResponse));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<ITraktEpisodeScrobblePostResponse> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<ITraktEpisodeScrobblePostResponse> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktEpisodeScrobblePostResponse));
@@ -55,7 +30,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ID:
+                        case JsonProperties.SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ID:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedLongIntegerAsync(jsonReader, cancellationToken);
 
@@ -64,10 +39,10 @@
 
                                 break;
                             }
-                        case JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ACTION:
+                        case JsonProperties.SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ACTION:
                             episodeScrobbleResponse.Action = await JsonReaderHelper.ReadEnumerationValueAsync<TraktScrobbleActionType>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_PROGRESS:
+                        case JsonProperties.SCROBBLE_POST_RESPONSE_PROPERTY_NAME_PROGRESS:
                             {
                                 var value = await JsonReaderHelper.ReadFloatValueAsync(jsonReader, cancellationToken);
 
@@ -76,7 +51,7 @@
 
                                 break;
                             }
-                        case JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_SHARING:
+                        case JsonProperties.SCROBBLE_POST_RESPONSE_PROPERTY_NAME_SHARING:
                             episodeScrobbleResponse.Sharing = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_EPISODE:

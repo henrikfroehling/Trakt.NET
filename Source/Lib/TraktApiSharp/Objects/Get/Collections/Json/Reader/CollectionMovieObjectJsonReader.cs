@@ -1,43 +1,16 @@
 ﻿namespace TraktApiSharp.Objects.Get.Collections.Json.Reader
 {
-    using Basic.Json;
     using Basic.Json.Reader;
     using Implementations;
-    using Movies.Json;
     using Movies.Json.Reader;
     using Newtonsoft.Json;
     using Objects.Json;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class CollectionMovieObjectJsonReader : IObjectJsonReader<ITraktCollectionMovie>
+    internal class CollectionMovieObjectJsonReader : AObjectJsonReader<ITraktCollectionMovie>
     {
-        public Task<ITraktCollectionMovie> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(ITraktCollectionMovie));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<ITraktCollectionMovie> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (stream == null)
-                return Task.FromResult(default(ITraktCollectionMovie));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<ITraktCollectionMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<ITraktCollectionMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktCollectionMovie));

@@ -4,37 +4,12 @@
     using Newtonsoft.Json;
     using Objects.Json;
     using Post.Responses.Json.Reader;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class SyncHistoryRemovePostResponseNotFoundGroupObjectJsonReader : IObjectJsonReader<ITraktSyncHistoryRemovePostResponseNotFoundGroup>
+    internal class SyncHistoryRemovePostResponseNotFoundGroupObjectJsonReader : AObjectJsonReader<ITraktSyncHistoryRemovePostResponseNotFoundGroup>
     {
-        public Task<ITraktSyncHistoryRemovePostResponseNotFoundGroup> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(ITraktSyncHistoryRemovePostResponseNotFoundGroup));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<ITraktSyncHistoryRemovePostResponseNotFoundGroup> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (stream == null)
-                return Task.FromResult(default(ITraktSyncHistoryRemovePostResponseNotFoundGroup));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<ITraktSyncHistoryRemovePostResponseNotFoundGroup> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<ITraktSyncHistoryRemovePostResponseNotFoundGroup> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktSyncHistoryRemovePostResponseNotFoundGroup));
@@ -53,16 +28,16 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_HISTORY_REMOVE_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_MOVIES:
+                        case JsonProperties.SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_MOVIES:
                             syncHistoryRemovePostResponseNotFoundGroup.Movies = await notFoundMoviesReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_HISTORY_REMOVE_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SHOWS:
+                        case JsonProperties.SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SHOWS:
                             syncHistoryRemovePostResponseNotFoundGroup.Shows = await notFoundShowsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_HISTORY_REMOVE_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SEASONS:
+                        case JsonProperties.SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SEASONS:
                             syncHistoryRemovePostResponseNotFoundGroup.Seasons = await notFoundSeasonsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_HISTORY_REMOVE_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_EPISODES:
+                        case JsonProperties.SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_EPISODES:
                             syncHistoryRemovePostResponseNotFoundGroup.Episodes = await notFoundEpisodesReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.SYNC_HISTORY_REMOVE_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_IDS:

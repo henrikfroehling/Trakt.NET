@@ -3,37 +3,12 @@
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Collections.Generic;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class ShowAliasArrayJsonReader : IArrayJsonReader<ITraktShowAlias>
+    internal class ShowAliasArrayJsonReader : AArrayJsonReader<ITraktShowAlias>
     {
-        public Task<IEnumerable<ITraktShowAlias>> ReadArrayAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(IEnumerable<ITraktShowAlias>));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadArrayAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<IEnumerable<ITraktShowAlias>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (stream == null)
-                return Task.FromResult(default(IEnumerable<ITraktShowAlias>));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadArrayAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<IEnumerable<ITraktShowAlias>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<IEnumerable<ITraktShowAlias>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(IEnumerable<ITraktShowAlias>));

@@ -3,37 +3,12 @@
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Collections.Generic;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class PostResponseNotFoundSeasonArrayJsonReader : IArrayJsonReader<ITraktPostResponseNotFoundSeason>
+    internal class PostResponseNotFoundSeasonArrayJsonReader : AArrayJsonReader<ITraktPostResponseNotFoundSeason>
     {
-        public Task<IEnumerable<ITraktPostResponseNotFoundSeason>> ReadArrayAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(IEnumerable<ITraktPostResponseNotFoundSeason>));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadArrayAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<IEnumerable<ITraktPostResponseNotFoundSeason>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (stream == null)
-                return Task.FromResult(default(IEnumerable<ITraktPostResponseNotFoundSeason>));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadArrayAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<IEnumerable<ITraktPostResponseNotFoundSeason>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<IEnumerable<ITraktPostResponseNotFoundSeason>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(IEnumerable<ITraktPostResponseNotFoundSeason>));

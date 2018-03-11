@@ -3,37 +3,12 @@
     using Implementations;
     using Newtonsoft.Json;
     using Objects.Json;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class ListIdsObjectJsonReader : IObjectJsonReader<ITraktListIds>
+    internal class ListIdsObjectJsonReader : AObjectJsonReader<ITraktListIds>
     {
-        public Task<ITraktListIds> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(ITraktListIds));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<ITraktListIds> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (stream == null)
-                return Task.FromResult(default(ITraktListIds));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<ITraktListIds> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<ITraktListIds> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktListIds));

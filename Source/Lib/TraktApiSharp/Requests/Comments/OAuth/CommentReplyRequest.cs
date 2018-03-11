@@ -3,7 +3,7 @@
     using Base;
     using Extensions;
     using Interfaces;
-    using Objects.Post.Comments;
+    using Objects.Post.Comments.Implementations;
     using Objects.Post.Comments.Responses;
     using System;
     using System.Collections.Generic;

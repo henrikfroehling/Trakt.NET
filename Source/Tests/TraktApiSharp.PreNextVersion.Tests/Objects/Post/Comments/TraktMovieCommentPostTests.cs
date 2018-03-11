@@ -6,7 +6,7 @@
     //using TraktApiSharp.Objects.Basic.Implementations;
     //using TraktApiSharp.Objects.Get.Movies;
     //using TraktApiSharp.Objects.Get.Movies.Implementations;
-    using TraktApiSharp.Objects.Post.Comments;
+    using TraktApiSharp.Objects.Post.Comments.Implementations;
 
     [TestClass]
     public class TraktMovieCommentPostTests

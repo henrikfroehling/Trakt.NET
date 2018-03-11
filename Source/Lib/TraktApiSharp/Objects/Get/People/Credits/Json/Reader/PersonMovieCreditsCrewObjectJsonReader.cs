@@ -3,37 +3,12 @@
     using Implementations;
     using Newtonsoft.Json;
     using Objects.Json;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class PersonMovieCreditsCrewObjectJsonReader : IObjectJsonReader<ITraktPersonMovieCreditsCrew>
+    internal class PersonMovieCreditsCrewObjectJsonReader : AObjectJsonReader<ITraktPersonMovieCreditsCrew>
     {
-        public Task<ITraktPersonMovieCreditsCrew> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(ITraktPersonMovieCreditsCrew));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<ITraktPersonMovieCreditsCrew> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (stream == null)
-                return Task.FromResult(default(ITraktPersonMovieCreditsCrew));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<ITraktPersonMovieCreditsCrew> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<ITraktPersonMovieCreditsCrew> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktPersonMovieCreditsCrew));

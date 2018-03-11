@@ -5,15 +5,17 @@
     using Objects.Basic;
     using Objects.Get.Collections;
     using Objects.Get.History;
+    using Objects.Get.People;
     using Objects.Get.Ratings;
     using Objects.Get.Users;
     using Objects.Get.Users.Lists;
     using Objects.Get.Users.Statistics;
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;
-    using Objects.Post.Users;
     using Objects.Post.Users.CustomListItems;
+    using Objects.Post.Users.CustomListItems.Implementations;
     using Objects.Post.Users.CustomListItems.Responses;
+    using Objects.Post.Users.Implementations;
     using Objects.Post.Users.Responses;
     using Requests.Handler;
     using Requests.Parameters;
@@ -1096,9 +1098,9 @@
             if (customListItemsPost == null)
                 throw new ArgumentNullException(nameof(customListItemsPost), "list items post must not be null");
 
-            IEnumerable<TraktUserCustomListItemsPostMovie> movies = customListItemsPost.Movies;
-            IEnumerable<TraktUserCustomListItemsPostShow> shows = customListItemsPost.Shows;
-            IEnumerable<Objects.Get.People.Implementations.TraktPerson> people = customListItemsPost.People;
+            IEnumerable<ITraktUserCustomListItemsPostMovie> movies = customListItemsPost.Movies;
+            IEnumerable<ITraktUserCustomListItemsPostShow> shows = customListItemsPost.Shows;
+            IEnumerable<ITraktPerson> people = customListItemsPost.People;
 
             bool bHasNoMovies = movies == null || !movies.Any();
             bool bHasNoShows = shows == null || !shows.Any();

@@ -1,41 +1,15 @@
 ﻿namespace TraktApiSharp.Objects.Basic.Json.Reader
 {
-    using Get.Users.Json;
     using Get.Users.Json.Reader;
     using Implementations;
     using Newtonsoft.Json;
     using Objects.Json;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class CommentObjectJsonReader : IObjectJsonReader<ITraktComment>
+    internal class CommentObjectJsonReader : AObjectJsonReader<ITraktComment>
     {
-        public Task<ITraktComment> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(ITraktComment));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<ITraktComment> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (stream == null)
-                return Task.FromResult(default(ITraktComment));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<ITraktComment> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<ITraktComment> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktComment));

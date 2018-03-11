@@ -1,43 +1,16 @@
 ﻿namespace TraktApiSharp.Objects.Get.Calendars.Json.Reader
 {
-    using Episodes.Json;
     using Episodes.Json.Reader;
     using Implementations;
     using Newtonsoft.Json;
     using Objects.Json;
-    using Shows.Json;
     using Shows.Json.Reader;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class CalendarShowObjectJsonReader : IObjectJsonReader<ITraktCalendarShow>
+    internal class CalendarShowObjectJsonReader : AObjectJsonReader<ITraktCalendarShow>
     {
-        public Task<ITraktCalendarShow> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(ITraktCalendarShow));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<ITraktCalendarShow> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (stream == null)
-                return Task.FromResult(default(ITraktCalendarShow));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<ITraktCalendarShow> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<ITraktCalendarShow> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktCalendarShow));

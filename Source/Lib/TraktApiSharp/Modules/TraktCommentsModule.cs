@@ -9,7 +9,7 @@
     using Objects.Get.Seasons.Implementations;
     using Objects.Get.Shows.Implementations;
     using Objects.Get.Users.Lists.Implementations;
-    using Objects.Post.Comments;
+    using Objects.Post.Comments.Implementations;
     using Objects.Post.Comments.Responses;
     using Requests.Comments;
     using Requests.Comments.OAuth;

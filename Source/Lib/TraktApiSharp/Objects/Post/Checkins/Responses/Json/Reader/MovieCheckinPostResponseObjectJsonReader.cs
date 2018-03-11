@@ -5,37 +5,12 @@
     using Implementations;
     using Newtonsoft.Json;
     using Objects.Json;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class MovieCheckinPostResponseObjectJsonReader : IObjectJsonReader<ITraktMovieCheckinPostResponse>
+    internal class MovieCheckinPostResponseObjectJsonReader : AObjectJsonReader<ITraktMovieCheckinPostResponse>
     {
-        public Task<ITraktMovieCheckinPostResponse> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(ITraktMovieCheckinPostResponse));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<ITraktMovieCheckinPostResponse> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (stream == null)
-                return Task.FromResult(default(ITraktMovieCheckinPostResponse));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<ITraktMovieCheckinPostResponse> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<ITraktMovieCheckinPostResponse> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktMovieCheckinPostResponse));
@@ -52,7 +27,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.MOVIE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_ID:
+                        case JsonProperties.CHECKIN_POST_RESPONSE_PROPERTY_NAME_ID:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedLongIntegerAsync(jsonReader, cancellationToken);
 
@@ -61,7 +36,7 @@
 
                                 break;
                             }
-                        case JsonProperties.MOVIE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_WATCHED_AT:
+                        case JsonProperties.CHECKIN_POST_RESPONSE_PROPERTY_NAME_WATCHED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -70,7 +45,7 @@
 
                                 break;
                             }
-                        case JsonProperties.MOVIE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_SHARING:
+                        case JsonProperties.CHECKIN_POST_RESPONSE_PROPERTY_NAME_SHARING:
                             checkinMovieResponse.Sharing = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.MOVIE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_MOVIE:

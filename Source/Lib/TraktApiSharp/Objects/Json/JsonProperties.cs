@@ -406,7 +406,7 @@
         internal const string SYNC_MOVIES_LAST_ACTIVITIES_PROPERTY_NAME_COLLECTED_AT = "collected_at";
         internal const string SYNC_MOVIES_LAST_ACTIVITIES_PROPERTY_NAME_RATED_AT = "rated_at";
         internal const string SYNC_MOVIES_LAST_ACTIVITIES_PROPERTY_NAME_WATCHLISTED_AT = "watchlisted_at";
-        internal const string SYNC_MOVIES_LAST_ACTIVIITES_PROPERTY_NAME_COMMENTED_AT = "commented_at";
+        internal const string SYNC_MOVIES_LAST_ACTIVITIES_PROPERTY_NAME_COMMENTED_AT = "commented_at";
         internal const string SYNC_MOVIES_LAST_ACTIVITIES_PROPERTY_NAME_PAUSED_AT = "paused_at";
         internal const string SYNC_MOVIES_LAST_ACTIVITIES_PROPERTY_NAME_HIDDEN_AT = "hidden_at";
 
@@ -586,32 +586,46 @@
         internal const string WATCHLIST_ITEM_PROPERTY_NAME_SEASON = "season";
         internal const string WATCHLIST_ITEM_PROPERTY_NAME_EPISODE = "episode";
 
+        // post checkins
+        internal const string CHECKIN_POST_PROPERTY_NAME_SHARING = "sharing";
+        internal const string CHECKIN_POST_PROPERTY_NAME_MESSAGE = "message";
+        internal const string CHECKIN_POST_PROPERTY_NAME_APP_VERSION = "app_version";
+        internal const string CHECKIN_POST_PROPERTY_NAME_APP_DATE = "app_date";
+        internal const string CHECKIN_POST_PROPERTY_NAME_VENUE_ID = "venue_id";
+        internal const string CHECKIN_POST_PROPERTY_NAME_VENUE_NAME = "venue_name";
+
+        internal const string EPISODE_CHECKIN_POST_PROPERTY_NAME_EPISODE = "episode";
+        internal const string EPISODE_CHECKIN_POST_PROPERTY_NAME_SHOW = "show";
+
+        internal const string MOVIE_CHECKIN_POST_PROPERTY_NAME_MOVIE = "movie";
+
         // post checkins responses
         internal const string CHECKIN_POST_ERROR_RESPONSE_PROPERTY_NAME_EXPIRES_AT = "expires_at";
 
-        internal const string EPISODE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_ID = "id";
-        internal const string EPISODE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_WATCHED_AT = "watched_at";
-        internal const string EPISODE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_SHARING = "sharing";
+        internal const string CHECKIN_POST_RESPONSE_PROPERTY_NAME_ID = "id";
+        internal const string CHECKIN_POST_RESPONSE_PROPERTY_NAME_WATCHED_AT = "watched_at";
+        internal const string CHECKIN_POST_RESPONSE_PROPERTY_NAME_SHARING = "sharing";
+
         internal const string EPISODE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_EPISODE = "episode";
         internal const string EPISODE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_SHOW = "show";
 
-        internal const string MOVIE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_ID = "id";
-        internal const string MOVIE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_WATCHED_AT = "watched_at";
-        internal const string MOVIE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_SHARING = "sharing";
         internal const string MOVIE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_MOVIE = "movie";
 
+        // post comments
+        internal const string COMMENT_POST_PROPERTY_NAME_COMMENT = "comment";
+        internal const string COMMENT_POST_PROPERTY_NAME_SPOILER = "spoiler";
+        internal const string COMMENT_POST_PROPERTY_NAME_SHARING = "sharing";
+
+        internal const string EPISODE_COMMENT_POST_PROPERTY_NAME_EPISODE = "episode";
+        internal const string LIST_COMMENT_POST_PROPERTY_NAME_LIST = "list";
+        internal const string MOVIE_COMMENT_POST_PROPERTY_NAME_MOVIE = "movie";
+        internal const string SEASON_COMMENT_POST_PROPERTY_NAME_SEASON = "season";
+        internal const string SHOW_COMMENT_POST_PROPERTY_NAME_SHOW = "show";
+
+        internal const string COMMENT_UPDATE_POST_PROPERTY_NAME_COMMENT = "comment";
+        internal const string COMMENT_UPDATE_POST_PROPERTY_NAME_SPOILER = "spoiler";
+
         // post comments responses
-        internal const string COMMENT_POST_RESPONSE_PROPERTY_NAME_ID = "id";
-        internal const string COMMENT_POST_RESPONSE_PROPERTY_NAME_PARENT_ID = "parent_id";
-        internal const string COMMENT_POST_RESPONSE_PROPERTY_NAME_CREATED_AT = "created_at";
-        internal const string COMMENT_POST_RESPONSE_PROPERTY_NAME_UPDATED_AT = "updated_at";
-        internal const string COMMENT_POST_RESPONSE_PROPERTY_NAME_COMMENT = "comment";
-        internal const string COMMENT_POST_RESPONSE_PROPERTY_NAME_SPOILER = "spoiler";
-        internal const string COMMENT_POST_RESPONSE_PROPERTY_NAME_REVIEW = "review";
-        internal const string COMMENT_POST_RESPONSE_PROPERTY_NAME_REPLIES = "replies";
-        internal const string COMMENT_POST_RESPONSE_PROPERTY_NAME_LIKES = "likes";
-        internal const string COMMENT_POST_RESPONSE_PROPERTY_NAME_USER_RATING = "user_rating";
-        internal const string COMMENT_POST_RESPONSE_PROPERTY_NAME_USER = "user";
         internal const string COMMENT_POST_RESPONSE_PROPERTY_NAME_SHARING = "sharing";
 
         // post responses
@@ -621,19 +635,53 @@
         internal const string POST_RESPONSE_NOT_FOUND_SEASON_PROPERTY_NAME_IDS = "ids";
         internal const string POST_RESPONSE_NOT_FOUND_SHOW_PROPERTY_NAME_IDS = "ids";
 
+        // post scrobbles
+        internal const string SCROBBLE_POST_PROPERTY_NAME_PROGRESS = "progress";
+        internal const string SCROBBLE_POST_PROPERTY_NAME_APP_VERSION = "app_version";
+        internal const string SCROBBLE_POST_PROPERTY_NAME_APP_DATE = "app_date";
+
+        internal const string EPISODE_SCROBBLE_POST_PROPERTY_NAME_EPISODE = "episode";
+        internal const string EPISODE_SCROBBLE_POST_PROPERTY_NAME_SHOW = "show";
+
+        internal const string MOVIE_SCROBBLE_POST_PROPERTY_NAME_MOVIE = "movie";
+
         // post scrobbles responses
-        internal const string EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ID = "id";
-        internal const string EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ACTION = "action";
-        internal const string EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_PROGRESS = "progress";
-        internal const string EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_SHARING = "sharing";
+        internal const string SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ID = "id";
+        internal const string SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ACTION = "action";
+        internal const string SCROBBLE_POST_RESPONSE_PROPERTY_NAME_PROGRESS = "progress";
+        internal const string SCROBBLE_POST_RESPONSE_PROPERTY_NAME_SHARING = "sharing";
+
         internal const string EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_EPISODE = "episode";
         internal const string EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_SHOW = "show";
 
-        internal const string MOVIE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ID = "id";
-        internal const string MOVIE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_ACTION = "action";
-        internal const string MOVIE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_PROGRESS = "progress";
-        internal const string MOVIE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_SHARING = "sharing";
         internal const string MOVIE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_MOVIE = "movie";
+
+        // post syncs collection
+        internal const string SYNC_COLLECTION_POST_PROPERTY_NAME_MOVIES = "movies";
+        internal const string SYNC_COLLECTION_POST_PROPERTY_NAME_SHOWS = "shows";
+        internal const string SYNC_COLLECTION_POST_PROPERTY_NAME_EPISODES = "episodes";
+
+        internal const string SYNC_COLLECTION_POST_MOVIE_PROPERTY_NAME_COLLECTED_AT = "collected_at";
+        internal const string SYNC_COLLECTION_POST_MOVIE_PROPERTY_NAME_TITLE = "title";
+        internal const string SYNC_COLLECTION_POST_MOVIE_PROPERTY_NAME_YEAR = "year";
+        internal const string SYNC_COLLECTION_POST_MOVIE_PROPERTY_NAME_IDS = "ids";
+        internal const string SYNC_COLLECTION_POST_MOVIE_PROPERTY_NAME_METADATA = "metadata";
+
+        internal const string SYNC_COLLECTION_POST_SHOW_PROPERTY_NAME_COLLECTED_AT = "collected_at";
+        internal const string SYNC_COLLECTION_POST_SHOW_PROPERTY_NAME_TITLE = "title";
+        internal const string SYNC_COLLECTION_POST_SHOW_PROPERTY_NAME_YEAR = "year";
+        internal const string SYNC_COLLECTION_POST_SHOW_PROPERTY_NAME_IDS = "ids";
+        internal const string SYNC_COLLECTION_POST_SHOW_PROPERTY_NAME_SEASONS = "seasons";
+        internal const string SYNC_COLLECTION_POST_SHOW_PROPERTY_NAME_METADATA = "metadata";
+
+        internal const string SYNC_COLLECTION_POST_SHOW_SEASON_PROPERTY_NAME_NUMBER = "number";
+        internal const string SYNC_COLLECTION_POST_SHOW_SEASON_PROPERTY_NAME_EPISODES = "episodes";
+
+        internal const string SYNC_COLLECTION_POST_SHOW_EPISODE_PROPERTY_NAME_NUMBER = "number";
+
+        internal const string SYNC_COLLECTION_POST_EPISODE_PROPERTY_NAME_COLLECTED_AT = "collected_at";
+        internal const string SYNC_COLLECTION_POST_EPISODE_PROPERTY_NAME_IDS = "ids";
+        internal const string SYNC_COLLECTION_POST_EPISODE_PROPERTY_NAME_METADATA = "metadata";
 
         // post syncs collection responses
         internal const string SYNC_COLLECTION_POST_RESPONSE_PROPERTY_NAME_ADDED = "added";
@@ -644,24 +692,75 @@
         internal const string SYNC_COLLECTION_REMOVE_POST_RESPONSE_PROPERTY_NAME_DELETED = "deleted";
         internal const string SYNC_COLLECTION_REMOVE_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND = "not_found";
 
+        // post syncs history
+        internal const string SYNC_HISTORY_POST_PROPERTY_NAME_MOVIES = "movies";
+        internal const string SYNC_HISTORY_POST_PROPERTY_NAME_SHOWS = "shows";
+        internal const string SYNC_HISTORY_POST_PROPERTY_NAME_EPISODES = "episodes";
+
+        internal const string SYNC_HISTORY_POST_MOVIE_PROPERTY_NAME_WATCHED_AT = "watched_at";
+        internal const string SYNC_HISTORY_POST_MOVIE_PROPERTY_NAME_TITLE = "title";
+        internal const string SYNC_HISTORY_POST_MOVIE_PROPERTY_NAME_YEAR = "year";
+        internal const string SYNC_HISTORY_POST_MOVIE_PROPERTY_NAME_IDS = "ids";
+
+        internal const string SYNC_HISTORY_POST_SHOW_PROPERTY_NAME_WATCHED_AT = "watched_at";
+        internal const string SYNC_HISTORY_POST_SHOW_PROPERTY_NAME_TITLE = "title";
+        internal const string SYNC_HISTORY_POST_SHOW_PROPERTY_NAME_YEAR = "year";
+        internal const string SYNC_HISTORY_POST_SHOW_PROPERTY_NAME_IDS = "ids";
+        internal const string SYNC_HISTORY_POST_SHOW_PROPERTY_NAME_SEASONS = "seasons";
+
+        internal const string SYNC_HISTORY_POST_SHOW_SEASON_PROPERTY_NAME_WATCHED_AT = "watched_at";
+        internal const string SYNC_HISTORY_POST_SHOW_SEASON_PROPERTY_NAME_NUMBER = "number";
+        internal const string SYNC_HISTORY_POST_SHOW_SEASON_PROPERTY_NAME_EPISODES = "episodes";
+
+        internal const string SYNC_HISTORY_POST_SHOW_EPISODE_PROPERTY_NAME_WATCHED_AT = "watched_at";
+        internal const string SYNC_HISTORY_POST_SHOW_EPISODE_PROPERTY_NAME_NUMBER = "number";
+
+        internal const string SYNC_HISTORY_POST_EPISODE_PROPERTY_NAME_WATCHED_AT = "watched_at";
+        internal const string SYNC_HISTORY_POST_EPISODE_PROPERTY_NAME_IDS = "ids";
+
+        internal const string SYNC_HISTORY_REMOVE_POST_PROPERTY_NAME_IDS = "ids";
+
         // post syncs history responses
         internal const string SYNC_HISTORY_POST_RESPONSE_PROPERTY_NAME_ADDED = "added";
         internal const string SYNC_HISTORY_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND = "not_found";
 
-        internal const string SYNC_HISTORY_REMOVE_POST_RESPONSE_GROUP_PROPERTY_NAME_MOVIES = "movies";
-        internal const string SYNC_HISTORY_REMOVE_POST_RESPONSE_GROUP_PROPERTY_NAME_SHOWS = "shows";
-        internal const string SYNC_HISTORY_REMOVE_POST_RESPONSE_GROUP_PROPERTY_NAME_SEASONS = "seasons";
-        internal const string SYNC_HISTORY_REMOVE_POST_RESPONSE_GROUP_PROPERTY_NAME_EPISODES = "episodes";
         internal const string SYNC_HISTORY_REMOVE_POST_RESPONSE_GROUP_PROPERTY_NAME_IDS = "ids";
 
-        internal const string SYNC_HISTORY_REMOVE_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_MOVIES = "movies";
-        internal const string SYNC_HISTORY_REMOVE_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SHOWS = "shows";
-        internal const string SYNC_HISTORY_REMOVE_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SEASONS = "seasons";
-        internal const string SYNC_HISTORY_REMOVE_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_EPISODES = "episodes";
         internal const string SYNC_HISTORY_REMOVE_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_IDS = "ids";
 
         internal const string SYNC_HISTORY_REMOVE_POST_RESPONSE_PROPERTY_NAME_DELETED = "deleted";
         internal const string SYNC_HISTORY_REMOVE_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND = "not_found";
+
+        // post syncs ratings
+        internal const string SYNC_RATINGS_POST_PROPERTY_NAME_MOVIES = "movies";
+        internal const string SYNC_RATINGS_POST_PROPERTY_NAME_SHOWS = "shows";
+        internal const string SYNC_RATINGS_POST_PROPERTY_NAME_EPISODES = "episodes";
+
+        internal const string SYNC_RATINGS_POST_MOVIE_PROPERTY_NAME_RATED_AT = "rated_at";
+        internal const string SYNC_RATINGS_POST_MOVIE_PROPERTY_NAME_RATING = "rating";
+        internal const string SYNC_RATINGS_POST_MOVIE_PROPERTY_NAME_TITLE = "title";
+        internal const string SYNC_RATINGS_POST_MOVIE_PROPERTY_NAME_YEAR = "year";
+        internal const string SYNC_RATINGS_POST_MOVIE_PROPERTY_NAME_IDS = "ids";
+
+        internal const string SYNC_RATINGS_POST_SHOW_PROPERTY_NAME_RATED_AT = "rated_at";
+        internal const string SYNC_RATINGS_POST_SHOW_PROPERTY_NAME_RATING = "rating";
+        internal const string SYNC_RATINGS_POST_SHOW_PROPERTY_NAME_TITLE = "title";
+        internal const string SYNC_RATINGS_POST_SHOW_PROPERTY_NAME_YEAR = "year";
+        internal const string SYNC_RATINGS_POST_SHOW_PROPERTY_NAME_IDS = "ids";
+        internal const string SYNC_RATINGS_POST_SHOW_PROPERTY_NAME_SEASONS = "seasons";
+
+        internal const string SYNC_RATINGS_POST_SHOW_SEASON_PROPERTY_NAME_RATED_AT = "rated_at";
+        internal const string SYNC_RATINGS_POST_SHOW_SEASON_PROPERTY_NAME_RATING = "rating";
+        internal const string SYNC_RATINGS_POST_SHOW_SEASON_PROPERTY_NAME_NUMBER = "number";
+        internal const string SYNC_RATINGS_POST_SHOW_SEASON_PROPERTY_NAME_EPISODES = "episodes";
+
+        internal const string SYNC_RATINGS_POST_SHOW_EPISODE_PROPERTY_NAME_RATED_AT = "rated_at";
+        internal const string SYNC_RATINGS_POST_SHOW_EPISODE_PROPERTY_NAME_RATING = "rating";
+        internal const string SYNC_RATINGS_POST_SHOW_EPISODE_PROPERTY_NAME_NUMBER = "number";
+
+        internal const string SYNC_RATINGS_POST_EPISODE_PROPERTY_NAME_RATED_AT = "rated_at";
+        internal const string SYNC_RATINGS_POST_EPISODE_PROPERTY_NAME_RATING = "rating";
+        internal const string SYNC_RATINGS_POST_EPISODE_PROPERTY_NAME_IDS = "ids";
 
         // post syncs ratings responses
         internal const string SYNC_RATINGS_POST_RESPONSE_NOT_FOUND_EPISODE_PROPERTY_NAME_RATING = "rating";
@@ -698,6 +797,27 @@
         internal const string SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SEASONS = "seasons";
         internal const string SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_EPISODES = "episodes";
 
+        // post syncs watchlist
+        internal const string SYNC_WATCHLIST_POST_PROPERTY_NAME_MOVIES = "movies";
+        internal const string SYNC_WATCHLIST_POST_PROPERTY_NAME_SHOWS = "shows";
+        internal const string SYNC_WATCHLIST_POST_PROPERTY_NAME_EPISODES = "episodes";
+
+        internal const string SYNC_WATCHLIST_POST_MOVIE_PROPERTY_NAME_TITLE = "title";
+        internal const string SYNC_WATCHLIST_POST_MOVIE_PROPERTY_NAME_YEAR = "year";
+        internal const string SYNC_WATCHLIST_POST_MOVIE_PROPERTY_NAME_IDS = "ids";
+
+        internal const string SYNC_WATCHLIST_POST_SHOW_PROPERTY_NAME_TITLE = "title";
+        internal const string SYNC_WATCHLIST_POST_SHOW_PROPERTY_NAME_YEAR = "year";
+        internal const string SYNC_WATCHLIST_POST_SHOW_PROPERTY_NAME_IDS = "ids";
+        internal const string SYNC_WATCHLIST_POST_SHOW_PROPERTY_NAME_SEASONS = "seasons";
+
+        internal const string SYNC_WATCHLIST_POST_SHOW_SEASON_PROPERTY_NAME_NUMBER = "number";
+        internal const string SYNC_WATCHLIST_POST_SHOW_SEASON_PROPERTY_NAME_EPISODES = "episodes";
+
+        internal const string SYNC_WATCHLIST_POST_SHOW_EPISODE_PROPERTY_NAME_NUMBER = "number";
+
+        internal const string SYNC_WATCHLIST_POST_EPISODE_PROPERTY_NAME_IDS = "ids";
+
         // post syncs watchlist responses
         internal const string SYNC_WATCHLIST_POST_RESPONSE_PROPERTY_NAME_ADDED = "added";
         internal const string SYNC_WATCHLIST_POST_RESPONSE_PROPERTY_NAME_EXISTING = "existing";
@@ -705,6 +825,21 @@
 
         internal const string SYNC_WATCHLIST_REMOVE_POST_RESPONSE_PROPERTY_NAME_DELETED = "deleted";
         internal const string SYNC_WATCHLIST_REMOVE_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND = "not_found";
+
+        // post users custom lists
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_PROPERTY_NAME_MOVIES = "movies";
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_PROPERTY_NAME_SHOWS = "shows";
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_PROPERTY_NAME_PEOPLE = "people";
+
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_MOVIE_PROPERTY_NAME_IDS = "ids";
+
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_SHOW_PROPERTY_NAME_IDS = "ids";
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_SHOW_PROPERTY_NAME_SEASONS = "seasons";
+
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_SHOW_EPISODE_PROPERTY_NAME_NUMBER = "number";
+
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_SHOW_SEASON_PROPERTY_NAME_NUMBER = "number";
+        internal const string USER_CUSTOM_LIST_ITEMS_POST_SHOW_SEASON_PROPERTY_NAME_EPISODES = "episodes";
 
         // post users custom lists responses
         internal const string USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_GROUP_PROPERTY_NAME_MOVIES = "movies";
@@ -725,6 +860,13 @@
 
         internal const string USER_CUSTOM_LIST_ITEMS_REMOVE_POST_RESPONSE_PROPERTY_NAME_DELETED = "deleted";
         internal const string USER_CUSTOM_LIST_ITEMS_REMOVE_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND = "not_found";
+
+        // post users
+        internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_NAME = "name";
+        internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_DESCRIPTION = "description";
+        internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_PRIVACY = "privacy";
+        internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_DISPLAY_NUMBERS = "display_numbers";
+        internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_ALLOW_COMMENTS = "allow_comments";
 
         // post users responses
         internal const string USER_FOLLOW_USER_POST_RESPONSE_PROPERTY_NAME_APPROVED_AT = "approved_at";

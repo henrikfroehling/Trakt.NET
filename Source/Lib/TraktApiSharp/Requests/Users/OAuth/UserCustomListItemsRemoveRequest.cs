@@ -2,7 +2,7 @@
 {
     using Base;
     using Extensions;
-    using Objects.Post.Users.CustomListItems;
+    using Objects.Post.Users.CustomListItems.Implementations;
     using Objects.Post.Users.CustomListItems.Responses;
     using System;
     using System.Collections.Generic;

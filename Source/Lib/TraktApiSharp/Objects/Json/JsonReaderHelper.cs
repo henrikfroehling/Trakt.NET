@@ -10,7 +10,7 @@
 
     internal static class JsonReaderHelper
     {
-        internal static async Task<IEnumerable<string>> ReadStringArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        internal static async Task<IEnumerable<string>> ReadStringArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
@@ -27,10 +27,10 @@
                 return values;
             }
 
-            return default(IEnumerable<string>);
+            return default;
         }
 
-        internal static async Task<IEnumerable<ulong>> ReadUnsignedLongArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        internal static async Task<IEnumerable<ulong>> ReadUnsignedLongArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
@@ -45,10 +45,10 @@
                 return values;
             }
 
-            return default(IEnumerable<ulong>);
+            return default;
         }
 
-        internal static async Task<Pair<bool, DateTime>> ReadDateTimeValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        internal static async Task<Pair<bool, DateTime>> ReadDateTimeValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (await jsonReader.ReadAsync(cancellationToken))
             {
@@ -66,15 +66,15 @@
                     }
                     catch(Exception)
                     {
-                        return new Pair<bool, DateTime>(false, default(DateTime));
+                        return new Pair<bool, DateTime>(false, default);
                     }
                 }
             }
 
-            return new Pair<bool, DateTime>(false, default(DateTime));
+            return new Pair<bool, DateTime>(false, default);
         }
 
-        internal static async Task<Pair<bool, float>> ReadFloatValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        internal static async Task<Pair<bool, float>> ReadFloatValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (await jsonReader.ReadAsync(cancellationToken))
             {
@@ -85,10 +85,10 @@
                 }
             }
 
-            return new Pair<bool, float>(false, default(float));
+            return new Pair<bool, float>(false, default);
         }
 
-        internal static async Task<Pair<bool, uint>> ReadUnsignedIntegerValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        internal static async Task<Pair<bool, uint>> ReadUnsignedIntegerValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (await jsonReader.ReadAsync(cancellationToken))
             {
@@ -99,10 +99,10 @@
                 }
             }
 
-            return new Pair<bool, uint>(false, default(uint));
+            return new Pair<bool, uint>(false, default);
         }
 
-        internal static async Task<Pair<bool, ulong>> ReadUnsignedLongIntegerAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        internal static async Task<Pair<bool, ulong>> ReadUnsignedLongIntegerAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (await jsonReader.ReadAsync(cancellationToken))
             {
@@ -113,20 +113,20 @@
                 }
             }
 
-            return new Pair<bool, ulong>(false, default(ulong));
+            return new Pair<bool, ulong>(false, default);
         }
 
-        internal static async Task<TEnumeration> ReadEnumerationValueAsync<TEnumeration>(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken)) where TEnumeration : TraktEnumeration, new()
+        internal static async Task<TEnumeration> ReadEnumerationValueAsync<TEnumeration>(JsonTextReader jsonReader, CancellationToken cancellationToken = default) where TEnumeration : TraktEnumeration, new()
         {
             var value = await jsonReader.ReadAsStringAsync(cancellationToken);
 
             if (!string.IsNullOrEmpty(value))
                 return TraktEnumeration.FromObjectName<TEnumeration>(value);
 
-            return default(TEnumeration);
+            return default;
         }
 
-        internal static async Task<IDictionary<string, int>> ReadDistributionAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        internal static async Task<IDictionary<string, int>> ReadDistributionAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             const string nr1 = "1";
             const string nr2 = "2";
@@ -203,7 +203,7 @@
             return await Task.FromResult(default(IDictionary<string, int>));
         }
 
-        internal static async Task ReadAndIgnoreInvalidContentAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        internal static async Task ReadAndIgnoreInvalidContentAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             await jsonReader.ReadAsync(cancellationToken); // read unmatched property value
 
@@ -213,13 +213,13 @@
                 await ReadAndIgnoreInvalidContentWithStartObjectTokenAsync(jsonReader, cancellationToken);
         }
 
-        internal static Task ReadAndIgnoreInvalidContentWithStartArrayTokenAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        internal static Task ReadAndIgnoreInvalidContentWithStartArrayTokenAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
             => ReadAndIgnoreInvalidContentAsync(jsonReader, true, false, cancellationToken);
 
-        internal static Task ReadAndIgnoreInvalidContentWithStartObjectTokenAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        internal static Task ReadAndIgnoreInvalidContentWithStartObjectTokenAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
             => ReadAndIgnoreInvalidContentAsync(jsonReader, false, true, cancellationToken);
 
-        private static async Task ReadAndIgnoreInvalidContentAsync(JsonTextReader jsonReader, bool startWithOpenBracket, bool startWithOpenBrace, CancellationToken cancellationToken = default(CancellationToken))
+        private static async Task ReadAndIgnoreInvalidContentAsync(JsonTextReader jsonReader, bool startWithOpenBracket, bool startWithOpenBrace, CancellationToken cancellationToken = default)
         {
             var arrayBracketPairCount = startWithOpenBracket ? 1 : 0;
             var objectBracePairCount = startWithOpenBrace ? 1 : 0;

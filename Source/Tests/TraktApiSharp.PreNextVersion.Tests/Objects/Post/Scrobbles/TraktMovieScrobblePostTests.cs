@@ -6,7 +6,7 @@
     //using System;
     //using TraktApiSharp.Objects.Get.Movies;
     //using TraktApiSharp.Objects.Get.Movies.Implementations;
-    using TraktApiSharp.Objects.Post.Scrobbles;
+    using TraktApiSharp.Objects.Post.Scrobbles.Implementations;
 
     [TestClass]
     public class TraktMovieScrobblePostTests

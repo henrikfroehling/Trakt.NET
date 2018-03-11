@@ -7,10 +7,10 @@
 
     internal interface IObjectJsonReader<TReturnType>
     {
-        Task<TReturnType> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken));
+        Task<TReturnType> ReadObjectAsync(string json, CancellationToken cancellationToken = default);
 
-        Task<TReturnType> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken));
+        Task<TReturnType> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default);
 
-        Task<TReturnType> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken));
+        Task<TReturnType> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default);
     }
 }

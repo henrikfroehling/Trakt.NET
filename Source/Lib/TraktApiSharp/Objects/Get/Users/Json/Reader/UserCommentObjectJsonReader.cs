@@ -1,52 +1,21 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users.Json.Reader
 {
-    using Basic.Json;
     using Basic.Json.Reader;
     using Enums;
-    using Episodes.Json;
     using Episodes.Json.Reader;
     using Implementations;
-    using Lists.Json;
-    using Movies.Json;
     using Movies.Json.Reader;
     using Newtonsoft.Json;
     using Objects.Json;
-    using Seasons.Json;
     using Seasons.Json.Reader;
-    using Shows.Json;
     using Shows.Json.Reader;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
     using Users.Lists.Json.Reader;
 
-    internal class UserCommentObjectJsonReader : IObjectJsonReader<ITraktUserComment>
+    internal class UserCommentObjectJsonReader : AObjectJsonReader<ITraktUserComment>
     {
-        public Task<ITraktUserComment> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(ITraktUserComment));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<ITraktUserComment> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (stream == null)
-                return Task.FromResult(default(ITraktUserComment));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<ITraktUserComment> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<ITraktUserComment> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktUserComment));

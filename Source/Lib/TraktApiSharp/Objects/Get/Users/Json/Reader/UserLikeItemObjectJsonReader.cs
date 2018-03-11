@@ -1,44 +1,17 @@
 ﻿namespace TraktApiSharp.Objects.Get.Users.Json.Reader
 {
-    using Basic.Json;
     using Basic.Json.Reader;
     using Enums;
     using Implementations;
-    using Lists.Json;
     using Lists.Json.Reader;
     using Newtonsoft.Json;
     using Objects.Json;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class UserLikeItemObjectJsonReader : IObjectJsonReader<ITraktUserLikeItem>
+    internal class UserLikeItemObjectJsonReader : AObjectJsonReader<ITraktUserLikeItem>
     {
-        public Task<ITraktUserLikeItem> ReadObjectAsync(string json, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (string.IsNullOrEmpty(json))
-                return Task.FromResult(default(ITraktUserLikeItem));
-
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public Task<ITraktUserLikeItem> ReadObjectAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (stream == null)
-                return Task.FromResult(default(ITraktUserLikeItem));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadObjectAsync(jsonReader, cancellationToken);
-            }
-        }
-
-        public async Task<ITraktUserLikeItem> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<ITraktUserLikeItem> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
                 return await Task.FromResult(default(ITraktUserLikeItem));

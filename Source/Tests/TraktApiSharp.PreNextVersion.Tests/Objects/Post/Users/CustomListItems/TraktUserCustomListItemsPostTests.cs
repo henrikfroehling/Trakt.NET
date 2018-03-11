@@ -8,7 +8,7 @@
     //using TraktApiSharp.Objects.Get.Movies.Implementations;
     //using TraktApiSharp.Objects.Get.People.Implementations;
     //using TraktApiSharp.Objects.Get.Shows.Implementations;
-    using TraktApiSharp.Objects.Post.Users.CustomListItems;
+    using TraktApiSharp.Objects.Post.Users.CustomListItems.Implementations;
 
     [TestClass]
     public class TraktUserCustomListItemsPostTests
