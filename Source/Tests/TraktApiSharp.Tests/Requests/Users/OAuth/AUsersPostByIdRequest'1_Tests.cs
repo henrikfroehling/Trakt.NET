@@ -3,15 +3,26 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
+    using System.Net.Http;
     using Traits;
     using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
     public class AUsersPostByIdRequest_1_Tests
     {
-        internal class UsersPostByIdRequestMock : AUsersPostByIdRequest<int, float>
+        internal class RequestBodyMock : IRequestBody
+        {
+            public string HttpContentAsString => throw new NotImplementedException();
+
+            public HttpContent ToHttpContent() => throw new NotImplementedException();
+
+            public void Validate() => throw new NotImplementedException();
+        }
+
+        internal class UsersPostByIdRequestMock : AUsersPostByIdRequest<int, RequestBodyMock>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
             public override RequestObjectType RequestObjectType { get { throw new NotImplementedException(); } }

@@ -1,10 +1,12 @@
 ﻿namespace TraktApiSharp.Requests.Base
 {
+    using Interfaces;
     using Interfaces.Base;
     using System;
+    using System.Collections.Generic;
     using System.Net.Http;
 
-    internal abstract class APutRequest<TRequestBodyType> : ARequest, IPutRequest<TRequestBodyType>
+    internal abstract class APutRequest<TRequestBodyType> : ARequest, IPutRequest<TRequestBodyType> where TRequestBodyType : IRequestBody
     {
         public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
 
@@ -14,8 +16,10 @@
 
         public override void Validate()
         {
-            if (RequestBody == null)
+            if (EqualityComparer<TRequestBodyType>.Default.Equals(RequestBody, default))
                 throw new ArgumentNullException(nameof(RequestBody));
+
+            RequestBody.Validate();
         }
     }
 }

@@ -53,25 +53,25 @@
             _client = client;
         }
 
-        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(IRequest request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(IRequest request, CancellationToken cancellationToken = default)
         {
             PreExecuteRequest(request);
             return QueryNoContentAsync(SetupRequestMessage(request), cancellationToken);
         }
 
-        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
         {
             PreExecuteRequest(request);
             return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request), false, cancellationToken);
         }
 
-        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
         {
             PreExecuteRequest(request);
             return QueryListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
         }
 
-        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
         {
             PreExecuteRequest(request);
             return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
@@ -79,26 +79,26 @@
 
         // post requests
 
-        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TResponseContentType>(IPostRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(IPostRequest<TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             PreExecuteRequest(request);
             return QueryNoContentAsync(SetupRequestMessage(request), cancellationToken);
         }
 
-        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             PreExecuteRequest(request);
             var isCheckinRequest = request is CheckinRequest<TResponseContentType, TRequestBodyType>;
             return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request), isCheckinRequest, cancellationToken);
         }
 
-        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             PreExecuteRequest(request);
             return QueryListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
         }
 
-        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             PreExecuteRequest(request);
             return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
@@ -106,25 +106,25 @@
 
         // put requests
 
-        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(IPutRequest<TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(IPutRequest<TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             PreExecuteRequest(request);
             return QueryNoContentAsync(SetupRequestMessage(request), cancellationToken);
         }
 
-        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             PreExecuteRequest(request);
             return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request), false, cancellationToken);
         }
 
-        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             PreExecuteRequest(request);
             return QueryListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
         }
 
-        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             PreExecuteRequest(request);
             return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
@@ -132,7 +132,7 @@
 
         // query response helper methods
 
-        private async Task<TraktNoContentResponse> QueryNoContentAsync(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task<TraktNoContentResponse> QueryNoContentAsync(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default)
         {
             HttpResponseMessage responseMessage = null;
 
@@ -156,7 +156,7 @@
             }
         }
 
-        private async Task<TraktResponse<TResponseContentType>> QuerySingleItemAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task<TraktResponse<TResponseContentType>> QuerySingleItemAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default)
         {
             HttpResponseMessage responseMessage = null;
 
@@ -172,7 +172,7 @@
                 Debug.Assert(objectJsonReader != null, "precondition for deserializing response content failed: json content reader is null");
 
                 TResponseContentType contentObject = await objectJsonReader.ReadObjectAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
-                bool hasValue = !EqualityComparer<TResponseContentType>.Default.Equals(contentObject, default(TResponseContentType));
+                bool hasValue = !EqualityComparer<TResponseContentType>.Default.Equals(contentObject, default);
 
                 var response = new TraktResponse<TResponseContentType>
                 {
@@ -199,7 +199,7 @@
             }
         }
 
-        private async Task<TraktListResponse<TResponseContentType>> QueryListAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task<TraktListResponse<TResponseContentType>> QueryListAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default)
         {
             HttpResponseMessage responseMessage = null;
 
@@ -241,7 +241,7 @@
             }
         }
 
-        private async Task<TraktPagedResponse<TResponseContentType>> QueryPagedListAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task<TraktPagedResponse<TResponseContentType>> QueryPagedListAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default)
         {
             HttpResponseMessage responseMessage = null;
 
@@ -286,7 +286,7 @@
             }
         }
 
-        private async Task<HttpResponseMessage> ExecuteRequestAsync(ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task<HttpResponseMessage> ExecuteRequestAsync(ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default)
         {
             HttpResponseMessage responseMessage = await s_httpClient.SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
@@ -340,7 +340,7 @@
             return requestMessage;
         }
 
-        private ExtendedHttpRequestMessage SetupRequestMessage<TRequestBodyType>(IPostRequest<TRequestBodyType> request)
+        private ExtendedHttpRequestMessage SetupRequestMessage<TRequestBodyType>(IPostRequest<TRequestBodyType> request) where TRequestBodyType : IRequestBody
         {
             ExtendedHttpRequestMessage requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);
@@ -348,7 +348,7 @@
             return requestMessage;
         }
 
-        private ExtendedHttpRequestMessage SetupRequestMessage<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request)
+        private ExtendedHttpRequestMessage SetupRequestMessage<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request) where TRequestBodyType : IRequestBody
         {
             ExtendedHttpRequestMessage requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);
@@ -356,7 +356,7 @@
             return requestMessage;
         }
 
-        private ExtendedHttpRequestMessage SetupRequestMessage<TRequestBodyType>(IPutRequest<TRequestBodyType> request)
+        private ExtendedHttpRequestMessage SetupRequestMessage<TRequestBodyType>(IPutRequest<TRequestBodyType> request) where TRequestBodyType : IRequestBody
         {
             ExtendedHttpRequestMessage requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);
@@ -364,7 +364,7 @@
             return requestMessage;
         }
 
-        private ExtendedHttpRequestMessage SetupRequestMessage<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request)
+        private ExtendedHttpRequestMessage SetupRequestMessage<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request) where TRequestBodyType : IRequestBody
         {
             ExtendedHttpRequestMessage requestMessage = CreateRequestMessage(request);
             AddRequestBodyContent(requestMessage, request);
@@ -412,7 +412,7 @@
             return requestMessage;
         }
 
-        private void AddRequestBodyContent<TRequestBodyType>(ExtendedHttpRequestMessage requestMessage, IHasRequestBody<TRequestBodyType> request)
+        private void AddRequestBodyContent<TRequestBodyType>(ExtendedHttpRequestMessage requestMessage, IHasRequestBody<TRequestBodyType> request) where TRequestBodyType : IRequestBody
         {
             if (requestMessage == null)
                 throw new ArgumentNullException(nameof(requestMessage));
@@ -421,10 +421,10 @@
             requestMessage.RequestBodyJson = requestBodyJson;
         }
 
-        private HttpContent GetRequestBodyContent<TRequestBodyType>(IHasRequestBody<TRequestBodyType> request, out string requestBodyJson)
+        private HttpContent GetRequestBodyContent<TRequestBodyType>(IHasRequestBody<TRequestBodyType> request, out string requestBodyJson) where TRequestBodyType : IRequestBody
         {
             TRequestBodyType requestBody = request.RequestBody;
-            bool requestBodyIsNull = EqualityComparer<TRequestBodyType>.Default.Equals(requestBody, default(TRequestBodyType));
+            bool requestBodyIsNull = EqualityComparer<TRequestBodyType>.Default.Equals(requestBody, default);
 
             if (requestBodyIsNull)
             {
@@ -555,7 +555,7 @@
             }
         }
 
-        private async Task ErrorHandlingAsync(HttpResponseMessage response, ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task ErrorHandlingAsync(HttpResponseMessage response, ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default)
         {
             var responseContent = string.Empty;
 
@@ -755,7 +755,7 @@
             throw new TraktNotFoundException($"Resource not found - Reason Phrase: {reasonPhrase}");
         }
 
-        private static async Task HandleConflictStatusCode(bool isCheckinRequest, string responseContent, string url, string requestBodyJson, string reasonPhrase, CancellationToken cancellationToken = default(CancellationToken))
+        private static async Task HandleConflictStatusCode(bool isCheckinRequest, string responseContent, string url, string requestBodyJson, string reasonPhrase, CancellationToken cancellationToken = default)
         {
             if (isCheckinRequest)
             {
@@ -786,7 +786,7 @@
             };
         }
 
-        private static async Task HandleUnknownError(string responseContent, HttpStatusCode code, string url, string requestBodyJson, string reasonPhrase, CancellationToken cancellationToken = default(CancellationToken))
+        private static async Task HandleUnknownError(string responseContent, HttpStatusCode code, string url, string requestBodyJson, string reasonPhrase, CancellationToken cancellationToken = default)
         {
             ITraktError error = null;
 

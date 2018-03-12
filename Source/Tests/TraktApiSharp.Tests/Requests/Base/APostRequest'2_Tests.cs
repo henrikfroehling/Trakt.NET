@@ -6,14 +6,24 @@
     using System.Net.Http;
     using Traits;
     using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Interfaces;
     using Xunit;
 
     [Category("Requests.Base")]
     public class APostRequest_2_Tests
     {
-        internal class PostRequestMock : APostRequest<string, object>
+        internal class RequestBodyMock : IRequestBody
         {
-            public override object RequestBody { get; set; }
+            public string HttpContentAsString => throw new NotImplementedException();
+
+            public HttpContent ToHttpContent() => throw new NotImplementedException();
+
+            public void Validate() => throw new NotImplementedException();
+        }
+
+        internal class PostRequestMock : APostRequest<string, RequestBodyMock>
+        {
+            public override RequestBodyMock RequestBody { get; set; }
             public override string UriTemplate { get { throw new NotImplementedException(); } }
             public override IDictionary<string, object> GetUriPathParameters() => throw new NotImplementedException();
         }

@@ -8,6 +8,7 @@
     using Objects.Post.Scrobbles.Implementations;
     using Objects.Post.Scrobbles.Responses;
     using Requests.Handler;
+    using Requests.Interfaces;
     using Requests.Scrobbles.OAuth;
     using Responses;
     using System;
@@ -306,13 +307,13 @@
                 CreateScrobbleStopRequest<ITraktEpisodeScrobblePostResponse, TraktEpisodeScrobblePost>(requestBody), cancellationToken);
         }
 
-        private ScrobbleStartRequest<T, U> CreateScrobbleStartRequest<T, U>(U requestBody) where U : TraktScrobblePost
+        private ScrobbleStartRequest<T, U> CreateScrobbleStartRequest<T, U>(U requestBody) where U : TraktScrobblePost, IRequestBody
             => new ScrobbleStartRequest<T, U> { RequestBody = requestBody };
 
-        private ScrobblePauseRequest<T, U> CreateScrobblePauseRequest<T, U>(U requestBody) where U : TraktScrobblePost
+        private ScrobblePauseRequest<T, U> CreateScrobblePauseRequest<T, U>(U requestBody) where U : TraktScrobblePost, IRequestBody
             => new ScrobblePauseRequest<T, U> { RequestBody = requestBody };
 
-        private ScrobbleStopRequest<T, U> CreateScrobbleStopRequest<T, U>(U requestBody) where U : TraktScrobblePost
+        private ScrobbleStopRequest<T, U> CreateScrobbleStopRequest<T, U>(U requestBody) where U : TraktScrobblePost, IRequestBody
             => new ScrobbleStopRequest<T, U> { RequestBody = requestBody };
 
         private TraktMovieScrobblePost CreateMovieScrobblePost(TraktMovie movie, float progress,

@@ -2,15 +2,26 @@
 {
     using FluentAssertions;
     using System;
+    using System.Net.Http;
     using Traits;
     using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Syncs.OAuth;
     using Xunit;
 
     [Category("Requests.Syncs.OAuth")]
     public class ASyncPostRequest_2_Tests
     {
-        internal class SyncPostRequestMock : ASyncPostRequest<int, float>
+        internal class RequestBodyMock : IRequestBody
+        {
+            public string HttpContentAsString => throw new NotImplementedException();
+
+            public HttpContent ToHttpContent() => throw new NotImplementedException();
+
+            public void Validate() => throw new NotImplementedException();
+        }
+
+        internal class SyncPostRequestMock : ASyncPostRequest<int, RequestBodyMock>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
         }
