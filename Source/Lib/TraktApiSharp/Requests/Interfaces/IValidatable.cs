@@ -1,6 +1,6 @@
 ﻿namespace TraktApiSharp.Requests.Interfaces
 {
-    internal interface IValidatable
+    public interface IValidatable
     {
         void Validate();
     }

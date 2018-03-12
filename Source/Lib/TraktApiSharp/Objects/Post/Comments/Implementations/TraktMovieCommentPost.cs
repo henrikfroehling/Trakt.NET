@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Comments.Implementations
 {
     using Get.Movies;
+    using System.Net.Http;
 
     /// <summary>A movie comment post.</summary>
     public class TraktMovieCommentPost : TraktCommentPost, ITraktMovieCommentPost
@@ -10,5 +11,15 @@
         /// See also <seealso cref="ITraktMovie" />.
         /// </summary>
         public ITraktMovie Movie { get; set; }
+
+        public override string HttpContentAsString
+        {
+            get => throw new System.NotImplementedException();
+            set => throw new System.NotImplementedException();
+        }
+
+        public override HttpContent ToHttpContent() => throw new System.NotImplementedException();
+
+        public override void Validate() => throw new System.NotImplementedException();
     }
 }

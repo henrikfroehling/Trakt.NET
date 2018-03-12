@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Comments.Implementations
 {
     using Basic;
+    using System.Net.Http;
 
     public abstract class TraktCommentPost : ITraktCommentPost
     {
@@ -16,5 +17,11 @@
         /// <para>Nullable</para>
         /// </summary>
         public ITraktSharing Sharing { get; set; }
+
+        public abstract string HttpContentAsString { get; set; }
+
+        public abstract HttpContent ToHttpContent();
+
+        public abstract void Validate();
     }
 }

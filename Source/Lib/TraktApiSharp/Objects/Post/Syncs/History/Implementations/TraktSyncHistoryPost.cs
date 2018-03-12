@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Implementations
 {
     using System.Collections.Generic;
+    using System.Net.Http;
 
     /// <summary>
     /// A Trakt history post, containing all movies, shows and / or episodes,
@@ -29,5 +30,11 @@
         /// <summary>Returns a new <see cref="TraktSyncHistoryPostBuilder" /> instance.</summary>
         /// <returns>A new <see cref="TraktSyncHistoryPostBuilder" /> instance.</returns>
         public static TraktSyncHistoryPostBuilder Builder() => new TraktSyncHistoryPostBuilder();
+
+        public virtual string HttpContentAsString => throw new System.NotImplementedException();
+
+        public virtual HttpContent ToHttpContent() => throw new System.NotImplementedException();
+
+        public virtual void Validate() => throw new System.NotImplementedException();
     }
 }

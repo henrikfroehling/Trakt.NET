@@ -2,7 +2,7 @@
 {
     using System.Net.Http;
 
-    internal interface IRequestBody : IValidatable
+    public interface IRequestBody : IValidatable
     {
         string HttpContentAsString { get; }
 
