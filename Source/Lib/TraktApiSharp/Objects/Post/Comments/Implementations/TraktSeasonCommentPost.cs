@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Comments.Implementations
 {
     using Get.Seasons;
-    using System.Net.Http;
 
     /// <summary>A season comment post.</summary>
     public class TraktSeasonCommentPost : TraktCommentPost, ITraktSeasonCommentPost
@@ -12,14 +11,11 @@
         /// </summary>
         public ITraktSeason Season { get; set; }
 
-        public override string HttpContentAsString
+        public override string ToJson() => "";
+
+        public override void Validate()
         {
-            get => throw new System.NotImplementedException();
-            set => throw new System.NotImplementedException();
+            // TODO
         }
-
-        public override HttpContent ToHttpContent() => throw new System.NotImplementedException();
-
-        public override void Validate() => throw new System.NotImplementedException();
     }
 }

@@ -2,7 +2,6 @@
 {
     using Get.Episodes;
     using Get.Shows;
-    using System.Net.Http;
 
     /// <summary>A scrobble post for a Trakt episode.</summary>
     public class TraktEpisodeScrobblePost : TraktScrobblePost, ITraktEpisodeScrobblePost
@@ -20,10 +19,11 @@
         /// </summary>
         public ITraktShow Show { get; set; }
 
-        public override string HttpContentAsString { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public override string ToJson() => "";
 
-        public override HttpContent ToHttpContent() => throw new System.NotImplementedException();
-
-        public override void Validate() => throw new System.NotImplementedException();
+        public override void Validate()
+        {
+            // TODO
+        }
     }
 }

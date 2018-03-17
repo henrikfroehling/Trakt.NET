@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection.Implementations
 {
     using System.Collections.Generic;
-    using System.Net.Http;
 
     /// <summary>
     /// A Trakt collection post, containing all movies, shows and / or episodes,
@@ -31,10 +30,11 @@
         /// <returns>A new <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
         public static TraktSyncCollectionPostBuilder Builder() => new TraktSyncCollectionPostBuilder();
 
-        public string HttpContentAsString => throw new System.NotImplementedException();
+        public string ToJson() => "";
 
-        public HttpContent ToHttpContent() => throw new System.NotImplementedException();
-
-        public void Validate() => throw new System.NotImplementedException();
+        public void Validate()
+        {
+            // TODO
+        }
     }
 }

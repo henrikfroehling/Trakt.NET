@@ -1,12 +1,15 @@
 ﻿namespace TraktApiSharp.Requests.Handler
 {
     using Base;
+    using Core;
     using Exceptions;
     using Interfaces;
     using Interfaces.Base;
     using System;
     using System.Collections.Generic;
+    using System.Net.Http;
     using System.Net.Http.Headers;
+    using System.Text;
     using UriTemplates;
 
     internal class RequestMessageBuilder
@@ -49,8 +52,7 @@
             if (_request == null)
                 throw new ArgumentNullException(nameof(_request));
 
-            IDictionary<string, object> requestUriParameters = null;
-            string url = BuildUrl(requestUriParameters);
+            string url = BuildUrl();
 
             var requestMessage = new ExtendedHttpRequestMessage(_request.Method, url)
             {
@@ -64,6 +66,8 @@
                 requestMessage.ObjectId = idRequest?.Id;
                 requestMessage.RequestObjectType = idRequest?.RequestObjectType;
             }
+
+            IDictionary<string, object> requestUriParameters = _request.GetUriPathParameters();
 
             if (requestUriParameters.Count != 0)
             {
@@ -87,12 +91,11 @@
             return requestMessage;
         }
 
-        private string BuildUrl(IDictionary<string, object> requestUriParameters)
+        private string BuildUrl()
         {
             var uriTemplate = new UriTemplate(_request.UriTemplate);
-            requestUriParameters = _request.GetUriPathParameters();
 
-            foreach (KeyValuePair<string, object> parameter in requestUriParameters)
+            foreach (KeyValuePair<string, object> parameter in _request.GetUriPathParameters())
                 uriTemplate.AddParameterFromKeyValuePair(parameter.Key, parameter.Value);
 
             string url = uriTemplate.Resolve();
@@ -103,8 +106,9 @@
         {
             if (_requestBody != null)
             {
-                requestMessage.Content = _requestBody.ToHttpContent();
-                requestMessage.RequestBodyJson = _requestBody.HttpContentAsString;
+                string json = _requestBody.ToJson();
+                requestMessage.Content = new StringContent(json, Encoding.UTF8, Constants.MEDIA_TYPE);
+                requestMessage.RequestBodyJson = json;
             }
         }
 

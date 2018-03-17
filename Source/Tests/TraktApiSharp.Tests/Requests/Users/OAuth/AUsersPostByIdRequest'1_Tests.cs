@@ -3,7 +3,6 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using System.Net.Http;
     using Traits;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Interfaces;
@@ -15,17 +14,18 @@
     {
         internal class RequestBodyMock : IRequestBody
         {
-            public string HttpContentAsString => throw new NotImplementedException();
+            public string ToJson() => "";
 
-            public HttpContent ToHttpContent() => throw new NotImplementedException();
-
-            public void Validate() => throw new NotImplementedException();
+            public void Validate()
+            {
+            }
         }
 
         internal class UsersPostByIdRequestMock : AUsersPostByIdRequest<int, RequestBodyMock>
         {
-            public override string UriTemplate { get { throw new NotImplementedException(); } }
-            public override RequestObjectType RequestObjectType { get { throw new NotImplementedException(); } }
+            public override string UriTemplate => "";
+
+            public override RequestObjectType RequestObjectType => RequestObjectType.Comments;
         }
 
         [Fact]

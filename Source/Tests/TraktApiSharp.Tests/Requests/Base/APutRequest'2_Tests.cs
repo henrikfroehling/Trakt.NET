@@ -14,11 +14,11 @@
     {
         internal class RequestBodyMock : IRequestBody
         {
-            public string HttpContentAsString => throw new NotImplementedException();
+            public string ToJson() => "";
 
-            public HttpContent ToHttpContent() => throw new NotImplementedException();
-
-            public void Validate() => throw new NotImplementedException();
+            public void Validate()
+            {
+            }
         }
 
         internal class PutRequestMock : APutRequest<string, RequestBodyMock>

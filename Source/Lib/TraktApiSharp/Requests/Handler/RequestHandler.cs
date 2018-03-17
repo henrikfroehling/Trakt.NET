@@ -21,8 +21,6 @@
 
     internal sealed class RequestHandler : IRequestHandler
     {
-        private const string MEDIA_TYPE = "application/json";
-
         // Don't mark this field as readonly,
         // as it is manually set in unit tests
         internal static HttpClient s_httpClient;
@@ -309,7 +307,7 @@
 
         private void SetDefaultRequestHeaders(HttpClient httpClient)
         {
-            var appJsonHeader = new MediaTypeWithQualityHeaderValue(MEDIA_TYPE);
+            var appJsonHeader = new MediaTypeWithQualityHeaderValue(Constants.MEDIA_TYPE);
 
             if (!httpClient.DefaultRequestHeaders.Contains(Constants.APIClientIdHeaderKey))
                 httpClient.DefaultRequestHeaders.Add(Constants.APIClientIdHeaderKey, _client.ClientId);

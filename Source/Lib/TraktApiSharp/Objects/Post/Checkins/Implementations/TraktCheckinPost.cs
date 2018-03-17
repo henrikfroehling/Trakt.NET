@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Checkins.Implementations
 {
     using Basic;
-    using System.Net.Http;
 
     public abstract class TraktCheckinPost : ITraktCheckinPost
     {
@@ -27,9 +26,7 @@
         /// <summary>Gets or sets the Foursquare Venue Name for the checkin post.<para>Nullable</para></summary>
         public string FoursquareVenueName { get; set; }
 
-        public abstract string HttpContentAsString { get; set; }
-
-        public abstract HttpContent ToHttpContent();
+        public abstract string ToJson();
 
         public abstract void Validate();
     }

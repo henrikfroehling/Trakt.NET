@@ -1,8 +1,6 @@
 ﻿namespace TraktApiSharp.Tests.Requests.Checkins.OAuth
 {
     using FluentAssertions;
-    using System;
-    using System.Net.Http;
     using Traits;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Checkins.OAuth;
@@ -14,11 +12,11 @@
     {
         internal class RequestBodyMock : IRequestBody
         {
-            public string HttpContentAsString => throw new NotImplementedException();
+            public string ToJson() => "";
 
-            public HttpContent ToHttpContent() => throw new NotImplementedException();
-
-            public void Validate() => throw new NotImplementedException();
+            public void Validate()
+            {
+            }
         }
 
         [Fact]

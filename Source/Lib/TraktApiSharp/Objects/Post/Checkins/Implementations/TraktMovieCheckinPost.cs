@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Checkins.Implementations
 {
     using Get.Movies;
-    using System.Net.Http;
 
     /// <summary>A checkin post for a Trakt movie.</summary>
     public class TraktMovieCheckinPost : TraktCheckinPost, ITraktMovieCheckinPost
@@ -12,14 +11,11 @@
         /// </summary>
         public ITraktMovie Movie { get; set; }
 
-        public override string HttpContentAsString
+        public override string ToJson() => "";
+
+        public override void Validate()
         {
-            get => throw new System.NotImplementedException();
-            set => throw new System.NotImplementedException();
+            // TODO
         }
-
-        public override HttpContent ToHttpContent() => throw new System.NotImplementedException();
-
-        public override void Validate() => throw new System.NotImplementedException();
     }
 }
