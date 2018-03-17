@@ -60,6 +60,7 @@
     <Compile Include="Authentication\TraktDevice.cs" />
     <Compile Include="Authentication\TraktDeviceAuth.cs" />
     <Compile Include="Authentication\TraktOAuth.cs" />
+    <Compile Include="Core\DebugAsserter.cs" />
     <Compile Include="Core\TraktConfiguration.cs" />
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Enums\TraktCommentSortOrder.cs" />

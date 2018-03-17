@@ -149,8 +149,8 @@
             try
             {
                 responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
-                Debug.Assert(responseMessage?.StatusCode == HttpStatusCode.NoContent, "precondition for generating no content response failed: invalid status code");
-
+                DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
+                DebugAsserter.AssertHttpResponseCodeIsExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.NO_CONTENT_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
                 return new TraktNoContentResponse { IsSuccess = true };
             }
             catch (Exception ex)
@@ -173,14 +173,12 @@
             try
             {
                 responseMessage = await ExecuteRequestAsync(requestMessage, isCheckinRequest, cancellationToken).ConfigureAwait(false);
-                Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating single item response failed: invalid status code");
-
+                DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
+                DebugAsserter.AssertHttpResponseCodeIsNotExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.SINGLE_ITEM_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
                 Stream responseContentStream = await GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
-                Debug.Assert(responseContentStream != null, "precondition for deserializing response content failed: stream is null");
-
+                DebugAsserter.AssertResponseContentStreamIsNotNull(responseContentStream);
                 IObjectJsonReader<TResponseContentType> objectJsonReader = JsonFactoryContainer.CreateObjectReader<TResponseContentType>();
-                Debug.Assert(objectJsonReader != null, "precondition for deserializing response content failed: json content reader is null");
-
+                DebugAsserter.AssertObjectJsonReaderIsNotNull(objectJsonReader);
                 TResponseContentType contentObject = await objectJsonReader.ReadObjectAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
                 bool hasValue = !EqualityComparer<TResponseContentType>.Default.Equals(contentObject, default);
 
@@ -216,14 +214,12 @@
             try
             {
                 responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
-                Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating list response failed: invalid status code");
-
+                DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
+                DebugAsserter.AssertHttpResponseCodeIsNotExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.LIST_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
                 Stream responseContentStream = await GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
-                Debug.Assert(responseContentStream != null, "precondition for deserializing response content failed: stream is null");
-
+                DebugAsserter.AssertResponseContentStreamIsNotNull(responseContentStream);
                 IArrayJsonReader<TResponseContentType> arrayJsonReader = JsonFactoryContainer.CreateArrayReader<TResponseContentType>();
-                Debug.Assert(arrayJsonReader != null, "precondition for deserializing response content failed: json content reader is null");
-
+                DebugAsserter.AssertArrayJsonReaderIsNotNull(arrayJsonReader);
                 IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
 
                 var response = new TraktListResponse<TResponseContentType>
@@ -258,14 +254,12 @@
             try
             {
                 responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
-                Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating paged list response failed: invalid status code");
-
+                DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
+                DebugAsserter.AssertHttpResponseCodeIsNotExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.PAGED_LIST_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
                 Stream responseContentStream = await GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
-                Debug.Assert(responseContentStream != null, "precondition for deserializing response content failed: stream is null");
-
+                DebugAsserter.AssertResponseContentStreamIsNotNull(responseContentStream);
                 IArrayJsonReader<TResponseContentType> arrayJsonReader = JsonFactoryContainer.CreateArrayReader<TResponseContentType>();
-                Debug.Assert(arrayJsonReader != null, "precondition for deserializing response content failed: json content reader is null");
-
+                DebugAsserter.AssertArrayJsonReaderIsNotNull(arrayJsonReader);
                 IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
 
                 var response = new TraktPagedResponse<TResponseContentType>
