@@ -920,6 +920,7 @@
     <Compile Include="Requests\Episodes\EpisodeListsRequest.cs" />
     <Compile Include="Requests\Episodes\EpisodeTranslationsRequest.cs" />
     <Compile Include="Requests\Handler\ExtendedHttpRequestMessage.cs" />
+    <Compile Include="Requests\Handler\RequestMessageBuilder.cs" />
     <Compile Include="Requests\Interfaces\Base\IBodylessPostRequest%271.cs" />
     <Compile Include="Requests\Interfaces\Base\IBodylessPostRequest.cs" />
     <Compile Include="Requests\Interfaces\Base\IDeleteRequest.cs" />
