@@ -1,15 +1,16 @@
 ﻿namespace TraktApiSharp.Tests.Extensions
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using Traits;
     using TraktApiSharp.Extensions;
+    using Xunit;
 
-    [TestClass]
-    public class DateTimeExtensionsTests
+    [Category("Extensions")]
+    public class DateTimeExtensions_Tests
     {
-        [TestMethod]
-        public void TestDateTimeExtensionsMin()
+        [Fact]
+        public void Test_DateTimeExtensions_Min()
         {
             var datetime1 = DateTime.Now;
             var datetime2 = DateTime.Now.AddSeconds(1);
@@ -18,8 +19,8 @@
             datetime2.Min(datetime1).Should().Be(datetime1);
         }
 
-        [TestMethod]
-        public void TestDateTimeExtensionsMax()
+        [Fact]
+        public void Test_DateTimeExtensions_Max()
         {
             var datetime1 = DateTime.Now;
             var datetime2 = DateTime.Now.AddSeconds(1);
@@ -28,8 +29,8 @@
             datetime2.Max(datetime1).Should().Be(datetime2);
         }
 
-        [TestMethod]
-        public void TestDateTimeExtensionsYearsBetween()
+        [Fact]
+        public void Test_DateTimeExtensions_YearsBetween()
         {
             var datetime1 = DateTime.Now;
             var datetime2 = DateTime.Now.AddYears(1);
@@ -56,8 +57,8 @@
             datetime8.YearsBetween(datetime7).Should().Be(5);
         }
 
-        [TestMethod]
-        public void TestDateTimeExtensionsToTraktDateString()
+        [Fact]
+        public void Test_DateTimeExtensions_ToTraktDateString()
         {
             var dateTime = DateTime.UtcNow;
             var day = dateTime.Day;
@@ -68,8 +69,8 @@
             dateTraktString.Should().NotBeNullOrEmpty().And.Be($"{year}-{month:00}-{day:00}");
         }
 
-        [TestMethod]
-        public void TestDateTimeExtensionsToTraktLongDateTimeString()
+        [Fact]
+        public void Test_DateTimeExtensions_ToTraktLongDateTimeString()
         {
             var dateTime = DateTime.UtcNow;
             var day = dateTime.Day;

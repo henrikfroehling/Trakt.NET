@@ -1,44 +1,45 @@
 ﻿namespace TraktApiSharp.Tests.Extensions
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Traits;
     using TraktApiSharp.Extensions;
+    using Xunit;
 
-    [TestClass]
-    public class StringExtensionsTests
+    [Category("Extensions")]
+    public class StringExtensions_Tests
     {
-        [TestMethod]
-        public void TestStringExtensionsFirstToUpper()
+        [Fact]
+        public void Test_StringExtensions_FirstToUpper()
         {
-            string expectedValue = "Abcdef";
+            const string expectedValue = "Abcdef";
 
-            string value1 = "abcdef";
-            string value2 = "ABCDEF";
-            string value3 = "abcdeF";
-            string value4 = "Abcdef";
-            string value5 = "aBcDeF";
-            string value6 = "AbCdEf";
+            const string value1 = "abcdef";
+            const string value2 = "ABCDEF";
+            const string value3 = "abcdeF";
+            const string value4 = "Abcdef";
+            const string value5 = "aBcDeF";
+            const string value6 = "AbCdEf";
 
-            string value7 = " abcdef ";
-            string value8 = " ABCDEF ";
-            string value9 = " abcdeF ";
-            string value10 = " Abcdef ";
-            string value11 = " aBcDeF ";
-            string value12 = " AbCdEf ";
+            const string value7 = " abcdef ";
+            const string value8 = " ABCDEF ";
+            const string value9 = " abcdeF ";
+            const string value10 = " Abcdef ";
+            const string value11 = " aBcDeF ";
+            const string value12 = " AbCdEf ";
 
-            string value13 = " abcdef";
-            string value14 = " ABCDEF";
-            string value15 = " abcdeF";
-            string value16 = " Abcdef";
-            string value17 = " aBcDeF";
-            string value18 = " AbCdEf";
+            const string value13 = " abcdef";
+            const string value14 = " ABCDEF";
+            const string value15 = " abcdeF";
+            const string value16 = " Abcdef";
+            const string value17 = " aBcDeF";
+            const string value18 = " AbCdEf";
 
-            string value19 = "abcdef ";
-            string value20 = "ABCDEF ";
-            string value21 = "abcdeF ";
-            string value22 = "Abcdef ";
-            string value23 = "aBcDeF ";
-            string value24 = "AbCdEf ";
+            const string value19 = "abcdef ";
+            const string value20 = "ABCDEF ";
+            const string value21 = "abcdeF ";
+            const string value22 = "Abcdef ";
+            const string value23 = "aBcDeF ";
+            const string value24 = "AbCdEf ";
 
             value1.FirstToUpper().Should().Be(expectedValue);
             value2.FirstToUpper().Should().Be(expectedValue);
@@ -69,17 +70,17 @@
             value24.FirstToUpper().Should().Be(expectedValue);
         }
 
-        [TestMethod]
-        public void TestStringExtensionsWordCount()
+        [Fact]
+        public void Test_StringExtensions_WordCount()
         {
             string value1 = string.Empty;
-            string value2 = " one\t";
-            string value3 = " one";
-            string value4 = "one";
-            string value5 = " one\ttwo three:four,five six\nseven eight;";
-            string value6 = "\tone\ttwo three:four,five six\nseven eight;nine.";
-            string value7 = "\tone\ttwo three:four,five six\nseven eight;nine";
-            string value8 = "one\ttwo three:four,five six\nseven eight;nine";
+            const string value2 = " one\t";
+            const string value3 = " one";
+            const string value4 = "one";
+            const string value5 = " one\ttwo three:four,five six\nseven eight;";
+            const string value6 = "\tone\ttwo three:four,five six\nseven eight;nine.";
+            const string value7 = "\tone\ttwo three:four,five six\nseven eight;nine";
+            const string value8 = "one\ttwo three:four,five six\nseven eight;nine";
 
             value1.WordCount().Should().Be(0);
             value2.WordCount().Should().Be(1);
@@ -91,15 +92,15 @@
             value8.WordCount().Should().Be(9);
         }
 
-        [TestMethod]
-        public void TestStringExtensionsContainsSpace()
+        [Fact]
+        public void Test_StringExtensions_ContainsSpace()
         {
             string value1 = string.Empty;
-            string value2 = "value2";
-            string value3 = " value3";
-            string value4 = "value4 ";
-            string value5 = " value5 ";
-            string value6 = "val ue6";
+            const string value2 = "value2";
+            const string value3 = " value3";
+            const string value4 = "value4 ";
+            const string value5 = " value5 ";
+            const string value6 = "val ue6";
 
             value1.ContainsSpace().Should().BeFalse();
             value2.ContainsSpace().Should().BeFalse();

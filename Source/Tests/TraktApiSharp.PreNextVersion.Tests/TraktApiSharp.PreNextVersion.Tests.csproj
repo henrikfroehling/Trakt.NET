@@ -140,8 +140,6 @@
     <Compile Include="Exceptions\TraktServerUnavailableExceptionTests.cs" />
     <Compile Include="Exceptions\TraktShowNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\TraktValidationExceptionTests.cs" />
-    <Compile Include="Extensions\DateTimeExtensionsTests.cs" />
-    <Compile Include="Extensions\StringExtensionsTests.cs" />
     <Compile Include="Objects\Post\Checkins\TraktEpisodeCheckinPostTests.cs" />
     <Compile Include="Objects\Post\Checkins\TraktMovieCheckinPostTests.cs" />
     <Compile Include="Objects\Post\Comments\TraktCommentReplyPostTests.cs" />
