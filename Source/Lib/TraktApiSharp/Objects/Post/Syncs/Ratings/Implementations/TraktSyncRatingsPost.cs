@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings.Implementations
 {
+    using Objects.Json;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -32,7 +33,11 @@
         /// <returns>A new <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
         public static TraktSyncRatingsPostBuilder Builder() => new TraktSyncRatingsPostBuilder();
 
-        public Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
+        public Task<string> ToJson(CancellationToken cancellationToken = default)
+        {
+            IObjectJsonWriter<ITraktSyncRatingsPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktSyncRatingsPost>();
+            return objectJsonWriter.WriteObjectAsync(this, cancellationToken);
+        }
 
         public void Validate()
         {

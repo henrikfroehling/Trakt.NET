@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection.Implementations
 {
+    using Objects.Json;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -32,7 +33,11 @@
         /// <returns>A new <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
         public static TraktSyncCollectionPostBuilder Builder() => new TraktSyncCollectionPostBuilder();
 
-        public Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
+        public Task<string> ToJson(CancellationToken cancellationToken = default)
+        {
+            IObjectJsonWriter<ITraktSyncCollectionPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktSyncCollectionPost>();
+            return objectJsonWriter.WriteObjectAsync(this, cancellationToken);
+        }
 
         public void Validate()
         {

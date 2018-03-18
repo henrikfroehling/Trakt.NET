@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Comments.Implementations
 {
     using Get.Episodes;
+    using Objects.Json;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -13,7 +14,11 @@
         /// </summary>
         public ITraktEpisode Episode { get; set; }
 
-        public override Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
+        public override Task<string> ToJson(CancellationToken cancellationToken = default)
+        {
+            IObjectJsonWriter<ITraktEpisodeCommentPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktEpisodeCommentPost>();
+            return objectJsonWriter.WriteObjectAsync(this, cancellationToken);
+        }
 
         public override void Validate()
         {

@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Checkins.Implementations
 {
     using Get.Movies;
+    using Objects.Json;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -13,7 +14,11 @@
         /// </summary>
         public ITraktMovie Movie { get; set; }
 
-        public override Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
+        public override Task<string> ToJson(CancellationToken cancellationToken = default)
+        {
+            IObjectJsonWriter<ITraktMovieCheckinPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktMovieCheckinPost>();
+            return objectJsonWriter.WriteObjectAsync(this, cancellationToken);
+        }
 
         public override void Validate()
         {

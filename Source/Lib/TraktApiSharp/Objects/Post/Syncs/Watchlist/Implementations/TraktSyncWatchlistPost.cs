@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist.Implementations
 {
+    using Objects.Json;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -32,7 +33,11 @@
         /// <returns>A new <see cref="TraktSyncWatchlistPostBuilder" /> instance.</returns>
         public static TraktSyncWatchlistPostBuilder Builder() => new TraktSyncWatchlistPostBuilder();
 
-        public Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
+        public Task<string> ToJson(CancellationToken cancellationToken = default)
+        {
+            IObjectJsonWriter<ITraktSyncWatchlistPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktSyncWatchlistPost>();
+            return objectJsonWriter.WriteObjectAsync(this, cancellationToken);
+        }
 
         public void Validate()
         {

@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Implementations
 {
+    using Objects.Json;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -32,7 +33,11 @@
         /// <returns>A new <see cref="TraktSyncHistoryPostBuilder" /> instance.</returns>
         public static TraktSyncHistoryPostBuilder Builder() => new TraktSyncHistoryPostBuilder();
 
-        public virtual Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
+        public virtual Task<string> ToJson(CancellationToken cancellationToken = default)
+        {
+            IObjectJsonWriter<ITraktSyncHistoryPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktSyncHistoryPost>();
+            return objectJsonWriter.WriteObjectAsync(this, cancellationToken);
+        }
 
         public virtual void Validate()
         {

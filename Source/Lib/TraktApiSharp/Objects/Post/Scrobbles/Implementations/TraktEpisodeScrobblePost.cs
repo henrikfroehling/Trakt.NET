@@ -2,6 +2,7 @@
 {
     using Get.Episodes;
     using Get.Shows;
+    using Objects.Json;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -21,7 +22,11 @@
         /// </summary>
         public ITraktShow Show { get; set; }
 
-        public override Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
+        public override Task<string> ToJson(CancellationToken cancellationToken = default)
+        {
+            IObjectJsonWriter<ITraktEpisodeScrobblePost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktEpisodeScrobblePost>();
+            return objectJsonWriter.WriteObjectAsync(this, cancellationToken);
+        }
 
         public override void Validate()
         {

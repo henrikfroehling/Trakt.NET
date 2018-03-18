@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Implementations
 {
     using Get.People;
+    using Objects.Json;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -33,7 +34,11 @@
         /// <returns>A new <see cref="TraktUserCustomListItemsPostBuilder" /> instance.</returns>
         public static TraktUserCustomListItemsPostBuilder Builder() => new TraktUserCustomListItemsPostBuilder();
 
-        public Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
+        public Task<string> ToJson(CancellationToken cancellationToken = default)
+        {
+            IObjectJsonWriter<ITraktUserCustomListItemsPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktUserCustomListItemsPost>();
+            return objectJsonWriter.WriteObjectAsync(this, cancellationToken);
+        }
 
         public void Validate()
         {
