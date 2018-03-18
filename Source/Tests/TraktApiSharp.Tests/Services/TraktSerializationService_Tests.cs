@@ -1,14 +1,15 @@
 ﻿namespace TraktApiSharp.Tests.Services
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using Traits;
     using TraktApiSharp.Authentication;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Services;
+    using Xunit;
 
-    [TestClass]
-    public class TraktSerializationServiceTests
+    [Category("Services")]
+    public class TraktSerializationService_Tests
     {
         private static readonly DateTime CREATED_AT = DateTime.UtcNow;
 
@@ -34,8 +35,8 @@
                 $"\"IgnoreExpiration\":{AUTHORIZATION.IgnoreExpiration.ToString().ToLower()}" +
             "}";
 
-        [TestMethod]
-        public void TestTraktSerializationServiceSerializeTraktAuthorization()
+        [Fact]
+        public void Test_TraktSerializationService_SerializeTraktAuthorization()
         {
             var jsonAuthorization = TraktSerializationService.Serialize(AUTHORIZATION);
 
@@ -43,20 +44,20 @@
             jsonAuthorization.Should().Be(AUTHORIZATION_JSON);
         }
 
-        [TestMethod]
-        public void TestTraktSerializationServiceSerializeEmptyTraktAuthorization()
+        [Fact]
+        public void Test_TraktSerializationService_SerializeEmptyTraktAuthorization()
         {
             var emptyAuthorization = new TraktAuthorization();
 
             string emptyAuthorizationJson =
             "{" +
-                $"\"AccessToken\":\"\"," +
-                $"\"RefreshToken\":\"\"," +
-                $"\"ExpiresIn\":0," +
-                $"\"Scope\":\"public\"," +
-                $"\"TokenType\":\"bearer\"," +
+                "\"AccessToken\":\"\"," +
+                "\"RefreshToken\":\"\"," +
+                "\"ExpiresIn\":0," +
+                "\"Scope\":\"public\"," +
+                "\"TokenType\":\"bearer\"," +
                 $"\"CreatedAtTicks\":{emptyAuthorization.Created.Ticks}," +
-                $"\"IgnoreExpiration\":false" +
+                "\"IgnoreExpiration\":false" +
             "}";
 
             Action act = () => TraktSerializationService.Serialize(emptyAuthorization);
@@ -68,15 +69,15 @@
             jsonAuthorization.Should().Be(emptyAuthorizationJson);
         }
 
-        [TestMethod]
-        public void TestTraktSerializationServiceSerializeTraktAuthorizationArgumentExceptions()
+        [Fact]
+        public void Test_TraktSerializationService_SerializeTraktAuthorizationArgumentExceptions()
         {
             Action act = () => TraktSerializationService.Serialize(default(TraktAuthorization));
             act.Should().Throw<ArgumentNullException>();
         }
 
-        [TestMethod]
-        public void TestTraktSerializationServiceDeserializeTraktAuthorization()
+        [Fact]
+        public void Test_TraktSerializationService_DeserializeTraktAuthorization()
         {
             var authorization = TraktSerializationService.DeserializeAuthorization(AUTHORIZATION_JSON);
 
@@ -90,8 +91,8 @@
             authorization.IgnoreExpiration.Should().Be(AUTHORIZATION.IgnoreExpiration);
         }
 
-        [TestMethod]
-        public void TestTraktSerializationServiceDeserializeTraktAuthorizationArgumentExceptions()
+        [Fact]
+        public void Test_TraktSerializationService_DeserializeTraktAuthorizationArgumentExceptions()
         {
             Action act = () => TraktSerializationService.DeserializeAuthorization(null);
             act.Should().Throw<ArgumentException>();
@@ -100,8 +101,8 @@
             act.Should().Throw<ArgumentException>();
         }
 
-        [TestMethod]
-        public void TestTraktSerializationServiceDeserializeTraktAuthorizationInvalidJson()
+        [Fact]
+        public void Test_TraktSerializationService_DeserializeTraktAuthorizationInvalidJson()
         {
             Action act = () => TraktSerializationService.DeserializeAuthorization("{ \"invalid\": \"json\" }");
             act.Should().NotThrow();
@@ -114,13 +115,13 @@
 
             string invalidAuthorizationJson =
             "{" +
-                $"\"AccessToken\":\"\"," +
-                $"\"RefreshToken\":\"\"," +
-                $"\"ExpiresIn\":\"stringvalue\"," +
-                $"\"Scope\":\"public\"," +
-                $"\"TokenType\":\"bearer\"," +
-                $"\"CreatedAtTicks\":0," +
-                $"\"IgnoreExpiration\":false" +
+                "\"AccessToken\":\"\"," +
+                "\"RefreshToken\":\"\"," +
+                "\"ExpiresIn\":\"stringvalue\"," +
+                "\"Scope\":\"public\"," +
+                "\"TokenType\":\"bearer\"," +
+                "\"CreatedAtTicks\":0," +
+                "\"IgnoreExpiration\":false" +
             "}";
 
             act = () => TraktSerializationService.DeserializeAuthorization(invalidAuthorizationJson);
@@ -128,13 +129,13 @@
 
             invalidAuthorizationJson =
             "{" +
-                $"\"AccessToken\":\"\"," +
-                $"\"RefreshToken\":\"\"," +
-                $"\"ExpiresIn\":0," +
-                $"\"Scope\":\"public\"," +
-                $"\"TokenType\":\"bearer\"," +
-                $"\"CreatedAtTicks\":\"stringvalue\"," +
-                $"\"IgnoreExpiration\":false" +
+                "\"AccessToken\":\"\"," +
+                "\"RefreshToken\":\"\"," +
+                "\"ExpiresIn\":0," +
+                "\"Scope\":\"public\"," +
+                "\"TokenType\":\"bearer\"," +
+                "\"CreatedAtTicks\":\"stringvalue\"," +
+                "\"IgnoreExpiration\":false" +
             "}";
 
             act = () => TraktSerializationService.DeserializeAuthorization(invalidAuthorizationJson);

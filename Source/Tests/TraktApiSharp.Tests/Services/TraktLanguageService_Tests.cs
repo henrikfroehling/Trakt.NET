@@ -1,15 +1,16 @@
 ﻿namespace TraktApiSharp.Tests.Services
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Services;
+    using Xunit;
 
-    [TestClass]
-    public class TraktLanguageServiceTests
+    [Category("Services")]
+    public class TraktLanguageService_Tests
     {
-        [TestMethod]
-        public void TestTraktLanguageServiceGetLanguage()
+        [Fact]
+        public void Test_TraktLanguageService_GetLanguage()
         {
             var language = TraktLanguageService.GetLanguage(null);
             language.Should().NotBeNull().And.BeEmpty();
@@ -21,8 +22,8 @@
             language.Should().NotBeNull().And.BeEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktLanguageServiceGetAvailableTranslationLanguages()
+        [Fact]
+        public void Test_TraktLanguageService_GetAvailableTranslationLanguages()
         {
             var languages = TraktLanguageService.GetAvailableTranslationLanguages(null);
             languages.Should().NotBeNull().And.BeEmpty();
@@ -37,8 +38,8 @@
             languages.Should().NotBeNull().And.BeEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktLanguageServiceGetCountry()
+        [Fact]
+        public void Test_TraktLanguageService_GetCountry()
         {
             var country = TraktLanguageService.GetCountry(null);
             country.Should().NotBeNull().And.BeEmpty();
