@@ -1,16 +1,16 @@
 ﻿namespace TraktApiSharp.Tests.Authentication
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System;
+    using Traits;
     using TraktApiSharp.Authentication;
-    using Utils;
+    using Xunit;
 
-    [TestClass]
-    public class TraktDeviceTests
+    [Category("Authentication")]
+    public class TraktDevice_Tests
     {
-        [TestMethod]
+        [Fact]
         public void TestTraktDeviceDefaultConstructor()
         {
             var dtNowUtc = DateTime.UtcNow;
@@ -27,14 +27,10 @@
             device.Created.Should().BeCloseTo(dtNowUtc);
         }
 
-        [TestMethod]
+        [Fact]
         public void TestTraktDeviceReadFromJson()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Authentication\Device.json");
-
-            jsonFile.Should().NotBeNullOrEmpty();
-
-            var device = JsonConvert.DeserializeObject<TraktDevice>(jsonFile);
+            var device = JsonConvert.DeserializeObject<TraktDevice>(JSON);
 
             device.Should().NotBeNull();
             device.DeviceCode.Should().Be("d9c126a7706328d808914cfd1e40274b6e009f684b1aca271b9b3f90b3630d64");
@@ -45,5 +41,14 @@
             device.IsExpiredUnused.Should().BeFalse();
             device.IsValid.Should().BeTrue();
         }
+
+        private const string JSON =
+            @"{
+                ""device_code"": ""d9c126a7706328d808914cfd1e40274b6e009f684b1aca271b9b3f90b3630d64"",
+                ""user_code"": ""5055CC52"",
+                ""verification_url"": ""https://trakt.tv/activate"",
+                ""expires_in"": 600,
+                ""interval"": 5
+              }";
     }
 }

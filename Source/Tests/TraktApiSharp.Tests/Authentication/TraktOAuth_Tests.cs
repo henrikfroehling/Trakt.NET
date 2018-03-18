@@ -1,26 +1,26 @@
 ﻿namespace TraktApiSharp.Tests.Authentication
 {
-    using Core;
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
+    using TestUtils;
+    using Traits;
     using TraktApiSharp.Authentication;
+    using TraktApiSharp.Core;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Objects.Basic;
     using TraktApiSharp.Objects.Basic.Implementations;
-    using Utils;
+    using Xunit;
 
-    [TestClass]
-    public class TraktOAuthTests
+    [Category("Authentication")]
+    public class TraktOAuth_Tests
     {
-        [TestMethod]
-        public void TestTraktOAuthDefaultConstructor()
+        [Fact]
+        public void Test_TraktOAuth_DefaultConstructor()
         {
             var client = new TraktClient();
 
@@ -30,33 +30,13 @@
         // -----------------------------------------------------------------------------------------------
         // -----------------------------------------------------------------------------------------------
 
-        [ClassInitialize]
-        public static void InitializeTests(TestContext context)
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
-        }
-
-        [ClassCleanup]
-        public static void CleanupTests()
-        {
-            TestUtility.ResetMockHttpClient();
-        }
-
-        [TestCleanup]
-        public void CleanupSingleTest()
-        {
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
-
-        // -----------------------------------------------------------------------------------------------
-        // -----------------------------------------------------------------------------------------------
-
         #region CreateAuthorizationUrl
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationUrlDefault()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationUrlDefault()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
 
@@ -64,11 +44,16 @@
 
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl();
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedUrl);
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationStagingUrlDefault()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationStagingUrlDefault()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
 
@@ -79,11 +64,16 @@
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
 
             TestUtility.MOCK_TEST_CLIENT.Configuration.UseSandboxEnvironment = false;
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationUrlDefaultArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationUrlDefaultArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             TestUtility.MOCK_TEST_CLIENT.ClientId = null;
 
             Action act = () => TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl();
@@ -114,11 +104,16 @@
 
             act = () => TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl();
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationUrlWithClientId()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationUrlWithClientId()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
 
@@ -126,11 +121,16 @@
 
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl(clientId);
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedUrl);
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationStagingUrlWithClientId()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationStagingUrlWithClientId()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
 
@@ -141,11 +141,16 @@
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
 
             TestUtility.MOCK_TEST_CLIENT.Configuration.UseSandboxEnvironment = false;
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationUrlWithClientIdArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationUrlWithClientIdArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
 
             Action act = () => TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl(null);
@@ -174,11 +179,16 @@
 
             act = () => TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl(clientId);
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationUrlWithClientIdAndRedirectUri()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationUrlWithClientIdAndRedirectUri()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var redirectUri = "redirectUri";
 
@@ -186,11 +196,16 @@
 
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl(clientId, redirectUri);
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedUrl);
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationStagingUrlWithClientIdAndRedirectUri()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationStagingUrlWithClientIdAndRedirectUri()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var redirectUri = "redirectUri";
 
@@ -201,11 +216,16 @@
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
 
             TestUtility.MOCK_TEST_CLIENT.Configuration.UseSandboxEnvironment = false;
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationUrlWithClientIdAndRedirectUriArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationUrlWithClientIdAndRedirectUriArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var redirectUri = "redirectUri";
 
@@ -232,11 +252,16 @@
 
             act = () => TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl(clientId, redirectUri);
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationUrlWithClientIdAndRedirectUriAndState()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationUrlWithClientIdAndRedirectUriAndState()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var redirectUri = "redirectUri";
             var state = "customState";
@@ -245,11 +270,16 @@
 
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl(clientId, redirectUri, state);
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedUrl);
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationStagingUrlWithClientIdAndRedirectUriAndState()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationStagingUrlWithClientIdAndRedirectUriAndState()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var redirectUri = "redirectUri";
             var state = "customState";
@@ -261,11 +291,16 @@
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
 
             TestUtility.MOCK_TEST_CLIENT.Configuration.UseSandboxEnvironment = false;
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationUrlWithClientIdAndRedirectUriAndStateArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationUrlWithClientIdAndRedirectUriAndStateArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var redirectUri = "redirectUri";
             var state = "customState";
@@ -306,11 +341,16 @@
 
             act = () => TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrl(clientId, redirectUri, state);
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationUrlWithDefaultStateDefault()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationUrlWithDefaultStateDefault()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
             var state = TestUtility.MOCK_TEST_CLIENT.Authentication.AntiForgeryToken;
@@ -319,11 +359,16 @@
 
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrlWithDefaultState();
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedUrl);
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationStagingUrlWithDefaultStateDefault()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationStagingUrlWithDefaultStateDefault()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
             var state = TestUtility.MOCK_TEST_CLIENT.Authentication.AntiForgeryToken;
@@ -335,11 +380,16 @@
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
 
             TestUtility.MOCK_TEST_CLIENT.Configuration.UseSandboxEnvironment = false;
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationUrlWithDefaultStateDefaultArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationUrlWithDefaultStateDefaultArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             TestUtility.MOCK_TEST_CLIENT.ClientId = null;
 
             Action act = () => TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrlWithDefaultState();
@@ -370,11 +420,16 @@
 
             act = () => TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrlWithDefaultState();
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationUrlWithDefaultStateAndClientId()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationUrlWithDefaultStateAndClientId()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
             var state = TestUtility.MOCK_TEST_CLIENT.Authentication.AntiForgeryToken;
@@ -383,11 +438,16 @@
 
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrlWithDefaultState(clientId);
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedUrl);
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationStagingUrlWithDefaultStateAndClientId()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationStagingUrlWithDefaultStateAndClientId()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
             var state = TestUtility.MOCK_TEST_CLIENT.Authentication.AntiForgeryToken;
@@ -399,11 +459,16 @@
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
 
             TestUtility.MOCK_TEST_CLIENT.Configuration.UseSandboxEnvironment = false;
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationUrlWithDefaultStateAndClientIdArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationUrlWithDefaultStateAndClientIdArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
 
             Action act = () => TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrlWithDefaultState(null);
@@ -432,11 +497,16 @@
 
             act = () => TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrlWithDefaultState(clientId);
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationUrlWithDefaultStateAndClientIdAndRedirectUri()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationUrlWithDefaultStateAndClientIdAndRedirectUri()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var redirectUri = "redirectUri";
             var state = TestUtility.MOCK_TEST_CLIENT.Authentication.AntiForgeryToken;
@@ -445,11 +515,16 @@
 
             var createdUrl = TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrlWithDefaultState(clientId, redirectUri);
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedUrl);
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationStagingUrlWithDefaultStateAndClientIdAndRedirectUri()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationStagingUrlWithDefaultStateAndClientIdAndRedirectUri()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var redirectUri = "redirectUri";
             var state = TestUtility.MOCK_TEST_CLIENT.Authentication.AntiForgeryToken;
@@ -461,11 +536,16 @@
             createdUrl.Should().NotBeNullOrEmpty().And.Be(encodedStagingUrl);
 
             TestUtility.MOCK_TEST_CLIENT.Configuration.UseSandboxEnvironment = false;
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthCreateAuthorizationUrlWithDefaultStateAndClientIdAndRedirectUriArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_CreateAuthorizationUrlWithDefaultStateAndClientIdAndRedirectUriArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var redirectUri = "redirectUri";
 
@@ -492,6 +572,9 @@
 
             act = () => TestUtility.MOCK_TEST_CLIENT.OAuth.CreateAuthorizationUrlWithDefaultState(clientId, redirectUri);
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
         private string BuildEncodedAuthorizeUrl(bool staging, string clientId, string redirectUri, string state = null)
@@ -521,9 +604,11 @@
 
         #region GetAuthorization
 
-        [TestMethod]
-        public void TestTraktOAuthGetAuthorization()
+        [Fact]
+        public void Test_TraktOAuth_GetAuthorization()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var mockAuthCode = "mockAuthCode";
             TestUtility.MOCK_TEST_CLIENT.Authentication.OAuthAuthorizationCode = mockAuthCode;
 
@@ -571,11 +656,16 @@
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
             clientAccessToken.IsExpired.Should().BeFalse();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthGetAuthorizationExceptions()
+        [Fact]
+        public void Test_TraktOAuth_GetAuthorizationExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var mockAuthCode = "mockAuthCode";
             TestUtility.MOCK_TEST_CLIENT.Authentication.OAuthAuthorizationCode = mockAuthCode;
 
@@ -681,11 +771,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAuthorizationAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthGetAuthorizationArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_GetAuthorizationArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var mockAuthCode = "mockAuthCode";
 
             TestUtility.MOCK_TEST_CLIENT.Authentication.OAuthAuthorizationCode = null;
@@ -750,11 +845,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAuthorizationAsync();
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthGetAuthorizationWithCode()
+        [Fact]
+        public void Test_TraktOAuth_GetAuthorizationWithCode()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var mockAuthCode = "mockAuthCode";
 
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
@@ -799,11 +899,16 @@
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
             clientAccessToken.IsExpired.Should().BeFalse();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthGetAuthorizationWithCodeExceptions()
+        [Fact]
+        public void Test_TraktOAuth_GetAuthorizationWithCodeExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var mockAuthCode = "mockAuthCode";
 
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
@@ -908,11 +1013,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAuthorizationAsync(mockAuthCode);
             act.Should().Throw<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthGetAuthorizationWithCodeArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_GetAuthorizationWithCodeArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var mockAuthCode = "mockAuthCode";
 
             Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAuthorizationAsync(null);
@@ -973,11 +1083,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAuthorizationAsync(mockAuthCode);
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthGetAuthorizationWithCodeAndClientId()
+        [Fact]
+        public void Test_TraktOAuth_GetAuthorizationWithCodeAndClientId()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var mockAuthCode = "mockAuthCode";
 
             var clientId = "clientId";
@@ -1024,11 +1139,16 @@
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
             clientAccessToken.IsExpired.Should().BeFalse();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthGetAuthorizationWithCodeAndClientIdExceptions()
+        [Fact]
+        public void Test_TraktOAuth_GetAuthorizationWithCodeAndClientIdExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var mockAuthCode = "mockAuthCode";
 
             var clientId = "clientId";
@@ -1133,11 +1253,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAuthorizationAsync(mockAuthCode, clientId);
             act.Should().Throw<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthGetAuthorizationWithCodeAndClientIdArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_GetAuthorizationWithCodeAndClientIdArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var mockAuthCode = "mockAuthCode";
             var clientId = "clientId";
 
@@ -1196,11 +1321,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAuthorizationAsync(mockAuthCode, clientId);
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthGetAuthorizationWithCodeAndClientIdAndClientSecret()
+        [Fact]
+        public void Test_TraktOAuth_GetAuthorizationWithCodeAndClientIdAndClientSecret()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var mockAuthCode = "mockAuthCode";
 
             var clientId = "clientId";
@@ -1245,11 +1375,16 @@
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
             clientAccessToken.IsExpired.Should().BeFalse();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthGetAuthorizationWithCodeAndClientIdAndClientSecretExceptions()
+        [Fact]
+        public void Test_TraktOAuth_GetAuthorizationWithCodeAndClientIdAndClientSecretExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var mockAuthCode = "mockAuthCode";
 
             var clientId = "clientId";
@@ -1354,11 +1489,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAuthorizationAsync(mockAuthCode, clientId, clientSecret);
             act.Should().Throw<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthGetAuthorizationWithCodeAndClientIdAndClientSecretArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_GetAuthorizationWithCodeAndClientIdAndClientSecretArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var mockAuthCode = "mockAuthCode";
             var clientId = "clientId";
             var clientSecret = "clientSecret";
@@ -1415,11 +1555,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAuthorizationAsync(mockAuthCode, clientId, clientSecret);
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthGetAuthorizationWithCodeAndClientIdAndClientSecretAndRedirectUri()
+        [Fact]
+        public void Test_TraktOAuth_GetAuthorizationWithCodeAndClientIdAndClientSecretAndRedirectUri()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var mockAuthCode = "mockAuthCode";
 
             var clientId = "clientId";
@@ -1466,11 +1611,16 @@
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
             clientAccessToken.IsExpired.Should().BeFalse();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthGetAuthorizationWithCodeAndClientIdAndClientSecretAndRedirectUriExceptions()
+        [Fact]
+        public void Test_TraktOAuth_GetAuthorizationWithCodeAndClientIdAndClientSecretAndRedirectUriExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var mockAuthCode = "mockAuthCode";
 
             var clientId = "clientId";
@@ -1575,11 +1725,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAuthorizationAsync(mockAuthCode, clientId, clientSecret, redirectUri);
             act.Should().Throw<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthGetAuthorizationWithCodeAndClientIdAndClientSecretAndRedirectUriArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_GetAuthorizationWithCodeAndClientIdAndClientSecretAndRedirectUriArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var mockAuthCode = "mockAuthCode";
             var clientId = "clientId";
             var clientSecret = "clientSecret";
@@ -1634,6 +1789,9 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.GetAuthorizationAsync(mockAuthCode, clientId, clientSecret, redirectUri);
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
         #endregion
@@ -1643,9 +1801,11 @@
 
         #region RefreshAuthorization
 
-        [TestMethod]
-        public void TestTraktOAuthRefreshAuthorization()
+        [Fact]
+        public void Test_TraktOAuth_RefreshAuthorization()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
@@ -1691,11 +1851,16 @@
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
             clientAccessToken.IsExpired.Should().BeFalse();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRefreshAuthorizationExceptions()
+        [Fact]
+        public void Test_TraktOAuth_RefreshAuthorizationExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
@@ -1808,11 +1973,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.RefreshAuthorizationAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRefreshAuthorizationArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_RefreshAuthorizationArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var accessToken = new TraktAuthorization
             {
                 AccessToken = "mockAccessToken",
@@ -1899,11 +2069,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.RefreshAuthorizationAsync();
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRefreshAuthorizationWithToken()
+        [Fact]
+        public void Test_TraktOAuth_RefreshAuthorizationWithToken()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
@@ -1948,11 +2123,16 @@
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
             clientAccessToken.IsExpired.Should().BeFalse();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRefreshAuthorizationWithTokenExceptions()
+        [Fact]
+        public void Test_TraktOAuth_RefreshAuthorizationWithTokenExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
@@ -2065,11 +2245,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
             act.Should().Throw<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRefreshAuthorizationWithTokenArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_RefreshAuthorizationWithTokenArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var accessToken = new TraktAuthorization
             {
                 AccessToken = "mockAccessToken",
@@ -2199,11 +2384,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRefreshAuthorizationWithTokenAndClientId()
+        [Fact]
+        public void Test_TraktOAuth_RefreshAuthorizationWithTokenAndClientId()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
@@ -2248,11 +2438,16 @@
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
             clientAccessToken.IsExpired.Should().BeFalse();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRefreshAuthorizationWithTokenAndClientIdExceptions()
+        [Fact]
+        public void Test_TraktOAuth_RefreshAuthorizationWithTokenAndClientIdExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
@@ -2365,11 +2560,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
             act.Should().Throw<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRefreshAuthorizationWithTokenAndClientIdArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_RefreshAuthorizationWithTokenAndClientIdArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var accessToken = new TraktAuthorization
             {
                 AccessToken = "mockAccessToken",
@@ -2494,11 +2694,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRefreshAuthorizationWithTokenAndClientIdAndClientSecret()
+        [Fact]
+        public void Test_TraktOAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecret()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var clientSecret = "clientSecret";
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
@@ -2544,11 +2749,16 @@
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
             clientAccessToken.IsExpired.Should().BeFalse();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRefreshAuthorizationWithTokenAndClientIdAndClientSecretExceptions()
+        [Fact]
+        public void Test_TraktOAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecretExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var clientSecret = "clientSecret";
             var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
@@ -2661,11 +2871,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
             act.Should().Throw<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRefreshAuthorizationWithTokenAndClientIdAndClientSecretArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecretArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var accessToken = new TraktAuthorization
             {
                 AccessToken = "mockAccessToken",
@@ -2784,11 +2999,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRefreshAuthorizationWithTokenAndClientIdAndClientSecretAndRedirectUri()
+        [Fact]
+        public void Test_TraktOAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecretAndRedirectUri()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var clientSecret = "clientSecret";
             var redirectUri = "redirectUri";
@@ -2835,11 +3055,16 @@
             clientAccessToken.AccessScope.Should().Be(response.AccessScope);
             clientAccessToken.Created.Should().Be(response.Created);
             clientAccessToken.IsExpired.Should().BeFalse();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRefreshAuthorizationWithTokenAndClientIdAndClientSecretAndRedirectUriExceptions()
+        [Fact]
+        public void Test_TraktOAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecretAndRedirectUriExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
             var clientSecret = "clientSecret";
             var redirectUri = "redirectUri";
@@ -2952,11 +3177,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
             act.Should().Throw<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRefreshAuthorizationWithTokenAndClientIdAndClientSecretAndRedirectUriArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecretAndRedirectUriArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var accessToken = new TraktAuthorization
             {
                 AccessToken = "mockAccessToken",
@@ -3070,6 +3300,9 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, "redirect uri");
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
         #endregion
@@ -3079,9 +3312,11 @@
 
         #region RevokeAuthorization
 
-        [TestMethod]
-        public void TestTraktOAuthRevokeAuthorization()
+        [Fact]
+        public void Test_TraktOAuth_RevokeAuthorization()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var accessToken = new TraktAuthorization
             {
                 AccessToken = "mockAccessToken",
@@ -3113,11 +3348,16 @@
             authorization.IsExpired.Should().BeTrue();
             authorization.IsRefreshPossible.Should().BeFalse();
             authorization.IsValid.Should().BeFalse();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRevokeAuthorizationExceptions()
+        [Fact]
+        public void Test_TraktOAuth_RevokeAuthorizationExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var accessToken = new TraktAuthorization
             {
                 AccessToken = "mockAccessToken",
@@ -3210,11 +3450,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.RevokeAuthorizationAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRevokeAuthorizationArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_RevokeAuthorizationArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var accessToken = new TraktAuthorization
             {
                 AccessToken = "mockAccessToken",
@@ -3269,11 +3514,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.RevokeAuthorizationAsync();
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRevokeAuthorizationWithToken()
+        [Fact]
+        public void Test_TraktOAuth_RevokeAuthorizationWithToken()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var accessToken = new TraktAuthorization
             {
                 AccessToken = "mockAccessToken",
@@ -3305,11 +3555,16 @@
             authorization.IsExpired.Should().BeTrue();
             authorization.IsRefreshPossible.Should().BeFalse();
             authorization.IsValid.Should().BeFalse();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRevokeAuthorizationWithTokenExceptions()
+        [Fact]
+        public void Test_TraktOAuth_RevokeAuthorizationWithTokenExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var accessToken = new TraktAuthorization
             {
                 AccessToken = "mockAccessToken",
@@ -3402,11 +3657,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
             act.Should().Throw<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRevokeAuthorizationWithTokenArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_RevokeAuthorizationWithTokenArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var accessToken = new TraktAuthorization
             {
                 AccessToken = "mockAccessToken",
@@ -3504,11 +3764,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.RevokeAuthorizationAsync(accessToken.RefreshToken);
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRevokeAuthorizationWithTokenAndClientId()
+        [Fact]
+        public void Test_TraktOAuth_RevokeAuthorizationWithTokenAndClientId()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
 
             var accessToken = new TraktAuthorization
@@ -3542,11 +3807,16 @@
             authorization.IsExpired.Should().BeTrue();
             authorization.IsRefreshPossible.Should().BeFalse();
             authorization.IsValid.Should().BeFalse();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRevokeAuthorizationWithTokenAndClientIdExceptions()
+        [Fact]
+        public void Test_TraktOAuth_RevokeAuthorizationWithTokenAndClientIdExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var clientId = "clientId";
 
             var accessToken = new TraktAuthorization
@@ -3641,11 +3911,16 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
             act.Should().Throw<TraktServerUnavailableException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
-        [TestMethod]
-        public void TestTraktOAuthRevokeAuthorizationWithTokenAndClientIdArgumentExceptions()
+        [Fact]
+        public void Test_TraktOAuth_RevokeAuthorizationWithTokenAndClientIdArgumentExceptions()
         {
+            TestUtility.SetupMockAuthenticationHttpClient();
+
             var accessToken = new TraktAuthorization
             {
                 AccessToken = "mockAccessToken",
@@ -3739,6 +4014,9 @@
 
             act = async () => await TestUtility.MOCK_TEST_CLIENT.OAuth.RevokeAuthorizationAsync(accessToken.RefreshToken, "client id");
             act.Should().Throw<ArgumentException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetDefaultClientValues();
         }
 
         #endregion

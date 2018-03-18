@@ -1,18 +1,18 @@
 ﻿namespace TraktApiSharp.Tests.Authentication
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Newtonsoft.Json;
     using System;
+    using Traits;
     using TraktApiSharp.Authentication;
     using TraktApiSharp.Enums;
-    using Utils;
+    using Xunit;
 
-    [TestClass]
-    public class TraktAuthorizationTests
+    [Category("Authentication")]
+    public class TraktAuthorization_Tests
     {
-        [TestMethod]
-        public void TestTraktAuthorizationDefaultConstructor()
+        [Fact]
+        public void Test_TraktAuthorization_DefaultConstructor()
         {
             var dtNowUtc = DateTime.UtcNow;
 
@@ -30,14 +30,10 @@
             token.IgnoreExpiration.Should().BeFalse();
         }
 
-        [TestMethod]
-        public void TestTraktAuthorizationReadFromJson()
+        [Fact]
+        public void Test_TraktAuthorization_ReadFromJson()
         {
-            var jsonFile = TestUtility.ReadFileContents(@"Authentication\AccessToken.json");
-
-            jsonFile.Should().NotBeNullOrEmpty();
-
-            var token = JsonConvert.DeserializeObject<TraktAuthorization>(jsonFile);
+            var token = JsonConvert.DeserializeObject<TraktAuthorization>(JSON);
 
             token.Should().NotBeNull();
             token.AccessToken.Should().Be("dbaf9757982a9e738f05d249b7b5b4a266b3a139049317c4909f2f263572c781");
@@ -51,8 +47,8 @@
             token.IgnoreExpiration.Should().BeFalse();
         }
 
-        [TestMethod]
-        public void TestTraktAuthorizationIsValid()
+        [Fact]
+        public void Test_TraktAuthorization_IsValid()
         {
             var token = new TraktAuthorization();
             token.IsValid.Should().BeFalse();
@@ -67,8 +63,8 @@
             token.IsValid.Should().BeTrue();
         }
 
-        [TestMethod]
-        public void TestTraktAuthorizationIsRefreshPossible()
+        [Fact]
+        public void Test_TraktAuthorization_IsRefreshPossible()
         {
             var token = new TraktAuthorization();
             token.IsRefreshPossible.Should().BeFalse();
@@ -83,8 +79,8 @@
             token.IsRefreshPossible.Should().BeTrue();
         }
 
-        [TestMethod]
-        public void TestTraktAuthorizationIsExpired()
+        [Fact]
+        public void Test_TraktAuthorization_IsExpired()
         {
             var token = new TraktAuthorization();
             token.IsExpired.Should().BeTrue();
@@ -102,12 +98,14 @@
             token.IsExpired.Should().BeFalse();
         }
 
-        [TestMethod]
-        public void TestTraktAuthorizationIsExpiredWithIgnoreExpiration()
+        [Fact]
+        public void Test_TraktAuthorization_IsExpiredWithIgnoreExpiration()
         {
-            var token = new TraktAuthorization();
-            token.IgnoreExpiration = true;
-            token.ExpiresInSeconds = 0;
+            var token = new TraktAuthorization
+            {
+                IgnoreExpiration = true,
+                ExpiresInSeconds = 0
+            };
 
             token.IsExpired.Should().BeTrue();
 
@@ -121,10 +119,10 @@
             token.IsExpired.Should().BeFalse();
         }
 
-        [TestMethod]
-        public void TestTraktAuthorizationCreateWithAccessToken()
+        [Fact]
+        public void Test_TraktAuthorization_CreateWithAccessToken()
         {
-            var accessToken = "accessToken";
+            const string accessToken = "accessToken";
 
             var authorization = TraktAuthorization.CreateWith(accessToken);
 
@@ -137,11 +135,11 @@
             authorization.ExpiresInSeconds.Should().Be(0);
         }
 
-        [TestMethod]
-        public void TestTraktAuthorizationCreateWithAccessTokenAndRefreshToken()
+        [Fact]
+        public void Test_TraktAuthorization_CreateWithAccessTokenAndRefreshToken()
         {
-            var accessToken = "accessToken";
-            var refreshToken = "refreshToken";
+            const string accessToken = "accessToken";
+            const string refreshToken = "refreshToken";
 
             var authorization = TraktAuthorization.CreateWith(accessToken, refreshToken);
 
@@ -154,11 +152,11 @@
             authorization.ExpiresInSeconds.Should().Be(0);
         }
 
-        [TestMethod]
-        public void TestTraktAuthorizationCreateWithExpiresInAndAccessToken()
+        [Fact]
+        public void Test_TraktAuthorization_CreateWithExpiresInAndAccessToken()
         {
-            var expiresIn = 3600 * 24 * 90;
-            var accessToken = "accessToken";
+            const int expiresIn = 3600 * 24 * 90;
+            const string accessToken = "accessToken";
 
             var authorization = TraktAuthorization.CreateWith(expiresIn, accessToken);
 
@@ -172,13 +170,12 @@
             authorization.ExpiresInSeconds.Should().Be(expiresIn);
         }
 
-        [TestMethod]
-        public void TestTraktAuthorizationCreateWithExpiresInAndAccessTokenAndRefreshToken()
+        [Fact]
+        public void Test_TraktAuthorization_CreateWithExpiresInAndAccessTokenAndRefreshToken()
         {
-            var expiresIn = 3600 * 24 * 90;
-
-            var accessToken = "accessToken";
-            var refreshToken = "refreshToken";
+            const int expiresIn = 3600 * 24 * 90;
+            const string accessToken = "accessToken";
+            const string refreshToken = "refreshToken";
 
             var authorization = TraktAuthorization.CreateWith(expiresIn, accessToken, refreshToken);
 
@@ -192,12 +189,12 @@
             authorization.ExpiresInSeconds.Should().Be(expiresIn);
         }
 
-        [TestMethod]
-        public void TestTraktAuthorizationCreateWithCreatedAtAndAccessToken()
+        [Fact]
+        public void Test_TraktAuthorization_CreateWithCreatedAtAndAccessToken()
         {
             var createdAt = DateTime.Now;
-            var expiresIn = 3600 * 24 * 90;
-            var accessToken = "accessToken";
+            const int expiresIn = 3600 * 24 * 90;
+            const string accessToken = "accessToken";
 
             var authorization = TraktAuthorization.CreateWith(createdAt, accessToken);
 
@@ -211,14 +208,13 @@
             authorization.ExpiresInSeconds.Should().Be(expiresIn);
         }
 
-        [TestMethod]
-        public void TestTraktAuthorizationCreateWithCreatedAtAndAccessTokenAndRefreshToken()
+        [Fact]
+        public void Test_TraktAuthorization_CreateWithCreatedAtAndAccessTokenAndRefreshToken()
         {
             var createdAt = DateTime.Now;
-            var expiresIn = 3600 * 24 * 90;
-
-            var accessToken = "accessToken";
-            var refreshToken = "refreshToken";
+            const int expiresIn = 3600 * 24 * 90;
+            const string accessToken = "accessToken";
+            const string refreshToken = "refreshToken";
 
             var authorization = TraktAuthorization.CreateWith(createdAt, accessToken, refreshToken);
 
@@ -232,12 +228,12 @@
             authorization.ExpiresInSeconds.Should().Be(expiresIn);
         }
 
-        [TestMethod]
-        public void TestTraktAuthorizationCreateWithCreatedAtAndExpiresInAndAccessToken()
+        [Fact]
+        public void Test_TraktAuthorization_CreateWithCreatedAtAndExpiresInAndAccessToken()
         {
             var createdAt = DateTime.Now;
-            var expiresIn = 3600 * 24 * 90;
-            var accessToken = "accessToken";
+            const int expiresIn = 3600 * 24 * 90;
+            const string accessToken = "accessToken";
 
             var authorization = TraktAuthorization.CreateWith(createdAt, expiresIn, accessToken);
 
@@ -251,14 +247,13 @@
             authorization.ExpiresInSeconds.Should().Be(expiresIn);
         }
 
-        [TestMethod]
-        public void TestTraktAuthorizationCreateWithCreatedAtAndExpiresInAndAccessTokenAndRefreshToken()
+        [Fact]
+        public void Test_TraktAuthorization_CreateWithCreatedAtAndExpiresInAndAccessTokenAndRefreshToken()
         {
             var createdAt = DateTime.Now;
-            var expiresIn = 3600 * 24 * 90;
-
-            var accessToken = "accessToken";
-            var refreshToken = "refreshToken";
+            const int expiresIn = 3600 * 24 * 90;
+            const string accessToken = "accessToken";
+            const string refreshToken = "refreshToken";
 
             var authorization = TraktAuthorization.CreateWith(createdAt, expiresIn, accessToken, refreshToken);
 
@@ -272,14 +267,13 @@
             authorization.ExpiresInSeconds.Should().Be(expiresIn);
         }
 
-        [TestMethod]
-        public void TestTraktAuthorizationCreateWithNullValues()
+        [Fact]
+        public void Test_TraktAuthorization_CreateWithNullValues()
         {
             var createdAt = DateTime.Now;
-            var expiresIn = 3600 * 24 * 90;
-
-            var accessToken = "accessToken";
-            var refreshToken = "refreshToken";
+            const int expiresIn = 3600 * 24 * 90;
+            const string accessToken = "accessToken";
+            const string refreshToken = "refreshToken";
 
             var authorization = TraktAuthorization.CreateWith(null, refreshToken);
 
@@ -335,5 +329,14 @@
             authorization.AccessToken.Should().Be(accessToken);
             authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
         }
+
+        private const string JSON =
+            @"{
+                ""access_token"": ""dbaf9757982a9e738f05d249b7b5b4a266b3a139049317c4909f2f263572c781"",
+                ""token_type"": ""bearer"",
+                ""expires_in"": 7200,
+                ""refresh_token"": ""76ba4c5c75c96f6087f58a4de10be6c00b29ea1ddc3b2022ee2016d1363e3a7c"",
+                ""scope"": ""public""
+              }";
     }
 }

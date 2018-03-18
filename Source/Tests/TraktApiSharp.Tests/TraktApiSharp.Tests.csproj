@@ -84,6 +84,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\TraktAuthentication_Tests.cs" />
+    <Compile Include="Authentication\TraktAuthorization_Tests.cs" />
+    <Compile Include="Authentication\TraktDeviceAuth_Tests.cs" />
+    <Compile Include="Authentication\TraktDevice_Tests.cs" />
+    <Compile Include="Authentication\TraktOAuth_Tests.cs" />
     <Compile Include="Core\TraktClient_Tests.cs" />
     <Compile Include="Enums\TraktAccessScope_Tests.cs" />
     <Compile Include="Enums\TraktAccessTokenGrantType_Tests.cs" />
@@ -1251,6 +1256,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

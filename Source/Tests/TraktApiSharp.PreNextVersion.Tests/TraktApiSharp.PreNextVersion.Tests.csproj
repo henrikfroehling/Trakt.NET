@@ -91,11 +91,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Authentication\TraktAuthorizationTests.cs" />
-    <Compile Include="Authentication\TraktAuthenticationTests.cs" />
-    <Compile Include="Authentication\TraktDeviceAuthTests.cs" />
-    <Compile Include="Authentication\TraktDeviceTests.cs" />
-    <Compile Include="Authentication\TraktOAuthTests.cs" />
     <Compile Include="Exceptions\TraktCheckinExceptionTests.cs" />
     <Compile Include="Modules\TraktCalendarModuleTests.cs" />
     <Compile Include="Modules\TraktCheckinsModuleTests.cs" />
@@ -182,8 +177,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="TestData\Authentication\AccessToken.json" />
-    <None Include="TestData\Authentication\Device.json" />
     <None Include="TestData\Objects\Basic\CastAndCrew.json" />
     <None Include="TestData\Objects\Basic\CastMember.json" />
     <None Include="TestData\Objects\Basic\Comment.json" />
