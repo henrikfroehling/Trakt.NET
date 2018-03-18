@@ -1,6 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Comments.Implementations
 {
     using Get.Shows;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>A show comment post.</summary>
     public class TraktShowCommentPost : TraktCommentPost, ITraktShowCommentPost
@@ -11,7 +13,7 @@
         /// </summary>
         public ITraktShow Show { get; set; }
 
-        public override string ToJson() => "";
+        public override Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
 
         public override void Validate()
         {

@@ -34,93 +34,93 @@
             _requestMessageBuilder = new RequestMessageBuilder(_client);
         }
 
-        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(IRequest request, CancellationToken cancellationToken = default)
+        public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(IRequest request, CancellationToken cancellationToken = default)
         {
             PreExecuteRequest(request);
-            ExtendedHttpRequestMessage requestMessage = _requestMessageBuilder.Reset(request).Build();
-            return QueryNoContentAsync(requestMessage, cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryNoContentAsync(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
+        public async Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
         {
             PreExecuteRequest(request);
-            ExtendedHttpRequestMessage requestMessage = _requestMessageBuilder.Reset(request).Build();
-            return QuerySingleItemAsync<TResponseContentType>(requestMessage, false, cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).Build(cancellationToken).ConfigureAwait(false);
+            return await QuerySingleItemAsync<TResponseContentType>(requestMessage, false, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
+        public async Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
         {
             PreExecuteRequest(request);
-            ExtendedHttpRequestMessage requestMessage = _requestMessageBuilder.Reset(request).Build();
-            return QueryListAsync<TResponseContentType>(requestMessage, cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
+        public async Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
         {
             PreExecuteRequest(request);
-            ExtendedHttpRequestMessage requestMessage = _requestMessageBuilder.Reset(request).Build();
-            return QueryPagedListAsync<TResponseContentType>(requestMessage, cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryPagedListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
         // post requests
 
-        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(IPostRequest<TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
+        public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(IPostRequest<TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             PreExecuteRequest(request);
-            ExtendedHttpRequestMessage requestMessage = _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build();
-            return QueryNoContentAsync(requestMessage, cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryNoContentAsync(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
+        public async Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             PreExecuteRequest(request);
-            ExtendedHttpRequestMessage requestMessage = _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build();
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
             var isCheckinRequest = request is CheckinRequest<TResponseContentType, TRequestBodyType>;
-            return QuerySingleItemAsync<TResponseContentType>(requestMessage, isCheckinRequest, cancellationToken);
+            return await QuerySingleItemAsync<TResponseContentType>(requestMessage, isCheckinRequest, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
+        public async Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             PreExecuteRequest(request);
-            ExtendedHttpRequestMessage requestMessage = _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build();
-            return QueryListAsync<TResponseContentType>(requestMessage, cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
+        public async Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             PreExecuteRequest(request);
-            ExtendedHttpRequestMessage requestMessage = _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build();
-            return QueryPagedListAsync<TResponseContentType>(requestMessage, cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryPagedListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
         // put requests
 
-        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(IPutRequest<TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
+        public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(IPutRequest<TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             PreExecuteRequest(request);
-            ExtendedHttpRequestMessage requestMessage = _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build();
-            return QueryNoContentAsync(requestMessage, cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryNoContentAsync(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
+        public async Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             PreExecuteRequest(request);
-            ExtendedHttpRequestMessage requestMessage = _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build();
-            return QuerySingleItemAsync<TResponseContentType>(requestMessage, false, cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            return await QuerySingleItemAsync<TResponseContentType>(requestMessage, false, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
+        public async Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             PreExecuteRequest(request);
-            ExtendedHttpRequestMessage requestMessage = _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build();
-            return QueryListAsync<TResponseContentType>(requestMessage, cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
+        public async Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             PreExecuteRequest(request);
-            ExtendedHttpRequestMessage requestMessage = _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build();
-            return QueryPagedListAsync<TResponseContentType>(requestMessage, cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryPagedListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
         // query response helper methods

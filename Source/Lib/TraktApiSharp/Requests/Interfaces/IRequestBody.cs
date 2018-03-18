@@ -1,7 +1,10 @@
 ﻿namespace TraktApiSharp.Requests.Interfaces
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public interface IRequestBody : IValidatable
     {
-        string ToJson();
+        Task<string> ToJson(CancellationToken cancellationToken = default);
     }
 }

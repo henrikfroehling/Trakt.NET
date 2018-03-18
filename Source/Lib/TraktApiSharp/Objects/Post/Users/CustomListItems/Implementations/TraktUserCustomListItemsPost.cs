@@ -2,6 +2,8 @@
 {
     using Get.People;
     using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// An user custom list items post, containing all movies, shows, episodes and / or people,
@@ -31,7 +33,7 @@
         /// <returns>A new <see cref="TraktUserCustomListItemsPostBuilder" /> instance.</returns>
         public static TraktUserCustomListItemsPostBuilder Builder() => new TraktUserCustomListItemsPostBuilder();
 
-        public string ToJson() => "";
+        public Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
 
         public void Validate()
         {

@@ -1,6 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Comments.Implementations
 {
     using Get.Users.Lists;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>A list comment post.</summary>
     public class TraktListCommentPost : TraktCommentPost, ITraktListCommentPost
@@ -11,7 +13,7 @@
         /// </summary>
         public ITraktList List { get; set; }
 
-        public override string ToJson() => "";
+        public override Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
 
         public override void Validate()
         {

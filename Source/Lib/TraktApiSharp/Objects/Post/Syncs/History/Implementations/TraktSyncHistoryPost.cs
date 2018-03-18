@@ -1,6 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Implementations
 {
     using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// A Trakt history post, containing all movies, shows and / or episodes,
@@ -30,7 +32,7 @@
         /// <returns>A new <see cref="TraktSyncHistoryPostBuilder" /> instance.</returns>
         public static TraktSyncHistoryPostBuilder Builder() => new TraktSyncHistoryPostBuilder();
 
-        public virtual string ToJson() => "";
+        public virtual Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
 
         public virtual void Validate()
         {

@@ -1,6 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Comments.Implementations
 {
     using Get.Seasons;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>A season comment post.</summary>
     public class TraktSeasonCommentPost : TraktCommentPost, ITraktSeasonCommentPost
@@ -11,7 +13,7 @@
         /// </summary>
         public ITraktSeason Season { get; set; }
 
-        public override string ToJson() => "";
+        public override Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
 
         public override void Validate()
         {

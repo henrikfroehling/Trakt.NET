@@ -2,6 +2,8 @@
 {
     using Get.Episodes;
     using Get.Shows;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>A scrobble post for a Trakt episode.</summary>
     public class TraktEpisodeScrobblePost : TraktScrobblePost, ITraktEpisodeScrobblePost
@@ -19,7 +21,7 @@
         /// </summary>
         public ITraktShow Show { get; set; }
 
-        public override string ToJson() => "";
+        public override Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
 
         public override void Validate()
         {

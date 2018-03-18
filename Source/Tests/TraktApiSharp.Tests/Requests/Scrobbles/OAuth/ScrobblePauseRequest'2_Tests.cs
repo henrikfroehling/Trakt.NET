@@ -1,6 +1,8 @@
 ﻿namespace TraktApiSharp.Tests.Requests.Scrobbles.OAuth
 {
     using FluentAssertions;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Interfaces;
@@ -12,7 +14,7 @@
     {
         internal class RequestBodyMock : IRequestBody
         {
-            public string ToJson() => "";
+            public Task<string> ToJson(CancellationToken cancellationToken = default(CancellationToken)) => Task.FromResult("");
 
             public void Validate()
             {

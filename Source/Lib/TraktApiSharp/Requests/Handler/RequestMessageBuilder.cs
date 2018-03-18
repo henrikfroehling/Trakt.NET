@@ -10,6 +10,8 @@
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
+    using System.Threading;
+    using System.Threading.Tasks;
     using UriTemplates;
 
     internal class RequestMessageBuilder
@@ -39,10 +41,10 @@
             return this;
         }
 
-        internal ExtendedHttpRequestMessage Build()
+        internal async Task<ExtendedHttpRequestMessage> Build(CancellationToken cancellationToken = default)
         {
             ExtendedHttpRequestMessage requestMessage = CreateRequestMessage();
-            AddRequestBodyContent(requestMessage);
+            await AddRequestBodyContent(requestMessage, cancellationToken).ConfigureAwait(false);
             SetRequestMessageHeadersForAuthorization(requestMessage);
             return requestMessage;
         }
@@ -102,11 +104,11 @@
             return _client.Configuration.BaseUrl + url;
         }
 
-        private void AddRequestBodyContent(ExtendedHttpRequestMessage requestMessage)
+        private async Task AddRequestBodyContent(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default)
         {
             if (_requestBody != null)
             {
-                string json = _requestBody.ToJson();
+                string json = await _requestBody.ToJson(cancellationToken).ConfigureAwait(false);
                 requestMessage.Content = new StringContent(json, Encoding.UTF8, Constants.MEDIA_TYPE);
                 requestMessage.RequestBodyJson = json;
             }

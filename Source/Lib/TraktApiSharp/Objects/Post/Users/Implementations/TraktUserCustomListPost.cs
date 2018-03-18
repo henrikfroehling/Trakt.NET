@@ -1,6 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users.Implementations
 {
     using Enums;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>An episode custom list post.</summary>
     public class TraktUserCustomListPost : ITraktUserCustomListPost
@@ -24,7 +26,7 @@
         /// <summary>Gets or sets, whether the custom list allows comments.</summary>
         public bool? AllowComments { get; set; }
 
-        public string ToJson() => "";
+        public Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
 
         public void Validate()
         {

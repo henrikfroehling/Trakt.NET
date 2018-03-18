@@ -1,6 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection.Implementations
 {
     using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// A Trakt collection post, containing all movies, shows and / or episodes,
@@ -30,7 +32,7 @@
         /// <returns>A new <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
         public static TraktSyncCollectionPostBuilder Builder() => new TraktSyncCollectionPostBuilder();
 
-        public string ToJson() => "";
+        public Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
 
         public void Validate()
         {

@@ -1,6 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist.Implementations
 {
     using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// A Trakt watchlist post, containing all movies, shows and / or episodes,
@@ -30,7 +32,7 @@
         /// <returns>A new <see cref="TraktSyncWatchlistPostBuilder" /> instance.</returns>
         public static TraktSyncWatchlistPostBuilder Builder() => new TraktSyncWatchlistPostBuilder();
 
-        public string ToJson() => "";
+        public Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
 
         public void Validate()
         {

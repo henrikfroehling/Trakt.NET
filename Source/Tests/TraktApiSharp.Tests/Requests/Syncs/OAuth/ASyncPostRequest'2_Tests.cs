@@ -1,7 +1,8 @@
 ﻿namespace TraktApiSharp.Tests.Requests.Syncs.OAuth
 {
     using FluentAssertions;
-    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Requests.Base;
     using TraktApiSharp.Requests.Interfaces;
@@ -13,7 +14,7 @@
     {
         internal class RequestBodyMock : IRequestBody
         {
-            public string ToJson() => "";
+            public Task<string> ToJson(CancellationToken cancellationToken = default(CancellationToken)) => Task.FromResult("");
 
             public void Validate()
             {
@@ -22,7 +23,7 @@
 
         internal class SyncPostRequestMock : ASyncPostRequest<int, RequestBodyMock>
         {
-            public override string UriTemplate { get { throw new NotImplementedException(); } }
+            public override string UriTemplate => "";
         }
 
         [Fact]
