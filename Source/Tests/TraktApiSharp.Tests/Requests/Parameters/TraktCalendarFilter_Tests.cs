@@ -1,19 +1,21 @@
 ﻿namespace TraktApiSharp.Tests.Requests.Parameters
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Utils;
+    using Xunit;
 
-    [TestClass]
-    public class TraktSearchFilterTests
+    [Category("Requests.Parameters")]
+    public class TraktCalendarFilter_Tests
     {
-        [TestMethod]
-        public void TestTraktSearchFilterDefaultConstructor()
+        [Fact]
+        public void Test_TraktCalendarFilter_DefaultConstructor()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
 
+            filter.Query.Should().BeNull();
             filter.StartYear.Should().NotHaveValue();
             filter.EndYear.Should().NotHaveValue();
             filter.Genres.Should().BeNull();
@@ -24,14 +26,15 @@
             filter.ToString().Should().NotBeNull().And.BeEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktSearchFilterConstructor()
+        [Fact]
+        public void Test_TraktCalendarFilter_Constructor()
         {
-            var filter = new TraktSearchFilter(2010, 2016, new string[] { "action", "drama" },
-                                               new string[] { "de", "en" },
-                                               new string[] { "gb", "us" },
-                                               new Range<int>(40, 100), new Range<int>(70, 90));
+            var filter = new TraktCalendarFilter("query", 2010, 2016, new string[] { "action", "drama" },
+                                                 new string[] { "de", "en" },
+                                                 new string[] { "gb", "us" },
+                                                 new Range<int>(40, 100), new Range<int>(70, 90));
 
+            filter.Query.Should().Be("query");
             filter.StartYear.Should().Be(2010);
             filter.EndYear.Should().Be(2016);
 
@@ -48,11 +51,18 @@
             filter.Ratings.Value.End.Should().Be(90);
         }
 
-        [TestMethod]
-        public void TestTraktSearchFilterHasValues()
+        [Fact]
+        public void Test_TraktCalendarFilter_HasValues()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
 
+            filter.HasValues.Should().BeFalse();
+
+            filter.WithQuery("query");
+            filter.Query.Should().Be("query");
+            filter.HasValues.Should().BeTrue();
+
+            filter.Clear();
             filter.HasValues.Should().BeFalse();
 
             filter.WithStartYear(2010);
@@ -109,10 +119,24 @@
             filter.HasValues.Should().BeFalse();
         }
 
-        [TestMethod]
-        public void TestTraktSearchFilterClearStartYear()
+        [Fact]
+        public void Test_TraktCalendarFilter_ClearQuery()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
+
+            filter.Query.Should().BeNull();
+
+            filter.WithQuery("query");
+            filter.Query.Should().Be("query");
+
+            filter.ClearQuery();
+            filter.Query.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_TraktCalendarFilter_ClearStartYear()
+        {
+            var filter = new TraktCalendarFilter();
 
             filter.StartYear.Should().NotHaveValue();
 
@@ -123,10 +147,10 @@
             filter.StartYear.Should().NotHaveValue();
         }
 
-        [TestMethod]
-        public void TestTraktSearchFilterClearEndYear()
+        [Fact]
+        public void Test_TraktCalendarFilter_ClearEndYear()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
 
             filter.EndYear.Should().NotHaveValue();
 
@@ -137,10 +161,10 @@
             filter.EndYear.Should().NotHaveValue();
         }
 
-        [TestMethod]
-        public void TestTraktSearchFilterClearYears()
+        [Fact]
+        public void Test_TraktCalendarFilter_ClearYears()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
 
             filter.StartYear.Should().NotHaveValue();
             filter.EndYear.Should().NotHaveValue();
@@ -154,10 +178,10 @@
             filter.EndYear.Should().NotHaveValue();
         }
 
-        [TestMethod]
-        public void TestTraktSearchFilterClearGenres()
+        [Fact]
+        public void Test_TraktCalendarFilter_ClearGenres()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
 
             filter.Genres.Should().BeNull();
 
@@ -168,10 +192,10 @@
             filter.Genres.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktSearchFilterClearLanguages()
+        [Fact]
+        public void Test_TraktCalendarFilter_ClearLanguages()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
 
             filter.Languages.Should().BeNull();
 
@@ -182,10 +206,10 @@
             filter.Languages.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktSearchFilterClearCountries()
+        [Fact]
+        public void Test_TraktCalendarFilter_ClearCountries()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
 
             filter.Countries.Should().BeNull();
 
@@ -196,10 +220,10 @@
             filter.Countries.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktSearchFilterClearRuntimes()
+        [Fact]
+        public void Test_TraktCalendarFilter_ClearRuntimes()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
 
             filter.Runtimes.Should().BeNull();
 
@@ -212,10 +236,10 @@
             filter.Runtimes.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktSearchFilterClearRatings()
+        [Fact]
+        public void Test_TraktCalendarFilter_ClearRatings()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
 
             filter.Ratings.Should().BeNull();
 
@@ -228,10 +252,13 @@
             filter.Ratings.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktSearchFilterClear()
+        [Fact]
+        public void Test_TraktCalendarFilter_Clear()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
+
+            filter.WithQuery("query");
+            filter.Query.Should().Be("query");
 
             filter.WithStartYear(2010);
             filter.StartYear.Should().Be(2010);
@@ -260,6 +287,7 @@
 
             filter.Clear();
 
+            filter.Query.Should().BeNull();
             filter.StartYear.Should().NotHaveValue();
             filter.EndYear.Should().NotHaveValue();
             filter.Genres.Should().BeNull();
@@ -270,34 +298,38 @@
             filter.ToString().Should().NotBeNull().And.BeEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktSearchFilterGetParametersWithStartYear()
+        [Fact]
+        public void Test_TraktCalendarFilter_GetParametersWithStartYear()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
 
             filter.GetParameters().Should().NotBeNull().And.BeEmpty();
+
+            filter.WithQuery("query");
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" } });
 
             var startYear = 2010;
             var years = $"{startYear}";
 
             filter.WithStartYear(startYear);
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years } });
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(2);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years } });
 
             filter.WithGenres("action", "drama", "fantasy");
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(2);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(3);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" } });
 
             filter.WithLanguages("de", "en", "es");
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(3);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(4);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" } });
 
             filter.WithCountries("gb", "us", "fr");
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(4);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(5);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" },
                                                                                        { "countries", "gb,us,fr" } });
@@ -306,8 +338,8 @@
             var runtimeEnd = 100;
 
             filter.WithRuntimes(runtimeBegin, runtimeEnd);
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(5);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(6);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" },
                                                                                        { "countries", "gb,us,fr" },
@@ -317,8 +349,8 @@
             var ratingEnd = 90;
 
             filter.WithRatings(ratingBegin, ratingEnd);
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(6);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(7);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" },
                                                                                        { "countries", "gb,us,fr" },
@@ -326,34 +358,38 @@
                                                                                        { "ratings", $"{ratingBegin}-{ratingEnd}"} });
         }
 
-        [TestMethod]
-        public void TestTraktSearchFilterGetParametersWithEndYear()
+        [Fact]
+        public void Test_TraktCalendarFilter_GetParametersWithEndYear()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
 
             filter.GetParameters().Should().NotBeNull().And.BeEmpty();
+
+            filter.WithQuery("query");
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" } });
 
             var endYear = 2016;
             var years = $"{endYear}";
 
             filter.WithEndYear(endYear);
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years } });
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(2);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years } });
 
             filter.WithGenres("action", "drama", "fantasy");
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(2);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(3);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" } });
 
             filter.WithLanguages("de", "en", "es");
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(3);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(4);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" } });
 
             filter.WithCountries("gb", "us", "fr");
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(4);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(5);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" },
                                                                                        { "countries", "gb,us,fr" } });
@@ -362,8 +398,8 @@
             var runtimeEnd = 100;
 
             filter.WithRuntimes(runtimeBegin, runtimeEnd);
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(5);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(6);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" },
                                                                                        { "countries", "gb,us,fr" },
@@ -373,8 +409,8 @@
             var ratingEnd = 90;
 
             filter.WithRatings(ratingBegin, ratingEnd);
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(6);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(7);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" },
                                                                                        { "countries", "gb,us,fr" },
@@ -382,35 +418,39 @@
                                                                                        { "ratings", $"{ratingBegin}-{ratingEnd}"} });
         }
 
-        [TestMethod]
-        public void TestTraktSearchFilterGetParametersWithYearsReversed()
+        [Fact]
+        public void Test_TraktCalendarFilter_GetParametersWithYearsReversed()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
 
             filter.GetParameters().Should().NotBeNull().And.BeEmpty();
+
+            filter.WithQuery("query");
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" } });
 
             var startYear = 2010;
             var endYear = 2016;
             var years = $"{startYear}-{endYear}";
 
             filter.WithYears(endYear, startYear);
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years } });
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(2);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years } });
 
             filter.WithGenres("action", "drama", "fantasy");
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(2);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(3);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" } });
 
             filter.WithLanguages("de", "en", "es");
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(3);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(4);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" } });
 
             filter.WithCountries("gb", "us", "fr");
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(4);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(5);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" },
                                                                                        { "countries", "gb,us,fr" } });
@@ -419,8 +459,8 @@
             var runtimeEnd = 100;
 
             filter.WithRuntimes(runtimeBegin, runtimeEnd);
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(5);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(6);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" },
                                                                                        { "countries", "gb,us,fr" },
@@ -430,8 +470,8 @@
             var ratingEnd = 90;
 
             filter.WithRatings(ratingBegin, ratingEnd);
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(6);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(7);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" },
                                                                                        { "countries", "gb,us,fr" },
@@ -439,35 +479,39 @@
                                                                                        { "ratings", $"{ratingBegin}-{ratingEnd}"} });
         }
 
-        [TestMethod]
-        public void TestTraktSearchFilterGetParameters()
+        [Fact]
+        public void Test_TraktCalendarFilter_GetParameters()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
 
             filter.GetParameters().Should().NotBeNull().And.BeEmpty();
+
+            filter.WithQuery("query");
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" } });
 
             var startYear = 2010;
             var endYear = 2016;
             var years = $"{startYear}-{endYear}";
 
             filter.WithYears(startYear, endYear);
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years } });
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(2);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years } });
 
             filter.WithGenres("action", "drama", "fantasy");
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(2);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(3);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" } });
 
             filter.WithLanguages("de", "en", "es");
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(3);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(4);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" } });
 
             filter.WithCountries("gb", "us", "fr");
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(4);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(5);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" },
                                                                                        { "countries", "gb,us,fr" } });
@@ -476,8 +520,8 @@
             var runtimeEnd = 100;
 
             filter.WithRuntimes(runtimeBegin, runtimeEnd);
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(5);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(6);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" },
                                                                                        { "countries", "gb,us,fr" },
@@ -487,8 +531,8 @@
             var ratingEnd = 90;
 
             filter.WithRatings(ratingBegin, ratingEnd);
-            filter.GetParameters().Should().NotBeNull().And.HaveCount(6);
-            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", years },
+            filter.GetParameters().Should().NotBeNull().And.HaveCount(7);
+            filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" }, { "years", years },
                                                                                        { "genres", "action,drama,fantasy" },
                                                                                        { "languages", "de,en,es" },
                                                                                        { "countries", "gb,us,fr" },
@@ -496,154 +540,166 @@
                                                                                        { "ratings", $"{ratingBegin}-{ratingEnd}"} });
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterToStringWithStartYear()
+        [Fact]
+        public void Test_TraktCalendarFilter_ToStringWithStartYear()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
 
             filter.ToString().Should().NotBeNull().And.BeEmpty();
+
+            filter.WithQuery("query");
+            filter.ToString().Should().Be("query=query");
 
             var startYear = 2010;
             var years = $"{startYear}";
 
             filter.WithStartYear(startYear);
-            filter.ToString().Should().Be($"years={years}");
+            filter.ToString().Should().Be($"years={years}&query=query");
 
             filter.WithGenres("action", "drama", "fantasy");
-            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy");
+            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&query=query");
 
             filter.WithLanguages("de", "en", "es");
-            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es");
+            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&query=query");
 
             filter.WithCountries("gb", "us", "fr");
-            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr");
+            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr&query=query");
 
             var runtimeBegin = 50;
             var runtimeEnd = 100;
 
             filter.WithRuntimes(runtimeBegin, runtimeEnd);
             filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr" +
-                                          $"&runtimes={runtimeBegin}-{runtimeEnd}");
+                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&query=query");
 
             var ratingBegin = 70;
             var ratingEnd = 90;
 
             filter.WithRatings(ratingBegin, ratingEnd);
             filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr" +
-                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&ratings={ratingBegin}-{ratingEnd}");
+                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&ratings={ratingBegin}-{ratingEnd}&query=query");
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterToStringWithEndYear()
+        [Fact]
+        public void Test_TraktCalendarFilter_ToStringWithEndYear()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
 
             filter.ToString().Should().NotBeNull().And.BeEmpty();
+
+            filter.WithQuery("query");
+            filter.ToString().Should().Be("query=query");
 
             var endYear = 2016;
             var years = $"{endYear}";
 
             filter.WithEndYear(endYear);
-            filter.ToString().Should().Be($"years={years}");
+            filter.ToString().Should().Be($"years={years}&query=query");
 
             filter.WithGenres("action", "drama", "fantasy");
-            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy");
+            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&query=query");
 
             filter.WithLanguages("de", "en", "es");
-            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es");
+            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&query=query");
 
             filter.WithCountries("gb", "us", "fr");
-            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr");
+            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr&query=query");
 
             var runtimeBegin = 50;
             var runtimeEnd = 100;
 
             filter.WithRuntimes(runtimeBegin, runtimeEnd);
             filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr" +
-                                          $"&runtimes={runtimeBegin}-{runtimeEnd}");
+                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&query=query");
 
             var ratingBegin = 70;
             var ratingEnd = 90;
 
             filter.WithRatings(ratingBegin, ratingEnd);
             filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr" +
-                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&ratings={ratingBegin}-{ratingEnd}");
+                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&ratings={ratingBegin}-{ratingEnd}&query=query");
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterToStringWithYearsReversed()
+        [Fact]
+        public void Test_TraktCalendarFilter_ToStringWithYearsReversed()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
 
             filter.ToString().Should().NotBeNull().And.BeEmpty();
+
+            filter.WithQuery("query");
+            filter.ToString().Should().Be("query=query");
 
             var startYear = 2010;
             var endYear = 2016;
             var years = $"{startYear}-{endYear}";
 
             filter.WithYears(endYear, startYear);
-            filter.ToString().Should().Be($"years={years}");
+            filter.ToString().Should().Be($"years={years}&query=query");
 
             filter.WithGenres("action", "drama", "fantasy");
-            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy");
+            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&query=query");
 
             filter.WithLanguages("de", "en", "es");
-            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es");
+            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&query=query");
 
             filter.WithCountries("gb", "us", "fr");
-            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr");
+            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr&query=query");
 
             var runtimeBegin = 50;
             var runtimeEnd = 100;
 
             filter.WithRuntimes(runtimeBegin, runtimeEnd);
             filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr" +
-                                          $"&runtimes={runtimeBegin}-{runtimeEnd}");
+                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&query=query");
 
             var ratingBegin = 70;
             var ratingEnd = 90;
 
             filter.WithRatings(ratingBegin, ratingEnd);
             filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr" +
-                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&ratings={ratingBegin}-{ratingEnd}");
+                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&ratings={ratingBegin}-{ratingEnd}&query=query");
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterToString()
+        [Fact]
+        public void Test_TraktCalendarFilter_ToString()
         {
-            var filter = new TraktSearchFilter();
+            var filter = new TraktCalendarFilter();
 
             filter.ToString().Should().NotBeNull().And.BeEmpty();
+
+            filter.WithQuery("query");
+            filter.ToString().Should().Be("query=query");
 
             var startYear = 2010;
             var endYear = 2016;
             var years = $"{startYear}-{endYear}";
 
             filter.WithYears(startYear, endYear);
-            filter.ToString().Should().Be($"years={years}");
+            filter.ToString().Should().Be($"years={years}&query=query");
 
             filter.WithGenres("action", "drama", "fantasy");
-            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy");
+            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&query=query");
 
             filter.WithLanguages("de", "en", "es");
-            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es");
+            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&query=query");
 
             filter.WithCountries("gb", "us", "fr");
-            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr");
+            filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr&query=query");
 
             var runtimeBegin = 50;
             var runtimeEnd = 100;
 
             filter.WithRuntimes(runtimeBegin, runtimeEnd);
             filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr" +
-                                          $"&runtimes={runtimeBegin}-{runtimeEnd}");
+                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&query=query");
 
             var ratingBegin = 70;
             var ratingEnd = 90;
 
             filter.WithRatings(ratingBegin, ratingEnd);
             filter.ToString().Should().Be($"years={years}&genres=action,drama,fantasy&languages=de,en,es&countries=gb,us,fr" +
-                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&ratings={ratingBegin}-{ratingEnd}");
+                                          $"&runtimes={runtimeBegin}-{runtimeEnd}&ratings={ratingBegin}-{ratingEnd}&query=query");
         }
     }
 }

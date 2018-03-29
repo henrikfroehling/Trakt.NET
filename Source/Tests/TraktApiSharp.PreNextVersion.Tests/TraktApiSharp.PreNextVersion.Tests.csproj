@@ -112,8 +112,6 @@
     <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostBuilderTests.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostBuilderTests.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostBuilderTests.cs" />
-    <Compile Include="Requests\Parameters\TraktCalendarFilterTests.cs" />
-    <Compile Include="Requests\Parameters\TraktMovieFilterTests.cs" />
     <Compile Include="Exceptions\TraktAuthenticationDeviceExceptionTests.cs" />
     <Compile Include="Exceptions\TraktAuthenticationExceptionTests.cs" />
     <Compile Include="Exceptions\TraktAuthenticationOAuthExceptonTests.cs" />
@@ -158,8 +156,6 @@
     <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostTests.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostTests.cs" />
     <Compile Include="Objects\Post\Users\TraktUserCustomListPostTests.cs" />
-    <Compile Include="Requests\Parameters\TraktSearchFilterTests.cs" />
-    <Compile Include="Requests\Parameters\TraktShowFilterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TraktConfigurationTests.cs" />
     <Compile Include="Utils\TestUtility.cs" />

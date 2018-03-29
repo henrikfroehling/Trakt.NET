@@ -1,16 +1,17 @@
 ﻿namespace TraktApiSharp.Tests.Requests.Parameters
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Utils;
+    using Xunit;
 
-    [TestClass]
-    public class TraktMovieFilterTests
+    [Category("Requests.Parameters")]
+    public class TraktMovieFilter_Tests
     {
-        [TestMethod]
-        public void TestTraktMovieFilterDefaultConstructor()
+        [Fact]
+        public void Test_TraktMovieFilter_DefaultConstructor()
         {
             var filter = new TraktMovieFilter();
 
@@ -26,8 +27,8 @@
             filter.ToString().Should().NotBeNull().And.BeEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterConstructor()
+        [Fact]
+        public void Test_TraktMovieFilter_Constructor()
         {
             var filter = new TraktMovieFilter("query", 2010, 2016, new string[] { "action", "drama" },
                                               new string[] { "de", "en" },
@@ -54,8 +55,8 @@
             filter.Certifications.Should().NotBeNull().And.HaveCount(2);
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterAddCertifications()
+        [Fact]
+        public void Test_TraktMovieFilter_AddCertifications()
         {
             var filter = new TraktMovieFilter();
 
@@ -78,8 +79,8 @@
             filter.Certifications.Should().NotBeNull().And.HaveCount(7);
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterWithCertifications()
+        [Fact]
+        public void Test_TraktMovieFilter_WithCertifications()
         {
             var filter = new TraktMovieFilter();
 
@@ -108,8 +109,8 @@
             filter.Certifications.Should().NotBeNull().And.HaveCount(1);
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterHasValues()
+        [Fact]
+        public void Test_TraktMovieFilter_HasValues()
         {
             var filter = new TraktMovieFilter();
 
@@ -183,8 +184,8 @@
             filter.HasValues.Should().BeFalse();
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterClearQuery()
+        [Fact]
+        public void Test_TraktMovieFilter_ClearQuery()
         {
             var filter = new TraktMovieFilter();
 
@@ -197,8 +198,8 @@
             filter.Query.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterClearStartYear()
+        [Fact]
+        public void Test_TraktMovieFilter_ClearStartYear()
         {
             var filter = new TraktMovieFilter();
 
@@ -211,8 +212,8 @@
             filter.StartYear.Should().NotHaveValue();
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterClearEndYear()
+        [Fact]
+        public void Test_TraktMovieFilter_ClearEndYear()
         {
             var filter = new TraktMovieFilter();
 
@@ -225,8 +226,8 @@
             filter.EndYear.Should().NotHaveValue();
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterClearYears()
+        [Fact]
+        public void Test_TraktMovieFilter_ClearYears()
         {
             var filter = new TraktMovieFilter();
 
@@ -242,8 +243,8 @@
             filter.EndYear.Should().NotHaveValue();
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterClearGenres()
+        [Fact]
+        public void Test_TraktMovieFilter_ClearGenres()
         {
             var filter = new TraktMovieFilter();
 
@@ -256,8 +257,8 @@
             filter.Genres.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterClearLanguages()
+        [Fact]
+        public void Test_TraktMovieFilter_ClearLanguages()
         {
             var filter = new TraktMovieFilter();
 
@@ -270,8 +271,8 @@
             filter.Languages.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterClearCountries()
+        [Fact]
+        public void Test_TraktMovieFilter_ClearCountries()
         {
             var filter = new TraktMovieFilter();
 
@@ -284,8 +285,8 @@
             filter.Countries.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterClearRuntimes()
+        [Fact]
+        public void Test_TraktMovieFilter_ClearRuntimes()
         {
             var filter = new TraktMovieFilter();
 
@@ -300,8 +301,8 @@
             filter.Runtimes.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterClearRatings()
+        [Fact]
+        public void Test_TraktMovieFilter_ClearRatings()
         {
             var filter = new TraktMovieFilter();
 
@@ -316,8 +317,8 @@
             filter.Ratings.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterClearCertifications()
+        [Fact]
+        public void Test_TraktMovieFilter_ClearCertifications()
         {
             var filter = new TraktMovieFilter();
 
@@ -330,8 +331,8 @@
             filter.Certifications.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterClear()
+        [Fact]
+        public void Test_TraktMovieFilter_Clear()
         {
             var filter = new TraktMovieFilter();
 
@@ -380,8 +381,8 @@
             filter.ToString().Should().NotBeNull().And.BeEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterGetParametersWithStartYear()
+        [Fact]
+        public void Test_TraktMovieFilter_GetParametersWithStartYear()
         {
             var filter = new TraktMovieFilter();
 
@@ -450,8 +451,8 @@
                                                                                        { "certifications", "cert1,cert2,cert3" } });
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterGetParametersWithEndYear()
+        [Fact]
+        public void Test_TraktMovieFilter_GetParametersWithEndYear()
         {
             var filter = new TraktMovieFilter();
 
@@ -520,8 +521,8 @@
                                                                                        { "certifications", "cert1,cert2,cert3" } });
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterGetParametersWithYearsReversed()
+        [Fact]
+        public void Test_TraktMovieFilter_GetParametersWithYearsReversed()
         {
             var filter = new TraktMovieFilter();
 
@@ -591,8 +592,8 @@
                                                                                        { "certifications", "cert1,cert2,cert3" } });
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterGetParameters()
+        [Fact]
+        public void Test_TraktMovieFilter_GetParameters()
         {
             var filter = new TraktMovieFilter();
 
@@ -662,8 +663,8 @@
                                                                                        { "certifications", "cert1,cert2,cert3" } });
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterToStringWithStartYear()
+        [Fact]
+        public void Test_TraktMovieFilter_ToStringWithStartYear()
         {
             var filter = new TraktMovieFilter();
 
@@ -707,8 +708,8 @@
                                           $"&certifications=cert1,cert2,cert3");
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterToStringWithEndYear()
+        [Fact]
+        public void Test_TraktMovieFilter_ToStringWithEndYear()
         {
             var filter = new TraktMovieFilter();
 
@@ -752,8 +753,8 @@
                                           $"&certifications=cert1,cert2,cert3");
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterToStringWithYearsReversed()
+        [Fact]
+        public void Test_TraktMovieFilter_ToStringWithYearsReversed()
         {
             var filter = new TraktMovieFilter();
 
@@ -798,8 +799,8 @@
                                           $"&certifications=cert1,cert2,cert3");
         }
 
-        [TestMethod]
-        public void TestTraktMovieFilterToString()
+        [Fact]
+        public void Test_TraktMovieFilter_ToString()
         {
             var filter = new TraktMovieFilter();
 

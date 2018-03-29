@@ -1,18 +1,19 @@
 ﻿namespace TraktApiSharp.Tests.Requests.Parameters
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
     using System.Collections.Generic;
+    using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Utils;
+    using Xunit;
 
-    [TestClass]
-    public class TraktShowFilterTests
+    [Category("Requests.Parameters")]
+    public class TraktShowFilter_Tests
     {
-        [TestMethod]
-        public void TestTraktShowFilterDefaultConstructor()
+        [Fact]
+        public void Test_TraktShowFilter_DefaultConstructor()
         {
             var filter = new TraktShowFilter();
 
@@ -30,8 +31,8 @@
             filter.ToString().Should().NotBeNull().And.BeEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterConstructor()
+        [Fact]
+        public void Test_TraktShowFilter_Constructor()
         {
             var filter = new TraktShowFilter("query", 2010, 2016, new string[] { "action", "drama" },
                                              new string[] { "de", "en" },
@@ -62,8 +63,8 @@
             filter.States.Should().NotBeNull().And.HaveCount(2);
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterAddCertifications()
+        [Fact]
+        public void Test_TraktShowFilter_AddCertifications()
         {
             var filter = new TraktShowFilter();
 
@@ -86,8 +87,8 @@
             filter.Certifications.Should().NotBeNull().And.HaveCount(7);
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterWithCertifications()
+        [Fact]
+        public void Test_TraktShowFilter_WithCertifications()
         {
             var filter = new TraktShowFilter();
 
@@ -116,8 +117,8 @@
             filter.Certifications.Should().NotBeNull().And.HaveCount(1);
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterAddNetworks()
+        [Fact]
+        public void Test_TraktShowFilter_AddNetworks()
         {
             var filter = new TraktShowFilter();
 
@@ -140,8 +141,8 @@
             filter.Networks.Should().NotBeNull().And.HaveCount(7);
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterWithNetworks()
+        [Fact]
+        public void Test_TraktShowFilter_WithNetworks()
         {
             var filter = new TraktShowFilter();
 
@@ -170,8 +171,8 @@
             filter.Networks.Should().NotBeNull().And.HaveCount(1);
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterAddStates()
+        [Fact]
+        public void Test_TraktShowFilter_AddStates()
         {
             var filter = new TraktShowFilter();
 
@@ -205,8 +206,8 @@
             filter.States.Should().NotBeNull().And.HaveCount(7);
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterWithStates()
+        [Fact]
+        public void Test_TraktShowFilter_WithStates()
         {
             var filter = new TraktShowFilter();
 
@@ -246,8 +247,8 @@
             filter.States.Should().NotBeNull().And.HaveCount(1);
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterHasValues()
+        [Fact]
+        public void Test_TraktShowFilter_HasValues()
         {
             var filter = new TraktShowFilter();
 
@@ -338,8 +339,8 @@
             filter.HasValues.Should().BeFalse();
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterClearQuery()
+        [Fact]
+        public void Test_TraktShowFilter_ClearQuery()
         {
             var filter = new TraktShowFilter();
 
@@ -352,8 +353,8 @@
             filter.Query.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterClearStartYear()
+        [Fact]
+        public void Test_TraktShowFilter_ClearStartYear()
         {
             var filter = new TraktShowFilter();
 
@@ -366,8 +367,8 @@
             filter.StartYear.Should().NotHaveValue();
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterClearEndYear()
+        [Fact]
+        public void Test_TraktShowFilter_ClearEndYear()
         {
             var filter = new TraktShowFilter();
 
@@ -380,8 +381,8 @@
             filter.EndYear.Should().NotHaveValue();
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterClearYears()
+        [Fact]
+        public void Test_TraktShowFilter_ClearYears()
         {
             var filter = new TraktShowFilter();
 
@@ -397,8 +398,8 @@
             filter.EndYear.Should().NotHaveValue();
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterClearGenres()
+        [Fact]
+        public void Test_TraktShowFilter_ClearGenres()
         {
             var filter = new TraktShowFilter();
 
@@ -411,8 +412,8 @@
             filter.Genres.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterClearLanguages()
+        [Fact]
+        public void Test_TraktShowFilter_ClearLanguages()
         {
             var filter = new TraktShowFilter();
 
@@ -425,8 +426,8 @@
             filter.Languages.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterClearCuntries()
+        [Fact]
+        public void Test_TraktShowFilter_ClearCuntries()
         {
             var filter = new TraktShowFilter();
 
@@ -439,8 +440,8 @@
             filter.Countries.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterClearRuntimes()
+        [Fact]
+        public void Test_TraktShowFilter_ClearRuntimes()
         {
             var filter = new TraktShowFilter();
 
@@ -455,8 +456,8 @@
             filter.Runtimes.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterClearRatings()
+        [Fact]
+        public void Test_TraktShowFilter_ClearRatings()
         {
             var filter = new TraktShowFilter();
 
@@ -471,8 +472,8 @@
             filter.Ratings.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterClearCertifications()
+        [Fact]
+        public void Test_TraktShowFilter_ClearCertifications()
         {
             var filter = new TraktShowFilter();
 
@@ -485,8 +486,8 @@
             filter.Certifications.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterClearNetworks()
+        [Fact]
+        public void Test_TraktShowFilter_ClearNetworks()
         {
             var filter = new TraktShowFilter();
 
@@ -499,8 +500,8 @@
             filter.Networks.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterClearStates()
+        [Fact]
+        public void Test_TraktShowFilter_ClearStates()
         {
             var filter = new TraktShowFilter();
 
@@ -516,8 +517,8 @@
             filter.States.Should().BeNull();
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterClear()
+        [Fact]
+        public void Test_TraktShowFilter_Clear()
         {
             var filter = new TraktShowFilter();
 
@@ -577,8 +578,8 @@
             filter.ToString().Should().NotBeNull().And.BeEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterGetParametersWithStartYear()
+        [Fact]
+        public void Test_TraktShowFilter_GetParametersWithStartYear()
         {
             var filter = new TraktShowFilter();
 
@@ -673,8 +674,8 @@
                                                                                        { "status", $"{state1.UriName},{state2.UriName}" } });
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterGetParametersWithEndYear()
+        [Fact]
+        public void Test_TraktShowFilter_GetParametersWithEndYear()
         {
             var filter = new TraktShowFilter();
 
@@ -769,8 +770,8 @@
                                                                                        { "status", $"{state1.UriName},{state2.UriName}" } });
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterGetParametersWithYearsReversed()
+        [Fact]
+        public void Test_TraktShowFilter_GetParametersWithYearsReversed()
         {
             var filter = new TraktShowFilter();
 
@@ -866,8 +867,8 @@
                                                                                        { "status", $"{state1.UriName},{state2.UriName}" } });
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterGetParameters()
+        [Fact]
+        public void Test_TraktShowFilter_GetParameters()
         {
             var filter = new TraktShowFilter();
 
@@ -963,8 +964,8 @@
                                                                                        { "status", $"{state1.UriName},{state2.UriName}" } });
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterToStringWithStartYear()
+        [Fact]
+        public void Test_TraktShowFilter_ToStringWithStartYear()
         {
             var filter = new TraktShowFilter();
 
@@ -1024,8 +1025,8 @@
                                           $"&status={state1.UriName},{state2.UriName}");
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterToStringWithEndYear()
+        [Fact]
+        public void Test_TraktShowFilter_ToStringWithEndYear()
         {
             var filter = new TraktShowFilter();
 
@@ -1085,8 +1086,8 @@
                                           $"&status={state1.UriName},{state2.UriName}");
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterToStringWithYearsReversed()
+        [Fact]
+        public void Test_TraktShowFilter_ToStringWithYearsReversed()
         {
             var filter = new TraktShowFilter();
 
@@ -1147,8 +1148,8 @@
                                           $"&status={state1.UriName},{state2.UriName}");
         }
 
-        [TestMethod]
-        public void TestTraktShowFilterToString()
+        [Fact]
+        public void Test_TraktShowFilter_ToString()
         {
             var filter = new TraktShowFilter();
 

@@ -1130,7 +1130,11 @@
     <Compile Include="Requests\Movies\MovieTranslationsRequest_Tests.cs" />
     <Compile Include="Requests\Movies\MovieWatchingUsersRequest_Tests.cs" />
     <Compile Include="Requests\Networks\NetworksRequest_Tests.cs" />
+    <Compile Include="Requests\Parameters\TraktCalendarFilter_Tests.cs" />
     <Compile Include="Requests\Parameters\TraktExtendedInfo_Tests.cs" />
+    <Compile Include="Requests\Parameters\TraktMovieFilter_Tests.cs" />
+    <Compile Include="Requests\Parameters\TraktSearchFilter_Tests.cs" />
+    <Compile Include="Requests\Parameters\TraktShowFilter_Tests.cs" />
     <Compile Include="Requests\People\APersonRequest%271_Tests.cs" />
     <Compile Include="Requests\People\PersonMovieCreditsRequest_Tests.cs" />
     <Compile Include="Requests\People\PersonShowCreditsRequest_Tests.cs" />
