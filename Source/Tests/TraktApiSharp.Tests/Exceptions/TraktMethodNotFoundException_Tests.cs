@@ -1,33 +1,35 @@
 ﻿namespace TraktApiSharp.Tests.Exceptions
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Net;
+    using Traits;
     using TraktApiSharp.Exceptions;
+    using Xunit;
 
-    [TestClass]
-    public class TraktMethodNotFoundExceptionTests
+    [Category("Exceptions")]
+    public class TraktMethodNotFoundException_Tests
     {
-        [TestMethod]
-        public void TestTraktMethodNotFoundExceptionDefaultConstructor()
+        [Fact]
+        public void Test_TraktMethodNotFoundException_DefaultConstructor()
         {
             var exception = new TraktMethodNotFoundException();
 
             exception.Message.Should().Be("Method Not Found - method doesn't exist");
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.MethodNotAllowed);
+            exception.StatusCode.Should().Be(HttpStatusCode.MethodNotAllowed);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktMethodNotFoundExceptionConstructor()
+        [Fact]
+        public void Test_TraktMethodNotFoundException_Constructor()
         {
-            var message = "exception message";
+            const string message = "exception message";
 
             var exception = new TraktMethodNotFoundException(message);
 
             exception.Message.Should().Be(message);
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.MethodNotAllowed);
+            exception.StatusCode.Should().Be(HttpStatusCode.MethodNotAllowed);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

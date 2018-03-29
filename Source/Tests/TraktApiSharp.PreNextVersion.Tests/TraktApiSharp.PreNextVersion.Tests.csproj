@@ -91,7 +91,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Exceptions\TraktCheckinExceptionTests.cs" />
     <Compile Include="Modules\TraktCalendarModuleTests.cs" />
     <Compile Include="Modules\TraktCheckinsModuleTests.cs" />
     <Compile Include="Modules\TraktCommentsModuleTests.cs" />
@@ -112,32 +111,6 @@
     <Compile Include="Objects\Post\Syncs\Ratings\TraktSyncRatingsPostBuilderTests.cs" />
     <Compile Include="Objects\Post\Syncs\Watchlist\TraktSyncWatchlistPostBuilderTests.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostBuilderTests.cs" />
-    <Compile Include="Exceptions\TraktAuthenticationDeviceExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktAuthenticationExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktAuthenticationOAuthExceptonTests.cs" />
-    <Compile Include="Exceptions\TraktAuthorizationExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktBadGatewayExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktBadRequestExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktCommentNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktDeniedExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktEpisodeNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktExpiredExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktForbiddenExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktListNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktMethodNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktMovieNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktObjectNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktPersonNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktPreconditionFailedExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktConflictExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktRateLimitExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktSeasonNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktServerExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktServerUnavailableExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktShowNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\TraktValidationExceptionTests.cs" />
     <Compile Include="Objects\Post\Checkins\TraktEpisodeCheckinPostTests.cs" />
     <Compile Include="Objects\Post\Checkins\TraktMovieCheckinPostTests.cs" />
     <Compile Include="Objects\Post\Comments\TraktCommentReplyPostTests.cs" />

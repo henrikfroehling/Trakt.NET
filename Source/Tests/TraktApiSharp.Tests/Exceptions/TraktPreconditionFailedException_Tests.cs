@@ -1,33 +1,35 @@
 ﻿namespace TraktApiSharp.Tests.Exceptions
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Net;
+    using Traits;
     using TraktApiSharp.Exceptions;
+    using Xunit;
 
-    [TestClass]
-    public class TraktPreconditionFailedExceptionTests
+    [Category("Exceptions")]
+    public class TraktPreconditionFailedException_Tests
     {
-        [TestMethod]
-        public void TestTraktPreconditionFailedExceptionDefaultConstructor()
+        [Fact]
+        public void Test_TraktPreconditionFailedException_DefaultConstructor()
         {
             var exception = new TraktPreconditionFailedException();
 
             exception.Message.Should().Be("Precondition Failed - use application/json content type");
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.PreconditionFailed);
+            exception.StatusCode.Should().Be(HttpStatusCode.PreconditionFailed);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktPreconditionFailedExceptionConstructor()
+        [Fact]
+        public void Test_TraktPreconditionFailedException_Constructor()
         {
-            var message = "exception message";
+            const string message = "exception message";
 
             var exception = new TraktPreconditionFailedException(message);
 
             exception.Message.Should().Be(message);
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.PreconditionFailed);
+            exception.StatusCode.Should().Be(HttpStatusCode.PreconditionFailed);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

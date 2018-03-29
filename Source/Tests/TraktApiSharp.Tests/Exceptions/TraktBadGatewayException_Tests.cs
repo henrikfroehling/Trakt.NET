@@ -1,33 +1,35 @@
 ﻿namespace TraktApiSharp.Tests.Exceptions
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Net;
+    using Traits;
     using TraktApiSharp.Exceptions;
+    using Xunit;
 
-    [TestClass]
-    public class TraktBadGatewayExceptionTests
+    [Category("Exceptions")]
+    public class TraktBadGatewayException_Tests
     {
-        [TestMethod]
-        public void TestTraktBadGatewayExceptionDefaultConstructor()
+        [Fact]
+        public void Test_TraktBadGatewayException_DefaultConstructor()
         {
             var exception = new TraktBadGatewayException();
 
             exception.Message.Should().Be("Bad Gateway");
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.BadGateway);
+            exception.StatusCode.Should().Be(HttpStatusCode.BadGateway);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktBadGatewayExceptionConstructor()
+        [Fact]
+        public void Test_TraktBadGatewayException_Constructor()
         {
-            var message = "exception message";
+            const string message = "exception message";
 
             var exception = new TraktBadGatewayException(message);
 
             exception.Message.Should().Be(message);
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.BadGateway);
+            exception.StatusCode.Should().Be(HttpStatusCode.BadGateway);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

@@ -1,21 +1,23 @@
 ﻿namespace TraktApiSharp.Tests.Exceptions
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Net;
+    using Traits;
     using TraktApiSharp.Exceptions;
+    using Xunit;
 
-    [TestClass]
-    public class TraktCheckinExceptionTests
+    [Category("Exceptions")]
+    public class TraktCheckinException_Tests
     {
-        [TestMethod]
-        public void TestTraktExpiredEExceptionDefaultConstructor()
+        [Fact]
+        public void Test_TraktExpiredEException_DefaultConstructor()
         {
-            var message = "exception message";
+            const string message = "exception message";
 
             var exception = new TraktCheckinException(message);
 
             exception.Message.Should().Be(message);
-            exception.StatusCode.Should().Be(default(System.Net.HttpStatusCode));
+            exception.StatusCode.Should().Be(default(HttpStatusCode));
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

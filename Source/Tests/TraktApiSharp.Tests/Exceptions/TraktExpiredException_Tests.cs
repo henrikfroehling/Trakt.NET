@@ -1,33 +1,35 @@
 ﻿namespace TraktApiSharp.Tests.Exceptions
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Net;
+    using Traits;
     using TraktApiSharp.Exceptions;
+    using Xunit;
 
-    [TestClass]
-    public class TraktExpiredExceptionTests
+    [Category("Exceptions")]
+    public class TraktExpiredException_Tests
     {
-        [TestMethod]
-        public void TestTraktExpiredEExceptionDefaultConstructor()
+        [Fact]
+        public void Test_TraktExpiredException_DefaultConstructor()
         {
             var exception = new TraktExpiredException();
 
             exception.Message.Should().Be("Expired - the tokens have expired, restart the process");
-            exception.StatusCode.Should().Be(default(System.Net.HttpStatusCode));
+            exception.StatusCode.Should().Be(default(HttpStatusCode));
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktExpiredEExceptionConstructor()
+        [Fact]
+        public void Test_TraktExpiredException_Constructor()
         {
-            var message = "exception message";
+            const string message = "exception message";
 
             var exception = new TraktExpiredException(message);
 
             exception.Message.Should().Be(message);
-            exception.StatusCode.Should().Be(default(System.Net.HttpStatusCode));
+            exception.StatusCode.Should().Be(default(HttpStatusCode));
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

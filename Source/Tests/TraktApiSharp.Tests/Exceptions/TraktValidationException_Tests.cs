@@ -1,33 +1,35 @@
 ﻿namespace TraktApiSharp.Tests.Exceptions
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Net;
+    using Traits;
     using TraktApiSharp.Exceptions;
+    using Xunit;
 
-    [TestClass]
-    public class TraktValidationExceptionTests
+    [Category("Exceptions")]
+    public class TraktValidationException_Tests
     {
-        [TestMethod]
-        public void TestTraktValidationExceptionDefaultConstructor()
+        [Fact]
+        public void Test_TraktValidationException_DefaultConstructor()
         {
             var exception = new TraktValidationException();
 
             exception.Message.Should().Be("Unprocessible Entity - validation errors");
-            exception.StatusCode.Should().Be(default(System.Net.HttpStatusCode));
+            exception.StatusCode.Should().Be(default(HttpStatusCode));
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktValidationExceptionConstructor()
+        [Fact]
+        public void Test_TraktValidationException_Constructor()
         {
-            var message = "exception message";
+            const string message = "exception message";
 
             var exception = new TraktValidationException(message);
 
             exception.Message.Should().Be(message);
-            exception.StatusCode.Should().Be(default(System.Net.HttpStatusCode));
+            exception.StatusCode.Should().Be(default(HttpStatusCode));
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

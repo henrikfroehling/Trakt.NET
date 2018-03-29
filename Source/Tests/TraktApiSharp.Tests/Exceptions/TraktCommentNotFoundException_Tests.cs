@@ -1,38 +1,40 @@
 ﻿namespace TraktApiSharp.Tests.Exceptions
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Net;
+    using Traits;
     using TraktApiSharp.Exceptions;
+    using Xunit;
 
-    [TestClass]
-    public class TraktCommentNotFoundExceptionTests
+    [Category("Exceptions")]
+    public class TraktCommentNotFoundException_Tests
     {
-        [TestMethod]
-        public void TestTraktCommentNotFoundExceptionDefaultConstructor()
+        [Fact]
+        public void Test_TraktCommentNotFoundException_DefaultConstructor()
         {
-            var commentId = "person id";
+            const string commentId = "person id";
 
             var exception = new TraktCommentNotFoundException(commentId);
 
             exception.Message.Should().Be("Comment Not Found - method exists, but no record found");
             exception.ObjectId.Should().Be(commentId);
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound);
+            exception.StatusCode.Should().Be(HttpStatusCode.NotFound);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktCommentNotFoundExceptionConstructor()
+        [Fact]
+        public void Test_TraktCommentNotFoundException_Constructor()
         {
-            var message = "exception message";
-            var commentId = "person id";
+            const string message = "exception message";
+            const string commentId = "person id";
 
             var exception = new TraktCommentNotFoundException(message, commentId);
 
             exception.Message.Should().Be(message);
             exception.ObjectId.Should().Be(commentId);
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound);
+            exception.StatusCode.Should().Be(HttpStatusCode.NotFound);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

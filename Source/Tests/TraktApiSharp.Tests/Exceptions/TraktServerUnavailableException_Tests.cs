@@ -1,33 +1,35 @@
 ﻿namespace TraktApiSharp.Tests.Exceptions
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Net;
+    using Traits;
     using TraktApiSharp.Exceptions;
+    using Xunit;
 
-    [TestClass]
-    public class TraktServerUnavailableExceptionTests
+    [Category("Exceptions")]
+    public class TraktServerUnavailableException_Tests
     {
-        [TestMethod]
-        public void TestTraktServerUnavailableExceptionDefaultConstructor()
+        [Fact]
+        public void Test_TraktServerUnavailableException_DefaultConstructor()
         {
             var exception = new TraktServerUnavailableException();
 
             exception.Message.Should().Be("Service Unavailable - server overloaded (try again in 30s)");
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.ServiceUnavailable);
+            exception.StatusCode.Should().Be(HttpStatusCode.ServiceUnavailable);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktServerUnavailableExceptionConstructor()
+        [Fact]
+        public void Test_TraktServerUnavailableException_Constructor()
         {
-            var message = "exception message";
+            const string message = "exception message";
 
             var exception = new TraktServerUnavailableException(message);
 
             exception.Message.Should().Be(message);
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.ServiceUnavailable);
+            exception.StatusCode.Should().Be(HttpStatusCode.ServiceUnavailable);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

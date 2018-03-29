@@ -1,33 +1,35 @@
 ﻿namespace TraktApiSharp.Tests.Exceptions
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Net;
+    using Traits;
     using TraktApiSharp.Exceptions;
+    using Xunit;
 
-    [TestClass]
-    public class TraktServerExceptionTests
+    [Category("Exceptions")]
+    public class TraktServerException_Tests
     {
-        [TestMethod]
-        public void TestTraktServerExceptionDefaultConstructor()
+        [Fact]
+        public void Test_TraktServerException_DefaultConstructor()
         {
             var exception = new TraktServerException();
 
             exception.Message.Should().Be("Server Error");
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.InternalServerError);
+            exception.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktServerExceptionConstructor()
+        [Fact]
+        public void Test_TraktServerException_Constructor()
         {
-            var message = "exception message";
+            const string message = "exception message";
 
             var exception = new TraktServerException(message);
 
             exception.Message.Should().Be(message);
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.InternalServerError);
+            exception.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

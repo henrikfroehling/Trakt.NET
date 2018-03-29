@@ -1,19 +1,20 @@
 ﻿namespace TraktApiSharp.Tests.Exceptions
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Net;
+    using Traits;
     using TraktApiSharp.Exceptions;
+    using Xunit;
 
-    [TestClass]
-    public class TraktAuthenticationExceptionTests
+    [Category("Exceptions")]
+    public class TraktAuthenticationDeviceException_Tests
     {
-        [TestMethod]
-        public void TestTraktAuthenticationExceptionDefaultConstructor()
+        [Fact]
+        public void Test_TraktAuthenticationDeviceException_DefaultConstructor()
         {
-            var message = "exception message";
+            const string message = "exception message";
 
-            var exception = new TraktAuthenticationException(message);
+            var exception = new TraktAuthenticationDeviceException(message);
 
             exception.Message.Should().Be(message);
             exception.StatusCode.Should().Be(default(HttpStatusCode));

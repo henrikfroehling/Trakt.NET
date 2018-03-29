@@ -1,33 +1,35 @@
 ﻿namespace TraktApiSharp.Tests.Exceptions
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Net;
+    using Traits;
     using TraktApiSharp.Exceptions;
+    using Xunit;
 
-    [TestClass]
-    public class TraktForbiddenExceptionTests
+    [Category("Exceptions")]
+    public class TraktForbiddenException_Tests
     {
-        [TestMethod]
-        public void TestTraktForbiddenExceptionDefaultConstructor()
+        [Fact]
+        public void Test_TraktForbiddenException_DefaultConstructor()
         {
             var exception = new TraktForbiddenException();
 
             exception.Message.Should().Be("Forbidden - invalid API key or unapproved app");
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.Forbidden);
+            exception.StatusCode.Should().Be(HttpStatusCode.Forbidden);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktForbiddenExceptionConstructor()
+        [Fact]
+        public void Test_TraktForbiddenException_Constructor()
         {
-            var message = "exception message";
+            const string message = "exception message";
 
             var exception = new TraktForbiddenException(message);
 
             exception.Message.Should().Be(message);
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.Forbidden);
+            exception.StatusCode.Should().Be(HttpStatusCode.Forbidden);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

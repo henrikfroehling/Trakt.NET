@@ -1,42 +1,44 @@
 ﻿namespace TraktApiSharp.Tests.Exceptions
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Net;
+    using Traits;
     using TraktApiSharp.Exceptions;
+    using Xunit;
 
-    [TestClass]
-    public class TraktSeasonNotFoundExceptionTests
+    [Category("Exceptions")]
+    public class TraktSeasonNotFoundException_Tests
     {
-        [TestMethod]
-        public void TestTraktSeasonNotFoundExceptionDefaultConstructor()
+        [Fact]
+        public void Test_TraktSeasonNotFoundException_DefaultConstructor()
         {
-            var showId = "show id";
-            var seasonNr = 1U;
+            const string showId = "show id";
+            const uint seasonNr = 1U;
 
             var exception = new TraktSeasonNotFoundException(showId, seasonNr);
 
             exception.Message.Should().Be("Season Not Found - method exists, but no record found");
             exception.ObjectId.Should().Be(showId);
             exception.Season.Should().Be(seasonNr);
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound);
+            exception.StatusCode.Should().Be(HttpStatusCode.NotFound);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktSeasonNotFoundExceptionConstructor()
+        [Fact]
+        public void Test_TraktSeasonNotFoundException_Constructor()
         {
-            var message = "exception message";
-            var showId = "show id";
-            var seasonNr = 1U;
+            const string message = "exception message";
+            const string showId = "show id";
+            const uint seasonNr = 1U;
 
             var exception = new TraktSeasonNotFoundException(message, showId, seasonNr);
 
             exception.Message.Should().Be(message);
             exception.ObjectId.Should().Be(showId);
             exception.Season.Should().Be(seasonNr);
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound);
+            exception.StatusCode.Should().Be(HttpStatusCode.NotFound);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

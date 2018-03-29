@@ -1,33 +1,35 @@
 ﻿namespace TraktApiSharp.Tests.Exceptions
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Net;
+    using Traits;
     using TraktApiSharp.Exceptions;
+    using Xunit;
 
-    [TestClass]
-    public class TraktAuthorizationExceptionTests
+    [Category("Exceptions")]
+    public class TraktAuthorizationException_Tests
     {
-        [TestMethod]
-        public void TestTraktAuthorizationExceptionDefaultConstructor()
+        [Fact]
+        public void Test_TraktAuthorizationException_DefaultConstructor()
         {
             var exception = new TraktAuthorizationException();
 
             exception.Message.Should().Be("Unauthorized - OAuth must be provided");
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.Unauthorized);
+            exception.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktAuthorizationExceptionConstructor()
+        [Fact]
+        public void Test_TraktAuthorizationException_Constructor()
         {
-            var message = "exception message";
+            const string message = "exception message";
 
             var exception = new TraktAuthorizationException(message);
 
             exception.Message.Should().Be(message);
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.Unauthorized);
+            exception.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

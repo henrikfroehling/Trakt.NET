@@ -1,33 +1,35 @@
 ﻿namespace TraktApiSharp.Tests.Exceptions
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Net;
+    using Traits;
     using TraktApiSharp.Exceptions;
+    using Xunit;
 
-    [TestClass]
-    public class TraktRateLimitExceptionTests
+    [Category("Exceptions")]
+    public class TraktRateLimitException_Tests
     {
-        [TestMethod]
-        public void TestTraktRateLimitExceptionDefaultConstructor()
+        [Fact]
+        public void Test_TraktRateLimitException_DefaultConstructor()
         {
             var exception = new TraktRateLimitException();
 
             exception.Message.Should().Be("Slow Down - your app is polling too quickly");
-            exception.StatusCode.Should().Be(default(System.Net.HttpStatusCode));
+            exception.StatusCode.Should().Be(default(HttpStatusCode));
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktRateLimitExceptionConstructor()
+        [Fact]
+        public void Test_TraktRateLimitException_Constructor()
         {
-            var message = "exception message";
+            const string message = "exception message";
 
             var exception = new TraktRateLimitException(message);
 
             exception.Message.Should().Be(message);
-            exception.StatusCode.Should().Be(default(System.Net.HttpStatusCode));
+            exception.StatusCode.Should().Be(default(HttpStatusCode));
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

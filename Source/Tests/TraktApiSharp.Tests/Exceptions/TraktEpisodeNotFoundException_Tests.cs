@@ -1,18 +1,20 @@
 ﻿namespace TraktApiSharp.Tests.Exceptions
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Net;
+    using Traits;
     using TraktApiSharp.Exceptions;
+    using Xunit;
 
-    [TestClass]
-    public class TraktEpisodeNotFoundExceptionTests
+    [Category("Exceptions")]
+    public class TraktEpisodeNotFoundException_Tests
     {
-        [TestMethod]
-        public void TestTraktEpisodeNotFoundExceptionDefaultConstructor()
+        [Fact]
+        public void Test_TraktEpisodeNotFoundException_DefaultConstructor()
         {
-            var showId = "show id";
-            var seasonNr = 1U;
-            var episodeNr = 2U;
+            const string showId = "show id";
+            const uint seasonNr = 1U;
+            const uint episodeNr = 2U;
 
             var exception = new TraktEpisodeNotFoundException(showId, seasonNr, episodeNr);
 
@@ -20,19 +22,19 @@
             exception.ObjectId.Should().Be(showId);
             exception.Season.Should().Be(seasonNr);
             exception.Episode.Should().Be(episodeNr);
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound);
+            exception.StatusCode.Should().Be(HttpStatusCode.NotFound);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
         }
 
-        [TestMethod]
-        public void TestTraktEpisodeNotFoundExceptionConstructor()
+        [Fact]
+        public void Test_TraktEpisodeNotFoundException_Constructor()
         {
-            var message = "exception message";
-            var showId = "show id";
-            var seasonNr = 1U;
-            var episodeNr = 2U;
+            const string message = "exception message";
+            const string showId = "show id";
+            const uint seasonNr = 1U;
+            const uint episodeNr = 2U;
 
             var exception = new TraktEpisodeNotFoundException(message, showId, seasonNr, episodeNr);
 
@@ -40,7 +42,7 @@
             exception.ObjectId.Should().Be(showId);
             exception.Season.Should().Be(seasonNr);
             exception.Episode.Should().Be(episodeNr);
-            exception.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound);
+            exception.StatusCode.Should().Be(HttpStatusCode.NotFound);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
