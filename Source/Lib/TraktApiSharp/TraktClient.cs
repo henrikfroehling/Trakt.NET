@@ -4,6 +4,7 @@
     using Core;
     using Extensions;
     using Modules;
+    using Requests.Handler;
 
     /// <summary>
     /// Provides access to all functionality of this library.
@@ -11,8 +12,9 @@
     /// </summary>
     public class TraktClient
     {
-        internal TraktClient()
+        internal TraktClient(IHttpClientProvider httpClientProvider = default)
         {
+            HttpClientProvider = httpClientProvider ?? new HttpClientProvider(this);
             Configuration = new TraktConfiguration();
             Authentication = new TraktAuthentication(this);
             OAuth = new TraktOAuth(this);
@@ -37,7 +39,8 @@
 
         /// <summary>Initializes a new instance of the <see cref="TraktClient" /> class.</summary>
         /// <param name="clientId">The Trakt Client Id. See <seealso cref="ClientId" />.</param>
-        public TraktClient(string clientId) : this()
+        /// <param name="httpClientProvider"></param>
+        public TraktClient(string clientId, IHttpClientProvider httpClientProvider = default) : this(httpClientProvider)
         {
             ClientId = clientId;
         }
@@ -45,10 +48,13 @@
         /// <summary>Initializes a new instance of the <see cref="TraktClient" /> class.</summary>
         /// <param name="clientId">The Trakt Client Id. See <seealso cref="ClientId" />.</param>
         /// <param name="clientSecret">The Trakt Client Secret. See <seealso cref="ClientSecret" />.</param>
-        public TraktClient(string clientId, string clientSecret) : this(clientId)
+        /// <param name="httpClientProvider"></param>
+        public TraktClient(string clientId, string clientSecret, IHttpClientProvider httpClientProvider = default) : this(clientId, httpClientProvider)
         {
             ClientSecret = clientSecret;
         }
+
+        internal IHttpClientProvider HttpClientProvider { get; }
 
         /// <summary>Gets or sets the Trakt Client Id. See also <seealso cref="ClientSecret" />.</summary>
         public string ClientId
