@@ -166,6 +166,9 @@
     <Compile Include="Modules\TraktCheckinsModule\TraktCheckinsModule_CheckinMovie_Tests.cs" />
     <Compile Include="Modules\TraktCheckinsModule\TraktCheckinsModule_DeleteAnyActiveCheckins_Tests.cs" />
     <Compile Include="Modules\TraktCheckinsModule\TraktCheckinsModule_Tests_Json_Data.cs" />
+    <Compile Include="Modules\TraktGenresModule\TraktGenresModule_GetMovieGenres_Tests.cs" />
+    <Compile Include="Modules\TraktGenresModule\TraktGenresModule_GetShowGenres_Tests.cs" />
+    <Compile Include="Modules\TraktGenresModule\TraktGenresModule_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktNetworksModule\TraktNetworksModule_GetNetworks_Tests.cs" />
     <Compile Include="Modules\TraktNetworksModule\TraktNetworksModule_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCastAndCrew_Tests.cs" />

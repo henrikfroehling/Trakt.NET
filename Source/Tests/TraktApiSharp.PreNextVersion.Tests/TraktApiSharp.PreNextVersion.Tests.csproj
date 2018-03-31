@@ -93,7 +93,6 @@
   <ItemGroup>
     <Compile Include="Modules\TraktCommentsModuleTests.cs" />
     <Compile Include="Modules\TraktEpisodesModuleTests.cs" />
-    <Compile Include="Modules\TraktGenresModuleTests.cs" />
     <Compile Include="Modules\TraktMoviesModuleTests.cs" />
     <Compile Include="Modules\TraktPeopleModuleTests.cs" />
     <Compile Include="Modules\TraktRecommendationsModuleTests.cs" />
@@ -149,8 +148,6 @@
     <None Include="TestData\Objects\Basic\CrewMember.json" />
     <None Include="TestData\Objects\Basic\Error.json" />
     <None Include="TestData\Objects\Basic\Genre.json" />
-    <None Include="TestData\Objects\Basic\Genres\Movies.json" />
-    <None Include="TestData\Objects\Basic\Genres\Shows.json" />
     <None Include="TestData\Objects\Basic\Ids.json" />
     <None Include="TestData\Objects\Basic\Image.json" />
     <None Include="TestData\Objects\Basic\ImageSet.json" />
