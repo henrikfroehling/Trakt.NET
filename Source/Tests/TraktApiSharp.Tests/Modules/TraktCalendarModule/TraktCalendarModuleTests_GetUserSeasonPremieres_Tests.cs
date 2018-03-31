@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktCalendarModuleTests
+﻿namespace TraktApiSharp.Tests.Modules.TraktCalendarModule
 {
     using FluentAssertions;
     using System;
@@ -14,21 +14,21 @@
     using Xunit;
 
     [Category("Modules.Calendar")]
-    public partial class TraktCalendarModuleTests_Tests
+    public partial class TraktCalendarModule_Tests
     {
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMovies()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieres()
         {
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                "calendars/my/dvd",
-                CALENDAR_DVD_MOVIES_JSON, START_DATE, END_DATE);
+                "calendars/my/shows/premieres",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync().Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync().Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
             response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
             response.EndDate.Should().HaveValue();
@@ -36,10 +36,10 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMoviesFiltered()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieresFiltered()
         {
             var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user movie")
+                .WithQuery("calendar user season premiere")
                 .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
@@ -48,15 +48,15 @@
                 .WithRatings(80, 95);
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/dvd?{filter}",
-                CALENDAR_DVD_MOVIES_JSON, START_DATE, END_DATE);
+                $"calendars/my/shows/premieres?{filter}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, null, null, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, null, null, filter).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
             response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
             response.EndDate.Should().HaveValue();
@@ -64,20 +64,20 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMoviesWithStartDate()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithStartDate()
         {
             var today = DateTime.UtcNow;
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/dvd/{today.ToTraktDateString()}",
-                CALENDAR_DVD_MOVIES_JSON, START_DATE, END_DATE);
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
             response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
             response.EndDate.Should().HaveValue();
@@ -85,12 +85,12 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMoviesWithStartDateFiltered()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithStartDateFiltered()
         {
             var today = DateTime.UtcNow;
 
             var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user movie")
+                .WithQuery("calendar user season premiere")
                 .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
@@ -99,15 +99,15 @@
                 .WithRatings(80, 95);
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/dvd/{today.ToTraktDateString()}?{filter}",
-                CALENDAR_DVD_MOVIES_JSON, START_DATE, END_DATE);
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}?{filter}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, null, null, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, null, null, filter).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
             response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
             response.EndDate.Should().HaveValue();
@@ -115,21 +115,21 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMoviesWithDays()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithDays()
         {
             var today = DateTime.UtcNow;
             const int days = 14;
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/dvd/{today.ToTraktDateString()}/{days}",
-                CALENDAR_DVD_MOVIES_JSON, START_DATE, END_DATE);
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, days).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
             response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
             response.EndDate.Should().HaveValue();
@@ -137,13 +137,13 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMoviesWithDaysFiltered()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithDaysFiltered()
         {
             var today = DateTime.UtcNow;
             const int days = 14;
 
             var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user movie")
+                .WithQuery("calendar user season premiere")
                 .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
@@ -152,15 +152,15 @@
                 .WithRatings(80, 95);
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/dvd/{today.ToTraktDateString()}/{days}?{filter}",
-                CALENDAR_DVD_MOVIES_JSON, START_DATE, END_DATE);
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?{filter}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, days, null, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, null, filter).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
             response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
             response.EndDate.Should().HaveValue();
@@ -168,21 +168,21 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMoviesWithStartDateAndDays()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithStartDateAndDays()
         {
             var today = DateTime.UtcNow;
             const int days = 14;
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/dvd/{today.ToTraktDateString()}/{days}",
-                CALENDAR_DVD_MOVIES_JSON, START_DATE, END_DATE);
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, days).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
             response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
             response.EndDate.Should().HaveValue();
@@ -190,13 +190,13 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMoviesWithStartDateAndDaysFiltered()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithStartDateAndDaysFiltered()
         {
             var today = DateTime.UtcNow;
             const int days = 14;
 
             var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user movie")
+                .WithQuery("calendar user season premiere")
                 .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
@@ -205,15 +205,15 @@
                 .WithRatings(80, 95);
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/dvd/{today.ToTraktDateString()}/{days}?{filter}",
-                CALENDAR_DVD_MOVIES_JSON, START_DATE, END_DATE);
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?{filter}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, days, null, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days, null, filter).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
             response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
             response.EndDate.Should().HaveValue();
@@ -221,20 +221,20 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMoviesWithExtendedInfo()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithExtendedInfo()
         {
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/dvd?extended={extendedInfo}",
-                CALENDAR_DVD_MOVIES_JSON, START_DATE, END_DATE);
+                $"calendars/my/shows/premieres?extended={extendedInfo}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, null, extendedInfo).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, null, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
             response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
             response.EndDate.Should().HaveValue();
@@ -242,12 +242,12 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMoviesWithExtendedInfoFiltered()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithExtendedInfoFiltered()
         {
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user movie")
+                .WithQuery("calendar user season premiere")
                 .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
@@ -256,15 +256,15 @@
                 .WithRatings(80, 95);
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/dvd?extended={extendedInfo}&{filter}",
-                CALENDAR_DVD_MOVIES_JSON, START_DATE, END_DATE);
+                $"calendars/my/shows/premieres?extended={extendedInfo}&{filter}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, null, extendedInfo, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, null, extendedInfo, filter).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
             response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
             response.EndDate.Should().HaveValue();
@@ -272,22 +272,22 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMoviesWithExtendedInfoAndStartDate()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithExtendedInfoAndStartDate()
         {
             var today = DateTime.UtcNow;
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/dvd/{today.ToTraktDateString()}?extended={extendedInfo}",
-                CALENDAR_DVD_MOVIES_JSON, START_DATE, END_DATE);
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}?extended={extendedInfo}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, null, extendedInfo).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, null, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
             response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
             response.EndDate.Should().HaveValue();
@@ -295,14 +295,14 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMoviesWithExtendedInfoAndStartDateFiltered()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithExtendedInfoAndStartDateFiltered()
         {
             var today = DateTime.UtcNow;
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user movie")
+                .WithQuery("calendar user season premiere")
                 .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
@@ -311,16 +311,16 @@
                 .WithRatings(80, 95);
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/dvd/{today.ToTraktDateString()}" +
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}" +
                 $"?extended={extendedInfo}&{filter}",
-                CALENDAR_DVD_MOVIES_JSON, START_DATE, END_DATE);
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, null, extendedInfo, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, null, extendedInfo, filter).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
             response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
             response.EndDate.Should().HaveValue();
@@ -328,7 +328,7 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMoviesWithExtendedInfoAndDays()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithExtendedInfoAndDays()
         {
             var today = DateTime.UtcNow;
             const int days = 14;
@@ -336,15 +336,15 @@
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/dvd/{today.ToTraktDateString()}/{days}?extended={extendedInfo}",
-                CALENDAR_DVD_MOVIES_JSON, START_DATE, END_DATE);
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, days, extendedInfo).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
             response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
             response.EndDate.Should().HaveValue();
@@ -352,7 +352,7 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMoviesWithExtendedInfoAndDaysFiltered()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithExtendedInfoAndDaysFiltered()
         {
             var today = DateTime.UtcNow;
             const int days = 14;
@@ -360,7 +360,7 @@
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user movie")
+                .WithQuery("calendar user season premiere")
                 .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
@@ -369,15 +369,15 @@
                 .WithRatings(80, 95);
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/dvd/{today.ToTraktDateString()}/{days}?extended={extendedInfo}&{filter}",
-                CALENDAR_DVD_MOVIES_JSON, START_DATE, END_DATE);
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo}&{filter}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, days, extendedInfo, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, extendedInfo, filter).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
             response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
             response.EndDate.Should().HaveValue();
@@ -385,7 +385,7 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMoviesWithExtendedInfoAndStartDateAndDays()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithExtendedInfoAndStartDateAndDays()
         {
             var today = DateTime.UtcNow;
             const int days = 14;
@@ -393,15 +393,15 @@
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/dvd/{today.ToTraktDateString()}/{days}?extended={extendedInfo}",
-                CALENDAR_DVD_MOVIES_JSON, START_DATE, END_DATE);
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, days, extendedInfo).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
             response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
             response.EndDate.Should().HaveValue();
@@ -409,7 +409,7 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMoviesWithExtendedInfoAndStartDateAndDaysFiltered()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithExtendedInfoAndStartDateAndDaysFiltered()
         {
             var today = DateTime.UtcNow;
             const int days = 14;
@@ -417,7 +417,7 @@
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user movie")
+                .WithQuery("calendar user season premiere")
                 .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
@@ -426,16 +426,16 @@
                 .WithRatings(80, 95);
 
             TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/dvd/{today.ToTraktDateString()}/{days}" +
+                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}" +
                 $"?extended={extendedInfo}&{filter}",
-                CALENDAR_DVD_MOVIES_JSON, START_DATE, END_DATE);
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(today, days, extendedInfo, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days, extendedInfo, filter).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
+            response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
             response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
             response.EndDate.Should().HaveValue();
@@ -443,14 +443,14 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMoviesExceptions()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieresExceptions()
         {
-            const string uri = "calendars/my/dvd";
+            const string uri = "calendars/my/shows/premieres";
 
             TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktListResponse<ITraktCalendarMovie>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync();
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync();
             act.Should().Throw<TraktAuthorizationException>();
 
             TestUtility.ClearMockHttpClient();
@@ -515,13 +515,13 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserDVDMoviesArgumentExceptions()
+        public void Test_TraktCalendarModule_GetUserSeasonPremieresArgumentExceptions()
         {
-            Func<Task<TraktListResponse<ITraktCalendarMovie>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, 0);
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
+                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, 0);
             act.Should().Throw<ArgumentOutOfRangeException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserDVDMoviesAsync(null, 32);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, 32);
             act.Should().Throw<ArgumentOutOfRangeException>();
         }
     }

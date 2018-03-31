@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktCalendarModuleTests
+﻿namespace TraktApiSharp.Tests.Modules.TraktCalendarModule
 {
     using FluentAssertions;
     using System;
@@ -14,7 +14,7 @@
     using Xunit;
 
     [Category("Modules.Calendar")]
-    public partial class TraktCalendarModuleTests_Tests
+    public partial class TraktCalendarModule_Tests
     {
         [Fact]
         public void Test_TraktCalendarModule_GetUserShows()

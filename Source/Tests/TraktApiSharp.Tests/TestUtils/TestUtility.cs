@@ -7,8 +7,10 @@
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
+    using System.Threading.Tasks;
     using TraktApiSharp.Authentication;
     using TraktApiSharp.Core;
+    using TraktApiSharp.Objects.Json;
     using TraktApiSharp.Requests.Handler;
 
     internal static class TestUtility
@@ -425,6 +427,12 @@
             MOCK_HTTP.When(BASE_URL + url)
                      .WithContent(requestContent)
                      .Respond(httpStatusCode, "application/json", responseContent);
+        }
+
+        public static Task<string> SerializeObject<TObjectType>(TObjectType obj)
+        {
+            IObjectJsonWriter<TObjectType> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<TObjectType>();
+            return objectJsonWriter.WriteObjectAsync(obj);
         }
 
         internal static Stream ToStream(this string str)

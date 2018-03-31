@@ -91,7 +91,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Modules\TraktCheckinsModuleTests.cs" />
     <Compile Include="Modules\TraktCommentsModuleTests.cs" />
     <Compile Include="Modules\TraktEpisodesModuleTests.cs" />
     <Compile Include="Modules\TraktGenresModuleTests.cs" />
@@ -298,9 +297,6 @@
     <None Include="TestData\Objects\Get\Users\UserStatistics.json" />
     <None Include="TestData\Objects\Get\Users\Watching\UserWatchingItemEpisode.json" />
     <None Include="TestData\Objects\Get\Users\Watching\UserWatchingItemMovie.json" />
-    <None Include="TestData\Objects\Post\Checkins\Responses\CheckinPostErrorResponse.json" />
-    <None Include="TestData\Objects\Post\Checkins\Responses\EpisodeCheckinPostResponse.json" />
-    <None Include="TestData\Objects\Post\Checkins\Responses\MovieCheckinPostResponse.json" />
     <None Include="TestData\Objects\Post\Comments\Responses\CommentPostResponse.json" />
     <None Include="TestData\Objects\Post\Scrobbles\Responses\EpisodePauseScrobblePostResponse.json" />
     <None Include="TestData\Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json" />

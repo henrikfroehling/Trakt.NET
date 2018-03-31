@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktCalendarModuleTests
+﻿namespace TraktApiSharp.Tests.Modules.TraktCalendarModule
 {
     using FluentAssertions;
     using System;
@@ -14,16 +14,16 @@
     using Xunit;
 
     [Category("Modules.Calendar")]
-    public partial class TraktCalendarModuleTests_Tests
+    public partial class TraktCalendarModule_Tests
     {
         [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieres()
+        public void Test_TraktCalendarModule_GetAllShows()
         {
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                "calendars/my/shows/premieres",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                "calendars/all/shows", CALENDAR_ALL_SHOWS_JSON,
+                START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync().Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync().Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -36,10 +36,10 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieresFiltered()
+        public void Test_TraktCalendarModule_GetAllShowsFiltered()
         {
             var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user season premiere")
+                .WithQuery("calendar show")
                 .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
@@ -47,11 +47,11 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/premieres?{filter}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows?{filter}", CALENDAR_ALL_SHOWS_JSON,
+                START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, null, null, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, null, null, filter).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -64,15 +64,15 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithStartDate()
+        public void Test_TraktCalendarModule_GetAllShowsWithStartDate()
         {
             var today = DateTime.UtcNow;
 
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/premieres/{today.ToTraktDateString()}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}", CALENDAR_ALL_SHOWS_JSON,
+                START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -85,12 +85,12 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithStartDateFiltered()
+        public void Test_TraktCalendarModule_GetAllShowsWithStartDateFiltered()
         {
             var today = DateTime.UtcNow;
 
             var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user season premiere")
+                .WithQuery("calendar show")
                 .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
@@ -98,11 +98,11 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/premieres/{today.ToTraktDateString()}?{filter}",
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}?{filter}",
                 CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, null, null, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, null, null, filter).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -115,16 +115,16 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithDays()
+        public void Test_TraktCalendarModule_GetAllShowsWithDays()
         {
             var today = DateTime.UtcNow;
             const int days = 14;
 
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}",
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}/{days}",
                 CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, days).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -137,66 +137,13 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithDaysFiltered()
-        {
-            var today = DateTime.UtcNow;
-            const int days = 14;
-
-            var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user season premiere")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95);
-
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?{filter}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, null, filter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(2);
-            response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
-            response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithStartDateAndDays()
-        {
-            var today = DateTime.UtcNow;
-            const int days = 14;
-
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(2);
-            response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
-            response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithStartDateAndDaysFiltered()
+        public void Test_TraktCalendarModule_GetAllShowsWithDaysFiltered()
         {
             var today = DateTime.UtcNow;
             const int days = 14;
 
             var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user season premiere")
+                .WithQuery("calendar show")
                 .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
@@ -204,11 +151,11 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?{filter}",
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}/{days}?{filter}",
                 CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days, null, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, days, null, filter).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -221,15 +168,68 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithExtendedInfo()
+        public void Test_TraktCalendarModule_GetAllShowsWithStartDateAndDays()
+        {
+            var today = DateTime.UtcNow;
+            const int days = 14;
+
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}/{days}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, days).Result;
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Test_TraktCalendarModule_GetAllShowsWithStartDateAndDaysFiltered()
+        {
+            var today = DateTime.UtcNow;
+            const int days = 14;
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar show")
+                .WithStartYear(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}/{days}?{filter}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, days, null, filter).Result;
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Test_TraktCalendarModule_GetAllShowsWithExtendedInfo()
         {
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/premieres?extended={extendedInfo}",
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows?extended={extendedInfo}",
                 CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, null, extendedInfo).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, null, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -242,12 +242,12 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithExtendedInfoFiltered()
+        public void Test_TraktCalendarModule_GetAllShowsWithExtendedInfoFiltered()
         {
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user season premiere")
+                .WithQuery("calendar show")
                 .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
@@ -255,11 +255,11 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/premieres?extended={extendedInfo}&{filter}",
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows?extended={extendedInfo}&{filter}",
                 CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, null, extendedInfo, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, null, extendedInfo, filter).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -272,17 +272,17 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithExtendedInfoAndStartDate()
+        public void Test_TraktCalendarModule_GetAllShowsWithExtendedInfoAndStartDate()
         {
             var today = DateTime.UtcNow;
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/premieres/{today.ToTraktDateString()}?extended={extendedInfo}",
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}?extended={extendedInfo}",
                 CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, null, extendedInfo).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, null, extendedInfo).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -295,14 +295,14 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithExtendedInfoAndStartDateFiltered()
+        public void Test_TraktCalendarModule_GetAllShowsWithExtendedInfoAndStartDateFiltered()
         {
             var today = DateTime.UtcNow;
 
             var extendedInfo = new TraktExtendedInfo { Full = true };
 
             var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user season premiere")
+                .WithQuery("calendar show")
                 .WithStartYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
@@ -310,12 +310,126 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95);
 
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/premieres/{today.ToTraktDateString()}" +
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}?extended={extendedInfo}&{filter}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, null, extendedInfo, filter).Result;
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Test_TraktCalendarModule_GetAllShowsWithExtendedInfoAndDays()
+        {
+            var today = DateTime.UtcNow;
+            const int days = 14;
+
+            var extendedInfo = new TraktExtendedInfo { Full = true };
+
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, days, extendedInfo).Result;
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Test_TraktCalendarModule_GetAllShowsWithExtendedInfoAndDaysFiltered()
+        {
+            var today = DateTime.UtcNow;
+            const int days = 14;
+
+            var extendedInfo = new TraktExtendedInfo { Full = true };
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar show")
+                .WithStartYear(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo}&{filter}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, days, extendedInfo, filter).Result;
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Test_TraktCalendarModule_GetAllShowsWithExtendedInfoAndStartDateAndDays()
+        {
+            var today = DateTime.UtcNow;
+            const int days = 14;
+
+            var extendedInfo = new TraktExtendedInfo { Full = true };
+
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo}",
+                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
+
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, days, extendedInfo).Result;
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.StartDate.Should().HaveValue();
+            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.EndDate.Should().HaveValue();
+            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+        }
+
+        [Fact]
+        public void Test_TraktCalendarModule_GetAllShowsWithExtendedInfoAndStartDateAndDaysFiltered()
+        {
+            var today = DateTime.UtcNow;
+            const int days = 14;
+
+            var extendedInfo = new TraktExtendedInfo { Full = true };
+
+            var filter = new TraktCalendarFilter()
+                .WithQuery("calendar show")
+                .WithStartYear(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95);
+
+            TestUtility.SetupMockResponseWithoutOAuthWithHeaders(
+                $"calendars/all/shows/{today.ToTraktDateString()}/{days}" +
                 $"?extended={extendedInfo}&{filter}",
                 CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, null, extendedInfo, filter).Result;
+            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(today, days, extendedInfo, filter).Result;
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -328,200 +442,85 @@
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithExtendedInfoAndDays()
+        public void Test_TraktCalendarModule_GetAllShowsExceptions()
         {
-            var today = DateTime.UtcNow;
-            const int days = 14;
+            const string uri = "calendars/all/shows";
 
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, extendedInfo).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(2);
-            response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
-            response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithExtendedInfoAndDaysFiltered()
-        {
-            var today = DateTime.UtcNow;
-            const int days = 14;
-
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user season premiere")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95);
-
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo}&{filter}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, days, extendedInfo, filter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(2);
-            response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
-            response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithExtendedInfoAndStartDateAndDays()
-        {
-            var today = DateTime.UtcNow;
-            const int days = 14;
-
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}?extended={extendedInfo}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days, extendedInfo).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(2);
-            response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
-            response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieresWithExtendedInfoAndStartDateAndDaysFiltered()
-        {
-            var today = DateTime.UtcNow;
-            const int days = 14;
-
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user season premiere")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95);
-
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/premieres/{today.ToTraktDateString()}/{days}" +
-                $"?extended={extendedInfo}&{filter}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(today, days, extendedInfo, filter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(2);
-            response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
-            response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
-        }
-
-        [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieresExceptions()
-        {
-            const string uri = "calendars/my/shows/premieres";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
 
             Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync();
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
-            act.Should().Throw<TraktNotFoundException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync();
             act.Should().Throw<TraktBadRequestException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+            act.Should().Throw<TraktAuthorizationException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+            act.Should().Throw<TraktNotFoundException>();
+
+            TestUtility.ClearMockHttpClient();
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
             act.Should().Throw<TraktForbiddenException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
             act.Should().Throw<TraktMethodNotFoundException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
             act.Should().Throw<TraktConflictException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
             act.Should().Throw<TraktServerException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
             act.Should().Throw<TraktBadGatewayException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
             act.Should().Throw<TraktPreconditionFailedException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
             act.Should().Throw<TraktValidationException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
             act.Should().Throw<TraktRateLimitException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
             act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
             act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
             act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
             act.Should().Throw<TraktServerUnavailableException>();
 
             TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserSeasonPremieresArgumentExceptions()
+        public void Test_TraktCalendarModule_GetAllShowsArgumentExceptions()
         {
             Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, 0);
+                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, 0);
             act.Should().Throw<ArgumentOutOfRangeException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserSeasonPremieresAsync(null, 32);
+            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetAllShowsAsync(null, 32);
             act.Should().Throw<ArgumentOutOfRangeException>();
         }
     }

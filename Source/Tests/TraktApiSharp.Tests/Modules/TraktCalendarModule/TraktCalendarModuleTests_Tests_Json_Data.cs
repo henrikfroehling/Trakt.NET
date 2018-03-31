@@ -1,8 +1,8 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktCalendarModuleTests
+﻿namespace TraktApiSharp.Tests.Modules.TraktCalendarModule
 {
     using System;
 
-    public partial class TraktCalendarModuleTests_Tests
+    public partial class TraktCalendarModule_Tests
     {
         private const string START_DATE = "Tue, 08 Mar 2016 00:00:00 GMT";
         private const string END_DATE = "Mon, 14 Mar 2016 23:59:59 GMT";
