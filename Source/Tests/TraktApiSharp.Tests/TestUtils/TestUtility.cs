@@ -118,6 +118,35 @@
                      .Respond(httpStatusCode);
         }
 
+        public static void SetupMockResponseWithoutOAuthWithHeaders(string uri, string responseContent,
+                                                                    string startDate = null, string endDate = null)
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            BASE_URL.Should().NotBeNullOrEmpty();
+
+            uri.Should().NotBeNullOrEmpty();
+            responseContent.Should().NotBeNullOrEmpty();
+
+            var response = new HttpResponseMessage();
+
+            if (!string.IsNullOrEmpty(startDate))
+                response.Headers.Add(HEADER_STARTDATE_KEY, startDate);
+
+            if (!string.IsNullOrEmpty(endDate))
+                response.Headers.Add(HEADER_ENDDATE_KEY, endDate);
+
+            response.Headers.Add("Accept", "application/json");
+            response.Content = new StringContent(responseContent);
+
+            MOCK_HTTP.When($"{BASE_URL}{uri}")
+                     .WithHeaders(new Dictionary<string, string>
+                     {
+                         { "trakt-api-key", MOCK_TEST_CLIENT.ClientId },
+                         { "trakt-api-version", "2" }
+                     })
+                     .Respond(response);
+        }
+
         internal static void SetupMockResponseWithOAuth(string uri, string responseContent)
         {
             MOCK_HTTP.Should().NotBeNull();

@@ -91,7 +91,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Modules\TraktCalendarModuleTests.cs" />
     <Compile Include="Modules\TraktCheckinsModuleTests.cs" />
     <Compile Include="Modules\TraktCommentsModuleTests.cs" />
     <Compile Include="Modules\TraktEpisodesModuleTests.cs" />
@@ -169,9 +168,6 @@
     <None Include="TestData\Objects\Basic\Search\SearchResultShow.json" />
     <None Include="TestData\Objects\Basic\Sharing.json" />
     <None Include="TestData\Objects\Basic\Statistics.json" />
-    <None Include="TestData\Objects\Get\Calendars\CalendarDVDMovies.json" />
-    <None Include="TestData\Objects\Get\Calendars\CalendarAllMovies.json" />
-    <None Include="TestData\Objects\Get\Calendars\CalendarAllShows.json" />
     <None Include="TestData\Objects\Get\Movies\Common\MoviesBoxOffice.json" />
     <None Include="TestData\Objects\Get\Movies\Common\MoviesMostAnticipated.json" />
     <None Include="TestData\Objects\Get\Movies\Common\MoviesMostCollected.json" />

@@ -147,6 +147,17 @@
     <Compile Include="Exceptions\TraktValidationException_Tests.cs" />
     <Compile Include="Extensions\DateTimeExtensions_Tests.cs" />
     <Compile Include="Extensions\StringExtensions_Tests.cs" />
+    <Compile Include="Modules\TraktCalendarModuleTests\TraktCalendarModuleTests_GetAllDVDMovies_Tests.cs" />
+    <Compile Include="Modules\TraktCalendarModuleTests\TraktCalendarModuleTests_GetAllMovies_Tests.cs" />
+    <Compile Include="Modules\TraktCalendarModuleTests\TraktCalendarModuleTests_GetAllSeasonPremieres_Tests.cs" />
+    <Compile Include="Modules\TraktCalendarModuleTests\TraktCalendarModuleTests_GetAllNewShows_Tests.cs" />
+    <Compile Include="Modules\TraktCalendarModuleTests\TraktCalendarModuleTests_GetAllShows_Tests.cs" />
+    <Compile Include="Modules\TraktCalendarModuleTests\TraktCalendarModuleTests_GetUserDVDMovies_Tests.cs" />
+    <Compile Include="Modules\TraktCalendarModuleTests\TraktCalendarModuleTests_GetUserMovies_Tests.cs" />
+    <Compile Include="Modules\TraktCalendarModuleTests\TraktCalendarModuleTests_GetUserNewShows_Tests.cs" />
+    <Compile Include="Modules\TraktCalendarModuleTests\TraktCalendarModuleTests_GetUserSeasonPremieres_Tests.cs" />
+    <Compile Include="Modules\TraktCalendarModuleTests\TraktCalendarModuleTests_GetUserShows_Tests.cs" />
+    <Compile Include="Modules\TraktCalendarModuleTests\TraktCalendarModuleTests_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktCertificationsModule\TraktCertificationsModule_GetMovieCertifications_Tests.cs" />
     <Compile Include="Modules\TraktCertificationsModule\TraktCertificationsModule_GetShowCertifications_Tests.cs" />
     <Compile Include="Modules\TraktCertificationsModule\TraktCertificationsModule_Tests_Json_Data.cs" />
