@@ -95,7 +95,6 @@
     <Compile Include="Modules\TraktEpisodesModuleTests.cs" />
     <Compile Include="Modules\TraktMoviesModuleTests.cs" />
     <Compile Include="Modules\TraktPeopleModuleTests.cs" />
-    <Compile Include="Modules\TraktRecommendationsModuleTests.cs" />
     <Compile Include="Modules\TraktScrobbleModuleTests.cs" />
     <Compile Include="Modules\TraktSearchModuleTests.cs" />
     <Compile Include="Modules\TraktSeasonsModuleTests.cs" />
@@ -191,10 +190,6 @@
     <None Include="TestData\Objects\Get\People\Credits\PersonShowCredits.json" />
     <None Include="TestData\Objects\Get\People\PersonFull.json" />
     <None Include="TestData\Objects\Get\People\PersonMinimal.json" />
-    <None Include="TestData\Objects\Get\Recommendations\MovieRecommendations.json" />
-    <None Include="TestData\Objects\Get\Recommendations\MovieSingleRecommendation.json" />
-    <None Include="TestData\Objects\Get\Recommendations\ShowRecommendations.json" />
-    <None Include="TestData\Objects\Get\Recommendations\ShowSingleRecommendation.json" />
     <None Include="TestData\Objects\Get\Shows\Common\ShowsMostAnticipated.json" />
     <None Include="TestData\Objects\Get\Shows\Common\ShowsMostCollected.json" />
     <None Include="TestData\Objects\Get\Shows\Common\ShowsMostPlayed.json" />
