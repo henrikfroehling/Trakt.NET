@@ -92,7 +92,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Modules\TraktCommentsModuleTests.cs" />
-    <Compile Include="Modules\TraktEpisodesModuleTests.cs" />
     <Compile Include="Modules\TraktMoviesModuleTests.cs" />
     <Compile Include="Modules\TraktPeopleModuleTests.cs" />
     <Compile Include="Modules\TraktScrobbleModuleTests.cs" />
@@ -197,16 +196,6 @@
     <None Include="TestData\Objects\Get\Shows\Common\ShowsPopular.json" />
     <None Include="TestData\Objects\Get\Shows\Common\ShowsRecentlyUpdated.json" />
     <None Include="TestData\Objects\Get\Shows\Common\ShowsTrending.json" />
-    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeComments.json" />
-    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeLists.json" />
-    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeRatings.json" />
-    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSingleTranslation.json" />
-    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeStatistics.json" />
-    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryFull.json" />
-    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryMinimal.json" />
-    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeSummaryMinimalWithTranslations.json" />
-    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeTranslations.json" />
-    <None Include="TestData\Objects\Get\Shows\Episodes\EpisodeWatchingUsers.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Full\SeasonsAllFull.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Full\SeasonsAllFullWithEpisodes.json" />
     <None Include="TestData\Objects\Get\Shows\Seasons\All\Minimal\SeasonsAllMinimal.json" />

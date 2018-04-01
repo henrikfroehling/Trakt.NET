@@ -489,6 +489,53 @@
                      .Respond(response);
         }
 
+        public static void SetupMockPaginationResponseWithoutOAuth(string uri, string responseContent,
+                                                                   uint? page = null, uint? limit = null,
+                                                                   int? pageCount = null, int? itemCount = null,
+                                                                   int? userCount = null, string sortBy = null,
+                                                                   string sortHow = null)
+        {
+            MOCK_HTTP.Should().NotBeNull();
+            BASE_URL.Should().NotBeNullOrEmpty();
+
+            uri.Should().NotBeNullOrEmpty();
+            responseContent.Should().NotBeNullOrEmpty();
+
+            var response = new HttpResponseMessage();
+
+            if (page.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_PAGE_KEY, $"{page.GetValueOrDefault()}");
+
+            if (limit.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_LIMIT_KEY, $"{limit.GetValueOrDefault()}");
+
+            if (pageCount.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_PAGE_COUNT_KEY, $"{pageCount.GetValueOrDefault()}");
+
+            if (itemCount.HasValue)
+                response.Headers.Add(HEADER_PAGINATION_ITEM_COUNT_KEY, $"{itemCount.GetValueOrDefault()}");
+
+            if (userCount.HasValue)
+                response.Headers.Add(HEADER_TRENDING_USER_COUNT_KEY, $"{userCount.Value}");
+
+            if (!string.IsNullOrEmpty(sortBy))
+                response.Headers.Add(HEADER_SORT_BY_KEY, sortBy);
+
+            if (!string.IsNullOrEmpty(sortHow))
+                response.Headers.Add(HEADER_SORT_HOW_KEY, sortHow);
+
+            response.Headers.Add("Accept", "application/json");
+            response.Content = new StringContent(responseContent);
+
+            MOCK_HTTP.When($"{BASE_URL}{uri}")
+                     .WithHeaders(new Dictionary<string, string>
+                     {
+                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
+                         { "trakt-api-version", "2" }
+                     })
+                     .Respond(response);
+        }
+
         public static Task<string> SerializeObject<TObjectType>(TObjectType obj)
         {
             IObjectJsonWriter<TObjectType> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<TObjectType>();
