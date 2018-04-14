@@ -91,7 +91,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Modules\TraktMoviesModuleTests.cs" />
     <Compile Include="Modules\TraktScrobbleModuleTests.cs" />
     <Compile Include="Modules\TraktSearchModuleTests.cs" />
     <Compile Include="Modules\TraktShowsModuleTests.cs" />
@@ -157,29 +156,6 @@
     <None Include="TestData\Objects\Basic\Search\SearchResultShow.json" />
     <None Include="TestData\Objects\Basic\Sharing.json" />
     <None Include="TestData\Objects\Basic\Statistics.json" />
-    <None Include="TestData\Objects\Get\Movies\Common\MoviesBoxOffice.json" />
-    <None Include="TestData\Objects\Get\Movies\Common\MoviesMostAnticipated.json" />
-    <None Include="TestData\Objects\Get\Movies\Common\MoviesMostCollected.json" />
-    <None Include="TestData\Objects\Get\Movies\Common\MoviesMostPlayed.json" />
-    <None Include="TestData\Objects\Get\Movies\Common\MoviesMostWatched.json" />
-    <None Include="TestData\Objects\Get\Movies\Common\MoviesPopular.json" />
-    <None Include="TestData\Objects\Get\Movies\Common\MoviesRecentlyUpdated.json" />
-    <None Include="TestData\Objects\Get\Movies\Common\MoviesTrending.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieAliases.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieLists.json" />
-    <None Include="TestData\Objects\Get\Movies\MoviePeople.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieRatings.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieRelatedMoviesFull.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieRelatedMoviesMinimal.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieReleases.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieSingleAlias.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieSingleRelease.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieSingleTranslation.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieStatistics.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieSummaryFull.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieSummaryMinimal.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieTranslations.json" />
-    <None Include="TestData\Objects\Get\Movies\MovieWatchingUsers.json" />
     <None Include="TestData\Objects\Get\Shows\Common\ShowsMostAnticipated.json" />
     <None Include="TestData\Objects\Get\Shows\Common\ShowsMostCollected.json" />
     <None Include="TestData\Objects\Get\Shows\Common\ShowsMostPlayed.json" />
