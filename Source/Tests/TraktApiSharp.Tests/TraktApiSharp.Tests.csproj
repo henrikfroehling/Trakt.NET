@@ -226,6 +226,16 @@
     <Compile Include="Modules\TraktRecommendationsModule\TraktRecommendationsModule_HideUserMovieRecommendation_Tests.cs" />
     <Compile Include="Modules\TraktRecommendationsModule\TraktRecommendationsModule_HideUserShowReceommendation_Tests.cs" />
     <Compile Include="Modules\TraktRecommendationsModule\TraktRecommendationsModule_Tests_Json_Data.cs" />
+    <Compile Include="Modules\TraktScrobbleModule\TraktScrobbleModule_PauseEpisodeWithShow_Tests.cs" />
+    <Compile Include="Modules\TraktScrobbleModule\TraktScrobbleModule_PauseEpisode_Tests.cs" />
+    <Compile Include="Modules\TraktScrobbleModule\TraktScrobbleModule_PauseMovie_Tests.cs" />
+    <Compile Include="Modules\TraktScrobbleModule\TraktScrobbleModule_StartEpisodeWithShow_Tests.cs" />
+    <Compile Include="Modules\TraktScrobbleModule\TraktScrobbleModule_StartEpisode_Tests.cs" />
+    <Compile Include="Modules\TraktScrobbleModule\TraktScrobbleModule_StartMovie_Tests.cs" />
+    <Compile Include="Modules\TraktScrobbleModule\TraktScrobbleModule_StopEpisodeWithShow_Tests.cs" />
+    <Compile Include="Modules\TraktScrobbleModule\TraktScrobbleModule_StopEpisode_Tests.cs" />
+    <Compile Include="Modules\TraktScrobbleModule\TraktScrobbleModule_StopMovie_Tests.cs" />
+    <Compile Include="Modules\TraktScrobbleModule\TraktScrobbleModule_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktSearchModule\TraktSearchModule_GetIdLookupResults_Tests.cs" />
     <Compile Include="Modules\TraktSearchModule\TraktSearchModule_GetTextQueryResults_Tests.cs" />
     <Compile Include="Modules\TraktSearchModule\TraktSearchModule_Tests_Json_Data.cs" />

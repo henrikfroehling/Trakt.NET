@@ -91,7 +91,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Modules\TraktScrobbleModuleTests.cs" />
     <Compile Include="Modules\TraktSyncModuleTests.cs" />
     <Compile Include="Modules\TraktUsersModuleTests.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionPostBuilderTests.cs" />
@@ -161,12 +160,6 @@
     <None Include="TestData\Objects\Get\Users\UserStatistics.json" />
     <None Include="TestData\Objects\Get\Users\Watching\UserWatchingItemEpisode.json" />
     <None Include="TestData\Objects\Get\Users\Watching\UserWatchingItemMovie.json" />
-    <None Include="TestData\Objects\Post\Scrobbles\Responses\EpisodePauseScrobblePostResponse.json" />
-    <None Include="TestData\Objects\Post\Scrobbles\Responses\EpisodeStartScrobblePostResponse.json" />
-    <None Include="TestData\Objects\Post\Scrobbles\Responses\EpisodeStopScrobblePostResponse.json" />
-    <None Include="TestData\Objects\Post\Scrobbles\Responses\MoviePauseScrobblePostResponse.json" />
-    <None Include="TestData\Objects\Post\Scrobbles\Responses\MovieStartScrobblePostResponse.json" />
-    <None Include="TestData\Objects\Post\Scrobbles\Responses\MovieStopScrobblePostResponse.json" />
     <None Include="TestData\Objects\Post\Syncs\Collection\Responses\SyncCollectionPostResponse.json" />
     <None Include="TestData\Objects\Post\Syncs\Collection\Responses\SyncCollectionRemovePostResponse.json" />
     <None Include="TestData\Objects\Post\Syncs\History\Responses\SyncHistoryPostResponse.json" />
