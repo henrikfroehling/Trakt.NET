@@ -226,6 +226,9 @@
     <Compile Include="Modules\TraktRecommendationsModule\TraktRecommendationsModule_HideUserMovieRecommendation_Tests.cs" />
     <Compile Include="Modules\TraktRecommendationsModule\TraktRecommendationsModule_HideUserShowReceommendation_Tests.cs" />
     <Compile Include="Modules\TraktRecommendationsModule\TraktRecommendationsModule_Tests_Json_Data.cs" />
+    <Compile Include="Modules\TraktSearchModule\TraktSearchModule_GetIdLookupResults_Tests.cs" />
+    <Compile Include="Modules\TraktSearchModule\TraktSearchModule_GetTextQueryResults_Tests.cs" />
+    <Compile Include="Modules\TraktSearchModule\TraktSearchModule_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktSeasonsModule\TraktSeasonsModule_GetAllSeasons_Tests.cs" />
     <Compile Include="Modules\TraktSeasonsModule\TraktSeasonsModule_GetMultipleSeasons_Tests.cs" />
     <Compile Include="Modules\TraktSeasonsModule\TraktSeasonsModule_GetSeasonComments_Tests.cs" />

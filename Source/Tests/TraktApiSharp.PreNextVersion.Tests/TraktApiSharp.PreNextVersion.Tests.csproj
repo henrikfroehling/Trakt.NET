@@ -92,7 +92,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Modules\TraktScrobbleModuleTests.cs" />
-    <Compile Include="Modules\TraktSearchModuleTests.cs" />
     <Compile Include="Modules\TraktSyncModuleTests.cs" />
     <Compile Include="Modules\TraktUsersModuleTests.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionPostBuilderTests.cs" />
@@ -143,16 +142,6 @@
     <None Include="TestData\Objects\Basic\Image.json" />
     <None Include="TestData\Objects\Basic\ImageSet.json" />
     <None Include="TestData\Objects\Basic\Rating.json" />
-    <None Include="TestData\Objects\Basic\Search\SearchIdLookupResultEpisode.json" />
-    <None Include="TestData\Objects\Basic\Search\SearchIdLookupResultMovie.json" />
-    <None Include="TestData\Objects\Basic\Search\SearchIdLookupResults.json" />
-    <None Include="TestData\Objects\Basic\Search\SearchIdLookupResultShow.json" />
-    <None Include="TestData\Objects\Basic\Search\SearchResultEpisode.json" />
-    <None Include="TestData\Objects\Basic\Search\SearchResultList.json" />
-    <None Include="TestData\Objects\Basic\Search\SearchResultMovie.json" />
-    <None Include="TestData\Objects\Basic\Search\SearchResultPerson.json" />
-    <None Include="TestData\Objects\Basic\Search\SearchResults.json" />
-    <None Include="TestData\Objects\Basic\Search\SearchResultShow.json" />
     <None Include="TestData\Objects\Basic\Sharing.json" />
     <None Include="TestData\Objects\Basic\Statistics.json" />
     <None Include="TestData\Objects\Get\Collection\CollectionMovies.json" />
