@@ -91,7 +91,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Modules\TraktSyncModuleTests.cs" />
     <Compile Include="Modules\TraktUsersModuleTests.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionPostBuilderTests.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostBuilderTests.cs" />
@@ -130,8 +129,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="TestData\Objects\Get\Syncs\Activities\SyncLastActivities.json" />
-    <None Include="TestData\Objects\Get\Syncs\Playback\SyncPlaybackProgress.json" />
     <None Include="TestData\Objects\Get\Users\AccountSettings.json" />
     <None Include="TestData\Objects\Get\Users\Lists\CustomLists.json" />
     <None Include="TestData\Objects\Get\Users\Lists\List.json" />
@@ -160,14 +157,6 @@
     <None Include="TestData\Objects\Get\Users\UserStatistics.json" />
     <None Include="TestData\Objects\Get\Users\Watching\UserWatchingItemEpisode.json" />
     <None Include="TestData\Objects\Get\Users\Watching\UserWatchingItemMovie.json" />
-    <None Include="TestData\Objects\Post\Syncs\Collection\Responses\SyncCollectionPostResponse.json" />
-    <None Include="TestData\Objects\Post\Syncs\Collection\Responses\SyncCollectionRemovePostResponse.json" />
-    <None Include="TestData\Objects\Post\Syncs\History\Responses\SyncHistoryPostResponse.json" />
-    <None Include="TestData\Objects\Post\Syncs\History\Responses\SyncHistoryRemovePostResponse.json" />
-    <None Include="TestData\Objects\Post\Syncs\Ratings\Responses\SyncRatingsPostResponse.json" />
-    <None Include="TestData\Objects\Post\Syncs\Ratings\Responses\SyncRatingsRemovePostResponse.json" />
-    <None Include="TestData\Objects\Post\Syncs\Watchlist\Responses\SyncWatchlistPostResponse.json" />
-    <None Include="TestData\Objects\Post\Syncs\Watchlist\Responses\SyncWatchlistRemovePostResponse.json" />
     <None Include="TestData\Objects\Post\Users\CustomListItems\Responses\UserCustomListItemsPostResponse.json" />
     <None Include="TestData\Objects\Post\Users\CustomListItems\Responses\UserCustomListItemsRemovePostResponse.json" />
     <None Include="TestData\Objects\Post\Users\Responses\FollowUserPostResponse.json" />
