@@ -91,7 +91,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Modules\TraktUsersModuleTests.cs" />
     <Compile Include="Objects\Post\Syncs\Collection\TraktSyncCollectionPostBuilderTests.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryPostBuilderTests.cs" />
     <Compile Include="Objects\Post\Syncs\History\TraktSyncHistoryRemovePostBuilderTests.cs" />
@@ -129,37 +128,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="TestData\Objects\Get\Users\AccountSettings.json" />
-    <None Include="TestData\Objects\Get\Users\Lists\CustomLists.json" />
-    <None Include="TestData\Objects\Get\Users\Lists\List.json" />
-    <None Include="TestData\Objects\Get\Users\Lists\ListComments.json" />
-    <None Include="TestData\Objects\Get\Users\Lists\ListItems.json" />
-    <None Include="TestData\Objects\Get\Users\SharingText.json" />
-    <None Include="TestData\Objects\Get\Users\UserComments.json" />
-    <None Include="TestData\Objects\Get\Users\UserFollower.json" />
-    <None Include="TestData\Objects\Get\Users\UserFollowRequest.json" />
-    <None Include="TestData\Objects\Get\Users\UserFollowRequests.json" />
-    <None Include="TestData\Objects\Get\Users\UserFollowers.json" />
-    <None Include="TestData\Objects\Get\Users\UserFriends.json" />
-    <None Include="TestData\Objects\Get\Users\UserFull.json" />
-    <None Include="TestData\Objects\Get\Users\UserFullAndImages.json" />
-    <None Include="TestData\Objects\Get\Users\UserHiddenItems.json" />
-    <None Include="TestData\Objects\Get\Users\UserImages.json" />
-    <None Include="TestData\Objects\Get\Users\UserLikeComment.json" />
-    <None Include="TestData\Objects\Get\Users\UserLikeList.json" />
-    <None Include="TestData\Objects\Get\Users\UserLikes.json" />
-    <None Include="TestData\Objects\Get\Users\UserMinimal.json" />
-    <None Include="TestData\Objects\Get\Users\UserProfile.json" />
-    <None Include="TestData\Objects\Get\Users\UserSettings.json" />
-    <None Include="TestData\Objects\Get\Users\UserSingleFollower.json" />
-    <None Include="TestData\Objects\Get\Users\UserSingleFriend.json" />
-    <None Include="TestData\Objects\Get\Users\UserSingleHiddenItem.json" />
-    <None Include="TestData\Objects\Get\Users\UserStatistics.json" />
-    <None Include="TestData\Objects\Get\Users\Watching\UserWatchingItemEpisode.json" />
-    <None Include="TestData\Objects\Get\Users\Watching\UserWatchingItemMovie.json" />
-    <None Include="TestData\Objects\Post\Users\CustomListItems\Responses\UserCustomListItemsPostResponse.json" />
-    <None Include="TestData\Objects\Post\Users\CustomListItems\Responses\UserCustomListItemsRemovePostResponse.json" />
-    <None Include="TestData\Objects\Post\Users\Responses\FollowUserPostResponse.json" />
   </ItemGroup>
   <ItemGroup />
   <Choose>
@@ -183,10 +151,12 @@
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y /S "$(ProjectDir)TestData\*" "$(TargetDir)TestData\"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>rmdir /S /Q "$(TargetDir)TestData"</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
