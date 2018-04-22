@@ -116,7 +116,6 @@
     <Compile Include="Objects\Post\Users\CustomListItems\TraktUserCustomListItemsPostTests.cs" />
     <Compile Include="Objects\Post\Users\TraktUserCustomListPostTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TraktConfigurationTests.cs" />
     <Compile Include="Utils\TestUtility.cs" />
   </ItemGroup>
   <ItemGroup>

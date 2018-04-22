@@ -1,13 +1,14 @@
-﻿namespace TraktApiSharp.Tests
+﻿namespace TraktApiSharp.Tests.Core
 {
     using FluentAssertions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Traits;
+    using Xunit;
 
-    [TestClass]
-    public class TraktConfigurationTests
+    [Category("Core")]
+    public class TraktConfiguration_Tests
     {
-        [TestMethod]
-        public void TestTraktConfigurationDefaultConstructor()
+        [Fact]
+        public void Test_TraktConfiguration_Default_Constructor()
         {
             var client = new TraktClient();
 
@@ -17,8 +18,8 @@
             client.Configuration.ForceAuthorization.Should().BeFalse();
         }
 
-        [TestMethod]
-        public void TestTraktConfigurationUseStaging()
+        [Fact]
+        public void Test_TraktConfiguration_UseSandboxEnvironment()
         {
             var client = new TraktClient();
 
