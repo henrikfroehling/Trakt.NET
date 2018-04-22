@@ -16,12 +16,13 @@
     [Category("Modules.Genres")]
     public partial class TraktGenresModule_Tests
     {
-        [Fact]
-        public void Test_TraktGenresModule_GetMovieGenres()
-        {
-            TestUtility.SetupMockResponseWithoutOAuth("genres/movies", MOVIE_GENRES_JSON);
+        private const string GENRES_MOVIES_URI = "genres/movies";
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Genres.GetMovieGenresAsync().Result;
+        [Fact]
+        public async Task Test_TraktGenresModule_GetMovieGenres()
+        {
+            TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, MOVIE_GENRES_JSON);
+            var response = await client.Genres.GetMovieGenresAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -31,74 +32,130 @@
         }
 
         [Fact]
-        public void Test_TraktGenresModule_GetMovieGenresExceptions()
+        public void Test_TraktGenresModule_GetMovieGenres_Throws_NotFoundException()
         {
-            const string uri = "genres/movies";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktListResponse<ITraktGenre>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Genres.GetMovieGenresAsync();
+            TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktListResponse<ITraktGenre>>> act = () => client.Genres.GetMovieGenresAsync();
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktGenresModule_GetMovieGenres_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktListResponse<ITraktGenre>>> act = () => client.Genres.GetMovieGenresAsync();
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktGenresModule_GetMovieGenres_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktListResponse<ITraktGenre>>> act = () => client.Genres.GetMovieGenresAsync();
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktGenresModule_GetMovieGenres_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktListResponse<ITraktGenre>>> act = () => client.Genres.GetMovieGenresAsync();
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktGenresModule_GetMovieGenres_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktListResponse<ITraktGenre>>> act = () => client.Genres.GetMovieGenresAsync();
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktGenresModule_GetMovieGenres_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktListResponse<ITraktGenre>>> act = () => client.Genres.GetMovieGenresAsync();
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktGenresModule_GetMovieGenres_Throws_ServerErrorException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktListResponse<ITraktGenre>>> act = () => client.Genres.GetMovieGenresAsync();
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktGenresModule_GetMovieGenres_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktListResponse<ITraktGenre>>> act = () => client.Genres.GetMovieGenresAsync();
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktGenresModule_GetMovieGenres_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, (HttpStatusCode)412);
+            Func<Task<TraktListResponse<ITraktGenre>>> act = () => client.Genres.GetMovieGenresAsync();
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktGenresModule_GetMovieGenres_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, (HttpStatusCode)422);
+            Func<Task<TraktListResponse<ITraktGenre>>> act = () => client.Genres.GetMovieGenresAsync();
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktGenresModule_GetMovieGenres_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, (HttpStatusCode)429);
+            Func<Task<TraktListResponse<ITraktGenre>>> act = () => client.Genres.GetMovieGenresAsync();
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+        [Fact]
+        public void Test_TraktGenresModule_GetMovieGenres_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, (HttpStatusCode)503);
+            Func<Task<TraktListResponse<ITraktGenre>>> act = () => client.Genres.GetMovieGenresAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+        [Fact]
+        public void Test_TraktGenresModule_GetMovieGenres_Throws_ServerUnavailableException_504()
+        {
+            TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, (HttpStatusCode)504);
+            Func<Task<TraktListResponse<ITraktGenre>>> act = () => client.Genres.GetMovieGenresAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+        [Fact]
+        public void Test_TraktGenresModule_GetMovieGenres_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, (HttpStatusCode)520);
+            Func<Task<TraktListResponse<ITraktGenre>>> act = () => client.Genres.GetMovieGenresAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+        [Fact]
+        public void Test_TraktGenresModule_GetMovieGenres_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, (HttpStatusCode)521);
+            Func<Task<TraktListResponse<ITraktGenre>>> act = () => client.Genres.GetMovieGenresAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktGenresModule_GetMovieGenres_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, (HttpStatusCode)522);
+            Func<Task<TraktListResponse<ITraktGenre>>> act = () => client.Genres.GetMovieGenresAsync();
             act.Should().Throw<TraktServerUnavailableException>();
         }
     }
