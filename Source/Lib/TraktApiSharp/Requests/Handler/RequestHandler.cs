@@ -55,25 +55,25 @@
 
         public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(IRequest request, CancellationToken cancellationToken = default(CancellationToken))
         {
-            PreExecuteRequest(request);
+            ValidateRequest(request);
             return QueryNoContentAsync(SetupRequestMessage(request), cancellationToken);
         }
 
         public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
-            PreExecuteRequest(request);
+            ValidateRequest(request);
             return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request), false, cancellationToken);
         }
 
         public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
-            PreExecuteRequest(request);
+            ValidateRequest(request);
             return QueryListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
         }
 
         public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
-            PreExecuteRequest(request);
+            ValidateRequest(request);
             return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
         }
 
@@ -81,26 +81,26 @@
 
         public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TResponseContentType>(IPostRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
-            PreExecuteRequest(request);
+            ValidateRequest(request);
             return QueryNoContentAsync(SetupRequestMessage(request), cancellationToken);
         }
 
         public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
-            PreExecuteRequest(request);
+            ValidateRequest(request);
             var isCheckinRequest = request is CheckinRequest<TResponseContentType, TRequestBodyType>;
             return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request), isCheckinRequest, cancellationToken);
         }
 
         public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
-            PreExecuteRequest(request);
+            ValidateRequest(request);
             return QueryListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
         }
 
         public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
-            PreExecuteRequest(request);
+            ValidateRequest(request);
             return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
         }
 
@@ -108,25 +108,25 @@
 
         public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(IPutRequest<TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
-            PreExecuteRequest(request);
+            ValidateRequest(request);
             return QueryNoContentAsync(SetupRequestMessage(request), cancellationToken);
         }
 
         public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
-            PreExecuteRequest(request);
+            ValidateRequest(request);
             return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request), false, cancellationToken);
         }
 
         public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
-            PreExecuteRequest(request);
+            ValidateRequest(request);
             return QueryListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
         }
 
         public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
         {
-            PreExecuteRequest(request);
+            ValidateRequest(request);
             return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
         }
 
@@ -288,7 +288,7 @@
 
         private async Task<HttpResponseMessage> ExecuteRequestAsync(ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default(CancellationToken))
         {
-            HttpResponseMessage responseMessage = await s_httpClient.SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
+            HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient().SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
             if (!responseMessage.IsSuccessStatusCode)
                 await ErrorHandlingAsync(responseMessage, requestMessage, isCheckinRequest, cancellationToken).ConfigureAwait(false);
@@ -299,26 +299,12 @@
         private Task<Stream> GetResponseContentStreamAsync(HttpResponseMessage response)
             => response.Content != null ? response.Content.ReadAsStreamAsync() : Task.FromResult(default(Stream));
 
-        private void PreExecuteRequest(IRequest request)
-        {
-            ValidateRequest(request);
-            SetupHttpClient();
-        }
-
         private void ValidateRequest(IRequest request)
         {
             if (request == null)
                 throw new ArgumentNullException(nameof(request));
 
             request.Validate();
-        }
-
-        private void SetupHttpClient()
-        {
-            if (s_httpClient == null)
-                s_httpClient = new HttpClient();
-
-            SetDefaultRequestHeaders(s_httpClient);
         }
 
         private string BuildUrl(IRequest request)
@@ -435,20 +421,6 @@
             string json = Json.Serialize(requestBody);
             requestBodyJson = json;
             return !string.IsNullOrEmpty(json) ? new StringContent(json, Encoding.UTF8, MEDIA_TYPE) : null;
-        }
-
-        private void SetDefaultRequestHeaders(HttpClient httpClient)
-        {
-            var appJsonHeader = new MediaTypeWithQualityHeaderValue(MEDIA_TYPE);
-
-            if (!httpClient.DefaultRequestHeaders.Contains(Constants.APIClientIdHeaderKey))
-                httpClient.DefaultRequestHeaders.Add(Constants.APIClientIdHeaderKey, _client.ClientId);
-
-            if (!httpClient.DefaultRequestHeaders.Contains(Constants.APIVersionHeaderKey))
-                httpClient.DefaultRequestHeaders.Add(Constants.APIVersionHeaderKey, $"{_client.Configuration.ApiVersion}");
-
-            if (!httpClient.DefaultRequestHeaders.Accept.Contains(appJsonHeader))
-                httpClient.DefaultRequestHeaders.Accept.Add(appJsonHeader);
         }
 
         private void SetRequestMessageHeadersForAuthorization(ExtendedHttpRequestMessage requestMessage, AuthorizationRequirement authorizationRequirement)
