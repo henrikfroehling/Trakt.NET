@@ -14,17 +14,13 @@
     [Category("Modules.Episodes")]
     public partial class TraktEpisodesModule_Tests
     {
+        private readonly string GET_EPISODE_TRANSLATIONS_URI = $"shows/{SHOW_ID}/seasons/{SEASON_NR}/episodes/{EPISODE_NR}/translations";
+
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeTranslations()
+        public async Task Test_TraktEpisodesModule_GetEpisodeTranslations()
         {
-            const string showId = "1390";
-            const uint seasonNr = 1U;
-            const uint episodeNr = 1U;
-
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/translations",
-                EPISODE_TRANSLATIONS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync(showId, seasonNr, episodeNr).Result;
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, EPISODE_TRANSLATIONS_JSON);
+            TraktListResponse<ITraktEpisodeTranslation> response = await client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -33,101 +29,154 @@
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeTranslationsExceptions()
+        public void Test_TraktEpisodesModule_GetEpisodeTranslations_Throws_NotFoundException()
         {
-            const string showId = "1390";
-            const uint seasonNr = 1U;
-            const uint episodeNr = 1U;
-            var uri = $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/translations";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync(showId, seasonNr, episodeNr);
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktEpisodeNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeTranslations_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeTranslations_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeTranslations_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeTranslations_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeTranslations_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeTranslations_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeTranslations_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeTranslations_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, (HttpStatusCode)412);
+            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeTranslations_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, (HttpStatusCode)422);
+            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeTranslations_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, (HttpStatusCode)429);
+            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeTranslations_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, (HttpStatusCode)503);
+            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeTranslationsArgumentExceptions()
+        public void Test_TraktEpisodesModule_GetEpisodeTranslations_Throws_ServerUnavailableException_504()
         {
-            const string showId = "1390";
-            const uint seasonNr = 0U;
-            const uint episodeNr = 1U;
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, (HttpStatusCode)504);
+            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/translations",
-                                                      EPISODE_TRANSLATIONS_JSON);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeTranslations_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, (HttpStatusCode)520);
+            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync(null, seasonNr, episodeNr);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeTranslations_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, (HttpStatusCode)521);
+            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeTranslations_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, (HttpStatusCode)522);
+            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeTranslations_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, EPISODE_TRANSLATIONS_JSON);
+
+            Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(null, SEASON_NR, EPISODE_NR);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync(string.Empty, seasonNr, episodeNr);
+            act = () => client.Episodes.GetEpisodeTranslationsAsync(string.Empty, SEASON_NR, EPISODE_NR);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync("show id", seasonNr, episodeNr);
+            act = () => client.Episodes.GetEpisodeTranslationsAsync("show id", SEASON_NR, EPISODE_NR);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeTranslationsAsync(showId, seasonNr, 0);
+            act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, 0);
+            act.Should().Throw<ArgumentOutOfRangeException>();
+
+            act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR, "e");
+            act.Should().Throw<ArgumentOutOfRangeException>();
+
+            act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR, "eng");
             act.Should().Throw<ArgumentOutOfRangeException>();
         }
     }

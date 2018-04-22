@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Requests.Parameters;
@@ -16,458 +15,403 @@
     [Category("Modules.Episodes")]
     public partial class TraktEpisodesModule_Tests
     {
+        private readonly string GET_EPISODE_LISTS_URI = $"shows/{SHOW_ID}/seasons/{SEASON_NR}/episodes/{EPISODE_NR}/lists";
+
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeLists()
+        public async Task Test_TraktEpisodesModule_GetEpisodeLists()
         {
-            const string showId = "1390";
-            const uint seasonNr = 1U;
-            const uint episodeNr = 1U;
-            const int itemCount = 10;
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists",
-                                                                EPISODE_LISTS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, episodeNr).Result;
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, EPISODE_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+            TraktPagedResponse<ITraktList> response = await client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeListsWithType()
+        public async Task Test_TraktEpisodesModule_GetEpisodeLists_With_Type()
         {
-            const string showId = "1390";
-            const uint seasonNr = 1U;
-            const uint episodeNr = 1U;
-            const int itemCount = 10;
-            var type = TraktListType.Official;
+            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_LISTS_URI}/{LIST_TYPE.UriName}",
+                                                           EPISODE_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists/{type.UriName}",
-                EPISODE_LISTS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, episodeNr, type).Result;
+            TraktPagedResponse<ITraktList> response = await client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR, LIST_TYPE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeListsWithSortOrderAndWithoutType()
+        public async Task Test_TraktEpisodesModule_GetEpisodeLists_With_SortOrder_And_Without_Type()
         {
-            const string showId = "1390";
-            const uint seasonNr = 1U;
-            const uint episodeNr = 1U;
-            const int itemCount = 10;
-            var sortOrder = TraktListSortOrder.Comments;
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI,
+                                                           EPISODE_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists",
-                EPISODE_LISTS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, episodeNr,
-                                                                                      null, sortOrder).Result;
+            TraktPagedResponse<ITraktList> response = await client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR,
+                                                                                                 null, LIST_SORT_ORDER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeListsWithPage()
+        public async Task Test_TraktEpisodesModule_GetEpisodeLists_With_Page()
         {
-            const string showId = "1390";
-            const uint seasonNr = 1U;
-            const uint episodeNr = 1U;
-            const int itemCount = 10;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_LISTS_URI}?page={PAGE}",
+                                                           EPISODE_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists?page={page}",
-                EPISODE_LISTS_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, episodeNr,
-                                                                                      null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktList> response = await client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR,
+                                                                                                 null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeListsWithLimit()
+        public async Task Test_TraktEpisodesModule_GetEpisodeLists_With_Limit()
         {
-            const string showId = "1390";
-            const uint seasonNr = 1U;
-            const uint episodeNr = 1U;
-            const int itemCount = 10;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_LISTS_URI}?limit={LIMIT}",
+                                                           EPISODE_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists?limit={limit}",
-                EPISODE_LISTS_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, episodeNr,
-                                                                                      null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktList> response = await client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR,
+                                                                                                 null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeListsWithPageAndLimit()
+        public async Task Test_TraktEpisodesModule_GetEpisodeLists_With_Page_And_Limit()
         {
-            const string showId = "1390";
-            const uint seasonNr = 1U;
-            const uint episodeNr = 1U;
-            const int itemCount = 10;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_LISTS_URI}?page={PAGE}&limit={LIMIT}",
+                                                           EPISODE_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists?page={page}&limit={limit}",
-                EPISODE_LISTS_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, episodeNr,
-                                                                                      null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktList> response = await client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR,
+                                                                                                 null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeListsWithTypeAndSortOrder()
+        public async Task Test_TraktEpisodesModule_GetEpisodeLists_With_Type_And_SortOrder()
         {
-            const string showId = "1390";
-            const uint seasonNr = 1U;
-            const uint episodeNr = 1U;
-            const int itemCount = 10;
-            var type = TraktListType.Official;
-            var sortOrder = TraktListSortOrder.Comments;
+            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}",
+                                                           EPISODE_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists/{type.UriName}/{sortOrder.UriName}",
-                EPISODE_LISTS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, episodeNr,
-                                                                                      type, sortOrder).Result;
+            TraktPagedResponse<ITraktList> response = await client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR,
+                                                                                                 LIST_TYPE, LIST_SORT_ORDER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeListsWithTypeAndPage()
+        public async Task Test_TraktEpisodesModule_GetEpisodeLists_With_Type_And_Page()
         {
-            const string showId = "1390";
-            const uint seasonNr = 1U;
-            const uint episodeNr = 1U;
-            const int itemCount = 10;
-            var type = TraktListType.Official;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_LISTS_URI}/{LIST_TYPE.UriName}?page={PAGE}",
+                                                           EPISODE_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists/{type.UriName}?page={page}",
-                EPISODE_LISTS_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, episodeNr, type,
-                                                                                      null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktList> response = await client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR,
+                                                                                                 LIST_TYPE, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeListsWithTypeAndLimit()
+        public async Task Test_TraktEpisodesModule_GetEpisodeLists_With_Type_And_Limit()
         {
-            const string showId = "1390";
-            const uint seasonNr = 1U;
-            const uint episodeNr = 1U;
-            const int itemCount = 10;
-            var type = TraktListType.Official;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_LISTS_URI}/{LIST_TYPE.UriName}?limit={LIMIT}",
+                                                           EPISODE_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists/{type.UriName}?limit={limit}",
-                EPISODE_LISTS_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, episodeNr, type,
-                                                                                      null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktList> response = await client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR,
+                                                                                                 LIST_TYPE, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeListsWithTypeAndPageAndLimit()
+        public async Task Test_TraktEpisodesModule_GetEpisodeLists_With_Type_And_Page_And_Limit()
         {
-            const string showId = "1390";
-            const uint seasonNr = 1U;
-            const uint episodeNr = 1U;
-            const int itemCount = 10;
-            var type = TraktListType.Official;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_LISTS_URI}/{LIST_TYPE.UriName}?page={PAGE}&limit={LIMIT}",
+                                                           EPISODE_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists/{type.UriName}?page={page}&limit={limit}",
-                EPISODE_LISTS_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, episodeNr, type,
-                                                                                      null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktList> response = await client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR,
+                                                                                                 LIST_TYPE, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeListsWithTypeAndSortOrderAndPage()
+        public async Task Test_TraktEpisodesModule_GetEpisodeLists_With_Type_And_SortOrder_And_Page()
         {
-            const string showId = "1390";
-            const uint seasonNr = 1U;
-            const uint episodeNr = 1U;
-            const int itemCount = 10;
-            var type = TraktListType.Official;
-            var sortOrder = TraktListSortOrder.Comments;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page={PAGE}",
+                                                           EPISODE_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists/{type.UriName}/{sortOrder.UriName}?page={page}",
-                EPISODE_LISTS_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, episodeNr, type,
-                                                                                      sortOrder, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktList> response = await client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR, LIST_TYPE,
+                                                                                                 LIST_SORT_ORDER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeListsWithTypeAndSortOrderAndLimit()
+        public async Task Test_TraktEpisodesModule_GetEpisodeLists_With_Type_And_SortOrder_And_Limit()
         {
-            const string showId = "1390";
-            const uint seasonNr = 1U;
-            const uint episodeNr = 1U;
-            const int itemCount = 10;
-            var type = TraktListType.Official;
-            var sortOrder = TraktListSortOrder.Comments;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?limit={LIMIT}",
+                                                           EPISODE_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists/{type.UriName}/{sortOrder.UriName}?limit={limit}",
-                EPISODE_LISTS_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, episodeNr, type,
-                                                                                      sortOrder, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktList> response = await client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR, LIST_TYPE,
+                                                                                                 LIST_SORT_ORDER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeListsComplete()
+        public async Task Test_TraktEpisodesModule_GetEpisodeLists_Complete()
         {
-            const string showId = "1390";
-            const uint seasonNr = 1U;
-            const uint episodeNr = 1U;
-            const int itemCount = 10;
-            var type = TraktListType.Official;
-            var sortOrder = TraktListSortOrder.Comments;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page={PAGE}&limit={LIMIT}",
+                                                           EPISODE_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists/{type.UriName}/{sortOrder.UriName}" +
-                $"?page={page}&limit={limit}",
-                EPISODE_LISTS_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, episodeNr, type,
-                                                                                      sortOrder, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktList> response = await client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR, LIST_TYPE,
+                                                                                                 LIST_SORT_ORDER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeListsExceptions()
+        public void Test_TraktEpisodesModule_GetEpisodeLists_Throws_NotFoundException()
         {
-            const string showId = "1390";
-            const uint seasonNr = 0U;
-            const uint episodeNr = 1U;
-            var uri = $"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktPagedResponse<ITraktList>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, episodeNr);
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktEpisodeNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeLists_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeLists_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeLists_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeLists_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeLists_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeLists_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeLists_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeLists_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, (HttpStatusCode)412);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeLists_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, (HttpStatusCode)422);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeLists_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, (HttpStatusCode)429);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeLists_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, (HttpStatusCode)503);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeListsArgumentsExceptions()
+        public void Test_TraktEpisodesModule_GetEpisodeLists_Throws_ServerUnavailableException_504()
         {
-            const string showId = "1390";
-            const uint seasonNr = 0U;
-            const uint episodeNr = 1U;
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, (HttpStatusCode)504);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/{showId}/seasons/{seasonNr}/episodes/{episodeNr}/lists", EPISODE_LISTS_JSON);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeLists_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, (HttpStatusCode)520);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            Func<Task<TraktPagedResponse<ITraktList>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(null, seasonNr, episodeNr);
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeLists_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, (HttpStatusCode)521);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeLists_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, (HttpStatusCode)522);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktEpisodesModule_GetEpisodeLists_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, EPISODE_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(null, SEASON_NR, EPISODE_NR);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(string.Empty, seasonNr, episodeNr);
+            act = () => client.Episodes.GetEpisodeListsAsync(string.Empty, SEASON_NR, EPISODE_NR);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync("show id", seasonNr, episodeNr);
+            act = () => client.Episodes.GetEpisodeListsAsync("show id", SEASON_NR, EPISODE_NR);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Episodes.GetEpisodeListsAsync(showId, seasonNr, 0);
+            act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, 0);
             act.Should().Throw<ArgumentOutOfRangeException>();
         }
     }

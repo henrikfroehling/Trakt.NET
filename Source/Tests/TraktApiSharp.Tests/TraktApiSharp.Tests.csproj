@@ -185,9 +185,7 @@
     <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisodeComments_Tests.cs" />
     <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisodeLists_Tests.cs" />
     <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisodeRatings_Tests.cs" />
-    <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisodeSingleTranslation_Tests.cs" />
     <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisodeStatistics_Tests.cs" />
-    <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetMultipleEpisodes_Tests.cs" />
     <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisodeTranslations_Tests.cs" />
     <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisodeWatchingUsers_Tests.cs" />
     <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_Tests_Json_Data.cs" />

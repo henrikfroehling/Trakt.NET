@@ -44,6 +44,15 @@
             return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
         }
 
+        internal static TraktClient GetMockClient(string uri, string responseContent,
+                                                  uint? page = null, uint? limit = null,
+                                                  int? pageCount = null, int? itemCount = null)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupMockResponse(uri, responseContent, page, limit, pageCount, itemCount);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
+        }
+
         internal static TraktClient GetMockClient(string uri, HttpStatusCode httpStatusCode)
         {
             var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);

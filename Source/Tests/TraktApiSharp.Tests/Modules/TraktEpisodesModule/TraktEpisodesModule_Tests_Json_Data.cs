@@ -1,7 +1,22 @@
 ﻿namespace TraktApiSharp.Tests.Modules.TraktEpisodesModule
 {
+    using TraktApiSharp.Enums;
+    using TraktApiSharp.Requests.Parameters;
+
     public partial class TraktEpisodesModule_Tests
     {
+        private const string SHOW_ID = "1390";
+        private const uint SEASON_NR = 1;
+        private const uint EPISODE_NR = 1;
+        private const uint PAGE = 2;
+        private const uint LIMIT = 4;
+        private const int COMMENTS_ITEM_COUNT = 4;
+        private const int LISTS_ITEM_COUNT = 10;
+        private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
+        private readonly TraktCommentSortOrder COMMENT_SORT_ORDER = TraktCommentSortOrder.Likes;
+        private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
+        private readonly TraktListType LIST_TYPE = TraktListType.Official;
+
         private const string EPISODE_SUMMARY_FULL_JSON =
             @"{
                 ""season"": 1,
@@ -438,10 +453,21 @@
               ]";
 
         private const string EPISODE_WATCHING_USERS_JSON =
-            @"{
-                ""title"": ""Winter Is Coming"",
-                ""overview"": ""Jon Arryn, the Hand of the King, is dead. King Robert Baratheon plans to ask his oldest friend, Eddard Stark, to take Jon's place. Across the sea, Viserys Targaryen plans to wed his sister to a nomadic warlord in exchange for an army."",
-                ""language"": ""en""
-              }";
+            @"[
+                {
+                  ""username"": ""Horaces"",
+                  ""private"": false,
+                  ""name"": null,
+                  ""vip"": false,
+                  ""vip_ep"": false
+                },
+                {
+                  ""username"": ""stannyowl"",
+                  ""private"": true,
+                  ""name"": ""stanny"",
+                  ""vip"": false,
+                  ""vip_ep"": true
+                }
+              ]";
     }
 }

@@ -22,7 +22,7 @@
         public async Task Test_TraktGenresModule_GetMovieGenres()
         {
             TraktClient client = TestUtility.GetMockClient(GENRES_MOVIES_URI, MOVIE_GENRES_JSON);
-            var response = await client.Genres.GetMovieGenresAsync();
+            TraktListResponse<ITraktGenre> response = await client.Genres.GetMovieGenresAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();

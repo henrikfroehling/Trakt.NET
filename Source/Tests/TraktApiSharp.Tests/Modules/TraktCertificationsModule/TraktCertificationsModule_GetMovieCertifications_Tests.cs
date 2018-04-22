@@ -18,7 +18,7 @@
         private const string GET_MOVIE_CERTIFICATIONS_URI = "certifications/movies";
 
         [Fact]
-        public async Task Test_TraktCertificationsModule_GetMovieCertificationsAsync()
+        public async Task Test_TraktCertificationsModule_GetMovieCertifications()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_CERTIFICATIONS_URI, GET_MOVIE_CERTIFICATIONS_JSON);
             TraktResponse<ITraktCertifications> response = await client.Certifications.GetMovieCertificationsAsync();
@@ -61,7 +61,7 @@
         }
 
         [Fact]
-        public void Test_TraktCertificationsModule_GetMovieCertificationsAsync_Throws_NotFoundException()
+        public void Test_TraktCertificationsModule_GetMovieCertifications_Throws_NotFoundException()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_CERTIFICATIONS_URI, HttpStatusCode.NotFound);
             Func<Task<TraktResponse<ITraktCertifications>>> act = () => client.Certifications.GetMovieCertificationsAsync();
@@ -69,7 +69,7 @@
         }
 
         [Fact]
-        public void Test_TraktCertificationsModule_GetMovieCertificationsAsync_Throws_AuthorizationException()
+        public void Test_TraktCertificationsModule_GetMovieCertifications_Throws_AuthorizationException()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_CERTIFICATIONS_URI, HttpStatusCode.Unauthorized);
             Func<Task<TraktResponse<ITraktCertifications>>> act = () => client.Certifications.GetMovieCertificationsAsync();
@@ -77,7 +77,7 @@
         }
 
         [Fact]
-        public void Test_TraktCertificationsModule_GetMovieCertificationsAsync_Throws_BadRequestException()
+        public void Test_TraktCertificationsModule_GetMovieCertifications_Throws_BadRequestException()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_CERTIFICATIONS_URI, HttpStatusCode.BadRequest);
             Func<Task<TraktResponse<ITraktCertifications>>> act = () => client.Certifications.GetMovieCertificationsAsync();
@@ -85,7 +85,7 @@
         }
 
         [Fact]
-        public void Test_TraktCertificationsModule_GetMovieCertificationsAsync_Throws_ForbiddenException()
+        public void Test_TraktCertificationsModule_GetMovieCertifications_Throws_ForbiddenException()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_CERTIFICATIONS_URI, HttpStatusCode.Forbidden);
             Func<Task<TraktResponse<ITraktCertifications>>> act = () => client.Certifications.GetMovieCertificationsAsync();
@@ -93,7 +93,7 @@
         }
 
         [Fact]
-        public void Test_TraktCertificationsModule_GetMovieCertificationsAsync_Throws_MethodNotFoundException()
+        public void Test_TraktCertificationsModule_GetMovieCertifications_Throws_MethodNotFoundException()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_CERTIFICATIONS_URI, HttpStatusCode.MethodNotAllowed);
             Func<Task<TraktResponse<ITraktCertifications>>> act = () => client.Certifications.GetMovieCertificationsAsync();
@@ -101,7 +101,7 @@
         }
 
         [Fact]
-        public void Test_TraktCertificationsModule_GetMovieCertificationsAsync_Throws_ConflictException()
+        public void Test_TraktCertificationsModule_GetMovieCertifications_Throws_ConflictException()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_CERTIFICATIONS_URI, HttpStatusCode.Conflict);
             Func<Task<TraktResponse<ITraktCertifications>>> act = () => client.Certifications.GetMovieCertificationsAsync();
@@ -109,7 +109,7 @@
         }
 
         [Fact]
-        public void Test_TraktCertificationsModule_GetMovieCertificationsAsync_Throws_ServerException()
+        public void Test_TraktCertificationsModule_GetMovieCertifications_Throws_ServerException()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_CERTIFICATIONS_URI, HttpStatusCode.InternalServerError);
             Func<Task<TraktResponse<ITraktCertifications>>> act = () => client.Certifications.GetMovieCertificationsAsync();
@@ -117,7 +117,7 @@
         }
 
         [Fact]
-        public void Test_TraktCertificationsModule_GetMovieCertificationsAsync_Throws_BadGatewayException()
+        public void Test_TraktCertificationsModule_GetMovieCertifications_Throws_BadGatewayException()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_CERTIFICATIONS_URI, HttpStatusCode.BadGateway);
             Func<Task<TraktResponse<ITraktCertifications>>> act = () => client.Certifications.GetMovieCertificationsAsync();
@@ -125,7 +125,7 @@
         }
 
         [Fact]
-        public void Test_TraktCertificationsModule_GetMovieCertificationsAsync_Throws_PreconditionFailedException()
+        public void Test_TraktCertificationsModule_GetMovieCertifications_Throws_PreconditionFailedException()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_CERTIFICATIONS_URI, (HttpStatusCode)412);
             Func<Task<TraktResponse<ITraktCertifications>>> act = () => client.Certifications.GetMovieCertificationsAsync();
@@ -133,7 +133,7 @@
         }
 
         [Fact]
-        public void Test_TraktCertificationsModule_GetMovieCertificationsAsync_Throws_ValidationException()
+        public void Test_TraktCertificationsModule_GetMovieCertifications_Throws_ValidationException()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_CERTIFICATIONS_URI, (HttpStatusCode)422);
             Func<Task<TraktResponse<ITraktCertifications>>> act = () => client.Certifications.GetMovieCertificationsAsync();
@@ -141,7 +141,7 @@
         }
 
         [Fact]
-        public void Test_TraktCertificationsModule_GetMovieCertificationsAsync_Throws_RateLimitException()
+        public void Test_TraktCertificationsModule_GetMovieCertifications_Throws_RateLimitException()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_CERTIFICATIONS_URI, (HttpStatusCode)429);
             Func<Task<TraktResponse<ITraktCertifications>>> act = () => client.Certifications.GetMovieCertificationsAsync();
@@ -149,7 +149,7 @@
         }
 
         [Fact]
-        public void Test_TraktCertificationsModule_GetMovieCertificationsAsync_Throws_ServerUnavailableException_503()
+        public void Test_TraktCertificationsModule_GetMovieCertifications_Throws_ServerUnavailableException_503()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_CERTIFICATIONS_URI, (HttpStatusCode)503);
             Func<Task<TraktResponse<ITraktCertifications>>> act = () => client.Certifications.GetMovieCertificationsAsync();
@@ -157,7 +157,7 @@
         }
 
         [Fact]
-        public void Test_TraktCertificationsModule_GetMovieCertificationsAsync_Throws_ServerUnavailableException_504()
+        public void Test_TraktCertificationsModule_GetMovieCertifications_Throws_ServerUnavailableException_504()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_CERTIFICATIONS_URI, (HttpStatusCode)504);
             Func<Task<TraktResponse<ITraktCertifications>>> act = () => client.Certifications.GetMovieCertificationsAsync();
@@ -165,7 +165,7 @@
         }
 
         [Fact]
-        public void Test_TraktCertificationsModule_GetMovieCertificationsAsync_Throws_ServerUnavailableException_520()
+        public void Test_TraktCertificationsModule_GetMovieCertifications_Throws_ServerUnavailableException_520()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_CERTIFICATIONS_URI, (HttpStatusCode)520);
             Func<Task<TraktResponse<ITraktCertifications>>> act = () => client.Certifications.GetMovieCertificationsAsync();
@@ -173,7 +173,7 @@
         }
 
         [Fact]
-        public void Test_TraktCertificationsModule_GetMovieCertificationsAsync_Throws_ServerUnavailableException_521()
+        public void Test_TraktCertificationsModule_GetMovieCertifications_Throws_ServerUnavailableException_521()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_CERTIFICATIONS_URI, (HttpStatusCode)521);
             Func<Task<TraktResponse<ITraktCertifications>>> act = () => client.Certifications.GetMovieCertificationsAsync();
@@ -181,7 +181,7 @@
         }
 
         [Fact]
-        public void Test_TraktCertificationsModule_GetMovieCertificationsAsync_Throws_ServerUnavailableException_522()
+        public void Test_TraktCertificationsModule_GetMovieCertifications_Throws_ServerUnavailableException_522()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_CERTIFICATIONS_URI, (HttpStatusCode)522);
             Func<Task<TraktResponse<ITraktCertifications>>> act = () => client.Certifications.GetMovieCertificationsAsync();
