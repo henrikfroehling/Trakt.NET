@@ -1443,6 +1443,8 @@
     <Compile Include="Requests\Users\UserListCommentsRequest_Tests.cs" />
     <Compile Include="Services\TraktLanguageService_Tests.cs" />
     <Compile Include="Services\TraktSerializationService_Tests.cs" />
+    <Compile Include="TestUtils\TestConstants.cs" />
+    <Compile Include="TestUtils\TestHttpClientProvider.cs" />
     <Compile Include="Traits\CategoryAttribute.cs" />
     <Compile Include="Traits\CategoryDiscoverer.cs" />
     <Compile Include="Traits\DiscovererUtils.cs" />

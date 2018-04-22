@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using RichardSzalay.MockHttp;
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Net;
@@ -35,6 +36,20 @@
         private static readonly TraktAuthorization MOCK_AUTHORIZATION = new TraktAuthorization { AccessToken = "mock_access_token", ExpiresInSeconds = 3600 };
 
         internal static TraktClient MOCK_TEST_CLIENT = new TraktClient(TRAKT_CLIENT_ID, TRAKT_CLIENT_SECRET);
+
+        internal static TraktClient GetMockClient(string uri, string responseContent)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupMockResponse(uri, responseContent);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
+        }
+
+        internal static TraktClient GetMockClient(string uri, HttpStatusCode httpStatusCode)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupMockResponse(uri, httpStatusCode);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
+        }
 
         internal static void SetupMockHttpClient()
         {
