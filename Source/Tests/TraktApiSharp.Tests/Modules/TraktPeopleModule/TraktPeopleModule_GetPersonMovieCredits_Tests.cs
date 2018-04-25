@@ -9,32 +9,29 @@
     using Traits;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.People.Credits;
-    using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Xunit;
 
     [Category("Modules.People")]
     public partial class TraktPeopleModule_Tests
     {
+        private readonly string GET_PERSON_MOVIE_CREDITS_URI = $"people/{PERSON_ID}/movies";
+
         [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCredits()
+        public async Task Test_TraktPeopleModule_GetPersonMovieCredits()
         {
-            const string personId = "297737";
-
-            TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}/movies", PERSON_MOVIE_CREDITS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.People.GetPersonMovieCreditsAsync(personId).Result;
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, PERSON_MOVIE_CREDITS_JSON);
+            TraktResponse<ITraktPersonMovieCredits> response = await client.People.GetPersonMovieCreditsAsync(PERSON_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
-
+            ITraktPersonMovieCredits responseValue = response.Value;
             responseValue.Cast.Should().NotBeNull().And.HaveCount(2);
 
-            var cast = responseValue.Cast.ToArray();
+            ITraktPersonMovieCreditsCastItem[] cast = responseValue.Cast.ToArray();
 
             cast[0].Character.Should().Be("Li (voice)");
             cast[0].Movie.Should().NotBeNull();
@@ -63,7 +60,7 @@
             responseValue.Crew.Crew.Should().BeNull();
             responseValue.Crew.Directing.Should().NotBeNull().And.HaveCount(1);
 
-            var directing = responseValue.Crew.Directing.ToArray();
+            ITraktPersonMovieCreditsCrewItem[] directing = responseValue.Crew.Directing.ToArray();
 
             directing[0].Job.Should().Be("Director");
             directing[0].Movie.Should().NotBeNull();
@@ -79,7 +76,7 @@
             responseValue.Crew.Lighting.Should().BeNull();
             responseValue.Crew.Production.Should().NotBeNull().And.HaveCount(1);
 
-            var production = responseValue.Crew.Production.ToArray();
+            ITraktPersonMovieCreditsCrewItem[] production = responseValue.Crew.Production.ToArray();
 
             production[0].Job.Should().Be("Producer");
             production[0].Movie.Should().NotBeNull();
@@ -95,7 +92,7 @@
             responseValue.Crew.VisualEffects.Should().BeNull();
             responseValue.Crew.Writing.Should().NotBeNull().And.HaveCount(1);
 
-            var writing = responseValue.Crew.Writing.ToArray();
+            ITraktPersonMovieCreditsCrewItem[] writing = responseValue.Crew.Writing.ToArray();
 
             writing[0].Job.Should().Be("Screenplay");
             writing[0].Movie.Should().NotBeNull();
@@ -109,27 +106,20 @@
         }
 
         [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCreditsWithExtendedInfo()
+        public async Task Test_TraktPeopleModule_GetPersonMovieCredits_With_ExtendedInfo()
         {
-            const string personId = "297737";
-
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}/movies?extended={extendedInfo}",
-                                                      PERSON_MOVIE_CREDITS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.People.GetPersonMovieCreditsAsync(personId, extendedInfo).Result;
+            TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_MOVIE_CREDITS_URI}?extended={EXTENDED_INFO}", PERSON_MOVIE_CREDITS_JSON);
+            TraktResponse<ITraktPersonMovieCredits> response = await client.People.GetPersonMovieCreditsAsync(PERSON_ID, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
-
+            ITraktPersonMovieCredits responseValue = response.Value;
             responseValue.Cast.Should().NotBeNull().And.HaveCount(2);
 
-            var cast = responseValue.Cast.ToArray();
+            ITraktPersonMovieCreditsCastItem[] cast = responseValue.Cast.ToArray();
 
             cast[0].Character.Should().Be("Li (voice)");
             cast[0].Movie.Should().NotBeNull();
@@ -158,7 +148,7 @@
             responseValue.Crew.Crew.Should().BeNull();
             responseValue.Crew.Directing.Should().NotBeNull().And.HaveCount(1);
 
-            var directing = responseValue.Crew.Directing.ToArray();
+            ITraktPersonMovieCreditsCrewItem[] directing = responseValue.Crew.Directing.ToArray();
 
             directing[0].Job.Should().Be("Director");
             directing[0].Movie.Should().NotBeNull();
@@ -174,7 +164,7 @@
             responseValue.Crew.Lighting.Should().BeNull();
             responseValue.Crew.Production.Should().NotBeNull().And.HaveCount(1);
 
-            var production = responseValue.Crew.Production.ToArray();
+            ITraktPersonMovieCreditsCrewItem[] production = responseValue.Crew.Production.ToArray();
 
             production[0].Job.Should().Be("Producer");
             production[0].Movie.Should().NotBeNull();
@@ -190,7 +180,7 @@
             responseValue.Crew.VisualEffects.Should().BeNull();
             responseValue.Crew.Writing.Should().NotBeNull().And.HaveCount(1);
 
-            var writing = responseValue.Crew.Writing.ToArray();
+            ITraktPersonMovieCreditsCrewItem[] writing = responseValue.Crew.Writing.ToArray();
 
             writing[0].Job.Should().Be("Screenplay");
             writing[0].Movie.Should().NotBeNull();
@@ -204,93 +194,145 @@
         }
 
         [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCreditsExceptions()
+        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_NotFoundException()
         {
-            const string personId = "297737";
-            var uri = $"people/{personId}/movies";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonMovieCreditsAsync(personId);
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
             act.Should().Throw<TraktPersonNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, (HttpStatusCode)412);
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, (HttpStatusCode)422);
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, (HttpStatusCode)429);
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, (HttpStatusCode)503);
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCreditsArgumentExceptions()
+        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ServerUnavailableException_504()
         {
-            const string personId = "297737";
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, (HttpStatusCode)504);
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.SetupMockResponseWithoutOAuth($"people/{personId}/movies", PERSON_MOVIE_CREDITS_JSON);
+        [Fact]
+        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, (HttpStatusCode)520);
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonMovieCreditsAsync(null);
+        [Fact]
+        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, (HttpStatusCode)521);
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, (HttpStatusCode)522);
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktPeopleModule_GetPersonMovieCredits_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, PERSON_MOVIE_CREDITS_JSON);
+
+            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(null);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonMovieCreditsAsync(string.Empty);
+            act = () => client.People.GetPersonMovieCreditsAsync(string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.People.GetPersonMovieCreditsAsync("person id");
+            act = () => client.People.GetPersonMovieCreditsAsync("person id");
             act.Should().Throw<ArgumentException>();
         }
     }

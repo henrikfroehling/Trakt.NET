@@ -1,7 +1,12 @@
 ﻿namespace TraktApiSharp.Tests.Modules.TraktPeopleModule
 {
+    using TraktApiSharp.Requests.Parameters;
+
     public partial class TraktPeopleModule_Tests
     {
+        private const string PERSON_ID = "297737";
+        private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
+
         private const string PERSON_MINIMAL_JSON =
             @"{
                 ""name"": ""Bryan Cranston"",
