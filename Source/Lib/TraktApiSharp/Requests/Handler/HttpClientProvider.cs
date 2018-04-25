@@ -11,7 +11,7 @@
     {
         private const string MEDIA_TYPE = "application/json";
         private const string AUTHENTICATION_TYPE = "Bearer";
-
+        private readonly MediaTypeWithQualityHeaderValue MEDIA_TYPE_HEADER = new MediaTypeWithQualityHeaderValue(MEDIA_TYPE);
         private static readonly IDictionary<string, HttpClient> s_httpClientCache = new ConcurrentDictionary<string, HttpClient>();
         private readonly TraktClient _client;
 
@@ -31,14 +31,14 @@
             return httpClient;
         }
 
-        public HttpClient GetAuthorizationHttpClient()
+        public HttpClient GetAuthorizationHttpClient(string accessToken = null, string clientId = null)
         {
             string authorizationClientIdKey = $"{_client.ClientId}-AUTH";
 
             if (s_httpClientCache.TryGetValue(authorizationClientIdKey, out HttpClient httpClient))
                 return httpClient;
 
-            httpClient = SetupAuthorizationHttpClient();
+            httpClient = SetupAuthorizationHttpClient(accessToken, clientId);
             s_httpClientCache[authorizationClientIdKey] = httpClient;
 
             return httpClient;
@@ -51,32 +51,28 @@
             return httpClient;
         }
 
-        private HttpClient SetupAuthorizationHttpClient()
+        private HttpClient SetupAuthorizationHttpClient(string accessToken = null, string clientId = null)
         {
             var httpClient = new HttpClient();
-            SetAuthorizationRequestHeaders(httpClient);
+            SetAuthorizationRequestHeaders(httpClient, accessToken ?? _client.Authorization.AccessToken, clientId ?? _client.ClientId);
             return httpClient;
         }
 
         private void SetDefaultRequestHeaders(HttpClient httpClient)
         {
-            var mediaTypeHeader = new MediaTypeWithQualityHeaderValue(MEDIA_TYPE);
-
             httpClient.DefaultRequestHeaders.Clear();
-            httpClient.DefaultRequestHeaders.Accept.Add(mediaTypeHeader);
+            httpClient.DefaultRequestHeaders.Accept.Add(MEDIA_TYPE_HEADER);
             httpClient.DefaultRequestHeaders.Add(Constants.APIVersionHeaderKey, $"{_client.Configuration.ApiVersion}");
             httpClient.DefaultRequestHeaders.Add(Constants.APIClientIdHeaderKey, _client.ClientId);
         }
 
-        private void SetAuthorizationRequestHeaders(HttpClient httpClient)
+        private void SetAuthorizationRequestHeaders(HttpClient httpClient, string accessToken, string clientId)
         {
-            var mediaTypeHeader = new MediaTypeWithQualityHeaderValue(MEDIA_TYPE);
-
             httpClient.DefaultRequestHeaders.Clear();
-            httpClient.DefaultRequestHeaders.Accept.Add(mediaTypeHeader);
+            httpClient.DefaultRequestHeaders.Accept.Add(MEDIA_TYPE_HEADER);
             httpClient.DefaultRequestHeaders.Add(Constants.APIVersionHeaderKey, $"{_client.Configuration.ApiVersion}");
-            httpClient.DefaultRequestHeaders.Add(Constants.APIClientIdHeaderKey, _client.ClientId);
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(AUTHENTICATION_TYPE, _client.Authorization.AccessToken);
+            httpClient.DefaultRequestHeaders.Add(Constants.APIClientIdHeaderKey, clientId);
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(AUTHENTICATION_TYPE, accessToken);
         }
     }
 }

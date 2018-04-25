@@ -41,7 +41,7 @@
             return httpClient;
         }
 
-        public HttpClient GetAuthorizationHttpClient()
+        public HttpClient GetAuthorizationHttpClient(string accessToken = null, string clientId = null)
         {
             throw new System.NotImplementedException();
         }
