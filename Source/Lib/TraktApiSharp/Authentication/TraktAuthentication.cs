@@ -390,7 +390,7 @@
             var tokenUrl = $"{Client.Configuration.BaseUrl}{Constants.OAuthTokenUri}";
             var content = new StringContent(postContent, Encoding.UTF8, "application/json");
 
-            var response = await Client.HttpClientProvider.GetAuthorizationHttpClient().PostAsync(tokenUrl, content).ConfigureAwait(false);
+            var response = await Client.HttpClientProvider.GetHttpClient().PostAsync(tokenUrl, content).ConfigureAwait(false);
 
             HttpStatusCode responseCode = response.StatusCode;
             string responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
@@ -523,7 +523,7 @@
             var tokenUrl = $"{Client.Configuration.BaseUrl}{Constants.OAuthRevokeUri}";
             var content = new StringContent(postContent, Encoding.UTF8, "application/x-www-form-urlencoded");
 
-            var response = await Client.HttpClientProvider.GetAuthorizationHttpClient(accessToken, clientId).PostAsync(tokenUrl, content).ConfigureAwait(false);
+            var response = await Client.HttpClientProvider.GetHttpClient(/*accessToken, clientId*/).PostAsync(tokenUrl, content).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
             {

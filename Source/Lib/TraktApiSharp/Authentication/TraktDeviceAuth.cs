@@ -56,7 +56,7 @@
             var tokenUrl = $"{Client.Configuration.BaseUrl}{Constants.OAuthDeviceCodeUri}";
             var content = new StringContent(postContent, Encoding.UTF8, "application/json");
 
-            var response = await Client.HttpClientProvider.GetAuthorizationHttpClient().PostAsync(tokenUrl, content).ConfigureAwait(false);
+            var response = await Client.HttpClientProvider.GetHttpClient().PostAsync(tokenUrl, content).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
                 await ErrorHandlingAsync(response, tokenUrl, postContent, true);
@@ -205,7 +205,7 @@
             while (totalExpiredSeconds < device.ExpiresInSeconds)
             {
                 var content = new StringContent(postContent, Encoding.UTF8, "application/json");
-                var response = await Client.HttpClientProvider.GetAuthorizationHttpClient().PostAsync(tokenUrl, content).ConfigureAwait(false);
+                var response = await Client.HttpClientProvider.GetHttpClient().PostAsync(tokenUrl, content).ConfigureAwait(false);
 
                 responseCode = response.StatusCode;
                 reasonPhrase = response.ReasonPhrase;

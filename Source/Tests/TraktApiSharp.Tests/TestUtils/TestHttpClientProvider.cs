@@ -21,14 +21,12 @@
 
         private readonly string _baseUrl;
         private readonly string _clientId;
-        private readonly string _clientSecret;
         private readonly MockHttpMessageHandler _mockHttpMessageHandler;
 
         public TestHttpClientProvider(string baseUrl)
         {
             _baseUrl = baseUrl;
             _clientId = TestConstants.TRAKT_CLIENT_ID;
-            _clientSecret = TestConstants.TRAKT_CLIENT_SECRET;
             _mockHttpMessageHandler = new MockHttpMessageHandler();
         }
 
@@ -40,11 +38,6 @@
             httpClient.DefaultRequestHeaders.Add(TRAKT_API_VERSION_HEADER_KEY, "2");
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ACCEPT_MEDIA_TYPE));
             return httpClient;
-        }
-
-        public HttpClient GetAuthorizationHttpClient(string accessToken = null, string clientId = null)
-        {
-            throw new System.NotImplementedException();
         }
 
         internal void SetupMockResponse(string uri, string responseContent)
