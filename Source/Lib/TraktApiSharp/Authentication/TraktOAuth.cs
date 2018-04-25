@@ -11,6 +11,7 @@
     using System.Net.Http;
     using System.Text;
     using System.Threading.Tasks;
+    using TraktApiSharp.Objects.Authentication.Implementations;
     using Utils;
 
     /// <summary>Provides access to OAuth authentication methods, such as creating a new authorization URL and getting a new access token.</summary>

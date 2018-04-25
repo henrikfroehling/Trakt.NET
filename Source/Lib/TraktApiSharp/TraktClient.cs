@@ -5,6 +5,7 @@
     using Extensions;
     using Modules;
     using Requests.Handler;
+    using TraktApiSharp.Objects.Authentication.Implementations;
 
     /// <summary>
     /// Provides access to all functionality of this library.

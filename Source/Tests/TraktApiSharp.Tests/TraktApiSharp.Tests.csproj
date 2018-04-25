@@ -118,6 +118,8 @@
     <Compile Include="Modules\TraktCertificationsModule\TraktCertificationsModule_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktNetworksModule\TraktNetworksModule_GetNetworks_Tests.cs" />
     <Compile Include="Modules\TraktNetworksModule\TraktNetworksModule_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Authentication\Implementations\TraktAuthorization_Tests.cs" />
+    <Compile Include="Objects\Authentication\Implementations\TraktDevice_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCastAndCrew_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCastMember_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCertifications_Tests.cs" />
@@ -1251,6 +1253,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

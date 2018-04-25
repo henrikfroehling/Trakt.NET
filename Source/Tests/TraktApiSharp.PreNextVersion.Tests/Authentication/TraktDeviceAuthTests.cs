@@ -8,10 +8,9 @@
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
-    using TraktApiSharp.Authentication;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Objects.Basic;
+    using TraktApiSharp.Objects.Authentication.Implementations;
     using TraktApiSharp.Objects.Basic.Implementations;
     using Utils;
 
@@ -82,7 +81,7 @@
             response.VerificationUrl.Should().Be(device.VerificationUrl);
             response.ExpiresInSeconds.Should().Be(device.ExpiresInSeconds);
             response.IntervalInSeconds.Should().Be(device.IntervalInSeconds);
-            response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsExpiredUnused.Should().BeFalse();
             response.IsValid.Should().BeTrue();
 
@@ -94,7 +93,7 @@
             clientDevice.VerificationUrl.Should().Be(response.VerificationUrl);
             clientDevice.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
             clientDevice.IntervalInSeconds.Should().Be(response.IntervalInSeconds);
-            clientDevice.Created.Should().Be(response.Created);
+            clientDevice.CreatedAt.Should().Be(response.CreatedAt);
             clientDevice.IsExpiredUnused.Should().BeFalse();
             clientDevice.IsValid.Should().BeTrue();
         }
@@ -233,7 +232,7 @@
             response.VerificationUrl.Should().Be(device.VerificationUrl);
             response.ExpiresInSeconds.Should().Be(device.ExpiresInSeconds);
             response.IntervalInSeconds.Should().Be(device.IntervalInSeconds);
-            response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsExpiredUnused.Should().BeFalse();
             response.IsValid.Should().BeTrue();
 
@@ -245,7 +244,7 @@
             clientDevice.VerificationUrl.Should().Be(response.VerificationUrl);
             clientDevice.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
             clientDevice.IntervalInSeconds.Should().Be(response.IntervalInSeconds);
-            clientDevice.Created.Should().Be(response.Created);
+            clientDevice.CreatedAt.Should().Be(response.CreatedAt);
             clientDevice.IsExpiredUnused.Should().BeFalse();
             clientDevice.IsValid.Should().BeTrue();
         }
@@ -360,9 +359,9 @@
 
         #region PollForAuthorization
 
-        private static readonly int DEVICE_EXPIRES_IN_SECONDS = 60;
-        private static readonly int DEVICE_INTERVAL_IN_SECONDS = 6;
-        private static readonly int POLLING_DELAY_IN_MILLISECONDS = 9 * 1000;
+        private static readonly uint DEVICE_EXPIRES_IN_SECONDS = 60;
+        private static readonly uint DEVICE_INTERVAL_IN_SECONDS = 6;
+        private static readonly uint POLLING_DELAY_IN_MILLISECONDS = 9 * 1000;
 
         [TestMethod]
         public void TestTraktDeviceAuthPollForAuthorization()
@@ -387,7 +386,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
@@ -403,8 +402,8 @@
             response.TokenType.Should().Be(accessToken.TokenType);
             response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.AccessScope.Should().Be(accessToken.AccessScope);
-            response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            response.Scope.Should().Be(accessToken.Scope);
+            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
@@ -414,8 +413,8 @@
             clientAccessToken.TokenType.Should().Be(response.TokenType);
             clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
-            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.Scope.Should().Be(response.Scope);
+            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
             clientAccessToken.IsExpired.Should().BeFalse();
         }
 
@@ -443,7 +442,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
@@ -467,8 +466,8 @@
             response.TokenType.Should().Be(accessToken.TokenType);
             response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.AccessScope.Should().Be(accessToken.AccessScope);
-            response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            response.Scope.Should().Be(accessToken.Scope);
+            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
@@ -478,8 +477,8 @@
             clientAccessToken.TokenType.Should().Be(response.TokenType);
             clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
-            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.Scope.Should().Be(response.Scope);
+            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
             clientAccessToken.IsExpired.Should().BeFalse();
         }
 
@@ -687,7 +686,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
@@ -702,8 +701,8 @@
             response.TokenType.Should().Be(accessToken.TokenType);
             response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.AccessScope.Should().Be(accessToken.AccessScope);
-            response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            response.Scope.Should().Be(accessToken.Scope);
+            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
@@ -713,8 +712,8 @@
             clientAccessToken.TokenType.Should().Be(response.TokenType);
             clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
-            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.Scope.Should().Be(response.Scope);
+            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
             clientAccessToken.IsExpired.Should().BeFalse();
         }
 
@@ -742,7 +741,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
@@ -764,8 +763,8 @@
             response.TokenType.Should().Be(accessToken.TokenType);
             response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.AccessScope.Should().Be(accessToken.AccessScope);
-            response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            response.Scope.Should().Be(accessToken.Scope);
+            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
@@ -775,8 +774,8 @@
             clientAccessToken.TokenType.Should().Be(response.TokenType);
             clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
-            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.Scope.Should().Be(response.Scope);
+            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
             clientAccessToken.IsExpired.Should().BeFalse();
         }
 
@@ -971,7 +970,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
@@ -986,8 +985,8 @@
             response.TokenType.Should().Be(accessToken.TokenType);
             response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.AccessScope.Should().Be(accessToken.AccessScope);
-            response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            response.Scope.Should().Be(accessToken.Scope);
+            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
@@ -997,8 +996,8 @@
             clientAccessToken.TokenType.Should().Be(response.TokenType);
             clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
-            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.Scope.Should().Be(response.Scope);
+            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
             clientAccessToken.IsExpired.Should().BeFalse();
         }
 
@@ -1026,7 +1025,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
@@ -1047,8 +1046,8 @@
             response.AccessToken.Should().Be(accessToken.AccessToken);
             response.TokenType.Should().Be(accessToken.TokenType);
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.AccessScope.Should().Be(accessToken.AccessScope);
-            response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            response.Scope.Should().Be(accessToken.Scope);
+            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
@@ -1057,8 +1056,8 @@
             clientAccessToken.AccessToken.Should().Be(response.AccessToken);
             clientAccessToken.TokenType.Should().Be(response.TokenType);
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
-            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.Scope.Should().Be(response.Scope);
+            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
             clientAccessToken.IsExpired.Should().BeFalse();
         }
 
@@ -1253,7 +1252,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
@@ -1268,8 +1267,8 @@
             response.TokenType.Should().Be(accessToken.TokenType);
             response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.AccessScope.Should().Be(accessToken.AccessScope);
-            response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            response.Scope.Should().Be(accessToken.Scope);
+            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
@@ -1279,8 +1278,8 @@
             clientAccessToken.TokenType.Should().Be(response.TokenType);
             clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
-            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.Scope.Should().Be(response.Scope);
+            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
             clientAccessToken.IsExpired.Should().BeFalse();
         }
 
@@ -1308,7 +1307,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
@@ -1330,8 +1329,8 @@
             response.TokenType.Should().Be(accessToken.TokenType);
             response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.AccessScope.Should().Be(accessToken.AccessScope);
-            response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            response.Scope.Should().Be(accessToken.Scope);
+            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
@@ -1341,8 +1340,8 @@
             clientAccessToken.TokenType.Should().Be(response.TokenType);
             clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
-            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.Scope.Should().Be(response.Scope);
+            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
             clientAccessToken.IsExpired.Should().BeFalse();
         }
 
@@ -1537,7 +1536,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
@@ -1557,8 +1556,8 @@
             response.TokenType.Should().Be(accessToken.TokenType);
             response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.AccessScope.Should().Be(accessToken.AccessScope);
-            response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            response.Scope.Should().Be(accessToken.Scope);
+            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
@@ -1568,8 +1567,8 @@
             clientAccessToken.TokenType.Should().Be(response.TokenType);
             clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
-            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.Scope.Should().Be(response.Scope);
+            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
             clientAccessToken.IsExpired.Should().BeFalse();
         }
 
@@ -1587,7 +1586,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var error = new TraktError
@@ -1699,7 +1698,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             TestUtility.MOCK_TEST_CLIENT.Authorization = null;
@@ -1795,7 +1794,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
@@ -1814,8 +1813,8 @@
             response.TokenType.Should().Be(accessToken.TokenType);
             response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.AccessScope.Should().Be(accessToken.AccessScope);
-            response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            response.Scope.Should().Be(accessToken.Scope);
+            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
@@ -1825,8 +1824,8 @@
             clientAccessToken.TokenType.Should().Be(response.TokenType);
             clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
-            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.Scope.Should().Be(response.Scope);
+            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
             clientAccessToken.IsExpired.Should().BeFalse();
         }
 
@@ -1844,7 +1843,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var error = new TraktError
@@ -1956,7 +1955,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             TestUtility.MOCK_TEST_CLIENT.Authorization = null;
@@ -2095,7 +2094,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
@@ -2114,8 +2113,8 @@
             response.TokenType.Should().Be(accessToken.TokenType);
             response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.AccessScope.Should().Be(accessToken.AccessScope);
-            response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            response.Scope.Should().Be(accessToken.Scope);
+            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
@@ -2125,8 +2124,8 @@
             clientAccessToken.TokenType.Should().Be(response.TokenType);
             clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
-            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.Scope.Should().Be(response.Scope);
+            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
             clientAccessToken.IsExpired.Should().BeFalse();
         }
 
@@ -2144,7 +2143,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var error = new TraktError
@@ -2256,7 +2255,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var clientId = "clientId";
@@ -2390,7 +2389,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
@@ -2410,8 +2409,8 @@
             response.TokenType.Should().Be(accessToken.TokenType);
             response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.AccessScope.Should().Be(accessToken.AccessScope);
-            response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            response.Scope.Should().Be(accessToken.Scope);
+            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
@@ -2421,8 +2420,8 @@
             clientAccessToken.TokenType.Should().Be(response.TokenType);
             clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
-            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.Scope.Should().Be(response.Scope);
+            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
             clientAccessToken.IsExpired.Should().BeFalse();
         }
 
@@ -2440,7 +2439,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var error = new TraktError
@@ -2552,7 +2551,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var clientId = "clientId";
@@ -2680,7 +2679,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var accessTokenJson = JsonConvert.SerializeObject(accessToken);
@@ -2701,8 +2700,8 @@
             response.TokenType.Should().Be(accessToken.TokenType);
             response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
             response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.AccessScope.Should().Be(accessToken.AccessScope);
-            response.Created.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            response.Scope.Should().Be(accessToken.Scope);
+            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
             response.IsExpired.Should().BeFalse();
 
             var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
@@ -2712,8 +2711,8 @@
             clientAccessToken.TokenType.Should().Be(response.TokenType);
             clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
             clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.AccessScope.Should().Be(response.AccessScope);
-            clientAccessToken.Created.Should().Be(response.Created);
+            clientAccessToken.Scope.Should().Be(response.Scope);
+            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
             clientAccessToken.IsExpired.Should().BeFalse();
         }
 
@@ -2731,7 +2730,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var error = new TraktError
@@ -2843,7 +2842,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var clientId = "clientId";
@@ -2968,7 +2967,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var postContent = $"token={accessToken.AccessToken}";
@@ -2985,9 +2984,9 @@
             authorization.Should().NotBeNull();
             authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
             authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
-            authorization.AccessScope.Should().Be(TraktAccessScope.Public);
+            authorization.Scope.Should().Be(TraktAccessScope.Public);
             authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
-            authorization.Created.Should().BeCloseTo(DateTime.UtcNow, 1000);
+            authorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1000);
             authorization.ExpiresInSeconds.Should().Be(0);
             authorization.IgnoreExpiration.Should().BeTrue();
             authorization.IsExpired.Should().BeTrue();
@@ -3004,7 +3003,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var uri = Constants.OAuthRevokeUri;
@@ -3101,7 +3100,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             TestUtility.MOCK_TEST_CLIENT.Authorization = null;
@@ -3160,7 +3159,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var postContent = $"token={accessToken.AccessToken}";
@@ -3177,9 +3176,9 @@
             authorization.Should().NotBeNull();
             authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
             authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
-            authorization.AccessScope.Should().Be(TraktAccessScope.Public);
+            authorization.Scope.Should().Be(TraktAccessScope.Public);
             authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
-            authorization.Created.Should().BeCloseTo(DateTime.UtcNow, 1000);
+            authorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1000);
             authorization.ExpiresInSeconds.Should().Be(0);
             authorization.IgnoreExpiration.Should().BeTrue();
             authorization.IsExpired.Should().BeTrue();
@@ -3196,7 +3195,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var uri = Constants.OAuthRevokeUri;
@@ -3293,7 +3292,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             TestUtility.MOCK_TEST_CLIENT.Authorization = null;
@@ -3397,7 +3396,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var postContent = $"token={accessToken.AccessToken}";
@@ -3414,9 +3413,9 @@
             authorization.Should().NotBeNull();
             authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
             authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
-            authorization.AccessScope.Should().Be(TraktAccessScope.Public);
+            authorization.Scope.Should().Be(TraktAccessScope.Public);
             authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
-            authorization.Created.Should().BeCloseTo(DateTime.UtcNow, 1000);
+            authorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1000);
             authorization.ExpiresInSeconds.Should().Be(0);
             authorization.IgnoreExpiration.Should().BeTrue();
             authorization.IsExpired.Should().BeTrue();
@@ -3435,7 +3434,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var uri = Constants.OAuthRevokeUri;
@@ -3532,7 +3531,7 @@
                 TokenType = TraktAccessTokenType.Bearer,
                 ExpiresInSeconds = 7200,
                 RefreshToken = "mockRefreshToken",
-                AccessScope = TraktAccessScope.Public
+                Scope = TraktAccessScope.Public
             };
 
             var clientId = "clientId";

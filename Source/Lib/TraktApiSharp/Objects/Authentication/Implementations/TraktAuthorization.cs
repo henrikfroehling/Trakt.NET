@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Authentication
+﻿namespace TraktApiSharp.Objects.Authentication.Implementations
 {
     using Enums;
     using Extensions;
-    using Newtonsoft.Json;
     using System;
+    using TraktApiSharp.Authentication;
 
     /// <summary>
     /// Represents a Trakt authorization response, which contains information, such as access token and refresh token.
@@ -23,38 +23,26 @@
     /// <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Device: Get Token"</a> for more information.
     /// </para>
     /// </summary>
-    public class TraktAuthorization : IEquatable<TraktAuthorization>
+    public class TraktAuthorization : ITraktAuthorization
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TraktAuthorization" /> class.
-        /// <para>
-        /// Sets <see cref="Created" /> to the DateTime, when it is initialized.
-        /// The instantiated authorization instance is invalid.
-        /// </para>
-        /// </summary>
-        public TraktAuthorization() { Created = DateTime.UtcNow; }
+        private const uint DEFAULT_EXPIRES_IN_SECONDS = 7776000;
 
         /// <summary>Gets or sets the access token.</summary>
-        [JsonProperty(PropertyName = "access_token")]
         public string AccessToken { get; set; }
 
         /// <summary>Gets or sets the refresh token. Use this to exchange it for a new access token.</summary>
-        [JsonProperty(PropertyName = "refresh_token")]
         public string RefreshToken { get; set; }
 
         /// <summary>Gets or sets the token scope. See also <seealso cref="TraktAccessScope" />.</summary>
-        [JsonProperty(PropertyName = "scope")]
-        [JsonConverter(typeof(TraktEnumerationConverter<TraktAccessScope>))]
-        public TraktAccessScope AccessScope { get; set; }
+        public TraktAccessScope Scope { get; set; }
 
         /// <summary>Gets or sets the seconds, after which this authorization will expire.</summary>
-        [JsonProperty(PropertyName = "expires_in")]
-        public int ExpiresInSeconds { get; set; }
+        public uint ExpiresInSeconds { get; set; }
 
         /// <summary>Gets or sets the token type. See also <seealso cref="TraktAccessTokenType" />.</summary>
-        [JsonProperty(PropertyName = "token_type")]
-        [JsonConverter(typeof(TraktEnumerationConverter<TraktAccessTokenType>))]
         public TraktAccessTokenType TokenType { get; set; }
+
+        public ulong CreatedAtTimestamp { get; set; }
 
         /// <summary>
         /// Returns, whether this authorization information is expired.
@@ -62,8 +50,7 @@
         /// Returns false, if <see cref="IsValid" /> returns false, or, if the authorization information is expired.
         /// </para>
         /// </summary>
-        [JsonIgnore]
-        public bool IsExpired => !IsValid || (IgnoreExpiration ? false : Created.AddSeconds(ExpiresInSeconds) <= DateTime.UtcNow);
+        public bool IsExpired => !IsValid || (!IgnoreExpiration && CreatedAt.AddSeconds(ExpiresInSeconds) <= DateTime.UtcNow);
 
         /// <summary>
         /// Returns, whether this authorization information is valid.
@@ -71,7 +58,6 @@
         /// Returns false, if <see cref="AccessToken" /> is null, empty or contains spaces.
         /// </para>
         /// </summary>
-        [JsonIgnore]
         public bool IsValid => !string.IsNullOrEmpty(AccessToken) && !AccessToken.ContainsSpace();
 
         /// <summary>
@@ -80,44 +66,51 @@
         /// Returns false, if <see cref="RefreshToken" /> is null, empty or contains spaces.
         /// </para>
         /// </summary>
-        [JsonIgnore]
         public bool IsRefreshPossible => !string.IsNullOrEmpty(RefreshToken) && !RefreshToken.ContainsSpace();
 
         /// <summary>Returns the UTC DateTime, when this authorization information was created.</summary>
-        [JsonIgnore]
-        public DateTime Created { get; internal set; }
+        public DateTime CreatedAt => CreatedAtTimestamp > 0 ? new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(CreatedAtTimestamp) : default(DateTime);
 
-        [JsonIgnore]
         internal bool IgnoreExpiration { get; set; }
+
+        public override string ToString()
+        {
+            string value = IsValid ? $"{AccessToken}" : "no valid access token";
+            value += IsExpired ? " (expired)" : $" (valid until {CreatedAt.AddSeconds(ExpiresInSeconds)})";
+            return value;
+        }
+
+        public bool Equals(ITraktAuthorization other)
+            => other != null
+                && other.IsValid == IsValid
+                && other.IsExpired == IsExpired
+                && other.IsRefreshPossible == IsRefreshPossible
+                && other.ExpiresInSeconds == ExpiresInSeconds
+                && other.CreatedAtTimestamp == CreatedAtTimestamp
+                && other.CreatedAt == CreatedAt
+                && other.AccessToken == AccessToken
+                && other.RefreshToken == RefreshToken
+                && other.Scope == Scope
+                && other.TokenType == TokenType;
 
         /// <summary>Creates a new <see cref="TraktAuthorization" /> instance with the given values.</summary>
         /// <param name="accessToken">The access token for the new <see cref="TraktAuthorization" /> instance.</param>
         /// <param name="refreshToken">The optional refresh token for the new <see cref="TraktAuthorization" /> instance.</param>
         /// <returns>A new <see cref="TraktAuthorization" /> instance with the given values.</returns>
         public static TraktAuthorization CreateWith(string accessToken, string refreshToken = null)
-            => new TraktAuthorization
-            {
-                AccessScope = TraktAccessScope.Public,
-                TokenType = TraktAccessTokenType.Bearer,
-                AccessToken = accessToken ?? string.Empty,
-                RefreshToken = refreshToken ?? string.Empty,
-                IgnoreExpiration = true
-            };
+        {
+            TraktAuthorization traktAuthorization = CreateWith(DateTime.UtcNow, accessToken, refreshToken);
+            traktAuthorization.IgnoreExpiration = true;
+            return traktAuthorization;
+        }
 
         /// <summary>Creates a new <see cref="TraktAuthorization" /> instance with the given values.</summary>
         /// <param name="expiresInSeconds">The seconds, after which the given access token will expire.</param>
         /// <param name="accessToken">The access token for the new <see cref="TraktAuthorization" /> instance.</param>
         /// <param name="refreshToken">The optional refresh token for the new <see cref="TraktAuthorization" /> instance.</param>
         /// <returns>A new <see cref="TraktAuthorization" /> instance with the given values.</returns>
-        public static TraktAuthorization CreateWith(int expiresInSeconds, string accessToken, string refreshToken = null)
-            => new TraktAuthorization
-            {
-                ExpiresInSeconds = expiresInSeconds,
-                AccessScope = TraktAccessScope.Public,
-                TokenType = TraktAccessTokenType.Bearer,
-                AccessToken = accessToken ?? string.Empty,
-                RefreshToken = refreshToken ?? string.Empty
-            };
+        public static TraktAuthorization CreateWith(uint expiresInSeconds, string accessToken, string refreshToken = null)
+            => CreateWith(DateTime.UtcNow, expiresInSeconds, accessToken, refreshToken);
 
         /// <summary>
         /// Creates a new <see cref="TraktAuthorization" /> instance with the given values.
@@ -129,7 +122,11 @@
         /// <param name="refreshToken">The optional refresh token for the new <see cref="TraktAuthorization" /> instance.</param>
         /// <returns>A new <see cref="TraktAuthorization" /> instance with the given values.</returns>
         public static TraktAuthorization CreateWith(DateTime createdAt, string accessToken, string refreshToken = null)
-            => CreateWith(createdAt, 7776000, accessToken, refreshToken);
+        {
+            TraktAuthorization traktAuthorization = CreateWith(createdAt, DEFAULT_EXPIRES_IN_SECONDS, accessToken, refreshToken);
+            traktAuthorization.IgnoreExpiration = true;
+            return traktAuthorization;
+        }
 
         /// <summary>Creates a new <see cref="TraktAuthorization" /> instance with the given values.</summary>
         /// <param name="createdAt">The datetime, when the given access token was created. Will be converted to UTC datetime.</param>
@@ -137,42 +134,27 @@
         /// <param name="accessToken">The access token for the new <see cref="TraktAuthorization" /> instance.</param>
         /// <param name="refreshToken">The optional refresh token for the new <see cref="TraktAuthorization" /> instance.</param>
         /// <returns>A new <see cref="TraktAuthorization" /> instance with the given values.</returns>
-        public static TraktAuthorization CreateWith(DateTime createdAt, int expiresInSeconds,
+        public static TraktAuthorization CreateWith(DateTime createdAt, uint expiresInSeconds,
                                                     string accessToken, string refreshToken = null)
             => new TraktAuthorization
             {
-                Created = createdAt.ToUniversalTime(),
-                ExpiresInSeconds = expiresInSeconds,
-                AccessScope = TraktAccessScope.Public,
-                TokenType = TraktAccessTokenType.Bearer,
                 AccessToken = accessToken ?? string.Empty,
-                RefreshToken = refreshToken ?? string.Empty
+                RefreshToken = refreshToken ?? string.Empty,
+                Scope = TraktAccessScope.Public,
+                TokenType = TraktAccessTokenType.Bearer,
+                ExpiresInSeconds = expiresInSeconds,
+                CreatedAtTimestamp = CalculateTimestamp(createdAt)
             };
 
-        public override string ToString()
+        private static ulong CalculateTimestamp(DateTime createdAt)
         {
-            var validUntil = Created.AddSeconds(ExpiresInSeconds);
-            var strIsExpired = IsExpired ? "(expired)" : $"(valid until {validUntil})";
-            return IsValid ? $"{AccessToken} {strIsExpired}" : $"no valid access token {strIsExpired}";
-        }
-
-        public bool Equals(TraktAuthorization other)
-        {
-            if (other == null || other.IsValid != IsValid
-                || other.IsExpired != IsExpired
-                || other.IsRefreshPossible != IsRefreshPossible
-                || other.IgnoreExpiration != IgnoreExpiration
-                || other.ExpiresInSeconds != ExpiresInSeconds
-                || other.Created != Created
-                || other.AccessToken != AccessToken
-                || other.RefreshToken != RefreshToken
-                || other.AccessScope != AccessScope
-                || other.TokenType != TokenType)
-            {
-                return false;
-            }
-
-            return true;
+            const long ticksPerMilliseconds = TimeSpan.TicksPerMillisecond;
+            var origin = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            long originMilliseconds = origin.Ticks / ticksPerMilliseconds;
+            DateTime utcCreatedAt = createdAt.ToUniversalTime();
+            long utcCreatedAtMilliseconds = utcCreatedAt.Ticks / ticksPerMilliseconds;
+            long differenceInMilliseconds = utcCreatedAtMilliseconds - originMilliseconds;
+            return (ulong)(differenceInMilliseconds / 1000);
         }
     }
 }

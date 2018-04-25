@@ -1,7 +1,7 @@
-﻿namespace TraktApiSharp.Authentication
+﻿namespace TraktApiSharp.Objects.Authentication.Implementations
 {
-    using Newtonsoft.Json;
     using System;
+    using TraktApiSharp.Authentication;
 
     /// <summary>
     /// Represents a Trakt device response.
@@ -11,36 +11,33 @@
     /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/device-code/generate-new-device-codes">"Trakt API Doc - Devices: Device Code"</a> for more information.
     /// </para>
     /// </summary>
-    public class TraktDevice : IEquatable<TraktDevice>
+    public class TraktDevice : ITraktDevice
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TraktDevice" /> class.
         /// <para>
-        /// Sets <see cref="Created" /> to the DateTime, when it is initialized.
+        /// Sets <see cref="CreatedAt" /> to the DateTime, when it is initialized.
         /// The instantiated device instance is invalid.
         /// </para>
         /// </summary>
-        public TraktDevice() { Created = DateTime.UtcNow; }
+        public TraktDevice() { CreatedAt = DateTime.UtcNow; }
 
         /// <summary>Gets or sets the actual device code.</summary>
-        [JsonProperty(PropertyName = "device_code")]
         public string DeviceCode { get; set; }
 
         /// <summary>Gets or sets the user code.</summary>
-        [JsonProperty(PropertyName = "user_code")]
         public string UserCode { get; set; }
 
         /// <summary>Gets or sets the verification URL.</summary>
-        [JsonProperty(PropertyName = "verification_url")]
         public string VerificationUrl { get; set; }
 
         /// <summary>Gets or sets the seconds, after which this device will expire.</summary>
-        [JsonProperty(PropertyName = "expires_in")]
-        public int ExpiresInSeconds { get; set; }
+        public uint ExpiresInSeconds { get; set; }
 
         /// <summary>Gets or sets the interval, at which the access token should be polled.</summary>
-        [JsonProperty(PropertyName = "interval")]
-        public int IntervalInSeconds { get; set; }
+        public uint IntervalInSeconds { get; set; }
+
+        public uint IntervalInMilliseconds => IntervalInSeconds * 1000;
 
         /// <summary>
         /// Returns, whether this device is valid.
@@ -51,34 +48,32 @@
         /// See also <seealso cref="IsExpiredUnused" />.<para />
         /// </para>
         /// </summary>
-        [JsonIgnore]
-        public bool IsValid => !string.IsNullOrEmpty(DeviceCode) && !IsExpiredUnused;
+        public bool IsValid => !string.IsNullOrEmpty(DeviceCode) && !string.IsNullOrEmpty(UserCode) && !string.IsNullOrEmpty(VerificationUrl) && !IsExpiredUnused && IntervalInSeconds > 0;
 
         /// <summary>Gets the UTC DateTime, when this device was created.</summary>
-        [JsonIgnore]
-        public DateTime Created { get; internal set; }
+        public DateTime CreatedAt { get; }
 
         /// <summary>Gets, whether this device is expired without actually using it for polling for an access token.</summary>
-        [JsonIgnore]
-        public bool IsExpiredUnused => Created.AddSeconds(ExpiresInSeconds) <= DateTime.UtcNow;
+        public bool IsExpiredUnused => CreatedAt.AddSeconds(ExpiresInSeconds) <= DateTime.UtcNow;
 
-        public override string ToString() => IsValid ? DeviceCode : "no valid device code";
-
-        public bool Equals(TraktDevice other)
+        public override string ToString()
         {
-            if (other == null
-                || other.IsExpiredUnused != IsExpiredUnused
-                || other.IsValid != IsValid
-                || other.IntervalInSeconds != IntervalInSeconds
-                || other.Created != Created
-                || other.DeviceCode != DeviceCode
-                || other.UserCode != UserCode
-                || other.VerificationUrl != VerificationUrl)
-            {
-                return false;
-            }
+            string value = !string.IsNullOrEmpty(DeviceCode) ? $"{DeviceCode}" : "no valid device code";
+            value += IsExpiredUnused ? " (expired unused)" : $" (valid until {CreatedAt.AddSeconds(ExpiresInSeconds)})";
+            return value;
+        }
 
-            return true;
+        public bool Equals(ITraktDevice other)
+        {
+            return other != null
+                && other.IsExpiredUnused == IsExpiredUnused
+                && other.IsValid == IsValid
+                && other.ExpiresInSeconds == ExpiresInSeconds
+                && other.IntervalInSeconds == IntervalInSeconds
+                && other.IntervalInMilliseconds == IntervalInMilliseconds
+                && other.DeviceCode == DeviceCode
+                && other.UserCode == UserCode
+                && other.VerificationUrl == VerificationUrl;
         }
     }
 }

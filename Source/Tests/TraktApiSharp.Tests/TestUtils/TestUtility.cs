@@ -7,7 +7,7 @@
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
-    using TraktApiSharp.Authentication;
+    using TraktApiSharp.Objects.Authentication.Implementations;
     using TraktApiSharp.Requests.Handler;
 
     internal static class TestUtility

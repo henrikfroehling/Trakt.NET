@@ -91,10 +91,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Authentication\TraktAuthorizationTests.cs" />
     <Compile Include="Authentication\TraktAuthenticationTests.cs" />
     <Compile Include="Authentication\TraktDeviceAuthTests.cs" />
-    <Compile Include="Authentication\TraktDeviceTests.cs" />
     <Compile Include="Authentication\TraktOAuthTests.cs" />
     <Compile Include="Exceptions\TraktCheckinExceptionTests.cs" />
     <Compile Include="Modules\TraktCalendarModuleTests.cs" />

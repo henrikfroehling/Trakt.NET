@@ -55,9 +55,9 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authentication\TraktAuthorization.cs" />
+    <Compile Include="Objects\Authentication\Implementations\TraktAuthorization.cs" />
     <Compile Include="Authentication\TraktAuthentication.cs" />
-    <Compile Include="Authentication\TraktDevice.cs" />
+    <Compile Include="Objects\Authentication\Implementations\TraktDevice.cs" />
     <Compile Include="Authentication\TraktDeviceAuth.cs" />
     <Compile Include="Authentication\TraktOAuth.cs" />
     <Compile Include="Core\DebugAsserter.cs" />
@@ -122,6 +122,14 @@
     <Compile Include="Modules\ITraktModule.cs" />
     <Compile Include="Modules\TraktCertificationsModule.cs" />
     <Compile Include="Modules\TraktNetworksModule.cs" />
+    <Compile Include="Objects\Authentication\ITraktAuthorization.cs" />
+    <Compile Include="Objects\Authentication\ITraktDevice.cs" />
+    <Compile Include="Objects\Authentication\Json\Factories\AuthorizationJsonIOFactory.cs" />
+    <Compile Include="Objects\Authentication\Json\Factories\DeviceJsonIOFactory.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\AuthorizationObjectJsonReader.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\DeviceObjectJsonReader.cs" />
+    <Compile Include="Objects\Authentication\Json\Writer\AuthorizationObjectJsonWriter.cs" />
+    <Compile Include="Objects\Authentication\Json\Writer\DeviceObjectJsonWriter.cs" />
     <Compile Include="Objects\Basic\IIds.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCertification.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCertifications.cs" />

@@ -3,8 +3,8 @@
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
-    using TraktApiSharp.Authentication;
     using TraktApiSharp.Enums;
+    using TraktApiSharp.Objects.Authentication.Implementations;
     using TraktApiSharp.Services;
 
     [TestClass]
@@ -14,13 +14,13 @@
 
         private static readonly TraktAuthorization AUTHORIZATION = new TraktAuthorization
         {
-            AccessScope = TraktAccessScope.Public,
+            Scope = TraktAccessScope.Public,
             AccessToken = "accessToken",
             RefreshToken = "refreshToken",
             ExpiresInSeconds = 7200,
             TokenType = TraktAccessTokenType.Bearer,
-            IgnoreExpiration = false,
-            Created = CREATED_AT
+            IgnoreExpiration = false//,
+            //Created = CREATED_AT
         };
 
         private static readonly string AUTHORIZATION_JSON =
@@ -28,7 +28,7 @@
                 $"\"AccessToken\":\"{AUTHORIZATION.AccessToken}\"," +
                 $"\"RefreshToken\":\"{AUTHORIZATION.RefreshToken}\"," +
                 $"\"ExpiresIn\":{AUTHORIZATION.ExpiresInSeconds}," +
-                $"\"Scope\":\"{AUTHORIZATION.AccessScope.ObjectName}\"," +
+                $"\"Scope\":\"{AUTHORIZATION.Scope.ObjectName}\"," +
                 $"\"TokenType\":\"{AUTHORIZATION.TokenType.ObjectName}\"," +
                 $"\"CreatedAtTicks\":{CREATED_AT.Ticks}," +
                 $"\"IgnoreExpiration\":{AUTHORIZATION.IgnoreExpiration.ToString().ToLower()}" +
@@ -55,7 +55,7 @@
                 $"\"ExpiresIn\":0," +
                 $"\"Scope\":\"public\"," +
                 $"\"TokenType\":\"bearer\"," +
-                $"\"CreatedAtTicks\":{emptyAuthorization.Created.Ticks}," +
+                $"\"CreatedAtTicks\":{emptyAuthorization.CreatedAt.Ticks}," +
                 $"\"IgnoreExpiration\":false" +
             "}";
 
@@ -84,9 +84,9 @@
             authorization.AccessToken.Should().Be(AUTHORIZATION.AccessToken);
             authorization.RefreshToken.Should().Be(AUTHORIZATION.RefreshToken);
             authorization.ExpiresInSeconds.Should().Be(AUTHORIZATION.ExpiresInSeconds);
-            authorization.AccessScope.Should().Be(AUTHORIZATION.AccessScope);
+            authorization.Scope.Should().Be(AUTHORIZATION.Scope);
             authorization.TokenType.Should().Be(AUTHORIZATION.TokenType);
-            authorization.Created.Should().Be(AUTHORIZATION.Created);
+            authorization.CreatedAt.Should().Be(AUTHORIZATION.CreatedAt);
             authorization.IgnoreExpiration.Should().Be(AUTHORIZATION.IgnoreExpiration);
         }
 
