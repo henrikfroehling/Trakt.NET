@@ -8,19 +8,19 @@
     using Traits;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Movies;
-    using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Xunit;
 
     [Category("Modules.Movies")]
     public partial class TraktMoviesModule_Tests
     {
-        [Fact]
-        public void Test_TraktMoviesModule_GetBoxOfficeMovies()
-        {
-            TestUtility.SetupMockResponseWithoutOAuth($"movies/boxoffice", BOX_OFFICE_MOVIES_JSON);
+        private const string GET_BOX_OFFICE_MOVIES_URI = "movies/boxoffice";
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetBoxOfficeMoviesAsync().Result;
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetBoxOfficeMovies()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_BOX_OFFICE_MOVIES_URI, BOX_OFFICE_MOVIES_JSON);
+            TraktListResponse<ITraktBoxOfficeMovie> response = await client.Movies.GetBoxOfficeMoviesAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -29,13 +29,10 @@
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetBoxOfficeMoviesWithExtendedInfo()
+        public async Task Test_TraktMoviesModule_GetBoxOfficeMovies_With_ExtendedInfo()
         {
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockResponseWithoutOAuth($"movies/boxoffice?extended={extendedInfo}", BOX_OFFICE_MOVIES_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetBoxOfficeMoviesAsync(extendedInfo).Result;
+            TraktClient client = TestUtility.GetMockClient($"{GET_BOX_OFFICE_MOVIES_URI}?extended={EXTENDED_INFO}", BOX_OFFICE_MOVIES_JSON);
+            TraktListResponse<ITraktBoxOfficeMovie> response = await client.Movies.GetBoxOfficeMoviesAsync(EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -44,74 +41,130 @@
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetBoxOfficeMoviesExceptions()
+        public void Test_TraktMoviesModule_GetBoxOfficeMovies_Throws_NotFoundException()
         {
-            const string uri = "movies/boxoffice";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktListResponse<ITraktBoxOfficeMovie>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetBoxOfficeMoviesAsync();
+            TraktClient client = TestUtility.GetMockClient(GET_BOX_OFFICE_MOVIES_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktListResponse<ITraktBoxOfficeMovie>>> act = () => client.Movies.GetBoxOfficeMoviesAsync();
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktMoviesModule_GetBoxOfficeMovies_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_BOX_OFFICE_MOVIES_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktListResponse<ITraktBoxOfficeMovie>>> act = () => client.Movies.GetBoxOfficeMoviesAsync();
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktMoviesModule_GetBoxOfficeMovies_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_BOX_OFFICE_MOVIES_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktListResponse<ITraktBoxOfficeMovie>>> act = () => client.Movies.GetBoxOfficeMoviesAsync();
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktMoviesModule_GetBoxOfficeMovies_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_BOX_OFFICE_MOVIES_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktListResponse<ITraktBoxOfficeMovie>>> act = () => client.Movies.GetBoxOfficeMoviesAsync();
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktMoviesModule_GetBoxOfficeMovies_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_BOX_OFFICE_MOVIES_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktListResponse<ITraktBoxOfficeMovie>>> act = () => client.Movies.GetBoxOfficeMoviesAsync();
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktMoviesModule_GetBoxOfficeMovies_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_BOX_OFFICE_MOVIES_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktListResponse<ITraktBoxOfficeMovie>>> act = () => client.Movies.GetBoxOfficeMoviesAsync();
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktMoviesModule_GetBoxOfficeMovies_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_BOX_OFFICE_MOVIES_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktListResponse<ITraktBoxOfficeMovie>>> act = () => client.Movies.GetBoxOfficeMoviesAsync();
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktMoviesModule_GetBoxOfficeMovies_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_BOX_OFFICE_MOVIES_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktListResponse<ITraktBoxOfficeMovie>>> act = () => client.Movies.GetBoxOfficeMoviesAsync();
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktMoviesModule_GetBoxOfficeMovies_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_BOX_OFFICE_MOVIES_URI, (HttpStatusCode)412);
+            Func<Task<TraktListResponse<ITraktBoxOfficeMovie>>> act = () => client.Movies.GetBoxOfficeMoviesAsync();
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktMoviesModule_GetBoxOfficeMovies_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_BOX_OFFICE_MOVIES_URI, (HttpStatusCode)422);
+            Func<Task<TraktListResponse<ITraktBoxOfficeMovie>>> act = () => client.Movies.GetBoxOfficeMoviesAsync();
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktMoviesModule_GetBoxOfficeMovies_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_BOX_OFFICE_MOVIES_URI, (HttpStatusCode)429);
+            Func<Task<TraktListResponse<ITraktBoxOfficeMovie>>> act = () => client.Movies.GetBoxOfficeMoviesAsync();
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+        [Fact]
+        public void Test_TraktMoviesModule_GetBoxOfficeMovies_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_BOX_OFFICE_MOVIES_URI, (HttpStatusCode)503);
+            Func<Task<TraktListResponse<ITraktBoxOfficeMovie>>> act = () => client.Movies.GetBoxOfficeMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+        [Fact]
+        public void Test_TraktMoviesModule_GetBoxOfficeMovies_Throws_ServerUnavailableException_504()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_BOX_OFFICE_MOVIES_URI, (HttpStatusCode)504);
+            Func<Task<TraktListResponse<ITraktBoxOfficeMovie>>> act = () => client.Movies.GetBoxOfficeMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+        [Fact]
+        public void Test_TraktMoviesModule_GetBoxOfficeMovies_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_BOX_OFFICE_MOVIES_URI, (HttpStatusCode)520);
+            Func<Task<TraktListResponse<ITraktBoxOfficeMovie>>> act = () => client.Movies.GetBoxOfficeMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+        [Fact]
+        public void Test_TraktMoviesModule_GetBoxOfficeMovies_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_BOX_OFFICE_MOVIES_URI, (HttpStatusCode)521);
+            Func<Task<TraktListResponse<ITraktBoxOfficeMovie>>> act = () => client.Movies.GetBoxOfficeMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktMoviesModule_GetBoxOfficeMovies_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_BOX_OFFICE_MOVIES_URI, (HttpStatusCode)522);
+            Func<Task<TraktListResponse<ITraktBoxOfficeMovie>>> act = () => client.Movies.GetBoxOfficeMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
         }
     }

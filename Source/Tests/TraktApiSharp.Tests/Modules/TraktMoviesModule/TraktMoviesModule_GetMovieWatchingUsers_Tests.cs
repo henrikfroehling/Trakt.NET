@@ -8,21 +8,19 @@
     using Traits;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Users;
-    using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Xunit;
 
     [Category("Modules.Movies")]
     public partial class TraktMoviesModule_Tests
     {
+        private readonly string GET_MOVIE_WATCHING_USERS_URI = $"movies/{MOVIE_ID}/watching";
+
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieWatchingUsers()
+        public async Task Test_TraktMoviesModule_GetMovieWatchingUsers()
         {
-            const string movieId = "94024";
-
-            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/watching", MOVIE_WATCHING_USERS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieWatchingUsersAsync(movieId).Result;
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, MOVIE_WATCHING_USERS_JSON);
+            TraktListResponse<ITraktUser> response = await client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -31,14 +29,10 @@
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieWatchingUsersWithExtendedInfo()
+        public async Task Test_TraktMoviesModule_GetMovieWatchingUsers_With_ExtendedInfo()
         {
-            const string movieId = "94024";
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/watching?extended={extendedInfo}", MOVIE_WATCHING_USERS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieWatchingUsersAsync(movieId, extendedInfo).Result;
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_WATCHING_USERS_URI}?extended={EXTENDED_INFO}", MOVIE_WATCHING_USERS_JSON);
+            TraktListResponse<ITraktUser> response = await client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -47,93 +41,145 @@
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieWatchingUsersExceptions()
+        public void Test_TraktMoviesModule_GetMovieWatchingUsers_Throws_NotFoundException()
         {
-            const string movieId = "94024";
-            var uri = $"movies/{movieId}/watching";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktListResponse<ITraktUser>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieWatchingUsersAsync(movieId);
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID);
             act.Should().Throw<TraktMovieNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieWatchingUsers_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieWatchingUsers_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieWatchingUsers_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieWatchingUsers_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieWatchingUsers_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieWatchingUsers_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieWatchingUsers_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieWatchingUsers_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, (HttpStatusCode)412);
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieWatchingUsers_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, (HttpStatusCode)422);
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieWatchingUsers_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, (HttpStatusCode)429);
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieWatchingUsers_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, (HttpStatusCode)503);
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieWatchingUsersArgumentExceptions()
+        public void Test_TraktMoviesModule_GetMovieWatchingUsers_Throws_ServerUnavailableException_504()
         {
-            const string movieId = "94024";
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, (HttpStatusCode)504);
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.SetupMockResponseWithoutOAuth($"movies/{movieId}/watching", MOVIE_WATCHING_USERS_JSON);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieWatchingUsers_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, (HttpStatusCode)520);
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            Func<Task<TraktListResponse<ITraktUser>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieWatchingUsersAsync(null);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieWatchingUsers_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, (HttpStatusCode)521);
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieWatchingUsers_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, (HttpStatusCode)522);
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Movies.GetMovieWatchingUsersAsync(MOVIE_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieWatchingUsers_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_WATCHING_USERS_URI, MOVIE_WATCHING_USERS_JSON);
+
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Movies.GetMovieWatchingUsersAsync(null);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieWatchingUsersAsync(string.Empty);
+            act = () => client.Movies.GetMovieWatchingUsersAsync(string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieWatchingUsersAsync("movie id");
+            act = () => client.Movies.GetMovieWatchingUsersAsync("movie id");
             act.Should().Throw<ArgumentException>();
         }
     }

@@ -14,6 +14,7 @@
         private const string HEADER_PAGINATION_LIMIT_KEY = "X-Pagination-Limit";
         private const string HEADER_PAGINATION_PAGE_COUNT_KEY = "X-Pagination-Page-Count";
         private const string HEADER_PAGINATION_ITEM_COUNT_KEY = "X-Pagination-Item-Count";
+        private const string HEADER_TRENDING_USER_COUNT_KEY = "X-Trending-User-Count";
         private const string TRAKT_API_HEADER_KEY = "trakt-api-key";
         private const string TRAKT_API_VERSION_HEADER_KEY = "trakt-api-version";
         private const string ACCEPT_MEDIA_TYPE = "application/json";
@@ -65,7 +66,8 @@
 
         internal void SetupMockResponse(string uri, string responseContent,
                                         uint? page = null, uint? limit = null,
-                                        int? pageCount = null, int? itemCount = null)
+                                        int? pageCount = null, int? itemCount = null,
+                                        int? userCount = null)
         {
             _mockHttpMessageHandler.Should().NotBeNull();
             _baseUrl.Should().NotBeNullOrEmpty();
@@ -86,6 +88,9 @@
 
             if (itemCount.HasValue)
                 response.Headers.Add(HEADER_PAGINATION_ITEM_COUNT_KEY, $"{itemCount.GetValueOrDefault()}");
+
+            if (userCount.HasValue)
+                response.Headers.Add(HEADER_TRENDING_USER_COUNT_KEY, $"{userCount.GetValueOrDefault()}");
 
             response.Headers.Add("Accept", ACCEPT_MEDIA_TYPE);
             response.Content = new StringContent(responseContent);

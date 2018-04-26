@@ -15,515 +15,433 @@
     [Category("Modules.Movies")]
     public partial class TraktMoviesModule_Tests
     {
+        private const string GET_MOST_ANTICIPATED_MOVIES_URI = "movies/anticipated";
+
         [Fact]
-        public void Test_TraktMoviesModule_GetMostAnticipatedMovies()
+        public async Task Test_TraktMoviesModule_GetMostAnticipatedMovies()
         {
-            const int itemCount = 2;
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_MOVIES_URI,
+                                                           MOST_ANTICIPATED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated", MOST_ANTICIPATED_MOVIES_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync().Result;
+            TraktPagedResponse<ITraktMostAnticipatedMovie> response = await client.Movies.GetMostAnticipatedMoviesAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostAnticipatedMoviesFiltered()
+        public async Task Test_TraktMoviesModule_GetMostAnticipatedMovies_Filtered()
         {
-            const int itemCount = 2;
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_ANTICIPATED_MOVIES_URI}?{FILTER}",
+                                                           MOST_ANTICIPATED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most anticipated movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?{filter}",
-                                                                MOST_ANTICIPATED_MOVIES_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, filter).Result;
+            TraktPagedResponse<ITraktMostAnticipatedMovie> response = await client.Movies.GetMostAnticipatedMoviesAsync(null, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostAnticipatedMoviesWithExtendedInfo()
+        public async Task Test_TraktMoviesModule_GetMostAnticipatedMovies_With_ExtendedInfo()
         {
-            const int itemCount = 2;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_ANTICIPATED_MOVIES_URI}?extended={EXTENDED_INFO}",
+                                                           MOST_ANTICIPATED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedInfo}",
-                                                                MOST_ANTICIPATED_MOVIES_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo).Result;
+            TraktPagedResponse<ITraktMostAnticipatedMovie> response = await client.Movies.GetMostAnticipatedMoviesAsync(EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostAnticipatedMoviesWithExtendedInfoFiltered()
+        public async Task Test_TraktMoviesModule_GetMostAnticipatedMovies_With_ExtendedInfo_Filtered()
         {
-            const int itemCount = 2;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_ANTICIPATED_MOVIES_URI}?extended={EXTENDED_INFO}&{FILTER}",
+                                                           MOST_ANTICIPATED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most anticipated movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/anticipated?extended={extendedInfo}&{filter}",
-                MOST_ANTICIPATED_MOVIES_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, filter).Result;
+            TraktPagedResponse<ITraktMostAnticipatedMovie> response = await client.Movies.GetMostAnticipatedMoviesAsync(EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostAnticipatedMoviesWithPage()
+        public async Task Test_TraktMoviesModule_GetMostAnticipatedMovies_With_Page()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_ANTICIPATED_MOVIES_URI}?page={PAGE}",
+                                                           MOST_ANTICIPATED_MOVIES_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?page={page}",
-                MOST_ANTICIPATED_MOVIES_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktMostAnticipatedMovie> response = await client.Movies.GetMostAnticipatedMoviesAsync(null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostAnticipatedMoviesWithPageFiltered()
+        public async Task Test_TraktMoviesModule_GetMostAnticipatedMovies_With_Page_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_ANTICIPATED_MOVIES_URI}?page={PAGE}&{FILTER}",
+                                                           MOST_ANTICIPATED_MOVIES_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most anticipated movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?page={page}&{filter}",
-                                                                MOST_ANTICIPATED_MOVIES_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktMostAnticipatedMovie> response = await client.Movies.GetMostAnticipatedMoviesAsync(null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostAnticipatedMoviesWithExtendedInfoAndPage()
+        public async Task Test_TraktMoviesModule_GetMostAnticipatedMovies_With_ExtendedInfo_And_Page()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_ANTICIPATED_MOVIES_URI}?extended={EXTENDED_INFO}&page={PAGE}",
+                                                           MOST_ANTICIPATED_MOVIES_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedInfo}&page={page}",
-                                                                MOST_ANTICIPATED_MOVIES_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktMostAnticipatedMovie> response = await client.Movies.GetMostAnticipatedMoviesAsync(EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostAnticipatedMoviesWithExtendedInfoAndPageFiltered()
+        public async Task Test_TraktMoviesModule_GetMostAnticipatedMovies_With_ExtendedInfo_And_Page_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_ANTICIPATED_MOVIES_URI}?extended={EXTENDED_INFO}&{FILTER}&page={PAGE}",
+                                                           MOST_ANTICIPATED_MOVIES_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most anticipated movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/anticipated?extended={extendedInfo}&{filter}&page={page}",
-                MOST_ANTICIPATED_MOVIES_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktMostAnticipatedMovie> response = await client.Movies.GetMostAnticipatedMoviesAsync(EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostAnticipatedMoviesWithLimit()
+        public async Task Test_TraktMoviesModule_GetMostAnticipatedMovies_With_Limit()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_ANTICIPATED_MOVIES_URI}?limit={LIMIT}",
+                                                           MOST_ANTICIPATED_MOVIES_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?limit={limit}",
-                MOST_ANTICIPATED_MOVIES_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktMostAnticipatedMovie> response = await client.Movies.GetMostAnticipatedMoviesAsync(null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostAnticipatedMoviesWithLimitFiltered()
+        public async Task Test_TraktMoviesModule_GetMostAnticipatedMovies_With_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_ANTICIPATED_MOVIES_URI}?limit={LIMIT}&{FILTER}",
+                                                           MOST_ANTICIPATED_MOVIES_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most anticipated movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?limit={limit}&{filter}",
-                                                                MOST_ANTICIPATED_MOVIES_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktMostAnticipatedMovie> response = await client.Movies.GetMostAnticipatedMoviesAsync(null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostAnticipatedMoviesWithExtendedInfoAndLimit()
+        public async Task Test_TraktMoviesModule_GetMostAnticipatedMovies_With_ExtendedInfo_And_Limit()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_ANTICIPATED_MOVIES_URI}?extended={EXTENDED_INFO}&limit={LIMIT}",
+                                                           MOST_ANTICIPATED_MOVIES_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedInfo}&limit={limit}",
-                                                                MOST_ANTICIPATED_MOVIES_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktMostAnticipatedMovie> response = await client.Movies.GetMostAnticipatedMoviesAsync(EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostAnticipatedMoviesWithExtendedInfoAndLimitFiltered()
+        public async Task Test_TraktMoviesModule_GetMostAnticipatedMovies_With_ExtendedInfo_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_ANTICIPATED_MOVIES_URI}?extended={EXTENDED_INFO}&limit={LIMIT}&{FILTER}",
+                                                           MOST_ANTICIPATED_MOVIES_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most anticipated movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/anticipated?extended={extendedInfo}&limit={limit}&{filter}",
-                MOST_ANTICIPATED_MOVIES_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktMostAnticipatedMovie> response = await client.Movies.GetMostAnticipatedMoviesAsync(EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostAnticipatedMoviesWithPageAndLimit()
+        public async Task Test_TraktMoviesModule_GetMostAnticipatedMovies_With_Page_And_Limit()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_ANTICIPATED_MOVIES_URI}?page={PAGE}&limit={LIMIT}",
+                                                           MOST_ANTICIPATED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?page={page}&limit={limit}",
-                                                                MOST_ANTICIPATED_MOVIES_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostAnticipatedMovie> response = await client.Movies.GetMostAnticipatedMoviesAsync(null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostAnticipatedMoviesWithPageAndLimitFiltered()
+        public async Task Test_TraktMoviesModule_GetMostAnticipatedMovies_With_Page_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_ANTICIPATED_MOVIES_URI}?page={PAGE}&limit={LIMIT}&{FILTER}",
+                                                           MOST_ANTICIPATED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most anticipated movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/anticipated?page={page}&limit={limit}&{filter}",
-                MOST_ANTICIPATED_MOVIES_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(null, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostAnticipatedMovie> response = await client.Movies.GetMostAnticipatedMoviesAsync(null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostAnticipatedMoviesComplete()
+        public async Task Test_TraktMoviesModule_GetMostAnticipatedMovies_Complete()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_ANTICIPATED_MOVIES_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                                                           MOST_ANTICIPATED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/anticipated?extended={extendedInfo}&page={page}&limit={limit}",
-                                                                MOST_ANTICIPATED_MOVIES_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostAnticipatedMovie> response = await client.Movies.GetMostAnticipatedMoviesAsync(EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostAnticipatedMoviesCompleteFiltered()
+        public async Task Test_TraktMoviesModule_GetMostAnticipatedMovies_Complete_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_ANTICIPATED_MOVIES_URI}?extended={EXTENDED_INFO}&page={PAGE}&{FILTER}&limit={LIMIT}",
+                                                           MOST_ANTICIPATED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most anticipated movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/anticipated?extended={extendedInfo.ToString()}&page={page}&{filter.ToString()}&limit={limit}",
-                MOST_ANTICIPATED_MOVIES_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync(extendedInfo, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostAnticipatedMovie> response = await client.Movies.GetMostAnticipatedMoviesAsync(EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostAnticipatedMoviesExceptions()
+        public void Test_TraktMoviesModule_GetMostAnticipatedMovies_Throws_NotFoundException()
         {
-            const string uri = "movies/anticipated";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktPagedResponse<ITraktMostAnticipatedMovie>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMostAnticipatedMoviesAsync();
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_MOVIES_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedMovie>>> act = () => client.Movies.GetMostAnticipatedMoviesAsync();
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostAnticipatedMovies_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_MOVIES_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedMovie>>> act = () => client.Movies.GetMostAnticipatedMoviesAsync();
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostAnticipatedMovies_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_MOVIES_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedMovie>>> act = () => client.Movies.GetMostAnticipatedMoviesAsync();
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostAnticipatedMovies_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_MOVIES_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedMovie>>> act = () => client.Movies.GetMostAnticipatedMoviesAsync();
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostAnticipatedMovies_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_MOVIES_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedMovie>>> act = () => client.Movies.GetMostAnticipatedMoviesAsync();
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostAnticipatedMovies_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_MOVIES_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedMovie>>> act = () => client.Movies.GetMostAnticipatedMoviesAsync();
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostAnticipatedMovies_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_MOVIES_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedMovie>>> act = () => client.Movies.GetMostAnticipatedMoviesAsync();
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostAnticipatedMovies_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_MOVIES_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedMovie>>> act = () => client.Movies.GetMostAnticipatedMoviesAsync();
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostAnticipatedMovies_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_MOVIES_URI, (HttpStatusCode)412);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedMovie>>> act = () => client.Movies.GetMostAnticipatedMoviesAsync();
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostAnticipatedMovies_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_MOVIES_URI, (HttpStatusCode)422);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedMovie>>> act = () => client.Movies.GetMostAnticipatedMoviesAsync();
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostAnticipatedMovies_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_MOVIES_URI, (HttpStatusCode)429);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedMovie>>> act = () => client.Movies.GetMostAnticipatedMoviesAsync();
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostAnticipatedMovies_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_MOVIES_URI, (HttpStatusCode)503);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedMovie>>> act = () => client.Movies.GetMostAnticipatedMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostAnticipatedMovies_Throws_ServerUnavailableException_504()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_MOVIES_URI, (HttpStatusCode)504);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedMovie>>> act = () => client.Movies.GetMostAnticipatedMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostAnticipatedMovies_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_MOVIES_URI, (HttpStatusCode)520);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedMovie>>> act = () => client.Movies.GetMostAnticipatedMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostAnticipatedMovies_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_MOVIES_URI, (HttpStatusCode)521);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedMovie>>> act = () => client.Movies.GetMostAnticipatedMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostAnticipatedMovies_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_MOVIES_URI, (HttpStatusCode)522);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedMovie>>> act = () => client.Movies.GetMostAnticipatedMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
         }
     }

@@ -208,7 +208,6 @@
     <Compile Include="Modules\TraktMoviesModule\TraktMoviesModule_GetMovieTranslations_Tests.cs" />
     <Compile Include="Modules\TraktMoviesModule\TraktMoviesModule_GetMovieWatchingUsers_Tests.cs" />
     <Compile Include="Modules\TraktMoviesModule\TraktMoviesModule_GetMovie_Tests.cs" />
-    <Compile Include="Modules\TraktMoviesModule\TraktMoviesModule_GetMultipleMovies_Tests.cs" />
     <Compile Include="Modules\TraktMoviesModule\TraktMoviesModule_GetPopularMovies_Tests.cs" />
     <Compile Include="Modules\TraktMoviesModule\TraktMoviesModule_GetRecentlyUpdatedMovies_Tests.cs" />
     <Compile Include="Modules\TraktMoviesModule\TraktMoviesModule_GetTrendingMovies_Tests.cs" />

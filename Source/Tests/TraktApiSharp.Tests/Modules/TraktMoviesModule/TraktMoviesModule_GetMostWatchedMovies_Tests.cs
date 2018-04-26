@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Requests.Parameters;
@@ -16,856 +15,657 @@
     [Category("Modules.Movies")]
     public partial class TraktMoviesModule_Tests
     {
+        private const string GET_MOST_WATCHED_MOVIES_URI = "movies/watched";
+
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMovies()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies()
         {
-            const int itemCount = 2;
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_WATCHED_MOVIES_URI,
+                                                           MOST_WATCHED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched", MOST_WATCHED_MOVIES, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync().Result;
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesFiltered()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_Filtered()
         {
-            const int itemCount = 2;
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}?{FILTER}",
+                                                           MOST_WATCHED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most watched movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?{filter}", MOST_WATCHED_MOVIES, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, filter).Result;
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(null, null, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithPeriod()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_TimePeriod()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}/{TIME_PERIOD.UriName}",
+                                                           MOST_WATCHED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.UriName}",
-                                                                MOST_WATCHED_MOVIES, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period).Result;
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(TIME_PERIOD);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithPeriodFiltered()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_TimePeriod_Filtered()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}/{TIME_PERIOD.UriName}?{FILTER}",
+                                                           MOST_WATCHED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most watched movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.UriName}?{filter}",
-                                                                MOST_WATCHED_MOVIES, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, filter).Result;
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(TIME_PERIOD, null, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithExtendedInfo()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_ExtendedInfo()
         {
-            const int itemCount = 2;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}?extended={EXTENDED_INFO}",
+                                                           MOST_WATCHED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedInfo}",
-                                                                MOST_WATCHED_MOVIES, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo).Result;
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithExtendedInfoFiltered()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_ExtendedInfo_Filtered()
         {
-            const int itemCount = 2;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}?extended={EXTENDED_INFO}&{FILTER}",
+                                                           MOST_WATCHED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most watched movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/watched?extended={extendedInfo}&{filter}",
-                MOST_WATCHED_MOVIES, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, filter).Result;
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(null, EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithPage()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_Page()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}?page={PAGE}",
+                                                           MOST_WATCHED_MOVIES_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?page={page}", MOST_WATCHED_MOVIES, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithPageFiltered()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_Page_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}?page={PAGE}&{FILTER}",
+                                                           MOST_WATCHED_MOVIES_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most watched movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?page={page}&{filter}",
-                                                                MOST_WATCHED_MOVIES, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(null, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithLimit()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_Limit()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}?limit={LIMIT}",
+                                                           MOST_WATCHED_MOVIES_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?limit={limit}", MOST_WATCHED_MOVIES, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithLimitFiltered()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}?limit={LIMIT}&{FILTER}",
+                                                           MOST_WATCHED_MOVIES_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most watched movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?limit={limit}&{filter}",
-                                                                MOST_WATCHED_MOVIES, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(null, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithPeriodAndExtendedOption()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_TimePeriod_And_ExtendedInfo()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}",
+                                                           MOST_WATCHED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.UriName}?extended={extendedInfo}",
-                                                                MOST_WATCHED_MOVIES, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedInfo).Result;
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(TIME_PERIOD, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithPeriodAndExtendedOptionFiltered()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_TimePeriod_And_ExtendedInfo_Filtered()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}&{FILTER}",
+                                                           MOST_WATCHED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most watched movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/watched/{period.UriName}?extended={extendedInfo}&{filter}",
-                MOST_WATCHED_MOVIES, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedInfo, filter).Result;
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithPeriodAndPage()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_TimePeriod_And_Page()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}/{TIME_PERIOD.UriName}?page={PAGE}",
+                                                           MOST_WATCHED_MOVIES_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.UriName}?page={page}",
-                                                                MOST_WATCHED_MOVIES, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(TIME_PERIOD, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithPeriodAndPageFiltered()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_TimePeriod_And_Page_Filtered()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}/{TIME_PERIOD.UriName}?{FILTER}&page={PAGE}",
+                                                           MOST_WATCHED_MOVIES_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most watched movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.UriName}?{filter}&page={page}",
-                                                                MOST_WATCHED_MOVIES, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(TIME_PERIOD, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithPeriodAndLimit()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_TimePeriod_And_Limit()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}/{TIME_PERIOD.UriName}?limit={LIMIT}",
+                                                           MOST_WATCHED_MOVIES_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.UriName}?limit={limit}",
-                                                                MOST_WATCHED_MOVIES, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(TIME_PERIOD, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithPeriodAndLimitFiltered()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_TimePeriod_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}/{TIME_PERIOD.UriName}?limit={LIMIT}&{FILTER}",
+                                                           MOST_WATCHED_MOVIES_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most watched movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.UriName}?limit={limit}&{filter}",
-                                                                MOST_WATCHED_MOVIES, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(TIME_PERIOD, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithExtendedInfoAndPage()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_ExtendedInfo_And_Page()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}?extended={EXTENDED_INFO}&page={PAGE}",
+                                                           MOST_WATCHED_MOVIES_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedInfo}&page={page}",
-                                                                MOST_WATCHED_MOVIES, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(null, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithExtendedInfoAndPageFiltered()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_ExtendedInfo_And_Page_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}?extended={EXTENDED_INFO}&page={PAGE}&{FILTER}",
+                                                           MOST_WATCHED_MOVIES_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most watched movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/watched?extended={extendedInfo}&page={page}&{filter}",
-                MOST_WATCHED_MOVIES, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithExtendedInfoAndLimit()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_ExtendedInfo_And_Limit()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}?extended={EXTENDED_INFO}&limit={LIMIT}",
+                                                           MOST_WATCHED_MOVIES_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedInfo}&limit={limit}",
-                                                                MOST_WATCHED_MOVIES, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(null, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithExtendedInfoAndLimitFiltered()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_ExtendedInfo_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}?extended={EXTENDED_INFO}&limit={LIMIT}&{FILTER}",
+                                                           MOST_WATCHED_MOVIES_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most watched movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/watched?extended={extendedInfo}&limit={limit}&{filter}",
-                MOST_WATCHED_MOVIES, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithPageAndLimit()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_Page_And_Limit()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}?page={PAGE}&limit={LIMIT}",
+                                                           MOST_WATCHED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?page={page}&limit={limit}",
-                                                                MOST_WATCHED_MOVIES, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithPageAndLimitFiltered()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_Page_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}?page={PAGE}&limit={LIMIT}&{FILTER}",
+                                                           MOST_WATCHED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most watched movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/watched?page={page}&limit={limit}&{filter}",
-                MOST_WATCHED_MOVIES, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, null, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(null, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithExtendedInfoAndPageAndLimit()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_ExtendedInfo_And_Page_And_Limit()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                                                           MOST_WATCHED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched?extended={extendedInfo}&page={page}&limit={limit}",
-                                                                MOST_WATCHED_MOVIES, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(null, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithExtendedInfoAndPageAndLimitFiltered()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_ExtendedInfo_And_Page_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}?extended={EXTENDED_INFO}&page={PAGE}&{FILTER}&limit={LIMIT}",
+                                                           MOST_WATCHED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most watched movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/watched?extended={extendedInfo}&page={page}&{filter}&limit={limit}",
-                MOST_WATCHED_MOVIES, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(null, extendedInfo, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithPeriodAndPageAndLimit()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_TimePeriod_And_Page_And_Limit()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}/{TIME_PERIOD.UriName}?page={PAGE}&limit={LIMIT}",
+                                                           MOST_WATCHED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/watched/{period.UriName}?page={page}&limit={limit}",
-                                                                MOST_WATCHED_MOVIES, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(TIME_PERIOD, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesWithPeriodAndPageAndLimitFiltered()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_With_TimePeriod_And_Page_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}/{TIME_PERIOD.UriName}?page={PAGE}&limit={LIMIT}&{FILTER}",
+                                                           MOST_WATCHED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most watched movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/watched/{period.UriName}?page={page}&limit={limit}&{filter}",
-                MOST_WATCHED_MOVIES, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, null, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(TIME_PERIOD, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesComplete()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_Complete()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                                                           MOST_WATCHED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/watched/{period.UriName}?extended={extendedInfo}&page={page}&limit={limit}",
-                MOST_WATCHED_MOVIES, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedInfo, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesCompleteFiltered()
+        public async Task Test_TraktMoviesModule_GetMostWatchedMovies_Complete_Filtered()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_WATCHED_MOVIES_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}&{FILTER}",
+                                                           MOST_WATCHED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most watched movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/watched/{period.UriName}?extended={extendedInfo}&page={page}&limit={limit}&{filter}",
-                MOST_WATCHED_MOVIES, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync(period, extendedInfo, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostWatchedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostWatchedMoviesExceptions()
+        public void Test_TraktMoviesModule_GetMostWatchedMovies_Throws_NotFoundException()
         {
-            const string uri = "movies/watched";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMostWatchedMoviesAsync();
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_WATCHED_MOVIES_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostWatchedMoviesAsync();
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostWatchedMovies_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_WATCHED_MOVIES_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostWatchedMoviesAsync();
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostWatchedMovies_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_WATCHED_MOVIES_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostWatchedMoviesAsync();
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostWatchedMovies_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_WATCHED_MOVIES_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostWatchedMoviesAsync();
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostWatchedMovies_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_WATCHED_MOVIES_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostWatchedMoviesAsync();
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostWatchedMovies_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_WATCHED_MOVIES_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostWatchedMoviesAsync();
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostWatchedMovies_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_WATCHED_MOVIES_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostWatchedMoviesAsync();
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostWatchedMovies_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_WATCHED_MOVIES_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostWatchedMoviesAsync();
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostWatchedMovies_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_WATCHED_MOVIES_URI, (HttpStatusCode)412);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostWatchedMoviesAsync();
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostWatchedMovies_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_WATCHED_MOVIES_URI, (HttpStatusCode)422);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostWatchedMoviesAsync();
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostWatchedMovies_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_WATCHED_MOVIES_URI, (HttpStatusCode)429);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostWatchedMoviesAsync();
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostWatchedMovies_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_WATCHED_MOVIES_URI, (HttpStatusCode)503);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostWatchedMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostWatchedMovies_Throws_ServerUnavailableException_504()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_WATCHED_MOVIES_URI, (HttpStatusCode)504);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostWatchedMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostWatchedMovies_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_WATCHED_MOVIES_URI, (HttpStatusCode)520);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostWatchedMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostWatchedMovies_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_WATCHED_MOVIES_URI, (HttpStatusCode)521);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostWatchedMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostWatchedMovies_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_WATCHED_MOVIES_URI, (HttpStatusCode)522);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostWatchedMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
         }
     }

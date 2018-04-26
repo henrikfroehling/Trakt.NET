@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Requests.Parameters;
@@ -16,402 +15,392 @@
     [Category("Modules.Movies")]
     public partial class TraktMoviesModule_Tests
     {
+        private readonly string GET_MOVIE_LISTS_URI = $"movies/{MOVIE_ID}/lists";
+
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieLists()
+        public async Task Test_TraktMoviesModule_GetMovieLists()
         {
-            const string movieId = "94024";
-            const int itemCount = 10;
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI,
+                                                           MOVIE_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists", MOVIE_LISTS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId).Result;
+            var response = await client.Movies.GetMovieListsAsync(MOVIE_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieListsWithType()
+        public async Task Test_TraktMoviesModule_GetMovieLists_With_Type()
         {
-            const string movieId = "94024";
-            const int itemCount = 10;
-            var type = TraktListType.Official;
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_LISTS_URI}/{LIST_TYPE.UriName}",
+                                                           MOVIE_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}",
-                                                                MOVIE_LISTS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type).Result;
+            var response = await client.Movies.GetMovieListsAsync(MOVIE_ID, LIST_TYPE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieListsWithSortOrderAndWithoutType()
+        public async Task Test_TraktMoviesModule_GetMovieLists_With_SortOrder_And_Without_Type()
         {
-            const string movieId = "94024";
-            const int itemCount = 10;
-            var sortOrder = TraktListSortOrder.Comments;
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI,
+                                                           MOVIE_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists",
-                                                                MOVIE_LISTS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, null, sortOrder).Result;
+            var response = await client.Movies.GetMovieListsAsync(MOVIE_ID, null, LIST_SORT_ORDER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieListsWithPage()
+        public async Task Test_TraktMoviesModule_GetMovieLists_With_Page()
         {
-            const string movieId = "94024";
-            const int itemCount = 10;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_LISTS_URI}?page={PAGE}",
+                                                           MOVIE_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists?page={page}",
-                                                                MOVIE_LISTS_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            var response = await client.Movies.GetMovieListsAsync(MOVIE_ID, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieListsWithLimit()
+        public async Task Test_TraktMoviesModule_GetMovieLists_With_Limit()
         {
-            const string movieId = "94024";
-            const int itemCount = 10;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_LISTS_URI}?limit={LIMIT}",
+                                                           MOVIE_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists?limit={limit}",
-                                                                MOVIE_LISTS_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            var response = await client.Movies.GetMovieListsAsync(MOVIE_ID, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieListsWithPageAndLimit()
+        public async Task Test_TraktMoviesModule_GetMovieLists_With_Page_And_Limit()
         {
-            const string movieId = "94024";
-            const int itemCount = 10;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_LISTS_URI}?page={PAGE}&limit={LIMIT}",
+                                                           MOVIE_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists?page={page}&limit={limit}",
-                                                                MOVIE_LISTS_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            var response = await client.Movies.GetMovieListsAsync(MOVIE_ID, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieListsWithTypeAndSortOrder()
+        public async Task Test_TraktMoviesModule_GetMovieLists_With_Type_And_SortOrder()
         {
-            const string movieId = "94024";
-            const int itemCount = 10;
-            var type = TraktListType.Official;
-            var sortOrder = TraktListSortOrder.Comments;
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}",
+                                                           MOVIE_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}/{sortOrder.UriName}",
-                                                                MOVIE_LISTS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, sortOrder).Result;
+            var response = await client.Movies.GetMovieListsAsync(MOVIE_ID, LIST_TYPE, LIST_SORT_ORDER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieListsWithTypeAndPage()
+        public async Task Test_TraktMoviesModule_GetMovieLists_With_Type_And_Page()
         {
-            const string movieId = "94024";
-            const int itemCount = 10;
-            var type = TraktListType.Official;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_LISTS_URI}/{LIST_TYPE.UriName}?page={PAGE}",
+                                                           MOVIE_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}?page={page}",
-                                                                MOVIE_LISTS_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            var response = await client.Movies.GetMovieListsAsync(MOVIE_ID, LIST_TYPE, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieListsWithTypeAndLimit()
+        public async Task Test_TraktMoviesModule_GetMovieLists_With_Type_And_Limit()
         {
-            const string movieId = "94024";
-            const int itemCount = 10;
-            var type = TraktListType.Official;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_LISTS_URI}/{LIST_TYPE.UriName}?limit={LIMIT}",
+                                                           MOVIE_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}?limit={limit}",
-                                                                MOVIE_LISTS_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            var response = await client.Movies.GetMovieListsAsync(MOVIE_ID, LIST_TYPE, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieListsWithTypeAndPageAndLimit()
+        public async Task Test_TraktMoviesModule_GetMovieLists_With_Type_And_Page_And_Limit()
         {
-            const string movieId = "94024";
-            const int itemCount = 10;
-            var type = TraktListType.Official;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_LISTS_URI}/{LIST_TYPE.UriName}?page={PAGE}&limit={LIMIT}",
+                                                           MOVIE_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}?page={page}&limit={limit}",
-                                                                MOVIE_LISTS_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            var response = await client.Movies.GetMovieListsAsync(MOVIE_ID, LIST_TYPE, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieListsWithTypeAndSortOrderAndPage()
+        public async Task Test_TraktMoviesModule_GetMovieLists_With_Type_And_SortOrder_And_Page()
         {
-            const string movieId = "94024";
-            const int itemCount = 10;
-            var type = TraktListType.Official;
-            var sortOrder = TraktListSortOrder.Comments;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page={PAGE}",
+                                                           MOVIE_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}/{sortOrder.UriName}?page={page}",
-                                                                MOVIE_LISTS_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, sortOrder, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            var response = await client.Movies.GetMovieListsAsync(MOVIE_ID, LIST_TYPE, LIST_SORT_ORDER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieListsWithTypeAndSortOrderAndLimit()
+        public async Task Test_TraktMoviesModule_GetMovieLists_With_Type_And_SortOrder_And_Limit()
         {
-            const string movieId = "94024";
-            const int itemCount = 10;
-            var type = TraktListType.Official;
-            var sortOrder = TraktListSortOrder.Comments;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?limit={LIMIT}",
+                                                           MOVIE_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/{movieId}/lists/{type.UriName}/{sortOrder.UriName}?limit={limit}",
-                MOVIE_LISTS_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, sortOrder, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            var response = await client.Movies.GetMovieListsAsync(MOVIE_ID, LIST_TYPE, LIST_SORT_ORDER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieListsComplete()
+        public async Task Test_TraktMoviesModule_GetMovieLists_Complete()
         {
-            const string movieId = "94024";
-            const int itemCount = 10;
-            var type = TraktListType.Official;
-            var sortOrder = TraktListSortOrder.Comments;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page={PAGE}&limit={LIMIT}",
+                                                           MOVIE_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists/{type.UriName}/{sortOrder.UriName}" +
-                                                                $"?page={page}&limit={limit}",
-                                                                MOVIE_LISTS_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId, type, sortOrder, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            var response = await client.Movies.GetMovieListsAsync(MOVIE_ID, LIST_TYPE, LIST_SORT_ORDER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieListsExceptions()
+        public void Test_TraktMoviesModule_GetMovieLists_Throws_NotFoundException()
         {
-            const string movieId = "94024";
-            var uri = $"movies/{movieId}/lists";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktPagedResponse<ITraktList>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(movieId);
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(MOVIE_ID);
             act.Should().Throw<TraktMovieNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieLists_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(MOVIE_ID);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieLists_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(MOVIE_ID);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieLists_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(MOVIE_ID);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieLists_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(MOVIE_ID);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieLists_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(MOVIE_ID);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieLists_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(MOVIE_ID);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieLists_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(MOVIE_ID);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieLists_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI, (HttpStatusCode)412);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(MOVIE_ID);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieLists_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI, (HttpStatusCode)422);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(MOVIE_ID);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieLists_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI, (HttpStatusCode)429);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(MOVIE_ID);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieLists_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI, (HttpStatusCode)503);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(MOVIE_ID);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieListsArgumentsExceptions()
+        public void Test_TraktMoviesModule_GetMovieLists_Throws_ServerUnavailableException_504()
         {
-            const string movieId = "94024";
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI, (HttpStatusCode)504);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(MOVIE_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/{movieId}/lists", MOVIE_LISTS_JSON);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieLists_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI, (HttpStatusCode)520);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(MOVIE_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            Func<Task<TraktPagedResponse<ITraktList>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(null);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieLists_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI, (HttpStatusCode)521);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(MOVIE_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieLists_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI, (HttpStatusCode)522);
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(MOVIE_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktMoviesModule_GetMovieLists_ArgumentsExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI,
+                                                           MOVIE_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(null);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync(string.Empty);
+            act = () => client.Movies.GetMovieListsAsync(string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMovieListsAsync("movie id");
+            act = () => client.Movies.GetMovieListsAsync("movie id");
             act.Should().Throw<ArgumentException>();
         }
     }

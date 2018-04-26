@@ -1,7 +1,36 @@
 ﻿namespace TraktApiSharp.Tests.Modules.TraktMoviesModule
 {
+    using System;
+    using TraktApiSharp.Enums;
+    using TraktApiSharp.Requests.Parameters;
+
     public partial class TraktMoviesModule_Tests
     {
+        private const string MOVIE_ID = "94024";
+        private const string COUNTRY_CODE = "us";
+        private const string LANGUAGE_CODE = "en";
+        private const uint PAGE = 2;
+        private const uint LIMIT = 4;
+        private const int ITEM_COUNT = 2;
+        private const int USER_COUNT = 300;
+        private const int LISTS_ITEM_COUNT = 10;
+        private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
+        private readonly TraktTimePeriod TIME_PERIOD = TraktTimePeriod.Monthly;
+        private readonly TraktCommentSortOrder COMMENT_SORT_ORDER = TraktCommentSortOrder.Likes;
+        private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
+        private readonly TraktListType LIST_TYPE = TraktListType.Official;
+        private readonly DateTime TODAY = DateTime.UtcNow;
+
+        private readonly TraktMovieFilter FILTER = new TraktMovieFilter()
+            .WithCertifications("TV-MA")
+            .WithQuery("most anticipated movie")
+            .WithStartYear(2016)
+            .WithGenres("action", "fantasy")
+            .WithLanguages("en", "de")
+            .WithCountries("us")
+            .WithRuntimes(90, 180)
+            .WithRatings(70, 90);
+
         private const string BOX_OFFICE_MOVIES_JSON =
             @"[
                 {
@@ -130,7 +159,7 @@
                 }
               ]";
 
-        private const string MOST_WATCHED_MOVIES =
+        private const string MOST_WATCHED_MOVIES_JSON =
             @"[
                 {
                   ""watcher_count"": 4992,

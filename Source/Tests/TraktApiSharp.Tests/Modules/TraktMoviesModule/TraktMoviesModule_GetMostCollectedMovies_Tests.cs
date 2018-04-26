@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Requests.Parameters;
@@ -16,854 +15,657 @@
     [Category("Modules.Movies")]
     public partial class TraktMoviesModule_Tests
     {
+        private const string GET_MOST_COLLECTED_MOVIES_URI = "movies/collected";
+
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMovies()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies()
         {
-            const int itemCount = 2;
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_COLLECTED_MOVIES_URI,
+                                                           MOST_COLLECTED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected", MOST_COLLECTED_MOVIES_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync().Result;
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesFiltered()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_Filtered()
         {
-            const int itemCount = 2;
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}?{FILTER}",
+                                                           MOST_COLLECTED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most collected movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?{filter}",
-                                                                MOST_COLLECTED_MOVIES_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, filter).Result;
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(null, null, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithPeriod()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_TimePeriod()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}/{TIME_PERIOD.UriName}",
+                                                           MOST_COLLECTED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.UriName}",
-                                                                MOST_COLLECTED_MOVIES_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period).Result;
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(TIME_PERIOD);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithPeriodFiltered()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_TimePeriod_Filtered()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}/{TIME_PERIOD.UriName}?{FILTER}",
+                                                           MOST_COLLECTED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most collected movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.UriName}?{filter}",
-                                                                MOST_COLLECTED_MOVIES_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, filter).Result;
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(TIME_PERIOD, null, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithExtendedInfo()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_ExtendedInfo()
         {
-            const int itemCount = 2;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}?extended={EXTENDED_INFO}",
+                                                           MOST_COLLECTED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedInfo}",
-                                                                MOST_COLLECTED_MOVIES_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo).Result;
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithExtendedInfoFiltered()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_ExtendedInfo_Filtered()
         {
-            const int itemCount = 2;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}?extended={EXTENDED_INFO}&{FILTER}",
+                                                           MOST_COLLECTED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most collected movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/collected?extended={extendedInfo}&{filter}",
-                MOST_COLLECTED_MOVIES_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, filter).Result;
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(null, EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithPage()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_Page()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}?page={PAGE}",
+                                                           MOST_COLLECTED_MOVIES_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?page={page}", MOST_COLLECTED_MOVIES_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithPageFiltered()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_Page_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}?page={PAGE}&{FILTER}",
+                                                           MOST_COLLECTED_MOVIES_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most collected movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?page={page}&{filter}",
-                                                                MOST_COLLECTED_MOVIES_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(null, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithLimit()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_Limit()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}?limit={LIMIT}",
+                                                           MOST_COLLECTED_MOVIES_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?limit={limit}", MOST_COLLECTED_MOVIES_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithLimitFiltered()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}?limit={LIMIT}&{FILTER}",
+                                                           MOST_COLLECTED_MOVIES_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most collected movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?limit={limit}&{filter}",
-                                                                MOST_COLLECTED_MOVIES_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(null, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithPeriodAndExtendedOption()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_TimePeriod_And_ExtendedInfo()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}",
+                                                           MOST_COLLECTED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.UriName}?extended={extendedInfo}",
-                                                                MOST_COLLECTED_MOVIES_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedInfo).Result;
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(TIME_PERIOD, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithPeriodAndExtendedOptionFiltered()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_TimePeriod_And_ExtendedInfo_Filtered()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}/{TIME_PERIOD.UriName}?{FILTER}&extended={EXTENDED_INFO}",
+                                                           MOST_COLLECTED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most collected movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/collected/{period.UriName}?{filter}&extended={extendedInfo}",
-                MOST_COLLECTED_MOVIES_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedInfo, filter).Result;
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithPeriodAndPage()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_TimePeriod_And_Page()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}/{TIME_PERIOD.UriName}?page={PAGE}",
+                                                           MOST_COLLECTED_MOVIES_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.UriName}?page={page}",
-                                                                MOST_COLLECTED_MOVIES_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(TIME_PERIOD, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithPeriodAndPageFiltered()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_TimePeriod_And_Page_Filtered()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}/{TIME_PERIOD.UriName}?page={PAGE}&{FILTER}",
+                                                           MOST_COLLECTED_MOVIES_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most collected movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.UriName}?page={page}&{filter}",
-                                                                MOST_COLLECTED_MOVIES_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(TIME_PERIOD, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithPeriodAndLimit()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_TimePeriod_And_Limit()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}/{TIME_PERIOD.UriName}?limit={LIMIT}",
+                                                           MOST_COLLECTED_MOVIES_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.UriName}?limit={limit}",
-                                                                MOST_COLLECTED_MOVIES_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(TIME_PERIOD, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithPeriodAndLimitFiltered()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_TimePeriod_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}/{TIME_PERIOD.UriName}?limit={LIMIT}&{FILTER}",
+                                                           MOST_COLLECTED_MOVIES_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most collected movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.UriName}?limit={limit}&{filter}",
-                                                                MOST_COLLECTED_MOVIES_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(TIME_PERIOD, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithExtendedInfoAndPage()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_ExtendedInfo_And_Page()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}?extended={EXTENDED_INFO}&page={PAGE}",
+                                                           MOST_COLLECTED_MOVIES_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedInfo}&page={page}",
-                                                                MOST_COLLECTED_MOVIES_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(null, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithExtendedInfoAndPageFiltered()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_ExtendedInfo_And_Page_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}?extended={EXTENDED_INFO}&{FILTER}&page={PAGE}",
+                                                           MOST_COLLECTED_MOVIES_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most collected movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/collected?extended={extendedInfo}&{filter}&page={page}",
-                MOST_COLLECTED_MOVIES_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithExtendedInfoAndLimit()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_ExtendedInfo_And_Limit()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}?extended={EXTENDED_INFO}&limit={LIMIT}",
+                                                           MOST_COLLECTED_MOVIES_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedInfo}&limit={limit}",
-                                                                MOST_COLLECTED_MOVIES_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(null, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithExtendedInfoAndLimitFiltered()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_ExtendedInfo_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}?extended={EXTENDED_INFO}&{FILTER}&limit={LIMIT}",
+                                                           MOST_COLLECTED_MOVIES_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most collected movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/collected?extended={extendedInfo}&{filter}&limit={limit}",
-                MOST_COLLECTED_MOVIES_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithPageAndLimit()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_Page_And_Limit()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}?page={PAGE}&limit={LIMIT}",
+                                                           MOST_COLLECTED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?page={page}&limit={limit}",
-                                                                MOST_COLLECTED_MOVIES_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithPageAndLimitFiltered()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_Page_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}?page={PAGE}&limit={LIMIT}&{FILTER}",
+                                                           MOST_COLLECTED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most collected movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/collected?page={page}&limit={limit}&{filter}",
-                MOST_COLLECTED_MOVIES_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, null, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(null, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithExtendedInfoAndPageAndLimit()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_ExtendedInfo_And_Page_And_Limit()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                                                           MOST_COLLECTED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected?extended={extendedInfo}&page={page}&limit={limit}",
-                                                                MOST_COLLECTED_MOVIES_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(null, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithExtendedInfoAndPageAndLimitFiltered()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_ExtendedInfo_And_Page_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}&{FILTER}",
+                                                           MOST_COLLECTED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most collected movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/collected?extended={extendedInfo}&page={page}&limit={limit}&{filter}",
-                MOST_COLLECTED_MOVIES_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(null, extendedInfo, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithPeriodAndPageAndLimit()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_TimePeriod_And_Page_And_Limit()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}/{TIME_PERIOD.UriName}?page={PAGE}&limit={LIMIT}",
+                                                           MOST_COLLECTED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"movies/collected/{period.UriName}?page={page}&limit={limit}",
-                                                                MOST_COLLECTED_MOVIES_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(TIME_PERIOD, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesWithPeriodAndPageAndLimitFiltered()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_With_TimePeriod_And_Page_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}/{TIME_PERIOD.UriName}?page={PAGE}&{FILTER}&limit={LIMIT}",
+                                                           MOST_COLLECTED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most collected movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/collected/{period.UriName}?page={page}&{filter}&limit={limit}",
-                MOST_COLLECTED_MOVIES_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, null, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(TIME_PERIOD, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesComplete()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_Complete()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                                                           MOST_COLLECTED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/collected/{period.UriName}?extended={extendedInfo}&page={page}&limit={limit}",
-                MOST_COLLECTED_MOVIES_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedInfo, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesCompleteFiltered()
+        public async Task Test_TraktMoviesModule_GetMostCollectedMovies_Complete_Filtered()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOST_COLLECTED_MOVIES_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}&{FILTER}",
+                                                           MOST_COLLECTED_MOVIES_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktMovieFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most collected movie")
-                .WithStartYear(2016)
-                .WithGenres("action", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(90, 180)
-                .WithRatings(70, 90);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"movies/collected/{period.UriName}?extended={extendedInfo}&page={page}&limit={limit}&{filter}",
-                MOST_COLLECTED_MOVIES_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync(period, extendedInfo, filter, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktMostPWCMovie> response = await client.Movies.GetMostCollectedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMostCollectedMoviesExceptions()
+        public void Test_TraktMoviesModule_GetMostCollectedMovies_Throws_NotFoundException()
         {
-            const string uri = "movies/collected";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Movies.GetMostCollectedMoviesAsync();
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_COLLECTED_MOVIES_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostCollectedMoviesAsync();
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostCollectedMovies_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_COLLECTED_MOVIES_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostCollectedMoviesAsync();
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostCollectedMovies_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_COLLECTED_MOVIES_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostCollectedMoviesAsync();
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostCollectedMovies_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_COLLECTED_MOVIES_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostCollectedMoviesAsync();
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostCollectedMovies_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_COLLECTED_MOVIES_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostCollectedMoviesAsync();
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostCollectedMovies_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_COLLECTED_MOVIES_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostCollectedMoviesAsync();
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostCollectedMovies_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_COLLECTED_MOVIES_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostCollectedMoviesAsync();
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostCollectedMovies_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_COLLECTED_MOVIES_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostCollectedMoviesAsync();
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostCollectedMovies_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_COLLECTED_MOVIES_URI, (HttpStatusCode)412);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostCollectedMoviesAsync();
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostCollectedMovies_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_COLLECTED_MOVIES_URI, (HttpStatusCode)422);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostCollectedMoviesAsync();
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostCollectedMovies_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_COLLECTED_MOVIES_URI, (HttpStatusCode)429);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostCollectedMoviesAsync();
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostCollectedMovies_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_COLLECTED_MOVIES_URI, (HttpStatusCode)503);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostCollectedMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostCollectedMovies_Throws_ServerUnavailableException_504()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_COLLECTED_MOVIES_URI, (HttpStatusCode)504);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostCollectedMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostCollectedMovies_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_COLLECTED_MOVIES_URI, (HttpStatusCode)520);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostCollectedMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostCollectedMovies_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_COLLECTED_MOVIES_URI, (HttpStatusCode)521);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostCollectedMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktMoviesModule_GetMostCollectedMovies_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_COLLECTED_MOVIES_URI, (HttpStatusCode)522);
+            Func<Task<TraktPagedResponse<ITraktMostPWCMovie>>> act = () => client.Movies.GetMostCollectedMoviesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
         }
     }
