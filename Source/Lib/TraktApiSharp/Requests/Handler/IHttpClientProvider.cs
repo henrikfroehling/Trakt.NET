@@ -6,6 +6,6 @@
     {
         HttpClient GetHttpClient();
 
-        HttpClient GetAuthorizationHttpClient();
+        HttpClient GetAuthorizationHttpClient(string accessToken = null, string clientId = null);
     }
 }

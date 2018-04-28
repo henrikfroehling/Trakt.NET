@@ -8,7 +8,6 @@
     using System;
     using System.Net;
     using System.Net.Http;
-    using System.Net.Http.Headers;
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
@@ -388,13 +387,10 @@
                               $" \"client_secret\": \"{clientSecret}\", \"redirect_uri\": \"{redirectUri}\"," +
                               $" \"grant_type\": \"{grantType}\" }}";
 
-            var httpClient = TraktConfiguration.HTTP_CLIENT ?? new HttpClient();
-            SetDefaultRequestHeaders(httpClient);
-
             var tokenUrl = $"{Client.Configuration.BaseUrl}{Constants.OAuthTokenUri}";
             var content = new StringContent(postContent, Encoding.UTF8, "application/json");
 
-            var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
+            var response = await Client.HttpClientProvider.GetAuthorizationHttpClient().PostAsync(tokenUrl, content).ConfigureAwait(false);
 
             HttpStatusCode responseCode = response.StatusCode;
             string responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
@@ -524,16 +520,10 @@
                 throw new ArgumentException("client id not valid", nameof(clientId));
 
             var postContent = $"token={accessToken}";
-
-            var httpClient = TraktConfiguration.HTTP_CLIENT ?? new HttpClient();
-
-            SetDefaultRequestHeaders(httpClient);
-            SetAuthorizationRequestHeaders(httpClient, accessToken, clientId);
-
             var tokenUrl = $"{Client.Configuration.BaseUrl}{Constants.OAuthRevokeUri}";
             var content = new StringContent(postContent, Encoding.UTF8, "application/x-www-form-urlencoded");
 
-            var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
+            var response = await Client.HttpClientProvider.GetAuthorizationHttpClient(accessToken, clientId).PostAsync(tokenUrl, content).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -556,25 +546,6 @@
             {
                 Client.Authorization = TraktAuthorization.CreateWith(string.Empty, string.Empty);
             }
-        }
-
-        private void SetDefaultRequestHeaders(HttpClient httpClient)
-        {
-            var appJsonHeader = new MediaTypeWithQualityHeaderValue("application/json");
-
-            if (!httpClient.DefaultRequestHeaders.Accept.Contains(appJsonHeader))
-                httpClient.DefaultRequestHeaders.Accept.Add(appJsonHeader);
-        }
-
-        private void SetAuthorizationRequestHeaders(HttpClient httpClient, string accessToken, string clientId)
-        {
-            if (!httpClient.DefaultRequestHeaders.Contains(Constants.APIClientIdHeaderKey))
-                httpClient.DefaultRequestHeaders.Add(Constants.APIClientIdHeaderKey, clientId);
-
-            if (!httpClient.DefaultRequestHeaders.Contains(Constants.APIVersionHeaderKey))
-                httpClient.DefaultRequestHeaders.Add(Constants.APIVersionHeaderKey, $"{Client.Configuration.ApiVersion}");
-
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         }
 
         private void ValidateRefreshTokenInput(string clientId, string clientSecret, string redirectUri, string grantType)

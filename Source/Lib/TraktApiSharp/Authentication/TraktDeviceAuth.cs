@@ -6,7 +6,6 @@
     using System;
     using System.Net;
     using System.Net.Http;
-    using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
     using Utils;
@@ -54,14 +53,10 @@
                 throw new ArgumentException("client id not valid", nameof(clientId));
 
             var postContent = $"{{ \"client_id\": \"{clientId}\" }}";
-
-            var httpClient = TraktConfiguration.HTTP_CLIENT ?? new HttpClient();
-            SetDefaultRequestHeaders(httpClient);
-
             var tokenUrl = $"{Client.Configuration.BaseUrl}{Constants.OAuthDeviceCodeUri}";
             var content = new StringContent(postContent, Encoding.UTF8, "application/json");
 
-            var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
+            var response = await Client.HttpClientProvider.GetAuthorizationHttpClient().PostAsync(tokenUrl, content).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
                 await ErrorHandlingAsync(response, tokenUrl, postContent, true);
@@ -200,10 +195,6 @@
             ValidateAccessTokenInput(device, clientId, clientSecret);
 
             var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
-
-            var httpClient = TraktConfiguration.HTTP_CLIENT ?? new HttpClient();
-            SetDefaultRequestHeaders(httpClient);
-
             var tokenUrl = $"{Client.Configuration.BaseUrl}{Constants.OAuthDeviceTokenUri}";
 
             HttpStatusCode responseCode = default(HttpStatusCode);
@@ -214,7 +205,7 @@
             while (totalExpiredSeconds < device.ExpiresInSeconds)
             {
                 var content = new StringContent(postContent, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
+                var response = await Client.HttpClientProvider.GetAuthorizationHttpClient().PostAsync(tokenUrl, content).ConfigureAwait(false);
 
                 responseCode = response.StatusCode;
                 reasonPhrase = response.ReasonPhrase;
@@ -535,14 +526,6 @@
         public async Task RevokeAuthorizationAsync(string accessToken, string clientId)
         {
             await Client.Authentication.RevokeAuthorizationAsync(accessToken, clientId);
-        }
-
-        private void SetDefaultRequestHeaders(HttpClient httpClient)
-        {
-            var appJsonHeader = new MediaTypeWithQualityHeaderValue("application/json");
-
-            if (!httpClient.DefaultRequestHeaders.Accept.Contains(appJsonHeader))
-                httpClient.DefaultRequestHeaders.Accept.Add(appJsonHeader);
         }
 
         private void ValidateAccessTokenInput(TraktDevice device, string clientId, string clientSecret)

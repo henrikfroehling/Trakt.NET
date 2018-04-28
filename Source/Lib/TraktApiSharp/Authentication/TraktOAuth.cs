@@ -9,7 +9,6 @@
     using System.Collections.Generic;
     using System.Net;
     using System.Net.Http;
-    using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
     using Utils;
@@ -277,13 +276,10 @@
                               $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
                               $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            var httpClient = TraktConfiguration.HTTP_CLIENT ?? new HttpClient();
-            SetDefaultRequestHeaders(httpClient);
-
             var tokenUrl = $"{Client.Configuration.BaseUrl}{Constants.OAuthTokenUri}";
             var content = new StringContent(postContent, Encoding.UTF8, "application/json");
 
-            var response = await httpClient.PostAsync(tokenUrl, content).ConfigureAwait(false);
+            var response = await Client.HttpClientProvider.GetAuthorizationHttpClient().PostAsync(tokenUrl, content).ConfigureAwait(false);
 
             HttpStatusCode responseCode = response.StatusCode;
             string responseContent = response.Content != null ? await response.Content.ReadAsStringAsync() : string.Empty;
@@ -570,14 +566,6 @@
         public async Task RevokeAuthorizationAsync(string accessToken, string clientId)
         {
             await Client.Authentication.RevokeAuthorizationAsync(accessToken, clientId);
-        }
-
-        private void SetDefaultRequestHeaders(HttpClient httpClient)
-        {
-            var appJsonHeader = new MediaTypeWithQualityHeaderValue("application/json");
-
-            if (!httpClient.DefaultRequestHeaders.Accept.Contains(appJsonHeader))
-                httpClient.DefaultRequestHeaders.Accept.Add(appJsonHeader);
         }
 
         private string CreateEncodedAuthorizationUri(string clientId, string redirectUri, string state = null)
