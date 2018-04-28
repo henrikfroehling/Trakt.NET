@@ -5,7 +5,5 @@
     public interface IHttpClientProvider
     {
         HttpClient GetHttpClient();
-
-        HttpClient GetAuthorizationHttpClient(string accessToken = null, string clientId = null);
     }
 }
