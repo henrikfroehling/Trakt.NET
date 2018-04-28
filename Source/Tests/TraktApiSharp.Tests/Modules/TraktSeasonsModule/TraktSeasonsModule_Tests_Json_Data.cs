@@ -1,7 +1,22 @@
 ﻿namespace TraktApiSharp.Tests.Modules.TraktSeasonsModule
 {
+    using TraktApiSharp.Enums;
+    using TraktApiSharp.Requests.Parameters;
+
     public partial class TraktSeasonsModule_Tests
     {
+        private const string SHOW_ID = "1390";
+        private const uint SEASON_NR = 1U;
+        private const string TRANSLATION_LANGUAGE_CODE = "en";
+        private const uint PAGE = 2;
+        private const uint LIMIT = 4;
+        private const int ITEM_COUNT = 3;
+        private const int LIST_ITEM_COUNT = 10;
+        private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
+        private readonly TraktCommentSortOrder COMMENT_SORT_ORDER = TraktCommentSortOrder.Likes;
+        private readonly TraktListType LIST_TYPE = TraktListType.Official;
+        private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
+
         private const string SEASONS_ALL_FULL_JSON =
             @"[
                 {

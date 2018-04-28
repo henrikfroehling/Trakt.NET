@@ -181,7 +181,7 @@
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_UnlikeComment_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_UpdateComment_Tests.cs" />
-    <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GerEpisode_Tests.cs" />
+    <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisode_Tests.cs" />
     <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisodeComments_Tests.cs" />
     <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisodeLists_Tests.cs" />
     <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisodeRatings_Tests.cs" />
@@ -237,7 +237,6 @@
     <Compile Include="Modules\TraktSearchModule\TraktSearchModule_GetTextQueryResults_Tests.cs" />
     <Compile Include="Modules\TraktSearchModule\TraktSearchModule_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktSeasonsModule\TraktSeasonsModule_GetAllSeasons_Tests.cs" />
-    <Compile Include="Modules\TraktSeasonsModule\TraktSeasonsModule_GetMultipleSeasons_Tests.cs" />
     <Compile Include="Modules\TraktSeasonsModule\TraktSeasonsModule_GetSeasonComments_Tests.cs" />
     <Compile Include="Modules\TraktSeasonsModule\TraktSeasonsModule_GetSeasonLists_Tests.cs" />
     <Compile Include="Modules\TraktSeasonsModule\TraktSeasonsModule_GetSeasonRatings_Tests.cs" />

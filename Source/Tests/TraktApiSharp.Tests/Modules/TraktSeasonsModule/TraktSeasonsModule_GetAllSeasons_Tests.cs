@@ -8,21 +8,19 @@
     using Traits;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Seasons;
-    using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Xunit;
 
     [Category("Modules.Seasons")]
     public partial class TraktSeasonsModule_Tests
     {
+        private readonly string GET_ALL_SEASONS_URI = $"shows/{SHOW_ID}/seasons";
+
         [Fact]
-        public void Test_TraktSeasonsModule_GetAllSeasons()
+        public async Task Test_TraktSeasonsModule_GetAllSeasons()
         {
-            const string showId = "1390";
-
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons", SEASONS_ALL_FULL_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId).Result;
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, SEASONS_ALL_FULL_JSON);
+            TraktListResponse<ITraktSeason> response = await client.Seasons.GetAllSeasonsAsync(SHOW_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -31,15 +29,12 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonsModule_GetAllSeasonsWithExtendedInfo()
+        public async Task Test_TraktSeasonsModule_GetAllSeasons_With_ExtendedInfo()
         {
-            const string showId = "1390";
+            TraktClient client = TestUtility.GetMockClient($"{GET_ALL_SEASONS_URI}?extended={EXTENDED_INFO}",
+                                                           SEASONS_ALL_FULL_JSON);
 
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons?extended={extendedInfo}", SEASONS_ALL_FULL_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, extendedInfo).Result;
+            TraktListResponse<ITraktSeason> response = await client.Seasons.GetAllSeasonsAsync(SHOW_ID, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -48,14 +43,12 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonsModule_GetAllSeasonsWithTranslations()
+        public async Task Test_TraktSeasonsModule_GetAllSeasons_With_Translations()
         {
-            const string showId = "1390";
-            const string translationLanguageCode = "en";
+            TraktClient client = TestUtility.GetMockClient($"{GET_ALL_SEASONS_URI}?translations={TRANSLATION_LANGUAGE_CODE}",
+                                                           SEASONS_ALL_FULL_JSON);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons?translations={translationLanguageCode}", SEASONS_ALL_FULL_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, null, translationLanguageCode).Result;
+            TraktListResponse<ITraktSeason> response = await client.Seasons.GetAllSeasonsAsync(SHOW_ID, null, TRANSLATION_LANGUAGE_CODE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -64,20 +57,12 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonsModule_GetAllSeasonsWithExtendedInfoAndTranslations()
+        public async Task Test_TraktSeasonsModule_GetAllSeasons_With_ExtendedInfo_And_Translations()
         {
-            const string showId = "1390";
-            const string translationLanguageCode = "en";
+            TraktClient client = TestUtility.GetMockClient($"{GET_ALL_SEASONS_URI}?extended={EXTENDED_INFO}&translations={TRANSLATION_LANGUAGE_CODE}",
+                                                           SEASONS_ALL_FULL_JSON);
 
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons" +
-                                                      $"?extended={extendedInfo}" +
-                                                      $"&translations={translationLanguageCode}",
-                                                      SEASONS_ALL_FULL_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, extendedInfo,
-                                                                                   translationLanguageCode).Result;
+            TraktListResponse<ITraktSeason> response = await client.Seasons.GetAllSeasonsAsync(SHOW_ID, EXTENDED_INFO, TRANSLATION_LANGUAGE_CODE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -86,14 +71,12 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonsModule_GetAllSeasonsWithAllTranslations()
+        public async Task Test_TraktSeasonsModule_GetAllSeasons_With_All_Translations()
         {
-            const string showId = "1390";
-            const string translationLanguageCode = "all";
+            TraktClient client = TestUtility.GetMockClient($"{GET_ALL_SEASONS_URI}?translations=all",
+                                                           SEASONS_ALL_FULL_JSON);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons?translations={translationLanguageCode}", SEASONS_ALL_FULL_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, null, translationLanguageCode).Result;
+            TraktListResponse<ITraktSeason> response = await client.Seasons.GetAllSeasonsAsync(SHOW_ID, null, "all");
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -102,20 +85,12 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonsModule_GetAllSeasonsWithExtendedInfoAndAllTranslations()
+        public async Task Test_TraktSeasonsModule_GetAllSeasons_With_ExtendedInfo_And_All_Translations()
         {
-            const string showId = "1390";
-            const string translationLanguageCode = "all";
+            TraktClient client = TestUtility.GetMockClient($"{GET_ALL_SEASONS_URI}?extended={EXTENDED_INFO}&translations=all",
+                                                           SEASONS_ALL_FULL_JSON);
 
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons" +
-                                                      $"?extended={extendedInfo}" +
-                                                      $"&translations={translationLanguageCode}",
-                                                      SEASONS_ALL_FULL_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, extendedInfo,
-                                                                                   translationLanguageCode).Result;
+            TraktListResponse<ITraktSeason> response = await client.Seasons.GetAllSeasonsAsync(SHOW_ID, EXTENDED_INFO, "all");
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -124,102 +99,154 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonsModule_GetAllSeasonsExceptions()
+        public void Test_TraktSeasonsModule_GetAllSeasons_Throws_NotFoundException()
         {
-            const string showId = "1390";
-            var uri = $"shows/{showId}/seasons";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktListResponse<ITraktSeason>>> act =
-                act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId);
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID);
             act.Should().Throw<TraktShowNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktSeasonsModule_GetAllSeasons_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktSeasonsModule_GetAllSeasons_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktSeasonsModule_GetAllSeasons_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktSeasonsModule_GetAllSeasons_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktSeasonsModule_GetAllSeasons_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktSeasonsModule_GetAllSeasons_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktSeasonsModule_GetAllSeasons_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktSeasonsModule_GetAllSeasons_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, (HttpStatusCode)412);
+            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktSeasonsModule_GetAllSeasons_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, (HttpStatusCode)422);
+            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktSeasonsModule_GetAllSeasons_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, (HttpStatusCode)429);
+            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktSeasonsModule_GetAllSeasons_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, (HttpStatusCode)503);
+            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktSeasonsModule_GetAllSeasonsArgumentExceptions()
+        public void Test_TraktSeasonsModule_GetAllSeasons_Throws_ServerUnavailableException_504()
         {
-            const string showId = "1390";
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, (HttpStatusCode)504);
+            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/seasons", SEASONS_ALL_FULL_JSON);
+        [Fact]
+        public void Test_TraktSeasonsModule_GetAllSeasons_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, (HttpStatusCode)520);
+            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            Func<Task<TraktListResponse<ITraktSeason>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(null);
+        [Fact]
+        public void Test_TraktSeasonsModule_GetAllSeasons_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, (HttpStatusCode)521);
+            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktSeasonsModule_GetAllSeasons_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, (HttpStatusCode)522);
+            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktSeasonsModule_GetAllSeasons_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, SEASONS_ALL_FULL_JSON);
+
+            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(null);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(string.Empty);
+            act = () => client.Seasons.GetAllSeasonsAsync(string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync("show id");
+            act = () => client.Seasons.GetAllSeasonsAsync("show id");
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, null, "eng");
+            act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID, null, "eng");
             act.Should().Throw<ArgumentOutOfRangeException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, null, "e");
+            act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID, null, "e");
             act.Should().Throw<ArgumentOutOfRangeException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Seasons.GetAllSeasonsAsync(showId, null, "all");
+            act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID, null, "all");
             act.Should().NotThrow();
         }
     }
