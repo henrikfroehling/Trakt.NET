@@ -14,15 +14,11 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/certifications">"Trakt API Doc - Certifications"</a> section.
     /// </para>
     /// </summary>
-    public class TraktCertificationsModule : ITraktModule
+    public class TraktCertificationsModule : ATraktModule
     {
-        internal TraktCertificationsModule(TraktClient client)
+        internal TraktCertificationsModule(TraktClient client) : base(client)
         {
-            Client = client;
         }
-
-        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
-        public TraktClient Client { get; }
 
         /// <summary>
         /// Gets all movie certifications.

@@ -21,15 +21,11 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/scrobble">"Trakt API Doc - Scrobble"</a> section.
     /// </para>
     /// </summary>
-    public class TraktScrobbleModule : ITraktModule
+    public class TraktScrobbleModule : ATraktModule
     {
-        internal TraktScrobbleModule(TraktClient client)
+        internal TraktScrobbleModule(TraktClient client) : base(client)
         {
-            Client = client;
         }
-
-        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
-        public TraktClient Client { get; }
 
         /// <summary>
         /// Starts watching a <see cref="TraktMovie" /> in a media center.

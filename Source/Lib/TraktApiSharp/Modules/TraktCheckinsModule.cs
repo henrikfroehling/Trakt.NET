@@ -21,15 +21,11 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/checkin">"Trakt API Doc - Checkin"</a> section.
     /// </para>
     /// </summary>
-    public class TraktCheckinsModule : ITraktModule
+    public class TraktCheckinsModule : ATraktModule
     {
-        internal TraktCheckinsModule(TraktClient client)
+        internal TraktCheckinsModule(TraktClient client) : base(client)
         {
-            Client = client;
         }
-
-        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
-        public TraktClient Client { get; }
 
         /// <summary>
         /// Checks into the given <see cref="TraktMovie" />.

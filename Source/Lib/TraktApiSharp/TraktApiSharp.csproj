@@ -55,6 +55,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modules\ATraktModule.cs" />
     <Compile Include="Objects\Authentication\Implementations\TraktAuthorization.cs" />
     <Compile Include="Authentication\TraktAuthentication.cs" />
     <Compile Include="Objects\Authentication\Implementations\TraktDevice.cs" />
@@ -119,7 +120,6 @@
     <Compile Include="Exceptions\TraktServerUnavailableException.cs" />
     <Compile Include="Exceptions\TraktShowNotFoundException.cs" />
     <Compile Include="Exceptions\TraktValidationException.cs" />
-    <Compile Include="Modules\ITraktModule.cs" />
     <Compile Include="Modules\TraktCertificationsModule.cs" />
     <Compile Include="Modules\TraktNetworksModule.cs" />
     <Compile Include="Objects\Authentication\ITraktAuthorization.cs" />

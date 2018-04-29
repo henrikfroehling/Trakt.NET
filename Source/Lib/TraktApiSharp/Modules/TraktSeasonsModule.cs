@@ -24,15 +24,11 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/seasons">"Trakt API Doc - Seasons"</a> section.
     /// </para>
     /// </summary>
-    public class TraktSeasonsModule : ITraktModule
+    public class TraktSeasonsModule : ATraktModule
     {
-        internal TraktSeasonsModule(TraktClient client)
+        internal TraktSeasonsModule(TraktClient client) : base(client)
         {
-            Client = client;
         }
-
-        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
-        public TraktClient Client { get; }
 
         /// <summary>
         /// Gets the <see cref="ITraktSeason" />s in a show with the given Trakt-Show-Id or -Slug.

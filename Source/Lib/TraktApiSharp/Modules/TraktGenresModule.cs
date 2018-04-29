@@ -15,15 +15,11 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/genres">"Trakt API Doc - Genres"</a> section.
     /// </para>
     /// </summary>
-    public class TraktGenresModule : ITraktModule
+    public class TraktGenresModule : ATraktModule
     {
-        internal TraktGenresModule(TraktClient client)
+        internal TraktGenresModule(TraktClient client) : base(client)
         {
-            Client = client;
         }
-
-        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
-        public TraktClient Client { get; }
 
         /// <summary>
         /// Gets a list of all movie genres.

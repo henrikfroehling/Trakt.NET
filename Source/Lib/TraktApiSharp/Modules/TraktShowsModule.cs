@@ -24,15 +24,11 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/shows">"Trakt API Doc - Shows"</a> section.
     /// </para>
     /// </summary>
-    public class TraktShowsModule : ITraktModule
+    public class TraktShowsModule : ATraktModule
     {
-        internal TraktShowsModule(TraktClient client)
+        internal TraktShowsModule(TraktClient client) : base(client)
         {
-            Client = client;
         }
-
-        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
-        public TraktClient Client { get; }
 
         /// <summary>
         /// Gets a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.

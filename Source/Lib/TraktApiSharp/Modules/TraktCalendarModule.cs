@@ -17,15 +17,11 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/calendars">"Trakt API Doc - Calendars"</a> section.
     /// </para>
     /// </summary>
-    public class TraktCalendarModule : ITraktModule
+    public class TraktCalendarModule : ATraktModule
     {
-        internal TraktCalendarModule(TraktClient client)
+        internal TraktCalendarModule(TraktClient client) : base(client)
         {
-            Client = client;
         }
-
-        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
-        public TraktClient Client { get; }
 
         /// <summary>
         /// Gets all users <see cref="ITraktCalendarShow" />s airing during the given time period.

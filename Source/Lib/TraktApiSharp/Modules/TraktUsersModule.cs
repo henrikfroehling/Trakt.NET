@@ -34,15 +34,11 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/users">"Trakt API Doc - Users"</a> section.
     /// </para>
     /// </summary>
-    public class TraktUsersModule : ITraktModule
+    public class TraktUsersModule : ATraktModule
     {
-        internal TraktUsersModule(TraktClient client)
+        internal TraktUsersModule(TraktClient client) : base(client)
         {
-            Client = client;
         }
-
-        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
-        public TraktClient Client { get; }
 
         /// <summary>
         /// Gets the user's settings.

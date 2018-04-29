@@ -37,15 +37,11 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/sync">"Trakt API Doc - Sync"</a> section.
     /// </para>
     /// </summary>
-    public class TraktSyncModule : ITraktModule
+    public class TraktSyncModule : ATraktModule
     {
-        internal TraktSyncModule(TraktClient client)
+        internal TraktSyncModule(TraktClient client) : base(client)
         {
-            Client = client;
         }
-
-        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
-        public TraktClient Client { get; }
 
         /// <summary>
         /// Gets the user's last activities.

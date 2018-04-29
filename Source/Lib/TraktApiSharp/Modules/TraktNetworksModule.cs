@@ -14,15 +14,11 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/networks">"Trakt API Doc - Networks"</a> section.
     /// </para>
     /// </summary>
-    public class TraktNetworksModule : ITraktModule
+    public class TraktNetworksModule : ATraktModule
     {
-        internal TraktNetworksModule(TraktClient client)
+        internal TraktNetworksModule(TraktClient client) : base(client)
         {
-            Client = client;
         }
-
-        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
-        public TraktClient Client { get; }
 
         /// <summary>
         /// Gets a list of all networks.
