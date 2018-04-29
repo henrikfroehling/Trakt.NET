@@ -118,18 +118,21 @@
         {
             AuthorizationRequirement authorizationRequirement = _request.AuthorizationRequirement;
 
-            if (authorizationRequirement == AuthorizationRequirement.Required)
+            if (authorizationRequirement != AuthorizationRequirement.NotRequired)
             {
-                if (!_client.Authentication.IsAuthorized)
-                    throw new TraktAuthorizationException("authorization is required for this request, but the current authorization parameters are invalid");
-            }
-            else  if (authorizationRequirement == AuthorizationRequirement.Optional && _client.Configuration.ForceAuthorization)
-            {
-                if (!_client.Authentication.IsAuthorized)
-                    throw new TraktAuthorizationException("authorization is optional for this request, but forced and the current authorization parameters are invalid");
-            }
+                if (authorizationRequirement == AuthorizationRequirement.Required)
+                {
+                    if (!_client.Authentication.IsAuthorized)
+                        throw new TraktAuthorizationException("authorization is required for this request, but the current authorization parameters are invalid");
+                }
+                else if (authorizationRequirement == AuthorizationRequirement.Optional && _client.Configuration.ForceAuthorization)
+                {
+                    if (!_client.Authentication.IsAuthorized)
+                        throw new TraktAuthorizationException("authorization is optional for this request, but forced and the current authorization parameters are invalid");
+                }
 
-            requestMessage.Headers.Authorization = new AuthenticationHeaderValue(AUTHENTICATION_SCHEME, _client.Authentication.Authorization.AccessToken);
+                requestMessage.Headers.Authorization = new AuthenticationHeaderValue(AUTHENTICATION_SCHEME, _client.Authentication.Authorization.AccessToken);
+            }
         }
     }
 }
