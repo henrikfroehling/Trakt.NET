@@ -1,6 +1,10 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings.Implementations
 {
+    using Objects.Json;
     using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// A Trakt ratings post, containing all movies, shows and / or episodes,
@@ -29,5 +33,21 @@
         /// <summary>Returns a new <see cref="TraktSyncRatingsPostBuilder" /> instance.</summary>
         /// <returns>A new <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
         public static TraktSyncRatingsPostBuilder Builder() => new TraktSyncRatingsPostBuilder();
+
+        public HttpContent ToHttpContent()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<string> ToJson(CancellationToken cancellationToken = default)
+        {
+            IObjectJsonWriter<ITraktSyncRatingsPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktSyncRatingsPost>();
+            return objectJsonWriter.WriteObjectAsync(this, cancellationToken);
+        }
+
+        public void Validate()
+        {
+            // TODO
+        }
     }
 }

@@ -8,6 +8,7 @@
     using System.Net.Http;
     using System.Text;
     using System.Threading.Tasks;
+    using TraktApiSharp.Objects.Authentication.Implementations;
     using Utils;
 
     /// <summary>Provides access to Device authentication methods, such as creating a new device and polling for an access token.</summary>
@@ -200,7 +201,7 @@
             HttpStatusCode responseCode = default(HttpStatusCode);
             string responseContent = string.Empty;
             string reasonPhrase = string.Empty;
-            int totalExpiredSeconds = 0;
+            uint totalExpiredSeconds = 0;
 
             while (totalExpiredSeconds < device.ExpiresInSeconds)
             {
@@ -223,7 +224,7 @@
                 }
                 else if (responseCode == HttpStatusCode.BadRequest) // Pending
                 {
-                    await Task.Delay(device.IntervalInSeconds * 1000);
+                    await Task.Delay((int)device.IntervalInMilliseconds);
                     totalExpiredSeconds += device.IntervalInSeconds;
                     continue;
                 }

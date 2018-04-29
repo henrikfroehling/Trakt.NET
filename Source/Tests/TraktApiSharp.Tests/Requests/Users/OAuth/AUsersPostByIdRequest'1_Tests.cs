@@ -3,18 +3,37 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Requests.Base;
+    using TraktApiSharp.Requests.Interfaces;
     using TraktApiSharp.Requests.Users.OAuth;
     using Xunit;
 
     [Category("Requests.Users.OAuth")]
     public class AUsersPostByIdRequest_1_Tests
     {
-        internal class UsersPostByIdRequestMock : AUsersPostByIdRequest<int, float>
+        internal class RequestBodyMock : IRequestBody
         {
-            public override string UriTemplate { get { throw new NotImplementedException(); } }
-            public override RequestObjectType RequestObjectType { get { throw new NotImplementedException(); } }
+            public HttpContent ToHttpContent()
+            {
+                throw new NotImplementedException();
+            }
+
+            public Task<string> ToJson(CancellationToken cancellationToken = default(CancellationToken)) => Task.FromResult("");
+
+            public void Validate()
+            {
+            }
+        }
+
+        internal class UsersPostByIdRequestMock : AUsersPostByIdRequest<int, RequestBodyMock>
+        {
+            public override string UriTemplate => "";
+
+            public override RequestObjectType RequestObjectType => RequestObjectType.Comments;
         }
 
         [Fact]

@@ -1,8 +1,9 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users
 {
     using Enums;
+    using Requests.Interfaces;
 
-    public interface ITraktUserCustomListPost
+    public interface ITraktUserCustomListPost : IRequestBody
     {
         string Name { get; set; }
 

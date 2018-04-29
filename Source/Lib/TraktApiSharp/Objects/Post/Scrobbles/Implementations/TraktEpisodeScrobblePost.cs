@@ -2,6 +2,10 @@
 {
     using Get.Episodes;
     using Get.Shows;
+    using Objects.Json;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>A scrobble post for a Trakt episode.</summary>
     public class TraktEpisodeScrobblePost : TraktScrobblePost, ITraktEpisodeScrobblePost
@@ -18,5 +22,21 @@
         /// <para>Nullable</para>
         /// </summary>
         public ITraktShow Show { get; set; }
+
+        public override HttpContent ToHttpContent()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override Task<string> ToJson(CancellationToken cancellationToken = default)
+        {
+            IObjectJsonWriter<ITraktEpisodeScrobblePost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktEpisodeScrobblePost>();
+            return objectJsonWriter.WriteObjectAsync(this, cancellationToken);
+        }
+
+        public override void Validate()
+        {
+            // TODO
+        }
     }
 }

@@ -10,137 +10,129 @@
     using Objects.Json;
     using Objects.Post.Checkins.Responses;
     using Responses;
-    using Responses.Interfaces;
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.IO;
-    using System.Linq;
     using System.Net;
     using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using UriTemplates;
-    using Utils;
 
     internal sealed class RequestHandler : IRequestHandler
     {
-        private const string HEADER_PAGINATION_PAGE_KEY = "X-Pagination-Page";
-        private const string HEADER_PAGINATION_LIMIT_KEY = "X-Pagination-Limit";
-        private const string HEADER_PAGINATION_PAGE_COUNT_KEY = "X-Pagination-Page-Count";
-        private const string HEADER_PAGINATION_ITEM_COUNT_KEY = "X-Pagination-Item-Count";
-        private const string HEADER_TRENDING_USER_COUNT_KEY = "X-Trending-User-Count";
-        private const string HEADER_SORT_BY_KEY = "X-Sort-By";
-        private const string HEADER_SORT_HOW_KEY = "X-Sort-How";
-        private const string HEADER_STARTDATE_KEY = "X-Start-Date";
-        private const string HEADER_ENDDATE_KEY = "X-End-Date";
-        private const string HEADER_PRIVATE_USER_KEY = "X-Private-User";
-        private const string HEADER_X_ITEM_ID = "X-Item-ID";
-        private const string HEADER_X_ITEM_TYPE = "X-Item-Type";
-        private const string MEDIA_TYPE = "application/json";
-        private const string AUTHENTICATION_SCHEME = "Bearer";
-
         // Don't mark this field as readonly,
         // as it is manually set in unit tests
         internal static HttpClient s_httpClient;
 
         private readonly TraktClient _client;
+        private readonly RequestMessageBuilder _requestMessageBuilder;
 
         internal RequestHandler(TraktClient client)
         {
             _client = client;
+            _requestMessageBuilder = new RequestMessageBuilder(_client);
         }
 
-        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(IRequest request, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(IRequest request, CancellationToken cancellationToken = default)
         {
             ValidateRequest(request);
-            return QueryNoContentAsync(SetupRequestMessage(request), cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryNoContentAsync(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
         {
             ValidateRequest(request);
-            return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request), false, cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).Build(cancellationToken).ConfigureAwait(false);
+            return await QuerySingleItemAsync<TResponseContentType>(requestMessage, false, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
         {
             ValidateRequest(request);
-            return QueryListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
         {
             ValidateRequest(request);
-            return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryPagedListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
         // post requests
 
-        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TResponseContentType>(IPostRequest<TResponseContentType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(IPostRequest<TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             ValidateRequest(request);
-            return QueryNoContentAsync(SetupRequestMessage(request), cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryNoContentAsync(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             ValidateRequest(request);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
             var isCheckinRequest = request is CheckinRequest<TResponseContentType, TRequestBodyType>;
-            return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request), isCheckinRequest, cancellationToken);
+            return await QuerySingleItemAsync<TResponseContentType>(requestMessage, isCheckinRequest, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             ValidateRequest(request);
-            return QueryListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             ValidateRequest(request);
-            return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryPagedListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
         // put requests
 
-        public Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(IPutRequest<TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(IPutRequest<TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             ValidateRequest(request);
-            return QueryNoContentAsync(SetupRequestMessage(request), cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryNoContentAsync(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             ValidateRequest(request);
-            return QuerySingleItemAsync<TResponseContentType>(SetupRequestMessage(request), false, cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            return await QuerySingleItemAsync<TResponseContentType>(requestMessage, false, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             ValidateRequest(request);
-            return QueryListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             ValidateRequest(request);
-            return QueryPagedListAsync<TResponseContentType>(SetupRequestMessage(request), cancellationToken);
+            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            return await QueryPagedListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
         // query response helper methods
 
-        private async Task<TraktNoContentResponse> QueryNoContentAsync(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task<TraktNoContentResponse> QueryNoContentAsync(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default)
         {
             HttpResponseMessage responseMessage = null;
 
             try
             {
                 responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
-                Debug.Assert(responseMessage?.StatusCode == HttpStatusCode.NoContent, "precondition for generating no content response failed: invalid status code");
-
+                DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
+                DebugAsserter.AssertHttpResponseCodeIsExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.NO_CONTENT_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
                 return new TraktNoContentResponse { IsSuccess = true };
             }
             catch (Exception ex)
@@ -156,23 +148,21 @@
             }
         }
 
-        private async Task<TraktResponse<TResponseContentType>> QuerySingleItemAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task<TraktResponse<TResponseContentType>> QuerySingleItemAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default)
         {
             HttpResponseMessage responseMessage = null;
 
             try
             {
                 responseMessage = await ExecuteRequestAsync(requestMessage, isCheckinRequest, cancellationToken).ConfigureAwait(false);
-                Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating single item response failed: invalid status code");
-
+                DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
+                DebugAsserter.AssertHttpResponseCodeIsNotExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.SINGLE_ITEM_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
                 Stream responseContentStream = await GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
-                Debug.Assert(responseContentStream != null, "precondition for deserializing response content failed: stream is null");
-
+                DebugAsserter.AssertResponseContentStreamIsNotNull(responseContentStream);
                 IObjectJsonReader<TResponseContentType> objectJsonReader = JsonFactoryContainer.CreateObjectReader<TResponseContentType>();
-                Debug.Assert(objectJsonReader != null, "precondition for deserializing response content failed: json content reader is null");
-
+                DebugAsserter.AssertObjectJsonReaderIsNotNull(objectJsonReader);
                 TResponseContentType contentObject = await objectJsonReader.ReadObjectAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
-                bool hasValue = !EqualityComparer<TResponseContentType>.Default.Equals(contentObject, default(TResponseContentType));
+                bool hasValue = !EqualityComparer<TResponseContentType>.Default.Equals(contentObject, default);
 
                 var response = new TraktResponse<TResponseContentType>
                 {
@@ -182,7 +172,7 @@
                 };
 
                 if (responseMessage.Headers != null)
-                    ParseResponseHeaderValues(response, responseMessage.Headers);
+                    ResponseHeaderParser.ParseResponseHeaderValues(response, responseMessage.Headers);
 
                 return response;
             }
@@ -199,21 +189,19 @@
             }
         }
 
-        private async Task<TraktListResponse<TResponseContentType>> QueryListAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task<TraktListResponse<TResponseContentType>> QueryListAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default)
         {
             HttpResponseMessage responseMessage = null;
 
             try
             {
                 responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
-                Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating list response failed: invalid status code");
-
+                DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
+                DebugAsserter.AssertHttpResponseCodeIsNotExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.LIST_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
                 Stream responseContentStream = await GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
-                Debug.Assert(responseContentStream != null, "precondition for deserializing response content failed: stream is null");
-
+                DebugAsserter.AssertResponseContentStreamIsNotNull(responseContentStream);
                 IArrayJsonReader<TResponseContentType> arrayJsonReader = JsonFactoryContainer.CreateArrayReader<TResponseContentType>();
-                Debug.Assert(arrayJsonReader != null, "precondition for deserializing response content failed: json content reader is null");
-
+                DebugAsserter.AssertArrayJsonReaderIsNotNull(arrayJsonReader);
                 IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
 
                 var response = new TraktListResponse<TResponseContentType>
@@ -224,7 +212,7 @@
                 };
 
                 if (responseMessage.Headers != null)
-                    ParseResponseHeaderValues(response, responseMessage.Headers);
+                    ResponseHeaderParser.ParseResponseHeaderValues(response, responseMessage.Headers);
 
                 return response;
             }
@@ -241,21 +229,19 @@
             }
         }
 
-        private async Task<TraktPagedResponse<TResponseContentType>> QueryPagedListAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task<TraktPagedResponse<TResponseContentType>> QueryPagedListAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default)
         {
             HttpResponseMessage responseMessage = null;
 
             try
             {
                 responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
-                Debug.Assert(responseMessage?.StatusCode != HttpStatusCode.NoContent, "precondition for generating paged list response failed: invalid status code");
-
+                DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
+                DebugAsserter.AssertHttpResponseCodeIsNotExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.PAGED_LIST_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
                 Stream responseContentStream = await GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
-                Debug.Assert(responseContentStream != null, "precondition for deserializing response content failed: stream is null");
-
+                DebugAsserter.AssertResponseContentStreamIsNotNull(responseContentStream);
                 IArrayJsonReader<TResponseContentType> arrayJsonReader = JsonFactoryContainer.CreateArrayReader<TResponseContentType>();
-                Debug.Assert(arrayJsonReader != null, "precondition for deserializing response content failed: json content reader is null");
-
+                DebugAsserter.AssertArrayJsonReaderIsNotNull(arrayJsonReader);
                 IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
 
                 var response = new TraktPagedResponse<TResponseContentType>
@@ -266,10 +252,7 @@
                 };
 
                 if (responseMessage.Headers != null)
-                {
-                    ParseResponseHeaderValues(response, responseMessage.Headers);
-                    ParsePagedResponseHeaderValues(response, responseMessage.Headers);
-                }
+                    ResponseHeaderParser.ParsePagedResponseHeaderValues(response, responseMessage.Headers);
 
                 return response;
             }
@@ -286,7 +269,7 @@
             }
         }
 
-        private async Task<HttpResponseMessage> ExecuteRequestAsync(ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task<HttpResponseMessage> ExecuteRequestAsync(ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default)
         {
             HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient().SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
@@ -307,227 +290,7 @@
             request.Validate();
         }
 
-        private string BuildUrl(IRequest request)
-        {
-            var uriTemplate = new UriTemplate(request.UriTemplate);
-            IDictionary<string, object> requestUriParameters = request.GetUriPathParameters();
-
-            foreach (KeyValuePair<string, object> parameter in requestUriParameters)
-                uriTemplate.AddParameterFromKeyValuePair(parameter.Key, parameter.Value);
-
-            string uri = uriTemplate.Resolve();
-            return $"{_client.Configuration.BaseUrl}{uri}";
-        }
-
-        private ExtendedHttpRequestMessage SetupRequestMessage(IRequest request)
-        {
-            ExtendedHttpRequestMessage requestMessage = CreateRequestMessage(request);
-            SetRequestMessageHeadersForAuthorization(requestMessage, request.AuthorizationRequirement);
-            return requestMessage;
-        }
-
-        private ExtendedHttpRequestMessage SetupRequestMessage<TRequestBodyType>(IPostRequest<TRequestBodyType> request)
-        {
-            ExtendedHttpRequestMessage requestMessage = CreateRequestMessage(request);
-            AddRequestBodyContent(requestMessage, request);
-            SetRequestMessageHeadersForAuthorization(requestMessage, request.AuthorizationRequirement);
-            return requestMessage;
-        }
-
-        private ExtendedHttpRequestMessage SetupRequestMessage<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request)
-        {
-            ExtendedHttpRequestMessage requestMessage = CreateRequestMessage(request);
-            AddRequestBodyContent(requestMessage, request);
-            SetRequestMessageHeadersForAuthorization(requestMessage, request.AuthorizationRequirement);
-            return requestMessage;
-        }
-
-        private ExtendedHttpRequestMessage SetupRequestMessage<TRequestBodyType>(IPutRequest<TRequestBodyType> request)
-        {
-            ExtendedHttpRequestMessage requestMessage = CreateRequestMessage(request);
-            AddRequestBodyContent(requestMessage, request);
-            SetRequestMessageHeadersForAuthorization(requestMessage, request.AuthorizationRequirement);
-            return requestMessage;
-        }
-
-        private ExtendedHttpRequestMessage SetupRequestMessage<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request)
-        {
-            ExtendedHttpRequestMessage requestMessage = CreateRequestMessage(request);
-            AddRequestBodyContent(requestMessage, request);
-            SetRequestMessageHeadersForAuthorization(requestMessage, request.AuthorizationRequirement);
-            return requestMessage;
-        }
-
-        private ExtendedHttpRequestMessage CreateRequestMessage(IRequest request)
-        {
-            const string seasonKey = "season";
-            const string episodeKey = "episode";
-
-            string url = BuildUrl(request);
-            var requestMessage = new ExtendedHttpRequestMessage(request.Method, url) { Url = url };
-
-            if (request is IHasId)
-            {
-                var idRequest = request as IHasId;
-
-                requestMessage.ObjectId = idRequest?.Id;
-                requestMessage.RequestObjectType = idRequest?.RequestObjectType;
-            }
-
-            IDictionary<string, object> parameters = request.GetUriPathParameters();
-
-            if (parameters.Count != 0)
-            {
-                if (parameters.ContainsKey(seasonKey))
-                {
-                    var strSeasonNumber = (string)parameters[seasonKey];
-
-                    if (uint.TryParse(strSeasonNumber, out uint seasonNumber))
-                        requestMessage.SeasonNumber = seasonNumber;
-                }
-
-                if (parameters.ContainsKey(episodeKey))
-                {
-                    var strEpisodeNumber = (string)parameters[episodeKey];
-
-                    if (uint.TryParse(strEpisodeNumber, out uint episodeNumber))
-                        requestMessage.EpisodeNumber = episodeNumber;
-                }
-            }
-
-            return requestMessage;
-        }
-
-        private void AddRequestBodyContent<TRequestBodyType>(ExtendedHttpRequestMessage requestMessage, IHasRequestBody<TRequestBodyType> request)
-        {
-            if (requestMessage == null)
-                throw new ArgumentNullException(nameof(requestMessage));
-
-            requestMessage.Content = GetRequestBodyContent(request, out string requestBodyJson);
-            requestMessage.RequestBodyJson = requestBodyJson;
-        }
-
-        private HttpContent GetRequestBodyContent<TRequestBodyType>(IHasRequestBody<TRequestBodyType> request, out string requestBodyJson)
-        {
-            TRequestBodyType requestBody = request.RequestBody;
-            bool requestBodyIsNull = EqualityComparer<TRequestBodyType>.Default.Equals(requestBody, default(TRequestBodyType));
-
-            if (requestBodyIsNull)
-            {
-                requestBodyJson = string.Empty;
-                return null;
-            }
-
-            string json = Json.Serialize(requestBody);
-            requestBodyJson = json;
-            return !string.IsNullOrEmpty(json) ? new StringContent(json, Encoding.UTF8, MEDIA_TYPE) : null;
-        }
-
-        private void SetRequestMessageHeadersForAuthorization(ExtendedHttpRequestMessage requestMessage, AuthorizationRequirement authorizationRequirement)
-        {
-            if (requestMessage == null)
-                throw new ArgumentNullException(nameof(requestMessage));
-
-            if (authorizationRequirement == AuthorizationRequirement.Required)
-            {
-                if (!_client.Authentication.IsAuthorized)
-                    throw new TraktAuthorizationException("authorization is required for this request, but the current authorization parameters are invalid");
-
-                requestMessage.Headers.Authorization = new AuthenticationHeaderValue(AUTHENTICATION_SCHEME, _client.Authentication.Authorization.AccessToken);
-            }
-
-            if (authorizationRequirement == AuthorizationRequirement.Optional && _client.Configuration.ForceAuthorization && _client.Authentication.IsAuthorized)
-                requestMessage.Headers.Authorization = new AuthenticationHeaderValue(AUTHENTICATION_SCHEME, _client.Authentication.Authorization.AccessToken);
-        }
-
-        private void ParseResponseHeaderValues(ITraktResponseHeaders headerResults, HttpResponseHeaders responseHeaders)
-        {
-            if (responseHeaders.TryGetValues(HEADER_PAGINATION_PAGE_KEY, out IEnumerable<string> values))
-            {
-                string strPage = values.First();
-
-                if (uint.TryParse(strPage, out uint page))
-                    headerResults.Page = page;
-            }
-
-            if (responseHeaders.TryGetValues(HEADER_PAGINATION_LIMIT_KEY, out values))
-            {
-                string strLimit = values.First();
-
-                if (uint.TryParse(strLimit, out uint limit))
-                    headerResults.Limit = limit;
-            }
-
-            if (responseHeaders.TryGetValues(HEADER_TRENDING_USER_COUNT_KEY, out values))
-            {
-                string strTrendingUserCount = values.First();
-
-                if (int.TryParse(strTrendingUserCount, out int userCount))
-                    headerResults.TrendingUserCount = userCount;
-            }
-
-            if (responseHeaders.TryGetValues(HEADER_SORT_BY_KEY, out values))
-                headerResults.SortBy = values.First();
-
-            if (responseHeaders.TryGetValues(HEADER_SORT_HOW_KEY, out values))
-                headerResults.SortHow = values.First();
-
-            if (responseHeaders.TryGetValues(HEADER_PRIVATE_USER_KEY, out values))
-            {
-                string strIsPrivateUser = values.First();
-
-                if (bool.TryParse(strIsPrivateUser, out bool isPrivateUser))
-                    headerResults.IsPrivateUser = isPrivateUser;
-            }
-
-            if (responseHeaders.TryGetValues(HEADER_STARTDATE_KEY, out values))
-            {
-                string strStartDate = values.First();
-
-                if (DateTime.TryParse(strStartDate, out DateTime startDate))
-                    headerResults.StartDate = startDate.ToUniversalTime();
-            }
-
-            if (responseHeaders.TryGetValues(HEADER_ENDDATE_KEY, out values))
-            {
-                string strEndDate = values.First();
-
-                if (DateTime.TryParse(strEndDate, out DateTime endDate))
-                    headerResults.EndDate = endDate.ToUniversalTime();
-            }
-
-            if (responseHeaders.TryGetValues(HEADER_X_ITEM_ID, out values))
-            {
-                string strXItemId = values.First();
-
-                if (int.TryParse(strXItemId, out int id))
-                    headerResults.XItemId = id;
-            }
-
-            if (responseHeaders.TryGetValues(HEADER_X_ITEM_TYPE, out values))
-                headerResults.XItemType = values.First();
-        }
-
-        private void ParsePagedResponseHeaderValues(ITraktPagedResponseHeaders headerResults, HttpResponseHeaders responseHeaders)
-        {
-            if (responseHeaders.TryGetValues(HEADER_PAGINATION_PAGE_COUNT_KEY, out IEnumerable<string> values))
-            {
-                string strPageCount = values.First();
-
-                if (int.TryParse(strPageCount, out int pageCount))
-                    headerResults.PageCount = pageCount;
-            }
-
-            if (responseHeaders.TryGetValues(HEADER_PAGINATION_ITEM_COUNT_KEY, out values))
-            {
-                string strItemCount = values.First();
-
-                if (int.TryParse(strItemCount, out int itemCount))
-                    headerResults.ItemCount = itemCount;
-            }
-        }
-
-        private async Task ErrorHandlingAsync(HttpResponseMessage response, ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task ErrorHandlingAsync(HttpResponseMessage response, ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default)
         {
             var responseContent = string.Empty;
 
@@ -727,7 +490,7 @@
             throw new TraktNotFoundException($"Resource not found - Reason Phrase: {reasonPhrase}");
         }
 
-        private static async Task HandleConflictStatusCode(bool isCheckinRequest, string responseContent, string url, string requestBodyJson, string reasonPhrase, CancellationToken cancellationToken = default(CancellationToken))
+        private static async Task HandleConflictStatusCode(bool isCheckinRequest, string responseContent, string url, string requestBodyJson, string reasonPhrase, CancellationToken cancellationToken = default)
         {
             if (isCheckinRequest)
             {
@@ -758,7 +521,7 @@
             };
         }
 
-        private static async Task HandleUnknownError(string responseContent, HttpStatusCode code, string url, string requestBodyJson, string reasonPhrase, CancellationToken cancellationToken = default(CancellationToken))
+        private static async Task HandleUnknownError(string responseContent, HttpStatusCode code, string url, string requestBodyJson, string reasonPhrase, CancellationToken cancellationToken = default)
         {
             ITraktError error = null;
 

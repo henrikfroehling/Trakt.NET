@@ -1,6 +1,10 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users.Implementations
 {
     using Enums;
+    using Objects.Json;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>An episode custom list post.</summary>
     public class TraktUserCustomListPost : ITraktUserCustomListPost
@@ -23,5 +27,21 @@
 
         /// <summary>Gets or sets, whether the custom list allows comments.</summary>
         public bool? AllowComments { get; set; }
+
+        public HttpContent ToHttpContent()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<string> ToJson(CancellationToken cancellationToken = default)
+        {
+            IObjectJsonWriter<ITraktUserCustomListPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktUserCustomListPost>();
+            return objectJsonWriter.WriteObjectAsync(this, cancellationToken);
+        }
+
+        public void Validate()
+        {
+            // TODO
+        }
     }
 }

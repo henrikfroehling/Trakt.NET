@@ -1,9 +1,10 @@
 ﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems
 {
     using Get.People;
+    using Requests.Interfaces;
     using System.Collections.Generic;
 
-    public interface ITraktUserCustomListItemsPost
+    public interface ITraktUserCustomListItemsPost : IRequestBody
     {
         IEnumerable<ITraktUserCustomListItemsPostMovie> Movies { get; set; }
 

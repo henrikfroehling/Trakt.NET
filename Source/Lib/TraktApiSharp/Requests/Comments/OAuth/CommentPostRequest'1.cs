@@ -3,9 +3,10 @@
     using Base;
     using Objects.Post.Comments.Implementations;
     using Objects.Post.Comments.Responses;
+    using Requests.Interfaces;
     using System.Collections.Generic;
 
-    internal sealed class CommentPostRequest<TRequestBodyType> : APostRequest<ITraktCommentPostResponse, TRequestBodyType> where TRequestBodyType : TraktCommentPost
+    internal sealed class CommentPostRequest<TRequestBodyType> : APostRequest<ITraktCommentPostResponse, TRequestBodyType> where TRequestBodyType : TraktCommentPost, IRequestBody
     {
         public override TRequestBodyType RequestBody { get; set; }
 

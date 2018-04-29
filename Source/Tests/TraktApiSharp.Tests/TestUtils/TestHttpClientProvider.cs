@@ -18,7 +18,6 @@
         private const string TRAKT_API_HEADER_KEY = "trakt-api-key";
         private const string TRAKT_API_VERSION_HEADER_KEY = "trakt-api-version";
         private const string ACCEPT_MEDIA_TYPE = "application/json";
-
         private readonly string _baseUrl;
         private readonly string _clientId;
         private readonly MockHttpMessageHandler _mockHttpMessageHandler;

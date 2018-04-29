@@ -2,6 +2,20 @@
 {
     internal static class JsonProperties
     {
+        // authentication
+        internal const string AUTHORIZATION_PROPERTY_NAME_ACCESS_TOKEN = "access_token";
+        internal const string AUTHORIZATION_PROPERTY_NAME_REFRESH_TOKEN = "refresh_token";
+        internal const string AUTHORIZATION_PROPERTY_NAME_SCOPE = "scope";
+        internal const string AUTHORIZATION_PROPERTY_NAME_EXPIRES_IN = "expires_in";
+        internal const string AUTHORIZATION_PROPERTY_NAME_TOKEN_TYPE = "token_type";
+        internal const string AUTHORIZATION_PROPERTY_NAME_CREATED_AT = "created_at";
+
+        internal const string DEVICE_PROPERTY_NAME_DEVICE_CODE = "device_code";
+        internal const string DEVICE_PROPERTY_NAME_USER_CODE = "user_code";
+        internal const string DEVICE_PROPERTY_NAME_VERIFICATION_URL = "verification_url";
+        internal const string DEVICE_PROPERTY_NAME_EXPIRES_IN = "expires_in";
+        internal const string DEVICE_PROPERTY_NAME_INTERVAL = "interval";
+
         // basic
         internal const string CAST_AND_CREW_PROPERTY_NAME_CAST = "cast";
         internal const string CAST_AND_CREW_PROPERTY_NAME_CREW = "crew";

@@ -55,11 +55,12 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authentication\TraktAuthorization.cs" />
+    <Compile Include="Objects\Authentication\Implementations\TraktAuthorization.cs" />
     <Compile Include="Authentication\TraktAuthentication.cs" />
-    <Compile Include="Authentication\TraktDevice.cs" />
+    <Compile Include="Objects\Authentication\Implementations\TraktDevice.cs" />
     <Compile Include="Authentication\TraktDeviceAuth.cs" />
     <Compile Include="Authentication\TraktOAuth.cs" />
+    <Compile Include="Core\DebugAsserter.cs" />
     <Compile Include="Core\TraktConfiguration.cs" />
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Enums\TraktCommentSortOrder.cs" />
@@ -121,6 +122,14 @@
     <Compile Include="Modules\ITraktModule.cs" />
     <Compile Include="Modules\TraktCertificationsModule.cs" />
     <Compile Include="Modules\TraktNetworksModule.cs" />
+    <Compile Include="Objects\Authentication\ITraktAuthorization.cs" />
+    <Compile Include="Objects\Authentication\ITraktDevice.cs" />
+    <Compile Include="Objects\Authentication\Json\Factories\AuthorizationJsonIOFactory.cs" />
+    <Compile Include="Objects\Authentication\Json\Factories\DeviceJsonIOFactory.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\AuthorizationObjectJsonReader.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\DeviceObjectJsonReader.cs" />
+    <Compile Include="Objects\Authentication\Json\Writer\AuthorizationObjectJsonWriter.cs" />
+    <Compile Include="Objects\Authentication\Json\Writer\DeviceObjectJsonWriter.cs" />
     <Compile Include="Objects\Basic\IIds.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCertification.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCertifications.cs" />
@@ -903,6 +912,17 @@
     <Compile Include="Objects\Post\Users\Responses\Json\Factories\UserFollowUserPostResponseJsonIOFactory.cs" />
     <Compile Include="Objects\Post\Users\Responses\Json\Reader\UserFollowUserPostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Users\Responses\Json\Writer\UserFollowUserPostResponseObjectJsonWriter.cs" />
+    <Compile Include="Requests\Authentication\AAuthorizationRequest%272.cs" />
+    <Compile Include="Requests\Authentication\AuthorizationPollRequest.cs" />
+    <Compile Include="Requests\Authentication\AuthorizationPollRequestBody.cs" />
+    <Compile Include="Requests\Authentication\AuthorizationRefreshRequestBody.cs" />
+    <Compile Include="Requests\Authentication\AuthorizationRequest.cs" />
+    <Compile Include="Requests\Authentication\AuthorizationRequestBody.cs" />
+    <Compile Include="Requests\Authentication\AuthorizationRevokeRequest.cs" />
+    <Compile Include="Requests\Authentication\AuthorizationRevokeRequestBody.cs" />
+    <Compile Include="Requests\Authentication\DeviceRequest.cs" />
+    <Compile Include="Requests\Authentication\DeviceRequestBody.cs" />
+    <Compile Include="Requests\Authentication\ÁuthorizationRefreshRequest.cs" />
     <Compile Include="Requests\Base\ABodylessPostRequest%271.cs" />
     <Compile Include="Requests\Base\ABodylessPostRequest.cs" />
     <Compile Include="Requests\Base\ADeleteRequest.cs" />
@@ -922,6 +942,8 @@
     <Compile Include="Requests\Handler\ExtendedHttpRequestMessage.cs" />
     <Compile Include="Requests\Handler\HttpClientProvider.cs" />
     <Compile Include="Requests\Handler\IHttpClientProvider.cs" />
+    <Compile Include="Requests\Handler\RequestMessageBuilder.cs" />
+    <Compile Include="Requests\Handler\ResponseHeaderParser.cs" />
     <Compile Include="Requests\Interfaces\Base\IBodylessPostRequest%271.cs" />
     <Compile Include="Requests\Interfaces\Base\IBodylessPostRequest.cs" />
     <Compile Include="Requests\Interfaces\Base\IDeleteRequest.cs" />
@@ -968,6 +990,7 @@
     <Compile Include="Requests\Genres\GenresShowsRequest.cs" />
     <Compile Include="Requests\Interfaces\Base\IHasUriPathParameters.cs" />
     <Compile Include="Requests\Interfaces\Base\IHasRequestAuthorization.cs" />
+    <Compile Include="Requests\Interfaces\IRequestBody.cs" />
     <Compile Include="Requests\Interfaces\ISupportsExtendedInfo.cs" />
     <Compile Include="Requests\Interfaces\ISupportsFilter.cs" />
     <Compile Include="Requests\Interfaces\ISupportsPagination.cs" />

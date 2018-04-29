@@ -1,6 +1,10 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection.Implementations
 {
+    using Objects.Json;
     using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// A Trakt collection post, containing all movies, shows and / or episodes,
@@ -29,5 +33,21 @@
         /// <summary>Returns a new <see cref="TraktSyncCollectionPostBuilder" /> instance.</summary>
         /// <returns>A new <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
         public static TraktSyncCollectionPostBuilder Builder() => new TraktSyncCollectionPostBuilder();
+
+        public HttpContent ToHttpContent()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<string> ToJson(CancellationToken cancellationToken = default)
+        {
+            IObjectJsonWriter<ITraktSyncCollectionPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktSyncCollectionPost>();
+            return objectJsonWriter.WriteObjectAsync(this, cancellationToken);
+        }
+
+        public void Validate()
+        {
+            // TODO
+        }
     }
 }

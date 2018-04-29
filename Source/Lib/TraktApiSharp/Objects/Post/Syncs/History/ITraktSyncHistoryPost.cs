@@ -1,8 +1,9 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.History
 {
+    using Requests.Interfaces;
     using System.Collections.Generic;
 
-    public interface ITraktSyncHistoryPost
+    public interface ITraktSyncHistoryPost : IRequestBody
     {
         IEnumerable<ITraktSyncHistoryPostMovie> Movies { get; set; }
 

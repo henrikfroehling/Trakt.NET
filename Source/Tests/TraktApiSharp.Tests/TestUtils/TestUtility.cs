@@ -2,15 +2,14 @@
 {
     using FluentAssertions;
     using RichardSzalay.MockHttp;
-    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
-    using TraktApiSharp.Authentication;
     using TraktApiSharp.Core;
+    using TraktApiSharp.Objects.Authentication.Implementations;
     using TraktApiSharp.Objects.Json;
     using TraktApiSharp.Requests.Handler;
 

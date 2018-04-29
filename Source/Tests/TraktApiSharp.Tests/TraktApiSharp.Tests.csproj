@@ -85,9 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authentication\TraktAuthentication_Tests.cs" />
-    <Compile Include="Authentication\TraktAuthorization_Tests.cs" />
     <Compile Include="Authentication\TraktDeviceAuth_Tests.cs" />
-    <Compile Include="Authentication\TraktDevice_Tests.cs" />
     <Compile Include="Authentication\TraktOAuth_Tests.cs" />
     <Compile Include="Core\TraktClient_Tests.cs" />
     <Compile Include="Core\TraktConfiguration_Tests.cs" />
@@ -214,6 +212,8 @@
     <Compile Include="Modules\TraktMoviesModule\TraktMoviesModule_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktNetworksModule\TraktNetworksModule_GetNetworks_Tests.cs" />
     <Compile Include="Modules\TraktNetworksModule\TraktNetworksModule_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Authentication\Implementations\TraktAuthorization_Tests.cs" />
+    <Compile Include="Objects\Authentication\Implementations\TraktDevice_Tests.cs" />
     <Compile Include="Modules\TraktPeopleModule\TraktPeopleModule_GetPersonMovieCredits_Tests.cs" />
     <Compile Include="Modules\TraktPeopleModule\TraktPeopleModule_GetPersonShowCredtis_Tests.cs" />
     <Compile Include="Modules\TraktPeopleModule\TraktPeopleModule_GetPerson_Tests.cs" />
