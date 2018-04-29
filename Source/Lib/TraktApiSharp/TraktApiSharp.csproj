@@ -912,6 +912,17 @@
     <Compile Include="Objects\Post\Users\Responses\Json\Factories\UserFollowUserPostResponseJsonIOFactory.cs" />
     <Compile Include="Objects\Post\Users\Responses\Json\Reader\UserFollowUserPostResponseObjectJsonReader.cs" />
     <Compile Include="Objects\Post\Users\Responses\Json\Writer\UserFollowUserPostResponseObjectJsonWriter.cs" />
+    <Compile Include="Requests\Authentication\AAuthorizationRequest%272.cs" />
+    <Compile Include="Requests\Authentication\AuthorizationPollRequest.cs" />
+    <Compile Include="Requests\Authentication\AuthorizationPollRequestBody.cs" />
+    <Compile Include="Requests\Authentication\AuthorizationRefreshRequestBody.cs" />
+    <Compile Include="Requests\Authentication\AuthorizationRequest.cs" />
+    <Compile Include="Requests\Authentication\AuthorizationRequestBody.cs" />
+    <Compile Include="Requests\Authentication\AuthorizationRevokeRequest.cs" />
+    <Compile Include="Requests\Authentication\AuthorizationRevokeRequestBody.cs" />
+    <Compile Include="Requests\Authentication\DeviceRequest.cs" />
+    <Compile Include="Requests\Authentication\DeviceRequestBody.cs" />
+    <Compile Include="Requests\Authentication\ÁuthorizationRefreshRequest.cs" />
     <Compile Include="Requests\Base\ABodylessPostRequest%271.cs" />
     <Compile Include="Requests\Base\ABodylessPostRequest.cs" />
     <Compile Include="Requests\Base\ADeleteRequest.cs" />

@@ -2,6 +2,7 @@
 {
     using Enums;
     using Objects.Json;
+    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -26,6 +27,11 @@
 
         /// <summary>Gets or sets, whether the custom list allows comments.</summary>
         public bool? AllowComments { get; set; }
+
+        public HttpContent ToHttpContent()
+        {
+            throw new System.NotImplementedException();
+        }
 
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {

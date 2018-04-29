@@ -16,6 +16,11 @@
     {
         internal class RequestBodyMock : IRequestBody
         {
+            public HttpContent ToHttpContent()
+            {
+                throw new NotImplementedException();
+            }
+
             public Task<string> ToJson(CancellationToken cancellationToken = default(CancellationToken)) => Task.FromResult("");
 
             public void Validate()

@@ -2,6 +2,7 @@
 {
     using Objects.Json;
     using System.Collections.Generic;
+    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -32,6 +33,11 @@
         /// <summary>Returns a new <see cref="TraktSyncHistoryPostBuilder" /> instance.</summary>
         /// <returns>A new <see cref="TraktSyncHistoryPostBuilder" /> instance.</returns>
         public static TraktSyncHistoryPostBuilder Builder() => new TraktSyncHistoryPostBuilder();
+
+        public HttpContent ToHttpContent()
+        {
+            throw new System.NotImplementedException();
+        }
 
         public virtual Task<string> ToJson(CancellationToken cancellationToken = default)
         {

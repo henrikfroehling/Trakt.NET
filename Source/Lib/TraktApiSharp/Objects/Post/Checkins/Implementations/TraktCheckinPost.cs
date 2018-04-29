@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Post.Checkins.Implementations
 {
     using Basic;
+    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -27,6 +28,8 @@
 
         /// <summary>Gets or sets the Foursquare Venue Name for the checkin post.<para>Nullable</para></summary>
         public string FoursquareVenueName { get; set; }
+
+        public abstract HttpContent ToHttpContent();
 
         public abstract Task<string> ToJson(CancellationToken cancellationToken = default);
 

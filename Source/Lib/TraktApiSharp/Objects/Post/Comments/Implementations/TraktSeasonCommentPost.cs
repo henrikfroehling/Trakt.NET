@@ -2,6 +2,7 @@
 {
     using Get.Seasons;
     using Objects.Json;
+    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -13,6 +14,11 @@
         /// See also <seealso cref="ITraktSeason" />.
         /// </summary>
         public ITraktSeason Season { get; set; }
+
+        public override HttpContent ToHttpContent()
+        {
+            throw new System.NotImplementedException();
+        }
 
         public override Task<string> ToJson(CancellationToken cancellationToken = default)
         {

@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Scrobbles.Implementations
 {
+    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -13,6 +14,8 @@
 
         /// <summary>Gets or sets the app build date for the scrobble post.<para>Nullable</para></summary>
         public string AppDate { get; set; }
+
+        public abstract HttpContent ToHttpContent();
 
         public abstract Task<string> ToJson(CancellationToken cancellationToken = default);
 
