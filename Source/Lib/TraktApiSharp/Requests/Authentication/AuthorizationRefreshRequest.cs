@@ -2,7 +2,7 @@
 {
     using Objects.Authentication;
 
-    internal sealed class ÁuthorizationRefreshRequest : AAuthorizationRequest<ITraktAuthorization, AuthorizationRefreshRequestBody>
+    internal sealed class AuthorizationRefreshRequest : AAuthorizationRequest<ITraktAuthorization, AuthorizationRefreshRequestBody>
     {
         public override string UriTemplate => "oauth/token";
     }

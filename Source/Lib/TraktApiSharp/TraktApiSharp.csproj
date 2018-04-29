@@ -922,7 +922,7 @@
     <Compile Include="Requests\Authentication\AuthorizationRevokeRequestBody.cs" />
     <Compile Include="Requests\Authentication\DeviceRequest.cs" />
     <Compile Include="Requests\Authentication\DeviceRequestBody.cs" />
-    <Compile Include="Requests\Authentication\ÁuthorizationRefreshRequest.cs" />
+    <Compile Include="Requests\Authentication\AuthorizationRefreshRequest.cs" />
     <Compile Include="Requests\Base\ABodylessPostRequest%271.cs" />
     <Compile Include="Requests\Base\ABodylessPostRequest.cs" />
     <Compile Include="Requests\Base\ADeleteRequest.cs" />
@@ -939,11 +939,16 @@
     <Compile Include="Requests\Episodes\AEpisodeRequest%271.cs" />
     <Compile Include="Requests\Episodes\EpisodeListsRequest.cs" />
     <Compile Include="Requests\Episodes\EpisodeTranslationsRequest.cs" />
+    <Compile Include="Requests\Handler\AuthenticationRequestHandler.cs" />
     <Compile Include="Requests\Handler\ExtendedHttpRequestMessage.cs" />
     <Compile Include="Requests\Handler\HttpClientProvider.cs" />
+    <Compile Include="Requests\Handler\IAuthenticationRequestHandler.cs" />
     <Compile Include="Requests\Handler\IHttpClientProvider.cs" />
     <Compile Include="Requests\Handler\RequestMessageBuilder.cs" />
+    <Compile Include="Requests\Handler\ResponseErrorHandler.cs" />
+    <Compile Include="Requests\Handler\ResponseErrorParameters.cs" />
     <Compile Include="Requests\Handler\ResponseHeaderParser.cs" />
+    <Compile Include="Requests\Handler\ResponseMessageHelper.cs" />
     <Compile Include="Requests\Interfaces\Base\IBodylessPostRequest%271.cs" />
     <Compile Include="Requests\Interfaces\Base\IBodylessPostRequest.cs" />
     <Compile Include="Requests\Interfaces\Base\IDeleteRequest.cs" />
