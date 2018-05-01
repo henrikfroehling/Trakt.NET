@@ -53,7 +53,7 @@
         public Task<TraktResponse<ITraktMovieCheckinPostResponse>> CheckIntoMovieAsync(TraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
                                                                                        string message = null, TraktSharing sharing = null,
                                                                                        string foursquareVenueID = null, string foursquareVenueName = null,
-                                                                                       CancellationToken cancellationToken = default(CancellationToken))
+                                                                                       CancellationToken cancellationToken = default)
         {
             Validate(movie);
 
@@ -107,7 +107,7 @@
         public Task<TraktResponse<ITraktEpisodeCheckinPostResponse>> CheckIntoEpisodeAsync(TraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
                                                                                            string message = null, TraktSharing sharing = null,
                                                                                            string foursquareVenueID = null, string foursquareVenueName = null,
-                                                                                           CancellationToken cancellationToken = default(CancellationToken))
+                                                                                           CancellationToken cancellationToken = default)
         {
             Validate(episode);
 
@@ -165,7 +165,7 @@
                                                                                                    string appVersion = null, DateTime? appBuildDate = null,
                                                                                                    string message = null, TraktSharing sharing = null,
                                                                                                    string foursquareVenueID = null, string foursquareVenueName = null,
-                                                                                                   CancellationToken cancellationToken = default(CancellationToken))
+                                                                                                   CancellationToken cancellationToken = default)
         {
             Validate(episode, show);
 
@@ -207,7 +207,7 @@
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktNoContentResponse> DeleteAnyActiveCheckinsAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktNoContentResponse> DeleteAnyActiveCheckinsAsync(CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteNoContentRequestAsync(new CheckinsDeleteRequest(), cancellationToken);

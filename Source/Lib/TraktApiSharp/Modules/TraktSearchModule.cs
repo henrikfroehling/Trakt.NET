@@ -60,7 +60,7 @@
                                                                                      TraktSearchField searchFields = null, TraktSearchFilter filter = null,
                                                                                      TraktExtendedInfo extendedInfo = null,
                                                                                      TraktPagedParameters pagedParameters = null,
-                                                                                     CancellationToken cancellationToken = default(CancellationToken))
+                                                                                     CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
@@ -109,7 +109,7 @@
                                                                                     TraktSearchResultType searchResultTypes = null,
                                                                                     TraktExtendedInfo extendedInfo = null,
                                                                                     TraktPagedParameters pagedParameters = null,
-                                                                                    CancellationToken cancellationToken = default(CancellationToken))
+                                                                                    CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 

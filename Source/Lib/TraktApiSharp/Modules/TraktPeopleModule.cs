@@ -43,7 +43,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
         public Task<TraktResponse<ITraktPerson>> GetPersonAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                CancellationToken cancellationToken = default(CancellationToken))
+                                                                CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
@@ -68,7 +68,7 @@
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given person ids is null, empty or contains spaces.</exception>
         public async Task<IEnumerable<TraktResponse<ITraktPerson>>> GetMultiplePersonsAsync(TraktMultipleObjectsQueryParams personsQueryParams,
-                                                                                            CancellationToken cancellationToken = default(CancellationToken))
+                                                                                            CancellationToken cancellationToken = default)
         {
             if (personsQueryParams == null || personsQueryParams.Count <= 0)
                 return new List<TraktResponse<ITraktPerson>>();
@@ -102,7 +102,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
         public Task<TraktResponse<ITraktPersonMovieCredits>> GetPersonMovieCreditsAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                                        CancellationToken cancellationToken = default(CancellationToken))
+                                                                                        CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
@@ -130,7 +130,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
         public Task<TraktResponse<ITraktPersonShowCredits>> GetPersonShowCreditsAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                                      CancellationToken cancellationToken = default(CancellationToken))
+                                                                                      CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 

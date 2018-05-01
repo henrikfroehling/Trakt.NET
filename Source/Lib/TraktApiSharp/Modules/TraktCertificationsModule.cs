@@ -30,7 +30,7 @@
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktCertifications" /> instance with the queried certification's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktResponse<ITraktCertifications>> GetMovieCertificationsAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCertifications>> GetMovieCertificationsAsync(CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteSingleItemRequestAsync(new MovieCertificationsRequest(), cancellationToken);
@@ -46,7 +46,7 @@
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktCertifications" /> instance with the queried certification's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktResponse<ITraktCertifications>> GetShowCertificationsAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCertifications>> GetShowCertificationsAsync(CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteSingleItemRequestAsync(new ShowCertificationsRequest(), cancellationToken);

@@ -30,7 +30,7 @@
         /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktNetwork" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktListResponse<ITraktNetwork>> GetNetworksAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktListResponse<ITraktNetwork>> GetNetworksAsync(CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteListRequestAsync(new NetworksRequest(), cancellationToken);

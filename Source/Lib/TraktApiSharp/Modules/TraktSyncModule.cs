@@ -53,7 +53,7 @@
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktSyncLastActivities" /> instance with the queried last activities.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktResponse<ITraktSyncLastActivities>> GetLastActivitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktSyncLastActivities>> GetLastActivitiesAsync(CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncLastActivitiesRequest(), cancellationToken);
@@ -72,7 +72,7 @@
         /// <returns>A list of <see cref="ITraktSyncPlaybackProgressItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktListResponse<ITraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null, uint? limit = null,
-                                                                                                CancellationToken cancellationToken = default(CancellationToken))
+                                                                                                CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
@@ -94,7 +94,7 @@
         /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given playback progress id is null, empty or contains spaces.</exception>
-        public Task<TraktNoContentResponse> RemovePlaybackItemAsync(uint playbackId, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktNoContentResponse> RemovePlaybackItemAsync(uint playbackId, CancellationToken cancellationToken = default)
         {
             if (playbackId == 0)
                 throw new ArgumentOutOfRangeException(nameof(playbackId), "playback id not valid");
@@ -118,7 +118,7 @@
         /// <returns>A list of <see cref="ITraktCollectionMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktListResponse<ITraktCollectionMovie>> GetCollectionMoviesAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                       CancellationToken cancellationToken = default(CancellationToken))
+                                                                                       CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteListRequestAsync(new SyncCollectionMoviesRequest { ExtendedInfo = extendedInfo }, cancellationToken);
@@ -139,7 +139,7 @@
         /// <returns>A list of <see cref="ITraktCollectionShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktListResponse<ITraktCollectionShow>> GetCollectionShowsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                     CancellationToken cancellationToken = default(CancellationToken))
+                                                                                     CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteListRequestAsync(new SyncCollectionShowsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
@@ -164,7 +164,7 @@
         /// <exception cref="ArgumentNullException">Thrown if the given collection post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given collection post is empty.</exception>
         public Task<TraktResponse<ITraktSyncCollectionPostResponse>> AddCollectionItemsAsync(TraktSyncCollectionPost collectionPost,
-                                                                                             CancellationToken cancellationToken = default(CancellationToken))
+                                                                                             CancellationToken cancellationToken = default)
         {
             ValidateCollectionPost(collectionPost);
             var requestHandler = new RequestHandler(Client);
@@ -190,7 +190,7 @@
         /// <exception cref="ArgumentNullException">Thrown if the given collection remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given collection remove post is empty.</exception>
         public Task<TraktResponse<ITraktSyncCollectionRemovePostResponse>> RemoveCollectionItemsAsync(TraktSyncCollectionPost collectionRemovePost,
-                                                                                                      CancellationToken cancellationToken = default(CancellationToken))
+                                                                                                      CancellationToken cancellationToken = default)
         {
             ValidateCollectionPost(collectionRemovePost);
             var requestHandler = new RequestHandler(Client);
@@ -212,7 +212,7 @@
         /// <returns>A list of <see cref="ITraktWatchedMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktListResponse<ITraktWatchedMovie>> GetWatchedMoviesAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                 CancellationToken cancellationToken = default(CancellationToken))
+                                                                                 CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteListRequestAsync(new SyncWatchedMoviesRequest { ExtendedInfo = extendedInfo }, cancellationToken);
@@ -233,7 +233,7 @@
         /// <returns>A list of <see cref="ITraktWatchedShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktListResponse<ITraktWatchedShow>> GetWatchedShowsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                               CancellationToken cancellationToken = default(CancellationToken))
+                                                                               CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteListRequestAsync(new SyncWatchedShowsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
@@ -268,7 +268,7 @@
                                                                                   DateTime? startAt = null, DateTime? endAt = null,
                                                                                   TraktExtendedInfo extendedInfo = null,
                                                                                   TraktPagedParameters pagedParameters = null,
-                                                                                  CancellationToken cancellationToken = default(CancellationToken))
+                                                                                  CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
@@ -303,7 +303,7 @@
         /// <exception cref="ArgumentNullException">Thrown if the given history post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given history post is empty.</exception>
         public Task<TraktResponse<ITraktSyncHistoryPostResponse>> AddWatchedHistoryItemsAsync(TraktSyncHistoryPost historyPost,
-                                                                                              CancellationToken cancellationToken = default(CancellationToken))
+                                                                                              CancellationToken cancellationToken = default)
         {
             ValidateHistoryPost(historyPost);
             var requestHandler = new RequestHandler(Client);
@@ -329,7 +329,7 @@
         /// <exception cref="ArgumentNullException">Thrown if the given history remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given history remove post is empty.</exception>
         public Task<TraktResponse<ITraktSyncHistoryRemovePostResponse>> RemoveWatchedHistoryItemsAsync(TraktSyncHistoryRemovePost historyRemovePost,
-                                                                                                       CancellationToken cancellationToken = default(CancellationToken))
+                                                                                                       CancellationToken cancellationToken = default)
         {
             ValidateHistoryPost(historyRemovePost);
             var requestHandler = new RequestHandler(Client);
@@ -359,7 +359,7 @@
         public Task<TraktListResponse<ITraktRatingsItem>> GetRatingsAsync(TraktRatingsItemType ratingsItemType = null,
                                                                           int[] ratingsFilter = null,
                                                                           TraktExtendedInfo extendedInfo = null,
-                                                                          CancellationToken cancellationToken = default(CancellationToken))
+                                                                          CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
@@ -390,7 +390,7 @@
         /// <exception cref="ArgumentNullException">Thrown if the given ratings post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given ratings post is empty.</exception>
         public Task<TraktResponse<ITraktSyncRatingsPostResponse>> AddRatingsAsync(TraktSyncRatingsPost ratingsPost,
-                                                                                  CancellationToken cancellationToken = default(CancellationToken))
+                                                                                  CancellationToken cancellationToken = default)
         {
             ValidateRatingsPost(ratingsPost);
             var requestHandler = new RequestHandler(Client);
@@ -416,7 +416,7 @@
         /// <exception cref="ArgumentNullException">Thrown if the given ratings remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given ratings remove post is empty.</exception>
         public Task<TraktResponse<ITraktSyncRatingsRemovePostResponse>> RemoveRatingsAsync(TraktSyncRatingsPost ratingsRemovePost,
-                                                                                           CancellationToken cancellationToken = default(CancellationToken))
+                                                                                           CancellationToken cancellationToken = default)
         {
             ValidateRatingsPost(ratingsRemovePost);
             var requestHandler = new RequestHandler(Client);
@@ -448,7 +448,7 @@
         public Task<TraktPagedResponse<ITraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType watchlistItemType = null,
                                                                                TraktExtendedInfo extendedInfo = null,
                                                                                TraktPagedParameters pagedParameters = null,
-                                                                               CancellationToken cancellationToken = default(CancellationToken))
+                                                                               CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
@@ -480,7 +480,7 @@
         /// <exception cref="ArgumentNullException">Thrown if the given watchlist post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given watchlist post is empty.</exception>
         public Task<TraktResponse<ITraktSyncWatchlistPostResponse>> AddWatchlistItemsAsync(TraktSyncWatchlistPost watchlistPost,
-                                                                                           CancellationToken cancellationToken = default(CancellationToken))
+                                                                                           CancellationToken cancellationToken = default)
         {
             ValidateWatchlistPost(watchlistPost);
             var requestHandler = new RequestHandler(Client);
@@ -506,7 +506,7 @@
         /// <exception cref="ArgumentNullException">Thrown if the given watchlist remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given watchlist remove post is empty.</exception>
         public Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>> RemoveWatchlistItemsAsync(TraktSyncWatchlistPost watchlistRemovePost,
-                                                                                                    CancellationToken cancellationToken = default(CancellationToken))
+                                                                                                    CancellationToken cancellationToken = default)
         {
             ValidateWatchlistPost(watchlistRemovePost);
             var requestHandler = new RequestHandler(Client);

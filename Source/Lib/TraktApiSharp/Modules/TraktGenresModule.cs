@@ -31,7 +31,7 @@
         /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktGenre" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktListResponse<ITraktGenre>> GetMovieGenresAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TraktListResponse<ITraktGenre>> GetMovieGenresAsync(CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
             var response = await requestHandler.ExecuteListRequestAsync(new GenresMoviesRequest(), cancellationToken);
@@ -55,7 +55,7 @@
         /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktGenre" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktListResponse<ITraktGenre>> GetShowGenresAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TraktListResponse<ITraktGenre>> GetShowGenresAsync(CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
             var response = await requestHandler.ExecuteListRequestAsync(new GenresShowsRequest(), cancellationToken);
