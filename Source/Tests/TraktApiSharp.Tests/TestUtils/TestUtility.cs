@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using RichardSzalay.MockHttp;
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Net;
@@ -46,10 +47,11 @@
         internal static TraktClient GetMockClient(string uri, string responseContent,
                                                   uint? page = null, uint? limit = null,
                                                   int? pageCount = null, int? itemCount = null,
-                                                  int? userCount = null)
+                                                  int? userCount = null, string startDate = null,
+                                                  string endDate = null)
         {
             var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
-            httpClientProvider.SetupMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount);
+            httpClientProvider.SetupMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate);
             return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
         }
 
@@ -58,6 +60,29 @@
             var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
             httpClientProvider.SetupMockResponse(uri, httpStatusCode);
             return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
+        }
+
+        internal static TraktClient GetOAuthMockClient(string uri, string responseContent,
+                                                       uint? page = null, uint? limit = null,
+                                                       int? pageCount = null, int? itemCount = null,
+                                                       int? userCount = null, string startDate = null,
+                                                       string endDate = null)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupOAuthMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider)
+            {
+                Authorization = TestConstants.MOCK_AUTHORIZATION
+            };
+        }
+
+        internal static ulong CalculateTimestamp(DateTime createdAt)
+        {
+            var origin = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            long originSeconds = origin.Ticks / TimeSpan.TicksPerSecond;
+            DateTime utcCreatedAt = createdAt.ToUniversalTime();
+            long utcCreatedAtSeconds = utcCreatedAt.Ticks / TimeSpan.TicksPerSecond;
+            return (ulong)(utcCreatedAtSeconds - originSeconds);
         }
 
         internal static void SetupMockHttpClient()

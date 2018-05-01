@@ -3,6 +3,7 @@
     using FluentAssertions;
     using System;
     using System.Threading.Tasks;
+    using TestUtils;
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Authentication;
@@ -18,7 +19,7 @@
         private const string REFRESH_TOKEN = "refreshToken";
         private const uint EXPIRES_IN_SECONDS = 7776000;
         private static readonly DateTime s_createdAt = DateTime.UtcNow;
-        private static readonly ulong s_createdAtTimestamp = CalculateTimestamp(s_createdAt);
+        private static readonly ulong s_createdAtTimestamp = TestUtility.CalculateTimestamp(s_createdAt);
 
         [Fact]
         public void Test_TraktAuthorization_Default_Constructor()
@@ -226,7 +227,7 @@
         public void Test_TraktAuthorization_CreateWith_AccessToken()
         {
             DateTime createdAtUtcNow = DateTime.UtcNow;
-            ulong createdAtUtcNowTimestamp = CalculateTimestamp(createdAtUtcNow);
+            ulong createdAtUtcNowTimestamp = TestUtility.CalculateTimestamp(createdAtUtcNow);
 
             TraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(ACCESS_TOKEN);
 
@@ -248,7 +249,7 @@
         public void Test_TraktAuthorization_CreateWith_AccessToken_And_RefreshToken()
         {
             DateTime createdAtUtcNow = DateTime.UtcNow;
-            ulong createdAtUtcNowTimestamp = CalculateTimestamp(createdAtUtcNow);
+            ulong createdAtUtcNowTimestamp = TestUtility.CalculateTimestamp(createdAtUtcNow);
 
             TraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(ACCESS_TOKEN, REFRESH_TOKEN);
 
@@ -270,7 +271,7 @@
         public void Test_TraktAuthorization_CreateWith_ExpiresIn_And_AccessToken()
         {
             DateTime createdAtUtcNow = DateTime.UtcNow;
-            ulong createdAtUtcNowTimestamp = CalculateTimestamp(createdAtUtcNow);
+            ulong createdAtUtcNowTimestamp = TestUtility.CalculateTimestamp(createdAtUtcNow);
 
             TraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(EXPIRES_IN_SECONDS, ACCESS_TOKEN);
 
@@ -292,7 +293,7 @@
         public void Test_TraktAuthorization_CreateWith_ExpiresIn_And_AccessToken_And_RefreshToken()
         {
             DateTime createdAtUtcNow = DateTime.UtcNow;
-            ulong createdAtUtcNowTimestamp = CalculateTimestamp(createdAtUtcNow);
+            ulong createdAtUtcNowTimestamp = TestUtility.CalculateTimestamp(createdAtUtcNow);
 
             TraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(EXPIRES_IN_SECONDS, ACCESS_TOKEN, REFRESH_TOKEN);
 
@@ -390,7 +391,7 @@
         public void Test_TraktAuthorization_CreateWith_Null_Values()
         {
             DateTime createdAtUtcNow = DateTime.UtcNow;
-            ulong createdAtUtcNowTimestamp = CalculateTimestamp(createdAtUtcNow);
+            ulong createdAtUtcNowTimestamp = TestUtility.CalculateTimestamp(createdAtUtcNow);
 
             TraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(null, REFRESH_TOKEN);
 
@@ -540,15 +541,6 @@
                 ExpiresInSeconds = traktAuthorization.ExpiresInSeconds,
                 CreatedAtTimestamp = traktAuthorization.CreatedAtTimestamp
             };
-        }
-
-        private static ulong CalculateTimestamp(DateTime createdAt)
-        {
-            var origin = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            long originSeconds = origin.Ticks / TimeSpan.TicksPerSecond;
-            DateTime utcCreatedAt = createdAt.ToUniversalTime();
-            long utcCreatedAtSeconds = utcCreatedAt.Ticks / TimeSpan.TicksPerSecond;
-            return (ulong)(utcCreatedAtSeconds - originSeconds);
         }
 
         private readonly string JSON =
