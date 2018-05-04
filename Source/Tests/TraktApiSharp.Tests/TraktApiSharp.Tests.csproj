@@ -218,8 +218,8 @@
     <Compile Include="Modules\TraktPeopleModule\TraktPeopleModule_GetPersonShowCredtis_Tests.cs" />
     <Compile Include="Modules\TraktPeopleModule\TraktPeopleModule_GetPerson_Tests.cs" />
     <Compile Include="Modules\TraktPeopleModule\TraktPeopleModule_Tests_Json_Data.cs" />
-    <Compile Include="Modules\TraktRecommendationsModule\TraktRecommendationsModule_GetUserMovieRecommendations_Tests.cs" />
-    <Compile Include="Modules\TraktRecommendationsModule\TraktRecommendationsModule_GetUserShowRecommendations_Tests.cs" />
+    <Compile Include="Modules\TraktRecommendationsModule\TraktRecommendationsModule_GetMovieRecommendations_Tests.cs" />
+    <Compile Include="Modules\TraktRecommendationsModule\TraktRecommendationsModule_GetShowRecommendations_Tests.cs" />
     <Compile Include="Modules\TraktRecommendationsModule\TraktRecommendationsModule_HideUserMovieRecommendation_Tests.cs" />
     <Compile Include="Modules\TraktRecommendationsModule\TraktRecommendationsModule_HideUserShowReceommendation_Tests.cs" />
     <Compile Include="Modules\TraktRecommendationsModule\TraktRecommendationsModule_Tests_Json_Data.cs" />

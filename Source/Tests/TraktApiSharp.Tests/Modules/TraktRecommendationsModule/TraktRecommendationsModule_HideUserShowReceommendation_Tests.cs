@@ -13,107 +13,158 @@
     [Category("Modules.Recommendations")]
     public partial class TraktRecommendationsModule_Tests
     {
+        private readonly string HIDE_SHOW_RECOMMENDATION_URI = $"recommendations/shows/{SHOW_ID}";
+
         [Fact]
-        public void Test_TraktRecommendationsModule_HideUserShowRecommendation()
+        public async Task Test_TraktRecommendationsModule_HideShowRecommendation()
         {
-            const string showId = "1390";
-
-            TestUtility.SetupMockResponseWithOAuth($"recommendations/shows/{showId}", HttpStatusCode.NoContent);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync(showId).Result;
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktRecommendationsModule_HideUserShowRecommendationExceptions()
+        public void Test_TraktRecommendationsModule_HideShowRecommendation_Throws_NotFoundException()
         {
-            const string showId = "1390";
-            var uri = $"recommendations/shows/{showId}";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktNoContentResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync(showId);
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
             act.Should().Throw<TraktShowNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktRecommendationsModule_HideShowRecommendation_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktRecommendationsModule_HideShowRecommendation_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktRecommendationsModule_HideShowRecommendation_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktRecommendationsModule_HideShowRecommendation_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktRecommendationsModule_HideShowRecommendation_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktRecommendationsModule_HideShowRecommendation_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktRecommendationsModule_HideShowRecommendation_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktRecommendationsModule_HideShowRecommendation_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, (HttpStatusCode)412);
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktRecommendationsModule_HideShowRecommendation_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, (HttpStatusCode)422);
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktRecommendationsModule_HideShowRecommendation_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, (HttpStatusCode)429);
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktRecommendationsModule_HideShowRecommendation_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, (HttpStatusCode)503);
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktRecommendationsModule_HideUserShowRecommendationArgumentExceptions()
+        public void Test_TraktRecommendationsModule_HideShowRecommendation_Throws_ServerUnavailableException_504()
         {
-            const string showId = "1390";
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, (HttpStatusCode)504);
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.SetupMockResponseWithOAuth($"recommendations/shows/{showId}", HttpStatusCode.NoContent);
+        [Fact]
+        public void Test_TraktRecommendationsModule_HideShowRecommendation_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, (HttpStatusCode)520);
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            Func<Task<TraktNoContentResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync(null);
+        [Fact]
+        public void Test_TraktRecommendationsModule_HideShowRecommendation_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, (HttpStatusCode)521);
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktRecommendationsModule_HideShowRecommendation_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, (HttpStatusCode)522);
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktRecommendationsModule_HideShowRecommendation_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, HttpStatusCode.NoContent);
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(null);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync(string.Empty);
+            act = () => client.Recommendations.HideShowRecommendationAsync(string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Recommendations.HideShowRecommendationAsync("show id");
+            act = () => client.Recommendations.HideShowRecommendationAsync("show id");
             act.Should().Throw<ArgumentException>();
         }
     }

@@ -1,7 +1,14 @@
 ﻿namespace TraktApiSharp.Tests.Modules.TraktRecommendationsModule
 {
+    using TraktApiSharp.Requests.Parameters;
+
     public partial class TraktRecommendationsModule_Tests
     {
+        private const string MOVIE_ID = "94024";
+        private const string SHOW_ID = "1390";
+        private const uint LIMIT = 4U;
+        private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
+
         private const string MOVIE_RECOMMENDATIONS_JSON =
             @"[
                 {
