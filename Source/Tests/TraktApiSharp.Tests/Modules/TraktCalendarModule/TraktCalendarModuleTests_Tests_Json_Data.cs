@@ -1,14 +1,36 @@
 ﻿namespace TraktApiSharp.Tests.Modules.TraktCalendarModule
 {
     using System;
+    using TraktApiSharp.Requests.Parameters;
 
     public partial class TraktCalendarModule_Tests
     {
         private const string START_DATE = "Tue, 08 Mar 2016 00:00:00 GMT";
         private const string END_DATE = "Mon, 14 Mar 2016 23:59:59 GMT";
+        private const int DAYS = 14;
+        private readonly DateTime TODAY = DateTime.UtcNow;
+        private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
 
-        private static DateTime DT_START_DATE;
-        private static DateTime DT_END_DATE;
+        private readonly TraktCalendarFilter FILTER = new TraktCalendarFilter()
+            .WithQuery("calendar movie")
+            .WithStartYear(2016)
+            .WithGenres("drama", "fantasy")
+            .WithLanguages("en", "de")
+            .WithCountries("us")
+            .WithRuntimes(30, 60)
+            .WithRatings(80, 95);
+
+        public DateTime StartDateTime { get; }
+        public DateTime EndDateTime { get; }
+
+        public TraktCalendarModule_Tests()
+        {
+            if (DateTime.TryParse(START_DATE, out DateTime startDateTime))
+                StartDateTime = startDateTime.ToUniversalTime();
+
+            if (DateTime.TryParse(END_DATE, out DateTime endDateTime))
+                EndDateTime = endDateTime.ToUniversalTime();
+        }
 
         private const string CALENDAR_ALL_MOVIES_JSON =
             @"[

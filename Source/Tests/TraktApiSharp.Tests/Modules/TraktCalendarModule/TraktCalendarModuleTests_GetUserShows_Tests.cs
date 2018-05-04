@@ -9,517 +9,457 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.Calendars;
-    using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Xunit;
 
     [Category("Modules.Calendar")]
     public partial class TraktCalendarModule_Tests
     {
-        [Fact]
-        public void Test_TraktCalendarModule_GetUserShows()
-        {
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                "calendars/my/shows",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
+        private const string GET_USER_SHOWS_URI = "calendars/my/shows";
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync().Result;
+        [Fact]
+        public async Task Test_TraktCalendarModule_GetUserShows()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI,
+                                                                CALENDAR_ALL_SHOWS_JSON,
+                                                                startDate: START_DATE, endDate: END_DATE);
+
+            TraktListResponse<ITraktCalendarShow> response = await client.Calendar.GetUserShowsAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.StartDate.Equals(StartDateTime).Should().BeTrue();
             response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+            response.EndDate.Equals(EndDateTime).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserShowsFiltered()
+        public async Task Test_TraktCalendarModule_GetUserShows_Filtered()
         {
-            var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95);
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_USER_SHOWS_URI}?{FILTER}",
+                                                                CALENDAR_ALL_SHOWS_JSON,
+                                                                startDate: START_DATE, endDate: END_DATE);
 
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows?{filter}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, null, null, filter).Result;
+            TraktListResponse<ITraktCalendarShow> response = await client.Calendar.GetUserShowsAsync(null, null, null, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.StartDate.Equals(StartDateTime).Should().BeTrue();
             response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+            response.EndDate.Equals(EndDateTime).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserShowsWithStartDate()
+        public async Task Test_TraktCalendarModule_GetUserShows_With_StartDate()
         {
-            var today = DateTime.UtcNow;
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_USER_SHOWS_URI}/{TODAY.ToTraktDateString()}",
+                                                                CALENDAR_ALL_SHOWS_JSON,
+                                                                startDate: START_DATE, endDate: END_DATE);
 
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/{today.ToTraktDateString()}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today).Result;
+            TraktListResponse<ITraktCalendarShow> response = await client.Calendar.GetUserShowsAsync(TODAY);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.StartDate.Equals(StartDateTime).Should().BeTrue();
             response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+            response.EndDate.Equals(EndDateTime).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserShowsWithStartDateFiltered()
+        public async Task Test_TraktCalendarModule_GetUserShows_With_StartDate_Filtered()
         {
-            var today = DateTime.UtcNow;
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_USER_SHOWS_URI}/{TODAY.ToTraktDateString()}?{FILTER}",
+                                                                CALENDAR_ALL_SHOWS_JSON,
+                                                                startDate: START_DATE, endDate: END_DATE);
 
-            var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95);
-
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/{today.ToTraktDateString()}?{filter}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, null, null, filter).Result;
+            TraktListResponse<ITraktCalendarShow> response = await client.Calendar.GetUserShowsAsync(TODAY, null, null, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.StartDate.Equals(StartDateTime).Should().BeTrue();
             response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+            response.EndDate.Equals(EndDateTime).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserShowsWithDays()
+        public async Task Test_TraktCalendarModule_GetUserShows_With_Days()
         {
-            var today = DateTime.UtcNow;
-            const int days = 14;
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_USER_SHOWS_URI}/{TODAY.ToTraktDateString()}/{DAYS}",
+                                                                CALENDAR_ALL_SHOWS_JSON,
+                                                                startDate: START_DATE, endDate: END_DATE);
 
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/{today.ToTraktDateString()}/{days}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days).Result;
+            TraktListResponse<ITraktCalendarShow> response = await client.Calendar.GetUserShowsAsync(null, DAYS);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.StartDate.Equals(StartDateTime).Should().BeTrue();
             response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+            response.EndDate.Equals(EndDateTime).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserShowsWithDaysFiltered()
+        public async Task Test_TraktCalendarModule_GetUserShows_With_Days_Filtered()
         {
-            var today = DateTime.UtcNow;
-            const int days = 14;
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_USER_SHOWS_URI}/{TODAY.ToTraktDateString()}/{DAYS}?{FILTER}",
+                                                                CALENDAR_ALL_SHOWS_JSON,
+                                                                startDate: START_DATE, endDate: END_DATE);
 
-            var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95);
-
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/{today.ToTraktDateString()}/{days}?{filter}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days, null, filter).Result;
+            TraktListResponse<ITraktCalendarShow> response = await client.Calendar.GetUserShowsAsync(null, DAYS, null, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.StartDate.Equals(StartDateTime).Should().BeTrue();
             response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+            response.EndDate.Equals(EndDateTime).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserShowsWithStartDateAndDays()
+        public async Task Test_TraktCalendarModule_GetUserShows_With_StartDate_And_Days()
         {
-            var today = DateTime.UtcNow;
-            const int days = 14;
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_USER_SHOWS_URI}/{TODAY.ToTraktDateString()}/{DAYS}",
+                                                                CALENDAR_ALL_SHOWS_JSON,
+                                                                startDate: START_DATE, endDate: END_DATE);
 
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/{today.ToTraktDateString()}/{days}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days).Result;
+            TraktListResponse<ITraktCalendarShow> response = await client.Calendar.GetUserShowsAsync(TODAY, DAYS);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.StartDate.Equals(StartDateTime).Should().BeTrue();
             response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+            response.EndDate.Equals(EndDateTime).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserShowsWithStartDateAndDaysFiltered()
+        public async Task Test_TraktCalendarModule_GetUserShows_With_StartDate_And_Days_Filtered()
         {
-            var today = DateTime.UtcNow;
-            const int days = 14;
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_USER_SHOWS_URI}/{TODAY.ToTraktDateString()}/{DAYS}?{FILTER}",
+                                                                CALENDAR_ALL_SHOWS_JSON,
+                                                                startDate: START_DATE, endDate: END_DATE);
 
-            var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95);
-
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/{today.ToTraktDateString()}/{days}?{filter}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days, null, filter).Result;
+            TraktListResponse<ITraktCalendarShow> response = await client.Calendar.GetUserShowsAsync(TODAY, DAYS, null, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.StartDate.Equals(StartDateTime).Should().BeTrue();
             response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+            response.EndDate.Equals(EndDateTime).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserShowsWithExtendedInfo()
+        public async Task Test_TraktCalendarModule_GetUserShows_With_ExtendedInfo()
         {
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_USER_SHOWS_URI}?extended={EXTENDED_INFO}",
+                                                                CALENDAR_ALL_SHOWS_JSON,
+                                                                startDate: START_DATE, endDate: END_DATE);
 
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows?extended={extendedInfo}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, null, extendedInfo).Result;
+            TraktListResponse<ITraktCalendarShow> response = await client.Calendar.GetUserShowsAsync(null, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.StartDate.Equals(StartDateTime).Should().BeTrue();
             response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+            response.EndDate.Equals(EndDateTime).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserShowsWithExtendedInfoFiltered()
+        public async Task Test_TraktCalendarModule_GetUserShows_With_ExtendedInfo_Filtered()
         {
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_USER_SHOWS_URI}?extended={EXTENDED_INFO}&{FILTER}",
+                                                                CALENDAR_ALL_SHOWS_JSON,
+                                                                startDate: START_DATE, endDate: END_DATE);
 
-            var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95);
-
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows?extended={extendedInfo}&{filter}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, null, extendedInfo, filter).Result;
+            TraktListResponse<ITraktCalendarShow> response = await client.Calendar.GetUserShowsAsync(null, null, EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.StartDate.Equals(StartDateTime).Should().BeTrue();
             response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+            response.EndDate.Equals(EndDateTime).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserShowsWithExtendedInfoAndStartDate()
+        public async Task Test_TraktCalendarModule_GetUserShows_With_ExtendedInfo_And_StartDate()
         {
-            var today = DateTime.UtcNow;
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_USER_SHOWS_URI}/{TODAY.ToTraktDateString()}?extended={EXTENDED_INFO}",
+                                                                CALENDAR_ALL_SHOWS_JSON,
+                                                                startDate: START_DATE, endDate: END_DATE);
 
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/{today.ToTraktDateString()}?extended={extendedInfo}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, null, extendedInfo).Result;
+            TraktListResponse<ITraktCalendarShow> response = await client.Calendar.GetUserShowsAsync(TODAY, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.StartDate.Equals(StartDateTime).Should().BeTrue();
             response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+            response.EndDate.Equals(EndDateTime).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserShowsWithExtendedInfoAndStartDateFiltered()
+        public async Task Test_TraktCalendarModule_GetUserShows_With_ExtendedInfo_And_StartDate_Filtered()
         {
-            var today = DateTime.UtcNow;
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_USER_SHOWS_URI}/{TODAY.ToTraktDateString()}?extended={EXTENDED_INFO}&{FILTER}",
+                                                                CALENDAR_ALL_SHOWS_JSON,
+                                                                startDate: START_DATE, endDate: END_DATE);
 
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95);
-
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/{today.ToTraktDateString()}?extended={extendedInfo}&{filter}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, null, extendedInfo, filter).Result;
+            TraktListResponse<ITraktCalendarShow> response = await client.Calendar.GetUserShowsAsync(TODAY, null, EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.StartDate.Equals(StartDateTime).Should().BeTrue();
             response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+            response.EndDate.Equals(EndDateTime).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserShowsWithExtendedInfoAndDays()
+        public async Task Test_TraktCalendarModule_GetUserShows_With_ExtendedInfo_And_Days()
         {
-            var today = DateTime.UtcNow;
-            const int days = 14;
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_USER_SHOWS_URI}/{TODAY.ToTraktDateString()}/{DAYS}?extended={EXTENDED_INFO}",
+                                                                CALENDAR_ALL_SHOWS_JSON,
+                                                                startDate: START_DATE, endDate: END_DATE);
 
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days, extendedInfo).Result;
+            TraktListResponse<ITraktCalendarShow> response = await client.Calendar.GetUserShowsAsync(null, DAYS, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.StartDate.Equals(StartDateTime).Should().BeTrue();
             response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+            response.EndDate.Equals(EndDateTime).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserShowsWithExtendedInfoAndDaysFiltered()
+        public async Task Test_TraktCalendarModule_GetUserShows_With_ExtendedInfo_And_Days_Filtered()
         {
-            var today = DateTime.UtcNow;
-            const int days = 14;
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_USER_SHOWS_URI}/{TODAY.ToTraktDateString()}/{DAYS}?extended={EXTENDED_INFO}&{FILTER}",
+                                                                CALENDAR_ALL_SHOWS_JSON,
+                                                                startDate: START_DATE, endDate: END_DATE);
 
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95);
-
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo}&{filter}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, days, extendedInfo, filter).Result;
+            TraktListResponse<ITraktCalendarShow> response = await client.Calendar.GetUserShowsAsync(null, DAYS, EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.StartDate.Equals(StartDateTime).Should().BeTrue();
             response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+            response.EndDate.Equals(EndDateTime).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserShowsWithExtendedInfoAndStartDateAndDays()
+        public async Task Test_TraktCalendarModule_GetUserShows_With_ExtendedInfo_And_StartDate_And_Days()
         {
-            var today = DateTime.UtcNow;
-            const int days = 14;
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_USER_SHOWS_URI}/{TODAY.ToTraktDateString()}/{DAYS}?extended={EXTENDED_INFO}",
+                                                                CALENDAR_ALL_SHOWS_JSON,
+                                                                startDate: START_DATE, endDate: END_DATE);
 
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days, extendedInfo).Result;
+            TraktListResponse<ITraktCalendarShow> response = await client.Calendar.GetUserShowsAsync(TODAY, DAYS, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.StartDate.Equals(StartDateTime).Should().BeTrue();
             response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+            response.EndDate.Equals(EndDateTime).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserShowsWithExtendedInfoAndStartDateAndDaysFiltered()
+        public async Task Test_TraktCalendarModule_GetUserShows_With_ExtendedInfo_And_StartDate_And_Days_Filtered()
         {
-            var today = DateTime.UtcNow;
-            const int days = 14;
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_USER_SHOWS_URI}/{TODAY.ToTraktDateString()}/{DAYS}?extended={EXTENDED_INFO}&{FILTER}",
+                                                                CALENDAR_ALL_SHOWS_JSON,
+                                                                startDate: START_DATE, endDate: END_DATE);
 
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            var filter = new TraktCalendarFilter()
-                .WithQuery("calendar user show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95);
-
-            TestUtility.SetupMockResponseWithOAuthWithHeaders(
-                $"calendars/my/shows/{today.ToTraktDateString()}/{days}?extended={extendedInfo}&{filter}",
-                CALENDAR_ALL_SHOWS_JSON, START_DATE, END_DATE);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(today, days, extendedInfo, filter).Result;
+            TraktListResponse<ITraktCalendarShow> response = await client.Calendar.GetUserShowsAsync(TODAY, DAYS, EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(2);
             response.StartDate.Should().HaveValue();
-            response.StartDate.Equals(DT_START_DATE).Should().BeTrue();
+            response.StartDate.Equals(StartDateTime).Should().BeTrue();
             response.EndDate.Should().HaveValue();
-            response.EndDate.Equals(DT_END_DATE).Should().BeTrue();
+            response.EndDate.Equals(EndDateTime).Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserShowsExceptions()
+        public void Test_TraktCalendarModule_GetUserShows_Throws_NotFoundException()
         {
-            const string uri = "calendars/my/shows";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync();
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act = () => client.Calendar.GetUserShowsAsync();
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktCalendarModule_GetUserShows_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act = () => client.Calendar.GetUserShowsAsync();
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktCalendarModule_GetUserShows_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act = () => client.Calendar.GetUserShowsAsync();
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktCalendarModule_GetUserShows_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act = () => client.Calendar.GetUserShowsAsync();
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktCalendarModule_GetUserShows_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act = () => client.Calendar.GetUserShowsAsync();
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktCalendarModule_GetUserShows_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act = () => client.Calendar.GetUserShowsAsync();
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktCalendarModule_GetUserShows_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act = () => client.Calendar.GetUserShowsAsync();
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktCalendarModule_GetUserShows_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act = () => client.Calendar.GetUserShowsAsync();
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktCalendarModule_GetUserShows_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI, (HttpStatusCode)412);
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act = () => client.Calendar.GetUserShowsAsync();
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktCalendarModule_GetUserShows_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI, (HttpStatusCode)422);
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act = () => client.Calendar.GetUserShowsAsync();
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktCalendarModule_GetUserShows_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI, (HttpStatusCode)429);
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act = () => client.Calendar.GetUserShowsAsync();
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktCalendarModule_GetUserShows_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI, (HttpStatusCode)503);
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act = () => client.Calendar.GetUserShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktCalendarModule_GetUserShowsArgumentExceptions()
+        public void Test_TraktCalendarModule_GetUserShows_Throws_ServerUnavailableException_504()
         {
-            Func<Task<TraktListResponse<ITraktCalendarShow>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, 0);
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI, (HttpStatusCode)504);
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act = () => client.Calendar.GetUserShowsAsync();
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktCalendarModule_GetUserShows_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI, (HttpStatusCode)520);
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act = () => client.Calendar.GetUserShowsAsync();
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktCalendarModule_GetUserShows_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI, (HttpStatusCode)521);
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act = () => client.Calendar.GetUserShowsAsync();
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktCalendarModule_GetUserShows_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI, (HttpStatusCode)522);
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act = () => client.Calendar.GetUserShowsAsync();
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktCalendarModule_GetUserShows_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_SHOWS_URI,
+                                                                CALENDAR_ALL_SHOWS_JSON,
+                                                                startDate: START_DATE, endDate: END_DATE);
+
+            Func<Task<TraktListResponse<ITraktCalendarShow>>> act = () => client.Calendar.GetUserShowsAsync(null, 0);
             act.Should().Throw<ArgumentOutOfRangeException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Calendar.GetUserShowsAsync(null, 32);
+            act = () => client.Calendar.GetUserShowsAsync(null, 32);
             act.Should().Throw<ArgumentOutOfRangeException>();
         }
     }

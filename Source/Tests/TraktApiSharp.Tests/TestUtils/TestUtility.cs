@@ -76,6 +76,16 @@
             };
         }
 
+        internal static TraktClient GetOAuthMockClient(string uri, HttpStatusCode httpStatusCode)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupOAuthMockResponse(uri, httpStatusCode);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider)
+            {
+                Authorization = TestConstants.MOCK_AUTHORIZATION
+            };
+        }
+
         internal static ulong CalculateTimestamp(DateTime createdAt)
         {
             var origin = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
