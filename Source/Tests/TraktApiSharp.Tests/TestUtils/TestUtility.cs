@@ -76,6 +76,16 @@
             };
         }
 
+        internal static TraktClient GetOAuthMockClient(string uri, string requestContent, string responseContent)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupOAuthMockResponse(uri, requestContent, responseContent);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider)
+            {
+                Authorization = TestConstants.MOCK_AUTHORIZATION
+            };
+        }
+
         internal static TraktClient GetOAuthMockClient(string uri, HttpStatusCode httpStatusCode)
         {
             var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);

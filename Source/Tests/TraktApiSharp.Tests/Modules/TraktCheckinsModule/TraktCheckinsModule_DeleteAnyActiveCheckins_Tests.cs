@@ -14,81 +14,138 @@
     public partial class TraktCheckinsModule_Tests
     {
         [Fact]
-        public void Test_TraktCheckinsModule_DeleteCheckins()
+        public async Task Test_TraktCheckinsModule_DeleteAnyActiveCheckins()
         {
-            TestUtility.SetupMockResponseWithOAuth("checkin", HttpStatusCode.NoContent);
-            var response = TestUtility.MOCK_TEST_CLIENT.Checkins.DeleteAnyActiveCheckinsAsync().Result;
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Checkins.DeleteAnyActiveCheckinsAsync();
             response.IsSuccess.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCheckinsModule_DeleteCheckinsExceptions()
+        public void Test_TraktCheckinsModule_DeleteAnyActiveCheckins_Throws_NotFoundException()
         {
-            const string uri = "checkin";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Checkins.DeleteAnyActiveCheckinsAsync();
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktNoContentResponse>> act = () => client.Checkins.DeleteAnyActiveCheckinsAsync();
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktCheckinsModule_DeleteAnyActiveCheckins_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktNoContentResponse>> act = () => client.Checkins.DeleteAnyActiveCheckinsAsync();
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktCheckinsModule_DeleteAnyActiveCheckins_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktNoContentResponse>> act = () => client.Checkins.DeleteAnyActiveCheckinsAsync();
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktCheckinsModule_DeleteAnyActiveCheckins_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktNoContentResponse>> act = () => client.Checkins.DeleteAnyActiveCheckinsAsync();
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktCheckinsModule_DeleteAnyActiveCheckins_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktNoContentResponse>> act = () => client.Checkins.DeleteAnyActiveCheckinsAsync();
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktCheckinsModule_DeleteAnyActiveCheckins_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktNoContentResponse>> act = () => client.Checkins.DeleteAnyActiveCheckinsAsync();
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktCheckinsModule_DeleteAnyActiveCheckins_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktNoContentResponse>> act = () => client.Checkins.DeleteAnyActiveCheckinsAsync();
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktCheckinsModule_DeleteAnyActiveCheckins_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktNoContentResponse>> act = () => client.Checkins.DeleteAnyActiveCheckinsAsync();
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktCheckinsModule_DeleteAnyActiveCheckins_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, (HttpStatusCode)412);
+            Func<Task<TraktNoContentResponse>> act = () => client.Checkins.DeleteAnyActiveCheckinsAsync();
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktCheckinsModule_DeleteAnyActiveCheckins_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, (HttpStatusCode)422);
+            Func<Task<TraktNoContentResponse>> act = () => client.Checkins.DeleteAnyActiveCheckinsAsync();
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktCheckinsModule_DeleteAnyActiveCheckins_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, (HttpStatusCode)429);
+            Func<Task<TraktNoContentResponse>> act = () => client.Checkins.DeleteAnyActiveCheckinsAsync();
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+        [Fact]
+        public void Test_TraktCheckinsModule_DeleteAnyActiveCheckins_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, (HttpStatusCode)503);
+            Func<Task<TraktNoContentResponse>> act = () => client.Checkins.DeleteAnyActiveCheckinsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+        [Fact]
+        public void Test_TraktCheckinsModule_DeleteAnyActiveCheckins_Throws_ServerUnavailableException_504()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, (HttpStatusCode)504);
+            Func<Task<TraktNoContentResponse>> act = () => client.Checkins.DeleteAnyActiveCheckinsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+        [Fact]
+        public void Test_TraktCheckinsModule_DeleteAnyActiveCheckins_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, (HttpStatusCode)520);
+            Func<Task<TraktNoContentResponse>> act = () => client.Checkins.DeleteAnyActiveCheckinsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+        [Fact]
+        public void Test_TraktCheckinsModule_DeleteAnyActiveCheckins_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, (HttpStatusCode)521);
+            Func<Task<TraktNoContentResponse>> act = () => client.Checkins.DeleteAnyActiveCheckinsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktCheckinsModule_DeleteAnyActiveCheckins_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, (HttpStatusCode)522);
+            Func<Task<TraktNoContentResponse>> act = () => client.Checkins.DeleteAnyActiveCheckinsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
         }
     }

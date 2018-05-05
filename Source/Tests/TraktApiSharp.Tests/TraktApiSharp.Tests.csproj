@@ -160,9 +160,9 @@
     <Compile Include="Modules\TraktCertificationsModule\TraktCertificationsModule_GetMovieCertifications_Tests.cs" />
     <Compile Include="Modules\TraktCertificationsModule\TraktCertificationsModule_GetShowCertifications_Tests.cs" />
     <Compile Include="Modules\TraktCertificationsModule\TraktCertificationsModule_Tests_Json_Data.cs" />
-    <Compile Include="Modules\TraktCheckinsModule\TraktCheckinsModule_CheckinEpisodeShow_Tests.cs" />
-    <Compile Include="Modules\TraktCheckinsModule\TraktCheckinsModule_CheckinEpisode_Tests.cs" />
-    <Compile Include="Modules\TraktCheckinsModule\TraktCheckinsModule_CheckinMovie_Tests.cs" />
+    <Compile Include="Modules\TraktCheckinsModule\TraktCheckinsModule_CheckIntoEpisodeWithShow_Tests.cs" />
+    <Compile Include="Modules\TraktCheckinsModule\TraktCheckinsModule_CheckIntoEpisode_Tests.cs" />
+    <Compile Include="Modules\TraktCheckinsModule\TraktCheckinsModule_CheckIntoMovie_Tests.cs" />
     <Compile Include="Modules\TraktCheckinsModule\TraktCheckinsModule_DeleteAnyActiveCheckins_Tests.cs" />
     <Compile Include="Modules\TraktCheckinsModule\TraktCheckinsModule_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_DeleteComment_Tests.cs" />

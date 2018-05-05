@@ -156,6 +156,26 @@
 #pragma warning restore RCS1163 // Unused parameter.
         }
 
+        internal void SetupOAuthMockResponse(string uri, string requestContent, string responseContent)
+        {
+            _mockHttpMessageHandler.Should().NotBeNull();
+            _baseUrl.Should().NotBeNullOrEmpty();
+            _clientId.Should().NotBeNullOrEmpty();
+            uri.Should().NotBeNullOrEmpty();
+            requestContent.Should().NotBeNullOrEmpty();
+            responseContent.Should().NotBeNullOrEmpty();
+
+            _mockHttpMessageHandler.When(_baseUrl + uri)
+                .WithHeaders(new Dictionary<string, string>
+                {
+                    { TRAKT_API_HEADER_KEY, _clientId },
+                    { TRAKT_API_VERSION_HEADER_KEY, "2" },
+                    { TRAKT_API_AUTHORIZATION_HEADEY_KEY, $"Bearer {TestConstants.MOCK_AUTHORIZATION.AccessToken}" }
+                })
+                .WithContent(requestContent)
+                .Respond(ACCEPT_MEDIA_TYPE, responseContent);
+        }
+
         internal void SetupOAuthMockResponse(string uri, HttpStatusCode httpStatusCode)
         {
             _mockHttpMessageHandler.Should().NotBeNull();
