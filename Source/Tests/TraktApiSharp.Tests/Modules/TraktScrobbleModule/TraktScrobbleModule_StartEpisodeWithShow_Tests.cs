@@ -23,51 +23,31 @@
         [Fact]
         public async Task Test_TraktScrobbleModule_StartEpisodeWithShow()
         {
-            var episode = new TraktEpisode
+            ITraktEpisodeScrobblePost episodeStartScrobblePost = new TraktEpisodeScrobblePost
             {
-                SeasonNumber = 1,
-                Number = 1,
-                Ids = new TraktEpisodeIds
-                {
-                    Trakt = 16,
-                    Tvdb = 349232,
-                    Imdb = "tt0959621",
-                    Tmdb = 62085,
-                    TvRage = 637041
-                }
+                Episode = Episode,
+                Show = Show,
+                Progress = START_PROGRESS
             };
 
-            var show = new TraktShow
-            {
-                Title = "Breaking Bad"
-            };
-
-            const float progress = 10.0f;
-
-            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
-            {
-                Episode = episode,
-                Show = show,
-                Progress = progress
-            };
-
-            string postJson = await TestUtility.SerializeObject<ITraktEpisodeScrobblePost>(episodeStartScrobblePost);
+            string postJson = await TestUtility.SerializeObject(episodeStartScrobblePost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress).Result;
+            TraktResponse<ITraktEpisodeScrobblePostResponse> response =
+                await client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktEpisodeScrobblePostResponse responseValue = response.Value;
 
             responseValue.Id.Should().Be(0);
             responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
-            responseValue.Progress.Should().Be(progress);
+            responseValue.Progress.Should().Be(START_PROGRESS);
             responseValue.Sharing.Should().NotBeNull();
             responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
@@ -95,55 +75,34 @@
         }
 
         [Fact]
-        public async Task Test_TraktScrobbleModule_StartEpisodeWithShowAndAppVersion()
+        public async Task Test_TraktScrobbleModule_StartEpisodeWithShow_And_AppVersion()
         {
-            var episode = new TraktEpisode
+            ITraktEpisodeScrobblePost episodeStartScrobblePost = new TraktEpisodeScrobblePost
             {
-                SeasonNumber = 1,
-                Number = 1,
-                Ids = new TraktEpisodeIds
-                {
-                    Trakt = 16,
-                    Tvdb = 349232,
-                    Imdb = "tt0959621",
-                    Tmdb = 62085,
-                    TvRage = 637041
-                }
+                Episode = Episode,
+                Show = Show,
+                Progress = START_PROGRESS,
+                AppVersion = APP_VERSION
             };
 
-            var show = new TraktShow
-            {
-                Title = "Breaking Bad"
-            };
-
-            const float progress = 10.0f;
-            const string appVersion = "app_version";
-
-            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
-            {
-                Episode = episode,
-                Show = show,
-                Progress = progress,
-                AppVersion = appVersion
-            };
-
-            string postJson = await TestUtility.SerializeObject<ITraktEpisodeScrobblePost>(episodeStartScrobblePost);
+            string postJson = await TestUtility.SerializeObject(episodeStartScrobblePost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress, appVersion).Result;
+            TraktResponse<ITraktEpisodeScrobblePostResponse> response =
+                await client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS, APP_VERSION);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktEpisodeScrobblePostResponse responseValue = response.Value;
 
             responseValue.Id.Should().Be(0);
             responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
-            responseValue.Progress.Should().Be(progress);
+            responseValue.Progress.Should().Be(START_PROGRESS);
             responseValue.Sharing.Should().NotBeNull();
             responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
@@ -171,55 +130,34 @@
         }
 
         [Fact]
-        public async Task Test_TraktScrobbleModule_StartEpisodeWithShowAndAppDate()
+        public async Task Test_TraktScrobbleModule_StartEpisodeWithShow_And_AppDate()
         {
-            var episode = new TraktEpisode
+            ITraktEpisodeScrobblePost episodeStartScrobblePost = new TraktEpisodeScrobblePost
             {
-                SeasonNumber = 1,
-                Number = 1,
-                Ids = new TraktEpisodeIds
-                {
-                    Trakt = 16,
-                    Tvdb = 349232,
-                    Imdb = "tt0959621",
-                    Tmdb = 62085,
-                    TvRage = 637041
-                }
+                Episode = Episode,
+                Show = Show,
+                Progress = START_PROGRESS,
+                AppDate = APP_BUILD_DATE.ToTraktDateString()
             };
 
-            var show = new TraktShow
-            {
-                Title = "Breaking Bad"
-            };
-
-            const float progress = 10.0f;
-            var appBuildDate = DateTime.UtcNow;
-
-            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
-            {
-                Episode = episode,
-                Show = show,
-                Progress = progress,
-                AppDate = appBuildDate.ToTraktDateString()
-            };
-
-            string postJson = await TestUtility.SerializeObject<ITraktEpisodeScrobblePost>(episodeStartScrobblePost);
+            string postJson = await TestUtility.SerializeObject(episodeStartScrobblePost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress, null, appBuildDate).Result;
+            TraktResponse<ITraktEpisodeScrobblePostResponse> response =
+                await client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS, null, APP_BUILD_DATE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktEpisodeScrobblePostResponse responseValue = response.Value;
 
             responseValue.Id.Should().Be(0);
             responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
-            responseValue.Progress.Should().Be(progress);
+            responseValue.Progress.Should().Be(START_PROGRESS);
             responseValue.Sharing.Should().NotBeNull();
             responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
@@ -247,57 +185,35 @@
         }
 
         [Fact]
-        public async Task Test_TraktScrobbleModule_StartEpisodeWithShowAndAppVersionAndAppDate()
+        public async Task Test_TraktScrobbleModule_StartEpisodeWithShow_And_AppVersion_And_AppDate()
         {
-            var episode = new TraktEpisode
+            ITraktEpisodeScrobblePost episodeStartScrobblePost = new TraktEpisodeScrobblePost
             {
-                SeasonNumber = 1,
-                Number = 1,
-                Ids = new TraktEpisodeIds
-                {
-                    Trakt = 16,
-                    Tvdb = 349232,
-                    Imdb = "tt0959621",
-                    Tmdb = 62085,
-                    TvRage = 637041
-                }
+                Episode = Episode,
+                Show = Show,
+                Progress = START_PROGRESS,
+                AppVersion = APP_VERSION,
+                AppDate = APP_BUILD_DATE.ToTraktDateString()
             };
 
-            var show = new TraktShow
-            {
-                Title = "Breaking Bad"
-            };
-
-            const float progress = 10.0f;
-            const string appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
-
-            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
-            {
-                Episode = episode,
-                Show = show,
-                Progress = progress,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToTraktDateString()
-            };
-
-            string postJson = await TestUtility.SerializeObject<ITraktEpisodeScrobblePost>(episodeStartScrobblePost);
+            string postJson = await TestUtility.SerializeObject(episodeStartScrobblePost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress, appVersion, appBuildDate).Result;
+            TraktResponse<ITraktEpisodeScrobblePostResponse> response =
+                await client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS, APP_VERSION, APP_BUILD_DATE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktEpisodeScrobblePostResponse responseValue = response.Value;
 
             responseValue.Id.Should().Be(0);
             responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
-            responseValue.Progress.Should().Be(progress);
+            responseValue.Progress.Should().Be(START_PROGRESS);
             responseValue.Sharing.Should().NotBeNull();
             responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
@@ -325,57 +241,35 @@
         }
 
         [Fact]
-        public async Task Test_TraktScrobbleModule_StartEpisodeWithShowComplete()
+        public async Task Test_TraktScrobbleModule_StartEpisodeWithShow_Complete()
         {
-            var episode = new TraktEpisode
+            ITraktEpisodeScrobblePost episodeStartScrobblePost = new TraktEpisodeScrobblePost
             {
-                SeasonNumber = 1,
-                Number = 1,
-                Ids = new TraktEpisodeIds
-                {
-                    Trakt = 16,
-                    Tvdb = 349232,
-                    Imdb = "tt0959621",
-                    Tmdb = 62085,
-                    TvRage = 637041
-                }
+                Episode = Episode,
+                Show = Show,
+                Progress = START_PROGRESS,
+                AppVersion = APP_VERSION,
+                AppDate = APP_BUILD_DATE.ToTraktDateString()
             };
 
-            var show = new TraktShow
-            {
-                Title = "Breaking Bad"
-            };
-
-            const float progress = 10.0f;
-            const string appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
-
-            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
-            {
-                Episode = episode,
-                Show = show,
-                Progress = progress,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToTraktDateString()
-            };
-
-            string postJson = await TestUtility.SerializeObject<ITraktEpisodeScrobblePost>(episodeStartScrobblePost);
+            string postJson = await TestUtility.SerializeObject(episodeStartScrobblePost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress, appVersion, appBuildDate).Result;
+            TraktResponse<ITraktEpisodeScrobblePostResponse> response =
+                await client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS, APP_VERSION, APP_BUILD_DATE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktEpisodeScrobblePostResponse responseValue = response.Value;
 
             responseValue.Id.Should().Be(0);
             responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
-            responseValue.Progress.Should().Be(progress);
+            responseValue.Progress.Should().Be(START_PROGRESS);
             responseValue.Sharing.Should().NotBeNull();
             responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
@@ -403,99 +297,135 @@
         }
 
         [Fact]
-        public void Test_TraktScrobbleModule_StartEpisodeWithShowExceptions()
+        public void Test_TraktScrobbleModule_StartEpisodeWithShow_Throws_NotFoundException()
         {
-            var episode = new TraktEpisode
-            {
-                SeasonNumber = 1,
-                Number = 1,
-                Ids = new TraktEpisodeIds
-                {
-                    Trakt = 16,
-                    Tvdb = 349232,
-                    Imdb = "tt0959621",
-                    Tmdb = 62085,
-                    TvRage = 637041
-                }
-            };
-
-            var show = new TraktShow
-            {
-                Title = "Breaking Bad"
-            };
-
-            const float progress = 10.0f;
-            const string uri = "scrobble/start";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS);
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartEpisodeWithShow_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS);
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktScrobbleModule_StartEpisodeWithShow_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartEpisodeWithShow_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartEpisodeWithShow_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartEpisodeWithShow_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartEpisodeWithShow_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartEpisodeWithShow_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartEpisodeWithShow_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, (HttpStatusCode)412);
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartEpisodeWithShow_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, (HttpStatusCode)422);
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartEpisodeWithShow_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, (HttpStatusCode)429);
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartEpisodeWithShow_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, (HttpStatusCode)503);
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public async Task Test_TraktScrobbleModule_StartEpisodeArgumentExceptions()
+        public void Test_TraktScrobbleModule_StartEpisodeWithShow_Throws_ServerUnavailableException_504()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, (HttpStatusCode)504);
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktScrobbleModule_StartEpisodeWithShow_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, (HttpStatusCode)520);
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktScrobbleModule_StartEpisodeWithShow_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, (HttpStatusCode)521);
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktScrobbleModule_StartEpisodeWithShow_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, (HttpStatusCode)522);
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeWithShowAsync(Episode, Show, START_PROGRESS);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public async Task Test_TraktScrobbleModule_StartEpisodeWithShow_ArgumentExceptions()
         {
             var episode = new TraktEpisode
             {
@@ -516,33 +446,29 @@
                 Title = "Breaking Bad"
             };
 
-            const float progress = 10.0f;
-
-            var episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            ITraktEpisodeScrobblePost episodeStartScrobblePost = new TraktEpisodeScrobblePost
             {
                 Episode = episode,
                 Show = show,
-                Progress = progress
+                Progress = START_PROGRESS
             };
 
-            string postJson = await TestUtility.SerializeObject<ITraktEpisodeScrobblePost>(episodeStartScrobblePost);
+            string postJson = await TestUtility.SerializeObject(episodeStartScrobblePost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
 
-            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(null, progress);
-
+            Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeAsync(null, START_PROGRESS);
             act.Should().Throw<ArgumentNullException>();
 
             episode.Ids = null;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress);
+            act = () => client.Scrobble.StartEpisodeAsync(episode, START_PROGRESS);
             act.Should().Throw<ArgumentNullException>();
 
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, progress);
+            act = () => client.Scrobble.StartEpisodeAsync(episode, START_PROGRESS);
             act.Should().Throw<ArgumentNullException>();
 
             episode.Ids = new TraktEpisodeIds
@@ -554,63 +480,63 @@
                 TvRage = 637041
             };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, -0.0001f);
+            act = () => client.Scrobble.StartEpisodeAsync(episode, -0.0001f);
             act.Should().Throw<ArgumentOutOfRangeException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeAsync(episode, 100.0001f);
+            act = () => client.Scrobble.StartEpisodeAsync(episode, 100.0001f);
             act.Should().Throw<ArgumentOutOfRangeException>();
 
             episode.Ids = null;
             episode.SeasonNumber = -1;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
+            act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, START_PROGRESS);
             act.Should().Throw<ArgumentOutOfRangeException>();
 
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
+            act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, START_PROGRESS);
             act.Should().Throw<ArgumentException>();
 
             episode.Ids = null;
             episode.SeasonNumber = 0;
             episode.Number = 0;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
+            act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, START_PROGRESS);
             act.Should().Throw<ArgumentOutOfRangeException>();
 
             episode.Ids = new TraktEpisodeIds();
             episode.Number = 0;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
+            act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, START_PROGRESS);
             act.Should().Throw<ArgumentOutOfRangeException>();
 
             episode.Ids = null;
             episode.Number = 1;
             show.Title = string.Empty;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
+            act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, START_PROGRESS);
             act.Should().Throw<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, progress);
+            act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, START_PROGRESS);
             act.Should().Throw<ArgumentException>();
 
             episode.Ids = null;
             show.Title = "Breaking Bad";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, -0.0001f);
+            act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, -0.0001f);
             act.Should().Throw<ArgumentOutOfRangeException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, 100.0001f);
+            act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, 100.0001f);
             act.Should().Throw<ArgumentOutOfRangeException>();
 
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, -0.0001f);
+            act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, -0.0001f);
             act.Should().Throw<ArgumentOutOfRangeException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartEpisodeWithShowAsync(episode, show, 100.0001f);
+            act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, 100.0001f);
             act.Should().Throw<ArgumentOutOfRangeException>();
         }
     }

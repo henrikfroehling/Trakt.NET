@@ -9,6 +9,7 @@
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Extensions;
+    using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.Movies.Implementations;
     using TraktApiSharp.Objects.Post.Scrobbles;
     using TraktApiSharp.Objects.Post.Scrobbles.Implementations;
@@ -22,44 +23,28 @@
         [Fact]
         public async Task Test_TraktScrobbleModule_StartMovie()
         {
-            var movie = new TraktMovie
+            ITraktMovieScrobblePost movieStartScrobblePost = new TraktMovieScrobblePost
             {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
+                Movie = Movie,
+                Progress = START_PROGRESS
             };
 
-            const float progress = 1.25f;
-
-            var movieStartScrobblePost = new TraktMovieScrobblePost
-            {
-                Movie = movie,
-                Progress = progress
-            };
-
-            string postJson = await TestUtility.SerializeObject<ITraktMovieScrobblePost>(movieStartScrobblePost);
+            string postJson = await TestUtility.SerializeObject(movieStartScrobblePost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, MOVIE_START_SCROBBLE_POST_RESPONSE_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress).Result;
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, MOVIE_START_SCROBBLE_POST_RESPONSE_JSON);
+            TraktResponse<ITraktMovieScrobblePostResponse> response = await client.Scrobble.StartMovieAsync(Movie, START_PROGRESS);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktMovieScrobblePostResponse responseValue = response.Value;
 
             responseValue.Id.Should().Be(0);
             responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
-            responseValue.Progress.Should().Be(progress);
+            responseValue.Progress.Should().Be(START_PROGRESS);
             responseValue.Sharing.Should().NotBeNull();
             responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
@@ -75,48 +60,33 @@
         }
 
         [Fact]
-        public async Task Test_TraktScrobbleModule_StartMovieWithAppVersion()
+        public async Task Test_TraktScrobbleModule_StartMovie_With_AppVersion()
         {
-            var movie = new TraktMovie
+            ITraktMovieScrobblePost movieStartScrobblePost = new TraktMovieScrobblePost
             {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
+                Movie = Movie,
+                Progress = START_PROGRESS,
+                AppVersion = APP_VERSION
             };
 
-            const float progress = 1.25f;
-            const string appVersion = "app_version";
-
-            var movieStartScrobblePost = new TraktMovieScrobblePost
-            {
-                Movie = movie,
-                Progress = progress,
-                AppVersion = appVersion
-            };
-
-            string postJson = await TestUtility.SerializeObject<ITraktMovieScrobblePost>(movieStartScrobblePost);
+            string postJson = await TestUtility.SerializeObject(movieStartScrobblePost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, MOVIE_START_SCROBBLE_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, MOVIE_START_SCROBBLE_POST_RESPONSE_JSON);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress, appVersion).Result;
+            TraktResponse<ITraktMovieScrobblePostResponse> response =
+                await client.Scrobble.StartMovieAsync(Movie, START_PROGRESS, APP_VERSION);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktMovieScrobblePostResponse responseValue = response.Value;
 
             responseValue.Id.Should().Be(0);
             responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
-            responseValue.Progress.Should().Be(progress);
+            responseValue.Progress.Should().Be(START_PROGRESS);
             responseValue.Sharing.Should().NotBeNull();
             responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
@@ -132,48 +102,33 @@
         }
 
         [Fact]
-        public async Task Test_TraktScrobbleModule_StartMovieWithAppDate()
+        public async Task Test_TraktScrobbleModule_StartMovie_With_AppDate()
         {
-            var movie = new TraktMovie
+            ITraktMovieScrobblePost movieStartScrobblePost = new TraktMovieScrobblePost
             {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
+                Movie = Movie,
+                Progress = START_PROGRESS,
+                AppDate = APP_BUILD_DATE.ToTraktDateString()
             };
 
-            const float progress = 1.25f;
-            var appBuildDate = DateTime.UtcNow;
-
-            var movieStartScrobblePost = new TraktMovieScrobblePost
-            {
-                Movie = movie,
-                Progress = progress,
-                AppDate = appBuildDate.ToTraktDateString()
-            };
-
-            string postJson = await TestUtility.SerializeObject<ITraktMovieScrobblePost>(movieStartScrobblePost);
+            string postJson = await TestUtility.SerializeObject(movieStartScrobblePost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, MOVIE_START_SCROBBLE_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, MOVIE_START_SCROBBLE_POST_RESPONSE_JSON);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress, null, appBuildDate).Result;
+            TraktResponse<ITraktMovieScrobblePostResponse> response =
+                await client.Scrobble.StartMovieAsync(Movie, START_PROGRESS, null, APP_BUILD_DATE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktMovieScrobblePostResponse responseValue = response.Value;
 
             responseValue.Id.Should().Be(0);
             responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
-            responseValue.Progress.Should().Be(progress);
+            responseValue.Progress.Should().Be(START_PROGRESS);
             responseValue.Sharing.Should().NotBeNull();
             responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
@@ -189,50 +144,34 @@
         }
 
         [Fact]
-        public async Task Test_TraktScrobbleModule_StartMovieWithAppVersionAndAppDate()
+        public async Task Test_TraktScrobbleModule_StartMovie_With_AppVersion_And_AppDate()
         {
-            var movie = new TraktMovie
+            ITraktMovieScrobblePost movieStartScrobblePost = new TraktMovieScrobblePost
             {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
+                Movie = Movie,
+                Progress = START_PROGRESS,
+                AppVersion = APP_VERSION,
+                AppDate = APP_BUILD_DATE.ToTraktDateString()
             };
 
-            const float progress = 1.25f;
-            const string appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
-
-            var movieStartScrobblePost = new TraktMovieScrobblePost
-            {
-                Movie = movie,
-                Progress = progress,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToTraktDateString()
-            };
-
-            string postJson = await TestUtility.SerializeObject<ITraktMovieScrobblePost>(movieStartScrobblePost);
+            string postJson = await TestUtility.SerializeObject(movieStartScrobblePost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, MOVIE_START_SCROBBLE_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, MOVIE_START_SCROBBLE_POST_RESPONSE_JSON);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress, appVersion, appBuildDate).Result;
+            TraktResponse<ITraktMovieScrobblePostResponse> response =
+                await client.Scrobble.StartMovieAsync(Movie, START_PROGRESS, APP_VERSION, APP_BUILD_DATE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktMovieScrobblePostResponse responseValue = response.Value;
 
             responseValue.Id.Should().Be(0);
             responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
-            responseValue.Progress.Should().Be(progress);
+            responseValue.Progress.Should().Be(START_PROGRESS);
             responseValue.Sharing.Should().NotBeNull();
             responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
@@ -248,50 +187,34 @@
         }
 
         [Fact]
-        public async Task Test_TraktScrobbleModule_StartMovieComplete()
+        public async Task Test_TraktScrobbleModule_StartMovie_Complete()
         {
-            var movie = new TraktMovie
+            ITraktMovieScrobblePost movieStartScrobblePost = new TraktMovieScrobblePost
             {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
+                Movie = Movie,
+                Progress = START_PROGRESS,
+                AppVersion = APP_VERSION,
+                AppDate = APP_BUILD_DATE.ToTraktDateString()
             };
 
-            const float progress = 1.25f;
-            const string appVersion = "app_version";
-            var appBuildDate = DateTime.UtcNow;
-
-            var movieStartScrobblePost = new TraktMovieScrobblePost
-            {
-                Movie = movie,
-                Progress = progress,
-                AppVersion = appVersion,
-                AppDate = appBuildDate.ToTraktDateString()
-            };
-
-            string postJson = await TestUtility.SerializeObject<ITraktMovieScrobblePost>(movieStartScrobblePost);
+            string postJson = await TestUtility.SerializeObject(movieStartScrobblePost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, MOVIE_START_SCROBBLE_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, MOVIE_START_SCROBBLE_POST_RESPONSE_JSON);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress, appVersion, appBuildDate).Result;
+            TraktResponse<ITraktMovieScrobblePostResponse> response =
+                await client.Scrobble.StartMovieAsync(Movie, START_PROGRESS, APP_VERSION, APP_BUILD_DATE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktMovieScrobblePostResponse responseValue = response.Value;
 
             responseValue.Id.Should().Be(0);
             responseValue.Action.Should().Be(TraktScrobbleActionType.Start);
-            responseValue.Progress.Should().Be(progress);
+            responseValue.Progress.Should().Be(START_PROGRESS);
             responseValue.Sharing.Should().NotBeNull();
             responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
@@ -307,95 +230,137 @@
         }
 
         [Fact]
-        public void Test_TraktScrobbleModule_StartMovieExceptions()
+        public void Test_TraktScrobbleModule_StartMovie_Throws_NotFoundException()
         {
-            var movie = new TraktMovie
-            {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
-            };
-
-            const float progress = 1.25f;
-            const string uri = "scrobble/start";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress);
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StartMovieAsync(Movie, START_PROGRESS);
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartMovie_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StartMovieAsync(Movie, START_PROGRESS);
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktScrobbleModule_StartMovie_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StartMovieAsync(Movie, START_PROGRESS);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartMovie_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StartMovieAsync(Movie, START_PROGRESS);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartMovie_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StartMovieAsync(Movie, START_PROGRESS);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartMovie_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StartMovieAsync(Movie, START_PROGRESS);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartMovie_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StartMovieAsync(Movie, START_PROGRESS);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartMovie_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StartMovieAsync(Movie, START_PROGRESS);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartMovie_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, (HttpStatusCode)412);
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StartMovieAsync(Movie, START_PROGRESS);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartMovie_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, (HttpStatusCode)422);
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StartMovieAsync(Movie, START_PROGRESS);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartMovie_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, (HttpStatusCode)429);
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StartMovieAsync(Movie, START_PROGRESS);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktScrobbleModule_StartMovie_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, (HttpStatusCode)503);
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StartMovieAsync(Movie, START_PROGRESS);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public async Task Test_TraktScrobbleModule_StartMovieArgumentExceptions()
+        public void Test_TraktScrobbleModule_StartMovie_Throws_ServerUnavailableException_504()
         {
-            var movie = new TraktMovie
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, (HttpStatusCode)504);
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StartMovieAsync(Movie, START_PROGRESS);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktScrobbleModule_StartMovie_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, (HttpStatusCode)520);
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StartMovieAsync(Movie, START_PROGRESS);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktScrobbleModule_StartMovie_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, (HttpStatusCode)521);
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StartMovieAsync(Movie, START_PROGRESS);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktScrobbleModule_StartMovie_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, (HttpStatusCode)522);
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StartMovieAsync(Movie, START_PROGRESS);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public async Task Test_TraktScrobbleModule_StartMovie_ArgumentExceptions()
+        {
+            ITraktMovie movie = new TraktMovie
             {
                 Title = "Guardians of the Galaxy",
                 Year = 2014,
@@ -408,54 +373,50 @@
                 }
             };
 
-            const float progress = 1.25f;
-
-            var movieStartScrobblePost = new TraktMovieScrobblePost
+            ITraktMovieScrobblePost movieStartScrobblePost = new TraktMovieScrobblePost
             {
                 Movie = movie,
-                Progress = progress
+                Progress = START_PROGRESS
             };
 
-            string postJson = await TestUtility.SerializeObject<ITraktMovieScrobblePost>(movieStartScrobblePost);
+            string postJson = await TestUtility.SerializeObject(movieStartScrobblePost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("scrobble/start", postJson, MOVIE_START_SCROBBLE_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, MOVIE_START_SCROBBLE_POST_RESPONSE_JSON);
 
-            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(null, progress);
-
+            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StartMovieAsync(null, START_PROGRESS);
             act.Should().Throw<ArgumentNullException>();
 
             movie.Title = string.Empty;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress);
+            act = () => client.Scrobble.StartMovieAsync(movie, START_PROGRESS);
             act.Should().Throw<ArgumentException>();
 
             movie.Title = "Guardians of the Galaxy";
             movie.Year = 0;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress);
+            act = () => client.Scrobble.StartMovieAsync(movie, START_PROGRESS);
             act.Should().Throw<ArgumentOutOfRangeException>();
 
             movie.Year = 123;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress);
+            act = () => client.Scrobble.StartMovieAsync(movie, START_PROGRESS);
             act.Should().Throw<ArgumentOutOfRangeException>();
 
             movie.Year = 12345;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress);
+            act = () => client.Scrobble.StartMovieAsync(movie, START_PROGRESS);
             act.Should().Throw<ArgumentOutOfRangeException>();
 
             movie.Year = 2014;
             movie.Ids = null;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress);
+            act = () => client.Scrobble.StartMovieAsync(movie, START_PROGRESS);
             act.Should().Throw<ArgumentNullException>();
 
             movie.Ids = new TraktMovieIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, progress);
+            act = () => client.Scrobble.StartMovieAsync(movie, START_PROGRESS);
             act.Should().Throw<ArgumentException>();
 
             movie.Ids = new TraktMovieIds
@@ -466,10 +427,10 @@
                 Tmdb = 118340
             };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, -0.0001f);
+            act = () => client.Scrobble.StartMovieAsync(movie, -0.0001f);
             act.Should().Throw<ArgumentOutOfRangeException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Scrobble.StartMovieAsync(movie, 100.0001f);
+            act = () => client.Scrobble.StartMovieAsync(movie, 100.0001f);
             act.Should().Throw<ArgumentOutOfRangeException>();
         }
     }

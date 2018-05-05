@@ -1,12 +1,69 @@
 ﻿namespace TraktApiSharp.Tests.Modules.TraktScrobbleModule
 {
+    using System;
+    using TraktApiSharp.Objects.Get.Episodes;
+    using TraktApiSharp.Objects.Get.Episodes.Implementations;
+    using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Movies.Implementations;
+    using TraktApiSharp.Objects.Get.Shows;
+    using TraktApiSharp.Objects.Get.Shows.Implementations;
+
     public partial class TraktScrobbleModule_Tests
     {
+        private const string SCROBBLE_START_URI = "scrobble/start";
+        private const string SCROBBLE_PAUSE_URI = "scrobble/pause";
+        private const string SCROBBLE_STOP_URI = "scrobble/stop";
+        private const float START_PROGRESS = 10.0f;
+        private const float PAUSE_PROGRESS = 75.0f;
+        private const float STOP_PROGRESS = 85.0f;
+        private const string APP_VERSION = "app_version";
+        private readonly DateTime APP_BUILD_DATE = DateTime.UtcNow;
+
+        private ITraktMovie Movie { get; }
+        private ITraktShow Show { get; }
+        private ITraktEpisode Episode { get; }
+
+        public TraktScrobbleModule_Tests()
+        {
+            Movie = new TraktMovie
+            {
+                Title = "Guardians of the Galaxy",
+                Year = 2014,
+                Ids = new TraktMovieIds
+                {
+                    Trakt = 28,
+                    Slug = "guardians-of-the-galaxy-2014",
+                    Imdb = "tt2015381",
+                    Tmdb = 118340
+                }
+            };
+
+            Show = new TraktShow
+            {
+                Title = "Breaking Bad"
+            };
+
+            Episode = new TraktEpisode
+            {
+                SeasonNumber = 1,
+                Number = 1,
+                Ids = new TraktEpisodeIds
+                {
+                    Trakt = 16,
+                    Tvdb = 349232,
+                    Imdb = "tt0959621",
+                    Tmdb = 62085,
+                    TvRage = 637041
+                }
+            };
+
+        }
+
         private const string MOVIE_START_SCROBBLE_POST_RESPONSE_JSON =
             @"{
                 ""id"": 0,
                 ""action"": ""start"",
-                ""progress"": 1.25,
+                ""progress"": 10,
                 ""sharing"": {
                   ""facebook"": true,
                   ""twitter"": true,
