@@ -7,7 +7,7 @@
     using TestUtils;
     using Traits;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Objects.Basic.Implementations;
+    using TraktApiSharp.Objects.Get.Episodes;
     using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Post.Comments;
     using TraktApiSharp.Objects.Post.Comments.Implementations;
@@ -18,44 +18,31 @@
     [Category("Modules.Comments")]
     public partial class TraktCommentsModule_Tests
     {
+        private const string POST_EPISODE_COMMENT_URI = "comments";
+
         [Fact]
         public async Task Test_TraktCommentsModule_PostEpisodeComment()
         {
-            var episode = new TraktEpisode
+            ITraktEpisodeCommentPost episodeCommentPost = new TraktEpisodeCommentPost
             {
-                Ids = new TraktEpisodeIds
-                {
-                    Trakt = 73482,
-                    Tvdb = 349232,
-                    Imdb = "tt0959621",
-                    Tmdb = 62085,
-                    TvRage = 637041
-                }
+                Episode = Episode,
+                Comment = COMMENT_TEXT
             };
 
-            const string comment = "one two three four five";
-
-            var episodeCommentPost = new TraktEpisodeCommentPost
-            {
-                Episode = episode,
-                Comment = comment
-            };
-
-            var postJson = await TestUtility.SerializeObject<ITraktEpisodeCommentPost>(episodeCommentPost);
+            string postJson = await TestUtility.SerializeObject(episodeCommentPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("comments", postJson, COMMENT_POST_RESPONSE_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment).Result;
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktCommentPostResponse responseValue = response.Value;
 
-            responseValue.Id.Should().Be(190U);
+            responseValue.Id.Should().Be(COMMENT_ID);
             responseValue.ParentId.Should().Be(0U);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
             responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
@@ -78,45 +65,29 @@
         }
 
         [Fact]
-        public async Task Test_TraktCommentsModule_PostEpisodeCommentWithSpoiler()
+        public async Task Test_TraktCommentsModule_PostEpisodeComment_With_Spoiler()
         {
-            var episode = new TraktEpisode
+            ITraktEpisodeCommentPost episodeCommentPost = new TraktEpisodeCommentPost
             {
-                Ids = new TraktEpisodeIds
-                {
-                    Trakt = 73482,
-                    Tvdb = 349232,
-                    Imdb = "tt0959621",
-                    Tmdb = 62085,
-                    TvRage = 637041
-                }
+                Episode = Episode,
+                Comment = COMMENT_TEXT,
+                Spoiler = SPOILER
             };
 
-            const string comment = "one two three four five";
-            const bool spoiler = false;
-
-            var episodeCommentPost = new TraktEpisodeCommentPost
-            {
-                Episode = episode,
-                Comment = comment,
-                Spoiler = spoiler
-            };
-
-            var postJson = await TestUtility.SerializeObject<ITraktEpisodeCommentPost>(episodeCommentPost);
+            string postJson = await TestUtility.SerializeObject(episodeCommentPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("comments", postJson, COMMENT_POST_RESPONSE_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment, spoiler).Result;
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT, SPOILER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktCommentPostResponse responseValue = response.Value;
 
-            responseValue.Id.Should().Be(190U);
+            responseValue.Id.Should().Be(COMMENT_ID);
             responseValue.ParentId.Should().Be(0U);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
             responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
@@ -139,51 +110,29 @@
         }
 
         [Fact]
-        public async Task Test_TraktCommentsModule_PostEpisodeCommentWithSharing()
+        public async Task Test_TraktCommentsModule_PostEpisodeComment_With_Sharing()
         {
-            var episode = new TraktEpisode
+            ITraktEpisodeCommentPost episodeCommentPost = new TraktEpisodeCommentPost
             {
-                Ids = new TraktEpisodeIds
-                {
-                    Trakt = 73482,
-                    Tvdb = 349232,
-                    Imdb = "tt0959621",
-                    Tmdb = 62085,
-                    TvRage = 637041
-                }
+                Episode = Episode,
+                Comment = COMMENT_TEXT,
+                Sharing = SHARING
             };
 
-            var sharing = new TraktSharing
-            {
-                Facebook = true,
-                Google = false,
-                Twitter = true
-            };
-
-            const string comment = "one two three four five";
-
-            var episodeCommentPost = new TraktEpisodeCommentPost
-            {
-                Episode = episode,
-                Comment = comment,
-                Sharing = sharing
-            };
-
-            var postJson = await TestUtility.SerializeObject<ITraktEpisodeCommentPost>(episodeCommentPost);
+            string postJson = await TestUtility.SerializeObject(episodeCommentPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("comments", postJson, COMMENT_POST_RESPONSE_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment, null, sharing).Result;
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT, null, SHARING);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktCommentPostResponse responseValue = response.Value;
 
-            responseValue.Id.Should().Be(190U);
+            responseValue.Id.Should().Be(COMMENT_ID);
             responseValue.ParentId.Should().Be(0U);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
             responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
@@ -206,53 +155,30 @@
         }
 
         [Fact]
-        public async Task Test_TraktCommentsModule_PostEpisodeCommentComplete()
+        public async Task Test_TraktCommentsModule_PostEpisodeComment_Complete()
         {
-            var episode = new TraktEpisode
+            ITraktEpisodeCommentPost episodeCommentPost = new TraktEpisodeCommentPost
             {
-                Ids = new TraktEpisodeIds
-                {
-                    Trakt = 73482,
-                    Tvdb = 349232,
-                    Imdb = "tt0959621",
-                    Tmdb = 62085,
-                    TvRage = 637041
-                }
+                Episode = Episode,
+                Comment = COMMENT_TEXT,
+                Spoiler = SPOILER,
+                Sharing = SHARING
             };
 
-            var sharing = new TraktSharing
-            {
-                Facebook = true,
-                Google = false,
-                Twitter = true
-            };
-
-            const string comment = "one two three four five";
-            const bool spoiler = false;
-
-            var episodeCommentPost = new TraktEpisodeCommentPost
-            {
-                Episode = episode,
-                Comment = comment,
-                Spoiler = spoiler,
-                Sharing = sharing
-            };
-
-            var postJson = await TestUtility.SerializeObject<ITraktEpisodeCommentPost>(episodeCommentPost);
+            string postJson = await TestUtility.SerializeObject(episodeCommentPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("comments", postJson, COMMENT_POST_RESPONSE_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment, spoiler, sharing).Result;
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT, SPOILER, SHARING);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktCommentPostResponse responseValue = response.Value;
 
-            responseValue.Id.Should().Be(190U);
+            responseValue.Id.Should().Be(COMMENT_ID);
             responseValue.ParentId.Should().Be(0U);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
             responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
@@ -275,94 +201,137 @@
         }
 
         [Fact]
-        public void Test_TraktCommentsModule_PostEpisodeCommentExceptions()
+        public void Test_TraktCommentsModule_PostEpisodeComment_Throws_NotFoundException()
         {
-            var episode = new TraktEpisode
-            {
-                Ids = new TraktEpisodeIds
-                {
-                    Trakt = 73482,
-                    Tvdb = 349232,
-                    Imdb = "tt0959621",
-                    Tmdb = 62085,
-                    TvRage = 637041
-                }
-            };
-
-            const string comment = "one two three four five";
-            const string uri = "comments";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment);
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktCommentsModule_PostEpisodeComment_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktCommentsModule_PostEpisodeComment_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktCommentsModule_PostEpisodeComment_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktCommentsModule_PostEpisodeComment_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktCommentsModule_PostEpisodeComment_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktCommentsModule_PostEpisodeComment_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktCommentsModule_PostEpisodeComment_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktCommentsModule_PostEpisodeComment_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, (HttpStatusCode)412);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktCommentsModule_PostEpisodeComment_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, (HttpStatusCode)422);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktCommentsModule_PostEpisodeComment_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, (HttpStatusCode)429);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktCommentsModule_PostEpisodeComment_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, (HttpStatusCode)503);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public async Task Test_TraktCommentsModule_PostEpisodeCommentArgumentExceptions()
+        public void Test_TraktCommentsModule_PostEpisodeComment_Throws_ServerUnavailableException_504()
         {
-            var episode = new TraktEpisode
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, (HttpStatusCode)504);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktCommentsModule_PostEpisodeComment_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, (HttpStatusCode)520);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktCommentsModule_PostEpisodeComment_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, (HttpStatusCode)521);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktCommentsModule_PostEpisodeComment_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, (HttpStatusCode)522);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public async Task Test_TraktCommentsModule_PostEpisodeComment_ArgumentExceptions()
+        {
+            ITraktEpisode episode = new TraktEpisode
             {
                 Ids = new TraktEpisodeIds
                 {
@@ -374,32 +343,28 @@
                 }
             };
 
-            string comment = "one two three four five";
-
-            var episodeCommentPost = new TraktEpisodeCommentPost
+            ITraktEpisodeCommentPost episodeCommentPost = new TraktEpisodeCommentPost
             {
                 Episode = episode,
-                Comment = comment
+                Comment = COMMENT_TEXT
             };
 
-            var postJson = await TestUtility.SerializeObject<ITraktEpisodeCommentPost>(episodeCommentPost);
+            string postJson = await TestUtility.SerializeObject(episodeCommentPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth("comments", postJson, COMMENT_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
 
-            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(null, comment);
-
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(null, COMMENT_TEXT);
             act.Should().Throw<ArgumentNullException>();
 
             episode.Ids = null;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment);
+            act = () => client.Comments.PostEpisodeCommentAsync(episode, COMMENT_TEXT);
             act.Should().Throw<ArgumentNullException>();
 
             episode.Ids = new TraktEpisodeIds();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment);
+            act = () => client.Comments.PostEpisodeCommentAsync(episode, COMMENT_TEXT);
             act.Should().Throw<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds
@@ -411,15 +376,15 @@
                 TvRage = 637041
             };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, null);
+            act = () => client.Comments.PostEpisodeCommentAsync(episode, null);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, string.Empty);
+            act = () => client.Comments.PostEpisodeCommentAsync(episode, string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            comment = "one two three four";
+            const string comment = "one two three four";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostEpisodeCommentAsync(episode, comment);
+            act = () => client.Comments.PostEpisodeCommentAsync(episode, comment);
             act.Should().Throw<ArgumentOutOfRangeException>();
         }
     }

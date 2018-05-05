@@ -13,97 +13,150 @@
     [Category("Modules.Comments")]
     public partial class TraktCommentsModule_Tests
     {
-        [Fact]
-        public void Test_TraktCommentsModule_DeleteComment()
-        {
-            const uint commentId = 190U;
+        private readonly string DELETE_COMMENT_URI = $"comments/{COMMENT_ID}";
 
-            TestUtility.SetupMockResponseWithOAuth($"comments/{commentId}", HttpStatusCode.NoContent);
-            var response = TestUtility.MOCK_TEST_CLIENT.Comments.DeleteCommentAsync(commentId).Result;
+        [Fact]
+        public async Task Test_TraktCommentsModule_DeleteComment()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Comments.DeleteCommentAsync(COMMENT_ID);
             response.IsSuccess.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktCommentsModule_DeleteCommentExceptions()
+        public void Test_TraktCommentsModule_DeleteComment_Throws_NotFoundException()
         {
-            const uint commentId = 190U;
-
-            var uri = $"comments/{commentId}";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.DeleteCommentAsync(commentId);
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(COMMENT_ID);
             act.Should().Throw<TraktCommentNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktCommentsModule_DeleteComment_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(COMMENT_ID);
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktCommentsModule_DeleteComment_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(COMMENT_ID);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktCommentsModule_DeleteComment_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(COMMENT_ID);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktCommentsModule_DeleteComment_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(COMMENT_ID);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktCommentsModule_DeleteComment_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(COMMENT_ID);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktCommentsModule_DeleteComment_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(COMMENT_ID);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktCommentsModule_DeleteComment_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(COMMENT_ID);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktCommentsModule_DeleteComment_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, (HttpStatusCode)412);
+            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(COMMENT_ID);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktCommentsModule_DeleteComment_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, (HttpStatusCode)422);
+            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(COMMENT_ID);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktCommentsModule_DeleteComment_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, (HttpStatusCode)429);
+            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(COMMENT_ID);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktCommentsModule_DeleteComment_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, (HttpStatusCode)503);
+            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(COMMENT_ID);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktCommentsModule_DeleteCommentArgumentExceptions()
+        public void Test_TraktCommentsModule_DeleteComment_Throws_ServerUnavailableException_504()
         {
-            const uint commentId = 190U;
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, (HttpStatusCode)504);
+            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(COMMENT_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.SetupMockResponseWithOAuth($"comments/{commentId}", HttpStatusCode.NoContent);
+        [Fact]
+        public void Test_TraktCommentsModule_DeleteComment_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, (HttpStatusCode)520);
+            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(COMMENT_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.DeleteCommentAsync(0);
+        [Fact]
+        public void Test_TraktCommentsModule_DeleteComment_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, (HttpStatusCode)521);
+            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(COMMENT_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktCommentsModule_DeleteComment_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, (HttpStatusCode)522);
+            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(COMMENT_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktCommentsModule_DeleteComment_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, HttpStatusCode.NoContent);
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(0);
             act.Should().Throw<ArgumentException>();
         }
     }

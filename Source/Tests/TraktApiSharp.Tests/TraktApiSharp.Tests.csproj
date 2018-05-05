@@ -168,7 +168,6 @@
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_DeleteComment_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_GetCommentReplies_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_GetComment_Tests.cs" />
-    <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_GetMultipleComments_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_LikeComment_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_PostCommentReply_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_PostEpisodeComment_Tests.cs" />

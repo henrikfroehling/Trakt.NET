@@ -16,32 +16,30 @@
     [Category("Modules.Comments")]
     public partial class TraktCommentsModule_Tests
     {
+        private readonly string POST_COMMENT_REPLY_URI = $"comments/{COMMENT_ID}/replies";
+
         [Fact]
         public async Task Test_TraktCommentsModule_PostCommentReply()
         {
-            const uint commentId = 190U;
-            const string comment = "one two three four five reply";
-
-            var commentReplyPost = new TraktCommentReplyPost
+            ITraktCommentReplyPost commentReplyPost = new TraktCommentReplyPost
             {
-                Comment = comment
+                Comment = COMMENT_TEXT
             };
 
-            var postJson = await TestUtility.SerializeObject<ITraktCommentReplyPost>(commentReplyPost);
+            string postJson = await TestUtility.SerializeObject(commentReplyPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth($"comments/{commentId}/replies", postJson, COMMENT_POST_RESPONSE_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(commentId, comment).Result;
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, postJson, COMMENT_POST_RESPONSE_JSON);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktCommentPostResponse responseValue = response.Value;
 
-            responseValue.Id.Should().Be(190U);
+            responseValue.Id.Should().Be(COMMENT_ID);
             responseValue.ParentId.Should().Be(0U);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
             responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
@@ -64,33 +62,28 @@
         }
 
         [Fact]
-        public async Task Test_TraktCommentsModule_PostCommentReplyWithSpoiler()
+        public async Task Test_TraktCommentsModule_PostCommentReply_With_Spoiler()
         {
-            const uint commentId = 190U;
-            const string comment = "one two three four five reply";
-            const bool spoiler = false;
-
-            var commentReplyPost = new TraktCommentReplyPost
+            ITraktCommentReplyPost commentReplyPost = new TraktCommentReplyPost
             {
-                Comment = comment,
-                Spoiler = spoiler
+                Comment = COMMENT_TEXT,
+                Spoiler = SPOILER
             };
 
-            var postJson = await TestUtility.SerializeObject<ITraktCommentReplyPost>(commentReplyPost);
+            string postJson = await TestUtility.SerializeObject(commentReplyPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth($"comments/{commentId}/replies", postJson, COMMENT_POST_RESPONSE_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(commentId, comment, spoiler).Result;
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, postJson, COMMENT_POST_RESPONSE_JSON);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT, SPOILER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktCommentPostResponse responseValue = response.Value;
 
-            responseValue.Id.Should().Be(190U);
+            responseValue.Id.Should().Be(COMMENT_ID);
             responseValue.ParentId.Should().Be(0U);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-08-04T06:46:01.996Z").ToUniversalTime());
             responseValue.Comment.Should().Be("Oh, I wasn't really listening.");
@@ -113,115 +106,158 @@
         }
 
         [Fact]
-        public void Test_TraktCommentsModule_PostCommentReplyExceptions()
+        public void Test_TraktCommentsModule_PostCommentReply_Throws_NotFoundException()
         {
-            const uint commentId = 190U;
-            const string comment = "one two three four five reply";
-
-            var commentReplyPost = new TraktCommentReplyPost
-            {
-                Comment = comment
-            };
-
-            var uri = $"comments/{commentId}/replies";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(commentId, comment);
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT);
             act.Should().Throw<TraktCommentNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktCommentsModule_PostCommentReply_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT);
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktCommentsModule_PostCommentReply_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktCommentsModule_PostCommentReply_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktCommentsModule_PostCommentReply_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktCommentsModule_PostCommentReply_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktCommentsModule_PostCommentReply_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktCommentsModule_PostCommentReply_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktCommentsModule_PostCommentReply_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, (HttpStatusCode)412);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktCommentsModule_PostCommentReply_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, (HttpStatusCode)422);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktCommentsModule_PostCommentReply_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, (HttpStatusCode)429);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktCommentsModule_PostCommentReply_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, (HttpStatusCode)503);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public async Task Test_TraktCommentsModule_PostCommentReplyArgumentExceptions()
+        public void Test_TraktCommentsModule_PostCommentReply_Throws_ServerUnavailableException_504()
         {
-            const uint commentId = 190U;
-            string comment = "one two three four five reply";
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, (HttpStatusCode)504);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            var commentReplyPost = new TraktCommentReplyPost
+        [Fact]
+        public void Test_TraktCommentsModule_PostCommentReply_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, (HttpStatusCode)520);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktCommentsModule_PostCommentReply_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, (HttpStatusCode)521);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktCommentsModule_PostCommentReply_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, (HttpStatusCode)522);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, COMMENT_TEXT);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public async Task Test_TraktCommentsModule_PostCommentReply_ArgumentExceptions()
+        {
+            ITraktCommentReplyPost commentReplyPost = new TraktCommentReplyPost
             {
-                Comment = comment
+                Comment = COMMENT_TEXT
             };
 
-            var postJson = await TestUtility.SerializeObject<ITraktCommentReplyPost>(commentReplyPost);
+            string postJson = await TestUtility.SerializeObject(commentReplyPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth($"comments/{commentId}/replies", postJson, COMMENT_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, postJson, COMMENT_POST_RESPONSE_JSON);
 
-            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(0, comment);
-
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(0, COMMENT_TEXT);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(commentId, null);
+            act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, null);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(commentId, string.Empty);
+            act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            comment = "one two three four";
+            const string comment = "one two three four";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Comments.PostCommentReplyAsync(commentId, comment);
+            act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, comment);
             act.Should().Throw<ArgumentOutOfRangeException>();
         }
     }
