@@ -1,8 +1,56 @@
 ﻿namespace TraktApiSharp.Tests.Modules.TraktSearchModule
 {
-    public partial class TraktSearchModule_ests
+    using TraktApiSharp.Enums;
+    using TraktApiSharp.Requests.Parameters;
+
+    public partial class TraktSearchModule_Tests
     {
         private const string ENCODED_COMMA = "%2C";
+        private const int ID_LOOKUP_ITEM_COUNT = 1;
+        private const int TEXT_QUERY_ITEM_COUNT = 5;
+        private const string LOOKUP_ID = "tt0848228";
+        private const string TEXT_QUERY = "batman";
+        private const uint PAGE = 2;
+        private const uint LIMIT = 4;
+        private readonly TraktSearchIdType ID_LOOKUP_TYPE = TraktSearchIdType.ImDB;
+        private readonly TraktSearchResultType TEXT_QUERY_TYPE_MOVIE = TraktSearchResultType.Movie;
+        private readonly TraktSearchResultType TEXT_QUERY_TYPE_SHOW = TraktSearchResultType.Show;
+        private readonly TraktSearchResultType ID_LOOKUP_RESULT_TYPE = TraktSearchResultType.Movie;
+        private readonly TraktSearchResultType TEXT_QUERY_RESULT_TYPE = TraktSearchResultType.Show;
+        private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
+        private readonly TraktSearchField TEXT_QUERY_SEARCH_FIELD_TITLE = TraktSearchField.Title;
+        private readonly TraktSearchField TEXT_QUERY_SEARCH_FIELD_OVERVIEW = TraktSearchField.Overview;
+
+        private readonly TraktSearchFilter FILTER = new TraktSearchFilter()
+            .WithStartYear(2011)
+            .WithGenres("action", "thriller")
+            .WithLanguages("en", "de")
+            .WithCountries("us")
+            .WithRuntimes(70, 140)
+            .WithRatings(70, 95);
+
+        private string GetIdLookupUri { get; }
+        private string GetTextQueryUri { get; }
+        private string GetTextQueryUriMulitpleTypes { get; }
+        private TraktSearchResultType TextQueryTypes { get; }
+        private string[] TextQueryTypesUriNames { get; }
+        private string TextQueryTypesEncoded { get; }
+        private TraktSearchField TextQuerySearchFields { get; }
+        private string[] TextQuerySearchFieldsUriNames { get; }
+        private string TextQuerySearchFieldsEncoded { get; }
+
+        public TraktSearchModule_Tests()
+        {
+            GetIdLookupUri = $"search/{ID_LOOKUP_TYPE.UriName}/{LOOKUP_ID}";
+            TextQueryTypes = TEXT_QUERY_TYPE_MOVIE | TEXT_QUERY_TYPE_SHOW;
+            TextQueryTypesUriNames = new string[] { TEXT_QUERY_TYPE_MOVIE.UriName, TEXT_QUERY_TYPE_SHOW.UriName };
+            TextQueryTypesEncoded = string.Join(ENCODED_COMMA, TextQueryTypesUriNames);
+            TextQuerySearchFields = TEXT_QUERY_SEARCH_FIELD_TITLE | TEXT_QUERY_SEARCH_FIELD_OVERVIEW;
+            TextQuerySearchFieldsUriNames = new string[] { TEXT_QUERY_SEARCH_FIELD_TITLE.UriName, TEXT_QUERY_SEARCH_FIELD_OVERVIEW.UriName };
+            TextQuerySearchFieldsEncoded = string.Join(ENCODED_COMMA, TextQuerySearchFieldsUriNames);
+            GetTextQueryUri = $"search/{TEXT_QUERY_TYPE_MOVIE.UriName}?query={TEXT_QUERY}";
+            GetTextQueryUriMulitpleTypes = $"search/{TextQueryTypesEncoded}?query={TEXT_QUERY}";
+        }
 
         private const string SEARCH_TEXT_QUERY_RESULTS_JSON =
             @"[
