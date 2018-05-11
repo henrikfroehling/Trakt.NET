@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Parameters;
@@ -16,882 +15,732 @@
     [Category("Modules.Shows")]
     public partial class TraktShowsModule_Tests
     {
+        private const string GET_MOST_PLAYED_SHOWS_URI = "shows/played";
+
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShows()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows()
         {
-            const int itemCount = 2;
+            TraktClient client = TestUtility.GetMockClient(
+                GET_MOST_PLAYED_SHOWS_URI,
+                MOST_PLAYED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played", MOST_PLAYED_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync().Result;
+            TraktPagedResponse<ITraktMostPWCShow> response = await client.Shows.GetMostPlayedShowsAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsFiltered()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_Filtered()
         {
-            const int itemCount = 2;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}?{FILTER}",
+                MOST_PLAYED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most played show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?{filter}",
-                                                                MOST_PLAYED_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, null, filter).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(null, null, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithPeriod()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_Period()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}/{TIME_PERIOD.UriName}",
+                MOST_PLAYED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.UriName}",
-                                                                MOST_PLAYED_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(TIME_PERIOD);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithPeriodFiltered()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_Period_Filtered()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}/{TIME_PERIOD.UriName}?{FILTER}",
+                MOST_PLAYED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most played show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.UriName}?{filter}",
-                                                                MOST_PLAYED_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, filter).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(TIME_PERIOD, null, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithExtendedInfo()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_ExtendedInfo()
         {
-            const int itemCount = 2;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}?extended={EXTENDED_INFO}",
+                MOST_PLAYED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?extended={extendedInfo}",
-                                                                MOST_PLAYED_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedInfo).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithExtendedInfoFiltered()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_ExtendedInfo_Filtered()
         {
-            const int itemCount = 2;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}?extended={EXTENDED_INFO}&{FILTER}",
+                MOST_PLAYED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most played show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/played?extended={extendedInfo}&{filter}",
-                MOST_PLAYED_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedInfo, filter).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(null, EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithPage()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_Page()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}?page={PAGE}",
+                MOST_PLAYED_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?page={page}", MOST_PLAYED_SHOWS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithPageFiltered()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_Page_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}?page={PAGE}&{FILTER}",
+                MOST_PLAYED_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most played show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?page={page}&{filter}",
-                                                                MOST_PLAYED_SHOWS_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, null, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(null, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithLimit()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_Limit()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}?limit={LIMIT}",
+                MOST_PLAYED_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?limit={limit}", MOST_PLAYED_SHOWS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithLimitFiltered()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}?limit={LIMIT}&{FILTER}",
+                MOST_PLAYED_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most played show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?limit={limit}&{filter}",
-                                                                MOST_PLAYED_SHOWS_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, null, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(null, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithPeriodAndExtendedOption()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_Period_And_ExtendedInfo()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}",
+                MOST_PLAYED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.UriName}?extended={extendedInfo}",
-                                                                MOST_PLAYED_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, extendedInfo).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(TIME_PERIOD, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithPeriodAndExtendedOptionFiltered()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_Period_And_ExtendedInfo_Filtered()
         {
-            const int itemCount = 2;
-            var period = TraktTimePeriod.Monthly;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}&{FILTER}",
+                MOST_PLAYED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most played show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/played/{period.UriName}?extended={extendedInfo}&{filter}",
-                MOST_PLAYED_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, extendedInfo, filter).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(TIME_PERIOD, EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithPeriodAndPage()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_Period_And_Page()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var period = TraktTimePeriod.Monthly;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}/{TIME_PERIOD.UriName}?page={PAGE}",
+                MOST_PLAYED_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.UriName}?page={page}",
-                                                                MOST_PLAYED_SHOWS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(TIME_PERIOD, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithPeriodAndPageFiltered()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_Period_And_Page_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var period = TraktTimePeriod.Monthly;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}/{TIME_PERIOD.UriName}?{FILTER}&page={PAGE}",
+                MOST_PLAYED_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most played show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.UriName}?{filter}&page={page}",
-                                                                MOST_PLAYED_SHOWS_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(TIME_PERIOD, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithPeriodAndLimit()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_Period_And_Limit()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var period = TraktTimePeriod.Monthly;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}/{TIME_PERIOD.UriName}?limit={LIMIT}",
+                MOST_PLAYED_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.UriName}?limit={limit}",
-                                                                MOST_PLAYED_SHOWS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(TIME_PERIOD, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithPeriodAndLimitFiltered()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_Period_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var period = TraktTimePeriod.Monthly;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}/{TIME_PERIOD.UriName}?limit={LIMIT}&{FILTER}",
+                MOST_PLAYED_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most played show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.UriName}?limit={limit}&{filter}",
-                                                                MOST_PLAYED_SHOWS_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(TIME_PERIOD, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithExtendedInfoAndPage()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_ExtendedInfo_And_Page()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}?extended={EXTENDED_INFO}&page={PAGE}",
+                MOST_PLAYED_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?extended={extendedInfo}&page={page}",
-                                                                MOST_PLAYED_SHOWS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedInfo, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(null, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithExtendedInfoAndPageFiltered()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_ExtendedInfo_And_Page_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}?extended={EXTENDED_INFO}&{FILTER}&page={PAGE}",
+                MOST_PLAYED_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most played show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/played?extended={extendedInfo}&{filter}&page={page}",
-                MOST_PLAYED_SHOWS_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedInfo, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithExtendedInfoAndLimit()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_ExtendedInfo_And_Limit()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}?extended={EXTENDED_INFO}&limit={LIMIT}",
+                MOST_PLAYED_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?extended={extendedInfo}&limit={limit}",
-                                                                MOST_PLAYED_SHOWS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedInfo, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(null, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithExtendedInfoAndLimitFiltered()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_ExtendedInfo_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}?extended={EXTENDED_INFO}&limit={LIMIT}&{FILTER}",
+                MOST_PLAYED_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most played show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/played?extended={extendedInfo}&limit={limit}&{filter}",
-                MOST_PLAYED_SHOWS_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedInfo, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithPageAndLimit()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_Page_And_Limit()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}?page={PAGE}&limit={LIMIT}",
+                MOST_PLAYED_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?page={page}&limit={limit}",
-                                                                MOST_PLAYED_SHOWS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithPageAndLimitFiltered()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_Page_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}?page={PAGE}&limit={LIMIT}&{FILTER}",
+                MOST_PLAYED_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most played show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?page={page}&limit={limit}&{filter}",
-                                                                MOST_PLAYED_SHOWS_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, null, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(null, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithExtendedInfoAndPageAndLimit()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_ExtendedInfo_And_Page_And_Limit()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                MOST_PLAYED_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played?extended={extendedInfo}&page={page}&limit={limit}",
-                                                                MOST_PLAYED_SHOWS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedInfo, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(null, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithExtendedInfoAndPageAndLimitFiltered()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_ExtendedInfo_And_Page_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}&{FILTER}",
+                MOST_PLAYED_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most played show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/played?extended={extendedInfo}&page={page}&limit={limit}&{filter}",
-                MOST_PLAYED_SHOWS_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(null, extendedInfo, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithPeriodAndPageAndLimit()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_Period_And_Page_And_Limit()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var period = TraktTimePeriod.Monthly;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}/{TIME_PERIOD.UriName}?page={PAGE}&limit={LIMIT}",
+                MOST_PLAYED_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/played/{period.UriName}?page={page}&limit={limit}",
-                                                                MOST_PLAYED_SHOWS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(TIME_PERIOD, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsWithPeriodAndPageAndLimitFiltered()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_With_Period_And_Page_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var period = TraktTimePeriod.Monthly;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}/{TIME_PERIOD.UriName}?page={PAGE}&{FILTER}&limit={LIMIT}",
+                MOST_PLAYED_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most played show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/played/{period.UriName}?page={page}&{filter}&limit={limit}",
-                MOST_PLAYED_SHOWS_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, null, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(TIME_PERIOD, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsComplete()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_Complete()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var period = TraktTimePeriod.Monthly;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                MOST_PLAYED_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/played/{period.UriName}?extended={extendedInfo}&page={page}&limit={limit}",
-                MOST_PLAYED_SHOWS_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, extendedInfo, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsCompleteFiltered()
+        public async Task Test_TraktShowsModule_GetMostPlayedShows_Complete_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var period = TraktTimePeriod.Monthly;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_PLAYED_SHOWS_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}&{FILTER}",
+                MOST_PLAYED_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most played show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/played/{period.UriName}?extended={extendedInfo}&page={page}&limit={limit}&{filter}",
-                MOST_PLAYED_SHOWS_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync(period, extendedInfo, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostPWCShow> response =
+                await client.Shows.GetMostPlayedShowsAsync(TIME_PERIOD, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostPlayedShowsExceptions()
+        public void Test_TraktShowsModule_GetMostPlayedShows_Throws_NotFoundException()
         {
-            const string uri = "shows/played";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMostPlayedShowsAsync();
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_PLAYED_SHOWS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act = () => client.Shows.GetMostPlayedShowsAsync();
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostPlayedShows_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_PLAYED_SHOWS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act = () => client.Shows.GetMostPlayedShowsAsync();
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostPlayedShows_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_PLAYED_SHOWS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act = () => client.Shows.GetMostPlayedShowsAsync();
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostPlayedShows_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_PLAYED_SHOWS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act = () => client.Shows.GetMostPlayedShowsAsync();
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostPlayedShows_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_PLAYED_SHOWS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act = () => client.Shows.GetMostPlayedShowsAsync();
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostPlayedShows_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_PLAYED_SHOWS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act = () => client.Shows.GetMostPlayedShowsAsync();
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostPlayedShows_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_PLAYED_SHOWS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act = () => client.Shows.GetMostPlayedShowsAsync();
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostPlayedShows_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_PLAYED_SHOWS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act = () => client.Shows.GetMostPlayedShowsAsync();
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostPlayedShows_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_PLAYED_SHOWS_URI, (HttpStatusCode)412);
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act = () => client.Shows.GetMostPlayedShowsAsync();
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostPlayedShows_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_PLAYED_SHOWS_URI, (HttpStatusCode)422);
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act = () => client.Shows.GetMostPlayedShowsAsync();
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostPlayedShows_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_PLAYED_SHOWS_URI, (HttpStatusCode)429);
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act = () => client.Shows.GetMostPlayedShowsAsync();
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostPlayedShows_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_PLAYED_SHOWS_URI, (HttpStatusCode)503);
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act = () => client.Shows.GetMostPlayedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostPlayedShows_Throws_ServerUnavailableException_504()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_PLAYED_SHOWS_URI, (HttpStatusCode)504);
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act = () => client.Shows.GetMostPlayedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostPlayedShows_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_PLAYED_SHOWS_URI, (HttpStatusCode)520);
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act = () => client.Shows.GetMostPlayedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostPlayedShows_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_PLAYED_SHOWS_URI, (HttpStatusCode)521);
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act = () => client.Shows.GetMostPlayedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostPlayedShows_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_PLAYED_SHOWS_URI, (HttpStatusCode)522);
+            Func<Task<TraktPagedResponse<ITraktMostPWCShow>>> act = () => client.Shows.GetMostPlayedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
         }
     }

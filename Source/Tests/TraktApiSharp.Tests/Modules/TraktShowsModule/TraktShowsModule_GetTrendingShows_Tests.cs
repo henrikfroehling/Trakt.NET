@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Parameters;
@@ -16,560 +15,493 @@
     [Category("Modules.Shows")]
     public partial class TraktShowsModule_Tests
     {
+        private const string GET_TRENDING_SHOWS_URI = "shows/trending";
+
         [Fact]
-        public void Test_TraktShowsModule_GetTrendingShows()
+        public async Task Test_TraktShowsModule_GetTrendingShows()
         {
-            const int itemCount = 2;
-            const int userCount = 300;
+            TraktClient client = TestUtility.GetMockClient(
+                GET_TRENDING_SHOWS_URI,
+                TRENDING_SHOWS_JSON, 1, 10, 1, ITEM_COUNT, USER_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending", TRENDING_SHOWS_JSON, 1, 10, 1, itemCount, userCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync().Result;
+            TraktPagedResponse<ITraktTrendingShow> response =
+                await client.Shows.GetTrendingShowsAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
+            response.TrendingUserCount.Should().HaveValue().And.Be(USER_COUNT);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetTrendingShowsFiltered()
+        public async Task Test_TraktShowsModule_GetTrendingShows_Filtered()
         {
-            const int itemCount = 2;
-            const int userCount = 300;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_TRENDING_SHOWS_URI}?{FILTER}",
+                TRENDING_SHOWS_JSON, 1, 10, 1, ITEM_COUNT, USER_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("trending show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?{filter}",
-                                                                TRENDING_SHOWS_JSON, 1, 10, 1, itemCount, userCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, filter).Result;
+            TraktPagedResponse<ITraktTrendingShow> response =
+                await client.Shows.GetTrendingShowsAsync(null, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
+            response.TrendingUserCount.Should().HaveValue().And.Be(USER_COUNT);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetTrendingShowsWithExtendedInfo()
+        public async Task Test_TraktShowsModule_GetTrendingShows_With_ExtendedInfo()
         {
-            const int itemCount = 2;
-            const int userCount = 300;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_TRENDING_SHOWS_URI}?extended={EXTENDED_INFO}",
+                TRENDING_SHOWS_JSON, 1, 10, 1, ITEM_COUNT, USER_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?extended={extendedInfo}",
-                                                                TRENDING_SHOWS_JSON, 1, 10, 1, itemCount, userCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedInfo).Result;
+            TraktPagedResponse<ITraktTrendingShow> response =
+                await client.Shows.GetTrendingShowsAsync(EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
+            response.TrendingUserCount.Should().HaveValue().And.Be(USER_COUNT);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetTrendingShowsWithExtendedInfoFiltered()
+        public async Task Test_TraktShowsModule_GetTrendingShows_With_ExtendedInfo_Filtered()
         {
-            const int itemCount = 2;
-            const int userCount = 300;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_TRENDING_SHOWS_URI}?extended={EXTENDED_INFO}&{FILTER}",
+                TRENDING_SHOWS_JSON, 1, 10, 1, ITEM_COUNT, USER_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("trending show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/trending?extended={extendedInfo}&{filter}",
-                TRENDING_SHOWS_JSON, 1, 10, 1, itemCount, userCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedInfo, filter).Result;
+            TraktPagedResponse<ITraktTrendingShow> response =
+                await client.Shows.GetTrendingShowsAsync(EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
+            response.TrendingUserCount.Should().HaveValue().And.Be(USER_COUNT);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetTrendingShowsWithPage()
+        public async Task Test_TraktShowsModule_GetTrendingShows_With_Page()
         {
-            const int itemCount = 2;
-            const int userCount = 300;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_TRENDING_SHOWS_URI}?page={PAGE}",
+                TRENDING_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT, USER_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?page={page}", TRENDING_SHOWS_JSON, page, 10, 1, itemCount, userCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktTrendingShow> response =
+                await client.Shows.GetTrendingShowsAsync(null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
+            response.TrendingUserCount.Should().HaveValue().And.Be(USER_COUNT);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetTrendingShowsWithPageFiltered()
+        public async Task Test_TraktShowsModule_GetTrendingShows_With_Page_Filtered()
         {
-            const int itemCount = 2;
-            const int userCount = 300;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_TRENDING_SHOWS_URI}?{FILTER}&page={PAGE}",
+                TRENDING_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT, USER_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("trending show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?{filter}&page={page}",
-                                                                TRENDING_SHOWS_JSON, page, 10, 1, itemCount, userCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktTrendingShow> response =
+                await client.Shows.GetTrendingShowsAsync(null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
+            response.TrendingUserCount.Should().HaveValue().And.Be(USER_COUNT);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetTrendingShowsWithExtendedInfoAndPage()
+        public async Task Test_TraktShowsModule_GetTrendingShows_With_ExtendedInfo_And_Page()
         {
-            const int itemCount = 2;
-            const int userCount = 300;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_TRENDING_SHOWS_URI}?extended={EXTENDED_INFO}&page={PAGE}",
+                TRENDING_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT, USER_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?extended={extendedInfo}&page={page}",
-                                                                TRENDING_SHOWS_JSON, page, 10, 1, itemCount, userCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedInfo, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktTrendingShow> response =
+                await client.Shows.GetTrendingShowsAsync(EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
+            response.TrendingUserCount.Should().HaveValue().And.Be(USER_COUNT);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetTrendingShowsWithExtendedInfoAndPageFiltered()
+        public async Task Test_TraktShowsModule_GetTrendingShows_With_ExtendedInfo_And_Page_Filtered()
         {
-            const int itemCount = 2;
-            const int userCount = 300;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_TRENDING_SHOWS_URI}?extended={EXTENDED_INFO}&page={PAGE}&{FILTER}",
+                TRENDING_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT, USER_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("trending show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/trending?extended={extendedInfo}&page={page}&{filter}",
-                TRENDING_SHOWS_JSON, page, 10, 1, itemCount, userCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedInfo, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktTrendingShow> response =
+                await client.Shows.GetTrendingShowsAsync(EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
+            response.TrendingUserCount.Should().HaveValue().And.Be(USER_COUNT);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetTrendingShowsWithLimit()
+        public async Task Test_TraktShowsModule_GetTrendingShows_With_Limit()
         {
-            const int itemCount = 2;
-            const int userCount = 300;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_TRENDING_SHOWS_URI}?limit={LIMIT}",
+                TRENDING_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT, USER_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?limit={limit}", TRENDING_SHOWS_JSON, 1, limit, 1, itemCount, userCount);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktTrendingShow> response =
+                await client.Shows.GetTrendingShowsAsync(null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
+            response.TrendingUserCount.Should().HaveValue().And.Be(USER_COUNT);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetTrendingShowsWithLimitFiltered()
+        public async Task Test_TraktShowsModule_GetTrendingShows_With_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const int userCount = 300;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_TRENDING_SHOWS_URI}?limit={LIMIT}&{FILTER}",
+                TRENDING_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT, USER_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("trending show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?limit={limit}&{filter}",
-                                                                TRENDING_SHOWS_JSON, 1, limit, 1, itemCount, userCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktTrendingShow> response =
+                await client.Shows.GetTrendingShowsAsync(null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
+            response.TrendingUserCount.Should().HaveValue().And.Be(USER_COUNT);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetTrendingShowsWithExtendedInfoAndLimit()
+        public async Task Test_TraktShowsModule_GetTrendingShows_With_ExtendedInfo_And_Limit()
         {
-            const int itemCount = 2;
-            const int userCount = 300;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_TRENDING_SHOWS_URI}?extended={EXTENDED_INFO}&limit={LIMIT}",
+                TRENDING_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT, USER_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?extended={extendedInfo}&limit={limit}",
-                                                                TRENDING_SHOWS_JSON, 1, limit, 1, itemCount, userCount);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedInfo, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktTrendingShow> response =
+                await client.Shows.GetTrendingShowsAsync(EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
+            response.TrendingUserCount.Should().HaveValue().And.Be(USER_COUNT);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetTrendingShowsWithExtendedInfoAndLimitFiltered()
+        public async Task Test_TraktShowsModule_GetTrendingShows_With_ExtendedInfo_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const int userCount = 300;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_TRENDING_SHOWS_URI}?extended={EXTENDED_INFO}&{FILTER}&limit={LIMIT}",
+                TRENDING_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT, USER_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("trending show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/trending?extended={extendedInfo}&{filter}&limit={limit}",
-                TRENDING_SHOWS_JSON, 1, limit, 1, itemCount, userCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedInfo, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktTrendingShow> response =
+                await client.Shows.GetTrendingShowsAsync(EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
+            response.TrendingUserCount.Should().HaveValue().And.Be(USER_COUNT);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetTrendingShowsWithPageAndLimit()
+        public async Task Test_TraktShowsModule_GetTrendingShows_With_Page_And_Limit()
         {
-            const int itemCount = 2;
-            const int userCount = 300;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_TRENDING_SHOWS_URI}?page={PAGE}&limit={LIMIT}",
+                TRENDING_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT, USER_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?page={page}&limit={limit}",
-                                                                TRENDING_SHOWS_JSON, page, limit, 1, itemCount, userCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktTrendingShow> response =
+                await client.Shows.GetTrendingShowsAsync(null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
+            response.TrendingUserCount.Should().HaveValue().And.Be(USER_COUNT);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetTrendingShowsWithPageAndLimitFiltered()
+        public async Task Test_TraktShowsModule_GetTrendingShows_With_Page_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const int userCount = 300;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_TRENDING_SHOWS_URI}?page={PAGE}&limit={LIMIT}&{FILTER}",
+                TRENDING_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT, USER_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("trending show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?page={page}&limit={limit}&{filter}",
-                                                                TRENDING_SHOWS_JSON, page, limit, 1, itemCount, userCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(null, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktTrendingShow> response =
+                await client.Shows.GetTrendingShowsAsync(null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
+            response.TrendingUserCount.Should().HaveValue().And.Be(USER_COUNT);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetTrendingShowsComplete()
+        public async Task Test_TraktShowsModule_GetTrendingShows_Complete()
         {
-            const int itemCount = 2;
-            const int userCount = 300;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_TRENDING_SHOWS_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                TRENDING_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT, USER_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/trending?extended={extendedInfo}&page={page}&limit={limit}",
-                                                                TRENDING_SHOWS_JSON, page, limit, 1, itemCount, userCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedInfo, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktTrendingShow> response =
+                await client.Shows.GetTrendingShowsAsync(EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
+            response.TrendingUserCount.Should().HaveValue().And.Be(USER_COUNT);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetTrendingShowsCompleteFiltered()
+        public async Task Test_TraktShowsModule_GetTrendingShows_Complete_Filtered()
         {
-            const int itemCount = 2;
-            const int userCount = 300;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_TRENDING_SHOWS_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}&{FILTER}",
+                TRENDING_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT, USER_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("trending show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/trending?extended={extendedInfo}&page={page}&limit={limit}&{filter}",
-                TRENDING_SHOWS_JSON, page, limit, 1, itemCount, userCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync(extendedInfo, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktTrendingShow> response =
+                await client.Shows.GetTrendingShowsAsync(EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.TrendingUserCount.Should().HaveValue().And.Be(userCount);
+            response.TrendingUserCount.Should().HaveValue().And.Be(USER_COUNT);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetTrendingShowsExceptions()
+        public void Test_TraktShowsModule_GetTrendingShows_Throws_NotFoundException()
         {
-            const string uri = "shows/trending";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetTrendingShowsAsync();
+            TraktClient client = TestUtility.GetMockClient(GET_TRENDING_SHOWS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act = () => client.Shows.GetTrendingShowsAsync();
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktShowsModule_GetTrendingShows_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_TRENDING_SHOWS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act = () => client.Shows.GetTrendingShowsAsync();
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktShowsModule_GetTrendingShows_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_TRENDING_SHOWS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act = () => client.Shows.GetTrendingShowsAsync();
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktShowsModule_GetTrendingShows_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_TRENDING_SHOWS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act = () => client.Shows.GetTrendingShowsAsync();
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktShowsModule_GetTrendingShows_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_TRENDING_SHOWS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act = () => client.Shows.GetTrendingShowsAsync();
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktShowsModule_GetTrendingShows_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_TRENDING_SHOWS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act = () => client.Shows.GetTrendingShowsAsync();
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktShowsModule_GetTrendingShows_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_TRENDING_SHOWS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act = () => client.Shows.GetTrendingShowsAsync();
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktShowsModule_GetTrendingShows_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_TRENDING_SHOWS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act = () => client.Shows.GetTrendingShowsAsync();
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktShowsModule_GetTrendingShows_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_TRENDING_SHOWS_URI, (HttpStatusCode)412);
+            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act = () => client.Shows.GetTrendingShowsAsync();
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktShowsModule_GetTrendingShows_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_TRENDING_SHOWS_URI, (HttpStatusCode)422);
+            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act = () => client.Shows.GetTrendingShowsAsync();
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktShowsModule_GetTrendingShows_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_TRENDING_SHOWS_URI, (HttpStatusCode)429);
+            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act = () => client.Shows.GetTrendingShowsAsync();
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+        [Fact]
+        public void Test_TraktShowsModule_GetTrendingShows_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_TRENDING_SHOWS_URI, (HttpStatusCode)503);
+            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act = () => client.Shows.GetTrendingShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+        [Fact]
+        public void Test_TraktShowsModule_GetTrendingShows_Throws_ServerUnavailableException_504()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_TRENDING_SHOWS_URI, (HttpStatusCode)504);
+            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act = () => client.Shows.GetTrendingShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+        [Fact]
+        public void Test_TraktShowsModule_GetTrendingShows_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_TRENDING_SHOWS_URI, (HttpStatusCode)520);
+            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act = () => client.Shows.GetTrendingShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+        [Fact]
+        public void Test_TraktShowsModule_GetTrendingShows_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_TRENDING_SHOWS_URI, (HttpStatusCode)521);
+            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act = () => client.Shows.GetTrendingShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktShowsModule_GetTrendingShows_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_TRENDING_SHOWS_URI, (HttpStatusCode)522);
+            Func<Task<TraktPagedResponse<ITraktTrendingShow>>> act = () => client.Shows.GetTrendingShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
         }
     }

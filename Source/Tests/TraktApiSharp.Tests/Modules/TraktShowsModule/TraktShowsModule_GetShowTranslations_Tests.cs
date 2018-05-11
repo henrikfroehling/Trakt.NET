@@ -14,14 +14,13 @@
     [Category("Modules.Shows")]
     public partial class TraktShowsModule_Tests
     {
+        private readonly string GET_SHOW_TRANSLATIONS_URI = $"shows/{SHOW_ID}/translations";
+
         [Fact]
-        public void Test_TraktShowsModule_GetShowTranslations()
+        public async Task Test_TraktShowsModule_GetShowTranslations()
         {
-            const string showId = "1390";
-
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/translations", SHOW_TRANSLATIONS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(showId).Result;
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, SHOW_TRANSLATIONS_JSON);
+            TraktListResponse<ITraktShowTranslation> response = await client.Shows.GetShowTranslationsAsync(SHOW_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -30,105 +29,10 @@
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetShowTranslationsExceptions()
+        public async Task Test_TraktShowsModule_GetShowTranslations_With_LanguageCode()
         {
-            const string showId = "1390";
-            var uri = $"shows/{showId}/translations";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktListResponse<ITraktShowTranslation>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(showId);
-            act.Should().Throw<TraktShowNotFoundException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
-            act.Should().Throw<TraktBadRequestException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
-            act.Should().Throw<TraktForbiddenException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
-            act.Should().Throw<TraktMethodNotFoundException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
-            act.Should().Throw<TraktConflictException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
-            act.Should().Throw<TraktServerException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
-            act.Should().Throw<TraktBadGatewayException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
-            act.Should().Throw<TraktPreconditionFailedException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
-            act.Should().Throw<TraktValidationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
-            act.Should().Throw<TraktRateLimitException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktShowsModule_GetShowTranslationsArgumentExceptions()
-        {
-            const string showId = "1390";
-
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/translations", SHOW_TRANSLATIONS_JSON);
-
-            Func<Task<TraktListResponse<ITraktShowTranslation>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(null);
-            act.Should().Throw<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync("show id");
-            act.Should().Throw<ArgumentException>();
-        }
-
-        [Fact]
-        public void Test_TraktShowsModule_GetShowSingleTranslation()
-        {
-            const string showId = "1390";
-            const string languageCode = "en";
-
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/translations/{languageCode}", SHOW_TRANSLATIONS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(showId, languageCode).Result;
+            TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_TRANSLATIONS_URI}/{ LANGUAGE_CODE}", SHOW_TRANSLATIONS_JSON);
+            TraktListResponse<ITraktShowTranslation> response = await client.Shows.GetShowTranslationsAsync(SHOW_ID, LANGUAGE_CODE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -137,101 +41,166 @@
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetShowSingleTranslationExceptions()
+        public void Test_TraktShowsModule_GetShowTranslations_Throws_NotFoundException()
         {
-            const string showId = "1390";
-            const string languageCode = "en";
-            var uri = $"shows/{showId}/translations/{languageCode}";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktListResponse<ITraktShowTranslation>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(showId, languageCode);
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID);
             act.Should().Throw<TraktShowNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowTranslations_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowTranslations_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowTranslations_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowTranslations_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowTranslations_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowTranslations_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowTranslations_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowTranslations_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, (HttpStatusCode)412);
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowTranslations_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, (HttpStatusCode)422);
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowTranslations_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, (HttpStatusCode)429);
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowTranslations_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, (HttpStatusCode)503);
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetShowSingleTranslationArgumentExceptions()
+        public void Test_TraktShowsModule_GetShowTranslations_Throws_ServerUnavailableException_504()
         {
-            const string showId = "1390";
-            const string languageCode = "en";
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, (HttpStatusCode)504);
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/translations/{languageCode}", SHOW_TRANSLATIONS_JSON);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowTranslations_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, (HttpStatusCode)520);
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            Func<Task<TraktListResponse<ITraktShowTranslation>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(null);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowTranslations_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, (HttpStatusCode)521);
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktShowsModule_GetShowTranslations_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, (HttpStatusCode)522);
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktShowsModule_GetShowTranslations_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, SHOW_TRANSLATIONS_JSON);
+
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(null);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(string.Empty);
+            act = () => client.Shows.GetShowTranslationsAsync(string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync("show id");
+            act = () => client.Shows.GetShowTranslationsAsync("show id");
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Fact]
+        public void Test_TraktShowsModule_GetShowTranslations_With_LanguageCode_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, SHOW_TRANSLATIONS_JSON);
+
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(null);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(showId, "eng");
+            act = () => client.Shows.GetShowTranslationsAsync(string.Empty);
+            act.Should().Throw<ArgumentException>();
+
+            act = () => client.Shows.GetShowTranslationsAsync("show id");
+            act.Should().Throw<ArgumentException>();
+
+            act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID, "eng");
             act.Should().Throw<ArgumentOutOfRangeException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowTranslationsAsync(showId, "e");
+            act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID, "e");
             act.Should().Throw<ArgumentOutOfRangeException>();
         }
     }

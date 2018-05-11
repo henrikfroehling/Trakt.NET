@@ -1,7 +1,52 @@
 ﻿namespace TraktApiSharp.Tests.Modules.TraktShowsModule
 {
+    using System;
+    using TraktApiSharp.Enums;
+    using TraktApiSharp.Requests.Parameters;
+
     public partial class TraktShowsModule_Tests
     {
+        private const string SHOW_ID = "1390";
+        private const int ITEM_COUNT = 2;
+        private const int LISTS_ITEM_COUNT = 10;
+        private const int USER_COUNT = 300;
+        private const uint PAGE = 2;
+        private const uint LIMIT = 4;
+        private const uint RELATED_SHOWS_LIMIT = 10;
+        private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
+        private readonly TraktTimePeriod TIME_PERIOD = TraktTimePeriod.Monthly;
+        private readonly DateTime TODAY = DateTime.UtcNow;
+        private const bool PROGRESS_HIDDEN = true;
+        private const bool PROGRESS_SPECIALS = true;
+        private const bool PROGRESS_COUNT_SPECIALS = true;
+        private readonly TraktCommentSortOrder COMMENT_SORT_ORDER = TraktCommentSortOrder.Likes;
+        private readonly TraktListType LIST_ITEM_TYPE = TraktListType.Official;
+        private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
+        private const string LANGUAGE_CODE = "en";
+
+        private string ProgressHidden { get; }
+        private string ProgressSpecials { get; }
+        private string ProgressCountSpecials { get; }
+
+        public TraktShowsModule_Tests()
+        {
+            ProgressHidden = PROGRESS_HIDDEN.ToString().ToLower();
+            ProgressSpecials = PROGRESS_SPECIALS.ToString().ToLower();
+            ProgressCountSpecials = PROGRESS_COUNT_SPECIALS.ToString().ToLower();
+        }
+
+        private readonly TraktShowFilter FILTER = new TraktShowFilter()
+                .WithCertifications("TV-MA")
+                .WithQuery("most anticipated show")
+                .WithStartYear(2016)
+                .WithGenres("drama", "fantasy")
+                .WithLanguages("en", "de")
+                .WithCountries("us")
+                .WithRuntimes(30, 60)
+                .WithRatings(80, 95)
+                .WithNetworks("HBO", "Showtime")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+
         private const string MOST_ANTICIPATED_SHOWS_JSON =
             @"[
                 {
@@ -421,7 +466,7 @@
                 ""available_translations"": [
                   ""en""
                 ],
-                ""runtime"": 55s
+                ""runtime"": 55
               }";
 
         private const string SHOW_LISTS_JSON =

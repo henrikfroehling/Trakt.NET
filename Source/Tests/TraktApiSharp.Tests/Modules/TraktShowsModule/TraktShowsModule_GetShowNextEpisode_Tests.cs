@@ -8,28 +8,26 @@
     using Traits;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Xunit;
 
     [Category("Modules.Shows")]
     public partial class TraktShowsModule_Tests
     {
+        private readonly string GET_SHOW_NEXT_EPISODE_URI = $"shows/{SHOW_ID}/next_episode";
+
         [Fact]
-        public void Test_TraktShowsModule_GetShowNextEpisode()
+        public async Task Test_TraktShowsModule_GetShowNextEpisode()
         {
-            const string showId = "1390";
-
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/next_episode", SHOW_EPISODE_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowNextEpisodeAsync(showId).Result;
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, SHOW_EPISODE_JSON);
+            TraktResponse<ITraktEpisode> response = await client.Shows.GetShowNextEpisodeAsync(SHOW_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktEpisode responseValue = response.Value;
 
             responseValue.Title.Should().Be("Winter Is Coming");
             responseValue.SeasonNumber.Should().Be(1);
@@ -43,21 +41,20 @@
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetShowNextEpisodeWithExtendedInfo()
+        public async Task Test_TraktShowsModule_GetShowNextEpisode_With_ExtendedInfo()
         {
-            const string showId = "1390";
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SHOW_NEXT_EPISODE_URI}?extended={EXTENDED_INFO}",
+                SHOW_EPISODE_JSON);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/next_episode?extended={extendedInfo}", SHOW_EPISODE_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowNextEpisodeAsync(showId, extendedInfo).Result;
+            TraktResponse<ITraktEpisode> response = await client.Shows.GetShowNextEpisodeAsync(SHOW_ID, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktEpisode responseValue = response.Value;
 
             responseValue.Title.Should().Be("Winter Is Coming");
             responseValue.SeasonNumber.Should().Be(1);
@@ -78,93 +75,145 @@
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetShowNextEpisodeExceptions()
+        public void Test_TraktShowsModule_GetShowNextEpisode_Throws_NotFoundException()
         {
-            const string showId = "1390";
-            var uri = $"shows/{showId}/next_episode";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktResponse<ITraktEpisode>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowNextEpisodeAsync(showId);
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowNextEpisodeAsync(SHOW_ID);
             act.Should().Throw<TraktShowNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowNextEpisode_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowNextEpisodeAsync(SHOW_ID);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowNextEpisode_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowNextEpisodeAsync(SHOW_ID);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowNextEpisode_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowNextEpisodeAsync(SHOW_ID);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowNextEpisode_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowNextEpisodeAsync(SHOW_ID);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowNextEpisode_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowNextEpisodeAsync(SHOW_ID);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowNextEpisode_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowNextEpisodeAsync(SHOW_ID);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowNextEpisode_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowNextEpisodeAsync(SHOW_ID);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowNextEpisode_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, (HttpStatusCode)412);
+            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowNextEpisodeAsync(SHOW_ID);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowNextEpisode_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, (HttpStatusCode)422);
+            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowNextEpisodeAsync(SHOW_ID);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowNextEpisode_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, (HttpStatusCode)429);
+            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowNextEpisodeAsync(SHOW_ID);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowNextEpisode_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, (HttpStatusCode)503);
+            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowNextEpisodeAsync(SHOW_ID);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetShowNextEpisodeArgumentExceptions()
+        public void Test_TraktShowsModule_GetShowNextEpisode_Throws_ServerUnavailableException_504()
         {
-            const string showId = "1390";
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, (HttpStatusCode)504);
+            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowNextEpisodeAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/next_episode", SHOW_EPISODE_JSON);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowNextEpisode_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, (HttpStatusCode)520);
+            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowNextEpisodeAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            Func<Task<TraktResponse<ITraktEpisode>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowNextEpisodeAsync(null);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowNextEpisode_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, (HttpStatusCode)521);
+            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowNextEpisodeAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktShowsModule_GetShowNextEpisode_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, (HttpStatusCode)522);
+            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowNextEpisodeAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktShowsModule_GetShowNextEpisode_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_NEXT_EPISODE_URI, SHOW_EPISODE_JSON);
+
+            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowNextEpisodeAsync(null);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowNextEpisodeAsync(string.Empty);
+            act = () => client.Shows.GetShowNextEpisodeAsync(string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowNextEpisodeAsync("show id");
+            act = () => client.Shows.GetShowNextEpisodeAsync("show id");
             act.Should().Throw<ArgumentException>();
         }
     }

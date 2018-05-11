@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Parameters;
@@ -16,529 +15,477 @@
     [Category("Modules.Shows")]
     public partial class TraktShowsModule_Tests
     {
+        private const string GET_MOST_ANTICIPATED_SHOWS_URI = "shows/anticipated";
+
         [Fact]
-        public void Test_TraktShowsModule_GetMostAnticipatedShows()
+        public async Task Test_TraktShowsModule_GetMostAnticipatedShows()
         {
-            const int itemCount = 2;
+            TraktClient client = TestUtility.GetMockClient(
+                GET_MOST_ANTICIPATED_SHOWS_URI,
+                MOST_ANTICIPATED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/anticipated", MOST_ANTICIPATED_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync().Result;
+            TraktPagedResponse<ITraktMostAnticipatedShow> response =
+                await client.Shows.GetMostAnticipatedShowsAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostAnticipatedShowsFiltered()
+        public async Task Test_TraktShowsModule_GetMostAnticipatedShows_Filtered()
         {
-            const int itemCount = 2;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_ANTICIPATED_SHOWS_URI}?{FILTER}",
+                MOST_ANTICIPATED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most anticipated show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/anticipated?{filter}",
-                                                                MOST_ANTICIPATED_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync(null, filter).Result;
+            TraktPagedResponse<ITraktMostAnticipatedShow> response =
+                await client.Shows.GetMostAnticipatedShowsAsync(null, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostAnticipatedShowsWithExtendedInfo()
+        public async Task Test_TraktShowsModule_GetMostAnticipatedShows_With_ExtendedInfo()
         {
-            const int itemCount = 2;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_ANTICIPATED_SHOWS_URI}?extended={EXTENDED_INFO}",
+                MOST_ANTICIPATED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/anticipated?extended={extendedInfo}",
-                                                                MOST_ANTICIPATED_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync(extendedInfo).Result;
+            TraktPagedResponse<ITraktMostAnticipatedShow> response =
+                await client.Shows.GetMostAnticipatedShowsAsync(EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostAnticipatedShowsWithExtendedInfoFiltered()
+        public async Task Test_TraktShowsModule_GetMostAnticipatedShows_With_ExtendedInfo_Filtered()
         {
-            const int itemCount = 2;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_ANTICIPATED_SHOWS_URI}?extended={EXTENDED_INFO}&{FILTER}",
+                MOST_ANTICIPATED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most anticipated show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/anticipated?extended={extendedInfo}&{filter}",
-                MOST_ANTICIPATED_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync(extendedInfo, filter).Result;
+            TraktPagedResponse<ITraktMostAnticipatedShow> response =
+                await client.Shows.GetMostAnticipatedShowsAsync(EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostAnticipatedShowsWithPage()
+        public async Task Test_TraktShowsModule_GetMostAnticipatedShows_With_Page()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_ANTICIPATED_SHOWS_URI}?page={PAGE}",
+                MOST_ANTICIPATED_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/anticipated?page={page}", MOST_ANTICIPATED_SHOWS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync(null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostAnticipatedShow> response =
+                await client.Shows.GetMostAnticipatedShowsAsync(null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostAnticipatedShowsWithPageFiltered()
+        public async Task Test_TraktShowsModule_GetMostAnticipatedShows_With_Page_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_ANTICIPATED_SHOWS_URI}?page={PAGE}&{FILTER}",
+                MOST_ANTICIPATED_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most anticipated show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/anticipated?page={page}&{filter}",
-                                                                MOST_ANTICIPATED_SHOWS_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync(null, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostAnticipatedShow> response =
+                await client.Shows.GetMostAnticipatedShowsAsync(null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostAnticipatedShowsWithExtendedInfoAndPage()
+        public async Task Test_TraktShowsModule_GetMostAnticipatedShows_With_ExtendedInfo_And_Page()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_ANTICIPATED_SHOWS_URI}?extended={EXTENDED_INFO}&page={PAGE}",
+                MOST_ANTICIPATED_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/anticipated?extended={extendedInfo}&page={page}",
-                                                                MOST_ANTICIPATED_SHOWS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync(extendedInfo, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostAnticipatedShow> response =
+                await client.Shows.GetMostAnticipatedShowsAsync(EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostAnticipatedShowsWithExtendedInfoAndPageFiltered()
+        public async Task Test_TraktShowsModule_GetMostAnticipatedShows_With_ExtendedInfo_And_Page_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_ANTICIPATED_SHOWS_URI}?extended={EXTENDED_INFO}&{FILTER}&page={PAGE}",
+                MOST_ANTICIPATED_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most anticipated show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/anticipated?extended={extendedInfo}&{filter}&page={page}",
-                MOST_ANTICIPATED_SHOWS_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync(extendedInfo, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostAnticipatedShow> response =
+                await client.Shows.GetMostAnticipatedShowsAsync(EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostAnticipatedShowsWithLimit()
+        public async Task Test_TraktShowsModule_GetMostAnticipatedShows_With_Limit()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_ANTICIPATED_SHOWS_URI}?limit={LIMIT}",
+                MOST_ANTICIPATED_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/anticipated?limit={limit}", MOST_ANTICIPATED_SHOWS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync(null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostAnticipatedShow> response =
+                await client.Shows.GetMostAnticipatedShowsAsync(null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostAnticipatedShowsWithLimitFiltered()
+        public async Task Test_TraktShowsModule_GetMostAnticipatedShows_With_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_ANTICIPATED_SHOWS_URI}?limit={LIMIT}&{FILTER}",
+                MOST_ANTICIPATED_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most anticipated show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/anticipated?limit={limit}&{filter}",
-                                                                MOST_ANTICIPATED_SHOWS_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync(null, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostAnticipatedShow> response =
+                await client.Shows.GetMostAnticipatedShowsAsync(null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostAnticipatedShowsWithExtendedInfoAndLimit()
+        public async Task Test_TraktShowsModule_GetMostAnticipatedShows_With_ExtendedInfo_And_Limit()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_ANTICIPATED_SHOWS_URI}?extended={EXTENDED_INFO}&limit={LIMIT}",
+                MOST_ANTICIPATED_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/anticipated?extended={extendedInfo}&limit={limit}",
-                                                                MOST_ANTICIPATED_SHOWS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync(extendedInfo, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostAnticipatedShow> response =
+                await client.Shows.GetMostAnticipatedShowsAsync(EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostAnticipatedShowsWithExtendedInfoAndLimitFiltered()
+        public async Task Test_TraktShowsModule_GetMostAnticipatedShows_With_ExtendedInfo_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_ANTICIPATED_SHOWS_URI}?extended={EXTENDED_INFO}&{FILTER}&limit={LIMIT}",
+                MOST_ANTICIPATED_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most anticipated show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/anticipated?extended={extendedInfo}&{filter}&limit={limit}",
-                MOST_ANTICIPATED_SHOWS_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync(extendedInfo, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostAnticipatedShow> response =
+                await client.Shows.GetMostAnticipatedShowsAsync(EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostAnticipatedShowsWithPageAndLimit()
+        public async Task Test_TraktShowsModule_GetMostAnticipatedShows_With_Page_And_Limit()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_ANTICIPATED_SHOWS_URI}?page={PAGE}&limit={LIMIT}",
+                MOST_ANTICIPATED_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/anticipated?page={page}&limit={limit}",
-                                                                MOST_ANTICIPATED_SHOWS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync(null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostAnticipatedShow> response =
+                await client.Shows.GetMostAnticipatedShowsAsync(null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostAnticipatedShowsWithPageAndLimitFiltered()
+        public async Task Test_TraktShowsModule_GetMostAnticipatedShows_With_Page_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_ANTICIPATED_SHOWS_URI}?page={PAGE}&limit={LIMIT}&{FILTER}",
+                MOST_ANTICIPATED_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most anticipated show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/anticipated?page={page}&limit={limit}&{filter}",
-                MOST_ANTICIPATED_SHOWS_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync(null, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostAnticipatedShow> response =
+                await client.Shows.GetMostAnticipatedShowsAsync(null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostAnticipatedShowsComplete()
+        public async Task Test_TraktShowsModule_GetMostAnticipatedShows_Complete()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_ANTICIPATED_SHOWS_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                MOST_ANTICIPATED_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/anticipated?extended={extendedInfo}&page={page}&limit={limit}",
-                                                                MOST_ANTICIPATED_SHOWS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync(extendedInfo, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostAnticipatedShow> response =
+                await client.Shows.GetMostAnticipatedShowsAsync(EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostAnticipatedShowsCompleteFiltered()
+        public async Task Test_TraktShowsModule_GetMostAnticipatedShows_Complete_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOST_ANTICIPATED_SHOWS_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}&{FILTER}",
+                MOST_ANTICIPATED_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("most anticipated show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/anticipated?extended={extendedInfo}&page={page}&limit={limit}&{filter}",
-                MOST_ANTICIPATED_SHOWS_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync(extendedInfo, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktMostAnticipatedShow> response =
+                await client.Shows.GetMostAnticipatedShowsAsync(EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetMostAnticipatedShowsExceptions()
+        public void Test_TraktShowsModule_GetMostAnticipatedShows_Throws_NotFoundException()
         {
-            const string uri = "shows/anticipated";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetMostAnticipatedShowsAsync();
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_SHOWS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act = () => client.Shows.GetMostAnticipatedShowsAsync();
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostAnticipatedShows_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_SHOWS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act = () => client.Shows.GetMostAnticipatedShowsAsync();
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostAnticipatedShows_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_SHOWS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act = () => client.Shows.GetMostAnticipatedShowsAsync();
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostAnticipatedShows_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_SHOWS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act = () => client.Shows.GetMostAnticipatedShowsAsync();
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostAnticipatedShows_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_SHOWS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act = () => client.Shows.GetMostAnticipatedShowsAsync();
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostAnticipatedShows_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_SHOWS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act = () => client.Shows.GetMostAnticipatedShowsAsync();
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostAnticipatedShows_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_SHOWS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act = () => client.Shows.GetMostAnticipatedShowsAsync();
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostAnticipatedShows_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_SHOWS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act = () => client.Shows.GetMostAnticipatedShowsAsync();
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostAnticipatedShows_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_SHOWS_URI, (HttpStatusCode)412);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act = () => client.Shows.GetMostAnticipatedShowsAsync();
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostAnticipatedShows_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_SHOWS_URI, (HttpStatusCode)422);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act = () => client.Shows.GetMostAnticipatedShowsAsync();
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostAnticipatedShows_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_SHOWS_URI, (HttpStatusCode)429);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act = () => client.Shows.GetMostAnticipatedShowsAsync();
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostAnticipatedShows_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_SHOWS_URI, (HttpStatusCode)503);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act = () => client.Shows.GetMostAnticipatedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostAnticipatedShows_Throws_ServerUnavailableException_504()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_SHOWS_URI, (HttpStatusCode)504);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act = () => client.Shows.GetMostAnticipatedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostAnticipatedShows_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_SHOWS_URI, (HttpStatusCode)520);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act = () => client.Shows.GetMostAnticipatedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostAnticipatedShows_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_SHOWS_URI, (HttpStatusCode)521);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act = () => client.Shows.GetMostAnticipatedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktShowsModule_GetMostAnticipatedShows_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOST_ANTICIPATED_SHOWS_URI, (HttpStatusCode)522);
+            Func<Task<TraktPagedResponse<ITraktMostAnticipatedShow>>> act = () => client.Shows.GetMostAnticipatedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
         }
     }

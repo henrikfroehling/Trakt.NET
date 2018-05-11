@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Requests.Parameters;
@@ -16,527 +15,477 @@
     [Category("Modules.Shows")]
     public partial class TraktShowsModule_Tests
     {
+        private const string GET_POPULAR_SHOWS_URI = "shows/popular";
+
         [Fact]
-        public void Test_TraktShowsModule_GetPopularShows()
+        public async Task Test_TraktShowsModule_GetPopularShows()
         {
-            const int itemCount = 2;
+            TraktClient client = TestUtility.GetMockClient(
+                GET_POPULAR_SHOWS_URI,
+                POPULAR_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/popular", POPULAR_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync().Result;
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetPopularShowsAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetPopularShowsFiltered()
+        public async Task Test_TraktShowsModule_GetPopularShows_Filtered()
         {
-            const int itemCount = 2;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_POPULAR_SHOWS_URI}?{FILTER}",
+                POPULAR_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("popular show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/popular?{filter}",
-                                                                POPULAR_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync(null, filter).Result;
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetPopularShowsAsync(null, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetPopularShowsWithExtendedInfo()
+        public async Task Test_TraktShowsModule_GetPopularShows_With_ExtendedInfo()
         {
-            const int itemCount = 2;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_POPULAR_SHOWS_URI}?extended={EXTENDED_INFO}",
+                POPULAR_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/popular?extended={extendedInfo}",
-                                                                POPULAR_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync(extendedInfo).Result;
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetPopularShowsAsync(EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetPopularShowsWithExtendedInfoFiltered()
+        public async Task Test_TraktShowsModule_GetPopularShows_With_ExtendedInfo_Filtered()
         {
-            const int itemCount = 2;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_POPULAR_SHOWS_URI}?extended={EXTENDED_INFO}&{FILTER}",
+                POPULAR_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("popular show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
-
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/popular?extended={extendedInfo}&{filter}",
-                POPULAR_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync(extendedInfo, filter).Result;
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetPopularShowsAsync(EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetPopularShowsWithPage()
+        public async Task Test_TraktShowsModule_GetPopularShows_With_Page()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_POPULAR_SHOWS_URI}?page={PAGE}",
+                POPULAR_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/popular?page={page}", POPULAR_SHOWS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync(null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetPopularShowsAsync(null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetPopularShowsWithPageFiltered()
+        public async Task Test_TraktShowsModule_GetPopularShows_With_Page_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_POPULAR_SHOWS_URI}?{FILTER}&page={PAGE}",
+                POPULAR_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("popular show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/popular?{filter}&page={page}",
-                                                                POPULAR_SHOWS_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync(null, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetPopularShowsAsync(null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetPopularShowsWithExtendedInfoAndPage()
+        public async Task Test_TraktShowsModule_GetPopularShows_With_ExtendedInfo_And_Page()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_POPULAR_SHOWS_URI}?extended={EXTENDED_INFO}&page={PAGE}",
+                POPULAR_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/popular?extended={extendedInfo}&page={page}",
-                                                                POPULAR_SHOWS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync(extendedInfo, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetPopularShowsAsync(EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetPopularShowsWithExtendedInfoAndPageFiltered()
+        public async Task Test_TraktShowsModule_GetPopularShows_With_ExtendedInfo_And_Page_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_POPULAR_SHOWS_URI}?extended={EXTENDED_INFO}&page={PAGE}&{FILTER}",
+                POPULAR_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("popular show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/popular?extended={extendedInfo}&page={page}&{filter}",
-                POPULAR_SHOWS_JSON, page, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync(extendedInfo, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetPopularShowsAsync(EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetPopularShowsWithLimit()
+        public async Task Test_TraktShowsModule_GetPopularShows_With_Limit()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_POPULAR_SHOWS_URI}?limit={LIMIT}",
+                POPULAR_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/popular?limit={limit}", POPULAR_SHOWS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync(null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetPopularShowsAsync(null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetPopularShowsWithLimitFiltered()
+        public async Task Test_TraktShowsModule_GetPopularShows_With_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_POPULAR_SHOWS_URI}?limit={LIMIT}&{FILTER}",
+                POPULAR_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("popular show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/popular?limit={limit}&{filter}",
-                                                                POPULAR_SHOWS_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync(null, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetPopularShowsAsync(null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetPopularShowsWithExtendedInfoAndLimit()
+        public async Task Test_TraktShowsModule_GetPopularShows_With_ExtendedInfo_And_Limit()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_POPULAR_SHOWS_URI}?extended={EXTENDED_INFO}&limit={LIMIT}",
+                POPULAR_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/popular?extended={extendedInfo}&limit={limit}",
-                                                                POPULAR_SHOWS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync(extendedInfo, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetPopularShowsAsync(EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetPopularShowsWithExtendedInfoAndLimitFiltered()
+        public async Task Test_TraktShowsModule_GetPopularShows_With_ExtendedInfo_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_POPULAR_SHOWS_URI}?extended={EXTENDED_INFO}&{FILTER}&limit={LIMIT}",
+                POPULAR_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("popular show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/popular?extended={extendedInfo}&{filter}&limit={limit}",
-                POPULAR_SHOWS_JSON, 1, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync(extendedInfo, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetPopularShowsAsync(EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetPopularShowsWithPageAndLimit()
+        public async Task Test_TraktShowsModule_GetPopularShows_With_Page_And_Limit()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_POPULAR_SHOWS_URI}?page={PAGE}&limit={LIMIT}",
+                POPULAR_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/popular?page={page}&limit={limit}", POPULAR_SHOWS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync(null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetPopularShowsAsync(null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetPopularShowsWithPageAndLimitFiltered()
+        public async Task Test_TraktShowsModule_GetPopularShows_With_Page_And_Limit_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_POPULAR_SHOWS_URI}?page={PAGE}&limit={LIMIT}&{FILTER}",
+                POPULAR_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("popular show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/popular?page={page}&limit={limit}&{filter}",
-                                                                POPULAR_SHOWS_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync(null, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetPopularShowsAsync(null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetPopularShowsComplete()
+        public async Task Test_TraktShowsModule_GetPopularShows_Complete()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_POPULAR_SHOWS_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                POPULAR_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/popular?extended={extendedInfo}&page={page}&limit={limit}",
-                                                                POPULAR_SHOWS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync(extendedInfo, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetPopularShowsAsync(EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetPopularShowsCompleteFiltered()
+        public async Task Test_TraktShowsModule_GetPopularShows_Complete_Filtered()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_POPULAR_SHOWS_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}&{FILTER}",
+                POPULAR_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            var filter = new TraktShowFilter()
-                .WithCertifications("TV-MA")
-                .WithQuery("popular show")
-                .WithStartYear(2016)
-                .WithGenres("drama", "fantasy")
-                .WithLanguages("en", "de")
-                .WithCountries("us")
-                .WithRuntimes(30, 60)
-                .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/popular?extended={extendedInfo}&page={page}&limit={limit}&{filter}",
-                POPULAR_SHOWS_JSON, page, limit, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync(extendedInfo, filter, pagedParameters).Result;
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetPopularShowsAsync(EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetPopularShowsExceptions()
+        public void Test_TraktShowsModule_GetPopularShows_Throws_NotFoundException()
         {
-            const string uri = "shows/popular";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktPagedResponse<ITraktShow>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetPopularShowsAsync();
+            TraktClient client = TestUtility.GetMockClient(GET_POPULAR_SHOWS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetPopularShowsAsync();
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktShowsModule_GetPopularShows_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_POPULAR_SHOWS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetPopularShowsAsync();
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktShowsModule_GetPopularShows_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_POPULAR_SHOWS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetPopularShowsAsync();
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktShowsModule_GetPopularShows_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_POPULAR_SHOWS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetPopularShowsAsync();
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktShowsModule_GetPopularShows_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_POPULAR_SHOWS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetPopularShowsAsync();
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktShowsModule_GetPopularShows_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_POPULAR_SHOWS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetPopularShowsAsync();
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktShowsModule_GetPopularShows_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_POPULAR_SHOWS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetPopularShowsAsync();
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktShowsModule_GetPopularShows_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_POPULAR_SHOWS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetPopularShowsAsync();
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktShowsModule_GetPopularShows_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_POPULAR_SHOWS_URI, (HttpStatusCode)412);
+            Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetPopularShowsAsync();
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktShowsModule_GetPopularShows_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_POPULAR_SHOWS_URI, (HttpStatusCode)422);
+            Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetPopularShowsAsync();
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktShowsModule_GetPopularShows_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_POPULAR_SHOWS_URI, (HttpStatusCode)429);
+            Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetPopularShowsAsync();
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+        [Fact]
+        public void Test_TraktShowsModule_GetPopularShows_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_POPULAR_SHOWS_URI, (HttpStatusCode)503);
+            Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetPopularShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+        [Fact]
+        public void Test_TraktShowsModule_GetPopularShows_Throws_ServerUnavailableException_504()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_POPULAR_SHOWS_URI, (HttpStatusCode)504);
+            Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetPopularShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+        [Fact]
+        public void Test_TraktShowsModule_GetPopularShows_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_POPULAR_SHOWS_URI, (HttpStatusCode)520);
+            Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetPopularShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+        [Fact]
+        public void Test_TraktShowsModule_GetPopularShows_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_POPULAR_SHOWS_URI, (HttpStatusCode)521);
+            Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetPopularShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktShowsModule_GetPopularShows_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_POPULAR_SHOWS_URI, (HttpStatusCode)522);
+            Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetPopularShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
         }
     }

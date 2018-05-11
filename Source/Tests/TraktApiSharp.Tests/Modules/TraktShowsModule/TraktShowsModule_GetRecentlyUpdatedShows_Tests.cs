@@ -16,390 +16,433 @@
     [Category("Modules.Shows")]
     public partial class TraktShowsModule_Tests
     {
+        private const string GET_RECENTLY_UPDATED_SHOWS_URI = "shows/updates";
+
         [Fact]
-        public void Test_TraktShowsModule_GetRecentlyUpdatedShowss()
+        public async Task Test_TraktShowsModule_GetRecentlyUpdatedShows()
         {
-            const int itemCount = 2;
+            TraktClient client = TestUtility.GetMockClient(
+                GET_RECENTLY_UPDATED_SHOWS_URI,
+                RECENTLY_UPDATED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates", RECENTLY_UPDATED_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync().Result;
+            TraktPagedResponse<ITraktRecentlyUpdatedShow> response =
+                await client.Shows.GetRecentlyUpdatedShowsAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetRecentlyUpdatedShowsWithStartDate()
+        public async Task Test_TraktShowsModule_GetRecentlyUpdatedShows_With_StartDate()
         {
-            const int itemCount = 2;
-            var today = DateTime.UtcNow;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_SHOWS_URI}/{TODAY.ToTraktDateString()}",
+                RECENTLY_UPDATED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToTraktDateString()}",
-                                                                RECENTLY_UPDATED_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today).Result;
+            TraktPagedResponse<ITraktRecentlyUpdatedShow> response =
+                await client.Shows.GetRecentlyUpdatedShowsAsync(TODAY);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetRecentlyUpdatedShowsWithExtendedInfo()
+        public async Task Test_TraktShowsModule_GetRecentlyUpdatedShows_With_ExtendedInfo()
         {
-            const int itemCount = 2;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_SHOWS_URI}?extended={EXTENDED_INFO}",
+                RECENTLY_UPDATED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates?extended={extendedInfo}",
-                                                                RECENTLY_UPDATED_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(null, extendedInfo).Result;
+            TraktPagedResponse<ITraktRecentlyUpdatedShow> response =
+                await client.Shows.GetRecentlyUpdatedShowsAsync(null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetRecentlyUpdatedShowsWithPage()
+        public async Task Test_TraktShowsModule_GetRecentlyUpdatedShows_With_Page()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_SHOWS_URI}?page={PAGE}",
+                RECENTLY_UPDATED_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates?page={page}", RECENTLY_UPDATED_SHOWS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktRecentlyUpdatedShow> response =
+                await client.Shows.GetRecentlyUpdatedShowsAsync(null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetRecentlyUpdatedShowsWithLimit()
+        public async Task Test_TraktShowsModule_GetRecentlyUpdatedShows_With_Limit()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_SHOWS_URI}?limit={LIMIT}",
+                RECENTLY_UPDATED_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates?limit={limit}", RECENTLY_UPDATED_SHOWS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktRecentlyUpdatedShow> response =
+                await client.Shows.GetRecentlyUpdatedShowsAsync(null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetRecentlyUpdatedShowsWithStartDateAndExtendedOption()
+        public async Task Test_TraktShowsModule_GetRecentlyUpdatedShows_With_StartDate_And_ExtendedInfo()
         {
-            const int itemCount = 2;
-            var today = DateTime.UtcNow;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_SHOWS_URI}/{TODAY.ToTraktDateString()}?extended={EXTENDED_INFO}",
+                RECENTLY_UPDATED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/updates/{today.ToTraktDateString()}?extended={extendedInfo}",
-                RECENTLY_UPDATED_SHOWS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today, extendedInfo).Result;
+            TraktPagedResponse<ITraktRecentlyUpdatedShow> response =
+                await client.Shows.GetRecentlyUpdatedShowsAsync(TODAY, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetRecentlyUpdatedShowsWithStartDateAndPage()
+        public async Task Test_TraktShowsModule_GetRecentlyUpdatedShows_With_StartDate_And_Page()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var today = DateTime.UtcNow;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_SHOWS_URI}/{TODAY.ToTraktDateString()}?page={PAGE}",
+                RECENTLY_UPDATED_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToTraktDateString()}?page={page}",
-                                                                RECENTLY_UPDATED_SHOWS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktRecentlyUpdatedShow> response =
+                await client.Shows.GetRecentlyUpdatedShowsAsync(TODAY, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetRecentlyUpdatedShowsWithStartDateAndLimit()
+        public async Task Test_TraktShowsModule_GetRecentlyUpdatedShows_With_StartDate_And_Limit()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var today = DateTime.UtcNow;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_SHOWS_URI}/{TODAY.ToTraktDateString()}?limit={LIMIT}",
+                RECENTLY_UPDATED_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToTraktDateString()}?limit={limit}",
-                                                                RECENTLY_UPDATED_SHOWS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktRecentlyUpdatedShow> response =
+                await client.Shows.GetRecentlyUpdatedShowsAsync(TODAY, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetRecentlyUpdatedShowsWithExtendedInfoAndPage()
+        public async Task Test_TraktShowsModule_GetRecentlyUpdatedShows_With_ExtendedInfo_And_Page()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_SHOWS_URI}?extended={EXTENDED_INFO}&page={PAGE}",
+                RECENTLY_UPDATED_SHOWS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates?extended={extendedInfo}&page={page}",
-                                                                RECENTLY_UPDATED_SHOWS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(null, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktRecentlyUpdatedShow> response =
+                await client.Shows.GetRecentlyUpdatedShowsAsync(null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetRecentlyUpdatedShowsWithExtendedInfoAndLimit()
+        public async Task Test_TraktShowsModule_GetRecentlyUpdatedShows_With_ExtendedInfo_And_Limit()
         {
-            const int itemCount = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_SHOWS_URI}?extended={EXTENDED_INFO}&limit={LIMIT}",
+                RECENTLY_UPDATED_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates?extended={extendedInfo}&limit={limit}",
-                                                                RECENTLY_UPDATED_SHOWS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(null, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktRecentlyUpdatedShow> response =
+                await client.Shows.GetRecentlyUpdatedShowsAsync(null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetRecentlyUpdatedShowsWithPageAndLimit()
+        public async Task Test_TraktShowsModule_GetRecentlyUpdatedShows_With_Page_And_Limit()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_SHOWS_URI}?page={PAGE}&limit={LIMIT}",
+                RECENTLY_UPDATED_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates?page={page}&limit={limit}",
-                                                                RECENTLY_UPDATED_SHOWS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktRecentlyUpdatedShow> response =
+                await client.Shows.GetRecentlyUpdatedShowsAsync(null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetRecentlyUpdatedShowsWithExtendedInfoAndPageAndLimit()
+        public async Task Test_TraktShowsModule_GetRecentlyUpdatedShows_With_ExtendedInfo_And_Page_And_Limit()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_SHOWS_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                RECENTLY_UPDATED_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates?extended={extendedInfo}&page={page}&limit={limit}",
-                                                                RECENTLY_UPDATED_SHOWS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(null, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktRecentlyUpdatedShow> response =
+                await client.Shows.GetRecentlyUpdatedShowsAsync(null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetRecentlyUpdatedShowsWithStartDateAndPageAndLimit()
+        public async Task Test_TraktShowsModule_GetRecentlyUpdatedShows_With_StartDate_And_Page_And_Limit()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var today = DateTime.UtcNow;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_SHOWS_URI}/{TODAY.ToTraktDateString()}?page={PAGE}&limit={LIMIT}",
+                RECENTLY_UPDATED_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"shows/updates/{today.ToTraktDateString()}?page={page}&limit={limit}",
-                                                                RECENTLY_UPDATED_SHOWS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktRecentlyUpdatedShow> response =
+                await client.Shows.GetRecentlyUpdatedShowsAsync(TODAY, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetRecentlyUpdatedShowsComplete()
+        public async Task Test_TraktShowsModule_GetRecentlyUpdatedShows_Complete()
         {
-            const int itemCount = 2;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var today = DateTime.UtcNow;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_SHOWS_URI}/{TODAY.ToTraktDateString()}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                RECENTLY_UPDATED_SHOWS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"shows/updates/{today.ToTraktDateString()}?extended={extendedInfo}&page={page}&limit={limit}",
-                RECENTLY_UPDATED_SHOWS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync(today, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktRecentlyUpdatedShow> response =
+                await client.Shows.GetRecentlyUpdatedShowsAsync(TODAY, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetRecentlyUpdatedShowsExceptions()
+        public void Test_TraktShowsModule_GetRecentlyUpdatedShows_Throws_NotFoundException()
         {
-            const string uri = "shows/updates";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetRecentlyUpdatedShowsAsync();
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_SHOWS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act = () => client.Shows.GetRecentlyUpdatedShowsAsync();
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktShowsModule_GetRecentlyUpdatedShows_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_SHOWS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act = () => client.Shows.GetRecentlyUpdatedShowsAsync();
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktShowsModule_GetRecentlyUpdatedShows_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_SHOWS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act = () => client.Shows.GetRecentlyUpdatedShowsAsync();
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktShowsModule_GetRecentlyUpdatedShows_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_SHOWS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act = () => client.Shows.GetRecentlyUpdatedShowsAsync();
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktShowsModule_GetRecentlyUpdatedShows_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_SHOWS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act = () => client.Shows.GetRecentlyUpdatedShowsAsync();
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktShowsModule_GetRecentlyUpdatedShows_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_SHOWS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act = () => client.Shows.GetRecentlyUpdatedShowsAsync();
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktShowsModule_GetRecentlyUpdatedShows_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_SHOWS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act = () => client.Shows.GetRecentlyUpdatedShowsAsync();
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktShowsModule_GetRecentlyUpdatedShows_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_SHOWS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act = () => client.Shows.GetRecentlyUpdatedShowsAsync();
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktShowsModule_GetRecentlyUpdatedShows_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_SHOWS_URI, (HttpStatusCode)412);
+            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act = () => client.Shows.GetRecentlyUpdatedShowsAsync();
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktShowsModule_GetRecentlyUpdatedShows_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_SHOWS_URI, (HttpStatusCode)422);
+            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act = () => client.Shows.GetRecentlyUpdatedShowsAsync();
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktShowsModule_GetRecentlyUpdatedShows_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_SHOWS_URI, (HttpStatusCode)429);
+            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act = () => client.Shows.GetRecentlyUpdatedShowsAsync();
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
+        [Fact]
+        public void Test_TraktShowsModule_GetRecentlyUpdatedShows_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_SHOWS_URI, (HttpStatusCode)503);
+            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act = () => client.Shows.GetRecentlyUpdatedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
+        [Fact]
+        public void Test_TraktShowsModule_GetRecentlyUpdatedShows_Throws_ServerUnavailableException_504()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_SHOWS_URI, (HttpStatusCode)504);
+            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act = () => client.Shows.GetRecentlyUpdatedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
+        [Fact]
+        public void Test_TraktShowsModule_GetRecentlyUpdatedShows_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_SHOWS_URI, (HttpStatusCode)520);
+            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act = () => client.Shows.GetRecentlyUpdatedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
+        [Fact]
+        public void Test_TraktShowsModule_GetRecentlyUpdatedShows_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_SHOWS_URI, (HttpStatusCode)521);
+            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act = () => client.Shows.GetRecentlyUpdatedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktShowsModule_GetRecentlyUpdatedShows_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_SHOWS_URI, (HttpStatusCode)522);
+            Func<Task<TraktPagedResponse<ITraktRecentlyUpdatedShow>>> act = () => client.Shows.GetRecentlyUpdatedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
         }
     }

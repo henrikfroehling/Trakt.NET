@@ -247,7 +247,6 @@
     <Compile Include="Modules\TraktShowsModule\TraktShowsModule_GetMostCollectedShows_Tests.cs" />
     <Compile Include="Modules\TraktShowsModule\TraktShowsModule_GetMostPlayedShows_Tests.cs" />
     <Compile Include="Modules\TraktShowsModule\TraktShowsModule_GetMostWatchedShows_Tests.cs" />
-    <Compile Include="Modules\TraktShowsModule\TraktShowsModule_GetMultipleShows_Tests.cs" />
     <Compile Include="Modules\TraktShowsModule\TraktShowsModule_GetPopularShows_Tests.cs" />
     <Compile Include="Modules\TraktShowsModule\TraktShowsModule_GetRecentlyUpdatedShows_Tests.cs" />
     <Compile Include="Modules\TraktShowsModule\TraktShowsModule_GetShowAliases_Tests.cs" />

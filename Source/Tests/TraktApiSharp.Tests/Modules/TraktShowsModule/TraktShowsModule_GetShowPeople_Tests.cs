@@ -8,28 +8,26 @@
     using Traits;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Xunit;
 
     [Category("Modules.Shows")]
     public partial class TraktShowsModule_Tests
     {
+        private readonly string GET_SHOW_PEOPLE_URI = $"shows/{SHOW_ID}/people";
+
         [Fact]
-        public void Test_TraktShowsModule_GetShowPeople()
+        public async Task Test_TraktShowsModule_GetShowPeople()
         {
-            const string showId = "1390";
-
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/people", SHOW_PEOPLE_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowPeopleAsync(showId).Result;
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, SHOW_PEOPLE_JSON);
+            TraktResponse<ITraktCastAndCrew> response = await client.Shows.GetShowPeopleAsync(SHOW_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktCastAndCrew responseValue = response.Value;
 
             responseValue.Cast.Should().NotBeNull().And.HaveCount(3);
             responseValue.Crew.Should().NotBeNull();
@@ -47,21 +45,20 @@
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetShowPeopleWithExtendedInfo()
+        public async Task Test_TraktShowsModule_GetShowPeople_With_ExtendedInfo()
         {
-            const string showId = "1390";
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SHOW_PEOPLE_URI}?extended={EXTENDED_INFO}",
+                SHOW_PEOPLE_JSON);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/people?extended={extendedInfo}", SHOW_PEOPLE_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Shows.GetShowPeopleAsync(showId, extendedInfo).Result;
+            TraktResponse<ITraktCastAndCrew> response = await client.Shows.GetShowPeopleAsync(SHOW_ID, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktCastAndCrew responseValue = response.Value;
 
             responseValue.Cast.Should().NotBeNull().And.HaveCount(3);
             responseValue.Crew.Should().NotBeNull();
@@ -79,93 +76,145 @@
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetShowPeopleExceptions()
+        public void Test_TraktShowsModule_GetShowPeople_Throws_NotFoundException()
         {
-            const string showId = "1390";
-            var uri = $"shows/{showId}/people";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktResponse<ITraktCastAndCrew>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowPeopleAsync(showId);
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(SHOW_ID);
             act.Should().Throw<TraktShowNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowPeople_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(SHOW_ID);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowPeople_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(SHOW_ID);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowPeople_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(SHOW_ID);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowPeople_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(SHOW_ID);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowPeople_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(SHOW_ID);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowPeople_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(SHOW_ID);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowPeople_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(SHOW_ID);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowPeople_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, (HttpStatusCode)412);
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(SHOW_ID);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowPeople_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, (HttpStatusCode)422);
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(SHOW_ID);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowPeople_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, (HttpStatusCode)429);
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(SHOW_ID);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowPeople_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, (HttpStatusCode)503);
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(SHOW_ID);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetShowPeopleArgumentExceptions()
+        public void Test_TraktShowsModule_GetShowPeople_Throws_ServerUnavailableException_504()
         {
-            const string showId = "1390";
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, (HttpStatusCode)504);
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.SetupMockResponseWithoutOAuth($"shows/{showId}/people", SHOW_PEOPLE_JSON);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowPeople_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, (HttpStatusCode)520);
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            Func<Task<TraktResponse<ITraktCastAndCrew>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowPeopleAsync(null);
+        [Fact]
+        public void Test_TraktShowsModule_GetShowPeople_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, (HttpStatusCode)521);
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktShowsModule_GetShowPeople_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, (HttpStatusCode)522);
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(SHOW_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktShowsModule_GetShowPeople_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, SHOW_PEOPLE_JSON);
+
+            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(null);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowPeopleAsync(string.Empty);
+            act = () => client.Shows.GetShowPeopleAsync(string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Shows.GetShowPeopleAsync("show id");
+            act = () => client.Shows.GetShowPeopleAsync("show id");
             act.Should().Throw<ArgumentException>();
         }
     }
