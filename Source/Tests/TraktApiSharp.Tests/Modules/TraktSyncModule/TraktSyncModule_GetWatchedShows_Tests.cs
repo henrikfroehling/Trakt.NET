@@ -8,19 +8,19 @@
     using Traits;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Watched;
-    using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Xunit;
 
     [Category("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
-        [Fact]
-        public void Test_TraktSyncModule_GetWatchedShows()
-        {
-            TestUtility.SetupMockResponseWithOAuth("sync/watched/shows", WATCHED_SHOWS_JSON);
+        private const string GET_WATCHED_SHOWS_URI = "sync/watched/shows";
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedShowsAsync().Result;
+        [Fact]
+        public async Task Test_TraktSyncModule_GetWatchedShows()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_WATCHED_SHOWS_URI, WATCHED_SHOWS_JSON);
+            TraktListResponse<ITraktWatchedShow> response = await client.Sync.GetWatchedShowsAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -29,14 +29,13 @@
         }
 
         [Fact]
-        public void Test_TraktSyncModule_GetWatchedShowsComplete()
+        public async Task Test_TraktSyncModule_GetWatchedShows_Complete()
         {
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_WATCHED_SHOWS_URI}?extended={EXTENDED_INFO}",
+                WATCHED_SHOWS_JSON);
 
-            TestUtility.SetupMockResponseWithOAuth($"sync/watched/shows?extended={extendedInfo}",
-                                                   WATCHED_SHOWS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedShowsAsync(extendedInfo).Result;
+            TraktListResponse<ITraktWatchedShow> response = await client.Sync.GetWatchedShowsAsync(EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -45,74 +44,130 @@
         }
 
         [Fact]
-        public void Test_TraktSyncModule_GetWatchedShowsExceptions()
+        public void Test_TraktSyncModule_GetWatchedShows_Throws_NotFoundException()
         {
-            const string uri = "sync/watched/shows";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktListResponse<ITraktWatchedShow>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetWatchedShowsAsync();
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_WATCHED_SHOWS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktListResponse<ITraktWatchedShow>>> act = () => client.Sync.GetWatchedShowsAsync();
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktSyncModule_GetWatchedShows_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_WATCHED_SHOWS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktListResponse<ITraktWatchedShow>>> act = () => client.Sync.GetWatchedShowsAsync();
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktSyncModule_GetWatchedShows_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_WATCHED_SHOWS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktListResponse<ITraktWatchedShow>>> act = () => client.Sync.GetWatchedShowsAsync();
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktSyncModule_GetWatchedShows_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_WATCHED_SHOWS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktListResponse<ITraktWatchedShow>>> act = () => client.Sync.GetWatchedShowsAsync();
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktSyncModule_GetWatchedShows_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_WATCHED_SHOWS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktListResponse<ITraktWatchedShow>>> act = () => client.Sync.GetWatchedShowsAsync();
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktSyncModule_GetWatchedShows_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_WATCHED_SHOWS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktListResponse<ITraktWatchedShow>>> act = () => client.Sync.GetWatchedShowsAsync();
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktSyncModule_GetWatchedShows_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_WATCHED_SHOWS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktListResponse<ITraktWatchedShow>>> act = () => client.Sync.GetWatchedShowsAsync();
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktSyncModule_GetWatchedShows_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_WATCHED_SHOWS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktListResponse<ITraktWatchedShow>>> act = () => client.Sync.GetWatchedShowsAsync();
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktSyncModule_GetWatchedShows_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_WATCHED_SHOWS_URI, (HttpStatusCode)412);
+            Func<Task<TraktListResponse<ITraktWatchedShow>>> act = () => client.Sync.GetWatchedShowsAsync();
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktSyncModule_GetWatchedShows_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_WATCHED_SHOWS_URI, (HttpStatusCode)422);
+            Func<Task<TraktListResponse<ITraktWatchedShow>>> act = () => client.Sync.GetWatchedShowsAsync();
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktSyncModule_GetWatchedShows_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_WATCHED_SHOWS_URI, (HttpStatusCode)429);
+            Func<Task<TraktListResponse<ITraktWatchedShow>>> act = () => client.Sync.GetWatchedShowsAsync();
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+        [Fact]
+        public void Test_TraktSyncModule_GetWatchedShows_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_WATCHED_SHOWS_URI, (HttpStatusCode)503);
+            Func<Task<TraktListResponse<ITraktWatchedShow>>> act = () => client.Sync.GetWatchedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+        [Fact]
+        public void Test_TraktSyncModule_GetWatchedShows_Throws_ServerUnavailableException_504()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_WATCHED_SHOWS_URI, (HttpStatusCode)504);
+            Func<Task<TraktListResponse<ITraktWatchedShow>>> act = () => client.Sync.GetWatchedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+        [Fact]
+        public void Test_TraktSyncModule_GetWatchedShows_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_WATCHED_SHOWS_URI, (HttpStatusCode)520);
+            Func<Task<TraktListResponse<ITraktWatchedShow>>> act = () => client.Sync.GetWatchedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+        [Fact]
+        public void Test_TraktSyncModule_GetWatchedShows_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_WATCHED_SHOWS_URI, (HttpStatusCode)521);
+            Func<Task<TraktListResponse<ITraktWatchedShow>>> act = () => client.Sync.GetWatchedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktSyncModule_GetWatchedShows_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_WATCHED_SHOWS_URI, (HttpStatusCode)522);
+            Func<Task<TraktListResponse<ITraktWatchedShow>>> act = () => client.Sync.GetWatchedShowsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
         }
     }

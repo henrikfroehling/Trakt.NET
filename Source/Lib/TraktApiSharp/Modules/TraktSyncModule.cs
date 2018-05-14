@@ -153,17 +153,17 @@
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="TraktSyncCollectionPostBuilder" /> to create an instance
-        /// of the required <see cref="TraktSyncCollectionPost" />.
+        /// of the required <see cref="ITraktSyncCollectionPost" />.
         /// See also <seealso cref="TraktSyncCollectionPost.Builder()" />.
         /// </para>
         /// </summary>
-        /// <param name="collectionPost">An <see cref="TraktSyncCollectionPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
+        /// <param name="collectionPost">An <see cref="ITraktSyncCollectionPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktSyncCollectionPostResponse" /> instance, which contains information about which items were added, updated, existing and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given collection post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given collection post is empty.</exception>
-        public Task<TraktResponse<ITraktSyncCollectionPostResponse>> AddCollectionItemsAsync(TraktSyncCollectionPost collectionPost,
+        public Task<TraktResponse<ITraktSyncCollectionPostResponse>> AddCollectionItemsAsync(ITraktSyncCollectionPost collectionPost,
                                                                                              CancellationToken cancellationToken = default)
         {
             ValidateCollectionPost(collectionPost);
@@ -179,17 +179,17 @@
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="TraktSyncCollectionPostBuilder" /> to create an instance
-        /// of the required <see cref="TraktSyncCollectionPost" />.
+        /// of the required <see cref="ITraktSyncCollectionPost" />.
         /// See also <seealso cref="TraktSyncCollectionPost.Builder()" />.
         /// </para>
         /// </summary>
-        /// <param name="collectionRemovePost">An <see cref="TraktSyncCollectionPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
+        /// <param name="collectionRemovePost">An <see cref="ITraktSyncCollectionPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktSyncCollectionRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given collection remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given collection remove post is empty.</exception>
-        public Task<TraktResponse<ITraktSyncCollectionRemovePostResponse>> RemoveCollectionItemsAsync(TraktSyncCollectionPost collectionRemovePost,
+        public Task<TraktResponse<ITraktSyncCollectionRemovePostResponse>> RemoveCollectionItemsAsync(ITraktSyncCollectionPost collectionRemovePost,
                                                                                                       CancellationToken cancellationToken = default)
         {
             ValidateCollectionPost(collectionRemovePost);
@@ -292,17 +292,17 @@
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="TraktSyncHistoryPostBuilder" /> to create an instance
-        /// of the required <see cref="TraktSyncHistoryPost" />.
+        /// of the required <see cref="ITraktSyncHistoryPost" />.
         /// See also <seealso cref="TraktSyncHistoryPost.Builder()" />.
         /// </para>
         /// </summary>
-        /// <param name="historyPost">An <see cref="TraktSyncHistoryPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
+        /// <param name="historyPost">An <see cref="ITraktSyncHistoryPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktSyncHistoryPostResponse" /> instance, which contains information about which items were added and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given history post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given history post is empty.</exception>
-        public Task<TraktResponse<ITraktSyncHistoryPostResponse>> AddWatchedHistoryItemsAsync(TraktSyncHistoryPost historyPost,
+        public Task<TraktResponse<ITraktSyncHistoryPostResponse>> AddWatchedHistoryItemsAsync(ITraktSyncHistoryPost historyPost,
                                                                                               CancellationToken cancellationToken = default)
         {
             ValidateHistoryPost(historyPost);
@@ -318,17 +318,17 @@
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="TraktSyncHistoryRemovePostBuilder" /> to create an instance
-        /// of the required <see cref="TraktSyncHistoryRemovePost" />.
+        /// of the required <see cref="ITraktSyncHistoryRemovePost" />.
         /// See also <seealso cref="TraktSyncHistoryRemovePost.Builder()" />.
         /// </para>
         /// </summary>
-        /// <param name="historyRemovePost">An <see cref="TraktSyncHistoryRemovePost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
+        /// <param name="historyRemovePost">An <see cref="ITraktSyncHistoryRemovePost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktSyncHistoryRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given history remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given history remove post is empty.</exception>
-        public Task<TraktResponse<ITraktSyncHistoryRemovePostResponse>> RemoveWatchedHistoryItemsAsync(TraktSyncHistoryRemovePost historyRemovePost,
+        public Task<TraktResponse<ITraktSyncHistoryRemovePostResponse>> RemoveWatchedHistoryItemsAsync(ITraktSyncHistoryRemovePost historyRemovePost,
                                                                                                        CancellationToken cancellationToken = default)
         {
             ValidateHistoryPost(historyRemovePost);
@@ -379,17 +379,17 @@
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="TraktSyncRatingsPostBuilder" /> to create an instance
-        /// of the required <see cref="TraktSyncRatingsPost" />.
+        /// of the required <see cref="ITraktSyncRatingsPost" />.
         /// See also <seealso cref="TraktSyncRatingsPost.Builder()" />.
         /// </para>
         /// </summary>
-        /// <param name="ratingsPost">An <see cref="TraktSyncRatingsPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
+        /// <param name="ratingsPost">An <see cref="ITraktSyncRatingsPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktSyncRatingsPostResponse" /> instance, which contains information about which items were added and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given ratings post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given ratings post is empty.</exception>
-        public Task<TraktResponse<ITraktSyncRatingsPostResponse>> AddRatingsAsync(TraktSyncRatingsPost ratingsPost,
+        public Task<TraktResponse<ITraktSyncRatingsPostResponse>> AddRatingsAsync(ITraktSyncRatingsPost ratingsPost,
                                                                                   CancellationToken cancellationToken = default)
         {
             ValidateRatingsPost(ratingsPost);
@@ -405,17 +405,17 @@
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="TraktSyncRatingsPostBuilder" /> to create an instance
-        /// of the required <see cref="TraktSyncRatingsPost" />.
+        /// of the required <see cref="ITraktSyncRatingsPost" />.
         /// See also <seealso cref="TraktSyncRatingsPost.Builder()" />.
         /// </para>
         /// </summary>
-        /// <param name="ratingsRemovePost">An <see cref="TraktSyncRatingsPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
+        /// <param name="ratingsRemovePost">An <see cref="ITraktSyncRatingsPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktSyncRatingsRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given ratings remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given ratings remove post is empty.</exception>
-        public Task<TraktResponse<ITraktSyncRatingsRemovePostResponse>> RemoveRatingsAsync(TraktSyncRatingsPost ratingsRemovePost,
+        public Task<TraktResponse<ITraktSyncRatingsRemovePostResponse>> RemoveRatingsAsync(ITraktSyncRatingsPost ratingsRemovePost,
                                                                                            CancellationToken cancellationToken = default)
         {
             ValidateRatingsPost(ratingsRemovePost);
@@ -469,17 +469,17 @@
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="TraktSyncWatchlistPostBuilder" /> to create an instance
-        /// of the required <see cref="TraktSyncWatchlistPost" />.
+        /// of the required <see cref="ITraktSyncWatchlistPost" />.
         /// See also <seealso cref="TraktSyncWatchlistPost.Builder()" />.
         /// </para>
         /// </summary>
-        /// <param name="watchlistPost">An <see cref="TraktSyncWatchlistPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
+        /// <param name="watchlistPost">An <see cref="ITraktSyncWatchlistPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktSyncWatchlistPostResponse" /> instance, which contains information about which items were added, existing and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given watchlist post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given watchlist post is empty.</exception>
-        public Task<TraktResponse<ITraktSyncWatchlistPostResponse>> AddWatchlistItemsAsync(TraktSyncWatchlistPost watchlistPost,
+        public Task<TraktResponse<ITraktSyncWatchlistPostResponse>> AddWatchlistItemsAsync(ITraktSyncWatchlistPost watchlistPost,
                                                                                            CancellationToken cancellationToken = default)
         {
             ValidateWatchlistPost(watchlistPost);
@@ -495,17 +495,17 @@
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="TraktSyncWatchlistPostBuilder" /> to create an instance
-        /// of the required <see cref="TraktSyncWatchlistPost" />.
+        /// of the required <see cref="ITraktSyncWatchlistPost" />.
         /// See also <seealso cref="TraktSyncWatchlistPost.Builder()" />.
         /// </para>
         /// </summary>
-        /// <param name="watchlistRemovePost">An <see cref="TraktSyncWatchlistPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
+        /// <param name="watchlistRemovePost">An <see cref="ITraktSyncWatchlistPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktSyncWatchlistRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given watchlist remove post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given watchlist remove post is empty.</exception>
-        public Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>> RemoveWatchlistItemsAsync(TraktSyncWatchlistPost watchlistRemovePost,
+        public Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>> RemoveWatchlistItemsAsync(ITraktSyncWatchlistPost watchlistRemovePost,
                                                                                                     CancellationToken cancellationToken = default)
         {
             ValidateWatchlistPost(watchlistRemovePost);
@@ -513,7 +513,7 @@
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchlistRemoveRequest { RequestBody = watchlistRemovePost }, cancellationToken);
         }
 
-        private void ValidateCollectionPost(TraktSyncCollectionPost collectionPost)
+        private void ValidateCollectionPost(ITraktSyncCollectionPost collectionPost)
         {
             if (collectionPost == null)
                 throw new ArgumentNullException(nameof(collectionPost), "collection post must not be null");
@@ -530,7 +530,7 @@
                 throw new ArgumentException("no collection items set");
         }
 
-        private void ValidateHistoryPost(TraktSyncHistoryPost historyPost)
+        private void ValidateHistoryPost(ITraktSyncHistoryPost historyPost)
         {
             if (historyPost == null)
                 throw new ArgumentNullException(nameof(historyPost), "history post must not be null");
@@ -547,7 +547,7 @@
                 throw new ArgumentException("no watched history items set");
         }
 
-        private void ValidateRatingsPost(TraktSyncRatingsPost ratingsPost)
+        private void ValidateRatingsPost(ITraktSyncRatingsPost ratingsPost)
         {
             if (ratingsPost == null)
                 throw new ArgumentNullException(nameof(ratingsPost), "ratings post must not be null");
@@ -564,7 +564,7 @@
                 throw new ArgumentException("no ratings items set");
         }
 
-        private void ValidateWatchlistPost(TraktSyncWatchlistPost watchlistPost)
+        private void ValidateWatchlistPost(ITraktSyncWatchlistPost watchlistPost)
         {
             if (watchlistPost == null)
                 throw new ArgumentNullException(nameof(watchlistPost), "watchlist post must not be null");

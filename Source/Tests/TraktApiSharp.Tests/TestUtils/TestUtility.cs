@@ -66,10 +66,11 @@
                                                        uint? page = null, uint? limit = null,
                                                        int? pageCount = null, int? itemCount = null,
                                                        int? userCount = null, string startDate = null,
-                                                       string endDate = null)
+                                                       string endDate = null, string sortBy = null,
+                                                       string sortHow = null)
         {
             var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
-            httpClientProvider.SetupOAuthMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate);
+            httpClientProvider.SetupOAuthMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate, sortBy, sortHow);
             return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider)
             {
                 Authorization = TestConstants.MOCK_AUTHORIZATION

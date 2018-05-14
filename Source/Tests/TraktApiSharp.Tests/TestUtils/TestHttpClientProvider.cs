@@ -17,6 +17,8 @@
         private const string HEADER_TRENDING_USER_COUNT_KEY = "X-Trending-User-Count";
         private const string HEADER_STARTDATE_KEY = "X-Start-Date";
         private const string HEADER_ENDDATE_KEY = "X-End-Date";
+        private const string HEADER_SORT_BY_KEY = "X-Sort-By";
+        private const string HEADER_SORT_HOW_KEY = "X-Sort-How";
         private const string TRAKT_API_HEADER_KEY = "trakt-api-key";
         private const string TRAKT_API_VERSION_HEADER_KEY = "trakt-api-version";
         private const string TRAKT_API_AUTHORIZATION_HEADEY_KEY = "Authorization";
@@ -110,7 +112,8 @@
                                              uint? page = null, uint? limit = null,
                                              int? pageCount = null, int? itemCount = null,
                                              int? userCount = null, string startDate = null,
-                                             string endDate = null)
+                                             string endDate = null, string sortBy = null,
+                                             string sortHow = null)
         {
             _mockHttpMessageHandler.Should().NotBeNull();
             _baseUrl.Should().NotBeNullOrEmpty();
@@ -140,6 +143,12 @@
 
             if (!string.IsNullOrEmpty(endDate))
                 response.Headers.Add(HEADER_ENDDATE_KEY, endDate);
+
+            if (!string.IsNullOrEmpty(sortBy))
+                response.Headers.Add(HEADER_SORT_BY_KEY, sortBy);
+
+            if (!string.IsNullOrEmpty(sortHow))
+                response.Headers.Add(HEADER_SORT_HOW_KEY, sortHow);
 
             response.Headers.Add("Accept", ACCEPT_MEDIA_TYPE);
             response.Content = new StringContent(responseContent);

@@ -1,7 +1,30 @@
 ﻿namespace TraktApiSharp.Tests.Modules.TraktSyncModule
 {
+    using System;
+    using TraktApiSharp.Enums;
+    using TraktApiSharp.Requests.Parameters;
+
     public partial class TraktSyncModule_Tests
     {
+        private const string ENCODED_COMMA = "%2C";
+        private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
+        private readonly TraktSyncType PLAYBACK_PROGRESS_TYPE = TraktSyncType.Episode;
+        private const uint PLAYBACK_PROGRESS_LIMIT = 4;
+        private readonly TraktRatingsItemType RATINGS_ITEM_TYPE = TraktRatingsItemType.Movie;
+        private const int ITEM_COUNT = 4;
+        private const uint PAGE = 2;
+        private const uint LIMIT = 4;
+        private readonly TraktSyncItemType HISTORY_ITEM_TYPE = TraktSyncItemType.Movie;
+        private readonly DateTime START_AT = DateTime.UtcNow.AddMonths(-1);
+        private readonly DateTime END_AT = DateTime.UtcNow;
+        private const uint HISTORY_ITEM_ID = 123U;
+        private const string WATCHLIST_SORT_BY = "rank";
+        private const string WATCHLIST_SORT_HOW = "asc";
+        private readonly TraktSyncItemType WATCHLIST_ITEM_TYPE = TraktSyncItemType.Episode;
+        private const uint PLAYBACK_ID = 13U;
+
+        private string BuildRatingsFilterString(int[] ratings) => string.Join(ENCODED_COMMA, ratings);
+
         private const string COLLECTION_POST_RESPONSE_JSON =
             @"{
                 ""added"": {

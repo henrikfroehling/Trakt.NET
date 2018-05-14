@@ -6,24 +6,21 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Ratings;
-    using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Xunit;
 
     [Category("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
-        private const string ENCODED_COMMA = "%2C";
+        private const string GET_RATINGS_URI = "sync/ratings";
 
         [Fact]
-        public void Test_TraktSyncModule_GetRatings()
+        public async Task Test_TraktSyncModule_GetRatings()
         {
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync().Result;
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, RATINGS_JSON);
+            TraktListResponse<ITraktRatingsItem> response = await client.Sync.GetRatingsAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -32,318 +29,14 @@
         }
 
         [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithType()
+        public async Task Test_TraktSyncModule_GetRatings_With_Type()
         {
-            var type = TraktRatingsItemType.Movie;
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithTypeAndRatingsFilter_1()
-        {
-            var type = TraktRatingsItemType.Movie;
-            var ratingsFilter = new int[] { 1 };
-            var ratingsFilterString = string.Join(ENCODED_COMMA, ratingsFilter);
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithTypeAndRatingsFilter_1_2()
-        {
-            var type = TraktRatingsItemType.Movie;
-            var ratingsFilter = new int[] { 1, 2 };
-            var ratingsFilterString = string.Join(ENCODED_COMMA, ratingsFilter);
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithTypeAndRatingsFilter_1_2_3()
-        {
-            var type = TraktRatingsItemType.Movie;
-            var ratingsFilter = new int[] { 1, 2, 3 };
-            var ratingsFilterString = string.Join(ENCODED_COMMA, ratingsFilter);
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithTypeAndRatingsFilter_1_2_3_4()
-        {
-            var type = TraktRatingsItemType.Movie;
-            var ratingsFilter = new int[] { 1, 2, 3, 4 };
-            var ratingsFilterString = string.Join(ENCODED_COMMA, ratingsFilter);
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithTypeAndRatingsFilter_1_2_3_4_5()
-        {
-            var type = TraktRatingsItemType.Movie;
-            var ratingsFilter = new int[] { 1, 2, 3, 4, 5 };
-            var ratingsFilterString = string.Join(ENCODED_COMMA, ratingsFilter);
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6()
-        {
-            var type = TraktRatingsItemType.Movie;
-            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6 };
-            var ratingsFilterString = string.Join(ENCODED_COMMA, ratingsFilter);
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7()
-        {
-            var type = TraktRatingsItemType.Movie;
-            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7 };
-            var ratingsFilterString = string.Join(ENCODED_COMMA, ratingsFilter);
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8()
-        {
-            var type = TraktRatingsItemType.Movie;
-            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8 };
-            var ratingsFilterString = string.Join(ENCODED_COMMA, ratingsFilter);
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9()
-        {
-            var type = TraktRatingsItemType.Movie;
-            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            var ratingsFilterString = string.Join(ENCODED_COMMA, ratingsFilter);
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_10()
-        {
-            var type = TraktRatingsItemType.Movie;
-            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-            var ratingsFilterString = string.Join(ENCODED_COMMA, ratingsFilter);
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}/{ratingsFilterString}", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_10_11()
-        {
-            var type = TraktRatingsItemType.Movie;
-            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
-            var ratingsFilterString = string.Join(ENCODED_COMMA, ratingsFilter);
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithTypeAndRatingsFilter_0_1_2_3_4_5_6_7_8_9_10()
-        {
-            var type = TraktRatingsItemType.Movie;
-            var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-            var ratingsFilterString = string.Join(ENCODED_COMMA, ratingsFilter);
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithTypeAndRatingsFilter_1_2_3_4_5_6_7_8_9_11()
-        {
-            var type = TraktRatingsItemType.Movie;
-            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 11 };
-            var ratingsFilterString = string.Join(ENCODED_COMMA, ratingsFilter);
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithTypeAndRatingsFilter_0_1_2_3_4_5_6_7_8_9()
-        {
-            var type = TraktRatingsItemType.Movie;
-            var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            var ratingsFilterString = string.Join(ENCODED_COMMA, ratingsFilter);
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithRatingsFilter()
-        {
-            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            var ratingsFilterString = string.Join(ENCODED_COMMA, ratingsFilter);
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(null, ratingsFilter).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithTypeAndExtendedOption()
-        {
-            var type = TraktRatingsItemType.Movie;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings/{type.UriName}?extended={extendedInfo}", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, null, extendedInfo).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsWithExtendedInfo()
-        {
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/ratings?extended={extendedInfo}", RATINGS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(null, null, extendedInfo).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatingsComplete()
-        {
-            var type = TraktRatingsItemType.Movie;
-            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-            var ratingsFilterString = string.Join(ENCODED_COMMA, ratingsFilter);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockResponseWithOAuth(
-                $"sync/ratings/{type.UriName}/{ratingsFilterString}?extended={extendedInfo}",
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}",
                 RATINGS_JSON);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync(type, ratingsFilter, extendedInfo).Result;
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -352,74 +45,447 @@
         }
 
         [Fact]
-        public void Test_TraktSyncModule_GetRatingsExceptions()
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_RatingsFilter_1()
         {
-            const string uri = "sync/ratings";
+            var ratingsFilter = new int[] { 1 };
 
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
+                RATINGS_JSON);
 
-            Func<Task<TraktListResponse<ITraktRatingsItem>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetRatingsAsync();
-            act.Should().Throw<TraktAuthorizationException>();
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_RatingsFilter_1_2()
+        {
+            var ratingsFilter = new int[] { 1, 2 };
+
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
+                RATINGS_JSON);
+
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_RatingsFilter_1_2_3()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3 };
+
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
+                RATINGS_JSON);
+
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_RatingsFilter_1_2_3_4()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3, 4 };
+
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
+                RATINGS_JSON);
+
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_RatingsFilter_1_2_3_4_5()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5 };
+
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
+                RATINGS_JSON);
+
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_RatingsFilter_1_2_3_4_5_6()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6 };
+
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
+                RATINGS_JSON);
+
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_RatingsFilter_1_2_3_4_5_6_7()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7 };
+
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
+                RATINGS_JSON);
+
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_RatingsFilter_1_2_3_4_5_6_7_8()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
+                RATINGS_JSON);
+
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_RatingsFilter_1_2_3_4_5_6_7_8_9()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
+                RATINGS_JSON);
+
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_RatingsFilter_1_2_3_4_5_6_7_8_9_10()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
+                RATINGS_JSON);
+
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_RatingsFilter_1_2_3_4_5_6_7_8_9_10_11()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}",
+                RATINGS_JSON);
+
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_RatingsFilter_0_1_2_3_4_5_6_7_8_9_10()
+        {
+            var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}",
+                RATINGS_JSON);
+
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_RatingsFilter_1_2_3_4_5_6_7_8_9_11()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 11 };
+
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}",
+                RATINGS_JSON);
+
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_RatingsFilter_0_1_2_3_4_5_6_7_8_9()
+        {
+            var ratingsFilter = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}",
+                RATINGS_JSON);
+
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_RatingsFilter()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, RATINGS_JSON);
+
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(null, ratingsFilter);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_ExtendedInfo()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}",
+                RATINGS_JSON);
+
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, null, EXTENDED_INFO);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_ExtendedInfo()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}?extended={EXTENDED_INFO}",
+                RATINGS_JSON);
+
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(null, null, EXTENDED_INFO);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_Complete()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}?extended={EXTENDED_INFO}",
+                RATINGS_JSON);
+
+            TraktListResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter, EXTENDED_INFO);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public void Test_TraktSyncModule_GetRatings_Throws_NotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktSyncModule_GetRatings_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktSyncModule_GetRatings_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktSyncModule_GetRatings_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktSyncModule_GetRatings_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktSyncModule_GetRatings_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktSyncModule_GetRatings_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktSyncModule_GetRatings_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktSyncModule_GetRatings_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, (HttpStatusCode)412);
+            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktSyncModule_GetRatings_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, (HttpStatusCode)422);
+            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktSyncModule_GetRatings_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, (HttpStatusCode)429);
+            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+        [Fact]
+        public void Test_TraktSyncModule_GetRatings_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, (HttpStatusCode)503);
+            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+        [Fact]
+        public void Test_TraktSyncModule_GetRatings_Throws_ServerUnavailableException_504()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, (HttpStatusCode)504);
+            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+        [Fact]
+        public void Test_TraktSyncModule_GetRatings_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, (HttpStatusCode)520);
+            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+        [Fact]
+        public void Test_TraktSyncModule_GetRatings_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, (HttpStatusCode)521);
+            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktSyncModule_GetRatings_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, (HttpStatusCode)522);
+            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
             act.Should().Throw<TraktServerUnavailableException>();
         }
     }

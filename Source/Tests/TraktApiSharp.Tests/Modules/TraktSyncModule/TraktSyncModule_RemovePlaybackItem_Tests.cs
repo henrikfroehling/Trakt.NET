@@ -13,95 +13,152 @@
     [Category("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
+        private readonly string REMOVE_PLAYBACK_ITEM_URI = $"sync/playback/{PLAYBACK_ID}";
+
         [Fact]
-        public void Test_TraktSyncModule_GetRemovePlaybackItem()
+        public async Task Test_TraktSyncModule_RemovePlaybackItem()
         {
-            const uint playbackId = 13U;
-
-            TestUtility.SetupMockResponseWithOAuth($"sync/playback/{playbackId}", HttpStatusCode.NoContent);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(playbackId).Result;
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Sync.RemovePlaybackItemAsync(PLAYBACK_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSyncModule_GetRemovePlaybackItemExceptions()
+        public void Test_TraktSyncModule_RemovePlaybackItem_Throws_NotFoundException()
         {
-            const uint playbackId = 13U;
-            var uri = $"sync/playback/{playbackId}";
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktNoContentResponse>> act = () => client.Sync.RemovePlaybackItemAsync(PLAYBACK_ID);
+            act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(playbackId);
+        [Fact]
+        public void Test_TraktSyncModule_RemovePlaybackItem_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktNoContentResponse>> act = () => client.Sync.RemovePlaybackItemAsync(PLAYBACK_ID);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
-            act.Should().Throw<TraktObjectNotFoundException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktSyncModule_RemovePlaybackItem_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktNoContentResponse>> act = () => client.Sync.RemovePlaybackItemAsync(PLAYBACK_ID);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktSyncModule_RemovePlaybackItem_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktNoContentResponse>> act = () => client.Sync.RemovePlaybackItemAsync(PLAYBACK_ID);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktSyncModule_RemovePlaybackItem_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktNoContentResponse>> act = () => client.Sync.RemovePlaybackItemAsync(PLAYBACK_ID);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktSyncModule_RemovePlaybackItem_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktNoContentResponse>> act = () => client.Sync.RemovePlaybackItemAsync(PLAYBACK_ID);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktSyncModule_RemovePlaybackItem_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktNoContentResponse>> act = () => client.Sync.RemovePlaybackItemAsync(PLAYBACK_ID);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktSyncModule_RemovePlaybackItem_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktNoContentResponse>> act = () => client.Sync.RemovePlaybackItemAsync(PLAYBACK_ID);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktSyncModule_RemovePlaybackItem_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, (HttpStatusCode)412);
+            Func<Task<TraktNoContentResponse>> act = () => client.Sync.RemovePlaybackItemAsync(PLAYBACK_ID);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktSyncModule_RemovePlaybackItem_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, (HttpStatusCode)422);
+            Func<Task<TraktNoContentResponse>> act = () => client.Sync.RemovePlaybackItemAsync(PLAYBACK_ID);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktSyncModule_RemovePlaybackItem_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, (HttpStatusCode)429);
+            Func<Task<TraktNoContentResponse>> act = () => client.Sync.RemovePlaybackItemAsync(PLAYBACK_ID);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktSyncModule_RemovePlaybackItem_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, (HttpStatusCode)503);
+            Func<Task<TraktNoContentResponse>> act = () => client.Sync.RemovePlaybackItemAsync(PLAYBACK_ID);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktSyncModule_GetRemovePlaybackItemArgumentExceptions()
+        public void Test_TraktSyncModule_RemovePlaybackItem_Throws_ServerUnavailableException_504()
         {
-            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Sync.RemovePlaybackItemAsync(0);
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, (HttpStatusCode)504);
+            Func<Task<TraktNoContentResponse>> act = () => client.Sync.RemovePlaybackItemAsync(PLAYBACK_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktSyncModule_RemovePlaybackItem_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, (HttpStatusCode)520);
+            Func<Task<TraktNoContentResponse>> act = () => client.Sync.RemovePlaybackItemAsync(PLAYBACK_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktSyncModule_RemovePlaybackItem_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, (HttpStatusCode)521);
+            Func<Task<TraktNoContentResponse>> act = () => client.Sync.RemovePlaybackItemAsync(PLAYBACK_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktSyncModule_RemovePlaybackItem_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, (HttpStatusCode)522);
+            Func<Task<TraktNoContentResponse>> act = () => client.Sync.RemovePlaybackItemAsync(PLAYBACK_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktSyncModule_RemovePlaybackItem_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PLAYBACK_ITEM_URI, HttpStatusCode.NoContent);
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Sync.RemovePlaybackItemAsync(0);
             act.Should().Throw<ArgumentOutOfRangeException>();
         }
     }

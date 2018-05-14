@@ -14,19 +14,20 @@
     [Category("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
-        [Fact]
-        public void Test_TraktSyncModule_GetLastActivities()
-        {
-            TestUtility.SetupMockResponseWithOAuth("sync/last_activities", LAST_ACTIVITIES_JSON);
+        private const string GET_LAST_ACTIVITIES_URI = "sync/last_activities";
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Sync.GetLastActivitiesAsync().Result;
+        [Fact]
+        public async Task Test_TraktSyncModule_GetLastActivities()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LAST_ACTIVITIES_URI, LAST_ACTIVITIES_JSON);
+            TraktResponse<ITraktSyncLastActivities> response = await client.Sync.GetLastActivitiesAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktSyncLastActivities responseValue = response.Value;
 
             responseValue.All.Should().Be(DateTime.Parse("2014-11-20T07:01:32.378Z").ToUniversalTime());
             responseValue.Movies.Should().NotBeNull();
@@ -68,74 +69,130 @@
         }
 
         [Fact]
-        public void Test_TraktSyncModule_GetLastActivitiesExceptions()
+        public void Test_TraktSyncModule_GetLastActivities_Throws_NotFoundException()
         {
-            const string uri = "sync/last_activities";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Sync.GetLastActivitiesAsync();
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LAST_ACTIVITIES_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act = () => client.Sync.GetLastActivitiesAsync();
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktSyncModule_GetLastActivities_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LAST_ACTIVITIES_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act = () => client.Sync.GetLastActivitiesAsync();
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktSyncModule_GetLastActivities_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LAST_ACTIVITIES_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act = () => client.Sync.GetLastActivitiesAsync();
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktSyncModule_GetLastActivities_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LAST_ACTIVITIES_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act = () => client.Sync.GetLastActivitiesAsync();
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktSyncModule_GetLastActivities_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LAST_ACTIVITIES_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act = () => client.Sync.GetLastActivitiesAsync();
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktSyncModule_GetLastActivities_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LAST_ACTIVITIES_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act = () => client.Sync.GetLastActivitiesAsync();
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktSyncModule_GetLastActivities_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LAST_ACTIVITIES_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act = () => client.Sync.GetLastActivitiesAsync();
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktSyncModule_GetLastActivities_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LAST_ACTIVITIES_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act = () => client.Sync.GetLastActivitiesAsync();
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktSyncModule_GetLastActivities_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LAST_ACTIVITIES_URI, (HttpStatusCode)412);
+            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act = () => client.Sync.GetLastActivitiesAsync();
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktSyncModule_GetLastActivities_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LAST_ACTIVITIES_URI, (HttpStatusCode)422);
+            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act = () => client.Sync.GetLastActivitiesAsync();
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktSyncModule_GetLastActivities_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LAST_ACTIVITIES_URI, (HttpStatusCode)429);
+            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act = () => client.Sync.GetLastActivitiesAsync();
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
+        [Fact]
+        public void Test_TraktSyncModule_GetLastActivities_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LAST_ACTIVITIES_URI, (HttpStatusCode)503);
+            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act = () => client.Sync.GetLastActivitiesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
+        [Fact]
+        public void Test_TraktSyncModule_GetLastActivities_Throws_ServerUnavailableException_504()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LAST_ACTIVITIES_URI, (HttpStatusCode)504);
+            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act = () => client.Sync.GetLastActivitiesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
+        [Fact]
+        public void Test_TraktSyncModule_GetLastActivities_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LAST_ACTIVITIES_URI, (HttpStatusCode)520);
+            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act = () => client.Sync.GetLastActivitiesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
+        [Fact]
+        public void Test_TraktSyncModule_GetLastActivities_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LAST_ACTIVITIES_URI, (HttpStatusCode)521);
+            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act = () => client.Sync.GetLastActivitiesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktSyncModule_GetLastActivities_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LAST_ACTIVITIES_URI, (HttpStatusCode)522);
+            Func<Task<TraktResponse<ITraktSyncLastActivities>>> act = () => client.Sync.GetLastActivitiesAsync();
             act.Should().Throw<TraktServerUnavailableException>();
         }
     }
