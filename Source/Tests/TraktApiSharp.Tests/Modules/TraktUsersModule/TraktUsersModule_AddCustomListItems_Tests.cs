@@ -8,11 +8,9 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
-    using TraktApiSharp.Objects.Get.People.Implementations;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
+    using TraktApiSharp.Objects.Get.People;
+    using TraktApiSharp.Objects.Post.Responses;
     using TraktApiSharp.Objects.Post.Users.CustomListItems;
     using TraktApiSharp.Objects.Post.Users.CustomListItems.Implementations;
     using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
@@ -22,95 +20,26 @@
     [Category("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
+        private readonly string ADD_CUSTOM_LIST_ITEMS_URI = $"users/{USERNAME}/lists/{LIST_ID}/items";
+
         [Fact]
         public async Task Test_TraktUsersModule_AddCustomListItems()
         {
-            const string username = "sean";
-            const string listId = "55";
-
-            var customListItems = new TraktUserCustomListItemsPost
-            {
-                Movies = new List<TraktUserCustomListItemsPostMovie>()
-                {
-                    new TraktUserCustomListItemsPostMovie
-                    {
-                        Ids = new TraktMovieIds { Trakt = 1 },
-                    },
-                    new TraktUserCustomListItemsPostMovie
-                    {
-                        Ids = new TraktMovieIds { Imdb = "tt0000111" }
-                    }
-                },
-                Shows = new List<TraktUserCustomListItemsPostShow>()
-                {
-                    new TraktUserCustomListItemsPostShow
-                    {
-                        Ids = new TraktShowIds { Trakt = 1 }
-                    },
-                    new TraktUserCustomListItemsPostShow
-                    {
-                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
-                        {
-                            new TraktUserCustomListItemsPostShowSeason
-                            {
-                                Number = 1
-                            }
-                        },
-                        Ids = new TraktShowIds { Trakt = 2 }
-                    },
-                    new TraktUserCustomListItemsPostShow
-                    {
-                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
-                        {
-                            new TraktUserCustomListItemsPostShowSeason
-                            {
-                                Number = 1,
-                                Episodes = new List<TraktUserCustomListItemsPostShowEpisode>()
-                                {
-                                    new TraktUserCustomListItemsPostShowEpisode
-                                    {
-                                        Number = 1
-                                    },
-                                    new TraktUserCustomListItemsPostShowEpisode
-                                    {
-                                        Number = 2
-                                    }
-                                }
-                            }
-                        },
-                        Ids = new TraktShowIds { Trakt = 3 }
-                    }
-                },
-                People = new List<TraktPerson>()
-                {
-                    new TraktPerson
-                    {
-                        Name = "Jeff Bridges",
-                        Ids = new TraktPersonIds
-                        {
-                            Trakt = 2,
-                            Slug = "jeff-bridges",
-                            Imdb = "nm0000313",
-                            Tmdb = 1229,
-                            TvRage = 59067
-                        }
-                    }
-                }
-            };
-
-            string postJson = await TestUtility.SerializeObject<ITraktUserCustomListItemsPost>(customListItems);
+            string postJson = await TestUtility.SerializeObject(AddCustomListItemsPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}/items", postJson, CUSTOM_LIST_ITEMS_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                ADD_CUSTOM_LIST_ITEMS_URI, postJson, CUSTOM_LIST_ITEMS_POST_RESPONSE_JSON);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(username, listId, customListItems).Result;
+            TraktResponse<ITraktUserCustomListItemsPostResponse> response =
+                await client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktUserCustomListItemsPostResponse responseValue = response.Value;
 
             responseValue.Added.Should().NotBeNull();
             responseValue.Added.Movies.Should().Be(1);
@@ -129,7 +58,7 @@
             responseValue.NotFound.Should().NotBeNull();
             responseValue.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
 
-            var movies = responseValue.NotFound.Movies.ToArray();
+            ITraktPostResponseNotFoundMovie[] movies = responseValue.NotFound.Movies.ToArray();
 
             movies[0].Ids.Should().NotBeNull();
             movies[0].Ids.Trakt.Should().Be(0);
@@ -144,96 +73,24 @@
         }
 
         [Fact]
-        public async Task Test_TraktUsersModule_AddCustomListItemsWithType()
+        public async Task Test_TraktUsersModule_AddCustomListItems_With_Type()
         {
-            const string username = "sean";
-            const string listId = "55";
-            var type = TraktListItemType.Movie;
-
-            var customListItems = new TraktUserCustomListItemsPost
-            {
-                Movies = new List<TraktUserCustomListItemsPostMovie>()
-                {
-                    new TraktUserCustomListItemsPostMovie
-                    {
-                        Ids = new TraktMovieIds { Trakt = 1 },
-                    },
-                    new TraktUserCustomListItemsPostMovie
-                    {
-                        Ids = new TraktMovieIds { Imdb = "tt0000111" }
-                    }
-                },
-                Shows = new List<TraktUserCustomListItemsPostShow>()
-                {
-                    new TraktUserCustomListItemsPostShow
-                    {
-                        Ids = new TraktShowIds { Trakt = 1 }
-                    },
-                    new TraktUserCustomListItemsPostShow
-                    {
-                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
-                        {
-                            new TraktUserCustomListItemsPostShowSeason
-                            {
-                                Number = 1
-                            }
-                        },
-                        Ids = new TraktShowIds { Trakt = 2 }
-                    },
-                    new TraktUserCustomListItemsPostShow
-                    {
-                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
-                        {
-                            new TraktUserCustomListItemsPostShowSeason
-                            {
-                                Number = 1,
-                                Episodes = new List<TraktUserCustomListItemsPostShowEpisode>()
-                                {
-                                    new TraktUserCustomListItemsPostShowEpisode
-                                    {
-                                        Number = 1
-                                    },
-                                    new TraktUserCustomListItemsPostShowEpisode
-                                    {
-                                        Number = 2
-                                    }
-                                }
-                            }
-                        },
-                        Ids = new TraktShowIds { Trakt = 3 }
-                    }
-                },
-                People = new List<TraktPerson>()
-                {
-                    new TraktPerson
-                    {
-                        Name = "Jeff Bridges",
-                        Ids = new TraktPersonIds
-                        {
-                            Trakt = 2,
-                            Slug = "jeff-bridges",
-                            Imdb = "nm0000313",
-                            Tmdb = 1229,
-                            TvRage = 59067
-                        }
-                    }
-                }
-            };
-
-            string postJson = await TestUtility.SerializeObject<ITraktUserCustomListItemsPost>(customListItems);
+            string postJson = await TestUtility.SerializeObject(AddCustomListItemsPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}/items/{type.UriName}",
-                                                   postJson, CUSTOM_LIST_ITEMS_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{ADD_CUSTOM_LIST_ITEMS_URI}/{LIST_ITEM_TYPE.UriName}",
+                postJson, CUSTOM_LIST_ITEMS_POST_RESPONSE_JSON);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(username, listId, customListItems, type).Result;
+            TraktResponse<ITraktUserCustomListItemsPostResponse> response =
+                await client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost, LIST_ITEM_TYPE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktUserCustomListItemsPostResponse responseValue = response.Value;
 
             responseValue.Added.Should().NotBeNull();
             responseValue.Added.Movies.Should().Be(1);
@@ -252,7 +109,7 @@
             responseValue.NotFound.Should().NotBeNull();
             responseValue.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
 
-            var movies = responseValue.NotFound.Movies.ToArray();
+            ITraktPostResponseNotFoundMovie[] movies = responseValue.NotFound.Movies.ToArray();
 
             movies[0].Ids.Should().NotBeNull();
             movies[0].Ids.Trakt.Should().Be(0);
@@ -267,222 +124,174 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_AddCustomListItemsExceptions()
+        public void Test_TraktUsersModule_AddCustomListItems_Throws_NotFoundException()
         {
-            const string username = "sean";
-            const string listId = "55";
-
-            var customListItems = new TraktUserCustomListItemsPost
-            {
-                Movies = new List<TraktUserCustomListItemsPostMovie>()
-                {
-                    new TraktUserCustomListItemsPostMovie
-                    {
-                        Ids = new TraktMovieIds { Trakt = 1 },
-                    },
-                    new TraktUserCustomListItemsPostMovie
-                    {
-                        Ids = new TraktMovieIds { Imdb = "tt0000111" }
-                    }
-                },
-                Shows = new List<TraktUserCustomListItemsPostShow>()
-                {
-                    new TraktUserCustomListItemsPostShow
-                    {
-                        Ids = new TraktShowIds { Trakt = 1 }
-                    },
-                    new TraktUserCustomListItemsPostShow
-                    {
-                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
-                        {
-                            new TraktUserCustomListItemsPostShowSeason
-                            {
-                                Number = 1
-                            }
-                        },
-                        Ids = new TraktShowIds { Trakt = 2 }
-                    },
-                    new TraktUserCustomListItemsPostShow
-                    {
-                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
-                        {
-                            new TraktUserCustomListItemsPostShowSeason
-                            {
-                                Number = 1,
-                                Episodes = new List<TraktUserCustomListItemsPostShowEpisode>()
-                                {
-                                    new TraktUserCustomListItemsPostShowEpisode
-                                    {
-                                        Number = 1
-                                    },
-                                    new TraktUserCustomListItemsPostShowEpisode
-                                    {
-                                        Number = 2
-                                    }
-                                }
-                            }
-                        },
-                        Ids = new TraktShowIds { Trakt = 3 }
-                    }
-                },
-                People = new List<TraktPerson>()
-                {
-                    new TraktPerson
-                    {
-                        Name = "Jeff Bridges",
-                        Ids = new TraktPersonIds
-                        {
-                            Trakt = 2,
-                            Slug = "jeff-bridges",
-                            Imdb = "nm0000313",
-                            Tmdb = 1229,
-                            TvRage = 59067
-                        }
-                    }
-                }
-            };
-
-            var uri = $"users/{username}/lists/{listId}/items";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(username, listId, customListItems);
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost);
             act.Should().Throw<TraktListNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktUsersModule_AddCustomListItems_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost);
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_AddCustomListItems_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktUsersModule_AddCustomListItems_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktUsersModule_AddCustomListItems_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktUsersModule_AddCustomListItems_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktUsersModule_AddCustomListItems_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktUsersModule_AddCustomListItems_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktUsersModule_AddCustomListItems_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)412);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktUsersModule_AddCustomListItems_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)422);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktUsersModule_AddCustomListItems_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)429);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktUsersModule_AddCustomListItems_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)503);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_AddCustomListItemsArgumentExceptions()
+        public void Test_TraktUsersModule_AddCustomListItems_Throws_ServerUnavailableException_504()
         {
-            const string username = "sean";
-            const string listId = "55";
+            TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)504);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            var customListItems = new TraktUserCustomListItemsPost
-            {
-                Movies = new List<TraktUserCustomListItemsPostMovie>()
-                {
-                    new TraktUserCustomListItemsPostMovie
-                    {
-                        Ids = new TraktMovieIds { Trakt = 1 },
-                    }
-                },
-                Shows = new List<TraktUserCustomListItemsPostShow>()
-                {
-                    new TraktUserCustomListItemsPostShow
-                    {
-                        Ids = new TraktShowIds { Trakt = 1 }
-                    }
-                },
-                People = new List<TraktPerson>()
-                {
-                    new TraktPerson
-                    {
-                        Name = "Jeff Bridges",
-                        Ids = new TraktPersonIds
-                        {
-                            Trakt = 2,
-                            Slug = "jeff-bridges",
-                            Imdb = "nm0000313",
-                            Tmdb = 1229,
-                            TvRage = 59067
-                        }
-                    }
-                }
-            };
+        [Fact]
+        public void Test_TraktUsersModule_AddCustomListItems_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)520);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_AddCustomListItems_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)521);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_AddCustomListItems_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)522);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_AddCustomListItems_ArgumentExceptions()
+        {
+            string postJson = await TestUtility.SerializeObject(AddCustomListItemsPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, postJson, CUSTOM_LIST_ITEMS_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(null, listId, customListItems);
+                () => client.Users.AddCustomListItemsAsync(null, LIST_ID, AddCustomListItemsPost);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(string.Empty, listId, customListItems);
+            act = () => client.Users.AddCustomListItemsAsync(string.Empty, LIST_ID, AddCustomListItemsPost);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync("user name", listId, customListItems);
+            act = () => client.Users.AddCustomListItemsAsync("user name", LIST_ID, AddCustomListItemsPost);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(username, null, customListItems);
+            act = () => client.Users.AddCustomListItemsAsync(USERNAME, null, AddCustomListItemsPost);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(username, string.Empty, customListItems);
+            act = () => client.Users.AddCustomListItemsAsync(USERNAME, string.Empty, AddCustomListItemsPost);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(username, "list id", customListItems);
+            act = () => client.Users.AddCustomListItemsAsync(USERNAME, "list id", AddCustomListItemsPost);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(username, listId, null);
+            act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, null);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(username, listId, new TraktUserCustomListItemsPost());
+            act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, new TraktUserCustomListItemsPost());
             act.Should().Throw<ArgumentException>();
 
-            customListItems = new TraktUserCustomListItemsPost
+            ITraktUserCustomListItemsPost customListItems = new TraktUserCustomListItemsPost
             {
-                Movies = new List<TraktUserCustomListItemsPostMovie>(),
-                Shows = new List<TraktUserCustomListItemsPostShow>(),
-                People = new List<TraktPerson>()
+                Movies = new List<ITraktUserCustomListItemsPostMovie>(),
+                Shows = new List<ITraktUserCustomListItemsPostShow>(),
+                People = new List<ITraktPerson>()
             };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.AddCustomListItemsAsync(username, listId, customListItems);
+            act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, customListItems);
             act.Should().Throw<ArgumentException>();
         }
     }

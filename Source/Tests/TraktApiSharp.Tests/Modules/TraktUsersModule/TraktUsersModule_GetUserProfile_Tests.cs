@@ -8,28 +8,26 @@
     using Traits;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Users;
-    using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Xunit;
 
     [Category("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
+        private readonly string GET_USER_PROFILE_URI = $"users/{USERNAME}";
+
         [Fact]
-        public void Test_TraktUsersModule_GetUserProfile()
+        public async Task Test_TraktUsersModule_GetUserProfile()
         {
-            const string username = "sean";
-
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}", PROFILE_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserProfileAsync(username).Result;
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, PROFILE_JSON);
+            TraktResponse<ITraktUser> response = await client.Users.GetUserProfileAsync(USERNAME);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktUser responseValue = response.Value;
 
             responseValue.Username.Should().Be("sean");
             responseValue.IsPrivate.Should().BeFalse();
@@ -45,21 +43,19 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetUserProfileWithExtendedInfo()
+        public async Task Test_TraktUsersModule_GetUserProfile_With_OAuth_Enforced()
         {
-            const string username = "sean";
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_USER_PROFILE_URI, PROFILE_JSON);
+            client.Configuration.ForceAuthorization = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}?extended={extendedInfo}", PROFILE_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserProfileAsync(username, extendedInfo).Result;
+            TraktResponse<ITraktUser> response = await client.Users.GetUserProfileAsync(USERNAME);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktUser responseValue = response.Value;
 
             responseValue.Username.Should().Be("sean");
             responseValue.IsPrivate.Should().BeFalse();
@@ -75,21 +71,20 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetUserProfileWithOAuthEnforced()
+        public async Task Test_TraktUsersModule_GetUserProfile_With_ExtendedInfo()
         {
-            const string username = "sean";
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_USER_PROFILE_URI}?extended={EXTENDED_INFO}",
+                PROFILE_JSON);
 
-            TestUtility.SetupMockResponseWithOAuth($"users/{username}", PROFILE_JSON);
-            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetUserProfileAsync(username).Result;
+            TraktResponse<ITraktUser> response = await client.Users.GetUserProfileAsync(USERNAME, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktUser responseValue = response.Value;
 
             responseValue.Username.Should().Be("sean");
             responseValue.IsPrivate.Should().BeFalse();
@@ -105,88 +100,145 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetUserProfileExceptions()
+        public void Test_TraktUsersModule_GetUserProfile_Throws_NotFoundException()
         {
-            const string username = "sean";
-            var uri = $"users/{username}";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktResponse<ITraktUser>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserProfileAsync(username);
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(USERNAME);
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktUsersModule_GetUserProfile_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(USERNAME);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktUsersModule_GetUserProfile_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(USERNAME);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktUsersModule_GetUserProfile_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(USERNAME);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktUsersModule_GetUserProfile_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(USERNAME);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktUsersModule_GetUserProfile_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(USERNAME);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktUsersModule_GetUserProfile_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(USERNAME);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktUsersModule_GetUserProfile_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(USERNAME);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktUsersModule_GetUserProfile_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, (HttpStatusCode)412);
+            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(USERNAME);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktUsersModule_GetUserProfile_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, (HttpStatusCode)422);
+            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(USERNAME);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktUsersModule_GetUserProfile_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, (HttpStatusCode)429);
+            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(USERNAME);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktUsersModule_GetUserProfile_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, (HttpStatusCode)503);
+            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(USERNAME);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetUserProfileArgumentExceptions()
+        public void Test_TraktUsersModule_GetUserProfile_Throws_ServerUnavailableException_504()
         {
-            Func<Task<TraktResponse<ITraktUser>>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserProfileAsync(null);
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, (HttpStatusCode)504);
+            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetUserProfile_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, (HttpStatusCode)520);
+            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetUserProfile_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, (HttpStatusCode)521);
+            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetUserProfile_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, (HttpStatusCode)522);
+            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetUserProfile_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, PROFILE_JSON);
+
+            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(null);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserProfileAsync(string.Empty);
+            act = () => client.Users.GetUserProfileAsync(string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetUserProfileAsync("user name");
+            act = () => client.Users.GetUserProfileAsync("user name");
             act.Should().Throw<ArgumentException>();
         }
     }

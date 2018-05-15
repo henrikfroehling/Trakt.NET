@@ -13,115 +13,167 @@
     [Category("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
+        private readonly string LIKE_LIST_URI = $"users/{USERNAME}/lists/{LIST_ID}/like";
+
         [Fact]
-        public void Test_TraktUsersModule_LikeList()
+        public async Task Test_TraktUsersModule_LikeList()
         {
-            const string username = "sean";
-            const string listId = "55";
-
-            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}/like", HttpStatusCode.NoContent);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(username, listId).Result;
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Users.LikeListAsync(USERNAME, LIST_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_LikeListExceptions()
+        public void Test_TraktUsersModule_LikeList_Throws_NotFoundException()
         {
-            const string username = "sean";
-            const string listId = "55";
-            var uri = $"users/{username}/lists/{listId}/like";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(username, listId);
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.LikeListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktListNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktUsersModule_LikeList_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.LikeListAsync(USERNAME, LIST_ID);
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_LikeList_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.LikeListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktUsersModule_LikeList_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.LikeListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktUsersModule_LikeList_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.LikeListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktUsersModule_LikeList_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.LikeListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktUsersModule_LikeList_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.LikeListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktUsersModule_LikeList_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.LikeListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktUsersModule_LikeList_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, (HttpStatusCode)412);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.LikeListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktUsersModule_LikeList_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, (HttpStatusCode)422);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.LikeListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktUsersModule_LikeList_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, (HttpStatusCode)429);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.LikeListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktUsersModule_LikeList_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, (HttpStatusCode)503);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.LikeListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_LikeListArgumentExceptions()
+        public void Test_TraktUsersModule_LikeList_Throws_ServerUnavailableException_504()
         {
-            const string username = "sean";
-            const string listId = "55";
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, (HttpStatusCode)504);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.LikeListAsync(USERNAME, LIST_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(null, listId);
+        [Fact]
+        public void Test_TraktUsersModule_LikeList_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, (HttpStatusCode)520);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.LikeListAsync(USERNAME, LIST_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_LikeList_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, (HttpStatusCode)521);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.LikeListAsync(USERNAME, LIST_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_LikeList_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, (HttpStatusCode)522);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.LikeListAsync(USERNAME, LIST_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_LikeList_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, HttpStatusCode.NoContent);
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.LikeListAsync(null, LIST_ID);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(string.Empty, listId);
+            act = () => client.Users.LikeListAsync(string.Empty, LIST_ID);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync("user name", listId);
+            act = () => client.Users.LikeListAsync("user name", LIST_ID);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(username, null);
+            act = () => client.Users.LikeListAsync(USERNAME, null);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(username, string.Empty);
+            act = () => client.Users.LikeListAsync(USERNAME, string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.LikeListAsync(username, "list id");
+            act = () => client.Users.LikeListAsync(USERNAME, "list id");
             act.Should().Throw<ArgumentException>();
         }
     }

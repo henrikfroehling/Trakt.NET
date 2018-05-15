@@ -13,103 +13,158 @@
     [Category("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
+        private readonly string UNFOLLOW_USER_URI = $"users/{USERNAME}/follow";
+
         [Fact]
-        public void Test_TraktUsersModule_UnfollowUser()
+        public async Task Test_TraktUsersModule_UnfollowUser()
         {
-            const string username = "sean";
-
-            TestUtility.SetupMockResponseWithOAuth($"users/{username}/follow", HttpStatusCode.NoContent);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.UnfollowUserAsync(username).Result;
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Users.UnfollowUserAsync(USERNAME);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_UnfollowUserExceptions()
+        public void Test_TraktUsersModule_UnfollowUser_Throws_NotFoundException()
         {
-            const string username = "sean";
-            var uri = $"users/{username}/follow";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktNoContentResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnfollowUserAsync(username);
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(USERNAME);
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktUsersModule_UnfollowUser_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(USERNAME);
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_UnfollowUser_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(USERNAME);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktUsersModule_UnfollowUser_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(USERNAME);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktUsersModule_UnfollowUser_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(USERNAME);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktUsersModule_UnfollowUser_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(USERNAME);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktUsersModule_UnfollowUser_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(USERNAME);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktUsersModule_UnfollowUser_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(USERNAME);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktUsersModule_UnfollowUser_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, (HttpStatusCode)412);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(USERNAME);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktUsersModule_UnfollowUser_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, (HttpStatusCode)422);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(USERNAME);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktUsersModule_UnfollowUser_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, (HttpStatusCode)429);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(USERNAME);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktUsersModule_UnfollowUser_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, (HttpStatusCode)503);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(USERNAME);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_UnfollowUserArgumentExceptions()
+        public void Test_TraktUsersModule_UnfollowUser_Throws_ServerUnavailableException_504()
         {
-            Func<Task<TraktNoContentResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnfollowUserAsync(null);
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, (HttpStatusCode)504);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_UnfollowUser_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, (HttpStatusCode)520);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_UnfollowUser_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, (HttpStatusCode)521);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_UnfollowUser_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, (HttpStatusCode)522);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_UnfollowUser_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, HttpStatusCode.NoContent);
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(null);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnfollowUserAsync(string.Empty);
+            act = () => client.Users.UnfollowUserAsync(string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.UnfollowUserAsync("user name");
+            act = () => client.Users.UnfollowUserAsync("user name");
             act.Should().Throw<ArgumentException>();
         }
     }

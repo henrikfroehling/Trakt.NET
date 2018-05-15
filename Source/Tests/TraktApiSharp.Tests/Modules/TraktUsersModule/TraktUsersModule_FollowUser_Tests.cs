@@ -14,21 +14,20 @@
     [Category("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
+        private readonly string FOLLOW_USER_URI = $"users/{USERNAME}/follow";
+
         [Fact]
-        public void Test_TraktUsersModule_FollowUser()
+        public async Task Test_TraktUsersModule_FollowUser()
         {
-            const string username = "sean";
-
-            TestUtility.SetupMockResponseWithOAuth($"users/{username}/follow", FOLLOW_USER_RESPONSE_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.FollowUserAsync(username).Result;
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, FOLLOW_USER_RESPONSE_JSON);
+            TraktResponse<ITraktUserFollowUserPostResponse> response = await client.Users.FollowUserAsync(USERNAME);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktUserFollowUserPostResponse responseValue = response.Value;
 
             responseValue.ApprovedAt.Should().Be(DateTime.Parse("2014-11-15T09:41:34.704Z").ToUniversalTime());
             responseValue.User.Should().NotBeNull();
@@ -40,89 +39,145 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_FollowUserExceptions()
+        public void Test_TraktUsersModule_FollowUser_Throws_NotFoundException()
         {
-            const string username = "sean";
-            var uri = $"users/{username}/follow";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.FollowUserAsync(username);
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(USERNAME);
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktUsersModule_FollowUser_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(USERNAME);
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_FollowUser_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(USERNAME);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktUsersModule_FollowUser_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(USERNAME);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktUsersModule_FollowUser_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(USERNAME);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktUsersModule_FollowUser_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(USERNAME);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktUsersModule_FollowUser_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(USERNAME);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktUsersModule_FollowUser_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(USERNAME);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktUsersModule_FollowUser_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, (HttpStatusCode)412);
+            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(USERNAME);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktUsersModule_FollowUser_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, (HttpStatusCode)422);
+            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(USERNAME);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktUsersModule_FollowUser_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, (HttpStatusCode)429);
+            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(USERNAME);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktUsersModule_FollowUser_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, (HttpStatusCode)503);
+            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(USERNAME);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_FollowUserArgumentExceptions()
+        public void Test_TraktUsersModule_FollowUser_Throws_ServerUnavailableException_504()
         {
-            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.FollowUserAsync(null);
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, (HttpStatusCode)504);
+            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_FollowUser_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, (HttpStatusCode)520);
+            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_FollowUser_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, (HttpStatusCode)521);
+            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_FollowUser_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, (HttpStatusCode)522);
+            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_FollowUser_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, FOLLOW_USER_RESPONSE_JSON);
+
+            Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(null);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.FollowUserAsync(string.Empty);
+            act = () => client.Users.FollowUserAsync(string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.FollowUserAsync("user name");
+            act = () => client.Users.FollowUserAsync("user name");
             act.Should().Throw<ArgumentException>();
         }
     }

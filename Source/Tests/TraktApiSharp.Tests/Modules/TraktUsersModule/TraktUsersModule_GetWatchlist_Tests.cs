@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Watchlist;
     using TraktApiSharp.Requests.Parameters;
@@ -16,489 +15,492 @@
     [Category("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
+        private readonly string GET_WATCHLIST_URI = $"users/{USERNAME}/watchlist";
+
         [Fact]
-        public void Test_TraktUsersModule_GetWatchlist()
+        public async Task Test_TraktUsersModule_GetWatchlist()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const string sortBy = "rank";
-            const string sortHow = "asc";
+            TraktClient client = TestUtility.GetMockClient(
+                GET_WATCHLIST_URI,
+                WATCHLIST_JSON, 1, 10, 1, WATCHLIST_ITEM_COUNT,
+                sortBy: SORT_BY, sortHow: SORT_HOW);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/watchlist", WATCHLIST_JSON, 1, 10, 1, itemCount, null, sortBy, sortHow);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username).Result;
+            TraktPagedResponse<ITraktWatchlistItem> response = await client.Users.GetWatchlistAsync(USERNAME);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(WATCHLIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(WATCHLIST_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.SortBy.Should().NotBeNull().And.Be(sortBy);
-            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+            response.SortBy.Should().NotBeNull().And.Be(SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(SORT_HOW);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchlistWithOAuthEnforced()
+        public async Task Test_TraktUsersModule_GetWatchlist_With_OAuth_Enforced()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const string sortBy = "rank";
-            const string sortHow = "asc";
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                GET_WATCHLIST_URI,
+                WATCHLIST_JSON, 1, 10, 1, WATCHLIST_ITEM_COUNT,
+                sortBy: SORT_BY, sortHow: SORT_HOW);
 
-            TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"users/{username}/watchlist", WATCHLIST_JSON, 1, 10, 1, itemCount, null, sortBy, sortHow);
+            client.Configuration.ForceAuthorization = true;
 
-            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username).Result;
+            TraktPagedResponse<ITraktWatchlistItem> response = await client.Users.GetWatchlistAsync(USERNAME);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(WATCHLIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(WATCHLIST_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.SortBy.Should().NotBeNull().And.Be(sortBy);
-            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+            response.SortBy.Should().NotBeNull().And.Be(SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(SORT_HOW);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchlistWithType()
+        public async Task Test_TraktUsersModule_GetWatchlist_With_Type()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const string sortBy = "rank";
-            const string sortHow = "asc";
-            var type = TraktSyncItemType.Movie;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}",
+                WATCHLIST_JSON, 1, 10, 1, WATCHLIST_ITEM_COUNT,
+                sortBy: SORT_BY, sortHow: SORT_HOW);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/watchlist/{type.UriName}",
-                WATCHLIST_JSON, 1, 10, 1, itemCount, null, sortBy, sortHow);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type).Result;
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Users.GetWatchlistAsync(USERNAME, WATCHLIST_ITEM_TYPE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(WATCHLIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(WATCHLIST_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.SortBy.Should().NotBeNull().And.Be(sortBy);
-            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+            response.SortBy.Should().NotBeNull().And.Be(SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(SORT_HOW);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchlistWithTypeAndExtendedOption()
+        public async Task Test_TraktUsersModule_GetWatchlist_With_Type_And_ExtendedInfo()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const string sortBy = "rank";
-            const string sortHow = "asc";
-            var type = TraktSyncItemType.Movie;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}",
+                WATCHLIST_JSON, 1, 10, 1, WATCHLIST_ITEM_COUNT,
+                sortBy: SORT_BY, sortHow: SORT_HOW);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/watchlist/{type.UriName}?extended={extendedInfo}",
-                WATCHLIST_JSON, 1, 10, 1, itemCount, null, sortBy, sortHow);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedInfo).Result;
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Users.GetWatchlistAsync(USERNAME, WATCHLIST_ITEM_TYPE, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(WATCHLIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(WATCHLIST_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.SortBy.Should().NotBeNull().And.Be(sortBy);
-            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+            response.SortBy.Should().NotBeNull().And.Be(SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(SORT_HOW);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchlistWithTypeAndExtendedOptionAndPage()
+        public async Task Test_TraktUsersModule_GetWatchlist_With_Type_And_ExtendedInfo_And_Page()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const string sortBy = "rank";
-            const string sortHow = "asc";
-            var type = TraktSyncItemType.Movie;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}&page={PAGE}",
+                WATCHLIST_JSON, PAGE, 10, 1, WATCHLIST_ITEM_COUNT,
+                sortBy: SORT_BY, sortHow: SORT_HOW);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/watchlist/{type.UriName}?extended={extendedInfo}&page={page}",
-                WATCHLIST_JSON, page, 10, 1, itemCount, null, sortBy, sortHow);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Users.GetWatchlistAsync(USERNAME, WATCHLIST_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(WATCHLIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(WATCHLIST_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.SortBy.Should().NotBeNull().And.Be(sortBy);
-            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+            response.SortBy.Should().NotBeNull().And.Be(SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(SORT_HOW);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchlistWithTypeAndExtendedOptionAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchlist_With_Type_And_ExtendedInfo_And_Limit()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const string sortBy = "rank";
-            const string sortHow = "asc";
-            var type = TraktSyncItemType.Movie;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}&limit={WATCHLIST_LIMIT}",
+                WATCHLIST_JSON, 1, WATCHLIST_LIMIT, 1, WATCHLIST_ITEM_COUNT,
+                sortBy: SORT_BY, sortHow: SORT_HOW);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/watchlist/{type.UriName}?extended={extendedInfo}&limit={limit}",
-                WATCHLIST_JSON, 1, limit, 1, itemCount, null, sortBy, sortHow);
+            var pagedParameters = new TraktPagedParameters(null, WATCHLIST_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Users.GetWatchlistAsync(USERNAME, WATCHLIST_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(WATCHLIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(WATCHLIST_ITEM_COUNT);
+            response.Limit.Should().Be(WATCHLIST_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.SortBy.Should().NotBeNull().And.Be(sortBy);
-            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+            response.SortBy.Should().NotBeNull().And.Be(SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(SORT_HOW);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchlistWithExtendedInfo()
+        public async Task Test_TraktUsersModule_GetWatchlist_With_ExtendedInfo()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const string sortBy = "rank";
-            const string sortHow = "asc";
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHLIST_URI}?extended={EXTENDED_INFO}",
+                WATCHLIST_JSON, 1, 10, 1, WATCHLIST_ITEM_COUNT,
+                sortBy: SORT_BY, sortHow: SORT_HOW);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/watchlist?extended={extendedInfo}",
-                WATCHLIST_JSON, 1, 10, 1, itemCount, null, sortBy, sortHow);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, extendedInfo).Result;
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Users.GetWatchlistAsync(USERNAME, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(WATCHLIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(WATCHLIST_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.SortBy.Should().NotBeNull().And.Be(sortBy);
-            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+            response.SortBy.Should().NotBeNull().And.Be(SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(SORT_HOW);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchlistWithExtendedInfoAndPage()
+        public async Task Test_TraktUsersModule_GetWatchlist_With_ExtendedInfo_And_Page()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const string sortBy = "rank";
-            const string sortHow = "asc";
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHLIST_URI}?extended={EXTENDED_INFO}&page={PAGE}",
+                WATCHLIST_JSON, PAGE, 10, 1, WATCHLIST_ITEM_COUNT,
+                sortBy: SORT_BY, sortHow: SORT_HOW);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/watchlist?extended={extendedInfo}&page={page}",
-                WATCHLIST_JSON, page, 10, 1, itemCount, null, sortBy, sortHow);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Users.GetWatchlistAsync(USERNAME, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(WATCHLIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(WATCHLIST_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.SortBy.Should().NotBeNull().And.Be(sortBy);
-            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+            response.SortBy.Should().NotBeNull().And.Be(SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(SORT_HOW);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchlistWithExtendedInfoAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchlist_With_ExtendedInfo_And_Limit()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const string sortBy = "rank";
-            const string sortHow = "asc";
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHLIST_URI}?extended={EXTENDED_INFO}&limit={WATCHLIST_LIMIT}",
+                WATCHLIST_JSON, 1, WATCHLIST_LIMIT, 1, WATCHLIST_ITEM_COUNT,
+                sortBy: SORT_BY, sortHow: SORT_HOW);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/watchlist?extended={extendedInfo}&limit={limit}",
-                WATCHLIST_JSON, 1, limit, 1, itemCount, null, sortBy, sortHow);
+            var pagedParameters = new TraktPagedParameters(null, WATCHLIST_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Users.GetWatchlistAsync(USERNAME, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(WATCHLIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(WATCHLIST_ITEM_COUNT);
+            response.Limit.Should().Be(WATCHLIST_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.SortBy.Should().NotBeNull().And.Be(sortBy);
-            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+            response.SortBy.Should().NotBeNull().And.Be(SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(SORT_HOW);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchlistWithExtendedInfoAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchlist_With_ExtendedInfo_And_Page_And_Limit()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const string sortBy = "rank";
-            const string sortHow = "asc";
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHLIST_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={WATCHLIST_LIMIT}",
+                WATCHLIST_JSON, PAGE, WATCHLIST_LIMIT, 1, WATCHLIST_ITEM_COUNT,
+                sortBy: SORT_BY, sortHow: SORT_HOW);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/watchlist?extended={extendedInfo}&page={page}&limit={limit}",
-                WATCHLIST_JSON, page, limit, 1, itemCount, null, sortBy, sortHow);
+            var pagedParameters = new TraktPagedParameters(PAGE, WATCHLIST_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Users.GetWatchlistAsync(USERNAME, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(WATCHLIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(WATCHLIST_ITEM_COUNT);
+            response.Limit.Should().Be(WATCHLIST_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.SortBy.Should().NotBeNull().And.Be(sortBy);
-            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+            response.SortBy.Should().NotBeNull().And.Be(SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(SORT_HOW);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchlistWithPage()
+        public async Task Test_TraktUsersModule_GetWatchlist_With_Page()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const string sortBy = "rank";
-            const string sortHow = "asc";
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHLIST_URI}?page={PAGE}",
+                WATCHLIST_JSON, PAGE, 10, 1, WATCHLIST_ITEM_COUNT,
+                sortBy: SORT_BY, sortHow: SORT_HOW);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/watchlist?page={page}",
-                WATCHLIST_JSON, page, 10, 1, itemCount, null, sortBy, sortHow);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Users.GetWatchlistAsync(USERNAME, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(WATCHLIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(WATCHLIST_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.SortBy.Should().NotBeNull().And.Be(sortBy);
-            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+            response.SortBy.Should().NotBeNull().And.Be(SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(SORT_HOW);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchlistWithLimit()
+        public async Task Test_TraktUsersModule_GetWatchlist_With_Limit()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const string sortBy = "rank";
-            const string sortHow = "asc";
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHLIST_URI}?limit={WATCHLIST_LIMIT}",
+                WATCHLIST_JSON, 1, WATCHLIST_LIMIT, 1, WATCHLIST_ITEM_COUNT,
+                sortBy: SORT_BY, sortHow: SORT_HOW);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/watchlist?limit={limit}",
-                WATCHLIST_JSON, 1, limit, 1, itemCount, null, sortBy, sortHow);
+            var pagedParameters = new TraktPagedParameters(null, WATCHLIST_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Users.GetWatchlistAsync(USERNAME, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(WATCHLIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(WATCHLIST_ITEM_COUNT);
+            response.Limit.Should().Be(WATCHLIST_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.SortBy.Should().NotBeNull().And.Be(sortBy);
-            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+            response.SortBy.Should().NotBeNull().And.Be(SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(SORT_HOW);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchlistWithPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchlist_With_Page_And_Limit()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const string sortBy = "rank";
-            const string sortHow = "asc";
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHLIST_URI}?page={PAGE}&limit={WATCHLIST_LIMIT}",
+                WATCHLIST_JSON, PAGE, WATCHLIST_LIMIT, 1, WATCHLIST_ITEM_COUNT,
+                sortBy: SORT_BY, sortHow: SORT_HOW);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/watchlist?page={page}&limit={limit}",
-                WATCHLIST_JSON, page, limit, 1, itemCount, null, sortBy, sortHow);
+            var pagedParameters = new TraktPagedParameters(PAGE, WATCHLIST_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Users.GetWatchlistAsync(USERNAME, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(WATCHLIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(WATCHLIST_ITEM_COUNT);
+            response.Limit.Should().Be(WATCHLIST_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.SortBy.Should().NotBeNull().And.Be(sortBy);
-            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+            response.SortBy.Should().NotBeNull().And.Be(SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(SORT_HOW);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchlistComplete()
+        public async Task Test_TraktUsersModule_GetWatchlist_Complete()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const string sortBy = "rank";
-            const string sortHow = "asc";
-            var type = TraktSyncItemType.Movie;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}" +
+                $"?extended={EXTENDED_INFO}&page={PAGE}&limit={WATCHLIST_LIMIT}",
+                WATCHLIST_JSON, PAGE, WATCHLIST_LIMIT, 1, WATCHLIST_ITEM_COUNT,
+                sortBy: SORT_BY, sortHow: SORT_HOW);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/watchlist/{type.UriName}" +
-                $"?extended={extendedInfo}&page={page}&limit={limit}",
-                WATCHLIST_JSON, page, limit, 1, itemCount, null, sortBy, sortHow);
+            var pagedParameters = new TraktPagedParameters(PAGE, WATCHLIST_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username, type, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Users.GetWatchlistAsync(USERNAME, WATCHLIST_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(WATCHLIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(WATCHLIST_ITEM_COUNT);
+            response.Limit.Should().Be(WATCHLIST_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
-            response.SortBy.Should().NotBeNull().And.Be(sortBy);
-            response.SortHow.Should().NotBeNull().And.Be(sortHow);
+            response.SortBy.Should().NotBeNull().And.Be(SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(SORT_HOW);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchlistExceptions()
+        public void Test_TraktUsersModule_GetWatchlist_Throws_NotFoundException()
         {
-            const string username = "sean";
-            var uri = $"users/{username}/watchlist";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(username);
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHLIST_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(USERNAME);
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchlist_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHLIST_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(USERNAME);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchlist_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHLIST_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(USERNAME);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchlist_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHLIST_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(USERNAME);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchlist_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHLIST_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(USERNAME);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchlist_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHLIST_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(USERNAME);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchlist_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHLIST_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(USERNAME);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchlist_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHLIST_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(USERNAME);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchlist_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHLIST_URI, (HttpStatusCode)412);
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(USERNAME);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchlist_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHLIST_URI, (HttpStatusCode)422);
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(USERNAME);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchlist_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHLIST_URI, (HttpStatusCode)429);
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(USERNAME);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchlist_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHLIST_URI, (HttpStatusCode)503);
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(USERNAME);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchlistArgumentExceptions()
+        public void Test_TraktUsersModule_GetWatchlist_Throws_ServerUnavailableException_504()
         {
-            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(null);
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHLIST_URI, (HttpStatusCode)504);
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchlist_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHLIST_URI, (HttpStatusCode)520);
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchlist_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHLIST_URI, (HttpStatusCode)521);
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchlist_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHLIST_URI, (HttpStatusCode)522);
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchlist_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                GET_WATCHLIST_URI,
+                WATCHLIST_JSON, 1, 10, 1, WATCHLIST_ITEM_COUNT,
+                sortBy: SORT_BY, sortHow: SORT_HOW);
+
+            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(null);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync(string.Empty);
+            act = () => client.Users.GetWatchlistAsync(string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchlistAsync("user name");
+            act = () => client.Users.GetWatchlistAsync("user name");
             act.Should().Throw<ArgumentException>();
         }
     }

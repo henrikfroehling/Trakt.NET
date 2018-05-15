@@ -8,21 +8,19 @@
     using Traits;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Users;
-    using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Xunit;
 
     [Category("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
+        private readonly string GET_FRIENDS_URI = $"users/{USERNAME}/friends";
+
         [Fact]
-        public void Test_TraktUsersModule_GetFriends()
+        public async Task Test_TraktUsersModule_GetFriends()
         {
-            const string username = "sean";
-
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/friends", FRIENDS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(username).Result;
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, FRIENDS_JSON);
+            TraktListResponse<ITraktUserFriend> response = await client.Users.GetFriendsAsync(USERNAME);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -31,15 +29,12 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetFriendsWithExtendedInfo()
+        public async Task Test_TraktUsersModule_GetFriends_With_OAuth_Enforced()
         {
-            const string username = "sean";
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_FRIENDS_URI, FRIENDS_JSON);
+            client.Configuration.ForceAuthorization = true;
 
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/friends?extended={extendedInfo}",
-                                                      FRIENDS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(username, extendedInfo).Result;
+            TraktListResponse<ITraktUserFriend> response = await client.Users.GetFriendsAsync(USERNAME);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -48,14 +43,14 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetFriendsWithOAuthEnforced()
+        public async Task Test_TraktUsersModule_GetFriends_With_ExtendedInfo()
         {
-            const string username = "sean";
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_FRIENDS_URI}?extended={EXTENDED_INFO}",
+                FRIENDS_JSON);
 
-            TestUtility.SetupMockResponseWithOAuth($"users/{username}/friends", FRIENDS_JSON);
-            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(username).Result;
+            TraktListResponse<ITraktUserFriend> response =
+                await client.Users.GetFriendsAsync(USERNAME, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -64,89 +59,145 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetFriendsExceptions()
+        public void Test_TraktUsersModule_GetFriends_Throws_NotFoundException()
         {
-            const string username = "sean";
-            var uri = $"users/{username}/friends";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktListResponse<ITraktUserFriend>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(username);
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(USERNAME);
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktUsersModule_GetFriends_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(USERNAME);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktUsersModule_GetFriends_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(USERNAME);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktUsersModule_GetFriends_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(USERNAME);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktUsersModule_GetFriends_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(USERNAME);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktUsersModule_GetFriends_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(USERNAME);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktUsersModule_GetFriends_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(USERNAME);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktUsersModule_GetFriends_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(USERNAME);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktUsersModule_GetFriends_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, (HttpStatusCode)412);
+            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(USERNAME);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktUsersModule_GetFriends_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, (HttpStatusCode)422);
+            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(USERNAME);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktUsersModule_GetFriends_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, (HttpStatusCode)429);
+            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(USERNAME);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktUsersModule_GetFriends_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, (HttpStatusCode)503);
+            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(USERNAME);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetFriendsArgumentExceptions()
+        public void Test_TraktUsersModule_GetFriends_Throws_ServerUnavailableException_504()
         {
-            Func<Task<TraktListResponse<ITraktUserFriend>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(null);
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, (HttpStatusCode)504);
+            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetFriends_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, (HttpStatusCode)520);
+            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetFriends_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, (HttpStatusCode)521);
+            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetFriends_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, (HttpStatusCode)522);
+            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetFriends_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, FRIENDS_JSON);
+
+            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(null);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync(string.Empty);
+            act = () => client.Users.GetFriendsAsync(string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetFriendsAsync("user name");
+            act = () => client.Users.GetFriendsAsync("user name");
             act.Should().Throw<ArgumentException>();
         }
     }

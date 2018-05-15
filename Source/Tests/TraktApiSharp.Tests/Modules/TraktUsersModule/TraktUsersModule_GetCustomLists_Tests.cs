@@ -14,14 +14,13 @@
     [Category("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
+        private readonly string GET_CUSTOM_LISTS_URI = $"users/{USERNAME}/lists";
+
         [Fact]
-        public void Test_TraktUsersModule_GetCustomLists()
+        public async Task Test_TraktUsersModule_GetCustomLists()
         {
-            const string username = "sean";
-
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/lists", CUSTOM_LISTS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListsAsync(username).Result;
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, CUSTOM_LISTS_JSON);
+            TraktListResponse<ITraktList> response = await client.Users.GetCustomListsAsync(USERNAME);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -30,14 +29,12 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCustomListsWithOAuthEnfored()
+        public async Task Test_TraktUsersModule_GetCustomLists_With_OAuth_Enfored()
         {
-            const string username = "sean";
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_CUSTOM_LISTS_URI, CUSTOM_LISTS_JSON);
+            client.Configuration.ForceAuthorization = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists", CUSTOM_LISTS_JSON);
-            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListsAsync(username).Result;
+            TraktListResponse<ITraktList> response = await client.Users.GetCustomListsAsync(USERNAME);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -46,89 +43,145 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCustomListsExceptions()
+        public void Test_TraktUsersModule_GetCustomLists_Throws_NotFoundException()
         {
-            const string username = "sean";
-            var uri = $"users/{username}/lists";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktListResponse<ITraktList>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListsAsync(username);
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(USERNAME);
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomLists_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(USERNAME);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomLists_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(USERNAME);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomLists_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(USERNAME);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomLists_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(USERNAME);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomLists_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(USERNAME);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomLists_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(USERNAME);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomLists_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(USERNAME);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomLists_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, (HttpStatusCode)412);
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(USERNAME);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomLists_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, (HttpStatusCode)422);
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(USERNAME);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomLists_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, (HttpStatusCode)429);
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(USERNAME);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomLists_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, (HttpStatusCode)503);
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(USERNAME);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCustomListsArgumentExceptions()
+        public void Test_TraktUsersModule_GetCustomLists_Throws_ServerUnavailableException_504()
         {
-            Func<Task<TraktListResponse<ITraktList>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListsAsync(null);
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, (HttpStatusCode)504);
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomLists_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, (HttpStatusCode)520);
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomLists_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, (HttpStatusCode)521);
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomLists_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, (HttpStatusCode)522);
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomLists_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, CUSTOM_LISTS_JSON);
+
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(null);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListsAsync(string.Empty);
+            act = () => client.Users.GetCustomListsAsync(string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListsAsync("user name");
+            act = () => client.Users.GetCustomListsAsync("user name");
             act.Should().Throw<ArgumentException>();
         }
     }

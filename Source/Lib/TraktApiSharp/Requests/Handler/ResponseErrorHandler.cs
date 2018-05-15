@@ -230,7 +230,7 @@
                         Response = responseBody,
                         ServerReasonPhrase = reasonPhrase
                     };
-                default:
+                case RequestObjectType.Object:
                     throw new TraktObjectNotFoundException(objectId)
                     {
                         RequestUrl = requestUrl,

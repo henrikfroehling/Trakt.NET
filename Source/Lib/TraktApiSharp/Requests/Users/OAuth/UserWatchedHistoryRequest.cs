@@ -22,7 +22,7 @@
 
         public string Id { get; set; }
 
-        public RequestObjectType RequestObjectType => RequestObjectType.Unspecified;
+        public RequestObjectType RequestObjectType => RequestObjectType.Object;
 
         public override string UriTemplate => "users/{username}/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}";
 

@@ -48,7 +48,8 @@
                                         uint? page = null, uint? limit = null,
                                         int? pageCount = null, int? itemCount = null,
                                         int? userCount = null, string startDate = null,
-                                        string endDate = null)
+                                        string endDate = null, string sortBy = null,
+                                        string sortHow = null)
         {
             _mockHttpMessageHandler.Should().NotBeNull();
             _baseUrl.Should().NotBeNullOrEmpty();
@@ -78,6 +79,12 @@
 
             if (!string.IsNullOrEmpty(endDate))
                 response.Headers.Add(HEADER_ENDDATE_KEY, endDate);
+
+            if (!string.IsNullOrEmpty(sortBy))
+                response.Headers.Add(HEADER_SORT_BY_KEY, sortBy);
+
+            if (!string.IsNullOrEmpty(sortHow))
+                response.Headers.Add(HEADER_SORT_HOW_KEY, sortHow);
 
             response.Headers.Add("Accept", ACCEPT_MEDIA_TYPE);
             response.Content = new StringContent(responseContent);

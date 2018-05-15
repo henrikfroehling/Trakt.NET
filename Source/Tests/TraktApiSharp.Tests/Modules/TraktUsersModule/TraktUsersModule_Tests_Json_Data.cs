@@ -1,7 +1,57 @@
 ﻿namespace TraktApiSharp.Tests.Modules.TraktUsersModule
 {
+    using System;
+    using TraktApiSharp.Enums;
+    using TraktApiSharp.Requests.Parameters;
+
     public partial class TraktUsersModule_Tests
     {
+        private const string ENCODED_COMMA = "%2C";
+        private const string USERNAME = "sean";
+        private const string LIST_ID = "55";
+        private readonly TraktListItemType LIST_ITEM_TYPE = TraktListItemType.Movie;
+        private const uint REQUEST_ID = 3U;
+        private const string LIST_NAME = "new list";
+        private const string NEW_LIST_NAME = "new list name";
+        private const string DESCRIPTION = "list description";
+        private readonly TraktAccessScope PRIVACY = TraktAccessScope.Public;
+        private const bool DISPLAY_NUMBERS = true;
+        private const bool ALLOW_COMMENTS = true;
+        private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
+        private const int COMMENTS_ITEM_COUNT = 5;
+        private readonly TraktCommentType COMMENT_TYPE = TraktCommentType.Shout;
+        private readonly TraktObjectType OBJECT_TYPE = TraktObjectType.Episode;
+        private const uint PAGE = 2;
+        private const uint COMMENTS_LIMIT = 6;
+        private readonly TraktHiddenItemsSection HIDDEN_ITEMS_SECTION = TraktHiddenItemsSection.Calendar;
+        private const int HIDDEN_ITEMS_COUNT = 3;
+        private readonly TraktHiddenItemType HIDDEN_ITEM_TYPE = TraktHiddenItemType.Movie;
+        private const uint HIDDEN_ITEMS_LIMIT = 4;
+        private const int LIKES_ITEM_COUNT = 2;
+        private readonly TraktUserLikeType LIKE_TYPE = TraktUserLikeType.Comment;
+        private const uint LIKES_LIMIT = 4;
+        private const int LIST_COMMENTS_ITEM_COUNT = 2;
+        private readonly TraktCommentSortOrder COMMENT_SORT_ORDER = TraktCommentSortOrder.Likes;
+        private const uint LIST_COMMENTS_LIMIT = 4;
+        private readonly TraktRatingsItemType RATINGS_ITEM_TYPE = TraktRatingsItemType.Movie;
+        private const int HISTORY_ITEM_COUNT = 4;
+        private const uint HISTORY_ITEM_ID = 4U;
+        private readonly DateTime START_AT = DateTime.UtcNow.AddMonths(-1);
+        private readonly DateTime END_AT = DateTime.UtcNow;
+        private readonly TraktSyncItemType HISTORY_ITEM_TYPE = TraktSyncItemType.Episode;
+        private const uint HISTORY_LIMIT = 4;
+        private const int WATCHLIST_ITEM_COUNT = 4;
+        private const string SORT_BY = "rank";
+        private const string SORT_HOW = "asc";
+        private readonly TraktSyncItemType WATCHLIST_ITEM_TYPE = TraktSyncItemType.Movie;
+        private const uint WATCHLIST_LIMIT = 4;
+        private const string NEW_DESCRIPTION = "new list description";
+        private readonly TraktAccessScope NEW_PRIVACY = TraktAccessScope.Private;
+        private const bool NEW_DISPLAY_NUMBERS = false;
+        private const bool NEW_ALLOW_COMMENTS = false;
+
+        private string BuildRatingsFilterString(int[] ratings) => string.Join(ENCODED_COMMA, ratings);
+
         private const string CUSTOM_LIST_ITEMS_POST_RESPONSE_JSON =
             @"{
                 ""added"": {

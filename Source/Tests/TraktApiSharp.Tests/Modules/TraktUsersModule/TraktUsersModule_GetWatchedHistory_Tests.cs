@@ -6,9 +6,7 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
@@ -17,2446 +15,2112 @@
     [Category("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
+        private readonly string GET_WATCHED_HISTORY_URI = $"users/{USERNAME}/history";
+
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistory()
+        public async Task Test_TraktUsersModule_GetWatchedHistory()
         {
-            const string username = "sean";
-            const int itemCount = 4;
+            TraktClient client = TestUtility.GetMockClient(
+                GET_WATCHED_HISTORY_URI,
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history", HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username).Result;
+            TraktPagedResponse<ITraktHistoryItem> response = await client.Users.GetWatchedHistoryAsync(USERNAME);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithOAuthEnforced()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_OAuth_Enforced()
         {
-            const string username = "sean";
-            const int itemCount = 4;
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                GET_WATCHED_HISTORY_URI,
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/{username}/history", HISTORY_JSON, 1, 10, 1, itemCount);
-            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
+            client.Configuration.ForceAuthorization = true;
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username).Result;
+            TraktPagedResponse<ITraktHistoryItem> response = await client.Users.GetWatchedHistoryAsync(USERNAME);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithType()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type()
         {
-            const string username = "sean";
-            var type = TraktSyncItemType.Movie;
-            const int itemCount = 4;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}",
-                                                                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndId()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}/{itemId}",
-                                                                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndStartDate()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_StartDate()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var type = TraktSyncItemType.Season;
-            const int itemCount = 4;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}?start_at={HistoryStartAt}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}?start_at={startAt.ToTraktLongDateTimeString()}",
-                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID, START_AT);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndStartDateAndEndDate()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_StartDate_And_EndDate()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Episode;
-            const int itemCount = 4;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}" +
+                $"?start_at={HistoryStartAt}&end_at={HistoryEndAt}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}",
-                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, endAt).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID, START_AT, END_AT);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndStartDateAndEndDateAndExtendedOption()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_StartDate_And_EndDate_And_ExtendedInfo()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Episode;
-            const int itemCount = 4;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}?start_at={HistoryStartAt}" +
+                $"&end_at={HistoryEndAt}&extended={EXTENDED_INFO}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedInfo}",
-                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, endAt,
-                                                                                     extendedInfo).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID, START_AT,
+                                                          END_AT, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndStartDateAndEndDateAndExtendedOptionAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_StartDate_And_EndDate_And_ExtendedInfo_And_Page()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Episode;
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}" +
+                $"?start_at={HistoryStartAt}&end_at={HistoryEndAt}&extended={EXTENDED_INFO}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedInfo}&page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID, START_AT, END_AT,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndStartDateAndEndDateAndExtendedOptionAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_StartDate_And_EndDate_And_ExtendedInfo_And_Limit()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Episode;
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}?start_at={HistoryStartAt}" +
+                $"&end_at={HistoryEndAt}&extended={EXTENDED_INFO}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedInfo}&limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID, START_AT, END_AT,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndStartDateAndExtendedOption()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_StartDate_And_ExtendedInfo()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var type = TraktSyncItemType.Movie;
-            const int itemCount = 4;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}?start_at={HistoryStartAt}" +
+                $"&extended={EXTENDED_INFO}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo}",
-                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null,
-                                                                                     extendedInfo).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID, START_AT,
+                                                          null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndStartDateAndExtendedOptionAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_StartDate_And_ExtendedInfo_And_Page()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var type = TraktSyncItemType.Movie;
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}?start_at={HistoryStartAt}" +
+                $"&extended={EXTENDED_INFO}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo}&page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID, START_AT, null,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndStartDateAndExtendedOptionAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_StartDate_And_ExtendedInfo_And_Limit()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var type = TraktSyncItemType.Movie;
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}?start_at={HistoryStartAt}" +
+                $"&extended={EXTENDED_INFO}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo}&limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID, START_AT, null,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndStartDateAndExtendedOptionAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_StartDate_And_ExtendedInfo_And_Page_And_Limit()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var type = TraktSyncItemType.Movie;
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}?start_at={HistoryStartAt}" +
+                $"&extended={EXTENDED_INFO}&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo}" +
-                $"&page={page}&limit={limit}",
-                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID, START_AT, null,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndStartDateAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_StartDate_And_Page()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var type = TraktSyncItemType.Movie;
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}" +
+                $"?start_at={HistoryStartAt}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID, START_AT,
+                                                          null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndStartDateAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_StartDate_And_Limit()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var type = TraktSyncItemType.Movie;
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}" +
+                $"?start_at={HistoryStartAt}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID, START_AT,
+                                                          null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndStartDateAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_StartDate_And_Page_And_Limit()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var type = TraktSyncItemType.Movie;
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}" +
+                $"?start_at={HistoryStartAt}&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
-                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID, START_AT,
+                                                          null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndEndDateAndExtendedOption()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_EndDate_And_ExtendedInfo()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}" +
+                $"?end_at={HistoryEndAt}&extended={EXTENDED_INFO}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo}",
-                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt,
-                                                                                     extendedInfo).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID, null,
+                                                          END_AT, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndEndDateAndExtendedOptionAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_EndDate_And_ExtendedInfo_And_Page()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}" +
+                $"?end_at={HistoryEndAt}&extended={EXTENDED_INFO}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo}&page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID, null, END_AT,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndEndDateAndExtendedOptionAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_EndDate_And_ExtendedInfo_And_Limit()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}" +
+                $"?end_at={HistoryEndAt}&extended={EXTENDED_INFO}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo}&limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID, null, END_AT,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndEndDateAndExtendedOptionAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_EndDate_And_ExtendedInfo_And_Page_And_Limit()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}" +
+                $"?end_at={HistoryEndAt}&extended={EXTENDED_INFO}&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo}&page={page}&limit={limit}",
-                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID, null, END_AT,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndEndDateAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_EndDate_And_Page()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}" +
+                $"?end_at={HistoryEndAt}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID,
+                                                          null, END_AT, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndEndDateAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_EndDate_And_Limit()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}" +
+                $"?end_at={HistoryEndAt}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID,
+                                                          null, END_AT, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndIdAndEndDateAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Id_And_EndDate_And_Page_And_Limit()
         {
-            const string username = "sean";
-            const uint itemId = 4U;
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}" +
+                $"?end_at={HistoryEndAt}&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
-                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, null, endAt, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID,
+                                                          null, END_AT, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndStartDateAndExtendedOption()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_StartDate_And_ExtendedInfo()
         {
-            const string username = "sean";
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var type = TraktSyncItemType.Movie;
-            const int itemCount = 4;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?start_at={HistoryStartAt}" +
+                $"&extended={EXTENDED_INFO}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo}",
-                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, null,
-                                                                                     extendedInfo).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, START_AT,
+                                                          null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndStartDateAndExtendedOptionAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_StartDate_And_ExtendedInfo_And_Page()
         {
-            const string username = "sean";
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var type = TraktSyncItemType.Movie;
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?start_at={HistoryStartAt}" +
+                $"&extended={EXTENDED_INFO}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo}&page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, null,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, START_AT, null,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndStartDateAndExtendedOptionAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_StartDate_And_ExtendedInfo_And_Limit()
         {
-            const string username = "sean";
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var type = TraktSyncItemType.Movie;
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?start_at={HistoryStartAt}" +
+                $"&extended={EXTENDED_INFO}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo}&limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, null,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, START_AT, null,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndStartDateAndExtendedOptionAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_StartDate_And_ExtendedInfo_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var type = TraktSyncItemType.Movie;
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?start_at={HistoryStartAt}&extended={EXTENDED_INFO}" +
+                $"&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&extended={extendedInfo}" +
-                $"&page={page}&limit={limit}",
-                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, null,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, START_AT, null,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndStartDate()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_StartDate()
         {
-            const string username = "sean";
-            var startAt = DateTime.Now.AddMonths(-1);
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?start_at={HistoryStartAt}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
-                                                                $"?start_at={startAt.ToTraktLongDateTimeString()}",
-                                                                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, START_AT);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndStartDateAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_StartDate_And_Page()
         {
-            const string username = "sean";
-            var startAt = DateTime.Now.AddMonths(-1);
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?start_at={HistoryStartAt}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
-                                                                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}",
-                                                                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, null,
-                                                                                     null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, START_AT, null,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndStartDateAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_StartDate_And_Limit()
         {
-            const string username = "sean";
-            var startAt = DateTime.Now.AddMonths(-1);
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?start_at={HistoryStartAt}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
-                                                                $"?start_at={startAt.ToTraktLongDateTimeString()}&limit={limit}",
-                                                                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, null,
-                                                                                     null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, START_AT, null,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndStartDateAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_StartDate_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var startAt = DateTime.Now.AddMonths(-1);
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?start_at={HistoryStartAt}" +
+                $"&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
-                                                                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
-                                                                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, null,
-                                                                                     null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, START_AT, null,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndStartDateAndEndDateAndExtendedOption()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_StartDate_And_EndDate_And_ExtendedInfo()
         {
-            const string username = "sean";
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Episode;
-            const int itemCount = 4;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?start_at={HistoryStartAt}&end_at={HistoryEndAt}" +
+                $"&extended={EXTENDED_INFO}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedInfo}",
-                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt,
-                                                                                     extendedInfo).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, START_AT,
+                                                          END_AT, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndStartDateAndEndDateAndExtendedOptionAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_StartDate_And_EndDate_And_ExtendedInfo_And_Page()
         {
-            const string username = "sean";
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Episode;
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?start_at={HistoryStartAt}&end_at={HistoryEndAt}" +
+                $"&extended={EXTENDED_INFO}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedInfo}&page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, START_AT, END_AT,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndStartDateAndEndDateAndExtendedOptionAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_StartDate_And_EndDate_And_ExtendedInfo_And_Limit()
         {
-            const string username = "sean";
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Episode;
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?start_at={HistoryStartAt}&end_at={HistoryEndAt}" +
+                $"&extended={EXTENDED_INFO}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedInfo}&limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, START_AT, END_AT,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndStartDateAndEndDateAndExtendedOptionAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_StartDate_And_EndDate_And_ExtendedInfo_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Episode;
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?start_at={HistoryStartAt}&end_at={HistoryEndAt}" +
+                $"&extended={EXTENDED_INFO}&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedInfo}&page={page}&limit={limit}",
-                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, START_AT, END_AT,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndStartDateAndEndDate()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_StartDate_And_EndDate()
         {
-            const string username = "sean";
-            var startAt = DateTime.Now.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?start_at={HistoryStartAt}&end_at={HistoryEndAt}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}",
-                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, START_AT, END_AT);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndStartDateAndEndDateAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_StartDate_And_EndDate_And_Page()
         {
-            const string username = "sean";
-            var startAt = DateTime.Now.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?start_at={HistoryStartAt}" +
+                $"&end_at={HistoryEndAt}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, START_AT, END_AT,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndStartDateAndEndDateAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_StartDate_And_EndDate_And_Limit()
         {
-            const string username = "sean";
-            var startAt = DateTime.Now.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?start_at={HistoryStartAt}" +
+                $"&end_at={HistoryEndAt}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, START_AT, END_AT,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndStartDateAndEndDateAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_StartDate_And_EndDate_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var startAt = DateTime.Now.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?start_at={HistoryStartAt}" +
+                $"&end_at={HistoryEndAt}&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
-                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, startAt, endAt, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, START_AT, END_AT,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndEndDateAndExtendedOption()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_EndDate_And_ExtendedInfo()
         {
-            const string username = "sean";
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?end_at={HistoryEndAt}&extended={EXTENDED_INFO}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo}",
-                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt,
-                                                                                     extendedInfo).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, null,
+                                                          END_AT, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndEndDateAndExtendedOptionAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_EndDate_And_ExtendedInfo_And_Page()
         {
-            const string username = "sean";
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?end_at={HistoryEndAt}" +
+                $"&extended={EXTENDED_INFO}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo}&page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, null, END_AT,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndEndDateAndExtendedOptionAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_EndDate_And_ExtendedInfo_And_Limit()
         {
-            const string username = "sean";
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?end_at={HistoryEndAt}" +
+                $"&extended={EXTENDED_INFO}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo}&limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, null, END_AT,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndEndDateAndExtendedOptionAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_EndDate_And_ExtendedInfo_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?end_at={HistoryEndAt}" +
+                $"&extended={EXTENDED_INFO}&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo}&page={page}&limit={limit}",
-                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, null, END_AT,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndEndDate()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_EndDate()
         {
-            const string username = "sean";
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?end_at={HistoryEndAt}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
-                                                                $"?end_at={endAt.ToTraktLongDateTimeString()}",
-                                                                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, null, END_AT);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndEndDateAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_EndDate_And_Page()
         {
-            const string username = "sean";
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?end_at={HistoryEndAt}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
-                                                                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
-                                                                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, null,
+                                                          END_AT, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndEndDateAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_EndDate_And_Limit()
         {
-            const string username = "sean";
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?end_at={HistoryEndAt}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
-                                                                $"?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
-                                                                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, null,
+                                                          END_AT, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndEndDateAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_EndDate_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var endAt = DateTime.UtcNow;
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?end_at={HistoryEndAt}" +
+                $"&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
-                                                                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
-                                                                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, endAt, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, null, END_AT,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndExtendedOption()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_ExtendedInfo()
         {
-            const string username = "sean";
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}?extended={extendedInfo}",
-                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null,
-                                                                                     extendedInfo).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null,
+                                                          null, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndExtendedOptionAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_ExtendedInfo_And_Page()
         {
-            const string username = "sean";
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}?extended={extendedInfo}&page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, null, null,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndExtendedOptionAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_ExtendedInfo_And_Limit()
         {
-            const string username = "sean";
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}?extended={extendedInfo}&limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, null, null,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndExtendedOptionAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_ExtendedInfo_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}" +
+                $"&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}" +
-                                                                $"?extended={extendedInfo}&page={page}&limit={limit}",
-                                                                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, null, null,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Page()
         {
-            const string username = "sean";
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}?page={page}",
-                                                                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, null, null,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Limit()
         {
-            const string username = "sean";
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}?limit={limit}",
-                                                                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, null, null,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithTypeAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Type_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var type = TraktSyncItemType.Show;
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}?page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/history/{type.UriName}?page={page}&limit={limit}",
-                                                                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, null, null, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, null, null, null,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithStartDateAndExtendedOption()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_StartDate_And_ExtendedInfo()
         {
-            const string username = "sean";
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            const int itemCount = 4;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?start_at={HistoryStartAt}&extended={EXTENDED_INFO}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history?start_at={startAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedInfo}",
-                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null,
-                                                                                     extendedInfo).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, START_AT,
+                                                          null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithStartDateAndExtendedOptionAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_StartDate_And_ExtendedInfo_And_Page()
         {
-            const string username = "sean";
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?start_at={HistoryStartAt}&extended={EXTENDED_INFO}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history?start_at={startAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedInfo}&page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, START_AT, null,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithStartDateAndExtendedOptionAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_StartDate_And_ExtendedInfo_And_Limit()
         {
-            const string username = "sean";
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?start_at={HistoryStartAt}&extended={EXTENDED_INFO}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history?start_at={startAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedInfo}&limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, START_AT, null,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithStartDateAndExtendedOptionAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_StartDate_And_ExtendedInfo_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?start_at={HistoryStartAt}&extended={EXTENDED_INFO}" +
+                $"&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history?start_at={startAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedInfo}&page={page}&limit={limit}",
-                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, START_AT, null,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithStartDate()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_StartDate()
         {
-            const string username = "sean";
-            var startAt = DateTime.Now.AddMonths(-1);
-            const int itemCount = 4;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?start_at={HistoryStartAt}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}",
-                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, START_AT);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithStartDateAndEndDateAndExtendedOption()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_StartDate_And_EndDate_And_ExtendedInfo()
         {
-            const string username = "sean";
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            const int itemCount = 4;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?start_at={HistoryStartAt}&end_at={HistoryEndAt}&extended={EXTENDED_INFO}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history?start_at={startAt.ToTraktLongDateTimeString()}" +
-                $"&end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo}",
-                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt,
-                                                                                     extendedInfo).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, START_AT, END_AT, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithStartDateAndEndDateAndExtendedOptionAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_StartDate_And_EndDate_And_ExtendedInfo_And_Page()
         {
-            const string username = "sean";
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?start_at={HistoryStartAt}&end_at={HistoryEndAt}" +
+                $"&extended={EXTENDED_INFO}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history?start_at={startAt.ToTraktLongDateTimeString()}" +
-                $"&end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo}&page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, START_AT, END_AT,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithStartDateAndEndDateAndExtendedOptionAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_StartDate_And_EndDate_And_ExtendedInfo_And_Limit()
         {
-            const string username = "sean";
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?start_at={HistoryStartAt}&end_at={HistoryEndAt}" +
+                $"&extended={EXTENDED_INFO}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history?start_at={startAt.ToTraktLongDateTimeString()}" +
-                $"&end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo}&limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, START_AT, END_AT,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithStartDateAndEndDateAndExtendedOptionAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_StartDate_And_EndDate_And_ExtendedInfo_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var startAt = DateTime.UtcNow.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?start_at={HistoryStartAt}&end_at={HistoryEndAt}&extended={EXTENDED_INFO}" +
+                $"&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history?start_at={startAt.ToTraktLongDateTimeString()}" +
-                $"&end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo}&page={page}&limit={limit}",
-                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, START_AT, END_AT,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithStartDateAndEndDate()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_StartDate_And_EndDate()
         {
-            const string username = "sean";
-            var startAt = DateTime.Now.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            const int itemCount = 4;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?start_at={HistoryStartAt}&end_at={HistoryEndAt}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}",
-                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, START_AT, END_AT);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithStartDateAndEndDateAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_StartDate_And_EndDate_And_Page()
         {
-            const string username = "sean";
-            var startAt = DateTime.Now.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?start_at={HistoryStartAt}&end_at={HistoryEndAt}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, START_AT, END_AT,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithStartDateAndEndDateAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_StartDate_And_EndDate_And_Limit()
         {
-            const string username = "sean";
-            var startAt = DateTime.Now.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?start_at={HistoryStartAt}&end_at={HistoryEndAt}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, START_AT, END_AT,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithStartDateAndEndDateAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_StartDate_And_EndDate_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var startAt = DateTime.Now.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?start_at={HistoryStartAt}&end_at={HistoryEndAt}" +
+                $"&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
-                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, endAt, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, START_AT, END_AT,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithStartDateAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_StartDate_And_Page()
         {
-            const string username = "sean";
-            var startAt = DateTime.Now.AddMonths(-1);
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?start_at={HistoryStartAt}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, START_AT, null,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithStartDateAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_StartDate_And_Limit()
         {
-            const string username = "sean";
-            var startAt = DateTime.Now.AddMonths(-1);
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?start_at={HistoryStartAt}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, START_AT, null,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithStartDateAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_StartDate_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var startAt = DateTime.Now.AddMonths(-1);
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?start_at={HistoryStartAt}&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
-                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, startAt, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, START_AT, null,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithEndDateAndExtendedOption()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_EndDate_And_ExtendedInfo()
         {
-            const string username = "sean";
-            var endAt = DateTime.UtcNow;
-            const int itemCount = 4;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?end_at={HistoryEndAt}&extended={EXTENDED_INFO}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history?end_at={endAt.ToTraktLongDateTimeString()}&extended={extendedInfo}",
-                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt,
-                                                                                     extendedInfo).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, null,
+                                                          END_AT, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithEndDateAndExtendedOptionAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_EndDate_And_ExtendedInfo_And_Page()
         {
-            const string username = "sean";
-            var endAt = DateTime.UtcNow;
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?end_at={HistoryEndAt}&extended={EXTENDED_INFO}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history?end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedInfo}&page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, null, END_AT,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithEndDateAndExtendedOptionAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_EndDate_And_ExtendedInfo_And_Limit()
         {
-            const string username = "sean";
-            var endAt = DateTime.UtcNow;
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?end_at={HistoryEndAt}&extended={EXTENDED_INFO}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history?end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedInfo}&limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, null, END_AT,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithEndDateAndExtendedOptionAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_EndDate_And_ExtendedInfo_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var endAt = DateTime.UtcNow;
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?end_at={HistoryEndAt}&extended={EXTENDED_INFO}" +
+                $"&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history?end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedInfo}&page={page}&limit={limit}",
-                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, null, END_AT,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithEndDate()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_EndDate()
         {
-            const string username = "sean";
-            var endAt = DateTime.UtcNow;
-            const int itemCount = 4;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?end_at={HistoryEndAt}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}",
-                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, null, END_AT);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithEndDateAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_EndDate_And_Page()
         {
-            const string username = "sean";
-            var endAt = DateTime.UtcNow;
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?end_at={HistoryEndAt}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, null, END_AT,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithEndDateAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_EndDate_And_Limit()
         {
-            const string username = "sean";
-            var endAt = DateTime.UtcNow;
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?end_at={HistoryEndAt}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, null, END_AT,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithEndDateAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_EndDate_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var endAt = DateTime.UtcNow;
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?end_at={HistoryEndAt}&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history" +
-                $"?end_at={endAt.ToTraktLongDateTimeString()}&page={page}&limit={limit}",
-                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, endAt, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, null, END_AT,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithExtendedInfo()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_ExtendedInfo()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?extended={EXTENDED_INFO}",
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history?extended={extendedInfo}",
-                HISTORY_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null,
-                                                                                     extendedInfo).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, null,
+                                                          null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithExtendedInfoAndPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_ExtendedInfo_And_Page()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?extended={EXTENDED_INFO}&page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history?extended={extendedInfo}&page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, null, null,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithExtendedInfoAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_ExtendedInfo_And_Limit()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?extended={EXTENDED_INFO}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history?extended={extendedInfo}&limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, null, null,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithExtendedInfoAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_ExtendedInfo_And_Page_And_Limit()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history?extended={extendedInfo}&page={page}&limit={limit}",
-                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, null, null,
+                                                          EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithPage()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Page()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?page={PAGE}",
+                HISTORY_JSON, PAGE, 10, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history" +
-                $"?page={page}",
-                HISTORY_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, null, null,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Limit()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?limit={HISTORY_LIMIT}",
+                HISTORY_JSON, 1, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history" +
-                $"?limit={limit}",
-                HISTORY_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, null, null,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryWithPageAndLimit()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_With_Page_And_Limit()
         {
-            const string username = "sean";
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}?page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history" +
-                $"?page={page}&limit={limit}",
-                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, null, null, null, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, null, null, null, null,
+                                                          null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryComplete()
+        public async Task Test_TraktUsersModule_GetWatchedHistory_Complete()
         {
-            const string username = "sean";
-            var type = TraktSyncItemType.Movie;
-            const uint itemId = 4U;
-            var startAt = DateTime.Now.AddMonths(-1);
-            var endAt = DateTime.UtcNow;
-            const int itemCount = 4;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_WATCHED_HISTORY_URI}/{HISTORY_ITEM_TYPE.UriName}/{HISTORY_ITEM_ID}" +
+                $"?start_at={HistoryStartAt}&end_at={HistoryEndAt}" +
+                $"&extended={EXTENDED_INFO}&page={PAGE}&limit={HISTORY_LIMIT}",
+                HISTORY_JSON, PAGE, HISTORY_LIMIT, 1, HISTORY_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/history/{type.UriName}/{itemId}" +
-                $"?start_at={startAt.ToTraktLongDateTimeString()}&end_at={endAt.ToTraktLongDateTimeString()}" +
-                $"&extended={extendedInfo}&page={page}&limit={limit}",
-                HISTORY_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HISTORY_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username, type, itemId, startAt, endAt,
-                                                                                     extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktHistoryItem> response =
+                await client.Users.GetWatchedHistoryAsync(USERNAME, HISTORY_ITEM_TYPE, HISTORY_ITEM_ID,
+                                                          START_AT, END_AT, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HISTORY_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HISTORY_ITEM_COUNT);
+            response.Limit.Should().Be(HISTORY_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryExceptions()
+        public void Test_TraktUsersModule_GetWatchedHistory_Throws_NotFoundException()
         {
-            const string username = "sean";
-            var uri = $"users/{username}/history";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(username);
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHED_HISTORY_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(USERNAME);
             act.Should().Throw<TraktObjectNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchedHistory_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHED_HISTORY_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(USERNAME);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchedHistory_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHED_HISTORY_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(USERNAME);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchedHistory_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHED_HISTORY_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(USERNAME);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchedHistory_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHED_HISTORY_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(USERNAME);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchedHistory_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHED_HISTORY_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(USERNAME);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchedHistory_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHED_HISTORY_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(USERNAME);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchedHistory_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHED_HISTORY_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(USERNAME);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchedHistory_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHED_HISTORY_URI, (HttpStatusCode)412);
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(USERNAME);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchedHistory_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHED_HISTORY_URI, (HttpStatusCode)422);
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(USERNAME);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchedHistory_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHED_HISTORY_URI, (HttpStatusCode)429);
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(USERNAME);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchedHistory_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHED_HISTORY_URI, (HttpStatusCode)503);
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(USERNAME);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetWatchedHistoryArgumentExceptions()
+        public void Test_TraktUsersModule_GetWatchedHistory_Throws_ServerUnavailableException_504()
         {
-            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(null);
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHED_HISTORY_URI, (HttpStatusCode)504);
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchedHistory_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHED_HISTORY_URI, (HttpStatusCode)520);
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchedHistory_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHED_HISTORY_URI, (HttpStatusCode)521);
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchedHistory_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_WATCHED_HISTORY_URI, (HttpStatusCode)522);
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetWatchedHistory_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                GET_WATCHED_HISTORY_URI,
+                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
+
+            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(null);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync(string.Empty);
+            act = () => client.Users.GetWatchedHistoryAsync(string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetWatchedHistoryAsync("user name");
+            act = () => client.Users.GetWatchedHistoryAsync("user name");
             act.Should().Throw<ArgumentException>();
         }
     }

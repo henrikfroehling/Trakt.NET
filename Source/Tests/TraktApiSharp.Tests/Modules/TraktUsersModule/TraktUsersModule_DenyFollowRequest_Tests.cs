@@ -13,96 +13,152 @@
     [Category("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
+        private readonly string DENY_FOLLOW_REQUEST_URI = $"users/requests/{REQUEST_ID}";
+
         [Fact]
-        public void Test_TraktUsersModule_DenyFollowRequest()
+        public async Task Test_TraktUsersModule_DenyFollowRequest()
         {
-            const uint requestId = 3U;
-
-            TestUtility.SetupMockResponseWithOAuth($"users/requests/{requestId}", HttpStatusCode.NoContent);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.DenyFollowRequestAsync(requestId).Result;
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Users.DenyFollowRequestAsync(REQUEST_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_DenyFollowRequestExceptions()
+        public void Test_TraktUsersModule_DenyFollowRequest_Throws_NotFoundException()
         {
-            const uint requestId = 3U;
-            var uri = $"users/requests/{requestId}";
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(REQUEST_ID);
+            act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DenyFollowRequestAsync(requestId);
+        [Fact]
+        public void Test_TraktUsersModule_DenyFollowRequest_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(REQUEST_ID);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
-            act.Should().Throw<TraktObjectNotFoundException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktUsersModule_DenyFollowRequest_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(REQUEST_ID);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktUsersModule_DenyFollowRequest_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(REQUEST_ID);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktUsersModule_DenyFollowRequest_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(REQUEST_ID);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktUsersModule_DenyFollowRequest_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(REQUEST_ID);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktUsersModule_DenyFollowRequest_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(REQUEST_ID);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktUsersModule_DenyFollowRequest_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(REQUEST_ID);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktUsersModule_DenyFollowRequest_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, (HttpStatusCode)412);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(REQUEST_ID);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktUsersModule_DenyFollowRequest_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, (HttpStatusCode)422);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(REQUEST_ID);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktUsersModule_DenyFollowRequest_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, (HttpStatusCode)429);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(REQUEST_ID);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktUsersModule_DenyFollowRequest_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, (HttpStatusCode)503);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(REQUEST_ID);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_DenyFollowRequestArgumentExceptions()
+        public void Test_TraktUsersModule_DenyFollowRequest_Throws_ServerUnavailableException_504()
         {
-            Func<Task<TraktNoContentResponse>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.DenyFollowRequestAsync(0);
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, (HttpStatusCode)504);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(REQUEST_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_DenyFollowRequest_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, (HttpStatusCode)520);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(REQUEST_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_DenyFollowRequest_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, (HttpStatusCode)521);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(REQUEST_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_DenyFollowRequest_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, (HttpStatusCode)522);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(REQUEST_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_DenyFollowRequest_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, HttpStatusCode.NoContent);
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(0);
             act.Should().Throw<ArgumentOutOfRangeException>();
         }
     }

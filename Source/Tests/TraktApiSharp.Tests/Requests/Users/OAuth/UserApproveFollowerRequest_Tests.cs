@@ -22,7 +22,7 @@
         public void Test_UserApproveFollowerRequest_Returns_Valid_RequestObjectType()
         {
             var requestMock = new UserApproveFollowerRequest();
-            requestMock.RequestObjectType.Should().Be(RequestObjectType.Unspecified);
+            requestMock.RequestObjectType.Should().Be(RequestObjectType.Object);
         }
 
         [Fact]

@@ -317,8 +317,8 @@
         /// Thrown, if the given username or slug is null, empty or contains spaces.
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
-        public Task<TraktResponse<ITraktList>> GetCustomSingleListAsync(string usernameOrSlug, string listIdOrSlug,
-                                                                        CancellationToken cancellationToken = default)
+        public Task<TraktResponse<ITraktList>> GetCustomListAsync(string usernameOrSlug, string listIdOrSlug,
+                                                                  CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
@@ -335,7 +335,7 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/users/list/get-custom-list">"Trakt API Doc - Users: List"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetCustomSingleListAsync(string, string, CancellationToken)" />.</para>
+        /// <para>See also <seealso cref="GetCustomListAsync(string, string, CancellationToken)" />.</para>
         /// </summary>
         /// <param name="userListsQueryParams">A list of usernames and list ids. See also <seealso cref="TraktMultipleUserListsQueryParams" />.</param>
         /// <param name="cancellationToken"></param>
@@ -355,7 +355,7 @@
 
             foreach (var queryParam in userListsQueryParams)
             {
-                Task<TraktResponse<ITraktList>> task = GetCustomSingleListAsync(queryParam.Username, queryParam.ListId, cancellationToken);
+                Task<TraktResponse<ITraktList>> task = GetCustomListAsync(queryParam.Username, queryParam.ListId, cancellationToken);
                 tasks.Add(task);
             }
 
@@ -548,13 +548,13 @@
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="TraktUserCustomListItemsPostBuilder" /> to create an instance
-        /// of the required <see cref="TraktUserCustomListItemsPost" />.
+        /// of the required <see cref="ITraktUserCustomListItemsPost" />.
         /// See also <seealso cref="TraktUserCustomListItemsPost.Builder()" />.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which items should be added to a custom list.</param>
         /// <param name="listIdOrSlug">The id or slug of the custom list, to which items should be added.</param>
-        /// <param name="listItemsPost">An <see cref="TraktUserCustomListItemsPost" /> instance containing all shows, seasons, episodes, movies and people, which should be added.</param>
+        /// <param name="listItemsPost">An <see cref="ITraktUserCustomListItemsPost" /> instance containing all shows, seasons, episodes, movies and people, which should be added.</param>
         /// <param name="listItemType">Determines, which type of items should be added. See also <seealso cref="TraktListItemType" />.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktUserCustomListItemsPostResponse" /> instance, which contains information about which items were added, existing and not found.</returns>
@@ -566,7 +566,7 @@
         /// Thrown, if the given list items post is empty.
         /// </exception>
         public Task<TraktResponse<ITraktUserCustomListItemsPostResponse>> AddCustomListItemsAsync(string usernameOrSlug, string listIdOrSlug,
-                                                                                                  TraktUserCustomListItemsPost listItemsPost,
+                                                                                                  ITraktUserCustomListItemsPost listItemsPost,
                                                                                                   TraktListItemType listItemType = null,
                                                                                                   CancellationToken cancellationToken = default)
         {
@@ -591,13 +591,13 @@
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="TraktUserCustomListItemsPostBuilder" /> to create an instance
-        /// of the required <see cref="TraktUserCustomListItemsPost" />.
+        /// of the required <see cref="ITraktUserCustomListItemsPost" />.
         /// See also <seealso cref="TraktUserCustomListItemsPost.Builder()" />.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which items should be removed from a custom list.</param>
         /// <param name="listIdOrSlug">The id or slug of the custom list, from which items should be removed.</param>
-        /// <param name="listItemsRemovePost">An <see cref="TraktUserCustomListItemsPost" /> instance containing all shows, seasons, episodes, movies and people, which should be removed.</param>
+        /// <param name="listItemsRemovePost">An <see cref="ITraktUserCustomListItemsPost" /> instance containing all shows, seasons, episodes, movies and people, which should be removed.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktUserCustomListItemsPostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -608,7 +608,7 @@
         /// Thrown, if the given list items remove post is empty.
         /// </exception>
         public Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>> RemoveCustomListItemsAsync(string usernameOrSlug, string listIdOrSlug,
-                                                                                                           TraktUserCustomListItemsPost listItemsRemovePost,
+                                                                                                           ITraktUserCustomListItemsPost listItemsRemovePost,
                                                                                                            CancellationToken cancellationToken = default)
         {
             ValidateCustomListItemsPost(listItemsRemovePost);
@@ -1089,7 +1089,7 @@
             return requestHandler.ExecuteSingleItemRequestAsync(new UserStatisticsRequest { Username = usernameOrSlug }, cancellationToken);
         }
 
-        private void ValidateCustomListItemsPost(TraktUserCustomListItemsPost customListItemsPost)
+        private void ValidateCustomListItemsPost(ITraktUserCustomListItemsPost customListItemsPost)
         {
             if (customListItemsPost == null)
                 throw new ArgumentNullException(nameof(customListItemsPost), "list items post must not be null");

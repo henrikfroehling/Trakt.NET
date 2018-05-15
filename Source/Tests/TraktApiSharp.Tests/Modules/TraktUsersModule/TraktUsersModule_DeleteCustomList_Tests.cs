@@ -13,115 +13,167 @@
     [Category("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
+        private readonly string DELETE_CUSTOM_LIST_URI = $"users/{USERNAME}/lists/{LIST_ID}";
+
         [Fact]
-        public void Test_TraktUsersModule_DeleteCustomList()
+        public async Task Test_TraktUsersModule_DeleteCustomList()
         {
-            const string username = "sean";
-            const string listId = "55";
-
-            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}", HttpStatusCode.NoContent);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.DeleteCustomListAsync(username, listId).Result;
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Users.DeleteCustomListAsync(USERNAME, LIST_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_DeleteCustomListExceptions()
+        public void Test_TraktUsersModule_DeleteCustomList_Throws_NotFoundException()
         {
-            const string username = "sean";
-            const string listId = "55";
-            var uri = $"users/{username}/lists/{listId}";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DeleteCustomListAsync(username, listId);
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktListNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktUsersModule_DeleteCustomList_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(USERNAME, LIST_ID);
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_DeleteCustomList_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktUsersModule_DeleteCustomList_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktUsersModule_DeleteCustomList_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktUsersModule_DeleteCustomList_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktUsersModule_DeleteCustomList_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktUsersModule_DeleteCustomList_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktUsersModule_DeleteCustomList_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, (HttpStatusCode)412);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktUsersModule_DeleteCustomList_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, (HttpStatusCode)422);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktUsersModule_DeleteCustomList_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, (HttpStatusCode)429);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktUsersModule_DeleteCustomList_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, (HttpStatusCode)503);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_DeleteCustomListArgumentExceptions()
+        public void Test_TraktUsersModule_DeleteCustomList_Throws_ServerUnavailableException_504()
         {
-            const string username = "sean";
-            const string listId = "55";
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, (HttpStatusCode)504);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(USERNAME, LIST_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            Func<Task<TraktNoContentResponse>> act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DeleteCustomListAsync(null, listId);
+        [Fact]
+        public void Test_TraktUsersModule_DeleteCustomList_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, (HttpStatusCode)520);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(USERNAME, LIST_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_DeleteCustomList_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, (HttpStatusCode)521);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(USERNAME, LIST_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_DeleteCustomList_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, (HttpStatusCode)522);
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(USERNAME, LIST_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_DeleteCustomList_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, HttpStatusCode.NoContent);
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(null, LIST_ID);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DeleteCustomListAsync(string.Empty, listId);
+            act = () => client.Users.DeleteCustomListAsync(string.Empty, LIST_ID);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DeleteCustomListAsync("user name", listId);
+            act = () => client.Users.DeleteCustomListAsync("user name", LIST_ID);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DeleteCustomListAsync(username, null);
+            act = () => client.Users.DeleteCustomListAsync(USERNAME, null);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DeleteCustomListAsync(username, string.Empty);
+            act = () => client.Users.DeleteCustomListAsync(USERNAME, string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.DeleteCustomListAsync(username, "list id");
+            act = () => client.Users.DeleteCustomListAsync(USERNAME, "list id");
             act.Should().Throw<ArgumentException>();
         }
     }

@@ -6,25 +6,23 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Users.Lists;
-    using TraktApiSharp.Requests.Parameters;
     using TraktApiSharp.Responses;
     using Xunit;
 
     [Category("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
+        private readonly string GET_CUSTOM_LIST_ITEMS_URI = $"users/{USERNAME}/lists/{LIST_ID}/items";
+
         [Fact]
-        public void Test_TraktUsersModule_GetCustomListItems()
+        public async Task Test_TraktUsersModule_GetCustomListItems()
         {
-            const string username = "sean";
-            const string listId = "55";
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, LIST_ITEMS_JSON);
 
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/lists/{listId}/items", LIST_ITEMS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId).Result;
+            TraktPagedResponse<ITraktListItem> response =
+                await client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -33,15 +31,13 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCustomListItemsWithOAuthEnforced()
+        public async Task Test_TraktUsersModule_GetCustomListItems_With_OAuth_Enforced()
         {
-            const string username = "sean";
-            const string listId = "55";
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_CUSTOM_LIST_ITEMS_URI, LIST_ITEMS_JSON);
+            client.Configuration.ForceAuthorization = true;
 
-            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}/items", LIST_ITEMS_JSON);
-            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId).Result;
+            TraktPagedResponse<ITraktListItem> response =
+                await client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -50,54 +46,14 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCustomListItemsWithType()
+        public async Task Test_TraktUsersModule_GetCustomListItems_With_Type()
         {
-            const string username = "sean";
-            const string listId = "55";
-            var type = TraktListItemType.Episode;
-
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/lists/{listId}/items/{type.UriName}",
-                                                      LIST_ITEMS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId, type).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(5);
-        }
-
-        [Fact]
-        public void Test_TraktUsersModule_GetCustomListItemsWithExtendedInfo()
-        {
-            const string username = "sean";
-            const string listId = "55";
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockResponseWithoutOAuth($"users/{username}/lists/{listId}/items?extended={extendedInfo}",
-                                                      LIST_ITEMS_JSON);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId, null, extendedInfo).Result;
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(5);
-        }
-
-        [Fact]
-        public void Test_TraktUsersModule_GetCustomListItemsComplete()
-        {
-            const string username = "sean";
-            const string listId = "55";
-            var type = TraktListItemType.Season;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
-
-            TestUtility.SetupMockResponseWithoutOAuth(
-                $"users/{username}/lists/{listId}/items/{type.UriName}?extended={extendedInfo}",
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_CUSTOM_LIST_ITEMS_URI}/{LIST_ITEM_TYPE.UriName}",
                 LIST_ITEMS_JSON);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId, type, extendedInfo).Result;
+            TraktPagedResponse<ITraktListItem> response =
+                await client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID, LIST_ITEM_TYPE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -106,102 +62,186 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCustomListItemsExceptions()
+        public async Task Test_TraktUsersModule_GetCustomListItems_With_ExtendedInfo()
         {
-            const string username = "sean";
-            const string listId = "55";
-            var uri = $"users/{username}/lists/{listId}/items";
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_CUSTOM_LIST_ITEMS_URI}?extended={EXTENDED_INFO}",
+                LIST_ITEMS_JSON);
 
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
+            TraktPagedResponse<ITraktListItem> response =
+                await client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID, null, EXTENDED_INFO);
 
-            Func<Task<TraktPagedResponse<ITraktListItem>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, listId);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(5);
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetCustomListItems_Complete()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_CUSTOM_LIST_ITEMS_URI}/{LIST_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}",
+                LIST_ITEMS_JSON);
+
+            TraktPagedResponse<ITraktListItem> response =
+                await client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID, LIST_ITEM_TYPE, EXTENDED_INFO);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(5);
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomListItems_Throws_NotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktListNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomListItems_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomListItems_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomListItems_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomListItems_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomListItems_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomListItems_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomListItems_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomListItems_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)412);
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomListItems_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)422);
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomListItems_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)429);
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomListItems_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)503);
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCustomListItemsArgumentExceptions()
+        public void Test_TraktUsersModule_GetCustomListItems_Throws_ServerUnavailableException_504()
         {
-            const string username = "sean";
-            const string listId = "55";
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)504);
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            Func<Task<TraktPagedResponse<ITraktListItem>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(null, listId);
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomListItems_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)520);
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomListItems_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)521);
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomListItems_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)522);
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetCustomListItems_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, LIST_ITEMS_JSON);
+
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(null, LIST_ID);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(string.Empty, listId);
+            act = () => TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(string.Empty, LIST_ID);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync("user name", listId);
+            act = () => TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync("user name", LIST_ID);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, null);
+            act = () => TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(USERNAME, null);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, string.Empty);
+            act = () => TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(USERNAME, string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(username, "list id");
+            act = () => TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(USERNAME, "list id");
             act.Should().Throw<ArgumentException>();
         }
     }

@@ -3,12 +3,12 @@
     using Base;
     using Enums;
     using Extensions;
-    using Objects.Post.Users.CustomListItems.Implementations;
+    using Objects.Post.Users.CustomListItems;
     using Objects.Post.Users.CustomListItems.Responses;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class UserCustomListItemsAddRequest : AUsersPostByIdRequest<ITraktUserCustomListItemsPostResponse, TraktUserCustomListItemsPost>
+    internal sealed class UserCustomListItemsAddRequest : AUsersPostByIdRequest<ITraktUserCustomListItemsPostResponse, ITraktUserCustomListItemsPost>
     {
         internal string Username { get; set; }
 

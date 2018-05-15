@@ -17,427 +17,445 @@
     public partial class TraktUsersModule_Tests
     {
         [Fact]
-        public void Test_TraktUsersModule_GetHiddenItems()
+        public async Task Test_TraktUsersModule_GetHiddenItems()
         {
-            var section = TraktHiddenItemsSection.Calendar;
-            const int itemCount = 3;
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                GetHiddenItemsUri,
+                HIDDEN_ITEMS_JSON, 1, 10, 1, HIDDEN_ITEMS_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}",
-                                                             HIDDEN_ITEMS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section).Result;
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetHiddenItemsWithType()
+        public async Task Test_TraktUsersModule_GetHiddenItems_With_Type()
         {
-            var section = TraktHiddenItemsSection.Recommendations;
-            var type = TraktHiddenItemType.Movie;
-            const int itemCount = 3;
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?type={HIDDEN_ITEM_TYPE.UriName}",
+                HIDDEN_ITEMS_JSON, 1, 10, 1, HIDDEN_ITEMS_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?type={type.UriName}",
-                                                             HIDDEN_ITEMS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type).Result;
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, HIDDEN_ITEM_TYPE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetHiddenItemsWithTypeAndExtendedOption()
+        public async Task Test_TraktUsersModule_GetHiddenItems_With_Type_And_ExtendedInfo()
         {
-            var section = TraktHiddenItemsSection.ProgressCollected;
-            var type = TraktHiddenItemType.Show;
-            const int itemCount = 3;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?type={HIDDEN_ITEM_TYPE.UriName}&extended={EXTENDED_INFO}",
+                HIDDEN_ITEMS_JSON, 1, 10, 1, HIDDEN_ITEMS_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"users/hidden/{section.UriName}?type={type.UriName}&extended={extendedInfo}",
-                HIDDEN_ITEMS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, extendedInfo).Result;
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, HIDDEN_ITEM_TYPE, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetHiddenItemsWithTypeAndPage()
+        public async Task Test_TraktUsersModule_GetHiddenItems_With_Type_And_Page()
         {
-            var section = TraktHiddenItemsSection.Recommendations;
-            var type = TraktHiddenItemType.Movie;
-            const int itemCount = 3;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?type={HIDDEN_ITEM_TYPE.UriName}&page={PAGE}",
+                HIDDEN_ITEMS_JSON, PAGE, 10, 1, HIDDEN_ITEMS_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?type={type.UriName}&page={page}",
-                                                             HIDDEN_ITEMS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, HIDDEN_ITEM_TYPE, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetHiddenItemsWithTypeAndLimit()
+        public async Task Test_TraktUsersModule_GetHiddenItems_With_Type_And_Limit()
         {
-            var section = TraktHiddenItemsSection.Recommendations;
-            var type = TraktHiddenItemType.Movie;
-            const int itemCount = 3;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?type={HIDDEN_ITEM_TYPE.UriName}&limit={HIDDEN_ITEMS_LIMIT}",
+                HIDDEN_ITEMS_JSON, 1, HIDDEN_ITEMS_LIMIT, 1, HIDDEN_ITEMS_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?type={type.UriName}&limit={limit}",
-                                                             HIDDEN_ITEMS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HIDDEN_ITEMS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, HIDDEN_ITEM_TYPE, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
+            response.Limit.Should().Be(HIDDEN_ITEMS_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetHiddenItemsWithTypeAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetHiddenItems_With_Type_And_Page_And_Limit()
         {
-            var section = TraktHiddenItemsSection.ProgressCollected;
-            var type = TraktHiddenItemType.Season;
-            const int itemCount = 3;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?type={HIDDEN_ITEM_TYPE.UriName}&page={PAGE}&limit={HIDDEN_ITEMS_LIMIT}",
+                HIDDEN_ITEMS_JSON, PAGE, HIDDEN_ITEMS_LIMIT, 1, HIDDEN_ITEMS_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?type={type.UriName}&page={page}&limit={limit}",
-                                                             HIDDEN_ITEMS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HIDDEN_ITEMS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, HIDDEN_ITEM_TYPE, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
+            response.Limit.Should().Be(HIDDEN_ITEMS_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetHiddenItemsWithExtendedInfo()
+        public async Task Test_TraktUsersModule_GetHiddenItems_With_ExtendedInfo()
         {
-            var section = TraktHiddenItemsSection.ProgressWatched;
-            const int itemCount = 3;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?extended={EXTENDED_INFO}",
+                HIDDEN_ITEMS_JSON, 1, 10, 1, HIDDEN_ITEMS_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?extended={extendedInfo}",
-                                                             HIDDEN_ITEMS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedInfo).Result;
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetHiddenItemsWithExtendedInfoAndPage()
+        public async Task Test_TraktUsersModule_GetHiddenItems_With_ExtendedInfo_And_Page()
         {
-            var section = TraktHiddenItemsSection.ProgressWatched;
-            const int itemCount = 3;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?extended={EXTENDED_INFO}&page={PAGE}",
+                HIDDEN_ITEMS_JSON, PAGE, 10, 1, HIDDEN_ITEMS_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"users/hidden/{section.UriName}?extended={extendedInfo}&page={page}",
-                HIDDEN_ITEMS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetHiddenItemsWithExtendedInfoAndLimit()
+        public async Task Test_TraktUsersModule_GetHiddenItems_With_ExtendedInfo_And_Limit()
         {
-            var section = TraktHiddenItemsSection.ProgressWatched;
-            const int itemCount = 3;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?extended={EXTENDED_INFO}&limit={HIDDEN_ITEMS_LIMIT}",
+                HIDDEN_ITEMS_JSON, 1, HIDDEN_ITEMS_LIMIT, 1, HIDDEN_ITEMS_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"users/hidden/{section.UriName}?extended={extendedInfo}&limit={limit}",
-                HIDDEN_ITEMS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HIDDEN_ITEMS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
+            response.Limit.Should().Be(HIDDEN_ITEMS_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetHiddenItemsWithExtendedInfoAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetHiddenItems_With_ExtendedInfo_And_Page_And_Limit()
         {
-            var section = TraktHiddenItemsSection.Calendar;
-            const int itemCount = 3;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?extended={EXTENDED_INFO}&page={PAGE}&limit={HIDDEN_ITEMS_LIMIT}",
+                HIDDEN_ITEMS_JSON, PAGE, HIDDEN_ITEMS_LIMIT, 1, HIDDEN_ITEMS_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"users/hidden/{section.UriName}?extended={extendedInfo}&page={page}&limit={limit}",
-                HIDDEN_ITEMS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HIDDEN_ITEMS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
+            response.Limit.Should().Be(HIDDEN_ITEMS_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetHiddenItemsWithPage()
+        public async Task Test_TraktUsersModule_GetHiddenItems_With_Page()
         {
-            var section = TraktHiddenItemsSection.Calendar;
-            const int itemCount = 3;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?page={PAGE}",
+                HIDDEN_ITEMS_JSON, PAGE, 10, 1, HIDDEN_ITEMS_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?page={page}",
-                                                             HIDDEN_ITEMS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetHiddenItemsWithLimit()
+        public async Task Test_TraktUsersModule_GetHiddenItems_With_Limit()
         {
-            var section = TraktHiddenItemsSection.Calendar;
-            const int itemCount = 3;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?limit={HIDDEN_ITEMS_LIMIT}",
+                HIDDEN_ITEMS_JSON, 1, HIDDEN_ITEMS_LIMIT, 1, HIDDEN_ITEMS_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?limit={limit}",
-                                                             HIDDEN_ITEMS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, HIDDEN_ITEMS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
+            response.Limit.Should().Be(HIDDEN_ITEMS_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetHiddenItemsWithPageAndLimit()
+        public async Task Test_TraktUsersModule_GetHiddenItems_With_Page_And_Limit()
         {
-            var section = TraktHiddenItemsSection.Calendar;
-            const int itemCount = 3;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?page={PAGE}&limit={HIDDEN_ITEMS_LIMIT}",
+                HIDDEN_ITEMS_JSON, PAGE, HIDDEN_ITEMS_LIMIT, 1, HIDDEN_ITEMS_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}?page={page}&limit={limit}",
-                                                             HIDDEN_ITEMS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HIDDEN_ITEMS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
+            response.Limit.Should().Be(HIDDEN_ITEMS_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetHiddenItemsComplete()
+        public async Task Test_TraktUsersModule_GetHiddenItems_Complete()
         {
-            var section = TraktHiddenItemsSection.Calendar;
-            var type = TraktHiddenItemType.Season;
-            const int itemCount = 3;
-            const uint page = 2;
-            const uint limit = 4;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?type={HIDDEN_ITEM_TYPE.UriName}" +
+                $"&extended={EXTENDED_INFO}&page={PAGE}&limit={HIDDEN_ITEMS_LIMIT}",
+                HIDDEN_ITEMS_JSON, PAGE, HIDDEN_ITEMS_LIMIT, 1, HIDDEN_ITEMS_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithOAuth(
-                $"users/hidden/{section.UriName}?type={type.UriName}&extended={extendedInfo}&page={page}&limit={limit}",
-                HIDDEN_ITEMS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, HIDDEN_ITEMS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section, type, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, HIDDEN_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
+            response.Limit.Should().Be(HIDDEN_ITEMS_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetHiddenItemsWithTypeAndPageExceptions()
+        public void Test_TraktUsersModule_GetHiddenItems_Throws_NotFoundException()
         {
-            var section = TraktHiddenItemsSection.Calendar;
-            var uri = $"users/hidden/{section.UriName}";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section);
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(GetHiddenItemsUri, HttpStatusCode.NotFound);
+            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktUsersModule_GetHiddenItems_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GetHiddenItemsUri, HttpStatusCode.Unauthorized);
+            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION);
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetHiddenItems_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GetHiddenItemsUri, HttpStatusCode.BadRequest);
+            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktUsersModule_GetHiddenItems_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GetHiddenItemsUri, HttpStatusCode.Forbidden);
+            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktUsersModule_GetHiddenItems_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GetHiddenItemsUri, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktUsersModule_GetHiddenItems_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GetHiddenItemsUri, HttpStatusCode.Conflict);
+            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktUsersModule_GetHiddenItems_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GetHiddenItemsUri, HttpStatusCode.InternalServerError);
+            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktUsersModule_GetHiddenItems_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GetHiddenItemsUri, HttpStatusCode.BadGateway);
+            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktUsersModule_GetHiddenItems_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GetHiddenItemsUri, (HttpStatusCode)412);
+            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktUsersModule_GetHiddenItems_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GetHiddenItemsUri, (HttpStatusCode)422);
+            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktUsersModule_GetHiddenItems_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GetHiddenItemsUri, (HttpStatusCode)429);
+            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktUsersModule_GetHiddenItems_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GetHiddenItemsUri, (HttpStatusCode)503);
+            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetHiddenItemsWithTypeAndPageArgumentExceptions()
+        public void Test_TraktUsersModule_GetHiddenItems_Throws_ServerUnavailableException_504()
         {
-            var section = TraktHiddenItemsSection.Unspecified;
-            const int itemCount = 3;
+            TraktClient client = TestUtility.GetOAuthMockClient(GetHiddenItemsUri, (HttpStatusCode)504);
+            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/hidden/{section.UriName}",
-                                                             HIDDEN_ITEMS_JSON, 1, 10, 1, itemCount);
+        [Fact]
+        public void Test_TraktUsersModule_GetHiddenItems_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GetHiddenItemsUri, (HttpStatusCode)520);
+            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(null);
+        [Fact]
+        public void Test_TraktUsersModule_GetHiddenItems_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GetHiddenItemsUri, (HttpStatusCode)521);
+            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetHiddenItems_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(GetHiddenItemsUri, (HttpStatusCode)522);
+            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetHiddenItems_With_Type_And_Page_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                GetHiddenItemsUri,
+                HIDDEN_ITEMS_JSON, 1, 10, 1, HIDDEN_ITEMS_COUNT);
+
+            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(null);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetHiddenItemsAsync(section);
+            act = () => client.Users.GetHiddenItemsAsync(TraktHiddenItemsSection.Unspecified);
             act.Should().Throw<ArgumentException>();
         }
     }

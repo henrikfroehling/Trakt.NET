@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Users;
     using TraktApiSharp.Requests.Parameters;
@@ -16,853 +15,815 @@
     [Category("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
+        private readonly string GET_COMMENTS_URI = $"users/{USERNAME}/comments";
+
         [Fact]
-        public void Test_TraktUsersModule_GetComments()
+        public async Task Test_TraktUsersModule_GetComments()
         {
-            const string username = "sean";
-            const int itemCount = 5;
+            TraktClient client = TestUtility.GetMockClient(
+                GET_COMMENTS_URI,
+                USER_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments", USER_COMMENTS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username).Result;
+            TraktPagedResponse<ITraktUserComment> response = await client.Users.GetCommentsAsync(USERNAME);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithOAuthEnforced()
+        public async Task Test_TraktUsersModule_GetComments_With_OAuth_Enforced()
         {
-            const string username = "sean";
-            const int itemCount = 5;
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                GET_COMMENTS_URI,
+                USER_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithOAuth($"users/{username}/comments", USER_COMMENTS_JSON, 1, 10, 1, itemCount);
-            TestUtility.MOCK_TEST_CLIENT.Configuration.ForceAuthorization = true;
+            client.Configuration.ForceAuthorization = true;
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username).Result;
+            TraktPagedResponse<ITraktUserComment> response = await client.Users.GetCommentsAsync(USERNAME);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithCommentType()
+        public async Task Test_TraktUsersModule_GetComments_With_CommentType()
         {
-            const string username = "sean";
-            var commentType = TraktCommentType.All;
-            const int itemCount = 5;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{COMMENT_TYPE.UriName}",
+                USER_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments/{commentType.UriName}",
-                                                                USER_COMMENTS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithCommentTypeAndObjectType()
+        public async Task Test_TraktUsersModule_GetComments_With_CommentType_And_ObjectType()
         {
-            const string username = "sean";
-            var commentType = TraktCommentType.Review;
-            var objectType = TraktObjectType.All;
-            const int itemCount = 5;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{COMMENT_TYPE.UriName}/{OBJECT_TYPE.UriName}",
+                USER_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/comments/{commentType.UriName}/{objectType.UriName}",
-                USER_COMMENTS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, OBJECT_TYPE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithCommentTypeAndObjectTypeAndExtendedOption()
+        public async Task Test_TraktUsersModule_GetComments_With_CommentType_And_ObjectType_And_ExtendedInfo()
         {
-            const string username = "sean";
-            var commentType = TraktCommentType.Shout;
-            var objectType = TraktObjectType.Episode;
-            const int itemCount = 5;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{COMMENT_TYPE.UriName}/{OBJECT_TYPE.UriName}?extended={EXTENDED_INFO}",
+                USER_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/comments/{commentType.UriName}/{objectType.UriName}" +
-                $"?extended={extendedInfo}",
-                USER_COMMENTS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType, extendedInfo).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, OBJECT_TYPE, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithCommentTypeAndObjectTypeAndPage()
+        public async Task Test_TraktUsersModule_GetComments_With_CommentType_And_ObjectType_And_Page()
         {
-            const string username = "sean";
-            var commentType = TraktCommentType.Shout;
-            var objectType = TraktObjectType.List;
-            const int itemCount = 5;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{COMMENT_TYPE.UriName}/{OBJECT_TYPE.UriName}?page={PAGE}",
+                USER_COMMENTS_JSON, PAGE, 10, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/comments/{commentType.UriName}/{objectType.UriName}?page={page}",
-                USER_COMMENTS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, OBJECT_TYPE, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithCommentTypeAndObjectTypeAndLimit()
+        public async Task Test_TraktUsersModule_GetComments_With_CommentType_And_ObjectType_And_Limit()
         {
-            const string username = "sean";
-            var commentType = TraktCommentType.Shout;
-            var objectType = TraktObjectType.Movie;
-            const int itemCount = 5;
-            const uint limit = 6;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{COMMENT_TYPE.UriName}/{OBJECT_TYPE.UriName}?limit={COMMENTS_LIMIT}",
+                USER_COMMENTS_JSON, 1, COMMENTS_LIMIT, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/comments/{commentType.UriName}/{objectType.UriName}?limit={limit}",
-                USER_COMMENTS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, COMMENTS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, OBJECT_TYPE, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(COMMENTS_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithCommentTypeAndObjectTypeAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetComments_With_CommentType_And_ObjectType_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var commentType = TraktCommentType.All;
-            var objectType = TraktObjectType.Season;
-            const int itemCount = 5;
-            const uint page = 2;
-            const uint limit = 6;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{COMMENT_TYPE.UriName}/{OBJECT_TYPE.UriName}?page={PAGE}&limit={COMMENTS_LIMIT}",
+                USER_COMMENTS_JSON, PAGE, COMMENTS_LIMIT, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/comments/{commentType.UriName}/{objectType.UriName}?page={page}&limit={limit}",
-                USER_COMMENTS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, COMMENTS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, OBJECT_TYPE, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(COMMENTS_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithCommentTypeAndExtendedOption()
+        public async Task Test_TraktUsersModule_GetComments_With_CommentType_And_ExtendedInfo()
         {
-            const string username = "sean";
-            var commentType = TraktCommentType.Review;
-            const int itemCount = 5;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{COMMENT_TYPE.UriName}?extended={EXTENDED_INFO}",
+                USER_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/comments/{commentType.UriName}?extended={extendedInfo}",
-                USER_COMMENTS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, extendedInfo).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithCommentTypeAndExtendedOptionAndPage()
+        public async Task Test_TraktUsersModule_GetComments_With_CommentType_And_ExtendedInfo_And_Page()
         {
-            const string username = "sean";
-            var commentType = TraktCommentType.Review;
-            const int itemCount = 5;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{COMMENT_TYPE.UriName}?extended={EXTENDED_INFO}&page={PAGE}",
+                USER_COMMENTS_JSON, PAGE, 10, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/comments/{commentType.UriName}?extended={extendedInfo}&page={page}",
-                USER_COMMENTS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithCommentTypeAndExtendedOptionAndLimit()
+        public async Task Test_TraktUsersModule_GetComments_With_CommentType_And_ExtendedInfo_And_Limit()
         {
-            const string username = "sean";
-            var commentType = TraktCommentType.Review;
-            const int itemCount = 5;
-            const uint limit = 6;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{COMMENT_TYPE.UriName}?extended={EXTENDED_INFO}&limit={COMMENTS_LIMIT}",
+                USER_COMMENTS_JSON, 1, COMMENTS_LIMIT, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/comments/{commentType.UriName}?extended={extendedInfo}&limit={limit}",
-                USER_COMMENTS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, COMMENTS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(COMMENTS_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithCommentTypeAndExtendedOptionAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetComments_With_CommentType_And_ExtendedInfo_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var commentType = TraktCommentType.Review;
-            const int itemCount = 5;
-            const uint page = 2;
-            const uint limit = 6;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{COMMENT_TYPE.UriName}?extended={EXTENDED_INFO}&page={PAGE}&limit={COMMENTS_LIMIT}",
+                USER_COMMENTS_JSON, PAGE, COMMENTS_LIMIT, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/comments/{commentType.UriName}?extended={extendedInfo}&page={page}&limit={limit}",
-                USER_COMMENTS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, COMMENTS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(COMMENTS_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithCommentTypeAndPage()
+        public async Task Test_TraktUsersModule_GetComments_With_CommentType_And_Page()
         {
-            const string username = "sean";
-            var commentType = TraktCommentType.Review;
-            const int itemCount = 5;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments/{commentType.UriName}?page={page}",
-                                                                USER_COMMENTS_JSON, page, 10, 1, itemCount);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{COMMENT_TYPE.UriName}?page={PAGE}",
+                USER_COMMENTS_JSON, PAGE, 10, 1, COMMENTS_ITEM_COUNT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, null, pagedParameters).Result;
+            var pagedParameters = new TraktPagedParameters(PAGE);
+
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithCommentTypeAndLimit()
+        public async Task Test_TraktUsersModule_GetComments_With_CommentType_And_Limit()
         {
-            const string username = "sean";
-            var commentType = TraktCommentType.Review;
-            const int itemCount = 5;
-            const uint limit = 6;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{COMMENT_TYPE.UriName}?limit={COMMENTS_LIMIT}",
+                USER_COMMENTS_JSON, 1, COMMENTS_LIMIT, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments/{commentType.UriName}?limit={limit}",
-                                                                USER_COMMENTS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, COMMENTS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(COMMENTS_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithCommentTypeAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetComments_With_CommentType_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var commentType = TraktCommentType.Review;
-            const int itemCount = 5;
-            const uint page = 2;
-            const uint limit = 6;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{COMMENT_TYPE.UriName}?page={PAGE}&limit={COMMENTS_LIMIT}",
+                USER_COMMENTS_JSON, PAGE, COMMENTS_LIMIT, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments/{commentType.UriName}?page={page}&limit={limit}",
-                                                                USER_COMMENTS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, COMMENTS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(COMMENTS_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithObjectType()
+        public async Task Test_TraktUsersModule_GetComments_With_ObjectType()
         {
-            const string username = "sean";
-            var objectType = TraktObjectType.List;
-            const int itemCount = 5;
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{OBJECT_TYPE.UriName}",
+                USER_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments/{objectType.UriName}",
-                                                                USER_COMMENTS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithObjectTypeAndExtendedOption()
+        public async Task Test_TraktUsersModule_GetComments_With_ObjectType_And_ExtendedInfo()
         {
-            const string username = "sean";
-            var objectType = TraktObjectType.List;
-            const int itemCount = 5;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{OBJECT_TYPE.UriName}?extended={EXTENDED_INFO}",
+                USER_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/comments/{objectType.UriName}?extended={extendedInfo}",
-                USER_COMMENTS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, extendedInfo).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithObjectTypeAndExtendedOptionAndPage()
+        public async Task Test_TraktUsersModule_GetComments_With_ObjectType_And_ExtendedInfo_And_Page()
         {
-            const string username = "sean";
-            var objectType = TraktObjectType.List;
-            const int itemCount = 5;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{OBJECT_TYPE.UriName}?extended={EXTENDED_INFO}&page={PAGE}",
+                USER_COMMENTS_JSON, PAGE, 10, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/comments/{objectType.UriName}?extended={extendedInfo}&page={page}",
-                USER_COMMENTS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithObjectTypeAndExtendedOptionAndLimit()
+        public async Task Test_TraktUsersModule_GetComments_With_ObjectType_And_ExtendedInfo_And_Limit()
         {
-            const string username = "sean";
-            var objectType = TraktObjectType.List;
-            const int itemCount = 5;
-            const uint limit = 6;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{OBJECT_TYPE.UriName}?extended={EXTENDED_INFO}&limit={COMMENTS_LIMIT}",
+                USER_COMMENTS_JSON, 1, COMMENTS_LIMIT, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/comments/{objectType.UriName}?extended={extendedInfo}&limit={limit}",
-                USER_COMMENTS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, COMMENTS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(COMMENTS_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithObjectTypeAndExtendedOptionAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetComments_With_ObjectType_And_ExtendedInfo_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var objectType = TraktObjectType.List;
-            const int itemCount = 5;
-            const uint page = 2;
-            const uint limit = 6;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{OBJECT_TYPE.UriName}?extended={EXTENDED_INFO}&page={PAGE}&limit={COMMENTS_LIMIT}",
+                USER_COMMENTS_JSON, PAGE, COMMENTS_LIMIT, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/comments/{objectType.UriName}?extended={extendedInfo}&page={page}&limit={limit}",
-                USER_COMMENTS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, COMMENTS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(COMMENTS_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithObjectTypeAndPage()
+        public async Task Test_TraktUsersModule_GetComments_With_ObjectType_And_Page()
         {
-            const string username = "sean";
-            var objectType = TraktObjectType.List;
-            const int itemCount = 5;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{OBJECT_TYPE.UriName}?page={PAGE}",
+                USER_COMMENTS_JSON, PAGE, 10, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments/{objectType.UriName}?page={page}",
-                                                                USER_COMMENTS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithObjectTypeAndLimit()
+        public async Task Test_TraktUsersModule_GetComments_With_ObjectType_And_Limit()
         {
-            const string username = "sean";
-            var objectType = TraktObjectType.List;
-            const int itemCount = 5;
-            const uint limit = 6;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{OBJECT_TYPE.UriName}?limit={COMMENTS_LIMIT}",
+                USER_COMMENTS_JSON, 1, COMMENTS_LIMIT, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments/{objectType.UriName}?limit={limit}",
-                                                                USER_COMMENTS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, COMMENTS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(COMMENTS_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithObjectTypeAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetComments_With_ObjectType_And_Page_And_Limit()
         {
-            const string username = "sean";
-            var objectType = TraktObjectType.List;
-            const int itemCount = 5;
-            const uint page = 2;
-            const uint limit = 6;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{OBJECT_TYPE.UriName}?page={PAGE}&limit={COMMENTS_LIMIT}",
+                USER_COMMENTS_JSON, PAGE, COMMENTS_LIMIT, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments/{objectType.UriName}?page={page}&limit={limit}",
-                                                                USER_COMMENTS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, COMMENTS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, objectType, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(COMMENTS_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithExtendedInfo()
+        public async Task Test_TraktUsersModule_GetComments_With_ExtendedInfo()
         {
-            const string username = "sean";
-            const int itemCount = 5;
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}?extended={EXTENDED_INFO}",
+                USER_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/comments?extended={extendedInfo}",
-                USER_COMMENTS_JSON, 1, 10, 1, itemCount);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, extendedInfo).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, null, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithExtendedInfoAndPage()
+        public async Task Test_TraktUsersModule_GetComments_With_ExtendedInfo_And_Page()
         {
-            const string username = "sean";
-            const int itemCount = 5;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}?extended={EXTENDED_INFO}&page={PAGE}",
+                USER_COMMENTS_JSON, PAGE, 10, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/comments?extended={extendedInfo}&page={page}",
-                USER_COMMENTS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, null, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithExtendedInfoAndLimit()
+        public async Task Test_TraktUsersModule_GetComments_With_ExtendedInfo_And_Limit()
         {
-            const string username = "sean";
-            const int itemCount = 5;
-            const uint limit = 6;
-            var pagedParameters = new TraktPagedParameters(null, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}?extended={EXTENDED_INFO}&limit={COMMENTS_LIMIT}",
+                USER_COMMENTS_JSON, 1, COMMENTS_LIMIT, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/comments?extended={extendedInfo}&limit={limit}",
-                USER_COMMENTS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, COMMENTS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, null, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(COMMENTS_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithExtendedInfoAndPageAndLimit()
+        public async Task Test_TraktUsersModule_GetComments_With_ExtendedInfo_And_Page_And_Limit()
         {
-            const string username = "sean";
-            const int itemCount = 5;
-            const uint page = 2;
-            const uint limit = 6;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={COMMENTS_LIMIT}",
+                USER_COMMENTS_JSON, PAGE, COMMENTS_LIMIT, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth(
-                $"users/{username}/comments?extended={extendedInfo}&page={page}&limit={limit}",
-                USER_COMMENTS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, COMMENTS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, null, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(COMMENTS_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithPage()
+        public async Task Test_TraktUsersModule_GetComments_With_Page()
         {
-            const string username = "sean";
-            const int itemCount = 5;
-            const uint page = 2;
-            var pagedParameters = new TraktPagedParameters(page);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}?page={PAGE}",
+                USER_COMMENTS_JSON, PAGE, 10, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments?page={page}",
-                                                                USER_COMMENTS_JSON, page, 10, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(page);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithLimit()
+        public async Task Test_TraktUsersModule_GetComments_With_Limit()
         {
-            const string username = "sean";
-            const int itemCount = 5;
-            const uint limit = 6;
-            var pagedParameters = new TraktPagedParameters(null, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}?limit={COMMENTS_LIMIT}",
+                USER_COMMENTS_JSON, 1, COMMENTS_LIMIT, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments?limit={limit}",
-                                                                USER_COMMENTS_JSON, 1, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(null, COMMENTS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(COMMENTS_LIMIT);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsWithPageAndLimit()
+        public async Task Test_TraktUsersModule_GetComments_With_Page_And_Limit()
         {
-            const string username = "sean";
-            const int itemCount = 5;
-            const uint page = 2;
-            const uint limit = 6;
-            var pagedParameters = new TraktPagedParameters(page, limit);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}?page={PAGE}&limit={COMMENTS_LIMIT}",
+                USER_COMMENTS_JSON, PAGE, COMMENTS_LIMIT, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments?page={page}&limit={limit}",
-                                                                USER_COMMENTS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, COMMENTS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, null, null, null, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(COMMENTS_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsComplete()
+        public async Task Test_TraktUsersModule_GetComments_Complete()
         {
-            const string username = "sean";
-            var commentType = TraktCommentType.All;
-            var objectType = TraktObjectType.Season;
-            const int itemCount = 5;
-            const uint page = 2;
-            const uint limit = 6;
-            var pagedParameters = new TraktPagedParameters(page, limit);
-            var extendedInfo = new TraktExtendedInfo { Full = true };
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_COMMENTS_URI}/{COMMENT_TYPE.UriName}/{OBJECT_TYPE.UriName}" +
+                $"?extended={EXTENDED_INFO}&page={PAGE}&limit={COMMENTS_LIMIT}",
+                USER_COMMENTS_JSON, PAGE, COMMENTS_LIMIT, 1, COMMENTS_ITEM_COUNT);
 
-            TestUtility.SetupMockPaginationResponseWithoutOAuth($"users/{username}/comments/{commentType.UriName}/{objectType.UriName}" +
-                                                                $"?extended={extendedInfo}&page={page}&limit={limit}",
-                                                                USER_COMMENTS_JSON, page, limit, 1, itemCount);
+            var pagedParameters = new TraktPagedParameters(PAGE, COMMENTS_LIMIT);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username, commentType, objectType,
-                                                                                   extendedInfo, pagedParameters).Result;
+            TraktPagedResponse<ITraktUserComment> response =
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, OBJECT_TYPE,
+                                                    EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(itemCount);
-            response.ItemCount.Should().HaveValue().And.Be(itemCount);
-            response.Limit.Should().Be(limit);
-            response.Page.Should().Be(page);
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(COMMENTS_LIMIT);
+            response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsExceptions()
+        public void Test_TraktUsersModule_GetComments_Throws_NotFoundException()
         {
-            const string username = "sean";
-            var uri = $"users/{username}/comments";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.NotFound);
-
-            Func<Task<TraktPagedResponse<ITraktUserComment>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(username);
+            TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(USERNAME);
             act.Should().Throw<TraktNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
+        [Fact]
+        public void Test_TraktUsersModule_GetComments_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(USERNAME);
             act.Should().Throw<TraktAuthorizationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktUsersModule_GetComments_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(USERNAME);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktUsersModule_GetComments_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(USERNAME);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktUsersModule_GetComments_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(USERNAME);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktUsersModule_GetComments_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(USERNAME);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktUsersModule_GetComments_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(USERNAME);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktUsersModule_GetComments_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(USERNAME);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktUsersModule_GetComments_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_URI, (HttpStatusCode)412);
+            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(USERNAME);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktUsersModule_GetComments_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_URI, (HttpStatusCode)422);
+            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(USERNAME);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktUsersModule_GetComments_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_URI, (HttpStatusCode)429);
+            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(USERNAME);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithoutOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktUsersModule_GetComments_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_URI, (HttpStatusCode)503);
+            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(USERNAME);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCommentsArgumentExceptions()
+        public void Test_TraktUsersModule_GetComments_Throws_ServerUnavailableException_504()
         {
-            Func<Task<TraktPagedResponse<ITraktUserComment>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(null);
+            TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_URI, (HttpStatusCode)504);
+            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetComments_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_URI, (HttpStatusCode)520);
+            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetComments_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_URI, (HttpStatusCode)521);
+            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetComments_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_URI, (HttpStatusCode)522);
+            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(USERNAME);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_GetComments_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                GET_COMMENTS_URI, USER_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
+
+            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(null);
             act.Should().Throw<ArgumentNullException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync(string.Empty);
+            act = () => client.Users.GetCommentsAsync(string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.GetCommentsAsync("user name");
+            act = () => client.Users.GetCommentsAsync("user name");
             act.Should().Throw<ArgumentException>();
         }
     }

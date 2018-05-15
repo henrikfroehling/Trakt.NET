@@ -9,9 +9,8 @@
     using TestUtils;
     using Traits;
     using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
-    using TraktApiSharp.Objects.Get.People.Implementations;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
+    using TraktApiSharp.Objects.Get.People;
+    using TraktApiSharp.Objects.Post.Responses;
     using TraktApiSharp.Objects.Post.Users.CustomListItems;
     using TraktApiSharp.Objects.Post.Users.CustomListItems.Implementations;
     using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
@@ -21,95 +20,26 @@
     [Category("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
+        private readonly string REMOVE_CUSTOM_LIST_ITEMS_URI = $"users/{USERNAME}/lists/{LIST_ID}/items/remove";
+
         [Fact]
         public async Task Test_TraktUsersModule_RemoveCustomListItems()
         {
-            const string username = "sean";
-            const string listId = "55";
-
-            var customListItems = new TraktUserCustomListItemsPost
-            {
-                Movies = new List<TraktUserCustomListItemsPostMovie>()
-                {
-                    new TraktUserCustomListItemsPostMovie
-                    {
-                        Ids = new TraktMovieIds { Trakt = 1 },
-                    },
-                    new TraktUserCustomListItemsPostMovie
-                    {
-                        Ids = new TraktMovieIds { Imdb = "tt0000111" }
-                    }
-                },
-                Shows = new List<TraktUserCustomListItemsPostShow>()
-                {
-                    new TraktUserCustomListItemsPostShow
-                    {
-                        Ids = new TraktShowIds { Trakt = 1 }
-                    },
-                    new TraktUserCustomListItemsPostShow
-                    {
-                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
-                        {
-                            new TraktUserCustomListItemsPostShowSeason
-                            {
-                                Number = 1
-                            }
-                        },
-                        Ids = new TraktShowIds { Trakt = 2 }
-                    },
-                    new TraktUserCustomListItemsPostShow
-                    {
-                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
-                        {
-                            new TraktUserCustomListItemsPostShowSeason
-                            {
-                                Number = 1,
-                                Episodes = new List<TraktUserCustomListItemsPostShowEpisode>()
-                                {
-                                    new TraktUserCustomListItemsPostShowEpisode
-                                    {
-                                        Number = 1
-                                    },
-                                    new TraktUserCustomListItemsPostShowEpisode
-                                    {
-                                        Number = 2
-                                    }
-                                }
-                            }
-                        },
-                        Ids = new TraktShowIds { Trakt = 3 }
-                    }
-                },
-                People = new List<TraktPerson>()
-                {
-                    new TraktPerson
-                    {
-                        Name = "Jeff Bridges",
-                        Ids = new TraktPersonIds
-                        {
-                            Trakt = 2,
-                            Slug = "jeff-bridges",
-                            Imdb = "nm0000313",
-                            Tmdb = 1229,
-                            TvRage = 59067
-                        }
-                    }
-                }
-            };
-
-            string postJson = await TestUtility.SerializeObject<ITraktUserCustomListItemsPost>(customListItems);
+            string postJson = await TestUtility.SerializeObject(RemoveCustomListItemsPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockResponseWithOAuth($"users/{username}/lists/{listId}/items/remove", postJson, CUSTOM_LIST_ITEMS_REMOVE_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, postJson,
+                                                                CUSTOM_LIST_ITEMS_REMOVE_POST_RESPONSE_JSON);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.Users.RemoveCustomListItemsAsync(username, listId, customListItems).Result;
+            TraktResponse<ITraktUserCustomListItemsRemovePostResponse> response =
+                await client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, RemoveCustomListItemsPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            var responseValue = response.Value;
+            ITraktUserCustomListItemsRemovePostResponse responseValue = response.Value;
 
             responseValue.Deleted.Should().NotBeNull();
             responseValue.Deleted.Movies.Should().Be(1);
@@ -121,7 +51,7 @@
             responseValue.NotFound.Should().NotBeNull();
             responseValue.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
 
-            var movies = responseValue.NotFound.Movies.ToArray();
+            ITraktPostResponseNotFoundMovie[] movies = responseValue.NotFound.Movies.ToArray();
 
             movies[0].Ids.Should().NotBeNull();
             movies[0].Ids.Trakt.Should().Be(0);
@@ -136,222 +66,174 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_RemoveCustomListItemsExceptions()
+        public void Test_TraktUsersModule_RemoveCustomListItems_Throws_NotFoundException()
         {
-            const string username = "sean";
-            const string listId = "55";
-
-            var customListItems = new TraktUserCustomListItemsPost
-            {
-                Movies = new List<TraktUserCustomListItemsPostMovie>()
-                {
-                    new TraktUserCustomListItemsPostMovie
-                    {
-                        Ids = new TraktMovieIds { Trakt = 1 },
-                    },
-                    new TraktUserCustomListItemsPostMovie
-                    {
-                        Ids = new TraktMovieIds { Imdb = "tt0000111" }
-                    }
-                },
-                Shows = new List<TraktUserCustomListItemsPostShow>()
-                {
-                    new TraktUserCustomListItemsPostShow
-                    {
-                        Ids = new TraktShowIds { Trakt = 1 }
-                    },
-                    new TraktUserCustomListItemsPostShow
-                    {
-                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
-                        {
-                            new TraktUserCustomListItemsPostShowSeason
-                            {
-                                Number = 1
-                            }
-                        },
-                        Ids = new TraktShowIds { Trakt = 2 }
-                    },
-                    new TraktUserCustomListItemsPostShow
-                    {
-                        Seasons = new List<TraktUserCustomListItemsPostShowSeason>()
-                        {
-                            new TraktUserCustomListItemsPostShowSeason
-                            {
-                                Number = 1,
-                                Episodes = new List<TraktUserCustomListItemsPostShowEpisode>()
-                                {
-                                    new TraktUserCustomListItemsPostShowEpisode
-                                    {
-                                        Number = 1
-                                    },
-                                    new TraktUserCustomListItemsPostShowEpisode
-                                    {
-                                        Number = 2
-                                    }
-                                }
-                            }
-                        },
-                        Ids = new TraktShowIds { Trakt = 3 }
-                    }
-                },
-                People = new List<TraktPerson>()
-                {
-                    new TraktPerson
-                    {
-                        Name = "Jeff Bridges",
-                        Ids = new TraktPersonIds
-                        {
-                            Trakt = 2,
-                            Slug = "jeff-bridges",
-                            Imdb = "nm0000313",
-                            Tmdb = 1229,
-                            TvRage = 59067
-                        }
-                    }
-                }
-            };
-
-            var uri = $"users/{username}/lists/{listId}/items/remove";
-
-            TestUtility.SetupMockResponseWithoutOAuth(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.RemoveCustomListItemsAsync(username, listId, customListItems);
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.NotFound);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, RemoveCustomListItemsPost);
             act.Should().Throw<TraktListNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadRequest);
+        [Fact]
+        public void Test_TraktUsersModule_RemoveCustomListItems_Throws_AuthorizationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.Unauthorized);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, RemoveCustomListItemsPost);
+            act.Should().Throw<TraktAuthorizationException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_RemoveCustomListItems_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.BadRequest);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, RemoveCustomListItemsPost);
             act.Should().Throw<TraktBadRequestException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Forbidden);
+        [Fact]
+        public void Test_TraktUsersModule_RemoveCustomListItems_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.Forbidden);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, RemoveCustomListItemsPost);
             act.Should().Throw<TraktForbiddenException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.MethodNotAllowed);
+        [Fact]
+        public void Test_TraktUsersModule_RemoveCustomListItems_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.MethodNotAllowed);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, RemoveCustomListItemsPost);
             act.Should().Throw<TraktMethodNotFoundException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.Conflict);
+        [Fact]
+        public void Test_TraktUsersModule_RemoveCustomListItems_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.Conflict);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, RemoveCustomListItemsPost);
             act.Should().Throw<TraktConflictException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.InternalServerError);
+        [Fact]
+        public void Test_TraktUsersModule_RemoveCustomListItems_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.InternalServerError);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, RemoveCustomListItemsPost);
             act.Should().Throw<TraktServerException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, HttpStatusCode.BadGateway);
+        [Fact]
+        public void Test_TraktUsersModule_RemoveCustomListItems_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.BadGateway);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, RemoveCustomListItemsPost);
             act.Should().Throw<TraktBadGatewayException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)412);
+        [Fact]
+        public void Test_TraktUsersModule_RemoveCustomListItems_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)412);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, RemoveCustomListItemsPost);
             act.Should().Throw<TraktPreconditionFailedException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)422);
+        [Fact]
+        public void Test_TraktUsersModule_RemoveCustomListItems_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)422);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, RemoveCustomListItemsPost);
             act.Should().Throw<TraktValidationException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)429);
+        [Fact]
+        public void Test_TraktUsersModule_RemoveCustomListItems_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)429);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, RemoveCustomListItemsPost);
             act.Should().Throw<TraktRateLimitException>();
+        }
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)503);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)504);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)520);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)521);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetupMockResponseWithOAuth(uri, (HttpStatusCode)522);
+        [Fact]
+        public void Test_TraktUsersModule_RemoveCustomListItems_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)503);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, RemoveCustomListItemsPost);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_RemoveCustomListItemsArgumentExceptions()
+        public void Test_TraktUsersModule_RemoveCustomListItems_Throws_ServerUnavailableException_504()
         {
-            const string username = "sean";
-            const string listId = "55";
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)504);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, RemoveCustomListItemsPost);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
 
-            var customListItems = new TraktUserCustomListItemsPost
+        [Fact]
+        public void Test_TraktUsersModule_RemoveCustomListItems_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)520);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, RemoveCustomListItemsPost);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_RemoveCustomListItems_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)521);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, RemoveCustomListItemsPost);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktUsersModule_RemoveCustomListItems_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, (HttpStatusCode)522);
+            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, RemoveCustomListItemsPost);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_RemoveCustomListItems_ArgumentExceptions()
+        {
+            string postJson = await TestUtility.SerializeObject(RemoveCustomListItemsPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_CUSTOM_LIST_ITEMS_URI, postJson,
+                                                                CUSTOM_LIST_ITEMS_REMOVE_POST_RESPONSE_JSON);
+
+            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(null, LIST_ID, RemoveCustomListItemsPost);
+            act.Should().Throw<ArgumentNullException>();
+
+            act = () => client.Users.RemoveCustomListItemsAsync(string.Empty, LIST_ID, RemoveCustomListItemsPost);
+            act.Should().Throw<ArgumentException>();
+
+            act = () => client.Users.RemoveCustomListItemsAsync("user name", LIST_ID, RemoveCustomListItemsPost);
+            act.Should().Throw<ArgumentException>();
+
+            act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, null, RemoveCustomListItemsPost);
+            act.Should().Throw<ArgumentNullException>();
+
+            act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, string.Empty, RemoveCustomListItemsPost);
+            act.Should().Throw<ArgumentException>();
+
+            act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, "list id", RemoveCustomListItemsPost);
+            act.Should().Throw<ArgumentException>();
+
+            act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, null);
+            act.Should().Throw<ArgumentNullException>();
+
+            act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, new TraktUserCustomListItemsPost());
+            act.Should().Throw<ArgumentException>();
+
+            ITraktUserCustomListItemsPost customListItems = new TraktUserCustomListItemsPost
             {
-                Movies = new List<TraktUserCustomListItemsPostMovie>()
-                {
-                    new TraktUserCustomListItemsPostMovie
-                    {
-                        Ids = new TraktMovieIds { Trakt = 1 },
-                    }
-                },
-                Shows = new List<TraktUserCustomListItemsPostShow>()
-                {
-                    new TraktUserCustomListItemsPostShow
-                    {
-                        Ids = new TraktShowIds { Trakt = 1 }
-                    }
-                },
-                People = new List<TraktPerson>()
-                {
-                    new TraktPerson
-                    {
-                        Name = "Jeff Bridges",
-                        Ids = new TraktPersonIds
-                        {
-                            Trakt = 2,
-                            Slug = "jeff-bridges",
-                            Imdb = "nm0000313",
-                            Tmdb = 1229,
-                            TvRage = 59067
-                        }
-                    }
-                }
+                Movies = new List<ITraktUserCustomListItemsPostMovie>(),
+                Shows = new List<ITraktUserCustomListItemsPostShow>(),
+                People = new List<ITraktPerson>()
             };
 
-            Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act =
-                async () => await TestUtility.MOCK_TEST_CLIENT.Users.RemoveCustomListItemsAsync(null, listId, customListItems);
-            act.Should().Throw<ArgumentNullException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.RemoveCustomListItemsAsync(string.Empty, listId, customListItems);
-            act.Should().Throw<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.RemoveCustomListItemsAsync("user name", listId, customListItems);
-            act.Should().Throw<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.RemoveCustomListItemsAsync(username, null, customListItems);
-            act.Should().Throw<ArgumentNullException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.RemoveCustomListItemsAsync(username, string.Empty, customListItems);
-            act.Should().Throw<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.RemoveCustomListItemsAsync(username, "list id", customListItems);
-            act.Should().Throw<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.RemoveCustomListItemsAsync(username, listId, null);
-            act.Should().Throw<ArgumentNullException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.RemoveCustomListItemsAsync(username, listId, new TraktUserCustomListItemsPost());
-            act.Should().Throw<ArgumentException>();
-
-            customListItems = new TraktUserCustomListItemsPost
-            {
-                Movies = new List<TraktUserCustomListItemsPostMovie>(),
-                Shows = new List<TraktUserCustomListItemsPostShow>(),
-                People = new List<TraktPerson>()
-            };
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.Users.RemoveCustomListItemsAsync(username, listId, customListItems);
+            act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, customListItems);
             act.Should().Throw<ArgumentException>();
         }
     }
