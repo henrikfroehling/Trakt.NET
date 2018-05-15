@@ -13,9 +13,9 @@
     {
         internal string ClientId { get; set; }
 
-        public async Task<string> ToJson(CancellationToken cancellationToken = default)
+        public Task<string> ToJson(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(HttpContentAsString);
         }
 
         private string HttpContentAsString => $"{{ \"client_id\": \"{ClientId}\" }}";

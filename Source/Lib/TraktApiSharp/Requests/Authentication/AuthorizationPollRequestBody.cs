@@ -18,9 +18,9 @@
 
         internal string ClientSecret { get; set; }
 
-        public async Task<string> ToJson(CancellationToken cancellationToken = default)
+        public Task<string> ToJson(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(HttpContentAsString);
         }
 
         private string HttpContentAsString => $"{{ \"code\": \"{Device.DeviceCode}\", \"client_id\": \"{ClientId}\", \"client_secret\": \"{ClientSecret}\" }}";

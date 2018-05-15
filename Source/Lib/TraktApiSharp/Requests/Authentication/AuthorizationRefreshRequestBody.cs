@@ -20,9 +20,9 @@
 
         internal string RedirectUri { get; set; }
 
-        public async Task<string> ToJson(CancellationToken cancellationToken = default)
+        public Task<string> ToJson(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(HttpContentAsString);
         }
 
         private string HttpContentAsString => $"{{ \"refresh_token\": \"{RefreshToken}\", \"client_id\": \"{ClientId}\"," +
