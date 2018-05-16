@@ -4,8 +4,8 @@
     using Core;
     using Extensions;
     using Modules;
+    using Objects.Authentication;
     using Requests.Handler;
-    using TraktApiSharp.Objects.Authentication.Implementations;
 
     /// <summary>
     /// Provides access to all functionality of this library.
@@ -17,9 +17,9 @@
         {
             HttpClientProvider = httpClientProvider ?? new HttpClientProvider(this);
             Configuration = new TraktConfiguration();
-            Authentication = new TraktAuthentication(this);
-            OAuth = new TraktOAuth(this);
-            DeviceAuth = new TraktDeviceAuth(this);
+            Authentication = new TraktAuthenticationModule(this);
+            //OAuth = new TraktOAuth(this);
+            //DeviceAuth = new TraktDeviceAuth(this);
             Shows = new TraktShowsModule(this);
             Seasons = new TraktSeasonsModule(this);
             Episodes = new TraktEpisodesModule(this);
@@ -71,8 +71,8 @@
             set { Authentication.ClientSecret = value; }
         }
 
-        /// <summary>Gets or sets the Trakt Authorization information. See also <seealso cref="TraktAuthorization" />.</summary>
-        public TraktAuthorization Authorization
+        /// <summary>Gets or sets the Trakt Authorization information. See also <seealso cref="ITraktAuthorization" />.</summary>
+        public ITraktAuthorization Authorization
         {
             get { return Authentication.Authorization; }
             set { Authentication.Authorization = value; }
@@ -89,7 +89,7 @@
         /// Returns, whether the client is valid to use for API requests, that require OAuth authorization.
         /// <para>To enable this behavior, you must set a valid Trakt Client Id and a valid Trakt Access Token.</para>
         /// See <seealso cref="ClientId" />.
-        /// See <seealso cref="TraktAuthentication.IsAuthorized" />.
+        /// See <seealso cref="TraktAuthenticationModule.IsAuthorized" />.
         /// </summary>
         public bool IsValidForUseWithAuthorization => IsValidForUseWithoutAuthorization && Authentication.IsAuthorized;
 
@@ -107,14 +107,17 @@
         /// </summary>
         public TraktConfiguration Configuration { get; }
 
-        /// <summary>Provides access to the authentication module. See <seealso cref="TraktAuthentication" />.</summary>
-        public TraktAuthentication Authentication { get; }
+        ///// <summary>Provides access to the authentication module. See <seealso cref="TraktAuthentication" />.</summary>
+        //public TraktAuthentication Authentication { get; }
 
-        /// <summary>Provides access to the OAuth authentication module. See <seealso cref="TraktOAuth" />.</summary>
-        public TraktOAuth OAuth { get; }
+        /// <summary>Provides access to the authentication module. See <seealso cref="TraktAuthenticationModule" />.</summary>
+        public TraktAuthenticationModule Authentication { get; }
 
-        /// <summary>Provides accesss to the Device authentication module. See <seealso cref="TraktDeviceAuth" />.</summary>
-        public TraktDeviceAuth DeviceAuth { get; }
+        ///// <summary>Provides access to the OAuth authentication module. See <seealso cref="TraktOAuth" />.</summary>
+        //public TraktOAuth OAuth { get; }
+
+        ///// <summary>Provides accesss to the Device authentication module. See <seealso cref="TraktDeviceAuth" />.</summary>
+        //public TraktDeviceAuth DeviceAuth { get; }
 
         /// <summary>Provides access to the shows module. See <seealso cref="TraktShowsModule" />.</summary>
         public TraktShowsModule Shows { get; }

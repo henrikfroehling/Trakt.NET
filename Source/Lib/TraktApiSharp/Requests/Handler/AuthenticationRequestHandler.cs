@@ -26,7 +26,7 @@
         private readonly RequestMessageBuilder _requestMessageBuilder;
         private static IAuthenticationRequestHandler s_requestHandler;
 
-        private AuthenticationRequestHandler(TraktClient client)
+        internal AuthenticationRequestHandler(TraktClient client)
         {
             _client = client;
             _requestMessageBuilder = new RequestMessageBuilder(_client);
@@ -89,11 +89,8 @@
 
         public async Task<Pair<bool, TraktResponse<ITraktAuthorization>>> CheckIfAuthorizationIsExpiredOrWasRevokedAsync(ITraktAuthorization authorization, bool autoRefresh = false, CancellationToken cancellationToken = default)
         {
-            if (authorization == null)
-                throw new ArgumentNullException(nameof(authorization));
-
             ITraktAuthorization currentAuthorization = _client.Authorization;
-            _client.Authorization = authorization as TraktAuthorization;
+            _client.Authorization = authorization ?? throw new ArgumentNullException(nameof(authorization));
 
             var result = new Pair<bool, TraktResponse<ITraktAuthorization>>(true, new TraktResponse<ITraktAuthorization>());
 
@@ -103,7 +100,7 @@
             }
             finally
             {
-                _client.Authorization = currentAuthorization as TraktAuthorization;
+                _client.Authorization = currentAuthorization;
             }
 
             return result;
@@ -133,7 +130,7 @@
             finally
             {
                 _client.Configuration.ThrowResponseExceptions = throwResponseExceptions;
-                _client.Authorization = currentAuthorization as TraktAuthorization;
+                _client.Authorization = currentAuthorization;
             }
         }
 
@@ -153,14 +150,19 @@
 
                 Stream responseContentStream = await ResponseMessageHelper.GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
                 IObjectJsonReader<ITraktDevice> objectJsonReader = JsonFactoryContainer.CreateObjectReader<ITraktDevice>();
-
                 ITraktDevice device = await objectJsonReader.ReadObjectAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
-                TraktResponse<ITraktDevice> response = device as TraktDevice;
+
+                var response = new TraktResponse<ITraktDevice>()
+                {
+                    Value = device,
+                    HasValue = device != null,
+                    IsSuccess = device != null
+                };
 
                 if (responseMessage.Headers != null)
                     ResponseHeaderParser.ParseResponseHeaderValues(response, responseMessage.Headers);
 
-                _client.Authentication.Device = device as TraktDevice;
+                _client.Authentication.Device = device;
                 return response;
             }
             catch (Exception ex)
@@ -200,12 +202,18 @@
                     {
                         responseContentStream = await ResponseMessageHelper.GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
                         ITraktAuthorization traktAuthorization = await objectJsonReader.ReadObjectAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
-                        TraktResponse<ITraktAuthorization> response = traktAuthorization as TraktAuthorization;
+
+                        var response = new TraktResponse<ITraktAuthorization>()
+                        {
+                            Value = traktAuthorization,
+                            HasValue = traktAuthorization != null,
+                            IsSuccess = traktAuthorization != null
+                        };
 
                         if (responseMessage.Headers != null)
                             ResponseHeaderParser.ParseResponseHeaderValues(response, responseMessage.Headers);
 
-                        _client.Authentication.Authorization = traktAuthorization as TraktAuthorization;
+                        _client.Authentication.Authorization = traktAuthorization;
                         return response;
                     }
                     else if (responseCode == HttpStatusCode.BadRequest) // Pending
@@ -323,12 +331,18 @@
                     responseContentStream = await ResponseMessageHelper.GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
                     IObjectJsonReader<ITraktAuthorization> objectJsonReader = JsonFactoryContainer.CreateObjectReader<ITraktAuthorization>();
                     ITraktAuthorization traktAuthorization = await objectJsonReader.ReadObjectAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
-                    TraktResponse<ITraktAuthorization> response = traktAuthorization as TraktAuthorization;
+
+                    var response = new TraktResponse<ITraktAuthorization>()
+                    {
+                        Value = traktAuthorization,
+                        HasValue = traktAuthorization != null,
+                        IsSuccess = traktAuthorization != null
+                    };
 
                     if (responseMessage.Headers != null)
                         ResponseHeaderParser.ParseResponseHeaderValues(response, responseMessage.Headers);
 
-                    _client.Authentication.Authorization = traktAuthorization as TraktAuthorization;
+                    _client.Authentication.Authorization = traktAuthorization;
                     return response;
                 }
                 else if (responseCode == HttpStatusCode.Unauthorized) // Invalid code
