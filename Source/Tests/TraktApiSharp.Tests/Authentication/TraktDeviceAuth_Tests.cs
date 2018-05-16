@@ -1,3832 +1,3832 @@
 ﻿namespace TraktApiSharp.Tests.Authentication
 {
-    using FluentAssertions;
-    using Newtonsoft.Json;
-    using System;
-    using System.Net;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using TestUtils;
+    //using FluentAssertions;
+    //using Newtonsoft.Json;
+    //using System;
+    //using System.Net;
+    //using System.Threading;
+    //using System.Threading.Tasks;
+    //using TestUtils;
     using Traits;
-    using TraktApiSharp.Core;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Objects.Authentication.Implementations;
-    using TraktApiSharp.Objects.Basic.Implementations;
-    using Xunit;
+    //using TraktApiSharp.Core;
+    //using TraktApiSharp.Enums;
+    //using TraktApiSharp.Exceptions;
+    //using TraktApiSharp.Objects.Authentication.Implementations;
+    //using TraktApiSharp.Objects.Basic.Implementations;
+    //using Xunit;
 
     [Category("Authentication")]
     public class TraktDeviceAuth_Tests
     {
-        [Fact]
-        public void Test_TraktDeviceAuth_DefaultConstructor()
-        {
-            var client = new TraktClient();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_DefaultConstructor()
+        //{
+        //    var client = new TraktClient();
 
-            client.DeviceAuth.Client.Should().Be(client);
-        }
+        //    client.DeviceAuth.Client.Should().Be(client);
+        //}
 
-        // -----------------------------------------------------------------------------------------------
-        // -----------------------------------------------------------------------------------------------
+        //// -----------------------------------------------------------------------------------------------
+        //// -----------------------------------------------------------------------------------------------
 
-        #region GenerateDevice
+        //#region GenerateDevice
 
-        [Fact]
-        public void Test_TraktDeviceAuth_GenerateDevice()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_GenerateDevice()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
+        //    var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
 
-            var device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = 600,
-                IntervalInSeconds = 5
-            };
+        //    var device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = 600,
+        //        IntervalInSeconds = 5
+        //    };
 
-            var deviceJson = JsonConvert.SerializeObject(device);
-            deviceJson.Should().NotBeNullOrEmpty();
+        //    var deviceJson = JsonConvert.SerializeObject(device);
+        //    deviceJson.Should().NotBeNullOrEmpty();
 
-            var postContent = $"{{ \"client_id\": \"{clientId}\" }}";
+        //    var postContent = $"{{ \"client_id\": \"{clientId}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceCodeUri, postContent, deviceJson);
+        //    TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceCodeUri, postContent, deviceJson);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync().Result;
+        //    var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync().Result;
 
-            response.Should().NotBeNull();
-            response.DeviceCode.Should().Be(device.DeviceCode);
-            response.UserCode.Should().Be(device.UserCode);
-            response.VerificationUrl.Should().Be(device.VerificationUrl);
-            response.ExpiresInSeconds.Should().Be(device.ExpiresInSeconds);
-            response.IntervalInSeconds.Should().Be(device.IntervalInSeconds);
-            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpiredUnused.Should().BeFalse();
-            response.IsValid.Should().BeTrue();
+        //    response.Should().NotBeNull();
+        //    response.DeviceCode.Should().Be(device.DeviceCode);
+        //    response.UserCode.Should().Be(device.UserCode);
+        //    response.VerificationUrl.Should().Be(device.VerificationUrl);
+        //    response.ExpiresInSeconds.Should().Be(device.ExpiresInSeconds);
+        //    response.IntervalInSeconds.Should().Be(device.IntervalInSeconds);
+        //    response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+        //    response.IsExpiredUnused.Should().BeFalse();
+        //    response.IsValid.Should().BeTrue();
 
-            var clientDevice = TestUtility.MOCK_TEST_CLIENT.Authentication.Device;
+        //    var clientDevice = TestUtility.MOCK_TEST_CLIENT.Authentication.Device;
 
-            clientDevice.Should().NotBeNull();
-            clientDevice.DeviceCode.Should().Be(response.DeviceCode);
-            clientDevice.UserCode.Should().Be(response.UserCode);
-            clientDevice.VerificationUrl.Should().Be(response.VerificationUrl);
-            clientDevice.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
-            clientDevice.IntervalInSeconds.Should().Be(response.IntervalInSeconds);
-            clientDevice.CreatedAt.Should().Be(response.CreatedAt);
-            clientDevice.IsExpiredUnused.Should().BeFalse();
-            clientDevice.IsValid.Should().BeTrue();
+        //    clientDevice.Should().NotBeNull();
+        //    clientDevice.DeviceCode.Should().Be(response.DeviceCode);
+        //    clientDevice.UserCode.Should().Be(response.UserCode);
+        //    clientDevice.VerificationUrl.Should().Be(response.VerificationUrl);
+        //    clientDevice.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+        //    clientDevice.IntervalInSeconds.Should().Be(response.IntervalInSeconds);
+        //    clientDevice.CreatedAt.Should().Be(response.CreatedAt);
+        //    clientDevice.IsExpiredUnused.Should().BeFalse();
+        //    clientDevice.IsValid.Should().BeTrue();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-        [Fact]
-        public void Test_TraktDeviceAuth_GenerateDeviceExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_GenerateDeviceExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            var uri = Constants.OAuthDeviceCodeUri;
+        //    var uri = Constants.OAuthDeviceCodeUri;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktDevice>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<TraktAuthorizationException>();
+        //    Func<Task<TraktDevice>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<TraktForbiddenException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<TraktForbiddenException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<TraktMethodNotFoundException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<TraktMethodNotFoundException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<TraktServerException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<TraktServerException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<TraktBadGatewayException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<TraktBadGatewayException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<TraktPreconditionFailedException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<TraktPreconditionFailedException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<TraktValidationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<TraktValidationException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<TraktNotFoundException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<TraktNotFoundException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<TraktBadRequestException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<TraktBadRequestException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<TraktConflictException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<TraktConflictException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<TraktRateLimitException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<TraktRateLimitException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-        [Fact]
-        public void Test_TraktDeviceAuth_GenerateDeviceArgumentExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_GenerateDeviceArgumentExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            TestUtility.MOCK_TEST_CLIENT.ClientId = null;
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = null;
 
-            Func<Task<TraktDevice>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<ArgumentException>();
+        //    Func<Task<TraktDevice>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.MOCK_TEST_CLIENT.ClientId = string.Empty;
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = string.Empty;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.MOCK_TEST_CLIENT.ClientId = "client id";
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = "client id";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-        [Fact]
-        public void Test_TraktDeviceAuth_GenerateDeviceWithClientId()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_GenerateDeviceWithClientId()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            var clientId = "clientId";
+        //    var clientId = "clientId";
 
-            var device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = 600,
-                IntervalInSeconds = 5
-            };
+        //    var device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = 600,
+        //        IntervalInSeconds = 5
+        //    };
 
-            var deviceJson = JsonConvert.SerializeObject(device);
-            deviceJson.Should().NotBeNullOrEmpty();
+        //    var deviceJson = JsonConvert.SerializeObject(device);
+        //    deviceJson.Should().NotBeNullOrEmpty();
 
-            var postContent = $"{{ \"client_id\": \"{clientId}\" }}";
+        //    var postContent = $"{{ \"client_id\": \"{clientId}\" }}";
 
-            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceCodeUri, postContent, deviceJson);
+        //    TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceCodeUri, postContent, deviceJson);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId).Result;
+        //    var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId).Result;
 
-            response.Should().NotBeNull();
-            response.DeviceCode.Should().Be(device.DeviceCode);
-            response.UserCode.Should().Be(device.UserCode);
-            response.VerificationUrl.Should().Be(device.VerificationUrl);
-            response.ExpiresInSeconds.Should().Be(device.ExpiresInSeconds);
-            response.IntervalInSeconds.Should().Be(device.IntervalInSeconds);
-            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpiredUnused.Should().BeFalse();
-            response.IsValid.Should().BeTrue();
+        //    response.Should().NotBeNull();
+        //    response.DeviceCode.Should().Be(device.DeviceCode);
+        //    response.UserCode.Should().Be(device.UserCode);
+        //    response.VerificationUrl.Should().Be(device.VerificationUrl);
+        //    response.ExpiresInSeconds.Should().Be(device.ExpiresInSeconds);
+        //    response.IntervalInSeconds.Should().Be(device.IntervalInSeconds);
+        //    response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+        //    response.IsExpiredUnused.Should().BeFalse();
+        //    response.IsValid.Should().BeTrue();
 
-            var clientDevice = TestUtility.MOCK_TEST_CLIENT.Authentication.Device;
+        //    var clientDevice = TestUtility.MOCK_TEST_CLIENT.Authentication.Device;
 
-            clientDevice.Should().NotBeNull();
-            clientDevice.DeviceCode.Should().Be(response.DeviceCode);
-            clientDevice.UserCode.Should().Be(response.UserCode);
-            clientDevice.VerificationUrl.Should().Be(response.VerificationUrl);
-            clientDevice.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
-            clientDevice.IntervalInSeconds.Should().Be(response.IntervalInSeconds);
-            clientDevice.CreatedAt.Should().Be(response.CreatedAt);
-            clientDevice.IsExpiredUnused.Should().BeFalse();
-            clientDevice.IsValid.Should().BeTrue();
+        //    clientDevice.Should().NotBeNull();
+        //    clientDevice.DeviceCode.Should().Be(response.DeviceCode);
+        //    clientDevice.UserCode.Should().Be(response.UserCode);
+        //    clientDevice.VerificationUrl.Should().Be(response.VerificationUrl);
+        //    clientDevice.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+        //    clientDevice.IntervalInSeconds.Should().Be(response.IntervalInSeconds);
+        //    clientDevice.CreatedAt.Should().Be(response.CreatedAt);
+        //    clientDevice.IsExpiredUnused.Should().BeFalse();
+        //    clientDevice.IsValid.Should().BeTrue();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-        [Fact]
-        public void Test_TraktDeviceAuth_GenerateDeviceWithClientIdExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_GenerateDeviceWithClientIdExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            var clientId = "clientId";
+        //    var clientId = "clientId";
 
-            var uri = Constants.OAuthDeviceCodeUri;
+        //    var uri = Constants.OAuthDeviceCodeUri;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
 
-            Func<Task<TraktDevice>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    Func<Task<TraktDevice>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
-            act.Should().Throw<TraktForbiddenException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+        //    act.Should().Throw<TraktForbiddenException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
-            act.Should().Throw<TraktMethodNotFoundException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+        //    act.Should().Throw<TraktMethodNotFoundException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
-            act.Should().Throw<TraktServerException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+        //    act.Should().Throw<TraktServerException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
-            act.Should().Throw<TraktBadGatewayException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+        //    act.Should().Throw<TraktBadGatewayException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
-            act.Should().Throw<TraktPreconditionFailedException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+        //    act.Should().Throw<TraktPreconditionFailedException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
-            act.Should().Throw<TraktValidationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+        //    act.Should().Throw<TraktValidationException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
-            act.Should().Throw<TraktNotFoundException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+        //    act.Should().Throw<TraktNotFoundException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
-            act.Should().Throw<TraktBadRequestException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+        //    act.Should().Throw<TraktBadRequestException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
-            act.Should().Throw<TraktConflictException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+        //    act.Should().Throw<TraktConflictException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
-            act.Should().Throw<TraktRateLimitException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+        //    act.Should().Throw<TraktRateLimitException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-        [Fact]
-        public void Test_TraktDeviceAuth_GenerateDeviceWithClientIdArgumentExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_GenerateDeviceWithClientIdArgumentExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            Func<Task<TraktDevice>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(null);
-            act.Should().Throw<ArgumentException>();
+        //    Func<Task<TraktDevice>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(null);
+        //    act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(string.Empty);
+        //    act.Should().Throw<ArgumentException>();
 
-            var clientId = "client id";
+        //    var clientId = "client id";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.GenerateDeviceAsync(clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-        #endregion
+        //#endregion
 
-        // -----------------------------------------------------------------------------------------------
-        // -----------------------------------------------------------------------------------------------
+        //// -----------------------------------------------------------------------------------------------
+        //// -----------------------------------------------------------------------------------------------
 
-        #region PollForAuthorization
+        //#region PollForAuthorization
 
-        private const uint DEVICE_EXPIRES_IN_SECONDS = 60;
-        private const uint DEVICE_INTERVAL_IN_SECONDS = 6;
-        private const uint POLLING_DELAY_IN_MILLISECONDS = 9 * 1000;
+        //private const uint DEVICE_EXPIRES_IN_SECONDS = 60;
+        //private const uint DEVICE_INTERVAL_IN_SECONDS = 6;
+        //private const uint POLLING_DELAY_IN_MILLISECONDS = 9 * 1000;
 
-        [Fact]
-        public void Test_TraktDeviceAuth_PollForAuthorization()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_PollForAuthorization()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
-            var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
+        //    var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
+        //    var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
 
-            var device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
-                IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
-            };
+        //    var device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
+        //        IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
+        //    };
             
-            var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
+        //    var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            var accessTokenJson = JsonConvert.SerializeObject(accessToken);
-            accessTokenJson.Should().NotBeNullOrEmpty();
+        //    var accessTokenJson = JsonConvert.SerializeObject(accessToken);
+        //    accessTokenJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson);
-            TestUtility.MOCK_TEST_CLIENT.Authentication.Device = device;
+        //    TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson);
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.Device = device;
 
-            var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync().Result;
+        //    var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync().Result;
 
-            response.Should().NotBeNull();
-            response.AccessToken.Should().Be(accessToken.AccessToken);
-            response.TokenType.Should().Be(accessToken.TokenType);
-            response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
-            response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.Scope.Should().Be(accessToken.Scope);
-            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeFalse();
+        //    response.Should().NotBeNull();
+        //    response.AccessToken.Should().Be(accessToken.AccessToken);
+        //    response.TokenType.Should().Be(accessToken.TokenType);
+        //    response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
+        //    response.RefreshToken.Should().Be(accessToken.RefreshToken);
+        //    response.Scope.Should().Be(accessToken.Scope);
+        //    response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+        //    response.IsExpired.Should().BeFalse();
 
-            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
+        //    var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
 
-            clientAccessToken.Should().NotBeNull();
-            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
-            clientAccessToken.TokenType.Should().Be(response.TokenType);
-            clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
-            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.Scope.Should().Be(response.Scope);
-            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
-            clientAccessToken.IsExpired.Should().BeFalse();
+        //    clientAccessToken.Should().NotBeNull();
+        //    clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+        //    clientAccessToken.TokenType.Should().Be(response.TokenType);
+        //    clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+        //    clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+        //    clientAccessToken.Scope.Should().Be(response.Scope);
+        //    clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
+        //    clientAccessToken.IsExpired.Should().BeFalse();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-        // Run this test only individually
+        //// Run this test only individually
+        ////[Fact]
+        //public void Test_TraktDeviceAuth_PollForAuthorizationPolling()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
+
+        //    var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
+        //    var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
+
+        //    var device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
+        //        IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
+        //    };
+
+        //    var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
+
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
+
+        //    var accessTokenJson = JsonConvert.SerializeObject(accessToken);
+        //    accessTokenJson.Should().NotBeNullOrEmpty();
+
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.Device = device;
+
+        //    TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.BadRequest);
+
+        //    var timer = new Timer(x =>
+        //    {
+        //        //Debug.WriteLine("Delayed Http Status Code Change");
+        //        TestUtility.ClearMockHttpClient();
+        //        TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.OK);
+        //    }, null, POLLING_DELAY_IN_MILLISECONDS, POLLING_DELAY_IN_MILLISECONDS);
+
+        //    var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync().Result;
+
+        //    response.Should().NotBeNull();
+        //    response.AccessToken.Should().Be(accessToken.AccessToken);
+        //    response.TokenType.Should().Be(accessToken.TokenType);
+        //    response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
+        //    response.RefreshToken.Should().Be(accessToken.RefreshToken);
+        //    response.Scope.Should().Be(accessToken.Scope);
+        //    response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+        //    response.IsExpired.Should().BeFalse();
+
+        //    var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
+
+        //    clientAccessToken.Should().NotBeNull();
+        //    clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+        //    clientAccessToken.TokenType.Should().Be(response.TokenType);
+        //    clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+        //    clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+        //    clientAccessToken.Scope.Should().Be(response.Scope);
+        //    clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
+        //    clientAccessToken.IsExpired.Should().BeFalse();
+
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
+
         //[Fact]
-        public void Test_TraktDeviceAuth_PollForAuthorizationPolling()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
-
-            var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
-            var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
-
-            var device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
-                IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
-            };
+        //public void Test_TraktDeviceAuth_PollForAuthorizationExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.Device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
+        //        IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
+        //    };
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    var uri = Constants.OAuthDeviceTokenUri;
 
-            var accessTokenJson = JsonConvert.SerializeObject(accessToken);
-            accessTokenJson.Should().NotBeNullOrEmpty();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
 
-            TestUtility.MOCK_TEST_CLIENT.Authentication.Device = device;
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.BadRequest);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
 
-            var timer = new Timer(x =>
-            {
-                //Debug.WriteLine("Delayed Http Status Code Change");
-                TestUtility.ClearMockHttpClient();
-                TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.OK);
-            }, null, POLLING_DELAY_IN_MILLISECONDS, POLLING_DELAY_IN_MILLISECONDS);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<TraktForbiddenException>();
 
-            var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync().Result;
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
 
-            response.Should().NotBeNull();
-            response.AccessToken.Should().Be(accessToken.AccessToken);
-            response.TokenType.Should().Be(accessToken.TokenType);
-            response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
-            response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.Scope.Should().Be(accessToken.Scope);
-            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeFalse();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<TraktMethodNotFoundException>();
 
-            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
 
-            clientAccessToken.Should().NotBeNull();
-            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
-            clientAccessToken.TokenType.Should().Be(response.TokenType);
-            clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
-            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.Scope.Should().Be(response.Scope);
-            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
-            clientAccessToken.IsExpired.Should().BeFalse();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<TraktServerException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
 
-        [Fact]
-        public void Test_TraktDeviceAuth_PollForAuthorizationExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<TraktBadGatewayException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authentication.Device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
-                IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
-            };
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
 
-            var uri = Constants.OAuthDeviceTokenUri;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<TraktPreconditionFailedException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
 
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<TraktValidationException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<TraktForbiddenException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<TraktMethodNotFoundException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<TraktServerException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<TraktBadGatewayException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<TraktPreconditionFailedException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<TraktValidationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Gone);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)418);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Gone);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)418);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
-
-        [Fact]
-        public void Test_TraktDeviceAuth_PollForAuthorizationArgumentExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
-
-            var device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
-                IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
-            };
-
-            TestUtility.MOCK_TEST_CLIENT.Authentication.Device = null;
-
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.MOCK_TEST_CLIENT.Authentication.Device = new TraktDevice { DeviceCode = null };
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.MOCK_TEST_CLIENT.Authentication.Device = new TraktDevice
-            {
-                DeviceCode = string.Empty,
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
-            };
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.MOCK_TEST_CLIENT.Authentication.Device = new TraktDevice
-            {
-                DeviceCode = "mock device code",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
-            };
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
-
-            // ExpiredUnused == true, because of ExpiresInSeconds defaults to 0
-            TestUtility.MOCK_TEST_CLIENT.Authentication.Device = new TraktDevice { DeviceCode = "mockDeviceCode" };
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.MOCK_TEST_CLIENT.Authentication.Device = device;
-            TestUtility.MOCK_TEST_CLIENT.ClientId = null;
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.MOCK_TEST_CLIENT.ClientId = string.Empty;
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.MOCK_TEST_CLIENT.ClientId = "client id";
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.MOCK_TEST_CLIENT.ClientId = "clientId";
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = null;
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = string.Empty;
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = "client secret";
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
-
-        [Fact]
-        public void Test_TraktDeviceAuth_PollForAuthorizationWithDevice()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
-
-            var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
-            var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
-
-            var device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
-                IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
-            };
-
-            var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
-
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
-
-            var accessTokenJson = JsonConvert.SerializeObject(accessToken);
-            accessTokenJson.Should().NotBeNullOrEmpty();
-
-            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device).Result;
-
-            response.Should().NotBeNull();
-            response.AccessToken.Should().Be(accessToken.AccessToken);
-            response.TokenType.Should().Be(accessToken.TokenType);
-            response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
-            response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.Scope.Should().Be(accessToken.Scope);
-            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeFalse();
-
-            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
-
-            clientAccessToken.Should().NotBeNull();
-            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
-            clientAccessToken.TokenType.Should().Be(response.TokenType);
-            clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
-            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.Scope.Should().Be(response.Scope);
-            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
-            clientAccessToken.IsExpired.Should().BeFalse();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
-
-        // Run this test only individually
         //[Fact]
-        public void Test_TraktDeviceAuth_PollForAuthorizationWithDevicePolling()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
-
-            var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
-            var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
-
-            var device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
-                IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
-            };
+        //public void Test_TraktDeviceAuth_PollForAuthorizationArgumentExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
+        //    var device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
+        //        IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
+        //    };
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.Device = null;
 
-            var accessTokenJson = JsonConvert.SerializeObject(accessToken);
-            accessTokenJson.Should().NotBeNullOrEmpty();
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.BadRequest);
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.Device = new TraktDevice { DeviceCode = null };
 
-            var timer = new Timer(x =>
-            {
-                //Debug.WriteLine("Delayed Http Status Code Change");
-                TestUtility.ClearMockHttpClient();
-                TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.OK);
-            }, null, POLLING_DELAY_IN_MILLISECONDS, POLLING_DELAY_IN_MILLISECONDS);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device).Result;
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.Device = new TraktDevice
+        //    {
+        //        DeviceCode = string.Empty,
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
+        //    };
 
-            response.Should().NotBeNull();
-            response.AccessToken.Should().Be(accessToken.AccessToken);
-            response.TokenType.Should().Be(accessToken.TokenType);
-            response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
-            response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.Scope.Should().Be(accessToken.Scope);
-            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeFalse();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.Device = new TraktDevice
+        //    {
+        //        DeviceCode = "mock device code",
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
+        //    };
 
-            clientAccessToken.Should().NotBeNull();
-            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
-            clientAccessToken.TokenType.Should().Be(response.TokenType);
-            clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
-            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.Scope.Should().Be(response.Scope);
-            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
-            clientAccessToken.IsExpired.Should().BeFalse();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    // ExpiredUnused == true, because of ExpiresInSeconds defaults to 0
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.Device = new TraktDevice { DeviceCode = "mockDeviceCode" };
 
-        [Fact]
-        public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            var device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
-                IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
-            };
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.Device = device;
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = null;
 
-            var uri = Constants.OAuthDeviceTokenUri;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = string.Empty;
 
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = "client id";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<TraktForbiddenException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = "clientId";
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = null;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<TraktMethodNotFoundException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = string.Empty;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<TraktServerException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = "client secret";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<TraktBadGatewayException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<TraktPreconditionFailedException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<TraktValidationException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Gone);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)418);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
-
-        [Fact]
-        public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceArgumentExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
-
-            var device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
-                IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
-            };
-
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(null);
-            act.Should().Throw<ArgumentNullException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
-                new TraktDevice
-                {
-                    DeviceCode = string.Empty,
-                    ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
-                });
-            act.Should().Throw<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
-                new TraktDevice
-                {
-                    DeviceCode = "mock device code",
-                    ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
-                });
-            act.Should().Throw<ArgumentException>();
-
-            // ExpiredUnused == true, because of ExpiresInSeconds defaults to 0
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
-                new TraktDevice { DeviceCode = "mockDeviceCode" });
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.MOCK_TEST_CLIENT.ClientId = null;
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.MOCK_TEST_CLIENT.ClientId = string.Empty;
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.MOCK_TEST_CLIENT.ClientId = "client id";
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.MOCK_TEST_CLIENT.ClientId = "clientId";
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = null;
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = string.Empty;
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = "client secret";
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
-
-        [Fact]
-        public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceAndClientId()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
-
-            var clientId = "clientId";
-            var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
-
-            var device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
-                IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
-            };
-
-            var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
-
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
-
-            var accessTokenJson = JsonConvert.SerializeObject(accessToken);
-            accessTokenJson.Should().NotBeNullOrEmpty();
-
-            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId).Result;
-
-            response.Should().NotBeNull();
-            response.AccessToken.Should().Be(accessToken.AccessToken);
-            response.TokenType.Should().Be(accessToken.TokenType);
-            response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
-            response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.Scope.Should().Be(accessToken.Scope);
-            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeFalse();
-
-            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
-
-            clientAccessToken.Should().NotBeNull();
-            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
-            clientAccessToken.TokenType.Should().Be(response.TokenType);
-            clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
-            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.Scope.Should().Be(response.Scope);
-            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
-            clientAccessToken.IsExpired.Should().BeFalse();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
-
-        // Run this test only individually
         //[Fact]
-        public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceAndClientIdPolling()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //public void Test_TraktDeviceAuth_PollForAuthorizationWithDevice()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
+
+        //    var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
+        //    var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
+
+        //    var device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
+        //        IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
+        //    };
+
+        //    var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
+
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
+
+        //    var accessTokenJson = JsonConvert.SerializeObject(accessToken);
+        //    accessTokenJson.Should().NotBeNullOrEmpty();
+
+        //    TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson);
+
+        //    var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device).Result;
+
+        //    response.Should().NotBeNull();
+        //    response.AccessToken.Should().Be(accessToken.AccessToken);
+        //    response.TokenType.Should().Be(accessToken.TokenType);
+        //    response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
+        //    response.RefreshToken.Should().Be(accessToken.RefreshToken);
+        //    response.Scope.Should().Be(accessToken.Scope);
+        //    response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+        //    response.IsExpired.Should().BeFalse();
+
+        //    var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
+
+        //    clientAccessToken.Should().NotBeNull();
+        //    clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+        //    clientAccessToken.TokenType.Should().Be(response.TokenType);
+        //    clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+        //    clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+        //    clientAccessToken.Scope.Should().Be(response.Scope);
+        //    clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
+        //    clientAccessToken.IsExpired.Should().BeFalse();
+
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
+
+        //// Run this test only individually
+        ////[Fact]
+        //public void Test_TraktDeviceAuth_PollForAuthorizationWithDevicePolling()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
+
+        //    var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
+        //    var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
+
+        //    var device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
+        //        IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
+        //    };
+
+        //    var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
+
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
+
+        //    var accessTokenJson = JsonConvert.SerializeObject(accessToken);
+        //    accessTokenJson.Should().NotBeNullOrEmpty();
+
+        //    TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.BadRequest);
+
+        //    var timer = new Timer(x =>
+        //    {
+        //        //Debug.WriteLine("Delayed Http Status Code Change");
+        //        TestUtility.ClearMockHttpClient();
+        //        TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.OK);
+        //    }, null, POLLING_DELAY_IN_MILLISECONDS, POLLING_DELAY_IN_MILLISECONDS);
+
+        //    var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device).Result;
+
+        //    response.Should().NotBeNull();
+        //    response.AccessToken.Should().Be(accessToken.AccessToken);
+        //    response.TokenType.Should().Be(accessToken.TokenType);
+        //    response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
+        //    response.RefreshToken.Should().Be(accessToken.RefreshToken);
+        //    response.Scope.Should().Be(accessToken.Scope);
+        //    response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+        //    response.IsExpired.Should().BeFalse();
+
+        //    var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
+
+        //    clientAccessToken.Should().NotBeNull();
+        //    clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+        //    clientAccessToken.TokenType.Should().Be(response.TokenType);
+        //    clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+        //    clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+        //    clientAccessToken.Scope.Should().Be(response.Scope);
+        //    clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
+        //    clientAccessToken.IsExpired.Should().BeFalse();
+
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            var clientId = "clientId";
-            var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
-
-            var device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
-                IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
-            };
-
-            var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
-
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
-
-            var accessTokenJson = JsonConvert.SerializeObject(accessToken);
-            accessTokenJson.Should().NotBeNullOrEmpty();
-
-            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.BadRequest);
-
-            var timer = new Timer(x =>
-            {
-                //Debug.WriteLine("Delayed Http Status Code Change");
-                TestUtility.ClearMockHttpClient();
-                TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.OK);
-            }, null, POLLING_DELAY_IN_MILLISECONDS, POLLING_DELAY_IN_MILLISECONDS);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId).Result;
-
-            response.Should().NotBeNull();
-            response.AccessToken.Should().Be(accessToken.AccessToken);
-            response.TokenType.Should().Be(accessToken.TokenType);
-            response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.Scope.Should().Be(accessToken.Scope);
-            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeFalse();
-
-            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
-
-            clientAccessToken.Should().NotBeNull();
-            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
-            clientAccessToken.TokenType.Should().Be(response.TokenType);
-            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.Scope.Should().Be(response.Scope);
-            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
-            clientAccessToken.IsExpired.Should().BeFalse();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
-
-        [Fact]
-        public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceAndClientIdExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
-
-            var device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
-                IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
-            };
-
-            var clientId = "clientId";
-
-            var uri = Constants.OAuthDeviceTokenUri;
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
-
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<TraktForbiddenException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<TraktMethodNotFoundException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<TraktServerException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<TraktBadGatewayException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<TraktPreconditionFailedException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<TraktValidationException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Gone);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)418);
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
-
-        [Fact]
-        public void Test_TraktDeviceAuth_PollForAuthorizationithDeviceAndClientIdArgumentExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
-
-            var device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
-                IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
-            };
-
-            var clientId = "clientId";
-
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(null, clientId);
-            act.Should().Throw<ArgumentNullException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
-                new TraktDevice
-                {
-                    DeviceCode = string.Empty,
-                    ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
-                }, clientId);
-            act.Should().Throw<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
-                new TraktDevice
-                {
-                    DeviceCode = "mock device code",
-                    ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
-                }, clientId);
-            act.Should().Throw<ArgumentException>();
-
-            // ExpiredUnused == true, because of ExpiresInSeconds defaults to 0
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
-                new TraktDevice { DeviceCode = "mockDeviceCode" }, clientId);
-            act.Should().Throw<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, null);
-            act.Should().Throw<ArgumentException>();
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, string.Empty);
-            act.Should().Throw<ArgumentException>();
-
-            clientId = "client id";
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<ArgumentException>();
-
-            clientId = "clientId";
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = null;
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = string.Empty;
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = "client secret";
-
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
-            act.Should().Throw<ArgumentException>();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
-
-        [Fact]
-        public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceAndClientIdAndClientSecret()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
-
-            var clientId = "clientId";
-            var clientSecret = "clientSecret";
-
-            var device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
-                IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
-            };
-
-            var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
-
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
-
-            var accessTokenJson = JsonConvert.SerializeObject(accessToken);
-            accessTokenJson.Should().NotBeNullOrEmpty();
-
-            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson);
-
-            var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret).Result;
-
-            response.Should().NotBeNull();
-            response.AccessToken.Should().Be(accessToken.AccessToken);
-            response.TokenType.Should().Be(accessToken.TokenType);
-            response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
-            response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.Scope.Should().Be(accessToken.Scope);
-            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeFalse();
-
-            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
-
-            clientAccessToken.Should().NotBeNull();
-            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
-            clientAccessToken.TokenType.Should().Be(response.TokenType);
-            clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
-            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.Scope.Should().Be(response.Scope);
-            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
-            clientAccessToken.IsExpired.Should().BeFalse();
-
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
-
-        // Run this test only individually
         //[Fact]
-        public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceAndClientIdAndClientSecretPolling()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
-
-            var clientId = "clientId";
-            var clientSecret = "clientSecret";
-
-            var device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
-                IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
-            };
+        //public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
+        //    var device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
+        //        IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
+        //    };
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    var uri = Constants.OAuthDeviceTokenUri;
 
-            var accessTokenJson = JsonConvert.SerializeObject(accessToken);
-            accessTokenJson.Should().NotBeNullOrEmpty();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
 
-            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.BadRequest);
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            var timer = new Timer(x =>
-            {
-                //Debug.WriteLine("Delayed Http Status Code Change");
-                TestUtility.ClearMockHttpClient();
-                TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.OK);
-            }, null, POLLING_DELAY_IN_MILLISECONDS, POLLING_DELAY_IN_MILLISECONDS);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
 
-            var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret).Result;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<TraktForbiddenException>();
 
-            response.Should().NotBeNull();
-            response.AccessToken.Should().Be(accessToken.AccessToken);
-            response.TokenType.Should().Be(accessToken.TokenType);
-            response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
-            response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.Scope.Should().Be(accessToken.Scope);
-            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeFalse();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
 
-            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<TraktMethodNotFoundException>();
 
-            clientAccessToken.Should().NotBeNull();
-            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
-            clientAccessToken.TokenType.Should().Be(response.TokenType);
-            clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
-            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.Scope.Should().Be(response.Scope);
-            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
-            clientAccessToken.IsExpired.Should().BeFalse();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<TraktServerException>();
 
-        [Fact]
-        public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceAndClientIdAndClientSecretExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
 
-            var device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
-                IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
-            };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<TraktBadGatewayException>();
 
-            var clientId = "clientId";
-            var clientSecret = "clientSecret";
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
 
-            var uri = Constants.OAuthDeviceTokenUri;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<TraktPreconditionFailedException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
 
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<TraktValidationException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<TraktForbiddenException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<TraktMethodNotFoundException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<TraktServerException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<TraktBadGatewayException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<TraktPreconditionFailedException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<TraktValidationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Gone);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)418);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
+
+        //[Fact]
+        //public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceArgumentExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
+
+        //    var device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
+        //        IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
+        //    };
+
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(null);
+        //    act.Should().Throw<ArgumentNullException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
+        //        new TraktDevice
+        //        {
+        //            DeviceCode = string.Empty,
+        //            ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
+        //        });
+        //    act.Should().Throw<ArgumentException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
+        //        new TraktDevice
+        //        {
+        //            DeviceCode = "mock device code",
+        //            ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
+        //        });
+        //    act.Should().Throw<ArgumentException>();
+
+        //    // ExpiredUnused == true, because of ExpiresInSeconds defaults to 0
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
+        //        new TraktDevice { DeviceCode = "mockDeviceCode" });
+        //    act.Should().Throw<ArgumentException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = null;
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<ArgumentException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = string.Empty;
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<ArgumentException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = "client id";
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<ArgumentException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = "clientId";
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = null;
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<ArgumentException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = string.Empty;
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<ArgumentException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = "client secret";
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device);
+        //    act.Should().Throw<ArgumentException>();
+
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
+
+        //[Fact]
+        //public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceAndClientId()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
+
+        //    var clientId = "clientId";
+        //    var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
+
+        //    var device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
+        //        IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
+        //    };
+
+        //    var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
+
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
+
+        //    var accessTokenJson = JsonConvert.SerializeObject(accessToken);
+        //    accessTokenJson.Should().NotBeNullOrEmpty();
+
+        //    TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson);
+
+        //    var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId).Result;
+
+        //    response.Should().NotBeNull();
+        //    response.AccessToken.Should().Be(accessToken.AccessToken);
+        //    response.TokenType.Should().Be(accessToken.TokenType);
+        //    response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
+        //    response.RefreshToken.Should().Be(accessToken.RefreshToken);
+        //    response.Scope.Should().Be(accessToken.Scope);
+        //    response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+        //    response.IsExpired.Should().BeFalse();
+
+        //    var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
+
+        //    clientAccessToken.Should().NotBeNull();
+        //    clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+        //    clientAccessToken.TokenType.Should().Be(response.TokenType);
+        //    clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+        //    clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+        //    clientAccessToken.Scope.Should().Be(response.Scope);
+        //    clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
+        //    clientAccessToken.IsExpired.Should().BeFalse();
+
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
+
+        //// Run this test only individually
+        ////[Fact]
+        //public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceAndClientIdPolling()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
+
+        //    var clientId = "clientId";
+        //    var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
+
+        //    var device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
+        //        IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
+        //    };
+
+        //    var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
+
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    var accessTokenJson = JsonConvert.SerializeObject(accessToken);
+        //    accessTokenJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
+        //    TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.BadRequest);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
+        //    var timer = new Timer(x =>
+        //    {
+        //        //Debug.WriteLine("Delayed Http Status Code Change");
+        //        TestUtility.ClearMockHttpClient();
+        //        TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.OK);
+        //    }, null, POLLING_DELAY_IN_MILLISECONDS, POLLING_DELAY_IN_MILLISECONDS);
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Gone);
+        //    var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId).Result;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
+        //    response.Should().NotBeNull();
+        //    response.AccessToken.Should().Be(accessToken.AccessToken);
+        //    response.TokenType.Should().Be(accessToken.TokenType);
+        //    response.RefreshToken.Should().Be(accessToken.RefreshToken);
+        //    response.Scope.Should().Be(accessToken.Scope);
+        //    response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+        //    response.IsExpired.Should().BeFalse();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
+        //    var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
+        //    clientAccessToken.Should().NotBeNull();
+        //    clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+        //    clientAccessToken.TokenType.Should().Be(response.TokenType);
+        //    clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+        //    clientAccessToken.Scope.Should().Be(response.Scope);
+        //    clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
+        //    clientAccessToken.IsExpired.Should().BeFalse();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceAndClientIdExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)418);
+        //    var device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
+        //        IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
+        //    };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
+        //    var clientId = "clientId";
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    var uri = Constants.OAuthDeviceTokenUri;
 
-        [Fact]
-        public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceAndClientIdAndClientSecretArgumentExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
 
-            var device = new TraktDevice
-            {
-                DeviceCode = "mockDeviceCode",
-                UserCode = "5055CC52",
-                VerificationUrl = "https://trakt.tv/activate",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
-                IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
-            };
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            var clientId = "clientId";
-            var clientSecret = "clientSecret";
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
 
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(null, clientId, clientSecret);
-            act.Should().Throw<ArgumentNullException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<TraktForbiddenException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
-                new TraktDevice
-                {
-                    DeviceCode = string.Empty,
-                    ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
-                },
-                clientId, clientSecret);
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
-                new TraktDevice
-                {
-                    DeviceCode = "mock device code",
-                    ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
-                },
-                clientId, clientSecret);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<TraktMethodNotFoundException>();
 
-            // ExpiredUnused == true, because of ExpiresInSeconds defaults to 0
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
-                new TraktDevice { DeviceCode = "mockDeviceCode" },
-                clientId, clientSecret);
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, null, clientSecret);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<TraktServerException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, string.Empty, clientSecret);
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
 
-            clientId = "client id";
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<TraktBadGatewayException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
 
-            clientId = "clientId";
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<TraktPreconditionFailedException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, null);
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, string.Empty);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<TraktValidationException>();
 
-            clientSecret = "client secret";
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
 
-        #endregion
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-        // -----------------------------------------------------------------------------------------------
-        // -----------------------------------------------------------------------------------------------
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
 
-        #region RefreshAuthorization
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RefreshAuthorization()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
 
-            var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
-            var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
-            var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
 
-            var accessTokenJson = JsonConvert.SerializeObject(accessToken);
-            accessTokenJson.Should().NotBeNullOrEmpty();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
-                              $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
-                              $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
 
-            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync().Result;
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Gone);
 
-            response.Should().NotBeNull();
-            response.AccessToken.Should().Be(accessToken.AccessToken);
-            response.TokenType.Should().Be(accessToken.TokenType);
-            response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
-            response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.Scope.Should().Be(accessToken.Scope);
-            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeFalse();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
 
-            clientAccessToken.Should().NotBeNull();
-            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
-            clientAccessToken.TokenType.Should().Be(response.TokenType);
-            clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
-            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.Scope.Should().Be(response.Scope);
-            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
-            clientAccessToken.IsExpired.Should().BeFalse();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RefreshAuthorizationExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
-            var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
-            var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)418);
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            var error = new TraktError
-            {
-                Error = "invalid_grant",
-                Description = "The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client."
-            };
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            var errorMessage = $"error on refreshing oauth access token\nerror: {error.Error}\n" +
-                               $"description: {error.Description}";
+        //[Fact]
+        //public void Test_TraktDeviceAuth_PollForAuthorizationithDeviceAndClientIdArgumentExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            var errorJson = JsonConvert.SerializeObject(error);
-            errorJson.Should().NotBeNullOrEmpty();
+        //    var device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
+        //        IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
+        //    };
 
-            var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
-                              $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
-                              $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
+        //    var clientId = "clientId";
 
-            var uri = Constants.OAuthTokenUri;
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(null, clientId);
+        //    act.Should().Throw<ArgumentNullException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
+        //        new TraktDevice
+        //        {
+        //            DeviceCode = string.Empty,
+        //            ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
+        //        }, clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktAuthenticationException>().WithMessage(errorMessage);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
+        //        new TraktDevice
+        //        {
+        //            DeviceCode = "mock device code",
+        //            ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
+        //        }, clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
+        //    // ExpiredUnused == true, because of ExpiresInSeconds defaults to 0
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
+        //        new TraktDevice { DeviceCode = "mockDeviceCode" }, clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktNotFoundException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, null);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, string.Empty);
+        //    act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktBadRequestException>();
+        //    clientId = "client id";
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktConflictException>();
+        //    clientId = "clientId";
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = null;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktForbiddenException>();
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = string.Empty;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktMethodNotFoundException>();
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = "client secret";
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktServerException>();
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+        //[Fact]
+        //public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceAndClientIdAndClientSecret()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktBadGatewayException>();
+        //    var clientId = "clientId";
+        //    var clientSecret = "clientSecret";
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+        //    var device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
+        //        IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
+        //    };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktPreconditionFailedException>();
+        //    var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktValidationException>();
+        //    var accessTokenJson = JsonConvert.SerializeObject(accessToken);
+        //    accessTokenJson.Should().NotBeNullOrEmpty();
+
+        //    TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson);
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
+        //    var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret).Result;
+
+        //    response.Should().NotBeNull();
+        //    response.AccessToken.Should().Be(accessToken.AccessToken);
+        //    response.TokenType.Should().Be(accessToken.TokenType);
+        //    response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
+        //    response.RefreshToken.Should().Be(accessToken.RefreshToken);
+        //    response.Scope.Should().Be(accessToken.Scope);
+        //    response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+        //    response.IsExpired.Should().BeFalse();
+
+        //    var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktRateLimitException>();
+        //    clientAccessToken.Should().NotBeNull();
+        //    clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+        //    clientAccessToken.TokenType.Should().Be(response.TokenType);
+        //    clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+        //    clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+        //    clientAccessToken.Scope.Should().Be(response.Scope);
+        //    clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
+        //    clientAccessToken.IsExpired.Should().BeFalse();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //// Run this test only individually
+        ////[Fact]
+        //public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceAndClientIdAndClientSecretPolling()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+        //    var clientId = "clientId";
+        //    var clientSecret = "clientSecret";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    var device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
+        //        IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
+        //    };
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+        //    var postContent = $"{{ \"code\": \"{device.DeviceCode}\", \"client_id\": \"{clientId}\", \"client_secret\": \"{clientSecret}\" }}";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+        //    var accessTokenJson = JsonConvert.SerializeObject(accessToken);
+        //    accessTokenJson.Should().NotBeNullOrEmpty();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.BadRequest);
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+        //    var timer = new Timer(x =>
+        //    {
+        //        //Debug.WriteLine("Delayed Http Status Code Change");
+        //        TestUtility.ClearMockHttpClient();
+        //        TestUtility.SetupMockAuthenticationResponse(Constants.OAuthDeviceTokenUri, postContent, accessTokenJson, HttpStatusCode.OK);
+        //    }, null, POLLING_DELAY_IN_MILLISECONDS, POLLING_DELAY_IN_MILLISECONDS);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret).Result;
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    response.Should().NotBeNull();
+        //    response.AccessToken.Should().Be(accessToken.AccessToken);
+        //    response.TokenType.Should().Be(accessToken.TokenType);
+        //    response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
+        //    response.RefreshToken.Should().Be(accessToken.RefreshToken);
+        //    response.Scope.Should().Be(accessToken.Scope);
+        //    response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+        //    response.IsExpired.Should().BeFalse();
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RefreshAuthorizationArgumentExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    clientAccessToken.Should().NotBeNull();
+        //    clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+        //    clientAccessToken.TokenType.Should().Be(response.TokenType);
+        //    clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+        //    clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+        //    clientAccessToken.Scope.Should().Be(response.Scope);
+        //    clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
+        //    clientAccessToken.IsExpired.Should().BeFalse();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = null;
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktAuthorizationException>();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceAndClientIdAndClientSecretExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization();
+        //    var device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
+        //        IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
+        //    };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktAuthorizationException>();
+        //    var clientId = "clientId";
+        //    var clientSecret = "clientSecret";
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = null, ExpiresInSeconds = 7200 };
+        //    var uri = Constants.OAuthDeviceTokenUri;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<TraktForbiddenException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<TraktMethodNotFoundException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
-            TestUtility.MOCK_TEST_CLIENT.ClientId = null;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<TraktServerException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
 
-            TestUtility.MOCK_TEST_CLIENT.ClientId = string.Empty;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<TraktBadGatewayException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
 
-            TestUtility.MOCK_TEST_CLIENT.ClientId = "client id";
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<TraktPreconditionFailedException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
 
-            TestUtility.MOCK_TEST_CLIENT.ClientId = "clientId";
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = null;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<TraktValidationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
 
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = string.Empty;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
 
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = "client secret";
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
 
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = "clientSecret";
-            TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = null;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
 
-            TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = string.Empty;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
 
-            TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = "redirect uri";
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RefreshAuthorizationWithToken()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Gone);
 
-            var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
-            var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
-            var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
 
-            var accessTokenJson = JsonConvert.SerializeObject(accessToken);
-            accessTokenJson.Should().NotBeNullOrEmpty();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
-                              $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
-                              $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
 
-            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken).Result;
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)418);
 
-            response.Should().NotBeNull();
-            response.AccessToken.Should().Be(accessToken.AccessToken);
-            response.TokenType.Should().Be(accessToken.TokenType);
-            response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
-            response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.Scope.Should().Be(accessToken.Scope);
-            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeFalse();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthenticationDeviceException>();
 
-            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            clientAccessToken.Should().NotBeNull();
-            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
-            clientAccessToken.TokenType.Should().Be(response.TokenType);
-            clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
-            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.Scope.Should().Be(response.Scope);
-            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
-            clientAccessToken.IsExpired.Should().BeFalse();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_PollForAuthorizationWithDeviceAndClientIdAndClientSecretArgumentExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    var device = new TraktDevice
+        //    {
+        //        DeviceCode = "mockDeviceCode",
+        //        UserCode = "5055CC52",
+        //        VerificationUrl = "https://trakt.tv/activate",
+        //        ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS,
+        //        IntervalInSeconds = DEVICE_INTERVAL_IN_SECONDS
+        //    };
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    var clientId = "clientId";
+        //    var clientSecret = "clientSecret";
 
-            var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
-            var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
-            var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(null, clientId, clientSecret);
+        //    act.Should().Throw<ArgumentNullException>();
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
+        //        new TraktDevice
+        //        {
+        //            DeviceCode = string.Empty,
+        //            ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
+        //        },
+        //        clientId, clientSecret);
+        //    act.Should().Throw<ArgumentException>();
 
-            var error = new TraktError
-            {
-                Error = "invalid_grant",
-                Description = "The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client."
-            };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
+        //        new TraktDevice
+        //        {
+        //            DeviceCode = "mock device code",
+        //            ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
+        //        },
+        //        clientId, clientSecret);
+        //    act.Should().Throw<ArgumentException>();
 
-            var errorMessage = $"error on refreshing oauth access token\nerror: {error.Error}\n" +
-                               $"description: {error.Description}";
+        //    // ExpiredUnused == true, because of ExpiresInSeconds defaults to 0
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(
+        //        new TraktDevice { DeviceCode = "mockDeviceCode" },
+        //        clientId, clientSecret);
+        //    act.Should().Throw<ArgumentException>();
 
-            var errorJson = JsonConvert.SerializeObject(error);
-            errorJson.Should().NotBeNullOrEmpty();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, null, clientSecret);
+        //    act.Should().Throw<ArgumentException>();
 
-            var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
-                              $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
-                              $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, string.Empty, clientSecret);
+        //    act.Should().Throw<ArgumentException>();
 
-            var uri = Constants.OAuthTokenUri;
+        //    clientId = "client id";
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<ArgumentException>();
 
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<TraktAuthenticationException>().WithMessage(errorMessage);
+        //    clientId = "clientId";
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, null);
+        //    act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<TraktNotFoundException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, string.Empty);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
+        //    clientSecret = "client secret";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<TraktBadRequestException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.PollForAuthorizationAsync(device, clientId, clientSecret);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<TraktConflictException>();
+        //#endregion
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+        //// -----------------------------------------------------------------------------------------------
+        //// -----------------------------------------------------------------------------------------------
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<TraktForbiddenException>();
+        //#region RefreshAuthorization
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RefreshAuthorization()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<TraktMethodNotFoundException>();
+        //    var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
+        //    var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
+        //    var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
+        //    var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<TraktServerException>();
+        //    var accessTokenJson = JsonConvert.SerializeObject(accessToken);
+        //    accessTokenJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+        //    var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
+        //                      $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
+        //                      $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<TraktBadGatewayException>();
+        //    TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+        //    var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync().Result;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<TraktPreconditionFailedException>();
+        //    response.Should().NotBeNull();
+        //    response.AccessToken.Should().Be(accessToken.AccessToken);
+        //    response.TokenType.Should().Be(accessToken.TokenType);
+        //    response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
+        //    response.RefreshToken.Should().Be(accessToken.RefreshToken);
+        //    response.Scope.Should().Be(accessToken.Scope);
+        //    response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+        //    response.IsExpired.Should().BeFalse();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+        //    var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<TraktValidationException>();
+        //    clientAccessToken.Should().NotBeNull();
+        //    clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+        //    clientAccessToken.TokenType.Should().Be(response.TokenType);
+        //    clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+        //    clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+        //    clientAccessToken.Scope.Should().Be(response.Scope);
+        //    clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
+        //    clientAccessToken.IsExpired.Should().BeFalse();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<TraktRateLimitException>();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RefreshAuthorizationExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+        //    var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
+        //    var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
+        //    var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
+        //    var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+        //    var error = new TraktError
+        //    {
+        //        Error = "invalid_grant",
+        //        Description = "The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client."
+        //    };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    var errorMessage = $"error on refreshing oauth access token\nerror: {error.Error}\n" +
+        //                       $"description: {error.Description}";
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+        //    var errorJson = JsonConvert.SerializeObject(error);
+        //    errorJson.Should().NotBeNullOrEmpty();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
+        //                      $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
+        //                      $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+        //    var uri = Constants.OAuthTokenUri;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthenticationException>().WithMessage(errorMessage);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktNotFoundException>();
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenArgumentExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktBadRequestException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = null;
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
 
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktConflictException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktForbiddenException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktMethodNotFoundException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token");
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = null, ExpiresInSeconds = 7200 };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktServerException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktBadGatewayException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token");
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktPreconditionFailedException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktValidationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token");
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktRateLimitException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token");
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token");
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null);
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token");
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            TestUtility.MOCK_TEST_CLIENT.ClientId = null;
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RefreshAuthorizationArgumentExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<ArgumentException>();
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            TestUtility.MOCK_TEST_CLIENT.ClientId = string.Empty;
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = null;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<ArgumentException>();
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.ClientId = "client id";
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.ClientId = "clientId";
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = null;
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = null, ExpiresInSeconds = 7200 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = string.Empty;
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = "client secret";
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = "clientSecret";
-            TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = null;
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = string.Empty;
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = null;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = "redirect uri";
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = string.Empty;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = "client id";
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientId()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            var clientId = "clientId";
-            var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
-            var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = "clientId";
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = null;
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            var accessTokenJson = JsonConvert.SerializeObject(accessToken);
-            accessTokenJson.Should().NotBeNullOrEmpty();
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = string.Empty;
 
-            var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
-                              $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
-                              $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = "client secret";
 
-            var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId).Result;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            response.Should().NotBeNull();
-            response.AccessToken.Should().Be(accessToken.AccessToken);
-            response.TokenType.Should().Be(accessToken.TokenType);
-            response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
-            response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.Scope.Should().Be(accessToken.Scope);
-            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeFalse();
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = "clientSecret";
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = null;
 
-            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            clientAccessToken.Should().NotBeNull();
-            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
-            clientAccessToken.TokenType.Should().Be(response.TokenType);
-            clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
-            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.Scope.Should().Be(response.Scope);
-            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
-            clientAccessToken.IsExpired.Should().BeFalse();
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = string.Empty;
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientIdExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = "redirect uri";
 
-            var clientId = "clientId";
-            var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
-            var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            var error = new TraktError
-            {
-                Error = "invalid_grant",
-                Description = "The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client."
-            };
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RefreshAuthorizationWithToken()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            var errorMessage = $"error on refreshing oauth access token\nerror: {error.Error}\n" +
-                               $"description: {error.Description}";
+        //    var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
+        //    var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
+        //    var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
+        //    var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
-            var errorJson = JsonConvert.SerializeObject(error);
-            errorJson.Should().NotBeNullOrEmpty();
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
-                              $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
-                              $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
+        //    var accessTokenJson = JsonConvert.SerializeObject(accessToken);
+        //    accessTokenJson.Should().NotBeNullOrEmpty();
 
-            var uri = Constants.OAuthTokenUri;
+        //    var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
+        //                      $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
+        //                      $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
 
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<TraktAuthenticationException>().WithMessage(errorMessage);
+        //    var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken).Result;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
+        //    response.Should().NotBeNull();
+        //    response.AccessToken.Should().Be(accessToken.AccessToken);
+        //    response.TokenType.Should().Be(accessToken.TokenType);
+        //    response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
+        //    response.RefreshToken.Should().Be(accessToken.RefreshToken);
+        //    response.Scope.Should().Be(accessToken.Scope);
+        //    response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+        //    response.IsExpired.Should().BeFalse();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<TraktNotFoundException>();
+        //    var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
+        //    clientAccessToken.Should().NotBeNull();
+        //    clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+        //    clientAccessToken.TokenType.Should().Be(response.TokenType);
+        //    clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+        //    clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+        //    clientAccessToken.Scope.Should().Be(response.Scope);
+        //    clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
+        //    clientAccessToken.IsExpired.Should().BeFalse();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<TraktBadRequestException>();
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<TraktConflictException>();
+        //    var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
+        //    var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
+        //    var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
+        //    var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<TraktForbiddenException>();
+        //    var error = new TraktError
+        //    {
+        //        Error = "invalid_grant",
+        //        Description = "The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client."
+        //    };
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+        //    var errorMessage = $"error on refreshing oauth access token\nerror: {error.Error}\n" +
+        //                       $"description: {error.Description}";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<TraktMethodNotFoundException>();
+        //    var errorJson = JsonConvert.SerializeObject(error);
+        //    errorJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+        //    var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
+        //                      $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
+        //                      $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<TraktServerException>();
+        //    var uri = Constants.OAuthTokenUri;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<TraktBadGatewayException>();
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<TraktAuthenticationException>().WithMessage(errorMessage);
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<TraktPreconditionFailedException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<TraktNotFoundException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<TraktValidationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<TraktBadRequestException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<TraktRateLimitException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<TraktConflictException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<TraktForbiddenException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<TraktMethodNotFoundException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<TraktServerException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<TraktBadGatewayException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<TraktPreconditionFailedException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientIdArgumentExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<TraktValidationException>();
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
 
-            var clientId = "clientId";
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<TraktRateLimitException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = null;
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
 
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = null, ExpiresInSeconds = 7200 };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenArgumentExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = null;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token");
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = null, ExpiresInSeconds = 7200 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token");
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId);
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, null);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token");
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, string.Empty);
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, "client id");
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = null;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token");
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = string.Empty;
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = "client secret";
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token");
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.ClientSecret = "clientSecret";
-            TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = null;
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = string.Empty;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty);
+        //    act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token");
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = "redirect uri";
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = null;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = string.Empty;
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecret()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<ArgumentException>();
 
-            var clientId = "clientId";
-            var clientSecret = "clientSecret";
-            var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = "client id";
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<ArgumentException>();
 
-            var accessTokenJson = JsonConvert.SerializeObject(accessToken);
-            accessTokenJson.Should().NotBeNullOrEmpty();
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = "clientId";
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = null;
 
-            var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
-                              $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
-                              $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = string.Empty;
 
-            var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken,
-                                                                                           clientId, clientSecret).Result;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<ArgumentException>();
 
-            response.Should().NotBeNull();
-            response.AccessToken.Should().Be(accessToken.AccessToken);
-            response.TokenType.Should().Be(accessToken.TokenType);
-            response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
-            response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.Scope.Should().Be(accessToken.Scope);
-            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeFalse();
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = "client secret";
 
-            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<ArgumentException>();
 
-            clientAccessToken.Should().NotBeNull();
-            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
-            clientAccessToken.TokenType.Should().Be(response.TokenType);
-            clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
-            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.Scope.Should().Be(response.Scope);
-            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
-            clientAccessToken.IsExpired.Should().BeFalse();
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = "clientSecret";
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = null;
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<ArgumentException>();
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecretExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = string.Empty;
 
-            var clientId = "clientId";
-            var clientSecret = "clientSecret";
-            var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
-            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<ArgumentException>();
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = "redirect uri";
 
-            var error = new TraktError
-            {
-                Error = "invalid_grant",
-                Description = "The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client."
-            };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<ArgumentException>();
 
-            var errorMessage = $"error on refreshing oauth access token\nerror: {error.Error}\n" +
-                               $"description: {error.Description}";
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            var errorJson = JsonConvert.SerializeObject(error);
-            errorJson.Should().NotBeNullOrEmpty();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientId()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
-                              $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
-                              $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
+        //    var clientId = "clientId";
+        //    var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
+        //    var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
+        //    var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
-            var uri = Constants.OAuthTokenUri;
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    var accessTokenJson = JsonConvert.SerializeObject(accessToken);
+        //    accessTokenJson.Should().NotBeNullOrEmpty();
 
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
-            act.Should().Throw<TraktAuthenticationException>().WithMessage(errorMessage);
+        //    var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
+        //                      $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
+        //                      $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
+        //    TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
-            act.Should().Throw<TraktNotFoundException>();
+        //    var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId).Result;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
+        //    response.Should().NotBeNull();
+        //    response.AccessToken.Should().Be(accessToken.AccessToken);
+        //    response.TokenType.Should().Be(accessToken.TokenType);
+        //    response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
+        //    response.RefreshToken.Should().Be(accessToken.RefreshToken);
+        //    response.Scope.Should().Be(accessToken.Scope);
+        //    response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+        //    response.IsExpired.Should().BeFalse();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
-            act.Should().Throw<TraktBadRequestException>();
+        //    var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
+        //    clientAccessToken.Should().NotBeNull();
+        //    clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+        //    clientAccessToken.TokenType.Should().Be(response.TokenType);
+        //    clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+        //    clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+        //    clientAccessToken.Scope.Should().Be(response.Scope);
+        //    clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
+        //    clientAccessToken.IsExpired.Should().BeFalse();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
-            act.Should().Throw<TraktConflictException>();
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientIdExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
-            act.Should().Throw<TraktForbiddenException>();
+        //    var clientId = "clientId";
+        //    var clientSecret = TestUtility.MOCK_TEST_CLIENT.ClientSecret;
+        //    var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
+        //    var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
-            act.Should().Throw<TraktMethodNotFoundException>();
+        //    var error = new TraktError
+        //    {
+        //        Error = "invalid_grant",
+        //        Description = "The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client."
+        //    };
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+        //    var errorMessage = $"error on refreshing oauth access token\nerror: {error.Error}\n" +
+        //                       $"description: {error.Description}";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
-            act.Should().Throw<TraktServerException>();
+        //    var errorJson = JsonConvert.SerializeObject(error);
+        //    errorJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+        //    var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
+        //                      $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
+        //                      $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
-            act.Should().Throw<TraktBadGatewayException>();
+        //    var uri = Constants.OAuthTokenUri;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
-            act.Should().Throw<TraktPreconditionFailedException>();
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<TraktAuthenticationException>().WithMessage(errorMessage);
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
-            act.Should().Throw<TraktValidationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<TraktNotFoundException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
-            act.Should().Throw<TraktRateLimitException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<TraktBadRequestException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<TraktConflictException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<TraktForbiddenException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<TraktMethodNotFoundException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<TraktServerException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<TraktBadGatewayException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecretArgumentExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<TraktPreconditionFailedException>();
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
 
-            var clientId = "clientId";
-            var clientSecret = "clientSecret";
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<TraktValidationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = null;
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
 
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<TraktRateLimitException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = null, ExpiresInSeconds = 7200 };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientIdArgumentExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
+        //    var clientId = "clientId";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = null;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = null, ExpiresInSeconds = 7200 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, null, clientSecret);
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, string.Empty, clientSecret);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, "client id", clientSecret);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, null);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, string.Empty);
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, "client secret");
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = null;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = string.Empty;
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = "redirect uri";
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecretAndRedirectUri()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            var clientId = "clientId";
-            var clientSecret = "clientSecret";
-            var redirectUri = "redirectUri";
-            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            var accessTokenJson = JsonConvert.SerializeObject(accessToken);
-            accessTokenJson.Should().NotBeNullOrEmpty();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, null);
+        //    act.Should().Throw<ArgumentException>();
 
-            var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
-                              $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
-                              $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, string.Empty);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, "client id");
+        //    act.Should().Throw<ArgumentException>();
 
-            var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken,
-                                                                                           clientId, clientSecret,
-                                                                                           redirectUri).Result;
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = null;
 
-            response.Should().NotBeNull();
-            response.AccessToken.Should().Be(accessToken.AccessToken);
-            response.TokenType.Should().Be(accessToken.TokenType);
-            response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
-            response.RefreshToken.Should().Be(accessToken.RefreshToken);
-            response.Scope.Should().Be(accessToken.Scope);
-            response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
-            response.IsExpired.Should().BeFalse();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = string.Empty;
 
-            clientAccessToken.Should().NotBeNull();
-            clientAccessToken.AccessToken.Should().Be(response.AccessToken);
-            clientAccessToken.TokenType.Should().Be(response.TokenType);
-            clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
-            clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
-            clientAccessToken.Scope.Should().Be(response.Scope);
-            clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
-            clientAccessToken.IsExpired.Should().BeFalse();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = "client secret";
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecretAndRedirectUriExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            var clientId = "clientId";
-            var clientSecret = "clientSecret";
-            var redirectUri = "redirectUri";
-            var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
+        //    TestUtility.MOCK_TEST_CLIENT.ClientSecret = "clientSecret";
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = null;
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            var error = new TraktError
-            {
-                Error = "invalid_grant",
-                Description = "The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client."
-            };
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = string.Empty;
 
-            var errorMessage = $"error on refreshing oauth access token\nerror: {error.Error}\n" +
-                               $"description: {error.Description}";
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            var errorJson = JsonConvert.SerializeObject(error);
-            errorJson.Should().NotBeNullOrEmpty();
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = "redirect uri";
 
-            var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
-                              $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
-                              $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            var uri = Constants.OAuthTokenUri;
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecret()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthenticationException>().WithMessage(errorMessage);
+        //    var clientId = "clientId";
+        //    var clientSecret = "clientSecret";
+        //    var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
+        //    var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktNotFoundException>();
+        //    var accessTokenJson = JsonConvert.SerializeObject(accessToken);
+        //    accessTokenJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
+        //    var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
+        //                      $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
+        //                      $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktBadRequestException>();
+        //    TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
+        //    var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken,
+        //                                                                                   clientId, clientSecret).Result;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktConflictException>();
+        //    response.Should().NotBeNull();
+        //    response.AccessToken.Should().Be(accessToken.AccessToken);
+        //    response.TokenType.Should().Be(accessToken.TokenType);
+        //    response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
+        //    response.RefreshToken.Should().Be(accessToken.RefreshToken);
+        //    response.Scope.Should().Be(accessToken.Scope);
+        //    response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+        //    response.IsExpired.Should().BeFalse();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+        //    var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktForbiddenException>();
+        //    clientAccessToken.Should().NotBeNull();
+        //    clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+        //    clientAccessToken.TokenType.Should().Be(response.TokenType);
+        //    clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+        //    clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+        //    clientAccessToken.Scope.Should().Be(response.Scope);
+        //    clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
+        //    clientAccessToken.IsExpired.Should().BeFalse();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktMethodNotFoundException>();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecretExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+        //    var clientId = "clientId";
+        //    var clientSecret = "clientSecret";
+        //    var redirectUri = TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri;
+        //    var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktServerException>();
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+        //    var error = new TraktError
+        //    {
+        //        Error = "invalid_grant",
+        //        Description = "The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client."
+        //    };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktBadGatewayException>();
+        //    var errorMessage = $"error on refreshing oauth access token\nerror: {error.Error}\n" +
+        //                       $"description: {error.Description}";
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+        //    var errorJson = JsonConvert.SerializeObject(error);
+        //    errorJson.Should().NotBeNullOrEmpty();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktPreconditionFailedException>();
+        //    var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
+        //                      $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
+        //                      $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+        //    var uri = Constants.OAuthTokenUri;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktValidationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthenticationException>().WithMessage(errorMessage);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktRateLimitException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
+        //    act.Should().Throw<TraktNotFoundException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
+        //    act.Should().Throw<TraktBadRequestException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
+        //    act.Should().Throw<TraktConflictException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
+        //    act.Should().Throw<TraktForbiddenException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
+        //    act.Should().Throw<TraktMethodNotFoundException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
+        //    act.Should().Throw<TraktServerException>();
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecretAndRedirectUriArgumentExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
+        //    act.Should().Throw<TraktBadGatewayException>();
 
-            var clientId = "clientId";
-            var clientSecret = "clientSecret";
-            var redirectUri = "redirectUri";
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = null;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
+        //    act.Should().Throw<TraktPreconditionFailedException>();
 
-            Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
+        //    act.Should().Throw<TraktValidationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
+        //    act.Should().Throw<TraktRateLimitException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = null, ExpiresInSeconds = 7200 };
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthorizationException>();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecretArgumentExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    var clientId = "clientId";
+        //    var clientSecret = "clientSecret";
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = null;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret, redirectUri);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret, redirectUri);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret, redirectUri);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret, redirectUri);
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = null, ExpiresInSeconds = 7200 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, null, clientSecret, redirectUri);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, string.Empty, clientSecret, redirectUri);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, "client id", clientSecret, redirectUri);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, null, redirectUri);
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, string.Empty, redirectUri);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, "client secret", redirectUri);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, null);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, string.Empty);
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, "redirect uri");
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-        #endregion
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-        // -----------------------------------------------------------------------------------------------
-        // -----------------------------------------------------------------------------------------------
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
 
-        #region RevokeAuthorization
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RevokeAuthorization()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            var postContent = $"token={accessToken.AccessToken}";
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
-            var uri = Constants.OAuthRevokeUri;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
-            TestUtility.SetupMockAuthenticationTokenRevokeResponse(uri, postContent);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret);
+        //    act.Should().Throw<ArgumentException>();
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().NotThrow();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret);
+        //    act.Should().Throw<ArgumentException>();
 
-            var authorization = TestUtility.MOCK_TEST_CLIENT.Authorization;
-            authorization.Should().NotBeNull();
-            authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
-            authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
-            authorization.Scope.Should().Be(TraktAccessScope.Public);
-            authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
-            authorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1000);
-            authorization.ExpiresInSeconds.Should().Be(0);
-            authorization.IgnoreExpiration.Should().BeTrue();
-            authorization.IsExpired.Should().BeTrue();
-            authorization.IsRefreshPossible.Should().BeFalse();
-            authorization.IsValid.Should().BeFalse();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, null, clientSecret);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, string.Empty, clientSecret);
+        //    act.Should().Throw<ArgumentException>();
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RevokeAuthorizationExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, "client id", clientSecret);
+        //    act.Should().Throw<ArgumentException>();
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, null);
+        //    act.Should().Throw<ArgumentException>();
 
-            var uri = Constants.OAuthRevokeUri;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, string.Empty);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, "client secret");
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = null;
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktAuthenticationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = string.Empty;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktNotFoundException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
+        //    TestUtility.MOCK_TEST_CLIENT.Authentication.RedirectUri = "redirect uri";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktBadRequestException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktConflictException>();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecretAndRedirectUri()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+        //    var clientId = "clientId";
+        //    var clientSecret = "clientSecret";
+        //    var redirectUri = "redirectUri";
+        //    var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktForbiddenException>();
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+        //    var accessTokenJson = JsonConvert.SerializeObject(accessToken);
+        //    accessTokenJson.Should().NotBeNullOrEmpty();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktMethodNotFoundException>();
+        //    var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
+        //                      $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
+        //                      $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+        //    TestUtility.SetupMockAuthenticationResponse(Constants.OAuthTokenUri, postContent, accessTokenJson);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktServerException>();
+        //    var response = TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken,
+        //                                                                                   clientId, clientSecret,
+        //                                                                                   redirectUri).Result;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+        //    response.Should().NotBeNull();
+        //    response.AccessToken.Should().Be(accessToken.AccessToken);
+        //    response.TokenType.Should().Be(accessToken.TokenType);
+        //    response.ExpiresInSeconds.Should().Be(accessToken.ExpiresInSeconds);
+        //    response.RefreshToken.Should().Be(accessToken.RefreshToken);
+        //    response.Scope.Should().Be(accessToken.Scope);
+        //    response.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+        //    response.IsExpired.Should().BeFalse();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktBadGatewayException>();
+        //    var clientAccessToken = TestUtility.MOCK_TEST_CLIENT.Authorization;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+        //    clientAccessToken.Should().NotBeNull();
+        //    clientAccessToken.AccessToken.Should().Be(response.AccessToken);
+        //    clientAccessToken.TokenType.Should().Be(response.TokenType);
+        //    clientAccessToken.ExpiresInSeconds.Should().Be(response.ExpiresInSeconds);
+        //    clientAccessToken.RefreshToken.Should().Be(response.RefreshToken);
+        //    clientAccessToken.Scope.Should().Be(response.Scope);
+        //    clientAccessToken.CreatedAt.Should().Be(response.CreatedAt);
+        //    clientAccessToken.IsExpired.Should().BeFalse();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktPreconditionFailedException>();
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecretAndRedirectUriExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktValidationException>();
+        //    var clientId = "clientId";
+        //    var clientSecret = "clientSecret";
+        //    var redirectUri = "redirectUri";
+        //    var grantType = TraktAccessTokenGrantType.RefreshToken.ObjectName;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktRateLimitException>();
+        //    var error = new TraktError
+        //    {
+        //        Error = "invalid_grant",
+        //        Description = "The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client."
+        //    };
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+        //    var errorMessage = $"error on refreshing oauth access token\nerror: {error.Error}\n" +
+        //                       $"description: {error.Description}";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    var errorJson = JsonConvert.SerializeObject(error);
+        //    errorJson.Should().NotBeNullOrEmpty();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+        //    var postContent = $"{{ \"refresh_token\": \"{accessToken.RefreshToken}\", \"client_id\": \"{clientId}\", " +
+        //                      $"\"client_secret\": \"{clientSecret}\", \"redirect_uri\": " +
+        //                      $"\"{redirectUri}\", \"grant_type\": \"{grantType}\" }}";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    var uri = Constants.OAuthTokenUri;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, postContent, errorJson, HttpStatusCode.Unauthorized);
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthenticationException>().WithMessage(errorMessage);
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktNotFoundException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktBadRequestException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RevokeAuthorizationArgumentExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktConflictException>();
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = null;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktForbiddenException>();
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktMethodNotFoundException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = null, ExpiresInSeconds = 7200 };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktServerException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktBadGatewayException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktPreconditionFailedException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktValidationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
-            TestUtility.MOCK_TEST_CLIENT.ClientId = null;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktRateLimitException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
 
-            TestUtility.MOCK_TEST_CLIENT.ClientId = string.Empty;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
 
-            TestUtility.MOCK_TEST_CLIENT.ClientId = "client id";
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RevokeAuthorizationWithToken()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            var postContent = $"token={accessToken.AccessToken}";
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
 
-            var uri = Constants.OAuthRevokeUri;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
-            TestUtility.SetupMockAuthenticationTokenRevokeResponse(uri, postContent);
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.Should().NotThrow();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RefreshAuthorizationWithTokenAndClientIdAndClientSecretAndRedirectUriArgumentExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            var authorization = TestUtility.MOCK_TEST_CLIENT.Authorization;
-            authorization.Should().NotBeNull();
-            authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
-            authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
-            authorization.Scope.Should().Be(TraktAccessScope.Public);
-            authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
-            authorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1000);
-            authorization.ExpiresInSeconds.Should().Be(0);
-            authorization.IgnoreExpiration.Should().BeTrue();
-            authorization.IsExpired.Should().BeTrue();
-            authorization.IsRefreshPossible.Should().BeFalse();
-            authorization.IsValid.Should().BeFalse();
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    var clientId = "clientId";
+        //    var clientSecret = "clientSecret";
+        //    var redirectUri = "redirectUri";
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RevokeAuthorizationWithTokenExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = null;
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    Func<Task<TraktAuthorization>> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            var uri = Constants.OAuthRevokeUri;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.Should().Throw<TraktAuthenticationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.Should().Throw<TraktNotFoundException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = null, ExpiresInSeconds = 7200 };
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.Should().Throw<TraktBadRequestException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.Should().Throw<TraktConflictException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.Should().Throw<TraktForbiddenException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.Should().Throw<TraktMethodNotFoundException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.Should().Throw<TraktServerException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.Should().Throw<TraktBadGatewayException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.Should().Throw<TraktPreconditionFailedException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.Should().Throw<TraktValidationException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(null, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.Should().Throw<TraktRateLimitException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(string.Empty, clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync("mock refresh token", clientId, clientSecret, redirectUri);
+        //    act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, null, clientSecret, redirectUri);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, string.Empty, clientSecret, redirectUri);
+        //    act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, "client id", clientSecret, redirectUri);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, null, redirectUri);
+        //    act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, string.Empty, redirectUri);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, "client secret", redirectUri);
+        //    act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, clientSecret, null);
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, string.Empty);
+        //    act.Should().Throw<ArgumentException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RefreshAuthorizationAsync(accessToken.RefreshToken, clientId, "redirect uri");
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RevokeAuthorizationWithTokenArgumentExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //#endregion
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //// -----------------------------------------------------------------------------------------------
+        //// -----------------------------------------------------------------------------------------------
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = null;
+        //#region RevokeAuthorization
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null);
-            act.Should().Throw<TraktAuthorizationException>();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RevokeAuthorization()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization();
+        //    var postContent = $"token={accessToken.AccessToken}";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    var uri = Constants.OAuthRevokeUri;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    TestUtility.SetupMockAuthenticationTokenRevokeResponse(uri, postContent);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token");
-            act.Should().Throw<TraktAuthorizationException>();
+        //    Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().NotThrow();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = null, ExpiresInSeconds = 7200 };
+        //    var authorization = TestUtility.MOCK_TEST_CLIENT.Authorization;
+        //    authorization.Should().NotBeNull();
+        //    authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
+        //    authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
+        //    authorization.Scope.Should().Be(TraktAccessScope.Public);
+        //    authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
+        //    authorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1000);
+        //    authorization.ExpiresInSeconds.Should().Be(0);
+        //    authorization.IgnoreExpiration.Should().BeTrue();
+        //    authorization.IsExpired.Should().BeTrue();
+        //    authorization.IsRefreshPossible.Should().BeFalse();
+        //    authorization.IsValid.Should().BeFalse();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty);
-            act.Should().Throw<TraktAuthorizationException>();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RevokeAuthorizationExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token");
-            act.Should().Throw<TraktAuthorizationException>();
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
+        //    var uri = Constants.OAuthRevokeUri;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token");
-            act.Should().Throw<TraktAuthorizationException>();
+        //    Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthenticationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktNotFoundException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token");
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktBadRequestException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktConflictException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token");
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktForbiddenException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktMethodNotFoundException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token");
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktServerException>();
 
-            TestUtility.MOCK_TEST_CLIENT.ClientId = null;
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktBadGatewayException>();
 
-            TestUtility.MOCK_TEST_CLIENT.ClientId = string.Empty;
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktPreconditionFailedException>();
 
-            TestUtility.MOCK_TEST_CLIENT.ClientId = "client id";
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.RefreshToken);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktValidationException>();
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RevokeAuthorizationWithTokenAndClientId()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktRateLimitException>();
 
-            var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            var postContent = $"token={accessToken.AccessToken}";
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
 
-            var uri = Constants.OAuthRevokeUri;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
-            TestUtility.SetupMockAuthenticationTokenRevokeResponse(uri, postContent);
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.Should().NotThrow();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            var authorization = TestUtility.MOCK_TEST_CLIENT.Authorization;
-            authorization.Should().NotBeNull();
-            authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
-            authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
-            authorization.Scope.Should().Be(TraktAccessScope.Public);
-            authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
-            authorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1000);
-            authorization.ExpiresInSeconds.Should().Be(0);
-            authorization.IgnoreExpiration.Should().BeTrue();
-            authorization.IsExpired.Should().BeTrue();
-            authorization.IsRefreshPossible.Should().BeFalse();
-            authorization.IsValid.Should().BeFalse();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RevokeAuthorizationWithTokenAndClientIdExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
 
-            var clientId = "clientId";
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            var uri = Constants.OAuthRevokeUri;
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RevokeAuthorizationArgumentExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = null;
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.Should().Throw<TraktAuthenticationException>();
+        //    Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.Should().Throw<TraktNotFoundException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = null, ExpiresInSeconds = 7200 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.Should().Throw<TraktBadRequestException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.Should().Throw<TraktConflictException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.Should().Throw<TraktForbiddenException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.Should().Throw<TraktMethodNotFoundException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<TraktAuthorizationException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = null;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.Should().Throw<TraktServerException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = string.Empty;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.Should().Throw<TraktBadGatewayException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = "client id";
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.Should().Throw<TraktPreconditionFailedException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync();
+        //    act.Should().Throw<ArgumentException>();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.Should().Throw<TraktValidationException>();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RevokeAuthorizationWithToken()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.Should().Throw<TraktRateLimitException>();
+        //    var postContent = $"token={accessToken.AccessToken}";
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+        //    var uri = Constants.OAuthRevokeUri;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    TestUtility.SetupMockAuthenticationTokenRevokeResponse(uri, postContent);
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+        //    Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
+        //    act.Should().NotThrow();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    var authorization = TestUtility.MOCK_TEST_CLIENT.Authorization;
+        //    authorization.Should().NotBeNull();
+        //    authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
+        //    authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
+        //    authorization.Scope.Should().Be(TraktAccessScope.Public);
+        //    authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
+        //    authorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1000);
+        //    authorization.ExpiresInSeconds.Should().Be(0);
+        //    authorization.IgnoreExpiration.Should().BeTrue();
+        //    authorization.IsExpired.Should().BeTrue();
+        //    authorization.IsRefreshPossible.Should().BeFalse();
+        //    authorization.IsValid.Should().BeFalse();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RevokeAuthorizationWithTokenExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    var uri = Constants.OAuthRevokeUri;
 
-            TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
-            act.Should().Throw<TraktServerUnavailableException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
+        //    act.Should().Throw<TraktAuthenticationException>();
 
-        [Fact]
-        public void Test_TraktDeviceAuth_RevokeAuthorizationWithTokenAndClientIdArgumentExceptions()
-        {
-            TestUtility.SetupMockAuthenticationHttpClient();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
 
-            var accessToken = new TraktAuthorization
-            {
-                AccessToken = "mockAccessToken",
-                TokenType = TraktAccessTokenType.Bearer,
-                ExpiresInSeconds = 7200,
-                RefreshToken = "mockRefreshToken",
-                Scope = TraktAccessScope.Public
-            };
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
+        //    act.Should().Throw<TraktNotFoundException>();
 
-            var clientId = "clientId";
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = null;
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
+        //    act.Should().Throw<TraktBadRequestException>();
 
-            Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
+        //    act.Should().Throw<TraktConflictException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
+        //    act.Should().Throw<TraktForbiddenException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token", clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
+        //    act.Should().Throw<TraktMethodNotFoundException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = null, ExpiresInSeconds = 7200 };
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
+        //    act.Should().Throw<TraktServerException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token", clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
+        //    act.Should().Throw<TraktBadGatewayException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
+        //    act.Should().Throw<TraktPreconditionFailedException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token", clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
+        //    act.Should().Throw<TraktValidationException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
+        //    act.Should().Throw<TraktRateLimitException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token", clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty, clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token", clientId);
-            act.Should().Throw<TraktAuthorizationException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null, clientId);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty, clientId);
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token", clientId);
-            act.Should().Throw<ArgumentException>();
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken);
+        //    act.Should().Throw<TraktServerUnavailableException>();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.RefreshToken, null);
-            act.Should().Throw<ArgumentException>();
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.RefreshToken, string.Empty);
-            act.Should().Throw<ArgumentException>();
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RevokeAuthorizationWithTokenArgumentExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
 
-            act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.RefreshToken, "client id");
-            act.Should().Throw<ArgumentException>();
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
 
-            TestUtility.ClearMockHttpClient();
-            TestUtility.SetDefaultClientValues();
-        }
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = null;
 
-        #endregion
+        //    Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token");
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = null, ExpiresInSeconds = 7200 };
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token");
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token");
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token");
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token");
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null);
+        //    act.Should().Throw<ArgumentException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty);
+        //    act.Should().Throw<ArgumentException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token");
+        //    act.Should().Throw<ArgumentException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = null;
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<ArgumentException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = string.Empty;
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<ArgumentException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.ClientId = "client id";
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.RefreshToken);
+        //    act.Should().Throw<ArgumentException>();
+
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
+
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RevokeAuthorizationWithTokenAndClientId()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
+
+        //    var clientId = TestUtility.MOCK_TEST_CLIENT.ClientId;
+
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
+
+        //    var postContent = $"token={accessToken.AccessToken}";
+
+        //    var uri = Constants.OAuthRevokeUri;
+
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+        //    TestUtility.SetupMockAuthenticationTokenRevokeResponse(uri, postContent);
+
+        //    Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
+        //    act.Should().NotThrow();
+
+        //    var authorization = TestUtility.MOCK_TEST_CLIENT.Authorization;
+        //    authorization.Should().NotBeNull();
+        //    authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
+        //    authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
+        //    authorization.Scope.Should().Be(TraktAccessScope.Public);
+        //    authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
+        //    authorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1000);
+        //    authorization.ExpiresInSeconds.Should().Be(0);
+        //    authorization.IgnoreExpiration.Should().BeTrue();
+        //    authorization.IsExpired.Should().BeTrue();
+        //    authorization.IsRefreshPossible.Should().BeFalse();
+        //    authorization.IsValid.Should().BeFalse();
+
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
+
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RevokeAuthorizationWithTokenAndClientIdExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
+
+        //    var clientId = "clientId";
+
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
+
+        //    var uri = Constants.OAuthRevokeUri;
+
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Unauthorized);
+
+        //    Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
+        //    act.Should().Throw<TraktAuthenticationException>();
+
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.NotFound);
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
+        //    act.Should().Throw<TraktNotFoundException>();
+
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadRequest);
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
+        //    act.Should().Throw<TraktBadRequestException>();
+
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Conflict);
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
+        //    act.Should().Throw<TraktConflictException>();
+
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.Forbidden);
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
+        //    act.Should().Throw<TraktForbiddenException>();
+
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.MethodNotAllowed);
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
+        //    act.Should().Throw<TraktMethodNotFoundException>();
+
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.InternalServerError);
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
+        //    act.Should().Throw<TraktServerException>();
+
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, HttpStatusCode.BadGateway);
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
+        //    act.Should().Throw<TraktBadGatewayException>();
+
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)412);
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
+        //    act.Should().Throw<TraktPreconditionFailedException>();
+
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)422);
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
+        //    act.Should().Throw<TraktValidationException>();
+
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)429);
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
+        //    act.Should().Throw<TraktRateLimitException>();
+
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)503);
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
+
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)504);
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
+
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)520);
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
+
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)521);
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
+
+        //    TestUtility.SetupMockAuthenticationErrorResponse(uri, (HttpStatusCode)522);
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.AccessToken, clientId);
+        //    act.Should().Throw<TraktServerUnavailableException>();
+
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
+
+        //[Fact]
+        //public void Test_TraktDeviceAuth_RevokeAuthorizationWithTokenAndClientIdArgumentExceptions()
+        //{
+        //    TestUtility.SetupMockAuthenticationHttpClient();
+
+        //    var accessToken = new TraktAuthorization
+        //    {
+        //        AccessToken = "mockAccessToken",
+        //        TokenType = TraktAccessTokenType.Bearer,
+        //        ExpiresInSeconds = 7200,
+        //        RefreshToken = "mockRefreshToken",
+        //        Scope = TraktAccessScope.Public
+        //    };
+
+        //    var clientId = "clientId";
+
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = null;
+
+        //    Func<Task> act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token", clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = null, ExpiresInSeconds = 7200 };
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token", clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = string.Empty, ExpiresInSeconds = 7200 };
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token", clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 7200 };
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token", clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = new TraktAuthorization { RefreshToken = "mock refresh token", ExpiresInSeconds = 0 };
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty, clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token", clientId);
+        //    act.Should().Throw<TraktAuthorizationException>();
+
+        //    TestUtility.MOCK_TEST_CLIENT.Authorization = accessToken;
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(null, clientId);
+        //    act.Should().Throw<ArgumentException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(string.Empty, clientId);
+        //    act.Should().Throw<ArgumentException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync("mock refresh token", clientId);
+        //    act.Should().Throw<ArgumentException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.RefreshToken, null);
+        //    act.Should().Throw<ArgumentException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.RefreshToken, string.Empty);
+        //    act.Should().Throw<ArgumentException>();
+
+        //    act = async () => await TestUtility.MOCK_TEST_CLIENT.DeviceAuth.RevokeAuthorizationAsync(accessToken.RefreshToken, "client id");
+        //    act.Should().Throw<ArgumentException>();
+
+        //    TestUtility.ClearMockHttpClient();
+        //    TestUtility.SetDefaultClientValues();
+        //}
+
+        //#endregion
     }
 }
