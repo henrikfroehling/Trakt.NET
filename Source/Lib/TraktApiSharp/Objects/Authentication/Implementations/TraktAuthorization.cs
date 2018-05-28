@@ -3,25 +3,9 @@
     using Enums;
     using Extensions;
     using System;
-    using TraktApiSharp.Authentication;
 
     /// <summary>
     /// Represents a Trakt authorization response, which contains information, such as access token and refresh token.
-    /// <para>
-    /// See also <seealso cref="TraktDeviceAuth.PollForAuthorizationAsync()" />,
-    /// <seealso cref="TraktDeviceAuth.PollForAuthorizationAsync(TraktDevice)" />,
-    /// <seealso cref="TraktDeviceAuth.PollForAuthorizationAsync(TraktDevice, string)" />,
-    /// <seealso cref="TraktDeviceAuth.PollForAuthorizationAsync(TraktDevice, string, string)" />,
-    /// <seealso cref="TraktOAuth.GetAuthorizationAsync()" />, <seealso cref="TraktOAuth.GetAuthorizationAsync(string)" />,
-    /// <seealso cref="TraktOAuth.GetAuthorizationAsync(string, string)" />, <seealso cref="TraktOAuth.GetAuthorizationAsync(string, string, string)" />,
-    /// <seealso cref="TraktOAuth.GetAuthorizationAsync(string, string, string, string)" />,
-    /// <seealso cref="TraktAuthentication.RefreshAuthorizationAsync()" />,
-    /// <seealso cref="TraktAuthentication.RefreshAuthorizationAsync(string)" />, <seealso cref="TraktAuthentication.RefreshAuthorizationAsync(string, string)" />,
-    /// <seealso cref="TraktAuthentication.RefreshAuthorizationAsync(string, string, string)" /> and
-    /// <seealso cref="TraktAuthentication.RefreshAuthorizationAsync(string, string, string, string)" />.<para />
-    /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/exchange-code-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> and
-    /// <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Device: Get Token"</a> for more information.
-    /// </para>
     /// </summary>
     public class TraktAuthorization : ITraktAuthorization
     {

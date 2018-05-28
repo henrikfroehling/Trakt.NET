@@ -1,15 +1,9 @@
 ﻿namespace TraktApiSharp.Objects.Authentication.Implementations
 {
     using System;
-    using TraktApiSharp.Authentication;
 
     /// <summary>
     /// Represents a Trakt device response.
-    /// <para>
-    /// See also <seealso cref="TraktDeviceAuth.GenerateDeviceAsync()" />,
-    /// <seealso cref="TraktDeviceAuth.GenerateDeviceAsync(string)" />.<para />
-    /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/device-code/generate-new-device-codes">"Trakt API Doc - Devices: Device Code"</a> for more information.
-    /// </para>
     /// </summary>
     public class TraktDevice : ITraktDevice
     {

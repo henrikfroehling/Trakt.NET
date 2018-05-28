@@ -223,19 +223,19 @@
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_URI, MOVIE_JSON);
 
-            Func<Task<IEnumerable<TraktResponse<ITraktMovie>>>> act = () => TestUtility.MOCK_TEST_CLIENT.Movies.GetMultipleMoviesAsync(null);
+            Func<Task<IEnumerable<TraktResponse<ITraktMovie>>>> act = () => client.Movies.GetMultipleMoviesAsync(null);
             act.Should().NotThrow();
 
-            act = () => TestUtility.MOCK_TEST_CLIENT.Movies.GetMultipleMoviesAsync(new TraktMultipleObjectsQueryParams());
+            act = () => client.Movies.GetMultipleMoviesAsync(new TraktMultipleObjectsQueryParams());
             act.Should().NotThrow();
 
-            act = () => TestUtility.MOCK_TEST_CLIENT.Movies.GetMultipleMoviesAsync(new TraktMultipleObjectsQueryParams { { null } });
+            act = () => client.Movies.GetMultipleMoviesAsync(new TraktMultipleObjectsQueryParams { { null } });
             act.Should().Throw<ArgumentException>();
 
-            act = () => TestUtility.MOCK_TEST_CLIENT.Movies.GetMultipleMoviesAsync(new TraktMultipleObjectsQueryParams { { string.Empty } });
+            act = () => client.Movies.GetMultipleMoviesAsync(new TraktMultipleObjectsQueryParams { { string.Empty } });
             act.Should().Throw<ArgumentException>();
 
-            act = () => TestUtility.MOCK_TEST_CLIENT.Movies.GetMultipleMoviesAsync(new TraktMultipleObjectsQueryParams { { "movie id" } });
+            act = () => client.Movies.GetMultipleMoviesAsync(new TraktMultipleObjectsQueryParams { { "movie id" } });
             act.Should().Throw<ArgumentException>();
         }
     }

@@ -58,10 +58,7 @@
     <Compile Include="Modules\ATraktModule.cs" />
     <Compile Include="Modules\TraktAuthenticationModule.cs" />
     <Compile Include="Objects\Authentication\Implementations\TraktAuthorization.cs" />
-    <Compile Include="Authentication\TraktAuthentication.cs" />
     <Compile Include="Objects\Authentication\Implementations\TraktDevice.cs" />
-    <Compile Include="Authentication\TraktDeviceAuth.cs" />
-    <Compile Include="Authentication\TraktOAuth.cs" />
     <Compile Include="Core\DebugAsserter.cs" />
     <Compile Include="Core\TraktConfiguration.cs" />
     <Compile Include="Core\Constants.cs" />
@@ -1345,7 +1342,6 @@
     <Compile Include="Requests\Parameters\TraktCalendarFilter.cs" />
     <Compile Include="Modules\TraktMultipleQueryParams.cs" />
     <Compile Include="Services\TraktSerializationService.cs" />
-    <Compile Include="Utils\Json.cs" />
     <Compile Include="Utils\Pair.cs" />
     <Compile Include="Utils\Range.cs" />
     <Compile Include="Requests\Parameters\TraktCommonFilter.cs" />

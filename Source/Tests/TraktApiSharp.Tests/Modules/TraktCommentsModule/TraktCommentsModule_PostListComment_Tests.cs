@@ -351,7 +351,7 @@
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_LIST_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
 
-            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => TestUtility.MOCK_TEST_CLIENT.Comments.PostListCommentAsync(null, COMMENT_TEXT);
+            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostListCommentAsync(null, COMMENT_TEXT);
             act.Should().Throw<ArgumentNullException>();
 
             list.Ids = null;

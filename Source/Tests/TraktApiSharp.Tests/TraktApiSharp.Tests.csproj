@@ -84,9 +84,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authentication\TraktAuthentication_Tests.cs" />
-    <Compile Include="Authentication\TraktDeviceAuth_Tests.cs" />
-    <Compile Include="Authentication\TraktOAuth_Tests.cs" />
     <Compile Include="Core\TraktClient_Tests.cs" />
     <Compile Include="Core\TraktConfiguration_Tests.cs" />
     <Compile Include="Enums\TraktAccessScope_Tests.cs" />

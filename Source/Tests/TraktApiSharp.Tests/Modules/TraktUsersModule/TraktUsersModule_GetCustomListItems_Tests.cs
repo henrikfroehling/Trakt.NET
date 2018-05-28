@@ -226,22 +226,22 @@
         {
             TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, LIST_ITEMS_JSON);
 
-            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(null, LIST_ID);
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(null, LIST_ID);
             act.Should().Throw<ArgumentNullException>();
 
-            act = () => TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(string.Empty, LIST_ID);
+            act = () => client.Users.GetCustomListItemsAsync(string.Empty, LIST_ID);
             act.Should().Throw<ArgumentException>();
 
-            act = () => TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync("user name", LIST_ID);
+            act = () => client.Users.GetCustomListItemsAsync("user name", LIST_ID);
             act.Should().Throw<ArgumentException>();
 
-            act = () => TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(USERNAME, null);
+            act = () => client.Users.GetCustomListItemsAsync(USERNAME, null);
             act.Should().Throw<ArgumentNullException>();
 
-            act = () => TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(USERNAME, string.Empty);
+            act = () => client.Users.GetCustomListItemsAsync(USERNAME, string.Empty);
             act.Should().Throw<ArgumentException>();
 
-            act = () => TestUtility.MOCK_TEST_CLIENT.Users.GetCustomListItemsAsync(USERNAME, "list id");
+            act = () => client.Users.GetCustomListItemsAsync(USERNAME, "list id");
             act.Should().Throw<ArgumentException>();
         }
     }

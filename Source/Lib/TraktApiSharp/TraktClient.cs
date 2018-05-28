@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp
 {
-    using Authentication;
     using Core;
     using Extensions;
     using Modules;
@@ -18,8 +17,6 @@
             HttpClientProvider = httpClientProvider ?? new HttpClientProvider(this);
             Configuration = new TraktConfiguration();
             Authentication = new TraktAuthenticationModule(this);
-            //OAuth = new TraktOAuth(this);
-            //DeviceAuth = new TraktDeviceAuth(this);
             Shows = new TraktShowsModule(this);
             Seasons = new TraktSeasonsModule(this);
             Episodes = new TraktEpisodesModule(this);
@@ -107,17 +104,8 @@
         /// </summary>
         public TraktConfiguration Configuration { get; }
 
-        ///// <summary>Provides access to the authentication module. See <seealso cref="TraktAuthentication" />.</summary>
-        //public TraktAuthentication Authentication { get; }
-
         /// <summary>Provides access to the authentication module. See <seealso cref="TraktAuthenticationModule" />.</summary>
         public TraktAuthenticationModule Authentication { get; }
-
-        ///// <summary>Provides access to the OAuth authentication module. See <seealso cref="TraktOAuth" />.</summary>
-        //public TraktOAuth OAuth { get; }
-
-        ///// <summary>Provides accesss to the Device authentication module. See <seealso cref="TraktDeviceAuth" />.</summary>
-        //public TraktDeviceAuth DeviceAuth { get; }
 
         /// <summary>Provides access to the shows module. See <seealso cref="TraktShowsModule" />.</summary>
         public TraktShowsModule Shows { get; }
