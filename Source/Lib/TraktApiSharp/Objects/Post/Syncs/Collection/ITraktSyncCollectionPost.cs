@@ -1,8 +1,9 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection
 {
+    using Requests.Interfaces;
     using System.Collections.Generic;
 
-    public interface ITraktSyncCollectionPost
+    public interface ITraktSyncCollectionPost : IRequestBody
     {
         IEnumerable<ITraktSyncCollectionPostMovie> Movies { get; set; }
 

@@ -3,16 +3,16 @@
     using Base;
     using Extensions;
     using Interfaces;
-    using Objects.Post.Comments.Implementations;
+    using Objects.Post.Comments;
     using Objects.Post.Comments.Responses;
     using System;
     using System.Collections.Generic;
 
-    internal sealed class CommentReplyRequest : APostRequest<ITraktCommentPostResponse, TraktCommentReplyPost>, IHasId
+    internal sealed class CommentReplyRequest : APostRequest<ITraktCommentPostResponse, ITraktCommentReplyPost>, IHasId
     {
         public string Id { get; set; }
 
-        public override TraktCommentReplyPost RequestBody { get; set; }
+        public override ITraktCommentReplyPost RequestBody { get; set; }
 
         public RequestObjectType RequestObjectType => RequestObjectType.Comments;
 

@@ -15,15 +15,11 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/genres">"Trakt API Doc - Genres"</a> section.
     /// </para>
     /// </summary>
-    public class TraktGenresModule : ITraktModule
+    public class TraktGenresModule : ATraktModule
     {
-        internal TraktGenresModule(TraktClient client)
+        internal TraktGenresModule(TraktClient client) : base(client)
         {
-            Client = client;
         }
-
-        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
-        public TraktClient Client { get; }
 
         /// <summary>
         /// Gets a list of all movie genres.
@@ -35,7 +31,7 @@
         /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktGenre" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktListResponse<ITraktGenre>> GetMovieGenresAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TraktListResponse<ITraktGenre>> GetMovieGenresAsync(CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
             var response = await requestHandler.ExecuteListRequestAsync(new GenresMoviesRequest(), cancellationToken);
@@ -59,7 +55,7 @@
         /// <param name="cancellationToken"></param>
         /// <returns>A list of <see cref="ITraktGenre" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public async Task<TraktListResponse<ITraktGenre>> GetShowGenresAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<TraktListResponse<ITraktGenre>> GetShowGenresAsync(CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
             var response = await requestHandler.ExecuteListRequestAsync(new GenresShowsRequest(), cancellationToken);

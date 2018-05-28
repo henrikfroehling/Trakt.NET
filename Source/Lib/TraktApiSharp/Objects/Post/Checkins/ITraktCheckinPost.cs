@@ -1,8 +1,9 @@
 ﻿namespace TraktApiSharp.Objects.Post.Checkins
 {
     using Basic;
+    using Requests.Interfaces;
 
-    public interface ITraktCheckinPost
+    public interface ITraktCheckinPost : IRequestBody
     {
         ITraktSharing Sharing { get; set; }
 

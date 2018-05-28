@@ -1,9 +1,10 @@
 ﻿namespace TraktApiSharp
 {
-    using Authentication;
     using Core;
     using Extensions;
     using Modules;
+    using Objects.Authentication;
+    using Requests.Handler;
 
     /// <summary>
     /// Provides access to all functionality of this library.
@@ -11,12 +12,11 @@
     /// </summary>
     public class TraktClient
     {
-        internal TraktClient()
+        internal TraktClient(IHttpClientProvider httpClientProvider = default)
         {
+            HttpClientProvider = httpClientProvider ?? new HttpClientProvider(this);
             Configuration = new TraktConfiguration();
-            Authentication = new TraktAuthentication(this);
-            OAuth = new TraktOAuth(this);
-            DeviceAuth = new TraktDeviceAuth(this);
+            Authentication = new TraktAuthenticationModule(this);
             Shows = new TraktShowsModule(this);
             Seasons = new TraktSeasonsModule(this);
             Episodes = new TraktEpisodesModule(this);
@@ -37,7 +37,8 @@
 
         /// <summary>Initializes a new instance of the <see cref="TraktClient" /> class.</summary>
         /// <param name="clientId">The Trakt Client Id. See <seealso cref="ClientId" />.</param>
-        public TraktClient(string clientId) : this()
+        /// <param name="httpClientProvider"></param>
+        public TraktClient(string clientId, IHttpClientProvider httpClientProvider = default) : this(httpClientProvider)
         {
             ClientId = clientId;
         }
@@ -45,10 +46,13 @@
         /// <summary>Initializes a new instance of the <see cref="TraktClient" /> class.</summary>
         /// <param name="clientId">The Trakt Client Id. See <seealso cref="ClientId" />.</param>
         /// <param name="clientSecret">The Trakt Client Secret. See <seealso cref="ClientSecret" />.</param>
-        public TraktClient(string clientId, string clientSecret) : this(clientId)
+        /// <param name="httpClientProvider"></param>
+        public TraktClient(string clientId, string clientSecret, IHttpClientProvider httpClientProvider = default) : this(clientId, httpClientProvider)
         {
             ClientSecret = clientSecret;
         }
+
+        internal IHttpClientProvider HttpClientProvider { get; }
 
         /// <summary>Gets or sets the Trakt Client Id. See also <seealso cref="ClientSecret" />.</summary>
         public string ClientId
@@ -64,8 +68,8 @@
             set { Authentication.ClientSecret = value; }
         }
 
-        /// <summary>Gets or sets the Trakt Authorization information. See also <seealso cref="TraktAuthorization" />.</summary>
-        public TraktAuthorization Authorization
+        /// <summary>Gets or sets the Trakt Authorization information. See also <seealso cref="ITraktAuthorization" />.</summary>
+        public ITraktAuthorization Authorization
         {
             get { return Authentication.Authorization; }
             set { Authentication.Authorization = value; }
@@ -82,7 +86,7 @@
         /// Returns, whether the client is valid to use for API requests, that require OAuth authorization.
         /// <para>To enable this behavior, you must set a valid Trakt Client Id and a valid Trakt Access Token.</para>
         /// See <seealso cref="ClientId" />.
-        /// See <seealso cref="TraktAuthentication.IsAuthorized" />.
+        /// See <seealso cref="TraktAuthenticationModule.IsAuthorized" />.
         /// </summary>
         public bool IsValidForUseWithAuthorization => IsValidForUseWithoutAuthorization && Authentication.IsAuthorized;
 
@@ -100,14 +104,8 @@
         /// </summary>
         public TraktConfiguration Configuration { get; }
 
-        /// <summary>Provides access to the authentication module. See <seealso cref="TraktAuthentication" />.</summary>
-        public TraktAuthentication Authentication { get; }
-
-        /// <summary>Provides access to the OAuth authentication module. See <seealso cref="TraktOAuth" />.</summary>
-        public TraktOAuth OAuth { get; }
-
-        /// <summary>Provides accesss to the Device authentication module. See <seealso cref="TraktDeviceAuth" />.</summary>
-        public TraktDeviceAuth DeviceAuth { get; }
+        /// <summary>Provides access to the authentication module. See <seealso cref="TraktAuthenticationModule" />.</summary>
+        public TraktAuthenticationModule Authentication { get; }
 
         /// <summary>Provides access to the shows module. See <seealso cref="TraktShowsModule" />.</summary>
         public TraktShowsModule Shows { get; }

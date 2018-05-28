@@ -1,8 +1,9 @@
 ﻿namespace TraktApiSharp.Objects.Post.Comments
 {
     using Basic;
+    using Requests.Interfaces;
 
-    public interface ITraktCommentPost
+    public interface ITraktCommentPost : IRequestBody
     {
         string Comment { get; set; }
 

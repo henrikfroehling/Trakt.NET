@@ -17,15 +17,11 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/recommendations">"Trakt API Doc - Recommendations"</a> section.
     /// </para>
     /// </summary>
-    public class TraktRecommendationsModule : ITraktModule
+    public class TraktRecommendationsModule : ATraktModule
     {
-        internal TraktRecommendationsModule(TraktClient client)
+        internal TraktRecommendationsModule(TraktClient client) : base(client)
         {
-            Client = client;
         }
-
-        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
-        public TraktClient Client { get; }
 
         /// <summary>
         /// Gets personalized movie recommendations for an user.
@@ -50,7 +46,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMovie>> GetMovieRecommendationsAsync(uint? limit = null,
                                                                                   TraktExtendedInfo extendedInfo = null,
-                                                                                  CancellationToken cancellationToken = default(CancellationToken))
+                                                                                  CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
@@ -72,7 +68,7 @@
         /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        public Task<TraktNoContentResponse> HideMovieRecommendationAsync(string movieIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktNoContentResponse> HideMovieRecommendationAsync(string movieIdOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteNoContentRequestAsync(new UserRecommendationHideMovieRequest { Id = movieIdOrSlug }, cancellationToken);
@@ -101,7 +97,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktShow>> GetShowRecommendationsAsync(uint? limit = null,
                                                                                 TraktExtendedInfo extendedInfo = null,
-                                                                                CancellationToken cancellationToken = default(CancellationToken))
+                                                                                CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
@@ -123,7 +119,7 @@
         /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        public Task<TraktNoContentResponse> HideShowRecommendationAsync(string showIdOrSlug, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktNoContentResponse> HideShowRecommendationAsync(string showIdOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteNoContentRequestAsync(new UserRecommendationHideShowRequest { Id = showIdOrSlug }, cancellationToken);

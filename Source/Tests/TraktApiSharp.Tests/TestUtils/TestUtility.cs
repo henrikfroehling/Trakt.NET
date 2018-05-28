@@ -1,105 +1,142 @@
 ﻿namespace TraktApiSharp.Tests.TestUtils
 {
-    using FluentAssertions;
-    using RichardSzalay.MockHttp;
-    using System.Collections.Generic;
+    using System;
     using System.IO;
     using System.Net;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using TraktApiSharp.Authentication;
-    using TraktApiSharp.Requests.Handler;
+    using System.Threading.Tasks;
+    using TraktApiSharp.Core;
+    using TraktApiSharp.Objects.Json;
 
     internal static class TestUtility
     {
-        private static MockHttpMessageHandler MOCK_HTTP;
-        private static string BASE_URL;
-
-        private const string TRAKT_CLIENT_ID = "traktClientId";
-        private const string TRAKT_CLIENT_SECRET = "traktClientSecret";
-        private const string DEFAULT_REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob";
-
-        private static readonly TraktAuthorization MOCK_AUTHORIZATION = new TraktAuthorization { AccessToken = "mock_access_token", ExpiresInSeconds = 3600 };
-
-        internal static TraktClient MOCK_TEST_CLIENT = new TraktClient(TRAKT_CLIENT_ID, TRAKT_CLIENT_SECRET);
-
-        internal static void SetupMockHttpClient()
+        internal static TraktClient GetMockClient(string uri, string responseContent)
         {
-            BASE_URL = MOCK_TEST_CLIENT.Configuration.BaseUrl;
-            MOCK_HTTP = new MockHttpMessageHandler();
-
-            RequestHandler.s_httpClient = new HttpClient(MOCK_HTTP);
-            RequestHandler.s_httpClient.DefaultRequestHeaders.Add("trakt-api-key", $"{TRAKT_CLIENT_ID}");
-            RequestHandler.s_httpClient.DefaultRequestHeaders.Add("trakt-api-version", "2");
-            RequestHandler.s_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupMockResponse(uri, responseContent);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
         }
 
-        internal static void ResetMockHttpClient()
+        internal static TraktClient GetMockClient(string uri, string responseContent,
+                                                  uint? page = null, uint? limit = null,
+                                                  int? pageCount = null, int? itemCount = null,
+                                                  int? userCount = null, string startDate = null,
+                                                  string endDate = null, string sortBy = null,
+                                                  string sortHow = null)
         {
-            MOCK_TEST_CLIENT.Configuration.ForceAuthorization = false;
-            RequestHandler.s_httpClient = null;
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate, sortBy, sortHow);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
         }
 
-        internal static void ClearMockHttpClient()
+        internal static TraktClient GetMockClient(string uri, HttpStatusCode httpStatusCode)
         {
-            MOCK_TEST_CLIENT.Configuration.ForceAuthorization = false;
-            MOCK_HTTP.Clear();
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupMockResponse(uri, httpStatusCode);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
         }
 
-        internal static void SetupMockResponseWithoutOAuth(string uri, string responseContent)
+        internal static TraktClient GetOAuthMockClient(string uri, string responseContent,
+                                                       uint? page = null, uint? limit = null,
+                                                       int? pageCount = null, int? itemCount = null,
+                                                       int? userCount = null, string startDate = null,
+                                                       string endDate = null, string sortBy = null,
+                                                       string sortHow = null)
         {
-            MOCK_HTTP.Should().NotBeNull();
-            BASE_URL.Should().NotBeNullOrEmpty();
-
-            uri.Should().NotBeNullOrEmpty();
-            responseContent.Should().NotBeNullOrEmpty();
-
-            MOCK_HTTP.When($"{BASE_URL}{uri}")
-                     .WithHeaders(new Dictionary<string, string>
-                     {
-                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
-                         { "trakt-api-version", "2" }
-                     })
-                     .Respond("application/json", responseContent);
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupOAuthMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate, sortBy, sortHow);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider)
+            {
+                Authorization = TestConstants.MOCK_AUTHORIZATION
+            };
         }
 
-        internal static void SetupMockResponseWithoutOAuth(string uri, HttpStatusCode httpStatusCode)
+        internal static TraktClient GetOAuthMockClient(string uri, string requestContent, string responseContent)
         {
-            MOCK_HTTP.Should().NotBeNull();
-            BASE_URL.Should().NotBeNullOrEmpty();
-
-            uri.Should().NotBeNullOrEmpty();
-
-            MOCK_HTTP.When($"{BASE_URL}{uri}")
-                     .WithHeaders(new Dictionary<string, string>
-                     {
-                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
-                         { "trakt-api-version", "2" }
-                     })
-                     .Respond(httpStatusCode);
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupOAuthMockResponse(uri, requestContent, responseContent);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider)
+            {
+                Authorization = TestConstants.MOCK_AUTHORIZATION
+            };
         }
 
-        internal static void SetupMockResponseWithOAuth(string uri, string responseContent)
+        internal static TraktClient GetOAuthMockClient(string uri, HttpStatusCode httpStatusCode)
         {
-            MOCK_HTTP.Should().NotBeNull();
-            BASE_URL.Should().NotBeNullOrEmpty();
-            MOCK_TEST_CLIENT.Should().NotBeNull();
-            MOCK_AUTHORIZATION.Should().NotBeNull();
-            MOCK_AUTHORIZATION.AccessToken.Should().NotBeNullOrEmpty();
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupOAuthMockResponse(uri, httpStatusCode);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider)
+            {
+                Authorization = TestConstants.MOCK_AUTHORIZATION
+            };
+        }
 
-            MOCK_TEST_CLIENT.Authorization = MOCK_AUTHORIZATION;
+        internal static TraktClient GetAuthenticationMockClient()
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
+        }
 
-            uri.Should().NotBeNullOrEmpty();
-            responseContent.Should().NotBeNullOrEmpty();
+        internal static TraktClient GetAuthenticationMockClient(string uri, string requestContent)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupAuthenticationMockResponse(uri, requestContent);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
+        }
 
-            MOCK_HTTP.When($"{BASE_URL}{uri}")
-                     .WithHeaders(new Dictionary<string, string>
-                     {
-                         { "trakt-api-key", $"{MOCK_TEST_CLIENT.ClientId}" },
-                         { "trakt-api-version", "2" },
-                         { "Authorization", $"Bearer {MOCK_AUTHORIZATION.AccessToken}" }
-                     })
-                     .Respond("application/json", responseContent);
+        internal static TraktClient GetAuthenticationMockClient(string uri, string requestContent, string responseContent)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupAuthenticationMockResponse(uri, requestContent, responseContent);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
+        }
+
+        internal static TraktClient GetAuthenticationMockClient(string uri, HttpStatusCode httpStatusCode)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupAuthenticationMockResponse(uri, httpStatusCode);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
+        }
+
+        internal static TraktClient GetAuthenticationMockClient(string uri, string requestContent, string responseContent, HttpStatusCode httpStatusCode)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupAuthenticationMockResponse(uri, requestContent, responseContent, httpStatusCode);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
+        }
+
+        internal static void ChangeAuthenticationMockResponse(TestHttpClientProvider httpClientProvider, string uri, string requestContent, string responseContent, HttpStatusCode httpStatusCode)
+        {
+            httpClientProvider.ChangeAuthenticationMockResponse(uri, requestContent, responseContent, httpStatusCode);
+        }
+
+        internal static void AddMockExpectationResponse(TestHttpClientProvider httpClientProvider, string uri, string requestContent, string responseContent)
+        {
+            httpClientProvider.AddExpectationMockResponse(uri, requestContent, responseContent);
+        }
+
+        internal static void AddMockExpectationResponse(TestHttpClientProvider httpClientProvider, string uri, HttpStatusCode httpStatusCode)
+        {
+            httpClientProvider.AddExpectationMockResponse(uri, httpStatusCode);
+        }
+
+        internal static void VerifyNoOutstandingExpectations(TestHttpClientProvider httpClientProvider)
+        {
+            httpClientProvider.VerifyNoOutstandingExpectations();
+        }
+
+        internal static ulong CalculateTimestamp(DateTime createdAt)
+        {
+            var origin = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            long originSeconds = origin.Ticks / TimeSpan.TicksPerSecond;
+            DateTime utcCreatedAt = createdAt.ToUniversalTime();
+            long utcCreatedAtSeconds = utcCreatedAt.Ticks / TimeSpan.TicksPerSecond;
+            return (ulong)(utcCreatedAtSeconds - originSeconds);
+        }
+
+        internal static Task<string> SerializeObject<TObjectType>(TObjectType obj)
+        {
+            IObjectJsonWriter<TObjectType> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<TObjectType>();
+            return objectJsonWriter.WriteObjectAsync(obj);
         }
 
         internal static Stream ToStream(this string str)

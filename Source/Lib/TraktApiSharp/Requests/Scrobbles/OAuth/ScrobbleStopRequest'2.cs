@@ -1,9 +1,10 @@
 ﻿namespace TraktApiSharp.Requests.Scrobbles.OAuth
 {
     using Base;
+    using Requests.Interfaces;
     using System.Collections.Generic;
 
-    internal sealed class ScrobbleStopRequest<TResponseContentType, TRequestBodyType> : APostRequest<TResponseContentType, TRequestBodyType>
+    internal sealed class ScrobbleStopRequest<TResponseContentType, TRequestBodyType> : APostRequest<TResponseContentType, TRequestBodyType> where TRequestBodyType : IRequestBody
     {
         public override TRequestBodyType RequestBody { get; set; }
 

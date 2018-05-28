@@ -2,7 +2,7 @@
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Authentication;
+    using TraktApiSharp.Objects.Authentication.Implementations;
     using Xunit;
 
     [Category("Core")]
@@ -107,21 +107,21 @@
             client.Authentication.Should().NotBeNull();
         }
 
-        [Fact]
-        public void Test_TraktClient_Get_OAuth()
-        {
-            var client = new TraktClient();
+        //[Fact]
+        //public void Test_TraktClient_Get_OAuth()
+        //{
+        //    var client = new TraktClient();
 
-            client.OAuth.Should().NotBeNull();
-        }
+        //    client.OAuth.Should().NotBeNull();
+        //}
 
-        [Fact]
-        public void Test_TraktClient_Get_DeviceAuth()
-        {
-            var client = new TraktClient();
+        //[Fact]
+        //public void Test_TraktClient_Get_DeviceAuth()
+        //{
+        //    var client = new TraktClient();
 
-            client.DeviceAuth.Should().NotBeNull();
-        }
+        //    client.DeviceAuth.Should().NotBeNull();
+        //}
 
         [Fact]
         public void Test_TraktClient_Get_ShowsModule()

@@ -57,7 +57,7 @@
             act.Should().Throw<ArgumentNullException>();
 
             // id is null
-            request = new CommentReplyRequest { RequestBody = null };
+            request = new CommentReplyRequest { RequestBody = new TraktCommentReplyPost() };
 
             act = () => request.Validate();
             act.Should().Throw<ArgumentNullException>();

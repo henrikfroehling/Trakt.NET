@@ -19,15 +19,11 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/people">"Trakt API Doc - People"</a> section.
     /// </para>
     /// </summary>
-    public class TraktPeopleModule : ITraktModule
+    public class TraktPeopleModule : ATraktModule
     {
-        internal TraktPeopleModule(TraktClient client)
+        internal TraktPeopleModule(TraktClient client) : base(client)
         {
-            Client = client;
         }
-
-        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
-        public TraktClient Client { get; }
 
         /// <summary>
         /// Gets a <see cref="ITraktPerson" /> with the given Trakt-Id or -Slug.
@@ -47,7 +43,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
         public Task<TraktResponse<ITraktPerson>> GetPersonAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                CancellationToken cancellationToken = default(CancellationToken))
+                                                                CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
@@ -72,7 +68,7 @@
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given person ids is null, empty or contains spaces.</exception>
         public async Task<IEnumerable<TraktResponse<ITraktPerson>>> GetMultiplePersonsAsync(TraktMultipleObjectsQueryParams personsQueryParams,
-                                                                                            CancellationToken cancellationToken = default(CancellationToken))
+                                                                                            CancellationToken cancellationToken = default)
         {
             if (personsQueryParams == null || personsQueryParams.Count <= 0)
                 return new List<TraktResponse<ITraktPerson>>();
@@ -106,7 +102,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
         public Task<TraktResponse<ITraktPersonMovieCredits>> GetPersonMovieCreditsAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                                        CancellationToken cancellationToken = default(CancellationToken))
+                                                                                        CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
@@ -134,7 +130,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
         public Task<TraktResponse<ITraktPersonShowCredits>> GetPersonShowCreditsAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
-                                                                                      CancellationToken cancellationToken = default(CancellationToken))
+                                                                                      CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 

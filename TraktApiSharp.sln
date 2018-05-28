@@ -24,8 +24,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		Source\Lib\TraktApiSharp\TraktApiSharp.nuspec = Source\Lib\TraktApiSharp\TraktApiSharp.nuspec
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktApiSharp.PreNextVersion.Tests", "Source\Tests\TraktApiSharp.PreNextVersion.Tests\TraktApiSharp.PreNextVersion.Tests.csproj", "{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraktApiSharp.Tests", "Source\Tests\TraktApiSharp.Tests\TraktApiSharp.Tests.csproj", "{9226CF4C-D607-420E-B675-02F27EFD17E9}"
 EndProject
 Global
@@ -56,22 +54,6 @@ Global
 		{85190989-7D73-4B21-9225-AD02FE14D9C2}.Release|x64.Build.0 = Release|Any CPU
 		{85190989-7D73-4B21-9225-AD02FE14D9C2}.Release|x86.ActiveCfg = Release|Any CPU
 		{85190989-7D73-4B21-9225-AD02FE14D9C2}.Release|x86.Build.0 = Release|Any CPU
-		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Debug|ARM.Build.0 = Debug|Any CPU
-		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Debug|x64.Build.0 = Debug|Any CPU
-		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Debug|x86.Build.0 = Debug|Any CPU
-		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Release|ARM.ActiveCfg = Release|Any CPU
-		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Release|ARM.Build.0 = Release|Any CPU
-		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Release|x64.ActiveCfg = Release|Any CPU
-		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Release|x64.Build.0 = Release|Any CPU
-		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Release|x86.ActiveCfg = Release|Any CPU
-		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572}.Release|x86.Build.0 = Release|Any CPU
 		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9226CF4C-D607-420E-B675-02F27EFD17E9}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -94,7 +76,9 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{85190989-7D73-4B21-9225-AD02FE14D9C2} = {80FD2672-3557-48BD-BA73-3952E2D57B22}
-		{DAEDB71A-91E2-48F1-ACE4-3CBCF325F572} = {F1B29462-75DC-4226-8333-CABECAE02934}
 		{9226CF4C-D607-420E-B675-02F27EFD17E9} = {F1B29462-75DC-4226-8333-CABECAE02934}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7AA13CF5-96D7-4B15-87C0-A633B8AE18F8}
 	EndGlobalSection
 EndGlobal

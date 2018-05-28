@@ -1,11 +1,11 @@
 ﻿namespace TraktApiSharp.Services
 {
-    using Authentication;
     using Enums;
     using Newtonsoft.Json;
     using System;
     using System.IO;
     using System.Text;
+    using TraktApiSharp.Objects.Authentication.Implementations;
 
     /// <summary>Provides helper methods for serializing and deserializing Trakt objects.</summary>
     public static class TraktSerializationService
@@ -27,7 +27,7 @@
             if (authorization == null)
                 throw new ArgumentNullException(nameof(authorization), "authorization must not be null");
 
-            TraktAccessScope scope = authorization.AccessScope ?? TraktAccessScope.Public;
+            TraktAccessScope scope = authorization.Scope ?? TraktAccessScope.Public;
             TraktAccessTokenType tokenType = authorization.TokenType ?? TraktAccessTokenType.Bearer;
             string accessToken = authorization.AccessToken ?? string.Empty;
             string refreshToken = authorization.RefreshToken ?? string.Empty;
@@ -51,7 +51,7 @@
                 writer.WritePropertyName(propertyTokenType);
                 writer.WriteValue(tokenType.ObjectName);
                 writer.WritePropertyName(propertyCreatedAtTicks);
-                writer.WriteValue(authorization.Created.Ticks);
+                writer.WriteValue(authorization.CreatedAt.Ticks);
                 writer.WritePropertyName(propertyIgnoreExpiration);
                 writer.WriteValue(authorization.IgnoreExpiration);
                 writer.WriteEndObject();
@@ -74,7 +74,7 @@
 
             var accessToken = string.Empty;
             var refreshToken = string.Empty;
-            int expiresIn = 0;
+            uint expiresIn = 0;
             var scope = string.Empty;
             var tokenType = string.Empty;
             long createdAtTicks = 0L;
@@ -117,7 +117,7 @@
                                 var value = reader.Value.ToString();
 
                                 if (!string.IsNullOrEmpty(value))
-                                    expiresIn = int.Parse(value);
+                                    expiresIn = uint.Parse(value);
                             }
                             else
                             {
@@ -183,10 +183,10 @@
                 AccessToken = accessToken,
                 RefreshToken = refreshToken,
                 ExpiresInSeconds = expiresIn,
-                AccessScope = accessScope,
+                Scope = accessScope,
                 TokenType = accessTokenType,
-                IgnoreExpiration = ignoreExpiration,
-                Created = createdDateTime
+                IgnoreExpiration = ignoreExpiration//,
+                //CreatedAt = createdDateTime
             };
         }
     }

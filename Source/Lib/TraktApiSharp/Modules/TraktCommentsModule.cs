@@ -3,12 +3,17 @@
     using Exceptions;
     using Extensions;
     using Objects.Basic;
-    using Objects.Basic.Implementations;
+    using Objects.Get.Episodes;
     using Objects.Get.Episodes.Implementations;
+    using Objects.Get.Movies;
     using Objects.Get.Movies.Implementations;
+    using Objects.Get.Seasons;
     using Objects.Get.Seasons.Implementations;
+    using Objects.Get.Shows;
     using Objects.Get.Shows.Implementations;
+    using Objects.Get.Users.Lists;
     using Objects.Get.Users.Lists.Implementations;
+    using Objects.Post.Comments;
     using Objects.Post.Comments.Implementations;
     using Objects.Post.Comments.Responses;
     using Requests.Comments;
@@ -28,15 +33,11 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/comments">"Trakt API Doc - Comments"</a> section.
     /// </para>
     /// </summary>
-    public class TraktCommentsModule : ITraktModule
+    public class TraktCommentsModule : ATraktModule
     {
-        internal TraktCommentsModule(TraktClient client)
+        internal TraktCommentsModule(TraktClient client) : base(client)
         {
-            Client = client;
         }
-
-        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
-        public TraktClient Client { get; }
 
         /// <summary>
         /// Gets a <see cref="ITraktComment" /> or reply with the given id.
@@ -51,7 +52,7 @@
         /// <returns>An <see cref="ITraktComment" /> instance with the queried comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given commentId is null, empty or contains spaces.</exception>
-        public Task<TraktResponse<ITraktComment>> GetCommentAsync(uint commentId, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktComment>> GetCommentAsync(uint commentId, CancellationToken cancellationToken = default)
         {
             ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
@@ -71,7 +72,7 @@
         /// <returns>A list of <see cref="ITraktComment" /> instances with the data of each queried comment.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given comment ids is null, empty or contains spaces.</exception>
-        public async Task<IEnumerable<TraktResponse<ITraktComment>>> GetMutlipleCommentsAsync(uint[] commentIds, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<IEnumerable<TraktResponse<ITraktComment>>> GetMutlipleCommentsAsync(uint[] commentIds, CancellationToken cancellationToken = default)
         {
             if (commentIds == null || commentIds.Length <= 0)
                 return new List<TraktResponse<ITraktComment>>();
@@ -89,22 +90,22 @@
         }
 
         /// <summary>
-        /// Posts a comment for the given <see cref="TraktMovie" />.
+        /// Posts a comment for the given <see cref="ITraktMovie" />.
         /// <para>OAuth authorization required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="movie">The <see cref="TraktMovie" />, for which the comment should be posted.</param>
+        /// <param name="movie">The <see cref="ITraktMovie" />, for which the comment should be posted.</param>
         /// <param name="comment">The comment's content for the given movie. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
-        /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
+        /// <param name="sharing"><see cref="ITraktSharing" /> instance, containing sharing information for the comment.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given movie's title is null, empty or contains spaces.
-        /// Thrown, if the given movie has no valid ids. See also <seealso cref="TraktMovieIds" />.
+        /// Thrown, if the given movie has no valid ids. See also <seealso cref="ITraktMovieIds" />.
         /// Thrown, if the given comment is null or empty.
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or its ids are null.</exception>
@@ -112,16 +113,16 @@
         /// Thrown, if the given movie's year is not valid.
         /// Thrown, if the given comment's word count is below five.
         /// </exception>
-        public Task<TraktResponse<ITraktCommentPostResponse>> PostMovieCommentAsync(TraktMovie movie, string comment,
-                                                                                    bool? containsSpoiler = null, TraktSharing sharing = null,
-                                                                                    CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCommentPostResponse>> PostMovieCommentAsync(ITraktMovie movie, string comment,
+                                                                                    bool? containsSpoiler = null, ITraktSharing sharing = null,
+                                                                                    CancellationToken cancellationToken = default)
         {
             ValidateMovie(movie);
             ValidateComment(comment);
 
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<TraktMovieCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<ITraktMovieCommentPost>
             {
                 RequestBody = new TraktMovieCommentPost
                 {
@@ -139,36 +140,36 @@
         }
 
         /// <summary>
-        /// Posts a comment for the given <see cref="TraktShow" />.
+        /// Posts a comment for the given <see cref="ITraktShow" />.
         /// <para>OAuth authorization required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="show">The <see cref="TraktShow" />, for which the comment should be posted.</param>
+        /// <param name="show">The <see cref="ITraktShow" />, for which the comment should be posted.</param>
         /// <param name="comment">The comment's content for the given show. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
-        /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
+        /// <param name="sharing"><see cref="ITraktSharing" /> instance, containing sharing information for the comment.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given show's title is null, empty or contains spaces.
-        /// Thrown, if the given show has no valid ids. See also <seealso cref="TraktShowIds" />.
+        /// Thrown, if the given show has no valid ids. See also <seealso cref="ITraktShowIds" />.
         /// Thrown, if the given comment is null or empty.
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given show is null or its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
-        public Task<TraktResponse<ITraktCommentPostResponse>> PostShowCommentAsync(TraktShow show, string comment,
-                                                                                   bool? containsSpoiler = null, TraktSharing sharing = null,
-                                                                                   CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCommentPostResponse>> PostShowCommentAsync(ITraktShow show, string comment,
+                                                                                   bool? containsSpoiler = null, ITraktSharing sharing = null,
+                                                                                   CancellationToken cancellationToken = default)
         {
             ValidateShow(show);
             ValidateComment(comment);
 
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<TraktShowCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<ITraktShowCommentPost>
             {
                 RequestBody = new TraktShowCommentPost
                 {
@@ -185,35 +186,35 @@
         }
 
         /// <summary>
-        /// Posts a comment for the given <see cref="TraktSeason" />.
+        /// Posts a comment for the given <see cref="ITraktSeason" />.
         /// <para>OAuth authorization required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="season">The <see cref="TraktSeason" />, for which the comment should be posted.</param>
+        /// <param name="season">The <see cref="ITraktSeason" />, for which the comment should be posted.</param>
         /// <param name="comment">The comment's content for the given season. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
-        /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
+        /// <param name="sharing"><see cref="ITraktSharing" /> instance, containing sharing information for the comment.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
-        /// Thrown, if the given season has no valid ids. See also <seealso cref="TraktSeasonIds" />.
+        /// Thrown, if the given season has no valid ids. See also <seealso cref="ITraktSeasonIds" />.
         /// Thrown, if the given comment is null or empty.
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given season is null or its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
-        public Task<TraktResponse<ITraktCommentPostResponse>> PostSeasonCommentAsync(TraktSeason season, string comment,
-                                                                                     bool? containsSpoiler = null, TraktSharing sharing = null,
-                                                                                     CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCommentPostResponse>> PostSeasonCommentAsync(ITraktSeason season, string comment,
+                                                                                     bool? containsSpoiler = null, ITraktSharing sharing = null,
+                                                                                     CancellationToken cancellationToken = default)
         {
             ValidateSeason(season);
             ValidateComment(comment);
 
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<TraktSeasonCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<ITraktSeasonCommentPost>
             {
                 RequestBody = new TraktSeasonCommentPost
                 {
@@ -226,35 +227,35 @@
         }
 
         /// <summary>
-        /// Posts a comment for the given <see cref="TraktEpisode" />.
+        /// Posts a comment for the given <see cref="ITraktEpisode" />.
         /// <para>OAuth authorization required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="episode">The <see cref="TraktEpisode" />, for which the comment should be posted.</param>
+        /// <param name="episode">The <see cref="ITraktEpisode" />, for which the comment should be posted.</param>
         /// <param name="comment">The comment's content for the given episode. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
-        /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
+        /// <param name="sharing"><see cref="ITraktSharing" /> instance, containing sharing information for the comment.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
-        /// Thrown, if the given episode has no valid ids. See also <seealso cref="TraktEpisodeIds" />.
+        /// Thrown, if the given episode has no valid ids. See also <seealso cref="ITraktEpisodeIds" />.
         /// Thrown, if the given comment is null or empty.
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
-        public Task<TraktResponse<ITraktCommentPostResponse>> PostEpisodeCommentAsync(TraktEpisode episode, string comment,
-                                                                                      bool? containsSpoiler = null, TraktSharing sharing = null,
-                                                                                      CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCommentPostResponse>> PostEpisodeCommentAsync(ITraktEpisode episode, string comment,
+                                                                                      bool? containsSpoiler = null, ITraktSharing sharing = null,
+                                                                                      CancellationToken cancellationToken = default)
         {
             ValidateEpisode(episode);
             ValidateComment(comment);
 
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<TraktEpisodeCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<ITraktEpisodeCommentPost>
             {
                 RequestBody = new TraktEpisodeCommentPost
                 {
@@ -267,35 +268,35 @@
         }
 
         /// <summary>
-        /// Posts a comment for the given <see cref="TraktList" />.
+        /// Posts a comment for the given <see cref="ITraktList" />.
         /// <para>OAuth authorization required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="list">The <see cref="TraktList" />, for which the comment should be posted.</param>
+        /// <param name="list">The <see cref="ITraktList" />, for which the comment should be posted.</param>
         /// <param name="comment">The comment's content for the given list. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
-        /// <param name="sharing"><see cref="TraktSharing" /> instance, containing sharing information for the comment.</param>
+        /// <param name="sharing"><see cref="ITraktSharing" /> instance, containing sharing information for the comment.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
-        /// Thrown, if the given list has no valid ids. See also <seealso cref="TraktListIds" />.
+        /// Thrown, if the given list has no valid ids. See also <seealso cref="ITraktListIds" />.
         /// Thrown, if the given comment is null or empty.
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given list is null or its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
-        public Task<TraktResponse<ITraktCommentPostResponse>> PostListCommentAsync(TraktList list, string comment,
-                                                                                   bool? containsSpoiler = null, TraktSharing sharing = null,
-                                                                                   CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCommentPostResponse>> PostListCommentAsync(ITraktList list, string comment,
+                                                                                   bool? containsSpoiler = null, ITraktSharing sharing = null,
+                                                                                   CancellationToken cancellationToken = default)
         {
             ValidateList(list);
             ValidateComment(comment);
 
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<TraktListCommentPost>
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentPostRequest<ITraktListCommentPost>
             {
                 RequestBody = new TraktListCommentPost
                 {
@@ -326,7 +327,7 @@
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
         public Task<TraktResponse<ITraktCommentPostResponse>> UpdateCommentAsync(uint commentId, string comment, bool? containsSpoiler = null,
-                                                                                 CancellationToken cancellationToken = default(CancellationToken))
+                                                                                 CancellationToken cancellationToken = default)
         {
             ValidateId(commentId);
             ValidateComment(comment);
@@ -363,7 +364,7 @@
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
         public Task<TraktResponse<ITraktCommentPostResponse>> PostCommentReplyAsync(uint commentId, string comment, bool? containsSpoiler = null,
-                                                                                    CancellationToken cancellationToken = default(CancellationToken))
+                                                                                    CancellationToken cancellationToken = default)
         {
             ValidateId(commentId);
             ValidateComment(comment);
@@ -392,7 +393,7 @@
         /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
-        public Task<TraktNoContentResponse> DeleteCommentAsync(uint commentId, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktNoContentResponse> DeleteCommentAsync(uint commentId, CancellationToken cancellationToken = default)
         {
             ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
@@ -410,7 +411,7 @@
         /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
-        public Task<TraktNoContentResponse> LikeCommentAsync(uint commentId, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktNoContentResponse> LikeCommentAsync(uint commentId, CancellationToken cancellationToken = default)
         {
             ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
@@ -428,7 +429,7 @@
         /// <param name="cancellationToken"></param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
-        public Task<TraktNoContentResponse> UnlikeCommentAsync(uint commentId, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktNoContentResponse> UnlikeCommentAsync(uint commentId, CancellationToken cancellationToken = default)
         {
             ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
@@ -455,7 +456,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
         public Task<TraktPagedResponse<ITraktComment>> GetCommentRepliesAsync(uint commentId, TraktPagedParameters pagedParameters = null,
-                                                                              CancellationToken cancellationToken = default(CancellationToken))
+                                                                              CancellationToken cancellationToken = default)
         {
             ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
@@ -483,7 +484,7 @@
                 throw new ArgumentOutOfRangeException(nameof(comment), "comment has too few words - at least five words are required");
         }
 
-        private void ValidateMovie(TraktMovie movie)
+        private void ValidateMovie(ITraktMovie movie)
         {
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie), "movie must not be null");
@@ -501,7 +502,7 @@
                 throw new ArgumentException("movie ids have no valid id", nameof(movie.Ids));
         }
 
-        private void ValidateShow(TraktShow show)
+        private void ValidateShow(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show), "show must not be null");
@@ -516,7 +517,7 @@
                 throw new ArgumentException("show ids have no valid id", nameof(show.Ids));
         }
 
-        private void ValidateSeason(TraktSeason season)
+        private void ValidateSeason(ITraktSeason season)
         {
             if (season == null)
                 throw new ArgumentNullException(nameof(season), "season must not be null");
@@ -528,7 +529,7 @@
                 throw new ArgumentException("season ids have no valid id", nameof(season.Ids));
         }
 
-        private void ValidateEpisode(TraktEpisode episode)
+        private void ValidateEpisode(ITraktEpisode episode)
         {
             if (episode == null)
                 throw new ArgumentNullException(nameof(episode), "episode must not be null");
@@ -540,7 +541,7 @@
                 throw new ArgumentException("episode ids have no valid id", nameof(episode.Ids));
         }
 
-        private void ValidateList(TraktList list)
+        private void ValidateList(ITraktList list)
         {
             if (list == null)
                 throw new ArgumentNullException(nameof(list), "list must not be null");

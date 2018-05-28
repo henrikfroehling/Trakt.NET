@@ -1,6 +1,8 @@
 ﻿namespace TraktApiSharp.Objects.Post.Scrobbles
 {
-    public interface ITraktScrobblePost
+    using Requests.Interfaces;
+
+    public interface ITraktScrobblePost : IRequestBody
     {
         float Progress { get; set; }
 

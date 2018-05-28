@@ -1,5 +1,7 @@
 ﻿namespace TraktApiSharp.Objects.Json
 {
+    using Authentication;
+    using Authentication.Json.Factories;
     using Basic;
     using Basic.Json.Factories;
     using Get.Calendars;
@@ -117,6 +119,10 @@
 
         static JsonFactoryContainer()
         {
+            // authentication objects
+            s_jsonIOFactories.Add(typeof(ITraktAuthorization), new AuthorizationJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktDevice), new DeviceJsonIOFactory());
+
             // basic objects
             s_jsonIOFactories.Add(typeof(ITraktCastAndCrew), new CastAndCrewJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktCastMember), new CastMemberJsonIOFactory());

@@ -17,15 +17,11 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/search">"Trakt API Doc - Search"</a> section.
     /// </para>
     /// </summary>
-    public class TraktSearchModule : ITraktModule
+    public class TraktSearchModule : ATraktModule
     {
-        internal TraktSearchModule(TraktClient client)
+        internal TraktSearchModule(TraktClient client) : base(client)
         {
-            Client = client;
         }
-
-        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
-        public TraktClient Client { get; }
 
         /// <summary>
         /// Searches for movies, shows, episodes, people and / or lists with the given search query.
@@ -64,7 +60,7 @@
                                                                                      TraktSearchField searchFields = null, TraktSearchFilter filter = null,
                                                                                      TraktExtendedInfo extendedInfo = null,
                                                                                      TraktPagedParameters pagedParameters = null,
-                                                                                     CancellationToken cancellationToken = default(CancellationToken))
+                                                                                     CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
@@ -113,7 +109,7 @@
                                                                                     TraktSearchResultType searchResultTypes = null,
                                                                                     TraktExtendedInfo extendedInfo = null,
                                                                                     TraktPagedParameters pagedParameters = null,
-                                                                                    CancellationToken cancellationToken = default(CancellationToken))
+                                                                                    CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 

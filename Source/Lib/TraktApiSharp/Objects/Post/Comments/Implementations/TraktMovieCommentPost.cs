@@ -1,6 +1,10 @@
 ﻿namespace TraktApiSharp.Objects.Post.Comments.Implementations
 {
     using Get.Movies;
+    using Objects.Json;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>A movie comment post.</summary>
     public class TraktMovieCommentPost : TraktCommentPost, ITraktMovieCommentPost
@@ -10,5 +14,21 @@
         /// See also <seealso cref="ITraktMovie" />.
         /// </summary>
         public ITraktMovie Movie { get; set; }
+
+        public override HttpContent ToHttpContent()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override Task<string> ToJson(CancellationToken cancellationToken = default)
+        {
+            IObjectJsonWriter<ITraktMovieCommentPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktMovieCommentPost>();
+            return objectJsonWriter.WriteObjectAsync(this, cancellationToken);
+        }
+
+        public override void Validate()
+        {
+            // TODO
+        }
     }
 }

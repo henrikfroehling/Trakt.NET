@@ -14,15 +14,11 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/certifications">"Trakt API Doc - Certifications"</a> section.
     /// </para>
     /// </summary>
-    public class TraktCertificationsModule : ITraktModule
+    public class TraktCertificationsModule : ATraktModule
     {
-        internal TraktCertificationsModule(TraktClient client)
+        internal TraktCertificationsModule(TraktClient client) : base(client)
         {
-            Client = client;
         }
-
-        /// <summary>Gets a reference to the associated <see cref="TraktClient" /> instance.</summary>
-        public TraktClient Client { get; }
 
         /// <summary>
         /// Gets all movie certifications.
@@ -34,7 +30,7 @@
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktCertifications" /> instance with the queried certification's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktResponse<ITraktCertifications>> GetMovieCertificationsAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCertifications>> GetMovieCertificationsAsync(CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteSingleItemRequestAsync(new MovieCertificationsRequest(), cancellationToken);
@@ -50,7 +46,7 @@
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktCertifications" /> instance with the queried certification's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktResponse<ITraktCertifications>> GetShowCertificationsAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public Task<TraktResponse<ITraktCertifications>> GetShowCertificationsAsync(CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteSingleItemRequestAsync(new ShowCertificationsRequest(), cancellationToken);

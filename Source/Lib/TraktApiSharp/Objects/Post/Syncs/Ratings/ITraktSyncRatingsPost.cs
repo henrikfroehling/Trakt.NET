@@ -1,8 +1,9 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings
 {
+    using Requests.Interfaces;
     using System.Collections.Generic;
 
-    public interface ITraktSyncRatingsPost
+    public interface ITraktSyncRatingsPost : IRequestBody
     {
         IEnumerable<ITraktSyncRatingsPostMovie> Movies { get; set; }
 

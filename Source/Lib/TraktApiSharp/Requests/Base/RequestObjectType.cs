@@ -9,6 +9,7 @@
         Episodes,
         People,
         Comments,
-        Lists
+        Lists,
+        Object
     }
 }

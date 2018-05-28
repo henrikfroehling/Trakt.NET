@@ -17,5 +17,8 @@
 
         internal const string OAuthDeviceCodeUri = "oauth/device/code";
         internal const string OAuthDeviceTokenUri = "oauth/device/token";
+
+        internal const string MEDIA_TYPE = "application/json";
+        internal const string MEDIA_TYPE_URL_ENCODED = "application/x-www-form-urlencoded";
     }
 }
