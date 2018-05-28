@@ -68,7 +68,10 @@
         public string CreateAuthorizationUrl(string clientId) => CreateAuthorizationUrl(clientId, RedirectUri);
 
         public string CreateAuthorizationUrl(string clientId, string redirectUri)
-            => CreateAuthorizationUrl(clientId, redirectUri, AntiForgeryToken);
+        {
+            var requestHandler = new AuthenticationRequestHandler(Client);
+            return requestHandler.CreateAuthorizationUrl(clientId, redirectUri);
+        }
 
         public string CreateAuthorizationUrl(string clientId, string redirectUri, string state)
         {

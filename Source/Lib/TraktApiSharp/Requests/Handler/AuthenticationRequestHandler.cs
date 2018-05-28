@@ -35,7 +35,7 @@
         internal static IAuthenticationRequestHandler GetInstance(TraktClient client)
             => s_requestHandler ?? (s_requestHandler = new AuthenticationRequestHandler(client));
 
-        public string CreateAuthorizationUrl(string clientId, string redirectUri, string state)
+        public string CreateAuthorizationUrl(string clientId, string redirectUri, string state = null)
         {
             ValidateAuthorizationUrlArguments(clientId, redirectUri, state);
             return BuildAuthorizationUrl(clientId, redirectUri, state);
@@ -84,7 +84,7 @@
                 _client.Configuration.ThrowResponseExceptions = throwResponseExceptions;
             }
 
-            return new Pair<bool, TraktResponse<ITraktAuthorization>>(true, new TraktResponse<ITraktAuthorization>());
+            return new Pair<bool, TraktResponse<ITraktAuthorization>>(false, new TraktResponse<ITraktAuthorization>());
         }
 
         public async Task<Pair<bool, TraktResponse<ITraktAuthorization>>> CheckIfAuthorizationIsExpiredOrWasRevokedAsync(ITraktAuthorization authorization, bool autoRefresh = false, CancellationToken cancellationToken = default)
@@ -97,10 +97,14 @@
             try
             {
                 result = await CheckIfAuthorizationIsExpiredOrWasRevokedAsync(autoRefresh, cancellationToken).ConfigureAwait(false);
+
+                if (result.First && autoRefresh && result.Second.IsSuccess)
+                    _client.Authorization = result.Second.Value;
             }
             finally
             {
-                _client.Authorization = currentAuthorization;
+                if (!result.First)
+                    _client.Authorization = currentAuthorization;
             }
 
             return result;
@@ -146,7 +150,7 @@
                     await ResponseErrorHandler.HandleErrorsAsync(requestMessage, responseMessage, isDeviceRequest: true, cancellationToken: cancellationToken).ConfigureAwait(false);
 
                 DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
-                DebugAsserter.AssertHttpResponseCodeIsExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.SINGLE_ITEM_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
+                DebugAsserter.AssertHttpResponseCodeIsExpected(responseMessage.StatusCode, HttpStatusCode.OK, DebugAsserter.SINGLE_ITEM_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
 
                 Stream responseContentStream = await ResponseMessageHelper.GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
                 IObjectJsonReader<ITraktDevice> objectJsonReader = JsonFactoryContainer.CreateObjectReader<ITraktDevice>();
@@ -220,6 +224,7 @@
                     {
                         await Task.Delay((int)device.IntervalInMilliseconds).ConfigureAwait(false);
                         totalExpiredSeconds += device.IntervalInSeconds;
+                        requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build().ConfigureAwait(false);
                         continue;
                     }
 
@@ -296,6 +301,11 @@
                 else
                 {
                     _client.Authorization = TraktAuthorization.CreateWith(string.Empty, string.Empty);
+
+                    return new TraktNoContentResponse
+                    {
+                        IsSuccess = true
+                    };
                 }
 
                 throw new TraktAuthenticationException("unknown exception")
@@ -418,7 +428,7 @@
         {
             ValidateAuthorizationUrlArguments(clientId, redirectUri);
 
-            if (string.IsNullOrEmpty(state) || state.ContainsSpace())
+            if (state != null && (state.Length == 0 || state.ContainsSpace()))
                 throw new ArgumentException("state not valid", nameof(state));
         }
     }

@@ -207,5 +207,101 @@
                 })
                 .Respond(httpStatusCode);
         }
+
+        internal void SetupAuthenticationMockResponse(string uri, string requestContent, string responseContent)
+        {
+            _mockHttpMessageHandler.Should().NotBeNull();
+            _baseUrl.Should().NotBeNullOrEmpty();
+            uri.Should().NotBeNullOrEmpty();
+            requestContent.Should().NotBeNullOrEmpty();
+            responseContent.Should().NotBeNullOrEmpty();
+
+            _mockHttpMessageHandler.When(_baseUrl + uri)
+                .WithContent(requestContent)
+                .Respond(ACCEPT_MEDIA_TYPE, responseContent);
+        }
+
+        internal void SetupAuthenticationMockResponse(string uri, string requestContent)
+        {
+            _mockHttpMessageHandler.Should().NotBeNull();
+            _baseUrl.Should().NotBeNullOrEmpty();
+            uri.Should().NotBeNullOrEmpty();
+            requestContent.Should().NotBeNullOrEmpty();
+
+            _mockHttpMessageHandler.When(_baseUrl + uri)
+                .WithContent(requestContent)
+                .Respond(HttpStatusCode.NoContent);
+        }
+
+        internal void SetupAuthenticationMockResponse(string uri, HttpStatusCode httpStatusCode)
+        {
+            _mockHttpMessageHandler.Should().NotBeNull();
+            _baseUrl.Should().NotBeNullOrEmpty();
+            uri.Should().NotBeNullOrEmpty();
+            _mockHttpMessageHandler.When(_baseUrl + uri).Respond(httpStatusCode);
+        }
+
+        internal void SetupAuthenticationMockResponse(string uri, string requestContent, string responseContent, HttpStatusCode httpStatusCode)
+        {
+            _mockHttpMessageHandler.Should().NotBeNull();
+            _baseUrl.Should().NotBeNullOrEmpty();
+            uri.Should().NotBeNullOrEmpty();
+            requestContent.Should().NotBeNullOrEmpty();
+            responseContent.Should().NotBeNullOrEmpty();
+
+            _mockHttpMessageHandler.When(_baseUrl + uri)
+                .WithContent(requestContent)
+                .Respond(httpStatusCode, ACCEPT_MEDIA_TYPE, responseContent);
+        }
+
+        internal void ChangeAuthenticationMockResponse(string uri, string requestContent, string responseContent, HttpStatusCode httpStatusCode)
+        {
+            _mockHttpMessageHandler.Should().NotBeNull();
+            _baseUrl.Should().NotBeNullOrEmpty();
+            uri.Should().NotBeNullOrEmpty();
+            requestContent.Should().NotBeNullOrEmpty();
+            responseContent.Should().NotBeNullOrEmpty();
+
+            _mockHttpMessageHandler.Clear();
+
+            _mockHttpMessageHandler.When(_baseUrl + uri)
+                .WithContent(requestContent)
+                .Respond(httpStatusCode, ACCEPT_MEDIA_TYPE, responseContent);
+        }
+
+        internal void AddExpectationMockResponse(string uri, string requestContent, string responseContent)
+        {
+            _mockHttpMessageHandler.Should().NotBeNull();
+            _baseUrl.Should().NotBeNullOrEmpty();
+            uri.Should().NotBeNullOrEmpty();
+            requestContent.Should().NotBeNullOrEmpty();
+            responseContent.Should().NotBeNullOrEmpty();
+
+            _mockHttpMessageHandler.Expect(_baseUrl + uri)
+                .WithContent(requestContent)
+                .Respond(ACCEPT_MEDIA_TYPE, responseContent);
+        }
+
+        internal void AddExpectationMockResponse(string uri, HttpStatusCode httpStatusCode)
+        {
+            _mockHttpMessageHandler.Should().NotBeNull();
+            _baseUrl.Should().NotBeNullOrEmpty();
+            uri.Should().NotBeNullOrEmpty();
+
+            _mockHttpMessageHandler.Expect(_baseUrl + uri)
+                .WithHeaders(new Dictionary<string, string>
+                {
+                    { TRAKT_API_HEADER_KEY, _clientId },
+                    { TRAKT_API_VERSION_HEADER_KEY, "2" },
+                    { TRAKT_API_AUTHORIZATION_HEADEY_KEY, $"Bearer {TestConstants.MOCK_AUTHORIZATION.AccessToken}" }
+                })
+                .Respond(httpStatusCode);
+        }
+
+        internal void VerifyNoOutstandingExpectations()
+        {
+            _mockHttpMessageHandler.Should().NotBeNull();
+            _mockHttpMessageHandler.VerifyNoOutstandingExpectation();
+        }
     }
 }

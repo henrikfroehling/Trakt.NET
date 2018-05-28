@@ -9,7 +9,7 @@
 
     internal interface IAuthenticationRequestHandler
     {
-        string CreateAuthorizationUrl(string clientId, string redirectUri, string state);
+        string CreateAuthorizationUrl(string clientId, string redirectUri, string state = null);
 
         string CreateAuthorizationUrlWithDefaultState(string clientId, string redirectUri);
 

@@ -86,6 +86,60 @@
             };
         }
 
+        internal static TraktClient GetAuthenticationMockClient()
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
+        }
+
+        internal static TraktClient GetAuthenticationMockClient(string uri, string requestContent)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupAuthenticationMockResponse(uri, requestContent);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
+        }
+
+        internal static TraktClient GetAuthenticationMockClient(string uri, string requestContent, string responseContent)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupAuthenticationMockResponse(uri, requestContent, responseContent);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
+        }
+
+        internal static TraktClient GetAuthenticationMockClient(string uri, HttpStatusCode httpStatusCode)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupAuthenticationMockResponse(uri, httpStatusCode);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
+        }
+
+        internal static TraktClient GetAuthenticationMockClient(string uri, string requestContent, string responseContent, HttpStatusCode httpStatusCode)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            httpClientProvider.SetupAuthenticationMockResponse(uri, requestContent, responseContent, httpStatusCode);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
+        }
+
+        internal static void ChangeAuthenticationMockResponse(TestHttpClientProvider httpClientProvider, string uri, string requestContent, string responseContent, HttpStatusCode httpStatusCode)
+        {
+            httpClientProvider.ChangeAuthenticationMockResponse(uri, requestContent, responseContent, httpStatusCode);
+        }
+
+        internal static void AddMockExpectationResponse(TestHttpClientProvider httpClientProvider, string uri, string requestContent, string responseContent)
+        {
+            httpClientProvider.AddExpectationMockResponse(uri, requestContent, responseContent);
+        }
+
+        internal static void AddMockExpectationResponse(TestHttpClientProvider httpClientProvider, string uri, HttpStatusCode httpStatusCode)
+        {
+            httpClientProvider.AddExpectationMockResponse(uri, httpStatusCode);
+        }
+
+        internal static void VerifyNoOutstandingExpectations(TestHttpClientProvider httpClientProvider)
+        {
+            httpClientProvider.VerifyNoOutstandingExpectations();
+        }
+
         internal static ulong CalculateTimestamp(DateTime createdAt)
         {
             var origin = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
