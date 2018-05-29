@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Responses.Json.Reader
 {
-    using Implementations;
     using Newtonsoft.Json;
     using Objects.Json;
     using Syncs.Responses.Json.Reader;

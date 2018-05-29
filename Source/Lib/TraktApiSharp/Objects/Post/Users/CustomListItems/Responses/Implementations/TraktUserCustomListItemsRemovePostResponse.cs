@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Responses.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Responses
 {
     /// <summary>
     /// Represents the response for an user custom list items remove post. See also <see cref="ITraktUserCustomListItemsPost" />.

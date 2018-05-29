@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Post.Responses.Json.Reader
 {
     using Get.Episodes.Json.Reader;
-    using Implementations;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;

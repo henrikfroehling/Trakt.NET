@@ -10,7 +10,6 @@
     using Traits;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Post.Syncs.History;
-    using TraktApiSharp.Objects.Post.Syncs.History.Implementations;
     using TraktApiSharp.Objects.Post.Syncs.History.Responses;
     using TraktApiSharp.Responses;
     using Xunit;

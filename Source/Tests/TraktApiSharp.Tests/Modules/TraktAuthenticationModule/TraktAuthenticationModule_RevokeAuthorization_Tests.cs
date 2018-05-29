@@ -9,7 +9,6 @@
     using TraktApiSharp.Enums;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Authentication;
-    using TraktApiSharp.Objects.Authentication.Implementations;
     using TraktApiSharp.Responses;
     using Xunit;
 

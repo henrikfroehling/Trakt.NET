@@ -7,9 +7,7 @@
     using Traits;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Seasons;
-    using TraktApiSharp.Objects.Get.Seasons.Implementations;
     using TraktApiSharp.Objects.Json;
     using Xunit;
 

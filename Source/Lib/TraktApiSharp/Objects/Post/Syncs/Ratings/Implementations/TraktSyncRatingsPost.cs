@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings
 {
     using Objects.Json;
     using System.Collections.Generic;

@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
     using Objects.Authentication;
-    using Objects.Authentication.Implementations;
     using Requests.Authentication;
     using Requests.Handler;
     using Responses;

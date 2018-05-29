@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Basic.Implementations
+﻿namespace TraktApiSharp.Objects.Basic
 {
     using Get.Users;
     using System;

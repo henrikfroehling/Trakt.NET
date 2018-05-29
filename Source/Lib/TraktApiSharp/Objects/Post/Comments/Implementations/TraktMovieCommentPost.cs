@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Comments.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Comments
 {
     using Get.Movies;
     using Objects.Json;

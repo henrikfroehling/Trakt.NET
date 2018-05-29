@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Seasons.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Seasons
 {
     using Episodes;
     using System.Collections.Generic;

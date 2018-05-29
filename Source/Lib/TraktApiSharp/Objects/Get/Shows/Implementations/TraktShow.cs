@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Shows.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Shows
 {
     using Enums;
     using Seasons;

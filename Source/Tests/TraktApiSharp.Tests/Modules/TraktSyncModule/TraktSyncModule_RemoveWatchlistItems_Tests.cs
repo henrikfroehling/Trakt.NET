@@ -11,7 +11,6 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Post.Responses;
     using TraktApiSharp.Objects.Post.Syncs.Watchlist;
-    using TraktApiSharp.Objects.Post.Syncs.Watchlist.Implementations;
     using TraktApiSharp.Objects.Post.Syncs.Watchlist.Responses;
     using TraktApiSharp.Responses;
     using Xunit;

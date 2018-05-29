@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Movies.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Movies
 {
     using Enums;
     using System;

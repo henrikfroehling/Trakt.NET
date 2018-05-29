@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Watched.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Watched
 {
     using Movies;
     using System;

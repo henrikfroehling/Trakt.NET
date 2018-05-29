@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Users.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Users
 {
     using Enums;
     using Episodes;

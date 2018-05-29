@@ -1,7 +1,6 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection
 {
     using Basic;
-    using Basic.Implementations;
     using Get.Episodes;
     using Get.Movies;
     using Get.Shows;

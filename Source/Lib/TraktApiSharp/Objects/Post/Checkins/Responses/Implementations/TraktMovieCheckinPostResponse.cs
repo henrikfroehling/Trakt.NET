@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Checkins.Responses.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Checkins.Responses
 {
     using Get.Movies;
 

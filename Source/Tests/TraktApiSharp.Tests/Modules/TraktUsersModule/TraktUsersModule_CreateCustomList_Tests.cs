@@ -10,7 +10,6 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Users.Lists;
     using TraktApiSharp.Objects.Post.Users;
-    using TraktApiSharp.Objects.Post.Users.Implementations;
     using TraktApiSharp.Responses;
     using Xunit;
 

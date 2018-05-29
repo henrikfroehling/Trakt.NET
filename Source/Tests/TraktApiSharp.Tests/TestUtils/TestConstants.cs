@@ -1,7 +1,7 @@
 ﻿namespace TraktApiSharp.Tests.TestUtils
 {
     using System;
-    using TraktApiSharp.Objects.Authentication.Implementations;
+    using TraktApiSharp.Objects.Authentication;
 
     internal static class TestConstants
     {

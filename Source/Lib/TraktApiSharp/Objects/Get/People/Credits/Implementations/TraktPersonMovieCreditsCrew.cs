@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.People.Credits.Implementations
+﻿namespace TraktApiSharp.Objects.Get.People.Credits
 {
     using System.Collections.Generic;
 

@@ -2,10 +2,10 @@
 {
     using Enums;
     using Newtonsoft.Json;
+    using Objects.Authentication;
     using System;
     using System.IO;
     using System.Text;
-    using TraktApiSharp.Objects.Authentication.Implementations;
 
     /// <summary>Provides helper methods for serializing and deserializing Trakt objects.</summary>
     public static class TraktSerializationService

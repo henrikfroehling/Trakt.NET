@@ -4,7 +4,7 @@
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Post.Comments.Responses.Implementations;
+    using TraktApiSharp.Objects.Post.Comments.Responses;
     using TraktApiSharp.Objects.Post.Comments.Responses.Json.Reader;
     using Xunit;
 

@@ -6,7 +6,6 @@
     using Get.People.Json.Reader;
     using Get.Shows.Json.Reader;
     using Get.Users.Lists.Json.Reader;
-    using Implementations;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;

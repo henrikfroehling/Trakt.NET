@@ -2,17 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
-    using TraktApiSharp.Objects.Get.Movies.Implementations;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
+    using TraktApiSharp.Objects.Get.Episodes;
+    using TraktApiSharp.Objects.Get.Movies;
+    using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Post.Syncs.Collection;
-    using TraktApiSharp.Objects.Post.Syncs.Collection.Implementations;
     using TraktApiSharp.Objects.Post.Syncs.History;
-    using TraktApiSharp.Objects.Post.Syncs.History.Implementations;
     using TraktApiSharp.Objects.Post.Syncs.Ratings;
-    using TraktApiSharp.Objects.Post.Syncs.Ratings.Implementations;
     using TraktApiSharp.Objects.Post.Syncs.Watchlist;
-    using TraktApiSharp.Objects.Post.Syncs.Watchlist.Implementations;
 
     public partial class TraktSyncModule_Tests
     {

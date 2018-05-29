@@ -7,7 +7,6 @@
     using Interfaces;
     using Interfaces.Base;
     using Objects.Authentication;
-    using Objects.Authentication.Implementations;
     using Objects.Basic;
     using Objects.Json;
     using Responses;

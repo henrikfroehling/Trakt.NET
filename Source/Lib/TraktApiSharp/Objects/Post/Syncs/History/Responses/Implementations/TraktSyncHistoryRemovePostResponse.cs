@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Responses.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Responses
 {
     /// <summary>
     /// Represents the response for a history remove post. See also <see cref="ITraktSyncHistoryRemovePost" />.

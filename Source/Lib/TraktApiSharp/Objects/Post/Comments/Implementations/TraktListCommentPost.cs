@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Comments.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Comments
 {
     using Get.Users.Lists;
     using Objects.Json;

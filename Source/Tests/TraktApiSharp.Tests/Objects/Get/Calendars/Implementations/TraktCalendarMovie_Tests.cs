@@ -4,7 +4,7 @@
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Calendars.Implementations;
+    using TraktApiSharp.Objects.Get.Calendars;
     using TraktApiSharp.Objects.Get.Calendars.Json.Reader;
     using Xunit;
 

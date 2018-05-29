@@ -4,7 +4,7 @@
     using Extensions;
     using Interfaces;
     using Objects.Get.Users.Lists;
-    using Objects.Post.Users.Implementations;
+    using Objects.Post.Users;
     using System;
     using System.Collections.Generic;
 

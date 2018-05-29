@@ -12,10 +12,9 @@
     using Objects.Get.Users.Statistics;
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;
+    using Objects.Post.Users;
     using Objects.Post.Users.CustomListItems;
-    using Objects.Post.Users.CustomListItems.Implementations;
     using Objects.Post.Users.CustomListItems.Responses;
-    using Objects.Post.Users.Implementations;
     using Objects.Post.Users.Responses;
     using Requests.Handler;
     using Requests.Parameters;

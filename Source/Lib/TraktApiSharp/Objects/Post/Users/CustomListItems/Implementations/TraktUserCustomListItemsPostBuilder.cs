@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems
 {
     using Get.Movies;
     using Get.People;

@@ -3,7 +3,7 @@
     using Base;
     using Extensions;
     using Objects.Get.Users.Lists;
-    using Objects.Post.Users.Implementations;
+    using Objects.Post.Users;
     using System;
     using System.Collections.Generic;
 

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.Responses.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Users.Responses
 {
     using Get.Users;
     using System;

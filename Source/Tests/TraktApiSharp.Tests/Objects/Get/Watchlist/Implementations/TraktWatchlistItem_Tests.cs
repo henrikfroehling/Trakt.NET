@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Watchlist.Implementations;
+    using TraktApiSharp.Objects.Get.Watchlist;
     using TraktApiSharp.Objects.Get.Watchlist.Json.Reader;
     using Xunit;
 

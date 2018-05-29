@@ -1,6 +1,6 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Responses.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Responses
 {
-    using Syncs.Responses.Implementations;
+    using Syncs.Responses;
     using System.Collections.Generic;
 
     /// <summary>A collection containing the ids of movies, shows, seasons, episodes and history items, which were not found.</summary>

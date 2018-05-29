@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Movies.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Movies
 {
     /// <summary>An alias for a Trakt movie.</summary>
     public class TraktMovieAlias : ITraktMovieAlias

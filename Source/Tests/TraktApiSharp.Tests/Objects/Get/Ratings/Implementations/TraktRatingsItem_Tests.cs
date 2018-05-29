@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Ratings.Implementations;
+    using TraktApiSharp.Objects.Get.Ratings;
     using TraktApiSharp.Objects.Get.Ratings.Json.Reader;
     using Xunit;
 

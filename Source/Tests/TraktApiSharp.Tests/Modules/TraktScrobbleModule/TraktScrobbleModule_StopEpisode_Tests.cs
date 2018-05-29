@@ -10,7 +10,6 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Post.Scrobbles;
-    using TraktApiSharp.Objects.Post.Scrobbles.Implementations;
     using TraktApiSharp.Objects.Post.Scrobbles.Responses;
     using TraktApiSharp.Responses;
     using Xunit;

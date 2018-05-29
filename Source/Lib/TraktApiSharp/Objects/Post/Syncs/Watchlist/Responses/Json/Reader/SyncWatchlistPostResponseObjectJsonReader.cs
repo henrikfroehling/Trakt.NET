@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist.Responses.Json.Reader
 {
-    using Implementations;
     using Newtonsoft.Json;
     using Objects.Json;
     using Syncs.Responses.Json.Reader;

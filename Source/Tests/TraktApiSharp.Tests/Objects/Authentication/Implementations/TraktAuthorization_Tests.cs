@@ -7,7 +7,6 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Authentication;
-    using TraktApiSharp.Objects.Authentication.Implementations;
     using TraktApiSharp.Objects.Authentication.Json.Reader;
     using Xunit;
 

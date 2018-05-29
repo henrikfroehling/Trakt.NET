@@ -1,6 +1,6 @@
-﻿namespace TraktApiSharp.Objects.Get.Episodes.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Episodes
 {
-    using Basic.Implementations;
+    using Basic;
 
     /// <summary>A translation for a Trakt episode.</summary>
     public class TraktEpisodeTranslation : TraktTranslation, ITraktEpisodeTranslation

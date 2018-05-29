@@ -1,6 +1,6 @@
-﻿namespace TraktApiSharp.Objects.Get.Movies.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Movies
 {
-    using Basic.Implementations;
+    using Basic;
 
     /// <summary>A translation for a Trakt movie.</summary>
     public class TraktMovieTranslation : TraktTranslation, ITraktMovieTranslation

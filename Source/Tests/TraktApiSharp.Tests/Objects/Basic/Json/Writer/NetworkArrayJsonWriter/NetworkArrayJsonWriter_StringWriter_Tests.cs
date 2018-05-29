@@ -7,7 +7,6 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Json;
     using Xunit;
 

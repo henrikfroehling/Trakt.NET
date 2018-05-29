@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.History.Implementations;
+    using TraktApiSharp.Objects.Get.History;
     using TraktApiSharp.Objects.Get.History.Json.Reader;
     using Xunit;
 

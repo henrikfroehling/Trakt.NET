@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Responses.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Responses
 {
     using Post.Responses;
     using System.Collections.Generic;

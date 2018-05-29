@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.People.Implementations
+﻿namespace TraktApiSharp.Objects.Get.People
 {
     using Extensions;
     using System;

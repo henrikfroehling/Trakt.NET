@@ -3,9 +3,7 @@
     using TestUtils;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Authentication;
-    using TraktApiSharp.Objects.Authentication.Implementations;
     using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Objects.Basic.Implementations;
 
     public partial class TraktAuthenticationModule_Tests
     {

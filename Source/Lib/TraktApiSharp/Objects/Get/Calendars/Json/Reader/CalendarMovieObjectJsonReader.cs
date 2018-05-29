@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Calendars.Json.Reader
 {
-    using Implementations;
     using Movies.Json.Reader;
     using Newtonsoft.Json;
     using Objects.Json;

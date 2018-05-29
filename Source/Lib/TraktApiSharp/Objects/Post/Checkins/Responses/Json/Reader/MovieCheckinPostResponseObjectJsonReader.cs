@@ -2,7 +2,6 @@
 {
     using Basic.Json.Reader;
     using Get.Movies.Json.Reader;
-    using Implementations;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;

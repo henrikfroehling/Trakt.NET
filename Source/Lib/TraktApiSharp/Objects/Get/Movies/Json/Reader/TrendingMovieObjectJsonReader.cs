@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Get.Movies.Json.Reader
 {
-    using Implementations;
     using Newtonsoft.Json;
     using Objects.Get.Movies;
     using Objects.Json;

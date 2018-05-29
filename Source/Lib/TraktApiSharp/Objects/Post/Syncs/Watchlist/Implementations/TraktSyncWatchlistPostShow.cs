@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist
 {
     using Get.Shows;
     using System.Collections.Generic;

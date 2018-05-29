@@ -3,7 +3,7 @@
     using FluentAssertions;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users.Statistics.Implementations;
+    using TraktApiSharp.Objects.Get.Users.Statistics;
     using TraktApiSharp.Objects.Get.Users.Statistics.Json.Reader;
     using Xunit;
 

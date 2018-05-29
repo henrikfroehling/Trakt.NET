@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Shows.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Shows
 {
     /// <summary>An alias for a Trakt c.</summary>
     public class TraktShowAlias : ITraktShowAlias

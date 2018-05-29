@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Post.Scrobbles.Responses.Implementations;
+    using TraktApiSharp.Objects.Post.Scrobbles.Responses;
     using TraktApiSharp.Objects.Post.Scrobbles.Responses.Json.Reader;
     using Xunit;
 

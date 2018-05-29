@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Responses.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Responses
 {
     /// <summary>A collection containing the number of movies, shows, seasons, episodes and people.</summary>
     public class TraktUserCustomListItemsPostResponseGroup : ITraktUserCustomListItemsPostResponseGroup

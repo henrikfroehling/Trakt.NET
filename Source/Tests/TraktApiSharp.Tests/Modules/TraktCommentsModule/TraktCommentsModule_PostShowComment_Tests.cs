@@ -8,9 +8,7 @@
     using Traits;
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Objects.Get.Shows.Implementations;
     using TraktApiSharp.Objects.Post.Comments;
-    using TraktApiSharp.Objects.Post.Comments.Implementations;
     using TraktApiSharp.Objects.Post.Comments.Responses;
     using TraktApiSharp.Responses;
     using Xunit;

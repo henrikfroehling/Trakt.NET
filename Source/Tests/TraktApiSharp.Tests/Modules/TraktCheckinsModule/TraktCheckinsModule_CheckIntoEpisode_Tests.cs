@@ -9,9 +9,7 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Post.Checkins;
-    using TraktApiSharp.Objects.Post.Checkins.Implementations;
     using TraktApiSharp.Objects.Post.Checkins.Responses;
     using TraktApiSharp.Responses;
     using Xunit;

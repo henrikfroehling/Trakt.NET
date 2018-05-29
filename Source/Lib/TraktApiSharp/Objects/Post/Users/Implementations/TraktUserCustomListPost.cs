@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Users
 {
     using Enums;
     using Objects.Json;

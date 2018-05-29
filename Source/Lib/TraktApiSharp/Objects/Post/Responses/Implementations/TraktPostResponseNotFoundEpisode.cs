@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Responses.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Responses
 {
     using Get.Episodes;
 

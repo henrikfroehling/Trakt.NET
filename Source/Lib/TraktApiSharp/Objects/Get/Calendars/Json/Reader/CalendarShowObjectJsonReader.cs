@@ -1,7 +1,6 @@
 ﻿namespace TraktApiSharp.Objects.Get.Calendars.Json.Reader
 {
     using Episodes.Json.Reader;
-    using Implementations;
     using Newtonsoft.Json;
     using Objects.Json;
     using Shows.Json.Reader;

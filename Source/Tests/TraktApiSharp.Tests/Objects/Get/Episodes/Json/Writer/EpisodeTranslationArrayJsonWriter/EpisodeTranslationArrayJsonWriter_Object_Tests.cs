@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Json;
     using Xunit;
 

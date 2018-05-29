@@ -5,7 +5,6 @@
     using Movies.Json.Reader;
     using Newtonsoft.Json;
     using Objects.Json;
-    using Ratings.Implementations;
     using Seasons.Json.Reader;
     using Shows.Json.Reader;
     using System.Threading;

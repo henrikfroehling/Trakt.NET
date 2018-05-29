@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Checkins.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Checkins
 {
     using Basic;
     using System.Net.Http;

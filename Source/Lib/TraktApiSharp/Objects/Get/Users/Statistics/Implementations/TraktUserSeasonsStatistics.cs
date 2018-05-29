@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Users.Statistics.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Users.Statistics
 {
     /// <summary>A collection of Trakt user statistics for seasons.</summary>
     public class TraktUserSeasonsStatistics : ITraktUserSeasonsStatistics

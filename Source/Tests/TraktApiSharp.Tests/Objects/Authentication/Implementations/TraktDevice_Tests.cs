@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
     using Traits;
     using TraktApiSharp.Objects.Authentication;
-    using TraktApiSharp.Objects.Authentication.Implementations;
     using TraktApiSharp.Objects.Authentication.Json.Reader;
     using Xunit;
 

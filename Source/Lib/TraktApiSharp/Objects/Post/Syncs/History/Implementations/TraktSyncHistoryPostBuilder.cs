@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Syncs.History
 {
+    using Get.Episodes;
+    using Get.Movies;
+    using Get.Shows;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Objects.Get.Movies;
-    using TraktApiSharp.Objects.Get.Shows;
 
     /// <summary>
     /// This is a helper class to build a <see cref="ITraktSyncHistoryPost" />.

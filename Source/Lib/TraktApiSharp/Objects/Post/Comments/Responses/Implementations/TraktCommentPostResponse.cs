@@ -1,7 +1,6 @@
-﻿namespace TraktApiSharp.Objects.Post.Comments.Responses.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Comments.Responses
 {
     using Basic;
-    using Basic.Implementations;
 
     /// <summary>Represents a comment post response.</summary>
     public class TraktCommentPostResponse : TraktComment, ITraktCommentPostResponse

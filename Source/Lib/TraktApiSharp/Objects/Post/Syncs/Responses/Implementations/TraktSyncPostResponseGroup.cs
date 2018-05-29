@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Responses.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Syncs.Responses
 {
     /// <summary>A collection containing the number of movies, shows, seasons and episodes.</summary>
     public class TraktSyncPostResponseGroup : ITraktSyncPostResponseGroup

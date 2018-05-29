@@ -12,7 +12,6 @@
     using TraktApiSharp.Objects.Get.People;
     using TraktApiSharp.Objects.Post.Responses;
     using TraktApiSharp.Objects.Post.Users.CustomListItems;
-    using TraktApiSharp.Objects.Post.Users.CustomListItems.Implementations;
     using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
     using TraktApiSharp.Responses;
     using Xunit;

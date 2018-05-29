@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Calendars.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Calendars
 {
     using Movies;
     using System;

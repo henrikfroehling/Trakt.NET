@@ -1,8 +1,8 @@
-﻿namespace TraktApiSharp.Objects.Get.Episodes.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Episodes
 {
     using Modules;
     using Requests.Parameters;
-    using Seasons.Implementations;
+    using Seasons;
     using System;
     using System.Collections.Generic;
     using System.Threading;

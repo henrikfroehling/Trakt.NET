@@ -3,7 +3,7 @@
     using FluentAssertions;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses.Implementations;
+    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
     using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses.Json.Reader;
     using Xunit;
 

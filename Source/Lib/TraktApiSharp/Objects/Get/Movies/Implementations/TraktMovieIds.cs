@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Movies.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Movies
 {
     /// <summary>A collection of ids for various web services, including the Trakt id, for a Trakt movie.</summary>
     public class TraktMovieIds : ITraktMovieIds

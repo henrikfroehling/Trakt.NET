@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Seasons.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Seasons
 {
     /// <summary>Represents the progress of a Trakt season.</summary>
     public abstract class TraktSeasonProgress : ITraktSeasonProgress

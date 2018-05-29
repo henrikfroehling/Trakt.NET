@@ -1,6 +1,5 @@
 ﻿namespace TraktApiSharp.Objects.Post.Checkins.Responses.Json.Reader
 {
-    using Implementations;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;

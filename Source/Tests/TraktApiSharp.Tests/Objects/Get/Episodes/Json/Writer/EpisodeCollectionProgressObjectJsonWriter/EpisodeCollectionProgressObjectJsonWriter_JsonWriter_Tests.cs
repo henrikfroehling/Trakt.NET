@@ -8,7 +8,6 @@
     using Traits;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Objects.Get.Episodes.Implementations;
     using TraktApiSharp.Objects.Get.Episodes.Json.Writer;
     using Xunit;
 

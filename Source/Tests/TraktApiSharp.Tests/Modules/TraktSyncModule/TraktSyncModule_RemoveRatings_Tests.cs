@@ -11,7 +11,6 @@
     using TraktApiSharp.Exceptions;
     using TraktApiSharp.Objects.Post.Responses;
     using TraktApiSharp.Objects.Post.Syncs.Ratings;
-    using TraktApiSharp.Objects.Post.Syncs.Ratings.Implementations;
     using TraktApiSharp.Objects.Post.Syncs.Ratings.Responses;
     using TraktApiSharp.Responses;
     using Xunit;

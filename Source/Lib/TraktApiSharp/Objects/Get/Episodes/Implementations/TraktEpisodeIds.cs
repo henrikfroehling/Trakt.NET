@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Episodes.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Episodes
 {
     /// <summary>A collection of ids for various web services, including the Trakt id, for a Trakt episode.</summary>
     public class TraktEpisodeIds : ITraktEpisodeIds

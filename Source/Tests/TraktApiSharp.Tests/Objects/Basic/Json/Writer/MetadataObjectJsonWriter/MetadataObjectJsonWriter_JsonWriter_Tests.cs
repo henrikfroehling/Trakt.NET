@@ -8,7 +8,6 @@
     using Traits;
     using TraktApiSharp.Enums;
     using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Objects.Basic.Implementations;
     using TraktApiSharp.Objects.Basic.Json.Writer;
     using Xunit;
 

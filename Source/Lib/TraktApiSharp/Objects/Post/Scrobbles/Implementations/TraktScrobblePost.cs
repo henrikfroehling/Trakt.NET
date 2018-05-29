@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Scrobbles.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Scrobbles
 {
     using System.Net.Http;
     using System.Threading;

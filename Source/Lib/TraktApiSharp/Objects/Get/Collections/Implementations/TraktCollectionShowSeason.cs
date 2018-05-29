@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Collections.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Collections
 {
     using System.Collections.Generic;
 

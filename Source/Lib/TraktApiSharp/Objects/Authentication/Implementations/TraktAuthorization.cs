@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Authentication.Implementations
+﻿namespace TraktApiSharp.Objects.Authentication
 {
     using Enums;
     using Extensions;

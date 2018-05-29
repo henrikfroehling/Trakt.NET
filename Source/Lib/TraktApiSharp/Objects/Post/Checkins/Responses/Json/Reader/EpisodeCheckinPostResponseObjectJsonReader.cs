@@ -3,7 +3,6 @@
     using Basic.Json.Reader;
     using Get.Episodes.Json.Reader;
     using Get.Shows.Json.Reader;
-    using Implementations;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;

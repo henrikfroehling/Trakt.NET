@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Episodes.Implementations
+﻿namespace TraktApiSharp.Objects.Get.Episodes
 {
     /// <summary>Represents the progress of a Trakt episode.</summary>
     public abstract class TraktEpisodeProgress : ITraktEpisodeProgress

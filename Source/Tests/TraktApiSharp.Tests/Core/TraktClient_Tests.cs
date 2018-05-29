@@ -2,7 +2,7 @@
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Objects.Authentication.Implementations;
+    using TraktApiSharp.Objects.Authentication;
     using Xunit;
 
     [Category("Core")]

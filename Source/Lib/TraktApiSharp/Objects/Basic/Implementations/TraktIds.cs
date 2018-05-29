@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Basic.Implementations
+﻿namespace TraktApiSharp.Objects.Basic
 {
     /// <summary>A collection of ids for various web services, including the Trakt id.</summary>
     public class TraktIds : ITraktIds

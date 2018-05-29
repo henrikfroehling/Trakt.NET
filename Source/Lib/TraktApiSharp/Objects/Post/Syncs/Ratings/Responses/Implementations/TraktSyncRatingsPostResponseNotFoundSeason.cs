@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings.Responses.Implementations
+﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings.Responses
 {
     using Get.Seasons;
 
