@@ -7,19 +7,18 @@
     using System.Net.Http;
     using System.Net.Http.Headers;
 
-    internal class HttpClientProvider : IHttpClientProvider
+    public class HttpClientProvider : IHttpClientProvider
     {
-        private const string MEDIA_TYPE = "application/json";
-        private readonly MediaTypeWithQualityHeaderValue MEDIA_TYPE_HEADER = new MediaTypeWithQualityHeaderValue(MEDIA_TYPE);
-        private static readonly IDictionary<string, HttpClient> s_httpClientCache = new ConcurrentDictionary<string, HttpClient>();
-        private readonly TraktClient _client;
+        protected readonly MediaTypeWithQualityHeaderValue MEDIA_TYPE_HEADER = new MediaTypeWithQualityHeaderValue(Constants.MEDIA_TYPE);
+        protected static readonly IDictionary<string, HttpClient> s_httpClientCache = new ConcurrentDictionary<string, HttpClient>();
+        protected readonly TraktClient _client;
 
         public HttpClientProvider(TraktClient client)
         {
             _client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
-        public HttpClient GetHttpClient()
+        public virtual HttpClient GetHttpClient()
         {
             if (s_httpClientCache.TryGetValue(_client.ClientId, out HttpClient httpClient))
                 return httpClient;
