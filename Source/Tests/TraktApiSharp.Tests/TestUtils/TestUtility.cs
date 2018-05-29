@@ -114,6 +114,11 @@
             httpClientProvider.AddExpectationMockResponse(uri, requestContent, responseContent);
         }
 
+        internal static void AddMockExpectationResponse(TestHttpClientProvider httpClientProvider, string uri, string requestContent, string responseContent, HttpStatusCode httpStatusCode)
+        {
+            httpClientProvider.AddExpectationMockResponse(uri, requestContent, responseContent, httpStatusCode);
+        }
+
         internal static void AddMockExpectationResponse(TestHttpClientProvider httpClientProvider, string uri, HttpStatusCode httpStatusCode)
         {
             httpClientProvider.AddExpectationMockResponse(uri, httpStatusCode);

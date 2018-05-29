@@ -3,7 +3,6 @@
     using FluentAssertions;
     using System;
     using System.Net;
-    using System.Threading;
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
@@ -56,22 +55,23 @@
             clientAuthorization.IsExpired.Should().BeFalse();
         }
 
-        // Run this test only individually
         [Fact]
         public async Task Test_TraktAuthenticationModule_PollForAuthorization_Polling()
         {
             string authorizationJson = await TestUtility.SerializeObject(MockAuthorization);
             authorizationJson.Should().NotBeNullOrEmpty();
 
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, MockAuthorizationPollingPostContent, authorizationJson, HttpStatusCode.BadRequest);
+            TraktClient client = TestUtility.GetAuthenticationMockClient();
             client.Authentication.Device = MockDevice;
 
-            var timer = new Timer(x =>
-            {
-                TestUtility.ChangeAuthenticationMockResponse((TestHttpClientProvider)client.HttpClientProvider, POLL_FOR_AUTHORIZATION_URI, MockAuthorizationPollingPostContent, authorizationJson, HttpStatusCode.OK);
-            }, null, POLLING_DELAY_IN_MILLISECONDS, POLLING_DELAY_IN_MILLISECONDS);
+            // First response: BadRequest => polling
+            TestUtility.AddMockExpectationResponse((TestHttpClientProvider)client.HttpClientProvider, POLL_FOR_AUTHORIZATION_URI, MockAuthorizationPollingPostContent, authorizationJson, HttpStatusCode.BadRequest);
+
+            // Second response: Ok => success
+            TestUtility.AddMockExpectationResponse((TestHttpClientProvider)client.HttpClientProvider, POLL_FOR_AUTHORIZATION_URI, MockAuthorizationPollingPostContent, authorizationJson, HttpStatusCode.OK);
 
             TraktResponse<ITraktAuthorization> response = await client.Authentication.PollForAuthorizationAsync();
+            TestUtility.VerifyNoOutstandingExpectations((TestHttpClientProvider)client.HttpClientProvider);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -350,21 +350,22 @@
             clientAuthorization.IsExpired.Should().BeFalse();
         }
 
-        // Run this test only individually
         [Fact]
         public async Task Test_TraktAuthenticationModule_PollForAuthorization_With_Device_Polling()
         {
             string authorizationJson = await TestUtility.SerializeObject(MockAuthorization);
             authorizationJson.Should().NotBeNullOrEmpty();
 
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, MockAuthorizationPollingPostContent, authorizationJson, HttpStatusCode.BadRequest);
+            TraktClient client = TestUtility.GetAuthenticationMockClient();
 
-            var timer = new Timer(x =>
-            {
-                TestUtility.ChangeAuthenticationMockResponse((TestHttpClientProvider)client.HttpClientProvider, POLL_FOR_AUTHORIZATION_URI, MockAuthorizationPollingPostContent, authorizationJson, HttpStatusCode.OK);
-            }, null, POLLING_DELAY_IN_MILLISECONDS, POLLING_DELAY_IN_MILLISECONDS);
+            // First response: BadRequest => polling
+            TestUtility.AddMockExpectationResponse((TestHttpClientProvider)client.HttpClientProvider, POLL_FOR_AUTHORIZATION_URI, MockAuthorizationPollingPostContent, authorizationJson, HttpStatusCode.BadRequest);
+
+            // Second response: Ok => success
+            TestUtility.AddMockExpectationResponse((TestHttpClientProvider)client.HttpClientProvider, POLL_FOR_AUTHORIZATION_URI, MockAuthorizationPollingPostContent, authorizationJson, HttpStatusCode.OK);
 
             TraktResponse<ITraktAuthorization> response = await client.Authentication.PollForAuthorizationAsync(MockDevice);
+            TestUtility.VerifyNoOutstandingExpectations((TestHttpClientProvider)client.HttpClientProvider);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -615,21 +616,22 @@
             clientAuthorization.IsExpired.Should().BeFalse();
         }
 
-        // Run this test only individually
         [Fact]
         public async Task Test_TraktAuthenticationModule_PollForAuthorization_With_Device_And_ClientId_Polling()
         {
             string authorizationJson = await TestUtility.SerializeObject(MockAuthorization);
             authorizationJson.Should().NotBeNullOrEmpty();
 
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, MockAuthorizationPollingPostContent, authorizationJson, HttpStatusCode.BadRequest);
+            TraktClient client = TestUtility.GetAuthenticationMockClient();
 
-            var timer = new Timer(x =>
-            {
-                TestUtility.ChangeAuthenticationMockResponse((TestHttpClientProvider)client.HttpClientProvider, POLL_FOR_AUTHORIZATION_URI, MockAuthorizationPollingPostContent, authorizationJson, HttpStatusCode.OK);
-            }, null, POLLING_DELAY_IN_MILLISECONDS, POLLING_DELAY_IN_MILLISECONDS);
+            // First response: BadRequest => polling
+            TestUtility.AddMockExpectationResponse((TestHttpClientProvider)client.HttpClientProvider, POLL_FOR_AUTHORIZATION_URI, MockAuthorizationPollingPostContent, authorizationJson, HttpStatusCode.BadRequest);
+
+            // Second response: Ok => success
+            TestUtility.AddMockExpectationResponse((TestHttpClientProvider)client.HttpClientProvider, POLL_FOR_AUTHORIZATION_URI, MockAuthorizationPollingPostContent, authorizationJson, HttpStatusCode.OK);
 
             TraktResponse<ITraktAuthorization> response = await client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
+            TestUtility.VerifyNoOutstandingExpectations((TestHttpClientProvider)client.HttpClientProvider);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -874,21 +876,22 @@
             clientAuthorization.IsExpired.Should().BeFalse();
         }
 
-        // Run this test only individually
         [Fact]
         public async Task Test_TraktAuthenticationModule_PollForAuthorization_With_Device_And_ClientId_And_ClientSecret_Polling()
         {
             string authorizationJson = await TestUtility.SerializeObject(MockAuthorization);
             authorizationJson.Should().NotBeNullOrEmpty();
 
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, MockAuthorizationPollingPostContent, authorizationJson, HttpStatusCode.BadRequest);
+            TraktClient client = TestUtility.GetAuthenticationMockClient();
 
-            var timer = new Timer(x =>
-            {
-                TestUtility.ChangeAuthenticationMockResponse((TestHttpClientProvider)client.HttpClientProvider, POLL_FOR_AUTHORIZATION_URI, MockAuthorizationPollingPostContent, authorizationJson, HttpStatusCode.OK);
-            }, null, POLLING_DELAY_IN_MILLISECONDS, POLLING_DELAY_IN_MILLISECONDS);
+            // First response: BadRequest => polling
+            TestUtility.AddMockExpectationResponse((TestHttpClientProvider)client.HttpClientProvider, POLL_FOR_AUTHORIZATION_URI, MockAuthorizationPollingPostContent, authorizationJson, HttpStatusCode.BadRequest);
+
+            // Second response: Ok => success
+            TestUtility.AddMockExpectationResponse((TestHttpClientProvider)client.HttpClientProvider, POLL_FOR_AUTHORIZATION_URI, MockAuthorizationPollingPostContent, authorizationJson, HttpStatusCode.OK);
 
             TraktResponse<ITraktAuthorization> response = await client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, TraktClientSecret);
+            TestUtility.VerifyNoOutstandingExpectations((TestHttpClientProvider)client.HttpClientProvider);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();

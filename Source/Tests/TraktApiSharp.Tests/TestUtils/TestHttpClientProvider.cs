@@ -282,6 +282,19 @@
                 .Respond(ACCEPT_MEDIA_TYPE, responseContent);
         }
 
+        internal void AddExpectationMockResponse(string uri, string requestContent, string responseContent, HttpStatusCode httpStatusCode)
+        {
+            _mockHttpMessageHandler.Should().NotBeNull();
+            _baseUrl.Should().NotBeNullOrEmpty();
+            uri.Should().NotBeNullOrEmpty();
+            requestContent.Should().NotBeNullOrEmpty();
+            responseContent.Should().NotBeNullOrEmpty();
+
+            _mockHttpMessageHandler.Expect(_baseUrl + uri)
+                .WithContent(requestContent)
+                .Respond(httpStatusCode, ACCEPT_MEDIA_TYPE, responseContent);
+        }
+
         internal void AddExpectationMockResponse(string uri, HttpStatusCode httpStatusCode)
         {
             _mockHttpMessageHandler.Should().NotBeNull();
