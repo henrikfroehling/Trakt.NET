@@ -35,6 +35,7 @@
             trendingMovie.AvailableTranslationLanguageCodes.Should().BeNull();
             trendingMovie.Genres.Should().BeNull();
             trendingMovie.Certification.Should().BeNullOrEmpty();
+            trendingMovie.CountryCode.Should().BeNullOrEmpty();
         }
 
         [Fact]
@@ -67,6 +68,7 @@
             trendingMovie.Movie.AvailableTranslationLanguageCodes.Should().BeNull();
             trendingMovie.Movie.Genres.Should().BeNull();
             trendingMovie.Movie.Certification.Should().BeNullOrEmpty();
+            trendingMovie.Movie.CountryCode.Should().BeNullOrEmpty();
 
             trendingMovie.Title.Should().Be("Star Wars: The Force Awakens");
             trendingMovie.Year.Should().Be(2015);
@@ -88,6 +90,7 @@
             trendingMovie.AvailableTranslationLanguageCodes.Should().BeNull();
             trendingMovie.Genres.Should().BeNull();
             trendingMovie.Certification.Should().BeNullOrEmpty();
+            trendingMovie.CountryCode.Should().BeNullOrEmpty();
         }
 
         [Fact]
@@ -120,6 +123,7 @@
             trendingMovie.Movie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
             trendingMovie.Movie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
             trendingMovie.Movie.Certification.Should().Be("PG-13");
+            trendingMovie.Movie.CountryCode.Should().Be("us");
 
             trendingMovie.Title.Should().Be("Star Wars: The Force Awakens");
             trendingMovie.Year.Should().Be(2015);
@@ -141,6 +145,7 @@
             trendingMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
             trendingMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
             trendingMovie.Certification.Should().Be("PG-13");
+            trendingMovie.CountryCode.Should().Be("us");
         }
 
         private const string MINIMAL_JSON =
@@ -192,7 +197,8 @@
                     ""fantasy"",
                     ""science-fiction""
                   ],
-                  ""certification"": ""PG-13""
+                  ""certification"": ""PG-13"",
+                  ""country"": ""us""
                 }
               }";
     }

@@ -37,6 +37,7 @@
             collectionMovie.AvailableTranslationLanguageCodes.Should().BeNull();
             collectionMovie.Genres.Should().BeNull();
             collectionMovie.Certification.Should().BeNullOrEmpty();
+            collectionMovie.CountryCode.Should().BeNullOrEmpty();
         }
 
         [Fact]
@@ -76,6 +77,7 @@
             collectionMovie.Movie.AvailableTranslationLanguageCodes.Should().BeNull();
             collectionMovie.Movie.Genres.Should().BeNull();
             collectionMovie.Movie.Certification.Should().BeNullOrEmpty();
+            collectionMovie.Movie.CountryCode.Should().BeNullOrEmpty();
 
             collectionMovie.Title.Should().Be("Star Wars: The Force Awakens");
             collectionMovie.Year.Should().Be(2015);
@@ -97,6 +99,7 @@
             collectionMovie.AvailableTranslationLanguageCodes.Should().BeNull();
             collectionMovie.Genres.Should().BeNull();
             collectionMovie.Certification.Should().BeNullOrEmpty();
+            collectionMovie.CountryCode.Should().BeNullOrEmpty();
         }
 
         [Fact]
@@ -136,6 +139,7 @@
             collectionMovie.Movie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
             collectionMovie.Movie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
             collectionMovie.Movie.Certification.Should().Be("PG-13");
+            collectionMovie.Movie.CountryCode.Should().Be("us");
 
             collectionMovie.Title.Should().Be("Star Wars: The Force Awakens");
             collectionMovie.Year.Should().Be(2015);
@@ -157,6 +161,7 @@
             collectionMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
             collectionMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
             collectionMovie.Certification.Should().Be("PG-13");
+            collectionMovie.CountryCode.Should().Be("us");
         }
 
         private const string MINIMAL_JSON =
@@ -215,7 +220,8 @@
                     ""fantasy"",
                     ""science-fiction""
                   ],
-                  ""certification"": ""PG-13""
+                  ""certification"": ""PG-13"",
+                  ""country"": ""us""
                 },
                 ""metadata"": {
                   ""media_type"": ""bluray"",
