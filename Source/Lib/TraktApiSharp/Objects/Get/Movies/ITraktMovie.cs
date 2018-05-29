@@ -36,5 +36,7 @@
         IEnumerable<string> Genres { get; set; }
 
         string Certification { get; set; }
+
+        string CountryCode { get; set; }
     }
 }

@@ -32,6 +32,7 @@
             movie.AvailableTranslationLanguageCodes.Should().BeNull();
             movie.Genres.Should().BeNull();
             movie.Certification.Should().BeNullOrEmpty();
+            movie.CountryCode.Should().BeNullOrEmpty();
         }
 
         [Fact]
@@ -61,6 +62,7 @@
             movie.AvailableTranslationLanguageCodes.Should().BeNull();
             movie.Genres.Should().BeNull();
             movie.Certification.Should().BeNullOrEmpty();
+            movie.CountryCode.Should().BeNullOrEmpty();
         }
 
         [Fact]
@@ -90,6 +92,7 @@
             movie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
             movie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
             movie.Certification.Should().Be("PG-13");
+            movie.CountryCode.Should().Be("us");
         }
 
         private const string MINIMAL_JSON =
@@ -136,7 +139,8 @@
                   ""fantasy"",
                   ""science-fiction""
                 ],
-                ""certification"": ""PG-13""
+                ""certification"": ""PG-13"",
+                ""country"": ""us""
               }";
     }
 }

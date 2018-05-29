@@ -35,6 +35,7 @@
             boxOfficeMovie.AvailableTranslationLanguageCodes.Should().BeNull();
             boxOfficeMovie.Genres.Should().BeNull();
             boxOfficeMovie.Certification.Should().BeNullOrEmpty();
+            boxOfficeMovie.CountryCode.Should().BeNullOrEmpty();
         }
 
         [Fact]
@@ -67,6 +68,7 @@
             boxOfficeMovie.Movie.AvailableTranslationLanguageCodes.Should().BeNull();
             boxOfficeMovie.Movie.Genres.Should().BeNull();
             boxOfficeMovie.Movie.Certification.Should().BeNullOrEmpty();
+            boxOfficeMovie.Movie.CountryCode.Should().BeNullOrEmpty();
 
             boxOfficeMovie.Title.Should().Be("Star Wars: The Force Awakens");
             boxOfficeMovie.Year.Should().Be(2015);
@@ -88,6 +90,7 @@
             boxOfficeMovie.AvailableTranslationLanguageCodes.Should().BeNull();
             boxOfficeMovie.Genres.Should().BeNull();
             boxOfficeMovie.Certification.Should().BeNullOrEmpty();
+            boxOfficeMovie.CountryCode.Should().BeNullOrEmpty();
         }
 
         [Fact]
@@ -120,6 +123,7 @@
             boxOfficeMovie.Movie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
             boxOfficeMovie.Movie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
             boxOfficeMovie.Movie.Certification.Should().Be("PG-13");
+            boxOfficeMovie.Movie.CountryCode.Should().Be("us");
 
             boxOfficeMovie.Title.Should().Be("Star Wars: The Force Awakens");
             boxOfficeMovie.Year.Should().Be(2015);
@@ -141,6 +145,7 @@
             boxOfficeMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
             boxOfficeMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
             boxOfficeMovie.Certification.Should().Be("PG-13");
+            boxOfficeMovie.CountryCode.Should().Be("us");
         }
 
         private const string MINIMAL_JSON =
@@ -192,7 +197,8 @@
                     ""fantasy"",
                     ""science-fiction""
                   ],
-                  ""certification"": ""PG-13""
+                  ""certification"": ""PG-13"",
+                  ""country"": ""us""
                 }
               }";
     }

@@ -188,5 +188,16 @@
                     Movie.Certification = value;
             }
         }
+
+        public string CountryCode
+        {
+            get { return Movie?.CountryCode; }
+
+            set
+            {
+                if (Movie != null)
+                    Movie.CountryCode = value;
+            }
+        }
     }
 }

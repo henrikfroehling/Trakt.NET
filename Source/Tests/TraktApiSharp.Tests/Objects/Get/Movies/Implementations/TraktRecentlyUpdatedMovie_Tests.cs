@@ -35,6 +35,7 @@
             recentlyUpdatedMovie.AvailableTranslationLanguageCodes.Should().BeNull();
             recentlyUpdatedMovie.Genres.Should().BeNull();
             recentlyUpdatedMovie.Certification.Should().BeNullOrEmpty();
+            recentlyUpdatedMovie.CountryCode.Should().BeNullOrEmpty();
         }
 
         [Fact]
@@ -67,6 +68,7 @@
             recentlyUpdatedMovie.Movie.AvailableTranslationLanguageCodes.Should().BeNull();
             recentlyUpdatedMovie.Movie.Genres.Should().BeNull();
             recentlyUpdatedMovie.Movie.Certification.Should().BeNullOrEmpty();
+            recentlyUpdatedMovie.Movie.CountryCode.Should().BeNullOrEmpty();
 
             recentlyUpdatedMovie.Title.Should().Be("Star Wars: The Force Awakens");
             recentlyUpdatedMovie.Year.Should().Be(2015);
@@ -88,6 +90,7 @@
             recentlyUpdatedMovie.AvailableTranslationLanguageCodes.Should().BeNull();
             recentlyUpdatedMovie.Genres.Should().BeNull();
             recentlyUpdatedMovie.Certification.Should().BeNullOrEmpty();
+            recentlyUpdatedMovie.CountryCode.Should().BeNullOrEmpty();
         }
 
         [Fact]
@@ -120,6 +123,7 @@
             recentlyUpdatedMovie.Movie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
             recentlyUpdatedMovie.Movie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
             recentlyUpdatedMovie.Movie.Certification.Should().Be("PG-13");
+            recentlyUpdatedMovie.Movie.CountryCode.Should().Be("us");
 
             recentlyUpdatedMovie.Title.Should().Be("Star Wars: The Force Awakens");
             recentlyUpdatedMovie.Year.Should().Be(2015);
@@ -141,6 +145,7 @@
             recentlyUpdatedMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
             recentlyUpdatedMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
             recentlyUpdatedMovie.Certification.Should().Be("PG-13");
+            recentlyUpdatedMovie.CountryCode.Should().Be("us");
         }
 
         private const string MINIMAL_JSON =
@@ -192,7 +197,8 @@
                     ""fantasy"",
                     ""science-fiction""
                   ],
-                  ""certification"": ""PG-13""
+                  ""certification"": ""PG-13"",
+                  ""country"": ""us""
                 }
               }";
     }

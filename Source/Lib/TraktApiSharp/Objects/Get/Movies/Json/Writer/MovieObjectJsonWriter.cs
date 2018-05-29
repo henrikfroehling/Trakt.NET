@@ -113,6 +113,12 @@
                 await jsonWriter.WriteValueAsync(obj.Certification, cancellationToken).ConfigureAwait(false);
             }
 
+            if (!string.IsNullOrEmpty(obj.CountryCode))
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.MOVIE_PROPERTY_NAME_COUNTRY, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.CountryCode, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }

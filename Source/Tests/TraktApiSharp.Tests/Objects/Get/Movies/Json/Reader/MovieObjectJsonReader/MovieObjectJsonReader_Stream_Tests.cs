@@ -42,6 +42,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -75,6 +76,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -108,6 +110,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -137,6 +140,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -166,6 +170,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -195,6 +200,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -228,6 +234,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -261,6 +268,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -294,6 +302,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -323,6 +332,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -352,6 +362,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -385,6 +396,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -418,6 +430,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -451,6 +464,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -480,6 +494,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -513,6 +528,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -546,6 +562,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -579,6 +596,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -612,6 +630,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -645,6 +664,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -678,6 +698,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -711,6 +732,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -744,6 +766,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -777,6 +800,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -810,6 +834,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -843,6 +868,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -876,6 +902,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -909,6 +936,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -918,6 +946,40 @@
             var traktJsonReader = new MovieObjectJsonReader();
 
             using (var stream = FULL_JSON_INCOMPLETE_17.ToStream())
+            {
+                var traktMovie = await traktJsonReader.ReadObjectAsync(stream);
+
+                traktMovie.Should().NotBeNull();
+                traktMovie.Title.Should().Be("Star Wars: The Force Awakens");
+                traktMovie.Year.Should().Be(2015);
+                traktMovie.Ids.Should().NotBeNull();
+                traktMovie.Ids.Trakt.Should().Be(94024U);
+                traktMovie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+                traktMovie.Ids.Imdb.Should().Be("tt2488496");
+                traktMovie.Ids.Tmdb.Should().Be(140607U);
+                traktMovie.Tagline.Should().Be("Every generation has a story.");
+                traktMovie.Overview.Should().Be("Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers.");
+                traktMovie.Released.Should().Be(DateTime.Parse("2015-12-18"));
+                traktMovie.Runtime.Should().Be(136);
+                traktMovie.UpdatedAt.Should().Be(DateTime.Parse("2016-03-31T09:01:59Z").ToUniversalTime());
+                traktMovie.Trailer.Should().Be("http://youtube.com/watch?v=uwa7N0ShN2U");
+                traktMovie.Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vii");
+                traktMovie.Rating.Should().Be(8.31988f);
+                traktMovie.Votes.Should().Be(9338);
+                traktMovie.LanguageCode.Should().Be("en");
+                traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
+                traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
+                traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public async Task Test_MovieObjectJsonReader_ReadObject_From_Stream_Full_Incomplete_18()
+        {
+            var traktJsonReader = new MovieObjectJsonReader();
+
+            using (var stream = FULL_JSON_INCOMPLETE_18.ToStream())
             {
                 var traktMovie = await traktJsonReader.ReadObjectAsync(stream);
 
@@ -938,15 +1000,16 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_MovieObjectJsonReader_ReadObject_From_Stream_Full_Incomplete_18()
+        public async Task Test_MovieObjectJsonReader_ReadObject_From_Stream_Full_Incomplete_19()
         {
             var traktJsonReader = new MovieObjectJsonReader();
 
-            using (var stream = FULL_JSON_INCOMPLETE_18.ToStream())
+            using (var stream = FULL_JSON_INCOMPLETE_19.ToStream())
             {
                 var traktMovie = await traktJsonReader.ReadObjectAsync(stream);
 
@@ -967,15 +1030,16 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_MovieObjectJsonReader_ReadObject_From_Stream_Full_Incomplete_19()
+        public async Task Test_MovieObjectJsonReader_ReadObject_From_Stream_Full_Incomplete_20()
         {
             var traktJsonReader = new MovieObjectJsonReader();
 
-            using (var stream = FULL_JSON_INCOMPLETE_19.ToStream())
+            using (var stream = FULL_JSON_INCOMPLETE_20.ToStream())
             {
                 var traktMovie = await traktJsonReader.ReadObjectAsync(stream);
 
@@ -1000,15 +1064,16 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_MovieObjectJsonReader_ReadObject_From_Stream_Full_Incomplete_20()
+        public async Task Test_MovieObjectJsonReader_ReadObject_From_Stream_Full_Incomplete_21()
         {
             var traktJsonReader = new MovieObjectJsonReader();
 
-            using (var stream = FULL_JSON_INCOMPLETE_20.ToStream())
+            using (var stream = FULL_JSON_INCOMPLETE_21.ToStream())
             {
                 var traktMovie = await traktJsonReader.ReadObjectAsync(stream);
 
@@ -1029,15 +1094,16 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_MovieObjectJsonReader_ReadObject_From_Stream_Full_Incomplete_21()
+        public async Task Test_MovieObjectJsonReader_ReadObject_From_Stream_Full_Incomplete_22()
         {
             var traktJsonReader = new MovieObjectJsonReader();
 
-            using (var stream = FULL_JSON_INCOMPLETE_21.ToStream())
+            using (var stream = FULL_JSON_INCOMPLETE_22.ToStream())
             {
                 var traktMovie = await traktJsonReader.ReadObjectAsync(stream);
 
@@ -1058,15 +1124,16 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_MovieObjectJsonReader_ReadObject_From_Stream_Full_Incomplete_22()
+        public async Task Test_MovieObjectJsonReader_ReadObject_From_Stream_Full_Incomplete_23()
         {
             var traktJsonReader = new MovieObjectJsonReader();
 
-            using (var stream = FULL_JSON_INCOMPLETE_22.ToStream())
+            using (var stream = FULL_JSON_INCOMPLETE_23.ToStream())
             {
                 var traktMovie = await traktJsonReader.ReadObjectAsync(stream);
 
@@ -1087,15 +1154,16 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_MovieObjectJsonReader_ReadObject_From_Stream_Full_Incomplete_23()
+        public async Task Test_MovieObjectJsonReader_ReadObject_From_Stream_Full_Incomplete_24()
         {
             var traktJsonReader = new MovieObjectJsonReader();
 
-            using (var stream = FULL_JSON_INCOMPLETE_23.ToStream())
+            using (var stream = FULL_JSON_INCOMPLETE_24.ToStream())
             {
                 var traktMovie = await traktJsonReader.ReadObjectAsync(stream);
 
@@ -1116,35 +1184,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
-            }
-        }
-
-        [Fact]
-        public async Task Test_MovieObjectJsonReader_ReadObject_From_Stream_Full_Incomplete_24()
-        {
-            var traktJsonReader = new MovieObjectJsonReader();
-
-            using (var stream = FULL_JSON_INCOMPLETE_24.ToStream())
-            {
-                var traktMovie = await traktJsonReader.ReadObjectAsync(stream);
-
-                traktMovie.Should().NotBeNull();
-                traktMovie.Title.Should().BeNull();
-                traktMovie.Year.Should().BeNull();
-                traktMovie.Ids.Should().BeNull();
-                traktMovie.Tagline.Should().BeNull();
-                traktMovie.Overview.Should().BeNull();
-                traktMovie.Released.Should().BeNull();
-                traktMovie.Runtime.Should().BeNull();
-                traktMovie.UpdatedAt.Should().BeNull();
-                traktMovie.Trailer.Should().Be("http://youtube.com/watch?v=uwa7N0ShN2U");
-                traktMovie.Homepage.Should().BeNull();
-                traktMovie.Rating.Should().BeNull();
-                traktMovie.Votes.Should().BeNull();
-                traktMovie.LanguageCode.Should().BeNull();
-                traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
-                traktMovie.Genres.Should().BeNull();
-                traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -1166,14 +1206,15 @@
                 traktMovie.Released.Should().BeNull();
                 traktMovie.Runtime.Should().BeNull();
                 traktMovie.UpdatedAt.Should().BeNull();
-                traktMovie.Trailer.Should().BeNull();
-                traktMovie.Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vii");
+                traktMovie.Trailer.Should().Be("http://youtube.com/watch?v=uwa7N0ShN2U");
+                traktMovie.Homepage.Should().BeNull();
                 traktMovie.Rating.Should().BeNull();
                 traktMovie.Votes.Should().BeNull();
                 traktMovie.LanguageCode.Should().BeNull();
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -1196,13 +1237,14 @@
                 traktMovie.Runtime.Should().BeNull();
                 traktMovie.UpdatedAt.Should().BeNull();
                 traktMovie.Trailer.Should().BeNull();
-                traktMovie.Homepage.Should().BeNull();
-                traktMovie.Rating.Should().Be(8.31988f);
+                traktMovie.Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vii");
+                traktMovie.Rating.Should().BeNull();
                 traktMovie.Votes.Should().BeNull();
                 traktMovie.LanguageCode.Should().BeNull();
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -1226,12 +1268,13 @@
                 traktMovie.UpdatedAt.Should().BeNull();
                 traktMovie.Trailer.Should().BeNull();
                 traktMovie.Homepage.Should().BeNull();
-                traktMovie.Rating.Should().BeNull();
-                traktMovie.Votes.Should().Be(9338);
+                traktMovie.Rating.Should().Be(8.31988f);
+                traktMovie.Votes.Should().BeNull();
                 traktMovie.LanguageCode.Should().BeNull();
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -1252,15 +1295,16 @@
                 traktMovie.Overview.Should().BeNull();
                 traktMovie.Released.Should().BeNull();
                 traktMovie.Runtime.Should().BeNull();
-                traktMovie.UpdatedAt.Should().Be(DateTime.Parse("2016-03-31T09:01:59Z").ToUniversalTime());
+                traktMovie.UpdatedAt.Should().BeNull();
                 traktMovie.Trailer.Should().BeNull();
                 traktMovie.Homepage.Should().BeNull();
                 traktMovie.Rating.Should().BeNull();
-                traktMovie.Votes.Should().BeNull();
+                traktMovie.Votes.Should().Be(9338);
                 traktMovie.LanguageCode.Should().BeNull();
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -1281,15 +1325,16 @@
                 traktMovie.Overview.Should().BeNull();
                 traktMovie.Released.Should().BeNull();
                 traktMovie.Runtime.Should().BeNull();
-                traktMovie.UpdatedAt.Should().BeNull();
+                traktMovie.UpdatedAt.Should().Be(DateTime.Parse("2016-03-31T09:01:59Z").ToUniversalTime());
                 traktMovie.Trailer.Should().BeNull();
                 traktMovie.Homepage.Should().BeNull();
                 traktMovie.Rating.Should().BeNull();
                 traktMovie.Votes.Should().BeNull();
-                traktMovie.LanguageCode.Should().Be("en");
+                traktMovie.LanguageCode.Should().BeNull();
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -1315,10 +1360,11 @@
                 traktMovie.Homepage.Should().BeNull();
                 traktMovie.Rating.Should().BeNull();
                 traktMovie.Votes.Should().BeNull();
-                traktMovie.LanguageCode.Should().BeNull();
-                traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
+                traktMovie.LanguageCode.Should().Be("en");
+                traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -1345,9 +1391,10 @@
                 traktMovie.Rating.Should().BeNull();
                 traktMovie.Votes.Should().BeNull();
                 traktMovie.LanguageCode.Should().BeNull();
-                traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
-                traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
+                traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
+                traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 
@@ -1375,8 +1422,69 @@
                 traktMovie.Votes.Should().BeNull();
                 traktMovie.LanguageCode.Should().BeNull();
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
+                traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
+                traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public async Task Test_MovieObjectJsonReader_ReadObject_From_Stream_Full_Incomplete_33()
+        {
+            var traktJsonReader = new MovieObjectJsonReader();
+
+            using (var stream = FULL_JSON_INCOMPLETE_33.ToStream())
+            {
+                var traktMovie = await traktJsonReader.ReadObjectAsync(stream);
+
+                traktMovie.Should().NotBeNull();
+                traktMovie.Title.Should().BeNull();
+                traktMovie.Year.Should().BeNull();
+                traktMovie.Ids.Should().BeNull();
+                traktMovie.Tagline.Should().BeNull();
+                traktMovie.Overview.Should().BeNull();
+                traktMovie.Released.Should().BeNull();
+                traktMovie.Runtime.Should().BeNull();
+                traktMovie.UpdatedAt.Should().BeNull();
+                traktMovie.Trailer.Should().BeNull();
+                traktMovie.Homepage.Should().BeNull();
+                traktMovie.Rating.Should().BeNull();
+                traktMovie.Votes.Should().BeNull();
+                traktMovie.LanguageCode.Should().BeNull();
+                traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public async Task Test_MovieObjectJsonReader_ReadObject_From_Stream_Full_Incomplete_34()
+        {
+            var traktJsonReader = new MovieObjectJsonReader();
+
+            using (var stream = FULL_JSON_INCOMPLETE_34.ToStream())
+            {
+                var traktMovie = await traktJsonReader.ReadObjectAsync(stream);
+
+                traktMovie.Should().NotBeNull();
+                traktMovie.Title.Should().BeNull();
+                traktMovie.Year.Should().BeNull();
+                traktMovie.Ids.Should().BeNull();
+                traktMovie.Tagline.Should().BeNull();
+                traktMovie.Overview.Should().BeNull();
+                traktMovie.Released.Should().BeNull();
+                traktMovie.Runtime.Should().BeNull();
+                traktMovie.UpdatedAt.Should().BeNull();
+                traktMovie.Trailer.Should().BeNull();
+                traktMovie.Homepage.Should().BeNull();
+                traktMovie.Rating.Should().BeNull();
+                traktMovie.Votes.Should().BeNull();
+                traktMovie.LanguageCode.Should().BeNull();
+                traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
+                traktMovie.Genres.Should().BeNull();
+                traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -1410,6 +1518,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -1443,6 +1552,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -1472,6 +1582,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -1505,6 +1616,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -1538,6 +1650,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -1571,6 +1684,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -1604,6 +1718,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -1637,6 +1752,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -1670,6 +1786,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -1703,6 +1820,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -1736,6 +1854,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -1769,6 +1888,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -1802,6 +1922,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -1835,6 +1956,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -1868,6 +1990,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -1901,6 +2024,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
                 traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().Be("us");
             }
         }
 
@@ -1910,6 +2034,40 @@
             var traktJsonReader = new MovieObjectJsonReader();
 
             using (var stream = FULL_JSON_NOT_VALID_17.ToStream())
+            {
+                var traktMovie = await traktJsonReader.ReadObjectAsync(stream);
+
+                traktMovie.Should().NotBeNull();
+                traktMovie.Title.Should().Be("Star Wars: The Force Awakens");
+                traktMovie.Year.Should().Be(2015);
+                traktMovie.Ids.Should().NotBeNull();
+                traktMovie.Ids.Trakt.Should().Be(94024U);
+                traktMovie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+                traktMovie.Ids.Imdb.Should().Be("tt2488496");
+                traktMovie.Ids.Tmdb.Should().Be(140607U);
+                traktMovie.Tagline.Should().Be("Every generation has a story.");
+                traktMovie.Overview.Should().Be("Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers.");
+                traktMovie.Released.Should().Be(DateTime.Parse("2015-12-18"));
+                traktMovie.Runtime.Should().Be(136);
+                traktMovie.UpdatedAt.Should().Be(DateTime.Parse("2016-03-31T09:01:59Z").ToUniversalTime());
+                traktMovie.Trailer.Should().Be("http://youtube.com/watch?v=uwa7N0ShN2U");
+                traktMovie.Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vii");
+                traktMovie.Rating.Should().Be(8.31988f);
+                traktMovie.Votes.Should().Be(9338);
+                traktMovie.LanguageCode.Should().Be("en");
+                traktMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
+                traktMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
+                traktMovie.Certification.Should().Be("PG-13");
+                traktMovie.CountryCode.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public async Task Test_MovieObjectJsonReader_ReadObject_From_Stream_Full_Not_Valid_18()
+        {
+            var traktJsonReader = new MovieObjectJsonReader();
+
+            using (var stream = FULL_JSON_NOT_VALID_18.ToStream())
             {
                 var traktMovie = await traktJsonReader.ReadObjectAsync(stream);
 
@@ -1930,6 +2088,7 @@
                 traktMovie.AvailableTranslationLanguageCodes.Should().BeNull();
                 traktMovie.Genres.Should().BeNull();
                 traktMovie.Certification.Should().BeNull();
+                traktMovie.CountryCode.Should().BeNull();
             }
         }
 

@@ -37,6 +37,7 @@
             mostPWCMovie.AvailableTranslationLanguageCodes.Should().BeNull();
             mostPWCMovie.Genres.Should().BeNull();
             mostPWCMovie.Certification.Should().BeNullOrEmpty();
+            mostPWCMovie.CountryCode.Should().BeNullOrEmpty();
         }
 
         [Fact]
@@ -71,6 +72,7 @@
             mostPWCMovie.Movie.AvailableTranslationLanguageCodes.Should().BeNull();
             mostPWCMovie.Movie.Genres.Should().BeNull();
             mostPWCMovie.Movie.Certification.Should().BeNullOrEmpty();
+            mostPWCMovie.Movie.CountryCode.Should().BeNullOrEmpty();
 
             mostPWCMovie.Title.Should().Be("Star Wars: The Force Awakens");
             mostPWCMovie.Year.Should().Be(2015);
@@ -92,6 +94,7 @@
             mostPWCMovie.AvailableTranslationLanguageCodes.Should().BeNull();
             mostPWCMovie.Genres.Should().BeNull();
             mostPWCMovie.Certification.Should().BeNullOrEmpty();
+            mostPWCMovie.CountryCode.Should().BeNullOrEmpty();
         }
 
         [Fact]
@@ -126,6 +129,7 @@
             mostPWCMovie.Movie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
             mostPWCMovie.Movie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
             mostPWCMovie.Movie.Certification.Should().Be("PG-13");
+            mostPWCMovie.Movie.CountryCode.Should().Be("us");
 
             mostPWCMovie.Title.Should().Be("Star Wars: The Force Awakens");
             mostPWCMovie.Year.Should().Be(2015);
@@ -147,6 +151,7 @@
             mostPWCMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
             mostPWCMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
             mostPWCMovie.Certification.Should().Be("PG-13");
+            mostPWCMovie.CountryCode.Should().Be("us");
         }
 
         private const string MINIMAL_JSON =
@@ -202,7 +207,8 @@
                     ""fantasy"",
                     ""science-fiction""
                   ],
-                  ""certification"": ""PG-13""
+                  ""certification"": ""PG-13"",
+                  ""country"": ""us""
                 }
               }";
     }
