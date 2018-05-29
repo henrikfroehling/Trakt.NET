@@ -17,6 +17,7 @@
         private const uint DEVICE_EXPIRES_IN_SECONDS = 600;
         private const uint DEVICE_INTERVAL_IN_SECONDS = 6;
         private const uint POLLING_DELAY_IN_MILLISECONDS = 7 * 1000;
+        private const int CLOSE_TO_PRECISION = 3600 * 1000; // milliseconds
 
         private async Task<string> BuildEncodedAuthorizeUrl(bool staging, string clientId, string redirectUri, string state = null)
         {

@@ -39,7 +39,7 @@
             responseDevice.VerificationUrl.Should().Be(MockDevice.VerificationUrl);
             responseDevice.ExpiresInSeconds.Should().Be(MockDevice.ExpiresInSeconds);
             responseDevice.IntervalInSeconds.Should().Be(MockDevice.IntervalInSeconds);
-            responseDevice.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            responseDevice.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
             responseDevice.IsExpiredUnused.Should().BeFalse();
             responseDevice.IsValid.Should().BeTrue();
 
@@ -228,7 +228,7 @@
             responseDevice.VerificationUrl.Should().Be(MockDevice.VerificationUrl);
             responseDevice.ExpiresInSeconds.Should().Be(MockDevice.ExpiresInSeconds);
             responseDevice.IntervalInSeconds.Should().Be(MockDevice.IntervalInSeconds);
-            responseDevice.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            responseDevice.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
             responseDevice.IsExpiredUnused.Should().BeFalse();
             responseDevice.IsValid.Should().BeTrue();
 

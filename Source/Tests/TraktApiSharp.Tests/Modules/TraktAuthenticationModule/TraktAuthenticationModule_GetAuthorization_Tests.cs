@@ -39,7 +39,7 @@
             responseAuthorization.ExpiresInSeconds.Should().Be(MockAuthorization.ExpiresInSeconds);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;
@@ -306,7 +306,7 @@
             responseAuthorization.TokenType.Should().Be(MockAuthorization.TokenType);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;
@@ -536,7 +536,7 @@
             responseAuthorization.ExpiresInSeconds.Should().Be(MockAuthorization.ExpiresInSeconds);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;
@@ -759,7 +759,7 @@
             responseAuthorization.TokenType.Should().Be(MockAuthorization.TokenType);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;
@@ -975,7 +975,7 @@
             responseAuthorization.ExpiresInSeconds.Should().Be(MockAuthorization.ExpiresInSeconds);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;

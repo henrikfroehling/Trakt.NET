@@ -34,7 +34,7 @@
             authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
             authorization.Scope.Should().Be(TraktAccessScope.Public);
             authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
-            authorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1000);
+            authorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
             authorization.ExpiresInSeconds.Should().Be(7776000U);
             authorization.IsExpired.Should().BeTrue();
             authorization.IsRefreshPossible.Should().BeFalse();
@@ -306,7 +306,7 @@
             authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
             authorization.Scope.Should().Be(TraktAccessScope.Public);
             authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
-            authorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1000);
+            authorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
             authorization.ExpiresInSeconds.Should().Be(7776000U);
             authorization.IsExpired.Should().BeTrue();
             authorization.IsRefreshPossible.Should().BeFalse();
@@ -621,7 +621,7 @@
             authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
             authorization.Scope.Should().Be(TraktAccessScope.Public);
             authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
-            authorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1000);
+            authorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
             authorization.ExpiresInSeconds.Should().Be(7776000U);
             authorization.IsExpired.Should().BeTrue();
             authorization.IsRefreshPossible.Should().BeFalse();
