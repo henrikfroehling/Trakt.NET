@@ -209,6 +209,7 @@
         internal const string MOVIE_PROPERTY_NAME_AVAILABLE_TRANSLATIONS = "available_translations";
         internal const string MOVIE_PROPERTY_NAME_GENRES = "genres";
         internal const string MOVIE_PROPERTY_NAME_CERTIFICATION = "certification";
+        internal const string MOVIE_PROPERTY_NAME_COUNTRY = "country";
 
         internal const string MOVIE_RELEASE_PROPERTY_NAME_COUNTRY = "country";
         internal const string MOVIE_RELEASE_PROPERTY_NAME_CERTIFICATION = "certification";

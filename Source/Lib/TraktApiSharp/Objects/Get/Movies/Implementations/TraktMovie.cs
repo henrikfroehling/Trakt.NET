@@ -57,5 +57,7 @@
 
         /// <summary>Gets or sets the content certification of the movie.<para>Nullable</para></summary>
         public string Certification { get; set; }
+
+        public string CountryCode { get; set; }
     }
 }
