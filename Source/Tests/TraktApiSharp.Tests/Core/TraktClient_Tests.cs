@@ -107,92 +107,12 @@
             client.Authentication.Should().NotBeNull();
         }
 
-        //[Fact]
-        //public void Test_TraktClient_Get_OAuth()
-        //{
-        //    var client = new TraktClient();
-
-        //    client.OAuth.Should().NotBeNull();
-        //}
-
-        //[Fact]
-        //public void Test_TraktClient_Get_DeviceAuth()
-        //{
-        //    var client = new TraktClient();
-
-        //    client.DeviceAuth.Should().NotBeNull();
-        //}
-
-        [Fact]
-        public void Test_TraktClient_Get_ShowsModule()
-        {
-            var client = new TraktClient();
-
-            client.Shows.Should().NotBeNull();
-        }
-
-        [Fact]
-        public void Test_TraktClient_Get_SeasonsModule()
-        {
-            var client = new TraktClient();
-
-            client.Seasons.Should().NotBeNull();
-        }
-
-        [Fact]
-        public void Test_TraktClient_Get_EpisodesModule()
-        {
-            var client = new TraktClient();
-
-            client.Episodes.Should().NotBeNull();
-        }
-
-        [Fact]
-        public void Test_TraktClient_Get_MoviesModule()
-        {
-            var client = new TraktClient();
-
-            client.Movies.Should().NotBeNull();
-        }
-
         [Fact]
         public void Test_TraktClient_Get_CalendarModule()
         {
             var client = new TraktClient();
 
             client.Calendar.Should().NotBeNull();
-        }
-
-        [Fact]
-        public void Test_TraktClient_Get_CommentsModule()
-        {
-            var client = new TraktClient();
-
-            client.Comments.Should().NotBeNull();
-        }
-
-        [Fact]
-        public void Test_TraktClient_Get_PeopleModule()
-        {
-            var client = new TraktClient();
-
-            client.People.Should().NotBeNull();
-        }
-
-        [Fact]
-        public void Test_TraktClient_Get_GenresModule()
-        {
-            var client = new TraktClient();
-
-            client.Genres.Should().NotBeNull();
-        }
-
-        [Fact]
-        public void Test_TraktClient_Get_NetworksModule()
-        {
-            var client = new TraktClient();
-
-            client.Networks.Should().NotBeNull();
         }
 
         [Fact]
@@ -204,11 +124,67 @@
         }
 
         [Fact]
-        public void Test_TraktClient_Get_SearchModule()
+        public void Test_TraktClient_Get_CheckinsModule()
         {
             var client = new TraktClient();
 
-            client.Search.Should().NotBeNull();
+            client.Checkins.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void Test_TraktClient_Get_CommentsModule()
+        {
+            var client = new TraktClient();
+
+            client.Comments.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void Test_TraktClient_Get_EpisodesModule()
+        {
+            var client = new TraktClient();
+
+            client.Episodes.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void Test_TraktClient_Get_GenresModule()
+        {
+            var client = new TraktClient();
+
+            client.Genres.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void Test_TraktClient_Get_ListsModule()
+        {
+            var client = new TraktClient();
+
+            client.Lists.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void Test_TraktClient_Get_MoviesModule()
+        {
+            var client = new TraktClient();
+
+            client.Movies.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void Test_TraktClient_Get_NetworksModule()
+        {
+            var client = new TraktClient();
+
+            client.Networks.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void Test_TraktClient_Get_PeopleModule()
+        {
+            var client = new TraktClient();
+
+            client.People.Should().NotBeNull();
         }
 
         [Fact]
@@ -217,6 +193,38 @@
             var client = new TraktClient();
 
             client.Recommendations.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void Test_TraktClient_Get_ScrobbleModule()
+        {
+            var client = new TraktClient();
+
+            client.Scrobble.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void Test_TraktClient_Get_SearchModule()
+        {
+            var client = new TraktClient();
+
+            client.Search.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void Test_TraktClient_Get_SeasonsModule()
+        {
+            var client = new TraktClient();
+
+            client.Seasons.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void Test_TraktClient_Get_ShowsModule()
+        {
+            var client = new TraktClient();
+
+            client.Shows.Should().NotBeNull();
         }
 
         [Fact]
@@ -233,22 +241,6 @@
             var client = new TraktClient();
 
             client.Users.Should().NotBeNull();
-        }
-
-        [Fact]
-        public void Test_TraktClient_Get_CheckinsModule()
-        {
-            var client = new TraktClient();
-
-            client.Checkins.Should().NotBeNull();
-        }
-
-        [Fact]
-        public void Test_TraktClient_Get_ScrobbleModule()
-        {
-            var client = new TraktClient();
-
-            client.Scrobble.Should().NotBeNull();
         }
     }
 }

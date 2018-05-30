@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Modules\ATraktModule.cs" />
     <Compile Include="Modules\TraktAuthenticationModule.cs" />
+    <Compile Include="Modules\TraktListsModule.cs" />
     <Compile Include="Objects\Authentication\Implementations\TraktAuthorization.cs" />
     <Compile Include="Objects\Authentication\Implementations\TraktDevice.cs" />
     <Compile Include="Core\DebugAsserter.cs" />

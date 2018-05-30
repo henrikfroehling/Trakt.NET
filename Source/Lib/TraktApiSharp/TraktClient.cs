@@ -17,22 +17,23 @@
             HttpClientProvider = httpClientProvider ?? new HttpClientProvider(this);
             Configuration = new TraktConfiguration();
             Authentication = new TraktAuthenticationModule(this);
-            Shows = new TraktShowsModule(this);
-            Seasons = new TraktSeasonsModule(this);
-            Episodes = new TraktEpisodesModule(this);
-            Movies = new TraktMoviesModule(this);
             Calendar = new TraktCalendarModule(this);
-            Comments = new TraktCommentsModule(this);
-            People = new TraktPeopleModule(this);
-            Genres = new TraktGenresModule(this);
-            Networks = new TraktNetworksModule(this);
             Certifications = new TraktCertificationsModule(this);
-            Search = new TraktSearchModule(this);
+            Checkins = new TraktCheckinsModule(this);
+            Comments = new TraktCommentsModule(this);
+            Episodes = new TraktEpisodesModule(this);
+            Genres = new TraktGenresModule(this);
+            Lists = new TraktListsModule(this);
+            Movies = new TraktMoviesModule(this);
+            Networks = new TraktNetworksModule(this);
+            People = new TraktPeopleModule(this);
             Recommendations = new TraktRecommendationsModule(this);
+            Scrobble = new TraktScrobbleModule(this);
+            Search = new TraktSearchModule(this);
+            Seasons = new TraktSeasonsModule(this);
+            Shows = new TraktShowsModule(this);
             Sync = new TraktSyncModule(this);
             Users = new TraktUsersModule(this);
-            Checkins = new TraktCheckinsModule(this);
-            Scrobble = new TraktScrobbleModule(this);
         }
 
         /// <summary>Initializes a new instance of the <see cref="TraktClient" /> class.</summary>
@@ -107,52 +108,55 @@
         /// <summary>Provides access to the authentication module. See <seealso cref="TraktAuthenticationModule" />.</summary>
         public TraktAuthenticationModule Authentication { get; }
 
-        /// <summary>Provides access to the shows module. See <seealso cref="TraktShowsModule" />.</summary>
-        public TraktShowsModule Shows { get; }
-
-        /// <summary>Provides access to the seasons module. See <seealso cref="TraktSeasonsModule" />.</summary>
-        public TraktSeasonsModule Seasons { get; }
-
-        /// <summary>Provides access to the episodes module. See <seealso cref="TraktEpisodesModule" />.</summary>
-        public TraktEpisodesModule Episodes { get; }
-
-        /// <summary>Provides access to the movies module. See <seealso cref="TraktMoviesModule" />.</summary>
-        public TraktMoviesModule Movies { get; }
-
         /// <summary>Provides access to the calendar module. See <seealso cref="TraktCalendarModule" />.</summary>
         public TraktCalendarModule Calendar { get; }
-
-        /// <summary>Provides access to the commends module. See <seealso cref="TraktCommentsModule" />.</summary>
-        public TraktCommentsModule Comments { get; }
-
-        /// <summary>Provides access to the people module. See <seealso cref="TraktPeopleModule" />.</summary>
-        public TraktPeopleModule People { get; }
-
-        /// <summary>Provides access to the genres module. See <seealso cref="TraktGenresModule" />.</summary>
-        public TraktGenresModule Genres { get; }
-
-        /// <summary>Provides access to the networks module. See <seealso cref="TraktNetworksModule" />.</summary>
-        public TraktNetworksModule Networks { get; }
 
         /// <summary>Provides access to the certifications module. See <seealso cref="TraktCertificationsModule" />.</summary>
         public TraktCertificationsModule Certifications { get; }
 
-        /// <summary>Provides access to the search module. See <seealso cref="TraktSearchModule" />.</summary>
-        public TraktSearchModule Search { get; }
+        /// <summary>Provides access to the checkins module. See <seealso cref="TraktCheckinsModule" />.</summary>
+        public TraktCheckinsModule Checkins { get; }
+
+        /// <summary>Provides access to the commends module. See <seealso cref="TraktCommentsModule" />.</summary>
+        public TraktCommentsModule Comments { get; }
+
+        /// <summary>Provides access to the episodes module. See <seealso cref="TraktEpisodesModule" />.</summary>
+        public TraktEpisodesModule Episodes { get; }
+
+        /// <summary>Provides access to the genres module. See <seealso cref="TraktGenresModule" />.</summary>
+        public TraktGenresModule Genres { get; }
+
+        /// <summary>Provides access to the lists module. See <seealso cref="TraktListsModule" />.</summary>
+        public TraktListsModule Lists { get; }
+
+        /// <summary>Provides access to the movies module. See <seealso cref="TraktMoviesModule" />.</summary>
+        public TraktMoviesModule Movies { get; }
+
+        /// <summary>Provides access to the networks module. See <seealso cref="TraktNetworksModule" />.</summary>
+        public TraktNetworksModule Networks { get; }
+
+        /// <summary>Provides access to the people module. See <seealso cref="TraktPeopleModule" />.</summary>
+        public TraktPeopleModule People { get; }
 
         /// <summary>Provides access to the recommendations module. See <seealso cref="TraktRecommendationsModule" />.</summary>
         public TraktRecommendationsModule Recommendations { get; }
+
+        /// <summary>Provides access to the scrobble module. See <seealso cref="TraktScrobbleModule" />.</summary>
+        public TraktScrobbleModule Scrobble { get; }
+
+        /// <summary>Provides access to the search module. See <seealso cref="TraktSearchModule" />.</summary>
+        public TraktSearchModule Search { get; }
+
+        /// <summary>Provides access to the seasons module. See <seealso cref="TraktSeasonsModule" />.</summary>
+        public TraktSeasonsModule Seasons { get; }
+
+        /// <summary>Provides access to the shows module. See <seealso cref="TraktShowsModule" />.</summary>
+        public TraktShowsModule Shows { get; }
 
         /// <summary>Provides access to the sync module. See <seealso cref="TraktSyncModule" />.</summary>
         public TraktSyncModule Sync { get; }
 
         /// <summary>Provides access to the users module. See <seealso cref="TraktUsersModule" />.</summary>
         public TraktUsersModule Users { get; }
-
-        /// <summary>Provides access to the checkins module. See <seealso cref="TraktCheckinsModule" />.</summary>
-        public TraktCheckinsModule Checkins { get; }
-
-        /// <summary>Provides access to the scrobble module. See <seealso cref="TraktScrobbleModule" />.</summary>
-        public TraktScrobbleModule Scrobble { get; }
     }
 }
