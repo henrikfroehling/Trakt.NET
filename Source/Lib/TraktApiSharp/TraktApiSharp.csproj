@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Modules\ATraktModule.cs" />
     <Compile Include="Modules\TraktAuthenticationModule.cs" />
+    <Compile Include="Modules\TraktListsModule.cs" />
     <Compile Include="Objects\Authentication\Implementations\TraktAuthorization.cs" />
     <Compile Include="Objects\Authentication\Implementations\TraktDevice.cs" />
     <Compile Include="Core\DebugAsserter.cs" />
@@ -1001,6 +1002,8 @@
     <Compile Include="Requests\Interfaces\Base\IHttpRequest.cs" />
     <Compile Include="Requests\Interfaces\Base\IHasUri.cs" />
     <Compile Include="Requests\Interfaces\IValidatable.cs" />
+    <Compile Include="Requests\Lists\AListsRequest.cs" />
+    <Compile Include="Requests\Lists\ListsPopularRequest.cs" />
     <Compile Include="Requests\Movies\AMovieRequest%271.cs" />
     <Compile Include="Requests\Movies\AMoviesMostPWCRequest%271.cs" />
     <Compile Include="Requests\Movies\AMoviesRequest%271.cs" />
