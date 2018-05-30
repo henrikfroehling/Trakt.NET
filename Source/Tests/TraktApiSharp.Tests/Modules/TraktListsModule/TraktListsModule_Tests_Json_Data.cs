@@ -6,7 +6,7 @@
         private const uint LIMIT = 4;
         private const int ITEM_COUNT = 2;
 
-        private const string POPULAR_LISTS_JSON =
+        private const string LISTS_JSON =
             @"[
                 {
                   ""like_count"": 1004,

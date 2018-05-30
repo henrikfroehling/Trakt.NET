@@ -199,6 +199,7 @@
     <Compile Include="Modules\TraktGenresModule\TraktGenresModule_GetShowGenres_Tests.cs" />
     <Compile Include="Modules\TraktGenresModule\TraktGenresModule_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktListsModule\TraktListsModule_GetPopularLists_Tests.cs" />
+    <Compile Include="Modules\TraktListsModule\TraktListsModule_GetTrendingLists_Tests.cs" />
     <Compile Include="Modules\TraktListsModule\TraktListsModule_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktMoviesModule\TraktMoviesModule_GetBoxOfficeMovies_Tests.cs" />
     <Compile Include="Modules\TraktMoviesModule\TraktMoviesModule_GetMostAnticipatedMovies_Tests.cs" />
