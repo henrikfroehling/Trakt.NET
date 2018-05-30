@@ -11,7 +11,18 @@
 
         public uint? Limit { get; set; }
 
-        public override IDictionary<string, object> GetUriPathParameters() => new Dictionary<string, object>();
+        public override IDictionary<string, object> GetUriPathParameters()
+        {
+            var uriParams = new Dictionary<string, object>();
+
+            if (Page.HasValue)
+                uriParams.Add("page", Page.Value.ToString());
+
+            if (Limit.HasValue)
+                uriParams.Add("limit", Limit.Value.ToString());
+
+            return uriParams;
+        }
 
         public override void Validate()
         {

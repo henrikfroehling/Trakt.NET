@@ -2,6 +2,6 @@
 {
     internal sealed class ListsPopularRequest : AListsRequest
     {
-        public override string UriTemplate => "lists/popular";
+        public override string UriTemplate => "lists/popular{?page,limit}";
     }
 }

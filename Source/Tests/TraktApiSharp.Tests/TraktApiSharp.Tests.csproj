@@ -198,6 +198,8 @@
     <Compile Include="Modules\TraktGenresModule\TraktGenresModule_GetMovieGenres_Tests.cs" />
     <Compile Include="Modules\TraktGenresModule\TraktGenresModule_GetShowGenres_Tests.cs" />
     <Compile Include="Modules\TraktGenresModule\TraktGenresModule_Tests_Json_Data.cs" />
+    <Compile Include="Modules\TraktListsModule\TraktListsModule_GetPopularLists_Tests.cs" />
+    <Compile Include="Modules\TraktListsModule\TraktListsModule_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktMoviesModule\TraktMoviesModule_GetBoxOfficeMovies_Tests.cs" />
     <Compile Include="Modules\TraktMoviesModule\TraktMoviesModule_GetMostAnticipatedMovies_Tests.cs" />
     <Compile Include="Modules\TraktMoviesModule\TraktMoviesModule_GetMostCollectedMovies_Tests.cs" />
@@ -1475,6 +1477,7 @@
   <ItemGroup>
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.9.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
