@@ -1311,6 +1311,8 @@
     <Compile Include="Requests\Episodes\EpisodeWatchingUsersRequest_Tests.cs" />
     <Compile Include="Requests\Genres\GenresMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Genres\GenresShowsRequest_Tests.cs" />
+    <Compile Include="Requests\Lists\AListsRequest_Tests.cs" />
+    <Compile Include="Requests\Lists\ListsPopularRequest_Tests.cs" />
     <Compile Include="Requests\Movies\AMovieRequest%271_Tests.cs" />
     <Compile Include="Requests\Movies\AMoviesMostPWCRequest%271_Tests.cs" />
     <Compile Include="Requests\Movies\AMoviesRequest%271_Tests.cs" />
