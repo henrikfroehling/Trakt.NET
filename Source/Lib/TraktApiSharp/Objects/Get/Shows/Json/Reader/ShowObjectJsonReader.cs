@@ -104,6 +104,9 @@
                         case JsonProperties.SHOW_PROPERTY_NAME_SEASONS:
                             traktShow.Seasons = await seasonsArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
+                        case JsonProperties.SHOW_PROPERTY_NAME_COMMENT_COUNT:
+                            traktShow.CommentCount = await jsonReader.ReadAsInt32Async(cancellationToken);
+                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

@@ -75,6 +75,9 @@
                         case JsonProperties.EPISODE_PROPERTY_NAME_TRANSLATIONS:
                             traktEpisode.Translations = await translationArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
+                        case JsonProperties.EPISODE_PROPERTY_NAME_COMMENT_COUNT:
+                            traktEpisode.CommentCount = await jsonReader.ReadAsInt32Async(cancellationToken);
+                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

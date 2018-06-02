@@ -87,6 +87,9 @@
                         case JsonProperties.MOVIE_PROPERTY_NAME_COUNTRY:
                             traktMovie.CountryCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
+                        case JsonProperties.MOVIE_PROPERTY_NAME_COMMENT_COUNT:
+                            traktMovie.CommentCount = await jsonReader.ReadAsInt32Async(cancellationToken);
+                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
