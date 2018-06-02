@@ -56,5 +56,7 @@
         /// <see cref="TraktExtendedInfo.Episodes" /> set to true.
         /// </remarks>
         public IEnumerable<ITraktEpisode> Episodes { get; set; }
+
+        public int? CommentCount { get; set; }
     }
 }

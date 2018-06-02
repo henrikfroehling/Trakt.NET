@@ -27,5 +27,7 @@
         string Network { get; set; }
 
         IEnumerable<ITraktEpisode> Episodes { get; set; }
+
+        int? CommentCount { get; set; }
     }
 }

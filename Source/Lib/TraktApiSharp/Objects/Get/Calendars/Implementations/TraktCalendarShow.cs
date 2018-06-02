@@ -250,6 +250,17 @@
             }
         }
 
+        public int? CommentCount
+        {
+            get { return Show?.CommentCount; }
+
+            set
+            {
+                if (Show != null)
+                    Show.CommentCount = value;
+            }
+        }
+
         public int? SeasonNumber
         {
             get { return Episode?.SeasonNumber; }
@@ -390,6 +401,17 @@
             {
                 if (Episode != null)
                     Episode.Translations = value;
+            }
+        }
+
+        public int? EpisodeCommentCount
+        {
+            get { return Episode?.CommentCount; }
+
+            set
+            {
+                if (Episode != null)
+                    Episode.CommentCount = value;
             }
         }
     }

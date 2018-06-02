@@ -30,5 +30,7 @@
         IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
 
         IEnumerable<ITraktEpisodeTranslation> Translations { get; set; }
+
+        int? CommentCount { get; set; }
     }
 }

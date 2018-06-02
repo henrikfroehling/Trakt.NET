@@ -63,5 +63,7 @@
         /// and a translation language code was specified.
         /// </remarks>
         public IEnumerable<ITraktEpisodeTranslation> Translations { get; set; }
+
+        public int? CommentCount { get; set; }
     }
 }

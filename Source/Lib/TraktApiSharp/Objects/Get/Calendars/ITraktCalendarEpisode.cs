@@ -31,5 +31,7 @@
         IEnumerable<string> AvailableEpisodeTranslationLanguageCodes { get; set; }
 
         IEnumerable<ITraktEpisodeTranslation> EpisodeTranslations { get; set; }
+
+        int? EpisodeCommentCount { get; set; }
     }
 }
