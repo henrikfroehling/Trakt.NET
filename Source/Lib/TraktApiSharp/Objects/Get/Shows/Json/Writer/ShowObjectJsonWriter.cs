@@ -146,6 +146,12 @@
                 await seasonArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Seasons, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.CommentCount.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_PROPERTY_NAME_COMMENT_COUNT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.CommentCount, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }

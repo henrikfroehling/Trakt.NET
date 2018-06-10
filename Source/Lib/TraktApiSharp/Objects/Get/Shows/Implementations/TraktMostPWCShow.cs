@@ -253,5 +253,16 @@
                     Show.Seasons = value;
             }
         }
+
+        public int? CommentCount
+        {
+            get { return Show?.CommentCount; }
+
+            set
+            {
+                if (Show != null)
+                    Show.CommentCount = value;
+            }
+        }
     }
 }

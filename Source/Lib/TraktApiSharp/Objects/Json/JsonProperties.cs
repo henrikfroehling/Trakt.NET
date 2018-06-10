@@ -154,6 +154,7 @@
         internal const string EPISODE_PROPERTY_NAME_UPDATED_AT = "updated_at";
         internal const string EPISODE_PROPERTY_NAME_AVAILABLE_TRANSLATIONS = "available_translations";
         internal const string EPISODE_PROPERTY_NAME_TRANSLATIONS = "translations";
+        internal const string EPISODE_PROPERTY_NAME_COMMENT_COUNT = "comment_count";
 
         internal const string EPISODE_TRANSLATION_PROPERTY_NAME_TITLE = "title";
         internal const string EPISODE_TRANSLATION_PROPERTY_NAME_OVERVIEW = "overview";
@@ -210,6 +211,7 @@
         internal const string MOVIE_PROPERTY_NAME_GENRES = "genres";
         internal const string MOVIE_PROPERTY_NAME_CERTIFICATION = "certification";
         internal const string MOVIE_PROPERTY_NAME_COUNTRY = "country";
+        internal const string MOVIE_PROPERTY_NAME_COMMENT_COUNT = "comment_count";
 
         internal const string MOVIE_RELEASE_PROPERTY_NAME_COUNTRY = "country";
         internal const string MOVIE_RELEASE_PROPERTY_NAME_CERTIFICATION = "certification";
@@ -317,6 +319,7 @@
         internal const string SEASON_PROPERTY_NAME_FIRST_AIRED = "first_aired";
         internal const string SEASON_PROPERTY_NAME_NETWORK = "network";
         internal const string SEASON_PROPERTY_NAME_EPISODES = "episodes";
+        internal const string SEASON_PROPERTY_NAME_COMMENT_COUNT = "comment_count";
 
         internal const string SEASON_WATCHED_PROGRESS_PROPERTY_NAME_NUMBER = "number";
         internal const string SEASON_WATCHED_PROGRESS_PROPERTY_NAME_AIRED = "aired";
@@ -379,6 +382,7 @@
         internal const string SHOW_PROPERTY_NAME_GENRES = "genres";
         internal const string SHOW_PROPERTY_NAME_AIRED_EPISODES = "aired_episodes";
         internal const string SHOW_PROPERTY_NAME_SEASONS = "seasons";
+        internal const string SHOW_PROPERTY_NAME_COMMENT_COUNT = "comment_count";
 
         internal const string SHOW_TRANSLATION_PROPERTY_NAME_TITLE = "title";
         internal const string SHOW_TRANSLATION_PROPERTY_NAME_OVERVIEW = "overview";

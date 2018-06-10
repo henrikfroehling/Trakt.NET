@@ -199,5 +199,16 @@
                     Movie.CountryCode = value;
             }
         }
+
+        public int? CommentCount
+        {
+            get { return Movie?.CommentCount; }
+
+            set
+            {
+                if (Movie != null)
+                    Movie.CommentCount = value;
+            }
+        }
     }
 }

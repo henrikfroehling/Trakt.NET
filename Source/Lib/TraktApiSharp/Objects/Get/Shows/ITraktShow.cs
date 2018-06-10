@@ -48,5 +48,7 @@
         int? AiredEpisodes { get; set; }
 
         IEnumerable<ITraktSeason> Seasons { get; set; }
+
+        int? CommentCount { get; set; }
     }
 }

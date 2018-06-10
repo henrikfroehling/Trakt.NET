@@ -59,5 +59,7 @@
         public string Certification { get; set; }
 
         public string CountryCode { get; set; }
+
+        public int? CommentCount { get; set; }
     }
 }

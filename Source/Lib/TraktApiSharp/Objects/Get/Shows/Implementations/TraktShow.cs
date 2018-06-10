@@ -74,5 +74,7 @@
 
         /// <summary>Gets or sets the collection of Trakt seasons for the show. See also <seealso cref="ITraktSeason" />.<para>Nullable</para></summary>
         public IEnumerable<ITraktSeason> Seasons { get; set; }
+
+        public int? CommentCount { get; set; }
     }
 }
