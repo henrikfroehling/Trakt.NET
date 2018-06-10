@@ -8,6 +8,8 @@
     {
         DateTime? LastWatchedAt { get; set; }
 
+        DateTime? ResetAt { get; set; }
+
         IEnumerable<ITraktSeasonWatchedProgress> Seasons { get; set; }
     }
 }
