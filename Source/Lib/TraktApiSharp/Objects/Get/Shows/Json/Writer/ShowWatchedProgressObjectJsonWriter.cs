@@ -64,6 +64,12 @@
                 await episodeObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.LastEpisode, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.ResetAt.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_WATCHED_PROGRESS_PROPERTY_NAME_RESET_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.ResetAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }

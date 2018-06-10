@@ -395,6 +395,7 @@
         internal const string SHOW_WATCHED_PROGRESS_PROPERTY_NAME_HIDDEN_SEASONS = "hidden_seasons";
         internal const string SHOW_WATCHED_PROGRESS_PROPERTY_NAME_NEXT_EPISODE = "next_episode";
         internal const string SHOW_WATCHED_PROGRESS_PROPERTY_NAME_LAST_EPISODE = "last_episode";
+        internal const string SHOW_WATCHED_PROGRESS_PROPERTY_NAME_RESET_AT = "reset_at";
 
         internal const string TRENDING_SHOW_PROPERTY_NAME_WATCHERS = "watchers";
         internal const string TRENDING_SHOW_PROPERTY_NAME_SHOW = "show";

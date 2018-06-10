@@ -55,6 +55,15 @@
                         case JsonProperties.SHOW_WATCHED_PROGRESS_PROPERTY_NAME_LAST_EPISODE:
                             traktShowWatchedProgress.LastEpisode = await episodeObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
+                        case JsonProperties.SHOW_WATCHED_PROGRESS_PROPERTY_NAME_RESET_AT:
+                            {
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    traktShowWatchedProgress.ResetAt = value.Second;
+
+                                break;
+                            }
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

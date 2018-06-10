@@ -10,6 +10,9 @@
         /// <summary>Gets or sets the UTC datetime, when the last watch occured.</summary>
         public DateTime? LastWatchedAt { get; set; }
 
+        /// <summary>Gets or sets the UTC datetime, when the watched progress has been reset.</summary>
+        public DateTime? ResetAt { get; set; }
+
         /// <summary>
         /// Gets or sets the watched seasons. See also <seealso cref="ITraktSeasonWatchedProgress" />.
         /// <para>Nullable</para>
