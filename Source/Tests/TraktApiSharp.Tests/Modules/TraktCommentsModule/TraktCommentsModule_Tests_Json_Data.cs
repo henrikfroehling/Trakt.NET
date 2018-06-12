@@ -6,6 +6,7 @@
     using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Get.Users.Lists;
+    using TraktApiSharp.Requests.Parameters;
 
     public partial class TraktCommentsModule_Tests
     {
@@ -17,6 +18,7 @@
         private const uint LIMIT = 4;
         private const string COMMENT_TEXT = "one two three four five reply";
         private const bool SPOILER = false;
+        private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
 
         private readonly ITraktSharing SHARING = new TraktSharing
         {
@@ -110,6 +112,23 @@
                   ""name"": ""Walter"",
                   ""vip"": false,
                   ""vip_ep"": false
+                }
+              }";
+
+        private const string COMMENT_ITEM_JSON =
+            @"{
+                ""type"": ""show"",
+                ""show"": {
+                  ""title"": ""The Flash"",
+                  ""year"": 2014,
+                  ""ids"": {
+                    ""trakt"": 60300,
+                    ""slug"": ""the-flash-2014"",
+                    ""tvdb"": 279121,
+                    ""imdb"": ""tt3107288"",
+                    ""tmdb"": 60735,
+                    ""tvrage"": 36939
+                  }
                 }
               }";
 
