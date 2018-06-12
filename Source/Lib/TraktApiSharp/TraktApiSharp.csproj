@@ -132,12 +132,14 @@
     <Compile Include="Objects\Basic\IIds.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCertification.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCertifications.cs" />
+    <Compile Include="Objects\Basic\Implementations\TraktCommentItem.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktNetwork.cs" />
     <Compile Include="Objects\Basic\ITraktCastAndCrew.cs" />
     <Compile Include="Objects\Basic\ITraktCastMember.cs" />
     <Compile Include="Objects\Basic\ITraktCertification.cs" />
     <Compile Include="Objects\Basic\ITraktCertifications.cs" />
     <Compile Include="Objects\Basic\ITraktComment.cs" />
+    <Compile Include="Objects\Basic\ITraktCommentItem.cs" />
     <Compile Include="Objects\Basic\ITraktCrew.cs" />
     <Compile Include="Objects\Basic\ITraktCrewMember.cs" />
     <Compile Include="Objects\Basic\ITraktError.cs" />
@@ -151,6 +153,7 @@
     <Compile Include="Objects\Basic\ITraktSharing.cs" />
     <Compile Include="Objects\Basic\ITraktStatistics.cs" />
     <Compile Include="Objects\Basic\ITraktTranslation.cs" />
+    <Compile Include="Objects\Basic\Json\Factories\CommentItemJsonIOFactory.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CertificationArrayJsonReader.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CertificationObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CertificationsObjectJsonReader.cs" />
@@ -175,6 +178,8 @@
     <Compile Include="Objects\Basic\Json\Reader\CastMemberArrayJsonReader.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CastMemberObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CommentArrayJsonReader.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\CommentItemArrayJsonReader.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\CommentItemObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CommentObjectJsonReader.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CrewMemberArrayJsonReader.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CrewMemberObjectJsonReader.cs" />
@@ -189,6 +194,7 @@
     <Compile Include="Objects\Basic\Json\Writer\CastMemberObjectJsonWriter.cs" />
     <Compile Include="Objects\Basic\Json\Writer\CertificationObjectJsonWriter.cs" />
     <Compile Include="Objects\Basic\Json\Writer\CertificationsObjectJsonWriter.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentItemObjectJsonWriter.cs" />
     <Compile Include="Objects\Basic\Json\Writer\CommentObjectJsonWriter.cs" />
     <Compile Include="Objects\Basic\Json\Writer\CrewMemberObjectJsonWriter.cs" />
     <Compile Include="Objects\Basic\Json\Writer\CrewObjectJsonWriter.cs" />
@@ -935,6 +941,7 @@
     <Compile Include="Requests\Certifications\ACertificationsRequest.cs" />
     <Compile Include="Requests\Certifications\MovieCertificationsRequest.cs" />
     <Compile Include="Requests\Certifications\ShowCertificationsRequest.cs" />
+    <Compile Include="Requests\Comments\CommentItemRequest.cs" />
     <Compile Include="Requests\Episodes\AEpisodeRequest%271.cs" />
     <Compile Include="Requests\Episodes\EpisodeListsRequest.cs" />
     <Compile Include="Requests\Episodes\EpisodeTranslationsRequest.cs" />

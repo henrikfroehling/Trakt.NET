@@ -54,6 +54,36 @@
         }
 
         /// <summary>
+        /// Gets the attached media <see cref="ITraktCommentItem" /> from a comment with the given id.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/comments/item/get-the-attached-media-item">"Trakt API Doc - Comments: Item"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="commentId">The comment's id.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the comment's media item should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>An <see cref="ITraktCommentItem" /> instance with the queried comment's media item.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given commentId is null, empty or contains spaces.</exception>
+        public Task<TraktResponse<ITraktCommentItem>> GetCommentItemAsync(uint commentId, TraktExtendedInfo extendedInfo = null,
+                                                                          CancellationToken cancellationToken = default)
+        {
+            ValidateId(commentId);
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentItemRequest
+            {
+                Id = commentId.ToString(),
+                ExtendedInfo = extendedInfo
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Gets multiple different <see cref="ITraktComment" />s or replies at once with the given Trakt-Ids or -Slugs.
         /// <para>OAuth authorization not required.</para>
         /// <para>

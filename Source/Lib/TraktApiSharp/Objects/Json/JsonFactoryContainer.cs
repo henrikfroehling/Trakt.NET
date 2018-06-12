@@ -129,6 +129,7 @@
             s_jsonIOFactories.Add(typeof(ITraktCertification), new CertificationJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktCertifications), new CertificationsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktComment), new CommentJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktCommentItem), new CommentItemJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktCrew), new CrewJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktCrewMember), new CrewMemberJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktError), new ErrorJsonIOFactory());

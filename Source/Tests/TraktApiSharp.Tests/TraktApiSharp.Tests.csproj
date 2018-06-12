@@ -175,6 +175,7 @@
     <Compile Include="Modules\TraktCheckinsModule\TraktCheckinsModule_DeleteAnyActiveCheckins_Tests.cs" />
     <Compile Include="Modules\TraktCheckinsModule\TraktCheckinsModule_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_DeleteComment_Tests.cs" />
+    <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_GetCommentItem_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_GetCommentReplies_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_GetComment_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_LikeComment_Tests.cs" />
@@ -1296,6 +1297,7 @@
     <Compile Include="Requests\Certifications\ShowCertificationsRequest_Tests.cs" />
     <Compile Include="Requests\Checkins\OAuth\CheckinRequest%272_Tests.cs" />
     <Compile Include="Requests\Checkins\OAuth\CheckinsDeleteRequest_Tests.cs" />
+    <Compile Include="Requests\Comments\CommentItemRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentLikeRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentPostRequest%271_Tests.cs" />

@@ -41,6 +41,13 @@
         internal const string COMMENT_PROPERTY_NAME_USER_RATING = "user_rating";
         internal const string COMMENT_PROPERTY_NAME_USER = "user";
 
+        internal const string COMMENT_ITEM_PROPERTY_NAME_TYPE = "type";
+        internal const string COMMENT_ITEM_PROPERTY_NAME_MOVIE = "movie";
+        internal const string COMMENT_ITEM_PROPERTY_NAME_SHOW = "show";
+        internal const string COMMENT_ITEM_PROPERTY_NAME_SEASON = "season";
+        internal const string COMMENT_ITEM_PROPERTY_NAME_EPISODE = "episode";
+        internal const string COMMENT_ITEM_PROPERTY_NAME_LIST = "list";
+
         internal const string CREW_MEMBER_PROPERTY_NAME_JOB = "job";
         internal const string CREW_MEMBER_PROPERTY_NAME_PERSON = "person";
 
