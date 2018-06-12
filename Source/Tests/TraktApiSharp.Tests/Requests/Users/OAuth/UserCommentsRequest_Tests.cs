@@ -25,7 +25,7 @@
         public void Test_UserCommentsRequest_Has_Valid_UriTemplate()
         {
             var request = new UserCommentsRequest();
-            request.UriTemplate.Should().Be("users/{username}/comments{/comment_type}{/object_type}{?extended,page,limit}");
+            request.UriTemplate.Should().Be("users/{username}/comments{/comment_type}{/object_type}{?include_replies,extended,page,limit}");
         }
 
         [Fact]
@@ -68,6 +68,7 @@
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private const int _page = 4;
             private const int _limit = 20;
+            private const bool _includeReplies = true;
 
             private static readonly UserCommentsRequest _request1 = new UserCommentsRequest
             {
@@ -179,6 +180,132 @@
                 Limit = _limit
             };
 
+            private static readonly UserCommentsRequest _request17 = new UserCommentsRequest
+            {
+                Username = _username,
+                IncludeReplies = _includeReplies
+            };
+
+            private static readonly UserCommentsRequest _request18 = new UserCommentsRequest
+            {
+                Username = _username,
+                CommentType = _commentType,
+                IncludeReplies = _includeReplies
+            };
+
+            private static readonly UserCommentsRequest _request19 = new UserCommentsRequest
+            {
+                Username = _username,
+                ObjectType = _objectType,
+                IncludeReplies = _includeReplies
+            };
+
+            private static readonly UserCommentsRequest _request20 = new UserCommentsRequest
+            {
+                Username = _username,
+                ExtendedInfo = _extendedInfo,
+                IncludeReplies = _includeReplies
+            };
+
+            private static readonly UserCommentsRequest _request21 = new UserCommentsRequest
+            {
+                Username = _username,
+                Page = _page,
+                IncludeReplies = _includeReplies
+            };
+
+            private static readonly UserCommentsRequest _request22 = new UserCommentsRequest
+            {
+                Username = _username,
+                Limit = _limit,
+                IncludeReplies = _includeReplies
+            };
+
+            private static readonly UserCommentsRequest _request23 = new UserCommentsRequest
+            {
+                Username = _username,
+                Page = _page,
+                Limit = _limit,
+                IncludeReplies = _includeReplies
+            };
+
+            private static readonly UserCommentsRequest _request24 = new UserCommentsRequest
+            {
+                Username = _username,
+                CommentType = _commentType,
+                ObjectType = _objectType,
+                IncludeReplies = _includeReplies
+            };
+
+            private static readonly UserCommentsRequest _request25 = new UserCommentsRequest
+            {
+                Username = _username,
+                CommentType = _commentType,
+                ExtendedInfo = _extendedInfo,
+                IncludeReplies = _includeReplies
+            };
+
+            private static readonly UserCommentsRequest _request26 = new UserCommentsRequest
+            {
+                Username = _username,
+                CommentType = _commentType,
+                Page = _page,
+                IncludeReplies = _includeReplies
+            };
+
+            private static readonly UserCommentsRequest _request27 = new UserCommentsRequest
+            {
+                Username = _username,
+                CommentType = _commentType,
+                Limit = _limit,
+                IncludeReplies = _includeReplies
+            };
+
+            private static readonly UserCommentsRequest _request28 = new UserCommentsRequest
+            {
+                Username = _username,
+                CommentType = _commentType,
+                Page = _page,
+                Limit = _limit,
+                IncludeReplies = _includeReplies
+            };
+
+            private static readonly UserCommentsRequest _request29 = new UserCommentsRequest
+            {
+                Username = _username,
+                ExtendedInfo = _extendedInfo,
+                Page = _page,
+                IncludeReplies = _includeReplies
+            };
+
+            private static readonly UserCommentsRequest _request30 = new UserCommentsRequest
+            {
+                Username = _username,
+                ExtendedInfo = _extendedInfo,
+                Limit = _limit,
+                IncludeReplies = _includeReplies
+            };
+
+            private static readonly UserCommentsRequest _request31 = new UserCommentsRequest
+            {
+                Username = _username,
+                ExtendedInfo = _extendedInfo,
+                Page = _page,
+                Limit = _limit,
+                IncludeReplies = _includeReplies
+            };
+
+            private static readonly UserCommentsRequest _request32 = new UserCommentsRequest
+            {
+                Username = _username,
+                CommentType = _commentType,
+                ObjectType = _objectType,
+                ExtendedInfo = _extendedInfo,
+                Page = _page,
+                Limit = _limit,
+                IncludeReplies = _includeReplies
+            };
+
             private static readonly List<object[]> _data = new List<object[]>();
 
             public UserCommentsRequest_TestData()
@@ -193,6 +320,7 @@
                 var strExtendedInfo = _extendedInfo.ToString();
                 var strPage = _page.ToString();
                 var strLimit = _limit.ToString();
+                var strIncludeReplies = _includeReplies.ToString().ToLower();
 
                 _data.Add(new object[] { _request1.GetUriPathParameters(), new Dictionary<string, object>
                     {
@@ -302,6 +430,132 @@
                         ["extended"] = strExtendedInfo,
                         ["page"] = strPage,
                         ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request17.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["username"] = _username,
+                        ["include_replies"] = strIncludeReplies
+                    }});
+
+                _data.Add(new object[] { _request18.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["username"] = _username,
+                        ["comment_type"] = strCommentType,
+                        ["include_replies"] = strIncludeReplies
+                    }});
+
+                _data.Add(new object[] { _request19.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["username"] = _username,
+                        ["object_type"] = strObjectType,
+                        ["include_replies"] = strIncludeReplies
+                    }});
+
+                _data.Add(new object[] { _request20.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["username"] = _username,
+                        ["extended"] = strExtendedInfo,
+                        ["include_replies"] = strIncludeReplies
+                    }});
+
+                _data.Add(new object[] { _request21.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["username"] = _username,
+                        ["page"] = strPage,
+                        ["include_replies"] = strIncludeReplies
+                    }});
+
+                _data.Add(new object[] { _request22.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["username"] = _username,
+                        ["limit"] = strLimit,
+                        ["include_replies"] = strIncludeReplies
+                    }});
+
+                _data.Add(new object[] { _request23.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["username"] = _username,
+                        ["page"] = strPage,
+                        ["limit"] = strLimit,
+                        ["include_replies"] = strIncludeReplies
+                    }});
+
+                _data.Add(new object[] { _request24.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["username"] = _username,
+                        ["comment_type"] = strCommentType,
+                        ["object_type"] = strObjectType,
+                        ["include_replies"] = strIncludeReplies
+                    }});
+
+                _data.Add(new object[] { _request25.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["username"] = _username,
+                        ["comment_type"] = strCommentType,
+                        ["extended"] = strExtendedInfo,
+                        ["include_replies"] = strIncludeReplies
+                    }});
+
+                _data.Add(new object[] { _request26.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["username"] = _username,
+                        ["comment_type"] = strCommentType,
+                        ["page"] = strPage,
+                        ["include_replies"] = strIncludeReplies
+                    }});
+
+                _data.Add(new object[] { _request27.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["username"] = _username,
+                        ["comment_type"] = strCommentType,
+                        ["limit"] = strLimit,
+                        ["include_replies"] = strIncludeReplies
+                    }});
+
+                _data.Add(new object[] { _request28.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["username"] = _username,
+                        ["comment_type"] = strCommentType,
+                        ["page"] = strPage,
+                        ["limit"] = strLimit,
+                        ["include_replies"] = strIncludeReplies
+                    }});
+
+                _data.Add(new object[] { _request29.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["username"] = _username,
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage,
+                        ["include_replies"] = strIncludeReplies
+                    }});
+
+                _data.Add(new object[] { _request30.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["username"] = _username,
+                        ["extended"] = strExtendedInfo,
+                        ["limit"] = strLimit,
+                        ["include_replies"] = strIncludeReplies
+                    }});
+
+                _data.Add(new object[] { _request31.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["username"] = _username,
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage,
+                        ["limit"] = strLimit,
+                        ["include_replies"] = strIncludeReplies
+                    }});
+
+                _data.Add(new object[] { _request32.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["username"] = _username,
+                        ["comment_type"] = strCommentType,
+                        ["object_type"] = strObjectType,
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage,
+                        ["limit"] = strLimit,
+                        ["include_replies"] = strIncludeReplies
                     }});
             }
 

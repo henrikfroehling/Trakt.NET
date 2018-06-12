@@ -14,7 +14,9 @@
 
         internal TraktObjectType ObjectType { get; set; }
 
-        public override string UriTemplate => "users/{username}/comments{/comment_type}{/object_type}{?extended,page,limit}";
+        internal bool? IncludeReplies { get; set; }
+
+        public override string UriTemplate => "users/{username}/comments{/comment_type}{/object_type}{?include_replies,extended,page,limit}";
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
@@ -27,6 +29,9 @@
 
             if (ObjectType != null && ObjectType != TraktObjectType.Unspecified)
                 uriParams.Add("object_type", ObjectType.UriName);
+
+            if (IncludeReplies.HasValue)
+                uriParams.Add("include_replies", IncludeReplies.ToString().ToLower());
 
             return uriParams;
         }

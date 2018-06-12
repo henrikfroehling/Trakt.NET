@@ -246,6 +246,7 @@
         /// <param name="usernameOrSlug">The username or slug of the user, for which the comments should be queried.</param>
         /// <param name="commentType">Determines, which type of comments should be queried. See also <seealso cref="TraktCommentType" />.</param>
         /// <param name="objectType">Determines, for which object types comments should be queried. See also <seealso cref="TraktObjectType" />.</param>
+        /// <param name="includeReplies">Determines, whether replies should be retrieved alongside with comments.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the commented objects should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
@@ -264,6 +265,7 @@
         public Task<TraktPagedResponse<ITraktUserComment>> GetCommentsAsync(string usernameOrSlug,
                                                                             TraktCommentType commentType = null,
                                                                             TraktObjectType objectType = null,
+                                                                            bool? includeReplies = null,
                                                                             TraktExtendedInfo extendedInfo = null,
                                                                             TraktPagedParameters pagedParameters = null,
                                                                             CancellationToken cancellationToken = default)
@@ -275,6 +277,7 @@
                 Username = usernameOrSlug,
                 CommentType = commentType,
                 ObjectType = objectType,
+                IncludeReplies = includeReplies,
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit

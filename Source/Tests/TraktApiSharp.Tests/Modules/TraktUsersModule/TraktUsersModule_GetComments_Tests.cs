@@ -105,7 +105,7 @@
                 USER_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, OBJECT_TYPE, EXTENDED_INFO);
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, OBJECT_TYPE, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -127,7 +127,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, OBJECT_TYPE, null, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, OBJECT_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -149,7 +149,7 @@
             var pagedParameters = new TraktPagedParameters(null, COMMENTS_LIMIT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, OBJECT_TYPE, null, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, OBJECT_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -171,7 +171,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE, COMMENTS_LIMIT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, OBJECT_TYPE, null, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, OBJECT_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -191,7 +191,7 @@
                 USER_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, EXTENDED_INFO);
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -213,7 +213,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, EXTENDED_INFO, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -235,7 +235,7 @@
             var pagedParameters = new TraktPagedParameters(null, COMMENTS_LIMIT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, EXTENDED_INFO, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -257,7 +257,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE, COMMENTS_LIMIT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, EXTENDED_INFO, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -279,7 +279,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, null, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -301,7 +301,7 @@
             var pagedParameters = new TraktPagedParameters(null, COMMENTS_LIMIT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, null, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -323,7 +323,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE, COMMENTS_LIMIT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, null, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -363,7 +363,7 @@
                 USER_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, EXTENDED_INFO);
+                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -385,7 +385,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, EXTENDED_INFO, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -407,7 +407,7 @@
             var pagedParameters = new TraktPagedParameters(null, COMMENTS_LIMIT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, EXTENDED_INFO, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -429,7 +429,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE, COMMENTS_LIMIT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, EXTENDED_INFO, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -451,7 +451,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, null, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -473,7 +473,7 @@
             var pagedParameters = new TraktPagedParameters(null, COMMENTS_LIMIT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, null, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -495,7 +495,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE, COMMENTS_LIMIT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, null, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, null, OBJECT_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -515,7 +515,7 @@
                 USER_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, null, null, EXTENDED_INFO);
+                await client.Users.GetCommentsAsync(USERNAME, null, null, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -537,7 +537,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, null, null, EXTENDED_INFO, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, null, null, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -559,7 +559,7 @@
             var pagedParameters = new TraktPagedParameters(null, COMMENTS_LIMIT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, null, null, EXTENDED_INFO, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, null, null, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -581,7 +581,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE, COMMENTS_LIMIT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, null, null, EXTENDED_INFO, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, null, null, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -603,7 +603,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, null, null, null, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, null, null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -625,7 +625,7 @@
             var pagedParameters = new TraktPagedParameters(null, COMMENTS_LIMIT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, null, null, null, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, null, null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -647,7 +647,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE, COMMENTS_LIMIT);
 
             TraktPagedResponse<ITraktUserComment> response =
-                await client.Users.GetCommentsAsync(USERNAME, null, null, null, pagedParameters);
+                await client.Users.GetCommentsAsync(USERNAME, null, null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -671,7 +671,7 @@
 
             TraktPagedResponse<ITraktUserComment> response =
                 await client.Users.GetCommentsAsync(USERNAME, COMMENT_TYPE, OBJECT_TYPE,
-                                                    EXTENDED_INFO, pagedParameters);
+                                                    null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
