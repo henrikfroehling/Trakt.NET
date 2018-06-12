@@ -1296,6 +1296,7 @@
     <Compile Include="Requests\Certifications\ShowCertificationsRequest_Tests.cs" />
     <Compile Include="Requests\Checkins\OAuth\CheckinRequest%272_Tests.cs" />
     <Compile Include="Requests\Checkins\OAuth\CheckinsDeleteRequest_Tests.cs" />
+    <Compile Include="Requests\Comments\CommentItemRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentLikeRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentPostRequest%271_Tests.cs" />
