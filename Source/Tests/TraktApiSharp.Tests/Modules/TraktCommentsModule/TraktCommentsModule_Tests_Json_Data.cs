@@ -14,6 +14,7 @@
         private const uint GET_COMMENT_ID = 76957U;
         private const uint GET_COMMENT_REPLIES_ID = 190U;
         private const int COMMENT_REPLIES_ITEM_COUNT = 2;
+        private const int ITEM_COUNT = 2;
         private const uint PAGE = 2;
         private const uint LIMIT = 4;
         private const string COMMENT_TEXT = "one two three four five reply";
@@ -131,6 +132,36 @@
                   }
                 }
               }";
+
+        private const string COMMENT_LIKES_JSON =
+            @"[
+                {
+                  ""liked_at"": ""2014-09-01T09:10:11.000Z"",
+                  ""user"": {
+                    ""username"": ""sean"",
+                    ""private"": false,
+                    ""name"": ""Sean Rudford"",
+                    ""vip"": true,
+                    ""vip_ep"": false,
+                    ""ids"": {
+                      ""slug"": ""sean""
+                    }
+                  }
+                },
+                {
+                  ""liked_at"": ""2014-09-01T09:10:11.000Z"",
+                  ""user"": {
+                    ""username"": ""justin"",
+                    ""private"": false,
+                    ""name"": ""Justin Nemeth"",
+                    ""vip"": true,
+                    ""vip_ep"": false,
+                    ""ids"": {
+                      ""slug"": ""justin""
+                    }
+                  }
+                }
+              ]";
 
         private const string COMMENT_REPLIES_JSON =
             @"[

@@ -84,6 +84,46 @@
         }
 
         /// <summary>
+        /// Gets likes for comment with the given id.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/comments/likes/get-all-users-who-liked-a-comment">"Trakt API Doc - Comments: Likes"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="commentId">The comment's id.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the comment's likes should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="pagedParameters"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>
+        /// An <see cref="TraktPagedResponse{ITraktCommentLike}"/> instance containing the queried likes and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktCommentLike" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
+        public Task<TraktPagedResponse<ITraktCommentLike>> GetCommentLikesAsync(uint commentId, TraktExtendedInfo extendedInfo = null,
+                                                                                TraktPagedParameters pagedParameters = null,
+                                                                                CancellationToken cancellationToken = default)
+        {
+            ValidateId(commentId);
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecutePagedRequestAsync(new CommentLikesRequest
+            {
+                Id = commentId.ToString(),
+                ExtendedInfo = extendedInfo,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Gets multiple different <see cref="ITraktComment" />s or replies at once with the given Trakt-Ids or -Slugs.
         /// <para>OAuth authorization not required.</para>
         /// <para>

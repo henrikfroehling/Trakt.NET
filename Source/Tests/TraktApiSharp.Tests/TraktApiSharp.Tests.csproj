@@ -176,6 +176,7 @@
     <Compile Include="Modules\TraktCheckinsModule\TraktCheckinsModule_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_DeleteComment_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_GetCommentItem_Tests.cs" />
+    <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_GetCommentLikes_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_GetCommentReplies_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_GetComment_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_LikeComment_Tests.cs" />
