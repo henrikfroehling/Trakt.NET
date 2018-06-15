@@ -48,6 +48,9 @@
         internal const string COMMENT_ITEM_PROPERTY_NAME_EPISODE = "episode";
         internal const string COMMENT_ITEM_PROPERTY_NAME_LIST = "list";
 
+        internal const string COMMENT_LIKE_PROPERTY_NAME_LIKED_AT = "liked_at";
+        internal const string COMMENT_LIKE_PROPERTY_NAME_USER = "user";
+
         internal const string CREW_MEMBER_PROPERTY_NAME_JOB = "job";
         internal const string CREW_MEMBER_PROPERTY_NAME_PERSON = "person";
 
