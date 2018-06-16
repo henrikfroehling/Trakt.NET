@@ -1357,6 +1357,7 @@
     <Compile Include="Requests\Parameters\TraktSearchFilter_Tests.cs" />
     <Compile Include="Requests\Parameters\TraktShowFilter_Tests.cs" />
     <Compile Include="Requests\People\APersonRequest%271_Tests.cs" />
+    <Compile Include="Requests\People\PersonListsRequest_Tests.cs" />
     <Compile Include="Requests\People\PersonMovieCreditsRequest_Tests.cs" />
     <Compile Include="Requests\People\PersonShowCreditsRequest_Tests.cs" />
     <Compile Include="Requests\People\PersonSummaryRequest_Tests.cs" />
