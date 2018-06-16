@@ -1304,6 +1304,7 @@
     <Compile Include="Requests\Comments\CommentItemRequest_Tests.cs" />
     <Compile Include="Requests\Comments\CommentLikesRequest_Tests.cs" />
     <Compile Include="Requests\Comments\CommentsRecentRequest_Tests.cs" />
+    <Compile Include="Requests\Comments\CommentsTrendingRequest_Tests.cs" />
     <Compile Include="Requests\Comments\CommentsUpdatesRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentLikeRequest_Tests.cs" />
