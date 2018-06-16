@@ -246,6 +246,51 @@
         }
 
         /// <summary>
+        /// Gets trending comments.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/comments/trending/get-trending-comments">"Trakt API Doc - Comments: Trending"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="commentType">Determines, which type of comments should be queried. See also <seealso cref="TraktCommentType" />.</param>
+        /// <param name="objectType">Determines, for which object types comments should be queried. See also <seealso cref="TraktObjectType" />.</param>
+        /// <param name="includeReplies">Determines, whether replies should be retrieved alongside with comments.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the commented objects should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="pagedParameters"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>
+        /// An <see cref="TraktPagedResponse{ITraktUserComment}"/> instance containing the queried trending comments and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktUserComment" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        public Task<TraktPagedResponse<ITraktUserComment>> GetTrendingCommentsAsync(TraktCommentType commentType = null,
+                                                                                    TraktObjectType objectType = null,
+                                                                                    bool? includeReplies = null,
+                                                                                    TraktExtendedInfo extendedInfo = null,
+                                                                                    TraktPagedParameters pagedParameters = null,
+                                                                                    CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecutePagedRequestAsync(new CommentsTrendingRequest
+            {
+                CommentType = commentType,
+                ObjectType = objectType,
+                IncludeReplies = includeReplies,
+                ExtendedInfo = extendedInfo,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Posts a comment for the given <see cref="ITraktMovie" />.
         /// <para>OAuth authorization required.</para>
         /// <para>

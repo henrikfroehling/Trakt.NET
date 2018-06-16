@@ -181,6 +181,7 @@
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_GetComment_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_GetRecentlyCreatedComments_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_GetRecentlyUpdatedComments_Tests.cs" />
+    <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_GetTrendingComments_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_LikeComment_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_PostCommentReply_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_PostEpisodeComment_Tests.cs" />
