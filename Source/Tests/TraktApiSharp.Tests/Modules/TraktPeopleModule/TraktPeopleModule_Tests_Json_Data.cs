@@ -1,11 +1,17 @@
 ﻿namespace TraktApiSharp.Tests.Modules.TraktPeopleModule
 {
+    using TraktApiSharp.Enums;
     using TraktApiSharp.Requests.Parameters;
 
     public partial class TraktPeopleModule_Tests
     {
         private const string PERSON_ID = "297737";
+        private const int LISTS_ITEM_COUNT = 1;
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
+        private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
+        private readonly TraktListType LIST_TYPE = TraktListType.Official;
+        private const uint PAGE = 2;
+        private const uint LIMIT = 4;
 
         private const string PERSON_MINIMAL_JSON =
             @"{
@@ -169,5 +175,37 @@
                   ]
                 }
               }";
+
+        private const string PERSON_LISTS_JSON =
+            @"[
+                {
+                  ""name"": ""Incredible Thoughts"",
+                  ""description"": ""How could my brain conceive them?"",
+                  ""privacy"": ""public"",
+                  ""display_numbers"": true,
+                  ""allow_comments"": true,
+                  ""sort_by"": ""rank"",
+                  ""sort_how"": ""asc"",
+                  ""created_at"": ""2014-10-11T17:00:54.000Z"",
+                  ""updated_at"": ""2014-10-11T17:00:54.000Z"",
+                  ""item_count"": 50,
+                  ""comment_count"": 10,
+                  ""likes"": 99,
+                  ""ids"": {
+                    ""trakt"": 1337,
+                    ""slug"": ""incredible-thoughts""
+                  },
+                  ""user"": {
+                    ""username"": ""justin"",
+                    ""private"": false,
+                    ""name"": ""Justin Nemeth"",
+                    ""vip"": true,
+                    ""vip_ep"": false,
+                    ""ids"": {
+                      ""slug"": ""justin""
+                    }
+                  }
+                }
+              ]";
     }
 }

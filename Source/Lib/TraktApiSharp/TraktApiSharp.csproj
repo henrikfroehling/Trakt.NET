@@ -1048,6 +1048,7 @@
     <Compile Include="Requests\Networks\NetworksRequest.cs" />
     <Compile Include="Requests\Parameters\TraktPagedParameters.cs" />
     <Compile Include="Requests\People\APersonRequest%271.cs" />
+    <Compile Include="Requests\People\PersonListsRequest.cs" />
     <Compile Include="Requests\People\PersonMovieCreditsRequest.cs" />
     <Compile Include="Requests\People\PersonShowCreditsRequest.cs" />
     <Compile Include="Requests\People\PersonSummaryRequest.cs" />
