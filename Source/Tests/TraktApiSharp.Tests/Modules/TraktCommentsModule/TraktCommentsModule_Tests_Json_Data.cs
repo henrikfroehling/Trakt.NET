@@ -16,7 +16,7 @@
         private const uint GET_COMMENT_REPLIES_ID = 190U;
         private const int COMMENT_REPLIES_ITEM_COUNT = 2;
         private const int ITEM_COUNT = 2;
-        private const int UPDATES_ITEM_COUNT = 5;
+        private const int COMMENTS_ITEM_COUNT = 5;
         private const uint PAGE = 2;
         private const uint LIMIT = 4;
         private const string COMMENT_TEXT = "one two three four five reply";
@@ -233,7 +233,7 @@
                 }
               }";
 
-        private const string COMMENTS_UPDATES_JSON =
+        private const string COMMENTS_JSON =
             @"[
                 {
                   ""type"": ""movie"",
