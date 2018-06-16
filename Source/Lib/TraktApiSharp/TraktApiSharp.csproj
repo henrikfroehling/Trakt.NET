@@ -951,6 +951,7 @@
     <Compile Include="Requests\Comments\CommentItemRequest.cs" />
     <Compile Include="Requests\Comments\CommentLikesRequest.cs" />
     <Compile Include="Requests\Comments\CommentsRecentRequest.cs" />
+    <Compile Include="Requests\Comments\CommentsTrendingRequest.cs" />
     <Compile Include="Requests\Comments\CommentsUpdatesRequest.cs" />
     <Compile Include="Requests\Episodes\AEpisodeRequest%271.cs" />
     <Compile Include="Requests\Episodes\EpisodeListsRequest.cs" />
