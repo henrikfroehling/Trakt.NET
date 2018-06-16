@@ -45,6 +45,18 @@
                 await jsonWriter.WriteValueAsync(obj.AllowComments, cancellationToken).ConfigureAwait(false);
             }
 
+            if (!string.IsNullOrEmpty(obj.SortBy))
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_CUSTOM_LIST_POST_PROPERTY_NAME_SORT_BY, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.SortBy, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (!string.IsNullOrEmpty(obj.SortHow))
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_CUSTOM_LIST_POST_PROPERTY_NAME_SORT_HOW, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.SortHow, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }
