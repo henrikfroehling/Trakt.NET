@@ -10,6 +10,8 @@
         private const string USERNAME = "sean";
         private const string LIST_ID = "55";
         private readonly TraktListItemType LIST_ITEM_TYPE = TraktListItemType.Movie;
+        private readonly TraktListItemType LIST_ITEM_TYPE_MOVIE = TraktListItemType.Movie;
+        private readonly TraktListItemType LIST_ITEM_TYPE_SHOW = TraktListItemType.Show;
         private const uint REQUEST_ID = 3U;
         private const string LIST_NAME = "new list";
         private const string NEW_LIST_NAME = "new list name";

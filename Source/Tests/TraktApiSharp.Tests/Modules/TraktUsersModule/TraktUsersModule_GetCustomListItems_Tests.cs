@@ -62,6 +62,22 @@
         }
 
         [Fact]
+        public async Task Test_TraktUsersModule_GetCustomListItems_MultipleTypes()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_CUSTOM_LIST_ITEMS_URI}/{MulitpleListItemTypesEncoded}",
+                LIST_ITEMS_JSON);
+
+            TraktPagedResponse<ITraktListItem> response =
+                await client.Users.GetCustomListItemsAsync(USERNAME, LIST_ID, MulitpleListItemTypes);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(5);
+        }
+
+        [Fact]
         public async Task Test_TraktUsersModule_GetCustomListItems_With_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetMockClient(
