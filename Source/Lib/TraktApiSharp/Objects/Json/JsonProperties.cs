@@ -897,6 +897,8 @@
         internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_PRIVACY = "privacy";
         internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_DISPLAY_NUMBERS = "display_numbers";
         internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_ALLOW_COMMENTS = "allow_comments";
+        internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_SORT_BY = "sort_by";
+        internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_SORT_HOW = "sort_how";
 
         // post users responses
         internal const string USER_FOLLOW_USER_POST_RESPONSE_PROPERTY_NAME_APPROVED_AT = "approved_at";

@@ -14,5 +14,9 @@
         bool? DisplayNumbers { get; set; }
 
         bool? AllowComments { get; set; }
+
+        string SortBy { get; set; }
+
+        string SortHow { get; set; }
     }
 }

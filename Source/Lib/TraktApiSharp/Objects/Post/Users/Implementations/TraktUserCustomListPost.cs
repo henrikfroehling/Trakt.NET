@@ -28,6 +28,10 @@
         /// <summary>Gets or sets, whether the custom list allows comments.</summary>
         public bool? AllowComments { get; set; }
 
+        public string SortBy { get; set; }
+
+        public string SortHow { get; set; }
+
         public HttpContent ToHttpContent()
         {
             throw new System.NotImplementedException();
