@@ -1,8 +1,10 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Enums;
     using Exceptions;
     using Objects.Get.People;
     using Objects.Get.People.Credits;
+    using Objects.Get.Users.Lists;
     using Requests.Handler;
     using Requests.Parameters;
     using Requests.People;
@@ -139,6 +141,45 @@
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo
             }, cancellationToken);
+        }
+
+        /// <summary>
+        /// Gets all <see cref="ITraktList" />s containing a <see cref="ITraktPerson" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/people/lists/get-lists-containing-this-person">"Trakt API Doc - People: Lists"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="personIdOrSlug">The person's Trakt-Id or -Slug. See also <seealso cref="ITraktPersonIds" />.</param>
+        /// <param name="listType">The type of lists, that should be queried. Defaults to personal lists.</param>
+        /// <param name="listSortOrder">The list sort order. See also <seealso cref="TraktListSortOrder" />. Defaults to sorted by popularity.</param>
+        /// <param name="pagedParameters"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>
+        /// An <see cref="TraktPagedResponse{ITraktList}"/> instance containing the queried person lists and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktList" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
+        public Task<TraktPagedResponse<ITraktList>> GetPersonListsAsync(string personIdOrSlug, TraktListType listType = null,
+                                                                        TraktListSortOrder listSortOrder = null,
+                                                                        TraktPagedParameters pagedParameters = null,
+                                                                        CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecutePagedRequestAsync(new PersonListsRequest
+            {
+                Id = personIdOrSlug,
+                Type = listType,
+                SortOrder = listSortOrder,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
+            },
+            cancellationToken);
         }
     }
 }
