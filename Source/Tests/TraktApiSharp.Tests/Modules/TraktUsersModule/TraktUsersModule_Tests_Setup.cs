@@ -1,6 +1,7 @@
 ﻿namespace TraktApiSharp.Tests.Modules.TraktUsersModule
 {
     using System.Collections.Generic;
+    using TraktApiSharp.Enums;
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.People;
@@ -14,6 +15,10 @@
         private string GetHiddenItemsUri { get; }
         private string HistoryStartAt { get; }
         private string HistoryEndAt { get; }
+        private TraktListItemType MulitpleListItemTypes { get; }
+        private string[] MulitpleListItemTypesUriNames { get; }
+        private string MulitpleListItemTypesEncoded { get; }
+        private string GetMulitpleListItemTypes { get; }
 
         public TraktUsersModule_Tests()
         {
@@ -22,6 +27,9 @@
             GetHiddenItemsUri = $"users/hidden/{HIDDEN_ITEMS_SECTION.UriName}";
             HistoryStartAt = START_AT.ToTraktLongDateTimeString();
             HistoryEndAt = END_AT.ToTraktLongDateTimeString();
+            MulitpleListItemTypes = LIST_ITEM_TYPE_MOVIE | LIST_ITEM_TYPE_SHOW;
+            MulitpleListItemTypesUriNames = new string[] { LIST_ITEM_TYPE_MOVIE.UriName, LIST_ITEM_TYPE_SHOW.UriName };
+            MulitpleListItemTypesEncoded = string.Join(ENCODED_COMMA, MulitpleListItemTypesUriNames);
         }
 
         private ITraktUserCustomListItemsPost SetupAddCustomListItemsPost()
