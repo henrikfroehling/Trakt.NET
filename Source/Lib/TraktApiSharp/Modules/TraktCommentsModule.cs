@@ -1,5 +1,6 @@
 ﻿namespace TraktApiSharp.Modules
 {
+    using Enums;
     using Exceptions;
     using Extensions;
     using Objects.Basic;
@@ -7,6 +8,7 @@
     using Objects.Get.Movies;
     using Objects.Get.Seasons;
     using Objects.Get.Shows;
+    using Objects.Get.Users;
     using Objects.Get.Users.Lists;
     using Objects.Post.Comments;
     using Objects.Post.Comments.Responses;
@@ -151,6 +153,51 @@
 
             var comments = await Task.WhenAll(tasks).ConfigureAwait(false);
             return comments.ToList();
+        }
+
+        /// <summary>
+        /// Gets recently updated comments.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/comments/updates/get-recently-updated-comments">"Trakt API Doc - Comments: Updates"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="commentType">Determines, which type of comments should be queried. See also <seealso cref="TraktCommentType" />.</param>
+        /// <param name="objectType">Determines, for which object types comments should be queried. See also <seealso cref="TraktObjectType" />.</param>
+        /// <param name="includeReplies">Determines, whether replies should be retrieved alongside with comments.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the commented objects should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="pagedParameters"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>
+        /// An <see cref="TraktPagedResponse{ITraktUserComment}"/> instance containing the queried recemntly updated comments and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktUserComment" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        public Task<TraktPagedResponse<ITraktUserComment>> GetRecentlyUpdatedCommentsAsync(TraktCommentType commentType = null,
+                                                                                           TraktObjectType objectType = null,
+                                                                                           bool? includeReplies = null,
+                                                                                           TraktExtendedInfo extendedInfo = null,
+                                                                                           TraktPagedParameters pagedParameters = null,
+                                                                                           CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecutePagedRequestAsync(new CommentsUpdatesRequest
+            {
+                CommentType = commentType,
+                ObjectType = objectType,
+                IncludeReplies = includeReplies,
+                ExtendedInfo = extendedInfo,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
+            },
+            cancellationToken);
         }
 
         /// <summary>
