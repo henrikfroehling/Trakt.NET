@@ -232,17 +232,11 @@
 
         private void ValidateShow(ITraktShow show)
         {
-            if (show == null)
-                throw new ArgumentNullException(nameof(show));
-
             if (show.Ids == null)
                 throw new ArgumentNullException(nameof(show.Ids));
 
             if (!show.Ids.HasAnyId)
                 throw new ArgumentException("no show ids set or valid", nameof(show.Ids));
-
-            if (show.Year.HasValue && show.Year.Value.ToString().Length != 4)
-                throw new ArgumentException("show year not valid", nameof(show.Year));
         }
 
         private void ValidateSeason(ITraktSeason season)

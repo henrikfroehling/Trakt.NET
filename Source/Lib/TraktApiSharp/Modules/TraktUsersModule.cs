@@ -15,6 +15,8 @@
     using Objects.Post.Users;
     using Objects.Post.Users.CustomListItems;
     using Objects.Post.Users.CustomListItems.Responses;
+    using Objects.Post.Users.HiddenItems;
+    using Objects.Post.Users.HiddenItems.Responses;
     using Objects.Post.Users.Responses;
     using Requests.Handler;
     using Requests.Parameters;
@@ -116,6 +118,39 @@
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
             }, cancellationToken);
+        }
+
+        /// <summary>
+        /// Adds items to an user's hidden list. Accepts shows, seasons and movies.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/add-hidden-items/add-hidden-items">"Trakt API Doc - Users: Add Hidden Items"</a> for more information.
+        /// </para>
+        /// <para>
+        /// It is recommended to use the <see cref="TraktUserHiddenItemsPostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktUserHiddenItemsPost" />.
+        /// See also <seealso cref="TraktUserHiddenItemsPost.Builder()" />.
+        /// </para>
+        /// </summary>
+        /// <param name="hiddenItemsPost">An <see cref="ITraktUserHiddenItemsPost" /> instance containing all shows, seasons and movies, which should be added.</param>
+        /// <param name="hiddenItemsSection"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>An <see cref="ITraktUserHiddenItemsPostResponse" /> instance, which contains information about which items were added and not found.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the given hidden items post is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given hidden items post is empty.</exception>
+        public Task<TraktResponse<ITraktUserHiddenItemsPostResponse>> AddHiddenItemsAsync(ITraktUserHiddenItemsPost hiddenItemsPost,
+                                                                                          TraktHiddenItemsSection hiddenItemsSection = null,
+                                                                                          CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserHiddenItemsAddRequest
+            {
+                RequestBody = hiddenItemsPost,
+                Section = hiddenItemsSection
+            },
+            cancellationToken);
         }
 
         /// <summary>

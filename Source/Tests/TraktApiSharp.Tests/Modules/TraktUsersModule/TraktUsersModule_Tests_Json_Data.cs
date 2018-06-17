@@ -1344,5 +1344,25 @@
                   }
                 }
               ]";
+
+        private const string HIDDEN_ITEMS_POST_RESPONSE_JSON =
+            @"{
+                ""added"": {
+                  ""movies"": 1,
+                  ""shows"": 2,
+                  ""seasons"": 2
+                },
+                ""not_found"": {
+                  ""movies"": [
+                    {
+                      ""ids"": {
+                        ""imdb"": ""tt0000111""
+                      }
+                    }
+                  ],
+                  ""shows"": [],
+                  ""seasons"": []
+                }
+              }";
     }
 }
