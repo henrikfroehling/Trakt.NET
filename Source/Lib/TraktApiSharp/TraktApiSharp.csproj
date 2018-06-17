@@ -1176,6 +1176,7 @@
     <Compile Include="Requests\Users\OAuth\UserFollowRequestsRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserFollowUserRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserFriendsRequest.cs" />
+    <Compile Include="Requests\Users\OAuth\UserHiddenItemsAddRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserHiddenItemsRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserLikesRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserListLikeRequest.cs" />
