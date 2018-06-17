@@ -14,6 +14,8 @@
 
         public IEnumerable<ITraktUserHiddenItemsPostSeason> Seasons { get; set; }
 
+        public static TraktUserHiddenItemsPostBuilder Builder() => new TraktUserHiddenItemsPostBuilder();
+
         public HttpContent ToHttpContent()
         {
             throw new System.NotImplementedException();

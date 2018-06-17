@@ -917,6 +917,7 @@
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\Json\Writer\UserCustomListItemsPostResponseObjectJsonWriter.cs" />
     <Compile Include="Objects\Post\Users\CustomListItems\Responses\Json\Writer\UserCustomListItemsRemovePostResponseObjectJsonWriter.cs" />
     <Compile Include="Objects\Post\Users\HiddenItems\Implementations\TraktUserHiddenItemsPost.cs" />
+    <Compile Include="Objects\Post\Users\HiddenItems\Implementations\TraktUserHiddenItemsPostBuilder.cs" />
     <Compile Include="Objects\Post\Users\HiddenItems\Implementations\TraktUserHiddenItemsPostMovie.cs" />
     <Compile Include="Objects\Post\Users\HiddenItems\Implementations\TraktUserHiddenItemsPostSeason.cs" />
     <Compile Include="Objects\Post\Users\HiddenItems\Implementations\TraktUserHiddenItemsPostShow.cs" />
