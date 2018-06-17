@@ -231,6 +231,7 @@
     <Compile Include="Modules\TraktPeopleModule\TraktPeopleModule_GetPersonLists_Tests.cs" />
     <Compile Include="Modules\TraktSyncModule\TraktSyncModule_Tests_Setup.cs" />
     <Compile Include="Modules\TraktUsersModule\TraktUsersModule_AddHiddenItems_Tests.cs" />
+    <Compile Include="Modules\TraktUsersModule\TraktUsersModule_RemoveHiddenItems_Tests.cs" />
     <Compile Include="Modules\TraktUsersModule\TraktUsersModule_Tests_Setup.cs" />
     <Compile Include="Objects\Authentication\Implementations\TraktAuthorization_Tests.cs" />
     <Compile Include="Objects\Authentication\Implementations\TraktDevice_Tests.cs" />
@@ -1428,6 +1429,7 @@
     <Compile Include="Requests\Syncs\OAuth\SyncWatchlistAddRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\SyncWatchlistRemoveRequest_Tests.cs" />
     <Compile Include="Requests\Syncs\OAuth\SyncWatchlistRequest_Tests.cs" />
+    <Compile Include="Requests\Users\OAuth\AUserHiddenItemsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\AUsersDeleteByIdRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\AUsersGetRequest%271_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\AUsersPagedGetRequest%271_Tests.cs" />
@@ -1451,6 +1453,7 @@
     <Compile Include="Requests\Users\OAuth\UserFollowUserRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserFriendsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserHiddenItemsAddRequest_Tests.cs" />
+    <Compile Include="Requests\Users\OAuth\UserHiddenItemsRemoveRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserHiddenItemsRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserLikesRequest_Tests.cs" />
     <Compile Include="Requests\Users\OAuth\UserListLikeRequest_Tests.cs" />

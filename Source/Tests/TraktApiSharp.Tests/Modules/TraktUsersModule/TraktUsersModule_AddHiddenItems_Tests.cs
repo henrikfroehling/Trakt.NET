@@ -20,14 +20,14 @@
         [Fact]
         public async Task Test_TraktUsersModule_AddHiddenItems()
         {
-            string postJson = await TestUtility.SerializeObject(AddHiddenItemsPost);
+            string postJson = await TestUtility.SerializeObject(HiddenItemsPost);
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(
                 AddHiddenItemsUri, postJson, HIDDEN_ITEMS_POST_RESPONSE_JSON);
 
             TraktResponse<ITraktUserHiddenItemsPostResponse> response =
-                await client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, HIDDEN_ITEMS_SECTION);
+                await client.Users.AddHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -60,7 +60,7 @@
         public void Test_TraktUsersModule_AddHiddenItems_Throws_NotFoundException()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, HttpStatusCode.NotFound);
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, HIDDEN_ITEMS_SECTION);
+            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktNotFoundException>();
         }
 
@@ -68,7 +68,7 @@
         public void Test_TraktUsersModule_AddHiddenItems_Throws_AuthorizationException()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, HttpStatusCode.Unauthorized);
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, HIDDEN_ITEMS_SECTION);
+            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktAuthorizationException>();
         }
 
@@ -76,7 +76,7 @@
         public void Test_TraktUsersModule_AddHiddenItems_Throws_BadRequestException()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, HttpStatusCode.BadRequest);
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, HIDDEN_ITEMS_SECTION);
+            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktBadRequestException>();
         }
 
@@ -84,7 +84,7 @@
         public void Test_TraktUsersModule_AddHiddenItems_Throws_ForbiddenException()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, HttpStatusCode.Forbidden);
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, HIDDEN_ITEMS_SECTION);
+            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktForbiddenException>();
         }
 
@@ -92,7 +92,7 @@
         public void Test_TraktUsersModule_AddHiddenItems_Throws_MethodNotFoundException()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, HttpStatusCode.MethodNotAllowed);
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, HIDDEN_ITEMS_SECTION);
+            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktMethodNotFoundException>();
         }
 
@@ -100,7 +100,7 @@
         public void Test_TraktUsersModule_AddHiddenItems_Throws_ConflictException()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, HttpStatusCode.Conflict);
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, HIDDEN_ITEMS_SECTION);
+            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktConflictException>();
         }
 
@@ -108,7 +108,7 @@
         public void Test_TraktUsersModule_AddHiddenItems_Throws_ServerException()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, HttpStatusCode.InternalServerError);
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, HIDDEN_ITEMS_SECTION);
+            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktServerException>();
         }
 
@@ -116,7 +116,7 @@
         public void Test_TraktUsersModule_AddHiddenItems_Throws_BadGatewayException()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, HttpStatusCode.BadGateway);
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, HIDDEN_ITEMS_SECTION);
+            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktBadGatewayException>();
         }
 
@@ -124,7 +124,7 @@
         public void Test_TraktUsersModule_AddHiddenItems_Throws_PreconditionFailedException()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, (HttpStatusCode)412);
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, HIDDEN_ITEMS_SECTION);
+            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktPreconditionFailedException>();
         }
 
@@ -132,7 +132,7 @@
         public void Test_TraktUsersModule_AddHiddenItems_Throws_ValidationException()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, (HttpStatusCode)422);
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, HIDDEN_ITEMS_SECTION);
+            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktValidationException>();
         }
 
@@ -140,7 +140,7 @@
         public void Test_TraktUsersModule_AddHiddenItems_Throws_RateLimitException()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, (HttpStatusCode)429);
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, HIDDEN_ITEMS_SECTION);
+            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktRateLimitException>();
         }
 
@@ -148,7 +148,7 @@
         public void Test_TraktUsersModule_AddHiddenItems_Throws_ServerUnavailableException_503()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, (HttpStatusCode)503);
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, HIDDEN_ITEMS_SECTION);
+            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
@@ -156,7 +156,7 @@
         public void Test_TraktUsersModule_AddHiddenItems_Throws_ServerUnavailableException_504()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, (HttpStatusCode)504);
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, HIDDEN_ITEMS_SECTION);
+            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
@@ -164,7 +164,7 @@
         public void Test_TraktUsersModule_AddHiddenItems_Throws_ServerUnavailableException_520()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, (HttpStatusCode)520);
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, HIDDEN_ITEMS_SECTION);
+            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
@@ -172,7 +172,7 @@
         public void Test_TraktUsersModule_AddHiddenItems_Throws_ServerUnavailableException_521()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, (HttpStatusCode)521);
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, HIDDEN_ITEMS_SECTION);
+            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
@@ -180,22 +180,22 @@
         public void Test_TraktUsersModule_AddHiddenItems_Throws_ServerUnavailableException_522()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, (HttpStatusCode)522);
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, HIDDEN_ITEMS_SECTION);
+            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
             act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
         public async Task Test_TraktUsersModule_AddHiddenItems_ArgumentExceptions()
         {
-            string postJson = await TestUtility.SerializeObject(AddHiddenItemsPost);
+            string postJson = await TestUtility.SerializeObject(HiddenItemsPost);
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, postJson, HIDDEN_ITEMS_POST_RESPONSE_JSON);
 
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, null);
+            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, null);
             act.Should().Throw<ArgumentNullException>();
 
-            act = () => client.Users.AddHiddenItemsAsync(AddHiddenItemsPost, TraktHiddenItemsSection.Unspecified);
+            act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, TraktHiddenItemsSection.Unspecified);
             act.Should().Throw<ArgumentException>();
 
             act = () => client.Users.AddHiddenItemsAsync(null, HIDDEN_ITEMS_SECTION);
