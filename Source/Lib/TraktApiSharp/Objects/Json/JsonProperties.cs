@@ -891,6 +891,36 @@
         internal const string USER_CUSTOM_LIST_ITEMS_REMOVE_POST_RESPONSE_PROPERTY_NAME_DELETED = "deleted";
         internal const string USER_CUSTOM_LIST_ITEMS_REMOVE_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND = "not_found";
 
+        // post users hidden items
+        internal const string USER_HIDDEN_ITEMS_POST_PROPERTY_NAME_MOVIES = "movies";
+        internal const string USER_HIDDEN_ITEMS_POST_PROPERTY_NAME_SHOWS = "shows";
+        internal const string USER_HIDDEN_ITEMS_POST_PROPERTY_NAME_SEASONS = "seasons";
+
+        internal const string USER_HIDDEN_ITEMS_POST_MOVIE_PROPERTY_NAME_TITLE = "title";
+        internal const string USER_HIDDEN_ITEMS_POST_MOVIE_PROPERTY_NAME_YEAR = "year";
+        internal const string USER_HIDDEN_ITEMS_POST_MOVIE_PROPERTY_NAME_IDS = "ids";
+
+        internal const string USER_HIDDEN_ITEMS_POST_SHOW_PROPERTY_NAME_TITLE = "title";
+        internal const string USER_HIDDEN_ITEMS_POST_SHOW_PROPERTY_NAME_YEAR = "year";
+        internal const string USER_HIDDEN_ITEMS_POST_SHOW_PROPERTY_NAME_IDS = "ids";
+        internal const string USER_HIDDEN_ITEMS_POST_SHOW_PROPERTY_NAME_SEASONS = "seasons";
+
+        internal const string USER_HIDDEN_ITEMS_POST_SHOW_SEASON_PROPERTY_NAME_NUMBER = "number";
+
+        internal const string USER_HIDDEN_ITEMS_POST_SEASON_PROPERTY_NAME_IDS = "ids";
+
+        // post users hidden items responses
+        internal const string USER_HIDDEN_ITEMS_POST_RESPONSE_PROPERTY_NAME_ADDED = "added";
+        internal const string USER_HIDDEN_ITEMS_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND = "not_found";
+
+        internal const string USER_HIDDEN_ITEMS_POST_RESPONSE_ADDED_GROUP_PROPERTY_NAME_MOVIES = "movies";
+        internal const string USER_HIDDEN_ITEMS_POST_RESPONSE_ADDED_GROUP_PROPERTY_NAME_SHOWS = "shows";
+        internal const string USER_HIDDEN_ITEMS_POST_RESPONSE_ADDED_GROUP_PROPERTY_NAME_SEASONS = "seasons";
+
+        internal const string USER_HIDDEN_ITEMS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_MOVIES = "movies";
+        internal const string USER_HIDDEN_ITEMS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SHOWS = "shows";
+        internal const string USER_HIDDEN_ITEMS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SEASONS = "seasons";
+
         // post users
         internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_NAME = "name";
         internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_DESCRIPTION = "description";
