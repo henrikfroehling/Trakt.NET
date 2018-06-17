@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		LICENSE.md = LICENSE.md
 		PublishRelease.txt = PublishRelease.txt
 		README.md = README.md
-		Source\Lib\TraktApiSharp\TraktApiSharp-v1.0.0-alpha2.nuspec = Source\Lib\TraktApiSharp\TraktApiSharp-v1.0.0-alpha2.nuspec
+		Source\Lib\TraktApiSharp\TraktApiSharp-v1.0.0-alpha3.nuspec = Source\Lib\TraktApiSharp\TraktApiSharp-v1.0.0-alpha3.nuspec
 		Source\Lib\TraktApiSharp\TraktApiSharp.nuspec = Source\Lib\TraktApiSharp\TraktApiSharp.nuspec
 	EndProjectSection
 EndProject

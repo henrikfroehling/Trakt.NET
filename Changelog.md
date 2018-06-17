@@ -4,6 +4,58 @@ Release notes
 Version 1.0.0
 ===
 
+#### 1.0.0-alpha3
+(2018-06-17)
+
+Breaking Changes:
+
+- New response classes
+  - `TraktNoContentResponse` replaces all `Task` return types in `Modules`
+  - `TraktResponse<TContentType>` replaces all `Task<TItem>` return types in `Modules`
+  - `TraktListResponse<TContentType>` replaces all `Task<IEnumerable<TItem>>` return types in `Modules`
+  - `TraktPagedResponse<TContentType>` replaces all `Task<TraktPaginationListResult<TItem>>` return types in `Modules`
+  - [More information](https://github.com/henrikfroehling/TraktApiSharp/wiki/00-Prereleases#v100-alpha1)
+
+- .NET Standard 1.1 replaces PCL
+
+Added:
+
+- support for "networks" GET request ([Issue 69](https://github.com/henrikfroehling/TraktApiSharp/issues/69))
+- support for "certifications/{type}" GET request ([Issue 70](https://github.com/henrikfroehling/TraktApiSharp/issues/70))
+- support for "users/hidden/{section}" POST request ([Issue 71](https://github.com/henrikfroehling/TraktApiSharp/issues/71))
+- support for "users/hidden/{section}/remove" POST ([Issue 72](https://github.com/henrikfroehling/TraktApiSharp/issues/72))
+- missing "network" property in ITraktSeason ([Issue 83](https://github.com/henrikfroehling/TraktApiSharp/issues/83))
+- missing "last_episode" property in ITraktShowProgress ([Issue 88](https://github.com/henrikfroehling/TraktApiSharp/issues/88))
+- "dolby_atmos" and "dts_x" in TraktMediaAudio ([Issue 89](https://github.com/henrikfroehling/TraktApiSharp/issues/89))
+- support for X-Item-ID and X-Item-Type response headers ([Issue 106](https://github.com/henrikfroehling/TraktApiSharp/issues/106))
+- support for "comments/{id}/item" GET request ([Issue 107](https://github.com/henrikfroehling/TraktApiSharp/issues/107))
+- support for "comments/{id}/likes" GET request ([Issue 109](https://github.com/henrikfroehling/TraktApiSharp/issues/109))
+- missing "country" property in ITraktMovie ([Issue 110](https://github.com/henrikfroehling/TraktApiSharp/issues/110))
+- "comment_count" property in ITraktMovie, ITraktShow, ITraktSeason and ITraktEpisode ([Issue 111](https://github.com/henrikfroehling/TraktApiSharp/issues/111))
+- support for "people/{id}/lists/{type}/{sort}" GET request ([Issue 116](https://github.com/henrikfroehling/TraktApiSharp/issues/116))
+- support for "comments/trending/{comment_type}/{type}?{include_replies}" GET request ([Issue 117](https://github.com/henrikfroehling/TraktApiSharp/issues/117))
+- support for "comments/recent/{comment_type}/{type}?{include_replies}" GET request ([Issue 118](https://github.com/henrikfroehling/TraktApiSharp/issues/118))
+- support for "comments/updates/{comment_type}/{type}?{include_replies}" GET request ([Issue 119](https://github.com/henrikfroehling/TraktApiSharp/issues/119))
+- support for "lists/trending" GET request ([Issue 120](https://github.com/henrikfroehling/TraktApiSharp/issues/120))
+- support for "lists/popular" GET request ([Issue 121](https://github.com/henrikfroehling/TraktApiSharp/issues/121))
+- support for "include_replies" parameter in "users/id/comments" GET request ([Issue 122](https://github.com/henrikfroehling/TraktApiSharp/issues/122))
+- properties for "sort_by" and "sort_how" in `ITraktUserCustomListPost` ([Issue 123](https://github.com/henrikfroehling/TraktApiSharp/issues/123))
+- "reset_at" property in ITraktShowWatchedProgress ([Issue 129](https://github.com/henrikfroehling/TraktApiSharp/issues/129))
+- flag for "progress_watched_reset" section in TraktHiddenItemsSection ([Issue 130](https://github.com/henrikfroehling/TraktApiSharp/issues/130))
+
+Fixed:
+
+- serialization of Trakt objects to JSON ([Issue #77](https://github.com/henrikfroehling/TraktApiSharp/issues/77))
+
+Improved:
+
+- http client handling ([Issue #21](https://github.com/henrikfroehling/TraktApiSharp/issues/21))
+- serialization of Trakt objects to JSON ([Issue #75](https://github.com/henrikfroehling/TraktApiSharp/issues/75))
+- json deserialization for authorization objects ([Issue #78](https://github.com/henrikfroehling/TraktApiSharp/issues/78))
+- allow multiple types as filter in "users/{id}/lists/{list_id}/items/{type}" request ([Issue #124](https://github.com/henrikfroehling/TraktApiSharp/issues/124))
+
+---------
+
 #### 1.0.0-alpha2
 (2017-08-11)
 

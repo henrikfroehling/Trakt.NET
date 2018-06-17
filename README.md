@@ -2,8 +2,8 @@ TraktApiSharp [![Twitter](https://img.shields.io/twitter/url/https://www.nuget.o
 ===
 ##### This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).
 
-[![NuGet Package](https://img.shields.io/badge/NuGet-v0.10.0-brightgreen.svg?style=flat)](https://www.nuget.org/packages/TraktApiSharp)
-[![NuGet Package](https://img.shields.io/badge/NuGet-v1.0.0alpha2-orange.svg?style=flat)](https://www.nuget.org/packages/TraktApiSharp/1.0.0-alpha2)
+[![NuGet Package](https://img.shields.io/badge/NuGet-v0.11.0-brightgreen.svg?style=flat)](https://www.nuget.org/packages/TraktApiSharp)
+[![NuGet Package](https://img.shields.io/badge/NuGet-v1.0.0alpha3-orange.svg?style=flat)](https://www.nuget.org/packages/TraktApiSharp/1.0.0-alpha3)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![CodeFactor](https://www.codefactor.io/repository/github/henrikfroehling/traktapisharp/badge)](https://www.codefactor.io/repository/github/henrikfroehling/traktapisharp)
@@ -53,7 +53,7 @@ or with the [NuGet Package Management](https://docs.nuget.org/consume/package-ma
 Each release will also be published [here](https://henrikfroehling.github.io/TraktApiSharp/downloads/) and [here](https://github.com/henrikfroehling/TraktApiSharp/releases).
 
 #### Library API Documentation
-- [Latest Version](https://henrikfroehling.github.io/TraktApiSharp/apidoc/v0.10.0/)
+- [Latest Version](https://henrikfroehling.github.io/TraktApiSharp/apidoc/v0.11.0/)
 - [All Versions](https://henrikfroehling.github.io/TraktApiSharp/apidoc/)
 
 #### Basic Usage or [more advanced usage guide](https://henrikfroehling.github.io/TraktApiSharp/guide/)
