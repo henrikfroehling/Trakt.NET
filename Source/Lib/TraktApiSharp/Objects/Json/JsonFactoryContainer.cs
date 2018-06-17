@@ -348,6 +348,7 @@
             s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostResponse), new UserHiddenItemsPostResponseJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostResponseGroup), new UserHiddenItemsPostResponseGroupJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostResponseNotFoundGroup), new UserHiddenItemsPostResponseNotFoundGroupJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsRemovePostResponse), new UserHiddenItemsRemovePostResponseJsonIOFactory());
 
             // user objects
             s_jsonIOFactories.Add(typeof(ITraktUser), new UserJsonIOFactory());

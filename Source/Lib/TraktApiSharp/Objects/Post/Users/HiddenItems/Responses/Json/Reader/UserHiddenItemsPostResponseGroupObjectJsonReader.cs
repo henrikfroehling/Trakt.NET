@@ -22,13 +22,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_HIDDEN_ITEMS_POST_RESPONSE_ADDED_GROUP_PROPERTY_NAME_MOVIES:
+                        case JsonProperties.USER_HIDDEN_ITEMS_POST_RESPONSE_GROUP_PROPERTY_NAME_MOVIES:
                             hiddenItemsPostResponseGroup.Movies = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.USER_HIDDEN_ITEMS_POST_RESPONSE_ADDED_GROUP_PROPERTY_NAME_SHOWS:
+                        case JsonProperties.USER_HIDDEN_ITEMS_POST_RESPONSE_GROUP_PROPERTY_NAME_SHOWS:
                             hiddenItemsPostResponseGroup.Shows = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.USER_HIDDEN_ITEMS_POST_RESPONSE_ADDED_GROUP_PROPERTY_NAME_SEASONS:
+                        case JsonProperties.USER_HIDDEN_ITEMS_POST_RESPONSE_GROUP_PROPERTY_NAME_SEASONS:
                             hiddenItemsPostResponseGroup.Seasons = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:
