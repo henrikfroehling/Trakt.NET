@@ -1159,6 +1159,7 @@
     <Compile Include="Requests\Syncs\OAuth\SyncWatchlistRemoveRequest.cs" />
     <Compile Include="Requests\Syncs\OAuth\SyncWatchlistRequest.cs" />
     <Compile Include="Requests\Handler\RequestHandler.cs" />
+    <Compile Include="Requests\Users\OAuth\AUserHiddenItemsRequest.cs" />
     <Compile Include="Requests\Users\OAuth\AUsersDeleteByIdRequest.cs" />
     <Compile Include="Requests\Users\OAuth\AUsersGetRequest%271.cs" />
     <Compile Include="Requests\Users\OAuth\AUsersPagedGetRequest%271.cs" />
@@ -1182,6 +1183,7 @@
     <Compile Include="Requests\Users\OAuth\UserFollowUserRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserFriendsRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserHiddenItemsAddRequest.cs" />
+    <Compile Include="Requests\Users\OAuth\UserHiddenItemsRemoveRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserHiddenItemsRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserLikesRequest.cs" />
     <Compile Include="Requests\Users\OAuth\UserListLikeRequest.cs" />
