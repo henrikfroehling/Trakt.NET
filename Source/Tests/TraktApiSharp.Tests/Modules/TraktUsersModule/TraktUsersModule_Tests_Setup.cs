@@ -5,8 +5,10 @@
     using TraktApiSharp.Extensions;
     using TraktApiSharp.Objects.Get.Movies;
     using TraktApiSharp.Objects.Get.People;
+    using TraktApiSharp.Objects.Get.Seasons;
     using TraktApiSharp.Objects.Get.Shows;
     using TraktApiSharp.Objects.Post.Users.CustomListItems;
+    using TraktApiSharp.Objects.Post.Users.HiddenItems;
 
     public partial class TraktUsersModule_Tests
     {
@@ -19,6 +21,8 @@
         private string[] MulitpleListItemTypesUriNames { get; }
         private string MulitpleListItemTypesEncoded { get; }
         private string GetMulitpleListItemTypes { get; }
+        private string AddHiddenItemsUri { get; }
+        private ITraktUserHiddenItemsPost AddHiddenItemsPost { get; }
 
         public TraktUsersModule_Tests()
         {
@@ -30,6 +34,8 @@
             MulitpleListItemTypes = LIST_ITEM_TYPE_MOVIE | LIST_ITEM_TYPE_SHOW;
             MulitpleListItemTypesUriNames = new string[] { LIST_ITEM_TYPE_MOVIE.UriName, LIST_ITEM_TYPE_SHOW.UriName };
             MulitpleListItemTypesEncoded = string.Join(ENCODED_COMMA, MulitpleListItemTypesUriNames);
+            AddHiddenItemsUri = $"users/hidden/{HIDDEN_ITEMS_SECTION.UriName}";
+            AddHiddenItemsPost = SetupAddHiddenItemsPost();
         }
 
         private ITraktUserCustomListItemsPost SetupAddCustomListItemsPost()
@@ -172,6 +178,66 @@
                             Imdb = "nm0000313",
                             Tmdb = 1229,
                             TvRage = 59067
+                        }
+                    }
+                }
+            };
+        }
+
+        private ITraktUserHiddenItemsPost SetupAddHiddenItemsPost()
+        {
+            return new TraktUserHiddenItemsPost
+            {
+                Movies = new List<ITraktUserHiddenItemsPostMovie>()
+                {
+                    new TraktUserHiddenItemsPostMovie
+                    {
+                        Ids = new TraktMovieIds { Trakt = 1 },
+                    },
+                    new TraktUserHiddenItemsPostMovie
+                    {
+                        Ids = new TraktMovieIds { Imdb = "tt0000111" }
+                    }
+                },
+                Shows = new List<ITraktUserHiddenItemsPostShow>()
+                {
+                    new TraktUserHiddenItemsPostShow
+                    {
+                        Ids = new TraktShowIds { Trakt = 1 }
+                    },
+                    new TraktUserHiddenItemsPostShow
+                    {
+                        Seasons = new List<ITraktUserHiddenItemsPostShowSeason>()
+                        {
+                            new TraktUserHiddenItemsPostShowSeason
+                            {
+                                Number = 1
+                            }
+                        },
+                        Ids = new TraktShowIds { Trakt = 2 }
+                    },
+                    new TraktUserHiddenItemsPostShow
+                    {
+                        Seasons = new List<ITraktUserHiddenItemsPostShowSeason>()
+                        {
+                            new TraktUserHiddenItemsPostShowSeason
+                            {
+                                Number = 2
+                            }
+                        },
+                        Ids = new TraktShowIds { Trakt = 3 }
+                    }
+                },
+                Seasons = new List<ITraktUserHiddenItemsPostSeason>()
+                {
+                    new TraktUserHiddenItemsPostSeason
+                    {
+                        Ids = new TraktSeasonIds
+                        {
+                            Trakt = 61430,
+                            Tvdb = 578373,
+                            Tmdb = 60523,
+                            TvRage = 36939
                         }
                     }
                 }

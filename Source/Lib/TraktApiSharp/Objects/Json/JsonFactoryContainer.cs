@@ -75,6 +75,10 @@
     using Post.Users.CustomListItems.Json.Factories;
     using Post.Users.CustomListItems.Responses;
     using Post.Users.CustomListItems.Responses.Json.Factories;
+    using Post.Users.HiddenItems;
+    using Post.Users.HiddenItems.Json.Factories;
+    using Post.Users.HiddenItems.Responses;
+    using Post.Users.HiddenItems.Responses.Json.Factories;
     using Post.Users.Json.Factories;
     using Post.Users.Responses;
     using Post.Users.Responses.Json.Factories;
@@ -332,6 +336,18 @@
             s_jsonIOFactories.Add(typeof(ITraktUserCustomListItemsPostResponseGroup), new UserCustomListItemsPostResponseGroupJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserCustomListItemsPostResponseNotFoundGroup), new UserCustomListItemsPostResponseNotFoundGroupJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserCustomListItemsRemovePostResponse), new UserCustomListItemsRemovePostResponseJsonIOFactory());
+
+            // user hidden items post objects
+            s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPost), new UserHiddenItemsPostJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostMovie), new UserHiddenItemsPostMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostSeason), new UserHiddenItemsPostSeasonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostShow), new UserHiddenItemsPostShowJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostShowSeason), new UserHiddenItemsPostShowSeasonJsonIOFactory());
+
+            // user hidden items post response objects
+            s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostResponse), new UserHiddenItemsPostResponseJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostResponseGroup), new UserHiddenItemsPostResponseGroupJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostResponseNotFoundGroup), new UserHiddenItemsPostResponseNotFoundGroupJsonIOFactory());
 
             // user objects
             s_jsonIOFactories.Add(typeof(ITraktUser), new UserJsonIOFactory());
