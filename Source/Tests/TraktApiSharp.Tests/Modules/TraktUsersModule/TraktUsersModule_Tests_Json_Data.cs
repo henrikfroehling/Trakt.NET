@@ -1364,5 +1364,25 @@
                   ""seasons"": []
                 }
               }";
+
+        private const string HIDDEN_ITEMS_REMOVE_POST_RESPONSE_JSON =
+            @"{
+                ""deleted"": {
+                  ""movies"": 1,
+                  ""shows"": 2,
+                  ""seasons"": 2
+                },
+                ""not_found"": {
+                  ""movies"": [
+                    {
+                      ""ids"": {
+                        ""imdb"": ""tt0000111""
+                      }
+                    }
+                  ],
+                  ""shows"": [],
+                  ""seasons"": []
+                }
+              }";
     }
 }

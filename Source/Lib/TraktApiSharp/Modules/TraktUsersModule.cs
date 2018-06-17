@@ -140,12 +140,45 @@
         /// <exception cref="ArgumentNullException">Thrown if the given hidden items post is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given hidden items post is empty.</exception>
         public Task<TraktResponse<ITraktUserHiddenItemsPostResponse>> AddHiddenItemsAsync(ITraktUserHiddenItemsPost hiddenItemsPost,
-                                                                                          TraktHiddenItemsSection hiddenItemsSection = null,
+                                                                                          TraktHiddenItemsSection hiddenItemsSection,
                                                                                           CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new UserHiddenItemsAddRequest
+            {
+                RequestBody = hiddenItemsPost,
+                Section = hiddenItemsSection
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
+        /// Removes items from an user's hidden list. Accepts shows, seasons and movies.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/remove-hidden-items/remove-hidden-items">"Trakt API Doc - Users: Remove Hidden Items"</a> for more information.
+        /// </para>
+        /// <para>
+        /// It is recommended to use the <see cref="TraktUserHiddenItemsPostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktUserHiddenItemsPost" />.
+        /// See also <seealso cref="TraktUserHiddenItemsPost.Builder()" />.
+        /// </para>
+        /// </summary>
+        /// <param name="hiddenItemsPost">An <see cref="ITraktUserHiddenItemsPost" /> instance containing all shows, seasons and movies, which should be removed.</param>
+        /// <param name="hiddenItemsSection"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>An <see cref="ITraktUserHiddenItemsRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the given hidden items post is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given hidden items post is empty.</exception>
+        public Task<TraktResponse<ITraktUserHiddenItemsRemovePostResponse>> RemoveHiddenItemsAsync(ITraktUserHiddenItemsPost hiddenItemsPost,
+                                                                                                   TraktHiddenItemsSection hiddenItemsSection,
+                                                                                                   CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserHiddenItemsRemoveRequest
             {
                 RequestBody = hiddenItemsPost,
                 Section = hiddenItemsSection

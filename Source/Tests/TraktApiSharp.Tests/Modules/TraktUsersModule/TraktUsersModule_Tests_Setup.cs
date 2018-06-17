@@ -22,7 +22,8 @@
         private string MulitpleListItemTypesEncoded { get; }
         private string GetMulitpleListItemTypes { get; }
         private string AddHiddenItemsUri { get; }
-        private ITraktUserHiddenItemsPost AddHiddenItemsPost { get; }
+        private string RemoveHiddenItemsUri { get; }
+        private ITraktUserHiddenItemsPost HiddenItemsPost { get; }
 
         public TraktUsersModule_Tests()
         {
@@ -35,7 +36,8 @@
             MulitpleListItemTypesUriNames = new string[] { LIST_ITEM_TYPE_MOVIE.UriName, LIST_ITEM_TYPE_SHOW.UriName };
             MulitpleListItemTypesEncoded = string.Join(ENCODED_COMMA, MulitpleListItemTypesUriNames);
             AddHiddenItemsUri = $"users/hidden/{HIDDEN_ITEMS_SECTION.UriName}";
-            AddHiddenItemsPost = SetupAddHiddenItemsPost();
+            RemoveHiddenItemsUri = $"users/hidden/{HIDDEN_ITEMS_SECTION.UriName}/remove";
+            HiddenItemsPost = SetupHiddenItemsPost();
         }
 
         private ITraktUserCustomListItemsPost SetupAddCustomListItemsPost()
@@ -184,7 +186,7 @@
             };
         }
 
-        private ITraktUserHiddenItemsPost SetupAddHiddenItemsPost()
+        private ITraktUserHiddenItemsPost SetupHiddenItemsPost()
         {
             return new TraktUserHiddenItemsPost
             {

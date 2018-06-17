@@ -231,6 +231,7 @@
     <Compile Include="Modules\TraktPeopleModule\TraktPeopleModule_GetPersonLists_Tests.cs" />
     <Compile Include="Modules\TraktSyncModule\TraktSyncModule_Tests_Setup.cs" />
     <Compile Include="Modules\TraktUsersModule\TraktUsersModule_AddHiddenItems_Tests.cs" />
+    <Compile Include="Modules\TraktUsersModule\TraktUsersModule_RemoveHiddenItems_Tests.cs" />
     <Compile Include="Modules\TraktUsersModule\TraktUsersModule_Tests_Setup.cs" />
     <Compile Include="Objects\Authentication\Implementations\TraktAuthorization_Tests.cs" />
     <Compile Include="Objects\Authentication\Implementations\TraktDevice_Tests.cs" />
