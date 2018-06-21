@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the audio type in a collection item's metadata.</summary>
     public sealed class TraktMediaAudio : TraktEnumeration

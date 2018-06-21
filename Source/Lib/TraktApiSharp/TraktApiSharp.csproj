@@ -8,7 +8,7 @@
     <ProjectGuid>{85190989-7D73-4B21-9225-AD02FE14D9C2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TraktApiSharp</RootNamespace>
+    <RootNamespace>TraktNet</RootNamespace>
     <AssemblyName>TraktApiSharp</AssemblyName>
     <DefaultLanguage>de-DE</DefaultLanguage>
     <FileAlignment>512</FileAlignment>

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Calendars.Json.Writer
+﻿namespace TraktNet.Objects.Get.Calendars.Json.Writer
 {
     using Episodes.Json.Writer;
     using Extensions;

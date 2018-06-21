@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Scrobbles
+﻿namespace TraktNet.Objects.Post.Scrobbles
 {
     using Requests.Interfaces;
 

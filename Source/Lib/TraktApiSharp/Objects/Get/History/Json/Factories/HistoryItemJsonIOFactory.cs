@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.History.Json.Factories
+﻿namespace TraktNet.Objects.Get.History.Json.Factories
 {
     using Get.History.Json.Reader;
     using Get.History.Json.Writer;

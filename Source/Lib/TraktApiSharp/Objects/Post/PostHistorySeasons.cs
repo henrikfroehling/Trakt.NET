@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post
+﻿namespace TraktNet.Objects.Post
 {
     using System;
     using System.Collections;

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Certifications
+﻿namespace TraktNet.Requests.Certifications
 {
     internal class MovieCertificationsRequest : ACertificationsRequest
     {

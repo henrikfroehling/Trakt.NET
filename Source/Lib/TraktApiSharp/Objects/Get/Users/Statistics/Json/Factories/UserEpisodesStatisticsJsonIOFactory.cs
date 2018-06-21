@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Users.Statistics.Json.Factories
+﻿namespace TraktNet.Objects.Get.Users.Statistics.Json.Factories
 {
     using Get.Users.Statistics.Json.Reader;
     using Get.Users.Statistics.Json.Writer;

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Networks
+﻿namespace TraktNet.Requests.Networks
 {
     using Base;
     using Objects.Basic;

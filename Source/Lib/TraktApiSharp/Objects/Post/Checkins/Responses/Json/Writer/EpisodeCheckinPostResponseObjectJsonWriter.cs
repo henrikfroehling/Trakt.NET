@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Checkins.Responses.Json.Writer
+﻿namespace TraktNet.Objects.Post.Checkins.Responses.Json.Writer
 {
     using Get.Episodes.Json.Writer;
     using Get.Shows.Json.Writer;

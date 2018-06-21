@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Watchlist
+﻿namespace TraktNet.Objects.Get.Watchlist
 {
     using Enums;
     using Episodes;

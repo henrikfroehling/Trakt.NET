@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the action type for a scroblle post.</summary>
     public sealed class TraktScrobbleActionType : TraktEnumeration

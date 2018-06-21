@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Users.Statistics
+﻿namespace TraktNet.Objects.Get.Users.Statistics
 {
     /// <summary>A collection of Trakt user statistics for episodes.</summary>
     public class TraktUserEpisodesStatistics : ITraktUserEpisodesStatistics

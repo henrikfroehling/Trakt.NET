@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Comments.Responses.Json.Reader
+﻿namespace TraktNet.Objects.Post.Comments.Responses.Json.Reader
 {
     using Basic.Json.Reader;
     using Get.Users.Json.Reader;

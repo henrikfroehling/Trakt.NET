@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist
+﻿namespace TraktNet.Objects.Post.Syncs.Watchlist
 {
     /// <summary>A Trakt watchlist post episode, containing the required episode number.</summary>
     public class TraktSyncWatchlistPostShowEpisode : ITraktSyncWatchlistPostShowEpisode

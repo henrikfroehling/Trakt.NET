@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist.Responses.Json.Writer
+﻿namespace TraktNet.Objects.Post.Syncs.Watchlist.Responses.Json.Writer
 {
     using Newtonsoft.Json;
     using Objects.Json;

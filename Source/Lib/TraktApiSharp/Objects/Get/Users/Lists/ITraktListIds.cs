@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Users.Lists
+﻿namespace TraktNet.Objects.Get.Users.Lists
 {
     using Basic;
 

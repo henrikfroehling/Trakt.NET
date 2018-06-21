@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Exceptions
+﻿namespace TraktNet.Exceptions
 {
     /// <summary>Exception, that will be thrown, if a method is not allowed or not existing.</summary>
     public class TraktMethodNotFoundException : TraktException

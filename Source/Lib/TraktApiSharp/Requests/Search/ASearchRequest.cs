@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Search
+﻿namespace TraktNet.Requests.Search
 {
     using Base;
     using Enums;

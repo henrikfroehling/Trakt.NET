@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Recommendations.OAuth
+﻿namespace TraktNet.Requests.Recommendations.OAuth
 {
     using Objects.Get.Movies;
 

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the status of a show.</summary>
     public sealed class TraktShowStatus : TraktEnumeration

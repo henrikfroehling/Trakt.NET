@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Genres
+﻿namespace TraktNet.Requests.Genres
 {
     using Base;
     using Objects.Basic;

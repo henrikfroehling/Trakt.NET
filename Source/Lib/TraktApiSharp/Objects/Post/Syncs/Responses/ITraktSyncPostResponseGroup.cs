@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Responses
+﻿namespace TraktNet.Objects.Post.Syncs.Responses
 {
     public interface ITraktSyncPostResponseGroup
     {

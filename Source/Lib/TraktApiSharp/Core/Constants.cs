@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Core
+﻿namespace TraktNet.Core
 {
     internal static class Constants
     {

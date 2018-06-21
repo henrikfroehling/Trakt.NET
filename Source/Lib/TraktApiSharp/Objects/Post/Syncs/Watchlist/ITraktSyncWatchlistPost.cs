@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist
+﻿namespace TraktNet.Objects.Post.Syncs.Watchlist
 {
     using Requests.Interfaces;
     using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Syncs.OAuth
+﻿namespace TraktNet.Requests.Syncs.OAuth
 {
     using Objects.Post.Syncs.Ratings;
     using Objects.Post.Syncs.Ratings.Responses;

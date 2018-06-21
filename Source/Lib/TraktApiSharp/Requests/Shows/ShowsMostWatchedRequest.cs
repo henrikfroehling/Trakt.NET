@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Shows
+﻿namespace TraktNet.Requests.Shows
 {
     using Objects.Get.Shows;
 

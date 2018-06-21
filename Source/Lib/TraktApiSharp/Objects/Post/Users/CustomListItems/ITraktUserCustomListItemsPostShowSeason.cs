@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems
+﻿namespace TraktNet.Objects.Post.Users.CustomListItems
 {
     using System.Collections.Generic;
 

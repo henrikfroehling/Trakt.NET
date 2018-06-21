@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Syncs.OAuth
+﻿namespace TraktNet.Requests.Syncs.OAuth
 {
     using Base;
     using System.Collections.Generic;

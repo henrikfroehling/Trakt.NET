@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Base
+﻿namespace TraktNet.Requests.Base
 {
     internal enum RequestObjectType
     {

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist.Responses.Json.Reader
+﻿namespace TraktNet.Objects.Post.Syncs.Watchlist.Responses.Json.Reader
 {
     using Newtonsoft.Json;
     using Objects.Json;

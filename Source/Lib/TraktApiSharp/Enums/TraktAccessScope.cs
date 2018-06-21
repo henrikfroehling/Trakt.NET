@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the access authorization for different resources.</summary>
     public sealed class TraktAccessScope : TraktEnumeration

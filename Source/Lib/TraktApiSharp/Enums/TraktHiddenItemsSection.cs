@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the section, from which hidden items should be requested.</summary>
     public sealed class TraktHiddenItemsSection : TraktEnumeration

@@ -1,10 +1,10 @@
-﻿namespace TraktApiSharp.Objects.Authentication.Json.Reader
+﻿namespace TraktNet.Objects.Authentication.Json.Reader
 {
+    using Enums;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
     using System.Threading.Tasks;
-    using TraktApiSharp.Enums;
 
     internal class AuthorizationObjectJsonReader : AObjectJsonReader<ITraktAuthorization>
     {

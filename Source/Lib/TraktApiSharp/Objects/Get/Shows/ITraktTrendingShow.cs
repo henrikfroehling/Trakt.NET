@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Shows
+﻿namespace TraktNet.Objects.Get.Shows
 {
     public interface ITraktTrendingShow : ITraktShow
     {

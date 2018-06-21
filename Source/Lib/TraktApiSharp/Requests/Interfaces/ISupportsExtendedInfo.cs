@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Interfaces
+﻿namespace TraktNet.Requests.Interfaces
 {
     using Parameters;
 

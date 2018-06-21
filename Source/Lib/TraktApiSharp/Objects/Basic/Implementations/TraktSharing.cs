@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Basic
+﻿namespace TraktNet.Objects.Basic
 {
     /// <summary>Represents Trakt connection options.</summary>
     public class TraktSharing : ITraktSharing

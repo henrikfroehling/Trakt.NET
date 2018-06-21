@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Calendars.Json.Factories
+﻿namespace TraktNet.Objects.Get.Calendars.Json.Factories
 {
     using Get.Calendars.Json.Reader;
     using Get.Calendars.Json.Writer;

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Exceptions
+﻿namespace TraktNet.Exceptions
 {
     /// <summary>Exception, that will be thrown, if the user denied the OAuth authentication.</summary>
     public class TraktDeniedException : TraktException

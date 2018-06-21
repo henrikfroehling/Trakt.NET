@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Watched.Json.Writer
+﻿namespace TraktNet.Objects.Get.Watched.Json.Writer
 {
     using Newtonsoft.Json;
     using Objects.Json;

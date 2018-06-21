@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Utils
+﻿namespace TraktNet.Utils
 {
     /// <summary>A small container containing two values of different types.</summary>
     /// <typeparam name="T">The type of the first element in this pair.</typeparam>

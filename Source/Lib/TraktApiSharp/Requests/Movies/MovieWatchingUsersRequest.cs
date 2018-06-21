@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Movies
+﻿namespace TraktNet.Requests.Movies
 {
     using Interfaces;
     using Objects.Get.Users;

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the time period for most played, most watched and most collected movie and show requests.</summary>
     public sealed class TraktTimePeriod : TraktEnumeration

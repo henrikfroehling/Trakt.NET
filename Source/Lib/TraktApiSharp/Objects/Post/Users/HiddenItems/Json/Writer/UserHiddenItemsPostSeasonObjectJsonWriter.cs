@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.HiddenItems.Json.Writer
+﻿namespace TraktNet.Objects.Post.Users.HiddenItems.Json.Writer
 {
     using Get.Seasons.Json.Writer;
     using Newtonsoft.Json;

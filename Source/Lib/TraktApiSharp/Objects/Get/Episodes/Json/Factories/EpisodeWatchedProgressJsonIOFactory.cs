@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Episodes.Json.Factories
+﻿namespace TraktNet.Objects.Get.Episodes.Json.Factories
 {
     using Get.Episodes.Json.Reader;
     using Get.Episodes.Json.Writer;

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.People
+﻿namespace TraktNet.Objects.Get.People
 {
     /// <summary>A collection of ids for various web services, including the Trakt id, for a Trakt person.</summary>
     public class TraktPersonIds : ITraktPersonIds

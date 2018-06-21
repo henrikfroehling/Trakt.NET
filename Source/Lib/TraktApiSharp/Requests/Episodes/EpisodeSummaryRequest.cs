@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Episodes
+﻿namespace TraktNet.Requests.Episodes
 {
     using Interfaces;
     using Objects.Get.Episodes;

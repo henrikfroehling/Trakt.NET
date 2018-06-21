@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Watchlist.Json.Writer
+﻿namespace TraktNet.Objects.Get.Watchlist.Json.Writer
 {
     using Episodes.Json.Writer;
     using Extensions;

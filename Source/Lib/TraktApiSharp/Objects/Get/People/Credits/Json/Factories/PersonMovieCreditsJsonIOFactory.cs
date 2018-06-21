@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.People.Credits.Json.Factories
+﻿namespace TraktNet.Objects.Get.People.Credits.Json.Factories
 {
     using Get.People.Credits.Json.Reader;
     using Get.People.Credits.Json.Writer;

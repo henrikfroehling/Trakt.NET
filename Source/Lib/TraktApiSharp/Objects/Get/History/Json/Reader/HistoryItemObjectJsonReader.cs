@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.History.Json.Reader
+﻿namespace TraktNet.Objects.Get.History.Json.Reader
 {
     using Enums;
     using Episodes.Json.Reader;

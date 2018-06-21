@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Movies
+﻿namespace TraktNet.Objects.Get.Movies
 {
     public interface ITraktMostPWCMovie : ITraktMovie
     {

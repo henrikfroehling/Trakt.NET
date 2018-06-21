@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.History.Json.Writer
+﻿namespace TraktNet.Objects.Get.History.Json.Writer
 {
     using Episodes.Json.Writer;
     using Extensions;

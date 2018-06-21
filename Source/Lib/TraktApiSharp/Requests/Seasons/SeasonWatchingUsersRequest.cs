@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Seasons
+﻿namespace TraktNet.Requests.Seasons
 {
     using Interfaces;
     using Objects.Get.Users;

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Users.Json.Reader
+﻿namespace TraktNet.Objects.Get.Users.Json.Reader
 {
     using Enums;
     using Movies.Json.Reader;

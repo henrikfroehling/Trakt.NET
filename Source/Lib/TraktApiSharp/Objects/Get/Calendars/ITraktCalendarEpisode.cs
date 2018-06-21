@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Calendars
+﻿namespace TraktNet.Objects.Get.Calendars
 {
     using Episodes;
     using System;

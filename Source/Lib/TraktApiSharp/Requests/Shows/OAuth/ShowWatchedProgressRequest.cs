@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Shows.OAuth
+﻿namespace TraktNet.Requests.Shows.OAuth
 {
     using Objects.Get.Shows;
 

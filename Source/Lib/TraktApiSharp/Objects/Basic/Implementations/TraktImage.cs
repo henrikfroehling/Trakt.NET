@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Basic
+﻿namespace TraktNet.Objects.Basic
 {
     /// <summary>An image for an item available in only one size.</summary>
     public class TraktImage : ITraktImage

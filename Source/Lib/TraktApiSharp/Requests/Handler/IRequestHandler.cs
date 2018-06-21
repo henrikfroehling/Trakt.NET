@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Handler
+﻿namespace TraktNet.Requests.Handler
 {
     using Interfaces.Base;
     using Responses;

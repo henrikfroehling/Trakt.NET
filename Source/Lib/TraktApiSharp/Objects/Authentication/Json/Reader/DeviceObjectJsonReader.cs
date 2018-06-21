@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Authentication.Json.Reader
+﻿namespace TraktNet.Objects.Authentication.Json.Reader
 {
     using Newtonsoft.Json;
     using Objects.Json;

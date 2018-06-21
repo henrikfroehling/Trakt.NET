@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users
+﻿namespace TraktNet.Objects.Post.Users
 {
     using Enums;
     using Requests.Interfaces;

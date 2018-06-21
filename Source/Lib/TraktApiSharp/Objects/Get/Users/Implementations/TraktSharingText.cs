@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Users
+﻿namespace TraktNet.Objects.Get.Users
 {
     /// <summary>Represents Trakt user social media sharing text settings.</summary>
     public class TraktSharingText : ITraktSharingText

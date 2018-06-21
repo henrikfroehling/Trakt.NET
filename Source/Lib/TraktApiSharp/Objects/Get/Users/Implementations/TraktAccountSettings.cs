@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Users
+﻿namespace TraktNet.Objects.Get.Users
 {
     /// <summary>Represents Trakt user account settings.</summary>
     public class TraktAccountSettings : ITraktAccountSettings

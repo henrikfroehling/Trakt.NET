@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Watchlist.Json.Factories
+﻿namespace TraktNet.Objects.Post.Syncs.Watchlist.Json.Factories
 {
     using Objects.Json;
     using System;

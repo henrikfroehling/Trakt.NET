@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the type of an object in a search result.</summary>
     public sealed class TraktSearchResultType : TraktEnumeration

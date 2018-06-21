@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Calendars.OAuth
+﻿namespace TraktNet.Requests.Calendars.OAuth
 {
     using Base;
 

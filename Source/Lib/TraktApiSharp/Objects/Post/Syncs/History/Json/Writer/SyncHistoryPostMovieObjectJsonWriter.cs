@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Json.Writer
+﻿namespace TraktNet.Objects.Post.Syncs.History.Json.Writer
 {
     using Extensions;
     using Get.Movies.Json.Writer;

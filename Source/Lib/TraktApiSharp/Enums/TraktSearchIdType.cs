@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the id type, for which should be searched in an id lookup request.</summary>
     public sealed class TraktSearchIdType : TraktEnumeration

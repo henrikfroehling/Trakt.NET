@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Watched
+﻿namespace TraktNet.Objects.Get.Watched
 {
     using Enums;
     using Seasons;

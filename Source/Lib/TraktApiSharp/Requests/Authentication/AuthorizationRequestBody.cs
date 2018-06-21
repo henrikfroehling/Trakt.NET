@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Authentication
+﻿namespace TraktNet.Requests.Authentication
 {
     using Core;
     using Enums;

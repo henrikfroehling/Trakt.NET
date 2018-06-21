@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs.Activities
+﻿namespace TraktNet.Objects.Get.Syncs.Activities
 {
     using System;
 

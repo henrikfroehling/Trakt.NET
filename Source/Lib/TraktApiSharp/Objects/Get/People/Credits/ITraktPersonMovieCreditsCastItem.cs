@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.People.Credits
+﻿namespace TraktNet.Objects.Get.People.Credits
 {
     using Movies;
 

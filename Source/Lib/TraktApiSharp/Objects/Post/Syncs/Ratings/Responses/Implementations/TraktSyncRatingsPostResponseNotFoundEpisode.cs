@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings.Responses
+﻿namespace TraktNet.Objects.Post.Syncs.Ratings.Responses
 {
     using Get.Episodes;
 

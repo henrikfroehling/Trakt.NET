@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Movies
+﻿namespace TraktNet.Requests.Movies
 {
     using Enums;
     using System.Collections.Generic;

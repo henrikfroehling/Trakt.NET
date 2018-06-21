@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the sort order for comments lists.</summary>
     public sealed class TraktCommentSortOrder : TraktEnumeration

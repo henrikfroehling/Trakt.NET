@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Shows.Json.Reader
+﻿namespace TraktNet.Objects.Get.Shows.Json.Reader
 {
     using Enums;
     using Newtonsoft.Json;

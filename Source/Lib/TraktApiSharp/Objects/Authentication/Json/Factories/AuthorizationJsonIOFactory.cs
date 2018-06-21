@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Authentication.Json.Factories
+﻿namespace TraktNet.Objects.Authentication.Json.Factories
 {
     using Objects.Json;
     using Reader;

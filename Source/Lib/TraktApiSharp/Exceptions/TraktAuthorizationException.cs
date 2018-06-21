@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Exceptions
+﻿namespace TraktNet.Exceptions
 {
     /// <summary>Exception, that will be thrown, if an access token is required, but was not provided.</summary>
     public class TraktAuthorizationException : TraktException

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems
+﻿namespace TraktNet.Objects.Post.Users.CustomListItems
 {
     /// <summary>An user custom list items post episode, containing the required episode number.</summary>
     public class TraktUserCustomListItemsPostShowEpisode : ITraktUserCustomListItemsPostShowEpisode

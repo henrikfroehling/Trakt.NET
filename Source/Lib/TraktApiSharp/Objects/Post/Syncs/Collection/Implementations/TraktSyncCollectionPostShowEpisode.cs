@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection
+﻿namespace TraktNet.Objects.Post.Syncs.Collection
 {
     /// <summary>A Trakt collection post episode, containing the required episode number.</summary>
     public class TraktSyncCollectionPostShowEpisode : ITraktSyncCollectionPostShowEpisode

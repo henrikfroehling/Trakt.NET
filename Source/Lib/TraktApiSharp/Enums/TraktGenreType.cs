@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the genre type of movie and show genres.</summary>
     public sealed class TraktGenreType : TraktEnumeration

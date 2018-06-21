@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the type of an object in an history item or in a watchlist item, .</summary>
     public sealed class TraktSyncItemType : TraktEnumeration

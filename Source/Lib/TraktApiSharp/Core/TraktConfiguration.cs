@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Core
+﻿namespace TraktNet.Core
 {
     using System.Net.Http;
 

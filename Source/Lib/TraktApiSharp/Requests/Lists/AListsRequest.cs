@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Lists
+﻿namespace TraktNet.Requests.Lists
 {
     using Base;
     using Interfaces;

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Responses
+﻿namespace TraktNet.Objects.Post.Responses
 {
     using Get.People;
 

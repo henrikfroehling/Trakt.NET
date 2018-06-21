@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Checkins
+﻿namespace TraktNet.Objects.Post.Checkins
 {
     using Basic;
     using Requests.Interfaces;

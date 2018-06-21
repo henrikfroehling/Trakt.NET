@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Seasons.Json.Factories
+﻿namespace TraktNet.Objects.Get.Seasons.Json.Factories
 {
     using Get.Seasons.Json.Reader;
     using Get.Seasons.Json.Writer;

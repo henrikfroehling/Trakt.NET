@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Calendars
+﻿namespace TraktNet.Requests.Calendars
 {
     using Objects.Get.Calendars;
 

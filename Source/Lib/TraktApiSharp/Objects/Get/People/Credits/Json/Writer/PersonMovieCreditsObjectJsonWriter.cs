@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.People.Credits.Json.Writer
+﻿namespace TraktNet.Objects.Get.People.Credits.Json.Writer
 {
     using Newtonsoft.Json;
     using Objects.Json;

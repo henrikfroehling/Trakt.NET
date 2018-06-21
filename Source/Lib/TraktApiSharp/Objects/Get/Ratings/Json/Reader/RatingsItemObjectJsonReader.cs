@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Ratings.Json.Reader
+﻿namespace TraktNet.Objects.Get.Ratings.Json.Reader
 {
     using Enums;
     using Episodes.Json.Reader;

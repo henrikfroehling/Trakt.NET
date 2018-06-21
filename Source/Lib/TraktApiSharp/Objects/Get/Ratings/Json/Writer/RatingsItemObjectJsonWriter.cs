@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Ratings.Json.Writer
+﻿namespace TraktNet.Objects.Get.Ratings.Json.Writer
 {
     using Episodes.Json.Writer;
     using Extensions;

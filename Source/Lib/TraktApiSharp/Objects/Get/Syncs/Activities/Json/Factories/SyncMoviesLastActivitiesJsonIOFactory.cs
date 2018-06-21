@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs.Activities.Json.Factories
+﻿namespace TraktNet.Objects.Get.Syncs.Activities.Json.Factories
 {
     using Get.Syncs.Activities.Json.Reader;
     using Get.Syncs.Activities.Json.Writer;
