@@ -7,13 +7,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9226CF4C-D607-420E-B675-02F27EFD17E9}</ProjectGuid>
+    <ProjectGuid>{1320D3F8-47CC-49F2-B1AE-2F9C06F85368}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TraktNet.Tests</RootNamespace>
-    <AssemblyName>TraktApiSharp.Tests</AssemblyName>
+    <AssemblyName>Trakt.NET.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -21,46 +22,33 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Build\Tests\TraktApiSharp.Tests\Debug\</OutputPath>
+    <OutputPath>..\..\..\Build\Tests\Trakt.NET.Tests\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\Build\Tests\TraktApiSharp.Tests\Release\</OutputPath>
+    <OutputPath>..\..\..\Build\Tests\Trakt.NET.Tests\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentAssertions, Version=5.4.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\FluentAssertions.5.4.0\lib\net45\FluentAssertions.dll</HintPath>
+    <Reference Include="FluentAssertions, Version=5.4.1.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\FluentAssertions.5.4.1\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RichardSzalay.MockHttp, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\RichardSzalay.MockHttp.4.0.0\lib\net45\RichardSzalay.MockHttp.dll</HintPath>
+    <Reference Include="RichardSzalay.MockHttp, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\RichardSzalay.MockHttp.5.0.0\lib\net45\RichardSzalay.MockHttp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\System.Net.Http.4.3.3\lib\net46\System.Net.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\System.Security.Cryptography.X509Certificates.4.3.2\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
-    </Reference>
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -68,10 +56,10 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\xunit.abstractions.2.0.1\lib\net35\xunit.abstractions.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="xunit.assert, Version=2.3.1.3858, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\xunit.assert.2.3.1\lib\netstandard1.1\xunit.assert.dll</HintPath>
@@ -145,11 +133,11 @@
     <Compile Include="Extensions\StringExtensions_Tests.cs" />
     <Compile Include="Modules\TraktAuthenticationModule\TraktAuthenticationModule_CheckIfAccessTokenWasRevokedOrIsNotValid_Tests.cs" />
     <Compile Include="Modules\TraktAuthenticationModule\TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_Tests.cs" />
+    <Compile Include="Modules\TraktAuthenticationModule\TraktAuthenticationModule_Construction_Tests.cs" />
     <Compile Include="Modules\TraktAuthenticationModule\TraktAuthenticationModule_CreateAuthorizationUrlWithDefaultState_Tests.cs" />
     <Compile Include="Modules\TraktAuthenticationModule\TraktAuthenticationModule_CreateAuthorizationUrl_Tests.cs" />
     <Compile Include="Modules\TraktAuthenticationModule\TraktAuthenticationModule_GenerateDevice_Tests.cs" />
     <Compile Include="Modules\TraktAuthenticationModule\TraktAuthenticationModule_GetAuthorization_Tests.cs" />
-    <Compile Include="Modules\TraktAuthenticationModule\TraktAuthenticationModule_Construction_Tests.cs" />
     <Compile Include="Modules\TraktAuthenticationModule\TraktAuthenticationModule_PollForAuthorization_Tests.cs" />
     <Compile Include="Modules\TraktAuthenticationModule\TraktAuthenticationModule_RefreshAuthorization_Tests.cs" />
     <Compile Include="Modules\TraktAuthenticationModule\TraktAuthenticationModule_RevokeAuthorization_Tests.cs" />
@@ -157,8 +145,8 @@
     <Compile Include="Modules\TraktAuthenticationModule\TraktAuthenticationModule_Tests_Setup.cs" />
     <Compile Include="Modules\TraktCalendarModule\TraktCalendarModuleTests_GetAllDVDMovies_Tests.cs" />
     <Compile Include="Modules\TraktCalendarModule\TraktCalendarModuleTests_GetAllMovies_Tests.cs" />
-    <Compile Include="Modules\TraktCalendarModule\TraktCalendarModuleTests_GetAllSeasonPremieres_Tests.cs" />
     <Compile Include="Modules\TraktCalendarModule\TraktCalendarModuleTests_GetAllNewShows_Tests.cs" />
+    <Compile Include="Modules\TraktCalendarModule\TraktCalendarModuleTests_GetAllSeasonPremieres_Tests.cs" />
     <Compile Include="Modules\TraktCalendarModule\TraktCalendarModuleTests_GetAllShows_Tests.cs" />
     <Compile Include="Modules\TraktCalendarModule\TraktCalendarModuleTests_GetUserDVDMovies_Tests.cs" />
     <Compile Include="Modules\TraktCalendarModule\TraktCalendarModuleTests_GetUserMovies_Tests.cs" />
@@ -192,13 +180,13 @@
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_UnlikeComment_Tests.cs" />
     <Compile Include="Modules\TraktCommentsModule\TraktCommentsModule_UpdateComment_Tests.cs" />
-    <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisode_Tests.cs" />
     <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisodeComments_Tests.cs" />
     <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisodeLists_Tests.cs" />
     <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisodeRatings_Tests.cs" />
     <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisodeStatistics_Tests.cs" />
     <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisodeTranslations_Tests.cs" />
     <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisodeWatchingUsers_Tests.cs" />
+    <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_GetEpisode_Tests.cs" />
     <Compile Include="Modules\TraktEpisodesModule\TraktEpisodesModule_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktGenresModule\TraktGenresModule_GetMovieGenres_Tests.cs" />
     <Compile Include="Modules\TraktGenresModule\TraktGenresModule_GetShowGenres_Tests.cs" />
@@ -229,12 +217,6 @@
     <Compile Include="Modules\TraktNetworksModule\TraktNetworksModule_GetNetworks_Tests.cs" />
     <Compile Include="Modules\TraktNetworksModule\TraktNetworksModule_Tests_Json_Data.cs" />
     <Compile Include="Modules\TraktPeopleModule\TraktPeopleModule_GetPersonLists_Tests.cs" />
-    <Compile Include="Modules\TraktSyncModule\TraktSyncModule_Tests_Setup.cs" />
-    <Compile Include="Modules\TraktUsersModule\TraktUsersModule_AddHiddenItems_Tests.cs" />
-    <Compile Include="Modules\TraktUsersModule\TraktUsersModule_RemoveHiddenItems_Tests.cs" />
-    <Compile Include="Modules\TraktUsersModule\TraktUsersModule_Tests_Setup.cs" />
-    <Compile Include="Objects\Authentication\Implementations\TraktAuthorization_Tests.cs" />
-    <Compile Include="Objects\Authentication\Implementations\TraktDevice_Tests.cs" />
     <Compile Include="Modules\TraktPeopleModule\TraktPeopleModule_GetPersonMovieCredits_Tests.cs" />
     <Compile Include="Modules\TraktPeopleModule\TraktPeopleModule_GetPersonShowCredtis_Tests.cs" />
     <Compile Include="Modules\TraktPeopleModule\TraktPeopleModule_GetPerson_Tests.cs" />
@@ -306,7 +288,9 @@
     <Compile Include="Modules\TraktSyncModule\TraktSyncModule_RemoveWatchedHistoryItems_Tests.cs" />
     <Compile Include="Modules\TraktSyncModule\TraktSyncModule_RemoveWatchlistItems_Tests.cs" />
     <Compile Include="Modules\TraktSyncModule\TraktSyncModule_Tests_Json_Data.cs" />
+    <Compile Include="Modules\TraktSyncModule\TraktSyncModule_Tests_Setup.cs" />
     <Compile Include="Modules\TraktUsersModule\TraktUsersModule_AddCustomListItems_Tests.cs" />
+    <Compile Include="Modules\TraktUsersModule\TraktUsersModule_AddHiddenItems_Tests.cs" />
     <Compile Include="Modules\TraktUsersModule\TraktUsersModule_ApproveFollowRequest_Tests.cs" />
     <Compile Include="Modules\TraktUsersModule\TraktUsersModule_CreateCustomList_Tests.cs" />
     <Compile Include="Modules\TraktUsersModule\TraktUsersModule_DeleteCustomList_Tests.cs" />
@@ -336,10 +320,14 @@
     <Compile Include="Modules\TraktUsersModule\TraktUsersModule_GetWatchlist_Tests.cs" />
     <Compile Include="Modules\TraktUsersModule\TraktUsersModule_LikeList_Tests.cs" />
     <Compile Include="Modules\TraktUsersModule\TraktUsersModule_RemoveCustomListItems_Tests.cs" />
+    <Compile Include="Modules\TraktUsersModule\TraktUsersModule_RemoveHiddenItems_Tests.cs" />
     <Compile Include="Modules\TraktUsersModule\TraktUsersModule_Tests_Json_Data.cs" />
+    <Compile Include="Modules\TraktUsersModule\TraktUsersModule_Tests_Setup.cs" />
     <Compile Include="Modules\TraktUsersModule\TraktUsersModule_UnfollowUser_Tests.cs" />
     <Compile Include="Modules\TraktUsersModule\TraktUsersModule_UnlikeList_Tests.cs" />
     <Compile Include="Modules\TraktUsersModule\TraktUsersModule_UpdateCustomList_Tests.cs" />
+    <Compile Include="Objects\Authentication\Implementations\TraktAuthorization_Tests.cs" />
+    <Compile Include="Objects\Authentication\Implementations\TraktDevice_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCastAndCrew_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCastMember_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCertifications_Tests.cs" />
@@ -508,9 +496,9 @@
     <Compile Include="Objects\Get\Calendars\Json\Reader\CalendarShowObjectJsonReader\CalendarShowObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\Json\Reader\CalendarShowObjectJsonReader\CalendarShowObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Calendars\Json\Reader\CalendarShowObjectJsonReader\CalendarShowObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Collections\Implementations\TraktCollectionMovie_Tests.cs" />
     <Compile Include="Objects\Get\Collections\Implementations\TraktCollectionShowEpisode_Tests.cs" />
     <Compile Include="Objects\Get\Collections\Implementations\TraktCollectionShowSeason_Tests.cs" />
-    <Compile Include="Objects\Get\Collections\Implementations\TraktCollectionMovie_Tests.cs" />
     <Compile Include="Objects\Get\Collections\Implementations\TraktCollectionShow_Tests.cs" />
     <Compile Include="Objects\Get\Collections\Json\Reader\CollectionMovieObjectJsonReader\CollectionMovieObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Collections\Json\Reader\CollectionMovieObjectJsonReader\CollectionMovieObjectJsonReader_Reader_Tests.cs" />
@@ -971,13 +959,16 @@
     <Compile Include="Objects\Get\Users\Implementations\TraktAccountSettings_Tests.cs" />
     <Compile Include="Objects\Get\Users\Implementations\TraktSharingText_Tests.cs" />
     <Compile Include="Objects\Get\Users\Implementations\TraktUserComment_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Implementations\TraktUserFollower_Tests.cs" />
     <Compile Include="Objects\Get\Users\Implementations\TraktUserFollowRequest_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Implementations\TraktUserFriend_Tests.cs" />
     <Compile Include="Objects\Get\Users\Implementations\TraktUserHiddenItem_Tests.cs" />
     <Compile Include="Objects\Get\Users\Implementations\TraktUserIds_Tests.cs" />
     <Compile Include="Objects\Get\Users\Implementations\TraktUserImages_Tests.cs" />
     <Compile Include="Objects\Get\Users\Implementations\TraktUserLikeItem_Tests.cs" />
     <Compile Include="Objects\Get\Users\Implementations\TraktUserSettings_Tests.cs" />
     <Compile Include="Objects\Get\Users\Implementations\TraktUserWatchingItem_Tests.cs" />
+    <Compile Include="Objects\Get\Users\Implementations\TraktUser_Tests.cs" />
     <Compile Include="Objects\Get\Users\Json\Reader\AccountSettingsObjectJsonReader\AccountSettingsObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Users\Json\Reader\AccountSettingsObjectJsonReader\AccountSettingsObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Users\Json\Reader\AccountSettingsObjectJsonReader\AccountSettingsObjectJsonReader_Stream_Tests.cs" />
@@ -1103,9 +1094,6 @@
     <Compile Include="Objects\Get\Users\Statistics\Implementations\TraktUserSeasonsStatistics_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Implementations\TraktUserShowsStatistics_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Implementations\TraktUserStatistics_Tests.cs" />
-    <Compile Include="Objects\Get\Users\Implementations\TraktUserFollower_Tests.cs" />
-    <Compile Include="Objects\Get\Users\Implementations\TraktUserFriend_Tests.cs" />
-    <Compile Include="Objects\Get\Users\Implementations\TraktUser_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Json\Reader\UserEpisodesStatisticsObjectJsonReader\UserEpisodesStatisticsObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Json\Reader\UserEpisodesStatisticsObjectJsonReader\UserEpisodesStatisticsObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Json\Reader\UserEpisodesStatisticsObjectJsonReader\UserEpisodesStatisticsObjectJsonReader_Stream_Tests.cs" />
@@ -1134,9 +1122,9 @@
     <Compile Include="Objects\Get\Users\Statistics\Json\Reader\UserStatisticsObjectJsonReader\UserStatisticsObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Json\Reader\UserStatisticsObjectJsonReader\UserStatisticsObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Get\Users\Statistics\Json\Reader\UserStatisticsObjectJsonReader\UserStatisticsObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Get\Watched\Implementations\TraktWatchedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Watched\Implementations\TraktWatchedShowEpisode_Tests.cs" />
     <Compile Include="Objects\Get\Watched\Implementations\TraktWatchedShowSeason_Tests.cs" />
-    <Compile Include="Objects\Get\Watched\Implementations\TraktWatchedMovie_Tests.cs" />
     <Compile Include="Objects\Get\Watched\Implementations\TraktWatchedShow_Tests.cs" />
     <Compile Include="Objects\Get\Watched\Json\Reader\WatchedMovieObjectJsonReader\WatchedMovieObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Get\Watched\Json\Reader\WatchedMovieObjectJsonReader\WatchedMovieObjectJsonReader_Reader_Tests.cs" />
@@ -1289,16 +1277,16 @@
     <Compile Include="Requests\Base\APutRequest%271_Tests.cs" />
     <Compile Include="Requests\Base\APutRequest%272_Tests.cs" />
     <Compile Include="Requests\Calendars\ACalendarRequest%271_Tests.cs" />
-    <Compile Include="Requests\Calendars\OAuth\CalendarUserDVDMoviesRequest_Tests.cs" />
-    <Compile Include="Requests\Calendars\OAuth\CalendarUserMoviesRequest_Tests.cs" />
-    <Compile Include="Requests\Calendars\OAuth\CalendarUserNewShowsRequest_Tests.cs" />
-    <Compile Include="Requests\Calendars\OAuth\CalendarUserSeasonPremieresRequest_Tests.cs" />
-    <Compile Include="Requests\Calendars\OAuth\CalendarUserShowsRequest_Tests.cs" />
     <Compile Include="Requests\Calendars\CalendarAllDVDMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Calendars\CalendarAllMoviesRequest_Tests.cs" />
     <Compile Include="Requests\Calendars\CalendarAllNewShowsRequest_Tests.cs" />
     <Compile Include="Requests\Calendars\CalendarAllSeasonPremieresRequest_Tests.cs" />
     <Compile Include="Requests\Calendars\CalendarAllShowsRequest_Tests.cs" />
+    <Compile Include="Requests\Calendars\OAuth\CalendarUserDVDMoviesRequest_Tests.cs" />
+    <Compile Include="Requests\Calendars\OAuth\CalendarUserMoviesRequest_Tests.cs" />
+    <Compile Include="Requests\Calendars\OAuth\CalendarUserNewShowsRequest_Tests.cs" />
+    <Compile Include="Requests\Calendars\OAuth\CalendarUserSeasonPremieresRequest_Tests.cs" />
+    <Compile Include="Requests\Calendars\OAuth\CalendarUserShowsRequest_Tests.cs" />
     <Compile Include="Requests\Certifications\ACertificationsRequest_Tests.cs" />
     <Compile Include="Requests\Certifications\MovieCertificationsRequest_Tests.cs" />
     <Compile Include="Requests\Certifications\ShowCertificationsRequest_Tests.cs" />
@@ -1307,8 +1295,10 @@
     <Compile Include="Requests\Comments\ACommentsRequest_Tests.cs" />
     <Compile Include="Requests\Comments\CommentItemRequest_Tests.cs" />
     <Compile Include="Requests\Comments\CommentLikesRequest_Tests.cs" />
+    <Compile Include="Requests\Comments\CommentRepliesRequest_Tests.cs" />
     <Compile Include="Requests\Comments\CommentsRecentRequest_Tests.cs" />
     <Compile Include="Requests\Comments\CommentsTrendingRequest_Tests.cs" />
+    <Compile Include="Requests\Comments\CommentSummaryRequest_Tests.cs" />
     <Compile Include="Requests\Comments\CommentsUpdatesRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentDeleteRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentLikeRequest_Tests.cs" />
@@ -1316,8 +1306,6 @@
     <Compile Include="Requests\Comments\OAuth\CommentReplyRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentUnlikeRequest_Tests.cs" />
     <Compile Include="Requests\Comments\OAuth\CommentUpdateRequest_Tests.cs" />
-    <Compile Include="Requests\Comments\CommentRepliesRequest_Tests.cs" />
-    <Compile Include="Requests\Comments\CommentSummaryRequest_Tests.cs" />
     <Compile Include="Requests\Episodes\AEpisodeRequest%271_Tests.cs" />
     <Compile Include="Requests\Episodes\EpisodeCommentsRequest_Tests.cs" />
     <Compile Include="Requests\Episodes\EpisodeListsRequest_Tests.cs" />
@@ -1473,31 +1461,25 @@
     <Compile Include="Services\TraktSerializationService_Tests.cs" />
     <Compile Include="TestUtils\TestConstants.cs" />
     <Compile Include="TestUtils\TestHttpClientProvider.cs" />
+    <Compile Include="TestUtils\TestUtility.cs" />
     <Compile Include="Traits\CategoryAttribute.cs" />
     <Compile Include="Traits\CategoryDiscoverer.cs" />
     <Compile Include="Traits\DiscovererUtils.cs" />
-    <Compile Include="TestUtils\TestUtility.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Lib\TraktApiSharp\TraktApiSharp.csproj">
-      <Project>{85190989-7d73-4b21-9225-ad02fe14d9c2}</Project>
-      <Name>TraktApiSharp</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="xunit.runner.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <None Include="xunit.runner.json" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.9.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Lib\Trakt.NET\Trakt.NET.csproj">
+      <Project>{10f945da-7196-493a-990c-dee34b23f575}</Project>
+      <Name>Trakt.NET</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
