@@ -1479,12 +1479,6 @@
     <Compile Include="TestUtils\TestUtility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Lib\TraktApiSharp\TraktApiSharp.csproj">
-      <Project>{85190989-7d73-4b21-9225-ad02fe14d9c2}</Project>
-      <Name>TraktApiSharp</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="xunit.runner.json">
