@@ -1,17 +1,15 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("TraktApiSharp.Tests")]
+[assembly: AssemblyTitle("Trakt.NET.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TraktApiSharp.Tests")]
-[assembly: AssemblyCopyright("Copyright © 2017 Henrik Fröhling")]
+[assembly: AssemblyProduct("Trakt.NET.Tests")]
+[assembly: AssemblyCopyright("Copyright © 2017 - 2018 Henrik Fröhling")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-
 [assembly: ComVisible(false)]
-[assembly: Guid("9226cf4c-d607-420e-b675-02f27efd17e9")]
-
+[assembly: Guid("1320d3f8-47cc-49f2-b1ae-2f9c06f85368")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
