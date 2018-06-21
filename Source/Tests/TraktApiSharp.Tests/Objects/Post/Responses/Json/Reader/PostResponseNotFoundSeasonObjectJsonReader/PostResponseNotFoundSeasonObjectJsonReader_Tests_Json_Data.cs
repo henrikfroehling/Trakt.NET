@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Post.Responses.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Post.Responses.Json.Reader
 {
     public partial class PostResponseNotFoundSeasonObjectJsonReader_Tests
     {

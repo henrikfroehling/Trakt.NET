@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktEpisodesModule
+﻿namespace TraktNet.Tests.Modules.TraktEpisodesModule
 {
     using FluentAssertions;
     using System;
@@ -6,9 +6,9 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Objects.Get.Users;
-    using TraktApiSharp.Responses;
+    using TraktNet.Exceptions;
+    using TraktNet.Objects.Get.Users;
+    using TraktNet.Responses;
     using Xunit;
 
     [Category("Modules.Episodes")]

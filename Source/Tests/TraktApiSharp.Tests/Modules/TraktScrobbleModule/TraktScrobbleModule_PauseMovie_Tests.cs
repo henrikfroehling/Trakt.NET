@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktScrobbleModule
+﻿namespace TraktNet.Tests.Modules.TraktScrobbleModule
 {
     using FluentAssertions;
     using System;
@@ -6,13 +6,13 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.Movies;
-    using TraktApiSharp.Objects.Post.Scrobbles;
-    using TraktApiSharp.Objects.Post.Scrobbles.Responses;
-    using TraktApiSharp.Responses;
+    using TraktNet.Enums;
+    using TraktNet.Exceptions;
+    using TraktNet.Extensions;
+    using TraktNet.Objects.Get.Movies;
+    using TraktNet.Objects.Post.Scrobbles;
+    using TraktNet.Objects.Post.Scrobbles.Responses;
+    using TraktNet.Responses;
     using Xunit;
 
     [Category("Modules.Scrobble")]

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Post.Scrobbles.Responses.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Post.Scrobbles.Responses.Json.Reader
 {
     public partial class EpisodeScrobblePostResponseObjectJsonReader_Tests
     {

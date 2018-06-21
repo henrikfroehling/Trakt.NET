@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktCalendarModule
+﻿namespace TraktNet.Tests.Modules.TraktCalendarModule
 {
     using FluentAssertions;
     using System;
@@ -6,10 +6,10 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.Calendars;
-    using TraktApiSharp.Responses;
+    using TraktNet.Exceptions;
+    using TraktNet.Extensions;
+    using TraktNet.Objects.Get.Calendars;
+    using TraktNet.Responses;
     using Xunit;
 
     [Category("Modules.Calendar")]

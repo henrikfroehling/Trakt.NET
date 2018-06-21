@@ -1,8 +1,8 @@
-﻿namespace TraktApiSharp.Tests.Requests.Lists
+﻿namespace TraktNet.Tests.Requests.Lists
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Requests.Lists;
+    using TraktNet.Requests.Lists;
     using Xunit;
 
     [Category("Requests.Lists")]

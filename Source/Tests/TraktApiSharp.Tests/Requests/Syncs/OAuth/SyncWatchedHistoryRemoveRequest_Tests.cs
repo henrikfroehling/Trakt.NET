@@ -1,8 +1,8 @@
-﻿namespace TraktApiSharp.Tests.Requests.Syncs.OAuth
+﻿namespace TraktNet.Tests.Requests.Syncs.OAuth
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Requests.Syncs.OAuth;
+    using TraktNet.Requests.Syncs.OAuth;
     using Xunit;
 
     [Category("Requests.Syncs.OAuth")]

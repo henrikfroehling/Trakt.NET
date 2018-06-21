@@ -1,10 +1,10 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktCheckinsModule
+﻿namespace TraktNet.Tests.Modules.TraktCheckinsModule
 {
     using System;
-    using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Objects.Get.Movies;
-    using TraktApiSharp.Objects.Get.Shows;
+    using TraktNet.Objects.Basic;
+    using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Objects.Get.Movies;
+    using TraktNet.Objects.Get.Shows;
 
     public partial class TraktCheckinsModule_Tests
     {

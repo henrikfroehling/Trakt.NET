@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktSeasonsModule
+﻿namespace TraktNet.Tests.Modules.TraktSeasonsModule
 {
     using FluentAssertions;
     using System;
@@ -7,10 +7,10 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Modules;
-    using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Responses;
+    using TraktNet.Exceptions;
+    using TraktNet.Modules;
+    using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Responses;
     using Xunit;
 
     [Category("Modules.Seasons")]

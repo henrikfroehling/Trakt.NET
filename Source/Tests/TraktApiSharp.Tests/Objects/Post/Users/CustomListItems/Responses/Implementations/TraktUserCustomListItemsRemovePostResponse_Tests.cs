@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Objects.Post.Users.CustomListItems.Responses.Implementations
+﻿namespace TraktNet.Tests.Objects.Post.Users.CustomListItems.Responses.Implementations
 {
     using FluentAssertions;
     using System.Linq;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
-    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses.Json.Reader;
+    using TraktNet.Objects.Post.Users.CustomListItems.Responses;
+    using TraktNet.Objects.Post.Users.CustomListItems.Responses.Json.Reader;
     using Xunit;
 
     [Category("Objects.Post.Users.CustomListItems.Responses.Implementations")]

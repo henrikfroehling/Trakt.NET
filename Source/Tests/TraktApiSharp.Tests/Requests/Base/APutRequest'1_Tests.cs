@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Requests.Base
+﻿namespace TraktNet.Tests.Requests.Base
 {
     using FluentAssertions;
     using System;
@@ -7,8 +7,8 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Interfaces;
     using Xunit;
 
     [Category("Requests.Base")]

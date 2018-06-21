@@ -1,12 +1,12 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Syncs.Playback.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Syncs.Playback.Json.Reader
 {
     using FluentAssertions;
     using System;
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Syncs.Playback.Json.Reader;
+    using TraktNet.Enums;
+    using TraktNet.Objects.Get.Syncs.Playback.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Syncs.Playback.JsonReader")]

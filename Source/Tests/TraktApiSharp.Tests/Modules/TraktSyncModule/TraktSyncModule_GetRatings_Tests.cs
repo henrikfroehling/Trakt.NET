@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktSyncModule
+﻿namespace TraktNet.Tests.Modules.TraktSyncModule
 {
     using FluentAssertions;
     using System;
@@ -6,9 +6,9 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Objects.Get.Ratings;
-    using TraktApiSharp.Responses;
+    using TraktNet.Exceptions;
+    using TraktNet.Objects.Get.Ratings;
+    using TraktNet.Responses;
     using Xunit;
 
     [Category("Modules.Sync")]

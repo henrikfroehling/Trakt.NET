@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Requests.Episodes
+﻿namespace TraktNet.Tests.Requests.Episodes
 {
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Requests.Episodes;
-    using TraktApiSharp.Requests.Parameters;
+    using TraktNet.Requests.Episodes;
+    using TraktNet.Requests.Parameters;
     using Xunit;
 
     [Category("Requests.Episodes")]

@@ -10,7 +10,7 @@
     <ProjectGuid>{9226CF4C-D607-420E-B675-02F27EFD17E9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TraktApiSharp.Tests</RootNamespace>
+    <RootNamespace>TraktNet.Tests</RootNamespace>
     <AssemblyName>TraktApiSharp.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

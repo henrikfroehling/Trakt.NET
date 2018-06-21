@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Movies.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Movies.Json.Reader
 {
     using FluentAssertions;
     using Newtonsoft.Json;
     using System.IO;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Movies.Json.Reader;
+    using TraktNet.Objects.Get.Movies.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Movies.JsonReader")]

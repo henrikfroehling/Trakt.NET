@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktGenresModule
+﻿namespace TraktNet.Tests.Modules.TraktGenresModule
 {
     using FluentAssertions;
     using System;
@@ -7,10 +7,10 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Responses;
+    using TraktNet.Enums;
+    using TraktNet.Exceptions;
+    using TraktNet.Objects.Basic;
+    using TraktNet.Responses;
     using Xunit;
 
     [Category("Modules.Genres")]

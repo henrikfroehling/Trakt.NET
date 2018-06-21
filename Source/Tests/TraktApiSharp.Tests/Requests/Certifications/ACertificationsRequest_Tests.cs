@@ -1,10 +1,10 @@
-﻿namespace TraktApiSharp.Tests.Requests.Certifications
+﻿namespace TraktNet.Tests.Requests.Certifications
 {
     using FluentAssertions;
     using System;
     using Traits;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Certifications;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Certifications;
     using Xunit;
 
     [Category("Requests.Certifications")]

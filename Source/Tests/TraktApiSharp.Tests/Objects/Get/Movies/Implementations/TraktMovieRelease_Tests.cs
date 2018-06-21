@@ -1,12 +1,12 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Movies.Implementations
+﻿namespace TraktNet.Tests.Objects.Get.Movies.Implementations
 {
     using FluentAssertions;
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Movies;
-    using TraktApiSharp.Objects.Get.Movies.Json.Reader;
+    using TraktNet.Enums;
+    using TraktNet.Objects.Get.Movies;
+    using TraktNet.Objects.Get.Movies.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Movies.Implementations")]

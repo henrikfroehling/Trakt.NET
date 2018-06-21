@@ -1,12 +1,12 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Episodes.Implementations
+﻿namespace TraktNet.Tests.Objects.Get.Episodes.Implementations
 {
     using FluentAssertions;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Objects.Get.Episodes.Json.Reader;
+    using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Objects.Get.Episodes.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Episodes.Implementations")]

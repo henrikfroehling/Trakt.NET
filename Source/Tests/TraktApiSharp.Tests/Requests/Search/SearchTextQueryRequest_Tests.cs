@@ -1,14 +1,14 @@
-﻿namespace TraktApiSharp.Tests.Requests.Search
+﻿namespace TraktNet.Tests.Requests.Search
 {
     using FluentAssertions;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Parameters;
-    using TraktApiSharp.Requests.Search;
+    using TraktNet.Enums;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Parameters;
+    using TraktNet.Requests.Search;
     using Xunit;
 
     [Category("Requests.Search")]

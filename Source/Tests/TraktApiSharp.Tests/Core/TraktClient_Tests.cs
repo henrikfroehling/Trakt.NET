@@ -1,8 +1,8 @@
-﻿namespace TraktApiSharp.Tests.Core
+﻿namespace TraktNet.Tests.Core
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Objects.Authentication;
+    using TraktNet.Objects.Authentication;
     using Xunit;
 
     [Category("Core")]

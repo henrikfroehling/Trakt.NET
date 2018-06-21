@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Collections.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Collections.Json.Reader
 {
     public partial class CollectionMovieObjectJsonReader_Tests
     {

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Users.Statistics.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Users.Statistics.Json.Reader
 {
     using FluentAssertions;
     using System.Collections.Generic;
@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users.Statistics.Json.Reader;
+    using TraktNet.Objects.Get.Users.Statistics.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Users.Statistics.JsonReader")]

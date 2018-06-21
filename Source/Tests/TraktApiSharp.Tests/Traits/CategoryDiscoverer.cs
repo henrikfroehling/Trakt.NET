@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Traits
+﻿namespace TraktNet.Tests.Traits
 {
     using System.Collections.Generic;
     using Xunit.Abstractions;

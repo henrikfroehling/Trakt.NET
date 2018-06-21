@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktGenresModule
+﻿namespace TraktNet.Tests.Modules.TraktGenresModule
 {
     public partial class TraktGenresModule_Tests
     {

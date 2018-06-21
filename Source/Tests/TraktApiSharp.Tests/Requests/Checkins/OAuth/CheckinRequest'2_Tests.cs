@@ -1,13 +1,13 @@
-﻿namespace TraktApiSharp.Tests.Requests.Checkins.OAuth
+﻿namespace TraktNet.Tests.Requests.Checkins.OAuth
 {
     using FluentAssertions;
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Checkins.OAuth;
-    using TraktApiSharp.Requests.Interfaces;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Checkins.OAuth;
+    using TraktNet.Requests.Interfaces;
     using Xunit;
 
     [Category("Requests.Checkins.OAuth")]

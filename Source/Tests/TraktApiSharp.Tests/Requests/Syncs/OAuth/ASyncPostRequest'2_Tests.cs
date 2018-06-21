@@ -1,13 +1,13 @@
-﻿namespace TraktApiSharp.Tests.Requests.Syncs.OAuth
+﻿namespace TraktNet.Tests.Requests.Syncs.OAuth
 {
     using FluentAssertions;
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Interfaces;
-    using TraktApiSharp.Requests.Syncs.OAuth;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Interfaces;
+    using TraktNet.Requests.Syncs.OAuth;
     using Xunit;
 
     [Category("Requests.Syncs.OAuth")]

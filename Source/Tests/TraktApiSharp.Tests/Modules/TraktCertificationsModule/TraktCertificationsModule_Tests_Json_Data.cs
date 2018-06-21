@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktCertificationsModule
+﻿namespace TraktNet.Tests.Modules.TraktCertificationsModule
 {
     public partial class TraktCertificationsModule_Tests
     {

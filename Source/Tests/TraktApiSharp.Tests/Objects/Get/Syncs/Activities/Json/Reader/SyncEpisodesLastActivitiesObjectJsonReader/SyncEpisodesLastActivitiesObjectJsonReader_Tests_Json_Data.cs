@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Syncs.Activities.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Syncs.Activities.Json.Reader
 {
     public partial class SyncEpisodesLastActivitiesObjectJsonReader_Tests
     {

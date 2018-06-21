@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Calendars.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Calendars.Json.Reader
 {
     using FluentAssertions;
     using Newtonsoft.Json;
@@ -6,7 +6,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Calendars.Json.Reader;
+    using TraktNet.Objects.Get.Calendars.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Calendars.JsonReader")]

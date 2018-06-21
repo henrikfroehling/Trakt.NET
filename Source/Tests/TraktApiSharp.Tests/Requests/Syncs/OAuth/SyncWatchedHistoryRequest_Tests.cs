@@ -1,14 +1,14 @@
-﻿namespace TraktApiSharp.Tests.Requests.Syncs.OAuth
+﻿namespace TraktNet.Tests.Requests.Syncs.OAuth
 {
     using FluentAssertions;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Extensions;
-    using TraktApiSharp.Requests.Parameters;
-    using TraktApiSharp.Requests.Syncs.OAuth;
+    using TraktNet.Enums;
+    using TraktNet.Extensions;
+    using TraktNet.Requests.Parameters;
+    using TraktNet.Requests.Syncs.OAuth;
     using Xunit;
 
     [Category("Requests.Syncs.OAuth")]

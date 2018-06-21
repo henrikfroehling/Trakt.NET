@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Post.Checkins.Responses.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Post.Checkins.Responses.Json.Reader
 {
     public partial class CheckinPostErrorResponseObjectJsonReader_Tests
     {

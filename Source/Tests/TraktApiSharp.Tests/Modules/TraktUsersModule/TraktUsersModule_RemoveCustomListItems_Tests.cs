@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktUsersModule
+﻿namespace TraktNet.Tests.Modules.TraktUsersModule
 {
     using FluentAssertions;
     using System;
@@ -8,12 +8,12 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Objects.Get.People;
-    using TraktApiSharp.Objects.Post.Responses;
-    using TraktApiSharp.Objects.Post.Users.CustomListItems;
-    using TraktApiSharp.Objects.Post.Users.CustomListItems.Responses;
-    using TraktApiSharp.Responses;
+    using TraktNet.Exceptions;
+    using TraktNet.Objects.Get.People;
+    using TraktNet.Objects.Post.Responses;
+    using TraktNet.Objects.Post.Users.CustomListItems;
+    using TraktNet.Objects.Post.Users.CustomListItems.Responses;
+    using TraktNet.Responses;
     using Xunit;
 
     [Category("Modules.Users")]

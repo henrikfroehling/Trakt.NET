@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.TestUtils
+﻿namespace TraktNet.Tests.TestUtils
 {
     using FluentAssertions;
     using RichardSzalay.MockHttp;
@@ -6,7 +6,7 @@
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
-    using TraktApiSharp.Requests.Handler;
+    using TraktNet.Requests.Handler;
 
     internal class TestHttpClientProvider : IHttpClientProvider
     {

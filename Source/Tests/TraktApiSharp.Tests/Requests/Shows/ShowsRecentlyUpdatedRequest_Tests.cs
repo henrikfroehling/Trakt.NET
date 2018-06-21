@@ -1,14 +1,14 @@
-﻿namespace TraktApiSharp.Tests.Requests.Shows
+﻿namespace TraktNet.Tests.Requests.Shows
 {
     using FluentAssertions;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Extensions;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Parameters;
-    using TraktApiSharp.Requests.Shows;
+    using TraktNet.Extensions;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Parameters;
+    using TraktNet.Requests.Shows;
     using Xunit;
 
     [Category("Requests.Shows.Lists")]

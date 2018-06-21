@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Watched.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Watched.Json.Reader
 {
     public partial class WatchedShowSeasonObjectJsonReader_Tests
     {

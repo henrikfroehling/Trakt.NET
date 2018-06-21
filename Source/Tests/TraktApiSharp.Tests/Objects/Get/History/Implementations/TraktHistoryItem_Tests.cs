@@ -1,13 +1,13 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.History.Implementations
+﻿namespace TraktNet.Tests.Objects.Get.History.Implementations
 {
     using FluentAssertions;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.History;
-    using TraktApiSharp.Objects.Get.History.Json.Reader;
+    using TraktNet.Enums;
+    using TraktNet.Objects.Get.History;
+    using TraktNet.Objects.Get.History.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.History.Implementations")]

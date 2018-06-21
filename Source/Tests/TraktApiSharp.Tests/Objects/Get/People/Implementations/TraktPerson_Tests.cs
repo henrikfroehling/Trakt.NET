@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.People.Implementations
+﻿namespace TraktNet.Tests.Objects.Get.People.Implementations
 {
     using FluentAssertions;
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.People;
-    using TraktApiSharp.Objects.Get.People.Json.Reader;
+    using TraktNet.Objects.Get.People;
+    using TraktNet.Objects.Get.People.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.People.Implementations")]

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.People.Credits.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.People.Credits.Json.Reader
 {
     public partial class PersonMovieCreditsCastItemArrayJsonReader_Tests
     {

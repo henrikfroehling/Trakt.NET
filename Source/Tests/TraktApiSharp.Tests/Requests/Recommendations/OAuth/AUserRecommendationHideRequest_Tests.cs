@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Requests.Recommendations.OAuth
+﻿namespace TraktNet.Tests.Requests.Recommendations.OAuth
 {
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Recommendations.OAuth;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Recommendations.OAuth;
     using Xunit;
 
     [Category("Requests.Recommendations.OAuth")]

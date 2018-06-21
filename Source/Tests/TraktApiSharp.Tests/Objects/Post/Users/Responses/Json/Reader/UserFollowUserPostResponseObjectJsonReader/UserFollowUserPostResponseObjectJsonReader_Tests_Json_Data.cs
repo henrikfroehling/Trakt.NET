@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Post.Users.Responses.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Post.Users.Responses.Json.Reader
 {
     public partial class UserFollowUserPostResponseObjectJsonReader_Tests
     {

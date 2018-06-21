@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Tests.Services
+﻿namespace TraktNet.Tests.Services
 {
     using FluentAssertions;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Services;
+    using TraktNet.Services;
     using Xunit;
 
     [Category("Services")]

@@ -1,13 +1,13 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Watchlist.Implementations
+﻿namespace TraktNet.Tests.Objects.Get.Watchlist.Implementations
 {
     using FluentAssertions;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Watchlist;
-    using TraktApiSharp.Objects.Get.Watchlist.Json.Reader;
+    using TraktNet.Enums;
+    using TraktNet.Objects.Get.Watchlist;
+    using TraktNet.Objects.Get.Watchlist.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Watchlist.Implementations")]

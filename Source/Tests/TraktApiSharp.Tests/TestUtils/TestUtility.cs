@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.TestUtils
+﻿namespace TraktNet.Tests.TestUtils
 {
     using System;
     using System.IO;
     using System.Net;
     using System.Threading.Tasks;
-    using TraktApiSharp.Core;
-    using TraktApiSharp.Objects.Json;
+    using TraktNet.Core;
+    using TraktNet.Objects.Json;
 
     internal static class TestUtility
     {

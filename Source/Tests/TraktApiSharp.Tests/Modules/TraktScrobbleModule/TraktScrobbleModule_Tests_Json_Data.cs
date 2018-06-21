@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktScrobbleModule
+﻿namespace TraktNet.Tests.Modules.TraktScrobbleModule
 {
     using System;
-    using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Objects.Get.Movies;
-    using TraktApiSharp.Objects.Get.Shows;
+    using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Objects.Get.Movies;
+    using TraktNet.Objects.Get.Shows;
 
     public partial class TraktScrobbleModule_Tests
     {

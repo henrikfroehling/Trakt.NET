@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Objects.Authentication.Implementations
+﻿namespace TraktNet.Tests.Objects.Authentication.Implementations
 {
     using FluentAssertions;
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Authentication;
-    using TraktApiSharp.Objects.Authentication.Json.Reader;
+    using TraktNet.Objects.Authentication;
+    using TraktNet.Objects.Authentication.Json.Reader;
     using Xunit;
 
     [Category("Objects.Authentication.Implementations")]

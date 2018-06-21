@@ -1,10 +1,10 @@
-﻿namespace TraktApiSharp.Tests.Requests.Seasons
+﻿namespace TraktNet.Tests.Requests.Seasons
 {
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Requests.Seasons;
+    using TraktNet.Requests.Seasons;
     using Xunit;
 
     [Category("Requests.Seasons")]

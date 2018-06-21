@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Tests.Requests.Networks
+﻿namespace TraktNet.Tests.Requests.Networks
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Networks;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Networks;
     using Xunit;
 
     [Category("Requests.Networks")]

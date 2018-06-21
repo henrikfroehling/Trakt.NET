@@ -1,8 +1,8 @@
-﻿namespace TraktApiSharp.Tests.Requests.Certifications
+﻿namespace TraktNet.Tests.Requests.Certifications
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Requests.Certifications;
+    using TraktNet.Requests.Certifications;
     using Xunit;
 
     [Category("Requests.Certifications")]

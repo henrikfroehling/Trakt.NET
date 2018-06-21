@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktAuthenticationModule
+﻿namespace TraktNet.Tests.Modules.TraktAuthenticationModule
 {
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using TraktApiSharp.Core;
+    using TraktNet.Core;
 
     public partial class TraktAuthenticationModule_Tests
     {

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Basic.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Basic.Json.Reader
 {
     public partial class CommentObjectJsonReader_Tests
     {

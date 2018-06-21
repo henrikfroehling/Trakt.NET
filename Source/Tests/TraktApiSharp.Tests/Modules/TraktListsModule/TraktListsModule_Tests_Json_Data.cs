@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktListsModule
+﻿namespace TraktNet.Tests.Modules.TraktListsModule
 {
     public partial class TraktListsModule_Tests
     {

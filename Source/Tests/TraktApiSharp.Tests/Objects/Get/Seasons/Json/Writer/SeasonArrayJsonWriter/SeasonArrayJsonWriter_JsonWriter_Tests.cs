@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Seasons.Json.Writer
+﻿namespace TraktNet.Tests.Objects.Get.Seasons.Json.Writer
 {
     using FluentAssertions;
     using Newtonsoft.Json;
@@ -7,10 +7,10 @@
     using System.IO;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Objects.Get.Seasons;
-    using TraktApiSharp.Objects.Json;
+    using TraktNet.Extensions;
+    using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Objects.Get.Seasons;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.Seasons.JsonWriter")]

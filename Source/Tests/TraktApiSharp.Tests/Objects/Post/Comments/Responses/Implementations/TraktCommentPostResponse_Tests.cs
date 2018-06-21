@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Objects.Post.Comments.Responses.Implementations
+﻿namespace TraktNet.Tests.Objects.Post.Comments.Responses.Implementations
 {
     using FluentAssertions;
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Post.Comments.Responses;
-    using TraktApiSharp.Objects.Post.Comments.Responses.Json.Reader;
+    using TraktNet.Objects.Post.Comments.Responses;
+    using TraktNet.Objects.Post.Comments.Responses.Json.Reader;
     using Xunit;
 
     [Category("Objects.Post.Comments.Responses.Implementations")]

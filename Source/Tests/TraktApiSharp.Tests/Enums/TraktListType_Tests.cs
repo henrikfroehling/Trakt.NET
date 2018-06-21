@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Tests.Enums
+﻿namespace TraktNet.Tests.Enums
 {
     using FluentAssertions;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Enums;
+    using TraktNet.Enums;
     using Xunit;
 
     [Category("Enums")]

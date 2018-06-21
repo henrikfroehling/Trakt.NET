@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.People.Credits.Implementations
+﻿namespace TraktNet.Tests.Objects.Get.People.Credits.Implementations
 {
     using FluentAssertions;
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.People.Credits;
-    using TraktApiSharp.Objects.Get.People.Credits.Json.Reader;
+    using TraktNet.Objects.Get.People.Credits;
+    using TraktNet.Objects.Get.People.Credits.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.People.Credits.Implementations")]

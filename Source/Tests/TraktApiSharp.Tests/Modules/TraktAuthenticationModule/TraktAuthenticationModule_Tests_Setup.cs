@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktAuthenticationModule
+﻿namespace TraktNet.Tests.Modules.TraktAuthenticationModule
 {
     using TestUtils;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Authentication;
-    using TraktApiSharp.Objects.Basic;
+    using TraktNet.Enums;
+    using TraktNet.Objects.Authentication;
+    using TraktNet.Objects.Basic;
 
     public partial class TraktAuthenticationModule_Tests
     {

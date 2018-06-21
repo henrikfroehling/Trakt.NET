@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.History.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.History.Json.Reader
 {
     public partial class HistoryItemObjectJsonReader_Tests
     {

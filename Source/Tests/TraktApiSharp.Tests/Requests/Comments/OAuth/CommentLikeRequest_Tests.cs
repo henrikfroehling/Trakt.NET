@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Requests.Comments.OAuth
+﻿namespace TraktNet.Tests.Requests.Comments.OAuth
 {
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Comments.OAuth;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Comments.OAuth;
     using Xunit;
 
     [Category("Requests.Comments.OAuth")]

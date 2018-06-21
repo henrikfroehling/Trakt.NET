@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Shows.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Shows.Json.Reader
 {
     public partial class ShowTranslationObjectJsonReader_Tests
     {

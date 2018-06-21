@@ -1,13 +1,13 @@
-﻿namespace TraktApiSharp.Tests.Requests.Comments
+﻿namespace TraktNet.Tests.Requests.Comments
 {
     using FluentAssertions;
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Comments;
-    using TraktApiSharp.Requests.Parameters;
+    using TraktNet.Enums;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Comments;
+    using TraktNet.Requests.Parameters;
     using Xunit;
 
     [Category("Requests.Comments")]

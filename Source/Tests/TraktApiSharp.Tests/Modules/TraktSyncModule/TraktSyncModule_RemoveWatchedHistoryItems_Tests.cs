@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktSyncModule
+﻿namespace TraktNet.Tests.Modules.TraktSyncModule
 {
     using FluentAssertions;
     using System;
@@ -8,11 +8,11 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Objects.Post.Responses;
-    using TraktApiSharp.Objects.Post.Syncs.History;
-    using TraktApiSharp.Objects.Post.Syncs.History.Responses;
-    using TraktApiSharp.Responses;
+    using TraktNet.Exceptions;
+    using TraktNet.Objects.Post.Responses;
+    using TraktNet.Objects.Post.Syncs.History;
+    using TraktNet.Objects.Post.Syncs.History.Responses;
+    using TraktNet.Responses;
     using Xunit;
 
     [Category("Modules.Sync")]

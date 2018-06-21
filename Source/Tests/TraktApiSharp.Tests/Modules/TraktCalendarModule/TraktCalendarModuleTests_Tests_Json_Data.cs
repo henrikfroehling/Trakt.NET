@@ -1,7 +1,7 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktCalendarModule
+﻿namespace TraktNet.Tests.Modules.TraktCalendarModule
 {
     using System;
-    using TraktApiSharp.Requests.Parameters;
+    using TraktNet.Requests.Parameters;
 
     public partial class TraktCalendarModule_Tests
     {

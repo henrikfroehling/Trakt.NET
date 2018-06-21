@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Calendars.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Calendars.Json.Reader
 {
     public partial class CalendarMovieObjectJsonReader_Tests
     {

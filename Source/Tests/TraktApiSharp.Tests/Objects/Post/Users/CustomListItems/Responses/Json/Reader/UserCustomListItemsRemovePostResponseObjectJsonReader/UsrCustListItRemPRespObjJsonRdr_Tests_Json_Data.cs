@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Post.Users.CustomListItems.Responses.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Post.Users.CustomListItems.Responses.Json.Reader
 {
     public partial class UserCustomListItemsRemovePostResponseObjectJsonReader_Tests
     {

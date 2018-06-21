@@ -1,7 +1,7 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktEpisodesModule
+﻿namespace TraktNet.Tests.Modules.TraktEpisodesModule
 {
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Requests.Parameters;
+    using TraktNet.Enums;
+    using TraktNet.Requests.Parameters;
 
     public partial class TraktEpisodesModule_Tests
     {
