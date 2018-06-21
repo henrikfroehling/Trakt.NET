@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Users.OAuth
+﻿namespace TraktNet.Requests.Users.OAuth
 {
     using Interfaces;
     using System.Collections.Generic;

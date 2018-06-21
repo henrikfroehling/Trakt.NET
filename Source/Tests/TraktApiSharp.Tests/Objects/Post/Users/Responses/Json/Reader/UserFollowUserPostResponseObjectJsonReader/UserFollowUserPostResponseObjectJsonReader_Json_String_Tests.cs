@@ -1,10 +1,10 @@
-﻿namespace TraktApiSharp.Tests.Objects.Post.Users.Responses.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Post.Users.Responses.Json.Reader
 {
     using FluentAssertions;
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Post.Users.Responses.Json.Reader;
+    using TraktNet.Objects.Post.Users.Responses.Json.Reader;
     using Xunit;
 
     [Category("Objects.Post.Users.Responses.JsonReader")]

@@ -1,12 +1,12 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Ratings.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Ratings.Json.Reader
 {
     using FluentAssertions;
     using System;
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Ratings.Json.Reader;
+    using TraktNet.Enums;
+    using TraktNet.Objects.Get.Ratings.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Ratings.JsonReader")]

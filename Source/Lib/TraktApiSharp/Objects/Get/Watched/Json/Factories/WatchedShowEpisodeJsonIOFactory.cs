@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Watched.Json.Factories
+﻿namespace TraktNet.Objects.Get.Watched.Json.Factories
 {
     using Get.Watched.Json.Reader;
     using Get.Watched.Json.Writer;

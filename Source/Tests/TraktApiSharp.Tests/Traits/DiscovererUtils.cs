@@ -1,7 +1,7 @@
-﻿namespace TraktApiSharp.Tests.Traits
+﻿namespace TraktNet.Tests.Traits
 {
     public sealed class DiscovererUtils
     {
-        internal const string AssemblyName = nameof(TraktApiSharp) + "." + nameof(Tests);
+        internal const string AssemblyName = nameof(TraktNet) + "." + nameof(Tests);
     }
 }

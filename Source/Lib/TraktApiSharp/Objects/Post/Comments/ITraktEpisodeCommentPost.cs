@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Comments
+﻿namespace TraktNet.Objects.Post.Comments
 {
     using Get.Episodes;
 

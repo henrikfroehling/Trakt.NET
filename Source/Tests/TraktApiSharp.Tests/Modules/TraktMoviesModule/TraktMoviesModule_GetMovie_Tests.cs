@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktMoviesModule
+﻿namespace TraktNet.Tests.Modules.TraktMoviesModule
 {
     using FluentAssertions;
     using System;
@@ -7,10 +7,10 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Modules;
-    using TraktApiSharp.Objects.Get.Movies;
-    using TraktApiSharp.Responses;
+    using TraktNet.Exceptions;
+    using TraktNet.Modules;
+    using TraktNet.Objects.Get.Movies;
+    using TraktNet.Responses;
     using Xunit;
 
     [Category("Modules.Movies")]

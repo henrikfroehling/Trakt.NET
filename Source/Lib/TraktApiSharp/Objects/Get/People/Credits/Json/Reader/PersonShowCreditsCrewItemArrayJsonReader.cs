@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.People.Credits.Json.Reader
+﻿namespace TraktNet.Objects.Get.People.Credits.Json.Reader
 {
     using Newtonsoft.Json;
     using Objects.Json;

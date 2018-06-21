@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktCheckinsModule
+﻿namespace TraktNet.Tests.Modules.TraktCheckinsModule
 {
     using FluentAssertions;
     using System;
@@ -6,13 +6,13 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Objects.Post.Checkins;
-    using TraktApiSharp.Objects.Post.Checkins.Responses;
-    using TraktApiSharp.Responses;
+    using TraktNet.Exceptions;
+    using TraktNet.Extensions;
+    using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Objects.Get.Shows;
+    using TraktNet.Objects.Post.Checkins;
+    using TraktNet.Objects.Post.Checkins.Responses;
+    using TraktNet.Responses;
     using Xunit;
 
     [Category("Modules.Checkins")]

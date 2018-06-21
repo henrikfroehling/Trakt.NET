@@ -1,13 +1,13 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Calendars.Implementations
+﻿namespace TraktNet.Tests.Objects.Get.Calendars.Implementations
 {
     using FluentAssertions;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Calendars;
-    using TraktApiSharp.Objects.Get.Calendars.Json.Reader;
+    using TraktNet.Enums;
+    using TraktNet.Objects.Get.Calendars;
+    using TraktNet.Objects.Get.Calendars.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Calendars.Implementations")]

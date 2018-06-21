@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs.Playback.Json.Writer
+﻿namespace TraktNet.Objects.Get.Syncs.Playback.Json.Writer
 {
     using Episodes.Json.Writer;
     using Extensions;

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the type of an object in a comment.</summary>
     public sealed class TraktObjectType : TraktEnumeration

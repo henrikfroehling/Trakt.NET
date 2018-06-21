@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Responses.Json.Factories
+﻿namespace TraktNet.Objects.Post.Syncs.History.Responses.Json.Factories
 {
     using Objects.Json;
     using Reader;

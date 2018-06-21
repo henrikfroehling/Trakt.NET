@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.History.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.History.Json.Reader
 {
     using FluentAssertions;
     using Newtonsoft.Json;
@@ -6,8 +6,8 @@
     using System.IO;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.History.Json.Reader;
+    using TraktNet.Enums;
+    using TraktNet.Objects.Get.History.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.History.JsonReader")]

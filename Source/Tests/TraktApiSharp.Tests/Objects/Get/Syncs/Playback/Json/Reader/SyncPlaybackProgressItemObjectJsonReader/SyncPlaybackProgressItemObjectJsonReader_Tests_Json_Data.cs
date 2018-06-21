@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Syncs.Playback.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Syncs.Playback.Json.Reader
 {
     public partial class SyncPlaybackProgressItemObjectJsonReader_Tests
     {

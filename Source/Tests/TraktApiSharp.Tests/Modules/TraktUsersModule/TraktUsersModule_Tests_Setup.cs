@@ -1,14 +1,14 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktUsersModule
+﻿namespace TraktNet.Tests.Modules.TraktUsersModule
 {
     using System.Collections.Generic;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Extensions;
-    using TraktApiSharp.Objects.Get.Movies;
-    using TraktApiSharp.Objects.Get.People;
-    using TraktApiSharp.Objects.Get.Seasons;
-    using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Objects.Post.Users.CustomListItems;
-    using TraktApiSharp.Objects.Post.Users.HiddenItems;
+    using TraktNet.Enums;
+    using TraktNet.Extensions;
+    using TraktNet.Objects.Get.Movies;
+    using TraktNet.Objects.Get.People;
+    using TraktNet.Objects.Get.Seasons;
+    using TraktNet.Objects.Get.Shows;
+    using TraktNet.Objects.Post.Users.CustomListItems;
+    using TraktNet.Objects.Post.Users.HiddenItems;
 
     public partial class TraktUsersModule_Tests
     {

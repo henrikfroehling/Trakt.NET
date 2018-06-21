@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Users.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Users.Json.Reader
 {
     using FluentAssertions;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users.Json.Reader;
+    using TraktNet.Objects.Get.Users.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Users.JsonReader")]

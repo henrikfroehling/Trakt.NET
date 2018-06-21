@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Collections.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Collections.Json.Reader
 {
     using FluentAssertions;
     using System;
@@ -7,8 +7,8 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Collections.Json.Reader;
+    using TraktNet.Enums;
+    using TraktNet.Objects.Get.Collections.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Collections.JsonReader")]

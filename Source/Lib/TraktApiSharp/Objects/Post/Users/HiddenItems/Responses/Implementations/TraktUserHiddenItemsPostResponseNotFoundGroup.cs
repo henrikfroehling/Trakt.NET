@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.HiddenItems.Responses
+﻿namespace TraktNet.Objects.Post.Users.HiddenItems.Responses
 {
     using Post.Responses;
     using System.Collections.Generic;

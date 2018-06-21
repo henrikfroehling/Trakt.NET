@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Basic
+﻿namespace TraktNet.Objects.Basic
 {
     /// <summary>Represents Trakt statistics.</summary>
     public class TraktStatistics : ITraktStatistics

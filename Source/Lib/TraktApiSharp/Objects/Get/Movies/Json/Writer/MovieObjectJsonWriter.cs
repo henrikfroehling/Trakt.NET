@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Movies.Json.Writer
+﻿namespace TraktNet.Objects.Get.Movies.Json.Writer
 {
     using Extensions;
     using Newtonsoft.Json;

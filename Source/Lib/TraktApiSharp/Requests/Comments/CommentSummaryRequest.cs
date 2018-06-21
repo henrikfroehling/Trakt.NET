@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Comments
+﻿namespace TraktNet.Requests.Comments
 {
     using Base;
     using Extensions;

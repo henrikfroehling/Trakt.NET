@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Json.Factories
+﻿namespace TraktNet.Objects.Post.Users.CustomListItems.Json.Factories
 {
     using Objects.Json;
     using System;

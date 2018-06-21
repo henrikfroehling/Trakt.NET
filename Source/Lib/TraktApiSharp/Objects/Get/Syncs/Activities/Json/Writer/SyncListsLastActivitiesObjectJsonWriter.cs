@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs.Activities.Json.Writer
+﻿namespace TraktNet.Objects.Get.Syncs.Activities.Json.Writer
 {
     using Extensions;
     using Newtonsoft.Json;

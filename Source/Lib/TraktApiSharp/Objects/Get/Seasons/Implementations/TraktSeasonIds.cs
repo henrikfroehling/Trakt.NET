@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Seasons
+﻿namespace TraktNet.Objects.Get.Seasons
 {
     /// <summary>A collection of ids for various web services, including the Trakt id, for a Trakt season.</summary>
     public class TraktSeasonIds : ITraktSeasonIds

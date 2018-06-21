@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the action type of an history item.</summary>
     public sealed class TraktHistoryActionType : TraktEnumeration

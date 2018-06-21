@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Ratings.Json.Factories
+﻿namespace TraktNet.Objects.Get.Ratings.Json.Factories
 {
     using Get.Ratings.Json.Reader;
     using Get.Ratings.Json.Writer;

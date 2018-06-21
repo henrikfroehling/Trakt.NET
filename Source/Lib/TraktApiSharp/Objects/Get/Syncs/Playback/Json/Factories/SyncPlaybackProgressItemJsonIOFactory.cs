@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs.Playback.Json.Factories
+﻿namespace TraktNet.Objects.Get.Syncs.Playback.Json.Factories
 {
     using Get.Syncs.Playback.Json.Reader;
     using Get.Syncs.Playback.Json.Writer;

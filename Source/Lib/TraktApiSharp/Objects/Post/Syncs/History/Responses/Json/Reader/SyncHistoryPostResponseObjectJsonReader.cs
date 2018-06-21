@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Responses.Json.Reader
+﻿namespace TraktNet.Objects.Post.Syncs.History.Responses.Json.Reader
 {
     using Newtonsoft.Json;
     using Objects.Json;

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings.Json.Writer
+﻿namespace TraktNet.Objects.Post.Syncs.Ratings.Json.Writer
 {
     using Extensions;
     using Newtonsoft.Json;

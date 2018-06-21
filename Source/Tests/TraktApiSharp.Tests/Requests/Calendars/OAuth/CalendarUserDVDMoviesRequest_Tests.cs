@@ -1,14 +1,14 @@
-﻿namespace TraktApiSharp.Tests.Requests.Calendars.OAuth
+﻿namespace TraktNet.Tests.Requests.Calendars.OAuth
 {
     using FluentAssertions;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Extensions;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Calendars.OAuth;
-    using TraktApiSharp.Requests.Parameters;
+    using TraktNet.Extensions;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Calendars.OAuth;
+    using TraktNet.Requests.Parameters;
     using Xunit;
 
     [Category("Requests.Calendars.OAuth.Movies")]

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Modules
+﻿namespace TraktNet.Modules
 {
     using Objects.Authentication;
     using Requests.Authentication;

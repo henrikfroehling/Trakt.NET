@@ -1,8 +1,8 @@
-﻿namespace TraktApiSharp.Tests.Requests.Comments
+﻿namespace TraktNet.Tests.Requests.Comments
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Requests.Comments;
+    using TraktNet.Requests.Comments;
     using Xunit;
 
     [Category("Requests.Comments")]

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Handler
+﻿namespace TraktNet.Requests.Handler
 {
     using Authentication;
     using Objects.Authentication;

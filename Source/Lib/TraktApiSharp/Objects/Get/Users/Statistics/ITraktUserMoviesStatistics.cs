@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Users.Statistics
+﻿namespace TraktNet.Objects.Get.Users.Statistics
 {
     public interface ITraktUserMoviesStatistics
     {

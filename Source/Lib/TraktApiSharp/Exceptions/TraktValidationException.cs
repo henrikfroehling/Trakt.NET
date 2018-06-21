@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Exceptions
+﻿namespace TraktNet.Exceptions
 {
     /// <summary>Exception, that will be thrown, if sent data is not valid.</summary>
     public class TraktValidationException : TraktException

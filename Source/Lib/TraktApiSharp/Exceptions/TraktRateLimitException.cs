@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Exceptions
+﻿namespace TraktNet.Exceptions
 {
     /// <summary>Exception, that will be thrown, if there are too many requests during a specific time period.</summary>
     public class TraktRateLimitException : TraktException

@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Watchlist.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Watchlist.Json.Reader
 {
     using FluentAssertions;
     using Newtonsoft.Json;
     using System.IO;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Watchlist.Json.Reader;
+    using TraktNet.Objects.Get.Watchlist.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Watchlist.JsonReader")]

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Basic.Json.Writer
+﻿namespace TraktNet.Objects.Basic.Json.Writer
 {
     using Get.Episodes.Json.Writer;
     using Get.Movies.Json.Writer;

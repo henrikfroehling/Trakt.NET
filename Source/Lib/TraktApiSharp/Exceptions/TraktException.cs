@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Exceptions
+﻿namespace TraktNet.Exceptions
 {
     using System;
     using System.Net;

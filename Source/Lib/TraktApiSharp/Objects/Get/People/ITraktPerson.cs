@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.People
+﻿namespace TraktNet.Objects.Get.People
 {
     using System;
 

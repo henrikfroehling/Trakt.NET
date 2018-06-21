@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktAuthenticationModule
+﻿namespace TraktNet.Tests.Modules.TraktAuthenticationModule
 {
     using FluentAssertions;
     using System;
@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Exceptions;
+    using TraktNet.Exceptions;
     using Xunit;
 
     [Category("Modules.Authentication")]

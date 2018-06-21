@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Shows.Json.Writer
+﻿namespace TraktNet.Tests.Objects.Get.Shows.Json.Writer
 {
     public partial class ShowAliasObjectJsonWriter_Tests
     {

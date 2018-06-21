@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the field hint in a search query.</summary>
     public sealed class TraktSearchField : TraktEnumeration

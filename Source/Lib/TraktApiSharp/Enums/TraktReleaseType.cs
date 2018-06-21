@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines, how a movie was released.</summary>
     public sealed class TraktReleaseType : TraktEnumeration

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Shows
+﻿namespace TraktNet.Objects.Get.Shows
 {
     /// <summary>The air time of a Trakt show.</summary>
     public class TraktShowAirs : ITraktShowAirs

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Watchlist.Json.Reader
+﻿namespace TraktNet.Objects.Get.Watchlist.Json.Reader
 {
     using Enums;
     using Episodes.Json.Reader;

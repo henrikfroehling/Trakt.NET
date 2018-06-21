@@ -1,12 +1,12 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Seasons.Json.Writer
+﻿namespace TraktNet.Tests.Objects.Get.Seasons.Json.Writer
 {
     using FluentAssertions;
     using System;
     using System.IO;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Seasons;
-    using TraktApiSharp.Objects.Get.Seasons.Json.Writer;
+    using TraktNet.Objects.Get.Seasons;
+    using TraktNet.Objects.Get.Seasons.Json.Writer;
     using Xunit;
 
     [Category("Objects.Get.Seasons.JsonWriter")]

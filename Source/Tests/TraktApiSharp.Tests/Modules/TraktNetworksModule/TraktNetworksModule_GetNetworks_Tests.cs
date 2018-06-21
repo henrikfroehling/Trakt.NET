@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktNetworksModule
+﻿namespace TraktNet.Tests.Modules.TraktNetworksModule
 {
     using FluentAssertions;
     using System;
@@ -7,9 +7,9 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Responses;
+    using TraktNet.Exceptions;
+    using TraktNet.Objects.Basic;
+    using TraktNet.Responses;
     using Xunit;
 
     [Category("Modules.Networks")]

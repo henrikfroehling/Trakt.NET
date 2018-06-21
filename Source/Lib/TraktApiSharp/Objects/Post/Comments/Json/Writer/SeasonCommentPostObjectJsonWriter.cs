@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Comments.Json.Writer
+﻿namespace TraktNet.Objects.Post.Comments.Json.Writer
 {
     using Get.Seasons.Json.Writer;
     using Newtonsoft.Json;

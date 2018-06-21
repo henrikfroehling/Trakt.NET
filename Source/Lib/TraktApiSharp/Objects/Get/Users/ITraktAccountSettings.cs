@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Users
+﻿namespace TraktNet.Objects.Get.Users
 {
     public interface ITraktAccountSettings
     {

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Json.Writer
+﻿namespace TraktNet.Objects.Post.Users.CustomListItems.Json.Writer
 {
     using Get.Movies.Json.Writer;
     using Newtonsoft.Json;

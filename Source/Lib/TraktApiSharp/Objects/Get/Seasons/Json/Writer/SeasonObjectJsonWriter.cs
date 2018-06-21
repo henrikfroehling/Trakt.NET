@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Seasons.Json.Writer
+﻿namespace TraktNet.Objects.Get.Seasons.Json.Writer
 {
     using Episodes;
     using Extensions;

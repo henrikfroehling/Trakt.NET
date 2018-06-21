@@ -1,10 +1,10 @@
-﻿namespace TraktApiSharp.Tests.Objects.Post.Scrobbles.Responses.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Post.Scrobbles.Responses.Json.Reader
 {
     using FluentAssertions;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Post.Scrobbles.Responses.Json.Reader;
+    using TraktNet.Enums;
+    using TraktNet.Objects.Post.Scrobbles.Responses.Json.Reader;
     using Xunit;
 
     [Category("Objects.Post.Scrobbles.Responses.JsonReader")]

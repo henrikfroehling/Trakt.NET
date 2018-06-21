@@ -1,7 +1,7 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktSeasonsModule
+﻿namespace TraktNet.Tests.Modules.TraktSeasonsModule
 {
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Requests.Parameters;
+    using TraktNet.Enums;
+    using TraktNet.Requests.Parameters;
 
     public partial class TraktSeasonsModule_Tests
     {

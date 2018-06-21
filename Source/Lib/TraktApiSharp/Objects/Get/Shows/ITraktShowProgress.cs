@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Shows
+﻿namespace TraktNet.Objects.Get.Shows
 {
     using Episodes;
     using Seasons;

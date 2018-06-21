@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Json
+﻿namespace TraktNet.Objects.Json
 {
     using Authentication;
     using Authentication.Json.Factories;

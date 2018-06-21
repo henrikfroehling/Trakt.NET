@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Basic
+﻿namespace TraktNet.Objects.Basic
 {
     public interface IIds
     {

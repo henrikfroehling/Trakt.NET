@@ -1,7 +1,7 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktSearchModule
+﻿namespace TraktNet.Tests.Modules.TraktSearchModule
 {
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Requests.Parameters;
+    using TraktNet.Enums;
+    using TraktNet.Requests.Parameters;
 
     public partial class TraktSearchModule_Tests
     {

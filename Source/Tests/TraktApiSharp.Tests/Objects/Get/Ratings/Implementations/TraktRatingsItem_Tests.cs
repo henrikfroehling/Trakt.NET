@@ -1,13 +1,13 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Ratings.Implementations
+﻿namespace TraktNet.Tests.Objects.Get.Ratings.Implementations
 {
     using FluentAssertions;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Get.Ratings;
-    using TraktApiSharp.Objects.Get.Ratings.Json.Reader;
+    using TraktNet.Enums;
+    using TraktNet.Objects.Get.Ratings;
+    using TraktNet.Objects.Get.Ratings.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Ratings.Implementations")]

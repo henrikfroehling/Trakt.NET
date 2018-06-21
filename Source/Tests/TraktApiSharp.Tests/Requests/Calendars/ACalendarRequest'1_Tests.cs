@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Tests.Requests.Calendars
+﻿namespace TraktNet.Tests.Requests.Calendars
 {
     using FluentAssertions;
     using System;
     using Traits;
-    using TraktApiSharp.Requests.Calendars;
+    using TraktNet.Requests.Calendars;
     using Xunit;
 
     [Category("Requests.Calendars")]

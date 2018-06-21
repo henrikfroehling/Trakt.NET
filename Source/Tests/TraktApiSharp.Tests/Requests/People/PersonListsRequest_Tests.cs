@@ -1,13 +1,13 @@
-﻿namespace TraktApiSharp.Tests.Requests.People
+﻿namespace TraktNet.Tests.Requests.People
 {
     using FluentAssertions;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.People;
+    using TraktNet.Enums;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.People;
     using Xunit;
 
     [Category("Requests.People")]

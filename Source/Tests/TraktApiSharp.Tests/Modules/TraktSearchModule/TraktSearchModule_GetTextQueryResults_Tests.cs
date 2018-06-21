@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktSearchModule
+﻿namespace TraktNet.Tests.Modules.TraktSearchModule
 {
     using FluentAssertions;
     using System;
@@ -6,11 +6,11 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Requests.Parameters;
-    using TraktApiSharp.Responses;
+    using TraktNet.Enums;
+    using TraktNet.Exceptions;
+    using TraktNet.Objects.Basic;
+    using TraktNet.Requests.Parameters;
+    using TraktNet.Responses;
     using Xunit;
 
     [Category("Modules.Search")]

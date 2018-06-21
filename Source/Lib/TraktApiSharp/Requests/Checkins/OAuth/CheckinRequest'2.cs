@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Checkins.OAuth
+﻿namespace TraktNet.Requests.Checkins.OAuth
 {
     using Base;
     using Requests.Interfaces;

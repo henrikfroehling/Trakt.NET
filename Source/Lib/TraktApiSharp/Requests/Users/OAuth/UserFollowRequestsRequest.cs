@@ -1,7 +1,7 @@
-﻿namespace TraktApiSharp.Requests.Users.OAuth
+﻿namespace TraktNet.Requests.Users.OAuth
 {
     using Base;
-    using TraktApiSharp.Objects.Get.Users;
+    using Objects.Get.Users;
 
     internal sealed class UserFollowRequestsRequest : AUsersGetRequest<ITraktUserFollowRequest>
     {

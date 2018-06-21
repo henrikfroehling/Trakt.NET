@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Comments.OAuth
+﻿namespace TraktNet.Requests.Comments.OAuth
 {
     using Base;
     using Extensions;

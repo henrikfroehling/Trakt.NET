@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Exceptions
+﻿namespace TraktNet.Exceptions
 {
     /// <summary>Exception, that will be thrown, if the request is forbidden.</summary>
     public class TraktForbiddenException : TraktException

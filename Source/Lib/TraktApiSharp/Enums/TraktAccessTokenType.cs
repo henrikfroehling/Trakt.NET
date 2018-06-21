@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the type of an access token.</summary>
     public sealed class TraktAccessTokenType : TraktEnumeration

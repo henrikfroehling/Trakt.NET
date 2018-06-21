@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.History.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.History.Json.Reader
 {
     using FluentAssertions;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.History.Json.Reader;
+    using TraktNet.Objects.Get.History.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.History.JsonReader")]

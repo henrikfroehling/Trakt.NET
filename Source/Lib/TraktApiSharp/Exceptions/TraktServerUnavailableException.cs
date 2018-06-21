@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Exceptions
+﻿namespace TraktNet.Exceptions
 {
     /// <summary>Exception, that will be thrown, if the server is unavailable.</summary>
     public class TraktServerUnavailableException : TraktException

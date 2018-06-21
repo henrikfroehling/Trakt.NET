@@ -1,12 +1,12 @@
-﻿namespace TraktApiSharp.Tests.Requests.Parameters
+﻿namespace TraktNet.Tests.Requests.Parameters
 {
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Requests.Parameters;
-    using TraktApiSharp.Utils;
+    using TraktNet.Enums;
+    using TraktNet.Requests.Parameters;
+    using TraktNet.Utils;
     using Xunit;
 
     [Category("Requests.Parameters")]

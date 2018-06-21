@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Episodes.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Episodes.Json.Reader
 {
     public partial class EpisodeArrayJsonReader_Tests
     {

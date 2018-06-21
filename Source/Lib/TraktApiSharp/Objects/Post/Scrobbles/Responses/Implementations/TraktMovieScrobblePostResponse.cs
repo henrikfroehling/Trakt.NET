@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Scrobbles.Responses
+﻿namespace TraktNet.Objects.Post.Scrobbles.Responses
 {
     using Get.Movies;
 

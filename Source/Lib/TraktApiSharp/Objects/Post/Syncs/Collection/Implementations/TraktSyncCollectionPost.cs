@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Collection
+﻿namespace TraktNet.Objects.Post.Syncs.Collection
 {
     using Objects.Json;
     using System.Collections.Generic;

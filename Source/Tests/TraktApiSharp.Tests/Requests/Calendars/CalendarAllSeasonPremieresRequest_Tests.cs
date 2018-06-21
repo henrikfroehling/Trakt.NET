@@ -1,14 +1,14 @@
-﻿namespace TraktApiSharp.Tests.Requests.Calendars
+﻿namespace TraktNet.Tests.Requests.Calendars
 {
     using FluentAssertions;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Extensions;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Calendars;
-    using TraktApiSharp.Requests.Parameters;
+    using TraktNet.Extensions;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Calendars;
+    using TraktNet.Requests.Parameters;
     using Xunit;
 
     [Category("Requests.Calendars.Shows")]

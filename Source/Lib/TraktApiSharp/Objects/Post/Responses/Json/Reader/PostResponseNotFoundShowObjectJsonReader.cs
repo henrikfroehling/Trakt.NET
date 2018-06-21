@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Responses.Json.Reader
+﻿namespace TraktNet.Objects.Post.Responses.Json.Reader
 {
     using Get.Shows.Json.Reader;
     using Newtonsoft.Json;

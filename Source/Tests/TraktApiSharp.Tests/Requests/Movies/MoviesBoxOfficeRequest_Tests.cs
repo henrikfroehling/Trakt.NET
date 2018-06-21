@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Requests.Movies
+﻿namespace TraktNet.Tests.Requests.Movies
 {
     using FluentAssertions;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Movies;
-    using TraktApiSharp.Requests.Parameters;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Movies;
+    using TraktNet.Requests.Parameters;
     using Xunit;
 
     [Category("Requests.Movies.Lists")]

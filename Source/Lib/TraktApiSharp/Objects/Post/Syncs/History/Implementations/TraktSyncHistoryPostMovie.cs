@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.History
+﻿namespace TraktNet.Objects.Post.Syncs.History
 {
     using Get.Movies;
     using System;

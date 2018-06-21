@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Exceptions
+﻿namespace TraktNet.Exceptions
 {
     /// <summary>Exception, that will be thrown, if the tokens have expired during authentication.</summary>
     public class TraktExpiredException : TraktException

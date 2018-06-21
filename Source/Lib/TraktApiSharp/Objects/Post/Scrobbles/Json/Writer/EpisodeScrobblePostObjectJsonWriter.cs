@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Scrobbles.Json.Writer
+﻿namespace TraktNet.Objects.Post.Scrobbles.Json.Writer
 {
     using Get.Episodes.Json.Writer;
     using Get.Shows.Json.Writer;

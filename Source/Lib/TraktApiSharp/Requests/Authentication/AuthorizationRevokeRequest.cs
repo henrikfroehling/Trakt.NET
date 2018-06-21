@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Authentication
+﻿namespace TraktNet.Requests.Authentication
 {
     using Requests.Base;
     using System.Collections.Generic;

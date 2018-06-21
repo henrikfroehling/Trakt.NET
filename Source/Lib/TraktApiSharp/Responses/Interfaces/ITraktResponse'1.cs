@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Responses.Interfaces
+﻿namespace TraktNet.Responses.Interfaces
 {
     public interface ITraktResponse<TResponseContentType> : ITraktNoContentResponse, ITraktResponseHeaders
     {

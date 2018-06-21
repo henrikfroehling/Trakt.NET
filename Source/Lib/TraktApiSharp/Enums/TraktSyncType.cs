@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the type of an object in a playback progress item.</summary>
     public sealed class TraktSyncType : TraktEnumeration

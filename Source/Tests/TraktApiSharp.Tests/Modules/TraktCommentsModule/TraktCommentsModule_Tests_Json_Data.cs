@@ -1,13 +1,13 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktCommentsModule
+﻿namespace TraktNet.Tests.Modules.TraktCommentsModule
 {
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Objects.Get.Movies;
-    using TraktApiSharp.Objects.Get.Seasons;
-    using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Objects.Get.Users.Lists;
-    using TraktApiSharp.Requests.Parameters;
+    using TraktNet.Enums;
+    using TraktNet.Objects.Basic;
+    using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Objects.Get.Movies;
+    using TraktNet.Objects.Get.Seasons;
+    using TraktNet.Objects.Get.Shows;
+    using TraktNet.Objects.Get.Users.Lists;
+    using TraktNet.Requests.Parameters;
 
     public partial class TraktCommentsModule_Tests
     {

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Responses
+﻿namespace TraktNet.Objects.Post.Users.CustomListItems.Responses
 {
     public interface ITraktUserCustomListItemsPostResponseGroup
     {

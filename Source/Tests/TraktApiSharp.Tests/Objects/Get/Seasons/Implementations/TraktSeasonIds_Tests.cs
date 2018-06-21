@@ -1,10 +1,10 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Seasons.Implementations
+﻿namespace TraktNet.Tests.Objects.Get.Seasons.Implementations
 {
     using FluentAssertions;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Seasons;
-    using TraktApiSharp.Objects.Get.Seasons.Json.Reader;
+    using TraktNet.Objects.Get.Seasons;
+    using TraktNet.Objects.Get.Seasons.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Seasons.Implementations")]

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.Responses.Json.Writer
+﻿namespace TraktNet.Objects.Post.Users.Responses.Json.Writer
 {
     using Extensions;
     using Get.Users.Json.Writer;

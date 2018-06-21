@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the video resolution type in a collection item's metadata.</summary>
     public sealed class TraktMediaResolution : TraktEnumeration

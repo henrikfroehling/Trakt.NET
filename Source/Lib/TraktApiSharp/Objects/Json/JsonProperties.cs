@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Json
+﻿namespace TraktNet.Objects.Json
 {
     internal static class JsonProperties
     {

@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Episodes.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Episodes.Json.Reader
 {
     using FluentAssertions;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Episodes.Json.Reader;
+    using TraktNet.Objects.Get.Episodes.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Episodes.JsonReader")]

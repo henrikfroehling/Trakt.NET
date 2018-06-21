@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Watched.Json.Reader
+﻿namespace TraktNet.Objects.Get.Watched.Json.Reader
 {
     using Movies.Json.Reader;
     using Newtonsoft.Json;

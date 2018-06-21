@@ -1,8 +1,8 @@
-﻿namespace TraktApiSharp.Tests.Extensions
+﻿namespace TraktNet.Tests.Extensions
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Extensions;
+    using TraktNet.Extensions;
     using Xunit;
 
     [Category("Extensions")]

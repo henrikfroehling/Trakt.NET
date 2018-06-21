@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Modules
+﻿namespace TraktNet.Modules
 {
     /// <summary>
     /// Collection containing multiple different combinations of usernames and list ids.

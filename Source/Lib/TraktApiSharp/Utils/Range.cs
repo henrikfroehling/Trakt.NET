@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Utils
+﻿namespace TraktNet.Utils
 {
     /// <summary>
     /// Represents a range between two values.

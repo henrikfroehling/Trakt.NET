@@ -1,6 +1,6 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktRecommendationsModule
+﻿namespace TraktNet.Tests.Modules.TraktRecommendationsModule
 {
-    using TraktApiSharp.Requests.Parameters;
+    using TraktNet.Requests.Parameters;
 
     public partial class TraktRecommendationsModule_Tests
     {

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Exceptions
+﻿namespace TraktNet.Exceptions
 {
     /// <summary>Exception, that will be thrown, if the request parameters are not valid.</summary>
     public class TraktPreconditionFailedException : TraktException

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Movies.Json.Factories
+﻿namespace TraktNet.Objects.Get.Movies.Json.Factories
 {
     using Get.Movies.Json.Reader;
     using Get.Movies.Json.Writer;

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.People.Credits.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.People.Credits.Json.Reader
 {
     using FluentAssertions;
     using Newtonsoft.Json;
@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.People.Credits.Json.Reader;
+    using TraktNet.Objects.Get.People.Credits.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.People.Credits.JsonReader")]

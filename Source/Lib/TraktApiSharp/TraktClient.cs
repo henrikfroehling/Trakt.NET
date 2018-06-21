@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp
+﻿namespace TraktNet
 {
     using Core;
     using Extensions;

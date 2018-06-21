@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.History.Responses
+﻿namespace TraktNet.Objects.Post.Syncs.History.Responses
 {
     using Syncs.Responses;
     using System.Collections.Generic;

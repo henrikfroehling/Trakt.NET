@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Scrobbles.OAuth
+﻿namespace TraktNet.Requests.Scrobbles.OAuth
 {
     using Base;
     using Requests.Interfaces;

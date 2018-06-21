@@ -1,8 +1,8 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktSyncModule
+﻿namespace TraktNet.Tests.Modules.TraktSyncModule
 {
     using System;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Requests.Parameters;
+    using TraktNet.Enums;
+    using TraktNet.Requests.Parameters;
 
     public partial class TraktSyncModule_Tests
     {

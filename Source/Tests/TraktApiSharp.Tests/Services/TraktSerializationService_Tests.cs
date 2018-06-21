@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Services
+﻿namespace TraktNet.Tests.Services
 {
     //using FluentAssertions;
     //using System;
     using Traits;
-    //using TraktApiSharp.Enums;
-    //using TraktApiSharp.Objects.Authentication.Implementations;
-    //using TraktApiSharp.Services;
+    //using TraktNet.Enums;
+    //using TraktNet.Objects.Authentication.Implementations;
+    //using TraktNet.Services;
     //using Xunit;
 
     [Category("Services")]

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Basic
+﻿namespace TraktNet.Objects.Basic
 {
     /// <summary>Represents a Trakt error response.</summary>
     public class TraktError : ITraktError

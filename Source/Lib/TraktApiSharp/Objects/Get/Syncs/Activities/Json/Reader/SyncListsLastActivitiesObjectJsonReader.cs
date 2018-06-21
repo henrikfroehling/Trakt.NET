@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs.Activities.Json.Reader
+﻿namespace TraktNet.Objects.Get.Syncs.Activities.Json.Reader
 {
     using Newtonsoft.Json;
     using Objects.Json;

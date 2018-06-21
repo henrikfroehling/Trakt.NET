@@ -1,8 +1,8 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktMoviesModule
+﻿namespace TraktNet.Tests.Modules.TraktMoviesModule
 {
     using System;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Requests.Parameters;
+    using TraktNet.Enums;
+    using TraktNet.Requests.Parameters;
 
     public partial class TraktMoviesModule_Tests
     {

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Scrobbles.Responses.Json.Reader
+﻿namespace TraktNet.Objects.Post.Scrobbles.Responses.Json.Reader
 {
     using Basic.Json.Reader;
     using Enums;

@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Objects.Post.Checkins.Responses.Implementations
+﻿namespace TraktNet.Tests.Objects.Post.Checkins.Responses.Implementations
 {
     using FluentAssertions;
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Post.Checkins.Responses;
-    using TraktApiSharp.Objects.Post.Checkins.Responses.Json.Reader;
+    using TraktNet.Objects.Post.Checkins.Responses;
+    using TraktNet.Objects.Post.Checkins.Responses.Json.Reader;
     using Xunit;
 
     [Category("Objects.Post.Checkins.Responses.Implementations")]

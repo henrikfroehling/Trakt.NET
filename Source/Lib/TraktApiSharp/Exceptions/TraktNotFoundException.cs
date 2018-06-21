@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Exceptions
+﻿namespace TraktNet.Exceptions
 {
     /// <summary>Exception, that will be thrown, if no result(s) was(were) found for a request.</summary>
     public class TraktNotFoundException : TraktException

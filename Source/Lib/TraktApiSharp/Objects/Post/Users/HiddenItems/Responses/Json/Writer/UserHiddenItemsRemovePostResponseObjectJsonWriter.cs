@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.HiddenItems.Responses.Json.Writer
+﻿namespace TraktNet.Objects.Post.Users.HiddenItems.Responses.Json.Writer
 {
     using Newtonsoft.Json;
     using Objects.Json;

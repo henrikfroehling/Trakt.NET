@@ -1,8 +1,8 @@
-﻿namespace TraktApiSharp.Tests.Requests.Parameters
+﻿namespace TraktNet.Tests.Requests.Parameters
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Requests.Parameters;
+    using TraktNet.Requests.Parameters;
     using Xunit;
 
     [Category("Requests.Parameters")]

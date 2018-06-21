@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktCommentsModule
+﻿namespace TraktNet.Tests.Modules.TraktCommentsModule
 {
     using FluentAssertions;
     using System;
@@ -6,11 +6,11 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Objects.Post.Comments;
-    using TraktApiSharp.Objects.Post.Comments.Responses;
-    using TraktApiSharp.Responses;
+    using TraktNet.Exceptions;
+    using TraktNet.Objects.Get.Shows;
+    using TraktNet.Objects.Post.Comments;
+    using TraktNet.Objects.Post.Comments.Responses;
+    using TraktNet.Responses;
     using Xunit;
 
     [Category("Modules.Comments")]

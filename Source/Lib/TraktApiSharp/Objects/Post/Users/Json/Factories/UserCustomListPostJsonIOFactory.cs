@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.Json.Factories
+﻿namespace TraktNet.Objects.Post.Users.Json.Factories
 {
     using Objects.Json;
     using System;

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Ratings.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Ratings.Json.Reader
 {
     public partial class RatingsItemObjectJsonReader_Tests
     {

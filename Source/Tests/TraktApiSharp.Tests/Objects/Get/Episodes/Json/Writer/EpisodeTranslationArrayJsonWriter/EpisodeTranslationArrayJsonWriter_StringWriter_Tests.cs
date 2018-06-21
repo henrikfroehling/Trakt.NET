@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Episodes.Json.Writer
+﻿namespace TraktNet.Tests.Objects.Get.Episodes.Json.Writer
 {
     using FluentAssertions;
     using System;
@@ -6,8 +6,8 @@
     using System.IO;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Objects.Json;
+    using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.Episodes.JsonWriter")]

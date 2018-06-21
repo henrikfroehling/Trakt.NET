@@ -1,13 +1,13 @@
-﻿namespace TraktApiSharp.Tests.Requests.Users
+﻿namespace TraktNet.Tests.Requests.Users
 {
     using FluentAssertions;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Users;
+    using TraktNet.Enums;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Users;
     using Xunit;
 
     [Category("Requests.Users")]

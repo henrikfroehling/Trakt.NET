@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Objects.Basic.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Basic.Json.Reader
 {
     using FluentAssertions;
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Enums;
-    using TraktApiSharp.Objects.Basic.Json.Reader;
+    using TraktNet.Enums;
+    using TraktNet.Objects.Basic.Json.Reader;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]

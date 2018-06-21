@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Watchlist.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.Watchlist.Json.Reader
 {
     public partial class WatchlistItemObjectJsonReader_Tests
     {

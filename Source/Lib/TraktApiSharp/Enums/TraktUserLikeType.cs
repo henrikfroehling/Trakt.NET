@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Enums
+﻿namespace TraktNet.Enums
 {
     /// <summary>Determines the type of an object in an user like item.</summary>
     public sealed class TraktUserLikeType : TraktEnumeration

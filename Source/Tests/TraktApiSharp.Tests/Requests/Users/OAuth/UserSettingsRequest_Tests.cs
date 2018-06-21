@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Tests.Requests.Users.OAuth
+﻿namespace TraktNet.Tests.Requests.Users.OAuth
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Users.OAuth;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Users.OAuth;
     using Xunit;
 
     [Category("Requests.Users.OAuth")]

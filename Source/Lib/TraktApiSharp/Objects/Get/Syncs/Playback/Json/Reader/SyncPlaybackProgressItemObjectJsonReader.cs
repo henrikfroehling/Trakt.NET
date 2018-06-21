@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Syncs.Playback.Json.Reader
+﻿namespace TraktNet.Objects.Get.Syncs.Playback.Json.Reader
 {
     using Enums;
     using Episodes.Json.Reader;

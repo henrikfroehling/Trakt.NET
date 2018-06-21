@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Modules
+﻿namespace TraktNet.Modules
 {
     public abstract class ATraktModule
     {

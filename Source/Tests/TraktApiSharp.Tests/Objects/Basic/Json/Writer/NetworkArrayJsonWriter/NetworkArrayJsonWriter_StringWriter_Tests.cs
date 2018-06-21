@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Basic.Json.Writer
+﻿namespace TraktNet.Tests.Objects.Basic.Json.Writer
 {
     using FluentAssertions;
     using System;
@@ -6,8 +6,8 @@
     using System.IO;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Objects.Json;
+    using TraktNet.Objects.Basic;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonWriter")]

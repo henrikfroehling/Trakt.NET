@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Checkins.Responses.Json.Writer
+﻿namespace TraktNet.Objects.Post.Checkins.Responses.Json.Writer
 {
     using Basic.Json.Writer;
     using Extensions;

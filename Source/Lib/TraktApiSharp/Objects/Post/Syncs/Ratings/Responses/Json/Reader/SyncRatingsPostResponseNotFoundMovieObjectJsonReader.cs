@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Syncs.Ratings.Responses.Json.Reader
+﻿namespace TraktNet.Objects.Post.Syncs.Ratings.Responses.Json.Reader
 {
     using Get.Movies.Json.Reader;
     using Newtonsoft.Json;

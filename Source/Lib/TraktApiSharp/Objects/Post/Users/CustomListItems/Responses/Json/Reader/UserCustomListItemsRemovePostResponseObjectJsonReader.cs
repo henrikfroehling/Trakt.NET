@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.CustomListItems.Responses.Json.Reader
+﻿namespace TraktNet.Objects.Post.Users.CustomListItems.Responses.Json.Reader
 {
     using Newtonsoft.Json;
     using Objects.Json;

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Users
+﻿namespace TraktNet.Requests.Users
 {
     using Base;
     using Enums;

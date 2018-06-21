@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Services
+﻿namespace TraktNet.Services
 {
     using Enums;
     using Newtonsoft.Json;

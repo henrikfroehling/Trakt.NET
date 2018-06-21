@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Comments.Json.Factories
+﻿namespace TraktNet.Objects.Post.Comments.Json.Factories
 {
     using Objects.Json;
     using System;

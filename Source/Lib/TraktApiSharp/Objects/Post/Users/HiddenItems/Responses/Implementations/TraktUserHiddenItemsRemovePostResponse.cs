@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.HiddenItems.Responses
+﻿namespace TraktNet.Objects.Post.Users.HiddenItems.Responses
 {
     public class TraktUserHiddenItemsRemovePostResponse : ITraktUserHiddenItemsRemovePostResponse
     {

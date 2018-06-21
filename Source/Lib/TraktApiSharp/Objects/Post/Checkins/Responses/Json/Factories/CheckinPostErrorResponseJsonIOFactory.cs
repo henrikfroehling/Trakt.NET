@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Checkins.Responses.Json.Factories
+﻿namespace TraktNet.Objects.Post.Checkins.Responses.Json.Factories
 {
     using Objects.Json;
     using Reader;

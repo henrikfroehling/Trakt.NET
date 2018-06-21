@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Checkins.Responses
+﻿namespace TraktNet.Objects.Post.Checkins.Responses
 {
     using System;
 

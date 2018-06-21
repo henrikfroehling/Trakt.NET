@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Interfaces.Base
+﻿namespace TraktNet.Requests.Interfaces.Base
 {
     using System.Collections.Generic;
 

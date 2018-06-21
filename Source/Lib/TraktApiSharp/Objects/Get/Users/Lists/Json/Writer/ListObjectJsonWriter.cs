@@ -1,12 +1,12 @@
-﻿namespace TraktApiSharp.Objects.Get.Users.Lists.Json.Writer
+﻿namespace TraktNet.Objects.Get.Users.Lists.Json.Writer
 {
     using Extensions;
+    using Get.Users.Json.Writer;
     using Newtonsoft.Json;
     using Objects.Json;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using TraktApiSharp.Objects.Get.Users.Json.Writer;
 
     internal class ListObjectJsonWriter : AObjectJsonWriter<ITraktList>
     {

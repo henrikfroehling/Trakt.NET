@@ -1,14 +1,14 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktSyncModule
+﻿namespace TraktNet.Tests.Modules.TraktSyncModule
 {
     using System;
     using System.Collections.Generic;
-    using TraktApiSharp.Objects.Get.Episodes;
-    using TraktApiSharp.Objects.Get.Movies;
-    using TraktApiSharp.Objects.Get.Shows;
-    using TraktApiSharp.Objects.Post.Syncs.Collection;
-    using TraktApiSharp.Objects.Post.Syncs.History;
-    using TraktApiSharp.Objects.Post.Syncs.Ratings;
-    using TraktApiSharp.Objects.Post.Syncs.Watchlist;
+    using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Objects.Get.Movies;
+    using TraktNet.Objects.Get.Shows;
+    using TraktNet.Objects.Post.Syncs.Collection;
+    using TraktNet.Objects.Post.Syncs.History;
+    using TraktNet.Objects.Post.Syncs.Ratings;
+    using TraktNet.Objects.Post.Syncs.Watchlist;
 
     public partial class TraktSyncModule_Tests
     {

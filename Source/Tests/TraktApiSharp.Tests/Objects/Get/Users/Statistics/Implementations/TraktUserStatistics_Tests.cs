@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Users.Statistics.Implementations
+﻿namespace TraktNet.Tests.Objects.Get.Users.Statistics.Implementations
 {
     using FluentAssertions;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Users.Statistics;
-    using TraktApiSharp.Objects.Get.Users.Statistics.Json.Reader;
+    using TraktNet.Objects.Get.Users.Statistics;
+    using TraktNet.Objects.Get.Users.Statistics.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Users.Statistics.Implementations")]

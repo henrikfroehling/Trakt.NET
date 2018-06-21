@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.HiddenItems
+﻿namespace TraktNet.Objects.Post.Users.HiddenItems
 {
     using Get.Shows;
     using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.People.Json.Reader
+﻿namespace TraktNet.Tests.Objects.Get.People.Json.Reader
 {
     public partial class PersonIdsObjectJsonReader_Tests
     {

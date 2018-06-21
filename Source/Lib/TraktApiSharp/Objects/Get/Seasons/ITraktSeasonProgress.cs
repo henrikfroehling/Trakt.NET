@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Get.Seasons
+﻿namespace TraktNet.Objects.Get.Seasons
 {
     public interface ITraktSeasonProgress
     {

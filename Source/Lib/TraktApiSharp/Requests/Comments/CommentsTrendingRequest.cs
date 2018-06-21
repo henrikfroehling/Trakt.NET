@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Comments
+﻿namespace TraktNet.Requests.Comments
 {
     internal sealed class CommentsTrendingRequest : ACommentsRequest
     {

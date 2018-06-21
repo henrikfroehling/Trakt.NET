@@ -1,10 +1,10 @@
-﻿namespace TraktApiSharp.Tests.Objects.Basic.Implementations
+﻿namespace TraktNet.Tests.Objects.Basic.Implementations
 {
     using FluentAssertions;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Objects.Basic.Json.Reader;
+    using TraktNet.Objects.Basic;
+    using TraktNet.Objects.Basic.Json.Reader;
     using Xunit;
 
     [Category("Objects.Basic.Implementations")]

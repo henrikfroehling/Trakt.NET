@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Users.HiddenItems.Json.Factories
+﻿namespace TraktNet.Objects.Post.Users.HiddenItems.Json.Factories
 {
     using Objects.Json;
     using System;

@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.Parameters
+﻿namespace TraktNet.Requests.Parameters
 {
     using Enums;
     using Modules;

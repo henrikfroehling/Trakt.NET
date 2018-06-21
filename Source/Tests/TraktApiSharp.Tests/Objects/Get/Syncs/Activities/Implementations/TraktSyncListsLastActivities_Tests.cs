@@ -1,11 +1,11 @@
-﻿namespace TraktApiSharp.Tests.Objects.Get.Syncs.Activities.Implementations
+﻿namespace TraktNet.Tests.Objects.Get.Syncs.Activities.Implementations
 {
     using FluentAssertions;
     using System;
     using System.Threading.Tasks;
     using Traits;
-    using TraktApiSharp.Objects.Get.Syncs.Activities;
-    using TraktApiSharp.Objects.Get.Syncs.Activities.Json.Reader;
+    using TraktNet.Objects.Get.Syncs.Activities;
+    using TraktNet.Objects.Get.Syncs.Activities.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Syncs.Activities.Implementations")]

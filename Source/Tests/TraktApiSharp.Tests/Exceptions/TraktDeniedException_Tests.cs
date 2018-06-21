@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Tests.Exceptions
+﻿namespace TraktNet.Tests.Exceptions
 {
     using FluentAssertions;
     using System.Net;
     using Traits;
-    using TraktApiSharp.Exceptions;
+    using TraktNet.Exceptions;
     using Xunit;
 
     [Category("Exceptions")]

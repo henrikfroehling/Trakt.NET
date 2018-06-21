@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Objects.Post.Checkins.Responses.Json.Reader
+﻿namespace TraktNet.Objects.Post.Checkins.Responses.Json.Reader
 {
     using Basic.Json.Reader;
     using Get.Movies.Json.Reader;

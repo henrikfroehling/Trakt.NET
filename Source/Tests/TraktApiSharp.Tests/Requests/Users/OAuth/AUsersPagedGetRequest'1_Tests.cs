@@ -1,13 +1,13 @@
-﻿namespace TraktApiSharp.Tests.Requests.Users.OAuth
+﻿namespace TraktNet.Tests.Requests.Users.OAuth
 {
     using FluentAssertions;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using Traits;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Parameters;
-    using TraktApiSharp.Requests.Users.OAuth;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Parameters;
+    using TraktNet.Requests.Users.OAuth;
     using Xunit;
 
     [Category("Requests.Users.OAuth")]

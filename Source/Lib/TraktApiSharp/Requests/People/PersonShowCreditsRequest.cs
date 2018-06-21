@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Requests.People
+﻿namespace TraktNet.Requests.People
 {
     using Objects.Get.People.Credits;
 

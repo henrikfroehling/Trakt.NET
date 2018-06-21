@@ -1,9 +1,9 @@
-﻿namespace TraktApiSharp.Tests.Requests.Genres
+﻿namespace TraktNet.Tests.Requests.Genres
 {
     using FluentAssertions;
     using Traits;
-    using TraktApiSharp.Requests.Base;
-    using TraktApiSharp.Requests.Genres;
+    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Genres;
     using Xunit;
 
     [Category("Requests.Genres")]

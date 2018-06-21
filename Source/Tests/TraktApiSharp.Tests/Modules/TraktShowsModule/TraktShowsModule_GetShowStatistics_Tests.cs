@@ -1,4 +1,4 @@
-﻿namespace TraktApiSharp.Tests.Modules.TraktShowsModule
+﻿namespace TraktNet.Tests.Modules.TraktShowsModule
 {
     using FluentAssertions;
     using System;
@@ -6,9 +6,9 @@
     using System.Threading.Tasks;
     using TestUtils;
     using Traits;
-    using TraktApiSharp.Exceptions;
-    using TraktApiSharp.Objects.Basic;
-    using TraktApiSharp.Responses;
+    using TraktNet.Exceptions;
+    using TraktNet.Objects.Basic;
+    using TraktNet.Responses;
     using Xunit;
 
     [Category("Modules.Shows")]
