@@ -23,7 +23,7 @@
 
   after_test:
     - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release
-    - ps: Get-ChildItem .\Build\Lib\Release\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+    - ps: Get-ChildItem .\Build\Lib\Release\Trakt.NET*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   build:
     verbosity: minimal
@@ -35,11 +35,11 @@
   configuration: Release
 
   artifacts:
-    - path: Build\Lib\Release\TraktApiSharp.dll
+    - path: Build\Lib\Release\Trakt.NET.dll
       name: Assembly
-    - path: Build\Lib\Release\TraktApiSharp.pdb
+    - path: Build\Lib\Release\Trakt.NET.pdb
       name: AssemblyPDB
-    - path: Build\Lib\Release\TraktApiSharp.xml
+    - path: Build\Lib\Release\Trakt.NET.xml
       name: DocumentationXML
 
   deploy:
@@ -48,7 +48,7 @@
         secure: H7z6bonH/h4BM9hS375hDZBPHpDpLIp8/lH0Aydc/Qvs5DMObeVQg/xMchfl9U0y
       skip_symbols: true
       symbol_server:
-      artifact: TraktApiSharp.$(packageVersion).nupkg
+      artifact: Trakt.NET.$(packageVersion).nupkg
       on:
         appveyor_repo_tag: true
 
@@ -77,7 +77,7 @@
 
   after_test:
     - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%-v1.0.0-alpha3.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release
-    - ps: Get-ChildItem .\Build\Lib\Release\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+    - ps: Get-ChildItem .\Build\Lib\Release\Trakt.NET*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   build:
     verbosity: minimal
@@ -89,11 +89,11 @@
   configuration: Release
 
   artifacts:
-    - path: Build\Lib\Release\TraktApiSharp.dll
+    - path: Build\Lib\Release\Trakt.NET.dll
       name: Assembly
-    - path: Build\Lib\Release\TraktApiSharp.pdb
+    - path: Build\Lib\Release\Trakt.NET.pdb
       name: AssemblyPDB
-    - path: Build\Lib\Release\TraktApiSharp.xml
+    - path: Build\Lib\Release\Trakt.NET.xml
       name: DocumentationXML
 
   deploy:
@@ -102,7 +102,7 @@
         secure: H7z6bonH/h4BM9hS375hDZBPHpDpLIp8/lH0Aydc/Qvs5DMObeVQg/xMchfl9U0y
       skip_symbols: true
       symbol_server:
-      artifact: TraktApiSharp.$(packageVersion).nupkg
+      artifact: Trakt.NET.$(packageVersion).nupkg
       on:
         appveyor_repo_tag: true
 
@@ -128,7 +128,7 @@
 
   after_test:
     - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Debug
-    - ps: Get-ChildItem .\Build\Lib\Debug\TraktApiSharp*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+    - ps: Get-ChildItem .\Build\Lib\Debug\Trakt.NET*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   build:
     verbosity: minimal
@@ -141,11 +141,11 @@
   configuration: Debug
 
   artifacts:
-    - path: Build\Lib\Debug\TraktApiSharp.dll
+    - path: Build\Lib\Debug\Trakt.NET.dll
       name: DebugAssembly
-    - path: Build\Lib\Debug\TraktApiSharp.pdb
+    - path: Build\Lib\Debug\Trakt.NET.pdb
       name: DebugAssemblyPDB
-    - path: Build\Lib\Debug\TraktApiSharp.xml
+    - path: Build\Lib\Debug\Trakt.NET.xml
       name: DebugDocumentationXML
 
 # "fall back" configuration for all other branches
@@ -175,9 +175,9 @@
   configuration: Debug
 
   artifacts:
-    - path: Build\Lib\Debug\TraktApiSharp.dll
+    - path: Build\Lib\Debug\Trakt.NET.dll
       name: DebugAssembly
-    - path: Build\Lib\Debug\TraktApiSharp.pdb
+    - path: Build\Lib\Debug\Trakt.NET.pdb
       name: DebugAssemblyPDB
-    - path: Build\Lib\Debug\TraktApiSharp.xml
+    - path: Build\Lib\Debug\Trakt.NET.xml
       name: DebugDocumentationXML
