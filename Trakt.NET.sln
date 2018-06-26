@@ -22,7 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		Source\Lib\TraktApiSharp\TraktApiSharp.nuspec = Source\Lib\TraktApiSharp\TraktApiSharp.nuspec
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trakt.NET", "Source\Lib\Trakt.NET\Trakt.NET.csproj", "{10F945DA-7196-493A-990C-DEE34B23F575}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET", "Source\Lib\Trakt.NET\Trakt.NET.csproj", "{10F945DA-7196-493A-990C-DEE34B23F575}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trakt.NET.Tests", "Source\Tests\Trakt.NET.Tests\Trakt.NET.Tests.csproj", "{1320D3F8-47CC-49F2-B1AE-2F9C06F85368}"
 EndProject
