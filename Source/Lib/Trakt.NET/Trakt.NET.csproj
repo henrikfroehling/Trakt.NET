@@ -3,6 +3,26 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.1</TargetFramework>
     <RootNamespace>TraktNET</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>1.0.0-alpha3</Version>
+    <Authors>henrikfroehling</Authors>
+    <Company>Henrik Fröhling</Company>
+    <PackageLicenseUrl>https://github.com/henrikfroehling/Trakt.NET/blob/develop/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/henrikfroehling/Trakt.NET</PackageProjectUrl>
+    <Copyright>Copyright (c) 2016 - 2018 Henrik Fröhling et al.</Copyright>
+    <Description>.NET wrapper library for the Trakt.tv API.
+
+Features
+- Full Trakt.tv API Coverage
+- Authentication Support (OAuth 2.0 and Device)
+- Completely asynchronous
+- API Environments (Production and Sandbox)
+- Serialization Service
+- Language Service</Description>
+    <RepositoryUrl>https://github.com/henrikfroehling/Trakt.NET</RepositoryUrl>
+    <PackageTags>trakt REST</PackageTags>
+    <PackageReleaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#100-alpha3</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
