@@ -1,20 +1,20 @@
-TraktApiSharp [![Twitter](https://img.shields.io/twitter/url/https://www.nuget.org/packages/TraktApiSharp.svg?style=social)](https://twitter.com/intent/tweet?url=https://www.nuget.org/packages/TraktApiSharp&via=henrikfroehling&hashtags=TraktApiSharp)[![Twitter Follow](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=Follow)](https://twitter.com/henrikfroehling)
+Trakt.NET [![Twitter](https://img.shields.io/twitter/url/https://www.nuget.org/packages/Trakt.NET.svg?style=social)](https://twitter.com/intent/tweet?url=https://www.nuget.org/packages/Trakt.NET&via=henrikfroehling&hashtags=Trakt.NET)[![Twitter Follow](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=Follow)](https://twitter.com/henrikfroehling)
 ===
 ##### This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).
 
-[![NuGet Package](https://img.shields.io/badge/NuGet-v0.11.0-brightgreen.svg?style=flat)](https://www.nuget.org/packages/TraktApiSharp)
-[![NuGet Package](https://img.shields.io/badge/NuGet-v1.0.0alpha3-orange.svg?style=flat)](https://www.nuget.org/packages/TraktApiSharp/1.0.0-alpha3)
+[![NuGet Package](https://img.shields.io/badge/NuGet-v0.11.0-brightgreen.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET)
+[![NuGet Package](https://img.shields.io/badge/NuGet-v1.0.0alpha3-orange.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.0.0-alpha3)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![CodeFactor](https://www.codefactor.io/repository/github/henrikfroehling/traktapisharp/badge)](https://www.codefactor.io/repository/github/henrikfroehling/traktapisharp)
 
 ### Features
-- ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/full-support.png) Full Trakt.tv API Coverage
-- ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/authentication.png) Authentication Support (OAuth 2.0 and Device)
-- ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/async.png) Completely asynchronous
-- ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/environments.png) API Environments (Production and Sandbox)
-- ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/serialization.png) Serialization Service
-- ![](https://raw.githubusercontent.com/henrikfroehling/TraktApiSharp/dev/.github/language-service.png) Language Service
+- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/full-support.png) Full Trakt.tv API Coverage
+- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/authentication.png) Authentication Support (OAuth 2.0 and Device)
+- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/async.png) Completely asynchronous
+- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/environments.png) API Environments (Production and Sandbox)
+- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/serialization.png) Serialization Service
+- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/language-service.png) Language Service
 
 ### Supported Platforms
 - .Net Framework >= 4.5.0
@@ -29,36 +29,36 @@ TraktApiSharp [![Twitter](https://img.shields.io/twitter/url/https://www.nuget.o
 
 [![Gitter](https://badges.gitter.im/traktapisharp/Lobby.svg)](https://gitter.im/traktapisharp/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-**[Or do you want to report a bug?](https://github.com/henrikfroehling/TraktApiSharp/issues)**
+**[Or do you want to report a bug?](https://github.com/henrikfroehling/Trakt.NET/issues)**
 
 ### Contributions are welcome
 
-- [How to contribute](https://github.com/henrikfroehling/TraktApiSharp/blob/dev/CONTRIBUTING.md)
+- [How to contribute](https://github.com/henrikfroehling/Trakt.NET/blob/dev/CONTRIBUTING.md)
 
 ### Build Status
 | Branch | Status | Description |
 |---|---|---|
-| [master](https://github.com/henrikfroehling/TraktApiSharp/tree/master) | [![Build status branch master](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n/branch/master?svg=true&passingText=master%20-%20passing&pendingText=master%20-%20pending&failingText=master%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/traktapisharp/branch/master) | This branch tracks all stable releases. |
-| [dev](https://github.com/henrikfroehling/TraktApiSharp/tree/dev) | [![Build status branch dev](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n/branch/dev?svg=true&passingText=dev%20-%20passing&pendingText=dev%20-%20pending&failingText=dev%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/traktapisharp/branch/dev) | This branch tracks the current and possibly unstable development. |
-| [next-version](https://github.com/henrikfroehling/TraktApiSharp) | [![Build status branch next-version](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n/branch/next-version?svg=true&passingText=next-version%20-%20passing&pendingText=next-version%20-%20pending&failingText=next-version%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/traktapisharp/branch/next-version) | This branch tracks the current and possibly unstable development of the next major (1.0.0) version. |
+| [master](https://github.com/henrikfroehling/Trakt.NET/tree/master) | [![Build status branch master](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n/branch/master?svg=true&passingText=master%20-%20passing&pendingText=master%20-%20pending&failingText=master%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/traktapisharp/branch/master) | This branch tracks all stable releases. |
+| [dev](https://github.com/henrikfroehling/Trakt.NET/tree/dev) | [![Build status branch dev](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n/branch/dev?svg=true&passingText=dev%20-%20passing&pendingText=dev%20-%20pending&failingText=dev%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/traktapisharp/branch/dev) | This branch tracks the current and possibly unstable development. |
+| [next-version](https://github.com/henrikfroehling/Trakt.NET) | [![Build status branch next-version](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n/branch/next-version?svg=true&passingText=next-version%20-%20passing&pendingText=next-version%20-%20pending&failingText=next-version%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/traktapisharp/branch/next-version) | This branch tracks the current and possibly unstable development of the next major (1.0.0) version. |
 
 ### Getting Started
 
 Install the latest release by running the following NuGet command
 ```ps
-PM> Install-Package TraktApiSharp
+PM> Install-Package Trakt.NET
 ```
 or with the [NuGet Package Management](https://docs.nuget.org/consume/package-manager-dialog) in Visual Studio and search for "trakt".
 
-Each release will also be published [here](https://henrikfroehling.github.io/TraktApiSharp/downloads/) and [here](https://github.com/henrikfroehling/TraktApiSharp/releases).
+Each release will also be published [here](https://henrikfroehling.github.io/Trakt.NET/downloads/) and [here](https://github.com/henrikfroehling/Trakt.NET/releases).
 
 #### Library API Documentation
-- [Latest Version](https://henrikfroehling.github.io/TraktApiSharp/apidoc/v0.11.0/)
-- [All Versions](https://henrikfroehling.github.io/TraktApiSharp/apidoc/)
+- [Latest Version](https://henrikfroehling.github.io/Trakt.NET/apidoc/v0.11.0/)
+- [All Versions](https://henrikfroehling.github.io/Trakt.NET/apidoc/)
 
-#### Basic Usage or [more advanced usage guide](https://henrikfroehling.github.io/TraktApiSharp/guide/)
+#### Basic Usage or [more advanced usage guide](https://henrikfroehling.github.io/Trakt.NET/guide/)
 
-**Create a new TraktApiSharp Client**
+**Create a new Trakt.NET Client**
 ```csharp
 // Client ID is sufficient for usage without OAuth
 var client = new TraktClient("Your Trakt Client ID");
