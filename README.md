@@ -1,4 +1,4 @@
-Trakt.NET [![Twitter](https://img.shields.io/twitter/url/https://www.nuget.org/packages/Trakt.NET.svg?style=social)](https://twitter.com/intent/tweet?url=https://www.nuget.org/packages/Trakt.NET&via=henrikfroehling&hashtags=Trakt.NET)[![Twitter Follow](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=Follow)](https://twitter.com/henrikfroehling)
+[Trakt.NET](https://github.com/henrikfroehling/Trakt.NET) [![Twitter](https://img.shields.io/twitter/url/https://www.nuget.org/packages/Trakt.NET.svg?style=social)](https://twitter.com/intent/tweet?url=https://www.nuget.org/packages/Trakt.NET&via=henrikfroehling&hashtags=Trakt.NET)[![Twitter Follow](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=Follow)](https://twitter.com/henrikfroehling)
 ===
 ##### This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).
 
@@ -6,7 +6,7 @@ Trakt.NET [![Twitter](https://img.shields.io/twitter/url/https://www.nuget.org/p
 [![NuGet Package](https://img.shields.io/badge/NuGet-v1.0.0alpha3-orange.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.0.0-alpha3)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![CodeFactor](https://www.codefactor.io/repository/github/henrikfroehling/traktapisharp/badge)](https://www.codefactor.io/repository/github/henrikfroehling/traktapisharp)
+[![CodeFactor](https://www.codefactor.io/repository/github/henrikfroehling/Trakt.NET/badge)](https://www.codefactor.io/repository/github/henrikfroehling/Trakt.NET)
 
 ### Features
 - ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/full-support.png) Full Trakt.tv API Coverage
@@ -27,20 +27,19 @@ Trakt.NET [![Twitter](https://img.shields.io/twitter/url/https://www.nuget.org/p
 
 **Do you have a question or suggestion?**
 
-[![Gitter](https://badges.gitter.im/traktapisharp/Lobby.svg)](https://gitter.im/traktapisharp/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/Trakt-NET/Lobby.svg)](https://gitter.im/Trakt-NET/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 **[Or do you want to report a bug?](https://github.com/henrikfroehling/Trakt.NET/issues)**
 
 ### Contributions are welcome
 
-- [How to contribute](https://github.com/henrikfroehling/Trakt.NET/blob/dev/CONTRIBUTING.md)
+- [How to contribute](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
 
 ### Build Status
 | Branch | Status | Description |
 |---|---|---|
-| [master](https://github.com/henrikfroehling/Trakt.NET/tree/master) | [![Build status branch master](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n/branch/master?svg=true&passingText=master%20-%20passing&pendingText=master%20-%20pending&failingText=master%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/traktapisharp/branch/master) | This branch tracks all stable releases. |
-| [dev](https://github.com/henrikfroehling/Trakt.NET/tree/dev) | [![Build status branch dev](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n/branch/dev?svg=true&passingText=dev%20-%20passing&pendingText=dev%20-%20pending&failingText=dev%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/traktapisharp/branch/dev) | This branch tracks the current and possibly unstable development. |
-| [next-version](https://github.com/henrikfroehling/Trakt.NET) | [![Build status branch next-version](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n/branch/next-version?svg=true&passingText=next-version%20-%20passing&pendingText=next-version%20-%20pending&failingText=next-version%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/traktapisharp/branch/next-version) | This branch tracks the current and possibly unstable development of the next major (1.0.0) version. |
+| [master](https://github.com/henrikfroehling/Trakt.NET/tree/master) | [![Build status branch master](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n/branch/master?svg=true&passingText=master%20-%20passing&pendingText=master%20-%20pending&failingText=master%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/Trakt.NET/branch/master) | This branch tracks all stable releases. |
+| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status branch develop](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n/branch/dev?svg=true&passingText=dev%20-%20passing&pendingText=dev%20-%20pending&failingText=dev%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/Trakt.NET/branch/develop) | This branch tracks the current and possibly unstable development. |
 
 ### Getting Started
 
@@ -53,12 +52,11 @@ or with the [NuGet Package Management](https://docs.nuget.org/consume/package-ma
 Each release will also be published [here](https://henrikfroehling.github.io/Trakt.NET/downloads/) and [here](https://github.com/henrikfroehling/Trakt.NET/releases).
 
 #### Library API Documentation
-- [Latest Version](https://henrikfroehling.github.io/Trakt.NET/apidoc/v0.11.0/)
 - [All Versions](https://henrikfroehling.github.io/Trakt.NET/apidoc/)
 
 #### Basic Usage or [more advanced usage guide](https://henrikfroehling.github.io/Trakt.NET/guide/)
 
-**Create a new Trakt.NET Client**
+**Create a new [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET) Client**
 ```csharp
 // Client ID is sufficient for usage without OAuth
 var client = new TraktClient("Your Trakt Client ID");
@@ -86,13 +84,13 @@ client.Authorization = TraktAuthorization.CreateWith("Your Access Token", "Your 
 
 **Serialize and deserialize authorization information**
 ```csharp
-TraktAuthorization authorization = client.Authorization;
+ITraktAuthorization authorization = client.Authorization;
 
 // Get JSON string from current authorization
 string json = TraktSerializationService.Serialize(authorization);
 
 // Get TraktAuthorization from JSON string
-TraktAuthorization deserializedAuthorization = TraktSerializationService.DeserializeAuthorization(json);
+ITraktAuthorization deserializedAuthorization = TraktSerializationService.DeserializeAuthorization(json);
 
 client.Authorization = deserializedAuthorization;
 
@@ -117,14 +115,16 @@ client.Configuration.ForceAuthorization = true;
 
 **Get the top 10 trending shows including full information**
 ```csharp
-var trendingShowsTop10 = await client.Shows.GetTrendingShowsAsync(new TraktExtendedInfo().SetFull(), null, 10);
+TraktPagedResponse<ITraktTrendingShow> trendingShowsTop10 = await client.Shows.GetTrendingShowsAsync(new TraktExtendedInfo().SetFull(), null, 10);
 // or
-var trendingShowsTop10 = await client.Shows.GetTrendingShowsAsync(new TraktExtendedInfo() { Full = true }, 1, 10);
+TraktPagedResponse<ITraktTrendingShow> trendingShowsTop10 = await client.Shows.GetTrendingShowsAsync(new TraktExtendedInfo() { Full = true }, 1, 10);
 
-foreach (var trendingShow in trendingShowsTop10)
+if (trendingShowsTop10)
 {
-    var show = trendingShow.Show;
-    Console.WriteLine($"Show: {show.Title} / Watchers: {trendingShow.Watchers}");
+    foreach (ITraktTrendingShow trendingShow in trendingShowsTop10)
+    {
+        Console.WriteLine($"Show: {trendingShow.Title} / Watchers: {trendingShow.Watchers}");
+    }
 }
 ```
 
@@ -132,31 +132,41 @@ foreach (var trendingShow in trendingShowsTop10)
 ```csharp
 var extendedInfo = new TraktExtendedInfo() { Full = true };
 
-var trendingMoviesTop10 = await client.Movies.GetTrendingMoviesAsync(extendedInfo, null, 10);
+TraktPagedResponse<ITraktTrendingMovie> trendingMoviesTop10 = await client.Movies.GetTrendingMoviesAsync(extendedInfo, null, 10);
 // or
-var trendingMoviesTop10 = await client.Movies.GetTrendingMoviesAsync(extendedInfo, 1, 10);
+TraktPagedResponse<ITraktTrendingMovie> trendingMoviesTop10 = await client.Movies.GetTrendingMoviesAsync(extendedInfo, 1, 10);
 
-foreach (var trendingMovie in trendingMoviesTop10)
+if (trendingMoviesTop10)
 {
-    var movie = trendingMovie.Movie;
-    Console.WriteLine($"Movie: {movie.Title} / Watchers: {trendingMovie.Watchers}");
+    foreach (ITraktTrendingMovie trendingMovie in trendingMoviesTop10)
+    {
+        Console.WriteLine($"Movie: {trendingMovie.Title} / Watchers: {trendingMovie.Watchers}");
+    }
 }
 ```
 
 **Get the show 'Game of Thrones'**
 ```csharp
-var gameOfThrones = await client.Shows.GetShowAsync("game-of-thrones", new TraktExtendedInfo().SetFull());
+TraktResponse<ITraktShow> gameOfThrones = await client.Shows.GetShowAsync("game-of-thrones", new TraktExtendedInfo().SetFull());
 
-Console.WriteLine($"Title: {gameOfThrones.Title} / Year: {gameOfThrones.Year}");
-Console.WriteLine(gameOfThrones.Overview);
+if (gameOfThrones)
+{
+    ITraktShow show = gameOfThrones.Value;
+    Console.WriteLine($"Title: {show.Title} / Year: {show.Year}");
+    Console.WriteLine(show.Overview);
+}
 ```
 
 **Get the movie 'The Martian'**
 ```csharp
-var theMartian = await client.Movies.GetMovieAsync("the-martian-2015", new TraktExtendedInfo().SetFull());
+TraktResponse<ITraktMovie> theMartian = await client.Movies.GetMovieAsync("the-martian-2015", new TraktExtendedInfo().SetFull());
 
-Console.WriteLine($"Title: {theMartian.Title} / Year: {theMartian.Year}");
-Console.WriteLine(theMartian.Overview);
+if (theMartian)
+{
+    ITraktMovie movie = theMartian.Value;
+    Console.WriteLine($"Title: {movie.Title} / Year: {movie.Year}");
+    Console.WriteLine(show.Overview);
+}
 ```
 
 ---
