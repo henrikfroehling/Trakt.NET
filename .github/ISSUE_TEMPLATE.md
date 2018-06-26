@@ -8,7 +8,7 @@
 - Use a descriptive title that identifies the issue to be addressed or the requested feature.
 - Specify a detailed description of the issues or requested feature.
 - For bug reports, please also:
-  - Specify the version of TraktApiSharp, in which the bug occurs.
+  - Specify the version of Trakt.NET, in which the bug occurs.
   - Specify the platform only, if the bug is related to a specific platform.
   - Describe the expected and the actual behavior.
   - Specify any relevant exception messages and stack traces.

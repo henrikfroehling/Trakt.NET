@@ -29,7 +29,7 @@ C# Coding Style
 `ATraktRequest'1.cs`
 
 ```csharp
-namespace TraktApiSharp.Requests.Base
+namespace Trakt.NET.Requests.Base
 {
     using System;
     using System.Collections.Generic;
