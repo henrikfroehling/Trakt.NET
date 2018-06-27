@@ -1,6 +1,6 @@
 **GitHub Issues are only used for bug reports and feature requests.**
 
-**If you have a support question, please ask in the official Gitter Chat:** https://gitter.im/traktapisharp/Lobby
+**If you have a support question, please ask in the official Gitter Chat:** https://gitter.im/Trakt-NET/Lobby
 
 **--- Please use this template, and delete everything above this line before submitting your issue ---**
 
