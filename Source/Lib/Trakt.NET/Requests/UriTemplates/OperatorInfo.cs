@@ -6,10 +6,15 @@ namespace UriTemplates
     internal class OperatorInfo
     {
         internal bool Default { get; set; }
+
         internal string First { get; set; }
+
         internal char Seperator { get; set; }
+
         internal bool Named { get; set; }
+
         internal string IfEmpty { get; set; }
+
         internal bool AllowReserved { get; set; }
     }
 }

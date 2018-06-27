@@ -21,7 +21,7 @@ namespace UriTemplates
 
         public override string ToString()
             => (First ? OperatorInfo.First : "") +
-                   VarName.ToString()
+                   VarName
                    + (Explode ? "*" : "")
                    + (PrefixLength > 0 ? ":" + PrefixLength : "");
     }

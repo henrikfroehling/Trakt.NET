@@ -12,21 +12,20 @@
     /// </summary>
     internal class UriTemplate
     {
-        private static Dictionary<char, OperatorInfo> _Operators = new Dictionary<char, OperatorInfo>() {
-                                        {'\0', new OperatorInfo {Default = true, First = "", Seperator = ',', Named = false, IfEmpty = "",AllowReserved = false}},
-                                        {'+', new OperatorInfo {Default = false, First = "", Seperator = ',', Named = false, IfEmpty = "",AllowReserved = true}},
-                                        {'.', new OperatorInfo {Default = false, First = ".", Seperator = '.', Named = false, IfEmpty = "",AllowReserved = false}},
-                                        {'/', new OperatorInfo {Default = false, First = "/", Seperator = '/', Named = false, IfEmpty = "",AllowReserved = false}},
-                                        {';', new OperatorInfo {Default = false, First = ";", Seperator = ';', Named = true, IfEmpty = "",AllowReserved = false}},
-                                        {'?', new OperatorInfo {Default = false, First = "?", Seperator = '&', Named = true, IfEmpty = "=",AllowReserved = false}},
-                                        {'&', new OperatorInfo {Default = false, First = "&", Seperator = '&', Named = true, IfEmpty = "=",AllowReserved = false}},
-                                        {'#', new OperatorInfo {Default = false, First = "#", Seperator = ',', Named = false, IfEmpty = "",AllowReserved = true}}
-                                        };
+        private static readonly Dictionary<char, OperatorInfo> _Operators = new Dictionary<char, OperatorInfo>() {
+            { '\0', new OperatorInfo { Default = true, First = "", Seperator = ',', Named = false, IfEmpty = "", AllowReserved = false} },
+            { '+', new OperatorInfo { Default = false, First = "", Seperator = ',', Named = false, IfEmpty = "", AllowReserved = true} },
+            { '.', new OperatorInfo { Default = false, First = ".", Seperator = '.', Named = false, IfEmpty = "", AllowReserved = false} },
+            { '/', new OperatorInfo { Default = false, First = "/", Seperator = '/', Named = false, IfEmpty = "", AllowReserved = false} },
+            { ';', new OperatorInfo { Default = false, First = ";", Seperator = ';', Named = true, IfEmpty = "", AllowReserved = false} },
+            { '?', new OperatorInfo { Default = false, First = "?", Seperator = '&', Named = true, IfEmpty = "=", AllowReserved = false} },
+            { '&', new OperatorInfo { Default = false, First = "&", Seperator = '&', Named = true, IfEmpty = "=", AllowReserved = false} },
+            { '#', new OperatorInfo { Default = false, First = "#", Seperator = ',', Named = false, IfEmpty = "", AllowReserved = true} }
+        };
 
         private readonly string _template;
         private readonly Dictionary<string, object> _Parameters;
         private enum States { CopyingLiterals, ParsingExpression }
-
         private readonly bool _resolvePartially;
 
         internal UriTemplate(string template, bool resolvePartially = false, bool caseInsensitiveParameterNames = false)
@@ -74,18 +73,17 @@
 
         internal string Resolve()
         {
-            var result = ResolveResult();
+            Result result = ResolveResult();
             return result.ToString();
         }
 
         private Result ResolveResult()
         {
-            var currentState = States.CopyingLiterals;
+            States currentState = States.CopyingLiterals;
             var result = new Result();
-
             StringBuilder currentExpression = null;
 
-            foreach (var character in _template.ToCharArray())
+            foreach (char character in _template)
             {
                 switch (currentState)
                 {
@@ -97,7 +95,7 @@
                         }
                         else if (character == '}')
                         {
-                            throw new ArgumentException("Malformed template, unexpected } : " + result.ToString());
+                            throw new ArgumentException("Malformed template, unexpected } : " + result);
                         }
                         else
                         {
@@ -124,12 +122,11 @@
             {
                 result.Append("{");
                 result.Append(currentExpression.ToString());
-
-                throw new ArgumentException("Malformed template, missing } : " + result.ToString());
+                throw new ArgumentException("Malformed template, missing } : " + result);
             }
 
             if (result.ErrorDetected)
-                throw new ArgumentException("Malformed template : " + result.ToString());
+                throw new ArgumentException("Malformed template : " + result);
 
             return result;
         }
@@ -144,10 +141,8 @@
             }
 
             OperatorInfo op = GetOperator(currentExpression[0]);
-
-            var firstChar = op.Default ? 0 : 1;
+            int firstChar = op.Default ? 0 : 1;
             bool multivariableExpression = false;
-
             var varSpec = new VarSpec(op);
 
             for (int i = firstChar; i < currentExpression.Length; i++)
@@ -177,8 +172,7 @@
                         break;
                     case ',':
                         multivariableExpression = true;
-
-                        var success = ProcessVariable(varSpec, result, multivariableExpression);
+                        bool success = ProcessVariable(varSpec, result, multivariableExpression);
                         bool isFirst = varSpec.First;
 
                         // Reset for new variable
@@ -209,7 +203,7 @@
 
         private bool ProcessVariable(VarSpec varSpec, Result result, bool multiVariableExpression = false)
         {
-            var varname = varSpec.VarName.ToString();
+            string varname = varSpec.VarName.ToString();
             result.ParameterNames.Add(varname);
 
             if (!_Parameters.ContainsKey(varname)
@@ -247,9 +241,9 @@
             object value = _Parameters[varname];
 
             // Handle Strings
-            if (value is string)
+            if (value is string val)
             {
-                var stringValue = (string)value;
+                string stringValue = val;
 
                 if (varSpec.OperatorInfo.Named)
                     result.AppendName(varname, varSpec.OperatorInfo, string.IsNullOrEmpty(stringValue));
@@ -262,7 +256,7 @@
                 var list = value as IList;
 
                 if (list == null && value is IEnumerable<string>)
-                    list = ((IEnumerable<string>)value).ToList<string>();
+                    list = ((IEnumerable<string>)value).ToList();
 
                 if (list != null)
                 {
@@ -274,9 +268,7 @@
                 else
                 {
                     // Handle associative arrays
-                    var dictionary = value as IDictionary<string, string>;
-
-                    if (dictionary != null)
+                    if (value is IDictionary<string, string> dictionary)
                     {
                         if (varSpec.OperatorInfo.Named && !varSpec.Explode)  // exploding will prefix with list name
                             result.AppendName(varname, varSpec.OperatorInfo, dictionary.Count == 0);
@@ -286,7 +278,7 @@
                     else
                     {
                         // If above all fails, convert the object to string using the default object.ToString() implementation
-                        var stringValue = value.ToString();
+                        string stringValue = value.ToString();
 
                         if (varSpec.OperatorInfo.Named)
                             result.AppendName(varname, varSpec.OperatorInfo, string.IsNullOrEmpty(stringValue));
@@ -308,8 +300,6 @@
 
         private static OperatorInfo GetOperator(char operatorIndicator)
         {
-            OperatorInfo op;
-
             switch (operatorIndicator)
             {
                 case '+':
@@ -319,14 +309,10 @@
                 case '&':
                 case '?':
                 case '.':
-                    op = _Operators[operatorIndicator];
-                    break;
+                    return _Operators[operatorIndicator];
                 default:
-                    op = _Operators['\0'];
-                    break;
+                    return _Operators['\0'];
             }
-
-            return op;
         }
 
         private const string varname = "[a-zA-Z0-9_]*";
@@ -342,7 +328,7 @@
         {
             if (_ParameterRegex == null)
             {
-                var matchingRegex = CreateMatchingRegex(_template);
+                string matchingRegex = CreateMatchingRegex(_template);
 
                 lock (this)
                 {
@@ -350,14 +336,14 @@
                 }
             }
 
-            var match = _ParameterRegex.Match(uri.OriginalString);
+            Match match = _ParameterRegex.Match(uri.OriginalString);
             var parameters = new Dictionary<string, object>();
 
             for (int x = 1; x < match.Groups.Count; x++)
             {
                 if (match.Groups[x].Success)
                 {
-                    var paramName = _ParameterRegex.GroupNameFromNumber(x);
+                    string paramName = _ParameterRegex.GroupNameFromNumber(x);
 
                     if (!string.IsNullOrEmpty(paramName))
                         parameters.Add(paramName, Uri.UnescapeDataString(match.Groups[x].Value));
@@ -370,15 +356,13 @@
         internal static string CreateMatchingRegex(string uriTemplate)
         {
             var findParam = new Regex(varspec);
+            var template = new Regex(@"([^{]|^)\?").Replace(uriTemplate, @"$+\?"); //.Replace("?",@"\?");
 
-            var template = new Regex(@"([^{]|^)\?").Replace(uriTemplate, @"$+\?"); ;//.Replace("?",@"\?");
-
-            var regex = findParam.Replace(template, (m) =>
+            string regex = findParam.Replace(template, (m) =>
             {
-                var paramNames = m.Groups["lvar"].Captures.Cast<Capture>().Where(c => !string.IsNullOrEmpty(c.Value)).Select(c => c.Value).ToList();
-                var op = m.Groups["op"].Value;
+                List<string> paramNames = m.Groups["lvar"].Captures.Cast<Capture>().Where(c => !string.IsNullOrEmpty(c.Value)).Select(c => c.Value).ToList();
 
-                switch (op)
+                switch (m.Groups["op"].Value)
                 {
                     case "?":
                         return GetQueryExpression(paramNames, prefix: "?");
@@ -402,10 +386,12 @@
         {
             var sb = new StringBuilder();
 
-            foreach (var paramname in paramNames)
+            foreach (string paramname in paramNames)
             {
-                sb.Append(@"\" + prefix + "?");
-                if (prefix == "?") prefix = "&";
+                sb.Append(@"\").Append(prefix).Append("?");
+
+                if (prefix == "?")
+                    prefix = "&";
 
                 sb.Append("(?:");
                 sb.Append(paramname);
@@ -426,13 +412,14 @@
         {
             var sb = new StringBuilder();
 
-            foreach (var paramname in paramNames)
+            foreach (string paramname in paramNames)
             {
-                if (string.IsNullOrEmpty(paramname)) continue;
+                if (string.IsNullOrEmpty(paramname))
+                    continue;
 
                 if (prefix != null)
                 {
-                    sb.Append(@"\" + prefix + "?");
+                    sb.Append(@"\").Append(prefix).Append("?");
                     prefix = ",";
                 }
 

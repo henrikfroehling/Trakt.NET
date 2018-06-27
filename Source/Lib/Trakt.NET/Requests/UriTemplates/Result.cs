@@ -9,12 +9,13 @@ namespace UriTemplates
     /// </summary>
     internal class Result
     {
-        internal bool ErrorDetected { get; set; }
-        internal List<string> ParameterNames { get; set; }
         private const string _UriReservedSymbols = ":/?#[]@!$&'()*+,;=";
         private const string _UriUnreservedSymbols = "-._~";
+        private readonly StringBuilder _Result = new StringBuilder();
 
-        private StringBuilder _Result = new StringBuilder();
+        internal bool ErrorDetected { get; set; }
+
+        internal List<string> ParameterNames { get; set; }
 
         internal Result()
         {
@@ -102,9 +103,7 @@ namespace UriTemplates
                 }
                 else
                 {
-                    var bytes = Encoding.UTF8.GetBytes(new[] { c });
-
-                    foreach (var abyte in bytes)
+                    foreach (byte abyte in Encoding.UTF8.GetBytes(new[] { c }))
                         result.Append(HexEscape(abyte));
                 }
             }
@@ -115,22 +114,18 @@ namespace UriTemplates
         internal static string HexEscape(byte i)
         {
             var esc = new char[3];
-
             esc[0] = '%';
-            esc[1] = HexDigits[((i & 240) >> 4)];
-            esc[2] = HexDigits[(i & 15)];
-
+            esc[1] = HexDigits[(i & 240) >> 4];
+            esc[2] = HexDigits[i & 15];
             return new string(esc);
         }
 
         internal static string HexEscape(char c)
         {
             var esc = new char[3];
-
             esc[0] = '%';
-            esc[1] = HexDigits[(((int)c & 240) >> 4)];
-            esc[2] = HexDigits[((int)c & 15)];
-
+            esc[1] = HexDigits[(c & 240) >> 4];
+            esc[2] = HexDigits[c & 15];
             return new string(esc);
         }
 
