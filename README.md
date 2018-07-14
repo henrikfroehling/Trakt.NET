@@ -47,8 +47,7 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 
 | Branch | Status | Description |
 |---|---|---|
-| [master](https://github.com/henrikfroehling/Trakt.NET/tree/master) | [![Build status branch master](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n/branch/master?svg=true&passingText=master%20-%20passing&pendingText=master%20-%20pending&failingText=master%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/Trakt.NET/branch/master) | This branch tracks all stable releases. |
-| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status branch develop](https://ci.appveyor.com/api/projects/status/03n3og01n67yef7n/branch/develop?svg=true&passingText=dev%20-%20passing&pendingText=dev%20-%20pending&failingText=dev%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/Trakt.NET/branch/develop) | This branch tracks the current and possibly unstable development. |
+| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status branch develop](https://ci.appveyor.com/api/projects/status/3moho8dlsdjiyuxp/branch/develop?svg=true&passingText=develop%20-%20passing&pendingText=develop%20-%20pending&failingText=develop%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/trakt-net/branch/develop) | This branch tracks the current and possibly unstable development. |
 
 ### Getting Started
 
