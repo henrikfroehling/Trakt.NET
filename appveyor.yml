@@ -31,11 +31,11 @@
   configuration: Release
 
   artifacts:
-    - path: Build\Lib\Release\Trakt.NET.dll
+    - path: Build\Lib\Release\netstandard1.1\Trakt.NET.dll
       name: Assembly
-    - path: Build\Lib\Release\Trakt.NET.pdb
+    - path: Build\Lib\Release\netstandard1.1\Trakt.NET.pdb
       name: AssemblyPDB
-    - path: Build\Lib\Release\Trakt.NET.xml
+    - path: Build\Lib\Release\netstandard1.1\Trakt.NET.xml
       name: DocumentationXML
 
 # "fall back" configuration for all other branches
@@ -65,9 +65,9 @@
   configuration: Debug
 
   artifacts:
-    - path: Build\Lib\Debug\Trakt.NET.dll
+    - path: Build\Lib\Debug\netstandard1.1\Trakt.NET.dll
       name: DebugAssembly
-    - path: Build\Lib\Debug\Trakt.NET.pdb
+    - path: Build\Lib\Debug\netstandard1.1\Trakt.NET.pdb
       name: DebugAssemblyPDB
-    - path: Build\Lib\Debug\Trakt.NET.xml
+    - path: Build\Lib\Debug\netstandard1.1\Trakt.NET.xml
       name: DebugDocumentationXML
