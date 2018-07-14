@@ -4,7 +4,7 @@
   environment:
     packageVersion: 1.0.0-dev
 
-  version: '{branch}-v1.0.0-dev-{build}'
+  version: '{branch}-%packageVersion%-{build}'
   image: Visual Studio 2017
 
   install:
@@ -24,6 +24,11 @@
   build:
     verbosity: minimal
 
+  after_test:
+    ps: Rename-Item -Path Build\Lib\$(configuration)\netstandard1.1\Trakt.NET.dll -NewName Trakt.NET.$(packageVersion)-$(build).dll
+    ps: Rename-Item -Path Build\Lib\$(configuration)\netstandard1.1\Trakt.NET.pdb -NewName Trakt.NET.$(packageVersion)-$(build).pdb
+    ps: Rename-Item -Path Build\Lib\$(configuration)\netstandard1.1\Trakt.NET.xml -NewName Trakt.NET.$(packageVersion)-$(build).xml
+
   branches:
     only:
       - develop
@@ -31,11 +36,11 @@
   configuration: Release
 
   artifacts:
-    - path: Build\Lib\Release\netstandard1.1\Trakt.NET.dll
+    - path: Build\Lib\$(configuration)\netstandard1.1\Trakt.NET.$(packageVersion)-$(build).dll
       name: Assembly
-    - path: Build\Lib\Release\netstandard1.1\Trakt.NET.pdb
+    - path: Build\Lib\$(configuration)\netstandard1.1\Trakt.NET.$(packageVersion)-$(build).pdb
       name: AssemblyPDB
-    - path: Build\Lib\Release\netstandard1.1\Trakt.NET.xml
+    - path: Build\Lib\$(configuration)\netstandard1.1\Trakt.NET.$(packageVersion)-$(build).xml
       name: DocumentationXML
 
 # "fall back" configuration for all other branches
@@ -62,12 +67,12 @@
   build:
     verbosity: minimal
 
-  configuration: Debug
+  configuration: Release
 
   artifacts:
-    - path: Build\Lib\Debug\netstandard1.1\Trakt.NET.dll
-      name: DebugAssembly
-    - path: Build\Lib\Debug\netstandard1.1\Trakt.NET.pdb
-      name: DebugAssemblyPDB
-    - path: Build\Lib\Debug\netstandard1.1\Trakt.NET.xml
-      name: DebugDocumentationXML
+    - path: Build\Lib\$(configuration)\netstandard1.1\Trakt.NET.dll
+      name: Assembly
+    - path: Build\Lib\$(configuration)\netstandard1.1\Trakt.NET.pdb
+      name: AssemblyPDB
+    - path: Build\Lib\$(configuration)\netstandard1.1\Trakt.NET.xml
+      name: DocumentationXML
