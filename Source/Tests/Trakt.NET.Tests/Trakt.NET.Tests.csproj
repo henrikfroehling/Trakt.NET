@@ -1472,13 +1472,13 @@
     <None Include="xunit.runner.json" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\..\packages\xunit.analyzers.0.9.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\Lib\Trakt.NET\Trakt.NET.csproj">
       <Project>{10f945da-7196-493a-990c-dee34b23f575}</Project>
       <Name>Trakt.NET</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
