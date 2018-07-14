@@ -1,7 +1,6 @@
 ﻿namespace TraktNet.Tests.Enums
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System.Collections.Generic;
     using Traits;
     using TraktNet.Enums;
@@ -10,12 +9,6 @@
     [Category("Enums")]
     public class TraktSearchField_Tests
     {
-        private class TestObject
-        {
-            [JsonConverter(typeof(TraktEnumerationConverter<TraktSearchField>))]
-            public TraktSearchField Value { get; set; }
-        }
-
         [Fact]
         public void Test_TraktSearchField_GetAll()
         {
@@ -126,136 +119,6 @@
             result.ObjectName.Should().Be("title,tagline,overview,people,translations,aliases,name,biography,description");
             result.UriName.Should().Be("title,tagline,overview,people,translations,aliases,name,biography,description");
             result.DisplayName.Should().Be("Title, Tagline, Overview, People, Translations, Aliases, Name, Biography, Description");
-        }
-
-        [Fact]
-        public void Test_TraktSearchField_WriteAndReadJson_Title()
-        {
-            var obj = new TestObject { Value = TraktSearchField.Title };
-
-            var objWritten = JsonConvert.SerializeObject(obj);
-            objWritten.Should().NotBeNullOrEmpty();
-
-            var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
-            objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktSearchField.Title);
-        }
-
-        [Fact]
-        public void Test_TraktSearchField_WriteAndReadJson_Tagline()
-        {
-            var obj = new TestObject { Value = TraktSearchField.Tagline };
-
-            var objWritten = JsonConvert.SerializeObject(obj);
-            objWritten.Should().NotBeNullOrEmpty();
-
-            var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
-            objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktSearchField.Tagline);
-        }
-
-        [Fact]
-        public void Test_TraktSearchField_WriteAndReadJson_Overview()
-        {
-            var obj = new TestObject { Value = TraktSearchField.Overview };
-
-            var objWritten = JsonConvert.SerializeObject(obj);
-            objWritten.Should().NotBeNullOrEmpty();
-
-            var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
-            objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktSearchField.Overview);
-        }
-
-        [Fact]
-        public void Test_TraktSearchField_WriteAndReadJson_People()
-        {
-            var obj = new TestObject { Value = TraktSearchField.People };
-
-            var objWritten = JsonConvert.SerializeObject(obj);
-            objWritten.Should().NotBeNullOrEmpty();
-
-            var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
-            objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktSearchField.People);
-        }
-
-        [Fact]
-        public void Test_TraktSearchField_WriteAndReadJson_Translations()
-        {
-            var obj = new TestObject { Value = TraktSearchField.Translations };
-
-            var objWritten = JsonConvert.SerializeObject(obj);
-            objWritten.Should().NotBeNullOrEmpty();
-
-            var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
-            objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktSearchField.Translations);
-        }
-
-        [Fact]
-        public void Test_TraktSearchField_WriteAndReadJson_Aliases()
-        {
-            var obj = new TestObject { Value = TraktSearchField.Aliases };
-
-            var objWritten = JsonConvert.SerializeObject(obj);
-            objWritten.Should().NotBeNullOrEmpty();
-
-            var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
-            objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktSearchField.Aliases);
-        }
-
-        [Fact]
-        public void Test_TraktSearchField_WriteAndReadJson_Name()
-        {
-            var obj = new TestObject { Value = TraktSearchField.Name };
-
-            var objWritten = JsonConvert.SerializeObject(obj);
-            objWritten.Should().NotBeNullOrEmpty();
-
-            var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
-            objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktSearchField.Name);
-        }
-
-        [Fact]
-        public void Test_TraktSearchField_WriteAndReadJson_Biography()
-        {
-            var obj = new TestObject { Value = TraktSearchField.Biography };
-
-            var objWritten = JsonConvert.SerializeObject(obj);
-            objWritten.Should().NotBeNullOrEmpty();
-
-            var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
-            objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktSearchField.Biography);
-        }
-
-        [Fact]
-        public void Test_TraktSearchField_WriteAndReadJson_Description()
-        {
-            var obj = new TestObject { Value = TraktSearchField.Description };
-
-            var objWritten = JsonConvert.SerializeObject(obj);
-            objWritten.Should().NotBeNullOrEmpty();
-
-            var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
-            objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktSearchField.Description);
-        }
-
-        [Fact]
-        public void Test_TraktSearchField_WriteAndReadJson_Unspecified()
-        {
-            var obj = new TestObject { Value = TraktSearchField.Unspecified };
-
-            var objWritten = JsonConvert.SerializeObject(obj);
-            objWritten.Should().NotBeNullOrEmpty();
-
-            var objRead = JsonConvert.DeserializeObject<TestObject>(objWritten);
-            objRead.Should().NotBeNull();
-            objRead.Value.Should().Be(TraktSearchField.Unspecified);
         }
     }
 }
