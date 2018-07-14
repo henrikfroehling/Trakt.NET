@@ -1,10 +1,10 @@
-# configuration for "master" branch
+# configuration for "develop" branch
 # build in Release mode
 -
   environment:
-    packageVersion: 0.11.0
+    packageVersion: 1.0.0-dev
 
-  version: '{branch}-v0.11.0-{build}'
+  version: '{branch}-v1.0.0-dev-{build}'
   image: Visual Studio 2017
 
   install:
@@ -21,16 +21,12 @@
   before_build:
     - cmd: nuget restore
 
-  after_test:
-    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release
-    - ps: Get-ChildItem .\Build\Lib\Release\Trakt.NET*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
-
   build:
     verbosity: minimal
 
   branches:
     only:
-      - master
+      - develop
 
   configuration: Release
 
@@ -41,112 +37,6 @@
       name: AssemblyPDB
     - path: Build\Lib\Release\Trakt.NET.xml
       name: DocumentationXML
-
-  deploy:
-    - provider: NuGet
-      api_key:
-        secure: H7z6bonH/h4BM9hS375hDZBPHpDpLIp8/lH0Aydc/Qvs5DMObeVQg/xMchfl9U0y
-      skip_symbols: true
-      symbol_server:
-      artifact: Trakt.NET.$(packageVersion).nupkg
-      on:
-        appveyor_repo_tag: true
-
-# configuration for "next-version" branch
-# build in Release mode
--
-  environment:
-    packageVersion: 1.0.0-alpha3
-
-  version: '{branch}-v1.0.0-alpha3-{build}'
-  image: Visual Studio 2017
-
-  install:
-    - cmd: appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-
-  cache:
-    - packages -> **\packages.config
-
-  pull_requests:
-    do_not_increment_build_number: false
-
-  skip_branch_with_pr: false
-
-  before_build:
-    - cmd: nuget restore
-
-  after_test:
-    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%-v1.0.0-alpha3.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release
-    - ps: Get-ChildItem .\Build\Lib\Release\Trakt.NET*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
-
-  build:
-    verbosity: minimal
-
-  branches:
-    only:
-      - next-version
-
-  configuration: Release
-
-  artifacts:
-    - path: Build\Lib\Release\Trakt.NET.dll
-      name: Assembly
-    - path: Build\Lib\Release\Trakt.NET.pdb
-      name: AssemblyPDB
-    - path: Build\Lib\Release\Trakt.NET.xml
-      name: DocumentationXML
-
-  deploy:
-    - provider: NuGet
-      api_key:
-        secure: H7z6bonH/h4BM9hS375hDZBPHpDpLIp8/lH0Aydc/Qvs5DMObeVQg/xMchfl9U0y
-      skip_symbols: true
-      symbol_server:
-      artifact: Trakt.NET.$(packageVersion).nupkg
-      on:
-        appveyor_repo_tag: true
-
-# configuration for all branches starting from "dev-"
-# build in Debug mode
--
-  version: '{branch}-{build}'
-  image: Visual Studio 2017
-
-  install:
-    - cmd: appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-
-  cache:
-    - packages -> **\packages.config
-
-  pull_requests:
-    do_not_increment_build_number: false
-
-  skip_branch_with_pr: false
-
-  before_build:
-    - cmd: nuget restore
-
-  after_test:
-    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION% -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Debug
-    - ps: Get-ChildItem .\Build\Lib\Debug\Trakt.NET*.nupkg | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
-
-  build:
-    verbosity: minimal
-
-  branches:
-    only:
-      - dev
-      - /dev-.*/
-
-  configuration: Debug
-
-  artifacts:
-    - path: Build\Lib\Debug\Trakt.NET.dll
-      name: DebugAssembly
-    - path: Build\Lib\Debug\Trakt.NET.pdb
-      name: DebugAssemblyPDB
-    - path: Build\Lib\Debug\Trakt.NET.xml
-      name: DebugDocumentationXML
 
 # "fall back" configuration for all other branches
 # no "branches" section defined
