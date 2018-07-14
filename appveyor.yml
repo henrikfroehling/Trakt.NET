@@ -27,18 +27,18 @@
   configuration: Release
 
   after_test:
-    ps: Get-ChildItem -Path Build\Lib\$configuration\netstandard1.1 | Where-Object {$_.Extension -match '.dll|.pdb|.xml'} | Rename-Item -NewName {'Trakt.NET.$packageVersion-$build' + $_.Extension}
+    ps: Get-ChildItem -Path {'Build\Lib\' + $env:CONFIGURATION '\netstandard1.1'} | Where-Object {$_.Extension -match '.dll|.pdb|.xml'} | Rename-Item -NewName {'Trakt.NET.' + $env:packageVersion + '-' + $env:APPVEYOR_BUILD_NUMBER + $_.Extension}
 
   branches:
     only:
       - develop
 
   artifacts:
-    - path: Build\Lib\$(configuration)\netstandard1.1\Trakt.NET.*.dll
+    - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.dll
       name: Assembly
-    - path: Build\Lib\$(configuration)\netstandard1.1\Trakt.NET.*.pdb
+    - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.pdb
       name: AssemblyPDB
-    - path: Build\Lib\$(configuration)\netstandard1.1\Trakt.NET.*.xml
+    - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.xml
       name: DocumentationXML
 
 # "fall back" configuration for all other branches
@@ -68,9 +68,9 @@
   configuration: Release
 
   artifacts:
-    - path: Build\Lib\$(configuration)\netstandard1.1\Trakt.NET.dll
+    - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.dll
       name: Assembly
-    - path: Build\Lib\$(configuration)\netstandard1.1\Trakt.NET.pdb
+    - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.pdb
       name: AssemblyPDB
-    - path: Build\Lib\$(configuration)\netstandard1.1\Trakt.NET.xml
+    - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.xml
       name: DocumentationXML
