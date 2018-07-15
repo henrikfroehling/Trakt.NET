@@ -73,10 +73,10 @@
   build:
     verbosity: minimal
 
+  configuration: Release
+
   after_test:
     ps: Join-Path "Build\Lib\" -ChildPath $env:CONFIGURATION | Join-Path -ChildPath "\netstandard1.1" | Get-ChildItem | Where-Object {$_.Extension -match '.dll|.pdb|.xml|.nupkg'} | Rename-Item -NewName {'Trakt.NET.' + $env:APPVEYOR_BUILD_VERSION + $_.Extension}
-
-  configuration: Release
 
   artifacts:
     - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.dll

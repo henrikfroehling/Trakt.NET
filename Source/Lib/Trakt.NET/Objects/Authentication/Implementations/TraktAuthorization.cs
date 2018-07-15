@@ -53,13 +53,13 @@
         public bool IsRefreshPossible => !string.IsNullOrEmpty(RefreshToken) && !RefreshToken.ContainsSpace();
 
         /// <summary>Returns the UTC DateTime, when this authorization information was created.</summary>
-        public DateTime CreatedAt => CreatedAtTimestamp > 0 ? new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(CreatedAtTimestamp) : default(DateTime);
+        public DateTime CreatedAt => CreatedAtTimestamp > 0 ? new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(CreatedAtTimestamp) : default;
 
-        internal bool IgnoreExpiration { get; set; }
+        public bool IgnoreExpiration { get; set; }
 
         public override string ToString()
         {
-            string value = IsValid ? $"{AccessToken}" : "no valid access token";
+            string value = IsValid ? AccessToken : "no valid access token";
             value += IsExpired ? " (expired)" : $" (valid until {CreatedAt.AddSeconds(ExpiresInSeconds)})";
             return value;
         }

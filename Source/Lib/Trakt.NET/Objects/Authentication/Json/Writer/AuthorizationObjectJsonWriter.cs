@@ -8,6 +8,8 @@
 
     internal class AuthorizationObjectJsonWriter : AObjectJsonWriter<ITraktAuthorization>
     {
+        internal bool CompleteSerialization { get; set; }
+
         public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktAuthorization obj, CancellationToken cancellationToken = default)
         {
             if (jsonWriter == null)
@@ -44,6 +46,12 @@
 
             await jsonWriter.WritePropertyNameAsync(JsonProperties.AUTHORIZATION_PROPERTY_NAME_CREATED_AT, cancellationToken).ConfigureAwait(false);
             await jsonWriter.WriteValueAsync(obj.CreatedAtTimestamp, cancellationToken).ConfigureAwait(false);
+
+            if (CompleteSerialization)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.AUTHORIZATION_PROPERTY_NAME_IGNORE_EXPIRATION, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.IgnoreExpiration, cancellationToken).ConfigureAwait(false);
+            }
 
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }

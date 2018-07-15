@@ -8,6 +8,8 @@
 
     internal class AuthorizationObjectJsonReader : AObjectJsonReader<ITraktAuthorization>
     {
+        internal bool CompleteSerialization { get; set; }
+
         public override async Task<ITraktAuthorization> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
@@ -53,6 +55,13 @@
 
                                 break;
                             }
+                        case JsonProperties.AUTHORIZATION_PROPERTY_NAME_IGNORE_EXPIRATION:
+                            if (CompleteSerialization)
+                            {
+                                bool? ignoreExpiration = await jsonReader.ReadAsBooleanAsync(cancellationToken);
+                                traktAuthorization.IgnoreExpiration = ignoreExpiration ?? false;
+                            }
+                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
