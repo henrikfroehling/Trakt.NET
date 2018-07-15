@@ -1458,7 +1458,8 @@
     <Compile Include="Requests\Users\OAuth\UserWatchlistRequest_Tests.cs" />
     <Compile Include="Requests\Users\UserListCommentsRequest_Tests.cs" />
     <Compile Include="Services\TraktLanguageService_Tests.cs" />
-    <Compile Include="Services\TraktSerializationService_Tests.cs" />
+    <Compile Include="Services\TraktSerializationService\TraktSerializationService_Tests.cs" />
+    <Compile Include="Services\TraktSerializationService\TraktSerializationService_Tests_Json_Data.cs" />
     <Compile Include="TestUtils\TestConstants.cs" />
     <Compile Include="TestUtils\TestHttpClientProvider.cs" />
     <Compile Include="TestUtils\TestUtility.cs" />

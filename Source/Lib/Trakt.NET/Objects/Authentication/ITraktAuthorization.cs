@@ -25,6 +25,8 @@
 
         DateTime CreatedAt { get; }
 
+        bool IgnoreExpiration { get; set; }
+
         string ToString();
     }
 }
