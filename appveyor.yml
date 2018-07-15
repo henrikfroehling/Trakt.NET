@@ -79,11 +79,11 @@
     ps: Join-Path "Build\Lib\" -ChildPath $env:CONFIGURATION | Join-Path -ChildPath "\netstandard1.1" | Get-ChildItem | Where-Object {$_.Extension -match '.dll|.pdb|.xml|.nupkg'} | Rename-Item -NewName {'Trakt.NET.' + $env:APPVEYOR_BUILD_VERSION + $_.Extension}
 
   artifacts:
-    - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.dll
+    - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.dll
       name: Assembly
-    - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.pdb
+    - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.pdb
       name: AssemblyPDB
-    - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.xml
+    - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.xml
       name: DocumentationXML
     - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.nupkg
       name: NugetPackage
