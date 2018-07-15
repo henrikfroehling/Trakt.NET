@@ -101,10 +101,10 @@ client.Authorization = TraktAuthorization.CreateWith("Your Access Token", "Your 
 ITraktAuthorization authorization = client.Authorization;
 
 // Get JSON string from current authorization
-string json = TraktSerializationService.Serialize(authorization);
+string json = await TraktSerializationService.SerializeAsync(authorization);
 
 // Get TraktAuthorization from JSON string
-ITraktAuthorization deserializedAuthorization = TraktSerializationService.DeserializeAuthorization(json);
+ITraktAuthorization deserializedAuthorization = await TraktSerializationService.DeserializeAsync(json);
 
 client.Authorization = deserializedAuthorization;
 
