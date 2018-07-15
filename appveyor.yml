@@ -43,6 +43,8 @@
       name: AssemblyPDB
     - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.xml
       name: DocumentationXML
+    - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.nupkg
+      name: NugetPackage
 
 # "fall back" configuration for all other branches
 # no "branches" section defined
@@ -65,6 +67,9 @@
   before_build:
     - cmd: nuget restore
 
+  after_build:
+    - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION%\netstandard1.1 -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release
+
   build:
     verbosity: minimal
 
@@ -77,3 +82,5 @@
       name: AssemblyPDB
     - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.xml
       name: DocumentationXML
+    - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.nupkg
+      name: NugetPackage
