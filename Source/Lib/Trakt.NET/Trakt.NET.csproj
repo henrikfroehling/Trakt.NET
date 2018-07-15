@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.1</TargetFramework>
     <RootNamespace>TraktNET</RootNamespace>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Version>1.0.0-alpha3</Version>
-    <Authors>henrikfroehling</Authors>
+    <Authors>Henrik Fröhling</Authors>
     <Company>Henrik Fröhling</Company>
     <PackageLicenseUrl>https://github.com/henrikfroehling/Trakt.NET/blob/develop/LICENSE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/henrikfroehling/Trakt.NET</PackageProjectUrl>
