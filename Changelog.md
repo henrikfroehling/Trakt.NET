@@ -46,6 +46,7 @@ Added:
 Fixed:
 
 - serialization of Trakt objects to JSON ([Issue #77](https://github.com/henrikfroehling/TraktApiSharp/issues/77))
+- serialization service ([Issue #23](https://github.com/henrikfroehling/Trakt.NET/issues/23))
 
 Improved:
 
