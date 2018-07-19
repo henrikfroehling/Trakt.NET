@@ -1,4 +1,4 @@
-[Trakt.NET](https://github.com/henrikfroehling/Trakt.NET) [![Twitter](https://img.shields.io/twitter/url/https://www.nuget.org/packages/TraktApiSharp.svg?style=social)](https://twitter.com/intent/tweet?url=https://www.nuget.org/packages/TraktApiSharp&via=henrikfroehling&hashtags=TraktApiSharp)[![Twitter Follow](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=Follow)](https://twitter.com/henrikfroehling)
+[Trakt.NET](https://github.com/henrikfroehling/Trakt.NET) [![Twitter](https://img.shields.io/twitter/url/https://www.nuget.org/packages/Trakt.NET.svg?style=social)](https://twitter.com/intent/tweet?url=https://www.nuget.org/packages/Trakt.NET&via=henrikfroehling&hashtags=Trakt.NET)[![Twitter Follow](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=Follow)](https://twitter.com/henrikfroehling)
 ===
 
 _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApiSharp).**_
