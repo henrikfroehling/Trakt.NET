@@ -31,6 +31,9 @@
                         case JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_COVER_IMAGE:
                             traktAccountSettings.CoverImage = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
+                        case JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_TOKEN:
+                            traktAccountSettings.Token = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

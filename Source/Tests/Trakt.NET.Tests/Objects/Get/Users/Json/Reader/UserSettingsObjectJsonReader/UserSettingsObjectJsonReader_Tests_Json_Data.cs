@@ -27,7 +27,8 @@
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
                   ""time_24hr"": true,
-                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042""
+                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
+                  ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 },
                 ""connections"": {
                   ""facebook"": true,
@@ -48,7 +49,8 @@
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
                   ""time_24hr"": true,
-                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042""
+                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
+                  ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 },
                 ""connections"": {
                   ""facebook"": true,
@@ -125,7 +127,8 @@
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
                   ""time_24hr"": true,
-                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042""
+                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
+                  ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
@@ -158,7 +161,8 @@
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
                   ""time_24hr"": true,
-                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042""
+                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
+                  ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 },
                 ""connections"": {
                   ""facebook"": true,
@@ -199,7 +203,8 @@
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
                   ""time_24hr"": true,
-                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042""
+                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
+                  ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 }
               }";
 
@@ -248,7 +253,8 @@
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
                   ""time_24hr"": true,
-                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042""
+                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
+                  ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 },
                 ""connections"": {
                   ""facebook"": true,
@@ -289,7 +295,8 @@
                 ""acc"": {
                   ""timezone"": ""America/Los_Angeles"",
                   ""time_24hr"": true,
-                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042""
+                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
+                  ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 },
                 ""connections"": {
                   ""facebook"": true,
@@ -330,7 +337,8 @@
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
                   ""time_24hr"": true,
-                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042""
+                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
+                  ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 },
                 ""conn"": {
                   ""facebook"": true,
@@ -371,7 +379,8 @@
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
                   ""time_24hr"": true,
-                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042""
+                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
+                  ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 },
                 ""connections"": {
                   ""facebook"": true,
@@ -412,7 +421,8 @@
                 ""acc"": {
                   ""timezone"": ""America/Los_Angeles"",
                   ""time_24hr"": true,
-                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042""
+                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
+                  ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 },
                 ""conn"": {
                   ""facebook"": true,

@@ -33,6 +33,12 @@
                 await jsonWriter.WriteValueAsync(obj.CoverImage, cancellationToken).ConfigureAwait(false);
             }
 
+            if (!string.IsNullOrEmpty(obj.Token))
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_TOKEN, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Token, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }
