@@ -44,6 +44,7 @@
                 userSettings.Account.TimeZoneId.Should().Be("America/Los_Angeles");
                 userSettings.Account.Time24Hr.Should().BeTrue();
                 userSettings.Account.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
+                userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
                 userSettings.Connections.Should().NotBeNull();
                 userSettings.Connections.Facebook.Should().BeTrue();
@@ -76,6 +77,7 @@
                 userSettings.Account.TimeZoneId.Should().Be("America/Los_Angeles");
                 userSettings.Account.Time24Hr.Should().BeTrue();
                 userSettings.Account.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
+                userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
                 userSettings.Connections.Should().NotBeNull();
                 userSettings.Connections.Facebook.Should().BeTrue();
@@ -167,6 +169,7 @@
                 userSettings.Account.TimeZoneId.Should().Be("America/Los_Angeles");
                 userSettings.Account.Time24Hr.Should().BeTrue();
                 userSettings.Account.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
+                userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
                 userSettings.Connections.Should().BeNull();
 
@@ -208,6 +211,7 @@
                 userSettings.Account.TimeZoneId.Should().Be("America/Los_Angeles");
                 userSettings.Account.Time24Hr.Should().BeTrue();
                 userSettings.Account.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
+                userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
                 userSettings.Connections.Should().NotBeNull();
                 userSettings.Connections.Facebook.Should().BeTrue();
@@ -272,6 +276,7 @@
                 userSettings.Account.TimeZoneId.Should().Be("America/Los_Angeles");
                 userSettings.Account.Time24Hr.Should().BeTrue();
                 userSettings.Account.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
+                userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
                 userSettings.Connections.Should().BeNull();
                 userSettings.SharingText.Should().BeNull();
@@ -342,6 +347,7 @@
                 userSettings.Account.TimeZoneId.Should().Be("America/Los_Angeles");
                 userSettings.Account.Time24Hr.Should().BeTrue();
                 userSettings.Account.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
+                userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
                 userSettings.Connections.Should().NotBeNull();
                 userSettings.Connections.Facebook.Should().BeTrue();
@@ -433,6 +439,7 @@
                 userSettings.Account.TimeZoneId.Should().Be("America/Los_Angeles");
                 userSettings.Account.Time24Hr.Should().BeTrue();
                 userSettings.Account.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
+                userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
                 userSettings.Connections.Should().BeNull();
 
@@ -474,6 +481,7 @@
                 userSettings.Account.TimeZoneId.Should().Be("America/Los_Angeles");
                 userSettings.Account.Time24Hr.Should().BeTrue();
                 userSettings.Account.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
+                userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
                 userSettings.Connections.Should().NotBeNull();
                 userSettings.Connections.Facebook.Should().BeTrue();

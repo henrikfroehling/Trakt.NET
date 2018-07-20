@@ -464,6 +464,7 @@
         internal const string ACCOUNT_SETTINGS_PROPERTY_NAME_TIMEZONE_ID = "timezone";
         internal const string ACCOUNT_SETTINGS_PROPERTY_NAME_TIME_24HR = "time_24hr";
         internal const string ACCOUNT_SETTINGS_PROPERTY_NAME_COVER_IMAGE = "cover_image";
+        internal const string ACCOUNT_SETTINGS_PROPERTY_NAME_TOKEN = "token";
 
         internal const string SHARING_TEXT_PROPERTY_NAME_WATCHING = "watching";
         internal const string SHARING_TEXT_PROPERTY_NAME_WATCHED = "watched";
