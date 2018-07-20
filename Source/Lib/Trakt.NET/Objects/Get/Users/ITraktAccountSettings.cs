@@ -7,5 +7,7 @@
         bool? Time24Hr { get; set; }
 
         string CoverImage { get; set; }
+
+        string Token { get; set; }
     }
 }
