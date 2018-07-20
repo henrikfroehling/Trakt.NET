@@ -31,6 +31,7 @@
 
   after_test:
     ps: Join-Path "Build\Lib\" -ChildPath $env:CONFIGURATION | Join-Path -ChildPath "\netstandard1.1" | Get-ChildItem | Where-Object {$_.Extension -match '.dll|.pdb|.xml|.nupkg'} | Rename-Item -NewName {'Trakt.NET.' + $env:packageVersion + '-' + $env:APPVEYOR_BUILD_NUMBER + $_.Extension}
+    cmd: appveyor PushArtifact Build\Lib\%CONFIGURATION%\netstandard1.1\Trakt.NET.*.nupkg
 
   branches:
     only:
@@ -77,6 +78,7 @@
 
   after_test:
     ps: Join-Path "Build\Lib\" -ChildPath $env:CONFIGURATION | Join-Path -ChildPath "\netstandard1.1" | Get-ChildItem | Where-Object {$_.Extension -match '.dll|.pdb|.xml|.nupkg'} | Rename-Item -NewName {'Trakt.NET.' + $env:APPVEYOR_BUILD_VERSION + $_.Extension}
+    cmd: appveyor PushArtifact Build\Lib\%CONFIGURATION%\netstandard1.1\Trakt.NET.*.nupkg
 
   artifacts:
     - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.dll
