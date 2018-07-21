@@ -47,8 +47,6 @@
       name: AssemblyPDB
     - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.xml
       name: DocumentationXML
-    - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.nupkg
-      name: NugetPackage
 
 # "fall back" configuration for all other branches
 # no "branches" section defined
@@ -96,5 +94,3 @@
       name: AssemblyPDB
     - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.xml
       name: DocumentationXML
-    - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.nupkg
-      name: NugetPackage
