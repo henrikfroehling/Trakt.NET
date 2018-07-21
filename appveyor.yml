@@ -1,8 +1,5 @@
 -
-  environment:
-    packageVersion: 1.0.0
-
-  version: '%packageVersion%-{branch}-{build}'
+  version: '{build}-{branch}'
   image: Visual Studio 2017
 
   nuget:
@@ -41,3 +38,7 @@
       name: AssemblyPDB
     - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.xml
       name: DocumentationXML
+
+  deploy:
+    - provider: Environment
+      name: myget-trakt-net
