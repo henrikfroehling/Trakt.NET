@@ -34,7 +34,7 @@
 
   after_test:
     - ps: Join-Path "Build\Lib\" -ChildPath $env:CONFIGURATION | Join-Path -ChildPath "\netstandard1.1" | Get-ChildItem | Where-Object {$_.Extension -match '.dll|.pdb|.xml'} | Rename-Item -NewName {'Trakt.NET.' + $env:packageVersion + '-' + $env:APPVEYOR_BUILD_NUMBER + $_.Extension}
-    - ps: Join-Path "Build\Lib\" -ChildPath $env:CONFIGURATION | Join-Path -ChildPath "\netstandard1.1" | Get-ChildItem | Where-Object {$_.Extension -match '.nupkg'} | Push-AppveyorArtifact {$_.FullName -FileName $_.Name}
+    - ps: Join-Path "Build\Lib\" -ChildPath $env:CONFIGURATION | Join-Path -ChildPath "\netstandard1.1" | Get-ChildItem | Where-Object {$_.Extension -match '.nupkg'} | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   branches:
     only:
@@ -87,7 +87,7 @@
 
   after_test:
     - ps: Join-Path "Build\Lib\" -ChildPath $env:CONFIGURATION | Join-Path -ChildPath "\netstandard1.1" | Get-ChildItem | Where-Object {$_.Extension -match '.dll|.pdb|.xml'} | Rename-Item -NewName {'Trakt.NET.' + $env:packageVersion + '-' + $env:APPVEYOR_BUILD_NUMBER + $_.Extension}
-    - ps: Join-Path "Build\Lib\" -ChildPath $env:CONFIGURATION | Join-Path -ChildPath "\netstandard1.1" | Get-ChildItem | Where-Object {$_.Extension -match '.nupkg'} | Push-AppveyorArtifact {$_.FullName -FileName $_.Name}
+    - ps: Join-Path "Build\Lib\" -ChildPath $env:CONFIGURATION | Join-Path -ChildPath "\netstandard1.1" | Get-ChildItem | Where-Object {$_.Extension -match '.nupkg'} | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
   artifacts:
     - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.dll
