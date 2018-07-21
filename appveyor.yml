@@ -7,9 +7,6 @@
   version: '{branch}-%packageVersion%-{build}'
   image: Visual Studio 2017
 
-  nuget:
-    project_feed: true
-
   install:
     - cmd: appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
 
@@ -34,7 +31,6 @@
 
   after_test:
     ps: Join-Path "Build\Lib\" -ChildPath $env:CONFIGURATION | Join-Path -ChildPath "\netstandard1.1" | Get-ChildItem | Where-Object {$_.Extension -match '.dll|.pdb|.xml|.nupkg'} | Rename-Item -NewName {'Trakt.NET.' + $env:packageVersion + '-' + $env:APPVEYOR_BUILD_NUMBER + $_.Extension}
-    cmd: appveyor PushArtifact Build\Lib\%CONFIGURATION%\netstandard1.1\Trakt.NET.*.nupkg
 
   branches:
     only:
@@ -56,9 +52,6 @@
 -
   version: '{branch}-{build}'
   image: Visual Studio 2017
-
-  nuget:
-    project_feed: true
 
   install:
     - cmd: appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
@@ -84,7 +77,6 @@
 
   after_test:
     ps: Join-Path "Build\Lib\" -ChildPath $env:CONFIGURATION | Join-Path -ChildPath "\netstandard1.1" | Get-ChildItem | Where-Object {$_.Extension -match '.dll|.pdb|.xml|.nupkg'} | Rename-Item -NewName {'Trakt.NET.' + $env:APPVEYOR_BUILD_VERSION + $_.Extension}
-    cmd: appveyor PushArtifact Build\Lib\%CONFIGURATION%\netstandard1.1\Trakt.NET.*.nupkg
 
   artifacts:
     - path: Build\Lib\$(CONFIGURATION)\netstandard1.1\Trakt.NET.*.dll
