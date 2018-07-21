@@ -1,5 +1,8 @@
 -
-  version: '{build}-{branch}'
+  environment:
+    packageVersion: 1.0.0
+
+  version: '%packageVersion%-{branch}-{build}'
   image: Visual Studio 2017
 
   nuget:
