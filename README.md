@@ -67,11 +67,7 @@ You can also use one of the following NuGet Package Sources, to alway get the la
 | AppVeyor | https://ci.appveyor.com/nuget/trakt-net | All CI/CD build packages. |
 | MyGet | https://www.myget.org/F/trakt-net/api/v3/index.json | All CI/CD build packages. |
 
-#### Library API Documentation
-
-- [All Versions](https://henrikfroehling.github.io/Trakt.NET/apidoc/)
-
-#### Basic Usage or [more advanced usage guide](https://henrikfroehling.github.io/Trakt.NET/guide/)
+#### Basic Usage
 
 **Create a new [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET) Client**
 
