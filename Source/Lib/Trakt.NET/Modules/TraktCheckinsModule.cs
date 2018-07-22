@@ -55,16 +55,9 @@
                                                                                        string foursquareVenueID = null, string foursquareVenueName = null,
                                                                                        CancellationToken cancellationToken = default)
         {
-            Validate(movie);
-
             var requestBody = new TraktMovieCheckinPost
             {
-                Movie = new TraktMovie
-                {
-                    Title = movie.Title,
-                    Year = movie.Year,
-                    Ids = movie.Ids
-                },
+                Movie = movie,
                 Message = message,
                 Sharing = sharing,
                 FoursquareVenueId = foursquareVenueID,
@@ -109,16 +102,9 @@
                                                                                            string foursquareVenueID = null, string foursquareVenueName = null,
                                                                                            CancellationToken cancellationToken = default)
         {
-            Validate(episode);
-
             var requestBody = new TraktEpisodeCheckinPost
             {
-                Episode = new TraktEpisode
-                {
-                    Ids = episode.Ids,
-                    SeasonNumber = episode.SeasonNumber,
-                    Number = episode.Number
-                },
+                Episode = episode,
                 Show = null,
                 Message = message,
                 Sharing = sharing,
@@ -167,17 +153,10 @@
                                                                                                    string foursquareVenueID = null, string foursquareVenueName = null,
                                                                                                    CancellationToken cancellationToken = default)
         {
-            Validate(episode, show);
-
             var requestBody = new TraktEpisodeCheckinPost
             {
-                Episode = new TraktEpisode
-                {
-                    Ids = episode.Ids,
-                    SeasonNumber = episode.SeasonNumber,
-                    Number = episode.Number
-                },
-                Show = new TraktShow { Title = show.Title },
+                Episode = episode,
+                Show = show,
                 Message = message,
                 Sharing = sharing,
                 FoursquareVenueId = foursquareVenueID,
@@ -211,54 +190,6 @@
         {
             var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteNoContentRequestAsync(new CheckinsDeleteRequest(), cancellationToken);
-        }
-
-        private void Validate(ITraktMovie movie)
-        {
-            if (movie == null)
-                throw new ArgumentNullException(nameof(movie), "movie must not be null");
-
-            if (string.IsNullOrEmpty(movie.Title))
-                throw new ArgumentException("movie title not valid", nameof(movie.Title));
-
-            if (movie.Year <= 0 || movie.Year.ToString().Length != 4)
-                throw new ArgumentOutOfRangeException(nameof(movie), "movie year not valid");
-
-            if (movie.Ids == null)
-                throw new ArgumentNullException(nameof(movie.Ids), "movie.Ids must not be null");
-
-            if (!movie.Ids.HasAnyId)
-                throw new ArgumentException("movie.Ids have no valid id", nameof(movie.Ids));
-        }
-
-        private void Validate(ITraktEpisode episode)
-        {
-            if (episode == null)
-                throw new ArgumentNullException(nameof(episode), "episode must not be null");
-
-            if (episode.Ids == null)
-                throw new ArgumentNullException(nameof(episode.Ids), "episode.Ids must not be null");
-
-            if (!episode.Ids.HasAnyId)
-                throw new ArgumentException("episode.Ids have no valid id", nameof(episode.Ids));
-        }
-
-        private void Validate(ITraktEpisode episode, ITraktShow show)
-        {
-            if (episode == null)
-                throw new ArgumentNullException(nameof(episode), "episode must not be null");
-
-            if (episode.SeasonNumber < 0)
-                throw new ArgumentOutOfRangeException(nameof(episode.SeasonNumber), "episode season number not valid");
-
-            if (episode.Number < 0)
-                throw new ArgumentOutOfRangeException(nameof(episode.Number), "episode number not valid");
-
-            if (show == null)
-                throw new ArgumentNullException(nameof(show), "show must not be null");
-
-            if (string.IsNullOrEmpty(show.Title))
-                throw new ArgumentException("show title not valid", nameof(show.Title));
         }
     }
 }

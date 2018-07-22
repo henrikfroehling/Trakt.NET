@@ -3,6 +3,7 @@
     using Get.Episodes;
     using Get.Shows;
     using Objects.Json;
+    using System;
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
@@ -23,10 +24,9 @@
         /// </summary>
         public ITraktShow Show { get; set; }
 
-        public override HttpContent ToHttpContent()
-        {
-            throw new System.NotImplementedException();
-        }
+#pragma warning disable RCS1079 // Throwing of new NotImplementedException.
+        public override HttpContent ToHttpContent() => throw new System.NotImplementedException();
+#pragma warning restore RCS1079 // Throwing of new NotImplementedException.
 
         public override Task<string> ToJson(CancellationToken cancellationToken = default)
         {
@@ -36,7 +36,23 @@
 
         public override void Validate()
         {
-            // TODO
+            if (Episode == null)
+                throw new ArgumentNullException(nameof(Episode), "episode must not be null");
+
+            if (Episode.Number < 1)
+                throw new ArgumentOutOfRangeException(nameof(Episode.Number), "episode number must be at least 1");
+
+            if (Episode.SeasonNumber < 1)
+                throw new ArgumentOutOfRangeException(nameof(Episode.SeasonNumber), "episode season number must be at least 1");
+
+            if (Episode.Ids == null)
+                throw new ArgumentNullException(nameof(Episode.Ids), "episode.Ids must not be null");
+
+            if (!Episode.Ids.HasAnyId)
+                throw new ArgumentException("episode.Ids have no valid id", nameof(Episode.Ids));
+
+            if (Show != null && string.IsNullOrEmpty(Show.Title))
+                throw new ArgumentException("show title not valid", nameof(Show.Title));
         }
     }
 }

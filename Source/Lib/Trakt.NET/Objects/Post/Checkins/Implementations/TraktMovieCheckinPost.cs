@@ -2,6 +2,7 @@
 {
     using Get.Movies;
     using Objects.Json;
+    using System;
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
@@ -15,10 +16,9 @@
         /// </summary>
         public ITraktMovie Movie { get; set; }
 
-        public override HttpContent ToHttpContent()
-        {
-            throw new System.NotImplementedException();
-        }
+#pragma warning disable RCS1079 // Throwing of new NotImplementedException.
+        public override HttpContent ToHttpContent() => throw new System.NotImplementedException();
+#pragma warning restore RCS1079 // Throwing of new NotImplementedException.
 
         public override Task<string> ToJson(CancellationToken cancellationToken = default)
         {
@@ -28,7 +28,20 @@
 
         public override void Validate()
         {
-            // TODO
+            if (Movie == null)
+                throw new ArgumentNullException(nameof(Movie), "movie must not be null");
+
+            if (string.IsNullOrEmpty(Movie.Title))
+                throw new ArgumentException("movie title not valid", nameof(Movie.Title));
+
+            if (Movie.Year <= 0 || Movie.Year.ToString().Length != 4)
+                throw new ArgumentOutOfRangeException(nameof(Movie), "movie year not valid");
+
+            if (Movie.Ids == null)
+                throw new ArgumentNullException(nameof(Movie.Ids), "movie.Ids must not be null");
+
+            if (!Movie.Ids.HasAnyId)
+                throw new ArgumentException("movie.Ids have no valid id", nameof(Movie.Ids));
         }
     }
 }
