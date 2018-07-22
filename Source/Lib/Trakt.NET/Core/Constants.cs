@@ -20,5 +20,7 @@
 
         internal const string MEDIA_TYPE = "application/json";
         internal const string MEDIA_TYPE_URL_ENCODED = "application/x-www-form-urlencoded";
+
+        internal const string DEFAULT_REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob";
     }
 }

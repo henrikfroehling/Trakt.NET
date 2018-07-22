@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Modules
 {
+    using Core;
     using Objects.Authentication;
     using Requests.Authentication;
     using Requests.Handler;
@@ -11,8 +12,6 @@
 
     public class TraktAuthenticationModule : ATraktModule
     {
-        private const string DEFAULT_REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob";
-
         private ITraktAuthorization _authorization;
         private ITraktDevice _device;
 
@@ -40,7 +39,7 @@
 
         public string ClientSecret { get; set; }
 
-        public string RedirectUri { get; set; } = DEFAULT_REDIRECT_URI;
+        public string RedirectUri { get; set; } = Constants.DEFAULT_REDIRECT_URI;
 
         public bool IsAuthorized => Authorization?.IsExpired == false;
 
