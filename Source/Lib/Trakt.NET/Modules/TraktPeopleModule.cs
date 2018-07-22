@@ -53,7 +53,8 @@
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -77,13 +78,13 @@
 
             var tasks = new List<Task<TraktResponse<ITraktPerson>>>();
 
-            foreach (var queryParam in personsQueryParams)
+            foreach (TraktObjectsQueryParams queryParam in personsQueryParams)
             {
                 Task<TraktResponse<ITraktPerson>> task = GetPersonAsync(queryParam.Id, queryParam.ExtendedInfo, cancellationToken);
                 tasks.Add(task);
             }
 
-            var people = await Task.WhenAll(tasks).ConfigureAwait(false);
+            TraktResponse<ITraktPerson>[] people = await Task.WhenAll(tasks).ConfigureAwait(false);
             return people.ToList();
         }
 
@@ -112,7 +113,8 @@
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -140,7 +142,8 @@
             {
                 Id = personIdOrSlug,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>

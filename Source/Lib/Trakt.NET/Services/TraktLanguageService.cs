@@ -42,7 +42,7 @@
 
             var languages = new List<string>(availableTranslationLanguageCodes.Count());
 
-            foreach (var languageCode in availableTranslationLanguageCodes)
+            foreach (string languageCode in availableTranslationLanguageCodes)
             {
                 try
                 {

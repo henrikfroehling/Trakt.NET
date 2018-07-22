@@ -52,7 +52,12 @@
         {
             ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new CommentSummaryRequest { Id = commentId.ToString() }, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new CommentSummaryRequest
+            {
+                Id = commentId.ToString()
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -151,7 +156,7 @@
                 tasks.Add(task);
             }
 
-            var comments = await Task.WhenAll(tasks).ConfigureAwait(false);
+            TraktResponse<ITraktComment>[] comments = await Task.WhenAll(tasks).ConfigureAwait(false);
             return comments.ToList();
         }
 
@@ -337,7 +342,8 @@
                     Spoiler = containsSpoiler,
                     Sharing = sharing
                 }
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -383,7 +389,8 @@
                     Spoiler = containsSpoiler,
                     Sharing = sharing
                 }
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -419,12 +426,16 @@
             {
                 RequestBody = new TraktSeasonCommentPost
                 {
-                    Season = new TraktSeason { Ids = season.Ids },
+                    Season = new TraktSeason
+                    {
+                        Ids = season.Ids
+                    },
                     Comment = comment,
                     Spoiler = containsSpoiler,
                     Sharing = sharing
                 }
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -460,12 +471,16 @@
             {
                 RequestBody = new TraktEpisodeCommentPost
                 {
-                    Episode = new TraktEpisode { Ids = episode.Ids },
+                    Episode = new TraktEpisode
+                    {
+                        Ids = episode.Ids
+                    },
                     Comment = comment,
                     Spoiler = containsSpoiler,
                     Sharing = sharing
                 }
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -501,12 +516,16 @@
             {
                 RequestBody = new TraktListCommentPost
                 {
-                    List = new TraktList { Ids = list.Ids },
+                    List = new TraktList
+                    {
+                        Ids = list.Ids
+                    },
                     Comment = comment,
                     Spoiler = containsSpoiler,
                     Sharing = sharing
                 }
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -543,7 +562,8 @@
                     Comment = comment,
                     Spoiler = containsSpoiler
                 }
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -580,7 +600,8 @@
                     Comment = comment,
                     Spoiler = containsSpoiler
                 }
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -598,7 +619,12 @@
         {
             ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new CommentDeleteRequest { Id = commentId.ToString() }, cancellationToken);
+
+            return requestHandler.ExecuteNoContentRequestAsync(new CommentDeleteRequest
+            {
+                Id = commentId.ToString()
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -616,7 +642,12 @@
         {
             ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new CommentLikeRequest { Id = commentId.ToString() }, cancellationToken);
+
+            return requestHandler.ExecuteNoContentRequestAsync(new CommentLikeRequest
+            {
+                Id = commentId.ToString()
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -634,7 +665,12 @@
         {
             ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new CommentUnlikeRequest { Id = commentId.ToString() }, cancellationToken);
+
+            return requestHandler.ExecuteNoContentRequestAsync(new CommentUnlikeRequest
+            {
+                Id = commentId.ToString()
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -667,7 +703,8 @@
                 Id = commentId.ToString(),
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit,
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         private void ValidateId(uint commentId)

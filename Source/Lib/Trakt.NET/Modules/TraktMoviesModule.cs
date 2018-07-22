@@ -54,7 +54,8 @@
             {
                 Id = movieIdOrSlug,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -78,13 +79,13 @@
 
             var tasks = new List<Task<TraktResponse<ITraktMovie>>>();
 
-            foreach (var queryParam in moviesQueryParams)
+            foreach (TraktObjectsQueryParams queryParam in moviesQueryParams)
             {
                 Task<TraktResponse<ITraktMovie>> task = GetMovieAsync(queryParam.Id, queryParam.ExtendedInfo, cancellationToken);
                 tasks.Add(task);
             }
 
-            var movies = await Task.WhenAll(tasks).ConfigureAwait(false);
+            TraktResponse<ITraktMovie>[] movies = await Task.WhenAll(tasks).ConfigureAwait(false);
             return movies.ToList();
         }
 
@@ -104,7 +105,12 @@
                                                                               CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new MovieAliasesRequest { Id = movieIdOrSlug }, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(new MovieAliasesRequest
+            {
+                Id = movieIdOrSlug
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -125,7 +131,13 @@
                                                                                  CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new MovieReleasesRequest { Id = movieIdOrSlug, CountryCode = countryCode }, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(new MovieReleasesRequest
+            {
+                Id = movieIdOrSlug,
+                CountryCode = countryCode
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -146,7 +158,13 @@
                                                                                          CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new MovieTranslationsRequest { Id = movieIdOrSlug, LanguageCode = languageCode }, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(new MovieTranslationsRequest
+            {
+                Id = movieIdOrSlug,
+                LanguageCode = languageCode
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -182,7 +200,8 @@
                 SortOrder = commentSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -220,7 +239,8 @@
                 SortOrder = listSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -243,7 +263,13 @@
                                                                           CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new MoviePeopleRequest { Id = movieIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new MoviePeopleRequest
+            {
+                Id = movieIdOrSlug,
+                ExtendedInfo = extendedInfo
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -261,7 +287,12 @@
         public Task<TraktResponse<ITraktRating>> GetMovieRatingsAsync(string movieIdOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new MovieRatingsRequest { Id = movieIdOrSlug }, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new MovieRatingsRequest
+            {
+                Id = movieIdOrSlug
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -299,7 +330,8 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -317,7 +349,12 @@
         public Task<TraktResponse<ITraktStatistics>> GetMovieStatisticsAsync(string movieIdOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new MovieStatisticsRequest { Id = movieIdOrSlug }, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new MovieStatisticsRequest
+            {
+                Id = movieIdOrSlug
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -340,7 +377,13 @@
                                                                               CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new MovieWatchingUsersRequest { Id = movieIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(new MovieWatchingUsersRequest
+            {
+                Id = movieIdOrSlug,
+                ExtendedInfo = extendedInfo
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -378,7 +421,8 @@
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -416,7 +460,8 @@
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -457,7 +502,8 @@
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -498,7 +544,8 @@
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -539,7 +586,8 @@
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -577,7 +625,8 @@
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -598,7 +647,12 @@
                                                                                      CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new MoviesBoxOfficeRequest { ExtendedInfo = extendedInfo }, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(new MoviesBoxOfficeRequest
+            {
+                ExtendedInfo = extendedInfo
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -636,7 +690,8 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
     }
 }

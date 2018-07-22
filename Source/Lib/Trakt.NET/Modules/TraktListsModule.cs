@@ -41,7 +41,8 @@
             {
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -70,7 +71,8 @@
             {
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     using Interfaces;
     using System;
+    using System.Collections.Generic;
 
     public class TraktResponse<TResponseContentType> : TraktNoContentResponse, ITraktResponse<TResponseContentType>, IEquatable<TraktResponse<TResponseContentType>>
     {
@@ -48,7 +49,13 @@
 
         public static implicit operator TResponseContentType(TraktResponse<TResponseContentType> response) => response.Value;
 
-        public static implicit operator TraktResponse<TResponseContentType>(TResponseContentType value) => new TraktResponse<TResponseContentType> { Value = value, HasValue = value != null, IsSuccess = value != null };
+        public static implicit operator TraktResponse<TResponseContentType>(TResponseContentType value)
+            => new TraktResponse<TResponseContentType>
+            {
+                Value = value,
+                HasValue = !EqualityComparer<TResponseContentType>.Default.Equals(value, default),
+                IsSuccess = !EqualityComparer<TResponseContentType>.Default.Equals(value, default)
+            };
 
         public static implicit operator bool(TraktResponse<TResponseContentType> response) => response.IsSuccess && response.HasValue;
     }

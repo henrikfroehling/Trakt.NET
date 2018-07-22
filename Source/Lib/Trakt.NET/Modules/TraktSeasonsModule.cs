@@ -65,7 +65,8 @@
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo,
                 TranslationLanguageCode = translationLanguageCode
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -107,7 +108,8 @@
                 SeasonNumber = seasonNumber,
                 ExtendedInfo = extendedInfo,
                 TranslationLanguageCode = translationLanguageCode
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -132,16 +134,15 @@
 
             var tasks = new List<Task<TraktListResponse<ITraktEpisode>>>();
 
-            foreach (var queryParam in seasonsQueryParams)
+            foreach (TraktSeasonsQueryParams queryParam in seasonsQueryParams)
             {
-                Task<TraktListResponse<ITraktEpisode>> task = GetSeasonAsync(queryParam.ShowId, queryParam.Season,
-                                                                             queryParam.ExtendedInfo,
+                Task<TraktListResponse<ITraktEpisode>> task = GetSeasonAsync(queryParam.ShowId, queryParam.Season, queryParam.ExtendedInfo,
                                                                              queryParam.TranslationLanguageCode, cancellationToken);
 
                 tasks.Add(task);
             }
 
-            var seasons = await Task.WhenAll(tasks).ConfigureAwait(false);
+            TraktListResponse<ITraktEpisode>[] seasons = await Task.WhenAll(tasks).ConfigureAwait(false);
             return seasons.ToList();
         }
 
@@ -181,7 +182,8 @@
                 SortOrder = commentSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -222,7 +224,8 @@
                 SortOrder = listSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -248,7 +251,8 @@
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -274,7 +278,8 @@
             {
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -306,7 +311,8 @@
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
     }
 }

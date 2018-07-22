@@ -76,7 +76,8 @@
             {
                 Type = objectType,
                 Limit = limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -96,7 +97,12 @@
                 throw new ArgumentOutOfRangeException(nameof(playbackId), "playback id not valid");
 
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new SyncPlaybackDeleteRequest { Id = playbackId.ToString() }, cancellationToken);
+
+            return requestHandler.ExecuteNoContentRequestAsync(new SyncPlaybackDeleteRequest
+            {
+                Id = playbackId.ToString()
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -117,7 +123,12 @@
                                                                                        CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new SyncCollectionMoviesRequest { ExtendedInfo = extendedInfo }, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(new SyncCollectionMoviesRequest
+            {
+                ExtendedInfo = extendedInfo
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -138,7 +149,12 @@
                                                                                      CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new SyncCollectionShowsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(new SyncCollectionShowsRequest
+            {
+                ExtendedInfo = extendedInfo
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -164,7 +180,12 @@
         {
             ValidateCollectionPost(collectionPost);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new SyncCollectionAddRequest { RequestBody = collectionPost }, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncCollectionAddRequest
+            {
+                RequestBody = collectionPost
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -190,7 +211,12 @@
         {
             ValidateCollectionPost(collectionRemovePost);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new SyncCollectionRemoveRequest { RequestBody = collectionRemovePost }, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncCollectionRemoveRequest
+            {
+                RequestBody = collectionRemovePost
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -211,7 +237,12 @@
                                                                                  CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new SyncWatchedMoviesRequest { ExtendedInfo = extendedInfo }, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(new SyncWatchedMoviesRequest
+            {
+                ExtendedInfo = extendedInfo
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -232,7 +263,12 @@
                                                                                CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new SyncWatchedShowsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(new SyncWatchedShowsRequest
+            {
+                ExtendedInfo = extendedInfo
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -277,7 +313,8 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -303,7 +340,12 @@
         {
             ValidateHistoryPost(historyPost);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchedHistoryAddRequest { RequestBody = historyPost }, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchedHistoryAddRequest
+            {
+                RequestBody = historyPost
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -329,7 +371,12 @@
         {
             ValidateHistoryPost(historyRemovePost);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchedHistoryRemoveRequest { RequestBody = historyRemovePost }, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchedHistoryRemoveRequest
+            {
+                RequestBody = historyRemovePost
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -364,7 +411,8 @@
                 Type = ratingsItemType,
                 RatingFilter = ratingsFilter,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -390,7 +438,12 @@
         {
             ValidateRatingsPost(ratingsPost);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new SyncRatingsAddRequest { RequestBody = ratingsPost }, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncRatingsAddRequest
+            {
+                RequestBody = ratingsPost
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -416,7 +469,12 @@
         {
             ValidateRatingsPost(ratingsRemovePost);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new SyncRatingsRemoveRequest { RequestBody = ratingsRemovePost }, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncRatingsRemoveRequest
+            {
+                RequestBody = ratingsRemovePost
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -454,7 +512,8 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -480,7 +539,12 @@
         {
             ValidateWatchlistPost(watchlistPost);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchlistAddRequest { RequestBody = watchlistPost }, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchlistAddRequest
+            {
+                RequestBody = watchlistPost
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -506,7 +570,12 @@
         {
             ValidateWatchlistPost(watchlistRemovePost);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchlistRemoveRequest { RequestBody = watchlistRemovePost }, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchlistRemoveRequest
+            {
+                RequestBody = watchlistRemovePost
+            },
+            cancellationToken);
         }
 
         private void ValidateCollectionPost(ITraktSyncCollectionPost collectionPost)

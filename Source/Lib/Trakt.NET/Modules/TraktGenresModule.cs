@@ -34,11 +34,11 @@
         public async Task<TraktListResponse<ITraktGenre>> GetMovieGenresAsync(CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            var response = await requestHandler.ExecuteListRequestAsync(new GenresMoviesRequest(), cancellationToken);
+            TraktListResponse<ITraktGenre> response = await requestHandler.ExecuteListRequestAsync(new GenresMoviesRequest(), cancellationToken);
 
             if (response)
             {
-                foreach (var genre in response)
+                foreach (ITraktGenre genre in response)
                     genre.Type = TraktGenreType.Movies;
             }
 
@@ -58,11 +58,11 @@
         public async Task<TraktListResponse<ITraktGenre>> GetShowGenresAsync(CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            var response = await requestHandler.ExecuteListRequestAsync(new GenresShowsRequest(), cancellationToken);
+            TraktListResponse<ITraktGenre> response = await requestHandler.ExecuteListRequestAsync(new GenresShowsRequest(), cancellationToken);
 
             if (response)
             {
-                foreach (var genre in response)
+                foreach (ITraktGenre genre in response)
                     genre.Type = TraktGenreType.Shows;
             }
 

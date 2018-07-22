@@ -64,7 +64,8 @@
                 SeasonNumber = seasonNumber,
                 EpisodeNumber = episodeNumber,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -92,14 +93,14 @@
 
             var tasks = new List<Task<TraktResponse<ITraktEpisode>>>();
 
-            foreach (var queryParam in episodesQueryParams)
+            foreach (TraktEpisodeQueryParams queryParam in episodesQueryParams)
             {
                 Task<TraktResponse<ITraktEpisode>> task = GetEpisodeAsync(queryParam.ShowId, queryParam.Season, queryParam.Episode,
                                                                           queryParam.ExtendedInfo, cancellationToken);
                 tasks.Add(task);
             }
 
-            var episodes = await Task.WhenAll(tasks).ConfigureAwait(false);
+            TraktResponse<ITraktEpisode>[] episodes = await Task.WhenAll(tasks).ConfigureAwait(false);
             return episodes.ToList();
         }
 
@@ -144,7 +145,8 @@
                 SortOrder = commentSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -190,7 +192,8 @@
                 SortOrder = listSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -221,7 +224,8 @@
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
                 EpisodeNumber = episodeNumber
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -252,7 +256,8 @@
                 Id = showIdOrSlug,
                 SeasonNumber = seasonNumber,
                 EpisodeNumber = episodeNumber
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -287,7 +292,8 @@
                 SeasonNumber = seasonNumber,
                 EpisodeNumber = episodeNumber,
                 LanguageCode = languageCode
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -324,7 +330,8 @@
                 SeasonNumber = seasonNumber,
                 EpisodeNumber = episodeNumber,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
     }
 }

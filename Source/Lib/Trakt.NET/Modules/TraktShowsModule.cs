@@ -56,7 +56,8 @@
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -80,13 +81,13 @@
 
             var tasks = new List<Task<TraktResponse<ITraktShow>>>();
 
-            foreach (var queryParam in showsQueryParams)
+            foreach (TraktObjectsQueryParams queryParam in showsQueryParams)
             {
                 Task<TraktResponse<ITraktShow>> task = GetShowAsync(queryParam.Id, queryParam.ExtendedInfo, cancellationToken);
                 tasks.Add(task);
             }
 
-            var shows = await Task.WhenAll(tasks).ConfigureAwait(false);
+            TraktResponse<ITraktShow>[] shows = await Task.WhenAll(tasks).ConfigureAwait(false);
             return shows.ToList();
         }
 
@@ -105,7 +106,12 @@
         public Task<TraktListResponse<ITraktShowAlias>> GetShowAliasesAsync(string showIdOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new ShowAliasesRequest { Id = showIdOrSlug }, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(new ShowAliasesRequest
+            {
+                Id = showIdOrSlug
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -126,7 +132,13 @@
                                                                                        CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new ShowTranslationsRequest { Id = showIdOrSlug, LanguageCode = languageCode }, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(new ShowTranslationsRequest
+            {
+                Id = showIdOrSlug,
+                LanguageCode = languageCode
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -162,7 +174,8 @@
                 SortOrder = commentSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -200,7 +213,8 @@
                 SortOrder = listSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -228,7 +242,8 @@
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -246,7 +261,12 @@
         public Task<TraktResponse<ITraktRating>> GetShowRatingsAsync(string showIdOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new ShowRatingsRequest { Id = showIdOrSlug }, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new ShowRatingsRequest
+            {
+                Id = showIdOrSlug
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -284,7 +304,8 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -302,7 +323,12 @@
         public Task<TraktResponse<ITraktStatistics>> GetShowStatisticsAsync(string showIdOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new ShowStatisticsRequest { Id = showIdOrSlug }, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new ShowStatisticsRequest
+            {
+                Id = showIdOrSlug
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -325,7 +351,13 @@
                                                                              CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new ShowWatchingUsersRequest { Id = showIdOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(new ShowWatchingUsersRequest
+            {
+                Id = showIdOrSlug,
+                ExtendedInfo = extendedInfo
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -356,7 +388,8 @@
                 Hidden = includingHiddenSeasons,
                 Specials = includingSpecialSeasons,
                 CountSpecials = countSpecialSeasons
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -387,7 +420,8 @@
                 Hidden = includingHiddenSeasons,
                 Specials = includingSpecialSeasons,
                 CountSpecials = countSpecialSeasons
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -415,7 +449,8 @@
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -443,7 +478,8 @@
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -481,7 +517,8 @@
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -519,7 +556,8 @@
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -560,7 +598,8 @@
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -601,7 +640,8 @@
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -642,7 +682,8 @@
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -680,7 +721,8 @@
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -718,7 +760,8 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
     }
 }

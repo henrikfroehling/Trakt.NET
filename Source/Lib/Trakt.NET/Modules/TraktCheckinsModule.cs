@@ -75,7 +75,8 @@
             return requestHandler.ExecuteSingleItemRequestAsync(new CheckinRequest<ITraktMovieCheckinPostResponse, ITraktMovieCheckinPost>
             {
                 RequestBody = requestBody
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -123,7 +124,8 @@
             return requestHandler.ExecuteSingleItemRequestAsync(new CheckinRequest<ITraktEpisodeCheckinPostResponse, ITraktEpisodeCheckinPost>
             {
                 RequestBody = requestBody
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -174,7 +176,8 @@
             return requestHandler.ExecuteSingleItemRequestAsync(new CheckinRequest<ITraktEpisodeCheckinPostResponse, ITraktEpisodeCheckinPost>
             {
                 RequestBody = requestBody
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>

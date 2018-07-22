@@ -24,7 +24,13 @@
 
         public static explicit operator List<TResponseContentType>(TraktPagedResponse<TResponseContentType> response) => response.Value.ToList();
 
-        public static implicit operator TraktPagedResponse<TResponseContentType>(List<TResponseContentType> value) => new TraktPagedResponse<TResponseContentType> { Value = value, HasValue = value != null, IsSuccess = value != null };
+        public static implicit operator TraktPagedResponse<TResponseContentType>(List<TResponseContentType> value)
+            => new TraktPagedResponse<TResponseContentType>
+            {
+                Value = value,
+                HasValue = value != null,
+                IsSuccess = value != null
+            };
 
         public static implicit operator bool(TraktPagedResponse<TResponseContentType> response) => response.IsSuccess && response.HasValue;
     }

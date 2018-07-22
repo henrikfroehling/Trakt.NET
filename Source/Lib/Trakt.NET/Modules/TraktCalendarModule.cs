@@ -54,7 +54,8 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -88,7 +89,8 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -122,7 +124,8 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -156,7 +159,8 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -190,7 +194,8 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -224,7 +229,8 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -258,7 +264,8 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -292,7 +299,8 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -326,7 +334,8 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -360,7 +369,8 @@
                 Days = days,
                 ExtendedInfo = extendedInfo,
                 Filter = filter
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
     }
 }

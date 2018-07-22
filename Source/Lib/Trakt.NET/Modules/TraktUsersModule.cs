@@ -75,7 +75,12 @@
                                                                                        CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new UserFollowRequestsRequest { ExtendedInfo = extendedInfo }, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(new UserFollowRequestsRequest
+            {
+                ExtendedInfo = extendedInfo
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -117,7 +122,8 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -215,7 +221,8 @@
                 Type = likeType,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -243,7 +250,8 @@
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -272,7 +280,8 @@
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -301,7 +310,8 @@
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -349,7 +359,8 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -367,7 +378,12 @@
         public Task<TraktListResponse<ITraktList>> GetCustomListsAsync(string usernameOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new UserCustomListsRequest { Username = usernameOrSlug }, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(new UserCustomListsRequest
+            {
+                Username = usernameOrSlug
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -396,7 +412,8 @@
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -423,13 +440,13 @@
 
             var tasks = new List<Task<TraktResponse<ITraktList>>>();
 
-            foreach (var queryParam in userListsQueryParams)
+            foreach (TraktUserListsQueryParams queryParam in userListsQueryParams)
             {
                 Task<TraktResponse<ITraktList>> task = GetCustomListAsync(queryParam.Username, queryParam.ListId, cancellationToken);
                 tasks.Add(task);
             }
 
-            var lists = await Task.WhenAll(tasks).ConfigureAwait(false);
+            TraktResponse<ITraktList>[] lists = await Task.WhenAll(tasks).ConfigureAwait(false);
             return lists.ToList();
         }
 
@@ -470,7 +487,8 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -521,7 +539,8 @@
             {
                 Username = usernameOrSlug,
                 RequestBody = requestBody
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -580,7 +599,8 @@
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
                 RequestBody = requestBody
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -607,7 +627,8 @@
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -641,7 +662,6 @@
                                                                                                   CancellationToken cancellationToken = default)
         {
             ValidateCustomListItemsPost(listItemsPost);
-
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new UserCustomListItemsAddRequest
@@ -650,7 +670,8 @@
                 Id = listIdOrSlug,
                 Type = listItemType,
                 RequestBody = listItemsPost
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -682,7 +703,6 @@
                                                                                                            CancellationToken cancellationToken = default)
         {
             ValidateCustomListItemsPost(listItemsRemovePost);
-
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new UserCustomListItemsRemoveRequest
@@ -690,7 +710,8 @@
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
                 RequestBody = listItemsRemovePost
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -731,7 +752,8 @@
                 SortOrder = commentSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -758,7 +780,8 @@
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -785,7 +808,8 @@
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -808,7 +832,13 @@
                                                                              CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new UserFollowersRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(new UserFollowersRequest
+            {
+                Username = usernameOrSlug,
+                ExtendedInfo = extendedInfo
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -831,7 +861,13 @@
                                                                              CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new UserFollowingRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(new UserFollowingRequest
+            {
+                Username = usernameOrSlug,
+                ExtendedInfo = extendedInfo
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -854,7 +890,13 @@
                                                                          CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteListRequestAsync(new UserFriendsRequest { Username = usernameOrSlug, ExtendedInfo = extendedInfo }, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(new UserFriendsRequest
+            {
+                Username = usernameOrSlug,
+                ExtendedInfo = extendedInfo
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -876,7 +918,12 @@
                                                                                      CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new UserFollowUserRequest { Username = usernameOrSlug }, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserFollowUserRequest
+            {
+                Username = usernameOrSlug
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -893,7 +940,12 @@
         public Task<TraktNoContentResponse> UnfollowUserAsync(string usernameOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new UserUnfollowUserRequest { Username = usernameOrSlug }, cancellationToken);
+
+            return requestHandler.ExecuteNoContentRequestAsync(new UserUnfollowUserRequest
+            {
+                Username = usernameOrSlug
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -912,7 +964,12 @@
         {
             ValidateFollowerRequestId(followerRequestId);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new UserApproveFollowerRequest { Id = followerRequestId.ToString() }, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserApproveFollowerRequest
+            {
+                Id = followerRequestId.ToString()
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -930,7 +987,12 @@
         {
             ValidateFollowerRequestId(followerRequestId);
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteNoContentRequestAsync(new UserDenyFollowerRequest { Id = followerRequestId.ToString() }, cancellationToken);
+
+            return requestHandler.ExecuteNoContentRequestAsync(new UserDenyFollowerRequest
+            {
+                Id = followerRequestId.ToString()
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -978,7 +1040,8 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -1015,7 +1078,8 @@
                 Type = ratingsItemType,
                 RatingFilter = ratingsFilter,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -1056,7 +1120,8 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -1079,11 +1144,13 @@
                                                                             CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
+
             return requestHandler.ExecuteSingleItemRequestAsync(new UserWatchingRequest
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -1106,11 +1173,13 @@
                                                                                  CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
+
             return requestHandler.ExecuteListRequestAsync(new UserWatchedMoviesRequest
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -1138,7 +1207,8 @@
             {
                 Username = usernameOrSlug,
                 ExtendedInfo = extendedInfo
-            }, cancellationToken);
+            },
+            cancellationToken);
         }
 
         /// <summary>
@@ -1156,7 +1226,12 @@
         public Task<TraktResponse<ITraktUserStatistics>> GetStatisticsAsync(string usernameOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            return requestHandler.ExecuteSingleItemRequestAsync(new UserStatisticsRequest { Username = usernameOrSlug }, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserStatisticsRequest
+            {
+                Username = usernameOrSlug
+            },
+            cancellationToken);
         }
 
         private void ValidateCustomListItemsPost(ITraktUserCustomListItemsPost customListItemsPost)
