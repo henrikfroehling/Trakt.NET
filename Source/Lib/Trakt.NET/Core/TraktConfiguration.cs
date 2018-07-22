@@ -1,12 +1,8 @@
 ﻿namespace TraktNet.Core
 {
-    using System.Net.Http;
-
     /// <summary>Provides global client settings.</summary>
     public class TraktConfiguration
     {
-        internal static HttpClient HTTP_CLIENT;
-
         /// <summary>
         /// Gets or sets the Trakt API version.
         /// <para>
