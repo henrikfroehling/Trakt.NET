@@ -3,7 +3,6 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using Traits;
@@ -17,11 +16,6 @@
     {
         internal class RequestBodyMock : IRequestBody
         {
-            public HttpContent ToHttpContent()
-            {
-                throw new NotImplementedException();
-            }
-
             public Task<string> ToJson(CancellationToken cancellationToken = default(CancellationToken)) => Task.FromResult("");
 
             public void Validate()

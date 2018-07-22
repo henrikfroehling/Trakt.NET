@@ -1,11 +1,8 @@
 ﻿namespace TraktNet.Requests.Authentication
 {
-    using Core;
     using Extensions;
     using Interfaces;
     using System;
-    using System.Net.Http;
-    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -19,8 +16,6 @@
         }
 
         private string HttpContentAsString => $"token={AccessToken}";
-
-        public HttpContent ToHttpContent() => new StringContent(HttpContentAsString, Encoding.UTF8, Constants.MEDIA_TYPE_URL_ENCODED);
 
         public void Validate()
         {

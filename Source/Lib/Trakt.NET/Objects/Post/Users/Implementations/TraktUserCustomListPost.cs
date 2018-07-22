@@ -2,7 +2,6 @@
 {
     using Enums;
     using Objects.Json;
-    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -31,11 +30,6 @@
         public string SortBy { get; set; }
 
         public string SortHow { get; set; }
-
-        public HttpContent ToHttpContent()
-        {
-            throw new System.NotImplementedException();
-        }
 
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {

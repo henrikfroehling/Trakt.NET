@@ -1,7 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Comments
 {
     using Basic;
-    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -19,8 +18,6 @@
         /// <para>Nullable</para>
         /// </summary>
         public ITraktSharing Sharing { get; set; }
-
-        public abstract HttpContent ToHttpContent();
 
         public abstract Task<string> ToJson(CancellationToken cancellationToken = default);
 

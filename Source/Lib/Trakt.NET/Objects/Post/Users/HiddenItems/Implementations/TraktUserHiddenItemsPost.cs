@@ -2,7 +2,6 @@
 {
     using Objects.Json;
     using System.Collections.Generic;
-    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -15,11 +14,6 @@
         public IEnumerable<ITraktUserHiddenItemsPostSeason> Seasons { get; set; }
 
         public static TraktUserHiddenItemsPostBuilder Builder() => new TraktUserHiddenItemsPostBuilder();
-
-        public HttpContent ToHttpContent()
-        {
-            throw new System.NotImplementedException();
-        }
 
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {

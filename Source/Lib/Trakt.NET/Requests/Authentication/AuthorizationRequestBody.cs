@@ -1,12 +1,9 @@
 ﻿namespace TraktNet.Requests.Authentication
 {
-    using Core;
     using Enums;
     using Extensions;
     using Interfaces;
     using System;
-    using System.Net.Http;
-    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -28,8 +25,6 @@
         private string HttpContentAsString => $"{{ \"code\": \"{Code}\", \"client_id\": \"{ClientId}\", " +
                                               $"\"client_secret\": \"{ClientSecret}\", \"redirect_uri\": " +
                                               $"\"{RedirectUri}\", \"grant_type\": \"{TraktAccessTokenGrantType.AuthorizationCode.ObjectName}\" }}";
-
-        public HttpContent ToHttpContent() => new StringContent(HttpContentAsString, Encoding.UTF8, Constants.MEDIA_TYPE);
 
         public void Validate()
         {

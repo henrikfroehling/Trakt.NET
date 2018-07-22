@@ -1,12 +1,9 @@
 ﻿namespace TraktNet.Requests.Authentication
 {
-    using Core;
     using Extensions;
     using Interfaces;
     using Objects.Authentication;
     using System;
-    using System.Net.Http;
-    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -24,8 +21,6 @@
         }
 
         private string HttpContentAsString => $"{{ \"code\": \"{Device.DeviceCode}\", \"client_id\": \"{ClientId}\", \"client_secret\": \"{ClientSecret}\" }}";
-
-        public HttpContent ToHttpContent() => new StringContent(HttpContentAsString, Encoding.UTF8, Constants.MEDIA_TYPE);
 
         public void Validate()
         {

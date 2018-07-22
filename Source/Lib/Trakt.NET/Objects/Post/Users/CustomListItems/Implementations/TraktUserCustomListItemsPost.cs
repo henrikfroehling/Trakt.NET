@@ -3,7 +3,6 @@
     using Get.People;
     using Objects.Json;
     using System.Collections.Generic;
-    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -34,11 +33,6 @@
         /// <summary>Returns a new <see cref="TraktUserCustomListItemsPostBuilder" /> instance.</summary>
         /// <returns>A new <see cref="TraktUserCustomListItemsPostBuilder" /> instance.</returns>
         public static TraktUserCustomListItemsPostBuilder Builder() => new TraktUserCustomListItemsPostBuilder();
-
-        public HttpContent ToHttpContent()
-        {
-            throw new System.NotImplementedException();
-        }
 
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {

@@ -2,7 +2,6 @@
 {
     using Objects.Json;
     using System.Collections.Generic;
-    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -33,11 +32,6 @@
         /// <summary>Returns a new <see cref="TraktSyncWatchlistPostBuilder" /> instance.</summary>
         /// <returns>A new <see cref="TraktSyncWatchlistPostBuilder" /> instance.</returns>
         public static TraktSyncWatchlistPostBuilder Builder() => new TraktSyncWatchlistPostBuilder();
-
-        public HttpContent ToHttpContent()
-        {
-            throw new System.NotImplementedException();
-        }
 
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {

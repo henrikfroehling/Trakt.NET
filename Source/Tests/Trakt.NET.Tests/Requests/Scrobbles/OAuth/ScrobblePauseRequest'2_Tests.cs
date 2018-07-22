@@ -1,7 +1,6 @@
 ﻿namespace TraktNet.Tests.Requests.Scrobbles.OAuth
 {
     using FluentAssertions;
-    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using Traits;
@@ -15,11 +14,6 @@
     {
         internal class RequestBodyMock : IRequestBody
         {
-            public HttpContent ToHttpContent()
-            {
-                throw new System.NotImplementedException();
-            }
-
             public Task<string> ToJson(CancellationToken cancellationToken = default(CancellationToken)) => Task.FromResult("");
 
             public void Validate()
