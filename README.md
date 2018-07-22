@@ -60,7 +60,8 @@ PM> Install-Package Trakt.NET
 or with the [NuGet Package Management](https://docs.nuget.org/consume/package-manager-dialog) in Visual Studio and search for "trakt".
 
 Each release will also be published in [Releases](https://github.com/henrikfroehling/Trakt.NET/releases).
-You can also use one of the following NuGet Package Sources, to alway get the latest build package.
+
+You can also use one of the following NuGet Package Sources, to always get the latest build package.
 
 | NuGet-Feed | Package Source Address | Description |
 |---|---|---|
