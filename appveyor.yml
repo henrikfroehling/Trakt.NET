@@ -45,3 +45,5 @@
   deploy:
     - provider: Environment
       name: myget-trakt-net
+      on:
+        branch: develop
