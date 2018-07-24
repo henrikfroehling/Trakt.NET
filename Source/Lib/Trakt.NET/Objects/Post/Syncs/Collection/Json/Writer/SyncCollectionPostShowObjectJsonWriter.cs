@@ -50,12 +50,13 @@
                 await syncCollectionPostShowSeasonArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Seasons, cancellationToken).ConfigureAwait(false);
             }
 
-            if (obj.Metadata != null)
-            {
-                var metadataObjectJsonWriter = new MetadataObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_COLLECTION_POST_SHOW_PROPERTY_NAME_METADATA, cancellationToken).ConfigureAwait(false);
-                await metadataObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Metadata, cancellationToken).ConfigureAwait(false);
-            }
+            // TODO
+            //if (obj.Metadata != null)
+            //{
+            //    var metadataObjectJsonWriter = new MetadataObjectJsonWriter();
+            //    await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_COLLECTION_POST_SHOW_PROPERTY_NAME_METADATA, cancellationToken).ConfigureAwait(false);
+            //    await metadataObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Metadata, cancellationToken).ConfigureAwait(false);
+            //}
 
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }

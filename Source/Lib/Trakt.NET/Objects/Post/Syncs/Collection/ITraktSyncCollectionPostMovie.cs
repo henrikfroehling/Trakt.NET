@@ -4,7 +4,7 @@
     using Get.Movies;
     using System;
 
-    public interface ITraktSyncCollectionPostMovie
+    public interface ITraktSyncCollectionPostMovie : ITraktMetadata
     {
         DateTime? CollectedAt { get; set; }
 
@@ -13,7 +13,5 @@
         int? Year { get; set; }
 
         ITraktMovieIds Ids { get; set; }
-
-        ITraktMetadata Metadata { get; set; }
     }
 }

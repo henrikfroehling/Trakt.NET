@@ -8,7 +8,7 @@
     /// A Trakt collection post movie, containing the required movie ids,
     /// optional metadata and an optional datetime, when the movie was collected.
     /// </summary>
-    public class TraktSyncCollectionPostMovie : ITraktSyncCollectionPostMovie
+    public class TraktSyncCollectionPostMovie : TraktMetadata, ITraktSyncCollectionPostMovie
     {
         /// <summary>Gets or sets the optional UTC datetime, when the Trakt movie was collected.</summary>
         public DateTime? CollectedAt { get; set; }
@@ -21,11 +21,5 @@
 
         /// <summary>Gets or sets the required movie ids. See also <seealso cref="ITraktMovieIds" />.</summary>
         public ITraktMovieIds Ids { get; set; }
-
-        /// <summary>
-        /// Gets or sets optional metadata about the Trakt movie. See also <seealso cref="ITraktMetadata" />.
-        /// <para>Nullable</para>
-        /// </summary>
-        public ITraktMetadata Metadata { get; set; }
     }
 }
