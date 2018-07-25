@@ -88,6 +88,20 @@
             return new Pair<bool, float>(false, default);
         }
 
+        internal static async Task<Pair<bool, int>> ReadIntegerValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        {
+            if (await jsonReader.ReadAsync(cancellationToken))
+            {
+                if (jsonReader.TokenType == JsonToken.Integer)
+                {
+                    if (int.TryParse(jsonReader.Value.ToString(), out int value))
+                        return new Pair<bool, int>(true, value);
+                }
+            }
+
+            return new Pair<bool, int>(false, default);
+        }
+
         internal static async Task<Pair<bool, uint>> ReadUnsignedIntegerValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (await jsonReader.ReadAsync(cancellationToken))
