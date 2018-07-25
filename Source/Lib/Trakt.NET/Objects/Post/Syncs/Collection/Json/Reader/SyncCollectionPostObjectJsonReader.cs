@@ -15,6 +15,9 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 ITraktSyncCollectionPost traktSyncCollectionPost = new TraktSyncCollectionPost();
+                var syncCollectionPostMovieArrayJsonReader = new SyncCollectionPostMovieArrayJsonReader();
+                var syncCollectionPostShowArrayJsonReader = new SyncCollectionPostShowArrayJsonReader();
+                var syncCollectionPostEpisodeArrayJsonReader = new SyncCollectionPostEpisodeArrayJsonReader();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -22,9 +25,15 @@
 
                     switch (propertyName)
                     {
-                        // TODO: movies
-                        // TODO: shows
-                        // TODO: episodes
+                        case JsonProperties.SYNC_COLLECTION_POST_PROPERTY_NAME_MOVIES:
+                            traktSyncCollectionPost.Movies = await syncCollectionPostMovieArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.SYNC_COLLECTION_POST_PROPERTY_NAME_SHOWS:
+                            traktSyncCollectionPost.Shows = await syncCollectionPostShowArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.SYNC_COLLECTION_POST_PROPERTY_NAME_EPISODES:
+                            traktSyncCollectionPost.Episodes = await syncCollectionPostEpisodeArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

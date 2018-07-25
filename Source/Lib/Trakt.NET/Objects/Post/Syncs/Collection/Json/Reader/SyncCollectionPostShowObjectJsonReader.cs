@@ -20,6 +20,7 @@
             {
                 ITraktSyncCollectionPostShow traktSyncCollectionPostShow = new TraktSyncCollectionPostShow();
                 var showIdsObjectJsonReader = new ShowIdsObjectJsonReader();
+                var syncCollectionPostShowSeasonArrayJsonReader = new SyncCollectionPostShowSeasonArrayReader();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -45,7 +46,9 @@
                         case JsonProperties.SYNC_COLLECTION_POST_SHOW_PROPERTY_NAME_IDS:
                             traktSyncCollectionPostShow.Ids = await showIdsObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        // TODO: seasons
+                        case JsonProperties.SYNC_COLLECTION_POST_SHOW_PROPERTY_NAME_SEASONS:
+                            traktSyncCollectionPostShow.Seasons = await syncCollectionPostShowSeasonArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            break;
                         case JsonProperties.METADATA_PROPERTY_NAME_MEDIA_TYPE:
                             traktSyncCollectionPostShow.MediaType = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaType>(jsonReader, cancellationToken);
                             break;
