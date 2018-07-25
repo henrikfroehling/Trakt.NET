@@ -4,12 +4,10 @@
     using Get.Episodes;
     using System;
 
-    public interface ITraktSyncCollectionPostEpisode
+    public interface ITraktSyncCollectionPostEpisode : ITraktMetadata
     {
         DateTime? CollectedAt { get; set; }
 
         ITraktEpisodeIds Ids { get; set; }
-
-        ITraktMetadata Metadata { get; set; }
     }
 }

@@ -710,6 +710,7 @@
         internal const string SYNC_COLLECTION_POST_SHOW_SEASON_PROPERTY_NAME_EPISODES = "episodes";
 
         internal const string SYNC_COLLECTION_POST_SHOW_EPISODE_PROPERTY_NAME_NUMBER = "number";
+        internal const string SYNC_COLLECTION_POST_SHOW_EPISODE_PROPERTY_NAME_COLLECTED_AT = "collected_at";
 
         internal const string SYNC_COLLECTION_POST_EPISODE_PROPERTY_NAME_COLLECTED_AT = "collected_at";
         internal const string SYNC_COLLECTION_POST_EPISODE_PROPERTY_NAME_IDS = "ids";

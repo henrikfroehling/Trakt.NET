@@ -835,8 +835,9 @@
                 Year = movie.Year
             };
 
-            if (metadata != null)
-                collectionMovie.Metadata = metadata;
+            // TODO
+            //if (metadata != null)
+            //    collectionMovie.Metadata = metadata;
 
             if (collectedAt.HasValue)
                 collectionMovie.CollectedAt = collectedAt.Value.ToUniversalTime();
@@ -859,8 +860,9 @@
                 Year = show.Year
             };
 
-            if (metadata != null)
-                collectionShow.Metadata = metadata;
+            // TODO
+            //if (metadata != null)
+            //    collectionShow.Metadata = metadata;
 
             if (collectedAt.HasValue)
                 collectionShow.CollectedAt = collectedAt.Value.ToUniversalTime();
@@ -881,8 +883,9 @@
                 Ids = episode.Ids
             };
 
-            if (metadata != null)
-                collectionEpisode.Metadata = metadata;
+            // TODO
+            //if (metadata != null)
+            //    collectionEpisode.Metadata = metadata;
 
             if (collectedAt.HasValue)
                 collectionEpisode.CollectedAt = collectedAt.Value.ToUniversalTime();
@@ -910,8 +913,9 @@
                     Year = show.Year
                 };
 
-                if (metadata != null)
-                    collectionShow.Metadata = metadata;
+                // TODO
+                //if (metadata != null)
+                //    collectionShow.Metadata = metadata;
 
                 if (collectedAt.HasValue)
                     collectionShow.CollectedAt = collectedAt.Value.ToUniversalTime();

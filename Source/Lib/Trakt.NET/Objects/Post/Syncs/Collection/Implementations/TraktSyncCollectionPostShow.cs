@@ -10,7 +10,7 @@
     /// optional metadata and an optional datetime, when the show was collected.
     /// <para>Can also contain optional seasons.</para>
     /// </summary>
-    public class TraktSyncCollectionPostShow : ITraktSyncCollectionPostShow
+    public class TraktSyncCollectionPostShow : TraktMetadata, ITraktSyncCollectionPostShow
     {
         /// <summary>Gets or sets the optional UTC datetime, when the Trakt show was collected.</summary>
         public DateTime? CollectedAt { get; set; }
@@ -32,11 +32,5 @@
         /// </para>
         /// </summary>
         public IEnumerable<ITraktSyncCollectionPostShowSeason> Seasons { get; set; }
-
-        /// <summary>
-        /// Gets or sets optional metadata about the Trakt show. See also <seealso cref="ITraktMetadata" />.
-        /// <para>Nullable</para>
-        /// </summary>
-        public ITraktMetadata Metadata { get; set; }
     }
 }

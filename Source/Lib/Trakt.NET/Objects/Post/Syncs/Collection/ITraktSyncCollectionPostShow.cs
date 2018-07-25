@@ -5,7 +5,7 @@
     using System;
     using System.Collections.Generic;
 
-    public interface ITraktSyncCollectionPostShow
+    public interface ITraktSyncCollectionPostShow : ITraktMetadata
     {
         DateTime? CollectedAt { get; set; }
 
@@ -16,7 +16,5 @@
         ITraktShowIds Ids { get; set; }
 
         IEnumerable<ITraktSyncCollectionPostShowSeason> Seasons { get; set; }
-
-        ITraktMetadata Metadata { get; set; }
     }
 }
