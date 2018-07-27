@@ -159,7 +159,7 @@
         }
 
         public Task<TraktResponse<ITraktAuthorization>> RefreshAuthorizationAsync(CancellationToken cancellationToken = default)
-            => RefreshAuthorizationAsync(Authorization.RefreshToken, cancellationToken);
+            => RefreshAuthorizationAsync(Authorization?.RefreshToken, cancellationToken);
 
         public Task<TraktResponse<ITraktAuthorization>> RefreshAuthorizationAsync(string refreshToken, CancellationToken cancellationToken = default)
             => RefreshAuthorizationAsync(refreshToken, ClientId, cancellationToken);

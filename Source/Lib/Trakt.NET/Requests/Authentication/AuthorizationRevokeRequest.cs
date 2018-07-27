@@ -10,11 +10,5 @@
         public override AuthorizationRevokeRequestBody RequestBody { get; set; }
 
         public override IDictionary<string, object> GetUriPathParameters() => new Dictionary<string, object>();
-
-        public override void Validate()
-        {
-            base.Validate();
-            RequestBody.Validate();
-        }
     }
 }

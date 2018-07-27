@@ -247,23 +247,8 @@
             }
         }
 
-        public async Task<TraktResponse<ITraktAuthorization>> RefreshAuthorizationAsync(AuthorizationRefreshRequest request, CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                if (!_client.Authentication.IsAuthorized)
-                    throw new TraktAuthorizationException("not authorized");
-            }
-            catch (Exception ex)
-            {
-                if (_client.Configuration.ThrowResponseExceptions)
-                    throw;
-
-                return new TraktResponse<ITraktAuthorization> { IsSuccess = false, Exception = ex };
-            }
-
-            return await ExecuteAuthorizationRequestAsync(request, true, cancellationToken).ConfigureAwait(false);
-        }
+        public Task<TraktResponse<ITraktAuthorization>> RefreshAuthorizationAsync(AuthorizationRefreshRequest request, CancellationToken cancellationToken = default)
+            => ExecuteAuthorizationRequestAsync(request, true, cancellationToken);
 
         public async Task<TraktNoContentResponse> RevokeAuthorizationAsync(AuthorizationRevokeRequest request, string clientId, CancellationToken cancellationToken = default)
         {
