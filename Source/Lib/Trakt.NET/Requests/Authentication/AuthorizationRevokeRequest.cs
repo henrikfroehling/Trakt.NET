@@ -5,6 +5,8 @@
 
     internal sealed class AuthorizationRevokeRequest : APostRequest<AuthorizationRevokeRequestBody>
     {
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.NotRequired;
+
         public override string UriTemplate => "oauth/revoke";
 
         public override AuthorizationRevokeRequestBody RequestBody { get; set; }

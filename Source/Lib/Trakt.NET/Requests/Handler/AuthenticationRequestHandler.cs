@@ -264,16 +264,10 @@
         public Task<TraktResponse<ITraktAuthorization>> RefreshAuthorizationAsync(AuthorizationRefreshRequest request, CancellationToken cancellationToken = default)
             => ExecuteAuthorizationRequestAsync(request, true, cancellationToken);
 
-        public async Task<TraktNoContentResponse> RevokeAuthorizationAsync(AuthorizationRevokeRequest request, string clientId, CancellationToken cancellationToken = default)
+        public async Task<TraktNoContentResponse> RevokeAuthorizationAsync(AuthorizationRevokeRequest request, CancellationToken cancellationToken = default)
         {
             try
             {
-                if (!_client.Authentication.IsAuthorized)
-                    throw new TraktAuthorizationException("not authorized");
-
-                if (string.IsNullOrEmpty(clientId) || clientId.ContainsSpace())
-                    throw new ArgumentException("client id not valid", nameof(clientId));
-
                 request.Validate();
 
                 ExtendedHttpRequestMessage requestMessage =
