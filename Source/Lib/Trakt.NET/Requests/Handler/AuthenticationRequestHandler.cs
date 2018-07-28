@@ -142,7 +142,14 @@
             try
             {
                 request.Validate();
-                ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build().ConfigureAwait(false);
+
+                ExtendedHttpRequestMessage requestMessage =
+                    await _requestMessageBuilder.Reset(request)
+                        .WithRequestBody(request.RequestBody)
+                        .DisableAPIVersionHeader()
+                        .DisableAPIClientIdHeader()
+                        .Build().ConfigureAwait(false);
+
                 HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient().SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
                 if (!responseMessage.IsSuccessStatusCode)
@@ -185,7 +192,14 @@
             try
             {
                 request.Validate();
-                ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build().ConfigureAwait(false);
+
+                ExtendedHttpRequestMessage requestMessage =
+                    await _requestMessageBuilder.Reset(request)
+                        .WithRequestBody(request.RequestBody)
+                        .DisableAPIVersionHeader()
+                        .DisableAPIClientIdHeader()
+                        .Build().ConfigureAwait(false);
+
                 HttpResponseMessage responseMessage;
                 Stream responseContentStream;
                 HttpStatusCode responseCode;
@@ -261,8 +275,14 @@
                     throw new ArgumentException("client id not valid", nameof(clientId));
 
                 request.Validate();
-                ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build().ConfigureAwait(false);
-                //HttpClient httpClient = _httpClientProvider.GetHttpClient(clientId, request.RequestBody.AccessToken);
+
+                ExtendedHttpRequestMessage requestMessage =
+                    await _requestMessageBuilder.Reset(request)
+                        .WithRequestBody(request.RequestBody)
+                        .DisableAPIVersionHeader()
+                        .DisableAPIClientIdHeader()
+                        .Build().ConfigureAwait(false);
+
                 HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient().SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
                 if (!responseMessage.IsSuccessStatusCode)
@@ -314,7 +334,14 @@
             try
             {
                 request.Validate();
-                ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build().ConfigureAwait(false);
+
+                ExtendedHttpRequestMessage requestMessage =
+                    await _requestMessageBuilder.Reset(request)
+                        .WithRequestBody(request.RequestBody)
+                        .DisableAPIVersionHeader()
+                        .DisableAPIClientIdHeader()
+                        .Build().ConfigureAwait(false);
+
                 HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient().SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
                 HttpStatusCode responseCode = responseMessage.StatusCode;
