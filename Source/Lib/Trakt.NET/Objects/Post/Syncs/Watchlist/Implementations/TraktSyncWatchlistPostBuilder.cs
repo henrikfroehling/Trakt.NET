@@ -305,23 +305,29 @@
             {
                 showSeasons = new List<ITraktSyncWatchlistPostShowSeason>();
 
-                foreach (var season in seasons)
+                foreach (PostSeason season in seasons)
                 {
                     if (season.Number < 0)
                         throw new ArgumentOutOfRangeException("at least one season number not valid", nameof(season));
 
-                    var showSingleSeason = new TraktSyncWatchlistPostShowSeason { Number = season.Number };
+                    var showSingleSeason = new TraktSyncWatchlistPostShowSeason
+                    {
+                        Number = season.Number
+                    };
 
                     if (season.Episodes?.Count() > 0)
                     {
                         var showEpisodes = new List<TraktSyncWatchlistPostShowEpisode>();
 
-                        foreach (var episode in season.Episodes)
+                        foreach (PostEpisode episode in season.Episodes)
                         {
-                            if (episode < 0)
+                            if (episode.Number < 0)
                                 throw new ArgumentOutOfRangeException("at least one episode number not valid", nameof(seasons));
 
-                            showEpisodes.Add(new TraktSyncWatchlistPostShowEpisode { Number = episode });
+                            showEpisodes.Add(new TraktSyncWatchlistPostShowEpisode
+                            {
+                                Number = episode.Number
+                            });
                         }
 
                         showSingleSeason.Episodes = showEpisodes;
@@ -331,7 +337,7 @@
                 }
             }
 
-            var existingShow = _watchlistPost.Shows.FirstOrDefault(s => s.Ids == show.Ids);
+            ITraktSyncWatchlistPostShow existingShow = _watchlistPost.Shows.FirstOrDefault(s => s.Ids == show.Ids);
 
             if (existingShow != null)
             {

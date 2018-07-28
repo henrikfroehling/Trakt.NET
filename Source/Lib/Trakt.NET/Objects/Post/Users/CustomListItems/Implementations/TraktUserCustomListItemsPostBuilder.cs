@@ -293,23 +293,29 @@
 
             var showSeasons = new List<ITraktUserCustomListItemsPostShowSeason>();
 
-            foreach (var season in seasons)
+            foreach (PostSeason season in seasons)
             {
                 if (season.Number < 0)
                     throw new ArgumentOutOfRangeException("at least one season number not valid", nameof(season));
 
-                var showSingleSeason = new TraktUserCustomListItemsPostShowSeason { Number = season.Number };
+                var showSingleSeason = new TraktUserCustomListItemsPostShowSeason
+                {
+                    Number = season.Number
+                };
 
                 if (season.Episodes?.Count() > 0)
                 {
                     var showEpisodes = new List<ITraktUserCustomListItemsPostShowEpisode>();
 
-                    foreach (var episode in season.Episodes)
+                    foreach (PostEpisode episode in season.Episodes)
                     {
-                        if (episode < 0)
+                        if (episode.Number < 0)
                             throw new ArgumentOutOfRangeException("at least one episode number not valid", nameof(seasons));
 
-                        showEpisodes.Add(new TraktUserCustomListItemsPostShowEpisode { Number = episode });
+                        showEpisodes.Add(new TraktUserCustomListItemsPostShowEpisode
+                        {
+                            Number = episode.Number
+                        });
                     }
 
                     showSingleSeason.Episodes = showEpisodes;
@@ -318,7 +324,7 @@
                 showSeasons.Add(showSingleSeason);
             }
 
-            var existingShow = _listItemsPost.Shows.FirstOrDefault(s => s.Ids == show.Ids);
+            ITraktUserCustomListItemsPostShow existingShow = _listItemsPost.Shows.FirstOrDefault(s => s.Ids == show.Ids);
 
             if (existingShow != null)
             {
@@ -331,6 +337,7 @@
                     Ids = show.Ids,
                     Seasons = showSeasons
                 };
+
                 (_listItemsPost.Shows as List<ITraktUserCustomListItemsPostShow>)?.Add(
                     new TraktUserCustomListItemsPostShow
                     {

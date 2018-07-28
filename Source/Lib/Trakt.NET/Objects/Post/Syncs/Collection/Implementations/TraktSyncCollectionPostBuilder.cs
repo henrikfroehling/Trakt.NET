@@ -20,10 +20,7 @@
         private readonly ITraktSyncCollectionPost _collectionPost;
 
         /// <summary>Initializes a new instance of the <see cref="TraktSyncCollectionPostBuilder" /> class.</summary>
-        public TraktSyncCollectionPostBuilder()
-        {
-            _collectionPost = new TraktSyncCollectionPost();
-        }
+        public TraktSyncCollectionPostBuilder() => _collectionPost = new TraktSyncCollectionPost();
 
         /// <summary>Adds a <see cref="ITraktMovie" />, which will be added to the collection post.</summary>
         /// <param name="movie">The Trakt movie, which will be added.</param>
@@ -40,7 +37,6 @@
         {
             ValidateMovie(movie);
             EnsureMoviesListExists();
-
             return AddMovieOrIgnore(movie);
         }
 
@@ -64,8 +60,37 @@
             if (!movies.Any())
                 return this;
 
-            foreach (var movie in movies)
+            foreach (ITraktMovie movie in movies)
                 AddMovie(movie);
+
+            return this;
+        }
+
+        /// <summary>Adds a collection of <see cref="ITraktMovie" />s, which will be added to the collection post.</summary>
+        /// <param name="movies">
+        /// A collection of Trakt movie tuples - each containing a movie, metadata and a collectedAt datetime -, which will be added.
+        /// The given metadata and collectedAt datetime can be null.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given movies collection is null.
+        /// Thrown, if one of the given movies is null.
+        /// Thrown, if one of the given movies' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given movies has no valid ids set.
+        /// Thrown, if one of the given movies has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncCollectionPostBuilder AddMovies(IEnumerable<Tuple<ITraktMovie, ITraktMetadata, DateTime?>> movies)
+        {
+            if (movies == null)
+                throw new ArgumentNullException(nameof(movies));
+
+            if (!movies.Any())
+                return this;
+
+            foreach (Tuple<ITraktMovie, ITraktMetadata, DateTime?> movieValues in movies)
+                AddMovieOrIgnore(movieValues.Item1, movieValues.Item2, movieValues.Item3);
 
             return this;
         }
@@ -86,7 +111,6 @@
         {
             ValidateMovie(movie);
             EnsureMoviesListExists();
-
             return AddMovieOrIgnore(movie, null, collectedAt);
         }
 
@@ -106,7 +130,6 @@
         {
             ValidateMovie(movie);
             EnsureMoviesListExists();
-
             return AddMovieOrIgnore(movie, metadata);
         }
 
@@ -127,7 +150,6 @@
         {
             ValidateMovie(movie);
             EnsureMoviesListExists();
-
             return AddMovieOrIgnore(movie, metadata, collectedAt);
         }
 
@@ -146,7 +168,6 @@
         {
             ValidateShow(show);
             EnsureShowsListExists();
-
             return AddShowOrIgnore(show);
         }
 
@@ -170,8 +191,37 @@
             if (!shows.Any())
                 return this;
 
-            foreach (var show in shows)
+            foreach (ITraktShow show in shows)
                 AddShow(show);
+
+            return this;
+        }
+
+        /// <summary>Adds a collection of <see cref="ITraktShow" />s, which will be added to the collection post.</summary>
+        /// <param name="shows">
+        /// A collection of Trakt show tuples - each containing a show, metadata and a collectedAt datetime -, which will be added.
+        /// The given metadata and collectedAt datetime can be null.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given shows collection is null.
+        /// Thrown, if one of the given shows is null.
+        /// Thrown, if one of the given shows' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given shows has no valid ids set.
+        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncCollectionPostBuilder AddShows(IEnumerable<Tuple<ITraktShow, ITraktMetadata, DateTime?>> shows)
+        {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
+            if (!shows.Any())
+                return this;
+
+            foreach (Tuple<ITraktShow, ITraktMetadata, DateTime?> showValues in shows)
+                AddShowOrIgnore(showValues.Item1, showValues.Item2, showValues.Item3);
 
             return this;
         }
@@ -192,7 +242,6 @@
         {
             ValidateShow(show);
             EnsureShowsListExists();
-
             return AddShowOrIgnore(show, null, collectedAt);
         }
 
@@ -212,7 +261,6 @@
         {
             ValidateShow(show);
             EnsureShowsListExists();
-
             return AddShowOrIgnore(show, metadata);
         }
 
@@ -233,7 +281,6 @@
         {
             ValidateShow(show);
             EnsureShowsListExists();
-
             return AddShowOrIgnore(show, metadata, collectedAt);
         }
 
@@ -262,10 +309,8 @@
         {
             ValidateShow(show);
             EnsureShowsListExists();
-
-            var showSeasons = CreateShowSeasons(season, seasons);
+            IEnumerable<ITraktSyncCollectionPostShowSeason> showSeasons = CreateShowSeasons(season, seasons);
             CreateOrSetShow(show, showSeasons);
-
             return this;
         }
 
@@ -292,10 +337,8 @@
         {
             ValidateShow(show);
             EnsureShowsListExists();
-
-            var showSeasons = CreateShowSeasons(seasons);
+            IEnumerable<ITraktSyncCollectionPostShowSeason> showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons);
-
             return this;
         }
 
@@ -325,10 +368,8 @@
         {
             ValidateShow(show);
             EnsureShowsListExists();
-
-            var showSeasons = CreateShowSeasons(season, seasons);
+            IEnumerable<ITraktSyncCollectionPostShowSeason> showSeasons = CreateShowSeasons(season, seasons);
             CreateOrSetShow(show, showSeasons, null, collectedAt);
-
             return this;
         }
 
@@ -356,10 +397,8 @@
         {
             ValidateShow(show);
             EnsureShowsListExists();
-
-            var showSeasons = CreateShowSeasons(seasons);
+            IEnumerable<ITraktSyncCollectionPostShowSeason> showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons, null, collectedAt);
-
             return this;
         }
 
@@ -389,10 +428,8 @@
         {
             ValidateShow(show);
             EnsureShowsListExists();
-
-            var showSeasons = CreateShowSeasons(season, seasons);
+            IEnumerable<ITraktSyncCollectionPostShowSeason> showSeasons = CreateShowSeasons(season, seasons);
             CreateOrSetShow(show, showSeasons, metadata);
-
             return this;
         }
 
@@ -420,10 +457,8 @@
         {
             ValidateShow(show);
             EnsureShowsListExists();
-
-            var showSeasons = CreateShowSeasons(seasons);
+            IEnumerable<ITraktSyncCollectionPostShowSeason> showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons, metadata);
-
             return this;
         }
 
@@ -454,10 +489,8 @@
         {
             ValidateShow(show);
             EnsureShowsListExists();
-
-            var showSeasons = CreateShowSeasons(season, seasons);
+            IEnumerable<ITraktSyncCollectionPostShowSeason> showSeasons = CreateShowSeasons(season, seasons);
             CreateOrSetShow(show, showSeasons, metadata, collectedAt);
-
             return this;
         }
 
@@ -486,10 +519,8 @@
         {
             ValidateShow(show);
             EnsureShowsListExists();
-
-            var showSeasons = CreateShowSeasons(seasons);
+            IEnumerable<ITraktSyncCollectionPostShowSeason> showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons, metadata, collectedAt);
-
             return this;
         }
 
@@ -520,10 +551,8 @@
                 throw new ArgumentNullException(nameof(seasons));
 
             EnsureShowsListExists();
-
-            var showSeasons = CreateShowSeasons(seasons);
+            IEnumerable<ITraktSyncCollectionPostShowSeason> showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons);
-
             return this;
         }
 
@@ -555,10 +584,8 @@
                 throw new ArgumentNullException(nameof(seasons));
 
             EnsureShowsListExists();
-
-            var showSeasons = CreateShowSeasons(seasons);
+            IEnumerable<ITraktSyncCollectionPostShowSeason> showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons, null, collectedAt);
-
             return this;
         }
 
@@ -590,10 +617,8 @@
                 throw new ArgumentNullException(nameof(seasons));
 
             EnsureShowsListExists();
-
-            var showSeasons = CreateShowSeasons(seasons);
+            IEnumerable<ITraktSyncCollectionPostShowSeason> showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons, metadata);
-
             return this;
         }
 
@@ -626,9 +651,41 @@
                 throw new ArgumentNullException(nameof(seasons));
 
             EnsureShowsListExists();
-
-            var showSeasons = CreateShowSeasons(seasons);
+            IEnumerable<ITraktSyncCollectionPostShowSeason> showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons, metadata, collectedAt);
+            return this;
+        }
+
+        /// <summary>Adds a collection of <see cref="ITraktShow" />s, which will be added to the collection post.</summary>
+        /// <param name="shows">
+        /// A collection of Trakt show tuples - each containing a show, metadata, a collectedAt datetime and a collection of seasons and episodes -, which will be added.
+        /// The given metadata and collectedAt datetime can be null.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given shows collection is null.
+        /// Thrown, if one of the given shows is null.
+        /// Thrown, if one of the given shows' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given shows has no valid ids set.
+        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncCollectionPostBuilder AddShows(IEnumerable<Tuple<ITraktShow, ITraktMetadata, DateTime?, PostSeasons>> shows)
+        {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
+            if (!shows.Any())
+                return this;
+
+            EnsureShowsListExists();
+
+            foreach (Tuple<ITraktShow, ITraktMetadata, DateTime?, PostSeasons> showValues in shows)
+            {
+                IEnumerable<ITraktSyncCollectionPostShowSeason> showSeasons = CreateShowSeasons(showValues.Item4);
+                CreateOrSetShow(showValues.Item1, showSeasons, showValues.Item2, showValues.Item3);
+            }
 
             return this;
         }
@@ -645,7 +702,6 @@
         {
             ValidateEpisode(episode);
             EnsureEpisodesListExists();
-
             return AddEpisodeOrIgnore(episode);
         }
 
@@ -666,8 +722,37 @@
             if (!episodes.Any())
                 return this;
 
-            foreach (var episode in episodes)
+            foreach (ITraktEpisode episode in episodes)
                 AddEpisode(episode);
+
+            return this;
+        }
+
+        /// <summary>Adds a collection of <see cref="ITraktEpisode" />s, which will be added to the collection post.</summary>
+        /// <param name="episodes">
+        /// A collection of Trakt episode tuples - each containing a episode, metadata and a collectedAt datetime -, which will be added.
+        /// The given metadata and collectedAt datetime can be null.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given movies collection is null.
+        /// Thrown, if one of the given movies is null.
+        /// Thrown, if one of the given movies' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given movies has no valid ids set.
+        /// Thrown, if one of the given movies has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncCollectionPostBuilder AddEpisodes(IEnumerable<Tuple<ITraktEpisode, ITraktMetadata, DateTime?>> episodes)
+        {
+            if (episodes == null)
+                throw new ArgumentNullException(nameof(episodes));
+
+            if (!episodes.Any())
+                return this;
+
+            foreach (Tuple<ITraktEpisode, ITraktMetadata, DateTime?> episodeValues in episodes)
+                AddEpisodeOrIgnore(episodeValues.Item1, episodeValues.Item2, episodeValues.Item3);
 
             return this;
         }
@@ -685,7 +770,6 @@
         {
             ValidateEpisode(episode);
             EnsureEpisodesListExists();
-
             return AddEpisodeOrIgnore(episode, null, collectedAt);
         }
 
@@ -702,7 +786,6 @@
         {
             ValidateEpisode(episode);
             EnsureEpisodesListExists();
-
             return AddEpisodeOrIgnore(episode, metadata);
         }
 
@@ -720,7 +803,6 @@
         {
             ValidateEpisode(episode);
             EnsureEpisodesListExists();
-
             return AddEpisodeOrIgnore(episode, metadata, collectedAt);
         }
 
@@ -796,7 +878,7 @@
         }
 
         private bool ContainsMovie(ITraktMovie movie)
-            => _collectionPost.Movies.FirstOrDefault(m => m.Ids == movie.Ids) != null;
+            => _collectionPost.Movies.Any(m => m.Ids == movie.Ids);
 
         private void EnsureMoviesListExists()
         {
@@ -805,7 +887,7 @@
         }
 
         private bool ContainsShow(ITraktShow show)
-            => _collectionPost.Shows.FirstOrDefault(s => s.Ids == show.Ids) != null;
+            => _collectionPost.Shows.Any(s => s.Ids == show.Ids);
 
         private void EnsureShowsListExists()
         {
@@ -814,7 +896,7 @@
         }
 
         private bool ContainsEpisode(ITraktEpisode episode)
-            => _collectionPost.Episodes.FirstOrDefault(e => e.Ids == episode.Ids) != null;
+            => _collectionPost.Episodes.Any(e => e.Ids == episode.Ids);
 
         private void EnsureEpisodesListExists()
         {
@@ -832,18 +914,18 @@
             {
                 Ids = movie.Ids,
                 Title = movie.Title,
-                Year = movie.Year
+                Year = movie.Year,
+                MediaType = metadata?.MediaType,
+                MediaResolution = metadata?.MediaResolution,
+                Audio = metadata?.Audio,
+                AudioChannels = metadata?.AudioChannels,
+                ThreeDimensional = metadata?.ThreeDimensional
             };
-
-            // TODO
-            //if (metadata != null)
-            //    collectionMovie.Metadata = metadata;
 
             if (collectedAt.HasValue)
                 collectionMovie.CollectedAt = collectedAt.Value.ToUniversalTime();
 
             (_collectionPost.Movies as List<ITraktSyncCollectionPostMovie>)?.Add(collectionMovie);
-
             return this;
         }
 
@@ -857,18 +939,18 @@
             {
                 Ids = show.Ids,
                 Title = show.Title,
-                Year = show.Year
+                Year = show.Year,
+                MediaType = metadata?.MediaType,
+                MediaResolution = metadata?.MediaResolution,
+                Audio = metadata?.Audio,
+                AudioChannels = metadata?.AudioChannels,
+                ThreeDimensional = metadata?.ThreeDimensional
             };
-
-            // TODO
-            //if (metadata != null)
-            //    collectionShow.Metadata = metadata;
 
             if (collectedAt.HasValue)
                 collectionShow.CollectedAt = collectedAt.Value.ToUniversalTime();
 
             (_collectionPost.Shows as List<ITraktSyncCollectionPostShow>)?.Add(collectionShow);
-
             return this;
         }
 
@@ -880,25 +962,25 @@
 
             var collectionEpisode = new TraktSyncCollectionPostEpisode
             {
-                Ids = episode.Ids
+                Ids = episode.Ids,
+                MediaType = metadata?.MediaType,
+                MediaResolution = metadata?.MediaResolution,
+                Audio = metadata?.Audio,
+                AudioChannels = metadata?.AudioChannels,
+                ThreeDimensional = metadata?.ThreeDimensional
             };
-
-            // TODO
-            //if (metadata != null)
-            //    collectionEpisode.Metadata = metadata;
 
             if (collectedAt.HasValue)
                 collectionEpisode.CollectedAt = collectedAt.Value.ToUniversalTime();
 
             (_collectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>)?.Add(collectionEpisode);
-
             return this;
         }
 
         private void CreateOrSetShow(ITraktShow show, IEnumerable<ITraktSyncCollectionPostShowSeason> showSeasons,
                                      ITraktMetadata metadata = null, DateTime? collectedAt = null)
         {
-            var existingShow = _collectionPost.Shows.FirstOrDefault(s => s.Ids == show.Ids);
+            ITraktSyncCollectionPostShow existingShow = _collectionPost.Shows.FirstOrDefault(s => s.Ids == show.Ids);
 
             if (existingShow != null)
             {
@@ -910,12 +992,13 @@
                 {
                     Ids = show.Ids,
                     Title = show.Title,
-                    Year = show.Year
+                    Year = show.Year,
+                    MediaType = metadata?.MediaType,
+                    MediaResolution = metadata?.MediaResolution,
+                    Audio = metadata?.Audio,
+                    AudioChannels = metadata?.AudioChannels,
+                    ThreeDimensional = metadata?.ThreeDimensional
                 };
-
-                // TODO
-                //if (metadata != null)
-                //    collectionShow.Metadata = metadata;
 
                 if (collectedAt.HasValue)
                     collectionShow.CollectedAt = collectedAt.Value.ToUniversalTime();
@@ -930,7 +1013,6 @@
             var seasonsToAdd = new int[seasons.Length + 1];
             seasonsToAdd[0] = season;
             seasons.CopyTo(seasonsToAdd, 1);
-
             var showSeasons = new List<ITraktSyncCollectionPostShowSeason>();
 
             for (int i = 0; i < seasonsToAdd.Length; i++)
@@ -938,7 +1020,10 @@
                 if (seasonsToAdd[i] < 0)
                     throw new ArgumentOutOfRangeException("at least one season number not valid");
 
-                showSeasons.Add(new TraktSyncCollectionPostShowSeason { Number = seasonsToAdd[i] });
+                showSeasons.Add(new TraktSyncCollectionPostShowSeason
+                {
+                    Number = seasonsToAdd[i]
+                });
             }
 
             return showSeasons;
@@ -956,7 +1041,10 @@
                 if (seasons[i] < 0)
                     throw new ArgumentOutOfRangeException("at least one season number not valid");
 
-                showSeasons.Add(new TraktSyncCollectionPostShowSeason { Number = seasons[i] });
+                showSeasons.Add(new TraktSyncCollectionPostShowSeason
+                {
+                    Number = seasons[i]
+                });
             }
 
             return showSeasons;
@@ -966,23 +1054,35 @@
         {
             var showSeasons = new List<ITraktSyncCollectionPostShowSeason>();
 
-            foreach (var season in seasons)
+            foreach (PostSeason season in seasons)
             {
                 if (season.Number < 0)
                     throw new ArgumentOutOfRangeException("at least one season number not valid", nameof(season));
 
-                var showSingleSeason = new TraktSyncCollectionPostShowSeason { Number = season.Number };
+                var showSingleSeason = new TraktSyncCollectionPostShowSeason
+                {
+                    Number = season.Number
+                };
 
                 if (season.Episodes?.Count() > 0)
                 {
                     var showEpisodes = new List<ITraktSyncCollectionPostShowEpisode>();
 
-                    foreach (var episode in season.Episodes)
+                    foreach (PostEpisode episode in season.Episodes)
                     {
-                        if (episode < 0)
+                        if (episode.Number < 0)
                             throw new ArgumentOutOfRangeException("at least one episode number not valid", nameof(seasons));
 
-                        showEpisodes.Add(new TraktSyncCollectionPostShowEpisode { Number = episode });
+                        showEpisodes.Add(new TraktSyncCollectionPostShowEpisode
+                        {
+                            Number = episode.Number,
+                            MediaType = episode.Metadata?.MediaType,
+                            MediaResolution = episode.Metadata?.MediaResolution,
+                            Audio = episode.Metadata?.Audio,
+                            AudioChannels = episode.Metadata?.AudioChannels,
+                            ThreeDimensional = episode.Metadata?.ThreeDimensional,
+                            CollectedAt = episode.At
+                        });
                     }
 
                     showSingleSeason.Episodes = showEpisodes;
