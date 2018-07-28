@@ -188,23 +188,28 @@
         }
 
         public Task<TraktNoContentResponse> RevokeAuthorizationAsync(CancellationToken cancellationToken = default)
-            => RevokeAuthorizationAsync(Authorization.AccessToken, cancellationToken);
+            => RevokeAuthorizationAsync(Authorization?.AccessToken, cancellationToken);
 
         public Task<TraktNoContentResponse> RevokeAuthorizationAsync(string accessToken, CancellationToken cancellationToken = default)
             => RevokeAuthorizationAsync(accessToken, ClientId, cancellationToken);
 
         public Task<TraktNoContentResponse> RevokeAuthorizationAsync(string accessToken, string clientId, CancellationToken cancellationToken = default)
+            => RevokeAuthorizationAsync(accessToken, clientId, ClientSecret, cancellationToken);
+
+        public Task<TraktNoContentResponse> RevokeAuthorizationAsync(string accessToken, string clientId, string clientSecret, CancellationToken cancellationToken = default)
         {
             var request = new AuthorizationRevokeRequest
             {
                 RequestBody = new AuthorizationRevokeRequestBody
                 {
-                    AccessToken = accessToken
+                    AccessToken = accessToken,
+                    ClientId = clientId,
+                    ClientSecret = clientSecret
                 }
             };
 
             var requestHandler = new AuthenticationRequestHandler(Client);
-            return requestHandler.RevokeAuthorizationAsync(request, clientId, cancellationToken);
+            return requestHandler.RevokeAuthorizationAsync(request, cancellationToken);
         }
     }
 }

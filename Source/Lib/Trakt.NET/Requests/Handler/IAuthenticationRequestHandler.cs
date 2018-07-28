@@ -27,6 +27,6 @@
 
         Task<TraktResponse<ITraktAuthorization>> RefreshAuthorizationAsync(AuthorizationRefreshRequest request, CancellationToken cancellationToken = default);
 
-        Task<TraktNoContentResponse> RevokeAuthorizationAsync(AuthorizationRevokeRequest request, string clientId, CancellationToken cancellationToken = default);
+        Task<TraktNoContentResponse> RevokeAuthorizationAsync(AuthorizationRevokeRequest request, CancellationToken cancellationToken = default);
     }
 }

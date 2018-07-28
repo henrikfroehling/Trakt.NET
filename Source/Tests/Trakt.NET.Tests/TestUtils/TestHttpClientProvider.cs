@@ -38,8 +38,6 @@
         {
             _mockHttpMessageHandler.Should().NotBeNull();
             var httpClient = new HttpClient(_mockHttpMessageHandler);
-            httpClient.DefaultRequestHeaders.Add(TRAKT_API_HEADER_KEY, _clientId);
-            httpClient.DefaultRequestHeaders.Add(TRAKT_API_VERSION_HEADER_KEY, "2");
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ACCEPT_MEDIA_TYPE));
             return httpClient;
         }

@@ -53,7 +53,8 @@
                                                   $"\"client_secret\": \"{TraktClientSecret}\", \"redirect_uri\": " +
                                                   $"\"{TraktRedirectUri}\", \"grant_type\": \"refresh_token\" }}";
 
-            MockAuthorizationRevokePostContent = $"token={TestConstants.MOCK_ACCESS_TOKEN}";
+            MockAuthorizationRevokePostContent = $"{{ \"token\": \"{TestConstants.MOCK_ACCESS_TOKEN}\", \"client_id\": \"{TraktClientId}\"," +
+                                                 $" \"client_secret\": \"{TraktClientSecret}\" }}";
 
             MockAuthorizationPollingPostContent = $"{{ \"code\": \"{MOCK_DEVICE_CODE}\", \"client_id\": \"{TraktClientId}\", \"client_secret\": \"{TraktClientSecret}\" }}";
 

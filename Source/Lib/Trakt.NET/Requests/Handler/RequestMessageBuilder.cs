@@ -23,8 +23,15 @@
         private IRequest _request;
         private IRequestBody _requestBody;
         private readonly TraktClient _client;
+        private bool _useAPIVersionHeader;
+        private bool _useAPIClientIdHeader;
 
-        internal RequestMessageBuilder(TraktClient client) => _client = client ?? throw new ArgumentNullException(nameof(client));
+        internal RequestMessageBuilder(TraktClient client)
+        {
+            _useAPIVersionHeader = true;
+            _useAPIClientIdHeader = true;
+            _client = client ?? throw new ArgumentNullException(nameof(client));
+        }
 
         internal RequestMessageBuilder(IRequest request, TraktClient client) : this(client) => _request = request;
 
@@ -36,8 +43,34 @@
 
         internal RequestMessageBuilder Reset(IRequest request)
         {
+            _useAPIVersionHeader = true;
+            _useAPIClientIdHeader = true;
             _request = request;
             _requestBody = null;
+            return this;
+        }
+
+        internal RequestMessageBuilder DisableAPIVersionHeader()
+        {
+            _useAPIVersionHeader = false;
+            return this;
+        }
+
+        internal RequestMessageBuilder EnableAPIVersionHeader()
+        {
+            _useAPIVersionHeader = true;
+            return this;
+        }
+
+        internal RequestMessageBuilder DisableAPIClientIdHeader()
+        {
+            _useAPIClientIdHeader = false;
+            return this;
+        }
+
+        internal RequestMessageBuilder EnableAPIClientIdHeader()
+        {
+            _useAPIClientIdHeader = true;
             return this;
         }
 
@@ -45,7 +78,7 @@
         {
             ExtendedHttpRequestMessage requestMessage = CreateRequestMessage();
             await AddRequestBodyContent(requestMessage, cancellationToken).ConfigureAwait(false);
-            SetRequestMessageHeadersForAuthorization(requestMessage);
+            SetRequestMessageHeaders(requestMessage);
             return requestMessage;
         }
 
@@ -114,8 +147,14 @@
             }
         }
 
-        private void SetRequestMessageHeadersForAuthorization(ExtendedHttpRequestMessage requestMessage)
+        private void SetRequestMessageHeaders(ExtendedHttpRequestMessage requestMessage)
         {
+            if (_useAPIVersionHeader)
+                requestMessage.Headers.Add(Constants.APIVersionHeaderKey, $"{_client.Configuration.ApiVersion}");
+
+            if (_useAPIClientIdHeader)
+                requestMessage.Headers.Add(Constants.APIClientIdHeaderKey, _client.ClientId);
+
             AuthorizationRequirement authorizationRequirement = _request.AuthorizationRequirement;
 
             if (authorizationRequirement != AuthorizationRequirement.NotRequired)

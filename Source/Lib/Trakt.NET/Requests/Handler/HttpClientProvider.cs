@@ -29,19 +29,17 @@
             return httpClient;
         }
 
-        private HttpClient SetupHttpClient()
+        protected virtual HttpClient SetupHttpClient()
         {
             var httpClient = new HttpClient();
             SetDefaultRequestHeaders(httpClient);
             return httpClient;
         }
 
-        private void SetDefaultRequestHeaders(HttpClient httpClient)
+        protected virtual void SetDefaultRequestHeaders(HttpClient httpClient)
         {
             httpClient.DefaultRequestHeaders.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(MEDIA_TYPE_HEADER);
-            httpClient.DefaultRequestHeaders.Add(Constants.APIVersionHeaderKey, $"{_client.Configuration.ApiVersion}");
-            httpClient.DefaultRequestHeaders.Add(Constants.APIClientIdHeaderKey, _client.ClientId);
         }
     }
 }

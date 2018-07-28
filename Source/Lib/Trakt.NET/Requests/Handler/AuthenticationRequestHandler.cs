@@ -142,7 +142,14 @@
             try
             {
                 request.Validate();
-                ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build().ConfigureAwait(false);
+
+                ExtendedHttpRequestMessage requestMessage =
+                    await _requestMessageBuilder.Reset(request)
+                        .WithRequestBody(request.RequestBody)
+                        .DisableAPIVersionHeader()
+                        .DisableAPIClientIdHeader()
+                        .Build().ConfigureAwait(false);
+
                 HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient().SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
                 if (!responseMessage.IsSuccessStatusCode)
@@ -185,7 +192,14 @@
             try
             {
                 request.Validate();
-                ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build().ConfigureAwait(false);
+
+                ExtendedHttpRequestMessage requestMessage =
+                    await _requestMessageBuilder.Reset(request)
+                        .WithRequestBody(request.RequestBody)
+                        .DisableAPIVersionHeader()
+                        .DisableAPIClientIdHeader()
+                        .Build().ConfigureAwait(false);
+
                 HttpResponseMessage responseMessage;
                 Stream responseContentStream;
                 HttpStatusCode responseCode;
@@ -250,19 +264,19 @@
         public Task<TraktResponse<ITraktAuthorization>> RefreshAuthorizationAsync(AuthorizationRefreshRequest request, CancellationToken cancellationToken = default)
             => ExecuteAuthorizationRequestAsync(request, true, cancellationToken);
 
-        public async Task<TraktNoContentResponse> RevokeAuthorizationAsync(AuthorizationRevokeRequest request, string clientId, CancellationToken cancellationToken = default)
+        public async Task<TraktNoContentResponse> RevokeAuthorizationAsync(AuthorizationRevokeRequest request, CancellationToken cancellationToken = default)
         {
             try
             {
-                if (!_client.Authentication.IsAuthorized)
-                    throw new TraktAuthorizationException("not authorized");
-
-                if (string.IsNullOrEmpty(clientId) || clientId.ContainsSpace())
-                    throw new ArgumentException("client id not valid", nameof(clientId));
-
                 request.Validate();
-                ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build().ConfigureAwait(false);
-                //HttpClient httpClient = _httpClientProvider.GetHttpClient(clientId, request.RequestBody.AccessToken);
+
+                ExtendedHttpRequestMessage requestMessage =
+                    await _requestMessageBuilder.Reset(request)
+                        .WithRequestBody(request.RequestBody)
+                        .DisableAPIVersionHeader()
+                        .DisableAPIClientIdHeader()
+                        .Build().ConfigureAwait(false);
+
                 HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient().SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
                 if (!responseMessage.IsSuccessStatusCode)
@@ -314,7 +328,14 @@
             try
             {
                 request.Validate();
-                ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build().ConfigureAwait(false);
+
+                ExtendedHttpRequestMessage requestMessage =
+                    await _requestMessageBuilder.Reset(request)
+                        .WithRequestBody(request.RequestBody)
+                        .DisableAPIVersionHeader()
+                        .DisableAPIClientIdHeader()
+                        .Build().ConfigureAwait(false);
+
                 HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient().SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
                 HttpStatusCode responseCode = responseMessage.StatusCode;
