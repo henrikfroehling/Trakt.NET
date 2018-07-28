@@ -516,7 +516,7 @@
             act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN);
             act.Should().Throw<ArgumentException>();
 
-            client.ClientSecret = "client id";
+            client.ClientSecret = "client secret";
 
             act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN);
             act.Should().Throw<ArgumentException>();
@@ -727,6 +727,238 @@
             act.Should().Throw<ArgumentException>();
 
             act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, "client id");
+            act.Should().Throw<ArgumentException>();
+
+            client.ClientSecret = null;
+
+            act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId);
+            act.Should().Throw<ArgumentException>();
+
+            client.ClientSecret = string.Empty;
+
+            act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId);
+            act.Should().Throw<ArgumentException>();
+
+            client.ClientSecret = "client secret";
+
+            act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId);
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Fact]
+        public async Task Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REVOKE_AUTHORIZATION_URI, MockAuthorizationRevokePostContent);
+            client.Authorization = MockAuthorization;
+            TraktNoContentResponse response = await client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, TraktClientSecret);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+
+            ITraktAuthorization authorization = client.Authorization;
+            authorization.Should().NotBeNull();
+            authorization.AccessToken.Should().NotBeNull().And.BeEmpty();
+            authorization.RefreshToken.Should().NotBeNull().And.BeEmpty();
+            authorization.Scope.Should().Be(TraktAccessScope.Public);
+            authorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
+            authorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
+            authorization.ExpiresInSeconds.Should().Be(7776000U);
+            authorization.IsExpired.Should().BeTrue();
+            authorization.IsRefreshPossible.Should().BeFalse();
+            authorization.IsValid.Should().BeFalse();
+        }
+
+        [Fact]
+        public void Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_AuthenticationException_Unauthorized()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REVOKE_AUTHORIZATION_URI, HttpStatusCode.Unauthorized);
+            client.Authorization = MockAuthorization;
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, TraktClientSecret);
+            act.Should().Throw<TraktAuthenticationException>();
+        }
+
+        [Fact]
+        public void Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_AuthenticationException_NotFound()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REVOKE_AUTHORIZATION_URI, HttpStatusCode.NotFound);
+            client.Authorization = MockAuthorization;
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, TraktClientSecret);
+            act.Should().Throw<TraktAuthenticationException>();
+        }
+
+        [Fact]
+        public void Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_BadRequestException()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REVOKE_AUTHORIZATION_URI, HttpStatusCode.BadRequest);
+            client.Authorization = MockAuthorization;
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, TraktClientSecret);
+            act.Should().Throw<TraktBadRequestException>();
+        }
+
+        [Fact]
+        public void Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ForbiddenException()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REVOKE_AUTHORIZATION_URI, HttpStatusCode.Forbidden);
+            client.Authorization = MockAuthorization;
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, TraktClientSecret);
+            act.Should().Throw<TraktForbiddenException>();
+        }
+
+        [Fact]
+        public void Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_MethodNotFoundException()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REVOKE_AUTHORIZATION_URI, HttpStatusCode.MethodNotAllowed);
+            client.Authorization = MockAuthorization;
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, TraktClientSecret);
+            act.Should().Throw<TraktMethodNotFoundException>();
+        }
+
+        [Fact]
+        public void Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ConflictException()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REVOKE_AUTHORIZATION_URI, HttpStatusCode.Conflict);
+            client.Authorization = MockAuthorization;
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, TraktClientSecret);
+            act.Should().Throw<TraktConflictException>();
+        }
+
+        [Fact]
+        public void Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ServerException()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REVOKE_AUTHORIZATION_URI, HttpStatusCode.InternalServerError);
+            client.Authorization = MockAuthorization;
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, TraktClientSecret);
+            act.Should().Throw<TraktServerException>();
+        }
+
+        [Fact]
+        public void Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_BadGatewayException()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REVOKE_AUTHORIZATION_URI, HttpStatusCode.BadGateway);
+            client.Authorization = MockAuthorization;
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, TraktClientSecret);
+            act.Should().Throw<TraktBadGatewayException>();
+        }
+
+        [Fact]
+        public void Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_PreconditionFailedException()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REVOKE_AUTHORIZATION_URI, (HttpStatusCode)412);
+            client.Authorization = MockAuthorization;
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, TraktClientSecret);
+            act.Should().Throw<TraktPreconditionFailedException>();
+        }
+
+        [Fact]
+        public void Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ValidationException()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REVOKE_AUTHORIZATION_URI, (HttpStatusCode)422);
+            client.Authorization = MockAuthorization;
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, TraktClientSecret);
+            act.Should().Throw<TraktValidationException>();
+        }
+
+        [Fact]
+        public void Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_RateLimitException()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REVOKE_AUTHORIZATION_URI, (HttpStatusCode)429);
+            client.Authorization = MockAuthorization;
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, TraktClientSecret);
+            act.Should().Throw<TraktRateLimitException>();
+        }
+
+        [Fact]
+        public void Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ServerUnavailableException_503()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REVOKE_AUTHORIZATION_URI, (HttpStatusCode)503);
+            client.Authorization = MockAuthorization;
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, TraktClientSecret);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ServerUnavailableException_504()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REVOKE_AUTHORIZATION_URI, (HttpStatusCode)504);
+            client.Authorization = MockAuthorization;
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, TraktClientSecret);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ServerUnavailableException_520()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REVOKE_AUTHORIZATION_URI, (HttpStatusCode)520);
+            client.Authorization = MockAuthorization;
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, TraktClientSecret);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ServerUnavailableException_521()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REVOKE_AUTHORIZATION_URI, (HttpStatusCode)521);
+            client.Authorization = MockAuthorization;
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, TraktClientSecret);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ServerUnavailableException_522()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REVOKE_AUTHORIZATION_URI, (HttpStatusCode)522);
+            client.Authorization = MockAuthorization;
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, TraktClientSecret);
+            act.Should().Throw<TraktServerUnavailableException>();
+        }
+
+        [Fact]
+        public void Test_TraktAuthenticationModule_RevokeAuthorization_With_Token_And_ClientId_And_ClientSecret_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient();
+            client.Authorization = null;
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Authentication.RevokeAuthorizationAsync(null, TraktClientId, TraktClientSecret);
+            act.Should().Throw<ArgumentException>();
+
+            act = () => client.Authentication.RevokeAuthorizationAsync(string.Empty, TraktClientId, TraktClientSecret);
+            act.Should().Throw<ArgumentException>();
+
+            act = () => client.Authentication.RevokeAuthorizationAsync("mock refresh token", TraktClientId, TraktClientSecret);
+            act.Should().Throw<ArgumentException>();
+
+            act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, null, TraktClientSecret);
+            act.Should().Throw<ArgumentException>();
+
+            act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, string.Empty, TraktClientSecret);
+            act.Should().Throw<ArgumentException>();
+
+            act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, "client id", TraktClientSecret);
+            act.Should().Throw<ArgumentException>();
+
+            act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, null);
+            act.Should().Throw<ArgumentException>();
+
+            act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, string.Empty);
+            act.Should().Throw<ArgumentException>();
+
+            act = () => client.Authentication.RevokeAuthorizationAsync(TestConstants.MOCK_ACCESS_TOKEN, TraktClientId, "client secret");
             act.Should().Throw<ArgumentException>();
         }
     }

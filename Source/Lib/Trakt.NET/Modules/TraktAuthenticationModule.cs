@@ -194,6 +194,9 @@
             => RevokeAuthorizationAsync(accessToken, ClientId, cancellationToken);
 
         public Task<TraktNoContentResponse> RevokeAuthorizationAsync(string accessToken, string clientId, CancellationToken cancellationToken = default)
+            => RevokeAuthorizationAsync(accessToken, clientId, ClientSecret, cancellationToken);
+
+        public Task<TraktNoContentResponse> RevokeAuthorizationAsync(string accessToken, string clientId, string clientSecret, CancellationToken cancellationToken = default)
         {
             var request = new AuthorizationRevokeRequest
             {
@@ -201,7 +204,7 @@
                 {
                     AccessToken = accessToken,
                     ClientId = clientId,
-                    ClientSecret = ClientSecret
+                    ClientSecret = clientSecret
                 }
             };
 
