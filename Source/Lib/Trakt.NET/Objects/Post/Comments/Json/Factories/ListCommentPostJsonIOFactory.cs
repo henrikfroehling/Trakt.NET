@@ -1,16 +1,14 @@
 ﻿namespace TraktNet.Objects.Post.Comments.Json.Factories
 {
     using Objects.Json;
-    using System;
+    using Reader;
     using Writer;
 
     internal class ListCommentPostJsonIOFactory : IJsonIOFactory<ITraktListCommentPost>
     {
-        public IObjectJsonReader<ITraktListCommentPost> CreateObjectReader()
-            => throw new NotSupportedException($"A object json reader for {nameof(ITraktListCommentPost)} is not supported.");
+        public IObjectJsonReader<ITraktListCommentPost> CreateObjectReader() => new ListCommentPostObjectJsonReader();
 
-        public IArrayJsonReader<ITraktListCommentPost> CreateArrayReader()
-            => throw new NotSupportedException($"A array json reader for {nameof(ITraktListCommentPost)} is not supported.");
+        public IArrayJsonReader<ITraktListCommentPost> CreateArrayReader() => new ListCommentPostArrayJsonReader();
 
         public IObjectJsonWriter<ITraktListCommentPost> CreateObjectWriter() => new ListCommentPostObjectJsonWriter();
     }
