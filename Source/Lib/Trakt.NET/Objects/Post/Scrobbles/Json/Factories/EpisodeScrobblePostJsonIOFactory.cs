@@ -1,16 +1,14 @@
 ﻿namespace TraktNet.Objects.Post.Scrobbles.Json.Factories
 {
     using Objects.Json;
-    using System;
+    using Reader;
     using Writer;
 
     internal class EpisodeScrobblePostJsonIOFactory : IJsonIOFactory<ITraktEpisodeScrobblePost>
     {
-        public IObjectJsonReader<ITraktEpisodeScrobblePost> CreateObjectReader()
-            => throw new NotSupportedException($"A object json reader for {nameof(ITraktEpisodeScrobblePost)} is not supported.");
+        public IObjectJsonReader<ITraktEpisodeScrobblePost> CreateObjectReader() => new EpisodeScrobblePostObjectJsonReader();
 
-        public IArrayJsonReader<ITraktEpisodeScrobblePost> CreateArrayReader()
-            => throw new NotSupportedException($"A array json reader for {nameof(ITraktEpisodeScrobblePost)} is not supported.");
+        public IArrayJsonReader<ITraktEpisodeScrobblePost> CreateArrayReader() => new EpisodeScrobblePostArrayJsonReader();
 
         public IObjectJsonWriter<ITraktEpisodeScrobblePost> CreateObjectWriter() => new EpisodeScrobblePostObjectJsonWriter();
     }

@@ -2,15 +2,13 @@
 {
     using Objects.Json;
     using Reader;
-    using System;
     using Writer;
 
     internal class MovieScrobblePostResponseJsonIOFactory : IJsonIOFactory<ITraktMovieScrobblePostResponse>
     {
         public IObjectJsonReader<ITraktMovieScrobblePostResponse> CreateObjectReader() => new MovieScrobblePostResponseObjectJsonReader();
 
-        public IArrayJsonReader<ITraktMovieScrobblePostResponse> CreateArrayReader()
-            => throw new NotSupportedException($"A array json reader for {nameof(ITraktMovieScrobblePostResponse)} is not supported.");
+        public IArrayJsonReader<ITraktMovieScrobblePostResponse> CreateArrayReader() => new MovieScrobblePostResponseArrayJsonReader();
 
         public IObjectJsonWriter<ITraktMovieScrobblePostResponse> CreateObjectWriter() => new MovieScrobblePostResponseObjectJsonWriter();
     }
