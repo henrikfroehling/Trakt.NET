@@ -1,16 +1,14 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.History.Json.Factories
 {
     using Objects.Json;
-    using System;
+    using Reader;
     using Writer;
 
     internal class SyncHistoryPostJsonIOFactory : IJsonIOFactory<ITraktSyncHistoryPost>
     {
-        public IObjectJsonReader<ITraktSyncHistoryPost> CreateObjectReader()
-            => throw new NotSupportedException($"A object json reader for {nameof(ITraktSyncHistoryPost)} is not supported.");
+        public IObjectJsonReader<ITraktSyncHistoryPost> CreateObjectReader() => new SyncHistoryPostObjectJsonReader();
 
-        public IArrayJsonReader<ITraktSyncHistoryPost> CreateArrayReader()
-            => throw new NotSupportedException($"A array json reader for {nameof(ITraktSyncHistoryPost)} is not supported.");
+        public IArrayJsonReader<ITraktSyncHistoryPost> CreateArrayReader() => new SyncHistoryPostArrayJsonReader();
 
         public IObjectJsonWriter<ITraktSyncHistoryPost> CreateObjectWriter() => new SyncHistoryPostObjectJsonWriter();
     }
