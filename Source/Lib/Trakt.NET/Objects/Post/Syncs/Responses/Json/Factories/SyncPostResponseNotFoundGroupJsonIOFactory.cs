@@ -2,15 +2,13 @@
 {
     using Objects.Json;
     using Reader;
-    using System;
     using Writer;
 
     internal class SyncPostResponseNotFoundGroupJsonIOFactory : IJsonIOFactory<ITraktSyncPostResponseNotFoundGroup>
     {
         public IObjectJsonReader<ITraktSyncPostResponseNotFoundGroup> CreateObjectReader() => new SyncPostResponseNotFoundGroupObjectJsonReader();
 
-        public IArrayJsonReader<ITraktSyncPostResponseNotFoundGroup> CreateArrayReader()
-            => throw new NotSupportedException($"A array json reader for {nameof(ITraktSyncPostResponseNotFoundGroup)} is not supported.");
+        public IArrayJsonReader<ITraktSyncPostResponseNotFoundGroup> CreateArrayReader() => new SyncPostResponseNotFoundGroupArrayJsonReader();
 
         public IObjectJsonWriter<ITraktSyncPostResponseNotFoundGroup> CreateObjectWriter() => new SyncPostResponseNotFoundGroupObjectJsonWriter();
     }
