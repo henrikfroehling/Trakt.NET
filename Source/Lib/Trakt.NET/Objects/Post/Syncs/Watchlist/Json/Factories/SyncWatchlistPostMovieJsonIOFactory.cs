@@ -1,16 +1,14 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Watchlist.Json.Factories
 {
     using Objects.Json;
-    using System;
+    using Reader;
     using Writer;
 
     internal class SyncWatchlistPostMovieJsonIOFactory : IJsonIOFactory<ITraktSyncWatchlistPostMovie>
     {
-        public IObjectJsonReader<ITraktSyncWatchlistPostMovie> CreateObjectReader()
-            => throw new NotSupportedException($"A object json reader for {nameof(ITraktSyncWatchlistPostMovie)} is not supported.");
+        public IObjectJsonReader<ITraktSyncWatchlistPostMovie> CreateObjectReader() => new SyncWatchlistPostMovieObjectJsonReader();
 
-        public IArrayJsonReader<ITraktSyncWatchlistPostMovie> CreateArrayReader()
-            => throw new NotSupportedException($"A array json reader for {nameof(ITraktSyncWatchlistPostMovie)} is not supported.");
+        public IArrayJsonReader<ITraktSyncWatchlistPostMovie> CreateArrayReader() => new SyncWatchlistPostMovieArrayJsonReader();
 
         public IObjectJsonWriter<ITraktSyncWatchlistPostMovie> CreateObjectWriter() => new SyncWatchlistPostMovieObjectJsonWriter();
     }
