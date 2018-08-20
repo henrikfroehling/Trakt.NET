@@ -1,16 +1,14 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Ratings.Json.Factories
 {
     using Objects.Json;
-    using System;
+    using Reader;
     using Writer;
 
     internal class SyncRatingsPostJsonIOFactory : IJsonIOFactory<ITraktSyncRatingsPost>
     {
-        public IObjectJsonReader<ITraktSyncRatingsPost> CreateObjectReader()
-            => throw new NotSupportedException($"A object json reader for {nameof(ITraktSyncRatingsPost)} is not supported.");
+        public IObjectJsonReader<ITraktSyncRatingsPost> CreateObjectReader() => new SyncRatingsPostObjectJsonReader();
 
-        public IArrayJsonReader<ITraktSyncRatingsPost> CreateArrayReader()
-            => throw new NotSupportedException($"A array json reader for {nameof(ITraktSyncRatingsPost)} is not supported.");
+        public IArrayJsonReader<ITraktSyncRatingsPost> CreateArrayReader() => new SyncRatingsPostArrayJsonReader();
 
         public IObjectJsonWriter<ITraktSyncRatingsPost> CreateObjectWriter() => new SyncRatingsPostObjectJsonWriter();
     }

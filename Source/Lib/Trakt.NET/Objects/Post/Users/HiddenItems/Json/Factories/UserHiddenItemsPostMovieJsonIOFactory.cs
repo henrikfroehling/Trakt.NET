@@ -1,16 +1,14 @@
 ﻿namespace TraktNet.Objects.Post.Users.HiddenItems.Json.Factories
 {
     using Objects.Json;
-    using System;
+    using Reader;
     using Writer;
 
     internal class UserHiddenItemsPostMovieJsonIOFactory : IJsonIOFactory<ITraktUserHiddenItemsPostMovie>
     {
-        public IObjectJsonReader<ITraktUserHiddenItemsPostMovie> CreateObjectReader()
-            => throw new NotSupportedException($"A object json reader for {nameof(ITraktUserHiddenItemsPostMovie)} is not supported.");
+        public IObjectJsonReader<ITraktUserHiddenItemsPostMovie> CreateObjectReader() => new UserHiddenItemsPostMovieObjectJsonReader();
 
-        public IArrayJsonReader<ITraktUserHiddenItemsPostMovie> CreateArrayReader()
-            => throw new NotSupportedException($"A array json reader for {nameof(ITraktUserHiddenItemsPostMovie)} is not supported.");
+        public IArrayJsonReader<ITraktUserHiddenItemsPostMovie> CreateArrayReader() => new UserHiddenItemsPostMovieArrayJsonReader();
 
         public IObjectJsonWriter<ITraktUserHiddenItemsPostMovie> CreateObjectWriter() => new UserHiddenItemsPostMovieObjectJsonWriter();
     }

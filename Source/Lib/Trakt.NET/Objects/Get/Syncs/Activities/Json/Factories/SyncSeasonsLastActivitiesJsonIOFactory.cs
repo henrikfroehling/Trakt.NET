@@ -3,14 +3,12 @@
     using Get.Syncs.Activities.Json.Reader;
     using Get.Syncs.Activities.Json.Writer;
     using Objects.Json;
-    using System;
 
     internal class SyncSeasonsLastActivitiesJsonIOFactory : IJsonIOFactory<ITraktSyncSeasonsLastActivities>
     {
         public IObjectJsonReader<ITraktSyncSeasonsLastActivities> CreateObjectReader() => new SyncSeasonsLastActivitiesObjectJsonReader();
 
-        public IArrayJsonReader<ITraktSyncSeasonsLastActivities> CreateArrayReader()
-            => throw new NotSupportedException($"A array json reader for {nameof(ITraktSyncSeasonsLastActivities)} is not supported.");
+        public IArrayJsonReader<ITraktSyncSeasonsLastActivities> CreateArrayReader() => new SyncSeasonsLastActivitiesArrayJsonReader();
 
         public IObjectJsonWriter<ITraktSyncSeasonsLastActivities> CreateObjectWriter() => new SyncSeasonsLastActivitiesObjectJsonWriter();
     }

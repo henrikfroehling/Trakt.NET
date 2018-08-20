@@ -2,7 +2,6 @@
 {
     using Objects.Json;
     using Reader;
-    using System;
     using Writer;
 
     internal class SyncHistoryRemovePostResponseNotFoundGroupJsonIOFactory : IJsonIOFactory<ITraktSyncHistoryRemovePostResponseNotFoundGroup>
@@ -11,7 +10,7 @@
             => new SyncHistoryRemovePostResponseNotFoundGroupObjectJsonReader();
 
         public IArrayJsonReader<ITraktSyncHistoryRemovePostResponseNotFoundGroup> CreateArrayReader()
-            => throw new NotSupportedException($"A array json reader for {nameof(ITraktSyncHistoryRemovePostResponseNotFoundGroup)} is not supported.");
+            => new SyncHistoryRemovePostResponseNotFoundGroupArrayJsonReader();
 
         public IObjectJsonWriter<ITraktSyncHistoryRemovePostResponseNotFoundGroup> CreateObjectWriter()
             => new SyncHistoryRemovePostResponseNotFoundGroupObjectJsonWriter();

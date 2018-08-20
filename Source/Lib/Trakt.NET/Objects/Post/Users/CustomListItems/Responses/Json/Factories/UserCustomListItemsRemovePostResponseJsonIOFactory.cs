@@ -2,7 +2,6 @@
 {
     using Objects.Json;
     using Reader;
-    using System;
     using Writer;
 
     internal class UserCustomListItemsRemovePostResponseJsonIOFactory : IJsonIOFactory<ITraktUserCustomListItemsRemovePostResponse>
@@ -11,7 +10,7 @@
             => new UserCustomListItemsRemovePostResponseObjectJsonReader();
 
         public IArrayJsonReader<ITraktUserCustomListItemsRemovePostResponse> CreateArrayReader()
-            => throw new NotSupportedException($"A array json reader for {nameof(ITraktUserCustomListItemsRemovePostResponse)} is not supported.");
+            => new UserCustomListItemsRemovePostResponseArrayJsonReader();
 
         public IObjectJsonWriter<ITraktUserCustomListItemsRemovePostResponse> CreateObjectWriter()
             => new UserCustomListItemsRemovePostResponseObjectJsonWriter();

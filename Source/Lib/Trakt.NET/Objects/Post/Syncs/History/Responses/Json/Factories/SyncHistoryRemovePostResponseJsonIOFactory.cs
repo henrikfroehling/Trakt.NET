@@ -2,7 +2,6 @@
 {
     using Objects.Json;
     using Reader;
-    using System;
     using Writer;
 
     internal class SyncHistoryRemovePostResponseJsonIOFactory : IJsonIOFactory<ITraktSyncHistoryRemovePostResponse>
@@ -11,7 +10,7 @@
             => new SyncHistoryRemovePostResponseObjectJsonReader();
 
         public IArrayJsonReader<ITraktSyncHistoryRemovePostResponse> CreateArrayReader()
-            => throw new NotSupportedException($"A array json reader for {nameof(ITraktSyncHistoryRemovePostResponse)} is not supported.");
+            => new SyncHistoryRemovePostResponseArrayJsonReader();
 
         public IObjectJsonWriter<ITraktSyncHistoryRemovePostResponse> CreateObjectWriter()
             => new SyncHistoryRemovePostResponseObjectJsonWriter();

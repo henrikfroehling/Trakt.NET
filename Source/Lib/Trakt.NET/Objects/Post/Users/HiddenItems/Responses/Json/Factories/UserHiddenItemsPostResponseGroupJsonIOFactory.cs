@@ -2,7 +2,6 @@
 {
     using Objects.Json;
     using Reader;
-    using System;
     using Writer;
 
     internal class UserHiddenItemsPostResponseGroupJsonIOFactory : IJsonIOFactory<ITraktUserHiddenItemsPostResponseGroup>
@@ -11,7 +10,7 @@
             => new UserHiddenItemsPostResponseGroupObjectJsonReader();
 
         public IArrayJsonReader<ITraktUserHiddenItemsPostResponseGroup> CreateArrayReader()
-            => throw new NotSupportedException($"A array json reader for {nameof(ITraktUserHiddenItemsPostResponseGroup)} is not supported.");
+            => new UserHiddenItemsPostResponseGroupArrayJsonReader();
 
         public IObjectJsonWriter<ITraktUserHiddenItemsPostResponseGroup> CreateObjectWriter()
             => new UserHiddenItemsPostResponseGroupObjectJsonWriter();

@@ -1,17 +1,18 @@
 ﻿namespace TraktNet.Objects.Post.Users.HiddenItems.Json.Factories
 {
     using Objects.Json;
-    using System;
+    using Reader;
     using Writer;
 
     internal class UserHiddenItemsPostShowSeasonJsonIOFactory : IJsonIOFactory<ITraktUserHiddenItemsPostShowSeason>
     {
         public IObjectJsonReader<ITraktUserHiddenItemsPostShowSeason> CreateObjectReader()
-            => throw new NotSupportedException($"A object json reader for {nameof(ITraktUserHiddenItemsPostShowSeason)} is not supported.");
+            => new UserHiddenItemsPostShowSeasonObjectJsonReader();
 
         public IArrayJsonReader<ITraktUserHiddenItemsPostShowSeason> CreateArrayReader()
-            => throw new NotSupportedException($"A array json reader for {nameof(ITraktUserHiddenItemsPostShowSeason)} is not supported.");
+            => new UserHiddenItemsPostShowSeasonArrayJsonReader();
 
-        public IObjectJsonWriter<ITraktUserHiddenItemsPostShowSeason> CreateObjectWriter() => new UserHiddenItemsPostShowSeasonObjectJsonWriter();
+        public IObjectJsonWriter<ITraktUserHiddenItemsPostShowSeason> CreateObjectWriter()
+            => new UserHiddenItemsPostShowSeasonObjectJsonWriter();
     }
 }

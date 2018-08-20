@@ -1,16 +1,14 @@
 ﻿namespace TraktNet.Objects.Post.Users.CustomListItems.Json.Factories
 {
     using Objects.Json;
-    using System;
+    using Reader;
     using Writer;
 
     internal class UserCustomListItemsPostJsonIOFactory : IJsonIOFactory<ITraktUserCustomListItemsPost>
     {
-        public IObjectJsonReader<ITraktUserCustomListItemsPost> CreateObjectReader()
-            => throw new NotSupportedException($"A object json reader for {nameof(ITraktUserCustomListItemsPost)} is not supported.");
+        public IObjectJsonReader<ITraktUserCustomListItemsPost> CreateObjectReader() => new UserCustomListItemsPostObjectJsonReader();
 
-        public IArrayJsonReader<ITraktUserCustomListItemsPost> CreateArrayReader()
-            => throw new NotSupportedException($"A array json reader for {nameof(ITraktUserCustomListItemsPost)} is not supported.");
+        public IArrayJsonReader<ITraktUserCustomListItemsPost> CreateArrayReader() => new UserCustomListItemsPostArrayJsonReader();
 
         public IObjectJsonWriter<ITraktUserCustomListItemsPost> CreateObjectWriter() => new UserCustomListItemsPostObjectJsonWriter();
     }
