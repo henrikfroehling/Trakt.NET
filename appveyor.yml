@@ -82,7 +82,7 @@
 
   branches:
     only:
-      - /release/.*
+      - /release\/.*/
 
   configuration: Release
 
