@@ -51,7 +51,10 @@
 
 # configuration for release branches
 -
-  version: '{branch}-{build}'
+  environment:
+    packageVersion: 1.0.0-beta1
+
+  version: '%packageVersion%-{build}'
   image: Visual Studio 2017
 
   nuget:
@@ -79,7 +82,7 @@
 
   branches:
     only:
-      - /release/.*
+      - /release\/.*/
 
   configuration: Release
 
