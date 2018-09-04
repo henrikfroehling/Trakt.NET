@@ -22,7 +22,7 @@
 
   before_build:
     - cmd: nuget restore
-    - cmd: appveyor UpdateBuild -Version "$env:packageVersion-$env:APPVEYOR_REPO_BRANCH-$env:APPVEYOR_BUILD_NUMBER"
+    - ps: appveyor UpdateBuild -Version "$env:packageVersion-$env:APPVEYOR_REPO_BRANCH-$env:APPVEYOR_BUILD_NUMBER"
 
   after_build:
     - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION%\netstandard1.1 -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release -Version %APPVEYOR_BUILD_VERSION%
@@ -74,7 +74,7 @@
 
   before_build:
     - cmd: nuget restore
-    - cmd: appveyor UpdateBuild -Version "$env:packageVersion-$env:APPVEYOR_BUILD_NUMBER"
+    - ps: appveyor UpdateBuild -Version "$env:packageVersion-$env:APPVEYOR_BUILD_NUMBER"
 
   after_build:
     - cmd: nuget pack Source\Lib\%APPVEYOR_PROJECT_NAME%\%APPVEYOR_PROJECT_NAME%.nuspec -OutputDirectory Build\Lib\%CONFIGURATION%\netstandard1.1 -BasePath Source\Lib\%APPVEYOR_PROJECT_NAME% -Properties buildConfig=Release -Version %APPVEYOR_BUILD_VERSION%
