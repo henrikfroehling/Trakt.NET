@@ -2,6 +2,5 @@
 {
     public partial class ShowCollectionProgressArrayJsonWriter_Tests
     {
-
     }
 }

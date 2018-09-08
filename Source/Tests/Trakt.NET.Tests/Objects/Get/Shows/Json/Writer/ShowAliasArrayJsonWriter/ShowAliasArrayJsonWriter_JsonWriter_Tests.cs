@@ -2,6 +2,5 @@
 {
     public partial class ShowAliasArrayJsonWriter_Tests
     {
-
     }
 }
