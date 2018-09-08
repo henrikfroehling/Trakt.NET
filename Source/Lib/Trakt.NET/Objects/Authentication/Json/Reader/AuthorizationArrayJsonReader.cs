@@ -8,6 +8,8 @@
 
     internal class AuthorizationArrayJsonReader : AArrayJsonReader<ITraktAuthorization>
     {
+        internal bool CompleteDeserialization { get; set; }
+
         public override async Task<IEnumerable<ITraktAuthorization>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
@@ -15,7 +17,11 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
-                var authorizationReader = new AuthorizationObjectJsonReader();
+                var authorizationReader = new AuthorizationObjectJsonReader
+                {
+                    CompleteDeserialization = CompleteDeserialization
+                };
+
                 var authorizations = new List<ITraktAuthorization>();
                 ITraktAuthorization authorization = await authorizationReader.ReadObjectAsync(jsonReader, cancellationToken);
 
