@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\..\packages\xunit.runner.visualstudio.2.4.0\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\..\..\packages\xunit.runner.visualstudio.2.4.0\build\net20\xunit.runner.visualstudio.props')" />
   <Import Project="..\..\..\packages\xunit.runner.console.2.4.0\build\xunit.runner.console.props" Condition="Exists('..\..\..\packages\xunit.runner.console.2.4.0\build\xunit.runner.console.props')" />
@@ -329,6 +329,34 @@
     <Compile Include="Modules\TraktUsersModule\TraktUsersModule_UpdateCustomList_Tests.cs" />
     <Compile Include="Objects\Authentication\Implementations\TraktAuthorization_Tests.cs" />
     <Compile Include="Objects\Authentication\Implementations\TraktDevice_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\AuthorizationArrayJsonReader\AuthorizationArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\AuthorizationArrayJsonReader\AuthorizationArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\AuthorizationArrayJsonReader\AuthorizationArrayJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\AuthorizationArrayJsonReader\AuthorizationArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\AuthorizationObjectJsonReader\AuthorizationObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\AuthorizationObjectJsonReader\AuthorizationObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\AuthorizationObjectJsonReader\AuthorizationObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\AuthorizationObjectJsonReader\AuthorizationObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\DeviceArrayJsonReader\DeviceArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\DeviceArrayJsonReader\DeviceArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\DeviceArrayJsonReader\DeviceArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\DeviceArrayJsonReader\DeviceArrayJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\DeviceObjectJsonReader\DeviceObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\DeviceObjectJsonReader\DeviceObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\DeviceObjectJsonReader\DeviceObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Reader\DeviceObjectJsonReader\DeviceObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Authentication\Json\Writer\AuthorizationArrayJsonWriter\AuthorizationArrayJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Writer\AuthorizationArrayJsonWriter\AuthorizationArrayJsonWriter_Object_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Writer\AuthorizationArrayJsonWriter\AuthorizationArrayJsonWriter_StringWriter_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Writer\AuthorizationObjectJsonWriter\AuthorizationObjectJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Writer\AuthorizationObjectJsonWriter\AuthorizationObjectJsonWriter_Object_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Writer\AuthorizationObjectJsonWriter\AuthorizationObjectJsonWriter_StringWriter_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Writer\DeviceArrayJsonWriter\DeviceArrayJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Writer\DeviceArrayJsonWriter\DeviceArrayJsonWriter_Object_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Writer\DeviceArrayJsonWriter\DeviceArrayJsonWriter_StringWriter_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Writer\DeviceObjectJsonWriter\DeviceObjectJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Writer\DeviceObjectJsonWriter\DeviceObjectJsonWriter_Object_Tests.cs" />
+    <Compile Include="Objects\Authentication\Json\Writer\DeviceObjectJsonWriter\DeviceObjectJsonWriter_StringWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCastAndCrew_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCastMember_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktCertifications_Tests.cs" />
