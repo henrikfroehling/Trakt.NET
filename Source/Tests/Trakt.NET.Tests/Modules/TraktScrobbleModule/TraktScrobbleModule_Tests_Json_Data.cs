@@ -53,7 +53,6 @@
                     TvRage = 637041
                 }
             };
-
         }
 
         private const string MOVIE_START_SCROBBLE_POST_RESPONSE_JSON =

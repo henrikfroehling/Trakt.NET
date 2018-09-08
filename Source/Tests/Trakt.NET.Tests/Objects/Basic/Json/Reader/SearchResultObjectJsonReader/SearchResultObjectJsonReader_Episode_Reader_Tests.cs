@@ -282,7 +282,7 @@
                 traktSearchResultItem.Should().NotBeNull();
                 traktSearchResultItem.Type.Should().BeNull();
                 traktSearchResultItem.Score.Should().BeNull();
-                traktSearchResultItem.Episode.Should().BeNull(); ;
+                traktSearchResultItem.Episode.Should().BeNull();
                 traktSearchResultItem.Show.Should().NotBeNull();
                 traktSearchResultItem.Show.Title.Should().Be("Game of Thrones");
                 traktSearchResultItem.Show.Year.Should().Be(2011);
