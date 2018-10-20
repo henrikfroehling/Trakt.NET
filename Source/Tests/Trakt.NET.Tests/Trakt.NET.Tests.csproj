@@ -406,6 +406,10 @@
     <Compile Include="Objects\Basic\Json\Reader\CertificationsObjectJsonReader\CertificationsObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CertificationsObjectJsonReader\CertificationsObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CertificationsObjectJsonReader\CertificationsObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\CommentArrayJsonReader\CommentArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\CommentArrayJsonReader\CommentArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\CommentArrayJsonReader\CommentArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\CommentArrayJsonReader\CommentArrayJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CommentObjectJsonReader\CommentObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CommentObjectJsonReader\CommentObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CommentObjectJsonReader\CommentObjectJsonReader_Stream_Tests.cs" />
@@ -1519,7 +1523,6 @@
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Objects\Basic\Json\Reader\CommentArrayJsonReader\" />
     <Folder Include="Objects\Basic\Json\Reader\CrewArrayJsonReader\" />
     <Folder Include="Objects\Basic\Json\Reader\ErrorArrayJsonReader\" />
     <Folder Include="Objects\Basic\Json\Reader\GenreArrayJsonReader\" />
