@@ -21,7 +21,7 @@
         }
 
         [Fact]
-        public async Task Test_CastAndCrewArrayJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_CastAndCrewArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
             var jsonReader = new CastAndCrewArrayJsonReader();
             IEnumerable<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
@@ -41,6 +41,8 @@
             castMemberItems[0].Person.Ids.Tmdb.Should().Be(17419U);
             castMemberItems[0].Person.Ids.TvRage.Should().Be(1797U);
 
+            items[0].Crew.Should().BeNull();
+
             castMemberItems = items[1].Cast.ToArray();
 
             castMemberItems[0].Should().NotBeNull();
@@ -53,10 +55,12 @@
             castMemberItems[0].Person.Ids.Imdb.Should().Be("nm0186505");
             castMemberItems[0].Person.Ids.Tmdb.Should().Be(17419U);
             castMemberItems[0].Person.Ids.TvRage.Should().Be(1797U);
+
+            items[1].Crew.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_CastAndCrewArrayJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public async Task Test_CastAndCrewArrayJsonReader_ReadArray_From_Json_String_Incomplete_1()
         {
             var jsonReader = new CastAndCrewArrayJsonReader();
             IEnumerable<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
@@ -76,15 +80,19 @@
             castMemberItems[0].Person.Ids.Tmdb.Should().Be(17419U);
             castMemberItems[0].Person.Ids.TvRage.Should().Be(1797U);
 
+            items[0].Crew.Should().BeNull();
+
             castMemberItems = items[1].Cast.ToArray();
 
             castMemberItems[0].Should().NotBeNull();
             castMemberItems[0].Character.Should().Be("Joe Brody");
             castMemberItems[0].Person.Should().BeNull();
+
+            items[1].Crew.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_CastAndCrewArrayJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public async Task Test_CastAndCrewArrayJsonReader_ReadArray_From_Json_String_Incomplete_2()
         {
             var jsonReader = new CastAndCrewArrayJsonReader();
             IEnumerable<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
@@ -97,6 +105,8 @@
             castMemberItems[0].Character.Should().Be("Joe Brody");
             castMemberItems[0].Person.Should().BeNull();
 
+            items[0].Crew.Should().BeNull();
+
             castMemberItems = items[1].Cast.ToArray();
 
             castMemberItems[0].Should().NotBeNull();
@@ -109,21 +119,23 @@
             castMemberItems[0].Person.Ids.Imdb.Should().Be("nm0186505");
             castMemberItems[0].Person.Ids.Tmdb.Should().Be(17419U);
             castMemberItems[0].Person.Ids.TvRage.Should().Be(1797U);
+
+            items[1].Crew.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_CastAndCrewArrayJsonReader_ReadObject_From_Json_String_Not_Valid_1()
+        public async Task Test_CastAndCrewArrayJsonReader_ReadArray_From_Json_String_Not_Valid_1()
         {
             var jsonReader = new CastAndCrewArrayJsonReader();
             IEnumerable<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
             traktCastAndCrews.Should().NotBeNull();
             ITraktCastAndCrew[] items = traktCastAndCrews.ToArray();
-            ITraktCastMember[] castMemberItems = items[0].Cast.ToArray();
 
-            castMemberItems[0].Should().BeNull();
+            items[0].Cast.Should().BeNull();
+            items[0].Crew.Should().BeNull();
 
-            castMemberItems = items[1].Cast.ToArray();
+            ITraktCastMember[] castMemberItems = items[1].Cast.ToArray();
 
             castMemberItems[0].Should().NotBeNull();
             castMemberItems[0].Character.Should().Be("Joe Brody");
@@ -135,10 +147,12 @@
             castMemberItems[0].Person.Ids.Imdb.Should().Be("nm0186505");
             castMemberItems[0].Person.Ids.Tmdb.Should().Be(17419U);
             castMemberItems[0].Person.Ids.TvRage.Should().Be(1797U);
+
+            items[1].Crew.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_CastAndCrewArrayJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public async Task Test_CastAndCrewArrayJsonReader_ReadArray_From_Json_String_Not_Valid_2()
         {
             var jsonReader = new CastAndCrewArrayJsonReader();
             IEnumerable<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
@@ -158,30 +172,26 @@
             castMemberItems[0].Person.Ids.Tmdb.Should().Be(17419U);
             castMemberItems[0].Person.Ids.TvRage.Should().Be(1797U);
 
-            castMemberItems = items[1].Cast.ToArray();
-
-            castMemberItems[0].Should().BeNull();
+            items[1].Cast.Should().BeNull();
+            items[1].Crew.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_CastAndCrewArrayJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public async Task Test_CastAndCrewArrayJsonReader_ReadArray_From_Json_String_Not_Valid_3()
         {
             var jsonReader = new CastAndCrewArrayJsonReader();
             IEnumerable<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
 
             traktCastAndCrews.Should().NotBeNull();
             ITraktCastAndCrew[] items = traktCastAndCrews.ToArray();
-            ITraktCastMember[] castMemberItems = items[0].Cast.ToArray();
-
-            castMemberItems[0].Should().BeNull();
-
-            castMemberItems = items[1].Cast.ToArray();
-
-            castMemberItems[0].Should().BeNull();
+            items[0].Cast.Should().BeNull();
+            items[0].Crew.Should().BeNull();
+            items[1].Cast.Should().BeNull();
+            items[1].Crew.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_CastAndCrewArrayJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_CastAndCrewArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new CastAndCrewArrayJsonReader();
             IEnumerable<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(default(string));
@@ -189,7 +199,7 @@
         }
 
         [Fact]
-        public async Task Test_CastAndCrewArrayJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_CastAndCrewArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
             var jsonReader = new CastAndCrewArrayJsonReader();
             IEnumerable<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(string.Empty);
