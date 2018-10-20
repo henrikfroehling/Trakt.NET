@@ -426,6 +426,10 @@
     <Compile Include="Objects\Basic\Json\Reader\CrewObjectJsonReader\CrewObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CrewObjectJsonReader\CrewObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CrewObjectJsonReader\CrewObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\ErrorArrayJsonReader\ErrorArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\ErrorArrayJsonReader\ErrorArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\ErrorArrayJsonReader\ErrorArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\ErrorArrayJsonReader\ErrorArrayJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\Json\Reader\ErrorObjectJsonReader\ErrorObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\ErrorObjectJsonReader\ErrorObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\ErrorObjectJsonReader\ErrorObjectJsonReader_Stream_Tests.cs" />
@@ -1524,7 +1528,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Objects\Basic\Json\Reader\CrewArrayJsonReader\" />
-    <Folder Include="Objects\Basic\Json\Reader\ErrorArrayJsonReader\" />
     <Folder Include="Objects\Basic\Json\Reader\GenreArrayJsonReader\" />
     <Folder Include="Objects\Basic\Json\Reader\IdsArrayJsonReader\" />
     <Folder Include="Objects\Basic\Json\Reader\ImageArrayJsonReader\" />
