@@ -374,6 +374,10 @@
     <Compile Include="Objects\Basic\Implementations\TraktSearchResult_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktSharing_Tests.cs" />
     <Compile Include="Objects\Basic\Implementations\TraktStatistics_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\CastAndCrewArrayJsonReader\CastAndCrewArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\CastAndCrewArrayJsonReader\CastAndCrewArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\CastAndCrewArrayJsonReader\CastAndCrewArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\CastAndCrewArrayJsonReader\CastAndCrewArrayJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CastAndCrewObjectJsonReader\CastAndCrewObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CastAndCrewObjectJsonReader\CastAndCrewObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CastAndCrewObjectJsonReader\CastAndCrewObjectJsonReader_Stream_Tests.cs" />
@@ -1509,6 +1513,20 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Objects\Basic\Json\Reader\CertificationsArrayJsonReader\" />
+    <Folder Include="Objects\Basic\Json\Reader\CommentArrayJsonReader\" />
+    <Folder Include="Objects\Basic\Json\Reader\CrewArrayJsonReader\" />
+    <Folder Include="Objects\Basic\Json\Reader\ErrorArrayJsonReader\" />
+    <Folder Include="Objects\Basic\Json\Reader\GenreArrayJsonReader\" />
+    <Folder Include="Objects\Basic\Json\Reader\IdsArrayJsonReader\" />
+    <Folder Include="Objects\Basic\Json\Reader\ImageArrayJsonReader\" />
+    <Folder Include="Objects\Basic\Json\Reader\MetadataArrayJsonReader\" />
+    <Folder Include="Objects\Basic\Json\Reader\RatingArrayJsonReader\" />
+    <Folder Include="Objects\Basic\Json\Reader\SearchResultArrayJsonReader\" />
+    <Folder Include="Objects\Basic\Json\Reader\SharingArrayJsonReader\" />
+    <Folder Include="Objects\Basic\Json\Reader\StatisticsArrayJsonReader\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
