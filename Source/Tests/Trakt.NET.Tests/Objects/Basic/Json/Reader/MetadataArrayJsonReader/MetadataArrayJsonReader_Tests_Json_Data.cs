@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Tests.Objects.Basic.Json.Reader.MetadataArrayJsonReader
+﻿namespace TraktNet.Tests.Objects.Basic.Json.Reader
 {
     public partial class MetadataArrayJsonReader_Tests
     {

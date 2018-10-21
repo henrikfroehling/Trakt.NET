@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Tests.Objects.Basic.Json.Reader.ErrorArrayJsonReader
+﻿namespace TraktNet.Tests.Objects.Basic.Json.Reader
 {
     public partial class ErrorArrayJsonReader_Tests
     {

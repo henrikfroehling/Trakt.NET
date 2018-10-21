@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Tests.Objects.Basic.Json.Reader.GenreArrayJsonReader
+﻿namespace TraktNet.Tests.Objects.Basic.Json.Reader
 {
     using FluentAssertions;
     using System.Collections.Generic;

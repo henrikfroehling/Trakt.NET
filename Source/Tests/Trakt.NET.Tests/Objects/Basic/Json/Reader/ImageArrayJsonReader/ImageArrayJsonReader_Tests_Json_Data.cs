@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Tests.Objects.Basic.Json.Reader.ImageArrayJsonReader
+﻿namespace TraktNet.Tests.Objects.Basic.Json.Reader
 {
     public partial class ImageArrayJsonReader_Tests
     {
