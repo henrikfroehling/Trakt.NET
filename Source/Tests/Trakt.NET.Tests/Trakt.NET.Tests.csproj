@@ -434,18 +434,34 @@
     <Compile Include="Objects\Basic\Json\Reader\ErrorObjectJsonReader\ErrorObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\ErrorObjectJsonReader\ErrorObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\ErrorObjectJsonReader\ErrorObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\GenreArrayJsonReader\GenreArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\GenreArrayJsonReader\GenreArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\GenreArrayJsonReader\GenreArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\GenreArrayJsonReader\GenreArrayJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\Json\Reader\GenreObjectJsonReader\GenreObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\GenreObjectJsonReader\GenreObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\GenreObjectJsonReader\GenreObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\GenreObjectJsonReader\GenreObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\IdsArrayJsonReader\IdsArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\IdsArrayJsonReader\IdsArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\IdsArrayJsonReader\IdsArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\IdsArrayJsonReader\IdsArrayJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\Json\Reader\IdsObjectJsonReader\IdsObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\IdsObjectJsonReader\IdsObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\IdsObjectJsonReader\IdsObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\IdsObjectJsonReader\IdsObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\ImageArrayJsonReader\ImageArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\ImageArrayJsonReader\ImageArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\ImageArrayJsonReader\ImageArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\ImageArrayJsonReader\ImageArrayJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\Json\Reader\ImageObjectJsonReader\ImageObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\ImageObjectJsonReader\ImageObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\ImageObjectJsonReader\ImageObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\ImageObjectJsonReader\ImageObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\MetadataArrayJsonReader\MetadataArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\MetadataArrayJsonReader\MetadataArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\MetadataArrayJsonReader\MetadataArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\MetadataArrayJsonReader\MetadataArrayJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\Json\Reader\MetadataObjectJsonReader\MetadataObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\MetadataObjectJsonReader\MetadataObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\MetadataObjectJsonReader\MetadataObjectJsonReader_Stream_Tests.cs" />
@@ -1528,10 +1544,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Objects\Basic\Json\Reader\CrewArrayJsonReader\" />
-    <Folder Include="Objects\Basic\Json\Reader\GenreArrayJsonReader\" />
-    <Folder Include="Objects\Basic\Json\Reader\IdsArrayJsonReader\" />
-    <Folder Include="Objects\Basic\Json\Reader\ImageArrayJsonReader\" />
-    <Folder Include="Objects\Basic\Json\Reader\MetadataArrayJsonReader\" />
     <Folder Include="Objects\Basic\Json\Reader\RatingArrayJsonReader\" />
     <Folder Include="Objects\Basic\Json\Reader\SearchResultArrayJsonReader\" />
     <Folder Include="Objects\Basic\Json\Reader\SharingArrayJsonReader\" />
