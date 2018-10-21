@@ -62,7 +62,7 @@
                 images[0].Full.Should().Be("https://walter.trakt.us/images/shows/000/060/300/logos/original/ab151d1043.png");
 
                 images[1].Should().NotBeNull();
-                images[1].Full.Should().Be("https://walter.trakt.us/images/shows/000/060/300/logos/original/ab151d1043.png");
+                images[1].Full.Should().BeNull();
             }
         }
 
@@ -79,7 +79,7 @@
                 ITraktImage[] images = traktImages.ToArray();
 
                 images[0].Should().NotBeNull();
-                images[0].Full.Should().Be("https://walter.trakt.us/images/shows/000/060/300/logos/original/ab151d1043.png");
+                images[0].Full.Should().BeNull();
 
                 images[1].Should().NotBeNull();
                 images[1].Full.Should().Be("https://walter.trakt.us/images/shows/000/060/300/logos/original/ab151d1043.png");
@@ -99,7 +99,7 @@
                 ITraktImage[] images = traktImages.ToArray();
 
                 images[0].Should().NotBeNull();
-                images[0].Full.Should().Be("https://walter.trakt.us/images/shows/000/060/300/logos/original/ab151d1043.png");
+                images[0].Full.Should().BeNull();
 
                 images[1].Should().NotBeNull();
                 images[1].Full.Should().Be("https://walter.trakt.us/images/shows/000/060/300/logos/original/ab151d1043.png");
@@ -122,7 +122,7 @@
                 images[0].Full.Should().Be("https://walter.trakt.us/images/shows/000/060/300/logos/original/ab151d1043.png");
 
                 images[1].Should().NotBeNull();
-                images[1].Full.Should().Be("https://walter.trakt.us/images/shows/000/060/300/logos/original/ab151d1043.png");
+                images[1].Full.Should().BeNull();
             }
         }
 
@@ -139,10 +139,10 @@
                 ITraktImage[] images = traktImages.ToArray();
 
                 images[0].Should().NotBeNull();
-                images[0].Full.Should().Be("https://walter.trakt.us/images/shows/000/060/300/logos/original/ab151d1043.png");
+                images[0].Full.Should().BeNull();
 
                 images[1].Should().NotBeNull();
-                images[1].Full.Should().Be("https://walter.trakt.us/images/shows/000/060/300/logos/original/ab151d1043.png");
+                images[1].Full.Should().BeNull();
             }
         }
 

@@ -46,12 +46,12 @@
                 metadatas[0].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
                 metadatas[0].ThreeDimensional.Should().BeTrue();
 
-                metadatas[0].Should().NotBeNull();
-                metadatas[0].MediaType.Should().Be(TraktMediaType.Digital);
-                metadatas[0].MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
-                metadatas[0].Audio.Should().Be(TraktMediaAudio.AAC);
-                metadatas[0].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
-                metadatas[0].ThreeDimensional.Should().BeTrue();
+                metadatas[1].Should().NotBeNull();
+                metadatas[1].MediaType.Should().Be(TraktMediaType.Digital);
+                metadatas[1].MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+                metadatas[1].Audio.Should().Be(TraktMediaAudio.AAC);
+                metadatas[1].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+                metadatas[1].ThreeDimensional.Should().BeTrue();
             }
         }
 
@@ -74,12 +74,12 @@
                 metadatas[0].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
                 metadatas[0].ThreeDimensional.Should().BeTrue();
 
-                metadatas[0].Should().NotBeNull();
-                metadatas[0].MediaType.Should().BeNull();
-                metadatas[0].MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
-                metadatas[0].Audio.Should().Be(TraktMediaAudio.AAC);
-                metadatas[0].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
-                metadatas[0].ThreeDimensional.Should().BeTrue();
+                metadatas[1].Should().NotBeNull();
+                metadatas[1].MediaType.Should().BeNull();
+                metadatas[1].MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+                metadatas[1].Audio.Should().Be(TraktMediaAudio.AAC);
+                metadatas[1].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+                metadatas[1].ThreeDimensional.Should().BeTrue();
             }
         }
 
@@ -102,12 +102,12 @@
                 metadatas[0].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
                 metadatas[0].ThreeDimensional.Should().BeTrue();
 
-                metadatas[0].Should().NotBeNull();
-                metadatas[0].MediaType.Should().Be(TraktMediaType.Digital);
-                metadatas[0].MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
-                metadatas[0].Audio.Should().Be(TraktMediaAudio.AAC);
-                metadatas[0].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
-                metadatas[0].ThreeDimensional.Should().BeTrue();
+                metadatas[1].Should().NotBeNull();
+                metadatas[1].MediaType.Should().Be(TraktMediaType.Digital);
+                metadatas[1].MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+                metadatas[1].Audio.Should().Be(TraktMediaAudio.AAC);
+                metadatas[1].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+                metadatas[1].ThreeDimensional.Should().BeTrue();
             }
         }
 
@@ -130,12 +130,12 @@
                 metadatas[0].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
                 metadatas[0].ThreeDimensional.Should().BeTrue();
 
-                metadatas[0].Should().NotBeNull();
-                metadatas[0].MediaType.Should().Be(TraktMediaType.Digital);
-                metadatas[0].MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
-                metadatas[0].Audio.Should().Be(TraktMediaAudio.AAC);
-                metadatas[0].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
-                metadatas[0].ThreeDimensional.Should().BeTrue();
+                metadatas[1].Should().NotBeNull();
+                metadatas[1].MediaType.Should().Be(TraktMediaType.Digital);
+                metadatas[1].MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+                metadatas[1].Audio.Should().Be(TraktMediaAudio.AAC);
+                metadatas[1].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+                metadatas[1].ThreeDimensional.Should().BeTrue();
             }
         }
 
@@ -158,12 +158,12 @@
                 metadatas[0].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
                 metadatas[0].ThreeDimensional.Should().BeTrue();
 
-                metadatas[0].Should().NotBeNull();
-                metadatas[0].MediaType.Should().BeNull();
-                metadatas[0].MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
-                metadatas[0].Audio.Should().Be(TraktMediaAudio.AAC);
-                metadatas[0].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
-                metadatas[0].ThreeDimensional.Should().BeTrue();
+                metadatas[1].Should().NotBeNull();
+                metadatas[1].MediaType.Should().BeNull();
+                metadatas[1].MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+                metadatas[1].Audio.Should().Be(TraktMediaAudio.AAC);
+                metadatas[1].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+                metadatas[1].ThreeDimensional.Should().BeTrue();
             }
         }
 
@@ -186,12 +186,12 @@
                 metadatas[0].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
                 metadatas[0].ThreeDimensional.Should().BeTrue();
 
-                metadatas[0].Should().NotBeNull();
-                metadatas[0].MediaType.Should().BeNull();
-                metadatas[0].MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
-                metadatas[0].Audio.Should().Be(TraktMediaAudio.AAC);
-                metadatas[0].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
-                metadatas[0].ThreeDimensional.Should().BeTrue();
+                metadatas[1].Should().NotBeNull();
+                metadatas[1].MediaType.Should().BeNull();
+                metadatas[1].MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+                metadatas[1].Audio.Should().Be(TraktMediaAudio.AAC);
+                metadatas[1].AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+                metadatas[1].ThreeDimensional.Should().BeTrue();
             }
         }
 
