@@ -501,6 +501,10 @@
     <Compile Include="Objects\Basic\Json\Reader\SearchResultObjectJsonReader\SearchResultObjectJsonReader_Show_Stream_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\SearchResultObjectJsonReader\SearchResultObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\SearchResultObjectJsonReader\SearchResultObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\SharingArrayJsonReader\SharingArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\SharingArrayJsonReader\SharingArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\SharingArrayJsonReader\SharingArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\SharingArrayJsonReader\SharingArrayJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\Json\Reader\SharingObjectJsonReader\SharingObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\SharingObjectJsonReader\SharingObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\SharingObjectJsonReader\SharingObjectJsonReader_Stream_Tests.cs" />
@@ -1549,7 +1553,6 @@
   <ItemGroup>
     <Folder Include="Objects\Basic\Json\Reader\CrewArrayJsonReader\" />
     <Folder Include="Objects\Basic\Json\Reader\SearchResultArrayJsonReader\" />
-    <Folder Include="Objects\Basic\Json\Reader\SharingArrayJsonReader\" />
     <Folder Include="Objects\Basic\Json\Reader\StatisticsArrayJsonReader\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
