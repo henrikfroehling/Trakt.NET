@@ -474,6 +474,10 @@
     <Compile Include="Objects\Basic\Json\Reader\NetworkObjectJsonReader\NetworkObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\NetworkObjectJsonReader\NetworkObjectJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\NetworkObjectJsonReader\NetworkObjectJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\RatingArrayJsonReader\RatingArrayJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\RatingArrayJsonReader\RatingArrayJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\RatingArrayJsonReader\RatingArrayJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\RatingArrayJsonReader\RatingArrayJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\Json\Reader\RatingObjectJsonReader\RatingObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\RatingObjectJsonReader\RatingObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\RatingObjectJsonReader\RatingObjectJsonReader_Stream_Tests.cs" />
@@ -1544,7 +1548,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Objects\Basic\Json\Reader\CrewArrayJsonReader\" />
-    <Folder Include="Objects\Basic\Json\Reader\RatingArrayJsonReader\" />
     <Folder Include="Objects\Basic\Json\Reader\SearchResultArrayJsonReader\" />
     <Folder Include="Objects\Basic\Json\Reader\SharingArrayJsonReader\" />
     <Folder Include="Objects\Basic\Json\Reader\StatisticsArrayJsonReader\" />
