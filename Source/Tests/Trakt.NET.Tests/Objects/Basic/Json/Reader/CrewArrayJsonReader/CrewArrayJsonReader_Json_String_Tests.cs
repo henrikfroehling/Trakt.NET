@@ -55,7 +55,7 @@
             crews[0].Editing.Should().BeNull();
 
             crews[1].Production.Should().NotBeNull().And.HaveCount(1);
-            productionCrew = crews[0].Production.ToArray();
+            productionCrew = crews[1].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -115,7 +115,7 @@
             crews[0].Editing.Should().BeNull();
 
             crews[1].Production.Should().NotBeNull().And.HaveCount(1);
-            productionCrew = crews[0].Production.ToArray();
+            productionCrew = crews[1].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -161,7 +161,7 @@
             crews[0].Editing.Should().BeNull();
 
             crews[1].Production.Should().NotBeNull().And.HaveCount(1);
-            productionCrew = crews[0].Production.ToArray();
+            productionCrew = crews[1].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -221,7 +221,7 @@
             crews[0].Editing.Should().BeNull();
 
             crews[1].Production.Should().NotBeNull().And.HaveCount(1);
-            productionCrew = crews[0].Production.ToArray();
+            productionCrew = crews[1].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
@@ -281,7 +281,7 @@
             crews[0].Editing.Should().BeNull();
 
             crews[1].Production.Should().NotBeNull().And.HaveCount(1);
-            productionCrew = crews[0].Production.ToArray();
+            productionCrew = crews[1].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().BeNull();
@@ -341,7 +341,7 @@
             crews[0].Editing.Should().BeNull();
 
             crews[1].Production.Should().NotBeNull().And.HaveCount(1);
-            productionCrew = crews[0].Production.ToArray();
+            productionCrew = crews[1].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().BeNull();
