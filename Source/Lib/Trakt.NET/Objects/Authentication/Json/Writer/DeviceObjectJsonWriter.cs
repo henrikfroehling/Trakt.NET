@@ -33,11 +33,17 @@
                 await jsonWriter.WriteValueAsync(obj.VerificationUrl, cancellationToken).ConfigureAwait(false);
             }
 
-            await jsonWriter.WritePropertyNameAsync(JsonProperties.DEVICE_PROPERTY_NAME_EXPIRES_IN, cancellationToken).ConfigureAwait(false);
-            await jsonWriter.WriteValueAsync(obj.ExpiresInSeconds, cancellationToken).ConfigureAwait(false);
+            if (obj.ExpiresInSeconds > 0)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.DEVICE_PROPERTY_NAME_EXPIRES_IN, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.ExpiresInSeconds, cancellationToken).ConfigureAwait(false);
+            }
 
-            await jsonWriter.WritePropertyNameAsync(JsonProperties.DEVICE_PROPERTY_NAME_INTERVAL, cancellationToken).ConfigureAwait(false);
-            await jsonWriter.WriteValueAsync(obj.IntervalInSeconds, cancellationToken).ConfigureAwait(false);
+            if (obj.IntervalInSeconds > 0)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.DEVICE_PROPERTY_NAME_INTERVAL, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.IntervalInSeconds, cancellationToken).ConfigureAwait(false);
+            }
 
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }

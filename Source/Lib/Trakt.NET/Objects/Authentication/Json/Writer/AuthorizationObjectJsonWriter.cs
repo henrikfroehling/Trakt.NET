@@ -35,8 +35,11 @@
                 await jsonWriter.WriteValueAsync(obj.Scope.ObjectName, cancellationToken).ConfigureAwait(false);
             }
 
-            await jsonWriter.WritePropertyNameAsync(JsonProperties.AUTHORIZATION_PROPERTY_NAME_EXPIRES_IN, cancellationToken).ConfigureAwait(false);
-            await jsonWriter.WriteValueAsync(obj.ExpiresInSeconds, cancellationToken).ConfigureAwait(false);
+            if (obj.ExpiresInSeconds > 0)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.AUTHORIZATION_PROPERTY_NAME_EXPIRES_IN, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.ExpiresInSeconds, cancellationToken).ConfigureAwait(false);
+            }
 
             if (obj.TokenType != null)
             {
@@ -44,8 +47,11 @@
                 await jsonWriter.WriteValueAsync(obj.TokenType.ObjectName, cancellationToken).ConfigureAwait(false);
             }
 
-            await jsonWriter.WritePropertyNameAsync(JsonProperties.AUTHORIZATION_PROPERTY_NAME_CREATED_AT, cancellationToken).ConfigureAwait(false);
-            await jsonWriter.WriteValueAsync(obj.CreatedAtTimestamp, cancellationToken).ConfigureAwait(false);
+            if (obj.CreatedAtTimestamp > 0)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.AUTHORIZATION_PROPERTY_NAME_CREATED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.CreatedAtTimestamp, cancellationToken).ConfigureAwait(false);
+            }
 
             if (CompleteSerialization)
             {
