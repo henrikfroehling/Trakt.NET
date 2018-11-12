@@ -38,7 +38,7 @@
                 traktCrews.Should().NotBeNull();
                 ITraktCrew[] crews = traktCrews.ToArray();
 
-                crews[0].Production.Should().NotBeNull().And.HaveCount(2);
+                crews[0].Production.Should().NotBeNull().And.HaveCount(1);
                 ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
@@ -63,7 +63,7 @@
                 crews[0].VisualEffects.Should().BeNull();
                 crews[0].Editing.Should().BeNull();
 
-                crews[1].Production.Should().NotBeNull().And.HaveCount(2);
+                crews[1].Production.Should().NotBeNull().And.HaveCount(1);
                 productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
@@ -102,7 +102,7 @@
                 traktCrews.Should().NotBeNull();
                 ITraktCrew[] crews = traktCrews.ToArray();
 
-                crews[0].Production.Should().NotBeNull().And.HaveCount(2);
+                crews[0].Production.Should().NotBeNull().And.HaveCount(1);
                 ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
@@ -127,7 +127,7 @@
                 crews[0].VisualEffects.Should().BeNull();
                 crews[0].Editing.Should().BeNull();
 
-                crews[1].Production.Should().NotBeNull().And.HaveCount(2);
+                crews[1].Production.Should().NotBeNull().And.HaveCount(1);
                 productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
@@ -159,7 +159,7 @@
                 traktCrews.Should().NotBeNull();
                 ITraktCrew[] crews = traktCrews.ToArray();
 
-                crews[0].Production.Should().NotBeNull().And.HaveCount(2);
+                crews[0].Production.Should().NotBeNull().And.HaveCount(1);
                 ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
@@ -177,7 +177,7 @@
                 crews[0].VisualEffects.Should().BeNull();
                 crews[0].Editing.Should().BeNull();
 
-                crews[1].Production.Should().NotBeNull().And.HaveCount(2);
+                crews[1].Production.Should().NotBeNull().And.HaveCount(1);
                 productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
@@ -216,7 +216,7 @@
                 traktCrews.Should().NotBeNull();
                 ITraktCrew[] crews = traktCrews.ToArray();
 
-                crews[0].Production.Should().NotBeNull().And.HaveCount(2);
+                crews[0].Production.Should().NotBeNull().And.HaveCount(1);
                 ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
@@ -241,7 +241,7 @@
                 crews[0].VisualEffects.Should().BeNull();
                 crews[0].Editing.Should().BeNull();
 
-                crews[1].Production.Should().NotBeNull().And.HaveCount(2);
+                crews[1].Production.Should().NotBeNull().And.HaveCount(1);
                 productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
@@ -280,7 +280,7 @@
                 traktCrews.Should().NotBeNull();
                 ITraktCrew[] crews = traktCrews.ToArray();
 
-                crews[0].Production.Should().NotBeNull().And.HaveCount(2);
+                crews[0].Production.Should().NotBeNull().And.HaveCount(1);
                 ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
@@ -305,7 +305,7 @@
                 crews[0].VisualEffects.Should().BeNull();
                 crews[0].Editing.Should().BeNull();
 
-                crews[1].Production.Should().NotBeNull().And.HaveCount(2);
+                crews[1].Production.Should().NotBeNull().And.HaveCount(1);
                 productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
@@ -344,7 +344,7 @@
                 traktCrews.Should().NotBeNull();
                 ITraktCrew[] crews = traktCrews.ToArray();
 
-                crews[0].Production.Should().NotBeNull().And.HaveCount(2);
+                crews[0].Production.Should().NotBeNull().And.HaveCount(1);
                 ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
@@ -369,7 +369,7 @@
                 crews[0].VisualEffects.Should().BeNull();
                 crews[0].Editing.Should().BeNull();
 
-                crews[1].Production.Should().NotBeNull().And.HaveCount(2);
+                crews[1].Production.Should().NotBeNull().And.HaveCount(1);
                 productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
