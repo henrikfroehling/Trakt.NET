@@ -47,7 +47,7 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 
 | Branch | Status | Description |
 |---|---|---|
-| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status branch develop](https://ci.appveyor.com/api/projects/status/3moho8dlsdjiyuxp/branch/develop?svg=true&passingText=develop%20-%20passing&pendingText=develop%20-%20pending&failingText=develop%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/trakt-net/branch/develop) | This branch tracks the current and possibly unstable development. |
+| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI?branchName=develop)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=4) | This branch tracks the current and possibly unstable development. |
 
 ### Getting Started
 
@@ -65,7 +65,6 @@ You can also use one of the following NuGet Package Sources, to always get the l
 
 | NuGet-Feed | Package Source Address | Description |
 |---|---|---|
-| AppVeyor | https://ci.appveyor.com/nuget/trakt-net | All CI/CD build packages. |
 | MyGet | https://www.myget.org/F/trakt-net/api/v3/index.json | All CI/CD build packages. |
 
 ### Basic Usage
