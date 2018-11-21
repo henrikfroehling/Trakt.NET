@@ -336,7 +336,8 @@
                 Show = show != null
                     ? new TraktShow
                       {
-                          Title = show.Title
+                          Title = show.Title,
+                          Ids = show.Ids
                       }
                     : null,
                 Progress = progress
