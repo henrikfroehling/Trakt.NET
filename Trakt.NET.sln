@@ -9,7 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F1B29462
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{10581989-9112-4BA6-8C4F-F2A2F1B8B1B5}"
 	ProjectSection(SolutionItems) = preProject
-		appveyor.yml = appveyor.yml
 		AUTHORS.md = AUTHORS.md
 		Changelog.md = Changelog.md
 		coding_style.md = coding_style.md
