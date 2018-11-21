@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Trakt.NET</id>
-        <version>1.0.0</version>
+        <version>1.0.0$versionSuffix$</version>
         <title>Trakt.NET</title>
         <authors>Henrik Fröhling</authors>
         <owners>henrikfroehling</owners>
@@ -29,8 +29,8 @@ Features
         </dependencies>
     </metadata>
     <files>
-        <file src="..\..\..\Build\Lib\$buildConfig$\netstandard1.1\Trakt.NET.dll" target="lib\netstandard1.1\Trakt.NET.dll" />
-        <file src="..\..\..\Build\Lib\$buildConfig$\netstandard1.1\Trakt.NET.pdb" target="lib\netstandard1.1\Trakt.NET.pdb" />
-        <file src="..\..\..\Build\Lib\$buildConfig$\netstandard1.1\Trakt.NET.xml" target="lib\netstandard1.1\Trakt.NET.xml" />
+        <file src="Trakt.NET.dll" target="lib\netstandard1.1\Trakt.NET.dll" />
+        <file src="Trakt.NET.pdb" target="lib\netstandard1.1\Trakt.NET.pdb" />
+        <file src="Trakt.NET.xml" target="lib\netstandard1.1\Trakt.NET.xml" />
     </files>
 </package>
