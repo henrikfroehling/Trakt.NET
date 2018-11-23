@@ -5,3 +5,4 @@ Trakt.NET is primarily authored by:
 Contributors include:
 
 * [Romans Pokrovskis](https://github.com/Amoenus) [(romans.pokrovskis@capita.co.uk)](mailto:romans.pokrovskis@capita.co.uk)
+* [MCs88](https://github.com/MCs88) [(mezei.csaba@gmail.com)](mailto:mezei.csaba@gmail.com)
