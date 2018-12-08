@@ -361,7 +361,7 @@
 
                 searchResults[0].Should().NotBeNull();
                 searchResults[0].Type.Should().Be(TraktSearchResultType.List);
-                searchResults[0].Score.Should().BeNull();
+                searchResults[0].Score.Should().Be(46.29501f);
                 searchResults[0].List.Should().NotBeNull();
                 searchResults[0].List.Name.Should().Be("Star Wars in machete order");
                 searchResults[0].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
@@ -394,7 +394,7 @@
 
                 searchResults[1].Should().NotBeNull();
                 searchResults[1].Type.Should().Be(TraktSearchResultType.List);
-                searchResults[1].Score.Should().Be(46.29501f);
+                searchResults[1].Score.Should().BeNull();
                 searchResults[1].List.Should().NotBeNull();
                 searchResults[1].List.Name.Should().Be("Star Wars in machete order");
                 searchResults[1].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
