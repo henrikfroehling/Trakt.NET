@@ -459,13 +459,13 @@
         private void EnsureMoviesListExists()
         {
             if (_listItemsPost.Movies == null)
-                _listItemsPost.Movies = new List<TraktUserCustomListItemsPostMovie>();
+                _listItemsPost.Movies = new List<ITraktUserCustomListItemsPostMovie>();
         }
 
         private void EnsureShowsListExists()
         {
             if (_listItemsPost.Shows == null)
-                _listItemsPost.Shows = new List<TraktUserCustomListItemsPostShow>();
+                _listItemsPost.Shows = new List<ITraktUserCustomListItemsPostShow>();
         }
 
         private void EnsurePeopleListExists()

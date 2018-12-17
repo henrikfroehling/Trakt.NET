@@ -317,7 +317,7 @@
 
                     if (season.Episodes?.Count() > 0)
                     {
-                        var showEpisodes = new List<TraktSyncWatchlistPostShowEpisode>();
+                        var showEpisodes = new List<ITraktSyncWatchlistPostShowEpisode>();
 
                         foreach (PostEpisode episode in season.Episodes)
                         {
