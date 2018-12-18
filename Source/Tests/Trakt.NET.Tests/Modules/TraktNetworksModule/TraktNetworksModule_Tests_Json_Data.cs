@@ -5,10 +5,10 @@
         private const string GET_NETWORKS_JSON =
             @"[
                 {
-                    ""network"": ""ABC(US)""
+                    ""name"": ""ABC(US)""
                 },
                 {
-                    ""network"": ""The CW""
+                    ""name"": ""The CW""
                 }
               ]";
     }

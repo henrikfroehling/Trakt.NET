@@ -15,7 +15,7 @@
         public void Test_NetworkObjectJsonWriter_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new NetworkObjectJsonWriter();
-            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(ITraktNetwork));
+            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
             action.Should().Throw<ArgumentNullException>();
         }
 
@@ -24,12 +24,12 @@
         {
             ITraktNetwork traktNetwork = new TraktNetwork
             {
-                Network = "network"
+                Name = "network"
             };
 
             var traktJsonWriter = new NetworkObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktNetwork);
-            json.Should().Be(@"{""network"":""network""}");
+            json.Should().Be(@"{""name"":""network""}");
         }
     }
 }
