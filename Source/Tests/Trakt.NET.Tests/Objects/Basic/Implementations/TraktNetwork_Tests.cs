@@ -15,7 +15,7 @@
         {
             var traktNetwork = new TraktNetwork();
 
-            traktNetwork.Network.Should().BeNull();
+            traktNetwork.Name.Should().BeNull();
         }
 
         [Fact]
@@ -25,12 +25,12 @@
             var traktNetwork = await jsonReader.ReadObjectAsync(JSON) as TraktNetwork;
 
             traktNetwork.Should().NotBeNull();
-            traktNetwork.Network.Should().Be("ABC(US)");
+            traktNetwork.Name.Should().Be("ABC(US)");
         }
 
         private const string JSON =
             @"{
-                ""network"": ""ABC(US)""
+                ""name"": ""ABC(US)""
               }";
     }
 }
