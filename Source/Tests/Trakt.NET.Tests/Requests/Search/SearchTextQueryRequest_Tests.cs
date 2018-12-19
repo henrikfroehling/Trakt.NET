@@ -52,12 +52,6 @@
 
             Action act = () => request.Validate();
             act.Should().Throw<ArgumentException>();
-
-            // query is empty
-            request = new SearchTextQueryRequest { Query = string.Empty, ResultTypes = TraktSearchResultType.Episode };
-
-            act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
         }
 
         [Theory, ClassData(typeof(SearchTextQueryRequest_TestData))]

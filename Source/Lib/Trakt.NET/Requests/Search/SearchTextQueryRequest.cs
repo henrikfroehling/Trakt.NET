@@ -47,9 +47,6 @@
 
             if (Query == null)
                 throw new ArgumentNullException(nameof(Query));
-
-            if (Query == string.Empty)
-                throw new ArgumentException("query must not be empty", nameof(Query));
         }
     }
 }
