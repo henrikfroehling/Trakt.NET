@@ -14,7 +14,7 @@
 
         internal string Query { get; set; }
 
-        public override string UriTemplate => "search/{type}{?query,fields,years,genres,languages,countries,runtimes,ratings,extended,page,limit}";
+        public override string UriTemplate => "search/{type}{?query,fields,years,genres,languages,countries,runtimes,ratings,certifications,networks,status,extended,page,limit}";
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
