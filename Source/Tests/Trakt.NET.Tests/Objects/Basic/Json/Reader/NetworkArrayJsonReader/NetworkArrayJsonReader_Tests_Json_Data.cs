@@ -7,20 +7,20 @@
         private const string JSON_COMPLETE =
             @"[
                 {
-                    ""network"": ""ABC(US)""
+                    ""name"": ""ABC(US)""
                 },
                 {
-                    ""network"": ""The CW""
+                    ""name"": ""The CW""
                 }
               ]";
 
         private const string JSON_NOT_VALID =
             @"[
                 {
-                    ""network"": ""ABC(US)""
+                    ""name"": ""ABC(US)""
                 },
                 {
-                    ""nw"": ""The CW""
+                    ""na"": ""The CW""
                 }
               ]";
     }

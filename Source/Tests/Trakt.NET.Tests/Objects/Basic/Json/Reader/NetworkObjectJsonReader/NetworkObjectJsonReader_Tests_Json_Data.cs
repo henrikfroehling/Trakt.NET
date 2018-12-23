@@ -4,12 +4,12 @@
     {
         private const string JSON_COMPLETE =
             @"{
-                ""network"": ""ABC(US)""
+                ""name"": ""ABC(US)""
               }";
 
         private const string JSON_NOT_VALID =
             @"{
-                ""nw"": ""ABC(US)""
+                ""na"": ""ABC(US)""
               }";
     }
 }

@@ -26,14 +26,14 @@
         {
             ITraktNetwork traktNetwork = new TraktNetwork
             {
-                Network = "network"
+                Name = "network"
             };
 
             using (var stringWriter = new StringWriter())
             {
                 var traktJsonWriter = new NetworkObjectJsonWriter();
                 string json = await traktJsonWriter.WriteObjectAsync(stringWriter, traktNetwork);
-                json.Should().Be(@"{""network"":""network""}");
+                json.Should().Be(@"{""name"":""network""}");
             }
         }
     }

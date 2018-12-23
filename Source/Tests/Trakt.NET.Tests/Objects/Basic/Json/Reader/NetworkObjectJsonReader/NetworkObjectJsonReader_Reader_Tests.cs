@@ -22,7 +22,7 @@
                 var traktNetwork = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktNetwork.Should().NotBeNull();
-                traktNetwork.Network.Should().Be("ABC(US)");
+                traktNetwork.Name.Should().Be("ABC(US)");
             }
         }
 
@@ -37,7 +37,7 @@
                 var traktNetwork = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktNetwork.Should().NotBeNull();
-                traktNetwork.Network.Should().BeNull();
+                traktNetwork.Name.Should().BeNull();
             }
         }
 

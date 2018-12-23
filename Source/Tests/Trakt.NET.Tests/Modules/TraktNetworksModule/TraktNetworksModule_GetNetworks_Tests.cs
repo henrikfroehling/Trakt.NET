@@ -33,10 +33,10 @@
             ITraktNetwork[] networks = response.ToArray();
 
             networks[0].Should().NotBeNull();
-            networks[0].Network.Should().Be("ABC(US)");
+            networks[0].Name.Should().Be("ABC(US)");
 
             networks[1].Should().NotBeNull();
-            networks[1].Network.Should().Be("The CW");
+            networks[1].Name.Should().Be("The CW");
         }
 
         [Fact]

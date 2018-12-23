@@ -16,10 +16,6 @@
 
     internal sealed class RequestHandler : IRequestHandler
     {
-        // Don't mark this field as readonly,
-        // as it is manually set in unit tests
-        internal static HttpClient s_httpClient;
-
         private readonly TraktClient _client;
         private readonly RequestMessageBuilder _requestMessageBuilder;
         private static IRequestHandler s_requestHandler;
