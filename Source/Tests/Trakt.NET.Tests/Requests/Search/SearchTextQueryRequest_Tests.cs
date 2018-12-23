@@ -25,7 +25,7 @@
         public void Test_SearchTextQueryRequest_Has_Valid_UriTemplate()
         {
             var request = new SearchTextQueryRequest();
-            request.UriTemplate.Should().Be("search/{type}{?query,fields,years,genres,languages,countries,runtimes,ratings,extended,page,limit}");
+            request.UriTemplate.Should().Be("search/{type}{?query,fields,years,genres,languages,countries,runtimes,ratings,certifications,networks,status,extended,page,limit}");
         }
 
         [Fact]
