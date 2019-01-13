@@ -2253,13 +2253,10 @@
             TraktClient client = TestUtility.GetMockClient(GetTextQueryUri,
                                                            SEARCH_TEXT_QUERY_RESULTS_JSON, 1, 10, 1, TEXT_QUERY_ITEM_COUNT);
 
-            Func<Task<TraktPagedResponse<ITraktSearchResult>>> act = () => client.Search.GetTextQueryResultsAsync(default(TraktSearchResultType), null);
+            Func<Task<TraktPagedResponse<ITraktSearchResult>>> act = () => client.Search.GetTextQueryResultsAsync(default, null);
             act.Should().Throw<ArgumentNullException>();
 
             act = () => client.Search.GetTextQueryResultsAsync(TEXT_QUERY_TYPE_MOVIE, null);
-            act.Should().Throw<ArgumentException>();
-
-            act = () => client.Search.GetTextQueryResultsAsync(TEXT_QUERY_TYPE_MOVIE, string.Empty);
             act.Should().Throw<ArgumentException>();
 
             act = () => client.Search.GetTextQueryResultsAsync(TraktSearchResultType.Unspecified, TEXT_QUERY);

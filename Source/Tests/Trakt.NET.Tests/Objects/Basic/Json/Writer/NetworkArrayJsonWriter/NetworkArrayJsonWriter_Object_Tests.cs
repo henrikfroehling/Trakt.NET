@@ -37,13 +37,13 @@
             {
                 new TraktNetwork
                 {
-                    Network = "network 1"
+                    Name = "network 1"
                 }
             };
 
             var traktJsonWriter = new ArrayJsonWriter<ITraktNetwork>();
             string json = await traktJsonWriter.WriteArrayAsync(traktNetworks);
-            json.Should().Be(@"[{""network"":""network 1""}]");
+            json.Should().Be(@"[{""name"":""network 1""}]");
         }
 
         [Fact]
@@ -53,23 +53,23 @@
             {
                 new TraktNetwork
                 {
-                    Network = "network 1"
+                    Name = "network 1"
                 },
                 new TraktNetwork
                 {
-                    Network = "network 2"
+                    Name = "network 2"
                 },
                 new TraktNetwork
                 {
-                    Network = "network 3"
+                    Name = "network 3"
                 }
             };
 
             var traktJsonWriter = new ArrayJsonWriter<ITraktNetwork>();
             string json = await traktJsonWriter.WriteArrayAsync(traktNetworks);
-            json.Should().Be(@"[{""network"":""network 1""}," +
-                             @"{""network"":""network 2""}," +
-                             @"{""network"":""network 3""}]");
+            json.Should().Be(@"[{""name"":""network 1""}," +
+                             @"{""name"":""network 2""}," +
+                             @"{""name"":""network 3""}]");
         }
     }
 }

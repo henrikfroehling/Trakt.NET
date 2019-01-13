@@ -25,7 +25,7 @@
         public void Test_SearchTextQueryRequest_Has_Valid_UriTemplate()
         {
             var request = new SearchTextQueryRequest();
-            request.UriTemplate.Should().Be("search/{type}{?query,fields,years,genres,languages,countries,runtimes,ratings,extended,page,limit}");
+            request.UriTemplate.Should().Be("search/{type}{?query,fields,years,genres,languages,countries,runtimes,ratings,certifications,networks,status,extended,page,limit}");
         }
 
         [Fact]
@@ -51,12 +51,6 @@
             var request = new SearchTextQueryRequest { Query = "query", ResultTypes = TraktSearchResultType.Unspecified };
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
-
-            // query is empty
-            request = new SearchTextQueryRequest { Query = string.Empty, ResultTypes = TraktSearchResultType.Episode };
-
-            act = () => request.Validate();
             act.Should().Throw<ArgumentException>();
         }
 

@@ -646,7 +646,6 @@
         /// <param name="usernameOrSlug">The username or slug of the user, for which items should be added to a custom list.</param>
         /// <param name="listIdOrSlug">The id or slug of the custom list, to which items should be added.</param>
         /// <param name="listItemsPost">An <see cref="ITraktUserCustomListItemsPost" /> instance containing all shows, seasons, episodes, movies and people, which should be added.</param>
-        /// <param name="listItemType">Determines, which type of items should be added. See also <seealso cref="TraktListItemType" />.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>An <see cref="ITraktUserCustomListItemsPostResponse" /> instance, which contains information about which items were added, existing and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
@@ -658,7 +657,6 @@
         /// </exception>
         public Task<TraktResponse<ITraktUserCustomListItemsPostResponse>> AddCustomListItemsAsync(string usernameOrSlug, string listIdOrSlug,
                                                                                                   ITraktUserCustomListItemsPost listItemsPost,
-                                                                                                  TraktListItemType listItemType = null,
                                                                                                   CancellationToken cancellationToken = default)
         {
             ValidateCustomListItemsPost(listItemsPost);
@@ -668,7 +666,6 @@
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
-                Type = listItemType,
                 RequestBody = listItemsPost
             },
             cancellationToken);

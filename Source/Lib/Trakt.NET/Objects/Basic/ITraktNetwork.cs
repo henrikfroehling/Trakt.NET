@@ -2,6 +2,6 @@
 {
     public interface ITraktNetwork
     {
-        string Network { get; set; }
+        string Name { get; set; }
     }
 }

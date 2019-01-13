@@ -4,7 +4,6 @@
     using System;
     using System.Collections.Generic;
     using Traits;
-    using TraktNet.Enums;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Users.OAuth;
     using Xunit;
@@ -30,13 +29,12 @@
         public void Test_UserCustomListItemsAddRequest_Has_Valid_UriTemplate()
         {
             var request = new UserCustomListItemsAddRequest();
-            request.UriTemplate.Should().Be("users/{username}/lists/{id}/items{/type}");
+            request.UriTemplate.Should().Be("users/{username}/lists/{id}/items");
         }
 
         [Fact]
         public void Test_UserCustomListItemsAddRequest_Returns_Valid_UriPathParameters()
         {
-            // without type
             var request = new UserCustomListItemsAddRequest { Username = "username", Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
@@ -45,19 +43,6 @@
                                                    {
                                                        ["username"] = "username",
                                                        ["id"] = "123"
-                                                   });
-
-            // with type
-            var type = TraktListItemType.Episode;
-            request = new UserCustomListItemsAddRequest { Username = "username", Id = "123", Type = type };
-
-            request.GetUriPathParameters().Should().NotBeNull()
-                                                   .And.HaveCount(3)
-                                                   .And.Contain(new Dictionary<string, object>
-                                                   {
-                                                       ["username"] = "username",
-                                                       ["id"] = "123",
-                                                       ["type"] = type.UriName
                                                    });
         }
 

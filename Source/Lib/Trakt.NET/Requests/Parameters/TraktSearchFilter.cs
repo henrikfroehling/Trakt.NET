@@ -3,6 +3,7 @@
     using Enums;
     using Modules;
     using System;
+    using System.Collections.Generic;
     using System.Threading;
     using Utils;
 
@@ -22,7 +23,10 @@
         /// <param name="countries">An optional array of two letter country codes.</param>
         /// <param name="runtimes">An optional <see cref="Range{T}" /> instance for minutes.</param>
         /// <param name="ratings">An optional <see cref="Range{T}" /> instance for ratings.</param>
-        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// <param name="certifications">An optional array of content certificiations.</param>
+        /// <param name="networks">An optional aarray of network names.</param>
+        /// <param name="states">An optional aarray of show states. See also <seealso cref="TraktShowStatus" />.</param>
+        /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown, if the given <paramref name="startYear" /> value does not have four digits.
         /// Thrown, if the given <paramref name="endYear" /> value does not have four digits.
         /// Thrown, if the begin value of the given runtimes range is below zero or if its end value is below zero or
@@ -33,8 +37,35 @@
         /// Thrown, if the given country codes array contains a country code, which has more or less than two letters.
         /// </exception>
         public TraktSearchFilter(int? startYear = null, int? endYear = null, string[] genres = null, string[] languages = null,
-                                 string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null)
-            : base(startYear, endYear, genres, languages, countries, runtimes, ratings) { }
+                                 string[] countries = null, Range<int>? runtimes = null, Range<int>? ratings = null,
+                                 string[] certifications = null, string[] networks = null, TraktShowStatus[] states = null)
+            : base(startYear, endYear, genres, languages, countries, runtimes, ratings)
+        {
+            WithCertifications(null, certifications);
+            WithNetworks(null, networks);
+            WithStates(TraktShowStatus.Unspecified, states);
+        }
+
+        /// <summary>Returns the content certifications parameter value.</summary>
+        public string[] Certifications { get; private set; }
+
+        /// <summary>Returns, whether the content certifications parameter is set.</summary>
+        public bool HasCertificationsSet => Certifications != null && Certifications.Length > 0;
+
+        /// <summary>Returns the network names parameter value.</summary>
+        public string[] Networks { get; private set; }
+
+        /// <summary>Returns, whether the network names parameter is set.</summary>
+        public bool HasNetworksSet => Networks != null && Networks.Length > 0;
+
+        /// <summary>Returns the show states parameter value.</summary>
+        public TraktShowStatus[] States { get; private set; }
+
+        /// <summary>Returns, whether the show states parameter is set.</summary>
+        public bool HasStatesSet => States != null && States.Length > 0;
+
+        /// <summary>Returns, whether any parameters are set.</summary>
+        public override bool HasValues => base.HasValues || HasCertificationsSet || HasNetworksSet || HasStatesSet;
 
         /// <summary>Sets the start year for the years parameter value.</summary>
         /// <param name="startYear">A four digit year.</param>
@@ -123,7 +154,7 @@
         /// <param name="language">A two letter language code.</param>
         /// <param name="languages">An optional array of two letter language codes.</param>
         /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown, if one the given language codes has more or less than two letters.
         /// </exception>
         public new TraktSearchFilter AddLanguages(string language, params string[] languages)
@@ -136,7 +167,7 @@
         /// <param name="language">A two letter language code.</param>
         /// <param name="languages">An optional array of two letter language codes.</param>
         /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown, if one the given language codes has more or less than two letters.
         /// </exception>
         public new TraktSearchFilter WithLanguages(string language, params string[] languages)
@@ -157,7 +188,7 @@
         /// <param name="country">A two letter country code.</param>
         /// <param name="countries">An optional array of two letter country codes.</param>
         /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown, if one the given country codes has more or less than two letters.
         /// </exception>
         public new TraktSearchFilter AddCountries(string country, params string[] countries)
@@ -170,7 +201,7 @@
         /// <param name="country">A two letter country code.</param>
         /// <param name="countries">An optional array of two letter country codes.</param>
         /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown, if one the given country codes has more or less than two letters.
         /// </exception>
         public new TraktSearchFilter WithCountries(string country, params string[] countries)
@@ -191,7 +222,7 @@
         /// <param name="begin">The begin value of the runtimes range.</param>
         /// <param name="end">The end value of the runtimes range.</param>
         /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown, if the given begin value is below zero or if the given end value is below zero or
         /// if the given end value is below the given begin value.
         /// </exception>
@@ -213,7 +244,7 @@
         /// <param name="begin">The begin value of ratings range.</param>
         /// <param name="end">The end value of the ratings range.</param>
         /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown, if the given begin value is below zero or if the given end value is below zero or
         /// if the given end value is below the given begin value or if the given end value is above 100.
         /// </exception>
@@ -231,11 +262,192 @@
             return this;
         }
 
+        /// <summary>Adds multiple content certifications to the already existing content certifications.</summary>
+        /// <param name="certification">A content certification.</param>
+        /// <param name="certifications">An optional array of content certifications.</param>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public TraktSearchFilter AddCertifications(string certification, params string[] certifications)
+            => AddCertifications(true, certification, certifications);
+
+        /// <summary>Sets the content certifications parameter and overwrites already existing ones with given content certifications.</summary>
+        /// <param name="certification">A content certification.</param>
+        /// <param name="certifications">An optional array of content certifications.</param>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public TraktSearchFilter WithCertifications(string certification, params string[] certifications)
+            => AddCertifications(false, certification, certifications);
+
+        /// <summary>Deletes the current certification values.</summary>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public TraktSearchFilter ClearCertifications()
+        {
+            Certifications = null;
+            return this;
+        }
+
+        /// <summary>Adds multiple network names to the already existing network names.</summary>
+        /// <param name="network">A network name.</param>
+        /// <param name="networks">An optional array of network names.</param>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public TraktSearchFilter AddNetworks(string network, params string[] networks) => AddNetworks(true, network, networks);
+
+        /// <summary>Sets the network names parameter and overwrites already existing ones with given network names.</summary>
+        /// <param name="network">A network name.</param>
+        /// <param name="networks">An optional array of network names.</param>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public TraktSearchFilter WithNetworks(string network, params string[] networks) => AddNetworks(false, network, networks);
+
+        /// <summary>Deletes the current network values.</summary>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public TraktSearchFilter ClearNetworks()
+        {
+            Networks = null;
+            return this;
+        }
+
+        /// <summary>Adds multiple show states to the already existing show states.</summary>
+        /// <param name="status">A show status. See also <seealso cref="TraktShowStatus" />.</param>
+        /// <param name="states">An optional array of show states. See also <seealso cref="TraktShowStatus" />.</param>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        /// <exception cref="ArgumentException">Thrown, if one the given show states is unspecified.</exception>
+        public TraktSearchFilter AddStates(TraktShowStatus status, params TraktShowStatus[] states) => AddStates(true, status, states);
+
+        /// <summary>Sets the show states parameter and overwrites already existing ones with given show states.</summary>
+        /// <param name="status">A show status. See also <seealso cref="TraktShowStatus" />.</param>
+        /// <param name="states">An optional array of show states. See also <seealso cref="TraktShowStatus" />.</param>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        /// <exception cref="ArgumentException">Thrown, if one the given show states is unspecified.</exception>
+        public TraktSearchFilter WithStates(TraktShowStatus status, params TraktShowStatus[] states) => AddStates(false, status, states);
+
+        /// <summary>Deletes the current state values.</summary>
+        /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
+        public TraktSearchFilter ClearStates()
+        {
+            States = null;
+            return this;
+        }
+
         /// <summary>Deletes all filter parameter values.</summary>
         /// <returns>The current <see cref="TraktSearchFilter" /> instance.</returns>
         public new TraktSearchFilter Clear()
         {
             base.Clear();
+            Certifications = null;
+            Networks = null;
+            States = null;
+            return this;
+        }
+
+        /// <summary>
+        /// Creates a key-value-pair list of all set parameter-values.
+        /// Each key-value-pair consists of the parameter name as key and its value.
+        /// </summary>
+        /// <returns>A key-value-pair list of all set parameter-values.</returns>
+        public override IDictionary<string, object> GetParameters()
+        {
+            var parameters = base.GetParameters();
+
+            if (HasCertificationsSet)
+                parameters.Add("certifications", string.Join(",", Certifications));
+
+            if (HasNetworksSet)
+                parameters.Add("networks", string.Join(",", Networks));
+
+            if (HasStatesSet)
+            {
+                var statesAsString = new string[States.Length];
+
+                for (int i = 0; i < States.Length; i++)
+                    statesAsString[i] = States[i].UriName;
+
+                parameters.Add("status", string.Join(",", statesAsString));
+            }
+
+            return parameters;
+        }
+
+        private TraktSearchFilter AddCertifications(bool keepExisting, string certification, params string[] certifications)
+        {
+            if (string.IsNullOrEmpty(certification) && (certifications == null || certifications.Length <= 0))
+            {
+                if (!keepExisting)
+                    Certifications = null;
+
+                return this;
+            }
+
+            var certificationsList = new List<string>();
+
+            if (keepExisting && Certifications != null && Certifications.Length > 0)
+                certificationsList.AddRange(Certifications);
+
+            if (!string.IsNullOrEmpty(certification))
+                certificationsList.Add(certification);
+
+            if (certifications != null && certifications.Length > 0)
+                certificationsList.AddRange(certifications);
+
+            Certifications = certificationsList.ToArray();
+
+            return this;
+        }
+
+        private TraktSearchFilter AddNetworks(bool keepExisting, string network, params string[] networks)
+        {
+            if (string.IsNullOrEmpty(network) && (networks == null || networks.Length <= 0))
+            {
+                if (!keepExisting)
+                    Networks = null;
+
+                return this;
+            }
+
+            var networksList = new List<string>();
+
+            if (keepExisting && Networks != null && Networks.Length > 0)
+                networksList.AddRange(Networks);
+
+            if (!string.IsNullOrEmpty(network))
+                networksList.Add(network);
+
+            if (networks != null && networks.Length > 0)
+                networksList.AddRange(networks);
+
+            Networks = networksList.ToArray();
+
+            return this;
+        }
+
+        private TraktSearchFilter AddStates(bool keepExisting, TraktShowStatus status, params TraktShowStatus[] states)
+        {
+            if ((status == null || status == TraktShowStatus.Unspecified) && (states == null || states.Length <= 0))
+            {
+                if (!keepExisting)
+                    States = null;
+
+                return this;
+            }
+
+            var statesList = new List<TraktShowStatus>();
+
+            if (keepExisting && States != null && States.Length > 0)
+                statesList.AddRange(States);
+
+            if (status != null && status != TraktShowStatus.Unspecified)
+                statesList.Add(status);
+
+            if (states != null && states.Length > 0)
+            {
+                for (int i = 0; i < states.Length; i++)
+                {
+                    if (states[i] == null || states[i] == TraktShowStatus.Unspecified)
+                        throw new ArgumentException("status not valid", nameof(states));
+                }
+
+                statesList.AddRange(states);
+            }
+
+            States = statesList.ToArray();
+
             return this;
         }
     }

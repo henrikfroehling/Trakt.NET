@@ -1,7 +1,6 @@
 ﻿namespace TraktNet.Requests.Users.OAuth
 {
     using Base;
-    using Enums;
     using Extensions;
     using Objects.Post.Users.CustomListItems;
     using Objects.Post.Users.CustomListItems.Responses;
@@ -12,21 +11,14 @@
     {
         internal string Username { get; set; }
 
-        internal TraktListItemType Type { get; set; }
-
         public override RequestObjectType RequestObjectType => RequestObjectType.Lists;
 
-        public override string UriTemplate => "users/{username}/lists/{id}/items{/type}";
+        public override string UriTemplate => "users/{username}/lists/{id}/items";
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = base.GetUriPathParameters();
-
             uriParams.Add("username", Username);
-
-            if (Type != null && Type != TraktListItemType.Unspecified)
-                uriParams.Add("type", Type.UriName);
-
             return uriParams;
         }
 

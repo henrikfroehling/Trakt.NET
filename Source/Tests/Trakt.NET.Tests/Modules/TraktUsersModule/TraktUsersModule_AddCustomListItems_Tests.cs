@@ -72,57 +72,6 @@
         }
 
         [Fact]
-        public async Task Test_TraktUsersModule_AddCustomListItems_With_Type()
-        {
-            string postJson = await TestUtility.SerializeObject(AddCustomListItemsPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(
-                $"{ADD_CUSTOM_LIST_ITEMS_URI}/{LIST_ITEM_TYPE.UriName}",
-                postJson, CUSTOM_LIST_ITEMS_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktUserCustomListItemsPostResponse> response =
-                await client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, AddCustomListItemsPost, LIST_ITEM_TYPE);
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull();
-
-            ITraktUserCustomListItemsPostResponse responseValue = response.Value;
-
-            responseValue.Added.Should().NotBeNull();
-            responseValue.Added.Movies.Should().Be(1);
-            responseValue.Added.Shows.Should().Be(1);
-            responseValue.Added.Seasons.Should().Be(1);
-            responseValue.Added.Episodes.Should().Be(2);
-            responseValue.Added.People.Should().Be(1);
-
-            responseValue.Existing.Should().NotBeNull();
-            responseValue.Existing.Movies.Should().Be(0);
-            responseValue.Existing.Shows.Should().Be(0);
-            responseValue.Existing.Seasons.Should().Be(0);
-            responseValue.Existing.Episodes.Should().Be(0);
-            responseValue.Existing.People.Should().Be(0);
-
-            responseValue.NotFound.Should().NotBeNull();
-            responseValue.NotFound.Movies.Should().NotBeNull().And.HaveCount(1);
-
-            ITraktPostResponseNotFoundMovie[] movies = responseValue.NotFound.Movies.ToArray();
-
-            movies[0].Ids.Should().NotBeNull();
-            movies[0].Ids.Trakt.Should().Be(0);
-            movies[0].Ids.Slug.Should().BeNullOrEmpty();
-            movies[0].Ids.Imdb.Should().Be("tt0000111");
-            movies[0].Ids.Tmdb.Should().BeNull();
-
-            responseValue.NotFound.Shows.Should().NotBeNull().And.BeEmpty();
-            responseValue.NotFound.Seasons.Should().NotBeNull().And.BeEmpty();
-            responseValue.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
-            responseValue.NotFound.People.Should().NotBeNull().And.BeEmpty();
-        }
-
-        [Fact]
         public void Test_TraktUsersModule_AddCustomListItems_Throws_NotFoundException()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(ADD_CUSTOM_LIST_ITEMS_URI, HttpStatusCode.NotFound);

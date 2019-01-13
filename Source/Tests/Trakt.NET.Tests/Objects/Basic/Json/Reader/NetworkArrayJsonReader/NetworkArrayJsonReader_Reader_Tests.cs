@@ -39,10 +39,10 @@
                 var items = traktNetworks.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Network.Should().Be("ABC(US)");
+                items[0].Name.Should().Be("ABC(US)");
 
                 items[1].Should().NotBeNull();
-                items[1].Network.Should().Be("The CW");
+                items[1].Name.Should().Be("The CW");
             }
         }
 
@@ -60,10 +60,10 @@
                 var items = traktNetworks.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Network.Should().Be("ABC(US)");
+                items[0].Name.Should().Be("ABC(US)");
 
                 items[1].Should().NotBeNull();
-                items[1].Network.Should().BeNull();
+                items[1].Name.Should().BeNull();
             }
         }
 
