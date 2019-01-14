@@ -25,7 +25,6 @@
         public async Task Test_CastAndCrewArrayJsonWriter_WriteArray_Array_Empty()
         {
             IEnumerable<ITraktCastAndCrew> traktCastAndCrews = new List<TraktCastAndCrew>();
-
             var traktJsonWriter = new ArrayJsonWriter<ITraktCastAndCrew>();
             string json = await traktJsonWriter.WriteArrayAsync(traktCastAndCrews);
             json.Should().Be("[]");

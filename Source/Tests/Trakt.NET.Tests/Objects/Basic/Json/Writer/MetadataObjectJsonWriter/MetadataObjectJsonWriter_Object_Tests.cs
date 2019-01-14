@@ -16,7 +16,7 @@
         public void Test_MetadataObjectJsonWriter_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new MetadataObjectJsonWriter();
-            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(ITraktMetadata));
+            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
             action.Should().Throw<ArgumentNullException>();
         }
 

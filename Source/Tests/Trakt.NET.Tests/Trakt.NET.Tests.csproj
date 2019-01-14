@@ -546,6 +546,12 @@
     <Compile Include="Objects\Basic\Json\Writer\CastAndCrewObjectJsonWriter\CastAndCrewObjectJsonWriter_JsonWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\CastAndCrewObjectJsonWriter\CastAndCrewObjectJsonWriter_Object_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\CastAndCrewObjectJsonWriter\CastAndCrewObjectJsonWriter_StringWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CastMemberArrayJsonWriter\CastMemberArrayJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CastMemberArrayJsonWriter\CastMemberArrayJsonWriter_Object_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CastMemberArrayJsonWriter\CastMemberArrayJsonWriter_StringWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CastMemberObjectJsonWriter\CastMemberObjectJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CastMemberObjectJsonWriter\CastMemberObjectJsonWriter_Object_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CastMemberObjectJsonWriter\CastMemberObjectJsonWriter_StringWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\CertificationArrayJsonWriter\CertificationArrayJsonWriter_JsonWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\CertificationArrayJsonWriter\CertificationArrayJsonWriter_Object_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\CertificationArrayJsonWriter\CertificationArrayJsonWriter_StringWriter_Tests.cs" />
@@ -1584,8 +1590,6 @@
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Objects\Basic\Json\Writer\CastMemberArrayJsonWriter\" />
-    <Folder Include="Objects\Basic\Json\Writer\CastMemberObjectJsonWriter\" />
     <Folder Include="Objects\Basic\Json\Writer\CertificationsArrayJsonWriter\" />
     <Folder Include="Objects\Basic\Json\Writer\CommentArrayJsonWriter\" />
     <Folder Include="Objects\Basic\Json\Writer\CommentObjectJsonWriter\" />

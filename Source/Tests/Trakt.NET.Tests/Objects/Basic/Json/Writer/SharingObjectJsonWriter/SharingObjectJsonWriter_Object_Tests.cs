@@ -15,7 +15,7 @@
         public void Test_SharingObjectJsonWriter_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new SharingObjectJsonWriter();
-            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(ITraktSharing));
+            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
             action.Should().Throw<ArgumentNullException>();
         }
 

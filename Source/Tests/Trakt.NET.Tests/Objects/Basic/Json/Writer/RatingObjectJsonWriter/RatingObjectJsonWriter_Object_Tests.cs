@@ -16,7 +16,7 @@
         public void Test_RatingObjectJsonWriter_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new RatingObjectJsonWriter();
-            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(ITraktRating));
+            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
             action.Should().Throw<ArgumentNullException>();
         }
 

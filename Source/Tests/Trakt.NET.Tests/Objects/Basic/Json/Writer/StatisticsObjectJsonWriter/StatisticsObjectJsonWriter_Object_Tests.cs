@@ -15,7 +15,7 @@
         public void Test_StatisticsObjectJsonWriter_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new StatisticsObjectJsonWriter();
-            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(ITraktStatistics));
+            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
             action.Should().Throw<ArgumentNullException>();
         }
 
