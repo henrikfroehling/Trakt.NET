@@ -5,7 +5,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using System.Text.RegularExpressions;
 
     /// <summary>
     /// See <a href="https://github.com/tavis-software/Tavis.UriTemplates/blob/master/src/UriTemplates/UriTemplate.cs" />
@@ -43,32 +42,6 @@
         internal void SetParameter(string name, object value)
         {
             _Parameters[name] = value;
-        }
-
-        internal void ClearParameter(string name)
-        {
-            _Parameters.Remove(name);
-        }
-
-        internal void SetParameter(string name, string value)
-        {
-            _Parameters[name] = value;
-        }
-
-        internal void SetParameter(string name, IEnumerable<string> value)
-        {
-            _Parameters[name] = value;
-        }
-
-        internal void SetParameter(string name, IDictionary<string, string> value)
-        {
-            _Parameters[name] = value;
-        }
-
-        internal IEnumerable<string> GetParameterNames()
-        {
-            Result result = ResolveResult();
-            return result.ParameterNames;
         }
 
         internal string Resolve()
@@ -313,124 +286,6 @@
                 default:
                     return _Operators['\0'];
             }
-        }
-
-        private const string varname = "[a-zA-Z0-9_]*";
-        private const string op = "(?<op>[+#./;?&]?)";
-        private const string var = "(?<var>(?:(?<lvar>" + varname + ")[*]?,?)*)";
-        private const string varspec = "(?<varspec>{" + op + var + "})";
-
-        // (?<varspec>{(?<op>[+#./;?&]?)(?<var>[a-zA-Z0-9_]*[*]?|(?:(?<lvar>[a-zA-Z0-9_]*[*]?),?)*)})
-
-        private Regex _ParameterRegex;
-
-        internal IDictionary<string, object> GetParameters(Uri uri)
-        {
-            if (_ParameterRegex == null)
-            {
-                string matchingRegex = CreateMatchingRegex(_template);
-
-                lock (this)
-                {
-                    _ParameterRegex = new Regex(matchingRegex);
-                }
-            }
-
-            Match match = _ParameterRegex.Match(uri.OriginalString);
-            var parameters = new Dictionary<string, object>();
-
-            for (int x = 1; x < match.Groups.Count; x++)
-            {
-                if (match.Groups[x].Success)
-                {
-                    string paramName = _ParameterRegex.GroupNameFromNumber(x);
-
-                    if (!string.IsNullOrEmpty(paramName))
-                        parameters.Add(paramName, Uri.UnescapeDataString(match.Groups[x].Value));
-                }
-            }
-
-            return match.Success ? parameters : null;
-        }
-
-        internal static string CreateMatchingRegex(string uriTemplate)
-        {
-            var findParam = new Regex(varspec);
-            var template = new Regex(@"([^{]|^)\?").Replace(uriTemplate, @"$+\?"); //.Replace("?",@"\?");
-
-            string regex = findParam.Replace(template, (m) =>
-            {
-                List<string> paramNames = m.Groups["lvar"].Captures.Cast<Capture>().Where(c => !string.IsNullOrEmpty(c.Value)).Select(c => c.Value).ToList();
-
-                switch (m.Groups["op"].Value)
-                {
-                    case "?":
-                        return GetQueryExpression(paramNames, prefix: "?");
-                    case "&":
-                        return GetQueryExpression(paramNames, prefix: "&");
-                    case "#":
-                        return GetExpression(paramNames, prefix: "#");
-                    case "/":
-                        return GetExpression(paramNames, prefix: "/");
-                    case "+":
-                        return GetExpression(paramNames);
-                    default:
-                        return GetExpression(paramNames);
-                }
-            });
-
-            return regex + "$";
-        }
-
-        private static string GetQueryExpression(List<String> paramNames, string prefix)
-        {
-            var sb = new StringBuilder();
-
-            foreach (string paramname in paramNames)
-            {
-                sb.Append(@"\").Append(prefix).Append("?");
-
-                if (prefix == "?")
-                    prefix = "&";
-
-                sb.Append("(?:");
-                sb.Append(paramname);
-                sb.Append("=");
-
-                sb.Append("(?<");
-                sb.Append(paramname);
-                sb.Append(">");
-                sb.Append("[^/?&]+");
-                sb.Append(")");
-                sb.Append(")?");
-            }
-
-            return sb.ToString();
-        }
-
-        private static string GetExpression(List<String> paramNames, string prefix = null)
-        {
-            var sb = new StringBuilder();
-
-            foreach (string paramname in paramNames)
-            {
-                if (string.IsNullOrEmpty(paramname))
-                    continue;
-
-                if (prefix != null)
-                {
-                    sb.Append(@"\").Append(prefix).Append("?");
-                    prefix = ",";
-                }
-
-                sb.Append("(?<");
-                sb.Append(paramname);
-                sb.Append(">");
-                sb.Append("[^/?&,]+"); // Param Value
-                sb.Append(")?");
-            }
-
-            return sb.ToString();
         }
     }
 }
