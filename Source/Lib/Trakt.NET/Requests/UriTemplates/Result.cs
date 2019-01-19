@@ -120,15 +120,6 @@ namespace UriTemplates
             return new string(esc);
         }
 
-        internal static string HexEscape(char c)
-        {
-            var esc = new char[3];
-            esc[0] = '%';
-            esc[1] = HexDigits[(c & 240) >> 4];
-            esc[2] = HexDigits[c & 15];
-            return new string(esc);
-        }
-
         private static readonly char[] HexDigits =
             new char[] {
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
