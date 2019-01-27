@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Requests.Handler
 {
+    using System;
     using System.Collections.Generic;
     using System.Text;
 
@@ -8,6 +9,8 @@
         private enum State
         {
             None,
+            Default,
+            ParsingParameter,       // {???}
             ParsingPathReplacement, // {identifier}
             ParsingPathParts,       // {/identifier}
             ParsingQueries,         // {?identifier[,identifier]}
@@ -75,7 +78,7 @@
         private void ParseTemplate()
         {
             int position = 0;
-            State parsingState = State.None;
+            State parsingState = State.Default;
             string identifier = "";
             int startPosition = 0;
 
@@ -86,7 +89,13 @@
                 switch (character)
                 {
                     case '{':
-                        parsingState = GetParsingState(_uriTemplate[position + 1]);
+                        parsingState = State.ParsingParameter;
+                        State nextParsingState = GetParsingState(_uriTemplate[position + 1]);
+
+                        if (nextParsingState == State.None)
+                            throw new InvalidOperationException("uri template parsing error");
+
+                        parsingState = nextParsingState;
 
                         if (parsingState != State.ParsingPathReplacement)
                         {
@@ -95,46 +104,61 @@
                             continue;
                         }
 
+                        position++;
                         startPosition = position;
                         break;
                     case '}':
-                        identifier = _uriTemplate.Substring(startPosition, position - startPosition - 1);
+                        if (parsingState == State.None)
+                            throw new InvalidOperationException("uri template parsing error");
 
-                        switch (parsingState)
+                        identifier = _uriTemplate.Substring(startPosition, position - startPosition);
+
+                        if (identifier.Length > 0)
                         {
-                            case State.ParsingPathReplacement:
-                                _pathReplacements.Add(identifier);
-                                break;
-                            case State.ParsingPathParts:
-                                _pathParts.Add(identifier);
-                                break;
-                            case State.ParsingQueries:
-                                _queries.Add(identifier);
-                                break;
-                            case State.ParsingFragment:
-                                _fragment = identifier;
-                                break;
+                            switch (parsingState)
+                            {
+                                case State.ParsingPathReplacement:
+                                    _pathReplacements.Add(identifier);
+                                    break;
+                                case State.ParsingPathParts:
+                                    _pathParts.Add(identifier);
+                                    break;
+                                case State.ParsingQueries:
+                                    _queries.Add(identifier);
+                                    break;
+                                case State.ParsingFragment:
+                                    if (_fragment.Length > 0)
+                                        throw new InvalidOperationException("uri template parsing error");
+
+                                    _fragment = identifier;
+                                    break;
+                            }
                         }
 
-                        parsingState = State.None;
-                        break;
-                    case '/':
-
-                        break;
-                    case '?':
-
+                        identifier = "";
+                        parsingState = State.Default;
+                        position++;
                         break;
                     case ',':
+                        if (parsingState == State.None || parsingState != State.ParsingQueries)
+                            throw new InvalidOperationException("uri template parsing error");
 
+                        identifier = _uriTemplate.Substring(startPosition, position - startPosition);
+
+                        if (identifier.Length > 0)
+                            _queries.Add(identifier);
+
+                        identifier = "";
+                        position++;
+                        startPosition = position;
                         break;
                     default:
                         if (parsingState == State.None)
-                            continue;
+                            throw new InvalidOperationException("uri template parsing error");
 
+                        position++;
                         break;
                 }
-
-                position++;
             }
         }
 
