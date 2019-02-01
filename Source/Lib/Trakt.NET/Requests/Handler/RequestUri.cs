@@ -65,12 +65,12 @@ namespace TraktNet.Requests.Handler
             State parsingState = State.Default;
             int startPosition = 0;
             int uriSegmentStartPosition = 0;
+            string uriSegment;
 
             while (position < _uriTemplate.Length)
             {
                 char character = _uriTemplate[position];
                 string identifier;
-                string uriSegment;
 
                 switch (character)
                 {
@@ -99,10 +99,10 @@ namespace TraktNet.Requests.Handler
                         if (uriSegment.Length > 0)
                         {
                             _segments.Add(new UriSegment
-                                {
-                                    SegmentValue = uriSegment,
-                                    Type = UriSegmentType.UriSegment
-                                });
+                            {
+                                SegmentValue = uriSegment,
+                                Type = UriSegmentType.UriSegment
+                            });
                         }
 
                         if (parsingState == State.None)
@@ -130,18 +130,18 @@ namespace TraktNet.Requests.Handler
                             {
                                 case State.ParsingPathReplacement:
                                     _segments.Add(new UriSegment
-                                        {
-                                            SegmentValue = identifier,
-                                            Type = UriSegmentType.Replacement
-                                        });
+                                    {
+                                        SegmentValue = identifier,
+                                        Type = UriSegmentType.Replacement
+                                    });
 
                                     break;
                                 case State.ParsingPathSegment:
                                     _segments.Add(new UriSegment
-                                        {
-                                            SegmentValue = identifier,
-                                            Type = UriSegmentType.PathSegment
-                                        });
+                                    {
+                                        SegmentValue = identifier,
+                                        Type = UriSegmentType.PathSegment
+                                    });
 
                                     break;
                                 case State.ParsingQueries:
@@ -183,6 +183,20 @@ namespace TraktNet.Requests.Handler
 
                         position++;
                         break;
+                }
+            }
+
+            if (position == _uriTemplate.Length)
+            {
+                uriSegment = _uriTemplate.Substring(uriSegmentStartPosition, position - uriSegmentStartPosition);
+
+                if (uriSegment.Length > 0)
+                {
+                    _segments.Add(new UriSegment
+                    {
+                        SegmentValue = uriSegment,
+                        Type = UriSegmentType.UriSegment
+                    });
                 }
             }
         }
