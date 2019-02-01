@@ -12,7 +12,6 @@
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    //using UriTemplates;
 
     internal class RequestMessageBuilder
     {
@@ -130,12 +129,6 @@
         {
             var requestUri = new RequestUri(_request.UriTemplate, _request.GetUriPathParameters());
             string url = requestUri.ResolveUrl();
-            //var uriTemplate = new UriTemplate(_request.UriTemplate);
-
-            //foreach (KeyValuePair<string, object> parameter in _request.GetUriPathParameters())
-            //    uriTemplate.AddParameterFromKeyValuePair(parameter.Key, parameter.Value);
-
-            //url = uriTemplate.Resolve();
             return _client.Configuration.BaseUrl + url;
         }
 
