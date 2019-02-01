@@ -110,14 +110,14 @@ namespace TraktNet.Requests.Handler
                             {
                                 case State.ParsingPathReplacement:
                                     if (_uriPathParameters.TryGetValue(identifier, out object replacement))
-                                        _result.Append(replacement.ToString());
+                                        _result.Append(Encode(replacement.ToString()));
                                     else
                                         throw new InvalidOperationException("uri template value not found");
 
                                     break;
                                 case State.ParsingPathSegment:
                                     if (_uriPathParameters.TryGetValue(identifier, out object segment))
-                                        _result.Append($"/{segment.ToString()}");
+                                        _result.Append($"/{Encode(segment.ToString())}");
                                     else
                                         throw new InvalidOperationException("uri template value not found");
 
