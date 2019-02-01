@@ -28,7 +28,7 @@ namespace TraktNet.Requests.Handler
         private readonly IDictionary<string, object> _uriPathParameters;
         private readonly StringBuilder _result;
 
-        public RequestUri(string uriTemplate, IDictionary<string, object> uriPathParameters)
+        internal RequestUri(string uriTemplate, IDictionary<string, object> uriPathParameters)
         {
             _uriTemplate = uriTemplate;
             _uriPathParameters = uriPathParameters;
@@ -37,11 +37,14 @@ namespace TraktNet.Requests.Handler
 
         internal string ResolveUrl()
         {
-            ParseTemplate();
+            if (_uriPathParameters == null || _uriPathParameters.Count == 0)
+                return _uriTemplate;
+
+            ResolveTemplate();
             return _result.ToString();
         }
 
-        private void ParseTemplate()
+        private void ResolveTemplate()
         {
             int position = 0;
             State parsingState = State.Default;
@@ -124,7 +127,7 @@ namespace TraktNet.Requests.Handler
                                     {
                                         _result.Append(isFirstQuery ? '?' : '&');
                                         isFirstQuery = false;
-                                        _result.Append($"{identifier}={GetValue(query)}");
+                                        _result.Append($"{identifier}={ResolveValue(query)}");
                                     }
                                     else
                                         throw new InvalidOperationException("uri template value not found");
@@ -149,7 +152,7 @@ namespace TraktNet.Requests.Handler
                             {
                                 _result.Append(isFirstQuery ? '?' : '&');
                                 isFirstQuery = false;
-                                _result.Append($"{identifier}={GetValue(query)}");
+                                _result.Append($"{identifier}={ResolveValue(query)}");
                             }
                             else
                                 throw new InvalidOperationException("uri template value not found");
@@ -168,7 +171,7 @@ namespace TraktNet.Requests.Handler
             }
         }
 
-        private string GetValue(object value)
+        private string ResolveValue(object value)
         {
             if (value is string val)
                 return Encode(val);
