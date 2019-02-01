@@ -1,11 +1,19 @@
 namespace TraktNet.Requests.Handler
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
 
     internal sealed class RequestUri
     {
+        private static readonly char[] HEX_DIGITS =
+            new char[] {
+                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                'A', 'B', 'C', 'D', 'E', 'F'
+            };
+
         private enum State
         {
             None,
@@ -114,13 +122,9 @@ namespace TraktNet.Requests.Handler
                                 case State.ParsingQueries:
                                     if (_uriPathParameters.TryGetValue(identifier, out object query))
                                     {
-                                        if (isFirstQuery)
-                                        {
-                                            _result.Append($"?{identifier}={query.ToString()}");
-                                            isFirstQuery = false;
-                                        }
-                                        else
-                                            _result.Append($"&{identifier}={query.ToString()}");
+                                        _result.Append(isFirstQuery ? '?' : '&');
+                                        isFirstQuery = false;
+                                        _result.Append($"{identifier}={GetValue(query)}");
                                     }
                                     else
                                         throw new InvalidOperationException("uri template value not found");
@@ -143,13 +147,9 @@ namespace TraktNet.Requests.Handler
                         {
                             if (_uriPathParameters.TryGetValue(identifier, out object query))
                             {
-                                if (isFirstQuery)
-                                {
-                                    _result.Append($"?{identifier}={query.ToString()}");
-                                    isFirstQuery = false;
-                                }
-                                else
-                                    _result.Append($"&{identifier}={query.ToString()}");
+                                _result.Append(isFirstQuery ? '?' : '&');
+                                isFirstQuery = false;
+                                _result.Append($"{identifier}={GetValue(query)}");
                             }
                             else
                                 throw new InvalidOperationException("uri template value not found");
@@ -166,6 +166,81 @@ namespace TraktNet.Requests.Handler
                         break;
                 }
             }
+        }
+
+        private string GetValue(object value)
+        {
+            if (value is string val)
+                return Encode(val);
+            else
+            {
+                var list = value as IList;
+
+                if (list == null && value is IEnumerable<string>)
+                    list = ((IEnumerable<string>)value).ToList();
+
+                if (list != null)
+                {
+                    if (list.Count == 1)
+                        return Encode(list[0].ToString());
+                    else
+                    {
+                        var result = new StringBuilder();
+
+                        for (int i = 0; i < list.Count; i++)
+                        {
+                            result.Append(',');
+                            result.Append(list[i].ToString());
+                        }
+
+                        return Encode(result.ToString().Substring(1));
+                    }
+                }
+                else
+                    return Encode(value.ToString());
+            }
+        }
+
+        private static string Encode(string value)
+        {
+            var result = new StringBuilder();
+
+            for (int i = 0; i < value.Length; i++)
+            {
+                char character = value[i];
+
+                switch (character)
+                {
+                    case '-':
+                    case '.':
+                    case '_':
+                    case '~':
+                        result.Append(character);
+                        break;
+                    default:
+                        if ((character > 64 && character < 123) || (character > 47 && character < 58))
+                            result.Append(character);
+                        else
+                        {
+                            byte[] characterBytes = Encoding.UTF8.GetBytes(new char[] { character });
+
+                            for (int j = 0; j < characterBytes.Length; j++)
+                            {
+                                var escaped = new char[3];
+
+                                escaped[0] = '%';
+                                escaped[1] = HEX_DIGITS[(characterBytes[j] & 240) >> 4];
+                                escaped[2] = HEX_DIGITS[characterBytes[j] & 15];
+
+                                result.Append(escaped);
+                            }
+                        }
+
+                        break;
+                }
+            }
+
+            return result.ToString();
         }
     }
 }
