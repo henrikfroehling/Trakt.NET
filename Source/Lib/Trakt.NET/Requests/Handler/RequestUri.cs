@@ -14,6 +14,21 @@ namespace TraktNet.Requests.Handler
                 'A', 'B', 'C', 'D', 'E', 'F'
             };
 
+        private enum UriSegmentType
+        {
+            UriSegment,
+            Replacement,
+            PathSegment,
+            Query
+        }
+
+        private sealed class UriSegment
+        {
+            public string SegmentValue { get; set; }
+
+            public UriSegmentType Type { get; set; }
+        }
+
         private enum State
         {
             None,
@@ -26,31 +41,30 @@ namespace TraktNet.Requests.Handler
 
         private readonly string _uriTemplate;
         private readonly IDictionary<string, object> _uriPathParameters;
+        private readonly List<UriSegment> _segments;
         private readonly StringBuilder _result;
 
         internal RequestUri(string uriTemplate, IDictionary<string, object> uriPathParameters)
         {
             _uriTemplate = uriTemplate;
             _uriPathParameters = uriPathParameters;
+            _segments = new List<UriSegment>();
             _result = new StringBuilder();
         }
 
         internal string ResolveUrl()
         {
-            if (_uriPathParameters == null || _uriPathParameters.Count == 0)
-                return _uriTemplate;
-
-            ResolveTemplate();
+            ParseTemplate();
+            ResolveUriSegments();
             return _result.ToString();
         }
 
-        private void ResolveTemplate()
+        private void ParseTemplate()
         {
             int position = 0;
             State parsingState = State.Default;
             int startPosition = 0;
             int uriSegmentStartPosition = 0;
-            bool isFirstQuery = true;
 
             while (position < _uriTemplate.Length)
             {
@@ -83,7 +97,13 @@ namespace TraktNet.Requests.Handler
                         uriSegment = _uriTemplate.Substring(uriSegmentStartPosition, position - uriSegmentStartPosition);
 
                         if (uriSegment.Length > 0)
-                            _result.Append(uriSegment);
+                        {
+                            _segments.Add(new UriSegment
+                                {
+                                    SegmentValue = uriSegment,
+                                    Type = UriSegmentType.UriSegment
+                                });
+                        }
 
                         if (parsingState == State.None)
                             throw new InvalidOperationException("uri template parsing error");
@@ -109,28 +129,27 @@ namespace TraktNet.Requests.Handler
                             switch (parsingState)
                             {
                                 case State.ParsingPathReplacement:
-                                    if (_uriPathParameters.TryGetValue(identifier, out object replacement))
-                                        _result.Append(Encode(replacement.ToString()));
-                                    else
-                                        throw new InvalidOperationException("uri template value not found");
+                                    _segments.Add(new UriSegment
+                                        {
+                                            SegmentValue = identifier,
+                                            Type = UriSegmentType.Replacement
+                                        });
 
                                     break;
                                 case State.ParsingPathSegment:
-                                    if (_uriPathParameters.TryGetValue(identifier, out object segment))
-                                        _result.Append($"/{Encode(segment.ToString())}");
-                                    else
-                                        throw new InvalidOperationException("uri template value not found");
+                                    _segments.Add(new UriSegment
+                                        {
+                                            SegmentValue = identifier,
+                                            Type = UriSegmentType.PathSegment
+                                        });
 
                                     break;
                                 case State.ParsingQueries:
-                                    if (_uriPathParameters.TryGetValue(identifier, out object query))
+                                    _segments.Add(new UriSegment
                                     {
-                                        _result.Append(isFirstQuery ? '?' : '&');
-                                        isFirstQuery = false;
-                                        _result.Append($"{identifier}={ResolveValue(query)}");
-                                    }
-                                    else
-                                        throw new InvalidOperationException("uri template value not found");
+                                        SegmentValue = identifier,
+                                        Type = UriSegmentType.Query
+                                    });
 
                                     break;
                             }
@@ -148,14 +167,11 @@ namespace TraktNet.Requests.Handler
 
                         if (identifier.Length > 0)
                         {
-                            if (_uriPathParameters.TryGetValue(identifier, out object query))
+                            _segments.Add(new UriSegment
                             {
-                                _result.Append(isFirstQuery ? '?' : '&');
-                                isFirstQuery = false;
-                                _result.Append($"{identifier}={ResolveValue(query)}");
-                            }
-                            else
-                                throw new InvalidOperationException("uri template value not found");
+                                SegmentValue = identifier,
+                                Type = UriSegmentType.Query
+                            });
                         }
 
                         position++;
@@ -167,6 +183,44 @@ namespace TraktNet.Requests.Handler
 
                         position++;
                         break;
+                }
+            }
+        }
+
+        private void ResolveUriSegments()
+        {
+            bool isFirstQuery = true;
+
+            for (int i = 0; i < _segments.Count; i++)
+            {
+                UriSegment uriSegment = _segments[i];
+
+                switch (uriSegment.Type)
+                {
+                    case UriSegmentType.UriSegment:
+                        _result.Append(uriSegment.SegmentValue);
+                        break;
+                    case UriSegmentType.Replacement:
+                        if (_uriPathParameters.TryGetValue(uriSegment.SegmentValue, out object replacement))
+                            _result.Append(Encode(replacement.ToString()));
+
+                        break;
+                    case UriSegmentType.PathSegment:
+                        if (_uriPathParameters.TryGetValue(uriSegment.SegmentValue, out object segment))
+                            _result.Append($"/{Encode(segment.ToString())}");
+
+                        break;
+                    case UriSegmentType.Query:
+                        if (_uriPathParameters.TryGetValue(uriSegment.SegmentValue, out object query))
+                        {
+                            _result.Append(isFirstQuery ? '?' : '&');
+                            isFirstQuery = false;
+                            _result.Append($"{uriSegment.SegmentValue}={ResolveValue(query)}");
+                        }
+
+                        break;
+                    default:
+                        throw new InvalidOperationException("invalid uri segment type");
                 }
             }
         }
