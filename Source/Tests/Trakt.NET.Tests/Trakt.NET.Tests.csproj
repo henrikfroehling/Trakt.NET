@@ -588,6 +588,9 @@
     <Compile Include="Objects\Basic\Json\Writer\ImageObjectJsonWriter\ImageObjectJsonWriter_JsonWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\ImageObjectJsonWriter\ImageObjectJsonWriter_Object_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\ImageObjectJsonWriter\ImageObjectJsonWriter_StringWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\MetadataArrayJsonWriter\MetadataArrayJsonWriter_Array_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\MetadataArrayJsonWriter\MetadataArrayJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\MetadataArrayJsonWriter\MetadataArrayJsonWriter_StringWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\MetadataObjectJsonWriter\MetadataObjectJsonWriter_JsonWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\MetadataObjectJsonWriter\MetadataObjectJsonWriter_Object_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\MetadataObjectJsonWriter\MetadataObjectJsonWriter_StringWriter_Tests.cs" />
@@ -597,12 +600,21 @@
     <Compile Include="Objects\Basic\Json\Writer\NetworkObjectJsonWriter\NetworkObjectJsonWriter_JsonWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\NetworkObjectJsonWriter\NetworkObjectJsonWriter_Object_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\NetworkObjectJsonWriter\NetworkObjectJsonWriter_StringWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\RatingArrayJsonWriter\RatingArrayJsonWriter_Array_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\RatingArrayJsonWriter\RatingArrayJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\RatingArrayJsonWriter\RatingArrayJsonWriter_StringWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\RatingObjectJsonWriter\RatingObjectJsonWriter_JsonWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\RatingObjectJsonWriter\RatingObjectJsonWriter_Object_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\RatingObjectJsonWriter\RatingObjectJsonWriter_StringWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\SharingArrayJsonWriter\SharingArrayJsonWriter_Array_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\SharingArrayJsonWriter\SharingArrayJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\SharingArrayJsonWriter\SharingArrayJsonWriter_StringWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\SharingObjectJsonWriter\SharingObjectJsonWriter_JsonWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\SharingObjectJsonWriter\SharingObjectJsonWriter_Object_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\SharingObjectJsonWriter\SharingObjectJsonWriter_StringWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\StatisticsArrayJsonWriter\StatisticsArrayJsonWriter_Array_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\StatisticsArrayJsonWriter\StatisticsArrayJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\StatisticsArrayJsonWriter\StatisticsArrayJsonWriter_StringWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\StatisticsObjectJsonWriter\StatisticsObjectJsonWriter_JsonWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\StatisticsObjectJsonWriter\StatisticsObjectJsonWriter_Object_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\StatisticsObjectJsonWriter\StatisticsObjectJsonWriter_StringWriter_Tests.cs" />
@@ -1608,12 +1620,8 @@
     <Folder Include="Objects\Basic\Json\Writer\CrewMemberArrayJsonWriter\" />
     <Folder Include="Objects\Basic\Json\Writer\CrewMemberObjectJsonWriter\" />
     <Folder Include="Objects\Basic\Json\Writer\CrewObjectJsonWriter\" />
-    <Folder Include="Objects\Basic\Json\Writer\MetadataArrayJsonWriter\" />
-    <Folder Include="Objects\Basic\Json\Writer\RatingArrayJsonWriter\" />
     <Folder Include="Objects\Basic\Json\Writer\SearchResultArrayJsonWriter\" />
     <Folder Include="Objects\Basic\Json\Writer\SearchResultObjectJsonWriter\" />
-    <Folder Include="Objects\Basic\Json\Writer\SharingArrayJsonWriter\" />
-    <Folder Include="Objects\Basic\Json\Writer\StatisticsArrayJsonWriter\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
